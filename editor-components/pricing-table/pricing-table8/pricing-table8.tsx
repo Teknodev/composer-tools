@@ -2,35 +2,58 @@ import * as React from "react";
 import styles from "./pricing-table8.module.scss";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 
-import { BasePricingTable, TypeUsableComponentProps } from "../../EditorComponent";
+import { BasePricingTable, TypeMediaInputValue } from "../../EditorComponent";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "../../../custom-hooks/input-templates";
 
 type IIconBoxes = {
-  planTitle: React.JSX.Element;
+  subtitle: React.JSX.Element;
   bars: any;
-  description: any;
+  description: React.JSX.Element;
   list: any;
   title: React.JSX.Element;
-  image: string;
   price: React.JSX.Element;
   priceBig: React.JSX.Element;
   plan: React.JSX.Element;
-  link: string;
-  iconsButton: Button;
+  icon?: TypeMediaInputValue;
+  buttons?: INPUTS.CastedButton[];
 };
 
-type Button = {
-  icon: string;
-  url: string;
-};
-
-type Buttons = INPUTS.CastedButton;
 
 class PricingTable8 extends BasePricingTable {
   constructor(props?: any) {
     super(props, styles);
+
+    this.addProp({
+      type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "",
+    });
+
+    this.addProp({
+      type: "string",
+      key: "title",
+      displayer: "Title",
+      value: "",
+    });
+
+    this.addProp({
+      type: "string",
+      key: "description",
+      displayer: "Description",
+      value: "",
+    });
+
+    this.addProp({
+      type: "array",
+      key: "headerButtons",
+      displayer: "Buttons",
+      value: [
+        INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+      ],
+    });
 
     this.addProp({
       type: "array",
@@ -68,7 +91,7 @@ class PricingTable8 extends BasePricingTable {
             },
             {
               type: "string",
-              key: "planTitle",
+              key: "subtitle",
               displayer: "Plan Title",
               value: "Basic plan",
             },
@@ -76,26 +99,15 @@ class PricingTable8 extends BasePricingTable {
               type: "string",
               key: "description",
               displayer: "Description",
-              value: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cum dolorum corporis, cumque repudiandae eius, eligendi assumenda quia ab accusantium optio, aut temporibus quis. Optio libero mollitia doloribus fugit consequuntur pariatur?",
+              value:
+                "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cum dolorum corporis, cumque repudiandae eius, eligendi assumenda quia ab accusantium optio, aut temporibus quis. Optio libero mollitia doloribus fugit consequuntur pariatur?",
             },
             {
-              type: "object",
-              key: "iconsButton",
-              displayer: "Icons Button",
-              value: [
-                {
-                  type: "icon",
-                  key: "icon",
-                  displayer: "Button Icon",
-                  value: "AiOutlinePlus",
-                },
-                {
-                  type: "page",
-                  key: "url",
-                  displayer: "Link",
-                  value: "",
-                },
-              ],
+              type: "media",
+              key: "icon",
+              displayer: "Icon",
+              additionalParams: { availableTypes: ["icon", "image"] },
+              value: { type: "icon", name: "AiOutlinePlus" },
             },
             {
               type: "array",
@@ -109,15 +121,15 @@ class PricingTable8 extends BasePricingTable {
                   value: [
                     {
                       type: "string",
-                      key: "barTitle",
+                      key: "title",
                       displayer: "Bar1",
                       value: "500 Gb",
                     },
                     {
-                      type: "number",
+                      type: "string",
                       key: "percent",
                       displayer: "Percent",
-                      value: 70,
+                      value: "70",
                     },
                   ],
                 },
@@ -128,20 +140,21 @@ class PricingTable8 extends BasePricingTable {
                   value: [
                     {
                       type: "string",
-                      key: "barTitle",
+                      key: "title",
                       displayer: "Bar2",
                       value: "3 Years",
                     },
                     {
-                      type: "number",
+                      type: "string",
                       key: "percent",
                       displayer: "Percent",
-                      value: 50,
+                      value: "50",
                     },
                   ],
                 },
               ],
             },
+
           ],
         },
         {
@@ -175,7 +188,7 @@ class PricingTable8 extends BasePricingTable {
             },
             {
               type: "string",
-              key: "planTitle",
+              key: "subtitle",
               displayer: "Plan Title",
               value: "Medium plan",
             },
@@ -183,26 +196,15 @@ class PricingTable8 extends BasePricingTable {
               type: "string",
               key: "description",
               displayer: "Description",
-              value: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cum dolorum corporis, cumque repudiandae eius, eligendi assumenda quia ab accusantium optio, aut temporibus quis. Optio libero mollitia doloribus fugit consequuntur pariatur?",
+              value:
+                "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cum dolorum corporis, cumque repudiandae eius, eligendi assumenda quia ab accusantium optio, aut temporibus quis. Optio libero mollitia doloribus fugit consequuntur pariatur?",
             },
             {
-              type: "object",
-              key: "iconsButton",
-              displayer: "Icons Button",
-              value: [
-                {
-                  type: "icon",
-                  key: "icon",
-                  displayer: "Button Icon",
-                  value: "AiOutlinePlus",
-                },
-                {
-                  type: "page",
-                  key: "url",
-                  displayer: "Link",
-                  value: "",
-                },
-              ],
+              type: "media",
+              key: "icon",
+              displayer: "Icon",
+              additionalParams: { availableTypes: ["icon", "image"] },
+              value: { type: "icon", name: "MdDoneAll" },
             },
             {
               type: "array",
@@ -216,15 +218,15 @@ class PricingTable8 extends BasePricingTable {
                   value: [
                     {
                       type: "string",
-                      key: "barTitle",
+                      key: "title",
                       displayer: "Bar1",
                       value: "500 Gb",
                     },
                     {
-                      type: "number",
+                      type: "string",
                       key: "percent",
                       displayer: "Percent",
-                      value: 30,
+                      value: "30",
                     },
                   ],
                 },
@@ -235,20 +237,21 @@ class PricingTable8 extends BasePricingTable {
                   value: [
                     {
                       type: "string",
-                      key: "barTitle",
+                      key: "title",
                       displayer: "Bar2",
                       value: "3 Years",
                     },
                     {
-                      type: "number",
+                      type: "string",
                       key: "percent",
                       displayer: "Percent",
-                      value: 30,
+                      value: "30",
                     },
                   ],
                 },
               ],
             },
+
           ],
         },
         {
@@ -282,7 +285,7 @@ class PricingTable8 extends BasePricingTable {
             },
             {
               type: "string",
-              key: "planTitle",
+              key: "subtitle",
               displayer: "Plan Title",
               value: "Professional plan",
             },
@@ -290,26 +293,15 @@ class PricingTable8 extends BasePricingTable {
               type: "string",
               key: "description",
               displayer: "Description",
-              value: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cum dolorum corporis, cumque repudiandae eius, eligendi assumenda quia ab accusantium optio, aut temporibus quis. Optio libero mollitia doloribus fugit consequuntur pariatur?",
+              value:
+                "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cum dolorum corporis, cumque repudiandae eius, eligendi assumenda quia ab accusantium optio, aut temporibus quis. Optio libero mollitia doloribus fugit consequuntur pariatur?",
             },
             {
-              type: "object",
-              key: "iconsButton",
-              displayer: "Icons Button",
-              value: [
-                {
-                  type: "icon",
-                  key: "icon",
-                  displayer: "Button Icon",
-                  value: "AiOutlinePlus",
-                },
-                {
-                  type: "page",
-                  key: "url",
-                  displayer: "Link",
-                  value: "",
-                },
-              ],
+              type: "media",
+              key: "icon",
+              displayer: "Icon",
+              additionalParams: { availableTypes: ["icon", "image"] },
+              value: { type: "icon", name: "AiOutlinePlus" },
             },
             {
               type: "array",
@@ -323,15 +315,15 @@ class PricingTable8 extends BasePricingTable {
                   value: [
                     {
                       type: "string",
-                      key: "barTitle",
+                      key: "title",
                       displayer: "Bar1",
                       value: "500 Gb",
                     },
                     {
-                      type: "number",
+                      type: "string",
                       key: "percent",
                       displayer: "Percent",
-                      value: 70,
+                      value: "70",
                     },
                   ],
                 },
@@ -342,20 +334,21 @@ class PricingTable8 extends BasePricingTable {
                   value: [
                     {
                       type: "string",
-                      key: "barTitle",
+                      key: "title",
                       displayer: "Bar2",
                       value: "3 Years",
                     },
                     {
-                      type: "number",
+                      type: "string",
                       key: "percent",
                       displayer: "Percent",
-                      value: 70,
+                      value: "70",
                     },
                   ],
                 },
               ],
             },
+
           ],
         },
       ],
@@ -364,49 +357,95 @@ class PricingTable8 extends BasePricingTable {
       },
     });
 
-    let button: TypeUsableComponentProps = INPUTS.BUTTON("buttonType", "Button", "CONTINUE", "", null, null, "Primary");
-
     this.setComponentState("currentIndex", 0);
+    this.setComponentState("hoveredIndex", null);
     this.setComponentState("slider-ref", React.createRef());
 
     this.addProp({
       type: "array",
-      key: "buttons",
+      key: "footerButtons",
       displayer: "Buttons",
-      value: [JSON.parse(JSON.stringify(button))],
+      value: [
+        INPUTS.BUTTON("button", "Button", "Continue", "", null, null, "Primary"),
+      ],
     });
 
     this.addProp({
-      type: "icon",
-      key: "prevIcon",
-      displayer: "Prev icon",
-      value: "IoMdArrowDropleft",
-    });
-
-    this.addProp({
-      type: "icon",
-      key: "nextIcon",
-      displayer: "Next icon",
-      value: "IoMdArrowDropright",
-    });
-    this.addProp({
-      type:"multiSelect",
+      type: "multiSelect",
       key: "animations",
       displayer: "Animations",
       value: ["animation1", "animation2", "animation3"],
-      additionalParams:{
-        selectItems:["animation1", "animation2", "animation3"]
-      }
-    })
+      additionalParams: {
+        selectItems: ["animation1", "animation2", "animation3"],
+      },
+    });
   }
 
   static getName(): string {
     return "Pricing 8";
   }
 
+  private hasMediaContent(media?: TypeMediaInputValue): boolean {
+    if (!media) return false;
+    return !!((media as any).name || (media as any).url || (media as any).src);
+  }
+
+  private hasButtonContent(button: INPUTS.CastedButton): boolean {
+    const textExist = this.castToString(button.text);
+    const iconExist = this.hasMediaContent(button.icon);
+    return !!(textExist || iconExist);
+  }
+
+  private hasAnyButtonContent(buttons: INPUTS.CastedButton[]): boolean {
+    return buttons.some((btn) => this.hasButtonContent(btn));
+  }
+
+  private hasCardContent(card: IIconBoxes): boolean {
+    const titleExist = this.castToString(card.title);
+    const priceExist = this.castToString(card.price);
+    const priceBigExist = this.castToString(card.priceBig);
+    const planExist = this.castToString(card.plan);
+    const iconExist = this.hasMediaContent(card.icon);
+    return !!(
+      titleExist ||
+      priceExist ||
+      priceBigExist ||
+      planExist ||
+      iconExist
+    );
+  }
+
+  private hasPricingContainerContent(card: IIconBoxes): boolean {
+    const priceExist = this.castToString(card.price);
+    const planExist = this.castToString(card.plan);
+    return !!(priceExist || planExist);
+  }
+
+  private hasLowerContainerContent(card: IIconBoxes): boolean {
+    const planTitleExist = this.castToString(card.subtitle);
+    const descriptionExist = this.castToString(card.description);
+    const hasBars =
+      card.bars &&
+      card.bars.length > 0 &&
+      card.bars.some((bar: any) => this.castToString(bar.title));
+
+    return !!(planTitleExist || descriptionExist || hasBars);
+  }
+
+  private hasPlanDescContent(card: IIconBoxes): boolean {
+    const planTitleExist = this.castToString(card.subtitle);
+    const descriptionExist = this.castToString(card.description);
+    return !!(planTitleExist || descriptionExist);
+  }
+
+  private hasBarsContent(bars: any[]): boolean {
+    if (!bars || bars.length === 0) return false;
+    return bars.some((bar: any) => this.castToString(bar.title));
+  }
+
   render() {
     const settings = {
-      dots: false,
+      dots: true,
       infinite: true,
       speed: 1000,
       autoplay: true,
@@ -415,156 +454,323 @@ class PricingTable8 extends BasePricingTable {
       slidesToScroll: 1,
       focusOnSelect: true,
       arrows: false,
-      afterChange: (index: any) => this.setComponentState("currentIndex", index),
+      dotsClass: `slick-dots ${this.decorateCSS("customDots")}`,
+      afterChange: (index: any) =>
+        this.setComponentState("currentIndex", index),
     };
 
-    const cards = this.castToObject<IIconBoxes[]>("cards");
+    const subtitle = this.getPropValue("subtitle");
+    const title = this.getPropValue("title");
+    const description = this.getPropValue("description");
+    const subtitleExist = this.castToString(subtitle);
+    const titleExist = this.castToString(title);
+    const descriptionExist = this.castToString(description);
 
-    const prevIcon = this.getPropValue("prevIcon");
-    const nextIcon = this.getPropValue("nextIcon");
+    const cards = this.castToObject<IIconBoxes[]>("cards");
+    const currentIndex = this.getComponentState("currentIndex");
+    const hoveredIndex = this.getComponentState("hoveredIndex");
+    const displayIndex = hoveredIndex !== null ? hoveredIndex : currentIndex;
+    const headerButtons = this.castToObject<INPUTS.CastedButton[]>("headerButtons");
+    const footerButtons = this.castToObject<INPUTS.CastedButton[]>("footerButtons");
+    const animations = this.castToObject<string[]>("animations");
+
+    const hasCardsWithContent = cards.some((card) => this.hasCardContent(card));
+
+    const hasHeaderButtons = this.hasAnyButtonContent(headerButtons);
+    const hasFooterButtons = this.hasAnyButtonContent(footerButtons);
+
+    const currentCard = cards[displayIndex];
+    const hasLowerContent =
+      currentCard && this.hasLowerContainerContent(currentCard);
+
+    const hasHeader =
+      subtitleExist || titleExist || descriptionExist || hasHeaderButtons;
 
     const handleCardClick = (index: number) => {
       this.setComponentState("currentIndex", index);
     };
 
+    const handleCardHover = (index: number) => {
+      this.setComponentState("hoveredIndex", index);
+    };
+
+    const handleCardLeave = () => {
+      this.setComponentState("hoveredIndex", null);
+    };
+
     return (
-      <Base.Container className={this.decorateCSS("container")}>
-        <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("box")}>
-            <ComposerSlider {...settings} className={this.decorateCSS("carousel")} ref={this.getComponentState("slider-ref")}>
-              {this.castToObject<IIconBoxes[]>("cards").map((card: IIconBoxes, index: number) => {
-                const cardTitleExist = this.castToString(card.title);
-                const cardPriceExist = this.castToString(card.price);
-                const cardPriceBigExist = this.castToString(card.priceBig);
-                const cardPlanExist = this.castToString(card.plan);
+      <Base.Container
+        className={this.decorateCSS("container")}
+      >
+        <Base.MaxContent className={`${this.decorateCSS("max-content")}${!subtitleExist && !titleExist && !descriptionExist ? ` ${this.decorateCSS("no-header-padding")}` : ""}`}>
+          {(subtitleExist || titleExist || descriptionExist || hasHeaderButtons) && (
+            <Base.VerticalContent className={this.decorateCSS("header")}>
+              {subtitleExist && (
+                <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                  {subtitle}
+                </Base.SectionSubTitle>
+              )}
+              {titleExist && (
+                <Base.SectionTitle className={this.decorateCSS("title")}>
+                  {title}
+                </Base.SectionTitle>
+              )}
+              {descriptionExist && (
+                <Base.SectionDescription className={this.decorateCSS("description")}>
+                  {description}
+                </Base.SectionDescription>
+              )}
+              {hasHeaderButtons && (
+                <div className={this.decorateCSS("header-buttons")}>
+                  {headerButtons.map((item, index) => {
+                    const btnTextExist = this.castToString(item.text);
+                    const btnIconValue = item.icon as unknown as TypeMediaInputValue;
+                    const btnIconExist = btnIconValue && (btnIconValue.type === "icon" ? btnIconValue.name : (btnIconValue as any).url);
 
-                return (
-                  <div className={this.decorateCSS("card-item-count")} key={index}>
-                    <Base.VerticalContent className={this.decorateCSS("pricing")}>
-                      {cardTitleExist && <Base.H3 className={this.decorateCSS("title")}>{card.title}</Base.H3>}
-                      {cardPriceBigExist && <Base.H1 className={this.decorateCSS("price-big")}>{card.priceBig}</Base.H1>}
-                      <div className={this.decorateCSS("pricing-container")}>
-                        {cardPriceExist && <Base.H1 className={this.decorateCSS("price")}>{card.price}</Base.H1>}
-                        {cardPlanExist && <Base.P className={this.decorateCSS("plan")}>{card.plan}</Base.P>}
-                      </div>
+                    if (!btnTextExist && !btnIconExist) return null;
 
-                      {card.iconsButton.icon && (
-                        <ComposerLink path={card.iconsButton.url}>
-                          <Base.Icon
-                            name={card.iconsButton.icon}
-                            propsIcon={{
-                              className: this.decorateCSS("icon"),
-                            }}
-                          />
-                        </ComposerLink>
-                      )}
-                    </Base.VerticalContent>
-                  </div>
-                );
-              })}
-            </ComposerSlider>
-
-            {prevIcon && (
-              <Base.Icon
-                name={this.getPropValue("prevIcon")}
-                propsIcon={{
-                  className: `${this.decorateCSS("prev_icon")}`,
-
-                  onClick: () => {
-                    this.getComponentState("slider-ref").current.slickPrev();
-                  },
-                }}
-              />
-            )}
-            {nextIcon && (
-              <Base.Icon
-                name={this.getPropValue("nextIcon")}
-                propsIcon={{
-                  className: `${this.decorateCSS("next_icon")}`,
-
-                  onClick: () => {
-                    this.getComponentState("slider-ref").current.slickNext();
-                  },
-                }}
-              />
-            )}
-
-            <div className={this.decorateCSS("upper-container")}>
-              {this.castToObject<IIconBoxes[]>("cards").map((card, index) => {
-                const cardTitleExist = this.castToString(card.title);
-                const cardPriceExist = this.castToString(card.price);
-                const cardPriceBigExist = this.castToString(card.priceBig);
-                const cardPlanExist = this.castToString(card.plan);
-                return (
-                  <div className={`${this.decorateCSS("card-item-count")} ${index === Math.floor(cards.length / 2) ? this.decorateCSS("middle-card") : ""}
-                  ${this.getPropValue("animations")  && this.getPropValue("animations").map((animation:string) => this.decorateCSS(animation)).join(" ")}`} key={index} onClick={() => handleCardClick(index)}>
-                    <Base.VerticalContent className={this.decorateCSS("pricing")}>
-                      {cardTitleExist && <Base.H3 className={this.decorateCSS("title")}>{card.title}</Base.H3>}
-                      {cardPriceBigExist && <Base.H1 className={this.decorateCSS("price-big")}>{card.priceBig}</Base.H1>}
-
-                      <div className={this.decorateCSS("pricing-container")}>
-                        {cardPriceExist && <Base.H1 className={this.decorateCSS("price")}>{card.price}</Base.H1>}
-                        {cardPlanExist && <Base.P className={this.decorateCSS("plan")}>{card.plan}</Base.P>}
-                      </div>
-
-                      {card.iconsButton.icon && (
-                        <ComposerLink path={card.iconsButton.url}>
-                          <Base.Icon
-                            name={card.iconsButton.icon}
-                            propsIcon={{
-                              className: this.decorateCSS("icon"),
-                            }}
-                          />
-                        </ComposerLink>
-                      )}
-                    </Base.VerticalContent>
-                  </div>
-                );
-              })}
-            </div>
-
-            <div className={this.decorateCSS("lower-container")}>
-              <Base.VerticalContent className={this.decorateCSS("plan-desc")}>
-                {this.castToString(cards[this.getComponentState("currentIndex")].planTitle) && <Base.H3 className={this.decorateCSS("text")}>{cards[this.getComponentState("currentIndex")].planTitle}</Base.H3>}
-                {this.castToString(cards[this.getComponentState("currentIndex")].description) && <Base.P className={this.decorateCSS("description-text")}>{cards[this.getComponentState("currentIndex")].description}</Base.P>}
-              </Base.VerticalContent>
-
-              <div className={this.decorateCSS("bar-rows")}>
-                <div className={this.decorateCSS("bar-row")}>
-                  {cards[this.getComponentState("currentIndex")].bars.map((bar: any, index: any) => {
-                    const barTitleExist = this.castToString(bar.barTitle);
                     return (
-                      <div className={this.decorateCSS("bar-desc")} key={index}>
-                        {barTitleExist && <Base.H5 className={this.decorateCSS("bar-title")}>{bar.barTitle}</Base.H5>}
-                        <div className={this.decorateCSS("bar-percent")}>
-                          <div
-                            className={this.decorateCSS("percent")}
-                            style={{
-                              width: `${bar.percent}%`,
-                            }}
-                          ></div>
-                        </div>
-                      </div>
-                    );
+                      <ComposerLink key={index} path={item.url}>
+                        <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
+                          {btnIconExist && (
+                            <Base.Media className={this.decorateCSS("button-icon")} value={btnIconValue as any} />
+                          )}
+                          {btnTextExist && (
+                            <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>
+                          )}
+                        </Base.Button>
+                      </ComposerLink>
+                    )
                   })}
                 </div>
-              </div>
-            </div>
+              )}
+            </Base.VerticalContent>
+          )}
+          <div className={this.decorateCSS("box")}>
+            {hasCardsWithContent && (
+              <ComposerSlider
+                {...settings}
+                className={this.decorateCSS("carousel")}
+                ref={this.getComponentState("slider-ref")}
+              >
+                {cards.map((card: IIconBoxes, index: number) => {
+                  if (!this.hasCardContent(card)) return null;
 
-            <div className={this.decorateCSS("button-position")}>
-              {this.castToObject<Buttons[]>("buttons").map((item, index) => {
-                const buttonExist = this.castToString(item.text);
-                return (
-                  buttonExist && (
-                    <ComposerLink path={item.url} key={index}>
-                      <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
-                        {item.text}
-                      </Base.Button>
-                    </ComposerLink>
-                  )
-                );
-              })}
-            </div>
+                  const cardTitleExist = this.castToString(card.title);
+                  const cardPriceBigExist = this.castToString(card.priceBig);
+                  const hasPricingContainer =
+                    this.hasPricingContainerContent(card);
+                  const iconExist = this.hasMediaContent(card.icon);
+                  const isIconImage = !!(
+                    iconExist && card.icon?.type === "image"
+                  );
+
+                  return (
+                    <div
+                      className={`${this.decorateCSS("card-item-count")} ${animations ? animations.map((animation: string) => this.decorateCSS(animation)).join(" ") : ""}`}
+                      key={index}
+                    >
+                      <Base.VerticalContent
+                        className={this.decorateCSS("pricing")}
+                      >
+                        <div className={this.decorateCSS("card-background-wrapper")} />
+                        {cardTitleExist && (
+                          <Base.H3 className={this.decorateCSS("title")}>
+                            {card.title}
+                          </Base.H3>
+                        )}
+                        <div className={this.decorateCSS("price-stack")}>
+                          {hasPricingContainer && (
+                            <div
+                              className={this.decorateCSS("pricing-container")}
+                            >
+                              {cardPriceBigExist && (
+                                <Base.H3
+                                  className={this.decorateCSS("price-big")}
+                                >
+                                  {card.priceBig}
+                                </Base.H3>
+                              )}
+                              {this.castToString(card.price) && (
+                                <Base.H2 className={this.decorateCSS("price")}>
+                                  {card.price}
+                                </Base.H2>
+                              )}
+
+                              {this.castToString(card.plan) && (
+                                <Base.P className={this.decorateCSS("plan")}>
+                                  {card.plan}
+                                </Base.P>
+                              )}
+                            </div>
+                          )}
+                        </div>
+
+                        {iconExist && (
+                          <div className={this.decorateCSS("icon-wrapper")}>
+                            <Base.Media
+                              value={card.icon}
+                              className={`${this.decorateCSS("icon")} ${isIconImage ? this.decorateCSS("icon-image") : ""}`}
+                            />
+                          </div>
+                        )}
+                      </Base.VerticalContent>
+                    </div>
+                  );
+                })}
+              </ComposerSlider>
+            )}
+
+            {hasCardsWithContent && (
+              <div className={this.decorateCSS("upper-container")}>
+                {cards.map((card, index) => {
+                  if (!this.hasCardContent(card)) return null;
+
+                  const cardTitleExist = this.castToString(card.title);
+                  const cardPriceBigExist = this.castToString(card.priceBig);
+                  const hasPricingContainer =
+                    this.hasPricingContainerContent(card);
+                  const iconExist = this.hasMediaContent(card.icon);
+                  const isIconImage = !!(
+                    iconExist && card.icon?.type === "image"
+                  );
+
+                  return (
+                    <div
+                      className={`${this.decorateCSS("card-item-count")} ${index === Math.floor(cards.length / 2) ? this.decorateCSS("middle-card") : ""} ${index === currentIndex ? this.decorateCSS("active-card") : ""} ${animations ? animations.map((animation: string) => this.decorateCSS(animation)).join(" ") : ""}`}
+                      key={index}
+                      onClick={() => handleCardClick(index)}
+                      onMouseEnter={() => handleCardHover(index)}
+                      onMouseLeave={handleCardLeave}
+                    >
+                      <Base.VerticalContent
+                        className={this.decorateCSS("pricing")}
+                      >
+                        <div className={this.decorateCSS("card-background-wrapper")} />
+                        {cardTitleExist && (
+                          <Base.H3 className={this.decorateCSS("title")}>
+                            {card.title}
+                          </Base.H3>
+                        )}
+                        <div className={this.decorateCSS("price-stack")}>
+                          {cardPriceBigExist && (
+                            <Base.H3 className={this.decorateCSS("price-big")}>
+                              {card.priceBig}
+                            </Base.H3>
+                          )}
+                          {hasPricingContainer && (
+                            <div
+                              className={this.decorateCSS("pricing-container")}
+                            >
+                              {this.castToString(card.price) && (
+                                <Base.H2 className={this.decorateCSS("price")}>
+                                  {card.price}
+                                </Base.H2>
+                              )}
+                              {this.castToString(card.plan) && (
+                                <Base.P className={this.decorateCSS("plan")}>
+                                  {card.plan}
+                                </Base.P>
+                              )}
+                            </div>
+                          )}
+                        </div>
+                        {iconExist && (
+                          <div className={this.decorateCSS("icon-wrapper")}>
+                            <Base.Media
+                              value={card.icon}
+                              className={`${this.decorateCSS("icon")} ${isIconImage ? this.decorateCSS("icon-image") : ""}`}
+                            />
+                          </div>
+                        )}
+                      </Base.VerticalContent>
+                    </div>
+                  );
+                })}
+              </div>
+            )}
+
+            {(hasLowerContent || hasFooterButtons) && (
+              <Base.VerticalContent className={this.decorateCSS("footer-content")}>
+                {hasLowerContent && (
+                  <div
+                    className={this.decorateCSS("lower-container")}
+                  >
+                    {this.hasPlanDescContent(currentCard) && (
+                      <Base.VerticalContent
+                        className={this.decorateCSS("plan-desc")}
+                      >
+                        {this.castToString(currentCard.subtitle) && (
+                          <Base.H4 className={this.decorateCSS("text")}>
+                            {currentCard.subtitle}
+                          </Base.H4>
+                        )}
+                        {this.castToString(currentCard.description) && (
+                          <Base.P className={this.decorateCSS("description-text")}>
+                            {currentCard.description}
+                          </Base.P>
+                        )}
+                      </Base.VerticalContent>
+                    )}
+
+                    {this.hasBarsContent(currentCard.bars) && (
+                      <div className={this.decorateCSS("bar-rows")}>
+                        <div className={this.decorateCSS("bar-row")}>
+                          {currentCard.bars.map((bar: any, index: any) => {
+                            const barTitleExist = this.castToString(bar.title);
+                            if (!barTitleExist) return null;
+
+                            return (
+                              <div
+                                className={this.decorateCSS("bar-desc")}
+                                key={index}
+                              >
+                                <Base.H6 className={this.decorateCSS("bar-title")}>
+                                  {bar.title}
+                                </Base.H6>
+                                <div className={this.decorateCSS("bar-percent")}>
+                                  <div
+                                    className={this.decorateCSS("percent")}
+                                    style={{
+                                      width: `${this.castToString(bar.percent) || "0"}%`,
+                                    }}
+                                  ></div>
+                                </div>
+                              </div>
+                            );
+                          })}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                )}
+
+                {hasFooterButtons && (
+                  <div className={this.decorateCSS("button-position")}>
+                    {footerButtons.map((item, index) => {
+                      const btnTextExist = this.castToString(item.text);
+                      const btnIconValue = item.icon as unknown as TypeMediaInputValue;
+                      const btnIconExist = btnIconValue && (btnIconValue.type === "icon" ? btnIconValue.name : (btnIconValue as any).url);
+
+                      if (!btnTextExist && !btnIconExist) return null;
+
+                      return (
+                        <ComposerLink key={index} path={item.url}>
+                          <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
+                            {btnIconExist && (
+                              <Base.Media className={this.decorateCSS("button-icon")} value={btnIconValue as any} />
+                            )}
+                            {btnTextExist && (
+                              <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>
+                            )}
+                          </Base.Button>
+                        </ComposerLink>
+                      )
+                    })}
+                  </div>
+                )}
+              </Base.VerticalContent>
+            )}
           </div>
         </Base.MaxContent>
       </Base.Container>
