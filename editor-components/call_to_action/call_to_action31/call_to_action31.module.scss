@@ -3,41 +3,7 @@
 .container {
     display: flex;
     justify-content: center;
-    padding: var(--composer-gap-xl);
 
-    &.no-media.no-card {
-        .max-content {
-            height: auto !important;
-            background-color: transparent !important;
-
-        }
-    }
-
-    &.no-card {
-        padding: 0;
-    }
-
-    &.no-card:not(.no-media) .max-content {
-        background-color: transparent;
-        border-radius: 0;
-        padding: 120px 60px;
-        height: auto;
-
-        .media-wrapper {
-            border-radius: var(--composer-border-radius-sm);
-            max-height: 70vh;
-        }
-    }
-
-    &.no-media:not(.no-card) .max-content {
-        height: auto;
-        // padding: 120px 60px;
-    }
-
-    &.no-media:not(.no-card) .max-content {
-        padding: 120px 60px;
-
-    }
 
     .max-content {
         width: 100%;
@@ -45,29 +11,12 @@
         justify-content: flex-start;
         flex-direction: column;
         gap: var(--composer-gap-xl);
-        border-radius: var(--composer-border-radius-md);
-        background-color: color-mix(in srgb,
-                var(--composer-html-background),
-                var(--composer-font-color-primary) 5%);
-
-        padding: 120px 60px 0;
-
-        &.no-header {
-            padding: 0;
-            justify-content: flex-start;
-
-            .media-wrapper {
-                flex: 1;
-                border-radius: var(--composer-border-radius-md);
-            }
-        }
 
         .header-row {
             box-sizing: border-box;
             display: flex;
             justify-content: space-between;
-            gap: var(--composer-gap-xl);
-            align-items: flex-end;
+            align-items: center;
             flex-wrap: nowrap;
 
             .text-column {
@@ -75,9 +24,13 @@
                 width: auto;
                 text-align: left;
 
-                .subtitle,
                 .title,
                 .description {
+                    text-align: left;
+                    align-self: flex-start;
+                }
+
+                .subtitle {
                     text-align: left;
                     align-self: flex-start;
                     margin-left: 0;
@@ -108,8 +61,6 @@
                     }
                 }
             }
-
-
         }
 
         .media-wrapper {
@@ -132,23 +83,17 @@
         }
     }
 
+    &:not(.no-card) {
+        .max-content {
+            padding: calc(var(--composer-gap-lg) * 2) var(--composer-gap-xl);
+            background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+            border-radius: var(--composer-border-radius-md);
+        }
+    }
 
     @container (max-width: #{$composer-tablet-width}) {
-        &.no-card:not(.no-media) .max-content {
-            padding: 0;
-        }
-
-        &.no-media:not(.no-card) .max-content {
-            padding: 100px 50px;
-        }
-
         .max-content {
-            padding: 100px 50px 0;
             height: auto;
-
-            &.no-header {
-                padding-top: 0 !important;
-            }
 
             .header-row {
                 flex-wrap: nowrap;
@@ -164,25 +109,22 @@
                 }
             }
         }
+
+        &:not(.no-card) {
+            .max-content {
+                padding: calc(var(--composer-gap-lg) * 2) var(--composer-gap-lg);
+            }
+        }
+
     }
 
     @container (max-width: #{$composer-phone-width}) {
-        &.no-media:not(.no-card) .max-content {
-            padding: 50px 30px;
-        }
-
         .max-content {
-            padding: 50px 30px 0;
             gap: var(--composer-gap-lg);
-
-            &.no-media:not(.no-card) {
-                padding: 50px 30px;
-            }
 
             .header-row {
                 flex-direction: column;
                 align-items: flex-start;
-                gap: var(--composer-gap-md);
 
                 .text-column {
                     flex: 1 1 auto;
@@ -216,5 +158,12 @@
                 }
             }
         }
+
+        &:not(.no-card) {
+            .max-content {
+                padding: var(--composer-gap-xl) var(--composer-gap-md);
+            }
+        }
+
     }
 }

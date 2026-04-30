@@ -68,14 +68,7 @@ class CallToAction31 extends BaseCallToAction {
             key: "buttons",
             displayer: "Buttons",
             value: [
-                INPUTS.BUTTON(
-                    "button",
-                    "Button",
-                    "Get Started",
-                    null,
-                    null,
-                    null,
-                ),
+                INPUTS.BUTTON("button", "Button", "Get Started", null, null, null),
             ],
         });
     }
