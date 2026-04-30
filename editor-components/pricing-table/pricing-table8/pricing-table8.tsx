@@ -502,7 +502,7 @@ class PricingTable8 extends BasePricingTable {
       <Base.Container
         className={this.decorateCSS("container")}
       >
-        <Base.MaxContent className={this.decorateCSS("max-content")}>
+        <Base.MaxContent className={`${this.decorateCSS("max-content")}${!subtitleExist && !titleExist && !descriptionExist ? ` ${this.decorateCSS("no-header-padding")}` : ""}`}>
           {(subtitleExist || titleExist || descriptionExist || hasHeaderButtons) && (
             <Base.VerticalContent className={this.decorateCSS("header")}>
               {subtitleExist && (

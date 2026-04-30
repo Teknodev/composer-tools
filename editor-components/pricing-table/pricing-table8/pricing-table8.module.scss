@@ -7,7 +7,10 @@
     flex-direction: column;
     width: 100%;
     gap: calc(var(--composer-gap-xl) * 2);
-    padding-top: 67px;
+
+    &.no-header-padding {
+      padding-top: 67px;
+    }
 
     .header {
       display: flex;
