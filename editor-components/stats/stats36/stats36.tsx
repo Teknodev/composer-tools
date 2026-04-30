@@ -1,20 +1,27 @@
 import * as React from "react";
-import { BaseStats } from "../../EditorComponent";
+import { BaseStats, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./stats36.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 
+type MediaGroup = {
+    media: TypeMediaInputValue;
+    overlay: boolean;
+};
+
 type StatItem = {
     prefix: string;
+    prefixElement: React.JSX.Element;
     number: string;
     suffix: string;
+    suffixElement: React.JSX.Element;
     title: string;
-    titleElement: JSX.Element;
+    titleElement: React.JSX.Element;
     subtitle: string;
-    subtitleElement: JSX.Element;
+    subtitleElement: React.JSX.Element;
     description: string;
-    descriptionElement: JSX.Element;
+    descriptionElement: React.JSX.Element;
 };
 
 class Stats36 extends BaseStats {
@@ -198,11 +205,11 @@ class Stats36 extends BaseStats {
                     </div>
                     {valueExist && (
                         <div className={this.decorateCSS("stat-value-container")}>
-                            {stat.prefix && <span className={this.decorateCSS("stat-prefix")}>{stat.prefix}</span>}
+                            {stat.prefix && <span className={this.decorateCSS("stat-prefix")}>{stat.prefixElement}</span>}
                             <span className={this.decorateCSS("stat-value")}>
                                 {statsAnimation ? animatedNumber : formatNumber(targetNumber)}
                             </span>
-                            {stat.suffix && <span className={this.decorateCSS("stat-suffix")}>{stat.suffix}</span>}
+                            {stat.suffix && <span className={this.decorateCSS("stat-suffix")}>{stat.suffixElement}</span>}
                         </div>
                     )}
                 </div>
@@ -225,12 +232,12 @@ class Stats36 extends BaseStats {
         const title = this.castToString(this.getPropValue("title"));
         const subtitle = this.castToString(this.getPropValue("subtitle"));
         const description = this.castToString(this.getPropValue("description"));
-        const mediaGroup = this.castToObject<any>("mediaGroup");
+        const mediaGroup = this.castToObject<MediaGroup>("mediaGroup");
         const media = mediaGroup.media;
         const showOverlay = mediaGroup.overlay;
-        const statsRaw = this.castToObject<{ prefix: JSX.Element; number: JSX.Element; suffix: JSX.Element; title: JSX.Element; subtitle: JSX.Element; description: JSX.Element }[]>("stats");
+        const statsRaw = this.castToObject<{ prefix: React.JSX.Element; number: React.JSX.Element; suffix: React.JSX.Element; title: React.JSX.Element; subtitle: React.JSX.Element; description: React.JSX.Element }[]>("stats");
         const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
-        const hasValidButtons = buttons.some((btn) => this.castToString(btn.text));
+        const hasValidButtons = buttons.some((btn) => this.castToString(btn.text) || (btn.icon && btn.icon.name));
         const alignment = Base.getContentAlignment();
 
         const statsItems: StatItem[] = statsRaw.map((item) => {
@@ -243,8 +250,10 @@ class Stats36 extends BaseStats {
 
             return {
                 prefix,
+                prefixElement: item.prefix,
                 number,
                 suffix,
+                suffixElement: item.suffix,
                 title,
                 titleElement: item.title,
                 subtitle,
@@ -287,24 +296,25 @@ class Stats36 extends BaseStats {
                                 >
                                     {subtitleExist && (
                                         <Base.SectionSubTitle className={this.decorateCSS("section-subtitle")}>
-                                            {subtitle}
+                                            {this.getPropValue("subtitle")}
                                         </Base.SectionSubTitle>
                                     )}
                                     {titleExist && (
                                         <Base.SectionTitle className={this.decorateCSS("section-title")}>
-                                            {title}
+                                            {this.getPropValue("title")}
                                         </Base.SectionTitle>
                                     )}
                                     {descriptionExist && (
                                         <Base.SectionDescription className={this.decorateCSS("section-description")}>
-                                            {description}
+                                            {this.getPropValue("description")}
                                         </Base.SectionDescription>
                                     )}
                                     {hasValidButtons && (
                                         <div className={this.decorateCSS("button-container")}>
                                             {buttons.map((item: INPUTS.CastedButton, index: number) => {
                                                 const buttonText = this.castToString(item.text);
-                                                if (!buttonText) return null;
+                                                const iconExist = item.icon && item.icon.name;
+                                                if (!buttonText && !iconExist) return null;
 
                                                 return (
                                                     <ComposerLink key={index} path={item.url}>
@@ -312,9 +322,8 @@ class Stats36 extends BaseStats {
                                                             buttonType={item.type}
                                                             className={this.decorateCSS("button")}
                                                         >
-                                                            <Base.P className={this.decorateCSS("button-text")}>
-                                                                {item.text}
-                                                            </Base.P>
+                                                            {buttonText && <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>}
+                                                            {iconExist && <Base.Media className={this.decorateCSS("button-icon")} value={item.icon!} />}
                                                         </Base.Button>
                                                     </ComposerLink>
                                                 );
