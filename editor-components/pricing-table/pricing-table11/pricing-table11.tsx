@@ -266,18 +266,104 @@ class PricingTable11 extends BasePricingTable {
             },
           ],
         },
+        {
+          type: "object",
+          key: "feature",
+          displayer: "Feature",
+          value: [
+            {
+              type: "string",
+              key: "text",
+              displayer: "Text",
+              value: "Mobile app access",
+            },
+            {
+              type: "icon",
+              key: "icon",
+              displayer: "Icon",
+              value: "FaCheckCircle",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "feature",
+          displayer: "Feature",
+          value: [
+            {
+              type: "string",
+              key: "text",
+              displayer: "Text",
+              value: "Automated reports",
+            },
+            {
+              type: "icon",
+              key: "icon",
+              displayer: "Icon",
+              value: "FaCheckCircle",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "feature",
+          displayer: "Feature",
+          value: [
+            {
+              type: "string",
+              key: "text",
+              displayer: "Text",
+              value: "White-label options",
+            },
+            {
+              type: "icon",
+              key: "icon",
+              displayer: "Icon",
+              value: "FaCheckCircle",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "feature",
+          displayer: "Feature",
+          value: [
+            {
+              type: "string",
+              key: "text",
+              displayer: "Text",
+              value: "Dedicated account manager",
+            },
+            {
+              type: "icon",
+              key: "icon",
+              displayer: "Icon",
+              value: "FaCheckCircle",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "feature",
+          displayer: "Feature",
+          value: [
+            {
+              type: "string",
+              key: "text",
+              displayer: "Text",
+              value: "Multi-currency support",
+            },
+            {
+              type: "icon",
+              key: "icon",
+              displayer: "Icon",
+              value: "FaCheckCircle",
+            },
+          ],
+        },
       ],
     });
 
-    this.addProp({
-      type: "multiSelect",
-      key: "animations",
-      displayer: "Animations",
-      value: ["animation1", "animation2"],
-      additionalParams: {
-        selectItems: ["animation1", "animation2", "animation3"],
-      },
-    });
   }
 
   static getName(): string {
@@ -312,13 +398,6 @@ class PricingTable11 extends BasePricingTable {
     const showInfo = showInfoLeft || showFeatures;
 
     if (!showBanner && !showInfo) return null;
-
-    const animations =
-      (this.getPropValue("animations") &&
-        this.getPropValue("animations")
-          .map((animation: string) => this.decorateCSS(animation))
-          .join(" ")) ||
-      "";
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
@@ -367,16 +446,14 @@ class PricingTable11 extends BasePricingTable {
                       : ""
                   }`}
                 >
-                  <div className={this.decorateCSS("header-button-wrapper")}>
-                    <ComposerLink path={bannerButton.url}>
-                      <Base.Button
-                        buttonType={bannerButton.type}
-                        className={this.decorateCSS("header-button")}
-                      >
-                        {bannerButton.text}
-                      </Base.Button>
-                    </ComposerLink>
-                  </div>
+                  <ComposerLink path={bannerButton.url}>
+                    <Base.Button
+                      buttonType={bannerButton.type}
+                      className={this.decorateCSS("header-button")}
+                    >
+                      {bannerButton.text}
+                    </Base.Button>
+                  </ComposerLink>
                 </div>
               )}
             </div>
@@ -423,7 +500,7 @@ class PricingTable11 extends BasePricingTable {
                     return (
                       <div
                         key={index}
-                        className={`${this.decorateCSS("feature-item")} ${animations}`}
+                        className={this.decorateCSS("feature-item")}
                       >
                         {item.icon && (
                           <Base.Icon
