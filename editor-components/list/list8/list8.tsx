@@ -1,23 +1,22 @@
-import { BaseList } from "../../EditorComponent";
+import { BaseList, TypeMediaInputValue } from "../../EditorComponent";
 import React from "react";
 import styles from "./list8.module.scss";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
-
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "../../../custom-hooks/input-templates";
 
-type listItem = {
-  number: number;
-  icon: React.JSX.Element;
+type ListItem = {
+  number: React.JSX.Element;
+  icon: TypeMediaInputValue;
+  subtitle: React.JSX.Element;
   title: React.JSX.Element;
   text: React.JSX.Element;
+  buttons: INPUTS.CastedButton[];
 };
 
-class List8 extends BaseList {
-  static getName(): string {
-    return "List 8";
-  }
+type CardButton = INPUTS.CastedButton;
 
+class List8 extends BaseList {
   constructor(props?: any) {
     super(props, styles);
 
@@ -25,7 +24,7 @@ class List8 extends BaseList {
       type: "string",
       key: "subtitle",
       displayer: "Subtitle",
-      value: "How it works",
+      value: "",
     });
     this.addProp({
       type: "string",
@@ -35,10 +34,18 @@ class List8 extends BaseList {
     });
     this.addProp({
       type: "string",
-      key: "titledesc",
+      key: "description",
       displayer: "Description",
       value: "Aliquam sagittis consectetur ligulan aliquam turpis cursus at. In aliquet auguenec libero ultricies velit pellentesque.",
     });
+
+    this.addProp({
+      type: "array",
+      key: "buttons",
+      displayer: "Buttons",
+      value: [INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary")],
+    });
+
     this.addProp({
       type: "array",
       key: "list-items",
@@ -50,16 +57,23 @@ class List8 extends BaseList {
           displayer: "List Item",
           value: [
             {
-              type: "number",
+              type: "string",
               key: "number",
               displayer: "Box Number",
-              value: 1,
+              value: "1",
             },
             {
-              type: "icon",
+              type: "media",
               key: "icon",
-              displayer: "Icon",
-              value: "FaMapLocationDot",
+              displayer: "Media",
+              value: { type: "icon", name: "FaMapLocationDot" },
+              additionalParams: { availableTypes: ["icon", "image"] },
+            },
+            {
+              type: "string",
+              key: "subtitle",
+              displayer: "Subtitle",
+              value: "",
             },
             {
               type: "string",
@@ -74,6 +88,12 @@ class List8 extends BaseList {
               value:
                 "Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut, ab",
             },
+            {
+              type: "array",
+              key: "buttons",
+              displayer: "Buttons",
+              value: [INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary")],
+            },
           ],
         },
         {
@@ -82,16 +102,23 @@ class List8 extends BaseList {
           displayer: "List Item",
           value: [
             {
-              type: "number",
+              type: "string",
               key: "number",
               displayer: "Box Number",
-              value: 2,
+              value: "2",
             },
             {
-              type: "icon",
+              type: "media",
               key: "icon",
-              displayer: "Icon",
-              value: "HiChartBar",
+              displayer: "Media",
+              value: { type: "icon", name: "HiChartBar" },
+              additionalParams: { availableTypes: ["icon", "image"] },
+            },
+            {
+              type: "string",
+              key: "subtitle",
+              displayer: "Subtitle",
+              value: "",
             },
             {
               type: "string",
@@ -106,6 +133,12 @@ class List8 extends BaseList {
               value:
                 "Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut, ab",
             },
+            {
+              type: "array",
+              key: "buttons",
+              displayer: "Buttons",
+              value: [INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary")],
+            },
           ],
         },
         {
@@ -114,16 +147,23 @@ class List8 extends BaseList {
           displayer: "List Item",
           value: [
             {
-              type: "number",
+              type: "string",
               key: "number",
               displayer: "Box Number",
-              value: 3,
+              value: "3",
             },
             {
-              type: "icon",
+              type: "media",
               key: "icon",
-              displayer: "Icon",
-              value: "FaMoneyBillAlt",
+              displayer: "Media",
+              value: { type: "icon", name: "FaMoneyBillAlt" },
+              additionalParams: { availableTypes: ["icon", "image"] },
+            },
+            {
+              type: "string",
+              key: "subtitle",
+              displayer: "Subtitle",
+              value: "",
             },
             {
               type: "string",
@@ -138,114 +178,199 @@ class List8 extends BaseList {
               value:
                 "Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut, ab",
             },
+            {
+              type: "array",
+              key: "buttons",
+              displayer: "Buttons",
+              value: [INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary")],
+            },
           ],
         },
       ],
     });
+
     this.addProp({
       type: "number",
       key: "itemCount",
       displayer: "Item Count in a Row",
       value: 3,
     });
-    this.addProp(INPUTS.BUTTON("button", "Button", "List your space", "", null, null, "Primary"));
+
     this.addProp({
       type: "multiSelect",
       key: "hoverAnimation",
       displayer: "Hover Animation Style",
       value: ["animate1"],
       additionalParams: {
-        selectItems: ["animate1", "animate2", "animate3", "animate4"]
-      }
+        selectItems: ["animate1", "animate2", "animate3", "animate4"],
+      },
     });
   }
 
+  static getName(): string {
+    return "List 8";
+  }
+
   render() {
-    const listItems = this.castToObject<listItem[]>("list-items");
-    const title = this.getPropValue("title");
-    const subtitle = this.getPropValue("subtitle");
-    const titledesc = this.getPropValue("titledesc");
-    const buttonType: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
+    const subtitleExist = this.castToString(this.getPropValue("subtitle"));
+    const titleExist = this.castToString(this.getPropValue("title"));
+    const descriptionExist = this.castToString(this.getPropValue("description"));
+    const listItems = this.castToObject<ListItem[]>("list-items");
+    const buttons = this.castToObject<CardButton[]>("buttons");
+    const hasValidButtons = buttons.some((btn) => this.castToString(btn.text) || (btn.icon && btn.icon.name));
+    const itemCount = this.getPropValue("itemCount");
+    const hoverAnimationValue = this.getPropValue("hoverAnimation");
+    const hoverAnimation = Array.isArray(hoverAnimationValue) ? hoverAnimationValue : [];
+
+    const alignment = Base.getContentAlignment();
+    const isCenterAlignment = alignment === "center";
+
+    const hasHeader = subtitleExist || titleExist || descriptionExist || hasValidButtons;
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("section")}>
-            <Base.VerticalContent className={this.decorateCSS("card-titles")}>
-              {this.castToString(subtitle) && (
-                <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
-                  {subtitle}
-                </Base.SectionSubTitle>
-              )}
-              {this.castToString(title) && (
-                <Base.SectionTitle className={this.decorateCSS("title")}>
-                  {title}
-                </Base.SectionTitle>
-              )}
-            </Base.VerticalContent>
-            {this.castToString(titledesc) && (
-              <Base.VerticalContent className={this.decorateCSS("section-wrapper")} >
-                {this.castToString(titledesc) && (
+          <div className={this.decorateCSS("content")}>
+            {hasHeader && (
+              <Base.VerticalContent
+                className={`${this.decorateCSS("header-section")} ${isCenterAlignment ? this.decorateCSS("align-center") : ""
+                  }`}
+              >
+                {subtitleExist && (
+                  <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                    {this.getPropValue("subtitle")}
+                  </Base.SectionSubTitle>
+                )}
+                {titleExist && (
+                  <Base.SectionTitle className={this.decorateCSS("title")}>
+                    {this.getPropValue("title")}
+                  </Base.SectionTitle>
+                )}
+                {descriptionExist && (
                   <Base.SectionDescription className={this.decorateCSS("description")}>
-                    {titledesc}
+                    {this.getPropValue("description")}
                   </Base.SectionDescription>
+                )}
+                {hasValidButtons && (
+                  <div className={this.decorateCSS("buttons-wrapper")}>
+                    {buttons.map((button: CardButton, index: number) => {
+                      const buttonText = this.castToString(button.text);
+                      const iconExist = button.icon && button.icon.name;
+                      if (!buttonText && !iconExist) return null;
+
+                      return (
+                        <ComposerLink key={index} path={button.url}>
+                          <Base.Button
+                            buttonType={button.type}
+                            className={this.decorateCSS("button")}
+                          >
+                            {buttonText && (
+                              <Base.P className={this.decorateCSS("button-text")}>
+                                {button.text}
+                              </Base.P>
+                            )}
+                            {iconExist && (
+                              <Base.Media
+                                className={this.decorateCSS("button-icon")}
+                                value={button.icon!}
+                              />
+                            )}
+                          </Base.Button>
+                        </ComposerLink>
+                      );
+                    })}
+                  </div>
                 )}
               </Base.VerticalContent>
             )}
-            {(listItems.length > 0) && (
+
+            {listItems.length > 0 && (
               <Base.ListGrid
-                className={this.decorateCSS("boxes")}
-                gridCount={{ pc: this.getPropValue("itemCount") }}
+                className={`${this.decorateCSS("items-wrapper")}${!hasHeader ? ` ${this.decorateCSS("no-header")}` : ""}`}
+                gridCount={{ pc: itemCount, tablet: 3, phone: 1 }}
               >
-                {listItems.map((item: any, index: number) => (
-                  <div
-                    key={index}
-                    className={this.decorateCSS("boxlower")}
-                    data-animation={this.getPropValue("hoverAnimation")}
-                  >
-                    {item.getPropValue("number") && (
-                      <div className={this.decorateCSS("circle")}>
-                        <Base.H1 className={this.decorateCSS("index")}>
-                          {item.getPropValue("number")}
-                        </Base.H1>
-                      </div>
-                    )}
-                    {item.icon && (
-                      <div className={this.decorateCSS("icon-box")}>
-                        <Base.Icon
-                          name={item.icon}
-                          propsIcon={{
-                            className: this.decorateCSS("icon"),
-                          }}
-                        />
-                      </div>
-                    )}
-                    {(this.castToString(item.title) || this.castToString(item.text)) && (
-                      <div className={this.decorateCSS("titles")}>
-                        {this.castToString(item.title) && (
-                          <Base.H4 className={this.decorateCSS("midwriting")}>
+                {listItems.map((item: ListItem, index: number) => {
+                  const itemSubtitleExist = this.castToString(item.subtitle);
+                  const itemTitleExist = this.castToString(item.title);
+                  const itemTextExist = this.castToString(item.text);
+                  const iconExist = item.icon && (item.icon.name || item.icon.url);
+                  const itemNumberExist = this.castToString(item.number);
+
+                  if (
+                    !itemTitleExist &&
+                    !itemTextExist &&
+                    !iconExist &&
+                    !itemNumberExist &&
+                    !itemSubtitleExist
+                  )
+                    return null;
+
+                  const hasItemContent = itemSubtitleExist || itemTitleExist || itemTextExist;
+
+                  return (
+                    <div
+                      key={index}
+                      className={this.decorateCSS("list-item")}
+                      data-animation={hoverAnimation.join(" ")}
+                    >
+                      <Base.VerticalContent
+                        className={`${this.decorateCSS("item-container")}${!hasItemContent ? ` ${this.decorateCSS("no-item-content")}` : ""}`}
+                      >
+                        {itemNumberExist && (
+                          <div className={this.decorateCSS("number-badge")}>
+                            <Base.H1 className={this.decorateCSS("index")}>{item.number}</Base.H1>
+                          </div>
+                        )}
+                        {iconExist && (
+                          <Base.Media value={item.icon} className={this.decorateCSS("icon")} />
+                        )}
+                        {itemSubtitleExist && (
+                          <Base.H6 className={this.decorateCSS("item-subtitle")}>
+                            {item.subtitle}
+                          </Base.H6>
+                        )}
+                        {itemTitleExist && (
+                          <Base.H5 className={this.decorateCSS("item-title")}>
                             {item.title}
-                          </Base.H4>
+                          </Base.H5>
                         )}
-                        {this.castToString(item.text) && (
-                          <Base.P className={this.decorateCSS("text")}>
-                            {item.text}
-                          </Base.P>
+                        {itemTextExist && (
+                          <Base.P className={this.decorateCSS("item-text")}>{item.text}</Base.P>
                         )}
-                      </div>
-                    )}
-                  </div>
-                ))}
+                        {item.buttons && item.buttons.length > 0 && (
+                          <div className={this.decorateCSS("item-buttons")}>
+                            {item.buttons.map((btn: CardButton, bIndex: number) => {
+                              const btnTextExist = this.castToString(btn.text);
+                              const btnIconExist = btn.icon && btn.icon.name;
+                              if (!btnTextExist && !btnIconExist) return null;
+                              return (
+                                <ComposerLink key={bIndex} path={btn.url}>
+                                  <Base.Button
+                                    buttonType={btn.type}
+                                    className={this.decorateCSS("item-button")}
+                                  >
+                                    {btnTextExist && (
+                                      <Base.P className={this.decorateCSS("button-text")}>
+                                        {btn.text}
+                                      </Base.P>
+                                    )}
+                                    {btnIconExist && (
+                                      <Base.Media
+                                        className={this.decorateCSS("button-icon")}
+                                        value={btn.icon!}
+                                      />
+                                    )}
+                                  </Base.Button>
+                                </ComposerLink>
+                              );
+                            })}
+                          </div>
+                        )}
+                      </Base.VerticalContent>
+                    </div>
+                  );
+                })}
               </Base.ListGrid>
-            )}
-            {this.castToString(buttonType.text) && (
-              <div className={this.decorateCSS("button-box")}>
-                <ComposerLink path={buttonType.url}>
-                  <Base.Button buttonType={buttonType.type} className={this.decorateCSS("button")}>
-                    {buttonType.text}
-                  </Base.Button>
-                </ComposerLink>
-              </div>
             )}
           </div>
         </Base.MaxContent>
@@ -253,4 +378,5 @@ class List8 extends BaseList {
     );
   }
 }
+
 export default List8;
