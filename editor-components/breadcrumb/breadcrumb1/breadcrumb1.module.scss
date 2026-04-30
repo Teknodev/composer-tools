@@ -46,12 +46,12 @@
       .title-main,
       .subtitle,
       .description {
-        color: var(--composer-font-color-primary);
+        content: "";
       }
 
       .subtitle:not(.title-with-bg) {
         &::before {
-          background: var(--composer-font-color-primary) !important;
+          color: #534931 !important;
         }
       }
 
