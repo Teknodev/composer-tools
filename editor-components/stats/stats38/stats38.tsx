@@ -1,27 +1,30 @@
 import * as React from "react";
-import { BaseStats } from "../../EditorComponent";
+import { BaseStats, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./stats38.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
-import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
+
+type MediaCard = {
+    media: TypeMediaInputValue;
+    overlay: boolean;
+};
 
 type StatItem = {
     prefix: string;
+    prefixElement: React.JSX.Element;
     number: string;
     suffix: string;
+    suffixElement: React.JSX.Element;
     subtitle: string;
-    subtitleElement: React.ReactNode;
+    subtitleElement: React.JSX.Element;
     title: string;
-    titleElement: React.ReactNode;
+    titleElement: React.JSX.Element;
     description: string;
-    descriptionElement: React.ReactNode;
-    label: string;
-    labelElement: React.ReactNode;
+    descriptionElement: React.JSX.Element;
 };
 
 class Stats38 extends BaseStats {
-    containerRef = React.createRef<HTMLDivElement>();
-
     constructor(props?: any) {
         super(props, styles);
 
@@ -65,7 +68,7 @@ class Stats38 extends BaseStats {
                 },
                 {
                     type: "boolean",
-                    key: "Overlay",
+                    key: "overlay",
                     displayer: "Overlay",
                     value: false,
                 },
@@ -134,18 +137,16 @@ class Stats38 extends BaseStats {
         });
     }
 
-    static getName(): string { return "Stats 32"; }
+    static getName(): string { return "Stats 38"; }
 
     private AnimatedStat = ({
         stat,
         animationDuration = 2000,
         statsAnimation,
-        isCentered,
     }: {
         stat: StatItem;
         animationDuration?: number;
         statsAnimation: boolean;
-        isCentered: boolean;
     }) => {
         const originalNumberString = stat.number;
         const targetNumber = parseFloat(originalNumberString) || 0;
@@ -160,7 +161,7 @@ class Stats38 extends BaseStats {
         const [animatedNumber, setAnimatedNumber] = React.useState<string>(
             statsAnimation ? "0" : formatNumber(targetNumber)
         );
-        const intervalRef = React.useRef<any>(null);
+        const intervalRef = React.useRef<NodeJS.Timeout | null>(null);
 
         React.useEffect(() => {
             if (!statsAnimation) {
@@ -191,12 +192,11 @@ class Stats38 extends BaseStats {
         const valueExist = originalNumberString && originalNumberString !== "";
         const prefixExist = !!stat.prefix;
         const suffixExist = !!stat.suffix;
-        const labelExist = this.castToString(stat.label);
         const subtitleExist = this.castToString(stat.subtitle);
         const titleExist = this.castToString(stat.title);
         const descriptionExist = this.castToString(stat.description);
 
-        if (!valueExist && !prefixExist && !suffixExist && !labelExist && !subtitleExist && !titleExist && !descriptionExist) return null;
+        if (!valueExist && !prefixExist && !suffixExist && !subtitleExist && !titleExist && !descriptionExist) return null;
 
         return (
             <Base.VerticalContent
@@ -206,7 +206,7 @@ class Stats38 extends BaseStats {
                 {(valueExist || prefixExist || suffixExist) && (
                     <span className={this.decorateCSS("stat-value-container")}>
                         {prefixExist && (
-                            <span className={this.decorateCSS("stat-prefix")}>{stat.prefix}</span>
+                            <span className={this.decorateCSS("stat-prefix")}>{stat.prefixElement}</span>
                         )}
                         {valueExist && (
                             <span className={this.decorateCSS("stat-value")}>
@@ -214,7 +214,7 @@ class Stats38 extends BaseStats {
                             </span>
                         )}
                         {suffixExist && (
-                            <span className={this.decorateCSS("stat-suffix")}>{stat.suffix}</span>
+                            <span className={this.decorateCSS("stat-suffix")}>{stat.suffixElement}</span>
                         )}
                     </span>
                 )}
@@ -247,31 +247,29 @@ class Stats38 extends BaseStats {
         const title = this.castToString(this.getPropValue("title"));
         const subtitle = this.castToString(this.getPropValue("subtitle"));
         const description = this.castToString(this.getPropValue("description"));
-        const mediaCard = this.castToObject<any>("mediaCard");
-        const media = mediaCard?.media || {};
-        const overlay = !!mediaCard?.Overlay;
+        const mediaCard = this.castToObject<MediaCard>("mediaCard");
+        const media = mediaCard.media;
+        const overlay = !!mediaCard.overlay;
         const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
-        const hasButtons = buttons.some(btn => this.castToString(btn.text));
+        const hasValidButtons = buttons.some(btn => this.castToString(btn.text) || (btn.icon && btn.icon.name));
         const alignment = Base.getContentAlignment();
 
-
         const mediaExist = media && media.url;
-        const isCentered = !mediaExist && alignment === "center";
 
-        const statsItems = this.castToObject<any[]>("stats");
+        const statsRaw = this.castToObject<{ prefix: React.JSX.Element; number: React.JSX.Element; suffix: React.JSX.Element; title: React.JSX.Element; subtitle: React.JSX.Element; description: React.JSX.Element }[]>("stats");
 
-        const stats: StatItem[] = statsItems.map((item) => ({
+        const stats: StatItem[] = statsRaw.map((item) => ({
             prefix: this.castToString(item.prefix) || "",
-            number: this.castToString(item.number),
+            prefixElement: item.prefix,
+            number: this.castToString(item.number) || "",
             suffix: this.castToString(item.suffix) || "",
+            suffixElement: item.suffix,
             subtitle: this.castToString(item.subtitle) || "",
             subtitleElement: item.subtitle,
             title: this.castToString(item.title) || "",
             titleElement: item.title,
             description: this.castToString(item.description) || "",
             descriptionElement: item.description,
-            label: this.castToString(item.label) || "",
-            labelElement: item.label,
         }));
 
         const animationProps = this.castToObject<{
@@ -285,8 +283,8 @@ class Stats38 extends BaseStats {
         const titleExist = this.castToString(title);
         const subtitleExist = this.castToString(subtitle);
         const descriptionExist = this.castToString(description);
-        const hasTextSection = subtitleExist || titleExist || descriptionExist || hasButtons;
-        const hasStats = stats.some(s => s.number || s.prefix || s.suffix || s.subtitle || s.title || s.description || s.label);
+        const hasTextSection = subtitleExist || titleExist || descriptionExist || hasValidButtons;
+        const hasStats = stats.some(s => s.number || s.prefix || s.suffix || s.subtitle || s.title || s.description);
         const noText = !hasTextSection && !hasStats;
 
 
@@ -328,19 +326,20 @@ class Stats38 extends BaseStats {
                                             {this.getPropValue("description")}
                                         </Base.SectionDescription>
                                     )}
-                                    {hasButtons && (
+                                    {hasValidButtons && (
                                         <div
                                             className={this.decorateCSS("button-container")}
                                             data-alignment={!mediaExist ? alignment : "left"}
-
-
                                         >
-                                            {buttons.map((item, index) => {
-                                                if (!this.castToString(item.text)) return null;
+                                            {buttons.map((item: INPUTS.CastedButton, index: number) => {
+                                                const buttonText = this.castToString(item.text);
+                                                const iconExist = item.icon && item.icon.name;
+                                                if (!buttonText && !iconExist) return null;
                                                 return (
                                                     <ComposerLink key={index} path={item.url}>
                                                         <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
-                                                            <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>
+                                                            {buttonText && <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>}
+                                                            {iconExist && <Base.Media className={this.decorateCSS("button-icon")} value={item.icon!} />}
                                                         </Base.Button>
                                                     </ComposerLink>
                                                 );
@@ -360,11 +359,10 @@ class Stats38 extends BaseStats {
                                         >
                                             {stats.map((stat: StatItem, index: number) => (
                                                 <this.AnimatedStat
-                                                    key={`stat32-${index}`}
+                                                    key={`stat38-${index}`}
                                                     stat={stat}
                                                     animationDuration={animationDuration}
                                                     statsAnimation={statsAnimation}
-                                                    isCentered={isCentered}
                                                 />
                                             ))}
                                         </Base.ListGrid>
