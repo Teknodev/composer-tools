@@ -22,7 +22,14 @@ class Form9 extends BaseContacts {
       type: "string",
       key: "title",
       displayer: "Title",
-      value: "Get Started with Apcopay",
+      value: "Get Started with Blinkpage",
+    });
+
+    this.addProp({
+      type: "string",
+      key: "description",
+      displayer: "Description",
+      value: "",
     });
 
     this.addProp({
@@ -38,7 +45,7 @@ class Form9 extends BaseContacts {
             {
               type: "media",
               key: "icon",
-              displayer: "Icon or Image",
+              displayer: "Icon",
               additionalParams: { availableTypes: ["icon", "image"] },
               value: { type: "icon", name: "FaCheckCircle" },
             },
@@ -65,7 +72,7 @@ class Form9 extends BaseContacts {
             {
               type: "media",
               key: "icon",
-              displayer: "Icon or Image",
+              displayer: "Icon",
               additionalParams: { availableTypes: ["icon", "image"] },
               value: { type: "icon", name: "FaCheckCircle" },
             },
@@ -92,7 +99,7 @@ class Form9 extends BaseContacts {
             {
               type: "media",
               key: "icon",
-              displayer: "Icon or Image",
+              displayer: "Icon",
               additionalParams: { availableTypes: ["icon", "image"] },
               value: { type: "icon", name: "FaCheckCircle" },
             },
@@ -149,7 +156,7 @@ class Form9 extends BaseContacts {
                     {
                       type: "boolean",
                       key: "is_required",
-                      displayer: "Is Required",
+                      displayer: "Required Message",
                       value: true,
                     },
                     {
@@ -209,7 +216,7 @@ class Form9 extends BaseContacts {
                     {
                       type: "boolean",
                       key: "is_required",
-                      displayer: "Is Required",
+                      displayer: "Required Message",
                       value: true,
                     },
                     {
@@ -249,7 +256,7 @@ class Form9 extends BaseContacts {
                     {
                       type: "boolean",
                       key: "is_required",
-                      displayer: "Is Required",
+                      displayer: "Required Message",
                       value: true,
                     },
                     {
@@ -309,7 +316,7 @@ class Form9 extends BaseContacts {
                     {
                       type: "boolean",
                       key: "is_required",
-                      displayer: "Is Required",
+                      displayer: "Required Message",
                       value: true,
                     },
                     {
@@ -370,7 +377,7 @@ class Form9 extends BaseContacts {
                     {
                       type: "boolean",
                       key: "is_required",
-                      displayer: "Is Required",
+                      displayer: "Required Message",
                       value: false,
                     },
                     {
@@ -459,6 +466,8 @@ class Form9 extends BaseContacts {
 
     const subtitle = this.getPropValue("subtitle");
     const subtitleText = this.castToString(subtitle);
+    const description = this.getPropValue("description");
+    const descriptionText = this.castToString(description);
 
     const hasAnyFeature =
       Array.isArray(features) &&
@@ -474,7 +483,7 @@ class Form9 extends BaseContacts {
           (featureDescription && featureDescription)
         );
       });
-    const showLeft = !!(titleStr || hasAnyFeature);
+    const showLeft = !!(titleStr || descriptionText || hasAnyFeature);
 
     function toObjectKey(str: string) {
       if (/^\d/.test(str)) str = "_" + str;
@@ -543,10 +552,10 @@ class Form9 extends BaseContacts {
             let fieldSchema: any = Yup.string();
             fieldSchema = isRequired
               ? fieldSchema.required(
-                  (input.getPropValue("required_error_message", {
-                    as_string: true,
-                  }) as string) || "Required"
-                )
+                (input.getPropValue("required_error_message", {
+                  as_string: true,
+                }) as string) || "Required"
+              )
               : fieldSchema.nullable();
             if (isEmail) {
               fieldSchema = fieldSchema.email(
@@ -618,15 +627,24 @@ class Form9 extends BaseContacts {
               <Base.VerticalContent
                 className={this.decorateCSS("left-vertical-content")}
               >
-                {subtitleText && (
-                  <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
-                    {subtitle}
-                  </Base.SectionSubTitle>
-                )}
-                {titleStr && (
-                  <Base.SectionTitle className={this.decorateCSS("title")}>
-                    {title}
-                  </Base.SectionTitle>
+                {(subtitleText || titleStr || descriptionText) && (
+                  <Base.VerticalContent className={this.decorateCSS("left-header")}>
+                    {subtitleText && (
+                      <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                        {subtitle}
+                      </Base.SectionSubTitle>
+                    )}
+                    {titleStr && (
+                      <Base.SectionTitle className={this.decorateCSS("title")}>
+                        {title}
+                      </Base.SectionTitle>
+                    )}
+                    {descriptionText && (
+                      <Base.SectionDescription className={this.decorateCSS("description")}>
+                        {description}
+                      </Base.SectionDescription>
+                    )}
+                  </Base.VerticalContent>
                 )}
 
                 {hasAnyFeature && (
@@ -734,11 +752,10 @@ class Form9 extends BaseContacts {
                                     })}
                                   </Base.P>
                                   <div
-                                    className={`${this.decorateCSS("inputs")} ${
-                                      isTwoInputs
-                                        ? this.decorateCSS("inputs-two")
-                                        : ""
-                                    }`}
+                                    className={`${this.decorateCSS("inputs")} ${isTwoInputs
+                                      ? this.decorateCSS("inputs-two")
+                                      : ""
+                                      }`}
                                   >
                                     {inputs?.map(
                                       (inputObj: any, inputIndex: number) => (
@@ -763,13 +780,13 @@ class Form9 extends BaseContacts {
                                               )}
                                               value={
                                                 (values as any)[
-                                                  getInputName(
-                                                    inputItemIndex,
-                                                    inputItem.getPropValue(
-                                                      "label"
-                                                    ),
-                                                    inputIndex
-                                                  )
+                                                getInputName(
+                                                  inputItemIndex,
+                                                  inputItem.getPropValue(
+                                                    "label"
+                                                  ),
+                                                  inputIndex
+                                                )
                                                 ]
                                               }
                                               placeholder={
@@ -794,13 +811,13 @@ class Form9 extends BaseContacts {
                                               )}
                                               value={
                                                 (values as any)[
-                                                  getInputName(
-                                                    inputItemIndex,
-                                                    inputItem.getPropValue(
-                                                      "label"
-                                                    ),
-                                                    inputIndex
-                                                  )
+                                                getInputName(
+                                                  inputItemIndex,
+                                                  inputItem.getPropValue(
+                                                    "label"
+                                                  ),
+                                                  inputIndex
+                                                )
                                                 ]
                                               }
                                               placeholder={
@@ -860,7 +877,7 @@ class Form9 extends BaseContacts {
                                   >
                                     {consentLabelPrefix}
                                     {(consentLinkText || consentLinkUrl) &&
-                                    consentLinkUrl ? (
+                                      consentLinkUrl ? (
                                       <ComposerLink path={consentLinkUrl}>
                                         <span
                                           className={this.decorateCSS(
@@ -921,3 +938,4 @@ class Form9 extends BaseContacts {
 }
 
 export default Form9;
+

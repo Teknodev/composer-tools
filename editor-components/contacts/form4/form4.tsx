@@ -1,40 +1,28 @@
 import { ErrorMessage, Formik, Form } from "formik";
 import * as React from "react";
 import * as Yup from "yup";
-import { BaseContacts, TypeUsableComponentProps } from "../../EditorComponent";
+import { BaseContacts, TypeMediaInputValue, TypeUsableComponentProps } from "../../EditorComponent";
 import styles from "./form4.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "../../../custom-hooks/input-templates";
+
+type RightSection = {
+  image: TypeMediaInputValue;
+  overlay: boolean;
+  rightSubtitle: string | React.JSX.Element;
+  location: string | React.JSX.Element;
+  locationDetails: string | React.JSX.Element;
+};
 
 class Form4 extends BaseContacts {
   constructor(props?: any) {
     super(props, styles);
 
     this.addProp({
-      type: "media",
-      key: "image",
-      displayer: "Media",
-      additionalParams: {
-        availableTypes: ["image", "video"],
-      },
-      value: {
-        type: "image",
-        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661c55dbd2970002c6290b4?alt=media&timestamp=1719564433797"
-      },
-    });
-
-    this.addProp({
-      type: "boolean",
-      key: "overlay",
-      displayer: "Overlay",
-      value: true,
-    });
-
-    this.addProp({
       type: "string",
       key: "subtitle",
       displayer: "Subtitle",
-      value: "Get in Touch",
+      value: "",
     });
 
     this.addProp({
@@ -59,17 +47,47 @@ class Form4 extends BaseContacts {
     });
 
     this.addProp({
-      type: "string",
-      key: "location",
-      displayer: "Right Title",
-      value: "CURRENTLY",
-    });
-
-    this.addProp({
-      type: "string",
-      key: "locationDetails",
-      displayer: "Right Description",
-      value: "Dubai, UNITED ARAB EMIRATES. Able to travel for commissions and projects",
+      type: "object",
+      key: "rightSection",
+      displayer: "Right Section",
+      value: [
+        {
+          type: "media",
+          key: "image",
+          displayer: "Media",
+          additionalParams: {
+            availableTypes: ["image", "video"],
+          },
+          value: {
+            type: "image",
+            url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661c55dbd2970002c6290b4?alt=media&timestamp=1719564433797",
+          },
+        },
+        {
+          type: "boolean",
+          key: "overlay",
+          displayer: "Overlay",
+          value: false,
+        },
+        {
+          type: "string",
+          key: "rightSubtitle",
+          displayer: "Right Subtitle",
+          value: "",
+        },
+        {
+          type: "string",
+          key: "location",
+          displayer: "Right Title",
+          value: "CURRENTLY",
+        },
+        {
+          type: "string",
+          key: "locationDetails",
+          displayer: "Right Description",
+          value: "Dubai, UNITED ARAB EMIRATES. Able to travel for commissions and projects",
+        },
+      ],
     });
 
     this.addProp({
@@ -107,7 +125,7 @@ class Form4 extends BaseContacts {
                     {
                       type: "boolean",
                       key: "is_required",
-                      displayer: "Is Required",
+                      displayer: "Required Message",
                       value: true,
                     },
                     {
@@ -147,7 +165,7 @@ class Form4 extends BaseContacts {
                     {
                       type: "boolean",
                       key: "is_required",
-                      displayer: "Is Required",
+                      displayer: "Required Message",
                       value: true,
                     },
                     {
@@ -207,7 +225,7 @@ class Form4 extends BaseContacts {
                     {
                       type: "boolean",
                       key: "is_required",
-                      displayer: "Is Required",
+                      displayer: "Required Message",
                       value: true,
                     },
                     {
@@ -267,7 +285,7 @@ class Form4 extends BaseContacts {
                     {
                       type: "boolean",
                       key: "is_required",
-                      displayer: "Is Required",
+                      displayer: "Required Message",
                       value: false,
                     },
                     {
@@ -327,7 +345,7 @@ class Form4 extends BaseContacts {
                     {
                       type: "boolean",
                       key: "is_required",
-                      displayer: "Is Required",
+                      displayer: "Required Message",
                       value: true,
                     },
                     {
@@ -375,14 +393,22 @@ class Form4 extends BaseContacts {
 
     const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
 
-    const locationExist = this.castToString(this.getPropValue("location"));
-    const locationDetailsExist = this.castToString(this.getPropValue("locationDetails"));
-    const isAddressVisible = locationExist || locationDetailsExist;
-
-    const inputItems = this.getPropValue("input_items")!;
-    const image = this.getPropValue("image");
+    const rightSection = this.castToObject<RightSection>("rightSection");
+    const image = rightSection.image;
     const imageUrl = image?.url;
-    const overlay = this.getPropValue("overlay");
+    const overlay = rightSection.overlay;
+    const rightSubtitle = rightSection.rightSubtitle;
+    const location = rightSection.location;
+    const locationDetails = rightSection.locationDetails;
+
+    const stripHTML = (val: string | React.JSX.Element) =>
+      typeof val === "string" ? val.replace(/<[^>]*>/g, "").trim() : "";
+    const locationExist = stripHTML(this.castToString(location));
+    const locationDetailsExist = stripHTML(this.castToString(locationDetails));
+    const rightSubtitleExist = stripHTML(this.castToString(rightSubtitle));
+    const isAddressVisible = locationExist || locationDetailsExist || rightSubtitleExist;
+
+    const inputItems = this.getPropValue("input_items") as TypeUsableComponentProps[];
 
     function toObjectKey(str: string) {
       if (/^\d/.test(str)) {
@@ -406,17 +432,17 @@ class Form4 extends BaseContacts {
           return "text";
       }
     }
-    const getInputName = (indexOfLabel: number, inputLabel: any, indexOfInput: number): string => {
-      const labelText = inputLabel && this.castToString(inputLabel);
 
+    const getInputName = (indexOfLabel: number, inputLabel: string | React.JSX.Element, indexOfInput: number): string => {
+      const labelText = inputLabel && this.castToString(inputLabel);
       return toObjectKey(`${indexOfLabel} ${labelText} ${indexOfInput}`);
     };
 
     function getInitialValue() {
-      let value: any = {};
-      inputItems.map((inputItem: any, indexOfItem: number) => {
-        inputItem.getPropValue("inputs")?.map((_: TypeUsableComponentProps, indexOfInput: number) => {
-          const key = getInputName(indexOfItem, inputItem.getPropValue("label"), indexOfInput);
+      let value: { [key: string]: string } = {};
+      inputItems.map((inputItem: TypeUsableComponentProps, indexOfItem: number) => {
+        (inputItem.getPropValue("inputs") as TypeUsableComponentProps[])?.map((_: TypeUsableComponentProps, indexOfInput: number) => {
+          const key = getInputName(indexOfItem, inputItem.getPropValue("label") as string | React.JSX.Element, indexOfInput);
           value[key] = "";
         });
       });
@@ -426,23 +452,23 @@ class Form4 extends BaseContacts {
     function getSchema() {
       let schema = Yup.object().shape({});
 
-      inputItems.map((inputItem: any, indexOfItem: number) => {
-        inputItem.getPropValue("inputs").map((input: any, indexOfInput: number) => {
-          const key = getInputName(indexOfItem, inputItem.getPropValue("label"), indexOfInput);
+      inputItems.map((inputItem: TypeUsableComponentProps, indexOfItem: number) => {
+        (inputItem.getPropValue("inputs") as TypeUsableComponentProps[]).map((input: TypeUsableComponentProps, indexOfInput: number) => {
+          const key = getInputName(indexOfItem, inputItem.getPropValue("label") as string | React.JSX.Element, indexOfInput);
 
-          const isRequired = input.getPropValue("is_required");
-          const isEmail = getInputType(input.getPropValue("type")) == "email";
+          const isRequired = input.getPropValue("is_required") as boolean;
+          const isEmail = getInputType(input.getPropValue("type") as string) == "email";
 
-          let fieldSchema = Yup.string() as any;
+          let fieldSchema: Yup.AnySchema = Yup.string();
 
           if (isRequired) {
-            fieldSchema = fieldSchema.required(input.getPropValue("required_error_message"));
+            fieldSchema = fieldSchema.required(input.getPropValue("required_error_message") as string);
           } else {
             fieldSchema = fieldSchema.nullable();
           }
 
           if (isEmail) {
-            fieldSchema = fieldSchema.email(input.getPropValue("type_error_message"));
+            fieldSchema = (fieldSchema as Yup.StringSchema).email(input.getPropValue("type_error_message") as string);
           }
 
           schema = schema.shape({
@@ -454,8 +480,8 @@ class Form4 extends BaseContacts {
       return schema;
     }
 
-    function getFormDataWithConvertedKeys(obj: any) {
-      const newObj: any = {};
+    function getFormDataWithConvertedKeys(obj: { [key: string]: string }) {
+      const newObj: { [key: string]: string } = {};
       let nameParts: string[] = [];
 
       for (const key in obj) {
@@ -483,38 +509,41 @@ class Form4 extends BaseContacts {
       return newObj;
     }
 
-    function isRequiredInput(inputItem: any): boolean {
-      return inputItem.getPropValue("inputs").some((input: any) => input.getPropValue("is_required"));
+    function isRequiredInput(inputItem: TypeUsableComponentProps): boolean {
+      return (inputItem.getPropValue("inputs") as TypeUsableComponentProps[]).some((input: TypeUsableComponentProps) => input.getPropValue("is_required") as boolean);
     }
 
-    const buttonText = button.text;
-    const buttonTextExist = this.castToString(buttonText);
-
+    const buttonTextExist = this.castToString(button.text);
     const formContainerExist = inputItems.length > 0 || buttonTextExist;
+
+    const isTopVisible = isContactVisible || isAddressVisible;
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("top-container")}>
-            {isContactVisible && (
-              <Base.VerticalContent className={this.decorateCSS("left-container")}>
-                {subtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}> {this.getPropValue("subtitle")} </Base.SectionSubTitle>}
-                {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}> {this.getPropValue("title")} </Base.SectionTitle>}
-                {descriptionExist && (
-                  <Base.SectionDescription className={this.decorateCSS("description")}>
-                    {this.getPropValue("description")}
-                    {this.getPropValue("mail")}
-                  </Base.SectionDescription>
-                )}
-              </Base.VerticalContent>
-            )}
-            {isAddressVisible && (
-              <Base.VerticalContent className={this.decorateCSS("right-container")}>
-                {locationExist && <Base.H2 className={this.decorateCSS("right-title")}>{this.getPropValue("location")}</Base.H2>}
-                {locationDetailsExist && <Base.P className={this.decorateCSS("right-description")}>{this.getPropValue("locationDetails")}</Base.P>}
-              </Base.VerticalContent>
-            )}
-          </div>
+          {isTopVisible && (
+            <div className={this.decorateCSS("top-container")}>
+              {isContactVisible && (
+                <Base.VerticalContent className={`${this.decorateCSS("left-container")} ${!isAddressVisible && this.decorateCSS("left-container-full")}`}>
+                  {subtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
+                  {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
+                  {descriptionExist && (
+                    <Base.SectionDescription className={this.decorateCSS("description")}>
+                      {this.getPropValue("description")}
+                      {this.getPropValue("mail")}
+                    </Base.SectionDescription>
+                  )}
+                </Base.VerticalContent>
+              )}
+              {isAddressVisible && (
+                <Base.VerticalContent className={this.decorateCSS("right-container")}>
+                  {rightSubtitleExist && <Base.P className={this.decorateCSS("right-subtitle")}>{rightSubtitle}</Base.P>}
+                  {locationExist && <Base.H3 className={this.decorateCSS("right-title")}>{location}</Base.H3>}
+                  {locationDetailsExist && <Base.P className={this.decorateCSS("right-description")}>{locationDetails}</Base.P>}
+                </Base.VerticalContent>
+              )}
+            </div>
+          )}
           <div className={this.decorateCSS("lower-container")}>
             {formContainerExist && (
               <div className={this.decorateCSS("form-container")}>
@@ -529,8 +558,8 @@ class Form4 extends BaseContacts {
                 >
                   {({ handleChange, values }) => (
                     <Form className={this.decorateCSS("form")}>
-                      {inputItems.map((inputItem: any, inputItemIndex: number) => (
-                        <div className={this.decorateCSS("input-container")}>
+                      {inputItems.map((inputItem: TypeUsableComponentProps, inputItemIndex: number) => (
+                        <div key={inputItemIndex} className={this.decorateCSS("input-container")}>
                           <Base.P className={this.decorateCSS("label")}>
                             {inputItem.getPropValue("label", {
                               suffix: {
@@ -540,38 +569,38 @@ class Form4 extends BaseContacts {
                             })}
                           </Base.P>
                           <div className={this.decorateCSS("inputs")}>
-                            {inputItem.getPropValue("inputs").map((inputObj: any, inputIndex: number) => (
-                              <div className={this.decorateCSS("input-box")}>
+                            {(inputItem.getPropValue("inputs") as TypeUsableComponentProps[]).map((inputObj: TypeUsableComponentProps, inputIndex: number) => (
+                              <div key={inputIndex} className={this.decorateCSS("input-box")}>
                                 {inputObj.getPropValue("type") === "Text Area" ? (
                                   <textarea
-                                    value={values[getInputName(inputItemIndex, inputItem.getPropValue("label"), inputIndex)]}
+                                    value={values[getInputName(inputItemIndex, inputItem.getPropValue("label") as string | React.JSX.Element, inputIndex)]}
                                     className={this.decorateCSS("input")}
                                     placeholder={this.castToString(inputObj.getPropValue("placeholder"))}
                                     rows={12}
                                     onChange={handleChange}
-                                    name={getInputName(inputItemIndex, inputItem.getPropValue("label"), inputIndex)}
+                                    name={getInputName(inputItemIndex, inputItem.getPropValue("label") as string | React.JSX.Element, inputIndex)}
                                   ></textarea>
                                 ) : (
                                   <input
                                     placeholder={this.castToString(inputObj.getPropValue("placeholder"))}
-                                    type={getInputType(inputObj.getPropValue("type"))}
+                                    type={getInputType(inputObj.getPropValue("type") as string)}
                                     onChange={handleChange}
-                                    value={values[getInputName(inputItemIndex, inputItem.getPropValue("label"), inputIndex)]}
-                                    name={getInputName(inputItemIndex, inputItem.getPropValue("label"), inputIndex)}
+                                    value={values[getInputName(inputItemIndex, inputItem.getPropValue("label") as string | React.JSX.Element, inputIndex)]}
+                                    name={getInputName(inputItemIndex, inputItem.getPropValue("label") as string | React.JSX.Element, inputIndex)}
                                     className={this.decorateCSS("input")}
                                   />
                                 )}
-                                <ErrorMessage className={this.decorateCSS("error-message")} name={getInputName(inputItemIndex, inputItem.getPropValue("label"), inputIndex)} component={"span"} />
+                                <ErrorMessage className={this.decorateCSS("error-message")} name={getInputName(inputItemIndex, inputItem.getPropValue("label") as string | React.JSX.Element, inputIndex)} component={"span"} />
                               </div>
                             ))}
                           </div>
                         </div>
                       ))}
-                      {this.castToString(button.text) && 
+                      {buttonTextExist && (
                         <Base.Button buttonType={button.type} className={this.decorateCSS("submit-button")} type="submit">
-                          <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>  
+                          <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
                         </Base.Button>
-                      }
+                      )}
                     </Form>
                   )}
                 </Formik>
@@ -591,3 +620,4 @@ class Form4 extends BaseContacts {
 }
 
 export default Form4;
+

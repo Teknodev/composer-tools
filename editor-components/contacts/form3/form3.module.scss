@@ -2,17 +2,38 @@
 
 .container {
   .max-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--composer-gap-lg);
 
-    .header{
-      .subtitle, .title {
+    .header {
+
+      .subtitle,
+      .title,
+      .description {
         content: "";
       }
+
+      .button-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--composer-gap-sm);
+
+        .button {
+
+          .button-text,
+          .button-icon {
+            content: "";
+          }
+        }
+      }
     }
+
     .box {
       display: flex;
       flex-direction: row;
       width: 100%;
-      box-shadow: var(--box-shadow-active);
+      box-shadow: var(--composer-box-shadow);
       position: relative;
       height: fit-content;
       align-items: stretch;
@@ -91,6 +112,35 @@
 
             &.content-full {
               width: 100%;
+
+              .left-top {
+                .left-top-content {
+
+                  .leftTitle,
+                  .leftSubtitle,
+                  .leftDescription {
+                    text-align: var(--composer-content-alignment);
+                  }
+                }
+
+                .contacts {
+                  display: flex;
+                  flex-direction: column;
+                  align-items: var(--composer-content-alignment);
+
+                  .contact {
+                    justify-content: var(--composer-content-alignment);
+
+                    .contactName {
+                      text-align: var(--composer-content-alignment);
+                    }
+                  }
+                }
+              }
+
+              .socials {
+                justify-content: var(--composer-content-alignment);
+              }
             }
 
             .left-top {
@@ -109,9 +159,11 @@
                 color: var(--composer-font-color-secondary);
                 word-wrap: break-word;
 
-                .leftTitle, .leftSubtitle {
+                .leftTitle,
+                .leftSubtitle,
+                .leftDescription {
                   color: var(--composer-font-color-primary);
-                  text-align: left; 
+                  text-align: left;
                 }
               }
 
@@ -132,6 +184,12 @@
                     color: var(--composer-font-color-primary);
                     font-size: 2rem;
                     flex-shrink: 0;
+                    width: 2rem;
+                    height: 2rem;
+                    object-fit: contain;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
                   }
 
                   .contactName {
@@ -160,43 +218,81 @@
                 color: var(--composer-font-color-primary);
                 border-radius: 100%;
                 z-index: 1;
+                cursor: pointer;
+                transition: background-color 0.2s ease;
+                padding: var(--composer-gap-sm);
+
+                &:hover {
+                  background-color: var(--composer-primary-color);
+
+                  .icon {
+                    color: var(--composer-font-color-secondary);
+                  }
+                }
 
                 &.icon-container-no-image {
                   background-color: var(--composer-html-background);
+
+                  &:hover {
+                    background-color: var(--composer-primary-color);
+                  }
                 }
 
                 .icon {
-                  font-size: 1.5rem;
-                  height: var(--composer-gap-md);
-                  width: var(--composer-gap-md);
-                  margin: var(--composer-gap-sm);
+                  font-size: 1rem !important;
+                  height: 1rem !important;
+                  width: 1rem !important;
+                  object-fit: contain;
                   display: flex;
+                  justify-content: center;
+                  align-items: center;
+                  transition: color 0.2s ease;
                 }
               }
             }
           }
         }
 
-        // Image varsa white, yoksa primary color
         &.with-background {
           .left {
             .content {
               .left-top {
                 .left-top-content {
-                  .leftTitle, .leftSubtitle {
-                    color: white;
+
+                  .leftTitle,
+                  .leftSubtitle,
+                  .leftDescription {
+                    color: var(--composer-font-color-secondary);
                   }
                 }
 
                 .contacts {
                   .contact {
                     .icon {
-                      color: white;
+                      color: var(--composer-font-color-secondary);
                     }
 
                     .contactName {
-                      color: white;
+                      color: var(--composer-font-color-secondary);
                     }
+                  }
+                }
+              }
+
+              .socials {
+                .icon-container {
+                  background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-secondary) 5%);
+
+                  &:hover {
+                    background-color: var(--composer-primary-color);
+
+                    .icon {
+                      color: var(--composer-font-color-secondary);
+                    }
+                  }
+
+                  .icon {
+                    color: var(--composer-font-color-primary);
                   }
                 }
               }
@@ -223,11 +319,17 @@
         &.right-container-no-image {
           border-radius: var(--composer-border-radius-md);
         }
+
+        .rightSubtitle,
+        .rightDescription {
+          color: var(--composer-font-color-primary);
+          text-align: left;
+        }
+
         .rightTitle {
           color: var(--composer-font-color-primary);
-          margin-top: var(--composer-gap-md);
           z-index: 1;
-          text-align: left; 
+          text-align: left;
         }
 
         .form-container {
@@ -335,7 +437,7 @@
           align-items: center;
           justify-content: center;
 
-          .submit-button{
+          .submit-button {
             .button-text {
               content: "";
             }
@@ -369,6 +471,8 @@
                     .icon {
                       font-size: 1.5rem;
                       flex-shrink: 0;
+                      width: 1.5rem;
+                      height: 1.5rem;
                     }
                   }
                 }
@@ -383,7 +487,7 @@
 
         .right-container {
           padding: var(--composer-gap-lg) var(--composer-gap-md);
-            
+
           .rightTitle {
             margin: 0;
           }
@@ -422,6 +526,17 @@
         .left-container {
           padding: var(--composer-gap-md);
           width: auto;
+          border-top-left-radius: var(--composer-border-radius-md);
+          border-top-right-radius: var(--composer-border-radius-md);
+          border-bottom-left-radius: unset;
+          border-bottom-right-radius: unset;
+
+          .background-wrapper {
+            border-top-left-radius: var(--composer-border-radius-md);
+            border-top-right-radius: var(--composer-border-radius-md);
+            border-bottom-left-radius: unset;
+            border-bottom-right-radius: unset;
+          }
 
           .background {
             border-top-left-radius: var(--composer-border-radius-md);
@@ -439,6 +554,7 @@
 
               .left-top {
                 gap: var(--composer-gap-md);
+
                 .contacts {
                   .contact {
                     gap: var(--composer-gap-sm);
@@ -456,13 +572,6 @@
                 padding-top: var(--composer-gap-md);
                 overflow: auto;
                 padding: 0;
-
-                .icon-container {
-                  .icon {
-                    width: var(--composer-gap-md);
-                    height: var(--composer-gap-md);
-                  }
-                }
               }
             }
           }
@@ -471,7 +580,10 @@
         .right-container {
           width: 100%;
           padding: var(--composer-gap-md);
-          border-radius: var(--composer-border-radius-md);
+          border-top-left-radius: unset;
+          border-top-right-radius: unset;
+          border-bottom-left-radius: var(--composer-border-radius-md);
+          border-bottom-right-radius: var(--composer-border-radius-md);
 
           .form-container {
             margin: 0;

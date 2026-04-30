@@ -6,9 +6,14 @@ import { ErrorMessage, Formik, Form } from "formik";
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "../../../custom-hooks/input-templates";
 
-type ContactItem = {
-  text: React.JSX.Element;
-  title: React.JSX.Element;
+type LeftData = {
+  firstText: JSX.Element;
+  secondText: JSX.Element;
+  contactItems: any[];
+};
+
+type InputData = {
+  inputItems: TypeUsableComponentProps[];
 };
 
 class Form8 extends BaseContacts {
@@ -28,78 +33,92 @@ class Form8 extends BaseContacts {
       displayer: "Title",
       value: "Let's work together! Feel free to contact us any time.",
     });
+
     this.addProp({
       type: "string",
-      key: "first-text",
-      displayer: "First Text",
-      value: "Phasellus sit amet scelerisque sapien. Aliquam erat volutpat. Nam ut lectus at velit dapibus sollicitudin eu.",
-    });
-    this.addProp({
-      type: "string",
-      key: "second-text",
-      displayer: "Second Text",
-      value: "Because they are hard, because that goal will serve to organize and measure the best of our energies and skills, because that challenge is one that we are willing to accept, one we are unwilling to postpone and one.",
+      key: "description",
+      displayer: "Description",
+      value: "",
     });
 
     this.addProp({
-      type: "array",
-      key: "contact-items",
-      displayer: "Contact Items",
+      type: "object",
+      key: "left",
+      displayer: "Left",
       value: [
         {
-          type: "object",
-          key: "contact",
-          displayer: "Contact",
-          value: [
-            {
-              type: "string",
-              key: "title",
-              value: "Email:",
-              displayer: "Title",
-            },
-            {
-              type: "string",
-              key: "text",
-              value: "hello@yoursite.com",
-              displayer: "Text",
-            },
-          ],
+          type: "string",
+          key: "firstText",
+          displayer: "First Text",
+          value: "Phasellus sit amet scelerisque sapien. Aliquam erat volutpat. Nam ut lectus at velit dapibus sollicitudin eu.",
         },
         {
-          type: "object",
-          key: "contact",
-          displayer: "Contact",
-          value: [
-            {
-              type: "string",
-              key: "title",
-              value: "Phone:",
-              displayer: "Title",
-            },
-            {
-              type: "string",
-              key: "text",
-              value: "+123.456.789",
-              displayer: "Text",
-            },
-          ],
+          type: "string",
+          key: "secondText",
+          displayer: "Second Text",
+          value: "Because they are hard, because that goal will serve to organize and measure the best of our energies and skills, because that challenge is one that we are willing to accept, one we are unwilling to postpone and one.",
         },
         {
-          type: "object",
-          key: "contact",
-          displayer: "Contact",
+          type: "array",
+          key: "contactItems",
+          displayer: "Contact Items",
           value: [
             {
-              type: "string",
-              key: "title",
-              value: "Skype:",
-              displayer: "Title",
+              type: "object",
+              key: "contact",
+              displayer: "Contact",
+              value: [
+                {
+                  type: "string",
+                  key: "title",
+                  value: "Email:",
+                  displayer: "Title",
+                },
+                {
+                  type: "string",
+                  key: "text",
+                  value: "hello@yoursite.com",
+                  displayer: "Text",
+                },
+              ],
             },
             {
-              type: "string",
-              key: "text",
-              value: "donec.sit.amet",
-              displayer: "Text",
+              type: "object",
+              key: "contact",
+              displayer: "Contact",
+              value: [
+                {
+                  type: "string",
+                  key: "title",
+                  value: "Phone:",
+                  displayer: "Title",
+                },
+                {
+                  type: "string",
+                  key: "text",
+                  value: "+123.456.789",
+                  displayer: "Text",
+                },
+              ],
+            },
+            {
+              type: "object",
+              key: "contact",
+              displayer: "Contact",
+              value: [
+                {
+                  type: "string",
+                  key: "title",
+                  value: "Skype:",
+                  displayer: "Title",
+                },
+                {
+                  type: "string",
+                  key: "text",
+                  value: "donec.sit.amet",
+                  displayer: "Text",
+                },
+              ],
             },
           ],
         },
@@ -107,183 +126,172 @@ class Form8 extends BaseContacts {
     });
 
     this.addProp({
-      type: "array",
-      key: "input-items",
-      displayer: "Input Items",
+      type: "object",
+      key: "input",
+      displayer: "Input",
       value: [
         {
-          type: "object",
-          key: "input-item",
-          displayer: "Input Item",
+          type: "array",
+          key: "inputItems",
+          displayer: "Input Items",
           value: [
             {
-              type: "string",
-              key: "label",
-              displayer: "Label",
-              value: "Name",
-            },
-            {
-              type: "array",
-              key: "inputs",
-              displayer: "Inputs",
+              type: "object",
+              key: "input-item",
+              displayer: "Input Item",
               value: [
                 {
-                  type: "object",
-                  key: "input",
-                  displayer: "Input",
+                  type: "array",
+                  key: "inputs",
+                  displayer: "Inputs",
                   value: [
                     {
-                      type: "string",
-                      key: "placeholder",
-                      displayer: "Placeholder",
-                      value: "Name",
-                    },
-                    {
-                      type: "boolean",
-                      key: "isRequired",
-                      displayer: "Is Required",
-                      value: true,
-                    },
-                    {
-                      type: "string",
-                      key: "required_error_message",
-                      displayer: "Required Error Message",
-                      value: "Required",
-                    },
-                    {
-                      type: "select",
-                      key: "type",
-                      displayer: "Type",
-                      value: "Text",
-                      additionalParams: {
-                        selectItems: ["Text", "E-mail", "Number", "Text Area"],
-                      },
-                    },
-                    {
-                      type: "string",
-                      key: "error_type_message",
-                      displayer: "Error Type Message",
-                      value: "Invalid Type",
+                      type: "object",
+                      key: "input",
+                      displayer: "Input",
+                      value: [
+                        {
+                          type: "string",
+                          key: "placeholder",
+                          displayer: "Placeholder",
+                          value: "Name",
+                        },
+                        {
+                          type: "boolean",
+                          key: "isRequired",
+                          displayer: "Required Message",
+                          value: true,
+                        },
+                        {
+                          type: "string",
+                          key: "required_error_message",
+                          displayer: "Required Error Message",
+                          value: "Required",
+                        },
+                        {
+                          type: "select",
+                          key: "type",
+                          displayer: "Type",
+                          value: "Text",
+                          additionalParams: {
+                            selectItems: ["Text", "E-mail", "Number", "Text Area"],
+                          },
+                        },
+                        {
+                          type: "string",
+                          key: "error_type_message",
+                          displayer: "Error Type Message",
+                          value: "Invalid Type",
+                        },
+                      ],
                     },
                   ],
                 },
               ],
             },
-          ],
-        },
-        {
-          type: "object",
-          key: "input-item",
-          displayer: "Input Item",
-          value: [
             {
-              type: "string",
-              key: "label",
-              displayer: "Label",
-              value: "Email",
-            },
-            {
-              type: "array",
-              key: "inputs",
-              displayer: "Inputs",
+              type: "object",
+              key: "input-item",
+              displayer: "Input Item",
               value: [
                 {
-                  type: "object",
-                  key: "input",
-                  displayer: "Input",
+                  type: "array",
+                  key: "inputs",
+                  displayer: "Inputs",
                   value: [
                     {
-                      type: "string",
-                      key: "placeholder",
-                      displayer: "Placeholder",
-                      value: "Email",
-                    },
-                    {
-                      type: "boolean",
-                      key: "isRequired",
-                      displayer: "Is Required",
-                      value: true,
-                    },
-                    {
-                      type: "string",
-                      key: "required_error_message",
-                      displayer: "Required Error Message",
-                      value: "Required",
-                    },
-                    {
-                      type: "select",
-                      key: "type",
-                      displayer: "Type",
-                      value: "E-mail",
-                      additionalParams: {
-                        selectItems: ["Text", "E-mail", "Number", "Text Area"],
-                      },
-                    },
-                    {
-                      type: "string",
-                      key: "type_error_message",
-                      displayer: "Type Error Message",
-                      value: "Invalid type",
+                      type: "object",
+                      key: "input",
+                      displayer: "Input",
+                      value: [
+                        {
+                          type: "string",
+                          key: "placeholder",
+                          displayer: "Placeholder",
+                          value: "Email",
+                        },
+                        {
+                          type: "boolean",
+                          key: "isRequired",
+                          displayer: "Required Message",
+                          value: true,
+                        },
+                        {
+                          type: "string",
+                          key: "required_error_message",
+                          displayer: "Required Error Message",
+                          value: "Required",
+                        },
+                        {
+                          type: "select",
+                          key: "type",
+                          displayer: "Type",
+                          value: "E-mail",
+                          additionalParams: {
+                            selectItems: ["Text", "E-mail", "Number", "Text Area"],
+                          },
+                        },
+                        {
+                          type: "string",
+                          key: "type_error_message",
+                          displayer: "Type Error Message",
+                          value: "Invalid type",
+                        },
+                      ],
                     },
                   ],
                 },
               ],
             },
-          ],
-        },
-        {
-          type: "object",
-          key: "input-item",
-          displayer: "Input Item",
-          value: [
             {
-              type: "string",
-              key: "label",
-              displayer: "Label",
-              value: "Text Area",
-            },
-            {
-              type: "array",
-              key: "inputs",
-              displayer: "Inputs",
+              type: "object",
+              key: "input-item",
+              displayer: "Input Item",
               value: [
                 {
-                  type: "object",
-                  key: "input",
-                  displayer: "Input",
+                  type: "array",
+                  key: "inputs",
+                  displayer: "Inputs",
                   value: [
                     {
-                      type: "string",
-                      key: "placeholder",
-                      displayer: "Placeholder",
-                      value: "Message...",
-                    },
-                    {
-                      type: "boolean",
-                      key: "isRequired",
-                      displayer: "Is Required",
-                      value: true,
-                    },
-                    {
-                      type: "string",
-                      key: "required_error_message",
-                      displayer: "Required Error Message",
-                      value: "Required",
-                    },
-                    {
-                      type: "select",
-                      key: "type",
-                      displayer: "Type",
-                      value: "Text Area",
-                      additionalParams: {
-                        selectItems: ["Text", "E-mail", "Number", "Text Area"],
-                      },
-                    },
-                    {
-                      type: "string",
-                      key: "type_error_message",
-                      displayer: "Type Error Message",
-                      value: "Invalid type",
+                      type: "object",
+                      key: "input",
+                      displayer: "Input",
+                      value: [
+                        {
+                          type: "string",
+                          key: "placeholder",
+                          displayer: "Placeholder",
+                          value: "Message...",
+                        },
+                        {
+                          type: "boolean",
+                          key: "isRequired",
+                          displayer: "Required Message",
+                          value: true,
+                        },
+                        {
+                          type: "string",
+                          key: "required_error_message",
+                          displayer: "Required Error Message",
+                          value: "Required",
+                        },
+                        {
+                          type: "select",
+                          key: "type",
+                          displayer: "Type",
+                          value: "Text Area",
+                          additionalParams: {
+                            selectItems: ["Text", "E-mail", "Number", "Text Area"],
+                          },
+                        },
+                        {
+                          type: "string",
+                          key: "type_error_message",
+                          displayer: "Type Error Message",
+                          value: "Invalid type",
+                        },
+                      ],
                     },
                   ],
                 },
@@ -304,13 +312,18 @@ class Form8 extends BaseContacts {
   render() {
     const subtitleExist = this.castToString(this.getPropValue("subtitle"));
     const titleExist = this.castToString(this.getPropValue("title"));
-    const firstTextExist = this.castToString(this.getPropValue("first-text"));
-    const secondTextExist = this.castToString(this.getPropValue("second-text"));
-    const contactTexts = this.castToObject<ContactItem[]>("contact-items");
+    const descriptionExist = this.castToString(this.getPropValue("description"));
 
-    const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
+    const left = this.castToObject<LeftData>("left");
+    const firstText = left.firstText;
+    const secondText = left.secondText;
+    const firstTextExist = this.castToString(firstText);
+    const secondTextExist = this.castToString(secondText);
+    const contactTexts = left.contactItems;
 
-    const inputItems = this.getPropValue("input-items")!;
+    const input = this.castToObject<InputData>("input");
+    const button = this.castToObject<INPUTS.CastedButton>("button");
+    const inputItems = input.inputItems;
 
     const pageContentExist = firstTextExist || secondTextExist || contactTexts?.length > 0 || inputItems.length > 0 || this.castToString(button.text);
 
@@ -338,10 +351,8 @@ class Form8 extends BaseContacts {
       }
     }
 
-    const getInputName = (indexOfLabel: number, inputLabel: any, indexOfInput: number): string => {
-      const labelText = inputLabel && this.castToString(inputLabel);
-
-      return toObjectKey(`${indexOfLabel} ${labelText} ${indexOfInput}`);
+    const getInputName = (indexOfLabel: number, indexOfInput: number): string => {
+      return toObjectKey(`input_${indexOfLabel}_${indexOfInput}`);
     };
 
     function getInitialValue() {
@@ -349,11 +360,10 @@ class Form8 extends BaseContacts {
 
       inputItems.forEach((inputItem: any, indexOfItem: number) => {
         const inputs = inputItem.getPropValue("inputs");
-        const label = inputItem.getPropValue("label");
 
         if (Array.isArray(inputs)) {
           inputs.forEach((_: TypeUsableComponentProps, indexOfInput: number) => {
-            const key = getInputName(indexOfItem, label, indexOfInput);
+            const key = getInputName(indexOfItem, indexOfInput);
             value[key] = "";
           });
         }
@@ -367,7 +377,7 @@ class Form8 extends BaseContacts {
 
       inputItems.map((inputItem: any, indexOfItem: number) => {
         inputItem.getPropValue("inputs").map((input: any, indexOfInput: number) => {
-          const key = getInputName(indexOfItem, inputItem.getPropValue("label"), indexOfInput);
+          const key = getInputName(indexOfItem, indexOfInput);
 
           const isRequired = input.getPropValue("isRequired");
           const isEmail = getInputType(input.getPropValue("type")) == "email";
@@ -414,30 +424,35 @@ class Form8 extends BaseContacts {
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          {(subtitleExist || titleExist) && <Base.VerticalContent className={this.decorateCSS("header")}>
-            {subtitleExist && 
+          {(subtitleExist || titleExist || descriptionExist) && <Base.VerticalContent className={this.decorateCSS("header")}>
+            {subtitleExist &&
               <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>
             }
-            {titleExist && 
+            {titleExist &&
               <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>
+            }
+            {descriptionExist &&
+              <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>
             }
           </Base.VerticalContent>}
          {pageContentExist && <div className={this.decorateCSS("page-content")}>
             {(firstTextExist || secondTextExist || contactTexts?.length > 0) && (
               <Base.VerticalContent className={this.decorateCSS("text-content")}>
-                {firstTextExist && <Base.P className={this.decorateCSS("paragraph")}> {this.getPropValue("first-text")} </Base.P>}
-                {secondTextExist && <Base.P className={this.decorateCSS("paragraph")}> {this.getPropValue("second-text")} </Base.P>}
+                {firstTextExist && <Base.P className={this.decorateCSS("paragraph")}> {firstText} </Base.P>}
+                {secondTextExist && <Base.P className={this.decorateCSS("paragraph")}> {secondText} </Base.P>}
                 <Base.VerticalContent className={this.decorateCSS("contact-texts")}>
-                  {contactTexts.map((item, i) => {
-                    const titleExist = !!this.castToString(item.title);
-                    const textExist = !!this.castToString(item.text);
+                  {contactTexts.map((item: any, i) => {
+                    const title = item.getPropValue("title");
+                    const text = item.getPropValue("text");
+                    const titleExist = !!this.castToString(title);
+                    const textExist = !!this.castToString(text);
                     const contactItemExist = titleExist || textExist;
 
                     return (
                       contactItemExist && (
                         <div key={i} className={this.decorateCSS("contact-element")}>
-                          <Base.H5 className={this.decorateCSS("contact-title")}>{item.title}</Base.H5>
-                          <Base.P className={this.decorateCSS("contact-text")}>{item.text}</Base.P>
+                          <Base.H5 className={this.decorateCSS("contact-title")}>{title}</Base.H5>
+                          <Base.P className={this.decorateCSS("contact-text")}>{text}</Base.P>
                         </div>
                       )
                     );
@@ -464,12 +479,12 @@ class Form8 extends BaseContacts {
                         <div className={this.decorateCSS("input-box")}>
                           {inputObj.getPropValue("type") == "Text Area" ? (
                             <textarea
-                              value={values[getInputName(inputItemIndex, inputItem.getPropValue("label"), inputIndex)]}
+                              value={values[getInputName(inputItemIndex, inputIndex)]}
                               className={this.decorateCSS("form-input")}
                               placeholder={this.castToString(inputObj.getPropValue("placeholder"))}
                               rows={12}
                               onChange={handleChange}
-                              name={getInputName(inputItemIndex, inputItem.getPropValue("label"), inputIndex)}
+                              name={getInputName(inputItemIndex, inputIndex)}
                               cols={30}
                             ></textarea>
                           ) : (
@@ -477,13 +492,13 @@ class Form8 extends BaseContacts {
                               placeholder={this.castToString(inputObj.getPropValue("placeholder"))}
                               type={getInputType(inputObj.getPropValue("type"))}
                               onChange={handleChange}
-                              value={values[getInputName(inputItemIndex, inputItem.getPropValue("label"), inputIndex)]}
-                              name={getInputName(inputItemIndex, inputItem.getPropValue("label"), inputIndex)}
+                              value={values[getInputName(inputItemIndex, inputIndex)]}
+                              name={getInputName(inputItemIndex, inputIndex)}
                               className={this.decorateCSS("form-input")}
                             />
                           )}
                           <div className={this.decorateCSS("error-container")}>
-                            <ErrorMessage className={this.decorateCSS("error-message")} name={getInputName(inputItemIndex, inputItem.getPropValue("label"), inputIndex)} component={"span"} />
+                            <ErrorMessage className={this.decorateCSS("error-message")} name={getInputName(inputItemIndex, inputIndex)} component={"span"} />
                           </div>
                         </div>
                       ))
@@ -504,3 +519,4 @@ class Form8 extends BaseContacts {
 }
 
 export default Form8;
+
