@@ -8,7 +8,7 @@
         .content {
             display: flex;
             flex-direction: column;
-            gap: var(--composer-gap-md);
+            gap: var(--composer-gap-lg);
             width: 100%;
 
             .header-container {
@@ -32,12 +32,10 @@
             .stats-container {
                 width: 100%;
 
-
-
                 .stat-item {
                     align-items: flex-start;
                     text-align: left;
-                    
+
 
                     &.colored-background {
                         background: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
@@ -64,8 +62,8 @@
 
                         .stat-value-container {
                             display: flex;
-                            align-items: baseline;
                             color: var(--composer-primary-color);
+                            align-items: baseline;
 
                             .stat-prefix,
                             .stat-value,
@@ -85,7 +83,8 @@
                 width: 100%;
 
                 .button {
-                    .button-text {
+                    .button-text,
+                    .button-icon {
                         content: "";
                     }
                 }
@@ -97,6 +96,7 @@
 @container (max-width: #{$composer-tablet-width}) {
     .container .max-content .content .stats-container {
         .stat-item .stat-value-wrapper .stat-value-container {
+
             .stat-value,
             .stat-prefix,
             .stat-suffix {
@@ -107,17 +107,22 @@
 }
 
 @container (max-width: #{$composer-phone-width}) {
-    .container .max-content .content .stats-container {
-        .stat-item {
-            &.colored-background {
-                padding: var(--composer-gap-lg);
-            }
+    .container .max-content .content {
+        gap: var(--composer-gap-md);
 
-            .stat-value-wrapper .stat-value-container {
-                .stat-value,
-                .stat-prefix,
-                .stat-suffix {
-                    font-size: 7rem;
+        .stats-container {
+            .stat-item {
+                &.colored-background {
+                    padding: var(--composer-gap-lg);
+                }
+
+                .stat-value-wrapper .stat-value-container {
+
+                    .stat-value,
+                    .stat-prefix,
+                    .stat-suffix {
+                        font-size: 7rem;
+                    }
                 }
             }
         }

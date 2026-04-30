@@ -5,6 +5,28 @@ import styles from "./stats30.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "../../../custom-hooks/input-templates";
 
+type StatItem = {
+    prefix: string;
+    statValue: string;
+    suffix: string;
+    subtitle: string;
+    subtitleElement: JSX.Element;
+    title: string;
+    titleElement: JSX.Element;
+    description: string;
+    descriptionElement: JSX.Element;
+};
+
+type RawStatItem = {
+    prefix?: JSX.Element;
+    value?: JSX.Element;
+    number?: JSX.Element;
+    suffix?: JSX.Element;
+    title?: JSX.Element;
+    subtitle?: JSX.Element;
+    description?: JSX.Element;
+};
+
 export class Stats30 extends BaseStats {
     constructor(props?: any) {
         super(props, styles);
@@ -65,7 +87,7 @@ export class Stats30 extends BaseStats {
                         { type: "string", key: "suffix", displayer: "Suffix", value: "" },
                         { type: "string", key: "subtitle", displayer: "Subtitle", value: "Process" },
                         { type: "string", key: "title", displayer: "Title", value: "Days of product development" },
-                        { type: "string", key: "description", displayer: "Description", value: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." },
+                        { type: "string", key: "description", displayer: "Description", value: "" },
                     ],
                 },
 
@@ -84,7 +106,7 @@ export class Stats30 extends BaseStats {
             key: "buttons",
             displayer: "Buttons",
             value: [
-                INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+                INPUTS.BUTTON("button", "Button", "", null, null, null, "Primary"),
             ],
         });
 
@@ -113,7 +135,7 @@ export class Stats30 extends BaseStats {
         statsAnimation,
         animationDuration,
     }: {
-        stat: any;
+        stat: StatItem;
         coloredBackgroundClass: string;
         statsAnimation: boolean;
         animationDuration: number;
@@ -167,16 +189,16 @@ export class Stats30 extends BaseStats {
         const hasValueGroup = valueExist || suffixExist || !!stat.prefix;
 
         return (
-            <Base.VerticalContent className={`${this.decorateCSS("stat-item")} ${coloredBackgroundClass}`}>
+            <Base.VerticalContent className={`${this.decorateCSS("stat-item")}${coloredBackgroundClass ? ` ${coloredBackgroundClass}` : ""}`}>
                 {subtitleExist && (
-                    <Base.H5 className={this.decorateCSS("stat-subtitle")}>
+                    <Base.H6 className={this.decorateCSS("stat-subtitle")}>
                         {stat.subtitleElement}
-                    </Base.H5>
+                    </Base.H6>
                 )}
                 {titleExist && (
-                    <Base.H4 className={this.decorateCSS("stat-title")}>
+                    <Base.H2 className={this.decorateCSS("stat-title")}>
                         {stat.titleElement}
-                    </Base.H4>
+                    </Base.H2>
                 )}
                 {descriptionExist && (
                     <Base.P className={this.decorateCSS("stat-description")}>
@@ -214,7 +236,11 @@ export class Stats30 extends BaseStats {
         const titleExist = this.castToString(this.getPropValue("title"));
         const descriptionExist = this.castToString(this.getPropValue("description"));
         const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons") || [];
-        const hasValidButtons = buttons.some((btn) => this.castToString(btn.text));
+        const hasValidButtons = buttons.some((btn) => {
+            const buttonText = this.castToString(btn.text);
+            const iconExist = btn.icon && btn.icon.name;
+            return buttonText || iconExist;
+        });
         const alignment = Base.getContentAlignment();
         const itemCount = this.getPropValue("itemCount") || 2;
         const hasTopSection = subtitleExist || titleExist || descriptionExist;
@@ -223,8 +249,8 @@ export class Stats30 extends BaseStats {
         const statsAnimation = !!animationProps?.statsAnimation;
         const animationDuration = animationProps?.animationDuration || 2000;
 
-        const rawCards = this.castToObject<any[]>("cards") || [];
-        const cards = rawCards.map((item) => {
+        const rawCards = this.castToObject<(RawStatItem & { card?: RawStatItem })[]>("cards") || [];
+        const cards: StatItem[] = rawCards.map((item) => {
             const cardData = item?.card || item || {};
             return {
                 prefix: this.castToString(cardData.prefix) || "",
@@ -273,7 +299,7 @@ export class Stats30 extends BaseStats {
                                 gridCount={{ pc: itemCount, tablet: 2, phone: 1 }}
                                 className={this.decorateCSS("stats-container")}
                             >
-                                {cards.map((stat: any, index: number) => (
+                                {cards.map((stat: StatItem, index: number) => (
                                     <this.AnimatedCard
                                         key={index}
                                         stat={stat}
@@ -289,16 +315,22 @@ export class Stats30 extends BaseStats {
                             <div className={this.decorateCSS("button-container")}>
                                 {buttons.map((item: INPUTS.CastedButton, index: number) => {
                                     const buttonText = this.castToString(item.text);
-                                    if (!buttonText) return null;
+                                    const iconExist = item.icon && item.icon.name;
+                                    if (!buttonText && !iconExist) return null;
                                     return (
                                         <ComposerLink key={index} path={item.url}>
                                             <Base.Button
                                                 buttonType={item.type}
                                                 className={this.decorateCSS("button")}
                                             >
-                                                <Base.P className={this.decorateCSS("button-text")}>
-                                                    {item.text}
-                                                </Base.P>
+                                                {buttonText && (
+                                                    <Base.P className={this.decorateCSS("button-text")}>
+                                                        {item.text}
+                                                    </Base.P>
+                                                )}
+                                                {iconExist && (
+                                                    <Base.Media className={this.decorateCSS("button-icon")} value={item.icon!} />
+                                                )}
                                             </Base.Button>
                                         </ComposerLink>
                                     );
