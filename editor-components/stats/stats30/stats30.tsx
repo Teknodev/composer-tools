@@ -12,7 +12,7 @@ export class Stats30 extends BaseStats {
             type: "boolean",
             key: "coloredBackground",
             displayer: "Colored Background",
-            value: false,
+            value: true,
         });
 
         this.addProp({
@@ -242,7 +242,7 @@ export class Stats30 extends BaseStats {
         });
 
         return (
-            <Base.Container className={`${this.decorateCSS("container")} ${!this.getPropValue("coloredBackground") ? this.decorateCSS("no-colored-background") : ""}`}>
+            <Base.Container className={this.decorateCSS("container")}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
                     <Base.VerticalContent className={this.decorateCSS("content")}>
                         {hasTopSection && (
@@ -271,9 +271,9 @@ export class Stats30 extends BaseStats {
                         )}
 
                         {cards.length > 0 && (
-                            <div
+                            <Base.ListGrid
+                                gridCount={{ pc: itemCount, tablet: 2, phone: 1 }}
                                 className={this.decorateCSS("stats-container")}
-                                style={{ "--item-count": itemCount } as React.CSSProperties}
                             >
                                 {cards.map((stat: any, index: number) => (
                                     <this.AnimatedCard
@@ -284,7 +284,7 @@ export class Stats30 extends BaseStats {
                                         animationDuration={animationDuration}
                                     />
                                 ))}
-                            </div>
+                            </Base.ListGrid>
                         )}
 
                         {hasValidButtons && (

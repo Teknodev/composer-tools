@@ -1,17 +1,6 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
-    background-color: var(--composer-html-background);
-    container-type: inline-size;
-
-    &.no-colored-background {
-        .max-content {
-            padding-top: 0;
-            padding-bottom: 0;
-            padding-left: 0;
-            padding-right: 0;
-        }
-    }
 
     .max-content {
         width: 100%;
@@ -32,48 +21,37 @@
                 .header-texts {
                     width: 100%;
 
+                    .subtitle,
+                    .title,
+                    .description {
+                        content: "";
+                    }
                 }
             }
 
             .stats-container {
                 width: 100%;
-                display: grid;
-                grid-template-columns: repeat(var(--item-count, 2), 1fr);
-                gap: var(--composer-gap-md);
 
-                &:has(.colored-background) {
-                    background: var(--composer-html-color);
-                    border-radius: var(--composer-border-radius-md);
-                    padding: var(--composer-gap-xl);
-                    gap: 0;
-                }
+
 
                 .stat-item {
-                    background: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
-                    padding: var(--composer-gap-xl);
-                    border-radius: var(--composer-border-radius-md);
+                    background: transparent;
+                    border-radius: 0;
                     box-sizing: border-box;
                     align-items: flex-start;
                     text-align: left;
+                    
+                    .stat-value-container,
+                    .stat-subtitle,
+                    .stat-title,
+                    .stat-description {
+                        color: var(--composer-font-color-primary);
+                    }
 
                     &.colored-background {
-                        background: transparent;
-                        border-radius: 0;
-                        padding: var(--composer-gap-md);
-
-                        .stat-value-container,
-                        .stat-text-group {
-
-                            .stat-title,
-                            .stat-subtitle,
-                            .stat-description {
-                                color: var(--composer-font-color-primary);
-                            }
-                        }
-
-                        .stat-value-container {
-                            color: var(--composer-font-color-primary);
-                        }
+                        background: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+                        padding: var(--composer-gap-xl);
+                        border-radius: var(--composer-border-radius-md);
                     }
 
                     .stat-subtitle,
@@ -101,57 +79,19 @@
                     }
 
                     .stat-value-wrapper {
-                        margin: 0;
-                    }
 
-                    .stat-value-container {
-                        display: flex;
-                        align-items: baseline;
-                        color: var(--composer-primary-color);
-                        margin: 0;
-
-                        .stat-prefix,
-                        .stat-suffix {
-                            font-size: 10rem;
-                            line-height: 1;
-                            margin: 0;
-                        }
-
-                        .stat-value {
-                            font-size: 10rem;
-                            line-height: 1;
-                            margin: 0;
-                        }
-                    }
-                }
-
-                @container (max-width: #{$composer-tablet-width}) {
-                    grid-template-columns: repeat(2, 1fr);
-
-                    .stat-item {
                         .stat-value-container {
+                            display: flex;
+                            align-items: baseline;
+                            color: var(--composer-primary-color);
+                            margin: 0;
 
-                            .stat-value,
                             .stat-prefix,
+                            .stat-value,
                             .stat-suffix {
                                 font-size: 10rem;
-                            }
-                        }
-                    }
-                }
-
-                @container (max-width: #{$composer-phone-width}) {
-                    grid-template-columns: repeat(1, 1fr);
-
-                    .stat-item {
-                        padding: var(--composer-gap-lg);
-
-                        .stat-value-container {
-
-                            .stat-value,
-                            .stat-prefix,
-                            .stat-suffix {
-                                font-size: 7rem;
+                                line-height: 1;
+                                margin: 0;
                             }
                         }
                     }
@@ -175,6 +115,36 @@
                             content: "";
                         }
                     }
+                }
+            }
+        }
+    }
+}
+
+@container (max-width: #{$composer-tablet-width}) {
+    .container .max-content .content .stats-container {
+        .stat-item .stat-value-wrapper .stat-value-container {
+            .stat-value,
+            .stat-prefix,
+            .stat-suffix {
+                font-size: 10rem;
+            }
+        }
+    }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+    .container .max-content .content .stats-container {
+        .stat-item {
+            &.colored-background {
+                padding: var(--composer-gap-lg);
+            }
+
+            .stat-value-wrapper .stat-value-container {
+                .stat-value,
+                .stat-prefix,
+                .stat-suffix {
+                    font-size: 7rem;
                 }
             }
         }
