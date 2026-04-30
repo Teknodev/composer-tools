@@ -12,7 +12,7 @@ class CallToAction5Page extends BaseCallToAction {
     super(props, styles);
     this.addProp({
       type: "media",
-      key: "background",
+      key: "componentBackground",
       displayer: "Background Media",
       additionalParams: {
         availableTypes: ["image", "video"],
@@ -95,17 +95,17 @@ class CallToAction5Page extends BaseCallToAction {
     return (
       <Base.Container
         className={`${this.decorateCSS("container")}
-        ${this.getPropValue("overlay") && this.getPropValue("background") && this.decorateCSS("overlay-active")}`}
+        ${this.getPropValue("overlay") && this.getPropValue("componentBackground") && this.decorateCSS("overlay-active")}`}
       >
-        {this.getPropValue("background") && (
+        {this.getPropValue("componentBackground") && (
           <Base.Media
-            value={this.getPropValue("background")}
+            value={this.getPropValue("componentBackground")}
             className={this.decorateCSS("background")}
           />
         )}
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           {(titleExist || descriptionExist || subtitleExist) && (
-            <Base.VerticalContent className={`${this.decorateCSS("header")} ${this.getPropValue("background") && this.decorateCSS("with-image")}`}>
+            <Base.VerticalContent className={`${this.decorateCSS("header")} ${this.getPropValue("componentBackground") && this.decorateCSS("with-image")}`}>
               {subtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
               {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
               {descriptionExist && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
@@ -136,7 +136,7 @@ class CallToAction5Page extends BaseCallToAction {
                           onChange={handleChange}
                           value={values.email}
                           name="email"
-                          className={`${this.decorateCSS("input")} ${!this.getPropValue("background") && this.decorateCSS("no-image")}`}
+                          className={`${this.decorateCSS("input")} ${!this.getPropValue("componentBackground") && this.decorateCSS("no-image")}`}
                         />
                         {errors.email && touched.email && <div className={this.decorateCSS("error")}>{errors.email}</div>}
                       </div>
