@@ -32,6 +32,11 @@
         max-height: 200px;
         max-width: 50%;
         z-index: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--composer-font-color-primary);
+        font-size: 12.5rem;
     }
 
     .vector2 {
@@ -41,6 +46,11 @@
         max-width: 50%;
         object-fit: cover;
         z-index: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--composer-font-color-primary);
+        font-size: 6.5rem;
     }
 
     .max-content {
@@ -55,13 +65,13 @@
                 .description,
                 .home,
                 .icon {
-                    color: #ffffff !important;
+                    color: var(--composer-font-color-secondary) !important;
                 }
 
                 .home:hover,
                 .breadcrumb-link:hover .home,
                 .breadcrumb-link:hover .icon {
-                    color: #ffffff !important;
+                    color: var(--composer-font-color-secondary) !important;
                     opacity: 0.75;
                 }
             }
@@ -156,6 +166,7 @@
 
 @container (max-width: #{$composer-phone-width}) {
     .container {
+
         .vector1,
         .vector2 {
             display: none;

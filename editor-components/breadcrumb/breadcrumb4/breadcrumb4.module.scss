@@ -14,6 +14,11 @@
         left: 550px;
         top: 100px;
         z-index: 3;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--composer-font-color-primary);
+        font-size: 6rem;
 
         &.animated {
             animation: animation1 1s infinite alternate;
@@ -25,6 +30,11 @@
         left: var(--composer-gap-lg);
         bottom: var(--composer-gap-lg);
         z-index: 3;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--composer-font-color-primary);
+        font-size: 6rem;
 
         &.animated {
             animation: animation1 1.3s infinite alternate;
@@ -36,6 +46,11 @@
         right: var(--composer-gap-xl);
         bottom: var(--composer-gap-md);
         z-index: 3;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--composer-font-color-primary);
+        font-size: 6rem;
 
         &.animated {
             animation: animation2 1s infinite alternate;
@@ -100,41 +115,41 @@
                 .subtitle {
                     padding: 0;
                     background-color: transparent;
-                    color: #ffffff !important;
+                    color: var(--composer-font-color-secondary) !important;
 
                     &::before {
-                        background: #ffffff !important;
+                        background: var(--composer-font-color-secondary) !important;
                     }
                 }
 
                 .title,
                 .description {
-                    color: #ffffff !important;
+                    color: var(--composer-font-color-secondary) !important;
                 }
 
                 .pages {
                     .link {
                         .text {
-                            color: #ffffff !important;
+                            color: var(--composer-font-color-secondary) !important;
                         }
 
                         .breadcrumb-link {
                             .crumberIcon {
-                                color: #ffffff !important;
+                                color: var(--composer-font-color-secondary) !important;
                             }
                         }
 
                         .breadcrumb-link:hover {
                             .text,
                             .crumberIcon {
-                                color: #ffffff !important;
+                                color: var(--composer-font-color-secondary) !important;
                                 opacity: 0.75;
                             }
                         }
                     }
 
                     .crumberIcon {
-                        color: #ffffff !important;
+                        color: var(--composer-font-color-secondary) !important;
                     }
                 }
             }
