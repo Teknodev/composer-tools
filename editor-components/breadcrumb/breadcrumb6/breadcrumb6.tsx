@@ -1,37 +1,68 @@
-import * as React from "react";
 import styles from "./breadcrumb6.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
-import { BaseBreadcrumb } from "../../EditorComponent";
+import { BaseBreadcrumb, TypeMediaInputValue } from "../../EditorComponent";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 
-type BreadcrumbItem = {
-    title: string;
-    icon: string;
-    navigateTo: string;
+type VectorsItem = {
+  vector1: TypeMediaInputValue;
+  vector2: TypeMediaInputValue;
 };
+
+type BreadcrumbItem = {
+  title: JSX.Element;
+  icon: TypeMediaInputValue;
+  navigateTo: string;
+};
+
 class Breadcrumb6 extends BaseBreadcrumb {
-  constructor(props: any) {
+  constructor(props?: any) {
     super(props, styles);
     this.addProp({
-      type: "media",
-      key: "vector1",
-      displayer: "Image 1",
-      additionalParams: { availableTypes: ["image", "icon"] },
-      value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67da787bfb049c002cc22f10?alt=media" },
-    });
-    this.addProp({
-      type: "media",
-      key: "vector2",
-      displayer: "Image 2",
-      additionalParams: { availableTypes: ["image", "icon"] },
-      value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67da788bfb049c002cc22f19?alt=media" },
-    });
-    this.addProp({
-      type: "media",
-      key: "componentBackground",
+      type: "object",
+      key: "background",
       displayer: "Background Media",
-      additionalParams: { availableTypes: ["image", "video"] },
-      value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67dab8f1fb049c002cc2523f?alt=media" },
+      value: [
+        {
+          type: "media",
+          key: "image",
+          displayer: "Background Media",
+          additionalParams: { availableTypes: ["image", "video"] },
+          value: { type: "image", url: "" },
+        },
+        {
+          type: "boolean",
+          key: "overlay",
+          displayer: "Overlay",
+          value: false,
+        },
+      ],
+    });
+    this.addProp({
+      type: "object",
+      key: "vectors",
+      displayer: "Media",
+      value: [
+        {
+          type: "media",
+          key: "vector1",
+          displayer: "Media 1",
+          additionalParams: { availableTypes: ["image", "icon"] },
+          value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67da787bfb049c002cc22f10?alt=media" },
+        },
+        {
+          type: "media",
+          key: "vector2",
+          displayer: "Media 2",
+          additionalParams: { availableTypes: ["image", "icon"] },
+          value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67da788bfb049c002cc22f19?alt=media" },
+        },
+      ],
+    });
+    this.addProp({
+      type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "",
     });
     this.addProp({
       type: "string",
@@ -64,9 +95,40 @@ class Breadcrumb6 extends BaseBreadcrumb {
             {
               type: "media",
               key: "icon",
-              displayer: "Icon",
+              displayer: "Media",
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["image", "icon"],
+              },
+              value: {
+                type: "icon",
+                name: "",
+              },
+            },
+            {
+              type: "page",
+              key: "navigateTo",
+              displayer: "Navigate To",
+              value: "",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "item",
+          displayer: "Item",
+          value: [
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value: "About",
+            },
+            {
+              type: "media",
+              key: "icon",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["image", "icon"],
               },
               value: {
                 type: "icon",
@@ -84,151 +146,114 @@ class Breadcrumb6 extends BaseBreadcrumb {
       ],
     });
     this.addProp({
-      type: "boolean",
-      key: "showBreadcrumb",
-      displayer: "Show Breadcrumb",
-      value: true,
-    });
-    this.addProp({
-      type: "object",
-      key: "currentPage",
-      displayer: "Current Page",
-      value: [
-        {
-          type: "string",
-          key: "title",
-          displayer: "Title",
-          value: "About",
-        },
-        {
-          type: "media",
-          key: "icon",
-          displayer: "Icon",
-          additionalParams: {
-            availableTypes: ["icon"],
-          },
-          value: {
-            type: "icon",
-            name: "",
-          },
-        },
-      ],
-    });
-    this.addProp({
       type: "media",
-      key: "breadcrumbIcon",
-      displayer: "Breadcrumb Icon",
+      key: "separatorIcon",
+      displayer: "Separator Icon",
       additionalParams: {
-        availableTypes: ["icon"],
+        availableTypes: ["image", "icon"],
       },
       value: {
         type: "icon",
         name: "AiOutlineLine",
       },
     });
-    this.addProp({
-      type: "boolean",
-      key: "overlay",
-      displayer: "Overlay",
-      value: true,
-    });
   }
 
-  static getName() : string {
+  static getName(): string {
     return "Breadcrumb 6";
   }
 
   render() {
-    const vector1 = this.getPropValue("vector1");
-    const vector2 = this.getPropValue("vector2");
-    const backgroundImage = this.getPropValue("componentBackground");
-    const overlay = this.getPropValue("overlay");
-    const title = this.getPropValue("title");
-    const description = this.getPropValue("description");
+    const vectors = this.castToObject<VectorsItem>("vectors");
+    const background = this.castToObject<{ image: TypeMediaInputValue; overlay: boolean }>("background");
+    const backgroundImage = background?.image;
+    const overlay = background?.overlay;
+    const isSubtitleExist = this.castToString(this.getPropValue("subtitle"));
+    const isTitleExist = this.castToString(this.getPropValue("title"));
+    const isDescriptionExist = this.castToString(this.getPropValue("description"));
     const breadcrumbItems = this.castToObject<BreadcrumbItem[]>("breadcrumbItems") || [];
-    const showBreadcrumb = this.getPropValue("showBreadcrumb");
-    const currentPage = this.castToObject("currentPage");
-    const currentPageTitle = currentPage?.title || "";
-    const currentPageIcon = currentPage?.icon || "";
-
-    const titleExist = this.castToString(title);
-    const descriptionExist = this.castToString(description);
+    const separatorIconValue = this.getPropValue("separatorIcon");
+    const separatorIconExist = separatorIconValue && (separatorIconValue.type === "icon" ? separatorIconValue.name : separatorIconValue.url);
+    const bgImageExist = backgroundImage && (backgroundImage.type === "icon" ? backgroundImage.name : backgroundImage.url);
+    const vector1Exist = vectors?.vector1 && (vectors.vector1.type === "icon" ? vectors.vector1.name : vectors.vector1.url);
+    const vector2Exist = vectors?.vector2 && (vectors.vector2.type === "icon" ? vectors.vector2.name : vectors.vector2.url);
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
-        {backgroundImage && backgroundImage.url && (
+        {bgImageExist && (
           <Base.Media
             value={backgroundImage}
             className={this.decorateCSS("background-image")}
           />
         )}
-        {overlay && backgroundImage && backgroundImage.url && <div className={this.decorateCSS("overlay")}></div>}
-        {vector1 && vector1.url && (
+        {overlay && bgImageExist && <div className={this.decorateCSS("overlay")}></div>}
+        {vector1Exist && (
           <Base.Media
-            value={vector1}
+            value={vectors.vector1}
             className={this.decorateCSS("vector1")}
           />
         )}
-        {vector2 && vector2.url && (
+        {vector2Exist && (
           <Base.Media
-            value={vector2}
+            value={vectors.vector2}
             className={this.decorateCSS("vector2")}
           />
         )}
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <Base.VerticalContent className={`${this.decorateCSS("section")} ${ backgroundImage && backgroundImage.url && this.decorateCSS("with-image")}`}>
-            {titleExist && (
-              <Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>
+          <Base.VerticalContent className={`${this.decorateCSS("section")} ${bgImageExist ? this.decorateCSS("with-image") : ""}`}>
+            {isSubtitleExist && (
+              <Base.SectionSubTitle className={`${this.decorateCSS("subtitle")} ${bgImageExist ? this.decorateCSS("no-badge") : ""}`}>
+                {this.getPropValue("subtitle")}
+              </Base.SectionSubTitle>
             )}
-            {descriptionExist && (
-              <Base.SectionDescription className={this.decorateCSS("description")}>{description}</Base.SectionDescription>
+            {isTitleExist && (
+              <Base.SectionTitle className={this.decorateCSS("title")}>
+                {this.getPropValue("title")}
+              </Base.SectionTitle>
             )}
-            {showBreadcrumb && (
-              <div className={this.decorateCSS("breadcrumb")}>
-                {breadcrumbItems.map((item: BreadcrumbItem, index: number) => (
-                  <React.Fragment key={index}>
-                    <div className={this.decorateCSS("home-container")}>
-                      {(this.castToString(item.title) || item.icon.name) && (
-                        <ComposerLink path={item.navigateTo}>
-                          <div className={this.decorateCSS("breadcrumb-link")}>
-                            {item.icon.name && (
-                              <Base.Media
-                                value={item.icon}
-                                className={this.decorateCSS("icon")}
-                              />
-                            )}
-                            {this.castToString(item.title) && <Base.P className={this.decorateCSS("home")}>{item.title}</Base.P>}
-                          </div>
-                        </ComposerLink>
-                      )}
-                    </div>
-                  </React.Fragment>
-                ))}
-                {breadcrumbItems.length > 0 && (
-                  <>
-                    <Base.Media 
-                      value={this.getPropValue("breadcrumbIcon")} 
-                      className={this.decorateCSS("icon")} 
-                    />
-                    <div className={this.decorateCSS("current-container")}>
-                      <div className={this.decorateCSS("current-page-container")}>
-                        {currentPageIcon.name && (
-                          <Base.Media 
-                            value={currentPageIcon} 
-                            className={this.decorateCSS("current-page-icon")} 
-                          />
-                        )}
-                        {this.castToString(currentPageTitle) && <Base.P className={this.decorateCSS("current")}>{currentPageTitle}</Base.P>}
-                      </div>
-                    </div>
-                  </>
-                )}
-              </div>
+            {isDescriptionExist && (
+              <Base.SectionDescription className={this.decorateCSS("description")}>
+                {this.getPropValue("description")}
+              </Base.SectionDescription>
             )}
+            <div className={this.decorateCSS("breadcrumb")}>
+              {breadcrumbItems.map((item: BreadcrumbItem, index: number) => {
+                const itemTitleExist = this.castToString(item.title);
+                const itemIconExist = item.icon && (item.icon.type === "icon" ? item.icon.name : item.icon.url);
+                const isLast = index === breadcrumbItems.length - 1;
+                return (
+                  <div key={index} className={this.decorateCSS("home-container")}>
+                    {(itemTitleExist || itemIconExist) && (
+                      <ComposerLink path={item.navigateTo}>
+                        <div className={this.decorateCSS("breadcrumb-link")}>
+                          {itemIconExist && (
+                            <Base.Media
+                              value={item.icon}
+                              className={this.decorateCSS("icon")}
+                            />
+                          )}
+                          {itemTitleExist && (
+                            <Base.P className={this.decorateCSS("home")}>
+                              {item.title}
+                            </Base.P>
+                          )}
+                        </div>
+                      </ComposerLink>
+                    )}
+                    {!isLast && separatorIconExist && (
+                      <Base.Media
+                        value={separatorIconValue}
+                        className={this.decorateCSS("icon")}
+                      />
+                    )}
+                  </div>
+                );
+              })}
+            </div>
           </Base.VerticalContent>
         </Base.MaxContent>
       </Base.Container>
-    )
+    );
   }
 }
 
