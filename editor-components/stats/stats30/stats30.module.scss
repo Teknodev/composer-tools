@@ -49,13 +49,12 @@
                 }
 
                 .stat-item {
-                    background: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 10%);
+                    background: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
                     padding: var(--composer-gap-xl);
                     border-radius: var(--composer-border-radius-md);
                     box-sizing: border-box;
                     align-items: flex-start;
                     text-align: left;
-                    gap: var(--composer-border-radius-xl);
 
                     &.colored-background {
                         background: transparent;
@@ -77,41 +76,28 @@
                         }
                     }
 
-                    .stat-text-group {
-                        width: 100%;
-                        align-items: flex-start;
+                    .stat-subtitle,
+                    .stat-title,
+                    .stat-description {
                         text-align: left;
-                        gap: 0;
+                    }
 
-                        .subtitle,
-                        .title,
-                        .description {
-                            margin-bottom: 0 !important;
-                        }
+                    .stat-subtitle {
+                        font-size: 1.5rem;
+                        color: var(--composer-font-color-primary);
+                    }
 
-                        .stat-subtitle,
-                        .stat-title,
-                        .stat-description {
-                            text-align: left;
-                        }
+                    .stat-title {
+                        font-size: 3.5rem;
+                        color: var(--composer-font-color-primary);
+                        line-height: 1.1;
+                    }
 
-                        .stat-subtitle {
-                            font-size: 1.5rem;
-                            color: var(--composer-font-color-primary);
-                        }
-
-                        .stat-title {
-                            font-size: 3.5rem;
-                            color: var(--composer-font-color-primary);
-                            line-height: 1.1;
-                        }
-
-                        .stat-description {
-                            font-size: 1.6rem;
-                            opacity: 0.8;
-                            color: var(--composer-font-color-primary);
-                            line-height: 1.5;
-                        }
+                    .stat-description {
+                        font-size: 1.6rem;
+                        opacity: 0.8;
+                        color: var(--composer-font-color-primary);
+                        line-height: 1.5;
                     }
 
                     .stat-value-wrapper {
@@ -121,7 +107,6 @@
                     .stat-value-container {
                         display: flex;
                         align-items: baseline;
-                        gap: var(--composer-gap-sm);
                         color: var(--composer-primary-color);
                         margin: 0;
 
@@ -144,8 +129,6 @@
                     grid-template-columns: repeat(2, 1fr);
 
                     .stat-item {
-                        gap: var(--composer-border-radius-sm);
-
                         .stat-value-container {
 
                             .stat-value,
@@ -161,7 +144,7 @@
                     grid-template-columns: repeat(1, 1fr);
 
                     .stat-item {
-                        // gap: 1.5rem;
+                        padding: var(--composer-gap-lg);
 
                         .stat-value-container {
 

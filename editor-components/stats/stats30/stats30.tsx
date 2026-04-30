@@ -19,21 +19,21 @@ export class Stats30 extends BaseStats {
             type: "string",
             key: "subtitle",
             displayer: "Subtitle",
-            value: "",
+            value: "Lorem",
         });
 
         this.addProp({
             type: "string",
             key: "title",
             displayer: "Title",
-            value: "",
+            value: "Lorem Ipsum",
         });
 
         this.addProp({
             type: "string",
             key: "description",
             displayer: "Description",
-            value: "",
+            value: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
         });
 
         this.addProp({
@@ -64,7 +64,7 @@ export class Stats30 extends BaseStats {
                         { type: "string", key: "suffix", displayer: "Suffix", value: "" },
                         { type: "string", key: "subtitle", displayer: "Subtitle", value: "Process" },
                         { type: "string", key: "title", displayer: "Title", value: "Days of product development" },
-                        { type: "string", key: "description", displayer: "Description", value: "" },
+                        { type: "string", key: "description", displayer: "Description", value: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." },
                     ],
                 },
 
@@ -83,7 +83,10 @@ export class Stats30 extends BaseStats {
             key: "buttons",
             displayer: "Buttons",
             value: [
-                INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+                INPUTS.BUTTON("button", "Button", "Button Text", "", null, null, "Primary"),
+                INPUTS.BUTTON("button", "Button", "Button Text", "", null, null, "Primary"),
+                INPUTS.BUTTON("button", "Button", "Button Text", "", null, null, "Primary"),
+                INPUTS.BUTTON("button", "Button", "Button Text", "", null, null, "Primary"),
             ],
         });
 
@@ -167,29 +170,23 @@ export class Stats30 extends BaseStats {
 
         return (
             <Base.VerticalContent className={`${this.decorateCSS("stat-item")} ${coloredBackgroundClass}`}>
-                {hasTextGroup && (
-                    <Base.VerticalContent className={this.decorateCSS("stat-text-group")}>
-                        {subtitleExist && (
-                            <Base.H6 className={this.decorateCSS("stat-subtitle")}>
-                                {stat.subtitleElement}
-                            </Base.H6>
-                        )}
-                        {titleExist && (
-                            <Base.H2 className={this.decorateCSS("stat-title")}>
-                                {stat.titleElement}
-                            </Base.H2>
-                        )}
-                        {descriptionExist && (
-                            <Base.P className={this.decorateCSS("stat-description")}>
-                                {stat.descriptionElement}
-                            </Base.P>
-                        )}
-                    </Base.VerticalContent>
+                {subtitleExist && (
+                    <Base.H6 className={this.decorateCSS("stat-subtitle")}>
+                        {stat.subtitleElement}
+                    </Base.H6>
+                )}
+                {titleExist && (
+                    <Base.H2 className={this.decorateCSS("stat-title")}>
+                        {stat.titleElement}
+                    </Base.H2>
+                )}
+                {descriptionExist && (
+                    <Base.P className={this.decorateCSS("stat-description")}>
+                        {stat.descriptionElement}
+                    </Base.P>
                 )}
                 {hasValueGroup && (
-                    <Base.VerticalContent
-                        className={this.decorateCSS("stat-value-wrapper")}
-                    >
+                    <div className={this.decorateCSS("stat-value-wrapper")}>
                         <span className={this.decorateCSS("stat-value-container")}>
                             {stat.prefix && (
                                 <span className={this.decorateCSS("stat-prefix")}>
@@ -207,9 +204,9 @@ export class Stats30 extends BaseStats {
                                 </span>
                             )}
                         </span>
-                    </Base.VerticalContent>
+                    </div>
                 )}
-            </Base.VerticalContent >
+            </Base.VerticalContent>
         );
 
     };
