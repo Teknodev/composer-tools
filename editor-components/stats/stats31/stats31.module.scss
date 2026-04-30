@@ -1,0 +1,291 @@
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+
+.container {
+    .max-content {
+        .content {
+            gap: var(--composer-gap-lg);
+
+            .header-container {
+                .subtitle {
+                    width: fit-content;
+                }
+
+                .title {
+                    content: "";
+                }
+
+                .description {
+                    content: "";
+                }
+            }
+
+            .stats-grid {
+                
+
+                .stat-card {
+                    border-radius: var(--composer-border-radius-full);
+                    aspect-ratio: 1;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
+                    padding: 8%;
+                    overflow: hidden;
+                    margin-left: auto;
+                    margin-right: auto;
+
+                    .stat-item {
+                        align-items: center;
+                        text-align: center;
+                        overflow: hidden;
+                        width: 100%;
+                        flex-shrink: 1;
+                        min-height: 0;
+
+                        .stat-value {
+                            display: flex;
+                            align-items: baseline;
+                            justify-content: center;
+                            color: inherit;
+                            
+                            overflow: hidden;
+                            text-overflow: ellipsis;
+                            max-width: 100%;
+                            flex-shrink: 0;
+
+                            .stat-prefix,
+                            .stat-number,
+                            .stat-suffix {
+                                color: inherit;
+                            }
+                        }
+
+                        .stat-subtitle {
+                            color: inherit;
+                            font-size: 1rem;
+                            overflow: hidden;
+                            text-overflow: ellipsis;
+                            text-align: center;
+                            
+                            flex-shrink: 0;
+                        }
+
+                        .stat-title {
+                            text-align: center;
+                            color: inherit;
+                            font-size: 1.25rem;
+                            overflow: hidden;
+                            text-overflow: ellipsis;
+                            
+                            flex-shrink: 0;
+                        }
+
+                        .stat-description {
+                            text-align: center;
+                            color: inherit;
+                            font-size: 0.75rem;
+                            overflow: hidden;
+                            display: -webkit-box;
+                            -webkit-line-clamp: 3;
+                            -webkit-box-orient: vertical;
+                            flex-shrink: 0;
+                        }
+                    }
+
+                    &.stat-card-1 {
+                        width: 67%;
+                        background-color: color-mix(in srgb,
+                                var(--composer-font-color-primary),
+                                var(--composer-html-background) 15%);
+                        color: var(--composer-html-background);
+                        margin-top: 25%;
+
+                        .stat-item .stat-value {
+                            .stat-prefix,
+                            .stat-number,
+                            .stat-suffix {
+                                font-size: 3.5rem;
+                            }
+                        }
+                    }
+
+                    &.stat-card-2 {
+                        width: 100%;
+                        background-color: var(--composer-font-color-primary);
+                        color: var(--composer-html-background);
+                        margin-top: 25%;
+
+                        .stat-item .stat-value {
+                            .stat-prefix,
+                            .stat-number,
+                            .stat-suffix {
+                                font-size: 3rem;
+                            }
+                        }
+                    }
+
+                    &.stat-card-3 {
+                        width: 100%;
+                        background-color: color-mix(in srgb,
+                                var(--composer-html-background),
+                                var(--composer-font-color-primary) 10%);
+                        color: var(--composer-font-color-primary);
+                        margin-top: 0%;
+
+                        .stat-item .stat-value {
+                            .stat-prefix,
+                            .stat-number,
+                            .stat-suffix {
+                                font-size: 6rem;
+                            }
+                        }
+                    }
+
+                    &.stat-card-4 {
+                        width: 67%;
+                        background-color: var(--composer-primary-color);
+                        color: var(--composer-font-color-secondary);
+                        margin-top: 0%;
+
+                        .stat-item .stat-value {
+                            .stat-prefix,
+                            .stat-number,
+                            .stat-suffix {
+                                font-size: 3rem;
+                            }
+                        }
+                    }
+                }
+            }
+
+            .button-container {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                align-self: center;
+                gap: var(--composer-gap-sm);
+
+                .button {
+                    .button-text {
+                        content: "";
+                    }
+                }
+            }
+        }
+    }
+}
+
+@container (max-width: #{$composer-tablet-width}) {
+    .container .max-content .content .stats-grid {
+        .stat-card {
+            padding: 10%;
+            margin-top: 0;
+        }
+
+        .stat-card.stat-card-1 .stat-item .stat-value {
+            .stat-prefix,
+            .stat-number,
+            .stat-suffix {
+                font-size: 2.5rem !important;
+            }
+        }
+
+        .stat-card.stat-card-2 .stat-item .stat-value {
+            .stat-prefix,
+            .stat-number,
+            .stat-suffix {
+                font-size: 2.25rem !important;
+            }
+        }
+
+        .stat-card.stat-card-3 .stat-item .stat-value {
+            .stat-prefix,
+            .stat-number,
+            .stat-suffix {
+                font-size: 4rem !important;
+            }
+        }
+
+        .stat-card.stat-card-4 .stat-item .stat-value {
+            .stat-prefix,
+            .stat-number,
+            .stat-suffix {
+                font-size: 2.25rem !important;
+            }
+        }
+
+        .stat-card .stat-item {
+            .stat-title {
+                font-size: 0.75rem !important;
+            }
+
+            .stat-subtitle {
+                font-size: 0.64rem !important;
+            }
+
+            .stat-description {
+                font-size: 0.48rem !important;
+            }
+        }
+    }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+    .container .max-content .content {
+        .header-container {
+            align-items: center;
+
+            .subtitle,
+            .title,
+            .description {
+                text-align: center;
+                width: fit-content;
+            }
+        }
+    }
+
+    .container .max-content .content .stats-grid {
+        .stat-card {
+            width: 100% !important;
+            max-width: 250px;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 0;
+            padding: 10%;
+        }
+
+        .stat-card.stat-card-1,
+        .stat-card.stat-card-2,
+        .stat-card.stat-card-3,
+        .stat-card.stat-card-4 {
+            margin-top: 0;
+        }
+
+        .stat-card.stat-card-1,
+        .stat-card.stat-card-2,
+        .stat-card.stat-card-3,
+        .stat-card.stat-card-4 {
+            .stat-item .stat-value {
+                .stat-prefix,
+                .stat-number,
+                .stat-suffix {
+                    font-size: 3rem !important;
+                }
+            }
+        }
+
+        .stat-card .stat-item {
+            .stat-title {
+                font-size: 1.125rem;
+            }
+
+            .stat-subtitle {
+                font-size: 1rem;
+            }
+
+            .stat-description {
+                font-size: 0.75rem;
+            }
+        }
+    }
+}
