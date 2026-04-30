@@ -280,12 +280,10 @@ class Stats36 extends BaseStats {
                         )}
                         {(!fullWidth || (fullWidth && hasContent)) && (
                             <Base.GridCell
-                                className={`${this.decorateCSS("content-cell")} ${fullWidth ? this.decorateCSS("full-width") : ""}`}
-                                data-alignment={alignment}
+                                className={`${this.decorateCSS("content-cell")} ${fullWidth ? this.decorateCSS("full-width") : ""} ${alignment === "center" ? this.decorateCSS("center") : ""}`}
                             >
                                 <Base.VerticalContent
-                                    className={this.decorateCSS("content-header")}
-                                    data-alignment={alignment}
+                                    className={`${this.decorateCSS("content-header")} ${alignment === "center" ? this.decorateCSS("center") : ""}`}
                                 >
                                     {subtitleExist && (
                                         <Base.SectionSubTitle className={this.decorateCSS("section-subtitle")}>
