@@ -44,9 +44,9 @@ function execScript(code: string, label: string): void {
   (0, eval)(code);
 }
 
-function scopeToPlayground(css: string): string {
+export function scopeToPlayground(css: string): string {
   return css.replace(
-    /^(\s*)([^@\s\/\n}][^{]*?)\s*\{/gm,
+    /^(\s*)([^@\s\/\n}][^{\n]*?)\s*\{/gm,
     (_match, indent, selector) => {
       const trimmed = selector.trim();
       if (!trimmed || trimmed.startsWith("#playground")) return _match;

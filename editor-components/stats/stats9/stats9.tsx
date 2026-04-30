@@ -240,7 +240,6 @@ class Stats9 extends BaseStats {
         try {
             image = this.castToObject<TypeMediaInputValue>("image");
         } catch (error) {
-            console.error('Image casting error:', error);
             const rawImage = this.getPropValue("image");
             if (rawImage && typeof rawImage === 'object') {
                 image = rawImage as TypeMediaInputValue;
