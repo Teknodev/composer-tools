@@ -188,12 +188,25 @@
             width: 100%;
             top: auto;
             bottom: 0;
-            height: 50%;
+            height: 500px;
         }
 
         .right-column {
-            padding: 0;
             position: relative;
+
+            .stats-list {
+                gap: var(--composer-gap-lg);
+            }
+        }
+
+        &.has-media {
+            .content-wrapper {
+                gap: 0;
+            }
+            .right-column {
+                min-height: 500px;
+                padding-top: var(--composer-gap-xl);
+            }
         }
 
         .subtitle {

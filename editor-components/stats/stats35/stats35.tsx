@@ -288,7 +288,7 @@ class Stats35 extends BaseStats {
         const hasRightSection = hasVisibleStats || hasMedia;
 
         return (
-            <Base.Container className={this.decorateCSS("container")}>
+            <Base.Container className={`${this.decorateCSS("container")} ${hasMedia ? this.decorateCSS("has-media") : ""}`}>
                 {hasMedia && (
                     <div className={this.decorateCSS("background-media")}>
                         <Base.Media
