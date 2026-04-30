@@ -185,8 +185,9 @@ export class Stats30 extends BaseStats {
         const valueExist = !!this.castToString(originalValueString);
         const suffixExist = !!this.castToString(stat.suffix);
 
-        const hasTextGroup = subtitleExist || titleExist || descriptionExist;
         const hasValueGroup = valueExist || suffixExist || !!stat.prefix;
+        const hasAnyContent = subtitleExist || titleExist || descriptionExist || hasValueGroup;
+        if (!hasAnyContent) return null;
 
         return (
             <Base.VerticalContent className={`${this.decorateCSS("stat-item")}${coloredBackgroundClass ? ` ${coloredBackgroundClass}` : ""}`}>
@@ -206,25 +207,23 @@ export class Stats30 extends BaseStats {
                     </Base.P>
                 )}
                 {hasValueGroup && (
-                    <div className={this.decorateCSS("stat-value-wrapper")}>
-                        <span className={this.decorateCSS("stat-value-container")}>
-                            {stat.prefix && (
-                                <span className={this.decorateCSS("stat-prefix")}>
-                                    {stat.prefix}
-                                </span>
-                            )}
-                            {valueExist && (
-                                <span className={this.decorateCSS("stat-value")}>
-                                    {display}
-                                </span>
-                            )}
-                            {suffixExist && (
-                                <span className={this.decorateCSS("stat-suffix")}>
-                                    {stat.suffix}
-                                </span>
-                            )}
-                        </span>
-                    </div>
+                    <span className={this.decorateCSS("stat-value-container")}>
+                        {stat.prefix && (
+                            <span className={this.decorateCSS("stat-prefix")}>
+                                {stat.prefix}
+                            </span>
+                        )}
+                        {valueExist && (
+                            <span className={this.decorateCSS("stat-value")}>
+                                {display}
+                            </span>
+                        )}
+                        {suffixExist && (
+                            <span className={this.decorateCSS("stat-suffix")}>
+                                {stat.suffix}
+                            </span>
+                        )}
+                    </span>
                 )}
             </Base.VerticalContent>
         );
@@ -268,29 +267,26 @@ export class Stats30 extends BaseStats {
         return (
             <Base.Container className={this.decorateCSS("container")}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
-                    <Base.VerticalContent className={this.decorateCSS("content")}>
+                    <Base.VerticalContent className={`${this.decorateCSS("content")} ${this.decorateCSS(`alignment-${alignment}`)}`}>
                         {hasTopSection && (
                             <Base.VerticalContent
                                 className={this.decorateCSS("header-container")}
-                                data-alignment={alignment}
                             >
-                                <Base.VerticalContent className={this.decorateCSS("header-texts")}>
-                                    {subtitleExist && (
-                                        <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
-                                            {this.getPropValue("subtitle")}
-                                        </Base.SectionSubTitle>
-                                    )}
-                                    {titleExist && (
-                                        <Base.SectionTitle className={this.decorateCSS("title")}>
-                                            {this.getPropValue("title")}
-                                        </Base.SectionTitle>
-                                    )}
-                                    {descriptionExist && (
-                                        <Base.SectionDescription className={this.decorateCSS("description")}>
-                                            {this.getPropValue("description")}
-                                        </Base.SectionDescription>
-                                    )}
-                                </Base.VerticalContent>
+                                {subtitleExist && (
+                                    <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                                        {this.getPropValue("subtitle")}
+                                    </Base.SectionSubTitle>
+                                )}
+                                {titleExist && (
+                                    <Base.SectionTitle className={this.decorateCSS("title")}>
+                                        {this.getPropValue("title")}
+                                    </Base.SectionTitle>
+                                )}
+                                {descriptionExist && (
+                                    <Base.SectionDescription className={this.decorateCSS("description")}>
+                                        {this.getPropValue("description")}
+                                    </Base.SectionDescription>
+                                )}
                             </Base.VerticalContent>
                         )}
 

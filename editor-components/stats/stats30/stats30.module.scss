@@ -1,10 +1,7 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
-
     .max-content {
-        width: 100%;
-
         .content {
             display: flex;
             flex-direction: column;
@@ -12,30 +9,22 @@
             width: 100%;
 
             .header-container {
-                width: 100%;
                 display: flex;
                 flex-direction: column;
                 align-items: flex-start;
                 text-align: left;
 
-                .header-texts {
-                    width: 100%;
-
-                    .subtitle,
-                    .title,
-                    .description {
-                        content: "";
-                    }
+                .subtitle,
+                .title,
+                .description {
+                    content: "";
                 }
             }
 
             .stats-container {
-                width: 100%;
-
                 .stat-item {
                     align-items: flex-start;
                     text-align: left;
-
 
                     &.colored-background {
                         background: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
@@ -58,18 +47,14 @@
                         color: var(--composer-tertiary-color);
                     }
 
-                    .stat-value-wrapper {
+                    .stat-value-container {
+                        display: flex;
+                        color: var(--composer-primary-color);
 
-                        .stat-value-container {
-                            display: flex;
-                            color: var(--composer-primary-color);
-                            align-items: baseline;
-
-                            .stat-prefix,
-                            .stat-value,
-                            .stat-suffix {
-                                font-size: 10rem;
-                            }
+                        .stat-prefix,
+                        .stat-value,
+                        .stat-suffix {
+                            font-size: 10rem;
                         }
                     }
                 }
@@ -80,7 +65,6 @@
                 flex-wrap: wrap;
                 gap: var(--composer-gap-sm);
                 justify-content: center;
-                width: 100%;
 
                 .button {
                     .button-text,
@@ -88,19 +72,6 @@
                         content: "";
                     }
                 }
-            }
-        }
-    }
-}
-
-@container (max-width: #{$composer-tablet-width}) {
-    .container .max-content .content .stats-container {
-        .stat-item .stat-value-wrapper .stat-value-container {
-
-            .stat-value,
-            .stat-prefix,
-            .stat-suffix {
-                font-size: 10rem;
             }
         }
     }
@@ -116,8 +87,7 @@
                     padding: var(--composer-gap-lg);
                 }
 
-                .stat-value-wrapper .stat-value-container {
-
+                .stat-value-container {
                     .stat-value,
                     .stat-prefix,
                     .stat-suffix {
