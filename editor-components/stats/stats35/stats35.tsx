@@ -289,9 +289,18 @@ class Stats35 extends BaseStats {
 
         return (
             <Base.Container className={this.decorateCSS("container")}>
+                {hasMedia && (
+                    <div className={this.decorateCSS("background-media")}>
+                        <Base.Media
+                            value={backgroundImage}
+                            className={this.decorateCSS("background-image")}
+                        />
+                        {showOverlay && <div className={this.decorateCSS("overlay")} />}
+                    </div>
+                )}
+                <Base.MaxContent className={this.decorateCSS("max-content")}>
                     <div className={`${this.decorateCSS("content-wrapper")} ${hasRightSection ? this.decorateCSS("has-right") : ""}`}>
                         {hasLeftSection && (
-                         <Base.MaxContent className={this.decorateCSS("max-content")}>
                             <Base.VerticalContent className={`${this.decorateCSS("left-column")} ${!hasRightSection ? this.decorateCSS("left-full-width") : ""} ${alignment === "center" ? this.decorateCSS("center-alignment") : ""}`}>
                                 {subtitleExist && (
                                     <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
@@ -325,34 +334,25 @@ class Stats35 extends BaseStats {
                                     </div>
                                 )}
                             </Base.VerticalContent>
-
-                        </Base.MaxContent>
                         )}
-                        {hasRightSection && (
-                            
-                            <div className={`${this.decorateCSS("right-column")} ${alignment === "center" ? this.decorateCSS("center-alignment") : ""} ${!hasMedia ? this.decorateCSS("no-media") : ""} ${!hasLeftSection ? this.decorateCSS("full-width") : ""}`}>
-                                {hasMedia && (
-                                    <div className={this.decorateCSS("right-background")}>
-                                        <Base.Media
-                                            value={backgroundImage}
-                                            className={this.decorateCSS("background-image")}
-                                        />
-                                        {showOverlay && <div className={this.decorateCSS("overlay")} />}
-                                    </div>
-                                )}
-                                <Base.ListGrid gridCount={{ pc: itemCount, tablet: 1, phone: 1 }} className={this.decorateCSS("stats-list")}>
-                                    {stats.map((stat, index) => (
-                                        <this.AnimatedStat
-                                            key={`stat35-${index}`}
-                                            stat={stat}
-                                            animationDuration={animationDuration}
-                                            statsAnimation={statsAnimation}
-                                        />
-                                    ))}
-                                </Base.ListGrid>
+                        {hasVisibleStats && (
+                            <div className={`${this.decorateCSS("right-column")} ${alignment === "center" ? this.decorateCSS("center-alignment") : ""} ${!hasLeftSection ? this.decorateCSS("full-width") : ""}`}>
+                                <div className={this.decorateCSS("stats-inner")}>
+                                    <Base.ListGrid gridCount={{ pc: itemCount, tablet: 1, phone: 1 }} className={this.decorateCSS("stats-list")}>
+                                        {stats.map((stat, index) => (
+                                            <this.AnimatedStat
+                                                key={`stat35-${index}`}
+                                                stat={stat}
+                                                animationDuration={animationDuration}
+                                                statsAnimation={statsAnimation}
+                                            />
+                                        ))}
+                                    </Base.ListGrid>
+                                </div>
                             </div>
                         )}
                     </div>
+                </Base.MaxContent>
             </Base.Container>
         );
     }
