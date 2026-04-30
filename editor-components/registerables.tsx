@@ -190,6 +190,7 @@ import CallToAction29 from "./call_to_action/call_to_action29/call_to_action29";
 import CallToAction30 from "./call_to_action/call_to_action30/call_to_action30";
 import CallToAction32 from "./call_to_action/call_to_action32/call_to_action32";
 import CallToAction33 from "./call_to_action/call_to_action33/call_to_action33";
+import CallToAction35 from "./call_to_action/call_to_action35/call_to_action35";
 import LogoComponent1 from "./logo-clouds/logo-comp1/logo-comp1";
 import LogoComponent2 from "./logo-clouds/logo-comp2/logo-comp2";
 import LogoComponent3 from "./logo-clouds/logo-comp3/logo-comp3";
@@ -242,6 +243,7 @@ import StatsComponent23 from "./stats/stats23/stats23";
 import StatsComponent24 from "./stats/stats24/stats24";
 import StatsComponent29 from "./stats/stats29/stats29";
 import StatsComponent32 from "./stats/stats32/stats32";
+import StatsComponent34 from "./stats/stats34/stats34";
 import Form1 from "./contacts/form1/form1";
 import Form2 from "./contacts/form2/form2";
 import Form3 from "./contacts/form3/form3";
@@ -590,6 +592,7 @@ function Registerables(composer: ComponentsRegistery) {
     CallToAction30,
     CallToAction32,
     CallToAction33,
+    CallToAction35,
     LogoComponent1,
     LogoComponent2,
     LogoComponent3,
@@ -642,6 +645,7 @@ function Registerables(composer: ComponentsRegistery) {
     StatsComponent24,
     StatsComponent29,
     StatsComponent32,
+    StatsComponent34,
     Form1,
     Form2,
     Form3,
