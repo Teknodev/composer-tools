@@ -2,20 +2,19 @@ import * as React from "react";
 import styles from "./team13.module.scss";
 import { Team, TypeMediaInputValue } from "../../EditorComponent";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
-
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "../../../custom-hooks/input-templates";
 
 interface Card {
-  profileImage: import("react/jsx-runtime").JSX.Element;
-  image: TypeMediaInputValue;
-  name: React.JSX.Element;
-  job: React.JSX.Element;
-  icons: { icon: string; url: string }[];
-}
-interface Icon {
-  url: string;
+  profileImage: TypeMediaInputValue;
   name: string;
+  job: string;
+  description: string;
+}
+
+type Socials = {
+  url: string;
+  icon: TypeMediaInputValue;
 }
 
 class Team13 extends Team {
@@ -24,11 +23,17 @@ class Team13 extends Team {
 
     this.addProp({
       type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "",
+    });
+
+    this.addProp({
+      type: "string",
       key: "title",
       displayer: "Title",
       value: "Meet the Creative Team",
     });
-    this.addProp(INPUTS.BUTTON("button", "Button", "Contact Us", null, null, "", "Link"));
 
     this.addProp({
       type: "string",
@@ -38,10 +43,127 @@ class Team13 extends Team {
     });
 
     this.addProp({
+      type: "array",
+      key: "buttons",
+      displayer: "Buttons",
+      value: [
+        INPUTS.BUTTON("button", "Button", "Contact Us", null, null, "", "Link")
+      ]
+    });
+
+    this.addProp({
       type: "boolean",
       key: "line",
       displayer: "Line",
       value: true,
+    });
+
+    this.addProp({
+      type: "array",
+      key: "socials",
+      displayer: "Socials",
+      value: [
+        {
+          type: "object",
+          key: "social",
+          displayer: "Social",
+          value: [
+            {
+              type: "media",
+              key: "icon",
+              additionalParams: {
+                availableTypes: ["icon", "image"],
+              },
+              value: {
+                type: "icon",
+                name: "FaFacebookSquare",
+              },
+              displayer: "Icon",
+            },
+            {
+              type: "page",
+              key: "url",
+              displayer: "Navigate To",
+              value: "",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "social",
+          displayer: "Social",
+          value: [
+            {
+              type: "media",
+              key: "icon",
+              additionalParams: {
+                availableTypes: ["icon", "image"],
+              },
+              value: {
+                type: "icon",
+                name: "FaTwitterSquare",
+              },
+              displayer: "Icon",
+            },
+            {
+              type: "page",
+              key: "url",
+              displayer: "Navigate To",
+              value: "",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "social",
+          displayer: "Social",
+          value: [
+            {
+              type: "media",
+              key: "icon",
+              additionalParams: {
+                availableTypes: ["icon", "image"],
+              },
+              value: {
+                type: "icon",
+                name: "FaInstagram",
+              },
+              displayer: "Icon",
+            },
+            {
+              type: "page",
+              key: "url",
+              displayer: "Navigate To",
+              value: "",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "social",
+          displayer: "Social",
+          value: [
+            {
+              type: "media",
+              key: "icon",
+              additionalParams: {
+                availableTypes: ["icon", "image"],
+              },
+              value: {
+                type: "icon",
+                name: "FaLinkedin",
+              },
+              displayer: "Icon",
+            },
+            {
+              type: "page",
+              key: "url",
+              displayer: "Navigate To",
+              value: "",
+            },
+          ],
+        },
+      ],
     });
 
     this.addProp({
@@ -78,6 +200,12 @@ class Team13 extends Team {
               displayer: "Person Job",
               value: "Art Director",
             },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Person Description",
+              value: "",
+            },
           ],
         },
         {
@@ -109,75 +237,25 @@ class Team13 extends Team {
               displayer: "Person Job",
               value: "UI Designer",
             },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Person Description",
+              value: "",
+            },
           ],
         },
       ],
     });
 
     this.addProp({
-      type: "array",
-      key: "icons",
-      displayer: "Social Medias",
-      value: [
-        {
-          type: "object",
-          key: "icon",
-          displayer: "Item",
-          value: [
-            {
-              type: "page",
-              key: "url",
-              displayer: "Link",
-              value: "",
-            },
-            {
-              type: "icon",
-              key: "name",
-              displayer: "Icon",
-              value: "SlSocialFacebook",
-            },
-          ],
-        },
-        {
-          type: "object",
-          key: "icon",
-          displayer: "Item",
-          value: [
-            {
-              type: "page",
-              key: "navigate",
-              displayer: "Link",
-              value: "",
-            },
-            {
-              type: "icon",
-              key: "name",
-              displayer: "Icon",
-              value: "SlSocialVkontakte",
-            },
-          ],
-        },
-        {
-          type: "object",
-          key: "icon",
-          displayer: "Item",
-          value: [
-            {
-              type: "page",
-              key: "navigate",
-              displayer: "Link",
-              value: "",
-            },
-            {
-              type: "icon",
-              key: "name",
-              displayer: "Icon",
-              value: "SlSocialLinkedin",
-            },
-          ],
-        },
-      ],
+      type: "number",
+      key: "itemCount",
+      displayer: "Item count in a row",
+      value: 3,
     });
+
+
     this.addProp({
       type: "multiSelect",
       key: "hoverAnimation",
@@ -195,59 +273,68 @@ class Team13 extends Team {
 
   render() {
     const cards = this.castToObject<Card[]>("cards");
-    const icons = this.castToObject<Icon[]>("icons");
+    const socials = this.castToObject<Socials[]>("socials");
     const line = this.getPropValue("line");
+    const subtitle = this.castToString(this.getPropValue("subtitle"));
+    const title = this.castToString(this.getPropValue("title"));
+    const description = this.castToString(this.getPropValue("description"));
+    const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
 
-    const title = this.getPropValue("title");
-    const description = this.getPropValue("description");
-
-    const titleExist = this.castToString(title);
-    const descriptionExist = this.castToString(description);
-
-    const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
-
-    const hasFeaturedCard = titleExist || descriptionExist || this.castToString(button.text) || icons.length > 0;
+    const hasFeaturedCard = subtitle || title || description || (buttons && buttons.length > 0) || (socials && socials.length > 0);
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <Base.ListGrid gridCount={{ pc: 3, tablet: 2, phone: 1 }} className={this.decorateCSS("content")}>
+          <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount"), tablet: 3, phone: 1 }} className={this.decorateCSS("content")}>
             {hasFeaturedCard && (
-              <Base.VerticalContent className={this.decorateCSS("featured-card")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
-                <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>
-                <Base.VerticalContent className={this.decorateCSS("label")}>
-                  <Base.P className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.P>
-                  <Base.Row className={this.decorateCSS("button-container")}>
-                    <ComposerLink path={button.url}>
-                      <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>{button.text}</Base.Button>
-                    </ComposerLink>
-                    {line && <div className={this.decorateCSS("line")}></div>}
-                  </Base.Row>
-                  <Base.Row className={this.decorateCSS("icon-container")}>
-                    {icons.map((icon: any, indexIcons: number) => {
-                      return (
-                        <div key={indexIcons} className={this.decorateCSS("icon-item")}>
-                          <ComposerLink path={icon.url}>
-                            <Base.Icon
-                              name={icon.name}
-                              propsIcon={{
-                                className: this.decorateCSS("icon"),
-                                style: { "--icon-index": indexIcons } as React.CSSProperties
-                              }}
-                            />
-                          </ComposerLink>
-                        </div>
-                      );
-                    })}
-                  </Base.Row>
+              <div className={this.decorateCSS("featured-card")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
+                <Base.VerticalContent className={this.decorateCSS("info-container")}>
+                  {subtitle && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
+                  {title && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
                 </Base.VerticalContent>
-              </Base.VerticalContent>
+                <Base.VerticalContent className={this.decorateCSS("label")}>
+                  {description && <Base.P className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.P>}
+                  <div className={this.decorateCSS("button-and-line-container")}>
+                    {buttons.length > 0 && (
+                      <div className={this.decorateCSS("button-container")}>
+                        {buttons.map((btn: INPUTS.CastedButton, index: number) => {
+                          return this.castToString(btn.text) && (
+                            <ComposerLink key={`button-${index}`} path={btn.url}>
+                              <Base.Button buttonType={btn.type} className={this.decorateCSS("button")}>
+                                <Base.P className={this.decorateCSS("button-text")}>{btn.text}</Base.P>
+                              </Base.Button>
+                            </ComposerLink>
+                          );
+                        })}
+                      </div>
+                    )}
+                    {line && <div className={this.decorateCSS("line")}></div>}
+                  </div>
+                  {socials && socials.length > 0 && (
+                    <Base.Row className={this.decorateCSS("icon-container")}>
+                      {socials.map((icn: Socials, indexSocials: number) => {
+                        return icn.icon && (
+                          <div key={indexSocials} className={this.decorateCSS("icon-item")}>
+                            <ComposerLink path={icn.url}>
+                              <Base.Media
+                                value={icn.icon}
+                                className={`${this.decorateCSS("icon")} ${icn.icon.type === "image" && this.decorateCSS("has-image")}`}
+                                style={{ "--icon-index": indexSocials } as React.CSSProperties}
+                              />
+                            </ComposerLink>
+                          </div>
+                        );
+                      })}
+                    </Base.Row>
+                  )}
+                </Base.VerticalContent>
+              </div>
             )}
-
-            {cards.map((card: Card) => {
+            {cards && cards.length > 0 && cards.map((card: Card, index: number) => {
               const nameExist = this.castToString(card.name);
               const jobExist = this.castToString(card.job);
-              return (
-                <Base.VerticalContent className={this.decorateCSS("team-card")}>
+              const descriptionExist = this.castToString(card.description);
+              return (nameExist || jobExist || card.profileImage || descriptionExist) && (
+                <Base.VerticalContent key={index} className={this.decorateCSS("team-card")}>
                   {card.profileImage && (
                     <div className={this.decorateCSS("img-wrapper")} data-animation={this.getPropValue("hoverAnimation").join(" ")} >
                       <Base.Media value={card.profileImage} className={this.decorateCSS("image")} data-animation={this.getPropValue("hoverAnimation").join(" ")} />
@@ -255,6 +342,7 @@ class Team13 extends Team {
                   )}
                   {nameExist && <Base.H4 className={this.decorateCSS("name")}>{card.name}</Base.H4>}
                   {jobExist && <Base.H5 className={this.decorateCSS("job")}>{card.job}</Base.H5>}
+                  {descriptionExist && <Base.P className={this.decorateCSS("card-description")}>{card.description}</Base.P>}
                 </Base.VerticalContent>
               );
             })}

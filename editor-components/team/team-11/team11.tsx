@@ -1,90 +1,35 @@
 import * as React from "react";
 import styles from "./team11.module.scss";
-import { Team, TypeUsableComponentProps } from "../../EditorComponent";
+import { Team } from "../../EditorComponent";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
-
 import { Base } from "../../../composer-base-components/base/base";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
+import { TypeMediaInputValue } from "../../EditorComponent";
+
+type Social = {
+  icon: TypeMediaInputValue;
+  url: string;
+};
+
+type Card = {
+  profileImage: TypeMediaInputValue;
+  name: string;
+  position: string;
+  description: string;
+  socials: Social[];
+};
 
 class Team11 extends Team {
   constructor(props?: any) {
     super(props, styles);
-    let twitter: TypeUsableComponentProps = {
-      type: "object",
-      key: "twitter",
-      displayer: "Twitter",
-      value: [
-        {
-          type: "image",
-          key: "icon",
-          displayer: "Platform Icon",
-          value: "FaTwitter",
-        },
-        {
-          type: "page",
-          key: "url",
-          displayer: "Url",
-          value: "",
-        },
-      ],
-    };
-    let facebook: TypeUsableComponentProps = {
-      type: "object",
-      key: "facebook",
-      displayer: "Facebook",
-      value: [
-        {
-          type: "image",
-          key: "icon",
-          displayer: "Platform Icon",
-          value: "FaFacebook",
-        },
-        {
-          type: "page",
-          key: "url",
-          displayer: "Url",
-          value: "",
-        },
-      ],
-    };
-    let instagram: TypeUsableComponentProps = {
-      type: "object",
-      key: "instagram",
-      displayer: "Instagram",
-      value: [
-        {
-          type: "image",
-          key: "icon",
-          displayer: "Platform Icon",
-          value: "FaInstagram",
-        },
-        {
-          type: "page",
-          key: "url",
-          displayer: "Url",
-          value: "",
-        },
-      ],
-    };
-    let youtube: TypeUsableComponentProps = {
-      type: "object",
-      key: "youtube",
-      displayer: "Youtube",
-      value: [
-        {
-          type: "image",
-          key: "icon",
-          displayer: "Platform Icon",
-          value: "TfiYoutube",
-        },
-        {
-          type: "page",
-          key: "url",
-          displayer: "Url",
-          value: "",
-        },
-      ],
-    };
+
+    this.addProp({
+      type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "",
+    });
+
     this.addProp({
       type: "string",
       key: "title",
@@ -93,23 +38,29 @@ class Team11 extends Team {
     });
 
     this.addProp({
-      type: "number",
-      key: "itemCount",
-      displayer: "Item count in a row",
-      value: 3,
+      type: "string",
+      key: "description",
+      displayer: "Description",
+      value: "",
     });
 
     this.addProp({
-      type: "icon",
+      type: "media",
       key: "nextIcon",
       displayer: "Next icon",
-      value: "GrCaretNext",
+      value: {
+        type: "icon",
+        name: "GrCaretNext",
+      },
     });
     this.addProp({
-      type: "icon",
+      type: "media",
       key: "prevIcon",
       displayer: "Prev icon",
-      value: "GrCaretPrevious",
+      value: {
+        type: "icon",
+        name: "GrCaretPrevious",
+      },
     });
 
     this.addProp({
@@ -147,10 +98,117 @@ class Team11 extends Team {
               value: "Defender",
             },
             {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value: "",
+            },
+            {
               type: "array",
-              key: "icons",
-              displayer: "Social Media Platforms",
-              value: [JSON.parse(JSON.stringify(twitter)), JSON.parse(JSON.stringify(facebook)), JSON.parse(JSON.stringify(instagram)), JSON.parse(JSON.stringify(youtube))],
+              key: "socials",
+              displayer: "Socials",
+              value: [
+                {
+                  type: "object",
+                  key: "social",
+                  displayer: "Social",
+                  value: [
+                    {
+                      type: "media",
+                      key: "icon",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "FaFacebookSquare"
+                      },
+                      displayer: "Icon",
+                    },
+                    {
+                      type: "page",
+                      key: "url",
+                      displayer: "Navigate To",
+                      value: "",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "social",
+                  displayer: "Social",
+                  value: [
+                    {
+                      type: "media",
+                      key: "icon",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "FaTwitterSquare"
+                      },
+                      displayer: "Icon",
+                    },
+                    {
+                      type: "page",
+                      key: "url",
+                      displayer: "Navigate To",
+                      value: "",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "social",
+                  displayer: "Social",
+                  value: [
+                    {
+                      type: "media",
+                      key: "icon",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "FaInstagram"
+                      },
+                      displayer: "Icon",
+                    },
+                    {
+                      type: "page",
+                      key: "url",
+                      displayer: "Navigate To",
+                      value: "",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "social",
+                  displayer: "Social",
+                  value: [
+                    {
+                      type: "media",
+                      key: "icon",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "FaLinkedin"
+                      },
+                      displayer: "Icon",
+                    },
+                    {
+                      type: "page",
+                      key: "url",
+                      displayer: "Navigate To",
+                      value: "",
+                    },
+                  ],
+                },
+              ],
             },
           ],
         },
@@ -172,12 +230,6 @@ class Team11 extends Team {
               },
             },
             {
-              type: "array",
-              key: "icons",
-              displayer: "Social Media Platforms",
-              value: [JSON.parse(JSON.stringify(twitter)), JSON.parse(JSON.stringify(facebook)), JSON.parse(JSON.stringify(instagram)), JSON.parse(JSON.stringify(youtube))],
-            },
-            {
               type: "string",
               key: "name",
               displayer: "Person Name",
@@ -188,6 +240,119 @@ class Team11 extends Team {
               key: "position",
               displayer: "position",
               value: "Defender",
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value: "",
+            },
+            {
+              type: "array",
+              key: "socials",
+              displayer: "Socials",
+              value: [
+                {
+                  type: "object",
+                  key: "social",
+                  displayer: "Social",
+                  value: [
+                    {
+                      type: "media",
+                      key: "icon",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "FaFacebookSquare"
+                      },
+                      displayer: "Icon",
+                    },
+                    {
+                      type: "page",
+                      key: "url",
+                      displayer: "Navigate To",
+                      value: "",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "social",
+                  displayer: "Social",
+                  value: [
+                    {
+                      type: "media",
+                      key: "icon",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "FaTwitterSquare"
+                      },
+                      displayer: "Icon",
+                    },
+                    {
+                      type: "page",
+                      key: "url",
+                      displayer: "Navigate To",
+                      value: "",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "social",
+                  displayer: "Social",
+                  value: [
+                    {
+                      type: "media",
+                      key: "icon",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "FaInstagram"
+                      },
+                      displayer: "Icon",
+                    },
+                    {
+                      type: "page",
+                      key: "url",
+                      displayer: "Navigate To",
+                      value: "",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "social",
+                  displayer: "Social",
+                  value: [
+                    {
+                      type: "media",
+                      key: "icon",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "FaLinkedin"
+                      },
+                      displayer: "Icon",
+                    },
+                    {
+                      type: "page",
+                      key: "url",
+                      displayer: "Navigate To",
+                      value: "",
+                    },
+                  ],
+                },
+              ],
             },
           ],
         },
@@ -209,12 +374,6 @@ class Team11 extends Team {
               },
             },
             {
-              type: "array",
-              key: "icons",
-              displayer: "Social Media Platforms",
-              value: [JSON.parse(JSON.stringify(twitter)), JSON.parse(JSON.stringify(facebook)), JSON.parse(JSON.stringify(instagram)), JSON.parse(JSON.stringify(youtube))],
-            },
-            {
               type: "string",
               key: "name",
               displayer: "Person Name",
@@ -225,6 +384,119 @@ class Team11 extends Team {
               key: "position",
               displayer: "position",
               value: "Defender",
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value: "",
+            },
+            {
+              type: "array",
+              key: "socials",
+              displayer: "Socials",
+              value: [
+                {
+                  type: "object",
+                  key: "social",
+                  displayer: "Social",
+                  value: [
+                    {
+                      type: "media",
+                      key: "icon",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "FaFacebookSquare"
+                      },
+                      displayer: "Icon",
+                    },
+                    {
+                      type: "page",
+                      key: "url",
+                      displayer: "Navigate To",
+                      value: "",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "social",
+                  displayer: "Social",
+                  value: [
+                    {
+                      type: "media",
+                      key: "icon",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "FaTwitterSquare"
+                      },
+                      displayer: "Icon",
+                    },
+                    {
+                      type: "page",
+                      key: "url",
+                      displayer: "Navigate To",
+                      value: "",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "social",
+                  displayer: "Social",
+                  value: [
+                    {
+                      type: "media",
+                      key: "icon",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "FaInstagram"
+                      },
+                      displayer: "Icon",
+                    },
+                    {
+                      type: "page",
+                      key: "url",
+                      displayer: "Navigate To",
+                      value: "",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "social",
+                  displayer: "Social",
+                  value: [
+                    {
+                      type: "media",
+                      key: "icon",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "FaLinkedin"
+                      },
+                      displayer: "Icon",
+                    },
+                    {
+                      type: "page",
+                      key: "url",
+                      displayer: "Navigate To",
+                      value: "",
+                    },
+                  ],
+                },
+              ],
             },
           ],
         },
@@ -258,10 +530,117 @@ class Team11 extends Team {
               value: "Defender",
             },
             {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value: "",
+            },
+            {
               type: "array",
-              key: "icons",
-              displayer: "Social Media Platforms",
-              value: [JSON.parse(JSON.stringify(twitter)), JSON.parse(JSON.stringify(facebook)), JSON.parse(JSON.stringify(instagram)), JSON.parse(JSON.stringify(youtube))],
+              key: "socials",
+              displayer: "Socials",
+              value: [
+                {
+                  type: "object",
+                  key: "social",
+                  displayer: "Social",
+                  value: [
+                    {
+                      type: "media",
+                      key: "icon",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "FaFacebookSquare"
+                      },
+                      displayer: "Icon",
+                    },
+                    {
+                      type: "page",
+                      key: "url",
+                      displayer: "Navigate To",
+                      value: "",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "social",
+                  displayer: "Social",
+                  value: [
+                    {
+                      type: "media",
+                      key: "icon",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "FaTwitterSquare"
+                      },
+                      displayer: "Icon",
+                    },
+                    {
+                      type: "page",
+                      key: "url",
+                      displayer: "Navigate To",
+                      value: "",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "social",
+                  displayer: "Social",
+                  value: [
+                    {
+                      type: "media",
+                      key: "icon",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "FaInstagram"
+                      },
+                      displayer: "Icon",
+                    },
+                    {
+                      type: "page",
+                      key: "url",
+                      displayer: "Navigate To",
+                      value: "",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "social",
+                  displayer: "Social",
+                  value: [
+                    {
+                      type: "media",
+                      key: "icon",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "FaLinkedin"
+                      },
+                      displayer: "Icon",
+                    },
+                    {
+                      type: "page",
+                      key: "url",
+                      displayer: "Navigate To",
+                      value: "",
+                    },
+                  ],
+                },
+              ],
             },
           ],
         },
@@ -283,12 +662,6 @@ class Team11 extends Team {
               },
             },
             {
-              type: "array",
-              key: "icons",
-              displayer: "Social Media Platforms",
-              value: [JSON.parse(JSON.stringify(twitter)), JSON.parse(JSON.stringify(facebook)), JSON.parse(JSON.stringify(instagram)), JSON.parse(JSON.stringify(youtube))],
-            },
-            {
               type: "string",
               key: "name",
               displayer: "Person Name",
@@ -299,6 +672,119 @@ class Team11 extends Team {
               key: "position",
               displayer: "position",
               value: "Defender",
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value: "",
+            },
+            {
+              type: "array",
+              key: "socials",
+              displayer: "Socials",
+              value: [
+                {
+                  type: "object",
+                  key: "social",
+                  displayer: "Social",
+                  value: [
+                    {
+                      type: "media",
+                      key: "icon",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "FaFacebookSquare"
+                      },
+                      displayer: "Icon",
+                    },
+                    {
+                      type: "page",
+                      key: "url",
+                      displayer: "Navigate To",
+                      value: "",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "social",
+                  displayer: "Social",
+                  value: [
+                    {
+                      type: "media",
+                      key: "icon",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "FaTwitterSquare"
+                      },
+                      displayer: "Icon",
+                    },
+                    {
+                      type: "page",
+                      key: "url",
+                      displayer: "Navigate To",
+                      value: "",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "social",
+                  displayer: "Social",
+                  value: [
+                    {
+                      type: "media",
+                      key: "icon",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "FaInstagram"
+                      },
+                      displayer: "Icon",
+                    },
+                    {
+                      type: "page",
+                      key: "url",
+                      displayer: "Navigate To",
+                      value: "",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "social",
+                  displayer: "Social",
+                  value: [
+                    {
+                      type: "media",
+                      key: "icon",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "FaLinkedin"
+                      },
+                      displayer: "Icon",
+                    },
+                    {
+                      type: "page",
+                      key: "url",
+                      displayer: "Navigate To",
+                      value: "",
+                    },
+                  ],
+                },
+              ],
             },
           ],
         },
@@ -320,12 +806,6 @@ class Team11 extends Team {
               },
             },
             {
-              type: "array",
-              key: "icons",
-              displayer: "Social Media Platforms",
-              value: [JSON.parse(JSON.stringify(twitter)), JSON.parse(JSON.stringify(facebook)), JSON.parse(JSON.stringify(instagram)), JSON.parse(JSON.stringify(youtube))],
-            },
-            {
               type: "string",
               key: "name",
               displayer: "Person Name",
@@ -337,9 +817,129 @@ class Team11 extends Team {
               displayer: "position",
               value: "Defender",
             },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value: "",
+            },
+            {
+              type: "array",
+              key: "socials",
+              displayer: "Socials",
+              value: [
+                {
+                  type: "object",
+                  key: "social",
+                  displayer: "Social",
+                  value: [
+                    {
+                      type: "media",
+                      key: "icon",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "FaFacebookSquare"
+                      },
+                      displayer: "Icon",
+                    },
+                    {
+                      type: "page",
+                      key: "url",
+                      displayer: "Navigate To",
+                      value: "",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "social",
+                  displayer: "Social",
+                  value: [
+                    {
+                      type: "media",
+                      key: "icon",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "FaTwitterSquare"
+                      },
+                      displayer: "Icon",
+                    },
+                    {
+                      type: "page",
+                      key: "url",
+                      displayer: "Navigate To",
+                      value: "",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "social",
+                  displayer: "Social",
+                  value: [
+                    {
+                      type: "media",
+                      key: "icon",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "FaInstagram"
+                      },
+                      displayer: "Icon",
+                    },
+                    {
+                      type: "page",
+                      key: "url",
+                      displayer: "Navigate To",
+                      value: "",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "social",
+                  displayer: "Social",
+                  value: [
+                    {
+                      type: "media",
+                      key: "icon",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "FaLinkedin"
+                      },
+                      displayer: "Icon",
+                    },
+                    {
+                      type: "page",
+                      key: "url",
+                      displayer: "Navigate To",
+                      value: "",
+                    },
+                  ],
+                },
+              ],
+            },
           ],
         },
       ],
+    });
+
+    this.addProp({
+      type: "number",
+      key: "itemCount",
+      displayer: "Item count in a row",
+      value: 3,
     });
 
     this.addProp({
@@ -358,7 +958,11 @@ class Team11 extends Team {
     return "Team 11";
   }
   render() {
-    const slider = this.castToObject<any[]>("slider");
+    const subtitle = this.castToString(this.getPropValue("subtitle"));
+    const title = this.castToString(this.getPropValue("title"));
+    const description = this.castToString(this.getPropValue("description"));
+    const hasContent = subtitle || title || description;
+    const slider = this.castToObject<Card[]>("slider");
 
     const settings = {
       dots: false,
@@ -386,82 +990,79 @@ class Team11 extends Team {
       ],
     };
 
-    const title = this.getPropValue("title");
-    const titleExist = this.castToString(title);
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <Base.VerticalContent className={this.decorateCSS("basic-page")}>
-            {titleExist && (
-              <Base.VerticalContent className={this.decorateCSS("up-page")}>
+          {hasContent && (
+            <Base.VerticalContent className={this.decorateCSS("vertical-content")}>
+              {subtitle && (
+                <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>
+              )}
+              {title && (
                 <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>
-              </Base.VerticalContent>
-            )}
+              )}
+              {description && (
+                <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>
+              )}
+            </Base.VerticalContent>
+          )}
 
-            <ComposerSlider {...settings} ref={this.getComponentState("slider-ref")} className={this.decorateCSS("down-page")}>
-              {this.castToObject<any[]>("slider").map((item: any, indexSlider: number) => {
-                const itemNameExist = this.castToString(item.name);
-                const itemPositionExist = this.castToString(item.position);
+          <ComposerSlider {...settings} ref={this.getComponentState("slider-ref")} className={this.decorateCSS("down-page")}>
+            {slider.map((item: Card, indexSlider: number) => {
+              const itemNameExist = this.castToString(item.name);
+              const itemPositionExist = this.castToString(item.position);
+              const itemDescriptionExist = this.castToString(item.description);
 
-                const itemExits = itemNameExist || itemPositionExist || item.profileImage || item.icons.length > 0;
-                return (
-                  itemExits && (
-                    <div key={indexSlider} className={this.decorateCSS("item")}>
-                      <Base.VerticalContent className={this.decorateCSS("card")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
-                        <div className={this.decorateCSS("hover")}>
-                          <Base.Media value={item.profileImage} className={this.decorateCSS("person-image")} />
-                          {item.icons && item.icons.length > 0 && (
-                            <div className={this.decorateCSS("icons-bar")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
-                              {item.icons.map((el: any, indexIcon: number) => (
-                                <ComposerLink path={el.url} key={indexIcon}>
-                                  <Base.Icon 
-                                    name={el.icon} 
-                                    propsIcon={{ 
-                                      className: this.decorateCSS("icon"),
-                                      style: { "--icon-index": indexIcon } as React.CSSProperties
-                                    }} 
-                                  />
-                                </ComposerLink>
-                              ))}
-                            </div>
-                          )}
-                        </div>
-                        <Base.VerticalContent className={this.decorateCSS("person-info")}>
-                          <Base.VerticalContent className={this.decorateCSS("text-group")}>
-                            {itemNameExist && <Base.H2 className={this.decorateCSS("item-name")}>{item.name}</Base.H2>}
-                            {itemPositionExist && <Base.H3 className={this.decorateCSS("item-position")}>{item.position}</Base.H3>}
-                          </Base.VerticalContent>
-                        </Base.VerticalContent>
+              const itemExits = itemNameExist || itemPositionExist || itemDescriptionExist || item.profileImage || (item.socials && item.socials.length > 0);
+              return (
+                itemExits && (
+                  <div key={indexSlider} className={this.decorateCSS("item")}>
+                    <Base.VerticalContent className={this.decorateCSS("card")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
+                      <div className={this.decorateCSS("hover")}>
+                        <Base.Media value={item.profileImage} className={this.decorateCSS("person-image")} />
+                        {item.socials && item.socials.length > 0 && (
+                          <div className={this.decorateCSS("icons-bar")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
+                            {item.socials.map((social: Social, indexIcon: number) => (
+                              <ComposerLink path={social.url} key={indexIcon}>
+                                <Base.Media
+                                  value={social.icon}
+                                  className={`${this.decorateCSS("icon")} ${social.icon.type === "image" && this.decorateCSS("has-image")}`}
+                                />
+                              </ComposerLink>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                      <Base.VerticalContent className={this.decorateCSS("text-group")}>
+                        {itemNameExist && <Base.H3 className={this.decorateCSS("item-name")}>{item.name}</Base.H3>}
+                        {itemPositionExist && <Base.H4 className={this.decorateCSS("item-position")}>{item.position}</Base.H4>}
+                        {itemDescriptionExist && <Base.P className={this.decorateCSS("item-description")}>{item.description}</Base.P>}
                       </Base.VerticalContent>
-                    </div>
-                  )
-                );
-              })}
-            </ComposerSlider>
+                    </Base.VerticalContent>
+                  </div>
+                )
+              );
+            })}
+          </ComposerSlider>
 
-            <div className={slider.length > 3 ? this.decorateCSS("nav-buttons") : this.decorateCSS("visible-navs")}>
-              <Base.Icon
-                name={this.getPropValue("prevIcon")}
-                propsIcon={{
-                  className: `${this.decorateCSS("prev_icon")}`,
-                  size: 45,
-                  onClick: () => {
-                    this.getComponentState("slider-ref").current.slickPrev();
-                  },
-                }}
-              />
-              <Base.Icon
-                name={this.getPropValue("nextIcon")}
-                propsIcon={{
-                  className: `${this.decorateCSS("next_icon")}`,
-                  size: 45,
-                  onClick: () => {
-                    this.getComponentState("slider-ref").current.slickNext();
-                  },
-                }}
-              />
+          <div className={slider.length > 3 ? this.decorateCSS("nav-buttons") : this.decorateCSS("visible-navs")}>
+            <div
+              className={this.decorateCSS("prev_icon")}
+              onClick={() => {
+                this.getComponentState("slider-ref").current.slickPrev();
+              }}
+            >
+              <Base.Media value={this.getPropValue("prevIcon")} />
             </div>
-          </Base.VerticalContent>
+            <div
+              className={this.decorateCSS("next_icon")}
+              onClick={() => {
+                this.getComponentState("slider-ref").current.slickNext();
+              }}
+            >
+              <Base.Media value={this.getPropValue("nextIcon")} />
+            </div>
+          </div>
         </Base.MaxContent>
       </Base.Container>
     );

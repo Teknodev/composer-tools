@@ -1,88 +1,48 @@
 import * as React from "react";
-import { Team, TypeMediaInputValue, TypeUsableComponentProps } from "../../EditorComponent";
+import { Team, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./team15.module.scss";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
-
 import { Base } from "../../../composer-base-components/base/base";
 
+type Socials = {
+  icon: TypeMediaInputValue;
+  url: string;
+}
+
 type Card = {
-  image: TypeMediaInputValue;
+  profileImage: TypeMediaInputValue;
   title: string;
   description: string;
-  firstIcon: string;
-  secondIcon: string;
+  firstIcon: TypeMediaInputValue;
+  firstIconUrl: string;
+  secondIcon: TypeMediaInputValue;
   secondIconUrl: string;
-  icons: { icon: string; url: string }[];
-};
-
-let twitter: TypeUsableComponentProps = {
-  type: "object",
-  key: "twitter",
-  displayer: "Twitter",
-  value: [
-    {
-      type: "icon",
-      key: "icon",
-      displayer: "Platform Icon",
-      value: "FaTwitter",
-    },
-    {
-      type: "page",
-      key: "url",
-      displayer: "Url",
-      value: "",
-    },
-  ],
-};
-
-let facebook: TypeUsableComponentProps = {
-  type: "object",
-  key: "facebook",
-  displayer: "Platform",
-  value: [
-    {
-      type: "icon",
-      key: "icon",
-      displayer: "Platform Icon",
-      value: "FaFacebook",
-    },
-    {
-      type: "page",
-      key: "url",
-      displayer: "Url",
-      value: "",
-    },
-  ],
-};
-
-let instagram: TypeUsableComponentProps = {
-  type: "object",
-  key: "instagram",
-  displayer: "Platform",
-  value: [
-    {
-      type: "icon",
-      key: "icon",
-      displayer: "Platform Icon",
-      value: "FaInstagram",
-    },
-    {
-      type: "page",
-      key: "url",
-      displayer: "Url",
-      value: "",
-    },
-  ],
+  socials: Socials[];
 };
 
 class Team15 extends Team {
   constructor(props?: any) {
     super(props, styles);
+
+    this.addProp({
+      type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "",
+    });
+
     this.addProp({
       type: "string",
       key: "title",
       displayer: "Title",
       value: "OUR TEAM",
+    });
+
+    this.addProp({
+      type: "string",
+      key: "description",
+      displayer: "Description",
+      value: "",
     });
 
     this.addProp({
@@ -127,10 +87,16 @@ class Team15 extends Team {
               },
             },
             {
-              type: "icon",
+              type: "media",
               key: "firstIcon",
               displayer: "First Icon",
-              value: "IoMdMail",
+              additionalParams: {
+                availableTypes: ["icon", "image"],
+              },
+              value: {
+                type: "icon",
+                name: "IoMdMail",
+              },
             },
             {
               type: "page",
@@ -139,10 +105,16 @@ class Team15 extends Team {
               value: "",
             },
             {
-              type: "icon",
+              type: "media",
               key: "secondIcon",
               displayer: "Second Icon",
-              value: "IoMdShare",
+              additionalParams: {
+                availableTypes: ["icon", "image"],
+              },
+              value: {
+                type: "icon",
+                name: "IoMdShare",
+              },
             },
             {
               type: "page",
@@ -152,9 +124,110 @@ class Team15 extends Team {
             },
             {
               type: "array",
-              key: "icons",
-              displayer: "Social Media Platforms",
-              value: [JSON.parse(JSON.stringify(twitter)), JSON.parse(JSON.stringify(facebook)), JSON.parse(JSON.stringify(instagram))],
+              key: "socials",
+              displayer: "Socials",
+              value: [
+                {
+                  type: "object",
+                  key: "social",
+                  displayer: "Social",
+                  value: [
+                    {
+                      type: "media",
+                      key: "icon",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "FaFacebookSquare"
+                      },
+                      displayer: "Icon",
+                    },
+                    {
+                      type: "page",
+                      key: "url",
+                      displayer: "Navigate To",
+                      value: "",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "social",
+                  displayer: "Social",
+                  value: [
+                    {
+                      type: "media",
+                      key: "icon",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "FaTwitterSquare"
+                      },
+                      displayer: "Icon",
+                    },
+                    {
+                      type: "page",
+                      key: "url",
+                      displayer: "Navigate To",
+                      value: "",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "social",
+                  displayer: "Social",
+                  value: [
+                    {
+                      type: "media",
+                      key: "icon",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "FaInstagram"
+                      },
+                      displayer: "Icon",
+                    },
+                    {
+                      type: "page",
+                      key: "url",
+                      displayer: "Navigate To",
+                      value: "",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "social",
+                  displayer: "Social",
+                  value: [
+                    {
+                      type: "media",
+                      key: "icon",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "FaLinkedin"
+                      },
+                      displayer: "Icon",
+                    },
+                    {
+                      type: "page",
+                      key: "url",
+                      displayer: "Navigate To",
+                      value: "",
+                    },
+                  ],
+                },
+              ],
             },
           ],
         },
@@ -188,10 +261,16 @@ class Team15 extends Team {
               },
             },
             {
-              type: "icon",
+              type: "media",
               key: "firstIcon",
               displayer: "First Icon",
-              value: "IoMdMail",
+              additionalParams: {
+                availableTypes: ["icon", "image"],
+              },
+              value: {
+                type: "icon",
+                name: "IoMdMail",
+              },
             },
             {
               type: "page",
@@ -200,10 +279,16 @@ class Team15 extends Team {
               value: "",
             },
             {
-              type: "icon",
+              type: "media",
               key: "secondIcon",
               displayer: "Second Icon",
-              value: "IoMdShare",
+              additionalParams: {
+                availableTypes: ["icon", "image"],
+              },
+              value: {
+                type: "icon",
+                name: "IoMdShare",
+              },
             },
             {
               type: "page",
@@ -213,9 +298,110 @@ class Team15 extends Team {
             },
             {
               type: "array",
-              key: "icons",
-              displayer: "Social Media Platforms",
-              value: [JSON.parse(JSON.stringify(twitter)), JSON.parse(JSON.stringify(facebook)), JSON.parse(JSON.stringify(instagram))],
+              key: "socials",
+              displayer: "Socials",
+              value: [
+                {
+                  type: "object",
+                  key: "social",
+                  displayer: "Social",
+                  value: [
+                    {
+                      type: "media",
+                      key: "icon",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "FaFacebookSquare"
+                      },
+                      displayer: "Icon",
+                    },
+                    {
+                      type: "page",
+                      key: "url",
+                      displayer: "Navigate To",
+                      value: "",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "social",
+                  displayer: "Social",
+                  value: [
+                    {
+                      type: "media",
+                      key: "icon",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "FaTwitterSquare"
+                      },
+                      displayer: "Icon",
+                    },
+                    {
+                      type: "page",
+                      key: "url",
+                      displayer: "Navigate To",
+                      value: "",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "social",
+                  displayer: "Social",
+                  value: [
+                    {
+                      type: "media",
+                      key: "icon",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "FaInstagram"
+                      },
+                      displayer: "Icon",
+                    },
+                    {
+                      type: "page",
+                      key: "url",
+                      displayer: "Navigate To",
+                      value: "",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "social",
+                  displayer: "Social",
+                  value: [
+                    {
+                      type: "media",
+                      key: "icon",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "FaLinkedin"
+                      },
+                      displayer: "Icon",
+                    },
+                    {
+                      type: "page",
+                      key: "url",
+                      displayer: "Navigate To",
+                      value: "",
+                    },
+                  ],
+                },
+              ],
             },
           ],
         },
@@ -250,10 +436,16 @@ class Team15 extends Team {
               },
             },
             {
-              type: "icon",
+              type: "media",
               key: "firstIcon",
               displayer: "First Icon",
-              value: "IoMdMail",
+              additionalParams: {
+                availableTypes: ["icon", "image"],
+              },
+              value: {
+                type: "icon",
+                name: "IoMdMail",
+              },
             },
             {
               type: "page",
@@ -262,10 +454,16 @@ class Team15 extends Team {
               value: "",
             },
             {
-              type: "icon",
+              type: "media",
               key: "secondIcon",
               displayer: "Second Icon",
-              value: "IoMdShare",
+              additionalParams: {
+                availableTypes: ["icon", "image"],
+              },
+              value: {
+                type: "icon",
+                name: "IoMdShare",
+              },
             },
             {
               type: "page",
@@ -275,9 +473,110 @@ class Team15 extends Team {
             },
             {
               type: "array",
-              key: "icons",
-              displayer: "Social Media Platforms",
-              value: [JSON.parse(JSON.stringify(twitter)), JSON.parse(JSON.stringify(facebook)), JSON.parse(JSON.stringify(instagram))],
+              key: "socials",
+              displayer: "Socials",
+              value: [
+                {
+                  type: "object",
+                  key: "social",
+                  displayer: "Social",
+                  value: [
+                    {
+                      type: "media",
+                      key: "icon",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "FaFacebookSquare"
+                      },
+                      displayer: "Icon",
+                    },
+                    {
+                      type: "page",
+                      key: "url",
+                      displayer: "Navigate To",
+                      value: "",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "social",
+                  displayer: "Social",
+                  value: [
+                    {
+                      type: "media",
+                      key: "icon",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "FaTwitterSquare"
+                      },
+                      displayer: "Icon",
+                    },
+                    {
+                      type: "page",
+                      key: "url",
+                      displayer: "Navigate To",
+                      value: "",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "social",
+                  displayer: "Social",
+                  value: [
+                    {
+                      type: "media",
+                      key: "icon",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "FaInstagram"
+                      },
+                      displayer: "Icon",
+                    },
+                    {
+                      type: "page",
+                      key: "url",
+                      displayer: "Navigate To",
+                      value: "",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "social",
+                  displayer: "Social",
+                  value: [
+                    {
+                      type: "media",
+                      key: "icon",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "FaLinkedin"
+                      },
+                      displayer: "Icon",
+                    },
+                    {
+                      type: "page",
+                      key: "url",
+                      displayer: "Navigate To",
+                      value: "",
+                    },
+                  ],
+                },
+              ],
             },
           ],
         },
@@ -311,10 +610,16 @@ class Team15 extends Team {
               },
             },
             {
-              type: "icon",
+              type: "media",
               key: "firstIcon",
               displayer: "First Icon",
-              value: "IoMdMail",
+              additionalParams: {
+                availableTypes: ["icon", "image"],
+              },
+              value: {
+                type: "icon",
+                name: "IoMdMail",
+              },
             },
             {
               type: "page",
@@ -323,10 +628,16 @@ class Team15 extends Team {
               value: "",
             },
             {
-              type: "icon",
+              type: "media",
               key: "secondIcon",
               displayer: "Second Icon",
-              value: "IoMdShare",
+              additionalParams: {
+                availableTypes: ["icon", "image"],
+              },
+              value: {
+                type: "icon",
+                name: "IoMdShare",
+              },
             },
             {
               type: "page",
@@ -336,9 +647,110 @@ class Team15 extends Team {
             },
             {
               type: "array",
-              key: "icons",
-              displayer: "Social Media Platforms",
-              value: [JSON.parse(JSON.stringify(twitter)), JSON.parse(JSON.stringify(facebook)), JSON.parse(JSON.stringify(instagram))],
+              key: "socials",
+              displayer: "Socials",
+              value: [
+                {
+                  type: "object",
+                  key: "social",
+                  displayer: "Social",
+                  value: [
+                    {
+                      type: "media",
+                      key: "icon",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "FaFacebookSquare"
+                      },
+                      displayer: "Icon",
+                    },
+                    {
+                      type: "page",
+                      key: "url",
+                      displayer: "Navigate To",
+                      value: "",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "social",
+                  displayer: "Social",
+                  value: [
+                    {
+                      type: "media",
+                      key: "icon",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "FaTwitterSquare"
+                      },
+                      displayer: "Icon",
+                    },
+                    {
+                      type: "page",
+                      key: "url",
+                      displayer: "Navigate To",
+                      value: "",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "social",
+                  displayer: "Social",
+                  value: [
+                    {
+                      type: "media",
+                      key: "icon",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "FaInstagram"
+                      },
+                      displayer: "Icon",
+                    },
+                    {
+                      type: "page",
+                      key: "url",
+                      displayer: "Navigate To",
+                      value: "",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "social",
+                  displayer: "Social",
+                  value: [
+                    {
+                      type: "media",
+                      key: "icon",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "FaLinkedin"
+                      },
+                      displayer: "Icon",
+                    },
+                    {
+                      type: "page",
+                      key: "url",
+                      displayer: "Navigate To",
+                      value: "",
+                    },
+                  ],
+                },
+              ],
             },
           ],
         },
@@ -350,7 +762,6 @@ class Team15 extends Team {
       key: "itemCount",
       displayer: "Item count in a row",
       value: 4,
-      max: 6,
     });
 
     this.addProp({
@@ -369,69 +780,76 @@ class Team15 extends Team {
   }
 
   render() {
-    const title = this.getPropValue("title");
-    const titleExist = this.castToString(title);
-    const overlay = this.getPropValue("overlay");
+    const subtitle = this.castToString(this.getPropValue("subtitle"));
+    const title = this.castToString(this.getPropValue("title"));
+    const description = this.castToString(this.getPropValue("description"));
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("up-page")}>
-            {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
-            <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount"), tablet: 2, phone: 1 }} className={this.decorateCSS("cards-box")}>
-              {this.castToObject<Card[]>("cards").map((card: any, index: number) => {
-                const imageExists = card.getPropValue("profileImage");
-                const titleExists = this.castToString(card.title);
-                const descriptionExists = this.castToString(card.description);
+          <Base.VerticalContent className={this.decorateCSS("vertical-content")}>
+            {subtitle && <Base.SectionDescription className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionDescription>}
+            {title && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
+            {description && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
+          </Base.VerticalContent>
+          <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount"), tablet: 2, phone: 1 }} className={this.decorateCSS("cards-box")}>
+            {this.castToObject<Card[]>("cards").map((card: Card, index: number) => {
+              const profileImage = card.profileImage;
+              const titleExists = this.castToString(card.title);
+              const descriptionExists = this.castToString(card.description);
+              const overlay = this.getPropValue("overlay");
 
-                const firstIcon = card.getPropValue("firstIcon");
-
-                const cardExists = imageExists || titleExists || descriptionExists;
-                return (
-                  cardExists && (
-                    <div key={index} className={this.decorateCSS("card")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
-                      {imageExists && <Base.Media value={card.getPropValue("profileImage")} className={this.decorateCSS("image")} />}
-                      {overlay && <div className={this.decorateCSS("overlay")}></div>}
-                      {overlay && <div className={this.decorateCSS("overlay2")}></div>}
-                      <div className={this.decorateCSS("card-content")}>
-                        {titleExists && <Base.H2 className={this.decorateCSS("title")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>{card.getPropValue("title")}</Base.H2>}
-                        <div className={this.decorateCSS("labels")}>
-                          {card.icons.length > 0 && firstIcon && (
-                            <Base.VerticalContent className={this.decorateCSS("icon-list-container")}>
-                              {card.icons.map((icon: any, indexIcons: number) => {
-                                return (
-                                  <div key={indexIcons} className={this.decorateCSS("icon-item")}>
-                                    <ComposerLink path={icon.url}>
-                                      <Base.Icon 
-                                        name={icon.icon} 
-                                        propsIcon={{ 
-                                          className: this.decorateCSS("icon"),
-                                          style: { "--icon-index": indexIcons } as React.CSSProperties
-                                        }} 
-                                      />
-                                    </ComposerLink>
-                                  </div>
-                                );
-                              })}
-                            </Base.VerticalContent>
+              const cardExists = profileImage || titleExists || descriptionExists;
+              return cardExists && (
+                <div key={index} className={this.decorateCSS("card")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
+                  {profileImage && <Base.Media value={profileImage} className={this.decorateCSS("image")} />}
+                  {overlay && <div className={this.decorateCSS("overlay")}></div>}
+                  {overlay && <div className={this.decorateCSS("overlay2")}></div>}
+                  <div className={this.decorateCSS("card-content")}>
+                    {titleExists && <Base.H2 className={this.decorateCSS("card-title")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>{card.title}</Base.H2>}
+                    <div className={this.decorateCSS("labels")}>
+                      {card.socials && card.socials.length > 0 && (
+                        <Base.VerticalContent className={this.decorateCSS("icon-list-container")}>
+                          {card.socials.map((social: Socials, indexIcons: number) => {
+                            return (
+                              <div key={indexIcons} className={this.decorateCSS("icon-item")}>
+                                <ComposerLink path={social.url}>
+                                  <Base.Media
+                                    value={social.icon}
+                                    className={`${this.decorateCSS("icon")} ${social.icon?.type === "image" && this.decorateCSS("has-image")}`}
+                                    style={{ "--icon-index": indexIcons } as React.CSSProperties}
+                                  />
+                                </ComposerLink>
+                              </div>
+                            );
+                          })}
+                        </Base.VerticalContent>
+                      )}
+                      {descriptionExists && <Base.P className={this.decorateCSS("card-description")}>{card.description}</Base.P>}
+                      <div className={this.decorateCSS("icons")}>
+                        <ComposerLink path={card.firstIconUrl}>
+                          {card.firstIcon && (
+                            <Base.Media
+                              value={card.firstIcon}
+                              className={`${this.decorateCSS("firstIcon")} ${card.firstIcon?.type === "image" && this.decorateCSS("first-icon-has-image")}`}
+                            />
                           )}
-                          {descriptionExists && <Base.P className={this.decorateCSS("description")}>{card.getPropValue("description")}</Base.P>}
-                          <div className={this.decorateCSS("icons")}>
-                            <ComposerLink path={card.getPropValue("firstIconUrl")}>
-                              <Base.Icon name={card.getPropValue("firstIcon")} propsIcon={{ className: this.decorateCSS("firstIcon") }} />
-                            </ComposerLink>
+                        </ComposerLink>
 
-                            <ComposerLink path={card.getPropValue("secondIconUrl")}>
-                              <Base.Icon name={card.getPropValue("secondIcon")} propsIcon={{ className: this.decorateCSS("secondIcon") }} />
-                            </ComposerLink>
-                          </div>
-                        </div>
+                        <ComposerLink path={card.secondIconUrl}>
+                          {card.secondIcon && (
+                            <Base.Media
+                              value={card.secondIcon}
+                              className={`${this.decorateCSS("secondIcon")} ${card.secondIcon?.type === "image" && this.decorateCSS("second-icon-has-image")}`}
+                            />
+                          )}
+                        </ComposerLink>
                       </div>
                     </div>
-                  )
-                );
-              })}
-            </Base.ListGrid>
-          </div>
+                  </div>
+                </div>
+              );
+            })}
+          </Base.ListGrid>
         </Base.MaxContent>
       </Base.Container>
     );

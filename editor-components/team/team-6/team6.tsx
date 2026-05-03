@@ -5,7 +5,7 @@ import { Base } from "../../../composer-base-components/base/base";
 
 type Feature = {
   feature: React.JSX.Element;
-  icon: string;
+  icon: TypeMediaInputValue;
 };
 
 type Card = {
@@ -22,29 +22,39 @@ class Team6 extends Team {
 
     this.addProp({
       type: "string",
-      key: "title1",
+      key: "subtitle",
       displayer: "Subtitle",
       value: "TEAM",
     });
 
     this.addProp({
       type: "string",
-      key: "description",
+      key: "title",
       displayer: "Title",
       value: "Building the future together.",
     });
+
+    this.addProp({
+      type: "string",
+      key: "description",
+      displayer: "Description",
+      value: "",
+    });
+
     this.addProp({
       type: "icon",
       key: "openingIcon",
       displayer: "Opening Icon",
       value: "IoAddCircleOutline",
     });
+
     this.addProp({
       type: "icon",
       key: "closingIcon",
       displayer: "Closing Icon",
       value: "IoRemoveCircleOutline",
     });
+
     this.addProp({
       type: "array",
       key: "items",
@@ -80,6 +90,12 @@ class Team6 extends Team {
               value: "Marketing Manager",
             },
             {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value: "",
+            },
+            {
               type: "array",
               key: "features",
               displayer: "Features",
@@ -109,10 +125,13 @@ class Team6 extends Team {
                   displayer: "Custom Fields",
                   value: [
                     {
-                      type: "icon",
+                      type: "media",
                       key: "icon",
                       displayer: "Icon",
-                      value: "CiCircleCheck",
+                      value: {
+                        type: "icon",
+                        name: "CiCircleCheck"
+                      },
                     },
                     {
                       type: "string",
@@ -128,10 +147,13 @@ class Team6 extends Team {
                   displayer: "Custom Fields",
                   value: [
                     {
-                      type: "icon",
+                      type: "media",
                       key: "icon",
                       displayer: "Icon",
-                      value: "CiCircleCheck",
+                      value: {
+                        type: "icon",
+                        name: "CiCircleCheck"
+                      },
                     },
                     {
                       type: "string",
@@ -147,10 +169,13 @@ class Team6 extends Team {
                   displayer: "Custom Fields",
                   value: [
                     {
-                      type: "icon",
+                      type: "media",
                       key: "icon",
                       displayer: "Icon",
-                      value: "CiCircleCheck",
+                      value: {
+                        type: "icon",
+                        name: "CiCircleCheck"
+                      },
                     },
                     {
                       type: "string",
@@ -194,6 +219,12 @@ class Team6 extends Team {
               value: "Software Engineer",
             },
             {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value: "",
+            },
+            {
               type: "array",
               key: "features",
               displayer: "Features",
@@ -204,10 +235,13 @@ class Team6 extends Team {
                   displayer: "Custom Fields",
                   value: [
                     {
-                      type: "icon",
+                      type: "media",
                       key: "icon",
                       displayer: "Icon",
-                      value: "CiCircleCheck",
+                      value: {
+                        type: "icon",
+                        name: "CiCircleCheck"
+                      },
                     },
                     {
                       type: "string",
@@ -223,10 +257,13 @@ class Team6 extends Team {
                   displayer: "Custom Fields",
                   value: [
                     {
-                      type: "icon",
+                      type: "media",
                       key: "icon",
                       displayer: "Icon",
-                      value: "CiCircleCheck",
+                      value: {
+                        type: "icon",
+                        name: "CiCircleCheck"
+                      },
                     },
                     {
                       type: "string",
@@ -242,10 +279,13 @@ class Team6 extends Team {
                   displayer: "Custom Fields",
                   value: [
                     {
-                      type: "icon",
+                      type: "media",
                       key: "icon",
                       displayer: "Icon",
-                      value: "CiCircleCheck",
+                      value: {
+                        type: "icon",
+                        name: "CiCircleCheck"
+                      },
                     },
                     {
                       type: "string",
@@ -261,10 +301,13 @@ class Team6 extends Team {
                   displayer: "Custom Fields",
                   value: [
                     {
-                      type: "icon",
+                      type: "media",
                       key: "icon",
                       displayer: "Icon",
-                      value: "CiCircleCheck",
+                      value: {
+                        type: "icon",
+                        name: "CiCircleCheck"
+                      },
                     },
                     {
                       type: "string",
@@ -308,6 +351,12 @@ class Team6 extends Team {
               value: "Graphic Designer",
             },
             {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value: "",
+            },
+            {
               type: "array",
               key: "features",
               displayer: "Features",
@@ -318,10 +367,13 @@ class Team6 extends Team {
                   displayer: "Custom Fields",
                   value: [
                     {
-                      type: "icon",
+                      type: "media",
                       key: "icon",
                       displayer: "Icon",
-                      value: "CiCircleCheck",
+                      value: {
+                        type: "icon",
+                        name: "CiCircleCheck"
+                      },
                     },
                     {
                       type: "string",
@@ -337,10 +389,13 @@ class Team6 extends Team {
                   displayer: "Custom Fields",
                   value: [
                     {
-                      type: "icon",
+                      type: "media",
                       key: "icon",
                       displayer: "Icon",
-                      value: "CiCircleCheck",
+                      value: {
+                        type: "icon",
+                        name: "CiCircleCheck"
+                      },
                     },
                     {
                       type: "string",
@@ -356,10 +411,13 @@ class Team6 extends Team {
                   displayer: "Custom Fields",
                   value: [
                     {
-                      type: "icon",
+                      type: "media",
                       key: "icon",
                       displayer: "Icon",
-                      value: "CiCircleCheck",
+                      value: {
+                        type: "icon",
+                        name: "CiCircleCheck"
+                      },
                     },
                     {
                       type: "string",
@@ -375,10 +433,13 @@ class Team6 extends Team {
                   displayer: "Custom Fields",
                   value: [
                     {
-                      type: "icon",
+                      type: "media",
                       key: "icon",
                       displayer: "Icon",
-                      value: "CiCircleCheck",
+                      value: {
+                        type: "icon",
+                        name: "CiCircleCheck"
+                      },
                     },
                     {
                       type: "string",
@@ -422,6 +483,12 @@ class Team6 extends Team {
               value: "Financial Analyst",
             },
             {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value: "",
+            },
+            {
               type: "array",
               key: "features",
               displayer: "Features",
@@ -432,10 +499,13 @@ class Team6 extends Team {
                   displayer: "Custom Fields",
                   value: [
                     {
-                      type: "icon",
+                      type: "media",
                       key: "icon",
                       displayer: "Icon",
-                      value: "CiCircleCheck",
+                      value: {
+                        type: "icon",
+                        name: "CiCircleCheck"
+                      },
                     },
                     {
                       type: "string",
@@ -451,10 +521,13 @@ class Team6 extends Team {
                   displayer: "Custom Fields",
                   value: [
                     {
-                      type: "icon",
+                      type: "media",
                       key: "icon",
                       displayer: "Icon",
-                      value: "CiCircleCheck",
+                      value: {
+                        type: "icon",
+                        name: "CiCircleCheck"
+                      },
                     },
                     {
                       type: "string",
@@ -470,10 +543,13 @@ class Team6 extends Team {
                   displayer: "Custom Fields",
                   value: [
                     {
-                      type: "icon",
+                      type: "media",
                       key: "icon",
                       displayer: "Icon",
-                      value: "CiCircleCheck",
+                      value: {
+                        type: "icon",
+                        name: "CiCircleCheck"
+                      },
                     },
                     {
                       type: "string",
@@ -489,10 +565,13 @@ class Team6 extends Team {
                   displayer: "Custom Fields",
                   value: [
                     {
-                      type: "icon",
+                      type: "media",
                       key: "icon",
                       displayer: "Icon",
-                      value: "CiCircleCheck",
+                      value: {
+                        type: "icon",
+                        name: "CiCircleCheck"
+                      },
                     },
                     {
                       type: "string",
@@ -514,8 +593,8 @@ class Team6 extends Team {
       key: "itemCount",
       displayer: "Item count in a row",
       value: 4,
-      max: 5,
     });
+
     this.addProp({
       type: "multiSelect",
       key: "hoverAnimation",
@@ -541,99 +620,68 @@ class Team6 extends Team {
       }
     };
 
-    const title1Exist = this.getPropValue("title1", { as_string: true });
-    const descriptionExist = this.getPropValue("description", { as_string: true });
+    const subtitle = this.castToString(this.getPropValue("subtitle"));
+    const title = this.castToString(this.getPropValue("title"));
+    const description = this.castToString(this.getPropValue("description"));
+    const hasContent = subtitle || title || description;
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <Base.VerticalContent className={this.decorateCSS("page")}>
-            {(title1Exist || descriptionExist) && (
-              <div className={this.decorateCSS("up-page")}>
-                <Base.VerticalContent className={this.decorateCSS("text-group")}>
-                  {title1Exist && <Base.SectionSubTitle className={this.decorateCSS("title1")}>{this.getPropValue("title1")}</Base.SectionSubTitle>}
-                  {descriptionExist && <Base.SectionTitle className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionTitle>}
-                </Base.VerticalContent>
-              </div>
-            )}
+          {(hasContent) && (
+            <Base.VerticalContent className={this.decorateCSS("vertical-content")}>
+              {subtitle && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
+              {title && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
+              {description && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
+            </Base.VerticalContent>
+          )}
+          <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount"), tablet: 2, phone: 1 }} className={this.decorateCSS("down-page")}>
+            {this.castToObject<Card[]>("items").map((card: Card, indexItems: number) => {
+              const cardNameExist = this.castToString(card.name);
+              const cardPositionExist = this.castToString(card.position);
+              const cardDescriptionExist = this.castToString(card.description);
+              const hasCard = cardNameExist || cardPositionExist || cardDescriptionExist || card.profileImage || card.features.length > 0;
 
-            <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount"), tablet: 2, phone: 1 }} className={this.decorateCSS("down-page")}>
-              {this.castToObject<Card[]>("items").map((card: Card, indexItems: number) => {
-                const cardNameExist = this.castToString(card.name);
-                const cardPositionExist = this.castToString(card.position);
-                const hasCard = cardNameExist || cardPositionExist || card.profileImage || card.features.length > 0;
-
-                return (
-                  hasCard && (
-                    <div key={indexItems} className={this.decorateCSS("all-card")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
-                      <div className={this.decorateCSS("top")}>
-                        <div className={this.decorateCSS("image-wrapper")}>
-                          {card.profileImage ? (
-                            <div onClick={() => handleButton(indexItems)} className={this.decorateCSS("image-button")}>
-                              {card.features.length > 0 &&
-                                (this.getComponentState("activeIndex") === indexItems ? (
-                                  <Base.Icon name={this.getPropValue("closingIcon")} propsIcon={{ className: this.decorateCSS("image-icon") }} />
-                                ) : (
-                                  <Base.Icon name={this.getPropValue("openingIcon")} propsIcon={{ className: this.decorateCSS("image-icon") }} />
-                                ))}
-                              <div className={this.decorateCSS("image-container")}>
-                                <Base.Media
-                                  value={card.profileImage}
-                                  className={`${this.decorateCSS("image")} ${this.getComponentState("activeIndex") === indexItems && card.features.length > 0 ? this.decorateCSS("shrink") : ""}`}
-                                  data-animation={this.getPropValue("hoverAnimation").join(" ")}
-                                />
-                              </div>
-                              <div className={this.decorateCSS("card-info")}>
-                                {cardNameExist && <Base.H2 className={this.decorateCSS("card-name")}>{card.name}</Base.H2>}
-                                {cardPositionExist && <Base.H4 className={this.decorateCSS("position")}>{card.position}</Base.H4>}
-                                
-                                {this.getComponentState("activeIndex") === indexItems && card.features.length > 0 && (
-                                  <Base.VerticalContent className={this.decorateCSS("features")}>
-                                    {card.features.map((feature: Feature, idx: number) => (
-                                      <div key={idx} className={this.decorateCSS("feature")}>
-                                        <Base.Icon
-                                          name={feature.icon}
-                                          propsIcon={{
-                                            className: this.decorateCSS("icon"),
-                                          }}
-                                        />
-                                        <Base.P className={this.decorateCSS("feature-element")}>{feature.feature}</Base.P>
-                                      </div>
-                                    ))}
-                                  </Base.VerticalContent>
-                                )}
-                              </div>
-                            </div>
+              return (
+                hasCard && (
+                  <div key={indexItems} className={this.decorateCSS("all-card")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
+                    <div className={this.decorateCSS("image-wrapper")}>
+                      <div onClick={() => handleButton(indexItems)} className={this.decorateCSS("image-button")}>
+                        {card.features.length > 0 &&
+                          (this.getComponentState("activeIndex") === indexItems ? (
+                            <Base.Icon name={this.getPropValue("closingIcon")} propsIcon={{ className: this.decorateCSS("image-icon") }} />
                           ) : (
-                            <Base.VerticalContent className={`${this.decorateCSS("overlay-bar")} ${this.decorateCSS("overlay-visible")}`}>
-                              {cardNameExist && <Base.H2 className={this.decorateCSS("card-name")}>{card.name}</Base.H2>}
-                              {cardPositionExist && <Base.H5 className={this.decorateCSS("position")}>{card.position}</Base.H5>}
-
-                              {card.features.length > 0 && (
-                                <Base.VerticalContent className={this.decorateCSS("features")}>
-                                  {card.features.map((feature: Feature, idx: number) => (
-                                    <div key={idx} className={this.decorateCSS("feature")}>
-                                      <Base.Icon
-                                        name={feature.icon}
-                                        propsIcon={{
-                                          className: this.decorateCSS("icon"),
-                                        }}
-                                      />
-                                      <Base.P className={this.decorateCSS("feature-element")}>{feature.feature}</Base.P>
-                                    </div>
-                                  ))}
-                                </Base.VerticalContent>
-                              )}
+                            <Base.Icon name={this.getPropValue("openingIcon")} propsIcon={{ className: this.decorateCSS("image-icon") }} />
+                          ))}
+                        <div className={this.decorateCSS("image-container")}>
+                          <Base.Media
+                            value={card.profileImage}
+                            className={`${this.decorateCSS("image")} ${this.getComponentState("activeIndex") === indexItems && card.features.length > 0 ? this.decorateCSS("shrink") : ""}`}
+                            data-animation={this.getPropValue("hoverAnimation").join(" ")}
+                          />
+                        </div>
+                        <Base.VerticalContent className={this.decorateCSS("card-info")}>
+                          {cardNameExist && <Base.H2 className={this.decorateCSS("card-name")}>{card.name}</Base.H2>}
+                          {cardPositionExist && <Base.H4 className={this.decorateCSS("card-position")}>{card.position}</Base.H4>}
+                          {cardDescriptionExist && <Base.P className={this.decorateCSS("card-description")}>{card.description}</Base.P>}
+                          {this.getComponentState("activeIndex") === indexItems && card.features.length > 0 && (
+                            <Base.VerticalContent className={this.decorateCSS("features")}>
+                              {card.features.map((feature: Feature, idx: number) => (
+                                <div key={idx} className={this.decorateCSS("feature")}>
+                                  {feature.icon && <Base.Media value={feature?.icon} className={`${this.decorateCSS("icon")} ${feature?.icon?.type === "image" && this.decorateCSS("has-image")}`} />}
+                                  {feature.feature && <Base.P className={this.decorateCSS("feature-element")}>{feature.feature}</Base.P>}
+                                </div>
+                              ))}
                             </Base.VerticalContent>
                           )}
-                        </div>
+                        </Base.VerticalContent>
                       </div>
                     </div>
-                  )
-                );
-              })}
-            </Base.ListGrid>
-          </Base.VerticalContent>
+                  </div>
+                )
+              );
+            })}
+          </Base.ListGrid>
         </Base.MaxContent>
       </Base.Container>
     );

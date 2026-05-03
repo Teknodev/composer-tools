@@ -1,228 +1,33 @@
 import * as React from "react";
 import styles from "./team9.module.scss";
-import { Team, TypeMediaInputValue, TypeUsableComponentProps } from "../../EditorComponent";
+import { Team, TypeMediaInputValue } from "../../EditorComponent";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
-
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import { Base } from "../../../composer-base-components/base/base";
 
-type Icon = {
+type Social = {
+  icon: TypeMediaInputValue;
   url: string;
-  icon: string;
-};
+}
 
-interface Card {
+type Card = {
   profileImage: TypeMediaInputValue;
-  name: React.JSX.Element;
-  icons: Icon[];
+  personName: React.JSX.Element;
+  personPosition: React.JSX.Element;
+  personDescription: React.JSX.Element;
+  socials: Social[];
 }
 
 class Team9 extends Team {
   constructor(props?: any) {
     super(props, styles);
-    let twitter: TypeUsableComponentProps = {
-      type: "object",
-      key: "twitter",
-      displayer: "Platform",
-      value: [
-        {
-          type: "icon",
-          key: "icon",
-          displayer: "Platform Icon",
-          value: "IoLogoTwitter",
-        },
-        {
-          type: "page",
-          key: "url",
-          displayer: "Url",
-          value: "",
-        },
-      ],
-    };
 
-    let facebook: TypeUsableComponentProps = {
-      type: "object",
-      key: "facebook",
-      displayer: "Platform",
-      value: [
-        {
-          type: "icon",
-          key: "icon",
-          displayer: "Platform Icon",
-          value: "IoLogoFacebook",
-        },
-        {
-          type: "page",
-          key: "url",
-          displayer: "Url",
-          value: "",
-        },
-      ],
-    };
-
-    let instagram: TypeUsableComponentProps = {
-      type: "object",
-      key: "instagram",
-      displayer: "Platform",
-      value: [
-        {
-          type: "icon",
-          key: "icon",
-          displayer: "Platform Icon",
-          value: "FaInstagram",
-        },
-        {
-          type: "page",
-          key: "url",
-          displayer: "Url",
-          value: "",
-        },
-      ],
-    };
-
-    let card1: TypeUsableComponentProps = {
-      type: "object",
-      key: "card",
-      displayer: "Card",
-      value: [
-        {
-          type: "media",
-          key: "profileImage",
-          displayer: "Image",
-          additionalParams: {
-            availableTypes: ["image"],
-          },
-          value: {
-            type: "image",
-            url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b493bd2970002c62816a?alt=media&timestamp=1719558632841",
-          },
-        },
-        {
-          type: "string",
-          key: "name",
-          displayer: "Person Name",
-          value: "JENNY",
-        },
-
-        {
-          type: "array",
-          key: "icons",
-          displayer: "Social Media Platforms",
-          additionalParams: {
-            maxElementCount: 6,
-          },
-          value: [twitter, facebook, instagram],
-        },
-      ],
-    };
-
-    let card2: TypeUsableComponentProps = {
-      type: "object",
-      key: "card",
-      displayer: "Card",
-      value: [
-        {
-          type: "media",
-          key: "profileImage",
-          displayer: "Image",
-          additionalParams: {
-            availableTypes: ["image"],
-          },
-          value: {
-            type: "image",
-            url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b493bd2970002c62816b?alt=media&timestamp=1719558632841",
-          },
-        },
-        {
-          type: "string",
-          key: "name",
-          displayer: "Person Name",
-          value: "DAVID",
-        },
-
-        {
-          type: "array",
-          key: "icons",
-          displayer: "Social Media Platforms",
-          additionalParams: {
-            maxElementCount: 6,
-          },
-          value: [twitter, facebook, instagram],
-        },
-      ],
-    };
-
-    let card3: TypeUsableComponentProps = {
-      type: "object",
-      key: "card",
-      displayer: "Card",
-      value: [
-        {
-          type: "media",
-          key: "profileImage",
-          displayer: "Image",
-          additionalParams: {
-            availableTypes: ["image"],
-          },
-          value: {
-            type: "image",
-            url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b493bd2970002c62816c?alt=media&timestamp=1719558632841",
-          },
-        },
-        {
-          type: "string",
-          key: "name",
-          displayer: "Person Name",
-          value: "JENNIFER",
-        },
-
-        {
-          type: "array",
-          key: "icons",
-          displayer: "Social Media Platforms",
-          additionalParams: {
-            maxElementCount: 6,
-          },
-          value: [twitter, facebook, instagram],
-        },
-      ],
-    };
-
-    let card4: TypeUsableComponentProps = {
-      type: "object",
-      key: "card",
-      displayer: "Card",
-      value: [
-        {
-          type: "media",
-          key: "profileImage",
-          displayer: "Image",
-          additionalParams: {
-            availableTypes: ["image"],
-          },
-          value: {
-            type: "image",
-            url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b493bd2970002c62816d?alt=media&timestamp=1719558632841",
-          },
-        },
-        {
-          type: "string",
-          key: "name",
-          displayer: "Person Name",
-          value: "MATHEW",
-        },
-
-        {
-          type: "array",
-          key: "icons",
-          displayer: "Social Media Platforms",
-          additionalParams: {
-            maxElementCount: 6,
-          },
-          value: [twitter, facebook, instagram],
-        },
-      ],
-    };
+    this.addProp({
+      type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "",
+    });
 
     this.addProp({
       type: "string",
@@ -232,10 +37,594 @@ class Team9 extends Team {
     });
 
     this.addProp({
+      type: "string",
+      key: "description",
+      displayer: "Description",
+      value: "",
+    });
+
+    this.addProp({
       type: "array",
-      key: "team-members",
-      displayer: "Team Members",
-      value: [card1, card2, card3, card4],
+      key: "cards",
+      displayer: "Cards",
+      value: [
+        {
+          type: "object",
+          key: "card",
+          displayer: "Card",
+          value: [
+            {
+              type: "media",
+              key: "profileImage",
+              displayer: "Image",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b493bd2970002c62816a?alt=media&timestamp=1719558632841",
+              },
+            },
+            {
+              type: "string",
+              key: "personName",
+              displayer: "Person Name",
+              value: "JENNY",
+            },
+            {
+              type: "string",
+              key: "personPosition",
+              displayer: "Person Position",
+              value: "Founder",
+            },
+            {
+              type: "string",
+              key: "personDescription",
+              displayer: "Person Description",
+              value: "",
+            },
+            {
+              type: "array",
+              key: "socials",
+              displayer: "Socials",
+              value: [
+                {
+                  type: "object",
+                  key: "social",
+                  displayer: "Social",
+                  value: [
+                    {
+                      type: "media",
+                      key: "icon",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "FaFacebookSquare"
+                      },
+                      displayer: "Icon",
+                    },
+                    {
+                      type: "page",
+                      key: "url",
+                      displayer: "Navigate To",
+                      value: "",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "social",
+                  displayer: "Social",
+                  value: [
+                    {
+                      type: "media",
+                      key: "icon",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "FaTwitterSquare"
+                      },
+                      displayer: "Icon",
+                    },
+                    {
+                      type: "page",
+                      key: "url",
+                      displayer: "Navigate To",
+                      value: "",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "social",
+                  displayer: "Social",
+                  value: [
+                    {
+                      type: "media",
+                      key: "icon",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "FaInstagram"
+                      },
+                      displayer: "Icon",
+                    },
+                    {
+                      type: "page",
+                      key: "url",
+                      displayer: "Navigate To",
+                      value: "",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "social",
+                  displayer: "Social",
+                  value: [
+                    {
+                      type: "media",
+                      key: "icon",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "FaLinkedin"
+                      },
+                      displayer: "Icon",
+                    },
+                    {
+                      type: "page",
+                      key: "url",
+                      displayer: "Navigate To",
+                      value: "",
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "card",
+          displayer: "Card",
+          value: [
+            {
+              type: "media",
+              key: "profileImage",
+              displayer: "Image",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b493bd2970002c62816b?alt=media&timestamp=1719558632841",
+              },
+            },
+            {
+              type: "string",
+              key: "name",
+              displayer: "Person Name",
+              value: "DAVID",
+            },
+            {
+              type: "string",
+              key: "personPosition",
+              displayer: "Person Position",
+              value: "Founder",
+            },
+            {
+              type: "string",
+              key: "personDescription",
+              displayer: "Person Description",
+              value: "",
+            },
+            {
+              type: "array",
+              key: "socials",
+              displayer: "Socials",
+              value: [
+                {
+                  type: "object",
+                  key: "social",
+                  displayer: "Social",
+                  value: [
+                    {
+                      type: "media",
+                      key: "icon",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "FaFacebookSquare"
+                      },
+                      displayer: "Icon",
+                    },
+                    {
+                      type: "page",
+                      key: "url",
+                      displayer: "Navigate To",
+                      value: "",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "social",
+                  displayer: "Social",
+                  value: [
+                    {
+                      type: "media",
+                      key: "icon",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "FaTwitterSquare"
+                      },
+                      displayer: "Icon",
+                    },
+                    {
+                      type: "page",
+                      key: "url",
+                      displayer: "Navigate To",
+                      value: "",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "social",
+                  displayer: "Social",
+                  value: [
+                    {
+                      type: "media",
+                      key: "icon",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "FaInstagram"
+                      },
+                      displayer: "Icon",
+                    },
+                    {
+                      type: "page",
+                      key: "url",
+                      displayer: "Navigate To",
+                      value: "",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "social",
+                  displayer: "Social",
+                  value: [
+                    {
+                      type: "media",
+                      key: "icon",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "FaLinkedin"
+                      },
+                      displayer: "Icon",
+                    },
+                    {
+                      type: "page",
+                      key: "url",
+                      displayer: "Navigate To",
+                      value: "",
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "card",
+          displayer: "Card",
+          value: [
+            {
+              type: "media",
+              key: "profileImage",
+              displayer: "Image",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b493bd2970002c62816c?alt=media&timestamp=1719558632841",
+              },
+            },
+            {
+              type: "string",
+              key: "name",
+              displayer: "Person Name",
+              value: "JENNIFER",
+            },
+            {
+              type: "string",
+              key: "personPosition",
+              displayer: "Person Position",
+              value: "Founder",
+            },
+            {
+              type: "string",
+              key: "personDescription",
+              displayer: "Person Description",
+              value: "",
+            },
+            {
+              type: "array",
+              key: "socials",
+              displayer: "Socials",
+              value: [
+                {
+                  type: "object",
+                  key: "social",
+                  displayer: "Social",
+                  value: [
+                    {
+                      type: "media",
+                      key: "icon",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "FaFacebookSquare"
+                      },
+                      displayer: "Icon",
+                    },
+                    {
+                      type: "page",
+                      key: "url",
+                      displayer: "Navigate To",
+                      value: "",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "social",
+                  displayer: "Social",
+                  value: [
+                    {
+                      type: "media",
+                      key: "icon",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "FaTwitterSquare"
+                      },
+                      displayer: "Icon",
+                    },
+                    {
+                      type: "page",
+                      key: "url",
+                      displayer: "Navigate To",
+                      value: "",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "social",
+                  displayer: "Social",
+                  value: [
+                    {
+                      type: "media",
+                      key: "icon",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "FaInstagram"
+                      },
+                      displayer: "Icon",
+                    },
+                    {
+                      type: "page",
+                      key: "url",
+                      displayer: "Navigate To",
+                      value: "",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "social",
+                  displayer: "Social",
+                  value: [
+                    {
+                      type: "media",
+                      key: "icon",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "FaLinkedin"
+                      },
+                      displayer: "Icon",
+                    },
+                    {
+                      type: "page",
+                      key: "url",
+                      displayer: "Navigate To",
+                      value: "",
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "card",
+          displayer: "Card",
+          value: [
+            {
+              type: "media",
+              key: "profileImage",
+              displayer: "Image",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b493bd2970002c62816d?alt=media&timestamp=1719558632841",
+              },
+            },
+            {
+              type: "string",
+              key: "name",
+              displayer: "Person Name",
+              value: "MATHEW",
+            },
+            {
+              type: "string",
+              key: "personPosition",
+              displayer: "Person Position",
+              value: "Founder",
+            },
+            {
+              type: "string",
+              key: "personDescription",
+              displayer: "Person Description",
+              value: "",
+            },
+            {
+              type: "array",
+              key: "socials",
+              displayer: "Socials",
+              value: [
+                {
+                  type: "object",
+                  key: "social",
+                  displayer: "Social",
+                  value: [
+                    {
+                      type: "media",
+                      key: "icon",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "FaFacebookSquare"
+                      },
+                      displayer: "Icon",
+                    },
+                    {
+                      type: "page",
+                      key: "url",
+                      displayer: "Navigate To",
+                      value: "",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "social",
+                  displayer: "Social",
+                  value: [
+                    {
+                      type: "media",
+                      key: "icon",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "FaTwitterSquare"
+                      },
+                      displayer: "Icon",
+                    },
+                    {
+                      type: "page",
+                      key: "url",
+                      displayer: "Navigate To",
+                      value: "",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "social",
+                  displayer: "Social",
+                  value: [
+                    {
+                      type: "media",
+                      key: "icon",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "FaInstagram"
+                      },
+                      displayer: "Icon",
+                    },
+                    {
+                      type: "page",
+                      key: "url",
+                      displayer: "Navigate To",
+                      value: "",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "social",
+                  displayer: "Social",
+                  value: [
+                    {
+                      type: "media",
+                      key: "icon",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "FaLinkedin"
+                      },
+                      displayer: "Icon",
+                    },
+                    {
+                      type: "page",
+                      key: "url",
+                      displayer: "Navigate To",
+                      value: "",
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+      ],
     });
 
     this.addProp({
@@ -243,7 +632,6 @@ class Team9 extends Team {
       key: "reverse",
       displayer: "Item Count",
       value: 4,
-      max: 5,
     });
 
     this.addProp({
@@ -286,37 +674,47 @@ class Team9 extends Team {
       ],
     };
 
-    const titleExist = this.getPropValue("title", { as_string: true });
-    const members = this.castToObject<Card[]>("team-members");
+    const title = this.castToString(this.getPropValue("title"));
+    const subtitle = this.castToString(this.getPropValue("subtitle"));
+    const description = this.castToString(this.getPropValue("description"));
+    const hasContent = subtitle || title || description;
+    const members = this.castToObject<Card[]>("cards");
+    const hoverAnimation = this.getPropValue("hoverAnimation");
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <Base.VerticalContent className={this.decorateCSS("basic-page")}>
-            {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
-            {members && (
-              <Base.ListGrid gridCount={{ pc: this.getPropValue("reverse"), tablet: 1, phone: 1 }} className={this.decorateCSS("down-page")}>
+          {hasContent && (
+            <Base.VerticalContent className={this.decorateCSS("vertical-content")}>
+              {subtitle && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
+              {title && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
+              {description && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
+            </Base.VerticalContent>
+          )}
+          {members && members.length > 0 && (
+            <>
+              <Base.ListGrid gridCount={{ pc: this.getPropValue("reverse"), tablet: 2, phone: 1 }} className={this.decorateCSS("down-page")}>
                 {members.map((item: Card, index: number) => {
-                  const nameExist = this.castToString(item.name);
+                  const personName = this.castToString(item.personName);
+                  const personPosition = this.castToString(item.personPosition);
+                  const personDescription = this.castToString(item.personDescription);
+                  const hasCard = personName || item.profileImage || personPosition || personDescription || (item.socials && item.socials.length > 0);
 
-                  const hasCard = nameExist || item.profileImage || item.icons.length > 0;
                   return (
                     hasCard && (
-                      <Base.VerticalContent key={index} className={this.decorateCSS("card")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
+                      <Base.VerticalContent key={index} className={this.decorateCSS("card")} data-animation={hoverAnimation.join(" ")}>
                         {item.profileImage && <Base.Media value={item.profileImage} className={this.decorateCSS("person-image")} />}
                         <div className={this.decorateCSS("person-info")}>
-                          {item.icons.length > 0 && (
+                          {item.socials && item.socials.length > 0 && (
                             <div className={this.decorateCSS("icons-bar")}>
-                              {item.icons.map((card: Icon, iconIndex: number) => {
-                                if (card.icon) {
+                              {item.socials.map((social: Social, iconIndex: number) => {
+                                if (social.icon) {
                                   return (
-                                    <ComposerLink key={iconIndex} path={card.url}>
-                                      <Base.Icon
-                                        name={card.icon}
-                                        propsIcon={{ 
-                                          className: this.decorateCSS("icon"),
-                                          style: { "--icon-index": iconIndex } as React.CSSProperties
-                                        }}
+                                    <ComposerLink key={iconIndex} path={social.url}>
+                                      <Base.Media
+                                        value={social.icon}
+                                        className={this.decorateCSS("icon")}
+                                        style={{ "--icon-index": iconIndex } as React.CSSProperties}
                                       />
                                     </ComposerLink>
                                   );
@@ -325,63 +723,64 @@ class Team9 extends Team {
                               })}
                             </div>
                           )}
-                          <div className={this.decorateCSS("text-group")}>
-                            <div className={this.decorateCSS("item-name")}>{item.name}</div>
-                          </div>
+                          <Base.VerticalContent className={this.decorateCSS("text-group")}>
+                            {personName && <Base.H2 className={this.decorateCSS("item-name")}>{item.personName}</Base.H2>}
+                            {personPosition && <Base.P className={this.decorateCSS("item-position")}>{item.personPosition}</Base.P>}
+                            {personDescription && <Base.P className={this.decorateCSS("item-description")}>{item.personDescription}</Base.P>}
+                          </Base.VerticalContent>
                         </div>
                       </Base.VerticalContent>
                     )
                   );
                 })}
               </Base.ListGrid>
-            )}
-            {members.length > 0 && (
               <ComposerSlider {...settings} className={this.decorateCSS("slider")}>
                 {members.map((item: Card, indexCard: number) => {
-                  const nameExist = this.castToString(item.name);
+                  const personName = this.castToString(item.personName);
+                  const personPosition = this.castToString(item.personPosition);
+                  const personDescription = this.castToString(item.personDescription);
 
-                  if (item.profileImage || nameExist || item.icons.length > 0)
+                  if (item.profileImage || personName || personPosition || personDescription || (item.socials && item.socials.length > 0)) {
                     return (
                       <div key={indexCard} className={this.decorateCSS("card")}>
                         {item.profileImage && <Base.Media value={item.profileImage} className={this.decorateCSS("person-image")} />}
-                        {(nameExist || item.icons.length > 0) && (
-                          <Base.VerticalContent className={this.decorateCSS("person-info")}>
-                            {item.icons.length > 0 && (
-                              <Base.Row style={!item.profileImage ? { width: "auto" } : {}} className={this.decorateCSS("icons-bar")}>
-                                {item.icons.map((card: Icon, indexIcons: number) => {
-                                  if (card.icon)
-                                    return (
-                                      <ComposerLink key={indexIcons} path={card.url}>
-                                        <Base.Icon
-                                          name={card.icon}
-                                          propsIcon={{
-                                            className: this.decorateCSS("icon"),
-                                            style: { "--icon-index": indexIcons } as React.CSSProperties
-                                          }}
-                                        />
-                                      </ComposerLink>
-                                    );
-                                  return null;
-                                })}
-                              </Base.Row>
-                            )}
-                            {nameExist && (
-                              <div style={!item.profileImage ? { width: "auto" } : {}} className={this.decorateCSS("text-group")}>
-                                <Base.H1 className={this.decorateCSS("item-name")}>{item.name}</Base.H1>
-                              </div>
-                            )}
+                        <Base.VerticalContent className={this.decorateCSS("person-info")}>
+                          {item.socials && item.socials.length > 0 && (
+                            <Base.Row className={this.decorateCSS("icons-bar")}>
+                              {item.socials.map((social: Social, indexIcons: number) => {
+                                if (social.icon) {
+                                  return (
+                                    <ComposerLink key={indexIcons} path={social.url}>
+                                      <Base.Media
+                                        value={social.icon}
+                                        className={this.decorateCSS("icon")}
+                                        style={{ "--icon-index": indexIcons } as React.CSSProperties}
+                                      />
+                                    </ComposerLink>
+                                  );
+                                }
+                                return null;
+                              })}
+                            </Base.Row>
+                          )}
+                          <Base.VerticalContent className={this.decorateCSS("text-group")}>
+                            {personName && <Base.H2 className={this.decorateCSS("item-name")}>{item.personName}</Base.H2>}
+                            {personPosition && <Base.P className={this.decorateCSS("item-position")}>{item.personPosition}</Base.P>}
+                            {personDescription && <Base.P className={this.decorateCSS("item-description")}>{item.personDescription}</Base.P>}
                           </Base.VerticalContent>
-                        )}
+                        </Base.VerticalContent>
                       </div>
                     );
+                  }
                   return null;
                 })}
               </ComposerSlider>
-            )}
-          </Base.VerticalContent>
+            </>
+          )}
         </Base.MaxContent>
       </Base.Container>
     );
   }
 }
+
 export default Team9;

@@ -1,24 +1,23 @@
-@use "../../../../composer-tools//composer-base-components//base//utitilities/viewports.module.scss"
-  as *;
+@use "../../../../composer-tools//composer-base-components//base//utitilities/viewports.module.scss" as *;
 
 .container {
   .max-content {
     display: flex;
     flex-direction: column;
-    gap: var(--composer-gap-md);
+    gap: var(--composer-gap-xl);
 
-    .up-page {
-      .title {
+    .vertical-content {
+
+      .subtitle,
+      .title,
+      .description {
         content: "";
-      }
-
-      .subtitle {
-        color: var(--composer-font-color-primary);
       }
     }
 
     .down-page {
       gap: var(--composer-gap-md) 0;
+
       .card {
         display: flex;
         justify-content: center;
@@ -79,11 +78,9 @@
             bottom: 0;
             width: 70%;
             max-width: 100%;
-            background-color: color-mix(
-              in srgb,
-              var(--composer-html-background),
-              var(--composer-font-color-primary) 10%
-            );
+            background-color: color-mix(in srgb,
+                var(--composer-html-background),
+                var(--composer-font-color-primary) 10%);
             padding: 1rem;
             border-radius: var(--composer-border-radius-md);
 
