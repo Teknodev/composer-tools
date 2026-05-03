@@ -2,6 +2,8 @@ import * as React from "react";
 import styles from "./faq9.module.scss";
 import { BaseFAQ } from "../../EditorComponent";
 import { Base } from "../../../composer-base-components/base/base";
+import { INPUTS } from "../../../custom-hooks/input-templates";
+import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 
 type Question = {
   qq: string;
@@ -37,15 +39,34 @@ class Faq9 extends BaseFAQ {
     });
     this.addProp({
       type: "media",
-      key: "icon",
-      displayer: "Icon",
+      key: "inactiveIcon",
+      displayer: "Inactive Icon",
       additionalParams: {
-        availableTypes: ["icon"],
+        availableTypes: ["icon", "image"],
       },
       value: {
         type: "icon",
         name: "SlArrowDown",
       },
+    });
+    this.addProp({
+      type: "media",
+      key: "activeIcon",
+      displayer: "Active Icon",
+      additionalParams: {
+        availableTypes: ["icon", "image"],
+      },
+      value: {
+        type: "icon",
+        name: "SlArrowUp",
+      },
+    });
+
+    this.addProp({
+      type: "boolean",
+      key: "line",
+      displayer: "Line",
+      value: true,
     });
 
     this.addProp({
@@ -176,6 +197,15 @@ class Faq9 extends BaseFAQ {
       ],
     });
 
+    this.addProp({
+      type: "array",
+      key: "buttons",
+      displayer: "Buttons",
+      value: [
+        INPUTS.BUTTON("button", "Button", "Learn More", "", null, null, "Primary"),
+      ],
+    });
+
     this.setComponentState("activeLeftQuestionIndex", 0);
     this.setComponentState("activeRightQuestionIndex", 3);
     this.setComponentState("isMobile", false);
@@ -269,6 +299,7 @@ class Faq9 extends BaseFAQ {
     const activeRight = this.getComponentState("activeRightQuestionIndex");
     const questions = this.castToObject<Question[]>("questions");
     const isMobile = this.getComponentState("isMobile");
+    const lineEnabled = this.getPropValue("line");
     const midPoint = isMobile
       ? questions.length
       : Math.ceil(questions.length / 2);
@@ -309,11 +340,11 @@ class Faq9 extends BaseFAQ {
                     const idx = i;
                     return (
                       <div
-                        className={this.decorateCSS("card")}
+                        className={`${this.decorateCSS("card")}${!lineEnabled ? ` ${this.decorateCSS("no-line")}` : ""}`}
                         key={idx}
                         onClick={() => this.handleQuestion(idx)}
                       >
-                        {(questn.qq || this.getPropValue("icon")) && (
+                        {(questn.qq || this.getPropValue("activeIcon") || this.getPropValue("inactiveIcon")) && (
                           <div
                             className={`${this.decorateCSS(
                               "child-container"
@@ -329,7 +360,7 @@ class Faq9 extends BaseFAQ {
                                   "card-title-wrapper"
                                 )}
                               >
-                                <Base.H4
+                                <Base.H5
                                   className={`${this.decorateCSS(
                                     "card-title"
                                   )} ${
@@ -339,10 +370,10 @@ class Faq9 extends BaseFAQ {
                                   }`}
                                 >
                                   {questn.qq}
-                                </Base.H4>
+                                </Base.H5>
                               </div>
                             )}
-                            {this.getPropValue("icon") && (
+                            {(this.getPropValue("activeIcon") || this.getPropValue("inactiveIcon")) && (
                               <div
                                 className={`${this.decorateCSS(
                                   "icon-wrapper"
@@ -353,7 +384,7 @@ class Faq9 extends BaseFAQ {
                                 }`}
                               >
                                 <Base.Media
-                                  value={this.getPropValue("icon")}
+                                  value={activeLeft === idx ? this.getPropValue("activeIcon") : this.getPropValue("inactiveIcon")}
                                   className={this.decorateCSS("icon")}
                                 />
                               </div>
@@ -384,11 +415,11 @@ class Faq9 extends BaseFAQ {
                       const idx = i + midPoint;
                       return (
                         <div
-                          className={this.decorateCSS("card")}
+                          className={`${this.decorateCSS("card")}${!lineEnabled ? ` ${this.decorateCSS("no-line")}` : ""}`}
                           key={idx}
                           onClick={() => this.handleQuestion(idx)}
                         >
-                          {(questn.qq || this.getPropValue("icon")) && (
+                          {(questn.qq || this.getPropValue("activeIcon") || this.getPropValue("inactiveIcon")) && (
                             <div
                               className={`${this.decorateCSS(
                                 "child-container"
@@ -404,7 +435,7 @@ class Faq9 extends BaseFAQ {
                                     "card-title-wrapper"
                                   )}
                                 >
-                                  <Base.H4
+                                  <Base.H5
                                     className={`${this.decorateCSS(
                                       "card-title"
                                     )} ${
@@ -414,10 +445,10 @@ class Faq9 extends BaseFAQ {
                                     }`}
                                   >
                                     {questn.qq}
-                                  </Base.H4>
+                                  </Base.H5>
                                 </div>
                               )}
-                              {this.getPropValue("icon") && (
+                              {(this.getPropValue("activeIcon") || this.getPropValue("inactiveIcon")) && (
                                 <div
                                   className={`${this.decorateCSS(
                                     "icon-wrapper"
@@ -428,7 +459,7 @@ class Faq9 extends BaseFAQ {
                                   }`}
                                 >
                                   <Base.Media
-                                    value={this.getPropValue("icon")}
+                                    value={activeRight === idx ? this.getPropValue("activeIcon") : this.getPropValue("inactiveIcon")}
                                     className={this.decorateCSS("icon")}
                                   />
                                 </div>
@@ -455,6 +486,25 @@ class Faq9 extends BaseFAQ {
                   </div>
                 )}
               </div>
+              {this.getPropValue("buttons").length > 0 && (
+                <div className={this.decorateCSS("buttons-wrapper")}>
+                  {this.castToObject<INPUTS.CastedButton[]>("buttons").map(
+                    (button: INPUTS.CastedButton) =>
+                      this.castToString(button.text) && (
+                        <ComposerLink path={button.url}>
+                          <Base.Button
+                            buttonType={button.type}
+                            className={this.decorateCSS("button")}
+                          >
+                            <Base.P className={this.decorateCSS("button-text")}>
+                              {button.text}
+                            </Base.P>
+                          </Base.Button>
+                        </ComposerLink>
+                      )
+                  )}
+                </div>
+              )}
             </div>
           </Base.MaxContent>
         </div>

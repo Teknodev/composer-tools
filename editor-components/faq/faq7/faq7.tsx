@@ -38,7 +38,7 @@ class Faq7 extends BaseFAQ {
       key: "iconInactive",
       displayer: "Inactive Icon",
       additionalParams: {
-        availableTypes: ["icon"],
+        availableTypes: ["icon", "image"],
       },
       value: {
         type: "icon",
@@ -50,7 +50,7 @@ class Faq7 extends BaseFAQ {
       key: "iconActive",
       displayer: "Active Icon",
       additionalParams: {
-        availableTypes: ["icon"],
+        availableTypes: ["icon", "image"],
       },
       value: {
         type: "icon",
@@ -200,7 +200,7 @@ class Faq7 extends BaseFAQ {
     this.addProp({
       type: "boolean",
       key: "line",
-      displayer: "Enable Line",
+      displayer: "Line",
       value: true,
     })
 

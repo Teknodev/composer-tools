@@ -7,19 +7,45 @@
             .content{
                 display: flex;
                 gap: var(--composer-gap-xl);
-                align-items: center;
+                align-items: stretch;
                 .items-wrapper {
                     flex: 1.5;
                     display: flex;
                     flex-direction: column;
+                    gap: var(--composer-gap-xl);
                     .header-wrapper{
+                        align-items: flex-start;
                         .title, .subtitle, .description {
                             content: "";
+                            text-align: left;
+                            margin-left: 0;
+                        }
+                        .buttons-wrapper {
+                            display: flex;
+                            align-items: center;
+                            gap: var(--composer-gap-sm);
+                            flex-wrap: wrap;
+                            .button {
+                                .button-text {
+                                    content: "";
+                                }
+                            }
                         }
                     }
                     .items{
                         border: 1px solid var(--composer-tertiary-color);
                         border-bottom: none;
+                        &.no-line {
+                            border: none;
+                            .item {
+                                .title-box {
+                                    border-bottom: none;
+                                }
+                                .description-box.active {
+                                    border-bottom: none;
+                                }
+                            }
+                        }
                         .item {
                             cursor: pointer;
                             .title-box {
@@ -30,12 +56,14 @@
                                 .title-text {
                                     flex: 1;
                                     color: var(--composer-font-color-primary);
+                                    text-align: left;
                                 }
-            
+
                                 .icon {
-                                    width: 16px;
-                                    height: 16px;
-                                    font-size: 1rem;
+                                    width: 24px;
+                                    height: 24px;
+                                    font-size: 1.5rem;
+                                    object-fit: contain;
                                     color: var(--composer-primary-color);
                                     transition: color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
                                     &.active{
@@ -56,6 +84,7 @@
                                 color: var(--composer-font-color-primary);
                                 transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
                                 border-bottom: 1px solid var(--composer-tertiary-color);
+                                text-align: left;
                             }
                             &.active {
                                 max-height: 150px;
@@ -74,10 +103,17 @@
                 .image-box {
                     flex: 1;
                     width: 100%;
+                    position: relative;
                     .image {
-                        min-height: 600px;
                         width: 100%;
+                        height: 100%;
                         object-fit: cover;
+                        border-radius: 50%;
+                    }
+                    .overlay {
+                        position: absolute;
+                        inset: 0;
+                        background: rgba(0, 0, 0, 0.4);
                         border-radius: 50%;
                     }
                 }

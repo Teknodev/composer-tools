@@ -5,6 +5,17 @@
       display: flex;
       flex-direction: column;
       gap:var(--composer-gap-lg);
+      .buttons-wrapper {
+        display: flex;
+        justify-content: center;
+        gap: var(--composer-gap-sm);
+        flex-wrap: wrap;
+        .button {
+          .button-text {
+            content: "";
+          }
+        }
+      }
       .up-page {
         .subtitle, .title, .description {
           content: "";
@@ -38,10 +49,13 @@
               flex: 1;
               display: flex;
               align-items: center;
-              gap: var(--composer-gap-xs);
+              gap: var(--composer-gap-sm);
               .bullet-icon {
                 color: var(--composer-font-color-primary);
-                font-size: 1rem;
+                font-size: 1.5rem;
+                width: 24px;
+                height: 24px;
+                object-fit: contain;
                 transition: color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
               }
               .category-name {
@@ -63,9 +77,10 @@
               .arrow-right {
                 transform: rotate(-30deg);
                 transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-                width: 14px;
-                height: 14px;
-                font-size: 1rem;
+                width: 24px;
+                height: 24px;
+                font-size: 1.5rem;
+                object-fit: contain;
               }
             }
             &.active-category {
@@ -109,6 +124,11 @@
               background: var(--composer-primary-color);
               transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             }
+            &.no-line {
+              &::before, &::after {
+                display: none;
+              }
+            }
             &:hover{
               .category{
                 .bullet-icon{
@@ -136,6 +156,7 @@
           display: flex;
           flex-direction: column;
           gap: var(--composer-gap-md);
+          text-align: left;
           .question-container {
             background-color: color-mix(
               in srgb,
@@ -152,14 +173,16 @@
               .question-title{
                 color: var(--composer-font-color-primary);
                 flex:1;
+                text-align: left;
                 &.active{
                   color: var(--composer-primary-color);
                 }
               }
               .question-icon{
-                width: 16px;
-                height: 16px;
-                font-size: 1rem;
+                width: 24px;
+                height: 24px;
+                font-size: 1.5rem;
+                object-fit: contain;
                 color: var(--composer-font-color-primary);
                 &.active{
                   transform: rotate(180deg);
@@ -176,6 +199,7 @@
                 opacity: 0;
                 color: var(--composer-font-color-primary);
                 transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+                text-align: left;
               }            
               &.active {
                 max-height: 150px;
