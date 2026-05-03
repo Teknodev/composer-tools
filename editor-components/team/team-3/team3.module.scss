@@ -1,187 +1,222 @@
-@use "../../../../composer-tools/composer-base-components//base//utitilities/viewports.module.scss"
-  as *;
+@use "../../../../composer-tools/composer-base-components//base//utitilities/viewports.module.scss" as *;
+
+@keyframes scale {
+
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.25);
+  }
+}
+
+@keyframes colorChange {
+  0% {
+    color: var(--composer-font-color-primary);
+  }
+
+  100% {
+    color: var(--composer-primary-color);
+  }
+}
+
+@keyframes bounce {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+}
 
 .container {
   .max-content {
     display: flex;
-    .page {
-      width: 100%;
-      .text-group {
-        .title {
-          content: "";
-        }
-        .subtilte {
-          content: "";
-        }
+    flex-direction: column;
+    gap: var(--composer-gap-lg);
+
+    .vertical-content {
+
+      .subtitle,
+      .title,
+      .description {
+        content: "";
       }
-      .down-page {
-        .all-card {
-          width: 100%;
-          .card {
-            height: 100%;
-            max-width: 100%;
-            min-width: 300px;
-            position: relative;
-            padding: var(--composer-gap-md);
-            border: 1px solid
-              color-mix(
-                in srgb,
-                var(--composer-html-background),
-                var(--composer-font-color-primary) 5%
-              );
-            &.card-image {
-              margin-left: var(--composer-gap-lg);
-            }
+    }
 
-            &[data-animation~="animate1"] {
-              &::after {
-                content: "";
-                position: absolute;
-                top: 0;
-                left: 0;
-                height: 100%;
-                width: 1px;
-                background-color: var(--composer-primary-color);
-                transform: scaleY(0);
-                transform-origin: top;
-                transition: transform 0.5s ease;
-                z-index: 1;
-              }
-              &:hover {
-                &::after {
-                  transform: scaleY(1);
-                  transition: transform 0.5s ease;
-                }
-              }
-            }
+    .down-page {
+      .all-card {
+        width: 100%;
 
-            &[data-animation~="animate2"] {
-              @keyframes scale {
-                0%, 100% { transform: scale(1); }
-                50% { transform: scale(1.25); }
-              }
-
-              .icons {
-                animation: none;
-              }
-
-              &:hover {
-                .icons {
-                  animation: scale 0.6s ease;
-                  animation-fill-mode: both;
-                  animation-delay: calc(var(--icon-index, 0) * 0.2s);
-                }
-              }
-            }
-
-            &[data-animation~="animate3"] {
-              .icons {
-                transition: color 0.3s ease;
-                color: var(--composer-font-color-primary);
-              }
-
-              &:hover {
-                .icons {
-                  animation: colorChange 0.6s ease;
-                  animation-fill-mode: both;
-                  animation-delay: calc(var(--icon-index, 0) * 0.2s);
-                }
-              }
-
-              @keyframes colorChange {
-                0% { color: var(--composer-font-color-primary); }
-                100% { color: var(--composer-primary-color); }
-              }
-            }
-
-            &[data-animation~="animate4"] {
-              @keyframes bounce {
-                0%, 100% { transform: translateY(0); }
-                50% { transform: translateY(-10px); }
-              }
-
-              .icons {
-                animation: none;
-              }
-
-              &:hover {
-                .icons {
-                  animation: bounce 0.6s ease;
-                  animation-fill-mode: both;
-                  animation-delay: calc(var(--icon-index, 0) * 0.2s);
-                }
-              }
-            }
-          }
-
-          .card-items {
-            height: 100%;
-            padding: var(--composer-gap-md) 0;
-            background-color: color-mix(
-              in srgb,
+        .card {
+          height: 100%;
+          max-width: 100%;
+          min-width: 300px;
+          position: relative;
+          padding: var(--composer-gap-md);
+          border: 1px solid color-mix(in srgb,
               var(--composer-html-background),
-              var(--composer-font-color-primary) 5%
-            );
-          }
-          .item-content {
-            margin-left: -55px;
-            display: flex;
-          }
-          .box-image {
-            position: relative;
-            flex: 0 0 25%;
-            width: 100%;
-            height: 100%;
+              var(--composer-font-color-primary) 5%);
 
-            .profile-image {
-              position: relative;
-              width: 100%;
-              max-width: 300px;
-              min-height: 200px;
+          &.card-image {
+            margin-left: var(--composer-gap-lg);
+          }
+
+          &[data-animation~="animate1"] {
+            &::after {
+              content: "";
+              position: absolute;
+              top: 0;
+              left: 0;
               height: 100%;
-              object-fit: cover;
-              z-index: 100;
+              width: 1px;
+              background-color: var(--composer-primary-color);
+              transform: scaleY(0);
+              transform-origin: top;
+              transition: transform 0.5s ease;
+              z-index: 1;
+            }
+
+            &:hover {
+              &::after {
+                transform: scaleY(1);
+                transition: transform 0.5s ease;
+              }
             }
           }
-          .box-text {
-            flex: 0 0 70%;
-            padding: 0 var(--composer-gap-md);
-          }
-          .no-image-box-text {
-            flex: 0 0 70%;
-            padding: 0 var(--composer-gap-md);
-            margin-left: calc(1.5 * var(--composer-gap-lg));
+
+          &[data-animation~="animate2"] {
+            .icon {
+              animation: none;
+            }
+
+            &:hover {
+              .icon {
+                animation: scale 0.6s ease;
+                animation-fill-mode: both;
+                animation-delay: calc(var(--icon-index, 0) * 0.2s);
+              }
+            }
           }
 
-          .item-name {
+          &[data-animation~="animate3"] {
+            .icon {
+              transition: color 0.3s ease;
+              color: var(--composer-font-color-primary);
+            }
+
+            &:hover {
+              .icon {
+                animation: colorChange 0.6s ease;
+                animation-fill-mode: both;
+                animation-delay: calc(var(--icon-index, 0) * 0.2s);
+              }
+            }
+          }
+
+          &[data-animation~="animate4"] {
+            .icon {
+              animation: none;
+            }
+
+            &:hover {
+              .icon {
+                animation: bounce 0.6s ease;
+                animation-fill-mode: both;
+                animation-delay: calc(var(--icon-index, 0) * 0.2s);
+              }
+            }
+          }
+        }
+
+        .card-items {
+          height: 100%;
+          padding: var(--composer-gap-md) 0;
+          background-color: color-mix(in srgb,
+              var(--composer-html-background),
+              var(--composer-font-color-primary) 5%);
+        }
+
+        .item-content {
+          margin-left: -55px;
+          display: flex;
+        }
+
+        .box-image {
+          position: relative;
+          flex: 0 0 25%;
+          width: 100%;
+          height: 100%;
+
+          .profile-image {
+            position: relative;
+            width: 100%;
+            max-width: 300px;
+            min-height: 200px;
+            height: 100%;
+            object-fit: cover;
+            z-index: 100;
+          }
+        }
+
+        .box-text {
+          flex: 0 0 70%;
+          padding: 0 var(--composer-gap-md);
+          height: 100%;
+        }
+
+        .no-image-box-text {
+          flex: 0 0 70%;
+          padding: 0 var(--composer-gap-md);
+          margin-left: calc(1.5 * var(--composer-gap-lg));
+          height: 100%;
+        }
+
+        .item-name {
+          color: var(--composer-font-color-primary);
+        }
+
+        .item-position {
+          color: var(--composer-primary-color);
+        }
+
+        .item-description {
+          color: var(--composer-font-color-primary);
+          flex-grow: 1;
+        }
+
+        .icon-group {
+          display: flex;
+          align-items: center;
+          gap: var(--composer-gap-md);
+          margin-top: var(--composer-gap-md);
+          flex-wrap: wrap;
+
+          .icon {
+            display: inline-block;
             color: var(--composer-font-color-primary);
-          }
-          .item-position {
-            color: var(--composer-primary-color);
-          }
-          .icon-group {
-            display: flex;
-            align-items: center;
-            gap: var(--composer-gap-md);
-            margin-top: var(--composer-gap-md);
-            flex-wrap: wrap;
-            .icons {
-              cursor: pointer;
-              object-fit: cover;
+            font-size: 1.5rem;
+            transition: 0.3s;
+            cursor: pointer;
+
+            &.has-image {
               width: var(--composer-gap-md);
               height: var(--composer-gap-md);
-              margin: var(--composer-gap-sm);
-              color: var(--composer-font-color-primary);
-              transition: 0.3s;
+              object-fit: cover;
             }
+          }
 
-            &[data-animation~="animate3"] {
-              .icons {
-                transition: color 0.3s ease;
+          &[data-animation~="animate3"] {
+            .icon {
+              transition: color 0.3s ease;
 
-                &:hover {
-                  color: var(--composer-primary-color);
-                }
+              &:hover {
+                color: var(--composer-primary-color);
               }
             }
           }
@@ -205,6 +240,7 @@
               }
             }
           }
+
           .card-item-count {
             width: 100%;
           }
@@ -221,6 +257,7 @@
             .all-card {
               .card {
                 margin-left: var(--composer-gap-md);
+
                 .card-items {
                   .item-content {
                     .box-image {
@@ -228,13 +265,16 @@
                         margin-left: var(--composer-gap-md);
                       }
                     }
+
                     .box-text {
                       padding: 0 var(--composer-gap-lg);
                     }
+
                     .icon-group {
                       gap: var(--composer-gap-xs) !important;
                       margin-top: var(--composer-gap-md) !important;
-                      .icons {
+
+                      .icon {
                         width: var(--composer-gap-md) !important;
                         height: var(--composer-gap-md) !important;
                       }

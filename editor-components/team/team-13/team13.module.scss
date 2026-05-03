@@ -1,5 +1,4 @@
-@use "../../../../composer-tools//composer-base-components//base//utitilities/viewports.module.scss"
-  as *;
+@use "../../../../composer-tools//composer-base-components//base//utitilities/viewports.module.scss" as *;
 
 .container {
   .max-content {
@@ -8,11 +7,14 @@
       height: 100%;
 
       .featured-card {
-        width: 100%;
+        display: flex;
+        flex-direction: column;
         min-height: 700px;
         height: 100%;
+        width: 70%;
         justify-content: space-between;
         transition: all 0.3s ease;
+
         &[data-animation~="animate4"]:hover {
           .icon-item {
             animation: pulseScale 2s ease-in-out infinite;
@@ -64,46 +66,66 @@
           }
         }
 
-        .title {
-          font-size: 5rem;
-          width: 85%;
-          margin-bottom: 0;
+        .info-container {
+
+          .subtitle,
+          .title {
+            content: "";
+          }
         }
 
         .label {
-          width: 70%;
           gap: var(--composer-gap-xl);
+
           .description {
             color: var(--composer-tertiary-color);
-            width: 100%;
           }
 
-          .button-container {
+          .button-and-line-container {
             display: flex;
-            width: 100%;
             justify-content: space-between;
-            align-items: center;
             gap: var(--composer-gap-xl);
-            .button {
-              content: "";
+            align-items: center;
+            width: 100%;
+
+            .button-container {
+              display: flex;
+              flex-wrap: wrap;
+              gap: var(--composer-gap-sm);
+
+              .button {
+                .button-text {
+                  content: "";
+                }
+              }
             }
 
             .line {
-              height: 2px;
               min-width: calc(2 * var(--composer-gap-xl));
               background: var(--composer-font-color-primary);
+              height: 2px;
             }
           }
         }
 
         .icon-container {
-          color: var(--composer-font-color-primary);
           display: flex;
+          color: var(--composer-font-color-primary);
           gap: var(--composer-gap-md);
           font-size: 1.5rem;
 
           .icon-item {
             content: "";
+
+            .icon {
+              font-size: 1.5rem;
+
+              &.has-image {
+                width: var(--composer-gap-md);
+                height: var(--composer-gap-md);
+                object-fit: cover;
+              }
+            }
           }
         }
       }
@@ -128,6 +150,7 @@
 
             &[data-animation~="animate1"] {
               transition: transform 0.7s ease;
+
               &:hover {
                 transform: scale(1.2);
               }
@@ -146,10 +169,12 @@
 
           &[data-animation~="animate2"] {
             @keyframes pulseShadow {
+
               0%,
               100% {
                 box-shadow: 0 0 0 var(--composer-primary-color);
               }
+
               50% {
                 box-shadow: 0 0 20px 5px var(--composer-primary-color);
               }
@@ -166,9 +191,17 @@
 
         .name {
           color: var(--composer-font-color-primary);
+          text-align: left;
         }
+
         .job {
           color: var(--composer-tertiary-color);
+          text-align: left;
+        }
+
+        .card-description {
+          color: var(--composer-tertiary-color);
+          text-align: left;
         }
       }
     }
@@ -183,28 +216,11 @@
           width: 100%;
           height: auto;
           min-height: auto;
-          .title {
-            font-size: 4rem;
-            width: 100%;
-          }
-
-          .label {
-            margin-bottom: var(--composer-gap-md);
-            .description {
-              width: 100%;
-            }
-          }
-
-          .icon-container {
-            .icon-item {
-              .icon {
-                font-size: 1rem;
-              }
-            }
-          }
         }
+
         .team-card {
           min-height: 300px;
+
           .image {
             min-height: 500px;
             height: auto;
@@ -221,14 +237,6 @@
       .content {
         .featured-card {
           gap: var(--composer-gap-xs);
-
-          .icon-container {
-            .icon-item {
-              .icon {
-                font-size: 1.5rem !important;
-              }
-            }
-          }
         }
 
         .team-card {
@@ -240,32 +248,45 @@
             height: 400px !important;
           }
         }
-
-        .title {
-          font-size: 3rem !important;
-        }
       }
     }
   }
 }
 
 @keyframes pulseScale {
+
   0%,
   100% {
     transform: scale(1.1);
   }
+
   50% {
     transform: scale(1);
   }
 }
 
 @keyframes bounce {
-  0%, 100% { transform: translateY(0); }
-  30% { transform: translateY(-8px); }
-  60% { transform: translateY(4px); }
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  30% {
+    transform: translateY(-8px);
+  }
+
+  60% {
+    transform: translateY(4px);
+  }
 }
 
 @keyframes colorChange {
-  0% { color: var(--composer-font-color-primary); }
-  100% { color: var(--composer-primary-color); }
+  0% {
+    color: var(--composer-font-color-primary);
+  }
+
+  100% {
+    color: var(--composer-primary-color);
+  }
 }

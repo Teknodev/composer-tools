@@ -1,32 +1,53 @@
-@use "../../../../composer-tools//composer-base-components//base//utitilities/viewports.module.scss"
-  as *;
+@use "../../../../composer-tools//composer-base-components//base//utitilities/viewports.module.scss" as *;
 
 .container {
-  position: relative;
-  width: 100%;
-  .background-image {
-    width: auto;
-    height: 100%;
-    background-position: center;
-    margin: 0 auto;
-    background-repeat: no-repeat;
-    background-size: cover;
-  }
+  width: auto;
+  height: 100%;
+  background-position: center;
+  margin: 0 auto;
+  background-repeat: no-repeat;
+  background-size: cover;
+
   .max-content {
     display: flex;
     flex-direction: column;
 
-    .text-box {
+    .vertical-content {
+      align-items: center;
+      padding: var(--composer-gap-lg);
       z-index: 2;
-      .title {
+
+      .subtitle {
+        transform: translateX(0);
+        text-align: center;
+
         &.image {
           color: white;
         }
-        &.no-image {
-          color: var(--composer-font-color-primary);
+
+        &::before {
+          background: transparent !important;
         }
       }
+
+      &.has-image {
+        .subtitle {
+          padding: 0 !important;
+          background: transparent !important;
+        }
+      }
+
+      .title {
+        text-align: center;
+
+        &.image {
+          color: white;
+        }
+      }
+
       .description {
+        text-align: center;
+
         &.image {
           color: white;
         }
@@ -37,6 +58,7 @@
       z-index: 3;
       width: 100%;
       gap: var(--composer-gap-md);
+
       &-reverse {
         flex-flow: row-reverse;
       }
@@ -51,48 +73,62 @@
               justify-content: center;
               align-items: center;
 
-              .img-div {
-                width: 126px;
-                height: 126px;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                .image-box {
-                  width: 120px;
-                  height: 120px;
-                  border-radius: 50%;
-                  overflow: hidden;
-                  .img {
-                    width: 100%;
-                    height: 100%;
-                    object-fit: cover;
-                    transition: transform 0.3s ease-in-out;
-                  }
+              .image-box {
+                width: 120px;
+                height: 120px;
+                border-radius: 50%;
+                overflow: hidden;
+
+                .img {
+                  width: 100%;
+                  height: 100%;
+                  object-fit: cover;
+                  transition: transform 0.3s ease-in-out;
                 }
               }
 
               .header-page {
                 align-items: center;
                 transition: transform 0.3s ease-in-out;
-                .item-title {
+
+                .card-subtitle {
+                  text-align: center;
+
                   &.image {
                     color: white;
                   }
+
                   &.no-image {
                     color: var(--composer-font-color-primary);
                   }
                 }
 
-                .first-header {
+                .card-title {
+                  text-align: center;
+
                   &.image {
                     color: white;
                   }
+
+                  &.no-image {
+                    color: var(--composer-font-color-primary);
+                  }
+                }
+
+                .card-description {
+                  text-align: center;
+
+                  &.image {
+                    color: white;
+                  }
+
                   &.no-image {
                     color: var(--composer-font-color-primary);
                   }
                 }
               }
             }
+
             &[data-animation~="animate1"] {
               &:hover {
                 .img {
@@ -100,6 +136,7 @@
                 }
               }
             }
+
             &[data-animation~="animate2"] {
               &:hover {
                 .header-page {
@@ -108,10 +145,12 @@
                 }
               }
             }
+
             &[data-animation~="animate3"] {
               .img-div {
                 position: relative;
                 overflow: hidden;
+
                 &::after {
                   content: "";
                   position: absolute;
@@ -128,6 +167,7 @@
                   transition: clip-path 0.5s ease-in-out;
                 }
               }
+
               &:hover {
                 .img-div {
                   &::after {
@@ -135,6 +175,7 @@
                   }
                 }
               }
+
               &.no-image {
                 .img-div {
                   &::after {
@@ -167,13 +208,15 @@
   gap: var(--composer-gap-sm);
   list-style-type: none;
   padding-left: 0;
+
   .currentPaging {
     background: white;
   }
+
   li {
     background: transparent;
 
-    > button {
+    >button {
       cursor: pointer;
       padding: 0;
       background: transparent;
@@ -195,18 +238,22 @@
     transform: rotate(0deg);
     border-top: 1px solid white;
   }
+
   25% {
     transform: rotate(90deg);
     border-top: 1px solid white;
   }
+
   50% {
     transform: rotate(180deg);
     border-top: 1px solid white;
   }
+
   75% {
     transform: rotate(270deg);
     border-top: 1px solid white;
   }
+
   100% {
     transform: rotate(360deg);
     border-top: 1px solid white;

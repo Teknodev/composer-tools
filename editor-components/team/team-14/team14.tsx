@@ -14,26 +14,36 @@ class Team14 extends Team {
   constructor(props?: any) {
     super(props, styles);
     this.addProp({
+
+      type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "",
+    });
+
+    this.addProp({
       type: "string",
       key: "title",
       displayer: "Title",
       value: "Our Team",
     });
+
     this.addProp({
       type: "string",
-      key: "subtitle",
-      displayer: "Subtitle",
+      key: "description",
+      displayer: "Description",
       value: "Meet the creative minds behind the magic! Our team is dynamic blend of visionaries, storytellers, and artisans, united by a passion for innovation and excellence",
     });
+
     this.addProp({
       type: "array",
-      key: "team",
-      displayer: "Team",
+      key: "cards",
+      displayer: "Cards",
       value: [
         {
           type: "object",
-          key: "portfolio",
-          displayer: "Portfolio Card",
+          key: "card",
+          displayer: "Card",
           value: [
             {
               type: "string",
@@ -143,13 +153,14 @@ class Team14 extends Team {
         },
       ],
     });
+
     this.addProp({
       type: "number",
       key: "itemCount",
       displayer: "Item Count in a Row",
       value: 3,
-      max: 5,
     });
+
     this.addProp({
       type: "multiSelect",
       key: "hoverAnimation",
@@ -165,45 +176,41 @@ class Team14 extends Team {
     return "Team 14";
   }
   render() {
-    const title = this.getPropValue("title");
-    const subtitle = this.getPropValue("subtitle");
-
-    const titleValue = this.castToString(title);
-    const subtitleValue = this.castToString(subtitle);
-
-    const team = this.castToObject<Card[]>("team");
-
+    const subtitle = this.castToString(this.getPropValue("subtitle"));
+    const title = this.castToString(this.getPropValue("title"));
+    const description = this.castToString(this.getPropValue("description"));
+    const cards = this.castToObject<Card[]>("cards");
     const itemCount: number = this.getPropValue("itemCount");
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          {(title || subtitle) && (
-            <Base.VerticalContent className={this.decorateCSS("up-page")}>
-              {titleValue && <Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>}
-              {subtitleValue && <Base.SectionDescription className={this.decorateCSS("subtitle")}>{subtitle}</Base.SectionDescription>}
+          {(subtitle || title || description) && (
+            <Base.VerticalContent className={this.decorateCSS("vertical-content")}>
+              {subtitle && <Base.SectionDescription className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionDescription>}
+              {title && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
+              {description && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
             </Base.VerticalContent>
           )}
-
-          {team.length > 0 && (
+          {cards.length > 0 && (
             <Base.ListGrid gridCount={{ pc: itemCount, tablet: 2, phone: 1 }} className={this.decorateCSS("down-page")}>
-              {team
-                .filter((teamItem) => teamItem.profileImage)
-                .map((teamItem: Card, index: number) => {
-                  const image = teamItem.profileImage;
-                  const name = this.castToString(teamItem.name);
-                  const position = this.castToString(teamItem.position);
-                  const description = this.castToString(teamItem.description);
+              {cards
+                .filter((cardItem) => cardItem.profileImage)
+                .map((cardItem: Card, index: number) => {
+                  const image = cardItem.profileImage;
+                  const name = this.castToString(cardItem.name);
+                  const position = this.castToString(cardItem.position);
+                  const description = this.castToString(cardItem.description);
 
                   return (
-                    <div className={this.decorateCSS("card")}>
+                    <div key={index} className={this.decorateCSS("card")}>
                       <div className={this.decorateCSS("portfolio")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
-                        {image && <Base.Media value={image} className={this.decorateCSS("image")} key={index} data-animation={this.getPropValue("hoverAnimation").join(" ")} />}
+                        {image && <Base.Media value={image} className={this.decorateCSS("image")} data-animation={this.getPropValue("hoverAnimation").join(" ")} />}
                         {(name || position || description) && (
                           <Base.VerticalContent className={this.decorateCSS("info")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
-                            {name && <Base.H3 className={this.decorateCSS("name")}>{teamItem.name}</Base.H3>}
-                            {position && <Base.H4 className={this.decorateCSS("position")}>{teamItem.position}</Base.H4>}
-                            {description && <Base.P className={this.decorateCSS("description")}>{teamItem.description}</Base.P>}
+                            {name && <Base.H3 className={this.decorateCSS("name")}>{cardItem.name}</Base.H3>}
+                            {position && <Base.H4 className={this.decorateCSS("position")}>{cardItem.position}</Base.H4>}
+                            {description && <Base.P className={this.decorateCSS("description")}>{cardItem.description}</Base.P>}
                           </Base.VerticalContent>
                         )}
                       </div>

@@ -1,136 +1,137 @@
 @use "../../../../composer-tools/composer-base-components//base//utitilities/viewports.module.scss"
-  as *;
+as *;
 $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
 
 .container {
   .max-content {
     display: flex;
+    flex-direction: column;
+    gap: var(--composer-gap-lg);
 
-    .page {
-      width: 100%;
-      gap: var(--composer-gap-lg);
+    .vertical-content {
 
-      .down-page {
-        gap: var(--composer-gap-md);
+      .subtitle,
+      .title,
+      .description {
+        content: "";
+      }
+    }
 
-        .all-card {
-          
-          &[data-animation~="animate2"] {
-            .card-info {
-              .position {
-                transition: border-color 0.3s ease-in-out;
-              }
-            }
-            
-            &:hover {
-              .card-info {
-                .position {
-                  border-color: var(--composer-primary-color);
-                }
-              }
+    .down-page {
+      gap: var(--composer-gap-md);
+
+      .all-card {
+
+        &[data-animation~="animate2"] {
+          .card-info {
+            .card-position {
+              transition: border-color 0.3s ease-in-out;
             }
           }
 
-          .top {
-            .image-wrapper {
-              width: 100%;
-              height: 100%;
-              object-fit: cover;
-              position: relative;
-
-              .image-icon {
-                position: absolute;
-                top: var(--composer-gap-xs);
-                right: var(--composer-gap-xs);
-                z-index: 1;
-                font-size: 2em;
-                color: var(--composer-font-color-primary);
-              }
-
-              .image-container {
-                overflow: hidden;
-                border-radius: var(--composer-border-radius-lg);
-                width: 100%;
-                transition: $transition;
-
-                .image {
-                  width: 100%;
-                  height: 500px;
-                  object-fit: cover;
-                  margin-bottom: 0;
-                  transition: $transition;
-
-                  &.shrink {
-                    height: 200px;
-                  }
-
-                  &[data-animation~="animate1"] {
-                    transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
-                    &:hover {
-                      transform: scale(1.1);
-                    }
-                  }
-                }
+          &:hover {
+            .card-info {
+              .card-position {
+                border-color: var(--composer-primary-color);
               }
             }
+          }
+        }
 
-            .card-info {
-              margin-top: var(--composer-gap-md);
-              
-              .card-name {
-                color: var(--composer-font-color-primary);
-                margin: 0;
-                margin-bottom: var(--composer-gap-xs);
+        .image-wrapper {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          position: relative;
+
+          .image-icon {
+            position: absolute;
+            top: var(--composer-gap-xs);
+            right: var(--composer-gap-xs);
+            z-index: 1;
+            font-size: 2em;
+            color: var(--composer-font-color-primary);
+          }
+
+          .image-container {
+            overflow: hidden;
+            border-radius: var(--composer-border-radius-lg);
+            width: 100%;
+            transition: $transition;
+
+            .image {
+              width: 100%;
+              height: 500px;
+              object-fit: cover;
+              margin-bottom: 0;
+              transition: $transition;
+
+              &.shrink {
+                height: 200px;
               }
 
-              .position {
-                margin: 0;
-                border-radius: var(--composer-border-radius-lg);
-                border: 1px solid var(--composer-tertiary-color);
-                width: fit-content;
-                color: var(--composer-tertiary-color);
-                padding: var(--composer-gap-xs) var(--composer-gap-sm);
-              }
+              &[data-animation~="animate1"] {
+                transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
 
-              .features {
-                margin-top: var(--composer-gap-md);
-                width: 100%;
-
-                .feature {
-                  display: flex;
-                  align-items: center;
-                  color: var(--composer-tertiary-color);
-                  margin: 0;
-                  gap: var(--composer-gap-md);
-                  margin-bottom: var(--composer-gap-sm);
-
-                  &:last-child {
-                    margin-bottom: 0;
-                  }
-
-                  .icon {
-                    font-size: 2rem;
-                  }
-
-                  .feature-element {
-                    width: 100%;
-                    text-align: left;
-                    margin: 0;
-                  }
+                &:hover {
+                  transform: scale(1.1);
                 }
               }
             }
           }
         }
-      }
-      button {
-        background-color: transparent;
-        border: none;
-        padding: 0;
-        margin: 0;
-        outline: none;
-        cursor: pointer;
-        width: 100%;
+
+        .card-info {
+          margin-top: var(--composer-gap-md);
+
+          .card-name {
+            color: var(--composer-font-color-primary);
+            text-align: left;
+          }
+
+          .card-position {
+            border-radius: var(--composer-border-radius-lg);
+            border: 1px solid var(--composer-tertiary-color);
+            width: fit-content;
+            color: var(--composer-tertiary-color);
+            padding: var(--composer-gap-xs) var(--composer-gap-sm);
+            text-align: left;
+            margin-left: 0;
+          }
+
+          .card-description {
+            color: var(--composer-tertiary-color);
+            text-align: left;
+          }
+
+          .features {
+            margin-top: var(--composer-gap-md);
+            align-items: flex-start;
+
+            .feature {
+              display: flex;
+              align-items: center;
+              color: var(--composer-tertiary-color);
+              gap: var(--composer-gap-sm);
+              margin-bottom: var(--composer-gap-sm);
+
+              .icon {
+                font-size: 2rem;
+
+                &.has-image {
+                  width: var(--composer-gap-md);
+                  height: var(--composer-gap-md);
+                  object-fit: cover;
+                }
+              }
+
+              .feature-element {
+                width: 100%;
+                text-align: left;
+              }
+            }
+          }
+        }
       }
     }
   }
@@ -138,18 +139,6 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
 
 @container (max-width: #{$composer-tablet-width}) {
   .container {
-    .page {
-      gap: var(--composer-gap-xs) !important;
-
-      .up-page {
-        .text-group {
-          .title1 {
-            width: 90%;
-          }
-        }
-      }
-    }
-
     .down-page {
       gap: var(--composer-gap-md) !important;
     }

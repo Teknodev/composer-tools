@@ -1,115 +1,123 @@
-@use "../../../../composer-tools//composer-base-components//base//utitilities/viewports.module.scss"
-  as *;
+@use "../../../../composer-tools//composer-base-components//base//utitilities/viewports.module.scss" as *;
 
 .container {
   .max-content {
-    .page {
-      gap: var(--composer-gap-md);
-      .up-content {
-        .title,
-        .description {
-          content: "";
-        }
+    display: flex;
+    flex-direction: column;
+    gap: var(--composer-gap-lg);
+
+    .vertical-content {
+
+      .subtitle,
+      .title,
+      .description {
+        content: "";
       }
+    }
 
-      .down-content {
-        .card {
-          width: 100%;
-          height: auto;
-          transition: all 0.8s;
-          flex: 1 1;
-          border-radius: var(--composer-border-radius-md);
-          background-color: color-mix(
-            in srgb,
+    .down-content {
+      .card {
+        width: 100%;
+        height: auto;
+        transition: all 0.8s;
+        flex: 1 1;
+        border-radius: var(--composer-border-radius-md);
+        background-color: color-mix(in srgb,
             var(--composer-html-background),
-            var(--composer-font-color-primary) 5%
-          );
+            var(--composer-font-color-primary) 5%);
 
-          .text-box {
-            padding: var(--composer-gap-md);
-            width: 100%;
-            transition: 0.5s;
+        .text-box {
+          padding: var(--composer-gap-md);
+          width: 100%;
+          transition: 0.5s;
 
-            .text-up {
-              display: flex;
-              gap: var(--composer-gap-md);
+          .text-up {
+            display: flex;
+            gap: var(--composer-gap-md);
 
-              .name {
-                color: var(--composer-font-color-primary);
-                transition: color 0.5s;
-              }
-
-              .job {
-                color: var(--composer-tertiary-color);
-                transition: color 0.5s;
-              }
+            .name {
+              color: var(--composer-font-color-primary);
+              transition: color 0.5s;
             }
 
-            .description {
+            .job {
               color: var(--composer-tertiary-color);
               transition: color 0.5s;
             }
           }
 
-          .image-wrapper {
-            overflow: hidden;
-            border-top-right-radius: var(--composer-border-radius-md);
-            border-top-left-radius: var(--composer-border-radius-md);
-
-            .image {
-              height: 500px;
-              width: 100%;
-              object-fit: cover;
-              transition: filter 0.3s, transform 0.3s ease-in-out;
-            }
+          .description {
+            color: var(--composer-tertiary-color);
+            transition: color 0.5s;
           }
+        }
 
-          &[data-animation~="animate1"] {
-            &:hover {
-              background-color: var(--composer-primary-color);
+        .image-wrapper {
+          overflow: hidden;
+          border-top-right-radius: var(--composer-border-radius-md);
+          border-top-left-radius: var(--composer-border-radius-md);
 
-              .text-box .text-up .name {
-                color: var(--composer-font-color-secondary);
-              }
-              .text-box .text-up .job,
-              .text-box .description {
-                color: var(--composer-font-color-secondary);
-              }
-            }
+          .image {
+            height: 500px;
+            width: 100%;
+            object-fit: cover;
+            transition: filter 0.3s, transform 0.3s ease-in-out;
           }
+        }
 
-          &[data-animation~="animate2"] {
-            &:hover {
-              .image-wrapper .image {
-                transform: scale(1.1);
-              }
-            }
-          }
+        &[data-animation~="animate1"] {
+          &:hover {
+            background-color: var(--composer-primary-color);
 
-          &[data-animation~="animate3"] {
-            .image-wrapper .image {
-              filter: grayscale(100%);
+            .text-box .text-up .name {
+              color: var(--composer-font-color-secondary);
             }
-            &:hover {
-              .image-wrapper .image {
-                filter: grayscale(0%);
-              }
-            }
-          }
 
-          &[data-animation~="animate4"] {
-            &:hover {
-              transform: translateY(-5px);
+            .text-box .text-up .job,
+            .text-box .description {
+              color: var(--composer-font-color-secondary);
             }
           }
         }
+
+        &[data-animation~="animate2"] {
+          &:hover {
+            .image-wrapper .image {
+              transform: scale(1.1);
+            }
+          }
+        }
+
+        &[data-animation~="animate3"] {
+          .image-wrapper .image {
+            filter: grayscale(100%);
+          }
+
+          &:hover {
+            .image-wrapper .image {
+              filter: grayscale(0%);
+            }
+          }
+        }
+
+        &[data-animation~="animate4"] {
+          &:hover {
+            transform: translateY(-5px);
+          }
+        }
       }
-      .button-wrapper {
-        width: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        .button {
+    }
+
+    .button-container {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: var(--composer-gap-sm);
+      width: 100%;
+
+      .button {
+        .button-text {
           content: "";
         }
       }
@@ -120,21 +128,19 @@
 @container (max-width: #{$composer-tablet-width}) {
   .container {
     .max-content {
-      .page {
-        .down-content {
-          .card {
-            .text-box {
-              .text-up {
-                flex-direction: column;
-                gap: var(--composer-gap-sm);
+      .down-content {
+        .card {
+          .text-box {
+            .text-up {
+              flex-direction: column;
+              gap: var(--composer-gap-sm);
 
-                .name {
-                  margin: 0;
-                }
+              .name {
+                margin: 0;
+              }
 
-                .job {
-                  margin: 0;
-                }
+              .job {
+                margin: 0;
               }
             }
           }
