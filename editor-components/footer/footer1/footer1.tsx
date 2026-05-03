@@ -305,7 +305,6 @@ class Footer1Page extends BaseFooter {
     });
 
     this.setComponentState("placeholderText", this.castToString(this.getPropValue("subscriptionPlaceholder")));
-    console.log("Initial placeholder:", this.getComponentState("placeholderText"));
 
   }
 

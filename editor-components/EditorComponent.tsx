@@ -331,7 +331,7 @@ export type TypeReactComponent = {
   id?: string;
   children?: string;
   customComponentId?: string;
-  customComponentVersion?: string;
+  customComponentVersion?: number;
   globalComponentId?: string;
 };
 export type TypeUsableComponentProps = {
@@ -414,7 +414,19 @@ export abstract class Component
     prevState: Readonly<{ states: any; componentProps: any; }>,
     snapshot?: any
   ): void {
-
+    const prevPropsArr: any[] = (prevProps as any)?.props || [];
+    const nextPropsArr: any[] = (this.props as any)?.props || [];
+    const propDiffs: { key: string; prev: any; next: any }[] = [];
+    nextPropsArr.forEach((np: any) => {
+      const pp = prevPropsArr.find((p: any) => p?.key === np?.key);
+      if (pp && pp.value !== np.value && (np.type === "string" || np.type === "boolean")) {
+        propDiffs.push({
+          key: np.key,
+          prev: typeof pp.value === "string" ? String(pp.value).slice(0, 80) : pp.value,
+          next: typeof np.value === "string" ? String(np.value).slice(0, 80) : np.value,
+        });
+      }
+    });
     EventEmitter.emit(EVENTS.COMPONENT_DID_UPDATE, { data: this });
     this.onComponentDidUpdate?.(prevProps, prevState, snapshot);
   }
@@ -541,17 +553,14 @@ export abstract class Component
   }
 
   static getName(): string {
-    // console.error("Static Method Not Implemented", this.name);
     return this.name;
   }
 
   getName(): string {
-    // console.error("Static Method Not Implemented", this.name);
     return (this.constructor as typeof Component).getName();
   }
 
   static getInstanceName(): string {
-    // console.error("Static Method Not Implemented", this.name);
     return this.name;
   }
 
@@ -819,11 +828,9 @@ export abstract class Component
       prop.value === value;
 
     if (isInvalidIndex || isMatchingSimpleValue || isMatchingComplexValue) {
-      console.debug(`%cDEBUG%c [EditorComponent]`, Component._dbgStyle, 'color:#888;font-style:italic;', 'setProp skipped (no change)', { id: this.id, key });
       return;
     }
 
-    console.debug(`%cDEBUG%c [EditorComponent]`, Component._dbgStyle, 'color:#888;font-style:italic;', 'setProp → setState', { id: this.id, key, type: prop.type });
     this.state.componentProps.props[i].value = value;
     this.state.componentProps.props[i] = this.attachValueGetter(
       this.state.componentProps.props[i]

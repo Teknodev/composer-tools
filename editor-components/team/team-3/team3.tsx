@@ -358,8 +358,7 @@ class Team3 extends Team {
 
     const titleValue = title.props.html;
     const subTitleValue = this.castToString(subtitle);
-    console.log("subTitleValue: ", subTitleValue);
-    
+
 
     return (
       <Base.Container className={this.decorateCSS("container")}>

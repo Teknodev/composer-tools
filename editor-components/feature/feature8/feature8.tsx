@@ -369,7 +369,6 @@ class Feature8 extends BaseFeature {
       observer = new IntersectionObserver(this.callback, { ...this.options, root: scrollRoot });
       this.observer = observer;
     } catch (err) {
-      console.error("[Feature8] Failed to create IntersectionObserver", err);
       return;
     }
 

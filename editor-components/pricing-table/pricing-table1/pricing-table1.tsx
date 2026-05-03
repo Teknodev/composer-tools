@@ -603,7 +603,7 @@ class PricingTable1 extends BasePricingTable {
             )}
             <div className={this.decorateCSS("items")}>
               {this.castToObject<Pricing[]>("pricingTableItem").map((table: Pricing, index: number) => {
-                const popularText = this.castToString(table.popular_settings.text);
+                const popularText = this.castToString(table.popular_settings?.text);
                 const cardSubtitleExist = this.castToString(table.cardsubtitle);
                 const cardTitleExist = this.castToString(table.cardTitle);
 
@@ -611,7 +611,7 @@ class PricingTable1 extends BasePricingTable {
                 const durationExist = this.castToString(table.cardDuration);
                 const duration1Exist = this.castToString(table.cardDuration1);
 
-                const cardButtonTextExist = this.castToString(table.buttonType.text);
+                const cardButtonTextExist = this.castToString(table.buttonType?.text);
                 const cardpricingTableTitleExist = this.castToString(table.pricingTableTitle);
 
                 return (
@@ -619,14 +619,14 @@ class PricingTable1 extends BasePricingTable {
                   && this.getPropValue("animations").map((animation:string) => this.decorateCSS(animation)).join(" ")} 
                   ${table.isActive && this.decorateCSS("active")} `}>
                     {popularText && (
-                      <div className={`${this.decorateCSS("popular-box")} ${table.popular_settings.is_popular && this.decorateCSS("active")}`}>
-                        <Base.P className={this.decorateCSS("popular-text")}>{table.popular_settings.text}</Base.P>
+                      <div className={`${this.decorateCSS("popular-box")} ${table.popular_settings?.is_popular && this.decorateCSS("active")}`}>
+                        <Base.P className={this.decorateCSS("popular-text")}>{table.popular_settings?.text}</Base.P>
                       </div>
                     )}
                     {cardSubtitleExist && <Base.H3 className={this.decorateCSS("cardsubtitle")}>{table.cardsubtitle}</Base.H3>}
                     {cardTitleExist && <Base.H3 className={this.decorateCSS("card-title")}>{table.cardTitle}</Base.H3>}
                     <div className={this.decorateCSS("card-list")}>
-                      {table.cardList.map((listItem: any, index: number) => {
+                      {(table.cardList || []).map((listItem: any, index: number) => {
                         const cardListItemExist = this.castToString(listItem.cardListItem);
                         const cardExist = listItem.icon || cardListItemExist;
 
@@ -659,8 +659,8 @@ class PricingTable1 extends BasePricingTable {
                         </div>
                      
                       {cardButtonTextExist && (
-                        <Base.Button buttonType={table.buttonType.type} className={this.decorateCSS("card-button")}>
-                          <ComposerLink path={table.buttonType.url}>{table.buttonType.text}</ComposerLink>
+                        <Base.Button buttonType={table.buttonType?.type} className={this.decorateCSS("card-button")}>
+                          <ComposerLink path={table.buttonType?.url}>{table.buttonType?.text}</ComposerLink>
                         </Base.Button>
                       )}
 
@@ -673,6 +673,7 @@ class PricingTable1 extends BasePricingTable {
             </div>
             <div className={this.decorateCSS("titles")}>
               {this.getPropValue("titles").map((title: any) => {
+                // TODO(legacy): titles items are plain casted objects, not class instances — getPropValue() likely throws on saved data. Out of scope for this patch.
                 const text = title.getPropValue("text");
                 const icon = title.getPropValue("icon");
                 const textExist = this.castToString(text);

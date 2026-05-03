@@ -657,9 +657,9 @@ class PricingTable2 extends BasePricingTable {
                             <Base.Icon propsIcon={{ className: this.decorateCSS("icon") }} name={table.cardIcon} />
                           </div>
                         )}
-                        {table.cardList.length > 0 && (
+                        {(table.cardList || []).length > 0 && (
                           <Base.VerticalContent className={this.decorateCSS("card-list")}>
-                            {table.cardList.map((listItem: ListItem, index: number) => {
+                            {(table.cardList || []).map((listItem: ListItem, index: number) => {
                               const cardListItem = this.castToString(listItem.cardListItem);
                               const listIcon = listItem.listIcon;
                               return (
@@ -680,10 +680,10 @@ class PricingTable2 extends BasePricingTable {
                             })}
                           </Base.VerticalContent>
                         )}
-                        {this.castToString(table.button.text) && (
-                            <Base.Button buttonType={table.button.type} className={this.decorateCSS("card-button")}>
-                               <ComposerLink path={table.button.url}>
-                                 {table.button.text}
+                        {this.castToString(table.button?.text) && (
+                            <Base.Button buttonType={table.button?.type} className={this.decorateCSS("card-button")}>
+                               <ComposerLink path={table.button?.url}>
+                                 {table.button?.text}
                                </ComposerLink>
                             </Base.Button>
                         )}
