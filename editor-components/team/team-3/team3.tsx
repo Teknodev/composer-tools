@@ -948,9 +948,9 @@ class Team3 extends Team {
     const subtitle = this.castToString(this.getPropValue("subtitle"));
     const title = this.castToString(this.getPropValue("title"));
     const description = this.castToString(this.getPropValue("description"));
-    const hasContent = subtitle || title || description;
     const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons") || [];
     const visibleButtons = buttons.filter(btn => this.castToString(btn.text));
+    const hasContent = subtitle || title || description || visibleButtons.length > 0;
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
