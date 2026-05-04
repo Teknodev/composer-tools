@@ -4,7 +4,7 @@
   &.colored-background {
     .max-content {
       background-color: var(--composer-font-color-primary);
-      border-radius: var(--composer-border-radius-sm);
+      border-radius: var(--composer-border-radius-md);
 
       .content {
         .title-box {
@@ -16,6 +16,10 @@
               color: var(--composer-html-background);
               background: transparent;
               padding: 0;
+
+              &::before {
+                background-color: var(--composer-html-background);
+              }
             }
 
             .title,
