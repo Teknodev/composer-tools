@@ -33,21 +33,38 @@
 }
 
 .container {
-    padding: var(--composer-gap-md) 0;
     .max-content {
         width: 100%;
-        padding: 0 var(--composer-gap-md);
+        display: flex;
+        flex-direction: column;
+        gap: var(--composer-gap-lg);
 
         .header {
             display: flex;
-            margin: var(--composer-gap-md) 0;
-            gap: var(--composer-gap-md);
             flex-wrap: wrap;
             flex-direction: column;
             width: 100%;
             align-items: center;
 
+            .header-content {
+                align-items: center;
+                width: 100%;
+            }
+
+            .subtitle {
+                text-align: center;
+                transform: translateX(0);
+
+                &::before {
+                    display: none;
+                }
+            }
+
             .title {
+                text-align: center;
+            }
+
+            .description {
                 text-align: center;
             }
 
@@ -96,7 +113,7 @@
                     padding: var(--composer-gap-xs);
                     width: fit-content;
                     margin: 0;
-                    
+
                     &::after {
                         content: '';
                         position: absolute;
@@ -114,8 +131,6 @@
         }
 
         .wrapper {
-            padding: var(--composer-gap-md) 0;
-
             .carousel {
                 .slider-item {
                     display: flex !important;
@@ -134,7 +149,7 @@
                         display: flex;
                         align-items: center;
                         justify-content: center;
-                        
+
                         .image-wrapper {
                             width: 178px;
                             height: 178px;
@@ -144,7 +159,7 @@
                             align-items: center;
                             justify-content: center;
                             position: relative;
-                            
+
                             .overlay {
                                 position: absolute;
                                 top: 0;
@@ -157,7 +172,7 @@
                                 pointer-events: none;
                                 transition: opacity 0.3s ease;
                             }
-                            
+
                             &:hover .overlay {
                                 opacity: 0.1;
                             }
