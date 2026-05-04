@@ -194,6 +194,7 @@ class PricingTable10 extends BasePricingTable {
     const titleExist = this.castToString(this.getPropValue("title"));
     const descriptionExist = this.castToString(this.getPropValue("description"));
     const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
+    const buttonsExist = buttons?.some((btn: INPUTS.CastedButton) => this.castToString(btn.text));
 
     const card = this.castToObject<CardData>("card");
 
@@ -212,7 +213,7 @@ class PricingTable10 extends BasePricingTable {
       <Base.Container className={this.decorateCSS("container")}>
         {!isSingleColorBackground && <div className={this.decorateCSS("background-fill")} />}
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          {(subtitleExist || titleExist || descriptionExist || buttons?.length > 0) && (
+          {(subtitleExist || titleExist || descriptionExist || buttonsExist) && (
             <div className={this.decorateCSS("top-section-wrapper")}>
               <Base.VerticalContent className={this.decorateCSS("top-section")}>
                 {subtitleExist && (
@@ -230,7 +231,7 @@ class PricingTable10 extends BasePricingTable {
                     {this.getPropValue("description")}
                   </Base.SectionDescription>
                 )}
-                {buttons?.length > 0 && (
+                {buttonsExist && (
                   <div className={this.decorateCSS("buttons")}>
                     {buttons.map((button: INPUTS.CastedButton, index: number) => {
                       const buttonText = this.castToString(button.text);

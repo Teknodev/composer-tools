@@ -78,14 +78,19 @@
 
                         .features-label {
                             color: var(--composer-font-color-primary);
-                            width: fit-content;
+                            flex: 0 1 auto;
+                            width: auto !important;
+                            min-width: 0;
                             text-align: left;
                             margin-left: 0 !important;
                             margin-right: 0 !important;
+                            word-break: break-word;
+                            overflow-wrap: break-word;
                         }
 
                         .separator-line {
                             flex: 1 0 40px;
+                            align-self: center;
                             height: 1px;
                             background-color: color-mix(in srgb, var(--composer-font-color-primary) 10%, transparent);
                         }
