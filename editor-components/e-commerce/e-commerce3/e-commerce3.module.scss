@@ -1,31 +1,26 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
+    .max-content {
+        .tab-buttons {
+            display: flex;
+            flex-wrap: wrap;
 
-    .container-top {
-        padding-bottom: 0 !important;
+            .tab {
+                padding: var(--composer-gap-md) var(--composer-gap-lg);
+                border: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.2);
+                border-bottom: none !important;
 
-        .max-content {
-            .tab-buttons {
-                display: flex;
-                flex-wrap: wrap;
+                .tab-title {
+                    color: var(--composer-font-color-primary);
+                }
 
-                .tab {
-                    padding: var(--composer-gap-md) var(--composer-gap-lg);
-                    border: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.2);
-                    border-bottom: none !important;
+                &.active {
+                    border: none !important;
+                    background-color: var(--composer-font-color-primary);
 
                     .tab-title {
-                        color: var(--composer-font-color-primary);
-                    }
-
-                    &.active {
-                        border: none !important;
-                        background-color: var(--composer-font-color-primary);
-
-                        .tab-title {
-                            color: var(--composer-html-background) !important;
-                        }
+                        color: var(--composer-html-background) !important;
                     }
                 }
             }
@@ -33,62 +28,66 @@
     }
 
     .container-bottom {
+        margin: 0 -60px;
+        padding: var(--composer-gap-xl) 60px;
         border-top: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.2);
         border-bottom: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.2);
         background-color: var(--composer-html-background);
 
-        .wrapper {
-            .tab-content {
-                align-items: start;
+        .tab-content {
+            align-items: start;
+            gap: var(--composer-gap-md);
+            width: 100%;
+
+            .vertical>*:last-child {
+                margin-bottom: 0;
+            }
+
+            .subtitle,
+            .title {
+                color: var(--composer-font-color-primary);
+                text-align: left;
+            }
+
+            .description {
+                text-align: left;
+            }
+
+            .content {
+                display: flex;
                 gap: var(--composer-gap-md);
                 width: 100%;
 
-                .subtitle,
-                .title {
-                    color: var(--composer-font-color-primary);
-                    text-align: left;
-                }
-
-                .description {
-                    text-align: left;
-                }
-
-                .content {
+                .left {
                     display: flex;
-                    gap: var(--composer-gap-md);
-                    width: 100%;
+                    flex-direction: column;
+                    gap: var(--composer-gap-sm);
 
-                    .left {
-                        display: flex;
-                        flex-direction: column;
-                        gap: var(--composer-gap-sm);
+                    .detail-title,
+                    .property-title {
+                        color: var(--composer-font-color-primary);
+                        text-align: left;
+                    }
+                }
 
-                        .detail-title,
-                        .property-title {
-                            color: var(--composer-font-color-primary);
-                            text-align: left;
-                        }
+                .right {
+                    display: flex;
+                    flex-direction: column;
+                    gap: var(--composer-gap-sm);
+
+                    .detail-value {
+                        color: var(--composer-font-color-primary);
+                        text-align: left;
                     }
 
-                    .right {
+                    .box {
                         display: flex;
-                        flex-direction: column;
-                        gap: var(--composer-gap-sm);
+                        min-height: 16px;
 
-                        .detail-value {
+                        .property-value {
                             color: var(--composer-font-color-primary);
+                            padding-right: var(--composer-gap-sm);
                             text-align: left;
-                        }
-
-                        .box {
-                            display: flex;
-                            min-height: 16px;
-
-                            .property-value {
-                                color: var(--composer-font-color-primary);
-                                padding-right: var(--composer-gap-sm);
-                                text-align: left;
-                            }
                         }
                     }
                 }
@@ -98,15 +97,11 @@
 }
 
 @container (max-width: #{$composer-phone-width}) {
-    .container-top {
-        border: 0 !important;
+    .container {
         padding-left: 0 !important;
         padding-right: 0 !important;
 
         .max-content {
-            width: 100% !important;
-            max-width: none !important;
-
             .tab-buttons {
                 flex-direction: column;
                 width: 100%;
@@ -118,6 +113,11 @@
                     border-right: 0 !important;
                 }
             }
+        }
+
+        .container-bottom {
+            margin: 0 !important;
+            padding: var(--composer-gap-xl) 30px !important;
         }
     }
 }
