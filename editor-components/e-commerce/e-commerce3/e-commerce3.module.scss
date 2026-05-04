@@ -1,11 +1,8 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
-    background-color: var(--composer-html-background);
-    width: 100%;
 
     .container-top {
-        padding-top: 0 !important;
         padding-bottom: 0 !important;
 
         .max-content {
@@ -102,11 +99,11 @@
 
 @container (max-width: #{$composer-phone-width}) {
     .container-top {
-        padding: 0 !important;
         border: 0 !important;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
 
         .max-content {
-            padding: 0 !important;
             width: 100% !important;
             max-width: none !important;
 
@@ -116,7 +113,7 @@
 
                 .tab {
                     width: 100%;
-                    padding: var(--composer-gap-md) 0;
+                    padding: 20px 30px !important;
                     border-left: 0 !important;
                     border-right: 0 !important;
                 }
