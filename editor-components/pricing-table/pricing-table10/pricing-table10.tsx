@@ -113,7 +113,6 @@ class PricingTable10 extends BasePricingTable {
           value: [
             INPUTS.BUTTON("button", "Button", "GET ACCESS", "", null, null, "Black"),
             INPUTS.BUTTON("button", "Button", "Get a free sample (20mb)", "", null, null, "Bare"),
-
           ],
         },
       ],
@@ -256,6 +255,7 @@ class PricingTable10 extends BasePricingTable {
           <div
             className={this.decorateCSS("card")}
           >
+            {(cardSubtitleExist || cardTitleExist || cardDescriptionExist || featuresLabelExist || features?.length > 0) && (
             <div className={this.decorateCSS("card-left")}>
               {(cardSubtitleExist || cardTitleExist || cardDescriptionExist) && (
                 <Base.VerticalContent className={this.decorateCSS("card-header")}>
@@ -309,7 +309,9 @@ class PricingTable10 extends BasePricingTable {
                 </div>
               )}
             </div>
+            )}
 
+            {(taglineExist || priceExist || cardButtons?.length > 0) && (
             <div className={this.decorateCSS("card-right")}>
               {taglineExist && (
                 <Base.P className={this.decorateCSS("tagline")}>{card.tagline}</Base.P>
@@ -337,6 +339,7 @@ class PricingTable10 extends BasePricingTable {
                 </div>
               )}
             </div>
+            )}
           </div>
 
         </Base.MaxContent>
