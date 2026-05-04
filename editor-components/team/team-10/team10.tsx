@@ -1,12 +1,12 @@
 import * as React from "react";
 import styles from "./team10.module.scss";
-import { Team, TypeUsableComponentProps } from "../../EditorComponent";
+import { Team, TypeMediaInputValue, TypeUsableComponentProps } from "../../EditorComponent";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 
 import { Base } from "../../../composer-base-components/base/base";
 
 interface TTeam {
-  image: string;
+  image: TypeMediaInputValue;
   subtitle: string;
   title: string;
   description: string;
@@ -98,10 +98,16 @@ class Team10 extends Team {
       value: "MANAGEMENT&STAFF",
     });
     this.addProp({
-      type: "image",
-      key: "background-image",
+      type: "media",
+      key: "componentBackground",
       displayer: "Background Image",
-      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b520bd2970002c628226?alt=media&timestamp=1719558632841",
+      additionalParams: {
+          availableTypes: ["image"],
+        },
+        value: {
+        type: "image",
+        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b520bd2970002c628226?alt=media&timestamp=1719558632841",
+      },
     });
 
     this.addProp({
@@ -122,10 +128,16 @@ class Team10 extends Team {
           displayer: "Team Member",
           value: [
             {
-              type: "image",
-              key: "image",
+              type: "media",
+              key: "profileImage",
               displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b520bd2970002c628227?alt=media&timestamp=1719558632841",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b520bd2970002c628227?alt=media&timestamp=1719558632841",
+              },
             },
             {
               type: "string",
@@ -195,10 +207,16 @@ class Team10 extends Team {
           displayer: "Team Member",
           value: [
             {
-              type: "image",
-              key: "image",
+              type: "media",
+              key: "profileImage",
               displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6735a270506a40002c2a2e77?alt=media&timestamp=1731568292649",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6735a270506a40002c2a2e77?alt=media&timestamp=1731568292649",
+              },
             },
             {
               type: "string",
@@ -268,10 +286,16 @@ class Team10 extends Team {
           displayer: "Team Member",
           value: [
             {
-              type: "image",
-              key: "image",
+              type: "media",
+              key: "profileImage",
               displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6735a270506a40002c2a2e79?alt=media&timestamp=1731568292648",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6735a270506a40002c2a2e79?alt=media&timestamp=1731568292648",
+              },
             },
             {
               type: "string",
@@ -341,10 +365,16 @@ class Team10 extends Team {
           displayer: "Team Member",
           value: [
             {
-              type: "image",
-              key: "image",
+              type: "media",
+              key: "profileImage",
               displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6735a270506a40002c2a2e78?alt=media&timestamp=1731568292648",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6735a270506a40002c2a2e78?alt=media&timestamp=1731568292648",
+              },
             },
             {
               type: "string",
@@ -426,7 +456,8 @@ class Team10 extends Team {
   }
 
   render() {
-    const backgroundImageExist = this.getPropValue("background-image");
+    const backgroundImage = this.getPropValue("componentBackground") as TypeMediaInputValue | undefined;
+    const backgroundImageExist = !!backgroundImage;
     const subtitle = this.getPropValue("subtitle");
     const title = this.getPropValue("title");
     const overlayExist = this.getPropValue("overlay");
@@ -444,11 +475,11 @@ class Team10 extends Team {
             </Base.VerticalContent>
 
             {overlayExist && <div className={this.decorateCSS("overlay")}></div>}
-            {backgroundImageExist && <img className={this.decorateCSS("background-image")} src={this.getPropValue("background-image")} />}
+            {backgroundImageExist && <Base.Media value={backgroundImage} className={this.decorateCSS("background-image")} />}
           </div>
           <div className={this.decorateCSS("right")}>
             {this.castToObject<TTeam[]>("team").map((teamMember: any) => {
-              const imageExist = teamMember.getPropValue("image");
+              const imageExist = teamMember.getPropValue("profileImage");
               return (
                 <Base.VerticalContent className={this.decorateCSS("team-member")}>
                   <div className={this.decorateCSS("info")}>
@@ -492,8 +523,7 @@ class Team10 extends Team {
                   </div>
                   {imageExist &&
                     <div className={this.decorateCSS("image-container")}>{
-                      <img className={this.decorateCSS("image")}
-                        src={teamMember.getPropValue("image")} />}
+                      <Base.Media value={teamMember.getPropValue("profileImage")} className={this.decorateCSS("image")} />}
                       <div className={this.decorateCSS("image-overlay")} data-animation={this.getPropValue("hoverAnimation").join(" ")}></div>
                     </div>
                   }

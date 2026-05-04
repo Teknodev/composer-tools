@@ -27,7 +27,7 @@ class Testimonials5Page extends Testimonials {
 
     this.addProp({
       type: "image",
-      key: "background-image",
+      key: "componentBackground",
       displayer: "Background Image",
       value: "https://craftohtml.themezaa.com/images/demo-travel-agency-home-bg-03.jpg",
     });
@@ -223,7 +223,7 @@ class Testimonials5Page extends Testimonials {
     const sliderRef = this.getComponentState("slider-ref");
     const hasLeftContent = Boolean(this.castToString(leftItem.subtitle) || this.castToString(leftItem.title) || leftItem.nextIcon || leftItem.prevIcon);
 
-    const backgroundImageExist = this.getPropValue("background-image");
+    const backgroundImageExist = this.getPropValue("componentBackground");
     const subtitleType = Base.getSectionSubTitleType();
 
     var settings = {
@@ -243,7 +243,7 @@ class Testimonials5Page extends Testimonials {
       <Base.Container
         className={this.decorateCSS("container")}
         style={{
-          backgroundImage: `url(${this.getPropValue("background-image")})`,
+          backgroundImage: `url(${this.getPropValue("componentBackground")})`,
         }}
       >
         <Base.MaxContent className={this.decorateCSS("maxContent")}>
@@ -268,12 +268,12 @@ class Testimonials5Page extends Testimonials {
                   {(leftItem.nextIcon || leftItem.prevIcon) && sliderItem.length > 1 && (
                     <div className={this.decorateCSS("arrow")}>
                       {leftItem.prevIcon && (
-                        <button onClick={() => this.handleSlideChange("next")} className={`${this.decorateCSS("prevArrow")} ${!this.getPropValue("background-image") && this.decorateCSS("prevArrowPrimary")}`}>
+                        <button onClick={() => this.handleSlideChange("next")} className={`${this.decorateCSS("prevArrow")} ${!this.getPropValue("componentBackground") && this.decorateCSS("prevArrowPrimary")}`}>
                           <Base.Icon name={leftItem.prevIcon} propsIcon={{ className: this.decorateCSS("icon") }} />
                         </button>
                       )}
                       {leftItem.nextIcon && (
-                        <button onClick={() => this.handleSlideChange("next")} className={`${this.decorateCSS("nextArrow")} ${!this.getPropValue("background-image") && this.decorateCSS("nextArrowPrimary")}`}>
+                        <button onClick={() => this.handleSlideChange("next")} className={`${this.decorateCSS("nextArrow")} ${!this.getPropValue("componentBackground") && this.decorateCSS("nextArrowPrimary")}`}>
                           <Base.Icon name={leftItem.nextIcon} propsIcon={{ className: this.decorateCSS("icon") }} />
                         </button>
                       )}
@@ -289,16 +289,16 @@ class Testimonials5Page extends Testimonials {
                   {item.image && <img src={item.image} alt={item.image} className={this.decorateCSS("image")} />}
 
                   <div className={this.decorateCSS("rightWrapper")}>
-                    {this.castToString(item.sliderTitle) && <Base.H3 className={`${this.decorateCSS("sliderTitle")} ${!this.getPropValue("background-image") && this.decorateCSS("sliderTitlePrimary")}`}>{item.sliderTitle}</Base.H3>}
+                    {this.castToString(item.sliderTitle) && <Base.H3 className={`${this.decorateCSS("sliderTitle")} ${!this.getPropValue("componentBackground") && this.decorateCSS("sliderTitlePrimary")}`}>{item.sliderTitle}</Base.H3>}
                     {this.getPropValue("lineIsActive") && (
                       <div className={this.decorateCSS("lineContainer")}>
-                        <div className={`${this.decorateCSS("line")} ${!this.getPropValue("background-image") && this.decorateCSS("linePrimary")}`}></div>
+                        <div className={`${this.decorateCSS("line")} ${!this.getPropValue("componentBackground") && this.decorateCSS("linePrimary")}`}></div>
                       </div>
                     )}
                     <Base.VerticalContent className={this.decorateCSS("rightContainer")}>
-                      {this.castToString(item.description) && <Base.P className={`${this.decorateCSS("description")} ${!this.getPropValue("background-image") && this.decorateCSS("descriptionPrimary")}`}>{item.description}</Base.P>}
+                      {this.castToString(item.description) && <Base.P className={`${this.decorateCSS("description")} ${!this.getPropValue("componentBackground") && this.decorateCSS("descriptionPrimary")}`}>{item.description}</Base.P>}
                       {item.starIcon && item.star > 0 && (
-                        <div className={`${this.decorateCSS("stars")} ${!this.getPropValue("background-image") && this.decorateCSS("starsPrimary")}`}>
+                        <div className={`${this.decorateCSS("stars")} ${!this.getPropValue("componentBackground") && this.decorateCSS("starsPrimary")}`}>
                           {[...Array(Number(item.star))].map((_: any, index: number) => (
                             <Base.Icon name={item.starIcon} propsIcon={{ className: this.decorateCSS("star") }} />
                           ))}

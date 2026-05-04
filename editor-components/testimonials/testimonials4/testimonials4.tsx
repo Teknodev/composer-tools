@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Testimonials } from "../../EditorComponent";
+import { Testimonials, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./testimonials4.module.scss";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import { Base } from "../../../composer-base-components/base/base";
@@ -10,7 +10,7 @@ interface SliderItem {
   description: React.JSX.Element;
   title: React.JSX.Element;
   subtitle: React.JSX.Element;
-  image: string;
+  profileImage: TypeMediaInputValue;
 }
 interface ArrowItem {
   nextArrow: string;
@@ -57,10 +57,16 @@ class Testimonials4Page extends Testimonials {
               value: "UX Developer",
             },
             {
-              type: "image",
-              key: "image",
+              type: "media",
+              key: "profileImage",
               displayer: "Author Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661701bbd2970002c623724?alt=media&timestamp=1719483639150",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661701bbd2970002c623724?alt=media&timestamp=1719483639150",
+              },
             },
           ],
         },
@@ -94,10 +100,16 @@ class Testimonials4Page extends Testimonials {
               value: "Solutions Architect",
             },
             {
-              type: "image",
-              key: "image",
+              type: "media",
+              key: "profileImage",
               displayer: "Author Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661701bbd2970002c623723?alt=media&timestamp=1719483639150",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661701bbd2970002c623723?alt=media&timestamp=1719483639150",
+              },
             },
           ],
         },
@@ -131,10 +143,16 @@ class Testimonials4Page extends Testimonials {
               value: "UX Developer",
             },
             {
-              type: "image",
-              key: "image",
+              type: "media",
+              key: "profileImage",
               displayer: "Author Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661701bbd2970002c623726?alt=media&timestamp=1719483639150",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661701bbd2970002c623726?alt=media&timestamp=1719483639150",
+              },
             },
           ],
         },
@@ -143,7 +161,7 @@ class Testimonials4Page extends Testimonials {
 
     this.addProp({
       type: "image",
-      key: "cover-image",
+      key: "componentBackground",
       displayer: "Background Image",
       value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661701bbd2970002c623725?alt=media&timestamp=1719483639150",
     });
@@ -204,12 +222,12 @@ class Testimonials4Page extends Testimonials {
 
     return (
       <Base.Container
-        className={`${this.decorateCSS("container")} ${!this.getPropValue("cover-image") && this.decorateCSS("container-no-image")} ${this.getPropValue("overlay") ? this.decorateCSS("overlay") : ""}`}
+        className={`${this.decorateCSS("container")} ${!this.getPropValue("componentBackground") && this.decorateCSS("container-no-image")} ${this.getPropValue("overlay") ? this.decorateCSS("overlay") : ""}`}
         style={{
-          backgroundImage: `url(${this.getPropValue("cover-image")})`,
+          backgroundImage: `url(${this.getPropValue("componentBackground")})`,
         }}
       >
-        <Base.MaxContent className={`${this.decorateCSS("max-content")} ${!this.getPropValue("cover-image") && this.decorateCSS("max-content-no-image")}`}>
+        <Base.MaxContent className={`${this.decorateCSS("max-content")} ${!this.getPropValue("componentBackground") && this.decorateCSS("max-content-no-image")}`}>
           {arrows.prevArrow && sliderItem.length > 1 && (
             <button
               className={this.decorateCSS("prevArrow")}
@@ -217,7 +235,7 @@ class Testimonials4Page extends Testimonials {
                 sliderRef.current.slickPrev();
               }}
             >
-              <Base.Icon name={arrows.prevArrow} propsIcon={{ className: `${this.decorateCSS("arrow")} ${!this.getPropValue("cover-image") && this.decorateCSS("arrow-dark")} ` }}></Base.Icon>
+              <Base.Icon name={arrows.prevArrow} propsIcon={{ className: `${this.decorateCSS("arrow")} ${!this.getPropValue("componentBackground") && this.decorateCSS("arrow-dark")} ` }}></Base.Icon>
             </button>
           )}
 
@@ -227,12 +245,12 @@ class Testimonials4Page extends Testimonials {
                 const hasContent = item.icon || this.castToString(item.description) || this.castToString(item.title) || this.castToString(item.subtitle);
                 return (
                   <div className={hasContent && this.decorateCSS("items")}>
-                    {item.icon && <Base.Icon name={item.icon} propsIcon={{ className: `${this.decorateCSS("icon")} ${!this.getPropValue("cover-image") && this.decorateCSS("icon-dark")}` }} />}
-                    {this.castToString(item.description) && <Base.P className={`${this.decorateCSS("longtext")} ${!this.getPropValue("cover-image") && this.decorateCSS("longtext-dark")} `}>{item.description}</Base.P>}
+                    {item.icon && <Base.Icon name={item.icon} propsIcon={{ className: `${this.decorateCSS("icon")} ${!this.getPropValue("componentBackground") && this.decorateCSS("icon-dark")}` }} />}
+                    {this.castToString(item.description) && <Base.P className={`${this.decorateCSS("longtext")} ${!this.getPropValue("componentBackground") && this.decorateCSS("longtext-dark")} `}>{item.description}</Base.P>}
                     {(this.castToString(item.title) || this.castToString(item.subtitle)) && (
                       <div className={this.decorateCSS("person-text")}>
-                        {this.castToString(item.title) && <div className={`${this.decorateCSS("title")} ${!this.getPropValue("cover-image") && this.decorateCSS("title-dark")} `}>{item.title}</div>}
-                        {this.castToString(item.subtitle) && <div className={`${this.decorateCSS("subtitle")} ${!this.getPropValue("cover-image") && this.decorateCSS("subtitle-dark")}`}>{item.subtitle}</div>}
+                        {this.castToString(item.title) && <div className={`${this.decorateCSS("title")} ${!this.getPropValue("componentBackground") && this.decorateCSS("title-dark")} `}>{item.title}</div>}
+                        {this.castToString(item.subtitle) && <div className={`${this.decorateCSS("subtitle")} ${!this.getPropValue("componentBackground") && this.decorateCSS("subtitle-dark")}`}>{item.subtitle}</div>}
                       </div>
                     )}
                   </div>
@@ -242,7 +260,11 @@ class Testimonials4Page extends Testimonials {
             {sliderItem.length > 0 && (
               <div className={this.decorateCSS("images")}>
                 {sliderItem.map((item: any, itemIndex: number) => {
-                  return item.image ? <img src={item.image} className={`${this.decorateCSS("image")} ${this.getComponentState("active_index") === itemIndex ? this.decorateCSS("active") : ""}`} onClick={() => this.onImageClick(itemIndex)} /> : null;
+                  return item.profileImage ? (
+                    <div onClick={() => this.onImageClick(itemIndex)}>
+                      <Base.Media value={item.profileImage} className={`${this.decorateCSS("image")} ${this.getComponentState("active_index") === itemIndex ? this.decorateCSS("active") : ""}`} />
+                    </div>
+                  ) : null;
                 })}
               </div>
             )}
@@ -254,7 +276,7 @@ class Testimonials4Page extends Testimonials {
                 sliderRef.current.slickNext();
               }}
             >
-              <Base.Icon name={arrows.nextArrow} propsIcon={{ className: `${this.decorateCSS("arrow")} ${!this.getPropValue("cover-image") && this.decorateCSS("arrow-dark")} ` }}></Base.Icon>
+              <Base.Icon name={arrows.nextArrow} propsIcon={{ className: `${this.decorateCSS("arrow")} ${!this.getPropValue("componentBackground") && this.decorateCSS("arrow-dark")} ` }}></Base.Icon>
             </button>
           )}
         </Base.MaxContent>
