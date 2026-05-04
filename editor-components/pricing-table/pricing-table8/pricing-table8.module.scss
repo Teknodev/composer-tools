@@ -395,6 +395,10 @@
       gap: var(--composer-gap-md);
       padding-top: 0;
 
+      &.no-header-padding {
+        padding-top: 0;
+      }
+
       .box {
         margin-top: 0;
         padding-left: 0;
