@@ -1,11 +1,11 @@
 import * as React from "react";
-import { Testimonials } from "../../EditorComponent";
+import { Testimonials, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./testimonials13.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 
 type Card = {
-  image: string;
+  profileImage: TypeMediaInputValue;
   text: React.JSX.Element;
   author: React.JSX.Element;
   subtitle: React.JSX.Element;
@@ -67,10 +67,16 @@ class Testimonials13Page extends Testimonials {
           displayer: "Profile",
           value: [
             {
-              type: "image",
-              key: "image",
-              displayer: "Author Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661792ebd2970002c623f41?alt=media&timestamp=1719483639150",
+              type: "media",
+      key: "profileImage",
+      displayer: "Author Image",
+      additionalParams: {
+        availableTypes: ["image"],
+      },
+      value: {
+        type: "image",
+        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661792ebd2970002c623f41?alt=media&timestamp=1719483639150",
+      },
             },
             {
               type: "string",
@@ -99,10 +105,16 @@ class Testimonials13Page extends Testimonials {
           displayer: "Profile",
           value: [
             {
-              type: "image",
-              key: "image",
-              displayer: "Author Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661792ebd2970002c623f3f?alt=media&timestamp=1719483639150",
+              type: "media",
+      key: "profileImage",
+      displayer: "Author Image",
+      additionalParams: {
+        availableTypes: ["image"],
+      },
+      value: {
+        type: "image",
+        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661792ebd2970002c623f3f?alt=media&timestamp=1719483639150",
+      },
             },
             {
               type: "string",
@@ -131,10 +143,16 @@ class Testimonials13Page extends Testimonials {
           displayer: "Profile",
           value: [
             {
-              type: "image",
-              key: "image",
-              displayer: "Author Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661792ebd2970002c623f40?alt=media&timestamp=1719483639150",
+              type: "media",
+      key: "profileImage",
+      displayer: "Author Image",
+      additionalParams: {
+        availableTypes: ["image"],
+      },
+      value: {
+        type: "image",
+        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661792ebd2970002c623f40?alt=media&timestamp=1719483639150",
+      },
             },
             {
               type: "string",
@@ -276,7 +294,7 @@ class Testimonials13Page extends Testimonials {
                     {card.map((item: Card, index: number) => (
                       <div className={this.decorateCSS("slider-inner-div")}>
                         <div className={this.decorateCSS("content-div")}>
-                          {(this.getPropValue("prevIcon") || this.getPropValue("nextIcon") || item.image) && (
+                          {(this.getPropValue("prevIcon") || this.getPropValue("nextIcon") || item.profileImage) && (
                             <div className={this.decorateCSS("image-arrow")}>
                               {this.getPropValue("prevIcon") && (
                                 <button
@@ -288,7 +306,7 @@ class Testimonials13Page extends Testimonials {
                                   <Base.Icon name={this.getPropValue("prevIcon")} propsIcon={{ className: this.decorateCSS("prev-arrow") }}></Base.Icon>
                                 </button>
                               )}
-                              {item.image && <div className={this.decorateCSS("img-div")}>{item.image && <img alt={item.image} src={item.image} className={this.decorateCSS("img")} />}</div>}
+                              {item.profileImage && <div className={this.decorateCSS("img-div")}>{item.profileImage && <Base.Media value={item.profileImage} className={this.decorateCSS("img")} />}</div>}
                               {this.getPropValue("nextIcon") && (
                                 <button
                                   onClick={() => {
@@ -304,7 +322,7 @@ class Testimonials13Page extends Testimonials {
                           {(this.castToString(item.text) || this.getPropValue("sliderIcon") || this.castToString(item.author) || this.castToString(item.subtitle)) && (
                             <div className={this.decorateCSS("header-page")}>
                               {this.castToString(item.text) && (
-                                <Base.P className={`${this.decorateCSS("item-description")} ${!(this.getPropValue("prevIcon") || this.getPropValue("nextIcon") || item.image) && this.decorateCSS("item-description-no-margin")}`}>{item.text}</Base.P>
+                                <Base.P className={`${this.decorateCSS("item-description")} ${!(this.getPropValue("prevIcon") || this.getPropValue("nextIcon") || item.profileImage) && this.decorateCSS("item-description-no-margin")}`}>{item.text}</Base.P>
                               )}
                               {(this.getPropValue("sliderIcon") || this.castToString(item.author) || this.castToString(item.subtitle)) && (
                                 <Base.VerticalContent className={this.decorateCSS("bottom-container")}>

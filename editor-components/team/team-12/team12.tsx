@@ -1,13 +1,13 @@
 import * as React from "react";
 import styles from "./team12.module.scss";
-import { Team, TypeUsableComponentProps } from "../../EditorComponent";
+import { Team, TypeMediaInputValue, TypeUsableComponentProps } from "../../EditorComponent";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 
 import { Base } from "../../../composer-base-components/base/base";
 
 type Platform = { url: string; icon: string };
 interface TeamMember {
-  image: string;
+  image: TypeMediaInputValue;
   name: string;
   profession: string;
   description: string;
@@ -106,10 +106,16 @@ class Team12 extends Team {
               value: "There are many variations of passages of ıpsum available, but the majority sued alteration",
             },
             {
-              type: "image",
-              key: "image",
+              type: "media",
+              key: "profileImage",
               displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64370ff268c3c2002cd3083a?alt=media&timestamp=1719558632843",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64370ff268c3c2002cd3083a?alt=media&timestamp=1719558632843",
+              },
             },
             {
               type: "array",
@@ -143,10 +149,16 @@ class Team12 extends Team {
               value: "There are many variations of passages of ıpsum available, but the majority sued alteration",
             },
             {
-              type: "image",
-              key: "image",
+              type: "media",
+              key: "profileImage",
               displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667e65e00181a1002c334d64?alt=media&timestamp=1719559667575",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667e65e00181a1002c334d64?alt=media&timestamp=1719559667575",
+              },
             },
             {
               type: "array",
@@ -180,10 +192,16 @@ class Team12 extends Team {
               value: "There are many variations of passages of ıpsum available, but the majority sued alteration",
             },
             {
-              type: "image",
-              key: "image",
+              type: "media",
+              key: "profileImage",
               displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667e68d60181a1002c334db9?alt=media&timestamp=1719560421360",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667e68d60181a1002c334db9?alt=media&timestamp=1719560421360",
+              },
             },
             {
               type: "array",
@@ -217,10 +235,16 @@ class Team12 extends Team {
               value: "There are many variations of passages of ıpsum available, but the majority sued alteration",
             },
             {
-              type: "image",
-              key: "image",
+              type: "media",
+              key: "profileImage",
               displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667e68d60181a1002c334dba?alt=media&timestamp=1719560421360",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667e68d60181a1002c334dba?alt=media&timestamp=1719560421360",
+              },
             },
             {
               type: "array",
@@ -264,11 +288,11 @@ class Team12 extends Team {
               const professionExist = this.castToString(teamMember.profession);
               const descriptionExist = this.castToString(teamMember.description);
 
-              const hasItem = nameExist || professionExist || descriptionExist || teamMember.image || teamMember.platforms.length > 0;
+              const hasItem = nameExist || professionExist || descriptionExist || teamMember.profileImage || teamMember.platforms.length > 0;
               return (
                 hasItem && (
                   <div className={this.decorateCSS("member")} data-animation={this.getPropValue("hoverAnimation").join(" ")}> 
-                    {teamMember.image && <img className={this.decorateCSS("image")} src={teamMember.getPropValue("image")} />}
+                    {teamMember.profileImage && <Base.Media value={teamMember.getPropValue("profileImage")} className={this.decorateCSS("image")} />}
                     <Base.VerticalContent className={this.decorateCSS("info")}>
                       {nameExist && <Base.H2 className={this.decorateCSS("name")}>{teamMember.getPropValue("name")}</Base.H2>}
                       {professionExist && <Base.H5 className={this.decorateCSS("profession")}>{teamMember.getPropValue("profession")}</Base.H5>}

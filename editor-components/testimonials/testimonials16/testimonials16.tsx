@@ -13,7 +13,7 @@ type LinkItem = {
 
 type TestimonialItem = {
   logoImage?: TypeMediaInputValue
-  image?: TypeMediaInputValue
+  profileImage?: TypeMediaInputValue
   quote?: React.JSX.Element
   author?: React.JSX.Element
   role?: React.JSX.Element
@@ -132,10 +132,10 @@ class Testimonials16 extends Testimonials {
             },
             {
               type: "media",
-              key: "image",
+              key: "profileImage",
               displayer: "Image",
               additionalParams: {
-                availableTypes: ["image", "video"],
+                availableTypes: ["image"],
               },
               value: {
                 type: "image",
@@ -188,10 +188,10 @@ class Testimonials16 extends Testimonials {
             },
             {
               type: "media",
-              key: "image",
+              key: "profileImage",
               displayer: "Image",
               additionalParams: {
-                availableTypes: ["image", "video"],
+                availableTypes: ["image"],
               },
               value: {
                 type: "image",
@@ -243,10 +243,10 @@ class Testimonials16 extends Testimonials {
             },
             {
               type: "media",
-              key: "image",
+              key: "profileImage",
               displayer: "Image",
               additionalParams: {
-                availableTypes: ["image", "video"],
+                availableTypes: ["image"],
               },
               value: {
                 type: "image",
@@ -370,7 +370,7 @@ class Testimonials16 extends Testimonials {
     const testimonials = this.castToObject<TestimonialItem[]>("testimonials")
     const filteredTestimonials = testimonials.filter((item: TestimonialItem) => {
       const logoVal = item.logoImage as { url?: string } | undefined
-      const imageVal = item.image as { url?: string } | undefined
+      const imageVal = item.profileImage as { url?: string } | undefined
       const hasLogo = !!logoVal?.url
       const hasImage = !!imageVal?.url
       const hasQuote = this.castToString(item.quote)
@@ -380,7 +380,7 @@ class Testimonials16 extends Testimonials {
       return hasLogo || hasImage || hasQuote || hasAuthor || hasRole || hasCompany
     })
     const hasAnyPortrait = filteredTestimonials.some((item: TestimonialItem) => {
-      const portraitVal = item.image as { url?: string } | undefined
+      const portraitVal = item.profileImage as { url?: string } | undefined
       return !!portraitVal?.url
     })
     const subtitleValue = this.getPropValue("subtitle")
@@ -400,8 +400,8 @@ class Testimonials16 extends Testimonials {
     const showBackgroundOverlay = this.getPropValue("backgroundOverlay")
     const autoplayEnabled = this.getPropValue("autoplay") !== false
     const showNavigation = this.getPropValue("navigation") !== false
-    const activePortraitValue = filteredTestimonials[activeIndex]?.image as { url?: string } | undefined
-    const activePortrait = activePortraitValue?.url ? filteredTestimonials[activeIndex]?.image : null
+    const activePortraitValue = filteredTestimonials[activeIndex]?.profileImage as { url?: string } | undefined
+    const activePortrait = activePortraitValue?.url ? filteredTestimonials[activeIndex]?.profileImage : null
     const subtitleType = Base.getSectionSubTitleType()
     const hideBadgeBackground = subtitleType === "badge" && !!activePortrait
     const subtitleClasses = `${this.decorateCSS("subtitle")} ${hideBadgeBackground ? this.decorateCSS("subtitle-badge-hidden") : ""}`
@@ -417,7 +417,7 @@ class Testimonials16 extends Testimonials {
       slidesToScroll: 1,
       centerMode: false,
       beforeChange: (_current: number, next: number) => {
-        this.setComponentState("prevBackground", filteredTestimonials[_current]?.image || null)
+        this.setComponentState("prevBackground", filteredTestimonials[_current]?.profileImage || null)
         this.setComponentState("activeSlideIndex", next)
       },
     }
@@ -492,9 +492,9 @@ class Testimonials16 extends Testimonials {
                   const hasAuthor = this.castToString(item.author)
                   const hasRole = this.castToString(item.role)
                   const logoImageValue = item.logoImage as { url?: string } | undefined
-                  const portraitValue = item.image as { url?: string } | undefined
+                  const portraitValue = item.profileImage as { url?: string } | undefined
                   const logoImage = logoImageValue?.url ? item.logoImage : null
-                  const portrait = portraitValue?.url ? item.image : null
+                  const portrait = portraitValue?.url ? item.profileImage : null
                   const hasCompany = this.castToString(item.company)
                   const hasCardBody = logoImage || hasQuote || hasAuthor || hasRole || hasCompany
                   const cardClassName = hasCardBody ? this.decorateCSS("card") : `${this.decorateCSS("card")} ${this.decorateCSS("card-single")}`

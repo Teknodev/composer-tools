@@ -1,12 +1,12 @@
 import * as React from "react";
-import { Testimonials } from "../../EditorComponent";
+import { Testimonials, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./testimonials8.module.scss";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import { Base } from "../../../composer-base-components/base/base";
 
 
 type Item = {
-  image: string;
+  profileImage: TypeMediaInputValue;
   name: React.JSX.Element;
   nameId: React.JSX.Element;
   description: React.JSX.Element;
@@ -50,9 +50,15 @@ class Testimonials8Page extends Testimonials {
           displayer: "Card",
           value: [
             {
-              type: "image",
-              key: "image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666173eabd2970002c62388a?alt=media&timestamp=1719483639150",
+              type: "media",
+              key: "profileImage",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666173eabd2970002c62388a?alt=media&timestamp=1719483639150",
+              },
               displayer: "Author Image",
             },
             {
@@ -94,9 +100,15 @@ class Testimonials8Page extends Testimonials {
           displayer: "Card",
           value: [
             {
-              type: "image",
-              key: "image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666173eabd2970002c62388b?alt=media&timestamp=1719483639150",
+              type: "media",
+              key: "profileImage",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666173eabd2970002c62388b?alt=media&timestamp=1719483639150",
+              },
               displayer: "Author Image",
             },
             {
@@ -137,9 +149,15 @@ class Testimonials8Page extends Testimonials {
           displayer: "Card",
           value: [
             {
-              type: "image",
-              key: "image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661740cbd2970002c623895?alt=media&timestamp=1719483639150",
+              type: "media",
+              key: "profileImage",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661740cbd2970002c623895?alt=media&timestamp=1719483639150",
+              },
               displayer: "Author Image",
             },
             {
@@ -244,7 +262,7 @@ class Testimonials8Page extends Testimonials {
                 {cards.map((item: Item, index: number) => (
                   <div className={this.decorateCSS("card")}>
                     <Base.Row className={this.decorateCSS("topContainer")}>
-                      {item.image && <img src={item.image} alt={item.image} className={this.decorateCSS("image")} />}
+                      {item.profileImage && <Base.Media value={item.profileImage} className={this.decorateCSS("image")} />}
                       <div className={this.decorateCSS("personal")}>
                         {this.castToString(item.name) && <div className={this.decorateCSS("name")}>{item.name}</div>}
                         {this.castToString(item.nameId) && <div className={this.decorateCSS("personTitle")}>{item.nameId}</div>}

@@ -25,7 +25,7 @@ class Header8 extends BaseHeader {
       value: [
         {
           type: "media",
-          key: "cover-image",
+          key: "componentBackground",
           displayer: "Media",
           value: {
             url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/691db9e13596a1002b2b69de?alt=media",
@@ -85,8 +85,8 @@ class Header8 extends BaseHeader {
   }
 
   render() {
-    const background = this.castToObject<{ "cover-image": TypeMediaInputValue; overlay: boolean }>("background");
-    const coverImage = background?.["cover-image"];
+    const background = this.castToObject<{ componentBackground: TypeMediaInputValue; overlay: boolean }>("background");
+    const coverImage = background?.componentBackground;
     const buttons = this.castToObject<ButtonItem[]>("buttons");
     const visibleButtons = buttons.filter(btn => {
       const hasText = this.castToString(btn.text);

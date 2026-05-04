@@ -41,7 +41,7 @@ class CallToAction3Page extends BaseCallToAction {
     });
     this.addProp({
       type: "media",
-      key: "image",
+      key: "componentBackground",
       additionalParams: {
         availableTypes: ["image", "video"],
       },
@@ -64,10 +64,10 @@ class CallToAction3Page extends BaseCallToAction {
 
   render() {
     const buttons = this.castToObject<Button[]>("buttons");
-    const image = this.getPropValue("image");
+    const image = this.getPropValue("componentBackground");
     return (
       <Base.Container
-        className={`${this.decorateCSS("container")} ${this.getPropValue("overlayActive") && this.getPropValue("image") && this.decorateCSS("overlay-active")}`}>
+        className={`${this.decorateCSS("container")} ${this.getPropValue("overlayActive") && this.getPropValue("componentBackground") && this.decorateCSS("overlay-active")}`}>
         {image && (
           <Base.Media
             value={image}
@@ -77,17 +77,17 @@ class CallToAction3Page extends BaseCallToAction {
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <Base.VerticalContent className={this.decorateCSS("content-container")}>
             {this.castToString(this.getPropValue("subtitle")) && (
-              <Base.SectionSubTitle className={`${this.decorateCSS("subtitle")} ${this.getPropValue("image") && this.decorateCSS("with-image")}`}>
+              <Base.SectionSubTitle className={`${this.decorateCSS("subtitle")} ${this.getPropValue("componentBackground") && this.decorateCSS("with-image")}`}>
                 {this.getPropValue("subtitle")}
               </Base.SectionSubTitle>
             )}
             {this.castToString(this.getPropValue("title")) && (
-              <Base.SectionTitle className={`${this.decorateCSS("title")} ${this.getPropValue("image") && this.decorateCSS("with-image")}`}>
+              <Base.SectionTitle className={`${this.decorateCSS("title")} ${this.getPropValue("componentBackground") && this.decorateCSS("with-image")}`}>
                 {this.getPropValue("title")}
               </Base.SectionTitle>
             )}
             {this.castToString(this.getPropValue("description")) && (
-              <Base.SectionDescription className={`${this.decorateCSS("description")} ${this.getPropValue("image") && this.decorateCSS("with-image")}`}>
+              <Base.SectionDescription className={`${this.decorateCSS("description")} ${this.getPropValue("componentBackground") && this.decorateCSS("with-image")}`}>
                 {this.getPropValue("description")}
               </Base.SectionDescription>
             )}
@@ -95,7 +95,7 @@ class CallToAction3Page extends BaseCallToAction {
               <div className={this.decorateCSS("buttons")}>
                 {buttons.map(
                   (button: Button, index: number) => {
-                    button.type = this.getPropValue("image") ? "White" : button.type
+                    button.type = this.getPropValue("componentBackground") ? "White" : button.type
 
                     return (
                       <ComposerLink path={button.url}>

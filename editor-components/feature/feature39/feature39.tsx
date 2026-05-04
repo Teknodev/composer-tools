@@ -23,7 +23,7 @@ class Feature39 extends BaseFeature {
 
         this.addProp({
             type: "media",
-            key: "cover-image",
+            key: "componentBackground",
             displayer: "Media",
             value: {
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/69678d578ea13f002cf936cd?alt=media",
@@ -343,7 +343,7 @@ class Feature39 extends BaseFeature {
     }
 
     render() {
-        const coverImage = this.getPropValue("cover-image");
+        const coverImage = this.getPropValue("componentBackground");
         const hasMedia = !!coverImage?.url;
         const enableOverlay = hasMedia && this.getPropValue("overlay");
         const cards = this.castToObject<Card[]>("cards");

@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Testimonials } from "../../EditorComponent";
+import { Testimonials, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./testimonials6.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 
@@ -7,7 +7,7 @@ import { Base } from "../../../composer-base-components/base/base";
 interface CardItem {
   star: number;
   description: React.JSX.Element;
-  profileImage: string;
+  profileImage: TypeMediaInputValue;
   name: React.JSX.Element;
   personTitle: string;
   line: boolean;
@@ -63,9 +63,15 @@ class Testimonials6Page extends Testimonials {
               displayer: "Review Text",
             },
             {
-              type: "image",
+              type: "media",
               key: "profileImage",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/644933b3f72de2002caa9a16?alt=media&timestamp=1719483639147",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/644933b3f72de2002caa9a16?alt=media&timestamp=1719483639147",
+              },
               displayer: "Author Image",
             },
             {
@@ -106,9 +112,15 @@ class Testimonials6Page extends Testimonials {
               displayer: "Review Text",
             },
             {
-              type: "image",
+              type: "media",
               key: "profileImage",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64493501f72de2002caa9a46?alt=media&timestamp=1719483639147",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64493501f72de2002caa9a46?alt=media&timestamp=1719483639147",
+              },
               displayer: "Author Image",
             },
             {
@@ -149,9 +161,15 @@ class Testimonials6Page extends Testimonials {
               displayer: "Review Text",
             },
             {
-              type: "image",
+              type: "media",
               key: "profileImage",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6449364af72de2002caa9ad0?alt=media&timestamp=1719483639147",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6449364af72de2002caa9ad0?alt=media&timestamp=1719483639147",
+              },
               displayer: "Author Image",
             },
             {
@@ -192,9 +210,15 @@ class Testimonials6Page extends Testimonials {
               displayer: "Review Text",
             },
             {
-              type: "image",
+              type: "media",
               key: "profileImage",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/644933b3f72de2002caa9a16?alt=media&timestamp=1719483639147",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/644933b3f72de2002caa9a16?alt=media&timestamp=1719483639147",
+              },
               displayer: "Author Image",
             },
             {
@@ -235,9 +259,15 @@ class Testimonials6Page extends Testimonials {
               displayer: "Review Text",
             },
             {
-              type: "image",
+              type: "media",
               key: "profileImage",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64493501f72de2002caa9a46?alt=media&timestamp=1719483639147",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64493501f72de2002caa9a46?alt=media&timestamp=1719483639147",
+              },
               displayer: "Author Image",
             },
             {
@@ -278,9 +308,15 @@ class Testimonials6Page extends Testimonials {
               displayer: "Review Text",
             },
             {
-              type: "image",
+              type: "media",
               key: "profileImage",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6449364af72de2002caa9ad0?alt=media&timestamp=1719483639147",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6449364af72de2002caa9ad0?alt=media&timestamp=1719483639147",
+              },
               displayer: "Author Image",
             },
             {
@@ -318,7 +354,7 @@ class Testimonials6Page extends Testimonials {
                 {item.line && <div className={this.decorateCSS("line")}></div>}
                 {(item.profileImage || this.castToString(item.name) || this.castToString(item.personTitle) || item.star > 0) && (
                   <div className={this.decorateCSS("bottomContainer")}>
-                    {item.profileImage && <img src={item.profileImage} alt={item.profileImage} className={this.decorateCSS("image")} />}
+                    {item.profileImage && <Base.Media value={item.profileImage} className={this.decorateCSS("image")} />}
                     <Base.VerticalContent className={this.decorateCSS("person")}>
                       {this.castToString(item.name) && <div className={this.decorateCSS("name")}>{item.name}</div>}
                       {this.castToString(item.personTitle) && <div className={this.decorateCSS("personTitle")}>{item.personTitle}</div>}

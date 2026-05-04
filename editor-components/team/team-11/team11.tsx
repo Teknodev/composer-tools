@@ -123,10 +123,16 @@ class Team11 extends Team {
           displayer: "Slider Card",
           value: [
             {
-              type: "image",
-              key: "image",
+              type: "media",
+              key: "profileImage",
               displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64370fa168c3c2002cd30832?alt=media&timestamp=1719558632843",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64370fa168c3c2002cd30832?alt=media&timestamp=1719558632843",
+              },
             },
             {
               type: "string",
@@ -154,10 +160,16 @@ class Team11 extends Team {
           displayer: "Slider Card",
           value: [
             {
-              type: "image",
-              key: "image",
+              type: "media",
+              key: "profileImage",
               displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64370fa168c3c2002cd30833?alt=media&timestamp=1719558632843",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64370fa168c3c2002cd30833?alt=media&timestamp=1719558632843",
+              },
             },
             {
               type: "array",
@@ -185,10 +197,16 @@ class Team11 extends Team {
           displayer: "Slider Card",
           value: [
             {
-              type: "image",
-              key: "image",
+              type: "media",
+              key: "profileImage",
               displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b588bd2970002c6282c6?alt=media&timestamp=1719558632841",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b588bd2970002c6282c6?alt=media&timestamp=1719558632841",
+              },
             },
             {
               type: "array",
@@ -216,10 +234,16 @@ class Team11 extends Team {
           displayer: "Slider Card",
           value: [
             {
-              type: "image",
-              key: "image",
+              type: "media",
+              key: "profileImage",
               displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64370fa168c3c2002cd30832?alt=media&timestamp=1719558632843",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64370fa168c3c2002cd30832?alt=media&timestamp=1719558632843",
+              },
             },
             {
               type: "string",
@@ -247,10 +271,16 @@ class Team11 extends Team {
           displayer: "Slider Card",
           value: [
             {
-              type: "image",
-              key: "image",
+              type: "media",
+              key: "profileImage",
               displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64370fa168c3c2002cd30833?alt=media&timestamp=1719558632843",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64370fa168c3c2002cd30833?alt=media&timestamp=1719558632843",
+              },
             },
             {
               type: "array",
@@ -278,10 +308,16 @@ class Team11 extends Team {
           displayer: "Slider Card",
           value: [
             {
-              type: "image",
-              key: "image",
+              type: "media",
+              key: "profileImage",
               displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b588bd2970002c6282c6?alt=media&timestamp=1719558632841",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b588bd2970002c6282c6?alt=media&timestamp=1719558632841",
+              },
             },
             {
               type: "array",
@@ -367,13 +403,13 @@ class Team11 extends Team {
                 const itemNameExist = this.castToString(item.name);
                 const itemPositionExist = this.castToString(item.position);
 
-                const itemExits = itemNameExist || itemPositionExist || item.image || item.icons.length > 0;
+                const itemExits = itemNameExist || itemPositionExist || item.profileImage || item.icons.length > 0;
                 return (
                   itemExits && (
                     <div key={indexSlider} className={this.decorateCSS("item")}>
                       <Base.VerticalContent className={this.decorateCSS("card")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
                         <div className={this.decorateCSS("hover")}>
-                          <img className={this.decorateCSS("person-image")} src={item.image} alt={" "} />
+                          <Base.Media value={item.profileImage} className={this.decorateCSS("person-image")} />
                           {item.icons && item.icons.length > 0 && (
                             <div className={this.decorateCSS("icons-bar")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
                               {item.icons.map((el: any, indexIcon: number) => (
