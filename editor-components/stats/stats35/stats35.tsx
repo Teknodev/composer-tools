@@ -292,7 +292,7 @@ class Stats35 extends BaseStats {
         return (
             <Base.Container className={`${this.decorateCSS("container")} ${hasMedia && !mediaOnly ? this.decorateCSS("has-media") : ""} ${mediaOnly ? this.decorateCSS("media-only") : ""} ${!hasLeftSection && hasRightSection ? this.decorateCSS("no-left-section") : ""}`}>
                 {hasMedia && !mediaOnly && (
-                    <div className={this.decorateCSS("background-media")}>
+                    <div className={`${this.decorateCSS("background-media")} ${this.decorateCSS("desktop-bg")}`}>
                         <Base.Media
                             value={backgroundImage}
                             className={this.decorateCSS("background-image")}
@@ -348,6 +348,15 @@ class Stats35 extends BaseStats {
                             )}
                             {(hasVisibleStats || (hasMedia && hasLeftSection)) && (
                                 <div className={`${this.decorateCSS("right-column")} ${alignment === "center" ? this.decorateCSS("center-alignment") : ""} ${!hasLeftSection ? this.decorateCSS("full-width") : ""}`}>
+                                    {hasMedia && !mediaOnly && (
+                                        <div className={`${this.decorateCSS("background-media")} ${this.decorateCSS("mobile-bg")}`}>
+                                            <Base.Media
+                                                value={backgroundImage}
+                                                className={this.decorateCSS("background-image")}
+                                            />
+                                            {showOverlay && <div className={this.decorateCSS("overlay")} />}
+                                        </div>
+                                    )}
                                     {hasVisibleStats && (
                                         <div className={this.decorateCSS("stats-inner")}>
                                             <Base.ListGrid gridCount={{ pc: itemCount, tablet: 1, phone: 1 }} className={this.decorateCSS("stats-list")}>

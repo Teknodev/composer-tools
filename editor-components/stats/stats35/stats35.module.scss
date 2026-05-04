@@ -60,6 +60,10 @@
         height: 100%;
         z-index: 0;
 
+        &.mobile-bg {
+            display: none;
+        }
+
         .background-image {
             width: 100%;
             height: 100%;
@@ -241,10 +245,21 @@
         }
 
         .background-media {
-            width: 100%;
-            top: auto;
-            bottom: 0;
-            height: 500px;
+            &.desktop-bg {
+                display: none;
+            }
+
+            &.mobile-bg {
+                display: block;
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                left: 50%;
+                width: 100vw;
+                transform: translateX(-50%);
+                height: 100%;
+                z-index: 0;
+            }
         }
 
         .right-column {
@@ -260,11 +275,12 @@
                 padding-right: unset;
             }
             .content-wrapper {
-                gap: 0;
+                gap: var(--composer-gap-xl);
             }
             .right-column {
                 min-height: 500px;
                 padding-top: var(--composer-gap-xl);
+                padding-bottom: var(--composer-gap-xl);
             }
         }
 
