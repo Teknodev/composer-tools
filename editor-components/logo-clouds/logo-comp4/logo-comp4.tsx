@@ -46,7 +46,7 @@ class LogoComp4Page extends LogoClouds {
     });
     this.addProp({
       type: "media",
-      key: "backgroundImage",
+      key: "componentBackground",
       displayer: "Background Media",
       additionalParams: {
         availableTypes: ["image", "video"],
@@ -74,7 +74,7 @@ class LogoComp4Page extends LogoClouds {
   }
 
   render() {
-    const background = this.getPropValue("backgroundImage");
+    const background = this.getPropValue("componentBackground");
 
     const isSubtitleExists = this.castToString(this.getPropValue("subtitle"));
     const isTitleExists = this.castToString(this.getPropValue("title"));

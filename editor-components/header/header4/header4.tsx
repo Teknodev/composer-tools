@@ -10,7 +10,7 @@ type SliderItem = {
   subtitle: React.JSX.Element;
   title: React.JSX.Element;
   description: React.JSX.Element;
-  media: TypeMediaInputValue;
+  componentBackground: TypeMediaInputValue;
   index: number;
 };
 
@@ -55,7 +55,7 @@ class Header4 extends BaseHeader {
             },
             {
               type: "media",
-              key: "media",
+              key: "componentBackground",
               displayer: "Media",
               additionalParams: {
                 availableTypes: ["image", "video"],
@@ -92,7 +92,7 @@ class Header4 extends BaseHeader {
             },
             {
               type: "media",
-              key: "media",
+              key: "componentBackground",
               displayer: "Media",
               additionalParams: {
                 availableTypes: ["image", "video"],
@@ -129,7 +129,7 @@ class Header4 extends BaseHeader {
             },
             {
               type: "media",
-              key: "media",
+              key: "componentBackground",
               displayer: "Media",
               additionalParams: {
                 availableTypes: ["image", "video"],
@@ -166,7 +166,7 @@ class Header4 extends BaseHeader {
             },
             {
               type: "media",
-              key: "media",
+              key: "componentBackground",
               displayer: "Media",
               additionalParams: {
                 availableTypes: ["image", "video"],
@@ -203,7 +203,7 @@ class Header4 extends BaseHeader {
             },
             {
               type: "media",
-              key: "media",
+              key: "componentBackground",
               displayer: "Media",
               additionalParams: {
                 availableTypes: ["image", "video"],
@@ -240,7 +240,7 @@ class Header4 extends BaseHeader {
             },
             {
               type: "media",
-              key: "media",
+              key: "componentBackground",
               displayer: "Media",
               additionalParams: {
                 availableTypes: ["image", "video"],
@@ -470,21 +470,21 @@ class Header4 extends BaseHeader {
             {slides?.length > 0 && (
               <ComposerSlider ref={sliderRef} {...settings} className={this.decorateCSS("carousel")}>
                 {slides.map((item, index) => {
-                  const mediaValue = item.media?.type === "video" ? {
-                    ...item.media,
+                  const mediaValue = item.componentBackground?.type === "video" ? {
+                    ...item.componentBackground,
                     settings: {
                       autoplay: true,
                       loop: true,
                       muted: true,
                       controls: false
                     }
-                  } : item.media;
+                  } : item.componentBackground;
 
                   return (
                     <div className={this.decorateCSS("card")} key={index}>
                       <div className={this.decorateCSS("slider-item")}>
-                        {item.media && (<Base.Media value={mediaValue} className={this.decorateCSS("slider-item-media")} />)}
-                        <Base.VerticalContent className={`${this.decorateCSS("vertical-content")} ${!!item.media && this.decorateCSS("has-media")}`}>
+                        {item.componentBackground && (<Base.Media value={mediaValue} className={this.decorateCSS("slider-item-media")} />)}
+                        <Base.VerticalContent className={`${this.decorateCSS("vertical-content")} ${!!item.componentBackground && this.decorateCSS("has-media")}`}>
                           {this.castToString(item.subtitle) && (
                             <div className={this.decorateCSS("subtitle-wrapper")}>
                               <Base.SectionSubTitle className={`${this.decorateCSS("subtitle")} ${textAnimation && activeIndex === index ? this.decorateCSS("imageSubtitleAnimation") : ""}`}>

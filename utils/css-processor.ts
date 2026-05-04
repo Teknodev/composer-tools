@@ -67,11 +67,12 @@ export function processStyles(
   selector: string, 
   mediaQuery: string | null, 
   styles: any, 
-  textRef: { current: string }
+  textRef: { current: string },
+  important = true
 ): void {
   if (!styles) return;
 
-  const formattedStyles = formatStyles(styles);
+  const formattedStyles = formatStyles(styles, important);
   const fullSelector = mediaQuery
     ? `${mediaQuery} { ${selector}${formattedStyles} }`
     : `${selector}${formattedStyles}`;
@@ -83,12 +84,13 @@ export function processPseudoStyles(
   selector: string, 
   mediaQuery: string | null, 
   pseudos: any, 
-  textRef: { current: string }
+  textRef: { current: string },
+  important = true
 ): void {
   if (!pseudos) return;
 
   Object.keys(pseudos).forEach((pseudoKey) => {
-    const formattedPseudoStyles = formatStyles(pseudos[pseudoKey]);
+    const formattedPseudoStyles = formatStyles(pseudos[pseudoKey], important);
     const fullSelector = mediaQuery
       ? `${mediaQuery} { ${selector + pseudoKey}${formattedPseudoStyles} }`
       : `${selector + pseudoKey}${formattedPseudoStyles}`;
@@ -113,7 +115,9 @@ export function processBasePreferences(
       const selector = baseElementSelectors[elementType as keyof typeof baseElementSelectors];
       if (!selector || !styles) return;
 
-      const fullSelector = playgroundSelector ? `${playgroundSelector} ${selector}` : selector;
+      const fullSelector = playgroundSelector
+        ? `${playgroundSelector} :where(${selector})`
+        : selector;
       const stylesObj = styles as Record<string, any>;
       
       const desktopStyles = stylesObj.desktop || {};
@@ -123,13 +127,13 @@ export function processBasePreferences(
       const hasStyles = (styleObj: Record<string, any>) => Object.keys(styleObj).length > 0;
       
       if (hasStyles(desktopStyles)) {
-        processStyles(fullSelector, GUI_QUERIES.desktop, desktopStyles, textRef);
+        processStyles(fullSelector, GUI_QUERIES.desktop, desktopStyles, textRef, false);
       }
       if (hasStyles(tabletStyles)) {
-          processStyles(fullSelector, GUI_QUERIES.tablet, tabletStyles, textRef);
+          processStyles(fullSelector, GUI_QUERIES.tablet, tabletStyles, textRef, false);
       }
       if (hasStyles(mobileStyles)) {
-          processStyles(fullSelector, GUI_QUERIES.mobile, mobileStyles, textRef);
+          processStyles(fullSelector, GUI_QUERIES.mobile, mobileStyles, textRef, false);
       }
     });
   } catch (error) {

@@ -10,7 +10,7 @@ type SliderItem = {
   subtitle: React.JSX.Element;
   title: React.JSX.Element;
   description: React.JSX.Element;
-  media: TypeMediaInputValue;
+  componentBackground: TypeMediaInputValue;
 };
 
 type SocialItem = {
@@ -52,7 +52,7 @@ class Header1 extends BaseHeader {
             },
             {
               type: "media",
-              key: "media",
+              key: "componentBackground",
               displayer: "Media",
               additionalParams: {
                 availableTypes: ["image", "video"],
@@ -89,7 +89,7 @@ class Header1 extends BaseHeader {
             },
             {
               type: "media",
-              key: "media",
+              key: "componentBackground",
               displayer: "Media",
               additionalParams: {
                 availableTypes: ["image", "video"],
@@ -218,7 +218,7 @@ class Header1 extends BaseHeader {
     const isOverlayActive = this.getPropValue("overlay");
     const icons = this.castToObject<SocialItem[]>("socials");
     const sliderItems = this.castToObject<SliderItem[]>("slider");
-    const ImagesExist = sliderItems[this.getComponentState("activeSlide")]?.media;
+    const ImagesExist = sliderItems[this.getComponentState("activeSlide")]?.componentBackground;
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
@@ -228,8 +228,8 @@ class Header1 extends BaseHeader {
               {sliderItems.map((item: SliderItem, indexSlider: number) => (
                 <div key={indexSlider} className={this.decorateCSS("slider-item")}>
                   <div className={this.decorateCSS("image-wrapper")}>
-                    {item.media && <Base.Media value={item.media} className={this.decorateCSS("image")} />}
-                    {isOverlayActive && item.media && <div className={this.decorateCSS("overlay")}></div>}
+                    {item.componentBackground && <Base.Media value={item.componentBackground} className={this.decorateCSS("image")} />}
+                    {isOverlayActive && item.componentBackground && <div className={this.decorateCSS("overlay")}></div>}
                   </div>
                   <div className={this.decorateCSS("content")}>
                     <div className={this.decorateCSS("box-parent")}>
