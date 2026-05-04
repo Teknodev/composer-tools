@@ -371,7 +371,7 @@ class Feature52 extends BaseFeature {
         const description = this.castToString(this.getPropValue("description"));
         const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons") || [];
         const visibleButtons = buttons.filter(btn => this.castToString(btn.text));
-        const hasContent = subtitle || title || description;
+        const hasContent = subtitle || title || description || visibleButtons.length > 0;
 
         const rawItemCount = this.getPropValue("itemCount");
         const itemCount = typeof rawItemCount === "number" && rawItemCount > 0 ? rawItemCount : 1;
