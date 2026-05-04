@@ -9,7 +9,7 @@ export interface CustomComponentMeta {
   _id: string;
   name: string;
   category: string;
-  version: string;
+  version: number;
   bundle_url: string;
   bundle_content?: string;
   styles_url: string;
@@ -44,16 +44,43 @@ function execScript(code: string, label: string): void {
   (0, eval)(code);
 }
 
+export function scopeToPlayground(css: string): string {
+  return css.replace(
+    /^(\s*)([^@\s\/\n}][^{\n]*?)\s*\{/gm,
+    (_match, indent, selector) => {
+      const trimmed = selector.trim();
+      if (!trimmed || trimmed.startsWith("#playground")) return _match;
+      return `${indent}#playground ${trimmed} {`;
+    }
+  );
+}
+
 function injectStylesheet(css: string, key: string): void {
   if (!css.trim()) return;
 
-  const existing = document.querySelector(`style[data-key="${key}"]`);
-  if (existing) return;
+  const scopedCss = scopeToPlayground(css);
+  const customStyleLink = document.getElementById("custom-style");
+  const existing = document.querySelector(`style[data-key="${key}"]`) as HTMLStyleElement | null;
+
+  if (existing) {
+    if (existing.textContent !== scopedCss) {
+      existing.textContent = scopedCss;
+    }
+    if (customStyleLink && existing.compareDocumentPosition(customStyleLink) & Node.DOCUMENT_POSITION_PRECEDING) {
+      document.head.insertBefore(existing, customStyleLink);
+    }
+    return;
+  }
 
   const style = document.createElement("style");
   style.setAttribute("data-key", key);
-  style.textContent = css;
-  document.head.appendChild(style);
+  style.textContent = scopedCss;
+
+  if (customStyleLink) {
+    document.head.insertBefore(style, customStyleLink);
+  } else {
+    document.head.appendChild(style);
+  }
 }
 
 export async function loadCustomComponentsFromMeta(
@@ -72,52 +99,57 @@ export async function loadCustomComponentsFromMeta(
     return;
   }
 
-  const loadPromises = activeComponents.map(async (comp) => {
+  const componentsToRegister: (typeof Component)[] = [];
+
+  for (const comp of activeComponents) {
     try {
       if (comp.styles_content) {
         injectStylesheet(comp.styles_content, comp._id);
       }
 
-      if (comp.bundle_content) {
-        execScript(comp.bundle_content, comp.name);
-      } else {
+      if (!comp.bundle_content) {
         console.warn(`[CustomComponents] No bundle_content for "${comp.name}", skipping.`);
+        continue;
       }
-    } catch (err) {
-      console.warn(`[CustomComponents] Failed to load "${comp.name}":`, err);
-    }
-  });
 
-  await Promise.all(loadPromises);
+      execScript(comp.bundle_content, comp.name);
 
-  const allLoadedComponents = window.__CUSTOM_COMPONENTS__ || {};
-  const loadedKeys = Object.keys(allLoadedComponents);
-  const componentsToRegister = activeComponents
-    .map((meta) => {
-      let ComponentClass = allLoadedComponents[meta.name];
-      if (!ComponentClass) {
+      const safeName = comp.name.replace(/[^a-zA-Z0-9_]/g, "");
+      const windowKey = `${safeName}_v${comp.version}`;
+
+      let BaseClass = window.__CUSTOM_COMPONENTS__?.[windowKey];
+      if (!BaseClass) {
+        BaseClass = window.__CUSTOM_COMPONENTS__?.[comp.name];
+      }
+      if (!BaseClass) {
+        const loadedKeys = Object.keys(window.__CUSTOM_COMPONENTS__ || {});
         const match = loadedKeys.find(
-          (key) => key.toLowerCase() === meta.name.toLowerCase()
+          (key) => key.toLowerCase() === comp.name.toLowerCase()
         );
         if (match) {
-          console.warn(
-            `[CustomComponents] Name case mismatch for "${meta.name}" — found as "${match}". Using matched component.`
-          );
-          ComponentClass = allLoadedComponents[match];
+          BaseClass = window.__CUSTOM_COMPONENTS__[match];
         } else {
           console.warn(
-            `[CustomComponents] "${meta.name}" not found on window.__CUSTOM_COMPONENTS__. Available keys:`,
+            `[CustomComponents] "${comp.name}" (key: "${windowKey}") not found on window.__CUSTOM_COMPONENTS__. Available keys:`,
             loadedKeys
           );
-          return null;
+          continue;
         }
       }
 
-      (ComponentClass as any).customComponentId = meta._id;
-      (ComponentClass as any).customComponentVersion = meta.version;
-      return ComponentClass;
-    })
-    .filter(Boolean) as (typeof Component)[];
+      const displayName = comp.name;
+      const displayVersion = comp.version;
+      const VersionedClass = class extends (BaseClass as any) {
+        static getName() { return displayName; }
+        static getVersion() { return displayVersion; }
+      };
+      (VersionedClass as any).customComponentId = comp._id;
+      (VersionedClass as any).customComponentVersion = comp.version;
+      componentsToRegister.push(VersionedClass as unknown as typeof Component);
+    } catch (err) {
+      console.warn(`[CustomComponents] Failed to load "${comp.name}" v${comp.version}:`, err);
+    }
+  }
 
   if (componentsToRegister.length > 0) {
     registry.registerDynamic(componentsToRegister, CATEGORIES.CUSTOM);

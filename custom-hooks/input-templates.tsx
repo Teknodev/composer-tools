@@ -89,7 +89,7 @@ export namespace INPUTS {
       });
     }
 
-    button["getPropValue"] = null;
+    // removed `button["getPropValue"] = null;` to fix Bug #1
 
     return button;
   };
