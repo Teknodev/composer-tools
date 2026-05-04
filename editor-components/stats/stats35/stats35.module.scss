@@ -20,6 +20,17 @@
         }
     }
 
+    &.no-left-section {
+        .background-media {
+            width: 100%;
+            left: 0;
+        }
+
+        &.has-media .max-content {
+            padding-right: unset;
+        }
+    }
+
     .media-wrapper {
         position: relative;
         width: 100%;
@@ -100,6 +111,24 @@
                 .button-text {
                     content: "";
                 }
+            }
+        }
+
+        &.left-full-width.center-alignment {
+            align-items: center;
+
+            .subtitle {
+                margin: unset;
+                text-align: center !important;
+            }
+
+            .title,
+            .description {
+                text-align: center;
+            }
+
+            .button-container {
+                justify-content: center;
             }
         }
     }

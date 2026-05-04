@@ -290,7 +290,7 @@ class Stats35 extends BaseStats {
         const mediaOnly = hasMedia && !hasLeftSection && !hasVisibleStats;
 
         return (
-            <Base.Container className={`${this.decorateCSS("container")} ${hasMedia && !mediaOnly ? this.decorateCSS("has-media") : ""} ${mediaOnly ? this.decorateCSS("media-only") : ""}`}>
+            <Base.Container className={`${this.decorateCSS("container")} ${hasMedia && !mediaOnly ? this.decorateCSS("has-media") : ""} ${mediaOnly ? this.decorateCSS("media-only") : ""} ${!hasLeftSection && hasRightSection ? this.decorateCSS("no-left-section") : ""}`}>
                 {hasMedia && !mediaOnly && (
                     <div className={this.decorateCSS("background-media")}>
                         <Base.Media
