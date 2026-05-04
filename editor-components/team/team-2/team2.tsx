@@ -3,6 +3,7 @@ import ComposerLink from "../../../composer-base-components/Link/ComposerLinkPro
 import { Team, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./team2.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type socials = {
   icon: TypeMediaInputValue;
@@ -915,6 +916,13 @@ class Team2 extends Team {
     });
 
     this.addProp({
+      type: "array",
+      key: "buttons",
+      displayer: "Buttons",
+      value: [INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary")],
+    });
+
+    this.addProp({
       type: "number",
       key: "itemCount",
       displayer: "Item count in a row",
@@ -941,6 +949,8 @@ class Team2 extends Team {
     const title = this.castToString(this.getPropValue("title"));
     const description = this.castToString(this.getPropValue("description"));
     const hasContent = subtitle || title || description;
+    const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons") || [];
+    const visibleButtons = buttons.filter(btn => this.castToString(btn.text));
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
@@ -976,6 +986,19 @@ class Team2 extends Team {
               );
             })}
           </Base.ListGrid>
+          {visibleButtons.length > 0 && (
+            <div className={this.decorateCSS("button-container")}>
+              {visibleButtons.map((item: INPUTS.CastedButton, index: number) => {
+                return this.castToString(item.text) && (
+                  <ComposerLink key={`button-${index}`} path={item.url}>
+                    <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
+                      <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>
+                    </Base.Button>
+                  </ComposerLink>
+                );
+              })}
+            </div>
+          )}
         </Base.MaxContent>
       </Base.Container>
     );

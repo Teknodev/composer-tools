@@ -21,7 +21,7 @@
         height: auto;
         transition: all 0.8s;
         flex: 1 1;
-        border-radius: var(--composer-border-radius-md);
+        border-radius: var(--composer-border-radius-sm);
         background-color: color-mix(in srgb,
             var(--composer-html-background),
             var(--composer-font-color-primary) 5%);
@@ -54,8 +54,8 @@
 
         .image-wrapper {
           overflow: hidden;
-          border-top-right-radius: var(--composer-border-radius-md);
-          border-top-left-radius: var(--composer-border-radius-md);
+          border-top-right-radius: var(--composer-border-radius-sm);
+          border-top-left-radius: var(--composer-border-radius-sm);
 
           .image {
             height: 500px;

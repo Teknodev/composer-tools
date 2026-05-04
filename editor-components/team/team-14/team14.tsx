@@ -2,6 +2,8 @@ import * as React from "react";
 import { Team, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./team14.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
+import ComposerLink from "composer-tools/composer-base-components/Link/ComposerLinkProvider";
 
 type Card = {
   profileImage: TypeMediaInputValue;
@@ -155,6 +157,13 @@ class Team14 extends Team {
     });
 
     this.addProp({
+      type: "array",
+      key: "buttons",
+      displayer: "Buttons",
+      value: [INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary")],
+    });
+
+    this.addProp({
       type: "number",
       key: "itemCount",
       displayer: "Item Count in a Row",
@@ -181,6 +190,8 @@ class Team14 extends Team {
     const description = this.castToString(this.getPropValue("description"));
     const cards = this.castToObject<Card[]>("cards");
     const itemCount: number = this.getPropValue("itemCount");
+    const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons") || [];
+    const visibleButtons = buttons.filter(btn => this.castToString(btn.text));
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
@@ -218,6 +229,19 @@ class Team14 extends Team {
                   );
                 })}
             </Base.ListGrid>
+          )}
+          {visibleButtons.length > 0 && (
+            <div className={this.decorateCSS("button-container")}>
+              {visibleButtons.map((item: INPUTS.CastedButton, index: number) => {
+                return this.castToString(item.text) && (
+                  <ComposerLink key={`button-${index}`} path={item.url}>
+                    <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
+                      <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>
+                    </Base.Button>
+                  </ComposerLink>
+                );
+              })}
+            </div>
           )}
         </Base.MaxContent>
       </Base.Container>

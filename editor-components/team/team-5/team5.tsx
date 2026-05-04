@@ -3,6 +3,7 @@ import styles from "./team5.module.scss";
 import { Team, TypeMediaInputValue } from "../../EditorComponent";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 import { Base } from "../../../composer-base-components/base/base";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type Social = {
   icon: TypeMediaInputValue;
@@ -676,6 +677,13 @@ class Team5 extends Team {
     });
 
     this.addProp({
+      type: "array",
+      key: "buttons",
+      displayer: "Buttons",
+      value: [INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary")],
+    });
+
+    this.addProp({
       type: "number",
       key: "itemCount",
       displayer: "Item count in a row",
@@ -701,22 +709,25 @@ class Team5 extends Team {
     const subtitle = this.castToString(this.getPropValue("subtitle"));
     const title = this.castToString(this.getPropValue("title"));
     const description = this.castToString(this.getPropValue("description"));
-
+    const hasContent = title || subtitle || description;
+    const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons") || [];
+    const visibleButtons = buttons.filter(btn => this.castToString(btn.text));
     const cards = this.castToObject<Card[]>("cards") || [];
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <Base.VerticalContent className={this.decorateCSS("vertical-content")}>
-            <div className={this.decorateCSS("title-container")}>
-              {subtitle && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
-              {title && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
-            </div>
-            <div className={this.decorateCSS("description-container")}>
-              {description && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
-            </div>
-          </Base.VerticalContent>
-
+          {hasContent && (
+            <Base.VerticalContent className={this.decorateCSS("vertical-content")}>
+              <div className={this.decorateCSS("title-container")}>
+                {subtitle && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
+                {title && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
+              </div>
+              <div className={this.decorateCSS("description-container")}>
+                {description && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
+              </div>
+            </Base.VerticalContent>
+          )}
           <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount"), tablet: 2, phone: 1 }} className={this.decorateCSS("container-bottom")}>
             {cards.map((item: Card, index: number) => {
               const itemName = this.castToString(item?.name);
@@ -724,34 +735,45 @@ class Team5 extends Team {
               const itemDescription = this.castToString(item?.description);
               const hasItem = itemName || itemPosition || item?.background || item?.picture || (item?.socials && item.socials.length > 0);
 
-              return (
-                hasItem && (
-                  <Base.VerticalContent key={index} className={this.decorateCSS("card-item")} data-animation={(this.getPropValue("hoverAnimation") || []).join(" ")}>
-                    <div className={this.decorateCSS("image-container")} data-animation={(this.getPropValue("hoverAnimation") || []).join(" ")} >
-                      {item.background && <Base.Media value={item.background} className={this.decorateCSS("background-image")} />}
-                      {item.picture && <Base.Media value={item.picture} className={this.decorateCSS("member-image")} />}
-                    </div>
-                    <Base.VerticalContent className={this.decorateCSS("members-container")}>
-                      <Base.Row className={this.decorateCSS("icon-container")} data-animation={(this.getPropValue("hoverAnimation") || []).join(" ")}>
-                        {item.socials?.map((value, i) => (
-                          <ComposerLink key={i} path={value?.url}>
-                            <Base.Media
-                              value={value?.icon}
-                              className={`${this.decorateCSS("icon")} ${value?.icon?.type === "image" && this.decorateCSS("has-image")}`}
-                              style={{ "--icon-index": i } as React.CSSProperties}
-                            />
-                          </ComposerLink>
-                        ))}
-                      </Base.Row>
-                      {itemName && <Base.H4 className={this.decorateCSS("name")}>{item.name}</Base.H4>}
-                      {itemPosition && <Base.H5 className={this.decorateCSS("position")}>{item.position}</Base.H5>}
-                      {itemDescription && <Base.P className={this.decorateCSS("card-description")}>{item.description}</Base.P>}
-                    </Base.VerticalContent>
+              return hasItem && (
+                <Base.VerticalContent key={index} className={this.decorateCSS("card-item")} data-animation={(this.getPropValue("hoverAnimation") || []).join(" ")}>
+                  <div className={this.decorateCSS("image-container")} data-animation={(this.getPropValue("hoverAnimation") || []).join(" ")} >
+                    {item.background && <Base.Media value={item.background} className={this.decorateCSS("background-image")} />}
+                    {item.picture && <Base.Media value={item.picture} className={this.decorateCSS("member-image")} />}
+                  </div>
+                  <Base.VerticalContent className={this.decorateCSS("members-container")}>
+                    <Base.Row className={this.decorateCSS("icon-container")} data-animation={(this.getPropValue("hoverAnimation") || []).join(" ")}>
+                      {item.socials?.map((value, i) => (
+                        <ComposerLink key={i} path={value?.url}>
+                          <Base.Media
+                            value={value?.icon}
+                            className={`${this.decorateCSS("icon")} ${value?.icon?.type === "image" && this.decorateCSS("has-image")}`}
+                            style={{ "--icon-index": i } as React.CSSProperties}
+                          />
+                        </ComposerLink>
+                      ))}
+                    </Base.Row>
+                    {itemName && <Base.H4 className={this.decorateCSS("name")}>{item.name}</Base.H4>}
+                    {itemPosition && <Base.H5 className={this.decorateCSS("position")}>{item.position}</Base.H5>}
+                    {itemDescription && <Base.P className={this.decorateCSS("card-description")}>{item.description}</Base.P>}
                   </Base.VerticalContent>
-                )
+                </Base.VerticalContent>
               );
             })}
           </Base.ListGrid>
+          {visibleButtons.length > 0 && (
+            <Base.Row className={this.decorateCSS("button-container")}>
+              {visibleButtons.map((item: INPUTS.CastedButton, index: number) => {
+                return this.castToString(item.text) && (
+                  <ComposerLink key={`button-${index}`} path={item.url}>
+                    <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
+                      <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>
+                    </Base.Button>
+                  </ComposerLink>
+                );
+              })}
+            </Base.Row>
+          )}
         </Base.MaxContent>
       </Base.Container>
     );

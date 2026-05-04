@@ -4,6 +4,7 @@ import { Team, TypeMediaInputValue } from "../../EditorComponent";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import { Base } from "../../../composer-base-components/base/base";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type Social = {
   icon: TypeMediaInputValue;
@@ -628,6 +629,13 @@ class Team9 extends Team {
     });
 
     this.addProp({
+      type: "array",
+      key: "buttons",
+      displayer: "Buttons",
+      value: [INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary")],
+    });
+
+    this.addProp({
       type: "number",
       key: "reverse",
       displayer: "Item Count",
@@ -678,6 +686,8 @@ class Team9 extends Team {
     const subtitle = this.castToString(this.getPropValue("subtitle"));
     const description = this.castToString(this.getPropValue("description"));
     const hasContent = subtitle || title || description;
+    const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons") || [];
+    const visibleButtons = buttons.filter(btn => this.castToString(btn.text));
     const members = this.castToObject<Card[]>("cards");
     const hoverAnimation = this.getPropValue("hoverAnimation");
 
@@ -700,37 +710,32 @@ class Team9 extends Team {
                   const personDescription = this.castToString(item.personDescription);
                   const hasCard = personName || item.profileImage || personPosition || personDescription || (item.socials && item.socials.length > 0);
 
-                  return (
-                    hasCard && (
-                      <Base.VerticalContent key={index} className={this.decorateCSS("card")} data-animation={hoverAnimation.join(" ")}>
-                        {item.profileImage && <Base.Media value={item.profileImage} className={this.decorateCSS("person-image")} />}
-                        <div className={this.decorateCSS("person-info")}>
-                          {item.socials && item.socials.length > 0 && (
-                            <div className={this.decorateCSS("icons-bar")}>
-                              {item.socials.map((social: Social, iconIndex: number) => {
-                                if (social.icon) {
-                                  return (
-                                    <ComposerLink key={iconIndex} path={social.url}>
-                                      <Base.Media
-                                        value={social.icon}
-                                        className={this.decorateCSS("icon")}
-                                        style={{ "--icon-index": iconIndex } as React.CSSProperties}
-                                      />
-                                    </ComposerLink>
-                                  );
-                                }
-                                return null;
-                              })}
-                            </div>
-                          )}
-                          <Base.VerticalContent className={this.decorateCSS("text-group")}>
-                            {personName && <Base.H2 className={this.decorateCSS("item-name")}>{item.personName}</Base.H2>}
-                            {personPosition && <Base.P className={this.decorateCSS("item-position")}>{item.personPosition}</Base.P>}
-                            {personDescription && <Base.P className={this.decorateCSS("item-description")}>{item.personDescription}</Base.P>}
-                          </Base.VerticalContent>
-                        </div>
-                      </Base.VerticalContent>
-                    )
+                  return hasCard && (
+                    <Base.VerticalContent key={index} className={this.decorateCSS("card")} data-animation={hoverAnimation.join(" ")}>
+                      {item.profileImage && <Base.Media value={item.profileImage} className={this.decorateCSS("person-image")} />}
+                      <div className={this.decorateCSS("person-info")}>
+                        {item.socials && item.socials.length > 0 && (
+                          <div className={this.decorateCSS("icons-bar")}>
+                            {item.socials.map((social: Social, iconIndex: number) => {
+                              return social.icon && (
+                                <ComposerLink key={iconIndex} path={social.url}>
+                                  <Base.Media
+                                    value={social.icon}
+                                    className={this.decorateCSS("icon")}
+                                    style={{ "--icon-index": iconIndex } as React.CSSProperties}
+                                  />
+                                </ComposerLink>
+                              );
+                            })}
+                          </div>
+                        )}
+                        <Base.VerticalContent className={this.decorateCSS("text-group")}>
+                          {personName && <Base.H2 className={this.decorateCSS("item-name")}>{item.personName}</Base.H2>}
+                          {personPosition && <Base.P className={this.decorateCSS("item-position")}>{item.personPosition}</Base.P>}
+                          {personDescription && <Base.P className={this.decorateCSS("item-description")}>{item.personDescription}</Base.P>}
+                        </Base.VerticalContent>
+                      </div>
+                    </Base.VerticalContent>
                   );
                 })}
               </Base.ListGrid>
@@ -776,6 +781,19 @@ class Team9 extends Team {
                 })}
               </ComposerSlider>
             </>
+          )}
+          {visibleButtons.length > 0 && (
+            <Base.Row className={this.decorateCSS("button-container")}>
+              {visibleButtons.map((item: INPUTS.CastedButton, index: number) => {
+                return this.castToString(item.text) && (
+                  <ComposerLink key={`button-${index}`} path={item.url}>
+                    <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
+                      <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>
+                    </Base.Button>
+                  </ComposerLink>
+                );
+              })}
+            </Base.Row>
           )}
         </Base.MaxContent>
       </Base.Container>

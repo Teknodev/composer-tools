@@ -3,6 +3,7 @@ import styles from "./team10.module.scss";
 import { Team, TypeMediaInputValue } from "../../EditorComponent";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 import { Base } from "../../../composer-base-components/base/base";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type Background = {
   componentBackground: TypeMediaInputValue;
@@ -52,6 +53,13 @@ class Team10 extends Team {
       key: "description",
       displayer: "Description",
       value: "",
+    });
+
+    this.addProp({
+      type: "array",
+      key: "buttons",
+      displayer: "Buttons",
+      value: [INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary")],
     });
 
     this.addProp({
@@ -1014,6 +1022,9 @@ class Team10 extends Team {
     const subtitle = this.castToString(this.getPropValue("subtitle"));
     const title = this.castToString(this.getPropValue("title"));
     const description = this.castToString(this.getPropValue("description"));
+    const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons") || [];
+    const visibleButtons = buttons.filter(btn => this.castToString(btn.text));
+    const hasContent = subtitle || title || description || visibleButtons.length > 0;
     const hoverAnimation = this.getPropValue("hoverAnimation") || [];
     const backgroundImageExist = backgroundImage?.url;
 
@@ -1024,6 +1035,19 @@ class Team10 extends Team {
             {subtitle && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
             {title && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
             {description && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
+            {visibleButtons.length > 0 && (
+              <div className={this.decorateCSS("button-container")}>
+                {visibleButtons.map((item: INPUTS.CastedButton, index: number) => {
+                  return this.castToString(item.text) && (
+                    <ComposerLink key={`button-${index}`} path={item.url}>
+                      <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
+                        <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>
+                      </Base.Button>
+                    </ComposerLink>
+                  );
+                })}
+              </div>
+            )}
           </Base.VerticalContent>
           {overlay && <div className={this.decorateCSS("overlay")}></div>}
           {backgroundImageExist && <Base.Media value={backgroundImage} className={this.decorateCSS("background-image")} />}
@@ -1032,7 +1056,6 @@ class Team10 extends Team {
           {this.castToObject<Card[]>("team").map((teamMember: Card, index: number) => {
             const imageValue = teamMember.profileImage;
             const socials = teamMember.socials || [];
-
             return (
               <Base.VerticalContent key={index} className={this.decorateCSS("team-member")}>
                 {(teamMember.title || teamMember.subtitle || teamMember.features?.length > 0 || teamMember.cardDescription || socials.length > 0) && (
