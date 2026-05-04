@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Testimonials } from "../../EditorComponent";
+import { Testimonials, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./testimonials10.module.scss";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
@@ -8,7 +8,7 @@ import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "../../../custom-hooks/input-templates";
 
 type Item = {
-  image: string;
+  profileImage: TypeMediaInputValue;
   text: React.JSX.Element;
   author: React.JSX.Element;
   position: React.JSX.Element;
@@ -60,10 +60,16 @@ class Testimonials10Page extends Testimonials {
           displayer: "Content",
           value: [
             {
-              type: "image",
-              key: "image",
+              type: "media",
+              key: "profileImage",
               displayer: "Author Image",
-              value: "https://gridvalley.net/wp/industroz/wp-content/uploads/2020/04/pic3-5.jpg",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://gridvalley.net/wp/industroz/wp-content/uploads/2020/04/pic3-5.jpg",
+              },
             },
             {
               type: "string",
@@ -91,10 +97,16 @@ class Testimonials10Page extends Testimonials {
           displayer: "Content",
           value: [
             {
-              type: "image",
-              key: "image",
-              displayer: "Author Image",
-              value: "https://gridvalley.net/wp/industroz/wp-content/uploads/2020/04/pic3-5.jpg",
+              type: "media",
+      key: "profileImage",
+      displayer: "Author Image",
+      additionalParams: {
+        availableTypes: ["image"],
+      },
+      value: {
+        type: "image",
+        url: "https://gridvalley.net/wp/industroz/wp-content/uploads/2020/04/pic3-5.jpg",
+      },
             },
             {
               type: "string",
@@ -122,10 +134,16 @@ class Testimonials10Page extends Testimonials {
           displayer: "Content",
           value: [
             {
-              type: "image",
-              key: "image",
-              displayer: "Author Image",
-              value: "https://gridvalley.net/wp/industroz/wp-content/uploads/2020/04/pic3-5.jpg",
+              type: "media",
+      key: "profileImage",
+      displayer: "Author Image",
+      additionalParams: {
+        availableTypes: ["image"],
+      },
+      value: {
+        type: "image",
+        url: "https://gridvalley.net/wp/industroz/wp-content/uploads/2020/04/pic3-5.jpg",
+      },
             },
             {
               type: "string",
@@ -153,10 +171,16 @@ class Testimonials10Page extends Testimonials {
           displayer: "Content",
           value: [
             {
-              type: "image",
-              key: "image",
-              displayer: "Author Image",
-              value: "https://gridvalley.net/wp/industroz/wp-content/uploads/2020/04/pic3-5.jpg",
+              type: "media",
+      key: "profileImage",
+      displayer: "Author Image",
+      additionalParams: {
+        availableTypes: ["image"],
+      },
+      value: {
+        type: "image",
+        url: "https://gridvalley.net/wp/industroz/wp-content/uploads/2020/04/pic3-5.jpg",
+      },
             },
             {
               type: "string",
@@ -184,10 +208,16 @@ class Testimonials10Page extends Testimonials {
           displayer: "Content",
           value: [
             {
-              type: "image",
-              key: "image",
-              displayer: "Author Image",
-              value: "https://gridvalley.net/wp/industroz/wp-content/uploads/2020/04/pic3-5.jpg",
+              type: "media",
+      key: "profileImage",
+      displayer: "Author Image",
+      additionalParams: {
+        availableTypes: ["image"],
+      },
+      value: {
+        type: "image",
+        url: "https://gridvalley.net/wp/industroz/wp-content/uploads/2020/04/pic3-5.jpg",
+      },
             },
             {
               type: "string",
@@ -299,12 +329,12 @@ class Testimonials10Page extends Testimonials {
                         <div className={this.decorateCSS("slider-inner-div")}>
                           <div className={this.decorateCSS("slider-card")}>
                             {(this.castToString(item.text) || this.castToString(item.position) || this.castToString(item.author)) && (
-                              <div className={`${this.decorateCSS("header-page-container")} ${!item.image && this.decorateCSS("header-page-container-no-image")}`}>
+                              <div className={`${this.decorateCSS("header-page-container")} ${!item.profileImage && this.decorateCSS("header-page-container-no-image")}`}>
                                 <div className={this.decorateCSS("header-page")}>
                                   <div className={this.decorateCSS("top-container")}>
-                                    {item.image && (
+                                    {item.profileImage && (
                                       <div className={this.decorateCSS("img-div")}>
-                                        <img alt="" src={item.image} className={this.decorateCSS("img")} />
+                                        <Base.Media value={item.profileImage} className={this.decorateCSS("img")} />
                                       </div>
                                     )}
                                     <div className={this.decorateCSS("icons")}>

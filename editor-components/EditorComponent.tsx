@@ -255,6 +255,8 @@ type GetPropValueProperties = {
   as_string?: boolean;
   suffix?: PreSufFix;
   prefix?: PreSufFix;
+  /** CMS-linked string on canvas: render HTML like unlinked, but block opening inline Lexical on click. */
+  cmsInlineReadOnly?: boolean;
 };
 
 type RangeInputAdditionalParams = {
@@ -306,6 +308,7 @@ type AvailablePropTypes =
   | { type: "lottie"; value: string }
   | { type: "video"; value: string }
   | { type: "select"; value: string }
+  | { type: "badge"; value: string }
   | { type: "color"; value: string }
   | { type: "icon"; value: string }
   | { type: "email"; value: string }
@@ -328,14 +331,19 @@ export type TypeReactComponent = {
   id?: string;
   children?: string;
   customComponentId?: string;
-  customComponentVersion?: string;
+  customComponentVersion?: number;
   globalComponentId?: string;
 };
 export type TypeUsableComponentProps = {
   id?: string;
   key: string;
   displayer: string;
-  additionalParams?: { selectItems?: string[]; maxElementCount?: number; availableTypes?: MediaType[] };
+  additionalParams?: {
+    selectItems?: string[];
+    badgeItems?: string[];
+    maxElementCount?: number;
+    availableTypes?: MediaType[];
+  };
   max?: number;
 } & AvailablePropTypes & {
   getPropValue?: (
@@ -406,7 +414,19 @@ export abstract class Component
     prevState: Readonly<{ states: any; componentProps: any; }>,
     snapshot?: any
   ): void {
-
+    const prevPropsArr: any[] = (prevProps as any)?.props || [];
+    const nextPropsArr: any[] = (this.props as any)?.props || [];
+    const propDiffs: { key: string; prev: any; next: any }[] = [];
+    nextPropsArr.forEach((np: any) => {
+      const pp = prevPropsArr.find((p: any) => p?.key === np?.key);
+      if (pp && pp.value !== np.value && (np.type === "string" || np.type === "boolean")) {
+        propDiffs.push({
+          key: np.key,
+          prev: typeof pp.value === "string" ? String(pp.value).slice(0, 80) : pp.value,
+          next: typeof np.value === "string" ? String(np.value).slice(0, 80) : np.value,
+        });
+      }
+    });
     EventEmitter.emit(EVENTS.COMPONENT_DID_UPDATE, { data: this });
     this.onComponentDidUpdate?.(prevProps, prevState, snapshot);
   }
@@ -533,17 +553,14 @@ export abstract class Component
   }
 
   static getName(): string {
-    // console.error("Static Method Not Implemented", this.name);
     return this.name;
   }
 
   getName(): string {
-    // console.error("Static Method Not Implemented", this.name);
     return (this.constructor as typeof Component).getName();
   }
 
   static getInstanceName(): string {
-    // console.error("Static Method Not Implemented", this.name);
     return this.name;
   }
 
@@ -575,6 +592,21 @@ export abstract class Component
     return this.getFilteredProp(key, this.shadowProps);
   }
 
+  /**
+   * Recursively searches through a props tree for a prop with the given key.
+   * Used to find default values for nested props inside array/object containers.
+   */
+  private findShadowPropByKey(key: string, props: TypeUsableComponentProps[]): TypeUsableComponentProps | null {
+    for (const prop of props) {
+      if (prop.key === key) return prop;
+      if ((prop.type === "array" || prop.type === "object") && Array.isArray(prop.value)) {
+        const found = this.findShadowPropByKey(key, prop.value as TypeUsableComponentProps[]);
+        if (found) return found;
+      }
+    }
+    return null;
+  }
+
   getProp(key: string): TypeUsableComponentProps | null {
     return this.getFilteredProp(key, this.state.componentProps.props);
   }
@@ -584,6 +616,35 @@ export abstract class Component
       properties?.parent_object?.filter(
         (prop: TypeUsableComponentProps) => prop.key === propName
       )[0] || this.getProp(propName);
+
+    // For CMS keys, fall back to the shadow prop's default value so the
+    // playground renders realistic content instead of key strings.
+    let isCmsProp = false;
+    if (prop && typeof prop.value === "string" && /^CMS_.+_[a-z]+_\d{3,}$/.test(prop.value)) {
+      isCmsProp = true;
+      let shadowProp: TypeUsableComponentProps | null | undefined;
+      if (properties?.parent_object) {
+        // Nested prop: search recursively through shadow props tree
+        shadowProp = this.findShadowPropByKey(propName, this.getShadowProps());
+      } else {
+        shadowProp = this.getShadowProp(propName);
+      }
+      if (shadowProp) {
+        prop = { ...prop, value: shadowProp.value } as any;
+      }
+    }
+
+    // CMS-linked strings: render via the same rich-HTML path as unlinked (InlineEditor BlinkPage).
+    // Returning a raw string here made React escape HTML, so tags like <span> showed as literal text.
+    if (isCmsProp) {
+      if (prop?.type === "string") {
+        return this.getPropValueAsElement(prop, {
+          ...properties,
+          cmsInlineReadOnly: true,
+        });
+      }
+      return prop?.value;
+    }
 
     const isStringMustBeElement =
       prop?.type == "string" && !properties?.as_string;
@@ -670,6 +731,7 @@ export abstract class Component
             props={componentInstance.getProps()}
             sanitizedHtml={sanitizedHtml}
             componentId={componentInstance.id}
+            cmsInlineReadOnly={!!currentProperties?.cmsInlineReadOnly}
           />
         );
       };
@@ -697,21 +759,21 @@ export abstract class Component
   }
 
   private attachPropId(_prop: TypeUsableComponentProps) {
+    _prop.id = generateId(_prop.key);
     if (_prop.type == "array" || _prop.type == "object") {
       (_prop.value as TypeUsableComponentProps[]).forEach(
         (v: TypeUsableComponentProps) => this.attachPropId(v)
       );
-    } else {
-      _prop.id = generateId(_prop.key)
     }
 
     return _prop;
   }
 
   addProp(prop: TypeUsableComponentProps) {
+    this.attachPropId(prop);
     this.shadowProps.push(JSON.parse(JSON.stringify(prop)));
     if (this.getProp(prop.key)) return;
-    this.initializeProp(prop);
+    this.attachValueGetter(prop);
     this.state.componentProps.props.push(prop);
     EventEmitter.emit(EVENTS.RENDER_CONTENT_TAB)
   }
@@ -766,11 +828,9 @@ export abstract class Component
       prop.value === value;
 
     if (isInvalidIndex || isMatchingSimpleValue || isMatchingComplexValue) {
-      console.debug(`%cDEBUG%c [EditorComponent]`, Component._dbgStyle, 'color:#888;font-style:italic;', 'setProp skipped (no change)', { id: this.id, key });
       return;
     }
 
-    console.debug(`%cDEBUG%c [EditorComponent]`, Component._dbgStyle, 'color:#888;font-style:italic;', 'setProp → setState', { id: this.id, key, type: prop.type });
     this.state.componentProps.props[i].value = value;
     this.state.componentProps.props[i] = this.attachValueGetter(
       this.state.componentProps.props[i]

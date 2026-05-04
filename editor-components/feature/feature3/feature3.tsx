@@ -272,6 +272,9 @@ class Feature3 extends BaseFeature {
       max: 5
     });
 
+  }
+
+  componentDidMount() {
     window.addEventListener('resize', () => {
       this.setComponentState('screenWidth', window.innerWidth);
     });
