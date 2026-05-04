@@ -73,8 +73,8 @@
                     .features-header {
                         display: flex;
                         align-items: center;
+                        flex-wrap: wrap;
                         gap: var(--composer-gap-md);
-
 
                         .features-label {
                             color: var(--composer-font-color-primary);
@@ -85,7 +85,7 @@
                         }
 
                         .separator-line {
-                            flex: 1;
+                            flex: 1 0 40px;
                             height: 1px;
                             background-color: color-mix(in srgb, var(--composer-font-color-primary) 10%, transparent);
                         }

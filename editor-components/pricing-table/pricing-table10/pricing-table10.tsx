@@ -252,6 +252,7 @@ class PricingTable10 extends BasePricingTable {
             </div>
           )}
 
+          {(cardSubtitleExist || cardTitleExist || cardDescriptionExist || featuresLabelExist || features?.length > 0 || taglineExist || priceExist || cardButtons?.length > 0) && (
           <div
             className={this.decorateCSS("card")}
           >
@@ -341,6 +342,7 @@ class PricingTable10 extends BasePricingTable {
             </div>
             )}
           </div>
+          )}
 
         </Base.MaxContent>
       </Base.Container>
