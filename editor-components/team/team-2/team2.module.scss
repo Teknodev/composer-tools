@@ -125,12 +125,19 @@
           }
         }
 
-        .image {
-          display: block;
-          width: 100px;
-          height: 100px;
-          border-radius: 50%;
-          object-fit: cover;
+        .image-container {
+          position: relative;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+
+          .image {
+            display: block;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+          }
         }
 
         .title {

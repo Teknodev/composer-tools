@@ -212,7 +212,7 @@ class Team9 extends Team {
             },
             {
               type: "string",
-              key: "name",
+              key: "personName",
               displayer: "Person Name",
               value: "DAVID",
             },
@@ -356,7 +356,7 @@ class Team9 extends Team {
             },
             {
               type: "string",
-              key: "name",
+              key: "personName",
               displayer: "Person Name",
               value: "JENNIFER",
             },
@@ -500,7 +500,7 @@ class Team9 extends Team {
             },
             {
               type: "string",
-              key: "name",
+              key: "personName",
               displayer: "Person Name",
               value: "MATHEW",
             },
@@ -712,7 +712,11 @@ class Team9 extends Team {
 
                   return hasCard && (
                     <Base.VerticalContent key={index} className={this.decorateCSS("card")} data-animation={hoverAnimation.join(" ")}>
-                      {item.profileImage && <Base.Media value={item.profileImage} className={this.decorateCSS("person-image")} />}
+                      {item.profileImage && (
+                        <div className={this.decorateCSS("image-container")}>
+                          <Base.Media value={item.profileImage} className={this.decorateCSS("person-image")} />
+                        </div>
+                      )}
                       <div className={this.decorateCSS("person-info")}>
                         {item.socials && item.socials.length > 0 && (
                           <div className={this.decorateCSS("icons-bar")}>

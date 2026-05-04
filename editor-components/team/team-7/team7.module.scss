@@ -82,6 +82,9 @@
 
         .image-wrapper {
           position: relative;
+          display: flex;
+          justify-content: center;
+          align-items: center;
           overflow: hidden;
 
           &[data-animation~="animate2"] {

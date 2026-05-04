@@ -147,7 +147,10 @@
           display: flex;
         }
 
-        .box-image {
+        .image-container {
+          display: flex;
+          justify-content: center;
+          align-items: center;
           position: relative;
           flex: 0 0 25%;
           width: 100%;
@@ -155,7 +158,7 @@
           border-radius: var(--composer-border-radius-sm);
           overflow: hidden;
 
-          .profile-image {
+          .image {
             position: relative;
             width: 100%;
             max-width: 300px;
@@ -248,8 +251,8 @@
         .down-page {
           .all-card {
             .card {
-              .box-image {
-                .profile-image {
+              .image-container {
+                .image {
                   min-height: 140px;
                 }
               }
@@ -275,8 +278,8 @@
 
                 .card-items {
                   .item-content {
-                    .box-image {
-                      .profile-image {
+                    .image-container {
+                      .image {
                         margin-left: var(--composer-gap-md);
                       }
                     }

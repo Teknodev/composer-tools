@@ -56,6 +56,9 @@
           overflow: hidden;
           border-top-right-radius: var(--composer-border-radius-sm);
           border-top-left-radius: var(--composer-border-radius-sm);
+          display: flex;
+          align-items: center;
+          justify-content: center;
 
           .image {
             height: 500px;

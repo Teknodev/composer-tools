@@ -948,9 +948,9 @@ class Team3 extends Team {
     const subtitle = this.castToString(this.getPropValue("subtitle"));
     const title = this.castToString(this.getPropValue("title"));
     const description = this.castToString(this.getPropValue("description"));
+    const hasContent = subtitle || title || description;
     const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons") || [];
     const visibleButtons = buttons.filter(btn => this.castToString(btn.text));
-    const hasContent = subtitle || title || description || visibleButtons.length > 0;
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
@@ -970,8 +970,8 @@ class Team3 extends Team {
                     <div className={this.decorateCSS("card-items")}>
                       <div className={this.decorateCSS("item-content")}>
                         {card.profileImage && (
-                          <div className={this.decorateCSS("box-image")}>
-                            <Base.Media value={card.profileImage} className={this.decorateCSS("profile-image")} data-animation={this.getPropValue("hoverAnimation").join(" ")} />
+                          <div className={this.decorateCSS("image-container")}>
+                            <Base.Media value={card.profileImage} className={this.decorateCSS("image")} data-animation={this.getPropValue("hoverAnimation").join(" ")} />
                           </div>
                         )}
                         <Base.VerticalContent className={card.profileImage ? this.decorateCSS("box-text") : this.decorateCSS("no-image-box-text")}>

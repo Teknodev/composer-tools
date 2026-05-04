@@ -678,7 +678,11 @@ class Team4 extends Team {
             {this.castToObject<Card[]>("cards").map((card: Card, indexCards: number) => {
               return (
                 <Base.VerticalContent key={indexCards} className={this.decorateCSS("team-member")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
-                  {card.profileImage && <Base.Media value={card.profileImage} className={this.decorateCSS("member-image")} data-animation={this.getPropValue("hoverAnimation").join(" ")} />}
+                  {card.profileImage &&
+                    <div className={this.decorateCSS("image-container")}>
+                      <Base.Media value={card.profileImage} className={this.decorateCSS("image")} data-animation={this.getPropValue("hoverAnimation").join(" ")} />
+                    </div>
+                  }
                   <Base.VerticalContent className={this.decorateCSS("name-and-position")}>
                     {card.name && <Base.H4 className={this.decorateCSS("team-member-name")}>{card.name}</Base.H4>}
                     {card.position && <Base.P className={this.decorateCSS("team-member-position")}>{card.position}</Base.P>}

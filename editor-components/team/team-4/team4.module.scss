@@ -25,18 +25,25 @@
         transition: transform 0.3s ease, box-shadow 0.3s ease;
         height: 100%;
 
-        .member-image {
-          width: 100%;
-          aspect-ratio: 4 / 5;
-          object-fit: cover;
-          transition: filter 0.5s ease;
-          border-radius: var(--composer-border-radius-sm);
+        .image-container {
+          position: relative;
+          display: flex;
+          justify-content: center;
+          align-items: center;
 
-          &[data-animation~="animate3"] {
-            filter: grayscale(100%);
+          .image {
+            width: 100%;
+            aspect-ratio: 4 / 5;
+            object-fit: cover;
+            transition: filter 0.5s ease;
+            border-radius: var(--composer-border-radius-sm);
 
-            &:hover {
-              filter: grayscale(0%);
+            &[data-animation~="animate3"] {
+              filter: grayscale(100%);
+
+              &:hover {
+                filter: grayscale(0%);
+              }
             }
           }
         }
@@ -87,12 +94,10 @@
 
         &[data-animation~="animate1"]:hover {
           transform: translateY(-20px);
-          box-shadow: var(--box-shadow-active);
         }
 
         &[data-animation~="animate2"]:hover {
           transform: scale(1.1);
-          box-shadow: var(--box-shadow-active);
         }
       }
     }
@@ -119,7 +124,6 @@
 
           &[data-animation~="animate2"]:hover {
             transform: scale(1.05);
-            box-shadow: var(--box-shadow-active);
           }
         }
       }

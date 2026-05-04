@@ -58,6 +58,10 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
             border-radius: var(--composer-border-radius-sm);
             width: 100%;
             transition: $transition;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
 
             .image {
               width: 100%;

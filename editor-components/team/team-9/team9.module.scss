@@ -13,14 +13,22 @@
         gap: var(--composer-gap-sm);
         align-items: flex-start;
 
-        .person-image {
-          height: 400px;
-          min-height: 400px;
-          width: 100%;
-          object-fit: cover;
-          transition: 0.4s;
-          border-radius: var(--composer-border-radius-sm);
+        .image-container {
+          position: relative;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+
+          .person-image {
+            height: 400px;
+            min-height: 400px;
+            width: 100%;
+            object-fit: cover;
+            transition: 0.4s;
+            border-radius: var(--composer-border-radius-sm);
+          }
         }
+
 
         .person-info {
           .text-group {
@@ -203,8 +211,10 @@
       }
 
       .card {
-        .person-image {
-          height: 300px;
+        .image-container {
+          .person-image {
+            height: 300px;
+          }
         }
 
         .person-info {
