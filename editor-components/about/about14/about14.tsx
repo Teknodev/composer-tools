@@ -33,7 +33,7 @@ class About14 extends BaseAbout {
                     },
                     value: {
                         type: "image",
-                        url: "",
+                        url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/693ad982875e15002c62337c?alt=media",
                     },
                 },
                 {
@@ -49,7 +49,7 @@ class About14 extends BaseAbout {
             type: "string",
             key: "subtitle",
             displayer: "Subtitle",
-            value: "Lorem",
+            value: "",
         });
 
         this.addProp({
