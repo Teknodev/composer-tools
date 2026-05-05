@@ -13,6 +13,8 @@ type Button = {
 };
 
 class TermsOfUseModal extends BaseModal {
+  static subCategory = "termsOfUse";
+
   constructor(props?: any) {
     super(props, styles);
 

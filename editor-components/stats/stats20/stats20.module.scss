@@ -1,133 +1,96 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
+
     .max-content {
-        .card {
-            .card-content {
-                gap: var(--composer-gap-lg);
+        .content-wrapper {
+            display: flex;
+            flex-direction: row;
+            align-items: stretch;
+            gap: var(--composer-gap-md);
 
-                &.has-divider {
-                    gap: 0;
+            .button-container {
+                display: flex;
+                flex-wrap: wrap;
+                gap: var(--composer-gap-sm);
 
-                    .divider {
-                        width: 100%;
-                        height: 1px;
-                        background-color: var(--composer-font-color-primary);
-                        opacity: 0.2;
-                        margin: var(--composer-gap-xl) 0;
-                    }
-                }
-
-                .header-container {
-                    display: flex;
-                    flex-direction: row;
-                    align-items: flex-start;
-                    justify-content: space-between;
-                    gap: var(--composer-gap-lg);
-
-                    .left-container,
-                    .right-container {
-                        flex: 1;
-                    }
-
-                    .button-container {
-                        display: flex;
-                        flex-wrap: wrap;
-                        justify-content: flex-start;
-                        gap: var(--composer-gap-sm);
-
-                        .button {
-                            .button-text {
-                                content: "";
-                            }
-                        }
-                    }
-
-                    &.alignment-center {
-                        flex-direction: column;
-                        align-items: center;
-                        gap: var(--composer-gap-md);
-
-                        .title,
-                        .subtitle,
-                        .description {
-                            text-align: center;
-                        }
-
-                        .subtitle {
-                            margin-left: 0 auto;
-                        }
-
-                        .button-container {
-                            justify-content: center;
-                        }
-                    }
-                }
-
-                .stats-grid {
-                    column-gap: var(--composer-gap-lg);
-                    row-gap: var(--composer-gap-md);
-
-                    .stat-item {
-
-                        .stat-value {
-                            color: var(--composer-primary-color);
-                            font-size: 5rem;
-
-                            .stat-prefix,
-                            .stat-number,
-                            .stat-suffix {
-                                color: inherit;
-                            }
-                        }
-
-                        .stat-title,
-                        .stat-subtitle,
-                        .stat-info-text {
-                            color: var(--composer-font-color-primary);
-                        }
+                .button {
+                    .button-text {
+                        content: "";
                     }
                 }
             }
 
-            &.has-background {
-                background: var(--composer-primary-color);
-                border-radius: var(--composer-border-radius-md);
-                padding: calc(var(--composer-gap-lg) * 2) var(--composer-gap-xl);
+            &.alignment-center {
 
-                .card-content {
-                    .header-container {
+                .left-container {
+                    align-items: flex-start;
+                }
 
-                        .title,
-                        .subtitle,
-                        .description {
-                            color: var(--composer-font-color-secondary);
-                        }
+                .title,
+                .subtitle,
+                .description {
+                    text-align: left;
+                }
 
-                        .subtitle {
-                            background: transparent;
-                            padding: 0;
+                .subtitle {
+                    margin-left: 0;
+                }
 
-                            &::before {
-                                background-color: var(--composer-font-color-secondary);
-                            }
+                .button-container {
+                    justify-content: flex-start;
+                }
+
+                .stat-item {
+                    align-items: flex-start;
+
+                    .stat-title,
+                    .stat-subtitle,
+                    .stat-description {
+                        text-align: left;
+                    }
+                }
+            }
+
+            .left-card {
+                flex: 1.5;
+                background: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+                border-radius: var(--composer-border-radius-sm);
+                display: flex;
+                align-items: center;
+                margin-bottom: 0;
+
+                .left-container {
+                    padding: calc(var(--composer-gap-lg) * 2) var(--composer-gap-xl);
+                }
+            }
+
+            .stats-grid {
+                flex: 1;
+                gap: var(--composer-gap-md);
+
+                .stat-item {
+                    background: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+                    border-radius: var(--composer-border-radius-sm);
+                    padding: var(--composer-gap-lg) var(--composer-gap-md);
+
+                    .stat-value {
+                        color: var(--composer-font-color-primary);
+                        display: flex;
+                        align-items: center;
+                        font-size: 5rem;
+
+                        .stat-prefix,
+                        .stat-number,
+                        .stat-suffix {
+                            color: inherit;
                         }
                     }
 
-                    .divider {
-                        background-color: var(--composer-font-color-secondary);
-                    }
-
-                    .stats-grid {
-                        .stat-item {
-
-                            .stat-value,
-                            .stat-title,
-                            .stat-subtitle,
-                            .stat-info-text {
-                                color: var(--composer-font-color-secondary);
-                            }
-                        }
+                    .stat-title,
+                    .stat-subtitle,
+                    .stat-description {
+                        color: var(--composer-font-color-primary);
                     }
                 }
             }
@@ -136,43 +99,62 @@
 }
 
 @container (max-width: #{$composer-tablet-width}) {
-    .container .max-content .card {
-        &.has-background {
-            padding: calc(var(--composer-gap-lg) * 2) var(--composer-gap-lg);
+    .container .max-content .content-wrapper {
+        .stats-grid .stat-item .stat-value {
+            font-size: 4rem;
         }
 
-        .card-content {
-            &.has-divider .divider {
-                margin: var(--composer-gap-md) 0;
-            }
-
-            .stats-grid .stat-item .stat-value {
-                font-size: 4rem;
-            }
+        .left-card .left-container {
+            padding: calc(var(--composer-gap-lg) * 2) var(--composer-gap-lg);
         }
     }
 }
 
 @container (max-width: #{$composer-phone-width}) {
-    .container .max-content .card {
-        &.has-background {
-            padding: var(--composer-gap-xl) var(--composer-gap-md);
+    .container .max-content .content-wrapper {
+        flex-direction: column;
+
+        &.alignment-center {
+            .left-container {
+                align-items: center;
+            }
+
+            .title,
+            .subtitle,
+            .description {
+                text-align: center;
+            }
+
+            .subtitle {
+                margin-inline: auto;
+            }
+
+            .button-container {
+                justify-content: center;
+            }
+
+            .stat-item {
+                align-items: center;
+
+                .stat-title,
+                .stat-subtitle,
+                .stat-description {
+                    text-align: center;
+                }
+            }
         }
 
-        .card-content {
-            gap: var(--composer-gap-md);
-
-            &.has-divider .divider {
-                margin: var(--composer-gap-md) 0;
+        .left-card {
+            .left-container {
+                padding: var(--composer-gap-xl) var(--composer-gap-md);
             }
+        }
 
-            .stats-grid .stat-item .stat-value {
+        .stats-grid .stat-item {
+            padding: var(--composer-gap-md);
+
+            .stat-value {
                 font-size: 3.5rem;
-            }
-
-            .header-container {
-                flex-direction: column;
-                gap: var(--composer-gap-sm);
             }
         }
     }

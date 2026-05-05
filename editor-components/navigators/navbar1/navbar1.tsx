@@ -1288,7 +1288,7 @@ class Navbar1 extends BaseNavigator {
     const animations = this.getPropValue("animations") && this.getPropValue("animations").map((animation:string) => this.decorateCSS(animation)).join(" ")
 
     return (
-      <>
+      <div className={this.decorateCSS("navbar-root")}>
         <Base.Navigator.Container
           position={position}
           hamburgerNavActive={hamburgerNavActive}
@@ -1635,7 +1635,7 @@ class Navbar1 extends BaseNavigator {
           isVisible={isVisible}
           onClick={() => this.handleCloseMenu()}
         />
-      </>
+      </div>
 
     );
   }

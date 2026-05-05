@@ -2485,7 +2485,7 @@ class Navbar10 extends BaseNavigator {
     const isOverlayVisible = hamburgerNavActive || activeDropdown !== null;
 
     return (
-      <>
+      <div className={this.decorateCSS("navbar-root")}>
         <Base.Navigator.Container
           ref={this.containerRef}
           position={position}
@@ -2676,7 +2676,6 @@ class Navbar10 extends BaseNavigator {
                                 <div className={this.decorateCSS("dropdownRightColumn")}>
                                   {rightCategories.map((category, catIndex) => {
                                    const rightContainerExists = category.items.length > 0 || category.image || category.url || category.title || category.icon;
-                                    console.log(rightContainerExists, "rightContainerExists");
                                     return rightContainerExists && (
                                       <div
                                       key={catIndex}
@@ -3062,7 +3061,7 @@ class Navbar10 extends BaseNavigator {
           isVisible={isOverlayVisible}
           onClick={() => this.handleCloseMenu()}
         />
-      </>
+      </div>
     );
   }
 }

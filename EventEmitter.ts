@@ -12,7 +12,12 @@ export enum EVENTS {
   INSERT_FORM = "insertForm",
   RENDER_CONTENT_TAB = "renderContentTab",
   COMPONENT_DID_UPDATE = "componentDidUpdate",
-  CSS_CLASSES_CHANGED = "cssClassesChanged"
+  CSS_CLASSES_CHANGED = "cssClassesChanged",
+  ANIMATION_INTERACTIONS_CHANGED = "animationInteractionsChanged",
+  OPEN_INLINE_IMAGE_EDITOR = "openInlineImageEditor",
+  OPEN_INLINE_VIDEO_EDITOR = "openInlineVideoEditor",
+  HOVER_THEME_ELEMENT = "hoverThemeElement",
+  HOVER_TREE_ELEMENT = "hoverTreeElement"
 }
 
 class EventQ {

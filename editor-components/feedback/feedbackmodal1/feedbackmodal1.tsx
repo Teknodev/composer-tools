@@ -16,6 +16,8 @@ type Emoji = {
 };
 
 class FeedbackModal1 extends BaseModal {
+  static subCategory = "feedback";
+
   constructor(props?: any) {
     super(props, styles);
 

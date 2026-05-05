@@ -1,91 +1,107 @@
-@use "../../../composer-base-components/base/utitilities/viewports.module.scss"
-as *;
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
     .max-content {
-        display: flex;
-        flex-direction: column;
-        width: 100%;
-        gap: var(--composer-gap-xl);
-
-        .header {
-            .subtitle {
-                text-align: center !important;
-                margin-left: auto !important;
-                margin-right: auto !important;
-                transform: none !important;
-
-                &::before {
-                    display: none !important;
-                }
-            }
-
-            .title,
-            .description {
-                text-align: center !important;
-            }
-        }
-
-        .features-grid {
-            width: 100%;
-            justify-content: center;
+        .wrapper {
+            display: flex;
+            flex-direction: column;
             gap: var(--composer-gap-lg);
 
-            .feature-card {
-                display: flex;
-                flex-direction: column;
-                gap: var(--composer-gap-md);
-                align-items: center;
+            .text-content {
+                flex: 1;
 
-                &.center {
-                    align-items: center;
+                .subtitle,
+                .title,
+                .description {
+                    content: ""
                 }
+            }
 
-                .icon-container {
-                    background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
-                    border-radius: var(--composer-border-radius-full);
+            .features-content {
+                flex: 1.5;
+                gap: var(--composer-gap-lg);
 
-                    &.no-bg {
-                        background-color: transparent;
-                    }
+                .card-container {
+                    display: flex;
+                    gap: var(--composer-gap-md);
+                    align-items: center;
 
-                    .icon {
-                        font-size: 3rem;
-                        color: var(--composer-font-color-primary);
-                        width: 100px;
-                        height: 100px;
+                    .icon-box {
                         display: flex;
-                        align-content: center;
                         justify-content: center;
                         align-items: center;
-                        object-fit: cover;
-                        padding: calc(var(--composer-gap-sm) * 3);
+                        background-color: var(--composer-primary-color);
+                        border-radius: var(--composer-border-radius-full);
+                        padding: var(--composer-gap-md);
+                        width: 80px;
+                        height: 80px;
+
+                        &.no-bg {
+                            background-color: transparent;
+
+                            .card-icon {
+                                color: var(--composer-primary-color);
+                            }
+                        }
+
+                        .card-icon {
+                            font-size: 2.5rem;
+                            color: var(--composer-font-color-secondary);
+                            display: flex;
+
+                            &.is-image {
+                                width: 100%;
+                                height: 100%;
+                            }
+                        }
+                    }
+
+                    .card-content {
+                        flex: 1;
+
+                        .card-description,
+                        .card-title {
+                            color: var(--composer-font-color-primary);
+                            text-align: left !important;
+                        }
                     }
                 }
+            }
 
-                .content {
-                    display: flex;
-                    flex-direction: column;
+            .button-container {
+                gap: var(--composer-gap-md);
+                flex-wrap: wrap;
 
-                    .features-title,
-                    .features-description {
-                        color: var(--composer-font-color-primary);
-                        text-align: center;
+                .button {
+                    .button-text {
+                        content: "";
                     }
                 }
             }
         }
+    }
+}
 
-        .button-container {
-            display: flex;
-            justify-content: center !important;
-            flex-wrap: wrap;
-            width: 100%;
-            gap: var(--composer-gap-sm);
+@container (max-width: #{$composer-tablet-width}) {
+    .container {
+        .max-content {
+            .wrapper {
+                flex-direction: column;
 
-            .button {
-                .button-text {
-                    content: "";
+                .features-content {
+                    gap: var(--composer-gap-md);
+
+                    .card-container {
+                        .icon-box {
+                            padding: var(--composer-gap-md);
+                            width: 70px;
+                            height: 70px;
+
+                            .card-icon {
+                                font-size: 2rem;
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -95,7 +111,21 @@ as *;
 @container (max-width: #{$composer-phone-width}) {
     .container {
         .max-content {
-            gap: var(--composer-gap-md);
+            .wrapper {
+                .features-content {
+                    .card-container {
+                        .icon-box {
+                            padding: var(--composer-gap-md);
+                            width: 60px;
+                            height: 60px;
+
+                            .card-icon {
+                                font-size: 1.5rem !important;
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }

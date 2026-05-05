@@ -18,7 +18,7 @@ class CallToAction33 extends BaseCallToAction {
       value: [
         {
           type: "media",
-          key: "media",
+          key: "componentBackground",
           displayer: "Media",
           additionalParams: {
             availableTypes: ["image", "video"],
@@ -73,8 +73,8 @@ class CallToAction33 extends BaseCallToAction {
   }
 
   render() {
-    const cardMedia = this.castToObject<{ media?: TypeMediaInputValue; overlay?: boolean }>("cardMedia");
-    const mediaValue = cardMedia?.media as TypeMediaInputValue | undefined;
+    const cardMedia = this.castToObject<{ componentBackground?: TypeMediaInputValue; overlay?: boolean }>("cardMedia");
+    const mediaValue = cardMedia?.componentBackground as TypeMediaInputValue | undefined;
     const overlayEnabled = cardMedia?.overlay ?? true;
 
     const subtitleExist = this.castToString(this.getPropValue("subtitle"));

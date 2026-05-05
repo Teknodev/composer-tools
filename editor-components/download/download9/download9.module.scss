@@ -1,9 +1,7 @@
 @use "../../../../composer-tools//composer-base-components//base//utitilities/viewports.module.scss" as *;
 
 .container {
-  &.image {
-    padding: 0 !important;
-  }
+  padding: 0 !important;
 
   .page {
     width: 100%;
@@ -19,7 +17,7 @@
     }
 
     &.no-image {
-      min-height: 350px;
+      min-height: auto;
     }
 
     .background-image {
@@ -43,13 +41,11 @@
     }
 
     .max-content {
-      width: 100vw;
       display: flex;
       overflow: hidden;
       position: relative;
       height: auto;
-      min-height: 350px;
-      width: 100%;
+      min-height: auto;
 
       &.image {
         align-items: center;
@@ -60,12 +56,12 @@
 
           .title,
           .description {
-            color: white;
+            color: #ffffff;
             text-align: center;
           }
 
           .subtitle {
-            color: white;
+            color: #ffffff;
             text-align: center;
             background: transparent !important;
           }
@@ -75,7 +71,7 @@
           align-items: center;
 
           .hover-subtitle {
-            color: white;
+            color: #ffffff;
             text-align: center;
             background: transparent !important;
 
@@ -86,7 +82,7 @@
 
           .card-title,
           .card-description {
-            color: white;
+            color: #ffffff;
             text-align: center;
           }
         }
@@ -95,15 +91,11 @@
         .card-description {
           text-align: center;
         }
-
-        .buttons-container {
-          align-items: center;
-        }
       }
     }
 
     .middle-container {
-      padding: var(--composer-gap-md) var(--composer-gap-xl);
+      padding: calc(var(--composer-gap-lg) * 2) var(--composer-gap-xl);
       z-index: 3;
       width: 100%;
       min-width: 100%;
@@ -111,13 +103,11 @@
       height: auto;
       justify-content: center;
       position: relative;
-      bottom: 0;
       opacity: 1;
       transform: translateY(0);
       transition: opacity 0.5s ease 0.2s, transform 0.5s ease 0.3s;
 
       .subtitle {
-        content: "";
         transform: translateX(0);
         align-self: center;
 
@@ -128,26 +118,23 @@
 
       .title,
       .description {
-        content: "";
         text-align: center;
       }
     }
 
     .hover-container {
-      padding: var(--composer-gap-md) var(--composer-gap-xl);
+      padding: calc(var(--composer-gap-lg) * 2) var(--composer-gap-xl);
       z-index: 2;
       width: 100vw;
       min-width: 100%;
       min-height: 100%;
       height: auto;
       justify-content: center;
-      top: 0;
       opacity: 0;
       transition: opacity 0.5s;
       display: flex;
       flex-direction: column;
       transform: translateX(-100%);
-      width: fit-content;
 
       &.left {
         .hover-subtitle {
@@ -173,23 +160,19 @@
         justify-content: center;
         gap: var(--composer-gap-sm);
 
-        .image-container {
-          width: 170px;
-          height: 50px;
-
-          .card-image {
-            width: 100%;
-            height: 100%;
-            cursor: pointer;
-            object-fit: cover;
-            border-radius: var(--composer-border-radius-sm);
-          }
+        .button-image {
+          height: 42px;
+          width: 157px;
+          border-radius: var(--composer-border-radius-sm);
+          object-fit: cover;
         }
 
         .button {
+          .button-icon {
+            line-height: 0;
+          }
 
-          .icon,
-          .text {
+          .button-text {
             content: "";
           }
         }
@@ -221,37 +204,27 @@
       }
     }
   }
-
-
 }
 
 @container (max-width: #{$composer-tablet-width}) {
   .container {
     .page {
       .max-content {
-        min-height: 500px;
-
-        .middle-container {
-          padding: var(--composer-gap-md) var(--composer-gap-lg);
-        }
+        min-height: auto;
 
         .hover-container {
-          padding: var(--composer-gap-md) var(--composer-gap-lg);
+          padding: calc(var(--composer-gap-lg) * 2) var(--composer-gap-lg);
 
           .buttons-container {
-            .image-container {
-              width: 152px;
-              height: 45px;
-
-              .card-image {
-                width: 100%;
-                height: 100%;
-                cursor: pointer;
-                object-fit: cover;
-                border-radius: var(--composer-border-radius-sm);
-              }
+            .button-image {
+              height: 40px !important;
+              width: 150px !important;
             }
           }
+        }
+
+        .middle-container {
+          padding: calc(var(--composer-gap-lg) * 2) var(--composer-gap-lg);
         }
       }
     }
@@ -262,21 +235,19 @@
   .container {
     .page {
       .max-content {
-        .middle-container {
-          padding: var(--composer-gap-md);
-        }
-
         .hover-container {
-          padding: var(--composer-gap-md);
+          padding: var(--composer-gap-xl) var(--composer-gap-md);
 
           .buttons-container {
-            flex-direction: column;
-
-            .image-container {
-              width: 150px;
-              height: 45px;
+            .button-image {
+              height: 28px !important;
+              width: 105px !important;
             }
           }
+        }
+
+        .middle-container {
+          padding: var(--composer-gap-xl) var(--composer-gap-md);
         }
       }
     }

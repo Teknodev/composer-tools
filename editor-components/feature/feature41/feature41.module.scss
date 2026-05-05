@@ -4,91 +4,96 @@
     .max-content {
         display: flex;
         flex-direction: column;
-        gap: var(--composer-gap-lg);
+        gap: calc(var(--composer-gap-lg) * 2);
 
-        .card-container-section {
-            display: flex;
-            flex-direction: column;
-            gap: var(--composer-gap-md);
+        .text-content {
 
-            .text-content {
-
-                .subtitle,
-                .title,
-                .description {
-                    content: "";
-                }
+            .subtitle,
+            .title,
+            .description {
+                content: "";
             }
 
-            .card-container {
-                background: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
-                border-radius: var(--composer-border-radius-md);
-                overflow: hidden;
-                gap: 0;
+            .button-container {
+                display: flex;
+                justify-content: center;
+                gap: var(--composer-gap-sm);
 
-                .card-wrapper {
-                    display: flex;
-                    gap: var(--composer-gap-md);
-                    flex-direction: column;
-                    padding: var(--composer-gap-lg);
-                    border-right: 1px solid var(--composer-html-background);
-                    height: 100%;
-                    width: 100%;
-
-                    &.last-in-row {
-                        border-right: none;
-                    }
-
-                    .card-icon {
-                        font-size: 3.5rem;
-                        color: var(--composer-primary-color);
-                        display: flex;
-
-                        &.is-image {
-                            width: var(--composer-gap-lg);
-                            height: var(--composer-gap-lg);
-                        }
-                    }
-
-                    .card-content {
-                        align-items: baseline;
-                        .card-title {
-                            color: var(--composer-font-color-primary);
-                            text-align: left;
-                        }
-
-                        .card-description {
-                            color: var(--composer-tertiary-color);
-                            text-align: left;
-                        }
-
-                        .card-button {
-                            .card-button-text {
-                                text-align: left;
-                            }
-
-                            .card-button-icon {
-                                font-size: 1.25rem;
-                                width: 15px;
-                                height: 15px;
-                                color: var(--composer-font-color-primary);
-                            }
-                        }
+                .button {
+                    .button-text {
+                        content: "";
                     }
                 }
             }
         }
 
-        .button-container {
+        .card-wrapper {
             display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            flex-direction: row;
-            gap: var(--composer-gap-sm);
+            flex-direction: column;
+            gap: calc(var(--composer-gap-xl) * 2);
 
-            .button {
-                .button-text {
-                    content: "";
+            .card-content {
+                display: flex;
+                gap: var(--composer-gap-lg);
+
+                .text-wrapper {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    flex: 0.5;
+
+                    .card-subtitle,
+                    .card-title,
+                    .card-description {
+                        text-align: left;
+                        color: var(--composer-font-color-primary);
+                    }
+
+                    &.no-image {
+                        flex: 1;
+                    }
+
+                    .card-button-container {
+                        display: flex;
+                        justify-content: left;
+                        width: 100%;
+
+                        .card-button {
+                            .card-button-text {
+                                content: "";
+                            }
+                        }
+                    }
+                }
+
+                .image-wrapper {
+                    flex: 0.4;
+                    position: relative;
+                    border-radius: var(--composer-border-radius-sm);
+                    overflow: hidden;
+                    box-shadow: var(--box-shadow-active);
+
+                    .card-image {
+                        object-fit: cover;
+                        display: block;
+                        width: 100%;
+                        height: 100%;
+                    }
+
+                    .overlay {
+                        background-color: var(--composer-overlay-color);
+                        position: absolute;
+                        inset: 0;
+                    }
+
+                    &.full-width {
+                        height: 500px;
+                        flex: 1;
+                    }
+                }
+
+                &.row-reverse {
+                    flex-direction: row-reverse;
                 }
             }
         }
@@ -98,23 +103,13 @@
 @container (max-width: #{$composer-tablet-width}) {
     .container {
         .max-content {
-            flex-direction: column;
+            gap: var(--composer-gap-lg);
 
-            .card-container-section {
-                .card-container {
-                    .card-wrapper {
-                        &.last-in-row {
-                            border-right: 1px solid var(--composer-tertiary-color);
-                        }
+            .card-wrapper {
+                gap: inherit;
 
-                        &:nth-child(3n) {
-                            border-right: none;
-                        }
-
-                        .card-icon {
-                            font-size: 3rem;
-                        }
-                    }
+                .card-content {
+                    gap: inherit;
                 }
             }
         }
@@ -124,16 +119,12 @@
 @container (max-width: #{$composer-phone-width}) {
     .container {
         .max-content {
-            gap: var(--composer-gap-md);
+            .card-wrapper {
+                .card-content {
+                    flex-direction: column-reverse;
 
-            .card-container-section {
-                .card-container {
-                    .card-wrapper {
-                        border-right: none;
-
-                        .card-icon {
-                            font-size: 2.5rem;
-                        }
+                    &.row-reverse {
+                        flex-direction: column-reverse !important;
                     }
                 }
             }

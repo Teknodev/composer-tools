@@ -6,97 +6,126 @@
         flex-direction: column;
         gap: var(--composer-gap-lg);
 
-        .text-content {
-
-            .subtitle,
-            .title,
-            .description {
-                content: ""
-            }
-        }
-
-        .cards-wrapper {
+        .content-wrapper {
             display: flex;
+            flex-direction: column;
             gap: var(--composer-gap-lg);
 
-            .cards-content {
-                gap: 0;
-                align-items: center;
-                width: 50%;
+            .text-content {
 
-                &.cards-full-width {
-                    width: 100%;
-                    gap: var(--composer-gap-lg);
-                }
-
-                .card-container {
-                    display: flex;
-                    gap: var(--composer-gap-md);
-                    align-items: flex-start;
-
-                    .card-icon {
-                        display: flex;
-                        font-size: 4rem;
-                        color: var(--composer-primary-color);
-
-                        &.is-image {
-                            width: var(--composer-gap-xl);
-                            height: var(--composer-gap-xl);
-                        }
-                    }
-
-                    .card-content {
-                        .card-title {
-                            color: var(--composer-font-color-primary);
-                            text-align: left;
-                        }
-
-                        .card-description {
-                            color: var(--composer-tertiary-color);
-                            text-align: left;
-                        }
-                    }
+                .subtitle,
+                .title,
+                .description {
+                    content: "";
                 }
             }
 
-            .right-content {
-                width: 50%;
-                display: flex;
-                flex-direction: column;
+            .cards-container {
+                gap: var(--composer-gap-md);
+                align-items: stretch;
+                justify-items: stretch;
+                --dynamic-card-height: 300px;
 
-                .image-wrapper {
-                    width: 100%;
-                    height: 100%;
-                    border-radius: var(--composer-border-radius-sm);
-                    overflow: hidden;
+                .card {
                     position: relative;
+                    width: 100%;
+                    height: var(--dynamic-card-height);
+                    cursor: pointer;
+                    background-color: transparent !important;
+                    box-shadow: none !important;
+                    padding: 0 !important;
+                    border-radius: 0 !important;
 
-                    .image {
+                    .card-inner {
+                        position: relative;
                         width: 100%;
                         height: 100%;
-                        object-fit: cover;
-                        display: block;
+                        text-align: center;
+                        transition: transform 0.4s;
+                        transform-style: preserve-3d;
                     }
 
-                    .overlay {
+                    &:hover .card-inner {
+                        transform: rotateX(-90deg);
+                    }
+
+                    .face {
                         position: absolute;
-                        inset: 0;
-                        border-radius: inherit;
-                        background-color: var(--composer-overlay-color);
-                    }
-                }
+                        width: 100%;
+                        height: 100%;
+                        border-radius: var(--composer-border-radius-sm);
+                        box-shadow: var(--box-shadow-active);
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+                        padding: var(--composer-gap-lg);
+                        box-sizing: border-box;
+                        backface-visibility: hidden;
+                        overflow: hidden;
 
-                &.image-full-width {
-                    width: 100%;
+                        .face-inner {
+                            display: flex;
+                            flex-direction: column;
+                            justify-content: center;
+                            height: 100%;
+                        }
+                    }
+
+                    .front {
+                        transform: translateZ(calc(var(--dynamic-card-height) / 2));
+                        background-color: var(--composer-primary-color);
+                        z-index: 2;
+
+                        .card-title {
+                            color: var(--composer-font-color-secondary);
+                        }
+
+                        .icon-wrapper {
+                            .card-icon {
+                                color: var(--composer-font-color-secondary);
+                            }
+                        }
+                    }
+
+                    .top {
+                        transform: rotateX(90deg) translateZ(calc(var(--dynamic-card-height) / 2));
+                        background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+                        z-index: 1;
+                    }
+
+                    .card-title,
+                    .card-hover-title,
+                    .card-description {
+                        color: var(--composer-font-color-primary);
+                        text-align: left !important;
+                    }
+
+                    .icon-wrapper {
+                        display: flex;
+
+                        .card-icon {
+                            color: var(--composer-font-color-secondary);
+                            font-size: 5rem;
+
+                            &.is-image {
+                                width: 5rem;
+                                height: 5rem;
+                                object-fit: contain;
+                                display: block;
+                                margin-bottom: 1rem;
+                            }
+                        }
+                    }
                 }
             }
         }
 
         .button-container {
             display: flex;
-            justify-content: center;
-            gap: var(--composer-gap-md);
+            justify-content: center !important;
             flex-wrap: wrap;
+            flex-direction: row;
+            gap: var(--composer-gap-sm);
 
             .button {
                 .button-text {
@@ -110,20 +139,8 @@
 @container (max-width: #{$composer-tablet-width}) {
     .container {
         .max-content {
-            gap: var(--composer-gap-md);
-
-            .cards-wrapper {
+            .content-wrapper {
                 gap: var(--composer-gap-md);
-
-                .cards-content {
-                    gap: inherit;
-
-                    .card-container {
-                        .card-icon {
-                            font-size: 3rem;
-                        }
-                    }
-                }
             }
         }
     }
@@ -132,12 +149,24 @@
 @container (max-width: #{$composer-phone-width}) {
     .container {
         .max-content {
-            .cards-wrapper {
-                flex-direction: column;
+            gap: calc(var(--composer-gap-sm) * 3);
 
-                .cards-content,
-                .right-content {
-                    width: 100%;
+            .content-wrapper {
+                .cards-container {
+                    --dynamic-card-height: 200px;
+
+                    .card {
+                        .icon-wrapper {
+                            .card-icon {
+                                font-size: 3rem;
+
+                                &.is-image {
+                                    width: 3rem;
+                                    height: 3rem;
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }

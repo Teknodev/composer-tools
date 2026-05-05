@@ -501,7 +501,7 @@ class Navbar5 extends BaseNavigator {
     const animations = this.getPropValue("animations") && this.getPropValue("animations").map((animation:string) => this.decorateCSS(animation)).join(" ")
 
     return (
-      <>
+      <div className={this.decorateCSS("navbar-root")}>
       <Base.Navigator.Container
         id={"navbar5-height"}
         position={position}
@@ -631,7 +631,7 @@ class Navbar5 extends BaseNavigator {
         onClick={() => this.closeNav()} 
         isVisible={isVisible}
       />
-      </>
+      </div>
     );
   }
 }

@@ -1,0 +1,188 @@
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+
+.container {
+  .max-content {
+    .card {
+      .card-content {
+        display: flex;
+        flex-direction: column;
+        gap: var(--composer-gap-lg);
+
+        .header-container {
+          .header-content {
+            flex: 1;
+
+            .subtitle,
+            .title {
+              content: "";
+            }
+
+            .button-container {
+              display: flex;
+              flex-wrap: wrap;
+              gap: var(--composer-gap-sm);
+
+              .button {
+                .button-text {
+                  content: "";
+                }
+              }
+            }
+          }
+        }
+
+        &.center-alignment .header-container .header-content {
+          align-items: center;
+
+          .subtitle,
+          .title,
+          .description {
+            text-align: center;
+          }
+        }
+
+        .stats-grid {
+          gap: var(--composer-gap-lg);
+
+          .stat-item {
+            align-items: flex-start;
+
+            .stat-value {
+              display: flex;
+              color: var(--composer-primary-color);
+              font-size: 12rem;
+              text-align: left;
+
+              .stat-prefix,
+              .stat-number,
+              .stat-suffix {
+                color: inherit;
+                font-size: 12rem;
+              }
+            }
+
+            .stat-subtitle,
+            .stat-title,
+            .stat-description {
+              text-align: left;
+            }
+
+            .stat-subtitle,
+            .stat-title {
+              color: var(--composer-primary-color);
+            }
+
+            .stat-description {
+              color: var(--composer-font-color-primary) !important;
+            }
+          }
+
+          .stat-item:nth-child(even) {
+            .stat-value {
+              color: var(--composer-secondary-color);
+            }
+
+            .stat-subtitle,
+            .stat-title {
+              color: var(--composer-secondary-color);
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+
+@container (max-width: #{$composer-tablet-width}) {
+  .container {
+    .max-content {
+      .card {
+        .card-content {
+          .header-container {
+            flex-direction: column;
+          }
+
+          .stats-grid {
+            .stat-item {
+              .stat-value {
+                font-size: 9rem;
+
+                .stat-number,
+                .stat-prefix,
+                .stat-suffix {
+                  font-size: 9rem;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+  .container {
+    .max-content {
+      .card {
+        .card-content {
+          gap: var(--composer-gap-md);
+
+          .header-container {
+            flex-direction: column;
+
+            .header-content {
+              .description {
+                max-width: 100%;
+              }
+            }
+          }
+
+          .stats-grid {
+            gap: var(--composer-gap-md);
+            margin-top: var(--composer-gap-md);
+
+            .stat-item {
+              .stat-value {
+                font-size: 7rem;
+
+                .stat-number,
+                .stat-prefix,
+                .stat-suffix {
+                  font-size: 7rem;
+                }
+              }
+
+              .stat-title {
+                font-size: 2rem !important;
+              }
+
+              .stat-description {
+                font-size: 1rem;
+              }
+            }
+          }
+
+          &.center-alignment .header-container .header-content .button-container {
+            justify-content: center;
+          }
+
+          &.center-alignment .stats-grid .stat-item {
+            align-items: center;
+
+            .stat-value {
+              text-align: center;
+            }
+
+            .stat-subtitle,
+            .stat-title,
+            .stat-description {
+              text-align: center;
+            }
+          }
+        }
+      }
+    }
+  }
+}

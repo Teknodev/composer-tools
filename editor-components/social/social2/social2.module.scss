@@ -1,4 +1,8 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+
+.social2-root {
+  display: contents;
+}
 @mixin overlayBaseStyles {
 
     &.popup-active {

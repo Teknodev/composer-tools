@@ -1,10 +1,10 @@
 import * as React from "react";
 import styles from "./team4.module.scss";
-import { Team } from "../../EditorComponent";
+import { Team, TypeMediaInputValue } from "../../EditorComponent";
 import { Base } from "../../../composer-base-components/base/base";
 
 type TeamMember = {
-  image: string;
+  profileImage: TypeMediaInputValue;
   name: React.JSX.Element;
   position: React.JSX.Element;
   platforms: { icon: string; url: string }[];
@@ -36,10 +36,16 @@ class Team4 extends Team {
           displayer: "Team Member",
           value: [
             {
-              type: "image",
-              key: "image",
+              type: "media",
+              key: "profileImage",
               displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6437087c68c3c2002cd307d3?alt=media&timestamp=1719502692150",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6437087c68c3c2002cd307d3?alt=media&timestamp=1719502692150",
+              },
             },
             {
               type: "string",
@@ -61,10 +67,16 @@ class Team4 extends Team {
           displayer: "Team Member",
           value: [
             {
-              type: "image",
-              key: "image",
+              type: "media",
+              key: "profileImage",
               displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6437087c68c3c2002cd307d2?alt=media&timestamp=1719502692150",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6437087c68c3c2002cd307d2?alt=media&timestamp=1719502692150",
+              },
             },
             {
               type: "string",
@@ -86,10 +98,16 @@ class Team4 extends Team {
           displayer: "Team Member",
           value: [
             {
-              type: "image",
-              key: "image",
+              type: "media",
+              key: "profileImage",
               displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6437087c68c3c2002cd307d1?alt=media&timestamp=1719502692150",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6437087c68c3c2002cd307d1?alt=media&timestamp=1719502692150",
+              },
             },
             {
               type: "string",
@@ -111,10 +129,16 @@ class Team4 extends Team {
           displayer: "Team Member",
           value: [
             {
-              type: "image",
-              key: "image",
+              type: "media",
+              key: "profileImage",
               displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6437087c68c3c2002cd307d3?alt=media&timestamp=1719502692150",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6437087c68c3c2002cd307d3?alt=media&timestamp=1719502692150",
+              },
             },
             {
               type: "string",
@@ -173,9 +197,9 @@ class Team4 extends Team {
               const teamMemberName = this.castToString(teamMember.name);
               const teamMemberPosition = this.castToString(teamMember.position);
               return (
-                (teamMemberName || teamMemberPosition || teamMember.image) && (
+                (teamMemberName || teamMemberPosition || teamMember.profileImage) && (
                   <Base.VerticalContent key={indexTeamMembers} className={this.decorateCSS("team-member")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
-                    {teamMember.image && <img className={this.decorateCSS("member-image")} src={teamMember.image} alt={teamMemberName} data-animation={this.getPropValue("hoverAnimation").join(" ")} />}
+                    {teamMember.profileImage && <Base.Media value={teamMember.profileImage} className={this.decorateCSS("member-image")} data-animation={this.getPropValue("hoverAnimation").join(" ")} />}
                     <Base.VerticalContent className={this.decorateCSS("name-and-position")}>
                       {teamMemberName && <Base.H2 className={this.decorateCSS("team-member-name")}>{teamMember.name}</Base.H2>}
                       {teamMemberPosition && <Base.P className={this.decorateCSS("team-member-position")}>{teamMember.position}</Base.P>}

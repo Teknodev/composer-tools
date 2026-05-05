@@ -19,6 +19,8 @@ type Inputs = {
 };
 
 class FormModal1 extends BaseModal {
+  static subCategory = "form";
+
   constructor(props?: any) {
     super(props, styles);
 

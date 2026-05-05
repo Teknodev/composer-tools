@@ -25,7 +25,7 @@ class About7 extends BaseAbout {
         value: [
             {
                 type: "media",
-                key: "image",
+                key: "componentBackground",
                 displayer: "Media",
                 additionalParams: {
                     availableTypes: ["image", "video"],
@@ -206,7 +206,7 @@ class About7 extends BaseAbout {
   render() {
     const items = this.castToObject<ItemType[]>("items");
     const backgroundImage = this.castToObject<any>("background-image");
-    const bgMedia = backgroundImage?.image;
+    const bgMedia = backgroundImage?.componentBackground;
     const isBackgroundImageExist = !!bgMedia;
 
     const alignment = Base.getContentAlignment();

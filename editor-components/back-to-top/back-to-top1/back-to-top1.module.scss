@@ -1,0 +1,45 @@
+@use '../../../composer-base-components/base/utitilities/viewports.module.scss' as *;
+
+.container {
+  position: fixed;
+  bottom: var(--composer-gap-lg);
+  right: var(--composer-gap-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: none;
+  border-radius: var(--composer-border-radius-md);
+  background-color: var(--composer-font-color-primary);
+  color: var(--composer-html-background);
+  cursor: pointer;
+  z-index: 999;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+  box-shadow: var(--box-shadow-active);
+
+  .icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    font-size: 20px;
+    line-height: 1;
+  }
+
+  @container (max-width: #{$composer-phone-width}) {
+    width: 36px;
+    height: 36px;
+    bottom: var(--composer-gap-md);
+
+    .icon {
+      width: 16px;
+      height: 16px;
+      font-size: 16px;
+    }
+
+    right: var(--composer-gap-md);
+  }
+}

@@ -1,61 +1,82 @@
 @use "../../../../composer-tools//composer-base-components//base//utitilities/viewports.module.scss" as *;
 
+@mixin card-base {
+  background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+  border-radius: var(--composer-border-radius-md);
+  padding: var(--composer-gap-md);
+  box-shadow: var(--box-shadow-active);
+}
+
 .container {
   .max-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--composer-gap-lg);
+
+    .vertical-content {
+
+      .subtitle,
+      .title,
+      .description {
+        content: "";
+      }
+    }
+
     .cards {
       display: flex;
       gap: var(--composer-gap-md);
       min-height: 100%;
+      align-items: stretch;
 
-      .left-card{
-        &.no-full{
+      .left-card {
+        @include card-base;
+        flex-shrink: 0;
+
+        &.no-full {
           width: 35%;
-          display: flex;
-          flex-direction: column;
         }
-        &.full{
+
+        &.full {
           width: 100%;
-        }  
-        .card {
-          background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
-          border-radius: var(--composer-border-radius-lg);
-          height: 100%;
-          justify-content: center;
-          padding: var(--composer-gap-md);
-          box-shadow: var(--box-shadow-active);
-          display: flex;
-          flex-direction: column;
-          .image {
-            width: 100%;
-            height: 400px;
-            margin: 0 auto;
-            object-fit: cover;
-            border-radius: var(--composer-border-radius-md);
-            &.no-full{
-              margin-bottom: var(--composer-gap-lg);
-            }
-            &.full{
-              height: 100%;
-            }
+        }
+
+        .left-card-vertical-content {
+          align-items: flex-start;
+
+          .left-card-subtitle,
+          .left-card-title,
+          .left-card-description {
+            color: var(--composer-font-color-primary);
+            text-align: left;
+            margin-left: 0;
           }
-          .button-wrapper {
-            .button-image {
-              width: 200px;
-              height: 40px;
-              border-radius: var(--composer-border-radius-sm);
-              object-fit: cover;
-            }
-            .button-element {
-              .icon {
-                font-size: 1.5rem;
-              }
-              .button-text {
+
+          .left-button-wrapper {
+            .left-card-button {
+              .left-button-text {
                 content: "";
               }
             }
           }
+
+          .left-card-image {
+            width: 100%;
+            object-fit: cover;
+            border-radius: var(--composer-border-radius-sm);
+            margin: 0 auto;
+            flex: 1;
+
+            &.no-full {
+              margin-bottom: var(--composer-gap-lg);
+            }
+
+            &.full {
+              height: 100%;
+            }
+          }
         }
       }
+
       .right-cards {
         width: 100%;
         display: flex;
@@ -64,92 +85,81 @@
         flex: 1;
 
         .upper-card {
-          width: 100%;
+          @include card-base;
           flex: 1;
           display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: var(--composer-gap-xl);
 
-          .card {
-            background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
-            border-radius: var(--composer-border-radius-lg);
-            padding: var(--composer-gap-md);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: var(--composer-gap-xl);
-            box-shadow: var(--box-shadow-active);
-            width: 100%;
+          .upper-card-vertical-content {
+            flex: 1;
+            min-width: 0;
+            align-items: flex-start;
 
-            .left {
-              .button-wrapper {
-                .button-image {
-                  width: 200px;
-                  height: 40px;
-                  border-radius: var(--composer-border-radius-sm);
-                  object-fit: cover;
-                }
-                .button-element {
-                  .icon {
-                    font-size: 1.5rem;
-                  }
-                  .button-text {
-                    content: "";
-                  }
-                }
-              }
+            .upper-card-subtitle,
+            .upper-card-title,
+            .upper-card-description {
+              color: var(--composer-font-color-primary);
+              text-align: left;
+              margin-left: 0;
             }
-            .image {
-              width: 40%;
-              min-height: 400px;
-              object-fit: cover;
-              border-radius: var(--composer-border-radius-md);
-              &.full {
-                width: 100%;
-                height: 300px;
-              }
-            }
-          }
-        }
 
-        .buttom-card {
-          flex: 1;
-          display: flex;
-
-          .card {
-            background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
-            border-radius: var(--composer-border-radius-lg);
-            padding: var(--composer-gap-md);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: var(--box-shadow-active);
-            width: 100%;
-            .button-wrapper {
-              .button-image {
-                width: 200px;
-                height: 40px;
-                border-radius: var(--composer-border-radius-sm);
-                object-fit: cover;
-              }
-              .button-element {
-                .icon, .button-text {
+            .upper-button-wrapper {
+              .upper-card-button {
+                .upper-button-text {
                   content: "";
                 }
               }
             }
+          }
 
-            .title {
-              width: fit-content;
+          .upper-card-image {
+            width: 40%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: var(--composer-border-radius-sm);
+
+            &.full {
+              width: 100%;
             }
-            &.center {
-              flex-direction: column;
-              justify-content: center;
-              gap: var(--composer-gap-md);
-  
-              .title {
-                margin: 0;
-                width: fit-content;
+          }
+        }
+
+        .button-card {
+          @include card-base;
+          flex: 1;
+          display: flex;
+          justify-content: space-between;
+
+          .button-card-vertical-content {
+            flex: 1;
+            min-width: 0;
+            align-items: flex-start;
+
+            .button-card-subtitle,
+            .button-card-title,
+            .button-card-description {
+              color: var(--composer-font-color-primary);
+              text-align: left;
+              margin-left: 0;
+            }
+
+            .bottom-button-wrapper {
+              .bottom-card-button {
+                .bottom-button-text {
+                  content: "";
+                }
               }
             }
+          }
+
+          .button-card-image {
+            width: 40%;
+            min-width: 200px;
+            height: 100%;
+            object-fit: cover;
+            border-radius: var(--composer-border-radius-sm);
           }
         }
       }
@@ -157,41 +167,56 @@
   }
 }
 
-@container (max-width: #{$composer-tablet-width}) {
-  .container{
-    .max-content{
-      .cards{
+@container (max-width: #{$composer-phone-width}) {
+  .container {
+    .max-content {
+      .cards {
         flex-direction: column;
-        gap: var(--composer-gap-md);
-        .left-card{
-          width: 100%;
-          &.no-full{
+
+        .left-card {
+          &.no-full {
             width: 100%;
           }
-          .image{
-            &.full {
-              height: 200px;
+
+          .left-card-vertical-content {
+            height: auto;
+
+            .left-card-image {
+              flex: none;
+              width: 100%;
+              height: 300px;
+              margin-bottom: var(--composer-gap-md) !important;
+
+              &.full {
+                height: 250px;
+              }
             }
           }
         }
-        .right-cards{
-          .upper-card{
-            .card{
-              flex-direction: column;
-              gap: var(--composer-gap-md);
-              .image{
-                width: 100%;
-                height: 200px;
-              }
+
+        .right-cards {
+          .upper-card {
+            flex-direction: column-reverse;
+            gap: var(--composer-gap-md) !important;
+
+            .upper-card-image {
+              width: 100% !important;
+              height: 300px;
+              object-fit: cover;
+              border-radius: var(--composer-border-radius-sm);
+              flex: none;
             }
           }
-          .buttom-card{
-            .card{
-              flex-direction: column;
-              gap: var(--composer-gap-md);
-              .title{
-                margin: 0;
-              }
+
+          .button-card {
+            flex-direction: column-reverse;
+            gap: var(--composer-gap-md) !important;
+
+            .button-card-image {
+              width: 100%;
+              height: 250px;
+              object-fit: cover;
+              flex: none;
             }
           }
         }

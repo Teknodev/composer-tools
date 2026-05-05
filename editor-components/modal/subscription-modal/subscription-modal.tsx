@@ -9,6 +9,8 @@ import { Base } from "../../../composer-base-components/base/base";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 import { INPUTS } from "../../../custom-hooks/input-templates";
 class SubscriptionModal extends BaseModal {
+  static subCategory = "subscription";
+
   constructor(props?: any) {
     super(props, styles);
 

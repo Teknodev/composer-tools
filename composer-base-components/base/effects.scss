@@ -1,0 +1,58 @@
+/* ─── Effect Presets ─────────────────────────────────────────────
+ *
+ * Static CSS classes for visual effects.
+ * These class names are stored in component JSON via decorateCSS()
+ * and must remain globally available (NOT CSS modules).
+ *
+ * Per-element customisation happens through CSS custom properties
+ * (variables) set on the element via the css-gui PropertyChange pipeline.
+ *
+ * ────────────────────────────────────────────────────────────── */
+
+/* ─── Fade Out ──────────────────────────────────────────────── */
+
+.effect-fade-out {
+  position: relative;
+  --effect-fade-direction: bottom;
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    z-index: 1;
+    background: var(
+      --effect-fade-bg,
+      linear-gradient(
+        to bottom,
+        transparent,
+        var(--composer-html-background)
+      )
+    );
+  }
+}
+
+/* ─── Glass ─────────────────────────────────────────────────── */
+
+.effect-glass {
+  --effect-glass-blur: 12;
+  --effect-glass-tint: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(calc(var(--effect-glass-blur) * 1px));
+  -webkit-backdrop-filter: blur(calc(var(--effect-glass-blur) * 1px));
+  background: var(--effect-glass-tint);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+/* ─── Windowed ──────────────────────────────────────────────── */
+
+.effect-windowed {
+  --effect-windowed-bg: var(--composer-primary-color);
+  --effect-windowed-padding: 24;
+  --effect-windowed-radius: 16;
+  background: var(--effect-windowed-bg);
+  padding: calc(var(--effect-windowed-padding) * 1px);
+  border-radius: calc(var(--effect-windowed-radius) * 1px);
+}

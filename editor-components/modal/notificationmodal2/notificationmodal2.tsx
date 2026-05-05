@@ -9,6 +9,8 @@ import { Form, Formik } from "formik";
 import { INPUTS } from "../../../custom-hooks/input-templates";
 
 class NotificationModal2 extends BaseModal {
+  static subCategory = "notification";
+
   constructor(props?: any) {
     super(props, styles);
 

@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Testimonials } from "../../EditorComponent";
+import { Testimonials, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./testimonials12.module.scss";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import { Base } from "../../../composer-base-components/base/base";
@@ -7,7 +7,7 @@ import { Base } from "../../../composer-base-components/base/base";
 
 interface CardItem {
   description: React.JSX.Element;
-  image: string;
+  profileImage: TypeMediaInputValue;
   name: React.JSX.Element;
   position: React.JSX.Element;
 }
@@ -62,10 +62,16 @@ class Testimonials12Page extends Testimonials {
               value: "I love your system. Agency is both attractive and highly adaptable. Man, this thing is getting better and better as I learn more about it. I am so pleased with this product.",
             },
             {
-              type: "image",
-              key: "image",
-              displayer: "Card Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666178b7bd2970002c623eba?alt=media&timestamp=1719483639150",
+              type: "media",
+      key: "profileImage",
+      displayer: "Card Image",
+      additionalParams: {
+        availableTypes: ["image"],
+      },
+      value: {
+        type: "image",
+        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666178b7bd2970002c623eba?alt=media&timestamp=1719483639150",
+      },
             },
             {
               type: "string",
@@ -93,10 +99,16 @@ class Testimonials12Page extends Testimonials {
               value: "I love your system. Agency is both attractive and highly adaptable. Man, this thing is getting better and better as I learn more about it. I am so pleased with this product.",
             },
             {
-              type: "image",
-              key: "image",
-              displayer: "Card Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666178b7bd2970002c623ebb?alt=media&timestamp=1719483639150",
+              type: "media",
+      key: "profileImage",
+      displayer: "Card Image",
+      additionalParams: {
+        availableTypes: ["image"],
+      },
+      value: {
+        type: "image",
+        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666178b7bd2970002c623ebb?alt=media&timestamp=1719483639150",
+      },
             },
             {
               type: "string",
@@ -124,10 +136,16 @@ class Testimonials12Page extends Testimonials {
               value: "I love your system. Agency is both attractive and highly adaptable. Man, this thing is getting better and better as I learn more about it. I am so pleased with this product.",
             },
             {
-              type: "image",
-              key: "image",
-              displayer: "Card Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666178b7bd2970002c623eba?alt=media&timestamp=1719483639150",
+              type: "media",
+      key: "profileImage",
+      displayer: "Card Image",
+      additionalParams: {
+        availableTypes: ["image"],
+      },
+      value: {
+        type: "image",
+        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666178b7bd2970002c623eba?alt=media&timestamp=1719483639150",
+      },
             },
             {
               type: "string",
@@ -155,10 +173,16 @@ class Testimonials12Page extends Testimonials {
               value: "I love your system. Agency is both attractive and highly adaptable. Man, this thing is getting better and better as I learn more about it. I am so pleased with this product.",
             },
             {
-              type: "image",
-              key: "image",
-              displayer: "Card Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666178b7bd2970002c623ebb?alt=media&timestamp=1719483639150",
+              type: "media",
+      key: "profileImage",
+      displayer: "Card Image",
+      additionalParams: {
+        availableTypes: ["image"],
+      },
+      value: {
+        type: "image",
+        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666178b7bd2970002c623ebb?alt=media&timestamp=1719483639150",
+      },
             },
             {
               type: "string",
@@ -258,7 +282,7 @@ class Testimonials12Page extends Testimonials {
             )}
             <ComposerSlider {...settings} className={this.decorateCSS("slider-style")} ref={this.getComponentState("slider-ref")}>
               {cards.map((card: any, index: number) => {
-                const shouldRenderCard = this.castToString(card.description) || card.image || this.castToString(card.name) || this.castToString(card.position);
+                const shouldRenderCard = this.castToString(card.description) || card.profileImage || this.castToString(card.name) || this.castToString(card.position);
 
                 if (!shouldRenderCard) return null;
 
@@ -267,9 +291,9 @@ class Testimonials12Page extends Testimonials {
                     <Base.Row>{this.getPropValue("icon") && <Base.Icon name={this.getPropValue("icon")} propsIcon={{ className: this.decorateCSS("span-image") }} />}</Base.Row>
                     {this.castToString(card.description) && <Base.P className={this.decorateCSS("card-description")}>{card.description}</Base.P>}
                     <Base.Row>
-                      {(card.image || this.castToString(card.name) || this.castToString(card.position)) && (
+                      {(card.profileImage || this.castToString(card.name) || this.castToString(card.position)) && (
                         <div className={this.decorateCSS("below-content")}>
-                          {card.image && <img src={card.image} alt={card.image} className={this.decorateCSS("card-image")} />}
+                          {card.profileImage && <Base.Media value={card.profileImage} className={this.decorateCSS("card-image")} />}
                           {(this.castToString(card.name) || this.castToString(card.position)) && (
                             <Base.VerticalContent className={this.decorateCSS("below-right-content")}>
                               {this.castToString(card.name) && <div className={this.decorateCSS("below-title")}>{card.name}</div>}

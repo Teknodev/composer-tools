@@ -25,6 +25,8 @@ type EventDetail = {
 };
 
 class ConfirmationModal2 extends BaseModal {
+  static subCategory = "confirmation";
+
   constructor(props?: any) {
     super(props, styles);
 

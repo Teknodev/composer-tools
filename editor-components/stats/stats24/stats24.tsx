@@ -1,11 +1,12 @@
 import * as React from "react";
-import { BaseStats } from "../../EditorComponent";
+import { BaseStats, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./stats24.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
-import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
+import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 
 type StatItem = {
+    icon: TypeMediaInputValue | string;
     prefix: string;
     number: string;
     suffix: string;
@@ -32,14 +33,14 @@ class Stats24 extends BaseStats {
             type: "string",
             key: "title",
             displayer: "Title",
-            value: "We invest in tommorow's innovators",
+            value: "",
         });
 
         this.addProp({
             type: "string",
             key: "description",
             displayer: "Description",
-            value: "Leverage agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster collaborative thinking to further the overall value proposition.",
+            value: "",
         });
 
         this.addProp({
@@ -57,34 +58,60 @@ class Stats24 extends BaseStats {
             displayer: "Stats",
             value: [
                 {
-                    type: "object", key: "stat", displayer: "Stat", value: [
+                    type: "object",
+                    key: "stat",
+                    displayer: "Stat",
+                    value: [
+                        { type: "media", key: "icon", displayer: "Icon", additionalParams: { availableTypes: ["image", "icon"] }, value: { type: "icon", name: "" } },
                         { type: "string", key: "prefix", displayer: "Prefix", value: "" },
-                        { type: "string", key: "number", displayer: "Value", value: "300" },
+                        { type: "string", key: "number", displayer: "Value", value: "25" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "+" },
                         { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
                         { type: "string", key: "title", displayer: "Title", value: "Experienced people on the team" },
                         { type: "string", key: "description", displayer: "Description", value: "" },
-                    ]
+                    ],
                 },
                 {
-                    type: "object", key: "stat", displayer: "Stat", value: [
+                    type: "object",
+                    key: "stat",
+                    displayer: "Stat",
+                    value: [
+                        { type: "media", key: "icon", displayer: "Icon", additionalParams: { availableTypes: ["image", "icon"] }, value: { type: "icon", name: "" } },
                         { type: "string", key: "prefix", displayer: "Prefix", value: "" },
-                        { type: "string", key: "number", displayer: "Value", value: "125" },
+                        { type: "string", key: "number", displayer: "Value", value: "14" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "" },
                         { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
                         { type: "string", key: "title", displayer: "Title", value: "Cities where employees work" },
                         { type: "string", key: "description", displayer: "Description", value: "" },
-                    ]
+                    ],
                 },
                 {
-                    type: "object", key: "stat", displayer: "Stat", value: [
+                    type: "object",
+                    key: "stat",
+                    displayer: "Stat",
+                    value: [
+                        { type: "media", key: "icon", displayer: "Icon", additionalParams: { availableTypes: ["image", "icon"] }, value: { type: "icon", name: "" } },
                         { type: "string", key: "prefix", displayer: "Prefix", value: "" },
                         { type: "string", key: "number", displayer: "Value", value: "180" },
-                        { type: "string", key: "suffix", displayer: "Suffix", value: "+" },
+                        { type: "string", key: "suffix", displayer: "Suffix", value: "" },
                         { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
                         { type: "string", key: "title", displayer: "Title", value: "Days of product development" },
                         { type: "string", key: "description", displayer: "Description", value: "" },
-                    ]
+                    ],
+                },
+                {
+                    type: "object",
+                    key: "stat",
+                    displayer: "Stat",
+                    value: [
+                        { type: "media", key: "icon", displayer: "Icon", additionalParams: { availableTypes: ["image", "icon"] }, value: { type: "icon", name: "IoInfiniteSharp" } },
+                        { type: "string", key: "prefix", displayer: "Prefix", value: "" },
+                        { type: "string", key: "number", displayer: "Value", value: "" },
+                        { type: "string", key: "suffix", displayer: "Suffix", value: "" },
+                        { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
+                        { type: "string", key: "title", displayer: "Title", value: "Infinite possibilities" },
+                        { type: "string", key: "description", displayer: "Description", value: "" },
+                    ],
                 },
             ],
         });
@@ -99,10 +126,17 @@ class Stats24 extends BaseStats {
             ],
         });
 
-
+        this.addProp({
+            type: "number",
+            key: "itemCount",
+            displayer: "Item Count in a Row",
+            value: 4,
+        });
     }
 
-    static getName(): string { return "Stats 24"; }
+    static getName(): string {
+        return "Stats 24";
+    }
 
     private AnimatedStat = ({ stat, animationDuration = 2000, statsAnimation }: { stat: StatItem; animationDuration?: number; statsAnimation: boolean }) => {
         const originalNumberString = stat.number;
@@ -145,29 +179,56 @@ class Stats24 extends BaseStats {
         const titleExist = this.castToString(stat.title);
         const subtitleExist = this.castToString(stat.subtitle);
         const descriptionExist = this.castToString(stat.description);
-        const valueExist = originalNumberString && originalNumberString !== "";
+        const valueExist = this.castToString(originalNumberString);
+        const suffixExist = this.castToString(stat.suffix);
+        const displayNumber = statsAnimation ? animatedNumber : formatNumber(targetNumber);
 
-        if (!valueExist && !titleExist && !subtitleExist && !descriptionExist) return null;
+        const prefixExist = stat.prefix;
+
+        let iconObj: TypeMediaInputValue | undefined;
+        let iconString = "";
+
+        if (typeof stat.icon === "object") {
+            iconObj = stat.icon as TypeMediaInputValue;
+        } else if (typeof stat.icon === "string") {
+            iconString = stat.icon;
+        }
+
+        const iconExist = !!iconObj || !!iconString;
+
+        if (!valueExist && !suffixExist && !titleExist && !subtitleExist && !descriptionExist && !prefixExist && !iconExist) return null;
 
         return (
             <Base.VerticalContent className={this.decorateCSS("stat-item")}>
-                {valueExist && (
-                    <span className={this.decorateCSS("stat-value")}>
-                        {stat.prefix && (
-                            <span className={this.decorateCSS("stat-prefix")}>
-                                {stat.prefix}
-                            </span>
-                        )}
-                        <span className={this.decorateCSS("stat-number")}>
-                            {statsAnimation ? animatedNumber : formatNumber(targetNumber)}
+                <div className={this.decorateCSS("stat-header")}>
+                    {iconExist && (
+                        <div className={this.decorateCSS("stat-icon-wrapper")}>
+                            <Base.Media
+                                value={iconObj ?? { type: "icon", name: iconString }}
+                                className={this.decorateCSS(iconObj?.type === "image" ? "stat-image" : "stat-icon")}
+                            />
+                        </div>
+                    )}
+                    {(valueExist || suffixExist || prefixExist) && (
+                        <span className={this.decorateCSS("stat-value")}>
+                            {prefixExist && (
+                                <span className={this.decorateCSS("stat-prefix")}>
+                                    {stat.prefix}
+                                </span>
+                            )}
+                            {valueExist && (
+                                <span className={this.decorateCSS("stat-number")}>
+                                    {displayNumber}
+                                </span>
+                            )}
+                            {suffixExist && (
+                                <span className={this.decorateCSS("stat-suffix")}>
+                                    {stat.suffix}
+                                </span>
+                            )}
                         </span>
-                        {stat.suffix && (
-                            <span className={this.decorateCSS("stat-suffix")}>
-                                {stat.suffix}
-                            </span>
-                        )}
-                    </span>
-                )}
+                    )}
+                </div>
                 {subtitleExist && (
                     <Base.H6 className={this.decorateCSS("stat-subtitle")}>
                         {stat.subtitleElement}
@@ -188,98 +249,104 @@ class Stats24 extends BaseStats {
     };
 
     render() {
-        const title = this.castToString(this.getPropValue("title"));
-        const subtitle = this.castToString(this.getPropValue("subtitle"));
-        const description = this.castToString(this.getPropValue("description"));
+        const subtitleExist = this.castToString(this.getPropValue("subtitle"));
+        const titleExist = this.castToString(this.getPropValue("title"));
+        const descriptionExist = this.castToString(this.getPropValue("description"));
         const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
         const hasValidButtons = buttons.some((btn) => this.castToString(btn.text));
-
+        const itemCount = this.getPropValue("itemCount");
         const alignment = Base.getContentAlignment();
 
-        const statsItems = this.castToObject<{ prefix: JSX.Element; number: JSX.Element; suffix: JSX.Element; title: JSX.Element; subtitle: JSX.Element; description: JSX.Element }[]>("stats");
-        const stats: StatItem[] = statsItems.map((item) => {
+        const hasTopSection = subtitleExist || titleExist || descriptionExist || hasValidButtons;
+
+        const statsItems = this.castToObject<{ icon: any; prefix: JSX.Element; number: JSX.Element; suffix: JSX.Element; title: JSX.Element; subtitle: JSX.Element; description: JSX.Element }[]>("stats");
+        const stats: StatItem[] = statsItems.map((item: any) => {
+            const icon = item.icon;
+
+            let iconProp: TypeMediaInputValue | string = "";
+            if (icon && typeof icon === "object") {
+                iconProp = icon;
+            } else {
+                iconProp = this.castToString(icon) || "";
+            }
+
             const prefix = this.castToString(item.prefix) || "";
-            const number = this.castToString(item.number) || "0";
+            const number = this.castToString(item.number) || "";
             const suffix = this.castToString(item.suffix) || "";
             const title = this.castToString(item.title) || "";
             const subtitle = this.castToString(item.subtitle) || "";
             const description = this.castToString(item.description) || "";
-            return { prefix, number, suffix, title, titleElement: item.title, subtitle, subtitleElement: item.subtitle, description, descriptionElement: item.description };
+
+            return { icon: iconProp, prefix, number, suffix, title, titleElement: item.title, subtitle, subtitleElement: item.subtitle, description, descriptionElement: item.description };
         });
 
         const animationProps = this.castToObject<{ statsAnimation: boolean; animationDuration: number }>("animation");
         const statsAnimation = !!animationProps?.statsAnimation;
         const animationDuration = animationProps?.animationDuration || 2000;
 
-        const titleExist = this.castToString(title);
-        const subtitleExist = this.castToString(subtitle);
-        const descriptionExist = this.castToString(description);
-        const hasLeftSection = subtitleExist || titleExist || descriptionExist || hasValidButtons;
         const hasStats = stats.length > 0;
 
         return (
             <Base.Container className={this.decorateCSS("container")}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
-                    <Base.VerticalContent className={`${this.decorateCSS("content-wrapper")} ${alignment === "center" ? this.decorateCSS("alignment-center") : ""}`}>
+                    <Base.VerticalContent className={`${this.decorateCSS("content")} ${alignment === "center" ? this.decorateCSS("alignment-center") : ""}`}>
+                        {hasTopSection && (
+                            <Base.VerticalContent className={this.decorateCSS("header-container")}>
+                                {subtitleExist && (
+                                    <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                                        {this.getPropValue("subtitle")}
+                                    </Base.SectionSubTitle>
+                                )}
+                                {titleExist && (
+                                    <Base.SectionTitle className={this.decorateCSS("title")}>
+                                        {this.getPropValue("title")}
+                                    </Base.SectionTitle>
+                                )}
+                                {descriptionExist && (
+                                    <Base.SectionDescription className={this.decorateCSS("description")}>
+                                        {this.getPropValue("description")}
+                                    </Base.SectionDescription>
+                                )}
+                                {hasValidButtons && (
+                                    <div className={this.decorateCSS("button-container")}>
+                                        {buttons.map(
+                                            (item: INPUTS.CastedButton, index: number) => {
+                                                const buttonText = this.castToString(item.text);
+                                                if (!buttonText) return null;
 
-                        {hasLeftSection && (
-                            <div className={this.decorateCSS("left-card")}>
-                                <Base.VerticalContent className={this.decorateCSS("left-container")}>
-                                    {subtitleExist && (
-                                        <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
-                                            {this.getPropValue("subtitle")}
-                                        </Base.SectionSubTitle>
-                                    )}
-                                    {titleExist && (
-                                        <Base.SectionTitle className={this.decorateCSS("title")}>
-                                            {this.getPropValue("title")}
-                                        </Base.SectionTitle>
-                                    )}
-                                    {descriptionExist && (
-                                        <Base.SectionDescription className={this.decorateCSS("description")}>
-                                            {this.getPropValue("description")}
-                                        </Base.SectionDescription>
-                                    )}
-                                    {hasValidButtons && (
-                                        <div className={this.decorateCSS("button-container")}>
-                                            {buttons.map(
-                                                (item: INPUTS.CastedButton, index: number) => {
-                                                    const buttonText = this.castToString(item.text);
-                                                    if (!buttonText) return null;
-
-                                                    return (
-                                                        <ComposerLink key={index} path={item.url}>
-                                                            <Base.Button
-                                                                buttonType={item.type}
-                                                                className={this.decorateCSS("button")}
-                                                            >
-                                                                <Base.P className={this.decorateCSS("button-text")}>
-                                                                    {item.text}
-                                                                </Base.P>
-                                                            </Base.Button>
-                                                        </ComposerLink>
-                                                    );
-                                                }
-                                            )}
-                                        </div>
-                                    )}
-                                </Base.VerticalContent>
-                            </div>
+                                                return (
+                                                    <ComposerLink key={index} path={item.url}>
+                                                        <Base.Button
+                                                            buttonType={item.type}
+                                                            className={this.decorateCSS("button")}
+                                                        >
+                                                            <Base.P className={this.decorateCSS("button-text")}>
+                                                                {item.text}
+                                                            </Base.P>
+                                                        </Base.Button>
+                                                    </ComposerLink>
+                                                );
+                                            }
+                                        )}
+                                    </div>
+                                )}
+                            </Base.VerticalContent>
                         )}
 
                         {hasStats && (
-                            <Base.ListGrid gridCount={{ pc: 1, tablet: 1, phone: 1 }} className={this.decorateCSS("stats-grid")}>
-                                {stats.map((stat: StatItem, index: number) => (
-                                    <this.AnimatedStat
-                                        key={`stat24-${index}`}
-                                        stat={stat}
-                                        animationDuration={animationDuration}
-                                        statsAnimation={statsAnimation}
-                                    />
-                                ))}
-                            </Base.ListGrid>
+                            <div className={this.decorateCSS("card")}>
+                                <Base.ListGrid gridCount={{ pc: itemCount, tablet: 4, phone: 1 }} className={this.decorateCSS("stats-grid")}>
+                                    {stats.map((stat: StatItem, index: number) => (
+                                        <this.AnimatedStat
+                                            key={`stat28-${index}`}
+                                            stat={stat}
+                                            animationDuration={animationDuration}
+                                            statsAnimation={statsAnimation}
+                                        />
+                                    ))}
+                                </Base.ListGrid>
+                            </div>
                         )}
-
                     </Base.VerticalContent>
                 </Base.MaxContent>
             </Base.Container>

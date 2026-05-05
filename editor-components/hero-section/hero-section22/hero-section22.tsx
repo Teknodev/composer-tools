@@ -321,11 +321,9 @@ class HeroSection22 extends BaseHeroSection {
       return b.clientHeight - a.clientHeight;
     })[0]?.clientHeight;
 
-    if (!isSliderExist) return <></>;
+    if (!isSliderExist) return <Base.Container className={this.decorateCSS("container")} />;
     return (
-      <>
-        {isSliderExist && (
-          <Base.Container className={this.decorateCSS("container")}>
+      <Base.Container className={this.decorateCSS("container")}>
             <div className={this.decorateCSS("max-content")}>
               <div className={this.decorateCSS("slider-parent")} style={{ minHeight: minHeight + "px" }}>
                 <ComposerSlider {...settings} className={this.decorateCSS("carousel")} ref={this.getComponentState("slider-ref")}>
@@ -410,9 +408,7 @@ class HeroSection22 extends BaseHeroSection {
                 </div>
               )}
             </div>
-          </Base.Container>
-        )}
-      </>
+      </Base.Container>
     );
   }
 }

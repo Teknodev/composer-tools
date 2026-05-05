@@ -5,348 +5,298 @@ import { Base, TypeButton } from "../../../composer-base-components/base/base";
 import { INPUTS } from "../../../custom-hooks/input-templates";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 
-type ServiceCard = {
-    media: TypeMediaInputValue;
-    subtitle: Element;
-    title: Element;
-    description: Element;
-    overlay: boolean;
-    buttons: {
-        type: TypeButton;
-        text: Element;
-        url: string;
-    }[];
-};
-
-type PrimaryButton = {
-    type: TypeButton;
-    text: Element;
+interface Card {
+  icon: TypeMediaInputValue;
+  content: string;
+  description: string;
+  button?: {
+    text: string;
     url: string;
-}[];
+    type: TypeButton;
+  };
+}
 
 class Feature46 extends BaseFeature {
-    constructor(props?: any) {
-        super(props, styles);
+  constructor(props?: any) {
+    super(props, styles);
 
-        this.addProp({
-            type: "string",
-            key: "subtitle",
-            displayer: "Subtitle",
-            value: ""
-        });
+    this.addProp({
+      type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "",
+    });
 
-        this.addProp({
-            type: "string",
-            key: "title",
-            displayer: "Title",
-            value: "Services We Provide"
-        });
+    this.addProp({
+      type: "string",
+      key: "title",
+      displayer: "Title",
+      value: "How We Can Help You!",
+    });
 
-        this.addProp({
-            type: "string",
-            key: "description",
-            displayer: "Description",
-            value: "We help to quickly coordinate e-business applications through revolutionary catalysts."
-        });
+    this.addProp({
+      type: "string",
+      key: "description",
+      displayer: "Description",
+      value: "",
+    });
 
-        this.addProp({
-            type: "array",
-            key: "services",
-            displayer: "Services",
-            value: [
-                {
-                    type: "object",
-                    key: "service",
-                    displayer: "Service",
-                    value: [
-                        {
-                            type: "string",
-                            key: "subtitle",
-                            displayer: "Subtitle",
-                            value: ""
-                        },
-                        {
-                            type: "string",
-                            key: "title",
-                            displayer: "Title",
-                            value: "Web Design"
-                        },
-                        {
-                            type: "boolean",
-                            key: "overlay",
-                            displayer: "Overlay",
-                            value: false
-                        },
-                        {
-                            type: "media",
-                            key: "media",
-                            displayer: "Media",
-                            additionalParams: {
-                                availableTypes: ["image", "video"],
-                            },
-                            value: {
-                                type: "image",
-                                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/69859a132631ba002c00804f?alt=media"
-                            }
-                        },
-                        {
-                            type: "string",
-                            key: "description",
-                            displayer: "Description",
-                            value: "Quickly cultivate optimal processes and tactical architectures. Completely iterate covalent strategic theme areas via accurate e-markets."
-                        },
-                        {
-                            type: "array",
-                            key: "buttons",
-                            displayer: "Buttons",
-                            value: [
-                                INPUTS.BUTTON("button", "Button", "", "", null, null, "Link")
-                            ]
-                        }
-                    ]
-                },
-                {
-                    type: "object",
-                    key: "service",
-                    displayer: "Service",
-                    value: [
-                        {
-                            type: "string",
-                            key: "subtitle",
-                            displayer: "Subtitle",
-                            value: ""
-                        },
-                        {
-                            type: "string",
-                            key: "title",
-                            displayer: "Title",
-                            value: "Development"
-                        },
-                        {
-                            type: "boolean",
-                            key: "overlay",
-                            displayer: "Overlay",
-                            value: false
-                        },
-                        {
-                            type: "media",
-                            key: "media",
-                            displayer: "Media",
-                            additionalParams: {
-                                availableTypes: ["image", "video"],
-                            },
-                            value: {
-                                type: "image",
-                                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/69859a782631ba002c0080a5?alt=media"
-                            }
-                        },
-                        {
-                            type: "string",
-                            key: "description",
-                            displayer: "Description",
-                            value: "Energistically scale future-proof core competencies. Credibly innovate granular internal or \"organic\" sources whereas high standards in web-readiness."
-                        },
-                        {
-                            type: "array",
-                            key: "buttons",
-                            displayer: "Buttons",
-                            value: [
-                                INPUTS.BUTTON("button", "Button", "", "", null, null, "Link")
-                            ]
-                        }
-                    ]
-                },
-                {
-                    type: "object",
-                    key: "service",
-                    displayer: "Service",
-                    value: [
-                        {
-                            type: "string",
-                            key: "subtitle",
-                            displayer: "Subtitle",
-                            value: ""
-                        },
-                        {
-                            type: "string",
-                            key: "title",
-                            displayer: "Title",
-                            value: "SEO & Analytics"
-                        },
-                        {
-                            type: "boolean",
-                            key: "overlay",
-                            displayer: "Overlay",
-                            value: false
-                        },
-                        {
-                            type: "media",
-                            key: "media",
-                            displayer: "Media",
-                            additionalParams: {
-                                availableTypes: ["image", "video"],
-                            },
-                            value: {
-                                type: "image",
-                                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/69859aaf2631ba002c0080f9?alt=media"
-                            }
-                        },
-                        {
-                            type: "string",
-                            key: "description",
-                            displayer: "Description",
-                            value: "Leverage agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy and overall value proposition."
-                        },
-                        {
-                            type: "array",
-                            key: "buttons",
-                            displayer: "Buttons",
-                            value: [
-                                INPUTS.BUTTON("button", "Button", "", "", null, null, "Link")
-                            ]
-                        }
-                    ]
-                }
-            ]
-        });
+    this.addProp({
+      type: "array",
+      key: "cards",
+      displayer: "Cards",
+      value: [
+        {
+          type: "object",
+          key: "card",
+          displayer: "Card",
+          value: [
+            {
+              type: "media",
+              key: "icon",
+              displayer: "Icon",
+              additionalParams: {
+                availableTypes: ["icon", "image"],
+              },
+              value: {
+                type: "icon",
+                name: "FaHeart",
+              },
+            },
+            {
+              type: "string",
+              key: "content",
+              displayer: "Title",
+              value:
+                "Unlimited <br/><span class='card-content-span' style='color: var(--composer-font-color-primary)'>Everything</span>",
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value:
+                "Quickly cultivate optimal processes and tactical architectures. Completely iterate covalent strategic theme areas via accurate e-markets.",
+            },
+            INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+          ],
+        },
+        {
+          type: "object",
+          key: "card",
+          displayer: "Card",
+          value: [
+            {
+              type: "media",
+              key: "icon",
+              displayer: "Icon",
+              additionalParams: {
+                availableTypes: ["icon", "image"],
+              },
+              value: {
+                type: "icon",
+                name: "FaGraduationCap",
+              },
+            },
+            {
+              type: "string",
+              key: "content",
+              displayer: "Title",
+              value:
+                "Tailored <br/><span class='card-content-span' style='color: var(--composer-font-color-primary)'>Onboarding</span>",
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value:
+                "Quickly cultivate optimal processes and tactical architectures. Completely iterate covalent strategic theme areas via accurate e-markets.",
+            },
+            INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+          ],
+        },
+        {
+          type: "object",
+          key: "card",
+          displayer: "Card",
+          value: [
+            {
+              type: "media",
+              key: "icon",
+              displayer: "Icon",
+              additionalParams: {
+                availableTypes: ["icon", "image"],
+              },
+              value: {
+                type: "icon",
+                name: "FaFingerprint",
+              },
+            },
+            {
+              type: "string",
+              key: "content",
+              displayer: "Title",
+              value:
+                "Full Access <br/><span class='card-content-span' style='color: var(--composer-font-color-primary)'>Control</span>",
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value:
+                "Quickly cultivate optimal processes and tactical architectures. Completely iterate covalent strategic theme areas via accurate e-markets.",
+            },
+            INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+          ],
+        },
+      ],
+    });
+    this.addProp({
+      type: "number",
+      key: "itemsPerRow",
+      displayer: "Item Count in a Row",
+      value: 3,
+    });
 
-        this.addProp({
-            type: "number",
-            key: "itemsPerRow",
-            displayer: "Item Count in a Row",
-            value: 3
-        });
+    this.addProp({
+      type: "array",
+      key: "buttons",
+      displayer: "Buttons",
+      value: [INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary")],
+    });
+  }
 
-        this.addProp({
-            type: "array",
-            key: "buttons",
-            displayer: "Buttons",
-            value: [
-                INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary")
-            ]
-        });
-    }
+  static getName(): string {
+    return "Feature 46";
+  }
 
-    static getName(): string {
-        return "Feature 46";
-    }
+  render() {
+    const cards = this.castToObject<Card[]>("cards");
+    const buttonsRaw = this.castToObject<any[]>("buttons") || [];
+    const buttons = buttonsRaw.filter((btn: any) =>
+      this.castToString(btn?.text),
+    );
+    const itemsPerRow = this.getPropValue("itemsPerRow");
+    const subtitle = this.castToString(this.getPropValue("subtitle"));
+    const title = this.castToString(this.getPropValue("title"));
+    const description = this.castToString(this.getPropValue("description"));
 
-    render() {
-        const subtitle = this.getPropValue("subtitle");
-        const title = this.getPropValue("title");
-        const description = this.getPropValue("description");
-        const itemsPerRow = Number(this.getPropValue("itemsPerRow")) || 3;
-        const services = this.castToObject<ServiceCard[]>("services");
-        const primaryButtons = this.castToObject<PrimaryButton>("buttons");
+    const hasContent = (card: Card) => {
+      return (
+        this.castToString(card.content) ||
+        this.castToString(card.description) ||
+        card.icon
+      );
+    };
 
-        const hasHeaderContent = this.castToString(subtitle) || this.castToString(title) || this.castToString(description);
+    return (
+      <Base.Container className={this.decorateCSS("container")}>
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
+          {(subtitle || title || description) && (
+            <Base.VerticalContent
+              className={this.decorateCSS("header-section")}
+            >
+              {subtitle && (
+                <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                  {this.getPropValue("subtitle")}
+                </Base.SectionSubTitle>
+              )}
+              {title && (
+                <Base.SectionTitle className={this.decorateCSS("title")}>
+                  {this.getPropValue("title")}
+                </Base.SectionTitle>
+              )}
+              {description && (
+                <Base.SectionDescription
+                  className={this.decorateCSS("description")}
+                >
+                  {this.getPropValue("description")}
+                </Base.SectionDescription>
+              )}
+            </Base.VerticalContent>
+          )}
 
-        return (
-            <Base.Container className={this.decorateCSS("container")}>
-                <Base.MaxContent className={this.decorateCSS("max-content")}>
-                    {hasHeaderContent && (
-                        <Base.VerticalContent className={`${this.decorateCSS("header-section")}`}>
-                            {this.castToString(subtitle) && (
-                                <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
-                                    {subtitle}
-                                </Base.SectionSubTitle>
-                            )}
-                            
-                            {this.castToString(title) && (
-                                <Base.SectionTitle className={this.decorateCSS("title")}>
-                                    {title}
-                                </Base.SectionTitle>
-                            )}
-                            
-                            {this.castToString(description) && (
-                                <Base.SectionDescription className={this.decorateCSS("description")}>
-                                    {description}
-                                </Base.SectionDescription>
-                            )}
-                        </Base.VerticalContent>
+          {cards && cards.length > 0 && (
+            <Base.ListGrid
+              className={this.decorateCSS("cards-container")}
+              gridCount={{ pc: itemsPerRow, tablet: 3, phone: 1 }}
+            >
+              {cards.map((card: Card, index: number) => (
+                <div
+                  key={index}
+                  className={this.decorateCSS(
+                    hasContent(card) ? "card" : "card card-empty",
+                  )}
+                >
+                  <Base.VerticalContent
+                    className={this.decorateCSS("card-content")}
+                  >
+                    {card.icon && (
+                      <div className={this.decorateCSS("icon-container")}>
+                        <Base.Media
+                          value={card.icon}
+                          className={this.decorateCSS("icon")}
+                        />
+                      </div>
                     )}
-
-                    <Base.ListGrid
-                        gridCount={{ pc: itemsPerRow || 3, tablet: 3, phone: 1 }}
-                        className={this.decorateCSS("services-grid")}
-                    >
-                        {services?.map((service: ServiceCard, index: number) => (
-                            <Base.VerticalContent key={index} className={this.decorateCSS("service-card")}>
-                                {this.castToString(service.subtitle) && (
-                                    <Base.H6 className={this.decorateCSS("card-subtitle")}>
-                                        {service.subtitle}
-                                    </Base.H6>
-                                )}
-
-                                {this.castToString(service.title) && (
-                                    <Base.H4 className={this.decorateCSS("card-title")}>
-                                        {service.title}
-                                    </Base.H4>
-                                )}
-
-                                {service.media && (
-                                    <div className={this.decorateCSS("media-wrapper")}>
-                                        <Base.Media 
-                                            value={service.media}
-                                            className={this.decorateCSS("media")}
-                                        />
-                                        {service.overlay && (
-                                            <div className={this.decorateCSS("overlay")}></div>
-                                        )}
-                                    </div>
-                                )}
-
-                                {this.castToString(service.description) && (
-                                    <Base.P className={this.decorateCSS("card-description")}>
-                                        {service.description}
-                                    </Base.P>
-                                )}
-
-                                {service.buttons && service.buttons.length > 0 && (
-                                    <div className={this.decorateCSS("card-buttons")}>
-                                        {service.buttons.map((button, btnIndex) => (
-                                            this.castToString(button.text) && (
-                                                <Base.Button
-                                                    className={this.decorateCSS("card-button")}
-                                                    key={btnIndex}
-                                                    buttonType={button.type}
-                                                >
-                                                    <ComposerLink path={button.url}>
-                                                        <Base.P className={this.decorateCSS("card-button-text")}>
-                                                            {button.text}
-                                                        </Base.P>
-                                                    </ComposerLink>
-                                                </Base.Button>
-                                            )
-                                        ))}
-                                    </div>
-                                )}
-                            </Base.VerticalContent>
-                        ))}
-                    </Base.ListGrid>
-
-                    {primaryButtons && primaryButtons.filter(b => this.castToString(b.text)).length > 0 && (
-                        <div className={this.decorateCSS("primary-buttons-container")}>
-                            {primaryButtons.map((button, index) => (
-                                this.castToString(button.text) && (
-                                    <ComposerLink key={index} path={button.url}>
-                                        <Base.Button
-                                            buttonType={button.type}
-                                            className={this.decorateCSS("primary-button")}
-                                        >
-                                            <Base.P className={this.decorateCSS("primary-button-text")}>
-                                                {button.text}
-                                            </Base.P>
-                                        </Base.Button>
-                                    </ComposerLink>
-                                )
-                            ))}
-                        </div>
+                    {this.castToString(card.content) && (
+                      <Base.H3
+                        className={this.decorateCSS("card-content-text")}
+                      >
+                        {card.content}
+                      </Base.H3>
                     )}
-                </Base.MaxContent>
-            </Base.Container>
-        );
-    }
+                    {this.castToString(card.description) && (
+                      <Base.P className={this.decorateCSS("card-description")}>
+                        {card.description}
+                      </Base.P>
+                    )}
+                    {card.button && this.castToString(card.button.text) && (
+                      <div className={this.decorateCSS("card-button-wrap")}>
+                        <ComposerLink path={card.button.url}>
+                          <Base.Button
+                            className={this.decorateCSS("card-button")}
+                            buttonType={card.button.type}
+                          >
+                            <Base.P
+                              className={this.decorateCSS("card-button-text")}
+                            >
+                              {card.button.text}
+                            </Base.P>
+                          </Base.Button>
+                        </ComposerLink>
+                      </div>
+                    )}
+                  </Base.VerticalContent>
+                </div>
+              ))}
+            </Base.ListGrid>
+          )}
+
+          {buttons.length > 0 && (
+            <div className={this.decorateCSS("buttons-container")}>
+              {buttons.map((btn: any, idx: number) => {
+                const buttonTextExists = this.castToString(btn.text);
+                return (
+                  buttonTextExists && (
+                    <ComposerLink key={`feature48-btn-${idx}`} path={btn.url}>
+                      <Base.Button
+                        className={this.decorateCSS("button")}
+                        buttonType={btn.type || "Primary"}
+                      >
+                        <Base.P className={this.decorateCSS("button-text")}>
+                          {btn.text}
+                        </Base.P>
+                      </Base.Button>
+                    </ComposerLink>
+                  )
+                );
+              })}
+            </div>
+          )}
+        </Base.MaxContent>
+      </Base.Container>
+    );
+  }
 }
 
 export default Feature46;

@@ -1,12 +1,12 @@
 import * as React from "react";
-import { Testimonials } from "../../EditorComponent";
+import { Testimonials, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./testimonials14.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 
 
 interface Images {
     authorName: string;
-    authorImage: string;
+    profileImage: TypeMediaInputValue;
     icon: string;
     comment: string;
 }
@@ -33,10 +33,16 @@ class Testimonials14 extends Testimonials {
                     displayer: "Image",
                     value: [
                         {
-                            type: "image",
-                            key: "authorImage",
-                            displayer: "User Image",
-                            value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/682c7b9e2bb4c4002cf86e1b?alt=media"
+                            type: "media",
+      key: "profileImage",
+      displayer: "User Image",
+      additionalParams: {
+        availableTypes: ["image"],
+      },
+      value: {
+        type: "image",
+        url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/682c7b9e2bb4c4002cf86e1b?alt=media",
+      }
                         },
                         {
                             type: "icon",
@@ -64,10 +70,16 @@ class Testimonials14 extends Testimonials {
                     displayer: "Image",
                     value: [
                         {
-                            type: "image",
-                            key: "authorImage",
-                            displayer: "User Image",
-                            value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/682c3b222bb4c4002cf8257e?alt=media"
+                            type: "media",
+      key: "profileImage",
+      displayer: "User Image",
+      additionalParams: {
+        availableTypes: ["image"],
+      },
+      value: {
+        type: "image",
+        url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/682c3b222bb4c4002cf8257e?alt=media",
+      }
                         },
                         {
                             type: "icon",
@@ -95,10 +107,16 @@ class Testimonials14 extends Testimonials {
                     displayer: "Image",
                     value: [
                         {
-                            type: "image",
-                            key: "authorImage",
-                            displayer: "User Image",
-                            value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/682c3b402bb4c4002cf825bb?alt=media"
+                            type: "media",
+      key: "profileImage",
+      displayer: "User Image",
+      additionalParams: {
+        availableTypes: ["image"],
+      },
+      value: {
+        type: "image",
+        url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/682c3b402bb4c4002cf825bb?alt=media",
+      }
                         },
                         {
                             type: "icon",
@@ -126,10 +144,16 @@ class Testimonials14 extends Testimonials {
                     displayer: "Image",
                     value: [
                         {
-                            type: "image",
-                            key: "authorImage",
-                            displayer: "User Image",
-                            value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/682c3b5a2bb4c4002cf8272a?alt=media"
+                            type: "media",
+      key: "profileImage",
+      displayer: "User Image",
+      additionalParams: {
+        availableTypes: ["image"],
+      },
+      value: {
+        type: "image",
+        url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/682c3b5a2bb4c4002cf8272a?alt=media",
+      }
                         },
                         {
                             type: "icon",
@@ -281,10 +305,10 @@ class Testimonials14 extends Testimonials {
                         {images.length > 0 && (
                             <div className={this.decorateCSS("images")}>
                                 {images.map((item: Images, itemIndex: number) => (
-                                    item.authorImage && (
-                                        <img
+                                    item.profileImage && (
+                                        <Base.Media
                                             key={itemIndex}
-                                            src={item.authorImage}
+                                            value={item.profileImage}
                                             className={`${this.decorateCSS("image")}
                                                 ${activeIndex === itemIndex ? this.decorateCSS("active") : ""}`}
                                             onClick={() => this.onImageClick(itemIndex)}

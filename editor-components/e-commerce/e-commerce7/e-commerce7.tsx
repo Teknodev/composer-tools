@@ -689,7 +689,7 @@ class ECommerce7 extends BaseECommerce {
   }
 
   static getName(): string {
-    return "E-Commerce 7";
+    return "ECommerce 7";
   }
   toggleDescription = (index: number) => {
     if (this.getComponentState("openIndex") === index) {
