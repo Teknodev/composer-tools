@@ -31,11 +31,34 @@ class Social4 extends BaseSocial {
   constructor(props?: any) {
     super(props, styles);
     this.addProp({
-        type: "string",
-        key:"title",
-        displayer: "Title",
-        value: "Follow us on Instagram"
-    })
+      type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "",
+    });
+
+    this.addProp({
+      type: "string",
+      key: "title",
+      displayer: "Title",
+      value: "Follow us on Instagram",
+    });
+
+    this.addProp({
+      type: "string",
+      key: "description",
+      displayer: "Description",
+      value: "",
+    });
+
+    this.addProp({
+      type: "array",
+      key: "buttons",
+      displayer: "Buttons",
+      value: [
+        INPUTS.BUTTON("button", "Button", "", "", null, "", "Primary"),
+      ],
+    });
     this.addProp({
         type: "number",
         key: "initialCount",
@@ -1730,10 +1753,18 @@ class Social4 extends BaseSocial {
   handleCloseOverlay = () =>{
     this.setComponentState("postOverlayActive", false);
   }
-  handleButtonClick = () => {
-    this.setComponentState("moreImages", this.getComponentState("moreImages") + this.getPropValue("moreCount"))
+  handleButtonClick = (e: React.MouseEvent) => {
+    const cardItems = this.castToObject<CardItem[]>("cardItems");
+    const imageCount = this.getComponentState("imageCount");
 
-};
+    if (imageCount < cardItems.length) {
+      if (e && e.preventDefault) e.preventDefault();
+      this.setComponentState(
+        "moreImages",
+        this.getComponentState("moreImages") + this.getPropValue("moreCount")
+      );
+    }
+  };
 
   
   render() {
@@ -1755,17 +1786,87 @@ class Social4 extends BaseSocial {
     if (this.getComponentState("imageCount") != this.getPropValue("initialCount") + this.getComponentState("moreImages"))
         this.setComponentState("imageCount", this.getPropValue("initialCount") + this.getComponentState("moreImages"));
     
-    const isTitleExist = this.castToString(this.getPropValue("title"));
-    const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
+    const titleExist = this.castToString(this.getPropValue("title"));
+    const subtitleExist = this.castToString(this.getPropValue("subtitle"));
+    const descriptionExist = this.castToString(this.getPropValue("description"));
+    const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
+    const hasValidButtons = buttons.some((btn) => {
+      const textExist = this.castToString(btn.text);
+      const iconExist = btn.icon && this.castToString((btn.icon as any).name);
+      return !!(textExist || iconExist);
+    });
+
+    const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>(
+      "button"
+    );
+
     return (
-        <div className={this.decorateCSS("social4-root")}>
-      <Base.Container className={this.decorateCSS("container")}>
-        <Base.MaxContent className={this.decorateCSS("max-content")}>
-        {isTitleExist && (
-        <div className={this.decorateCSS("title-container")}>
-            <Base.H1 className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.H1>
-        </div>
-        )}
+      <div className={this.decorateCSS("social4-root")}>
+        <Base.Container className={this.decorateCSS("container")}>
+          <Base.MaxContent className={this.decorateCSS("max-content")}>
+            {(titleExist ||
+              subtitleExist ||
+              descriptionExist ||
+              hasValidButtons) && (
+              <Base.VerticalContent
+                className={this.decorateCSS("upper-container")}
+              >
+                {subtitleExist && (
+                  <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                    {this.getPropValue("subtitle")}
+                  </Base.SectionSubTitle>
+                )}
+                {titleExist && (
+                  <Base.SectionTitle className={this.decorateCSS("title")}>
+                    {this.getPropValue("title")}
+                  </Base.SectionTitle>
+                )}
+                {descriptionExist && (
+                  <Base.SectionDescription
+                    className={this.decorateCSS("description")}
+                  >
+                    {this.getPropValue("description")}
+                  </Base.SectionDescription>
+                )}
+                {hasValidButtons && (
+                  <div className={this.decorateCSS("button-container")}>
+                    {buttons.map((item: INPUTS.CastedButton, index: number) => {
+                      const textExist = this.castToString(item.text);
+                      const iconExist =
+                        item.icon && this.castToString((item.icon as any).name);
+                      if (!textExist && !iconExist) return null;
+                      return (
+                        <div
+                          className={this.decorateCSS("button-wrapper")}
+                          key={index}
+                        >
+                          <ComposerLink path={item.url}>
+                            <Base.Button
+                              buttonType={item.type}
+                              className={this.decorateCSS("button")}
+                            >
+                              {textExist && (
+                                <div className={this.decorateCSS("button-text")}>
+                                  {item.text}
+                                </div>
+                              )}
+                              {iconExist && (
+                                <Base.Icon
+                                  name={item.icon}
+                                  propsIcon={{
+                                    className: this.decorateCSS("button-icon"),
+                                  }}
+                                />
+                              )}
+                            </Base.Button>
+                          </ComposerLink>
+                        </div>
+                      );
+                    })}
+                  </div>
+                )}
+              </Base.VerticalContent>
+            )}
 
                         <Base.ListGrid gridCount={{ pc: this.getPropValue("rowCount") ,tablet: 3}} className={this.decorateCSS("gallery-grid")}>
                             {cardItems.slice(0, this.getComponentState("imageCount")).map((item: CardItem, index: number) => {
@@ -1810,17 +1911,19 @@ class Social4 extends BaseSocial {
                                 );
                             })}
                         </Base.ListGrid>
-                   {(this.getComponentState("imageCount") < cardItems.length) && (
+                    {this.castToString(button.text) && (
                         <div className={this.decorateCSS("button-wrapper")}>
-                            <Base.Button className={this.decorateCSS("button")} buttonType={button.type} onClick={this.handleButtonClick} >
-                                {button.text}
-                            </Base.Button>
+                            <ComposerLink path={this.getComponentState("imageCount") < cardItems.length ? "" : button.url}>
+                                <Base.Button className={this.decorateCSS("button")} buttonType={button.type} onClick={this.handleButtonClick} >
+                                    {button.text}
+                                </Base.Button>
+                            </ComposerLink>
                         </div>
                     )}
         </Base.MaxContent>
       </Base.Container>
       <Base.Overlay className ={`${this.decorateCSS("post-overlay")} ${this.getComponentState("postOverlayActive") && this.decorateCSS("active")}`} isVisible={true }>
-        {isTitleExist && (
+        {titleExist && (
             <div className={this.decorateCSS("mobile-ovelay-title-container")}>
                 <div className={this.decorateCSS("title")}>{this.getPropValue("title")}</div>
             </div>
