@@ -476,10 +476,9 @@ class Social3 extends BaseSocial {
                       <div className={this.decorateCSS("socials")}>
                         {socials.map((item, index: number) => {
                           return (
-                            <ComposerLink path={item.link}>
+                            <ComposerLink path={item.link} key={index}>
                               <div
                                 className={this.decorateCSS("social")}
-                                key={index}
                               >
                                 {item.icon && (
                                   <Base.Icon

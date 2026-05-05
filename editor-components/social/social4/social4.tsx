@@ -2076,7 +2076,7 @@ class Social4 extends BaseSocial {
                         <ComposerSlider {...settingsCard}>
                         {item.imageItems.map((item: ImageItem, index: number) =>{
                             return(
-                                <img src={item.image} alt={item.image} className={this.decorateCSS("image")}/>
+                                <img key={index} src={item.image} alt={item.image} className={this.decorateCSS("image")}/>
                             )
                         })
                         }

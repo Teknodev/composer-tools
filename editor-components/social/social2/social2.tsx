@@ -1091,16 +1091,14 @@ class Social2 extends BaseSocial {
                                                         )}
                                                         {item.socialIcons.length > 0 &&
                                                             <div className={this.decorateCSS("social-icons-container")}>
-                                                                {item.socialIcons.map((social) => {
+                                                                {item.socialIcons.map((social, socialIndex) => {
+                                                                    if (!social.icon) return null;
                                                                     return (
-                                                                        <ComposerLink path={social.url}>
-                                                                            {social.icon && (
-                                                                                <div className={this.decorateCSS("social-icons")}>
-                                                                                    <Base.Icon name={social.icon} propsIcon={{ className: this.decorateCSS("social-icon") }}></Base.Icon>
-                                                                                </div>
-                                                                            )}
+                                                                        <ComposerLink key={socialIndex} path={social.url}>
+                                                                            <div className={this.decorateCSS("social-icons")}>
+                                                                                <Base.Icon name={social.icon} propsIcon={{ className: this.decorateCSS("social-icon") }}></Base.Icon>
+                                                                            </div>
                                                                         </ComposerLink>
-
                                                                     )
                                                                 })}
                                                             </div>
@@ -1168,16 +1166,14 @@ class Social2 extends BaseSocial {
                                                     )}
                                                     {item.socialIcons.length > 0 &&
                                                         <div className={this.decorateCSS("social-icons-container")}>
-                                                            {item.socialIcons.map((social) => {
+                                                            {item.socialIcons.map((social, socialIndex) => {
+                                                                if (!social.icon) return null;
                                                                 return (
-                                                                    <ComposerLink path={social.url}>
-                                                                        {social.icon && (
-                                                                            <div className={this.decorateCSS("social-icons")}>
-                                                                                <Base.Icon name={social.icon} propsIcon={{ className: this.decorateCSS("social-icon") }}></Base.Icon>
-                                                                            </div>
-                                                                        )}
+                                                                    <ComposerLink key={socialIndex} path={social.url}>
+                                                                        <div className={this.decorateCSS("social-icons")}>
+                                                                            <Base.Icon name={social.icon} propsIcon={{ className: this.decorateCSS("social-icon") }}></Base.Icon>
+                                                                        </div>
                                                                     </ComposerLink>
-
                                                                 )
                                                             })}
                                                         </div>
