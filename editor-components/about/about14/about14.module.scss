@@ -113,6 +113,37 @@
                         }
                     }
                 }
+
+                &.align-center {
+                    align-items: center;
+                    text-align: center;
+
+                    .heading {
+                        align-items: center;
+
+                        .subtitle {
+                            text-align: center !important;
+                            margin-left: auto !important;
+                            margin-right: auto !important;
+                        }
+
+                        .title {
+                            text-align: center;
+                        }
+                    }
+
+                    .description-wrapper .description {
+                        text-align: center;
+                    }
+
+                    .button-container {
+                        justify-content: center;
+                    }
+
+                    .show-more-overlay {
+                        justify-content: center;
+                    }
+                }
             }
 
             .image-side {
@@ -142,38 +173,6 @@
                 }
             }
 
-            &[data-alignment="center"] {
-                &.no-image .content-side {
-                    align-items: center;
-                    text-align: center;
-
-                    .heading .subtitle {
-                        text-align: left !important;
-                    }
-
-                    .heading .title,
-                    .description-wrapper .description {
-                        text-align: center;
-                    }
-
-                    .heading {
-                        align-items: center;
-
-                        .subtitle {
-                            margin-left: auto !important;
-                            margin-right: auto !important;
-                        }
-                    }
-
-                    .button-container {
-                        justify-content: center;
-                    }
-
-                    .show-more-overlay {
-                        justify-content: center;
-                    }
-                }
-            }
         }
     }
 }
@@ -203,10 +202,8 @@
             padding: var(--composer-gap-md) var(--composer-gap-md) var(--composer-gap-lg);
             background-color: transparent;
             border-radius: 0;
-        }
 
-        &[data-alignment="center"].no-image {
-            .content-side {
+            &.align-center-mobile {
                 align-items: center;
                 text-align: center;
 
@@ -214,6 +211,7 @@
                     align-items: center;
 
                     .subtitle {
+                        text-align: center !important;
                         margin-left: auto !important;
                         margin-right: auto !important;
                     }

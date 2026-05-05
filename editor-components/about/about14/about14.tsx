@@ -33,7 +33,7 @@ class About14 extends BaseAbout {
                     },
                     value: {
                         type: "image",
-                        url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/693ad982875e15002c62337c?alt=media",
+                        url: "",
                     },
                 },
                 {
@@ -49,7 +49,7 @@ class About14 extends BaseAbout {
             type: "string",
             key: "subtitle",
             displayer: "Subtitle",
-            value: "",
+            value: "Lorem",
         });
 
         this.addProp({
@@ -146,7 +146,7 @@ class About14 extends BaseAbout {
                         data-alignment={alignment}
                     >
                         {hasTextContent && (
-                            <div className={this.decorateCSS("content-side")}>
+                            <div className={`${this.decorateCSS("content-side")} ${!hasImageContent && alignment === "center" ? this.decorateCSS("align-center") : ""} ${alignment === "center" ? this.decorateCSS("align-center-mobile") : ""}`}>
                                 <Base.VerticalContent className={this.decorateCSS("heading")}>
                                     {hasSubtitle && (
                                         <Base.SectionSubTitle
