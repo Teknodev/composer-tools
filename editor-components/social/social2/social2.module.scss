@@ -150,9 +150,27 @@
 .container{
     position: relative;
     .max-content{
+        display: flex;
+        flex-direction: column;
+        gap: var(--composer-gap-lg);
         .upper-container{
             .title{
                 content: "";
+            }
+            .button-container{
+                display: flex;
+                gap: var(--composer-gap-sm);
+                flex-wrap: wrap;
+                .button-wrapper{
+                    .button{
+                        .button-text{
+                            content: "";
+                        }
+                        .button-icon{
+                            content: "";
+                        }
+                    }
+                }
             }
         }
     
@@ -272,6 +290,7 @@
 @container (max-width: #{$composer-phone-width}) {
   .container{
     .max-content{
+      gap: var(--composer-gap-md);
       .slider-container{
         .slider{
           >div{
