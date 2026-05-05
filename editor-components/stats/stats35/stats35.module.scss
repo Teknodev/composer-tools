@@ -265,6 +265,28 @@
         .right-column {
             position: relative;
 
+            &.center-alignment {
+                .stats-list {
+                    .stat-item {
+                        align-items: center;
+
+                        .stat-value {
+                            .stat-prefix,
+                            .stat-number,
+                            .stat-suffix {
+                                text-align: center;
+                            }
+                        }
+
+                        .stat-title,
+                        .stat-subtitle,
+                        .stat-description {
+                            text-align: center;
+                        }
+                    }
+                }
+            }
+
             .stats-list {
                 gap: var(--composer-gap-lg);
             }
