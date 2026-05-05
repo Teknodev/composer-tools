@@ -64,6 +64,13 @@
                         color: white;
                     }
                 }
+                .image-overlay {
+                    position: absolute;
+                    inset: 0;
+                    background-color: var(--composer-overlay-color);
+                    pointer-events: none;
+                }
+
                 &:hover{
                     .overlay{
                         opacity: 0.8;
@@ -215,6 +222,12 @@
                     object-fit: cover;
                     height: 600px;
                 }
+                .image-overlay {
+                    position: absolute;
+                    inset: 0;
+                    background-color: var(--composer-overlay-color);
+                    pointer-events: none;
+                }
             }
             .post-image-container{
                 width: 100%;
@@ -237,6 +250,12 @@
                     overflow: hidden;
                     object-fit: cover;
                     height: 600px;
+                }
+                .image-overlay {
+                    position: absolute;
+                    inset: 0;
+                    background-color: var(--composer-overlay-color);
+                    pointer-events: none;
                 }
             }
             .bottom-container{

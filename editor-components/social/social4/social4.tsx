@@ -22,6 +22,7 @@ type CardItem ={
     socialIcon: string,
     button: INPUTS.CastedButton;
     date: string;
+    imageOverlay: boolean;
 }
 type ImageItem={
     image : string
@@ -140,6 +141,12 @@ class Social4 extends BaseSocial {
                 value: ""
             },
             {
+                type: "boolean",
+                key: "imageOverlay",
+                displayer: "Image Overlay",
+                value: false
+            },
+            {
                 type:"boolean",
                 key: "videoIconActive",
                 displayer: "Video Icon Active",
@@ -240,6 +247,12 @@ class Social4 extends BaseSocial {
                 value: ""
             },
             {
+                type: "boolean",
+                key: "imageOverlay",
+                displayer: "Image Overlay",
+                value: false
+            },
+            {
                 type:"boolean",
                 key: "videoIconActive",
                 displayer: "Video Icon Active",
@@ -338,6 +351,12 @@ class Social4 extends BaseSocial {
                 key: "url",
                 displayer: "Url",
                 value: ""
+            },
+            {
+                type: "boolean",
+                key: "imageOverlay",
+                displayer: "Image Overlay",
+                value: false
             },
             {
                 type:"boolean",
@@ -454,6 +473,12 @@ class Social4 extends BaseSocial {
                 value: ""
             },
             {
+                type: "boolean",
+                key: "imageOverlay",
+                displayer: "Image Overlay",
+                value: false
+            },
+            {
                 type:"boolean",
                 key: "videoIconActive",
                 displayer: "Video Icon Active",
@@ -552,6 +577,12 @@ class Social4 extends BaseSocial {
                 key: "url",
                 displayer: "Url",
                 value: ""
+            },
+            {
+                type: "boolean",
+                key: "imageOverlay",
+                displayer: "Image Overlay",
+                value: false
             },
             {
                 type:"boolean",
@@ -654,6 +685,12 @@ class Social4 extends BaseSocial {
                 value: ""
             },
             {
+                type: "boolean",
+                key: "imageOverlay",
+                displayer: "Image Overlay",
+                value: false
+            },
+            {
                 type:"boolean",
                 key: "videoIconActive",
                 displayer: "Video Icon Active",
@@ -752,6 +789,12 @@ class Social4 extends BaseSocial {
                 key: "url",
                 displayer: "Url",
                 value: ""
+            },
+            {
+                type: "boolean",
+                key: "imageOverlay",
+                displayer: "Image Overlay",
+                value: false
             },
             {
                 type:"boolean",
@@ -882,6 +925,12 @@ class Social4 extends BaseSocial {
                 value: ""
             },
             {
+                type: "boolean",
+                key: "imageOverlay",
+                displayer: "Image Overlay",
+                value: false
+            },
+            {
                 type:"boolean",
                 key: "videoIconActive",
                 displayer: "Video Icon Active",
@@ -980,6 +1029,12 @@ class Social4 extends BaseSocial {
                 key: "url",
                 displayer: "Url",
                 value: ""
+            },
+            {
+                type: "boolean",
+                key: "imageOverlay",
+                displayer: "Image Overlay",
+                value: false
             },
             {
                 type:"boolean",
@@ -1082,6 +1137,12 @@ class Social4 extends BaseSocial {
                 value: ""
             },
             {
+                type: "boolean",
+                key: "imageOverlay",
+                displayer: "Image Overlay",
+                value: false
+            },
+            {
                 type:"boolean",
                 key: "videoIconActive",
                 displayer: "Video Icon Active",
@@ -1180,6 +1241,12 @@ class Social4 extends BaseSocial {
                 key: "url",
                 displayer: "Url",
                 value: ""
+            },
+            {
+                type: "boolean",
+                key: "imageOverlay",
+                displayer: "Image Overlay",
+                value: false
             },
             {
                 type:"boolean",
@@ -1296,6 +1363,12 @@ class Social4 extends BaseSocial {
                 value: ""
             },
             {
+                type: "boolean",
+                key: "imageOverlay",
+                displayer: "Image Overlay",
+                value: false
+            },
+            {
                 type:"boolean",
                 key: "videoIconActive",
                 displayer: "Video Icon Active",
@@ -1394,6 +1467,12 @@ class Social4 extends BaseSocial {
                 key: "url",
                 displayer: "Url",
                 value: ""
+            },
+            {
+                type: "boolean",
+                key: "imageOverlay",
+                displayer: "Image Overlay",
+                value: false
             },
             {
                 type:"boolean",
@@ -1538,6 +1617,12 @@ class Social4 extends BaseSocial {
                 value: ""
             },
             {
+                type: "boolean",
+                key: "imageOverlay",
+                displayer: "Image Overlay",
+                value: false
+            },
+            {
                 type:"boolean",
                 key: "videoIconActive",
                 displayer: "Video Icon Active",
@@ -1636,6 +1721,12 @@ class Social4 extends BaseSocial {
                 key: "url",
                 displayer: "Url",
                 value: ""
+            },
+            {
+                type: "boolean",
+                key: "imageOverlay",
+                displayer: "Image Overlay",
+                value: false
             },
             {
                 type:"boolean",
@@ -1875,11 +1966,17 @@ class Social4 extends BaseSocial {
                                         {(item.imageItems.length>0 && !this.castToString(item.videoUrl) && item.imageItems[0].image) && 
                                         <div className={this.decorateCSS("image-container")}>
                                             <img src={item.imageItems[0].image} alt={item.imageItems[0].image} className={this.decorateCSS("gallery-image")}/>
+                                            {item.imageOverlay && (
+                                                <div className={this.decorateCSS("image-overlay")} />
+                                            )}
                                         </div>
                                         }
                                         {this.castToString(item.videoUrl) && (
                                         <div className={this.decorateCSS("video-container")}>
                                             <video src={this.castToString(item.videoUrl)} controls={false} className={this.decorateCSS("gallery-video")}/>
+                                            {item.imageOverlay && (
+                                                <div className={this.decorateCSS("image-overlay")} />
+                                            )}
                                         </div>
                                          )}
                                         <div className={this.decorateCSS("icon-container")}>
@@ -1969,6 +2066,9 @@ class Social4 extends BaseSocial {
                     {this.castToString(item.videoUrl) && (
                     <div className={this.decorateCSS("post-video-container")}>
                         <video src={this.castToString(item.videoUrl)} controls autoPlay={true} muted className={this.decorateCSS("video")}></video>
+                        {item.imageOverlay && (
+                            <div className={this.decorateCSS("image-overlay")} />
+                        )}
                     </div>
                     )}
                     {(item.imageItems.length > 0 && !this.castToString(item.videoUrl)) && (
@@ -1981,6 +2081,9 @@ class Social4 extends BaseSocial {
                         })
                         }
                         </ComposerSlider>
+                        {item.imageOverlay && (
+                            <div className={this.decorateCSS("image-overlay")} />
+                        )}
                         </div>
                     )} 
                     <div className={this.decorateCSS("bottom-container")}>

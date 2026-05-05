@@ -8,7 +8,8 @@ import { INPUTS } from "../../../custom-hooks/input-templates";
 type PostItem ={
     postTitle: React.JSX.Element,
     postDescription: React.JSX.Element,
-    postImage: string
+    postImage: string,
+    imageOverlay: boolean;
 }
 type Interaction ={
     icon: string,
@@ -97,6 +98,12 @@ class Social3 extends BaseSocial {
             key: "postImage",
             displayer: "Post Image",
             value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67f7bd84fb049c002cc6ffab?alt=media&timestamp=1744289157829"
+        },
+        {
+            type: "boolean",
+            key: "imageOverlay",
+            displayer: "Image Overlay",
+            value: false
         },
         ]
     })
@@ -383,11 +390,16 @@ class Social3 extends BaseSocial {
               </div>
             )}
             {post.postImage && (
-              <img
-                className={this.decorateCSS("post-image")}
-                src={post.postImage}
-                alt={post.postImage}
-              ></img>
+              <div className={this.decorateCSS("post-image-container")}>
+                <img
+                  className={this.decorateCSS("post-image")}
+                  src={post.postImage}
+                  alt={post.postImage}
+                />
+                {post.imageOverlay && (
+                  <div className={this.decorateCSS("image-overlay")} />
+                )}
+              </div>
             )}
             {(likeInteraction.icon ||
               this.castToString(likeInteraction.text) ||
