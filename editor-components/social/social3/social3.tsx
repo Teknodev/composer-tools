@@ -169,7 +169,7 @@ class Social3 extends BaseSocial {
         {
             type:"object",
             key:"social",
-            displayer:"social",
+            displayer:"Social",
             value:[
                 {
                     type: "icon",
@@ -194,7 +194,7 @@ class Social3 extends BaseSocial {
         {
             type:"object",
             key:"social",
-            displayer:"social",
+            displayer:"Social",
             value:[
                 {
                     type: "icon",
@@ -219,7 +219,7 @@ class Social3 extends BaseSocial {
         {
             type:"object",
             key:"social",
-            displayer:"social",
+            displayer:"Social",
             value:[
                 {
                     type: "icon",

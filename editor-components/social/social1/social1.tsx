@@ -41,7 +41,7 @@ class Social1 extends BaseSocial {
         this.addProp({
             type: "array",
             key: "buttons",
-            displayer: "Button ",
+            displayer: "Button",
             value: [
                 INPUTS.BUTTON("button", "Button", "GitHub discussions", "", "FaRegComment", "", "Tertiary"),
                 INPUTS.BUTTON("button", "Button", "Discord", "", "FaRegComment", "", "Tertiary"),
