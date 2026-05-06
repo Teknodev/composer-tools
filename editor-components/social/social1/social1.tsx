@@ -560,17 +560,17 @@ class Social1 extends BaseSocial {
                         <Base.VerticalContent className={this.decorateCSS("upper-content")}>
                             {subtitleExist && (
                                 <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
-                                    {subtitleExist}
+                                    {this.getPropValue("subtitle")}
                                 </Base.SectionSubTitle>
                             )}
                             {titleExist && (
                                 <Base.SectionTitle className={this.decorateCSS("title")}>
-                                    {titleExist}
+                                    {this.getPropValue("title")}
                                 </Base.SectionTitle>
                             )}
                             {descriptionExist && (
                                 <Base.SectionDescription className={this.decorateCSS("description")}>
-                                    {descriptionExist}
+                                    {this.getPropValue("description")}
                                 </Base.SectionDescription>
                             )}
                             {hasValidButtons && (
