@@ -12,9 +12,9 @@ type CardItem = {
 type ItemType = {
     image: TypeMediaInputValue,
     name: React.JSX.Element,
-    comment: React.JSX.Element
+    text: React.JSX.Element
     icon: string,
-    link: string,
+    url: string,
 }
 
 class Social1 extends BaseSocial {
@@ -87,14 +87,14 @@ class Social1 extends BaseSocial {
                                         },
                                         {
                                             type: "string",
-                                            key: "comment",
-                                            displayer: "Comment",
+                                            key: "text",
+                                            displayer: "Text",
                                             value: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque fermentum, justo non volutpat cursus, velit ipsum cursus lorem, ut scelerisque arcu lacus id odio. Cras eget urna a libero aliquam varius. Nulla facilisi. Aenean consequat tellus et neque sodales, ac interdum ex tincidunt.Cras eget urna a libero aliquam varius. Nulla facilisi. Aenean consequat tellus et neque sodales, ac interdum ex tincidunt.justo non volutpat cursus, velit ipsum cursus lorem, ut scelerisque arcu lacus id odio. Cras eget urna a libero aliquam varius. Nulla facilisi. Aenean consequat tellus et neque sodales, ac interdum ex tincidunt.Cras eget urna a libero aliquam varius. Nulla facilisi. Aenean consequat"
                                         },
                                         {
                                             type: "page",
-                                            key: "link",
-                                            displayer: "Link",
+                                            key: "url",
+                                            displayer: "URL",
                                             value: ""
                                         },
                                     ]
@@ -124,14 +124,14 @@ class Social1 extends BaseSocial {
                                         },
                                         {
                                             type: "string",
-                                            key: "comment",
-                                            displayer: "Comment",
+                                            key: "text",
+                                            displayer: "Text",
                                             value: "Proin ut orci non urna pulvinar facilisis. In faucibus dolor eu sapien vehicula malesuada. Vestibulum rhoncus, odio vel suscipit tristique, libero ex efficitur neque, vitae tempor enim augue sit amet velit. In faucibus dolor eu sapien vehicula malesuada. Vestibulum rhoncus, odio vel suscipit tristique, libero ex efficitur neque, vitae tempor enim augue sit amet velit."
                                         },
                                         {
                                             type: "page",
-                                            key: "link",
-                                            displayer: "Link",
+                                            key: "url",
+                                            displayer: "URL",
                                             value: ""
                                         },
                                     ]
@@ -175,14 +175,14 @@ class Social1 extends BaseSocial {
                                         },
                                         {
                                             type: "string",
-                                            key: "comment",
-                                            displayer: "Comment",
+                                            key: "text",
+                                            displayer: "Text",
                                             value: "Proin ut orci non urna pulvinar facilisis. In faucibus dolor eu sapien vehicula malesuada. Vestibulum rhoncus, odio vel suscipit tristique, libero ex efficitur neque, vitae tempor enim augue sit amet velit. In faucibus dolor eu sapien vehicula malesuada. Vestibulum rhoncus, odio vel suscipit tristique, libero ex efficitur neque, vitae tempor enim augue sit amet velit."
                                         },
                                         {
                                             type: "page",
-                                            key: "link",
-                                            displayer: "Link",
+                                            key: "url",
+                                            displayer: "URL",
                                             value: ""
                                         },
                                     ]
@@ -212,14 +212,14 @@ class Social1 extends BaseSocial {
                                         },
                                         {
                                             type: "string",
-                                            key: "comment",
-                                            displayer: "Comment",
+                                            key: "text",
+                                            displayer: "Text",
                                             value: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque fermentum, justo non volutpat cursus, velit ipsum cursus lorem, ut scelerisque arcu lacus id odio. Cras eget urna a libero aliquam varius. Nulla facilisi. Aenean consequat tellus et neque sodales, ac interdum ex tincidunt.Cras eget urna a libero aliquam varius. Nulla facilisi. Aenean consequat tellus et neque sodales, ac interdum ex tincidunt.justo non volutpat cursus, velit ipsum cursus lorem, ut scelerisque arcu lacus id odio. Cras eget urna a libero aliquam varius. Nulla facilisi. Aenean consequat tellus et neque sodales, ac interdum ex tincidunt.Cras eget urna a libero aliquam varius. Nulla facilisi. Aenean consequat"
                                         },
                                         {
                                             type: "page",
-                                            key: "link",
-                                            displayer: "Link",
+                                            key: "url",
+                                            displayer: "URL",
                                             value: ""
                                         },
                                     ]
@@ -263,14 +263,14 @@ class Social1 extends BaseSocial {
                                         },
                                         {
                                             type: "string",
-                                            key: "comment",
-                                            displayer: "Comment",
+                                            key: "text",
+                                            displayer: "Text",
                                             value: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque fermentum, justo non volutpat cursus, velit ipsum cursus lorem, ut scelerisque arcu lacus id odio. Cras eget urna a libero aliquam varius. Nulla facilisi. Aenean consequat tellus et neque sodales, ac interdum ex tincidunt.Cras eget urna a libero aliquam varius. Nulla facilisi. Aenean consequat tellus et neque sodales, ac interdum ex tincidunt.justo non volutpat cursus, velit ipsum cursus lorem, ut scelerisque arcu lacus id odio. Cras eget urna a libero aliquam varius. Nulla facilisi. Aenean consequat tellus et neque sodales, ac interdum ex tincidunt.Cras eget urna a libero aliquam varius. Nulla facilisi. Aenean consequat"
                                         },
                                         {
                                             type: "page",
-                                            key: "link",
-                                            displayer: "Link",
+                                            key: "url",
+                                            displayer: "URL",
                                             value: ""
                                         },
                                     ]
@@ -300,14 +300,14 @@ class Social1 extends BaseSocial {
                                         },
                                         {
                                             type: "string",
-                                            key: "comment",
-                                            displayer: "Comment",
+                                            key: "text",
+                                            displayer: "Text",
                                             value: "Proin ut orci non urna pulvinar facilisis. In faucibus dolor eu sapien vehicula malesuada. Vestibulum rhoncus, odio vel suscipit tristique, libero ex efficitur neque, vitae tempor enim augue sit amet velit. In faucibus dolor eu sapien vehicula malesuada. Vestibulum rhoncus, odio vel suscipit tristique, libero ex efficitur neque, vitae tempor enim augue sit amet velit."
                                         },
                                         {
                                             type: "page",
-                                            key: "link",
-                                            displayer: "Link",
+                                            key: "url",
+                                            displayer: "URL",
                                             value: ""
                                         },
                                     ]
@@ -351,14 +351,14 @@ class Social1 extends BaseSocial {
                                         },
                                         {
                                             type: "string",
-                                            key: "comment",
-                                            displayer: "Comment",
+                                            key: "text",
+                                            displayer: "Text",
                                             value: "Proin ut orci non urna pulvinar facilisis. In faucibus dolor eu sapien vehicula malesuada. Vestibulum rhoncus, odio vel suscipit tristique, libero ex efficitur neque, vitae tempor enim augue sit amet velit. In faucibus dolor eu sapien vehicula malesuada. Vestibulum rhoncus, odio vel suscipit tristique, libero ex efficitur neque, vitae tempor enim augue sit amet velit."
                                         },
                                         {
                                             type: "page",
-                                            key: "link",
-                                            displayer: "Link",
+                                            key: "url",
+                                            displayer: "URL",
                                             value: ""
                                         },
                                     ]
@@ -388,14 +388,14 @@ class Social1 extends BaseSocial {
                                         },
                                         {
                                             type: "string",
-                                            key: "comment",
-                                            displayer: "Comment",
+                                            key: "text",
+                                            displayer: "Text",
                                             value: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque fermentum, justo non volutpat cursus, velit ipsum cursus lorem, ut scelerisque arcu lacus id odio. Cras eget urna a libero aliquam varius. Nulla facilisi. Aenean consequat tellus et neque sodales, ac interdum ex tincidunt.Cras eget urna a libero aliquam varius. Nulla facilisi. Aenean consequat tellus et neque sodales, ac interdum ex tincidunt.justo non volutpat cursus, velit ipsum cursus lorem, ut scelerisque arcu lacus id odio. Cras eget urna a libero aliquam varius. Nulla facilisi. Aenean consequat tellus et neque sodales, ac interdum ex tincidunt.Cras eget urna a libero aliquam varius. Nulla facilisi. Aenean consequat"
                                         },
                                         {
                                             type: "page",
-                                            key: "link",
-                                            displayer: "Link",
+                                            key: "url",
+                                            displayer: "URL",
                                             value: ""
                                         },
                                     ]
@@ -439,14 +439,14 @@ class Social1 extends BaseSocial {
                                         },
                                         {
                                             type: "string",
-                                            key: "comment",
-                                            displayer: "Comment",
+                                            key: "text",
+                                            displayer: "Text",
                                             value: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque fermentum, justo non volutpat cursus, velit ipsum cursus lorem, ut scelerisque arcu lacus id odio. Cras eget urna a libero aliquam varius. Nulla facilisi. Aenean consequat tellus et neque sodales, ac interdum ex tincidunt.Cras eget urna a libero aliquam varius. Nulla facilisi. Aenean consequat tellus et neque sodales, ac interdum ex tincidunt.justo non volutpat cursus, velit ipsum cursus lorem, ut scelerisque arcu lacus id odio. Cras eget urna a libero aliquam varius. Nulla facilisi. Aenean consequat tellus et neque sodales, ac interdum ex tincidunt.Cras eget urna a libero aliquam varius. Nulla facilisi. Aenean consequat"
                                         },
                                         {
                                             type: "page",
-                                            key: "link",
-                                            displayer: "Link",
+                                            key: "url",
+                                            displayer: "URL",
                                             value: ""
                                         },
                                     ]
@@ -476,14 +476,14 @@ class Social1 extends BaseSocial {
                                         },
                                         {
                                             type: "string",
-                                            key: "comment",
-                                            displayer: "Comment",
+                                            key: "text",
+                                            displayer: "Text",
                                             value: "Proin ut orci non urna pulvinar facilisis. In faucibus dolor eu sapien vehicula malesuada. Vestibulum rhoncus, odio vel suscipit tristique, libero ex efficitur neque, vitae tempor enim augue sit amet velit. In faucibus dolor eu sapien vehicula malesuada. Vestibulum rhoncus, odio vel suscipit tristique, libero ex efficitur neque, vitae tempor enim augue sit amet velit."
                                         },
                                         {
                                             type: "page",
-                                            key: "link",
-                                            displayer: "Link",
+                                            key: "url",
+                                            displayer: "URL",
                                             value: ""
                                         },
                                     ]
@@ -613,10 +613,10 @@ class Social1 extends BaseSocial {
                                     <div key={index} className={this.decorateCSS("cards")} style={{ width: `calc(100% / ${maxLength})` }}>
                                         <div className={this.decorateCSS("cards-wrapper")}>
                                             {item.items.map((item: ItemType, index: number) => {
-                                                const hasAnyContent = item.link || item.icon || item.name || item.image || item.comment;
+                                                const hasAnyContent = item.url || item.icon || item.name || item.image || item.text;
                                                 if (!hasAnyContent) return null;
                                                 return (
-                                                    <ComposerLink key={index} path={item.link}>
+                                                    <ComposerLink key={index} path={item.url}>
                                                         <div className={this.decorateCSS("card-container")} onMouseMove={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave}>
                                                             {(item.icon || item.image || item.name) && (
                                                                 <div className={this.decorateCSS("card-upper")}>
@@ -635,8 +635,8 @@ class Social1 extends BaseSocial {
                                                                     )}
                                                                 </div>
                                                             )}
-                                                            {item.comment && (
-                                                                <div className={this.decorateCSS("comment")}>{item.comment}</div>
+                                                            {item.text && (
+                                                                <div className={this.decorateCSS("comment")}>{item.text}</div>
                                                             )}
                                                         </div>
                                                     </ComposerLink>
@@ -653,10 +653,10 @@ class Social1 extends BaseSocial {
                                     <div key={index} className={this.decorateCSS("cards")} style={{ width: `calc(100% / ${maxLength})` }}>
                                         <div className={this.decorateCSS("cards-wrapper")}>
                                             {item.items.map((item: ItemType, index: number) => {
-                                                const hasAnyContent = item.link || item.icon || item.name || item.image || item.comment;
+                                                const hasAnyContent = item.url || item.icon || item.name || item.image || item.text;
                                                 if (!hasAnyContent) return null;
                                                 return (
-                                                    <ComposerLink key={index} path={item.link}>
+                                                    <ComposerLink key={index} path={item.url}>
                                                         <div className={this.decorateCSS("card-container")} onMouseMove={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave}>
                                                             {(item.icon || item.image || item.name) && (
                                                                 <div className={this.decorateCSS("card-upper")}>
@@ -675,8 +675,8 @@ class Social1 extends BaseSocial {
                                                                     )}
                                                                 </div>
                                                             )}
-                                                            {item.comment && (
-                                                                <div className={this.decorateCSS("comment")}>{item.comment}</div>
+                                                            {item.text && (
+                                                                <div className={this.decorateCSS("comment")}>{item.text}</div>
                                                             )}
                                                         </div>
                                                     </ComposerLink>
@@ -694,10 +694,10 @@ class Social1 extends BaseSocial {
                     <div className={this.decorateCSS("loop-slide")}>
                         <ComposerSlider {...settings} className={`${this.decorateCSS("slide-content-mobile")} ${hasValidButtons && this.decorateCSS("with-upper")}`}>
                             {allItems.map((item: ItemType, index: number) => {
-                                const hasAnyContent = item.link || item.icon || item.name || item.image || item.comment;
+                                const hasAnyContent = item.url || item.icon || item.name || item.image || item.text;
                                 if (!hasAnyContent) return null;
                                 return (
-                                    <ComposerLink path={item.link} key={index}>
+                                    <ComposerLink path={item.url} key={index}>
                                         <div className={this.decorateCSS("cards")}>
                                             <div className={this.decorateCSS("cards-wrapper")}>
                                                 <div className={this.decorateCSS("card-container")}>
@@ -712,7 +712,7 @@ class Social1 extends BaseSocial {
                                                             {item.name && (<div className={this.decorateCSS("name")}>{item.name}</div>)}
                                                         </div>
                                                     )}
-                                                    {item.comment && <div className={this.decorateCSS("comment")}>{item.comment}</div>}
+                                                    {item.text && <div className={this.decorateCSS("comment")}>{item.text}</div>}
                                                 </div>
                                             </div>
                                         </div>

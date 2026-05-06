@@ -6,9 +6,9 @@ import ComposerLink from "../../../composer-base-components/Link/ComposerLinkPro
 import { INPUTS } from "../../../custom-hooks/input-templates";
 
 type PostItem ={
-    postTitle: React.JSX.Element,
-    postDescription: React.JSX.Element,
-    postImage: string,
+    title: React.JSX.Element,
+    description: React.JSX.Element,
+    image: string,
     imageOverlay: boolean;
 }
 type Interaction ={
@@ -18,7 +18,7 @@ type Interaction ={
 type Social ={
     icon: string,
     text: React.JSX.Element,
-    link: string    
+    url: string
 }
 
 class Social3 extends BaseSocial {
@@ -60,8 +60,8 @@ class Social3 extends BaseSocial {
     })
     this.addProp({
         type: "string",
-        key: "userName",
-        displayer: "User Name",
+        key: "name",
+        displayer: "Name",
         value:"TTM"
     })
     this.addProp({
@@ -83,20 +83,20 @@ class Social3 extends BaseSocial {
         value: [
         {
             type:"string",
-            key: "postTitle",
-            displayer: "Post Title",
+            key: "title",
+            displayer: "Title",
             value: "Broadway Canyon of Heroes"
         },
         {
             type:"string",
-            key: "postDescription",
-            displayer: "Post Description",
+            key: "description",
+            displayer: "Description",
             value: "One's destination is never place, but a new way of seeing things."
         },
         {
             type:"image",
-            key: "postImage",
-            displayer: "Post Image",
+            key: "image",
+            displayer: "Image",
             value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67f7bd84fb049c002cc6ffab?alt=media&timestamp=1744289157829"
         },
         {
@@ -185,8 +185,8 @@ class Social3 extends BaseSocial {
                 },
                 {
                     type:"page",
-                    key: "link",
-                    displayer: "Link",
+                    key: "url",
+                    displayer: "URL",
                     value:""
                 }
             ]
@@ -210,8 +210,8 @@ class Social3 extends BaseSocial {
                 },
                 {
                     type:"page",
-                    key: "link",
-                    displayer: "Link",
+                    key: "url",
+                    displayer: "URL",
                     value:""
                 }
             ]
@@ -235,8 +235,8 @@ class Social3 extends BaseSocial {
                 },
                 {
                     type:"page",
-                    key: "link",
-                    displayer: "Link",
+                    key: "url",
+                    displayer: "URL",
                     value:""
                 }
             ]
@@ -337,7 +337,7 @@ class Social3 extends BaseSocial {
           )}
           <div className={this.decorateCSS("post-container")}>
             {(this.getPropValue("profileImage") ||
-              this.castToString(this.getPropValue("userName")) ||
+              this.castToString(this.getPropValue("name")) ||
               this.getPropValue("dateIcon") ||
               this.castToString(this.getPropValue("date"))) && (
               <div className={this.decorateCSS("upper-section")}>
@@ -348,13 +348,13 @@ class Social3 extends BaseSocial {
                     alt={this.getPropValue("profileImage")}
                   />
                 )}
-                {(this.castToString(this.getPropValue("userName")) ||
+                {(this.castToString(this.getPropValue("name")) ||
                   this.getPropValue("dateIcon") ||
                   this.getPropValue("date")) && (
                   <div className={this.decorateCSS("right-container")}>
-                    {this.castToString(this.getPropValue("userName")) && (
+                    {this.castToString(this.getPropValue("name")) && (
                       <div className={this.decorateCSS("user-name")}>
-                        {this.getPropValue("userName")}
+                        {this.getPropValue("name")}
                       </div>
                     )}
                     {(this.getPropValue("dateIcon") ||
@@ -379,22 +379,22 @@ class Social3 extends BaseSocial {
                 )}
               </div>
             )}
-            {this.castToString(post.postTitle) && (
+            {this.castToString(post.title) && (
               <div className={this.decorateCSS("post-title")}>
-                {post.postTitle}
+                {post.title}
               </div>
             )}
-            {this.castToString(post.postDescription) && (
+            {this.castToString(post.description) && (
               <div className={this.decorateCSS("post-description")}>
-                {post.postDescription}
+                {post.description}
               </div>
             )}
-            {post.postImage && (
+            {post.image && (
               <div className={this.decorateCSS("post-image-container")}>
                 <img
                   className={this.decorateCSS("post-image")}
-                  src={post.postImage}
-                  alt={post.postImage}
+                  src={post.image}
+                  alt={post.image}
                 />
                 {post.imageOverlay && (
                   <div className={this.decorateCSS("image-overlay")} />
@@ -477,7 +477,7 @@ class Social3 extends BaseSocial {
                         {socials.map((item, index: number) => {
                           if (!item.icon && !this.castToString(item.text)) return null;
                           return (
-                            <ComposerLink path={item.link} key={index}>
+                            <ComposerLink path={item.url} key={index}>
                               <div
                                 className={this.decorateCSS("social")}
                               >

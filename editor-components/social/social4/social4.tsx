@@ -1,4 +1,4 @@
-﻿import { BaseSocial } from "../../EditorComponent";
+import { BaseSocial } from "../../EditorComponent";
 import styles from "./social4.module.scss"
 import { Base } from "../../../composer-base-components/base/base";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
@@ -9,7 +9,7 @@ import { FaLessThanEqual } from "react-icons/fa";
 import { TbRubberStamp } from "react-icons/tb";
 
 type CardItem ={
-    videoUrl: React.JSX.Element,
+    video: React.JSX.Element,
     imageItems: ImageItem[],
     likeCount: React.JSX.Element,
     commentCount: React.JSX.Element,
@@ -18,7 +18,7 @@ type CardItem ={
     videoIconActive: boolean,
     imageIconActive : boolean,
     name: React.JSX.Element,
-    porfileImage: string,
+    profileImage: string,
     socialIcon: string,
     button: INPUTS.CastedButton;
     date: React.JSX.Element;
@@ -91,8 +91,8 @@ class Social4 extends BaseSocial {
             value:[
             {
                 type:"string",
-                key: "videoUrl",
-                displayer:"Video Url",
+                key: "video",
+                displayer:"Video",
                 value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6801fec5bf76cc002cc3bca5?alt=media&timestamp=1744961224764"
             },
             {
@@ -137,7 +137,7 @@ class Social4 extends BaseSocial {
             {
                 type: "page",
                 key: "url",
-                displayer: "Url",
+                displayer: "URL",
                 value: ""
             },
             {
@@ -166,8 +166,8 @@ class Social4 extends BaseSocial {
             },
             {
                 type: "image",
-                key: "porfileImage",
-                displayer:"Profile Image",
+                key: "profileImage",
+                displayer: "Image",
                 value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67ce95243504dd002c5d0939?alt=media&timestamp=1744960949771"
             },
             {
@@ -194,8 +194,8 @@ class Social4 extends BaseSocial {
             value:[
             {
                 type:"string",
-                key: "videoUrl",
-                displayer:"Video Url",
+                key: "video",
+                displayer:"Video",
                 value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6801ffc5bf76cc002cc3bd38?alt=media&timestamp=1744961479941"
             },
             {
@@ -240,7 +240,7 @@ class Social4 extends BaseSocial {
             {
                 type: "page",
                 key: "url",
-                displayer: "Url",
+                displayer: "URL",
                 value: ""
             },
             {
@@ -269,8 +269,8 @@ class Social4 extends BaseSocial {
             },
             {
                 type: "image",
-                key: "porfileImage",
-                displayer:"Profile Image",
+                key: "profileImage",
+                displayer: "Image",
                 value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67cb0f22fe2b08002d44d96d?alt=media&timestamp=1744960949771"
             },
             {
@@ -297,8 +297,8 @@ class Social4 extends BaseSocial {
             value:[
             {
                 type:"string",
-                key: "videoUrl",
-                displayer:"Video Url",
+                key: "video",
+                displayer:"Video",
                 value: ""
             },
             {
@@ -343,7 +343,7 @@ class Social4 extends BaseSocial {
             {
                 type: "page",
                 key: "url",
-                displayer: "Url",
+                displayer: "URL",
                 value: ""
             },
             {
@@ -372,8 +372,8 @@ class Social4 extends BaseSocial {
             },
             {
                 type: "image",
-                key: "porfileImage",
-                displayer:"Profile Image",
+                key: "profileImage",
+                displayer: "Image",
                 value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67c94af4fe2b08002d430306?alt=media&timestamp=1744960949770"
             },
             {
@@ -400,8 +400,8 @@ class Social4 extends BaseSocial {
             value:[
             {
                 type:"string",
-                key: "videoUrl",
-                displayer:"Video Url",
+                key: "video",
+                displayer:"Video",
                 value: ""
             },
             {
@@ -460,7 +460,7 @@ class Social4 extends BaseSocial {
             {
                 type: "page",
                 key: "url",
-                displayer: "Url",
+                displayer: "URL",
                 value: ""
             },
             {
@@ -489,8 +489,8 @@ class Social4 extends BaseSocial {
             },
             {
                 type: "image",
-                key: "porfileImage",
-                displayer:"Profile Image",
+                key: "profileImage",
+                displayer: "Image",
                 value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67c94b07fe2b08002d43030d?alt=media&timestamp=1744960949770"
             },
             {
@@ -517,8 +517,8 @@ class Social4 extends BaseSocial {
             value:[
             {
                 type:"string",
-                key: "videoUrl",
-                displayer:"Video Url",
+                key: "video",
+                displayer:"Video",
                 value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6801ff32bf76cc002cc3bcea?alt=media&timestamp=1744961331979"
             },
             {
@@ -563,7 +563,7 @@ class Social4 extends BaseSocial {
             {
                 type: "page",
                 key: "url",
-                displayer: "Url",
+                displayer: "URL",
                 value: ""
             },
             {
@@ -592,8 +592,8 @@ class Social4 extends BaseSocial {
             },
             {
                 type: "image",
-                key: "porfileImage",
-                displayer:"Profile Image",
+                key: "profileImage",
+                displayer: "Image",
                 value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67aca1d16341de002b7f73d2?alt=media&timestamp=1744960949770"
             },
             {
@@ -620,8 +620,8 @@ class Social4 extends BaseSocial {
             value:[
             {
                 type:"string",
-                key: "videoUrl",
-                displayer:"Video Url",
+                key: "video",
+                displayer:"Video",
                 value: ""
             },
             {
@@ -666,7 +666,7 @@ class Social4 extends BaseSocial {
             {
                 type: "page",
                 key: "url",
-                displayer: "Url",
+                displayer: "URL",
                 value: ""
             },
             {
@@ -695,8 +695,8 @@ class Social4 extends BaseSocial {
             },
             {
                 type: "image",
-                key: "porfileImage",
-                displayer:"Profile Image",
+                key: "profileImage",
+                displayer: "Image",
                 value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67f7bd84fb049c002cc6ffab?alt=media&timestamp=1744960949771"
             },
             {
@@ -723,8 +723,8 @@ class Social4 extends BaseSocial {
             value:[
             {
                 type:"string",
-                key: "videoUrl",
-                displayer:"Video Url",
+                key: "video",
+                displayer:"Video",
                 value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6801ff06bf76cc002cc3bce4?alt=media&timestamp=1744961288526"
             },
             {
@@ -769,7 +769,7 @@ class Social4 extends BaseSocial {
             {
                 type: "page",
                 key: "url",
-                displayer: "Url",
+                displayer: "URL",
                 value: ""
             },
             {
@@ -798,8 +798,8 @@ class Social4 extends BaseSocial {
             },
             {
                 type: "image",
-                key: "porfileImage",
-                displayer:"Profile Image",
+                key: "profileImage",
+                displayer: "Image",
                 value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67e40a6cfb049c002cc41c31?alt=media&timestamp=1744799202064"
             },
             {
@@ -826,8 +826,8 @@ class Social4 extends BaseSocial {
             value:[
             {
                 type:"string",
-                key: "videoUrl",
-                displayer:"Video Url",
+                key: "video",
+                displayer:"Video",
                 value: ""
             },
             {
@@ -900,7 +900,7 @@ class Social4 extends BaseSocial {
             {
                 type: "page",
                 key: "url",
-                displayer: "Url",
+                displayer: "URL",
                 value: ""
             },
             {
@@ -929,8 +929,8 @@ class Social4 extends BaseSocial {
             },
             {
                 type: "image",
-                key: "porfileImage",
-                displayer:"Profile Image",
+                key: "profileImage",
+                displayer: "Image",
                 value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67f7bd53fb049c002cc6ff96?alt=media&timestamp=1744960949771"
             },
             {
@@ -957,8 +957,8 @@ class Social4 extends BaseSocial {
             value:[
             {
                 type:"string",
-                key: "videoUrl",
-                displayer:"Video Url",
+                key: "video",
+                displayer:"Video",
                 value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/68020059bf76cc002cc3bd6b?alt=media&timestamp=1744961627435"
             },
             {
@@ -1003,7 +1003,7 @@ class Social4 extends BaseSocial {
             {
                 type: "page",
                 key: "url",
-                displayer: "Url",
+                displayer: "URL",
                 value: ""
             },
             {
@@ -1032,8 +1032,8 @@ class Social4 extends BaseSocial {
             },
             {
                 type: "image",
-                key: "porfileImage",
-                displayer:"Profile Image",
+                key: "profileImage",
+                displayer: "Image",
                 value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67f3bd46fb049c002cc5ead5?alt=media&timestamp=1744960949771"
             },
             {
@@ -1060,8 +1060,8 @@ class Social4 extends BaseSocial {
             value:[
             {
                 type:"string",
-                key: "videoUrl",
-                displayer:"Video Url",
+                key: "video",
+                displayer:"Video",
                 value: ""
             },
             {
@@ -1106,7 +1106,7 @@ class Social4 extends BaseSocial {
             {
                 type: "page",
                 key: "url",
-                displayer: "Url",
+                displayer: "URL",
                 value: ""
             },
             {
@@ -1135,8 +1135,8 @@ class Social4 extends BaseSocial {
             },
             {
                 type: "image",
-                key: "porfileImage",
-                displayer:"Profile Image",
+                key: "profileImage",
+                displayer: "Image",
                 value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67e40a86fb049c002cc41c55?alt=media&timestamp=1744960949771"
             },
             {
@@ -1163,8 +1163,8 @@ class Social4 extends BaseSocial {
             value:[
             {
                 type:"string",
-                key: "videoUrl",
-                displayer:"Video Url",
+                key: "video",
+                displayer:"Video",
                 value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/680201efbf76cc002cc3be21?alt=media&timestamp=1744962032906"
             },
             {
@@ -1209,7 +1209,7 @@ class Social4 extends BaseSocial {
             {
                 type: "page",
                 key: "url",
-                displayer: "Url",
+                displayer: "URL",
                 value: ""
             },
             {
@@ -1238,8 +1238,8 @@ class Social4 extends BaseSocial {
             },
             {
                 type: "image",
-                key: "porfileImage",
-                displayer:"Profile Image",
+                key: "profileImage",
+                displayer: "Image",
                 value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67e40a3cfb049c002cc41bc7?alt=media&timestamp=1744960949771"
             },
             {
@@ -1266,8 +1266,8 @@ class Social4 extends BaseSocial {
             value:[
             {
                 type:"string",
-                key: "videoUrl",
-                displayer:"Video Url",
+                key: "video",
+                displayer:"Video",
                 value: ""
             },
             {
@@ -1326,7 +1326,7 @@ class Social4 extends BaseSocial {
             {
                 type: "page",
                 key: "url",
-                displayer: "Url",
+                displayer: "URL",
                 value: ""
             },
             {
@@ -1355,8 +1355,8 @@ class Social4 extends BaseSocial {
             },
             {
                 type: "image",
-                key: "porfileImage",
-                displayer:"Profile Image",
+                key: "profileImage",
+                displayer: "Image",
                 value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67a9d2166341de002b7b7fd0?alt=media&timestamp=1744960949770"
             },
             {
@@ -1383,8 +1383,8 @@ class Social4 extends BaseSocial {
             value:[
             {
                 type:"string",
-                key: "videoUrl",
-                displayer:"Video Url",
+                key: "video",
+                displayer:"Video",
                 value: ""
             },
             {
@@ -1429,7 +1429,7 @@ class Social4 extends BaseSocial {
             {
                 type: "page",
                 key: "url",
-                displayer: "Url",
+                displayer: "URL",
                 value: ""
             },
             {
@@ -1458,8 +1458,8 @@ class Social4 extends BaseSocial {
             },
             {
                 type: "image",
-                key: "porfileImage",
-                displayer:"Profile Image",
+                key: "profileImage",
+                displayer: "Image",
                 value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6799df51d61bca002cb826eb?alt=media&timestamp=1744960949770"
             },
             {
@@ -1486,8 +1486,8 @@ class Social4 extends BaseSocial {
             value:[
             {
                 type:"string",
-                key: "videoUrl",
-                displayer:"Video Url",
+                key: "video",
+                displayer:"Video",
                 value: ""
             },
             {
@@ -1574,7 +1574,7 @@ class Social4 extends BaseSocial {
             {
                 type: "page",
                 key: "url",
-                displayer: "Url",
+                displayer: "URL",
                 value: ""
             },
             {
@@ -1603,8 +1603,8 @@ class Social4 extends BaseSocial {
             },
             {
                 type: "image",
-                key: "porfileImage",
-                displayer:"Profile Image",
+                key: "profileImage",
+                displayer: "Image",
                 value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6790cd32d61bca002cb54d47?alt=media&timestamp=1744960949770"
             },
             {
@@ -1631,8 +1631,8 @@ class Social4 extends BaseSocial {
             value:[
             {
                 type:"string",
-                key: "videoUrl",
-                displayer:"Video Url",
+                key: "video",
+                displayer:"Video",
                 value: ""
             },
             {
@@ -1677,7 +1677,7 @@ class Social4 extends BaseSocial {
             {
                 type: "page",
                 key: "url",
-                displayer: "Url",
+                displayer: "URL",
                 value: ""
             },
             {
@@ -1706,8 +1706,8 @@ class Social4 extends BaseSocial {
             },
             {
                 type: "image",
-                key: "porfileImage",
-                displayer:"Profile Image",
+                key: "profileImage",
+                displayer: "Image",
                 value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6790ceccd61bca002cb54e20?alt=media&timestamp=1744960949770"
             },
             {
@@ -1918,7 +1918,7 @@ class Social4 extends BaseSocial {
                             {cardItems.slice(0, this.getComponentState("imageCount")).map((item: CardItem, index: number) => {
                                 return (
                                     <div className={this.decorateCSS("gallery-item")} key={index}>
-                                        {(item.imageItems.length>0 && !this.castToString(item.videoUrl) && item.imageItems[0].image) && 
+                                        {(item.imageItems.length>0 && !this.castToString(item.video) && item.imageItems[0].image) && 
                                         <div className={this.decorateCSS("image-container")}>
                                             <img src={item.imageItems[0].image} alt={item.imageItems[0].image} className={this.decorateCSS("gallery-image")}/>
                                             {item.imageOverlay && (
@@ -1926,17 +1926,17 @@ class Social4 extends BaseSocial {
                                             )}
                                         </div>
                                         }
-                                        {this.castToString(item.videoUrl) && (
+                                        {this.castToString(item.video) && (
                                         <div className={this.decorateCSS("video-container")}>
-                                            <video src={this.castToString(item.videoUrl)} controls={false} className={this.decorateCSS("gallery-video")}/>
+                                            <video src={this.castToString(item.video)} controls={false} className={this.decorateCSS("gallery-video")}/>
                                             {item.imageOverlay && (
                                                 <div className={this.decorateCSS("image-overlay")} />
                                             )}
                                         </div>
                                          )}
-                                        {((this.getPropValue("videoIcon") && this.castToString(item.videoUrl) && item.videoIconActive) || (this.getPropValue("imageIcon") && item.imageItems.length > 1)) && (
+                                        {((this.getPropValue("videoIcon") && this.castToString(item.video) && item.videoIconActive) || (this.getPropValue("imageIcon") && item.imageItems.length > 1)) && (
                                         <div className={this.decorateCSS("icon-container")}>
-                                            {(this.getPropValue("videoIcon") && this.castToString(item.videoUrl) && item.videoIconActive) && (<Base.Icon name={this.getPropValue("videoIcon")} propsIcon={{className:this.decorateCSS("icon")}}></Base.Icon>)}
+                                            {(this.getPropValue("videoIcon") && this.castToString(item.video) && item.videoIconActive) && (<Base.Icon name={this.getPropValue("videoIcon")} propsIcon={{className:this.decorateCSS("icon")}}></Base.Icon>)}
                                             {(this.getPropValue("imageIcon") && item.imageItems.length > 1) && (<Base.Icon name={this.getPropValue("imageIcon")} propsIcon={{className:this.decorateCSS("icon")}}></Base.Icon>)}
                                         </div>
                                         )}
@@ -1990,12 +1990,12 @@ class Social4 extends BaseSocial {
                 key={index}
                 ref={postRefs[index]}>
                     <div className={this.decorateCSS("upper-container")}>
-                        {(item.porfileImage || this.castToString(item.name)) && (
+                        {(item.profileImage || this.castToString(item.name)) && (
                             <div className={this.decorateCSS("left-container")}>
-                            {item.porfileImage && (
+                            {item.profileImage && (
                                 <div className={this.decorateCSS("profile-image-container")}>
                                     <ComposerLink path={item.url}>
-                                        <img className={this.decorateCSS("profile-image")} src={item.porfileImage}></img>
+                                        <img className={this.decorateCSS("profile-image")} src={item.profileImage}></img>
                                     </ComposerLink>
                                 </div>
                             )}
@@ -2024,15 +2024,15 @@ class Social4 extends BaseSocial {
                         </div>
                         )}
                     </div>
-                    {this.castToString(item.videoUrl) && (
+                    {this.castToString(item.video) && (
                     <div className={this.decorateCSS("post-video-container")}>
-                        <video src={this.castToString(item.videoUrl)} controls autoPlay={true} muted className={this.decorateCSS("video")}></video>
+                        <video src={this.castToString(item.video)} controls autoPlay={true} muted className={this.decorateCSS("video")}></video>
                         {item.imageOverlay && (
                             <div className={this.decorateCSS("image-overlay")} />
                         )}
                     </div>
                     )}
-                    {(item.imageItems.length > 0 && !this.castToString(item.videoUrl)) && (
+                    {(item.imageItems.length > 0 && !this.castToString(item.video)) && (
                         <div className={this.decorateCSS("post-image-container")}>
                         <ComposerSlider {...settingsCard}>
                         {item.imageItems.map((item: ImageItem, index: number) =>{
