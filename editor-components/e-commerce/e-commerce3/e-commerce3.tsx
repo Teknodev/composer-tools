@@ -302,6 +302,7 @@ class ECommerce3 extends BaseECommerce {
                     {this.castToString(item.subtitle) && <Base.H5 className={this.decorateCSS("subtitle")}>{item.subtitle}</Base.H5>}
                     {this.castToString(item.title) && <Base.H4 className={this.decorateCSS("title")}>{item.title}</Base.H4>}
                     {this.castToString(item.description) && <Base.SectionDescription className={this.decorateCSS("description")}>{item.description}</Base.SectionDescription>}
+                    {(((item.details ?? []).some(d => this.castToString(d.title) || this.castToString(d.value))) || ((item.properties ?? []).some(p => this.castToString(p.title) || p.items.length > 0))) && (
                     <div className={this.decorateCSS("content")}>
                       <div className={this.decorateCSS("left")}>
                         {(item.details ?? []).map((detail: Details) => (
@@ -336,6 +337,7 @@ class ECommerce3 extends BaseECommerce {
                         ))}
                       </div>
                     </div>
+                    )}
                   </Base.VerticalContent>
                 </div>
               )
