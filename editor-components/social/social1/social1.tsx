@@ -68,10 +68,14 @@ class Social1 extends BaseSocial {
                                     displayer: "Item",
                                     value: [
                                         {
-                                            type: "image",
+                                            type: "media",
                                             key: "image",
                                             displayer: "Image",
-                                            value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6790ceccd61bca002cb54e20?alt=media&timestamp=1742997958593"
+                                            value: {
+                                                type: "image",
+                                                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6790ceccd61bca002cb54e20?alt=media&timestamp=1742997958593"
+                                            },
+                                            additionalParams: { availableTypes: ["image"] }
                                         },
                                         {
                                             type: "icon",
@@ -105,10 +109,14 @@ class Social1 extends BaseSocial {
                                     displayer: "Item",
                                     value: [
                                         {
-                                            type: "image",
+                                            type: "media",
                                             key: "image",
                                             displayer: "Image",
-                                            value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6790cd32d61bca002cb54d47?alt=media&timestamp=1742997958593"
+                                            value: {
+                                                type: "image",
+                                                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6790cd32d61bca002cb54d47?alt=media&timestamp=1742997958593"
+                                            },
+                                            additionalParams: { availableTypes: ["image"] }
                                         },
                                         {
                                             type: "icon",
@@ -156,10 +164,14 @@ class Social1 extends BaseSocial {
                                     displayer: "Item",
                                     value: [
                                         {
-                                            type: "image",
+                                            type: "media",
                                             key: "image",
                                             displayer: "Image",
-                                            value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6799df51d61bca002cb826eb?alt=media&timestamp=1742997958593"
+                                            value: {
+                                                type: "image",
+                                                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6799df51d61bca002cb826eb?alt=media&timestamp=1742997958593"
+                                            },
+                                            additionalParams: { availableTypes: ["image"] }
                                         },
                                         {
                                             type: "icon",
@@ -193,10 +205,14 @@ class Social1 extends BaseSocial {
                                     displayer: "Item",
                                     value: [
                                         {
-                                            type: "image",
+                                            type: "media",
                                             key: "image",
                                             displayer: "Image",
-                                            value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67e6c8a3fb049c002cc4b4a4?alt=media"
+                                            value: {
+                                                type: "image",
+                                                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67e6c8a3fb049c002cc4b4a4?alt=media"
+                                            },
+                                            additionalParams: { availableTypes: ["image"] }
                                         },
                                         {
                                             type: "icon",
@@ -244,10 +260,14 @@ class Social1 extends BaseSocial {
                                     displayer: "Item",
                                     value: [
                                         {
-                                            type: "image",
+                                            type: "media",
                                             key: "image",
                                             displayer: "Image",
-                                            value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67a9d2166341de002b7b7fd0?alt=media&timestamp=1742997958593"
+                                            value: {
+                                                type: "image",
+                                                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67a9d2166341de002b7b7fd0?alt=media&timestamp=1742997958593"
+                                            },
+                                            additionalParams: { availableTypes: ["image"] }
                                         },
                                         {
                                             type: "icon",
@@ -281,10 +301,14 @@ class Social1 extends BaseSocial {
                                     displayer: "Item",
                                     value: [
                                         {
-                                            type: "image",
+                                            type: "media",
                                             key: "image",
                                             displayer: "Image",
-                                            value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67e40a86fb049c002cc41c55?alt=media&timestamp=1742998151797"
+                                            value: {
+                                                type: "image",
+                                                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67e40a86fb049c002cc41c55?alt=media&timestamp=1742998151797"
+                                            },
+                                            additionalParams: { availableTypes: ["image"] }
                                         },
                                         {
                                             type: "icon",
@@ -332,10 +356,14 @@ class Social1 extends BaseSocial {
                                     displayer: "Item",
                                     value: [
                                         {
-                                            type: "image",
+                                            type: "media",
                                             key: "image",
                                             displayer: "Image",
-                                            value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67e40a3cfb049c002cc41bc7?alt=media&timestamp=1742998077864"
+                                            value: {
+                                                type: "image",
+                                                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67e40a3cfb049c002cc41bc7?alt=media&timestamp=1742998077864"
+                                            },
+                                            additionalParams: { availableTypes: ["image"] }
                                         },
                                         {
                                             type: "icon",
@@ -369,10 +397,14 @@ class Social1 extends BaseSocial {
                                     displayer: "Item",
                                     value: [
                                         {
-                                            type: "image",
+                                            type: "media",
                                             key: "image",
                                             displayer: "Image",
-                                            value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67e6c925fb049c002cc4b4cb?alt=media"
+                                            value: {
+                                                type: "image",
+                                                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67e6c925fb049c002cc4b4cb?alt=media"
+                                            },
+                                            additionalParams: { availableTypes: ["image"] }
                                         },
                                         {
                                             type: "icon",
@@ -420,10 +452,14 @@ class Social1 extends BaseSocial {
                                     displayer: "Item",
                                     value: [
                                         {
-                                            type: "image",
+                                            type: "media",
                                             key: "image",
                                             displayer: "Image",
-                                            value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67e40a6cfb049c002cc41c31?alt=media&timestamp=1742998125897"
+                                            value: {
+                                                type: "image",
+                                                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67e40a6cfb049c002cc41c31?alt=media&timestamp=1742998125897"
+                                            },
+                                            additionalParams: { availableTypes: ["image"] }
                                         },
                                         {
                                             type: "icon",
@@ -457,10 +493,14 @@ class Social1 extends BaseSocial {
                                     displayer: "Item",
                                     value: [
                                         {
-                                            type: "image",
+                                            type: "media",
                                             key: "image",
                                             displayer: "Image",
-                                            value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67e6c969fb049c002cc4b4d7?alt=media"
+                                            value: {
+                                                type: "image",
+                                                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67e6c969fb049c002cc4b4d7?alt=media"
+                                            },
+                                            additionalParams: { availableTypes: ["image"] }
                                         },
                                         {
                                             type: "icon",
