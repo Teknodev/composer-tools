@@ -1032,10 +1032,16 @@ class Social2 extends BaseSocial {
                                         );
                                     })}
                                 </ComposerSlider>
-                                <div className={this.decorateCSS("arrows")}>
-                                    <Base.Icon name={this.getPropValue("nextArrow")} propsIcon={{ className: this.decorateCSS("next-arrow"), onClick: () => { this.handleRightArrowClick() } }} />
-                                    <Base.Icon name={this.getPropValue("prevArrow")} propsIcon={{ className: this.decorateCSS("prev-arrow"), onClick: () => { this.handleLeftArrowClick() } }} />
-                                </div>
+                                {(this.getPropValue("nextArrow") || this.getPropValue("prevArrow")) && (
+                                    <div className={this.decorateCSS("arrows")}>
+                                        {this.getPropValue("nextArrow") && (
+                                            <Base.Icon name={this.getPropValue("nextArrow")} propsIcon={{ className: this.decorateCSS("next-arrow"), onClick: () => { this.handleRightArrowClick() } }} />
+                                        )}
+                                        {this.getPropValue("prevArrow") && (
+                                            <Base.Icon name={this.getPropValue("prevArrow")} propsIcon={{ className: this.decorateCSS("prev-arrow"), onClick: () => { this.handleLeftArrowClick() } }} />
+                                        )}
+                                    </div>
+                                )}
                             </div>
                         )}
                     </Base.MaxContent>

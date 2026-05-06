@@ -475,6 +475,7 @@ class Social3 extends BaseSocial {
                     {socials.length > 0 && (
                       <div className={this.decorateCSS("socials")}>
                         {socials.map((item, index: number) => {
+                          if (!item.icon && !this.castToString(item.text)) return null;
                           return (
                             <ComposerLink path={item.link} key={index}>
                               <div

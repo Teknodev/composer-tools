@@ -1979,10 +1979,12 @@ class Social4 extends BaseSocial {
                                             )}
                                         </div>
                                          )}
+                                        {((this.getPropValue("videoIcon") && this.castToString(item.videoUrl) && item.videoIconActive) || (this.getPropValue("imageIcon") && item.imageItems.length > 1)) && (
                                         <div className={this.decorateCSS("icon-container")}>
                                             {(this.getPropValue("videoIcon") && this.castToString(item.videoUrl) && item.videoIconActive) && (<Base.Icon name={this.getPropValue("videoIcon")} propsIcon={{className:this.decorateCSS("icon")}}></Base.Icon>)}
                                             {(this.getPropValue("imageIcon") && item.imageItems.length > 1) && (<Base.Icon name={this.getPropValue("imageIcon")} propsIcon={{className:this.decorateCSS("icon")}}></Base.Icon>)}
                                         </div>
+                                        )}
                                         <div className={this.decorateCSS("overlay")} onClick={() => this.handleClickItem(index)}>
                                         <div className={this.decorateCSS("content-container")}>
                                             {(this.getPropValue("likeIcon") || item.likeCount || this.getPropValue("commentIcon") || item.commentCount) && (
@@ -2050,18 +2052,22 @@ class Social4 extends BaseSocial {
                             )}
                             </div>
                         )}
+                        {(this.castToString(item.button.text) || item.socialIcon) && (
                         <div className={this.decorateCSS("right-container")}>
+                            {this.castToString(item.button.text) && (
                             <ComposerLink path={item.button.url}>
                                 <div className={this.decorateCSS("button-container")}>
                                     <Base.Button buttonType={item.button.type}>{item.button.text}</Base.Button>
                                 </div>
                             </ComposerLink>
+                            )}
                             {item.socialIcon && (
                                 <ComposerLink path={item.url}>
                                     <Base.Icon name={item.socialIcon} propsIcon={{className: this.decorateCSS("socail-icon")}}></Base.Icon>
                                 </ComposerLink>
                             )}
                         </div>
+                        )}
                     </div>
                     {this.castToString(item.videoUrl) && (
                     <div className={this.decorateCSS("post-video-container")}>
@@ -2075,6 +2081,7 @@ class Social4 extends BaseSocial {
                         <div className={this.decorateCSS("post-image-container")}>
                         <ComposerSlider {...settingsCard}>
                         {item.imageItems.map((item: ImageItem, index: number) =>{
+                            if (!item.image) return null;
                             return(
                                 <img key={index} src={item.image} alt={item.image} className={this.decorateCSS("image")}/>
                             )
