@@ -45,15 +45,15 @@ class Team6 extends Team {
 
     this.addProp({
       type: "icon",
-      key: "openingIcon",
-      displayer: "Opening Icon",
+      key: "activeIcon",
+      displayer: "Active icon",
       value: "IoAddCircleOutline",
     });
 
     this.addProp({
       type: "icon",
-      key: "closingIcon",
-      displayer: "Closing Icon",
+      key: "inactiveIcon",
+      displayer: "Inactive icon",
       value: "IoRemoveCircleOutline",
     });
 
@@ -111,7 +111,10 @@ class Team6 extends Team {
                       type: "icon",
                       key: "icon",
                       displayer: "Icon",
-                      value: "CiCircleCheck",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: "GoDotFill",
                     },
                     {
                       type: "string",
@@ -130,9 +133,12 @@ class Team6 extends Team {
                       type: "media",
                       key: "icon",
                       displayer: "Icon",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
                       value: {
                         type: "icon",
-                        name: "CiCircleCheck"
+                        name: "GoDotFill"
                       },
                     },
                     {
@@ -152,9 +158,12 @@ class Team6 extends Team {
                       type: "media",
                       key: "icon",
                       displayer: "Icon",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
                       value: {
                         type: "icon",
-                        name: "CiCircleCheck"
+                        name: "GoDotFill"
                       },
                     },
                     {
@@ -174,9 +183,12 @@ class Team6 extends Team {
                       type: "media",
                       key: "icon",
                       displayer: "Icon",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
                       value: {
                         type: "icon",
-                        name: "CiCircleCheck"
+                        name: "GoDotFill"
                       },
                     },
                     {
@@ -240,9 +252,12 @@ class Team6 extends Team {
                       type: "media",
                       key: "icon",
                       displayer: "Icon",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
                       value: {
                         type: "icon",
-                        name: "CiCircleCheck"
+                        name: "GoDotFill"
                       },
                     },
                     {
@@ -262,9 +277,12 @@ class Team6 extends Team {
                       type: "media",
                       key: "icon",
                       displayer: "Icon",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
                       value: {
                         type: "icon",
-                        name: "CiCircleCheck"
+                        name: "GoDotFill"
                       },
                     },
                     {
@@ -284,9 +302,12 @@ class Team6 extends Team {
                       type: "media",
                       key: "icon",
                       displayer: "Icon",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
                       value: {
                         type: "icon",
-                        name: "CiCircleCheck"
+                        name: "GoDotFill"
                       },
                     },
                     {
@@ -306,9 +327,12 @@ class Team6 extends Team {
                       type: "media",
                       key: "icon",
                       displayer: "Icon",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
                       value: {
                         type: "icon",
-                        name: "CiCircleCheck"
+                        name: "GoDotFill"
                       },
                     },
                     {
@@ -372,9 +396,12 @@ class Team6 extends Team {
                       type: "media",
                       key: "icon",
                       displayer: "Icon",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
                       value: {
                         type: "icon",
-                        name: "CiCircleCheck"
+                        name: "GoDotFill"
                       },
                     },
                     {
@@ -394,9 +421,12 @@ class Team6 extends Team {
                       type: "media",
                       key: "icon",
                       displayer: "Icon",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
                       value: {
                         type: "icon",
-                        name: "CiCircleCheck"
+                        name: "GoDotFill"
                       },
                     },
                     {
@@ -416,9 +446,12 @@ class Team6 extends Team {
                       type: "media",
                       key: "icon",
                       displayer: "Icon",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
                       value: {
                         type: "icon",
-                        name: "CiCircleCheck"
+                        name: "GoDotFill"
                       },
                     },
                     {
@@ -438,9 +471,12 @@ class Team6 extends Team {
                       type: "media",
                       key: "icon",
                       displayer: "Icon",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
                       value: {
                         type: "icon",
-                        name: "CiCircleCheck"
+                        name: "GoDotFill"
                       },
                     },
                     {
@@ -504,9 +540,12 @@ class Team6 extends Team {
                       type: "media",
                       key: "icon",
                       displayer: "Icon",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
                       value: {
                         type: "icon",
-                        name: "CiCircleCheck"
+                        name: "GoDotFill"
                       },
                     },
                     {
@@ -526,9 +565,12 @@ class Team6 extends Team {
                       type: "media",
                       key: "icon",
                       displayer: "Icon",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
                       value: {
                         type: "icon",
-                        name: "CiCircleCheck"
+                        name: "GoDotFill"
                       },
                     },
                     {
@@ -548,9 +590,12 @@ class Team6 extends Team {
                       type: "media",
                       key: "icon",
                       displayer: "Icon",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
                       value: {
                         type: "icon",
-                        name: "CiCircleCheck"
+                        name: "GoDotFill"
                       },
                     },
                     {
@@ -570,9 +615,12 @@ class Team6 extends Team {
                       type: "media",
                       key: "icon",
                       displayer: "Icon",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
                       value: {
                         type: "icon",
-                        name: "CiCircleCheck"
+                        name: "GoDotFill"
                       },
                     },
                     {
@@ -660,9 +708,9 @@ class Team6 extends Team {
                       <div onClick={() => handleButton(indexItems)} className={this.decorateCSS("image-button")}>
                         {card.features.length > 0 &&
                           (this.getComponentState("activeIndex") === indexItems ? (
-                            <Base.Icon name={this.getPropValue("closingIcon")} propsIcon={{ className: this.decorateCSS("image-icon") }} />
+                            <Base.Icon name={this.getPropValue("inactiveIcon")} propsIcon={{ className: this.decorateCSS("image-icon") }} />
                           ) : (
-                            <Base.Icon name={this.getPropValue("openingIcon")} propsIcon={{ className: this.decorateCSS("image-icon") }} />
+                            <Base.Icon name={this.getPropValue("activeIcon")} propsIcon={{ className: this.decorateCSS("image-icon") }} />
                           ))}
                         <div className={this.decorateCSS("image-container")}>
                           <Base.Media

@@ -684,7 +684,7 @@ class Team1 extends Team {
                         <Base.Media value={card.profileImage} className={this.decorateCSS("image")} data-animation={this.getPropValue("hoverAnimation").join(" ")} />
                       </div>
                     )}
-                    <Base.H2 className={this.decorateCSS("card-name")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>{card.name}</Base.H2>
+                    <Base.H6 className={this.decorateCSS("card-name")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>{card.name}</Base.H6>
                     <Base.P className={this.decorateCSS("position")}>{card.position}</Base.P>
                     <Base.P className={this.decorateCSS("card-description")}>{card.description}</Base.P>
                     <Base.Row className={this.decorateCSS("icon-group")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>

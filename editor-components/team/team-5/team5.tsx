@@ -737,10 +737,12 @@ class Team5 extends Team {
 
               return hasItem && (
                 <Base.VerticalContent key={index} className={this.decorateCSS("card-item")} data-animation={(this.getPropValue("hoverAnimation") || []).join(" ")}>
-                  <div className={this.decorateCSS("image-container")} data-animation={(this.getPropValue("hoverAnimation") || []).join(" ")} >
-                    {item.background && <Base.Media value={item.background} className={this.decorateCSS("background-image")} />}
-                    {item.picture && <Base.Media value={item.picture} className={this.decorateCSS("member-image")} />}
-                  </div>
+                  {(item.background || item.picture) && (
+                    <div className={this.decorateCSS("image-container")} data-animation={(this.getPropValue("hoverAnimation") || []).join(" ")} >
+                      {item.background && <Base.Media value={item.background} className={this.decorateCSS("background-image")} />}
+                      {item.picture && <Base.Media value={item.picture} className={this.decorateCSS("member-image")} />}
+                    </div>
+                  )}
                   <Base.VerticalContent className={this.decorateCSS("members-container")}>
                     <Base.Row className={this.decorateCSS("icon-container")} data-animation={(this.getPropValue("hoverAnimation") || []).join(" ")}>
                       {item.socials?.map((value, i) => (

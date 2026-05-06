@@ -47,11 +47,18 @@
 
       .title-container {
         width: 45%;
-        text-align: var(--composer-content-alignment);
+
+        .subtitle {
+          transform: translateX(0) !important;
+
+          &::before {
+            background: none !important;
+          }
+        }
 
         .subtitle,
         .title {
-          content: "";
+          text-align: left;
         }
       }
 
@@ -125,6 +132,7 @@
           justify-content: center;
           align-items: center;
           position: relative;
+          aspect-ratio: 10 / 7;
 
           .background-image,
           .member-image {
@@ -135,6 +143,7 @@
 
           .background-image {
             width: 70%;
+            position: absolute;
           }
 
           .member-image {
