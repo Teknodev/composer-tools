@@ -53,28 +53,35 @@ class Social3 extends BaseSocial {
     });
 
     this.addProp({
-        type: "image",
-        key:"profileImage",
-        displayer: "Profile Image",
-        value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67e40a6cfb049c002cc41c31?alt=media&timestamp=1744289020159"
-    })
-    this.addProp({
-        type: "string",
-        key: "name",
-        displayer: "Name",
-        value:"TTM"
-    })
-    this.addProp({
-        type:"string",
-        key: "date",
-        displayer: "Date",
-        value: "03-03-2019"
-    })
-    this.addProp({
-        type:"icon",
-        key: "dateIcon",
-        displayer: "Date Icon",
-        value: "CiClock2"
+        type: "object",
+        key: "profile",
+        displayer: "Profile",
+        value: [
+            {
+                type: "image",
+                key: "profileImage",
+                displayer: "Profile Image",
+                value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67e40a6cfb049c002cc41c31?alt=media&timestamp=1744289020159"
+            },
+            {
+                type: "string",
+                key: "name",
+                displayer: "Name",
+                value: "TTM"
+            },
+            {
+                type: "string",
+                key: "date",
+                displayer: "Date",
+                value: "03-03-2019"
+            },
+            {
+                type: "icon",
+                key: "dateIcon",
+                displayer: "Date Icon",
+                value: "CiClock2"
+            }
+        ]
     })
     this.addProp({
         type: "object",
@@ -261,6 +268,7 @@ class Social3 extends BaseSocial {
     );
     const shareInteraction = this.castToObject<Interaction>("shareInteraction");
     const socials = this.castToObject<Social[]>("socials");
+    const profile = this.castToObject<any>("profile");
 
     const titleExist = this.castToString(this.getPropValue("title"));
     const subtitleExist = this.castToString(this.getPropValue("subtitle"));
@@ -336,41 +344,41 @@ class Social3 extends BaseSocial {
             </Base.VerticalContent>
           )}
           <div className={this.decorateCSS("post-container")}>
-            {(this.getPropValue("profileImage") ||
-              this.castToString(this.getPropValue("name")) ||
-              this.getPropValue("dateIcon") ||
-              this.castToString(this.getPropValue("date"))) && (
+            {(profile.profileImage ||
+              this.castToString(profile.name) ||
+              profile.dateIcon ||
+              this.castToString(profile.date)) && (
               <div className={this.decorateCSS("upper-section")}>
-                {this.getPropValue("profileImage") && (
+                {profile.profileImage && (
                   <img
                     className={this.decorateCSS("profile-image")}
-                    src={this.getPropValue("profileImage")}
-                    alt={this.getPropValue("profileImage")}
+                    src={profile.profileImage}
+                    alt={profile.profileImage}
                   />
                 )}
-                {(this.castToString(this.getPropValue("name")) ||
-                  this.getPropValue("dateIcon") ||
-                  this.getPropValue("date")) && (
+                {(this.castToString(profile.name) ||
+                  profile.dateIcon ||
+                  profile.date) && (
                   <div className={this.decorateCSS("right-container")}>
-                    {this.castToString(this.getPropValue("name")) && (
+                    {this.castToString(profile.name) && (
                       <div className={this.decorateCSS("user-name")}>
-                        {this.getPropValue("name")}
+                        {profile.name}
                       </div>
                     )}
-                    {(this.getPropValue("dateIcon") ||
-                      this.castToString(this.getPropValue("date"))) && (
+                    {(profile.dateIcon ||
+                      this.castToString(profile.date)) && (
                       <div className={this.decorateCSS("date-container")}>
-                        {this.getPropValue("dateIcon") && (
+                        {profile.dateIcon && (
                           <Base.Icon
-                            name={this.getPropValue("dateIcon")}
+                            name={profile.dateIcon}
                             propsIcon={{
                               className: this.decorateCSS("date-icon"),
                             }}
                           />
                         )}
-                        {this.castToString(this.getPropValue("date")) && (
+                        {this.castToString(profile.date) && (
                           <div className={this.decorateCSS("date")}>
-                            {this.getPropValue("date")}
+                            {profile.date}
                           </div>
                         )}
                       </div>

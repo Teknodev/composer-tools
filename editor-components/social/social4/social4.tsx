@@ -61,22 +61,29 @@ class Social4 extends BaseSocial {
       ],
     });
     this.addProp({
-        type: "number",
-        key: "initialCount",
-        displayer:"Image Count Initial",
-        value:10
-    })
-    this.addProp({
-        type: "number",
-        key:"rowCount",
-        displayer: "Count in a row",
-        value:5
-    })
-    this.addProp({
-        type: "number",
-        key:"moreCount",
-        displayer:"More Image Count",
-        value:5
+        type: "object",
+        key: "pagination",
+        displayer: "Settings",
+        value: [
+            {
+                type: "number",
+                key: "initialCount",
+                displayer: "Image Count Initial",
+                value: 10
+            },
+            {
+                type: "number",
+                key: "rowCount",
+                displayer: "Count in a row",
+                value: 5
+            },
+            {
+                type: "number",
+                key: "moreCount",
+                displayer: "More Image Count",
+                value: 5
+            }
+        ]
     })
     this.addProp(INPUTS.BUTTON("button", "Button", "Load More", null, null, null, "Primary"));
     this.addProp({
@@ -1730,52 +1737,59 @@ class Social4 extends BaseSocial {
         ]
     })
     this.addProp({
-        type: "icon",
-        key: "videoIcon",
-        displayer: "Video Icon",
-        value: "FaVideo"
-    })
-    this.addProp({
-        type: "icon",
-        key: "imageIcon",
-        displayer: "Image Icon",
-        value: "GrGallery"
-    })
-    this.addProp({
-        type: "icon",
-        key: "likeIcon",
-        displayer: "Like Icon",
-        value:"SlHeart"
-    })
-    this.addProp({
-        type: "string",
-        key:"likeText",
-        displayer: "Like Text",
-        value: "likes"
-    })
-    this.addProp({
-        type: "icon",
-        key: "commentIcon",
-        displayer: "Comment Icon",
-        value:"TfiComment"
-    })
-    this.addProp({
-        type: "icon",
-        key: "shareIcon",
-        displayer: "Share Icon",
-        value:"RiShareForwardLine"
-    })
-    this.addProp({
-        type: "string",
-        key:"shareText",
-        displayer: "Share Text",
-        value: "Share"
-    })
-    this.addProp({
-        type: "icon",
-        key: "closeIcon",
-        displayer:"Close Icon",
-        value: "IoMdClose"
+        type: "object",
+        key: "icons",
+        displayer: "Icons",
+        value: [
+            {
+                type: "icon",
+                key: "videoIcon",
+                displayer: "Video Icon",
+                value: "FaVideo"
+            },
+            {
+                type: "icon",
+                key: "imageIcon",
+                displayer: "Image Icon",
+                value: "GrGallery"
+            },
+            {
+                type: "icon",
+                key: "likeIcon",
+                displayer: "Like Icon",
+                value: "SlHeart"
+            },
+            {
+                type: "string",
+                key: "likeText",
+                displayer: "Like Text",
+                value: "likes"
+            },
+            {
+                type: "icon",
+                key: "commentIcon",
+                displayer: "Comment Icon",
+                value: "TfiComment"
+            },
+            {
+                type: "icon",
+                key: "shareIcon",
+                displayer: "Share Icon",
+                value: "RiShareForwardLine"
+            },
+            {
+                type: "string",
+                key: "shareText",
+                displayer: "Share Text",
+                value: "Share"
+            },
+            {
+                type: "icon",
+                key: "closeIcon",
+                displayer: "Close Icon",
+                value: "IoMdClose"
+            }
+        ]
     })
     this.setComponentState("postOverlayActive",false)
     this.setComponentState("selectedPost",0);
@@ -1800,6 +1814,7 @@ class Social4 extends BaseSocial {
     this.setComponentState("postOverlayActive", false);
   }
   handleButtonClick = (e: React.MouseEvent) => {
+    const pagination = this.castToObject<any>("pagination");
     const cardItems = this.castToObject<CardItem[]>("cardItems");
     const imageCount = this.getComponentState("imageCount");
 
@@ -1807,7 +1822,7 @@ class Social4 extends BaseSocial {
       if (e && e.preventDefault) e.preventDefault();
       this.setComponentState(
         "moreImages",
-        this.getComponentState("moreImages") + this.getPropValue("moreCount")
+        this.getComponentState("moreImages") + pagination.moreCount
       );
     }
   };
@@ -1822,15 +1837,17 @@ class Social4 extends BaseSocial {
         slidesToScroll: 1,
         adaptiveHeight: false,
     };
+    const pagination = this.castToObject<any>("pagination");
+    const icons = this.castToObject<any>("icons");
     const cardItems = this.castToObject<CardItem[]>("cardItems");
     let postRefs = this.getComponentState("postRefs");
-    
+
     if (!postRefs || postRefs.length !== cardItems.length) {
       postRefs = cardItems.map(() => React.createRef<HTMLDivElement>());
       this.setComponentState("postRefs", postRefs);
     }
-    if (this.getComponentState("imageCount") != this.getPropValue("initialCount") + this.getComponentState("moreImages"))
-        this.setComponentState("imageCount", this.getPropValue("initialCount") + this.getComponentState("moreImages"));
+    if (this.getComponentState("imageCount") != pagination.initialCount + this.getComponentState("moreImages"))
+        this.setComponentState("imageCount", pagination.initialCount + this.getComponentState("moreImages"));
     
     const titleExist = this.castToString(this.getPropValue("title"));
     const subtitleExist = this.castToString(this.getPropValue("subtitle"));
@@ -1914,7 +1931,7 @@ class Social4 extends BaseSocial {
               </Base.VerticalContent>
             )}
 
-                        <Base.ListGrid gridCount={{ pc: this.getPropValue("rowCount") ,tablet: 3}} className={this.decorateCSS("gallery-grid")}>
+                        <Base.ListGrid gridCount={{ pc: pagination.rowCount, tablet: 3}} className={this.decorateCSS("gallery-grid")}>
                             {cardItems.slice(0, this.getComponentState("imageCount")).map((item: CardItem, index: number) => {
                                 return (
                                     <div className={this.decorateCSS("gallery-item")} key={index}>
@@ -1934,25 +1951,25 @@ class Social4 extends BaseSocial {
                                             )}
                                         </div>
                                          )}
-                                        {((this.getPropValue("videoIcon") && this.castToString(item.video) && item.videoIconActive) || (this.getPropValue("imageIcon") && item.imageItems.length > 1)) && (
+                                        {((icons.videoIcon && this.castToString(item.video) && item.videoIconActive) || (icons.imageIcon && item.imageItems.length > 1)) && (
                                         <div className={this.decorateCSS("icon-container")}>
-                                            {(this.getPropValue("videoIcon") && this.castToString(item.video) && item.videoIconActive) && (<Base.Icon name={this.getPropValue("videoIcon")} propsIcon={{className:this.decorateCSS("icon")}}></Base.Icon>)}
-                                            {(this.getPropValue("imageIcon") && item.imageItems.length > 1) && (<Base.Icon name={this.getPropValue("imageIcon")} propsIcon={{className:this.decorateCSS("icon")}}></Base.Icon>)}
+                                            {(icons.videoIcon && this.castToString(item.video) && item.videoIconActive) && (<Base.Icon name={icons.videoIcon} propsIcon={{className:this.decorateCSS("icon")}}></Base.Icon>)}
+                                            {(icons.imageIcon && item.imageItems.length > 1) && (<Base.Icon name={icons.imageIcon} propsIcon={{className:this.decorateCSS("icon")}}></Base.Icon>)}
                                         </div>
                                         )}
                                         <div className={this.decorateCSS("overlay")} onClick={() => this.handleClickItem(index)}>
                                         <div className={this.decorateCSS("content-container")}>
-                                            {(this.getPropValue("likeIcon") || this.castToString(item.likeCount) || this.getPropValue("commentIcon") || this.castToString(item.commentCount)) && (
+                                            {(icons.likeIcon || this.castToString(item.likeCount) || icons.commentIcon || this.castToString(item.commentCount)) && (
                                             <div className={this.decorateCSS("like-and-commnet-container")}>
-                                            {(this.getPropValue("likeIcon") || this.castToString(item.likeCount)) && (
+                                            {(icons.likeIcon || this.castToString(item.likeCount)) && (
                                             <div className={this.decorateCSS("like-container")}>
-                                                {this.getPropValue("likeIcon") && (<Base.Icon name={this.getPropValue("likeIcon")} propsIcon={{className: this.decorateCSS("like-icon")}}></Base.Icon>)}
+                                                {icons.likeIcon && (<Base.Icon name={icons.likeIcon} propsIcon={{className: this.decorateCSS("like-icon")}}></Base.Icon>)}
                                                 {this.castToString(item.likeCount) && (<div className={this.decorateCSS("like-number")}>{item.likeCount}</div>)}
                                             </div>
                                             )}
-                                            {(this.getPropValue("commentIcon") || this.castToString(item.commentCount)) && (
+                                            {(icons.commentIcon || this.castToString(item.commentCount)) && (
                                             <div className={this.decorateCSS("comment-container")}>
-                                                {this.getPropValue("commentIcon") && (<Base.Icon name={this.getPropValue("commentIcon")} propsIcon={{className: this.decorateCSS("comment-icon")}}></Base.Icon>)}
+                                                {icons.commentIcon && (<Base.Icon name={icons.commentIcon} propsIcon={{className: this.decorateCSS("comment-icon")}}></Base.Icon>)}
                                                 {this.castToString(item.commentCount) && (<div className={this.decorateCSS("comment-number")}>{item.commentCount}</div>)}
                                             </div>
                                             )}
@@ -2049,24 +2066,24 @@ class Social4 extends BaseSocial {
                         </div>
                     )} 
                     <div className={this.decorateCSS("bottom-container")}>
-                        {(this.castToString(item.likeCount) || this.castToString(this.getPropValue("likeText")) || this.getPropValue("shareIcon") || this.castToString(this.getPropValue("shareText"))) && (
+                        {(this.castToString(item.likeCount) || this.castToString(icons.likeText) || icons.shareIcon || this.castToString(icons.shareText)) && (
                         <div className={this.decorateCSS("like-and-share-container")}>
-                            {(this.castToString(item.likeCount) || this.castToString(this.getPropValue("likeText"))) && (
+                            {(this.castToString(item.likeCount) || this.castToString(icons.likeText)) && (
                             <div className={this.decorateCSS("like-part")}>
                                 {this.castToString(item.likeCount) && (<div className={this.decorateCSS("like-count")}>{item.likeCount}</div>)}
-                                {this.castToString(this.getPropValue("likeText")) && (<div className={this.decorateCSS("like-text")}>{this.getPropValue("likeText")}</div>)}
+                                {this.castToString(icons.likeText) && (<div className={this.decorateCSS("like-text")}>{icons.likeText}</div>)}
                             </div>
                             )}
-                            {(this.getPropValue("shareIcon") || this.castToString(this.getPropValue("shareText"))) && (
+                            {(icons.shareIcon || this.castToString(icons.shareText)) && (
                             <ComposerLink path={item.url}>
                                 <div className={this.decorateCSS("share-part")}>
-                                {this.getPropValue("shareIcon") && (
+                                {icons.shareIcon && (
                                 <div className={this.decorateCSS("share-icon-container")}>
-                                    <Base.Icon name={this.getPropValue("shareIcon")} propsIcon={{className: this.decorateCSS("share-icon")}}></Base.Icon>
+                                    <Base.Icon name={icons.shareIcon} propsIcon={{className: this.decorateCSS("share-icon")}}></Base.Icon>
                                 </div>
                                 )}
-                                {this.castToString(this.getPropValue("shareText")) &&(<div className={this.decorateCSS("share-text")}>{this.getPropValue("shareText")}</div>   )}
-                                </div> 
+                                {this.castToString(icons.shareText) && (<div className={this.decorateCSS("share-text")}>{icons.shareText}</div>)}
+                                </div>
                             </ComposerLink>
 
                             )}
@@ -2091,10 +2108,10 @@ class Social4 extends BaseSocial {
         })}
         </div>
         )}
-        {this.getPropValue("closeIcon") && (
+        {icons.closeIcon && (
             <div className={this.decorateCSS("icon-container")}>
                 <div className={this.decorateCSS("close-icon")}>
-                    <Base.Icon name={this.getPropValue("closeIcon")} propsIcon={{className: this.decorateCSS("icon"),onClick: () => this.handleCloseOverlay()}}></Base.Icon>
+                    <Base.Icon name={icons.closeIcon} propsIcon={{className: this.decorateCSS("icon"),onClick: () => this.handleCloseOverlay()}}></Base.Icon>
                 </div>
             </div>
         )}

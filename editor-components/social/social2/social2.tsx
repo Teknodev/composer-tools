@@ -12,6 +12,7 @@ type SlideItems = {
     socialIcons: SocialIcon[]
     imageOverlay: boolean;
 }
+
 type SocialIcon = {
     icon: string;
     url: string
@@ -25,19 +26,19 @@ class Social2 extends BaseSocial {
             key: "subtitle",
             displayer: "Subtitle",
             value: ""
-        })
+        });
         this.addProp({
             type: "string",
             key: "title",
             displayer: "Title",
             value: "SHOP THE FEED"
-        })
+        });
         this.addProp({
             type: "string",
             key: "description",
             displayer: "Description",
             value: ""
-        })
+        });
         this.addProp({
             type: "array",
             key: "buttons",
@@ -708,47 +709,61 @@ class Social2 extends BaseSocial {
             ]
         })
         this.addProp({
-            type: "boolean",
-            key: "videoIframe",
-            displayer: "Video Iframe",
-            value: true
-        })
-        this.addProp({
-            type: "icon",
-            key: "playIcon",
-            displayer: "Play Icon",
-            value: "FaPlay"
+            type: "object",
+            key: "player",
+            displayer: "Player",
+            value: [
+                {
+                    type: "boolean",
+                    key: "videoIframe",
+                    displayer: "Video Iframe",
+                    value: true
+                },
+                {
+                    type: "icon",
+                    key: "playIcon",
+                    displayer: "Play Icon",
+                    value: "FaPlay"
+                },
+                {
+                    type: "icon",
+                    key: "nextArrow",
+                    displayer: "Next Arrow",
+                    value: "IoIosArrowForward"
+                },
+                {
+                    type: "icon",
+                    key: "prevArrow",
+                    displayer: "Prev Arrow",
+                    value: "IoIosArrowBack"
+                },
+            ]
         });
         this.addProp({
-            type: "icon",
-            key: "nextArrow",
-            displayer: "Next Arrow",
-            value: "IoIosArrowForward"
+            type: "object",
+            key: "share",
+            displayer: "Share",
+            value: [
+                {
+                    type: "icon",
+                    key: "closeIcon",
+                    displayer: "Close Icon",
+                    value: "IoCloseOutline"
+                },
+                {
+                    type: "icon",
+                    key: "shareIcon",
+                    displayer: "Share Icon",
+                    value: "RiShareForwardLine"
+                },
+                {
+                    type: "string",
+                    key: "shareTitle",
+                    displayer: "Share Popup Title",
+                    value: "Share"
+                },
+            ]
         });
-        this.addProp({
-            type: "icon",
-            key: "prevArrow",
-            displayer: "Prev Arrow",
-            value: "IoIosArrowBack"
-        });
-        this.addProp({
-            type: "icon",
-            key: "closeIcon",
-            displayer: "Close Icon",
-            value: "IoCloseOutline"
-        })
-        this.addProp({
-            type: "icon",
-            key: "shareIcon",
-            displayer: "Share Icon",
-            value: "RiShareForwardLine"
-        })
-        this.addProp({
-            type: "string",
-            key: "shareTitle",
-            displayer: "Share Popup Title",
-            value: "Share"
-        })
 
         this.setComponentState("intervalId", 0);
         this.setComponentState("slider-ref", React.createRef());
@@ -938,6 +953,8 @@ class Social2 extends BaseSocial {
             initialSlide: selectedIndex,
 
         };
+        const player = this.castToObject<any>("player");
+        const share = this.castToObject<any>("share");
         const titleExist = this.castToString(this.getPropValue("title"));
         const subtitleExist = this.castToString(this.getPropValue("subtitle"));
         const descriptionExist = this.castToString(this.getPropValue("description"));
@@ -1023,29 +1040,29 @@ class Social2 extends BaseSocial {
                                                 {item.imageOverlay && (
                                                     <div className={this.decorateCSS("image-overlay")} />
                                                 )}
-                                                {this.getPropValue("playIcon") && (
+                                                {player.playIcon && (
                                                     <div className={this.decorateCSS("icon-container")} onClick={() => { this.handleVideoPlay(index) }}>
-                                                        <Base.Icon name={this.getPropValue("playIcon")} propsIcon={{ className: this.decorateCSS("icon") }} />
+                                                        <Base.Icon name={player.playIcon} propsIcon={{ className: this.decorateCSS("icon") }} />
                                                     </div>
                                                 )}
                                             </div>
                                         );
                                     })}
                                 </ComposerSlider>
-                                {(this.getPropValue("nextArrow") || this.getPropValue("prevArrow")) && (
+                                {(player.nextArrow || player.prevArrow) && (
                                     <div className={this.decorateCSS("arrows")}>
-                                        {this.getPropValue("nextArrow") && (
-                                            <Base.Icon name={this.getPropValue("nextArrow")} propsIcon={{ className: this.decorateCSS("next-arrow"), onClick: () => { this.handleRightArrowClick() } }} />
+                                        {player.nextArrow && (
+                                            <Base.Icon name={player.nextArrow} propsIcon={{ className: this.decorateCSS("next-arrow"), onClick: () => { this.handleRightArrowClick() } }} />
                                         )}
-                                        {this.getPropValue("prevArrow") && (
-                                            <Base.Icon name={this.getPropValue("prevArrow")} propsIcon={{ className: this.decorateCSS("prev-arrow"), onClick: () => { this.handleLeftArrowClick() } }} />
+                                        {player.prevArrow && (
+                                            <Base.Icon name={player.prevArrow} propsIcon={{ className: this.decorateCSS("prev-arrow"), onClick: () => { this.handleLeftArrowClick() } }} />
                                         )}
                                     </div>
                                 )}
                             </div>
                         )}
                     </Base.MaxContent>
-                    {this.getPropValue("videoIframe") && this.getComponentState("videoActive") && (
+                    {player.videoIframe && this.getComponentState("videoActive") && (
                         <div className={`${this.decorateCSS("overlay")} ${this.getComponentState("shareContainerActive") && this.decorateCSS("popup-active")}`} >
                             <ComposerSlider {...settingsVideo} ref={this.getComponentState("sliderRefOverlay")} className={this.decorateCSS("slider-container")}>
                                 {sliderItems.map((item, index: number) => {
@@ -1070,27 +1087,27 @@ class Social2 extends BaseSocial {
                                                     </div>
                                                 </div>
                                             )}
-                                            {this.getPropValue("closeIcon") && (
+                                            {share.closeIcon && (
                                                 <div className={this.decorateCSS("close-icon-container")}>
-                                                    <Base.Icon name={this.getPropValue("closeIcon")} propsIcon={{ className: this.decorateCSS("close-icon"), onClick: () => this.handleVideoClose() }}></Base.Icon>
+                                                    <Base.Icon name={share.closeIcon} propsIcon={{ className: this.decorateCSS("close-icon"), onClick: () => this.handleVideoClose() }}></Base.Icon>
                                                 </div>
                                             )}
-                                            {this.getPropValue("shareIcon") && (
+                                            {share.shareIcon && (
                                                 <div className={this.decorateCSS("share-icon-container")}>
-                                                    <Base.Icon name={this.getPropValue("shareIcon")} propsIcon={{ className: this.decorateCSS("share-icon"), onClick: () => this.handleShareOpen() }}></Base.Icon>
+                                                    <Base.Icon name={share.shareIcon} propsIcon={{ className: this.decorateCSS("share-icon"), onClick: () => this.handleShareOpen() }}></Base.Icon>
                                                 </div>
                                             )}
-                                            {(this.castToString(this.getPropValue("shareTitle")) || this.getPropValue("closeIcon") || (item.socialIcons.length > 0)) && (
+                                            {(this.castToString(share.shareTitle) || share.closeIcon || (item.socialIcons.length > 0)) && (
                                                 <div className={`${this.decorateCSS("share-wrapper")} ${this.getComponentState("shareContainerActive") && this.decorateCSS("active")}`}>
                                                     <div className={this.decorateCSS("share-popup-container")}>
-                                                        {(this.castToString(this.getPropValue("shareTitle")) || this.getPropValue("closeIcon")) && (
+                                                        {(this.castToString(share.shareTitle) || share.closeIcon) && (
                                                             <div className={this.decorateCSS("share-popup-upper")}>
-                                                                {this.castToString(this.getPropValue("shareTitle")) && (
-                                                                    <div className={this.decorateCSS("share-popup-title")}>{this.getPropValue("shareTitle")}</div>
+                                                                {this.castToString(share.shareTitle) && (
+                                                                    <div className={this.decorateCSS("share-popup-title")}>{share.shareTitle}</div>
                                                                 )}
-                                                                {this.getPropValue("closeIcon") && (
+                                                                {share.closeIcon && (
                                                                     <div className={this.decorateCSS("share-popup-close")} onClick={() => this.handleShareClose()}>
-                                                                        <Base.Icon name={this.getPropValue("closeIcon")} propsIcon={{ className: this.decorateCSS("share-close-icon") }}></Base.Icon>
+                                                                        <Base.Icon name={share.closeIcon} propsIcon={{ className: this.decorateCSS("share-close-icon") }}></Base.Icon>
                                                                     </div>
                                                                 )}
                                                             </div>
@@ -1120,7 +1137,7 @@ class Social2 extends BaseSocial {
                         </div>
                     )}
                 </Base.Container>
-                {(this.getComponentState("videoActive") && !this.getPropValue("videoIframe")) && (
+                {(this.getComponentState("videoActive") && !player.videoIframe) && (
                     <div className={`${this.decorateCSS("base-overlay")}  ${this.getComponentState("shareContainerActive") && this.decorateCSS("popup-active")}`}>
                         <ComposerSlider {...settingsVideo} className={this.decorateCSS("slider-container")}>
                             {sliderItems.map((item, index: number) => {
@@ -1145,27 +1162,27 @@ class Social2 extends BaseSocial {
                                                 </div>
                                             </div>
                                         )}
-                                        {this.getPropValue("closeIcon") && (
+                                        {share.closeIcon && (
                                             <div className={this.decorateCSS("close-icon-container")}>
-                                                <Base.Icon name={this.getPropValue("closeIcon")} propsIcon={{ className: this.decorateCSS("close-icon"), onClick: () => this.handleVideoClose() }}></Base.Icon>
+                                                <Base.Icon name={share.closeIcon} propsIcon={{ className: this.decorateCSS("close-icon"), onClick: () => this.handleVideoClose() }}></Base.Icon>
                                             </div>
                                         )}
-                                        {this.getPropValue("shareIcon") && (
+                                        {share.shareIcon && (
                                             <div className={this.decorateCSS("share-icon-container")}>
-                                                <Base.Icon name={this.getPropValue("shareIcon")} propsIcon={{ className: this.decorateCSS("share-icon"), onClick: () => this.handleShareOpen() }}></Base.Icon>
+                                                <Base.Icon name={share.shareIcon} propsIcon={{ className: this.decorateCSS("share-icon"), onClick: () => this.handleShareOpen() }}></Base.Icon>
                                             </div>
                                         )}
-                                        {(this.castToString(this.getPropValue("shareTitle")) || this.getPropValue("closeIcon") || (item.socialIcons.length > 0)) && (
+                                        {(this.castToString(share.shareTitle) || share.closeIcon || (item.socialIcons.length > 0)) && (
                                             <div className={`${this.decorateCSS("share-wrapper")} ${this.getComponentState("shareContainerActive") && this.decorateCSS("active")}`}>
                                                 <div className={this.decorateCSS("share-popup-container")}>
-                                                    {(this.castToString(this.getPropValue("shareTitle")) || this.getPropValue("closeIcon")) && (
+                                                    {(this.castToString(share.shareTitle) || share.closeIcon) && (
                                                         <div className={this.decorateCSS("share-popup-upper")}>
-                                                            {this.castToString(this.getPropValue("shareTitle")) && (
-                                                                <div className={this.decorateCSS("share-popup-title")}>{this.getPropValue("shareTitle")}</div>
+                                                            {this.castToString(share.shareTitle) && (
+                                                                <div className={this.decorateCSS("share-popup-title")}>{share.shareTitle}</div>
                                                             )}
-                                                            {this.getPropValue("closeIcon") && (
+                                                            {share.closeIcon && (
                                                                 <div className={this.decorateCSS("share-popup-close")} onClick={() => this.handleShareClose()}>
-                                                                    <Base.Icon name={this.getPropValue("closeIcon")} propsIcon={{ className: this.decorateCSS("share-close-icon") }}></Base.Icon>
+                                                                    <Base.Icon name={share.closeIcon} propsIcon={{ className: this.decorateCSS("share-close-icon") }}></Base.Icon>
                                                                 </div>
                                                             )}
                                                         </div>
