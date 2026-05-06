@@ -1,4 +1,4 @@
-import { BaseSocial } from "../../EditorComponent";
+﻿import { BaseSocial } from "../../EditorComponent";
 import styles from "./social4.module.scss"
 import { Base } from "../../../composer-base-components/base/base";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
@@ -11,8 +11,8 @@ import { TbRubberStamp } from "react-icons/tb";
 type CardItem ={
     videoUrl: React.JSX.Element,
     imageItems: ImageItem[],
-    likeCount: number,
-    commentCount: number,
+    likeCount: React.JSX.Element,
+    commentCount: React.JSX.Element,
     description: React.JSX.Element,
     url: string,
     videoIconActive: boolean,
@@ -21,7 +21,7 @@ type CardItem ={
     porfileImage: string,
     socialIcon: string,
     button: INPUTS.CastedButton;
-    date: string;
+    date: React.JSX.Element;
     imageOverlay: boolean;
 }
 type ImageItem={
@@ -117,16 +117,16 @@ class Social4 extends BaseSocial {
                 ]
             },
             {
-                type:"number",
+                type:"string",
                 key: "likeCount",
                 displayer:"Like Count",
-                value: 7.500
+                value: "7.500"
             },
             {
-                type:"number",
+                type:"string",
                 key: "commentCount",
                 displayer:"Comment Count",
-                value: 3.200
+                value: "3.200"
             },
             {
                 type:"string",
@@ -178,13 +178,10 @@ class Social4 extends BaseSocial {
             },
             INPUTS.BUTTON("button", "Button", "Follow", "", null, null, "Link"),
             {
-                type: "dateTime",
+                type: "string",
                 key: "date",
                 displayer: "Date",
                 value: "12/11/2024",
-                additionalParams:{
-                    mode: "date",
-                }
                                 
             }
             ]
@@ -223,16 +220,16 @@ class Social4 extends BaseSocial {
                 ]
             },
             {
-                type:"number",
+                type:"string",
                 key: "likeCount",
                 displayer:"Like Count",
-                value: 9.450
+                value: "9.450"
             },
             {
-                type:"number",
+                type:"string",
                 key: "commentCount",
                 displayer:"Comment Count",
-                value: 2.530
+                value: "2.530"
             },
             {
                 type:"string",
@@ -285,13 +282,10 @@ class Social4 extends BaseSocial {
 
             INPUTS.BUTTON("button", "Button", "Follow", "", null, null, "Link"),
             {
-                type: "dateTime",
+                type: "string",
                 key: "date",
                 displayer: "Date",
                 value: "12/10/2024",
-                additionalParams:{
-                    mode: "date",
-                }
             }
             ]
 
@@ -329,16 +323,16 @@ class Social4 extends BaseSocial {
                 ]
             },
             {
-                type:"number",
+                type:"string",
                 key: "likeCount",
                 displayer:"Like Count",
-                value: 12.300
+                value: "12.300"
             },
             {
-                type:"number",
+                type:"string",
                 key: "commentCount",
                 displayer:"Comment Count",
-                value: 1.500
+                value: "1.500"
             },
             {
                 type:"string",
@@ -391,13 +385,10 @@ class Social4 extends BaseSocial {
 
             INPUTS.BUTTON("button", "Button", "Follow", "", null, null, "Link"),
             {
-                type: "dateTime",
+                type: "string",
                 key: "date",
                 displayer: "Date",
                 value: "12/12/2024",
-                additionalParams:{
-                    mode: "date",
-                }
             }
             ]
 
@@ -449,16 +440,16 @@ class Social4 extends BaseSocial {
                 ]
             },
             {
-                type:"number",
+                type:"string",
                 key: "likeCount",
                 displayer:"Like Count",
-                value: 6.900
+                value: "6.900"
             },
             {
-                type:"number",
+                type:"string",
                 key: "commentCount",
                 displayer:"Comment Count",
-                value: 13.100
+                value: "13.100"
             },
             {
                 type:"string",
@@ -511,13 +502,10 @@ class Social4 extends BaseSocial {
 
             INPUTS.BUTTON("button", "Button", "Follow", "", null, null, "Link"),
             {
-                type: "dateTime",
+                type: "string",
                 key: "date",
                 displayer: "Date",
                 value: "01/01/2024",
-                additionalParams:{
-                    mode: "date",
-                }
             }
             ]
 
@@ -555,16 +543,16 @@ class Social4 extends BaseSocial {
                 ]
             },
             {
-                type:"number",
+                type:"string",
                 key: "likeCount",
                 displayer:"Like Count",
-                value: 500
+                value: "500"
             },
             {
-                type:"number",
+                type:"string",
                 key: "commentCount",
                 displayer:"Comment Count",
-                value: 200
+                value: "200"
             },
             {
                 type:"string",
@@ -617,13 +605,10 @@ class Social4 extends BaseSocial {
 
             INPUTS.BUTTON("button", "Button", "Follow", "", null, null, "Link"),
             {
-                type: "dateTime",
+                type: "string",
                 key: "date",
                 displayer: "Date",
                 value: "01/01/2024",
-                additionalParams:{
-                    mode: "date",
-                }
             }
             ]
 
@@ -661,16 +646,16 @@ class Social4 extends BaseSocial {
                 ]
             },
             {
-                type:"number",
+                type:"string",
                 key: "likeCount",
                 displayer:"Like Count",
-                value: 13.400
+                value: "13.400"
             },
             {
-                type:"number",
+                type:"string",
                 key: "commentCount",
                 displayer:"Comment Count",
-                value: 1.500
+                value: "1.500"
             },
             {
                 type:"string",
@@ -723,13 +708,10 @@ class Social4 extends BaseSocial {
 
             INPUTS.BUTTON("button", "Button", "Follow", "", null, null, "Link"),
             {
-                type: "dateTime",
+                type: "string",
                 key: "date",
                 displayer: "Date",
                 value: "01/01/2024",
-                additionalParams:{
-                    mode: "date",
-                }
             }
             ]
 
@@ -767,16 +749,16 @@ class Social4 extends BaseSocial {
                 ]
             },
             {
-                type:"number",
+                type:"string",
                 key: "likeCount",
                 displayer:"Like Count",
-                value: 23.980
+                value: "23.980"
             },
             {
-                type:"number",
+                type:"string",
                 key: "commentCount",
                 displayer:"Comment Count",
-                value: 9.400
+                value: "9.400"
             },
             {
                 type:"string",
@@ -829,13 +811,10 @@ class Social4 extends BaseSocial {
 
             INPUTS.BUTTON("button", "Button", "Follow", "", null, null, "Link"),
             {
-                type: "dateTime",
+                type: "string",
                 key: "date",
                 displayer: "Date",
                 value: "01/01/2024",
-                additionalParams:{
-                    mode: "date",
-                }
             }
             ]
 
@@ -901,16 +880,16 @@ class Social4 extends BaseSocial {
                 ]
             },
             {
-                type:"number",
+                type:"string",
                 key: "likeCount",
                 displayer:"Like Count",
-                value: 2.500
+                value: "2.500"
             },
             {
-                type:"number",
+                type:"string",
                 key: "commentCount",
                 displayer:"Comment Count",
-                value: 1.500
+                value: "1.500"
             },
             {
                 type:"string",
@@ -963,13 +942,10 @@ class Social4 extends BaseSocial {
 
             INPUTS.BUTTON("button", "Button", "Follow", "", null, null, "Link"),
             {
-                type: "dateTime",
+                type: "string",
                 key: "date",
                 displayer: "Date",
                 value: "01/01/2024",
-                additionalParams:{
-                    mode: "date",
-                }
             }
             ]
 
@@ -1007,16 +983,16 @@ class Social4 extends BaseSocial {
                 ]
             },
             {
-                type:"number",
+                type:"string",
                 key: "likeCount",
                 displayer:"Like Count",
-                value: 7.500
+                value: "7.500"
             },
             {
-                type:"number",
+                type:"string",
                 key: "commentCount",
                 displayer:"Comment Count",
-                value: 7.500
+                value: "7.500"
             },
             {
                 type:"string",
@@ -1069,13 +1045,10 @@ class Social4 extends BaseSocial {
 
             INPUTS.BUTTON("button", "Button", "Follow", "", null, null, "Link"),
             {
-                type: "dateTime",
+                type: "string",
                 key: "date",
                 displayer: "Date",
                 value: "01/01/2024",
-                additionalParams:{
-                    mode: "date",
-                }
             }
             ]
 
@@ -1113,16 +1086,16 @@ class Social4 extends BaseSocial {
                 ]
             },
             {
-                type:"number",
+                type:"string",
                 key: "likeCount",
                 displayer:"Like Count",
-                value: 7.500
+                value: "7.500"
             },
             {
-                type:"number",
+                type:"string",
                 key: "commentCount",
                 displayer:"Comment Count",
-                value: 4.500
+                value: "4.500"
             },
             {
                 type:"string",
@@ -1175,13 +1148,10 @@ class Social4 extends BaseSocial {
 
             INPUTS.BUTTON("button", "Button", "Follow", "", null, null, "Link"),
             {
-                type: "dateTime",
+                type: "string",
                 key: "date",
                 displayer: "Date",
                 value: "01/01/2024",
-                additionalParams:{
-                    mode: "date",
-                }
             }
             ]
 
@@ -1219,16 +1189,16 @@ class Social4 extends BaseSocial {
                 ]
             },
             {
-                type:"number",
+                type:"string",
                 key: "likeCount",
                 displayer:"Like Count",
-                value: 90.500
+                value: "90.500"
             },
             {
-                type:"number",
+                type:"string",
                 key: "commentCount",
                 displayer:"Comment Count",
-                value: 4.500
+                value: "4.500"
             },
             {
                 type:"string",
@@ -1281,13 +1251,10 @@ class Social4 extends BaseSocial {
 
             INPUTS.BUTTON("button", "Button", "Follow", "", null, null, "Link"),
             {
-                type: "dateTime",
+                type: "string",
                 key: "date",
                 displayer: "Date",
                 value: "01/01/2024",
-                additionalParams:{
-                    mode: "date",
-                }
             }
             ]
 
@@ -1339,16 +1306,16 @@ class Social4 extends BaseSocial {
                 ]
             },
             {
-                type:"number",
+                type:"string",
                 key: "likeCount",
                 displayer:"Like Count",
-                value: 590
+                value: "590"
             },
             {
-                type:"number",
+                type:"string",
                 key: "commentCount",
                 displayer:"Comment Count",
-                value: 210
+                value: "210"
             },
             {
                 type:"string",
@@ -1401,13 +1368,10 @@ class Social4 extends BaseSocial {
 
             INPUTS.BUTTON("button", "Button", "Follow", "", null, null, "Link"),
             {
-                type: "dateTime",
+                type: "string",
                 key: "date",
                 displayer: "Date",
                 value: "01/01/2024",
-                additionalParams:{
-                    mode: "date",
-                }
             }
             ]
 
@@ -1445,16 +1409,16 @@ class Social4 extends BaseSocial {
                 ]
             },
             {
-                type:"number",
+                type:"string",
                 key: "likeCount",
                 displayer:"Like Count",
-                value: 100.200
+                value: "100.200"
             },
             {
-                type:"number",
+                type:"string",
                 key: "commentCount",
                 displayer:"Comment Count",
-                value: 23.500
+                value: "23.500"
             },
             {
                 type:"string",
@@ -1507,13 +1471,10 @@ class Social4 extends BaseSocial {
 
             INPUTS.BUTTON("button", "Button", "Follow", "", null, null, "Link"),
             {
-                type: "dateTime",
+                type: "string",
                 key: "date",
                 displayer: "Date",
                 value: "01/01/2024",
-                additionalParams:{
-                    mode: "date",
-                }
             }
             ]
 
@@ -1593,16 +1554,16 @@ class Social4 extends BaseSocial {
                 ]
             },
             {
-                type:"number",
+                type:"string",
                 key: "likeCount",
                 displayer:"Like Count",
-                value: 71.500
+                value: "71.500"
             },
             {
-                type:"number",
+                type:"string",
                 key: "commentCount",
                 displayer:"Comment Count",
-                value: 17.500
+                value: "17.500"
             },
             {
                 type:"string",
@@ -1655,13 +1616,10 @@ class Social4 extends BaseSocial {
 
             INPUTS.BUTTON("button", "Button", "Follow", "", null, null, "Link"),
             {
-                type: "dateTime",
+                type: "string",
                 key: "date",
                 displayer: "Date",
                 value: "01/01/2024",
-                additionalParams:{
-                    mode: "date",
-                }
             }
             ]
 
@@ -1699,16 +1657,16 @@ class Social4 extends BaseSocial {
                 ]
             },
             {
-                type:"number",
+                type:"string",
                 key: "likeCount",
                 displayer:"Like Count",
-                value: 9.500
+                value: "9.500"
             },
             {
-                type:"number",
+                type:"string",
                 key: "commentCount",
                 displayer:"Comment Count",
-                value: 3.200
+                value: "3.200"
             },
             {
                 type:"string",
@@ -1761,13 +1719,10 @@ class Social4 extends BaseSocial {
 
             INPUTS.BUTTON("button", "Button", "Follow", "", null, null, "Link"),
             {
-                type: "dateTime",
+                type: "string",
                 key: "date",
                 displayer: "Date",
                 value: "01/01/2024",
-                additionalParams:{
-                    mode: "date",
-                }
             }
             ]
 
@@ -1987,18 +1942,18 @@ class Social4 extends BaseSocial {
                                         )}
                                         <div className={this.decorateCSS("overlay")} onClick={() => this.handleClickItem(index)}>
                                         <div className={this.decorateCSS("content-container")}>
-                                            {(this.getPropValue("likeIcon") || item.likeCount || this.getPropValue("commentIcon") || item.commentCount) && (
+                                            {(this.getPropValue("likeIcon") || this.castToString(item.likeCount) || this.getPropValue("commentIcon") || this.castToString(item.commentCount)) && (
                                             <div className={this.decorateCSS("like-and-commnet-container")}>
-                                            {(this.getPropValue("likeIcon") || item.likeCount) && (
+                                            {(this.getPropValue("likeIcon") || this.castToString(item.likeCount)) && (
                                             <div className={this.decorateCSS("like-container")}>
                                                 {this.getPropValue("likeIcon") && (<Base.Icon name={this.getPropValue("likeIcon")} propsIcon={{className: this.decorateCSS("like-icon")}}></Base.Icon>)}
-                                                {item.likeCount && (<div className={this.decorateCSS("like-number")}>{item.likeCount}</div>)}
+                                                {this.castToString(item.likeCount) && (<div className={this.decorateCSS("like-number")}>{item.likeCount}</div>)}
                                             </div>
                                             )}
-                                            {(this.getPropValue("commentIcon") || item.commentCount) && (
+                                            {(this.getPropValue("commentIcon") || this.castToString(item.commentCount)) && (
                                             <div className={this.decorateCSS("comment-container")}>
                                                 {this.getPropValue("commentIcon") && (<Base.Icon name={this.getPropValue("commentIcon")} propsIcon={{className: this.decorateCSS("comment-icon")}}></Base.Icon>)}
-                                                {item.commentCount && (<div className={this.decorateCSS("comment-number")}>{item.commentCount}</div>)}
+                                                {this.castToString(item.commentCount) && (<div className={this.decorateCSS("comment-number")}>{item.commentCount}</div>)}
                                             </div>
                                             )}
                                             </div>
@@ -2094,11 +2049,11 @@ class Social4 extends BaseSocial {
                         </div>
                     )} 
                     <div className={this.decorateCSS("bottom-container")}>
-                        {(item.likeCount || this.castToString(this.getPropValue("likeText")) || this.getPropValue("shareIcon") || this.castToString(this.getPropValue("shareText"))) && (
+                        {(this.castToString(item.likeCount) || this.castToString(this.getPropValue("likeText")) || this.getPropValue("shareIcon") || this.castToString(this.getPropValue("shareText"))) && (
                         <div className={this.decorateCSS("like-and-share-container")}>
-                            {(item.likeCount || this.castToString(this.getPropValue("likeText"))) && (
+                            {(this.castToString(item.likeCount) || this.castToString(this.getPropValue("likeText"))) && (
                             <div className={this.decorateCSS("like-part")}>
-                                {item.likeCount && (<div className={this.decorateCSS("like-count")}>{item.likeCount}</div>)}
+                                {this.castToString(item.likeCount) && (<div className={this.decorateCSS("like-count")}>{item.likeCount}</div>)}
                                 {this.castToString(this.getPropValue("likeText")) && (<div className={this.decorateCSS("like-text")}>{this.getPropValue("likeText")}</div>)}
                             </div>
                             )}
@@ -2125,7 +2080,7 @@ class Social4 extends BaseSocial {
                             </div>
                         </div>
                         )}
-                        {item.date && (
+                        {this.castToString(item.date) && (
                         <div className={this.decorateCSS("date-container")}>
                             <div className={this.decorateCSS("date")}>{item.date}</div>
                         </div>

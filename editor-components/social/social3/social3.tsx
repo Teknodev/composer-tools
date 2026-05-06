@@ -65,7 +65,7 @@ class Social3 extends BaseSocial {
         value:"TTM"
     })
     this.addProp({
-        type:"dateTime",
+        type:"string",
         key: "date",
         displayer: "Date",
         value: "03-03-2019"
@@ -339,7 +339,7 @@ class Social3 extends BaseSocial {
             {(this.getPropValue("profileImage") ||
               this.castToString(this.getPropValue("userName")) ||
               this.getPropValue("dateIcon") ||
-              this.getPropValue("date")) && (
+              this.castToString(this.getPropValue("date"))) && (
               <div className={this.decorateCSS("upper-section")}>
                 {this.getPropValue("profileImage") && (
                   <img
@@ -358,7 +358,7 @@ class Social3 extends BaseSocial {
                       </div>
                     )}
                     {(this.getPropValue("dateIcon") ||
-                      this.getPropValue("date")) && (
+                      this.castToString(this.getPropValue("date"))) && (
                       <div className={this.decorateCSS("date-container")}>
                         {this.getPropValue("dateIcon") && (
                           <Base.Icon
@@ -368,7 +368,7 @@ class Social3 extends BaseSocial {
                             }}
                           />
                         )}
-                        {this.getPropValue("date") && (
+                        {this.castToString(this.getPropValue("date")) && (
                           <div className={this.decorateCSS("date")}>
                             {this.getPropValue("date")}
                           </div>
