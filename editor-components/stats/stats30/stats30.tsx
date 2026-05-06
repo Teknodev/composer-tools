@@ -106,7 +106,7 @@ export class Stats30 extends BaseStats {
             key: "buttons",
             displayer: "Buttons",
             value: [
-                INPUTS.BUTTON("button", "Button", "", null, null, null, "Primary"),
+                INPUTS.BUTTON("button", "Button", "Read More", "", null, null, "Primary"),
             ],
         });
 
