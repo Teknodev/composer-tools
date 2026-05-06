@@ -335,7 +335,6 @@
                         text-align: center;
                         width: 100%;
                         max-height: 100%;
-                        padding: var(--composer-gap-lg) 0px;
 
                         .icon-container {
                             display: flex;
@@ -442,7 +441,7 @@
 
                     .content-container {
                         width: 100%;
-                        padding: var(--composer-gap-md) var(--composer-gap-xl);
+                        padding: var(--composer-gap-md) var(--composer-gap-xl) 100px;
                         flex-basis: auto;
                         flex-grow: unset;
                         align-items: baseline;
@@ -489,7 +488,7 @@
                 width: 100%;
 
                 .tab-button {
-                    padding: var(--composer-gap-lg) 30px;
+                    padding: var(--composer-gap-xl) 30px;
 
                     .icon-wrapper {
                         position: relative;
@@ -503,11 +502,10 @@
             .tab {
                 .content {
                     .content-container {
-                        padding: var(--composer-gap-md) 30px !important;
+                        padding: var(--composer-gap-md) 30px 50px !important;
 
                         .icons-container {
                             flex-direction: column;
-                            padding: var(--composer-gap-sm) 0px;
 
                             .icon-container {
                                 .icon {
