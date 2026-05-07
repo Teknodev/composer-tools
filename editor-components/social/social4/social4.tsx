@@ -2062,17 +2062,20 @@ class Social4 extends BaseSocial {
                     {(cardItems.length > 0) && (
                         <div className={this.decorateCSS("slider-wrapper")}>
                             {cardItems.map((item: CardItem, index: number) => {
+                                const profileMediaValue = typeof item.profileMedia === "string" && item.profileMedia
+                                    ? { type: "image", url: item.profileMedia as string }
+                                    : item.profileMedia;
                                 return (
                                     <div className={this.decorateCSS("post-container")}
                                         key={index}
                                         ref={postRefs[index]}>
                                         <div className={this.decorateCSS("upper-container")}>
-                                            {(item.profileMedia || this.castToString(item.name)) && (
+                                            {(profileMediaValue || this.castToString(item.name)) && (
                                                 <div className={this.decorateCSS("left-container")}>
-                                                    {item.profileMedia && (
+                                                    {profileMediaValue && (
                                                         <div className={this.decorateCSS("profile-image-container")}>
                                                             <ComposerLink path={item.url}>
-                                                                <Base.Media className={this.decorateCSS("profile-image")} value={item.profileMedia} />
+                                                                <Base.Media className={this.decorateCSS("profile-image")} value={profileMediaValue} />
                                                             </ComposerLink>
                                                         </div>
                                                     )}
