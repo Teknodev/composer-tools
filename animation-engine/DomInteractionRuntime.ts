@@ -207,6 +207,32 @@ export class DomInteractionRuntime {
   }
 
   /**
+   * Register a modal's interactions when it opens.
+   * Assigns IDs to modal elements and initializes the InteractionManager
+   * so page-load and other triggers fire immediately.
+   */
+  registerModal(config: ComponentInteractionConfig): void {
+    if (this.destroyed) return;
+    // Remove any previous entry for this componentId
+    this.deregisterModal(config.componentId);
+    // Assign IDs to modal DOM elements
+    this.assignComponentIds(config);
+    // Register and initialize the manager (fires page-load automatically)
+    this.registerComponent(config);
+  }
+
+  /**
+   * Remove a modal's interactions when it closes.
+   */
+  deregisterModal(componentId: string): void {
+    const existing = this.components.get(componentId);
+    if (existing) {
+      existing.manager.destroy();
+      this.components.delete(componentId);
+    }
+  }
+
+  /**
    * Notify that a modal was closed (for cooldown tracking).
    */
   onModalClosed(): void {
@@ -218,6 +244,22 @@ export class DomInteractionRuntime {
    */
   resetState(): void {
     this.legacyModalHandler.reset();
+  }
+
+  /**
+   * Register a modal's interaction config with the runtime after it opens.
+   * This lets elements inside the modal respond to their own interactions.
+   *
+   * @param config  ComponentInteractionConfig for the modal component
+   */
+  registerModal(config: ComponentInteractionConfig): void {
+    if (this.destroyed) return;
+
+    // Assign IDs to modal DOM elements so interaction selectors resolve
+    this.assignComponentIds(config);
+
+    // Re-use registerComponent to set up the manager
+    this.registerComponent(config);
   }
 
   /**

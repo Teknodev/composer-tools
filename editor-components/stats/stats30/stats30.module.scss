@@ -1,0 +1,101 @@
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+
+.container {
+    .max-content {
+        .content {
+            display: flex;
+            flex-direction: column;
+            gap: var(--composer-gap-lg);
+            width: 100%;
+
+            .header-container {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                text-align: left;
+
+                .subtitle,
+                .title,
+                .description {
+                    content: "";
+                }
+            }
+
+            .stats-container {
+                .stat-item {
+                    align-items: flex-start;
+                    text-align: left;
+
+                    &.colored-background {
+                        background: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+                        padding: var(--composer-gap-xl);
+                        border-radius: var(--composer-border-radius-md);
+                    }
+
+                    .stat-subtitle,
+                    .stat-title,
+                    .stat-description {
+                        text-align: left;
+                    }
+
+                    .stat-subtitle,
+                    .stat-title {
+                        color: var(--composer-font-color-primary);
+                    }
+
+                    .stat-description {
+                        color: var(--composer-tertiary-color);
+                    }
+
+                    .stat-value-container {
+                        display: flex;
+                        color: var(--composer-primary-color);
+
+                        .stat-prefix,
+                        .stat-value,
+                        .stat-suffix {
+                            font-size: 10rem;
+                        }
+                    }
+                }
+            }
+
+            .button-container {
+                display: flex;
+                flex-wrap: wrap;
+                gap: var(--composer-gap-sm);
+                justify-content: center !important;
+                width: 100%;
+
+                .button {
+                    .button-text,
+                    .button-icon {
+                        content: "";
+                    }
+                }
+            }
+        }
+    }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+    .container .max-content .content {
+        gap: var(--composer-gap-md);
+
+        .stats-container {
+            .stat-item {
+                &.colored-background {
+                    padding: var(--composer-gap-lg);
+                }
+
+                .stat-value-container {
+                    .stat-value,
+                    .stat-prefix,
+                    .stat-suffix {
+                        font-size: 7rem;
+                    }
+                }
+            }
+        }
+    }
+}
