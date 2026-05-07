@@ -247,6 +247,22 @@ export class DomInteractionRuntime {
   }
 
   /**
+   * Register a modal's interaction config with the runtime after it opens.
+   * This lets elements inside the modal respond to their own interactions.
+   *
+   * @param config  ComponentInteractionConfig for the modal component
+   */
+  registerModal(config: ComponentInteractionConfig): void {
+    if (this.destroyed) return;
+
+    // Assign IDs to modal DOM elements so interaction selectors resolve
+    this.assignComponentIds(config);
+
+    // Re-use registerComponent to set up the manager
+    this.registerComponent(config);
+  }
+
+  /**
    * Tear down everything.
    */
   destroy(): void {
