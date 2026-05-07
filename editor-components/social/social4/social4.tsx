@@ -1,4 +1,4 @@
-import { BaseSocial } from "../../EditorComponent";
+import { BaseSocial, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./social4.module.scss"
 import { Base } from "../../../composer-base-components/base/base";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
@@ -9,8 +9,8 @@ import { FaLessThanEqual } from "react-icons/fa";
 import { TbRubberStamp } from "react-icons/tb";
 
 type CardItem = {
-    video: React.JSX.Element,
-    imageItems: ImageItem[],
+    media: TypeMediaInputValue,
+    mediaItems: MediaItem[],
     likeCount: React.JSX.Element,
     commentCount: React.JSX.Element,
     description: React.JSX.Element,
@@ -18,14 +18,15 @@ type CardItem = {
     videoIconActive: boolean,
     imageIconActive: boolean,
     name: React.JSX.Element,
-    profileImage: string,
-    socialIcon: string,
+    profileMedia: TypeMediaInputValue,
+    socialIcon: TypeMediaInputValue,
     button: INPUTS.CastedButton;
     date: React.JSX.Element;
     overlay: boolean;
 }
-type ImageItem = {
-    image: string
+
+type MediaItem = {
+    media: TypeMediaInputValue
 }
 
 class Social4 extends BaseSocial {
@@ -97,27 +98,29 @@ class Social4 extends BaseSocial {
                     displayer: "Card Item",
                     value: [
                         {
-                            type: "string",
-                            key: "video",
-                            displayer: "Video",
-                            value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6801fec5bf76cc002cc3bca5?alt=media&timestamp=1744961224764"
+                            type: "media",
+                            key: "media",
+                            displayer: "Media",
+                            value: { type: "video", url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6801fec5bf76cc002cc3bca5?alt=media&timestamp=1744961224764" },
+                            additionalParams: { availableTypes: ["image", "video"] }
                         },
                         {
                             type: "array",
-                            key: "imageItems",
-                            displayer: "Image Items",
+                            key: "mediaItems",
+                            displayer: "Media Items",
                             value: [
                                 {
                                     type: "object",
-                                    key: "imageItem",
-                                    displayer: "Image Item",
+                                    key: "mediaItem",
+                                    displayer: "Media Item",
                                     value:
                                         [
                                             {
-                                                type: "image",
-                                                key: "image",
-                                                displayer: "Image",
-                                                value: ""
+                                                type: "media",
+                                                key: "media",
+                                                displayer: "Media",
+                                                value: { type: "image", url: "" },
+                                                additionalParams: { availableTypes: ["image", "video"] }
                                             }
                                         ]
                                 }
@@ -172,16 +175,18 @@ class Social4 extends BaseSocial {
                             value: "TheVibeExplorer"
                         },
                         {
-                            type: "image",
-                            key: "profileImage",
-                            displayer: "Image",
-                            value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67ce95243504dd002c5d0939?alt=media&timestamp=1744960949771"
+                            type: "media",
+                            key: "profileMedia",
+                            displayer: "Media",
+                            value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67ce95243504dd002c5d0939?alt=media&timestamp=1744960949771" },
+                            additionalParams: { availableTypes: ["icon", "image"] }
                         },
                         {
-                            type: "icon",
+                            type: "media",
                             key: "socialIcon",
                             displayer: "Social Icon",
-                            value: "FaInstagram"
+                            value: { type: "icon", name: "FaInstagram" },
+                            additionalParams: { availableTypes: ["icon", "image"] }
                         },
                         INPUTS.BUTTON("button", "Button", "Follow", "", null, null, "Link"),
                         {
@@ -200,15 +205,16 @@ class Social4 extends BaseSocial {
                     displayer: "Card Item",
                     value: [
                         {
-                            type: "string",
-                            key: "video",
-                            displayer: "Video",
-                            value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6801ffc5bf76cc002cc3bd38?alt=media&timestamp=1744961479941"
+                            type: "media",
+                            key: "media",
+                            displayer: "Media",
+                            value: { type: "video", url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6801ffc5bf76cc002cc3bd38?alt=media&timestamp=1744961479941" },
+                            additionalParams: { availableTypes: ["image", "video"] }
                         },
                         {
                             type: "array",
-                            key: "imageItems",
-                            displayer: "Image Items",
+                            key: "mediaItems",
+                            displayer: "Media Items",
                             value: [
                                 {
                                     type: "object",
@@ -217,10 +223,11 @@ class Social4 extends BaseSocial {
                                     value:
                                         [
                                             {
-                                                type: "image",
-                                                key: "image",
-                                                displayer: "Image",
-                                                value: ""
+                                                type: "media",
+                                                key: "media",
+                                                displayer: "Media",
+                                                value: { type: "image", url: "" },
+                                                additionalParams: { availableTypes: ["image", "video"] }
                                             }
                                         ]
                                 }
@@ -276,15 +283,16 @@ class Social4 extends BaseSocial {
                         },
                         {
                             type: "image",
-                            key: "profileImage",
-                            displayer: "Image",
+                            key: "profileMedia",
+                            displayer: "Media",
                             value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67cb0f22fe2b08002d44d96d?alt=media&timestamp=1744960949771"
                         },
                         {
-                            type: "icon",
+                            type: "media",
                             key: "socialIcon",
                             displayer: "Social Icon",
-                            value: "FaInstagram"
+                            value: { type: "icon", name: "FaInstagram" },
+                            additionalParams: { availableTypes: ["icon", "image"] }
                         },
 
                         INPUTS.BUTTON("button", "Button", "Follow", "", null, null, "Link"),
@@ -303,15 +311,16 @@ class Social4 extends BaseSocial {
                     displayer: "Card Item",
                     value: [
                         {
-                            type: "string",
-                            key: "video",
-                            displayer: "Video",
-                            value: ""
+                            type: "media",
+                            key: "media",
+                            displayer: "Media",
+                            value: { type: "video", url: "" },
+                            additionalParams: { availableTypes: ["image", "video"] }
                         },
                         {
                             type: "array",
-                            key: "imageItems",
-                            displayer: "Image Items",
+                            key: "mediaItems",
+                            displayer: "Media Items",
                             value: [
                                 {
                                     type: "object",
@@ -320,10 +329,11 @@ class Social4 extends BaseSocial {
                                     value:
                                         [
                                             {
-                                                type: "image",
-                                                key: "image",
-                                                displayer: "Image",
-                                                value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6801fdd7bf76cc002cc3bbab?alt=media&timestamp=1744960987167"
+                                                type: "media",
+                                                key: "media",
+                                                displayer: "Media",
+                                                value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6801fdd7bf76cc002cc3bbab?alt=media&timestamp=1744960987167" },
+                                                additionalParams: { availableTypes: ["image", "video"] }
                                             }
                                         ]
                                 }
@@ -379,15 +389,16 @@ class Social4 extends BaseSocial {
                         },
                         {
                             type: "image",
-                            key: "profileImage",
-                            displayer: "Image",
+                            key: "profileMedia",
+                            displayer: "Media",
                             value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67c94af4fe2b08002d430306?alt=media&timestamp=1744960949770"
                         },
                         {
-                            type: "icon",
+                            type: "media",
                             key: "socialIcon",
                             displayer: "Social Icon",
-                            value: "FaInstagram"
+                            value: { type: "icon", name: "FaInstagram" },
+                            additionalParams: { availableTypes: ["icon", "image"] }
                         },
 
                         INPUTS.BUTTON("button", "Button", "Follow", "", null, null, "Link"),
@@ -406,15 +417,16 @@ class Social4 extends BaseSocial {
                     displayer: "Card Item",
                     value: [
                         {
-                            type: "string",
-                            key: "video",
-                            displayer: "Video",
-                            value: ""
+                            type: "media",
+                            key: "media",
+                            displayer: "Media",
+                            value: { type: "video", url: "" },
+                            additionalParams: { availableTypes: ["image", "video"] }
                         },
                         {
                             type: "array",
-                            key: "imageItems",
-                            displayer: "Image Items",
+                            key: "mediaItems",
+                            displayer: "Media Items",
                             value: [
                                 {
                                     type: "object",
@@ -423,10 +435,11 @@ class Social4 extends BaseSocial {
                                     value:
                                         [
                                             {
-                                                type: "image",
-                                                key: "image",
-                                                displayer: "Image",
-                                                value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6801fe14bf76cc002cc3bbdc?alt=media&timestamp=1744961046618"
+                                                type: "media",
+                                                key: "media",
+                                                displayer: "Media",
+                                                value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6801fe14bf76cc002cc3bbdc?alt=media&timestamp=1744961046618" },
+                                                additionalParams: { availableTypes: ["image", "video"] }
                                             },
                                         ]
                                 },
@@ -437,10 +450,11 @@ class Social4 extends BaseSocial {
                                     value:
                                         [
                                             {
-                                                type: "image",
-                                                key: "image",
-                                                displayer: "Image",
-                                                value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6801fe45bf76cc002cc3bc1c?alt=media&timestamp=1744961097553"
+                                                type: "media",
+                                                key: "media",
+                                                displayer: "Media",
+                                                value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6801fe45bf76cc002cc3bc1c?alt=media&timestamp=1744961097553" },
+                                                additionalParams: { availableTypes: ["image", "video"] }
                                             },
                                         ]
                                 }
@@ -496,15 +510,16 @@ class Social4 extends BaseSocial {
                         },
                         {
                             type: "image",
-                            key: "profileImage",
-                            displayer: "Image",
+                            key: "profileMedia",
+                            displayer: "Media",
                             value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67c94b07fe2b08002d43030d?alt=media&timestamp=1744960949770"
                         },
                         {
-                            type: "icon",
+                            type: "media",
                             key: "socialIcon",
                             displayer: "Social Icon",
-                            value: "FaInstagram"
+                            value: { type: "icon", name: "FaInstagram" },
+                            additionalParams: { availableTypes: ["icon", "image"] }
                         },
 
                         INPUTS.BUTTON("button", "Button", "Follow", "", null, null, "Link"),
@@ -523,15 +538,16 @@ class Social4 extends BaseSocial {
                     displayer: "Card Item",
                     value: [
                         {
-                            type: "string",
-                            key: "video",
-                            displayer: "Video",
-                            value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6801ff32bf76cc002cc3bcea?alt=media&timestamp=1744961331979"
+                            type: "media",
+                            key: "media",
+                            displayer: "Media",
+                            value: { type: "video", url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6801ff32bf76cc002cc3bcea?alt=media&timestamp=1744961331979" },
+                            additionalParams: { availableTypes: ["image", "video"] }
                         },
                         {
                             type: "array",
-                            key: "imageItems",
-                            displayer: "Image Items",
+                            key: "mediaItems",
+                            displayer: "Media Items",
                             value: [
                                 {
                                     type: "object",
@@ -540,10 +556,11 @@ class Social4 extends BaseSocial {
                                     value:
                                         [
                                             {
-                                                type: "image",
-                                                key: "image",
-                                                displayer: "Image",
-                                                value: ""
+                                                type: "media",
+                                                key: "media",
+                                                displayer: "Media",
+                                                value: { type: "image", url: "" },
+                                                additionalParams: { availableTypes: ["image", "video"] }
                                             },
                                         ]
                                 },
@@ -599,15 +616,16 @@ class Social4 extends BaseSocial {
                         },
                         {
                             type: "image",
-                            key: "profileImage",
-                            displayer: "Image",
+                            key: "profileMedia",
+                            displayer: "Media",
                             value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67aca1d16341de002b7f73d2?alt=media&timestamp=1744960949770"
                         },
                         {
-                            type: "icon",
+                            type: "media",
                             key: "socialIcon",
                             displayer: "Social Icon",
-                            value: "FaInstagram"
+                            value: { type: "icon", name: "FaInstagram" },
+                            additionalParams: { availableTypes: ["icon", "image"] }
                         },
 
                         INPUTS.BUTTON("button", "Button", "Follow", "", null, null, "Link"),
@@ -626,15 +644,16 @@ class Social4 extends BaseSocial {
                     displayer: "Card Item",
                     value: [
                         {
-                            type: "string",
-                            key: "video",
-                            displayer: "Video",
-                            value: ""
+                            type: "media",
+                            key: "media",
+                            displayer: "Media",
+                            value: { type: "video", url: "" },
+                            additionalParams: { availableTypes: ["image", "video"] }
                         },
                         {
                             type: "array",
-                            key: "imageItems",
-                            displayer: "Image Items",
+                            key: "mediaItems",
+                            displayer: "Media Items",
                             value: [
                                 {
                                     type: "object",
@@ -643,10 +662,11 @@ class Social4 extends BaseSocial {
                                     value:
                                         [
                                             {
-                                                type: "image",
-                                                key: "image",
-                                                displayer: "Image",
-                                                value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6802001fbf76cc002cc3bd55?alt=media&timestamp=1744961569247"
+                                                type: "media",
+                                                key: "media",
+                                                displayer: "Media",
+                                                value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6802001fbf76cc002cc3bd55?alt=media&timestamp=1744961569247" },
+                                                additionalParams: { availableTypes: ["image", "video"] }
                                             },
                                         ]
                                 },
@@ -702,15 +722,16 @@ class Social4 extends BaseSocial {
                         },
                         {
                             type: "image",
-                            key: "profileImage",
-                            displayer: "Image",
+                            key: "profileMedia",
+                            displayer: "Media",
                             value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67f7bd84fb049c002cc6ffab?alt=media&timestamp=1744960949771"
                         },
                         {
-                            type: "icon",
+                            type: "media",
                             key: "socialIcon",
                             displayer: "Social Icon",
-                            value: "FaInstagram"
+                            value: { type: "icon", name: "FaInstagram" },
+                            additionalParams: { availableTypes: ["icon", "image"] }
                         },
 
                         INPUTS.BUTTON("button", "Button", "Follow", "", null, null, "Link"),
@@ -729,15 +750,16 @@ class Social4 extends BaseSocial {
                     displayer: "Card Item",
                     value: [
                         {
-                            type: "string",
-                            key: "video",
-                            displayer: "Video",
-                            value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6801ff06bf76cc002cc3bce4?alt=media&timestamp=1744961288526"
+                            type: "media",
+                            key: "media",
+                            displayer: "Media",
+                            value: { type: "video", url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6801ff06bf76cc002cc3bce4?alt=media&timestamp=1744961288526" },
+                            additionalParams: { availableTypes: ["image", "video"] }
                         },
                         {
                             type: "array",
-                            key: "imageItems",
-                            displayer: "Image Items",
+                            key: "mediaItems",
+                            displayer: "Media Items",
                             value: [
                                 {
                                     type: "object",
@@ -746,10 +768,11 @@ class Social4 extends BaseSocial {
                                     value:
                                         [
                                             {
-                                                type: "image",
-                                                key: "image",
-                                                displayer: "Image",
-                                                value: ""
+                                                type: "media",
+                                                key: "media",
+                                                displayer: "Media",
+                                                value: { type: "image", url: "" },
+                                                additionalParams: { availableTypes: ["image", "video"] }
                                             },
                                         ]
                                 },
@@ -805,15 +828,16 @@ class Social4 extends BaseSocial {
                         },
                         {
                             type: "image",
-                            key: "profileImage",
-                            displayer: "Image",
+                            key: "profileMedia",
+                            displayer: "Media",
                             value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67e40a6cfb049c002cc41c31?alt=media&timestamp=1744799202064"
                         },
                         {
-                            type: "icon",
+                            type: "media",
                             key: "socialIcon",
                             displayer: "Social Icon",
-                            value: "FaInstagram"
+                            value: { type: "icon", name: "FaInstagram" },
+                            additionalParams: { availableTypes: ["icon", "image"] }
                         },
 
                         INPUTS.BUTTON("button", "Button", "Follow", "", null, null, "Link"),
@@ -832,15 +856,16 @@ class Social4 extends BaseSocial {
                     displayer: "Card Item",
                     value: [
                         {
-                            type: "string",
-                            key: "video",
-                            displayer: "Video",
-                            value: ""
+                            type: "media",
+                            key: "media",
+                            displayer: "Media",
+                            value: { type: "video", url: "" },
+                            additionalParams: { availableTypes: ["image", "video"] }
                         },
                         {
                             type: "array",
-                            key: "imageItems",
-                            displayer: "Image Items",
+                            key: "mediaItems",
+                            displayer: "Media Items",
                             value: [
                                 {
                                     type: "object",
@@ -849,10 +874,11 @@ class Social4 extends BaseSocial {
                                     value:
                                         [
                                             {
-                                                type: "image",
-                                                key: "image",
-                                                displayer: "Image",
-                                                value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6802012fbf76cc002cc3bdbd?alt=media&timestamp=1744961841826"
+                                                type: "media",
+                                                key: "media",
+                                                displayer: "Media",
+                                                value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6802012fbf76cc002cc3bdbd?alt=media&timestamp=1744961841826" },
+                                                additionalParams: { availableTypes: ["image", "video"] }
                                             },
                                         ]
                                 },
@@ -863,10 +889,11 @@ class Social4 extends BaseSocial {
                                     value:
                                         [
                                             {
-                                                type: "image",
-                                                key: "image",
-                                                displayer: "Image",
-                                                value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/68020154bf76cc002cc3bdc1?alt=media&timestamp=1744961878598"
+                                                type: "media",
+                                                key: "media",
+                                                displayer: "Media",
+                                                value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/68020154bf76cc002cc3bdc1?alt=media&timestamp=1744961878598" },
+                                                additionalParams: { availableTypes: ["image", "video"] }
                                             },
                                         ]
                                 },
@@ -877,10 +904,11 @@ class Social4 extends BaseSocial {
                                     value:
                                         [
                                             {
-                                                type: "image",
-                                                key: "image",
-                                                displayer: "Image",
-                                                value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6802017abf76cc002cc3bdd2?alt=media&timestamp=1744961916904"
+                                                type: "media",
+                                                key: "media",
+                                                displayer: "Media",
+                                                value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6802017abf76cc002cc3bdd2?alt=media&timestamp=1744961916904" },
+                                                additionalParams: { availableTypes: ["image", "video"] }
                                             },
                                         ]
                                 },
@@ -936,15 +964,16 @@ class Social4 extends BaseSocial {
                         },
                         {
                             type: "image",
-                            key: "profileImage",
-                            displayer: "Image",
+                            key: "profileMedia",
+                            displayer: "Media",
                             value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67f7bd53fb049c002cc6ff96?alt=media&timestamp=1744960949771"
                         },
                         {
-                            type: "icon",
+                            type: "media",
                             key: "socialIcon",
                             displayer: "Social Icon",
-                            value: "FaInstagram"
+                            value: { type: "icon", name: "FaInstagram" },
+                            additionalParams: { availableTypes: ["icon", "image"] }
                         },
 
                         INPUTS.BUTTON("button", "Button", "Follow", "", null, null, "Link"),
@@ -963,15 +992,16 @@ class Social4 extends BaseSocial {
                     displayer: "Card Item",
                     value: [
                         {
-                            type: "string",
-                            key: "video",
-                            displayer: "Video",
-                            value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/68020059bf76cc002cc3bd6b?alt=media&timestamp=1744961627435"
+                            type: "media",
+                            key: "media",
+                            displayer: "Media",
+                            value: { type: "video", url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/68020059bf76cc002cc3bd6b?alt=media&timestamp=1744961627435" },
+                            additionalParams: { availableTypes: ["image", "video"] }
                         },
                         {
                             type: "array",
-                            key: "imageItems",
-                            displayer: "Image Items",
+                            key: "mediaItems",
+                            displayer: "Media Items",
                             value: [
                                 {
                                     type: "object",
@@ -980,10 +1010,11 @@ class Social4 extends BaseSocial {
                                     value:
                                         [
                                             {
-                                                type: "image",
-                                                key: "image",
-                                                displayer: "Image",
-                                                value: ""
+                                                type: "media",
+                                                key: "media",
+                                                displayer: "Media",
+                                                value: { type: "image", url: "" },
+                                                additionalParams: { availableTypes: ["image", "video"] }
                                             },
                                         ]
                                 },
@@ -1039,15 +1070,16 @@ class Social4 extends BaseSocial {
                         },
                         {
                             type: "image",
-                            key: "profileImage",
-                            displayer: "Image",
+                            key: "profileMedia",
+                            displayer: "Media",
                             value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67f3bd46fb049c002cc5ead5?alt=media&timestamp=1744960949771"
                         },
                         {
-                            type: "icon",
+                            type: "media",
                             key: "socialIcon",
                             displayer: "Social Icon",
-                            value: "FaInstagram"
+                            value: { type: "icon", name: "FaInstagram" },
+                            additionalParams: { availableTypes: ["icon", "image"] }
                         },
 
                         INPUTS.BUTTON("button", "Button", "Follow", "", null, null, "Link"),
@@ -1066,15 +1098,16 @@ class Social4 extends BaseSocial {
                     displayer: "Card Item",
                     value: [
                         {
-                            type: "string",
-                            key: "video",
-                            displayer: "Video",
-                            value: ""
+                            type: "media",
+                            key: "media",
+                            displayer: "Media",
+                            value: { type: "video", url: "" },
+                            additionalParams: { availableTypes: ["image", "video"] }
                         },
                         {
                             type: "array",
-                            key: "imageItems",
-                            displayer: "Image Items",
+                            key: "mediaItems",
+                            displayer: "Media Items",
                             value: [
                                 {
                                     type: "object",
@@ -1083,10 +1116,11 @@ class Social4 extends BaseSocial {
                                     value:
                                         [
                                             {
-                                                type: "image",
-                                                key: "image",
-                                                displayer: "Image",
-                                                value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/68020086bf76cc002cc3bd6f?alt=media&timestamp=1744961672471"
+                                                type: "media",
+                                                key: "media",
+                                                displayer: "Media",
+                                                value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/68020086bf76cc002cc3bd6f?alt=media&timestamp=1744961672471" },
+                                                additionalParams: { availableTypes: ["image", "video"] }
                                             },
                                         ]
                                 },
@@ -1142,15 +1176,16 @@ class Social4 extends BaseSocial {
                         },
                         {
                             type: "image",
-                            key: "profileImage",
-                            displayer: "Image",
+                            key: "profileMedia",
+                            displayer: "Media",
                             value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67e40a86fb049c002cc41c55?alt=media&timestamp=1744960949771"
                         },
                         {
-                            type: "icon",
+                            type: "media",
                             key: "socialIcon",
                             displayer: "Social Icon",
-                            value: "FaInstagram"
+                            value: { type: "icon", name: "FaInstagram" },
+                            additionalParams: { availableTypes: ["icon", "image"] }
                         },
 
                         INPUTS.BUTTON("button", "Button", "Follow", "", null, null, "Link"),
@@ -1169,15 +1204,16 @@ class Social4 extends BaseSocial {
                     displayer: "Card Item",
                     value: [
                         {
-                            type: "string",
-                            key: "video",
-                            displayer: "Video",
-                            value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/680201efbf76cc002cc3be21?alt=media&timestamp=1744962032906"
+                            type: "media",
+                            key: "media",
+                            displayer: "Media",
+                            value: { type: "video", url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/680201efbf76cc002cc3be21?alt=media&timestamp=1744962032906" },
+                            additionalParams: { availableTypes: ["image", "video"] }
                         },
                         {
                             type: "array",
-                            key: "imageItems",
-                            displayer: "Image Items",
+                            key: "mediaItems",
+                            displayer: "Media Items",
                             value: [
                                 {
                                     type: "object",
@@ -1186,10 +1222,11 @@ class Social4 extends BaseSocial {
                                     value:
                                         [
                                             {
-                                                type: "image",
-                                                key: "image",
-                                                displayer: "Image",
-                                                value: ""
+                                                type: "media",
+                                                key: "media",
+                                                displayer: "Media",
+                                                value: { type: "image", url: "" },
+                                                additionalParams: { availableTypes: ["image", "video"] }
                                             },
                                         ]
                                 },
@@ -1245,15 +1282,16 @@ class Social4 extends BaseSocial {
                         },
                         {
                             type: "image",
-                            key: "profileImage",
-                            displayer: "Image",
+                            key: "profileMedia",
+                            displayer: "Media",
                             value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67e40a3cfb049c002cc41bc7?alt=media&timestamp=1744960949771"
                         },
                         {
-                            type: "icon",
+                            type: "media",
                             key: "socialIcon",
                             displayer: "Social Icon",
-                            value: "FaInstagram"
+                            value: { type: "icon", name: "FaInstagram" },
+                            additionalParams: { availableTypes: ["icon", "image"] }
                         },
 
                         INPUTS.BUTTON("button", "Button", "Follow", "", null, null, "Link"),
@@ -1272,15 +1310,16 @@ class Social4 extends BaseSocial {
                     displayer: "Card Item",
                     value: [
                         {
-                            type: "string",
-                            key: "video",
-                            displayer: "Video",
-                            value: ""
+                            type: "media",
+                            key: "media",
+                            displayer: "Media",
+                            value: { type: "video", url: "" },
+                            additionalParams: { availableTypes: ["image", "video"] }
                         },
                         {
                             type: "array",
-                            key: "imageItems",
-                            displayer: "Image Items",
+                            key: "mediaItems",
+                            displayer: "Media Items",
                             value: [
                                 {
                                     type: "object",
@@ -1289,10 +1328,11 @@ class Social4 extends BaseSocial {
                                     value:
                                         [
                                             {
-                                                type: "image",
-                                                key: "image",
-                                                displayer: "Image",
-                                                value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/68020242bf76cc002cc3be29?alt=media&timestamp=1744962116673"
+                                                type: "media",
+                                                key: "media",
+                                                displayer: "Media",
+                                                value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/68020242bf76cc002cc3be29?alt=media&timestamp=1744962116673" },
+                                                additionalParams: { availableTypes: ["image", "video"] }
                                             },
                                         ]
                                 },
@@ -1303,10 +1343,11 @@ class Social4 extends BaseSocial {
                                     value:
                                         [
                                             {
-                                                type: "image",
-                                                key: "image",
-                                                displayer: "Image",
-                                                value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6802025bbf76cc002cc3be2e?alt=media&timestamp=1744962141453"
+                                                type: "media",
+                                                key: "media",
+                                                displayer: "Media",
+                                                value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6802025bbf76cc002cc3be2e?alt=media&timestamp=1744962141453" },
+                                                additionalParams: { availableTypes: ["image", "video"] }
                                             },
                                         ]
                                 },
@@ -1362,15 +1403,16 @@ class Social4 extends BaseSocial {
                         },
                         {
                             type: "image",
-                            key: "profileImage",
-                            displayer: "Image",
+                            key: "profileMedia",
+                            displayer: "Media",
                             value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67a9d2166341de002b7b7fd0?alt=media&timestamp=1744960949770"
                         },
                         {
-                            type: "icon",
+                            type: "media",
                             key: "socialIcon",
                             displayer: "Social Icon",
-                            value: "FaInstagram"
+                            value: { type: "icon", name: "FaInstagram" },
+                            additionalParams: { availableTypes: ["icon", "image"] }
                         },
 
                         INPUTS.BUTTON("button", "Button", "Follow", "", null, null, "Link"),
@@ -1389,15 +1431,16 @@ class Social4 extends BaseSocial {
                     displayer: "Card Item",
                     value: [
                         {
-                            type: "string",
-                            key: "video",
-                            displayer: "Video",
-                            value: ""
+                            type: "media",
+                            key: "media",
+                            displayer: "Media",
+                            value: { type: "video", url: "" },
+                            additionalParams: { availableTypes: ["image", "video"] }
                         },
                         {
                             type: "array",
-                            key: "imageItems",
-                            displayer: "Image Items",
+                            key: "mediaItems",
+                            displayer: "Media Items",
                             value: [
                                 {
                                     type: "object",
@@ -1406,10 +1449,11 @@ class Social4 extends BaseSocial {
                                     value:
                                         [
                                             {
-                                                type: "image",
-                                                key: "image",
-                                                displayer: "Image",
-                                                value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/680202cbbf76cc002cc3be97?alt=media&timestamp=1744962253596"
+                                                type: "media",
+                                                key: "media",
+                                                displayer: "Media",
+                                                value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/680202cbbf76cc002cc3be97?alt=media&timestamp=1744962253596" },
+                                                additionalParams: { availableTypes: ["image", "video"] }
                                             },
                                         ]
                                 },
@@ -1465,15 +1509,16 @@ class Social4 extends BaseSocial {
                         },
                         {
                             type: "image",
-                            key: "profileImage",
-                            displayer: "Image",
+                            key: "profileMedia",
+                            displayer: "Media",
                             value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6799df51d61bca002cb826eb?alt=media&timestamp=1744960949770"
                         },
                         {
-                            type: "icon",
+                            type: "media",
                             key: "socialIcon",
                             displayer: "Social Icon",
-                            value: "FaInstagram"
+                            value: { type: "icon", name: "FaInstagram" },
+                            additionalParams: { availableTypes: ["icon", "image"] }
                         },
 
                         INPUTS.BUTTON("button", "Button", "Follow", "", null, null, "Link"),
@@ -1492,15 +1537,16 @@ class Social4 extends BaseSocial {
                     displayer: "Card Item",
                     value: [
                         {
-                            type: "string",
-                            key: "video",
-                            displayer: "Video",
-                            value: ""
+                            type: "media",
+                            key: "media",
+                            displayer: "Media",
+                            value: { type: "video", url: "" },
+                            additionalParams: { availableTypes: ["image", "video"] }
                         },
                         {
                             type: "array",
-                            key: "imageItems",
-                            displayer: "Image Items",
+                            key: "mediaItems",
+                            displayer: "Media Items",
                             value: [
                                 {
                                     type: "object",
@@ -1509,10 +1555,11 @@ class Social4 extends BaseSocial {
                                     value:
                                         [
                                             {
-                                                type: "image",
-                                                key: "image",
-                                                displayer: "Image",
-                                                value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/680203b3bf76cc002cc3bfb6?alt=media&timestamp=1744962485711"
+                                                type: "media",
+                                                key: "media",
+                                                displayer: "Media",
+                                                value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/680203b3bf76cc002cc3bfb6?alt=media&timestamp=1744962485711" },
+                                                additionalParams: { availableTypes: ["image", "video"] }
                                             },
                                         ]
                                 },
@@ -1523,10 +1570,11 @@ class Social4 extends BaseSocial {
                                     value:
                                         [
                                             {
-                                                type: "image",
-                                                key: "image",
-                                                displayer: "Image",
-                                                value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/68020402bf76cc002cc3c0e2?alt=media&timestamp=1744962564042"
+                                                type: "media",
+                                                key: "media",
+                                                displayer: "Media",
+                                                value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/68020402bf76cc002cc3c0e2?alt=media&timestamp=1744962564042" },
+                                                additionalParams: { availableTypes: ["image", "video"] }
                                             },
                                         ]
                                 },
@@ -1537,10 +1585,11 @@ class Social4 extends BaseSocial {
                                     value:
                                         [
                                             {
-                                                type: "image",
-                                                key: "image",
-                                                displayer: "Image",
-                                                value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/68020426bf76cc002cc3c14b?alt=media&timestamp=1744962602646"
+                                                type: "media",
+                                                key: "media",
+                                                displayer: "Media",
+                                                value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/68020426bf76cc002cc3c14b?alt=media&timestamp=1744962602646" },
+                                                additionalParams: { availableTypes: ["image", "video"] }
                                             },
                                         ]
                                 },
@@ -1551,10 +1600,11 @@ class Social4 extends BaseSocial {
                                     value:
                                         [
                                             {
-                                                type: "image",
-                                                key: "image",
-                                                displayer: "Image",
-                                                value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/68020448bf76cc002cc3c19c?alt=media&timestamp=1744962633978"
+                                                type: "media",
+                                                key: "media",
+                                                displayer: "Media",
+                                                value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/68020448bf76cc002cc3c19c?alt=media&timestamp=1744962633978" },
+                                                additionalParams: { availableTypes: ["image", "video"] }
                                             },
                                         ]
                                 },
@@ -1610,15 +1660,16 @@ class Social4 extends BaseSocial {
                         },
                         {
                             type: "image",
-                            key: "profileImage",
-                            displayer: "Image",
+                            key: "profileMedia",
+                            displayer: "Media",
                             value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6790cd32d61bca002cb54d47?alt=media&timestamp=1744960949770"
                         },
                         {
-                            type: "icon",
+                            type: "media",
                             key: "socialIcon",
                             displayer: "Social Icon",
-                            value: "FaInstagram"
+                            value: { type: "icon", name: "FaInstagram" },
+                            additionalParams: { availableTypes: ["icon", "image"] }
                         },
 
                         INPUTS.BUTTON("button", "Button", "Follow", "", null, null, "Link"),
@@ -1637,15 +1688,16 @@ class Social4 extends BaseSocial {
                     displayer: "Card Item",
                     value: [
                         {
-                            type: "string",
-                            key: "video",
-                            displayer: "Video",
-                            value: ""
+                            type: "media",
+                            key: "media",
+                            displayer: "Media",
+                            value: { type: "video", url: "" },
+                            additionalParams: { availableTypes: ["image", "video"] }
                         },
                         {
                             type: "array",
-                            key: "imageItems",
-                            displayer: "Image Items",
+                            key: "mediaItems",
+                            displayer: "Media Items",
                             value: [
                                 {
                                     type: "object",
@@ -1654,10 +1706,11 @@ class Social4 extends BaseSocial {
                                     value:
                                         [
                                             {
-                                                type: "image",
-                                                key: "image",
-                                                displayer: "Image",
-                                                value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6802049ebf76cc002cc3c251?alt=media&timestamp=1744962720101"
+                                                type: "media",
+                                                key: "media",
+                                                displayer: "Media",
+                                                value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6802049ebf76cc002cc3c251?alt=media&timestamp=1744962720101" },
+                                                additionalParams: { availableTypes: ["image", "video"] }
                                             },
                                         ]
                                 },
@@ -1713,15 +1766,16 @@ class Social4 extends BaseSocial {
                         },
                         {
                             type: "image",
-                            key: "profileImage",
-                            displayer: "Image",
+                            key: "profileMedia",
+                            displayer: "Media",
                             value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6790ceccd61bca002cb54e20?alt=media&timestamp=1744960949770"
                         },
                         {
-                            type: "icon",
+                            type: "media",
                             key: "socialIcon",
                             displayer: "Social Icon",
-                            value: "FaInstagram"
+                            value: { type: "icon", name: "FaInstagram" },
+                            additionalParams: { availableTypes: ["icon", "image"] }
                         },
 
                         INPUTS.BUTTON("button", "Button", "Follow", "", null, null, "Link"),
@@ -1742,22 +1796,25 @@ class Social4 extends BaseSocial {
             displayer: "Icons",
             value: [
                 {
-                    type: "icon",
+                    type: "media",
                     key: "videoIcon",
                     displayer: "Video Icon",
-                    value: "FaVideo"
+                    value: { type: "icon", name: "FaVideo" },
+                    additionalParams: { availableTypes: ["icon", "image"] }
                 },
                 {
-                    type: "icon",
+                    type: "media",
                     key: "imageIcon",
                     displayer: "Image Icon",
-                    value: "GrGallery"
+                    value: { type: "icon", name: "GrGallery" },
+                    additionalParams: { availableTypes: ["icon", "image"] }
                 },
                 {
-                    type: "icon",
+                    type: "media",
                     key: "likeIcon",
                     displayer: "Like Icon",
-                    value: "SlHeart"
+                    value: { type: "icon", name: "SlHeart" },
+                    additionalParams: { availableTypes: ["icon", "image"] }
                 },
                 {
                     type: "string",
@@ -1766,16 +1823,18 @@ class Social4 extends BaseSocial {
                     value: "likes"
                 },
                 {
-                    type: "icon",
+                    type: "media",
                     key: "commentIcon",
                     displayer: "Comment Icon",
-                    value: "TfiComment"
+                    value: { type: "icon", name: "TfiComment" },
+                    additionalParams: { availableTypes: ["icon", "image"] }
                 },
                 {
-                    type: "icon",
+                    type: "media",
                     key: "shareIcon",
                     displayer: "Share Icon",
-                    value: "RiShareForwardLine"
+                    value: { type: "icon", name: "RiShareForwardLine" },
+                    additionalParams: { availableTypes: ["icon", "image"] }
                 },
                 {
                     type: "string",
@@ -1784,10 +1843,11 @@ class Social4 extends BaseSocial {
                     value: "Share"
                 },
                 {
-                    type: "icon",
+                    type: "media",
                     key: "closeIcon",
                     displayer: "Close Icon",
-                    value: "IoMdClose"
+                    value: { type: "icon", name: "IoMdClose" },
+                    additionalParams: { availableTypes: ["icon", "image"] }
                 }
             ]
         })
@@ -1935,26 +1995,26 @@ class Social4 extends BaseSocial {
                             {cardItems.slice(0, this.getComponentState("imageCount")).map((item: CardItem, index: number) => {
                                 return (
                                     <div className={this.decorateCSS("gallery-item")} key={index}>
-                                        {(item.imageItems.length > 0 && !this.castToString(item.video) && item.imageItems[0].image) &&
+                                        {(item.mediaItems.length > 0 && !(item.media as any)?.url && (item.mediaItems[0].media as any)?.url) &&
                                             <div className={this.decorateCSS("image-container")}>
-                                                <img src={item.imageItems[0].image} alt={item.imageItems[0].image} className={this.decorateCSS("gallery-image")} />
+                                                <Base.Media value={item.mediaItems[0].media} className={this.decorateCSS("gallery-image")} />
                                                 {item.overlay && (
                                                     <div className={this.decorateCSS("overlay-item")} />
                                                 )}
                                             </div>
                                         }
-                                        {this.castToString(item.video) && (
+                                        {(item.media as any)?.url && (
                                             <div className={this.decorateCSS("video-container")}>
-                                                <video src={this.castToString(item.video)} controls={false} className={this.decorateCSS("gallery-video")} />
+                                                <Base.Media value={item.media} controls={false} className={this.decorateCSS("gallery-video")} />
                                                 {item.overlay && (
                                                     <div className={this.decorateCSS("overlay-item")} />
                                                 )}
                                             </div>
                                         )}
-                                        {((icons.videoIcon && this.castToString(item.video) && item.videoIconActive) || (icons.imageIcon && item.imageItems.length > 1)) && (
+                                        {((icons.videoIcon && (item.media as any)?.url && item.videoIconActive) || (icons.imageIcon && item.mediaItems.length > 1 && item.imageIconActive)) && (
                                             <div className={this.decorateCSS("icon-container")}>
-                                                {(icons.videoIcon && this.castToString(item.video) && item.videoIconActive) && (<Base.Icon name={icons.videoIcon} propsIcon={{ className: this.decorateCSS("icon") }}></Base.Icon>)}
-                                                {(icons.imageIcon && item.imageItems.length > 1) && (<Base.Icon name={icons.imageIcon} propsIcon={{ className: this.decorateCSS("icon") }}></Base.Icon>)}
+                                                {(icons.videoIcon && (item.media as any)?.url && item.videoIconActive) && (<Base.Media value={icons.videoIcon} className={this.decorateCSS("icon")} />)}
+                                                {(icons.imageIcon && item.mediaItems.length > 1 && item.imageIconActive) && (<Base.Media value={icons.imageIcon} className={this.decorateCSS("icon")} />)}
                                             </div>
                                         )}
                                         <div className={this.decorateCSS("overlay")} onClick={() => this.handleClickItem(index)}>
@@ -1963,13 +2023,13 @@ class Social4 extends BaseSocial {
                                                     <div className={this.decorateCSS("like-and-commnet-container")}>
                                                         {(icons.likeIcon || this.castToString(item.likeCount)) && (
                                                             <div className={this.decorateCSS("like-container")}>
-                                                                {icons.likeIcon && (<Base.Icon name={icons.likeIcon} propsIcon={{ className: this.decorateCSS("like-icon") }}></Base.Icon>)}
+                                                                {icons.likeIcon && (<Base.Media value={icons.likeIcon} className={this.decorateCSS("like-icon")} />)}
                                                                 {this.castToString(item.likeCount) && (<div className={this.decorateCSS("like-number")}>{item.likeCount}</div>)}
                                                             </div>
                                                         )}
                                                         {(icons.commentIcon || this.castToString(item.commentCount)) && (
                                                             <div className={this.decorateCSS("comment-container")}>
-                                                                {icons.commentIcon && (<Base.Icon name={icons.commentIcon} propsIcon={{ className: this.decorateCSS("comment-icon") }}></Base.Icon>)}
+                                                                {icons.commentIcon && (<Base.Media value={icons.commentIcon} className={this.decorateCSS("comment-icon")} />)}
                                                                 {this.castToString(item.commentCount) && (<div className={this.decorateCSS("comment-number")}>{item.commentCount}</div>)}
                                                             </div>
                                                         )}
@@ -2007,12 +2067,12 @@ class Social4 extends BaseSocial {
                                         key={index}
                                         ref={postRefs[index]}>
                                         <div className={this.decorateCSS("upper-container")}>
-                                            {(item.profileImage || this.castToString(item.name)) && (
+                                            {(item.profileMedia || this.castToString(item.name)) && (
                                                 <div className={this.decorateCSS("left-container")}>
-                                                    {item.profileImage && (
+                                                    {item.profileMedia && (
                                                         <div className={this.decorateCSS("profile-image-container")}>
                                                             <ComposerLink path={item.url}>
-                                                                <img className={this.decorateCSS("profile-image")} src={item.profileImage}></img>
+                                                                <Base.Media className={this.decorateCSS("profile-image")} value={item.profileMedia} />
                                                             </ComposerLink>
                                                         </div>
                                                     )}
@@ -2035,27 +2095,27 @@ class Social4 extends BaseSocial {
                                                     )}
                                                     {item.socialIcon && (
                                                         <ComposerLink path={item.url}>
-                                                            <Base.Icon name={item.socialIcon} propsIcon={{ className: this.decorateCSS("socail-icon") }}></Base.Icon>
+                                                            <Base.Media value={item.socialIcon} className={this.decorateCSS("socail-icon")} />
                                                         </ComposerLink>
                                                     )}
                                                 </div>
                                             )}
                                         </div>
-                                        {this.castToString(item.video) && (
+                                        {(item.media as any)?.url && (
                                             <div className={this.decorateCSS("post-video-container")}>
-                                                <video src={this.castToString(item.video)} controls autoPlay={true} muted className={this.decorateCSS("video")}></video>
+                                                <Base.Media value={item.media} controls autoPlay={true} muted className={this.decorateCSS("video")} />
                                                 {item.overlay && (
                                                     <div className={this.decorateCSS("overlay-item")} />
                                                 )}
                                             </div>
                                         )}
-                                        {(item.imageItems.length > 0 && !this.castToString(item.video)) && (
+                                        {(item.mediaItems.length > 0 && !(item.media as any)?.url) && (
                                             <div className={this.decorateCSS("post-image-container")}>
                                                 <ComposerSlider {...settingsCard}>
-                                                    {item.imageItems.map((item: ImageItem, index: number) => {
-                                                        if (!item.image) return null;
+                                                    {item.mediaItems.map((item: MediaItem, index: number) => {
+                                                        if (!(item.media as any)?.url) return null;
                                                         return (
-                                                            <img key={index} src={item.image} alt={item.image} className={this.decorateCSS("image")} />
+                                                            <Base.Media key={index} value={item.media} className={this.decorateCSS("image")} />
                                                         )
                                                     })
                                                     }
@@ -2079,7 +2139,7 @@ class Social4 extends BaseSocial {
                                                             <div className={this.decorateCSS("share-part")}>
                                                                 {icons.shareIcon && (
                                                                     <div className={this.decorateCSS("share-icon-container")}>
-                                                                        <Base.Icon name={icons.shareIcon} propsIcon={{ className: this.decorateCSS("share-icon") }}></Base.Icon>
+                                                                        <Base.Media value={icons.shareIcon} className={this.decorateCSS("share-icon")} />
                                                                     </div>
                                                                 )}
                                                                 {this.castToString(icons.shareText) && (<div className={this.decorateCSS("share-text")}>{icons.shareText}</div>)}
@@ -2110,8 +2170,8 @@ class Social4 extends BaseSocial {
                     )}
                     {icons.closeIcon && (
                         <div className={this.decorateCSS("icon-container")}>
-                            <div className={this.decorateCSS("close-icon")}>
-                                <Base.Icon name={icons.closeIcon} propsIcon={{ className: this.decorateCSS("icon"), onClick: () => this.handleCloseOverlay() }}></Base.Icon>
+                            <div className={this.decorateCSS("close-icon")} onClick={() => this.handleCloseOverlay()}>
+                                <Base.Media value={icons.closeIcon} className={this.decorateCSS("icon")} />
                             </div>
                         </div>
                     )}

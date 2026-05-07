@@ -36,6 +36,8 @@
         }
 
         .gallery-grid {
+            border-radius: var(--composer-border-radius-sm);
+            overflow: hidden;
             gap: 0px;
 
             .gallery-item {
