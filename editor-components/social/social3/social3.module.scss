@@ -44,8 +44,16 @@
         .profile-image {
           width: 50px;
           height: 50px;
+          min-width: 50px;
+          min-height: 50px;
           border-radius: 50%;
           object-fit: cover;
+          font-size: 50px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          overflow: hidden;
+          color: var(--composer-font-color-primary);
         }
 
         .right-container {
@@ -68,7 +76,7 @@
 
             .date {
               font-size: 1rem;
-              color: var(--composer-font-color-primary);
+              color: var(--composer-tertiary-color);
             }
 
             .date-icon {
@@ -101,6 +109,7 @@
           height: 500px;
           object-fit: cover;
           display: block;
+          border-radius: inherit;
         }
 
         .overlay-item {
@@ -185,9 +194,11 @@
           .icon {
             width: 15px;
             height: 15px;
+            font-size: 15px;
 
             &.liked {
               fill: var(--composer-primary-color);
+              color: var(--composer-primary-color);
             }
           }
 

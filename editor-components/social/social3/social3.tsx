@@ -3,11 +3,12 @@ import styles from "./social3.module.scss";
 import React from "react";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 import { INPUTS } from "../../../custom-hooks/input-templates";
+import { Base } from "../../../composer-base-components/base/base";
 
 type PostItem = {
   title: React.JSX.Element,
   description: React.JSX.Element,
-  image: string,
+  media: TypeMediaInputValue,
   overlay: boolean;
 }
 type Interaction = {
@@ -57,10 +58,16 @@ class Social3 extends BaseSocial {
       displayer: "Profile",
       value: [
         {
-          type: "image",
+          type: "media",
           key: "profileImage",
           displayer: "Profile Image",
-          value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67e40a6cfb049c002cc41c31?alt=media&timestamp=1744289020159"
+          value: {
+            type: "image",
+            url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67e40a6cfb049c002cc41c31?alt=media&timestamp=1744289020159"
+          },
+          additionalParams: {
+            availableTypes: ["icon", "image"],
+          }
         },
         {
           type: "string",
@@ -100,10 +107,16 @@ class Social3 extends BaseSocial {
           value: "One's destination is never place, but a new way of seeing things."
         },
         {
-          type: "image",
-          key: "image",
-          displayer: "Image",
-          value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67f7bd84fb049c002cc6ffab?alt=media&timestamp=1744289157829"
+          type: "media",
+          key: "media",
+          displayer: "Media",
+          value: {
+            type: "image",
+            url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67f7bd84fb049c002cc6ffab?alt=media&timestamp=1744289157829"
+          },
+          additionalParams: {
+            availableTypes: ["image", "video"],
+          }
         },
         {
           type: "boolean",
@@ -385,10 +398,9 @@ class Social3 extends BaseSocial {
               this.castToString(profile.date)) && (
                 <div className={this.decorateCSS("upper-section")}>
                   {profile.profileImage && (
-                    <img
+                    <Base.Media
+                      value={profile.profileImage}
                       className={this.decorateCSS("profile-image")}
-                      src={profile.profileImage}
-                      alt={profile.profileImage}
                     />
                   )}
                   {(this.castToString(profile.name) ||
@@ -432,12 +444,11 @@ class Social3 extends BaseSocial {
                 {post.description}
               </div>
             )}
-            {post.image && (
+            {post.media && (
               <div className={this.decorateCSS("post-image-container")}>
-                <img
+                <Base.Media
+                  value={post.media}
                   className={this.decorateCSS("post-image")}
-                  src={post.image}
-                  alt={post.image}
                 />
                 {post.overlay && (
                   <div className={this.decorateCSS("overlay-item")} />
@@ -459,14 +470,9 @@ class Social3 extends BaseSocial {
                         onClick={() => this.handleLikeClick()}
                       >
                         {likeInteraction.icon && (
-                          <Base.Icon
-                            name={likeInteraction.icon}
-                            propsIcon={{
-                              className: `${this.decorateCSS(
-                                "icon"
-                              )} ${this.getComponentState("isLiked") &&
-                              this.decorateCSS("liked")}`,
-                            }}
+                          <Base.Media
+                            value={likeInteraction.icon}
+                            className={`${this.decorateCSS("icon")} ${this.getComponentState("isLiked") ? this.decorateCSS("liked") : ""}`}
                           />
                         )}
                         {this.castToString(likeInteraction.text) && (
@@ -480,11 +486,9 @@ class Social3 extends BaseSocial {
                     this.castToString(commentInteraction.text)) && (
                       <div className={this.decorateCSS("interaction")}>
                         {commentInteraction.icon && (
-                          <Base.Icon
-                            name={commentInteraction.icon}
-                            propsIcon={{
-                              className: this.decorateCSS("icon"),
-                            }}
+                          <Base.Media
+                            value={commentInteraction.icon}
+                            className={this.decorateCSS("icon")}
                           />
                         )}
                         {this.castToString(commentInteraction.text) && (
@@ -503,11 +507,9 @@ class Social3 extends BaseSocial {
                         )} ${this.decorateCSS("share")}`}
                       >
                         {shareInteraction.icon && (
-                          <Base.Icon
-                            name={shareInteraction.icon}
-                            propsIcon={{
-                              className: this.decorateCSS("icon"),
-                            }}
+                          <Base.Media
+                            value={shareInteraction.icon}
+                            className={this.decorateCSS("icon")}
                           />
                         )}
                         {this.castToString(shareInteraction.text) && (
@@ -525,13 +527,9 @@ class Social3 extends BaseSocial {
                                     className={this.decorateCSS("social")}
                                   >
                                     {item.icon && (
-                                      <Base.Icon
-                                        name={item.icon}
-                                        propsIcon={{
-                                          className: this.decorateCSS(
-                                            "social-icon"
-                                          ),
-                                        }}
+                                      <Base.Media
+                                        value={item.icon}
+                                        className={this.decorateCSS("social-icon")}
                                       />
                                     )}
                                     {this.castToString(item.text) && (
