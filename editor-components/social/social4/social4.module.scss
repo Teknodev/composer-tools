@@ -238,7 +238,11 @@
                     gap: var(--composer-gap-md);
                     align-items: center;
 
-                    .button-conatainer {
+                    .button-container {
+                        .follow-button {
+                            content: "";
+                        }
+
                         .button {
                             content: "";
                         }
@@ -290,6 +294,10 @@
                             }
                         }
                     }
+                }
+
+                .post-slider {
+                    content: "";
                 }
 
                 .image {

@@ -157,7 +157,9 @@
     gap: var(--composer-gap-lg);
 
     .upper-container {
-      .title {
+      .title,
+      .subtitle,
+      .description {
         content: "";
       }
 

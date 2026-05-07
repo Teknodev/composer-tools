@@ -2089,7 +2089,7 @@ class Social4 extends BaseSocial {
                                                     {this.castToString(item.button.text) && (
                                                         <ComposerLink path={item.button.url}>
                                                             <div className={this.decorateCSS("button-container")}>
-                                                                <Base.Button buttonType={item.button.type}>{item.button.text}</Base.Button>
+                                                                <Base.Button buttonType={item.button.type} className={this.decorateCSS("follow-button")}>{item.button.text}</Base.Button>
                                                             </div>
                                                         </ComposerLink>
                                                     )}
@@ -2111,7 +2111,7 @@ class Social4 extends BaseSocial {
                                         )}
                                         {(item.mediaItems.length > 0 && !(item.media as any)?.url) && (
                                             <div className={this.decorateCSS("post-image-container")}>
-                                                <ComposerSlider {...settingsCard}>
+                                                <ComposerSlider {...settingsCard} className={this.decorateCSS("post-slider")}>
                                                     {item.mediaItems.map((item: MediaItem, index: number) => {
                                                         if (!(item.media as any)?.url) return null;
                                                         return (
