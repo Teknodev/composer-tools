@@ -1,24 +1,23 @@
-import { Base } from "../../../composer-base-components/base/base";
-import { BaseSocial } from "../../EditorComponent";
+import { BaseSocial, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./social3.module.scss";
 import React from "react";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 import { INPUTS } from "../../../custom-hooks/input-templates";
 
-type PostItem ={
-    title: React.JSX.Element,
-    description: React.JSX.Element,
-    image: string,
-    imageOverlay: boolean;
+type PostItem = {
+  title: React.JSX.Element,
+  description: React.JSX.Element,
+  image: string,
+  overlay: boolean;
 }
-type Interaction ={
-    icon: string,
-    text: React.JSX.Element
+type Interaction = {
+  icon: TypeMediaInputValue,
+  text: React.JSX.Element
 }
-type Social ={
-    icon: string,
-    text: React.JSX.Element,
-    url: string
+type Social = {
+  icon: TypeMediaInputValue,
+  text: React.JSX.Element,
+  url: string
 }
 
 class Social3 extends BaseSocial {
@@ -53,211 +52,247 @@ class Social3 extends BaseSocial {
     });
 
     this.addProp({
-        type: "object",
-        key: "profile",
-        displayer: "Profile",
-        value: [
-            {
-                type: "image",
-                key: "profileImage",
-                displayer: "Profile Image",
-                value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67e40a6cfb049c002cc41c31?alt=media&timestamp=1744289020159"
-            },
-            {
-                type: "string",
-                key: "name",
-                displayer: "Name",
-                value: "TTM"
-            },
-            {
-                type: "string",
-                key: "date",
-                displayer: "Date",
-                value: "03-03-2019"
-            },
-            {
-                type: "icon",
-                key: "dateIcon",
-                displayer: "Date Icon",
-                value: "CiClock2"
-            }
-        ]
+      type: "object",
+      key: "profile",
+      displayer: "Profile",
+      value: [
+        {
+          type: "image",
+          key: "profileImage",
+          displayer: "Profile Image",
+          value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67e40a6cfb049c002cc41c31?alt=media&timestamp=1744289020159"
+        },
+        {
+          type: "string",
+          key: "name",
+          displayer: "Name",
+          value: "TTM"
+        },
+        {
+          type: "string",
+          key: "date",
+          displayer: "Date",
+          value: "03-03-2019"
+        },
+        {
+          type: "icon",
+          key: "dateIcon",
+          displayer: "Date Icon",
+          value: "CiClock2"
+        }
+      ]
     })
     this.addProp({
-        type: "object",
-        key: "post",
-        displayer: "Post",
-        value: [
+      type: "object",
+      key: "post",
+      displayer: "Post",
+      value: [
         {
-            type:"string",
-            key: "title",
-            displayer: "Title",
-            value: "Broadway Canyon of Heroes"
+          type: "string",
+          key: "title",
+          displayer: "Title",
+          value: "Broadway Canyon of Heroes"
         },
         {
-            type:"string",
-            key: "description",
-            displayer: "Description",
-            value: "One's destination is never place, but a new way of seeing things."
+          type: "string",
+          key: "description",
+          displayer: "Description",
+          value: "One's destination is never place, but a new way of seeing things."
         },
         {
-            type:"image",
-            key: "image",
-            displayer: "Image",
-            value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67f7bd84fb049c002cc6ffab?alt=media&timestamp=1744289157829"
+          type: "image",
+          key: "image",
+          displayer: "Image",
+          value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67f7bd84fb049c002cc6ffab?alt=media&timestamp=1744289157829"
         },
         {
-            type: "boolean",
-            key: "imageOverlay",
-            displayer: "Image Overlay",
-            value: false
+          type: "boolean",
+          key: "overlay",
+          displayer: "Overlay",
+          value: false
         },
-        ]
+      ]
     })
     this.addProp({
-        type: "object",
-        key: "likeInteraction",
-        displayer: "Like Interaction",
-        value:[
+      type: "object",
+      key: "likeInteraction",
+      displayer: "Like Interaction",
+      value: [
         {
+          type: "media",
+          key: "icon",
+          displayer: "Icon",
+          value: {
             type: "icon",
-            key: "icon",
-            displayer: "Icon",
-            value: "AiOutlineLike"
+            name: "AiOutlineLike"
+          },
+          additionalParams: {
+            availableTypes: ["icon", "image"],
+          }
         },
         {
-            type: "string",
-            key: "text",
-            displayer: "Text",
-            value: "Like"
+          type: "string",
+          key: "text",
+          displayer: "Text",
+          value: "Like"
         }]
     }),
-    this.addProp({
+      this.addProp({
         type: "object",
         key: "commentInteraction",
         displayer: "Comment Interaction",
-        value:[
-        {
-            type: "icon",
+        value: [
+          {
+            type: "media",
             key: "icon",
             displayer: "Icon",
-            value: "FaRegCommentAlt"
-        },
-        {
+            value: {
+              type: "icon",
+              name: "FaRegCommentAlt"
+            },
+            additionalParams: {
+              availableTypes: ["icon", "image"],
+            }
+          },
+          {
             type: "string",
             key: "text",
             displayer: "Text",
             value: "Comment"
-        }]
-    }),
-    this.addProp({
+          }]
+      }),
+      this.addProp({
         type: "object",
         key: "shareInteraction",
         displayer: "Share Interaction",
-        value:[
-        {
-            type: "icon",
+        value: [
+          {
+            type: "media",
             key: "icon",
             displayer: "Icon",
-            value: "RiShareForwardLine"
-        },
-        {
+            value: {
+              type: "icon",
+              name: "RiShareForwardLine"
+            },
+            additionalParams: {
+              availableTypes: ["icon", "image"],
+            }
+          },
+          {
             type: "string",
             key: "text",
-            displayer:"Text",
+            displayer: "Text",
             value: "Share"
-        }]
-    }),
-    this.addProp({
+          }]
+      }),
+      this.addProp({
         type: "array",
         key: "socials",
         displayer: "Socials",
-        value:[
-        {
-            type:"object",
-            key:"social",
-            displayer:"Social",
-            value:[
-                {
-                    type: "icon",
-                    key: "icon",
-                    displayer: "Icon",
-                    value: "LuFacebook"
+        value: [
+          {
+            type: "object",
+            key: "social",
+            displayer: "Social",
+            value: [
+              {
+                type: "media",
+                key: "icon",
+                displayer: "Icon",
+                value: {
+                  type: "icon",
+                  name: "LuFacebook"
                 },
-                {
-                    type: "string",
-                    key: "text",
-                    displayer:"Text",
-                    value: "Facebook"
-                },
-                {
-                    type:"page",
-                    key: "url",
-                    displayer: "URL",
-                    value:""
+                additionalParams: {
+                  availableTypes: ["icon", "image"],
                 }
+              },
+              {
+                type: "string",
+                key: "text",
+                displayer: "Text",
+                value: "Facebook"
+              },
+              {
+                type: "page",
+                key: "url",
+                displayer: "Navigate To",
+                value: ""
+              }
             ]
-        },
-        {
-            type:"object",
-            key:"social",
-            displayer:"Social",
-            value:[
-                {
-                    type: "icon",
-                    key: "icon",
-                    displayer: "Icon",
-                    value: "LuTwitter"
+          },
+          {
+            type: "object",
+            key: "social",
+            displayer: "Social",
+            value: [
+              {
+                type: "media",
+                key: "icon",
+                displayer: "Icon",
+                value: {
+                  type: "icon",
+                  name: "LuTwitter"
                 },
-                {
-                    type: "string",
-                    key: "text",
-                    displayer:"Text",
-                    value: "Twitter"
-                },
-                {
-                    type:"page",
-                    key: "url",
-                    displayer: "URL",
-                    value:""
+                additionalParams: {
+                  availableTypes: ["icon", "image"],
                 }
+              },
+              {
+                type: "string",
+                key: "text",
+                displayer: "Text",
+                value: "Twitter"
+              },
+              {
+                type: "page",
+                key: "url",
+                displayer: "Navigate To",
+                value: ""
+              }
             ]
-        },
-        {
-            type:"object",
-            key:"social",
-            displayer:"Social",
-            value:[
-                {
-                    type: "icon",
-                    key: "icon",
-                    displayer: "Icon",
-                    value: "SlSocialLinkedin"
+          },
+          {
+            type: "object",
+            key: "social",
+            displayer: "Social",
+            value: [
+              {
+                type: "media",
+                key: "icon",
+                displayer: "Icon",
+                value: {
+                  type: "icon",
+                  name: "SlSocialLinkedin"
                 },
-                {
-                    type: "string",
-                    key: "text",
-                    displayer:"Text",
-                    value: "Linkedin"
-                },
-                {
-                    type:"page",
-                    key: "url",
-                    displayer: "URL",
-                    value:""
+                additionalParams: {
+                  availableTypes: ["icon", "image"],
                 }
+              },
+              {
+                type: "string",
+                key: "text",
+                displayer: "Text",
+                value: "Linkedin"
+              },
+              {
+                type: "page",
+                key: "url",
+                displayer: "Navigate To",
+                value: ""
+              }
             ]
-        },
+          },
         ]
-    })
+      })
     this.setComponentState("isLiked", false);
-    
+
   }
 
   static getName(): string {
     return "Social 3";
   }
-  handleLikeClick = () =>{
+  handleLikeClick = () => {
     this.setComponentState("isLiked", !this.getComponentState("isLiked"))
   }
   render() {
@@ -348,45 +383,45 @@ class Social3 extends BaseSocial {
               this.castToString(profile.name) ||
               profile.dateIcon ||
               this.castToString(profile.date)) && (
-              <div className={this.decorateCSS("upper-section")}>
-                {profile.profileImage && (
-                  <img
-                    className={this.decorateCSS("profile-image")}
-                    src={profile.profileImage}
-                    alt={profile.profileImage}
-                  />
-                )}
-                {(this.castToString(profile.name) ||
-                  profile.dateIcon ||
-                  profile.date) && (
-                  <div className={this.decorateCSS("right-container")}>
-                    {this.castToString(profile.name) && (
-                      <div className={this.decorateCSS("user-name")}>
-                        {profile.name}
-                      </div>
-                    )}
-                    {(profile.dateIcon ||
-                      this.castToString(profile.date)) && (
-                      <div className={this.decorateCSS("date-container")}>
-                        {profile.dateIcon && (
-                          <Base.Icon
-                            name={profile.dateIcon}
-                            propsIcon={{
-                              className: this.decorateCSS("date-icon"),
-                            }}
-                          />
-                        )}
-                        {this.castToString(profile.date) && (
-                          <div className={this.decorateCSS("date")}>
-                            {profile.date}
+                <div className={this.decorateCSS("upper-section")}>
+                  {profile.profileImage && (
+                    <img
+                      className={this.decorateCSS("profile-image")}
+                      src={profile.profileImage}
+                      alt={profile.profileImage}
+                    />
+                  )}
+                  {(this.castToString(profile.name) ||
+                    profile.dateIcon ||
+                    profile.date) && (
+                      <div className={this.decorateCSS("right-container")}>
+                        {this.castToString(profile.name) && (
+                          <div className={this.decorateCSS("user-name")}>
+                            {profile.name}
                           </div>
                         )}
+                        {(profile.dateIcon ||
+                          this.castToString(profile.date)) && (
+                            <div className={this.decorateCSS("date-container")}>
+                              {profile.dateIcon && (
+                                <Base.Icon
+                                  name={profile.dateIcon}
+                                  propsIcon={{
+                                    className: this.decorateCSS("date-icon"),
+                                  }}
+                                />
+                              )}
+                              {this.castToString(profile.date) && (
+                                <div className={this.decorateCSS("date")}>
+                                  {profile.date}
+                                </div>
+                              )}
+                            </div>
+                          )}
                       </div>
                     )}
-                  </div>
-                )}
-              </div>
-            )}
+                </div>
+              )}
             {this.castToString(post.title) && (
               <div className={this.decorateCSS("post-title")}>
                 {post.title}
@@ -404,8 +439,8 @@ class Social3 extends BaseSocial {
                   src={post.image}
                   alt={post.image}
                 />
-                {post.imageOverlay && (
-                  <div className={this.decorateCSS("image-overlay")} />
+                {post.overlay && (
+                  <div className={this.decorateCSS("overlay-item")} />
                 )}
               </div>
             )}
@@ -416,106 +451,106 @@ class Social3 extends BaseSocial {
               socials.length > 0 ||
               shareInteraction.icon ||
               this.castToString(shareInteraction.text)) && (
-              <div className={this.decorateCSS("interactions-container")}>
-                {(likeInteraction.icon ||
-                  this.castToString(likeInteraction.text)) && (
-                  <div
-                    className={this.decorateCSS("interaction")}
-                    onClick={() => this.handleLikeClick()}
-                  >
-                    {likeInteraction.icon && (
-                      <Base.Icon
-                        name={likeInteraction.icon}
-                        propsIcon={{
-                          className: `${this.decorateCSS(
-                            "icon"
-                          )} ${this.getComponentState("isLiked") &&
-                            this.decorateCSS("liked")}`,
-                        }}
-                      />
-                    )}
-                    {this.castToString(likeInteraction.text) && (
-                      <div className={this.decorateCSS("text")}>
-                        {likeInteraction.text}
+                <div className={this.decorateCSS("interactions-container")}>
+                  {(likeInteraction.icon ||
+                    this.castToString(likeInteraction.text)) && (
+                      <div
+                        className={this.decorateCSS("interaction")}
+                        onClick={() => this.handleLikeClick()}
+                      >
+                        {likeInteraction.icon && (
+                          <Base.Icon
+                            name={likeInteraction.icon}
+                            propsIcon={{
+                              className: `${this.decorateCSS(
+                                "icon"
+                              )} ${this.getComponentState("isLiked") &&
+                              this.decorateCSS("liked")}`,
+                            }}
+                          />
+                        )}
+                        {this.castToString(likeInteraction.text) && (
+                          <div className={this.decorateCSS("text")}>
+                            {likeInteraction.text}
+                          </div>
+                        )}
                       </div>
                     )}
-                  </div>
-                )}
-                {(commentInteraction.icon ||
-                  this.castToString(commentInteraction.text)) && (
-                  <div className={this.decorateCSS("interaction")}>
-                    {commentInteraction.icon && (
-                      <Base.Icon
-                        name={commentInteraction.icon}
-                        propsIcon={{
-                          className: this.decorateCSS("icon"),
-                        }}
-                      />
-                    )}
-                    {this.castToString(commentInteraction.text) && (
-                      <div className={this.decorateCSS("text")}>
-                        {commentInteraction.text}
+                  {(commentInteraction.icon ||
+                    this.castToString(commentInteraction.text)) && (
+                      <div className={this.decorateCSS("interaction")}>
+                        {commentInteraction.icon && (
+                          <Base.Icon
+                            name={commentInteraction.icon}
+                            propsIcon={{
+                              className: this.decorateCSS("icon"),
+                            }}
+                          />
+                        )}
+                        {this.castToString(commentInteraction.text) && (
+                          <div className={this.decorateCSS("text")}>
+                            {commentInteraction.text}
+                          </div>
+                        )}
                       </div>
                     )}
-                  </div>
-                )}
-                {(socials.length > 0 ||
-                  shareInteraction.icon ||
-                  this.castToString(shareInteraction.text)) && (
-                  <div
-                    className={`${this.decorateCSS(
-                      "interaction"
-                    )} ${this.decorateCSS("share")}`}
-                  >
-                    {shareInteraction.icon && (
-                      <Base.Icon
-                        name={shareInteraction.icon}
-                        propsIcon={{
-                          className: this.decorateCSS("icon"),
-                        }}
-                      />
-                    )}
-                    {this.castToString(shareInteraction.text) && (
-                      <div className={this.decorateCSS("text")}>
-                        {shareInteraction.text}
-                      </div>
-                    )}
-                    {socials.length > 0 && (
-                      <div className={this.decorateCSS("socials")}>
-                        {socials.map((item, index: number) => {
-                          if (!item.icon && !this.castToString(item.text)) return null;
-                          return (
-                            <ComposerLink path={item.url} key={index}>
-                              <div
-                                className={this.decorateCSS("social")}
-                              >
-                                {item.icon && (
-                                  <Base.Icon
-                                    name={item.icon}
-                                    propsIcon={{
-                                      className: this.decorateCSS(
-                                        "social-icon"
-                                      ),
-                                    }}
-                                  />
-                                )}
-                                {this.castToString(item.text) && (
+                  {(socials.length > 0 ||
+                    shareInteraction.icon ||
+                    this.castToString(shareInteraction.text)) && (
+                      <div
+                        className={`${this.decorateCSS(
+                          "interaction"
+                        )} ${this.decorateCSS("share")}`}
+                      >
+                        {shareInteraction.icon && (
+                          <Base.Icon
+                            name={shareInteraction.icon}
+                            propsIcon={{
+                              className: this.decorateCSS("icon"),
+                            }}
+                          />
+                        )}
+                        {this.castToString(shareInteraction.text) && (
+                          <div className={this.decorateCSS("text")}>
+                            {shareInteraction.text}
+                          </div>
+                        )}
+                        {socials.length > 0 && (
+                          <div className={this.decorateCSS("socials")}>
+                            {socials.map((item, index: number) => {
+                              if (!item.icon && !this.castToString(item.text)) return null;
+                              return (
+                                <ComposerLink path={item.url} key={index}>
                                   <div
-                                    className={this.decorateCSS("social-text")}
+                                    className={this.decorateCSS("social")}
                                   >
-                                    {item.text}
+                                    {item.icon && (
+                                      <Base.Icon
+                                        name={item.icon}
+                                        propsIcon={{
+                                          className: this.decorateCSS(
+                                            "social-icon"
+                                          ),
+                                        }}
+                                      />
+                                    )}
+                                    {this.castToString(item.text) && (
+                                      <div
+                                        className={this.decorateCSS("social-text")}
+                                      >
+                                        {item.text}
+                                      </div>
+                                    )}
                                   </div>
-                                )}
-                              </div>
-                            </ComposerLink>
-                          );
-                        })}
+                                </ComposerLink>
+                              );
+                            })}
+                          </div>
+                        )}
                       </div>
                     )}
-                  </div>
-                )}
-              </div>
-            )}
+                </div>
+              )}
           </div>
         </Base.MaxContent>
       </Base.Container>

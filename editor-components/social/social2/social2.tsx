@@ -1,5 +1,5 @@
 import * as React from "react";
-import { BaseSocial } from "../../EditorComponent";
+import { BaseSlider, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./social2.module.scss";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import { Base } from "../../../composer-base-components/base/base";
@@ -7,18 +7,18 @@ import { INPUTS } from "../../../custom-hooks/input-templates";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 
 type SlideItems = {
-    media: string;
+    media: TypeMediaInputValue;
     description: React.JSX.Element
     socialIcons: SocialIcon[]
-    imageOverlay: boolean;
+    overlay: boolean;
 }
 
 type SocialIcon = {
-    icon: string;
+    icon: TypeMediaInputValue;
     url: string
 }
 
-class Social2 extends BaseSocial {
+class Social2 extends BaseSlider {
     constructor(props?: any) {
         super(props, styles);
         this.addProp({
@@ -59,10 +59,16 @@ class Social2 extends BaseSocial {
                     value:
                         [
                             {
-                                type: "video",
+                                type: "media",
                                 key: "media",
                                 displayer: "Media",
-                                value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67f8f6d9fb049c002cc73345?alt=media&timestamp=1744369370862"
+                                additionalParams: {
+                                    availableTypes: ["video"],
+                                },
+                                value: {
+                                    type: "video",
+                                    url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67f8f6d9fb049c002cc73345?alt=media&timestamp=1744369370862",
+                                },
                             },
                             {
                                 type: "string",
@@ -72,8 +78,8 @@ class Social2 extends BaseSocial {
                             },
                             {
                                 type: "boolean",
-                                key: "imageOverlay",
-                                displayer: "Image Overlay",
+                                key: "overlay",
+                                displayer: "Overlay",
                                 value: false
                             },
                             {
@@ -87,15 +93,21 @@ class Social2 extends BaseSocial {
                                         displayer: "Social Icon",
                                         value: [
                                             {
-                                                type: "icon",
+                                                type: "media",
                                                 key: "icon",
                                                 displayer: "Icon",
-                                                value: "RiFacebookFill"
+                                                value: {
+                                                    type: "icon",
+                                                    name: "RiFacebookFill"
+                                                },
+                                                additionalParams: {
+                                                    availableTypes: ["icon", "image"],
+                                                }
                                             },
                                             {
                                                 type: "page",
                                                 key: "url",
-                                                displayer: "URL",
+                                                displayer: "Navigate To",
                                                 value: ""
                                             },
                                         ]
@@ -106,34 +118,21 @@ class Social2 extends BaseSocial {
                                         displayer: "Social Icon",
                                         value: [
                                             {
-                                                type: "icon",
+                                                type: "media",
                                                 key: "icon",
                                                 displayer: "Icon",
-                                                value: "ImLinkedin2"
+                                                value: {
+                                                    type: "icon",
+                                                    name: "ImLinkedin2"
+                                                },
+                                                additionalParams: {
+                                                    availableTypes: ["icon", "image"],
+                                                }
                                             },
                                             {
                                                 type: "page",
                                                 key: "url",
-                                                displayer: "URL",
-                                                value: ""
-                                            }
-                                        ]
-                                    },
-                                    {
-                                        type: "object",
-                                        key: "socialIcon",
-                                        displayer: "Social Icon",
-                                        value: [
-                                            {
-                                                type: "icon",
-                                                key: "icon",
-                                                displayer: "Icon",
-                                                value: "SiWhatsapp"
-                                            },
-                                            {
-                                                type: "page",
-                                                key: "url",
-                                                displayer: "URL",
+                                                displayer: "Navigate To",
                                                 value: ""
                                             }
                                         ]
@@ -144,15 +143,46 @@ class Social2 extends BaseSocial {
                                         displayer: "Social Icon",
                                         value: [
                                             {
-                                                type: "icon",
+                                                type: "media",
                                                 key: "icon",
                                                 displayer: "Icon",
-                                                value: "FaTwitter"
+                                                value: {
+                                                    type: "icon",
+                                                    name: "SiWhatsapp"
+                                                },
+                                                additionalParams: {
+                                                    availableTypes: ["icon", "image"],
+                                                }
                                             },
                                             {
                                                 type: "page",
                                                 key: "url",
-                                                displayer: "URL",
+                                                displayer: "Navigate To",
+                                                value: ""
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        type: "object",
+                                        key: "socialIcon",
+                                        displayer: "Social Icon",
+                                        value: [
+                                            {
+                                                type: "media",
+                                                key: "icon",
+                                                displayer: "Icon",
+                                                value: {
+                                                    type: "icon",
+                                                    name: "FaTwitter"
+                                                },
+                                                additionalParams: {
+                                                    availableTypes: ["icon", "image"],
+                                                }
+                                            },
+                                            {
+                                                type: "page",
+                                                key: "url",
+                                                displayer: "Navigate To",
                                                 value: ""
                                             }
                                         ]
@@ -168,10 +198,16 @@ class Social2 extends BaseSocial {
                     value:
                         [
                             {
-                                type: "video",
+                                type: "media",
                                 key: "media",
                                 displayer: "Media",
-                                value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67f8f762fb049c002cc73423?alt=media&timestamp=1744369509310"
+                                additionalParams: {
+                                    availableTypes: ["video"],
+                                },
+                                value: {
+                                    type: "video",
+                                    url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67f8f762fb049c002cc73423?alt=media&timestamp=1744369509310",
+                                },
                             },
                             {
                                 type: "string",
@@ -181,8 +217,8 @@ class Social2 extends BaseSocial {
                             },
                             {
                                 type: "boolean",
-                                key: "imageOverlay",
-                                displayer: "Image Overlay",
+                                key: "overlay",
+                                displayer: "Overlay",
                                 value: false
                             },
                             {
@@ -196,15 +232,21 @@ class Social2 extends BaseSocial {
                                         displayer: "Social Icon",
                                         value: [
                                             {
-                                                type: "icon",
+                                                type: "media",
                                                 key: "icon",
                                                 displayer: "Icon",
-                                                value: "RiFacebookFill"
+                                                value: {
+                                                    type: "icon",
+                                                    name: "RiFacebookFill"
+                                                },
+                                                additionalParams: {
+                                                    availableTypes: ["icon", "image"],
+                                                }
                                             },
                                             {
                                                 type: "page",
                                                 key: "url",
-                                                displayer: "URL",
+                                                displayer: "Navigate To",
                                                 value: ""
                                             },
                                         ]
@@ -215,34 +257,21 @@ class Social2 extends BaseSocial {
                                         displayer: "Social Icon",
                                         value: [
                                             {
-                                                type: "icon",
+                                                type: "media",
                                                 key: "icon",
                                                 displayer: "Icon",
-                                                value: "ImLinkedin2"
+                                                value: {
+                                                    type: "icon",
+                                                    name: "ImLinkedin2"
+                                                },
+                                                additionalParams: {
+                                                    availableTypes: ["icon", "image"],
+                                                }
                                             },
                                             {
                                                 type: "page",
                                                 key: "url",
-                                                displayer: "URL",
-                                                value: ""
-                                            }
-                                        ]
-                                    },
-                                    {
-                                        type: "object",
-                                        key: "socialIcon",
-                                        displayer: "Social Icon",
-                                        value: [
-                                            {
-                                                type: "icon",
-                                                key: "icon",
-                                                displayer: "Icon",
-                                                value: "SiWhatsapp"
-                                            },
-                                            {
-                                                type: "page",
-                                                key: "url",
-                                                displayer: "URL",
+                                                displayer: "Navigate To",
                                                 value: ""
                                             }
                                         ]
@@ -253,15 +282,46 @@ class Social2 extends BaseSocial {
                                         displayer: "Social Icon",
                                         value: [
                                             {
-                                                type: "icon",
+                                                type: "media",
                                                 key: "icon",
                                                 displayer: "Icon",
-                                                value: "FaTwitter"
+                                                value: {
+                                                    type: "icon",
+                                                    name: "SiWhatsapp"
+                                                },
+                                                additionalParams: {
+                                                    availableTypes: ["icon", "image"],
+                                                }
                                             },
                                             {
                                                 type: "page",
                                                 key: "url",
-                                                displayer: "URL",
+                                                displayer: "Navigate To",
+                                                value: ""
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        type: "object",
+                                        key: "socialIcon",
+                                        displayer: "Social Icon",
+                                        value: [
+                                            {
+                                                type: "media",
+                                                key: "icon",
+                                                displayer: "Icon",
+                                                value: {
+                                                    type: "icon",
+                                                    name: "FaTwitter"
+                                                },
+                                                additionalParams: {
+                                                    availableTypes: ["icon", "image"],
+                                                }
+                                            },
+                                            {
+                                                type: "page",
+                                                key: "url",
+                                                displayer: "Navigate To",
                                                 value: ""
                                             }
                                         ]
@@ -277,10 +337,16 @@ class Social2 extends BaseSocial {
                     value:
                         [
                             {
-                                type: "video",
+                                type: "media",
                                 key: "media",
                                 displayer: "Media",
-                                value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67f93240fb049c002cc77162?alt=media&timestamp=1744384580236"
+                                additionalParams: {
+                                    availableTypes: ["video"],
+                                },
+                                value: {
+                                    type: "video",
+                                    url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67f93240fb049c002cc77162?alt=media&timestamp=1744384580236",
+                                },
                             },
                             {
                                 type: "string",
@@ -290,8 +356,8 @@ class Social2 extends BaseSocial {
                             },
                             {
                                 type: "boolean",
-                                key: "imageOverlay",
-                                displayer: "Image Overlay",
+                                key: "overlay",
+                                displayer: "Overlay",
                                 value: false
                             },
                             {
@@ -305,15 +371,21 @@ class Social2 extends BaseSocial {
                                         displayer: "Social Icon",
                                         value: [
                                             {
-                                                type: "icon",
+                                                type: "media",
                                                 key: "icon",
                                                 displayer: "Icon",
-                                                value: "RiFacebookFill"
+                                                value: {
+                                                    type: "icon",
+                                                    name: "RiFacebookFill"
+                                                },
+                                                additionalParams: {
+                                                    availableTypes: ["icon", "image"],
+                                                }
                                             },
                                             {
                                                 type: "page",
                                                 key: "url",
-                                                displayer: "URL",
+                                                displayer: "Navigate To",
                                                 value: ""
                                             },
                                         ]
@@ -324,34 +396,21 @@ class Social2 extends BaseSocial {
                                         displayer: "Social Icon",
                                         value: [
                                             {
-                                                type: "icon",
+                                                type: "media",
                                                 key: "icon",
                                                 displayer: "Icon",
-                                                value: "ImLinkedin2"
+                                                value: {
+                                                    type: "icon",
+                                                    name: "ImLinkedin2"
+                                                },
+                                                additionalParams: {
+                                                    availableTypes: ["icon", "image"],
+                                                }
                                             },
                                             {
                                                 type: "page",
                                                 key: "url",
-                                                displayer: "URL",
-                                                value: ""
-                                            }
-                                        ]
-                                    },
-                                    {
-                                        type: "object",
-                                        key: "socialIcon",
-                                        displayer: "Social Icon",
-                                        value: [
-                                            {
-                                                type: "icon",
-                                                key: "icon",
-                                                displayer: "Icon",
-                                                value: "SiWhatsapp"
-                                            },
-                                            {
-                                                type: "page",
-                                                key: "url",
-                                                displayer: "URL",
+                                                displayer: "Navigate To",
                                                 value: ""
                                             }
                                         ]
@@ -362,15 +421,46 @@ class Social2 extends BaseSocial {
                                         displayer: "Social Icon",
                                         value: [
                                             {
-                                                type: "icon",
+                                                type: "media",
                                                 key: "icon",
                                                 displayer: "Icon",
-                                                value: "FaTwitter"
+                                                value: {
+                                                    type: "icon",
+                                                    name: "SiWhatsapp"
+                                                },
+                                                additionalParams: {
+                                                    availableTypes: ["icon", "image"],
+                                                }
                                             },
                                             {
                                                 type: "page",
                                                 key: "url",
-                                                displayer: "URL",
+                                                displayer: "Navigate To",
+                                                value: ""
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        type: "object",
+                                        key: "socialIcon",
+                                        displayer: "Social Icon",
+                                        value: [
+                                            {
+                                                type: "media",
+                                                key: "icon",
+                                                displayer: "Icon",
+                                                value: {
+                                                    type: "icon",
+                                                    name: "FaTwitter"
+                                                },
+                                                additionalParams: {
+                                                    availableTypes: ["icon", "image"],
+                                                }
+                                            },
+                                            {
+                                                type: "page",
+                                                key: "url",
+                                                displayer: "Navigate To",
                                                 value: ""
                                             }
                                         ]
@@ -386,10 +476,16 @@ class Social2 extends BaseSocial {
                     value:
                         [
                             {
-                                type: "video",
+                                type: "media",
                                 key: "media",
                                 displayer: "Media",
-                                value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67f8f737fb049c002cc733e0?alt=media&timestamp=1744369466179"
+                                additionalParams: {
+                                    availableTypes: ["video"],
+                                },
+                                value: {
+                                    type: "video",
+                                    url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67f8f737fb049c002cc733e0?alt=media&timestamp=1744369466179",
+                                },
                             },
                             {
                                 type: "string",
@@ -399,8 +495,8 @@ class Social2 extends BaseSocial {
                             },
                             {
                                 type: "boolean",
-                                key: "imageOverlay",
-                                displayer: "Image Overlay",
+                                key: "overlay",
+                                displayer: "Overlay",
                                 value: false
                             },
                             {
@@ -414,15 +510,21 @@ class Social2 extends BaseSocial {
                                         displayer: "Social Icon",
                                         value: [
                                             {
-                                                type: "icon",
+                                                type: "media",
                                                 key: "icon",
                                                 displayer: "Icon",
-                                                value: "RiFacebookFill"
+                                                value: {
+                                                    type: "icon",
+                                                    name: "RiFacebookFill"
+                                                },
+                                                additionalParams: {
+                                                    availableTypes: ["icon", "image"],
+                                                }
                                             },
                                             {
                                                 type: "page",
                                                 key: "url",
-                                                displayer: "URL",
+                                                displayer: "Navigate To",
                                                 value: ""
                                             },
                                         ]
@@ -433,34 +535,21 @@ class Social2 extends BaseSocial {
                                         displayer: "Social Icon",
                                         value: [
                                             {
-                                                type: "icon",
+                                                type: "media",
                                                 key: "icon",
                                                 displayer: "Icon",
-                                                value: "ImLinkedin2"
+                                                value: {
+                                                    type: "icon",
+                                                    name: "ImLinkedin2"
+                                                },
+                                                additionalParams: {
+                                                    availableTypes: ["icon", "image"],
+                                                }
                                             },
                                             {
                                                 type: "page",
                                                 key: "url",
-                                                displayer: "URL",
-                                                value: ""
-                                            }
-                                        ]
-                                    },
-                                    {
-                                        type: "object",
-                                        key: "socialIcon",
-                                        displayer: "Social Icon",
-                                        value: [
-                                            {
-                                                type: "icon",
-                                                key: "icon",
-                                                displayer: "Icon",
-                                                value: "SiWhatsapp"
-                                            },
-                                            {
-                                                type: "page",
-                                                key: "url",
-                                                displayer: "URL",
+                                                displayer: "Navigate To",
                                                 value: ""
                                             }
                                         ]
@@ -471,15 +560,46 @@ class Social2 extends BaseSocial {
                                         displayer: "Social Icon",
                                         value: [
                                             {
-                                                type: "icon",
+                                                type: "media",
                                                 key: "icon",
                                                 displayer: "Icon",
-                                                value: "FaTwitter"
+                                                value: {
+                                                    type: "icon",
+                                                    name: "SiWhatsapp"
+                                                },
+                                                additionalParams: {
+                                                    availableTypes: ["icon", "image"],
+                                                }
                                             },
                                             {
                                                 type: "page",
                                                 key: "url",
-                                                displayer: "URL",
+                                                displayer: "Navigate To",
+                                                value: ""
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        type: "object",
+                                        key: "socialIcon",
+                                        displayer: "Social Icon",
+                                        value: [
+                                            {
+                                                type: "media",
+                                                key: "icon",
+                                                displayer: "Icon",
+                                                value: {
+                                                    type: "icon",
+                                                    name: "FaTwitter"
+                                                },
+                                                additionalParams: {
+                                                    availableTypes: ["icon", "image"],
+                                                }
+                                            },
+                                            {
+                                                type: "page",
+                                                key: "url",
+                                                displayer: "Navigate To",
                                                 value: ""
                                             }
                                         ]
@@ -495,10 +615,16 @@ class Social2 extends BaseSocial {
                     value:
                         [
                             {
-                                type: "video",
+                                type: "media",
                                 key: "media",
                                 displayer: "Media",
-                                value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67f8f6f7fb049c002cc73356?alt=media&timestamp=1744369401737"
+                                additionalParams: {
+                                    availableTypes: ["video"],
+                                },
+                                value: {
+                                    type: "video",
+                                    url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67f8f6f7fb049c002cc73356?alt=media&timestamp=1744369401737",
+                                },
                             },
                             {
                                 type: "string",
@@ -508,8 +634,8 @@ class Social2 extends BaseSocial {
                             },
                             {
                                 type: "boolean",
-                                key: "imageOverlay",
-                                displayer: "Image Overlay",
+                                key: "overlay",
+                                displayer: "Overlay",
                                 value: false
                             },
                             {
@@ -523,15 +649,21 @@ class Social2 extends BaseSocial {
                                         displayer: "Social Icon",
                                         value: [
                                             {
-                                                type: "icon",
+                                                type: "media",
                                                 key: "icon",
                                                 displayer: "Icon",
-                                                value: "RiFacebookFill"
+                                                value: {
+                                                    type: "icon",
+                                                    name: "RiFacebookFill"
+                                                },
+                                                additionalParams: {
+                                                    availableTypes: ["icon", "image"],
+                                                }
                                             },
                                             {
                                                 type: "page",
                                                 key: "url",
-                                                displayer: "URL",
+                                                displayer: "Navigate To",
                                                 value: ""
                                             },
                                         ]
@@ -542,34 +674,21 @@ class Social2 extends BaseSocial {
                                         displayer: "Social Icon",
                                         value: [
                                             {
-                                                type: "icon",
+                                                type: "media",
                                                 key: "icon",
                                                 displayer: "Icon",
-                                                value: "ImLinkedin2"
+                                                value: {
+                                                    type: "icon",
+                                                    name: "ImLinkedin2"
+                                                },
+                                                additionalParams: {
+                                                    availableTypes: ["icon", "image"],
+                                                }
                                             },
                                             {
                                                 type: "page",
                                                 key: "url",
-                                                displayer: "URL",
-                                                value: ""
-                                            }
-                                        ]
-                                    },
-                                    {
-                                        type: "object",
-                                        key: "socialIcon",
-                                        displayer: "Social Icon",
-                                        value: [
-                                            {
-                                                type: "icon",
-                                                key: "icon",
-                                                displayer: "Icon",
-                                                value: "SiWhatsapp"
-                                            },
-                                            {
-                                                type: "page",
-                                                key: "url",
-                                                displayer: "URL",
+                                                displayer: "Navigate To",
                                                 value: ""
                                             }
                                         ]
@@ -580,15 +699,46 @@ class Social2 extends BaseSocial {
                                         displayer: "Social Icon",
                                         value: [
                                             {
-                                                type: "icon",
+                                                type: "media",
                                                 key: "icon",
                                                 displayer: "Icon",
-                                                value: "FaTwitter"
+                                                value: {
+                                                    type: "icon",
+                                                    name: "SiWhatsapp"
+                                                },
+                                                additionalParams: {
+                                                    availableTypes: ["icon", "image"],
+                                                }
                                             },
                                             {
                                                 type: "page",
                                                 key: "url",
-                                                displayer: "URL",
+                                                displayer: "Navigate To",
+                                                value: ""
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        type: "object",
+                                        key: "socialIcon",
+                                        displayer: "Social Icon",
+                                        value: [
+                                            {
+                                                type: "media",
+                                                key: "icon",
+                                                displayer: "Icon",
+                                                value: {
+                                                    type: "icon",
+                                                    name: "FaTwitter"
+                                                },
+                                                additionalParams: {
+                                                    availableTypes: ["icon", "image"],
+                                                }
+                                            },
+                                            {
+                                                type: "page",
+                                                key: "url",
+                                                displayer: "Navigate To",
                                                 value: ""
                                             }
                                         ]
@@ -604,10 +754,16 @@ class Social2 extends BaseSocial {
                     value:
                         [
                             {
-                                type: "video",
+                                type: "media",
                                 key: "media",
                                 displayer: "Media",
-                                value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67f931e6fb049c002cc770d6?alt=media&timestamp=1744384488435"
+                                additionalParams: {
+                                    availableTypes: ["video"],
+                                },
+                                value: {
+                                    type: "video",
+                                    url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67f931e6fb049c002cc770d6?alt=media&timestamp=1744384488435",
+                                },
                             },
                             {
                                 type: "string",
@@ -617,8 +773,8 @@ class Social2 extends BaseSocial {
                             },
                             {
                                 type: "boolean",
-                                key: "imageOverlay",
-                                displayer: "Image Overlay",
+                                key: "overlay",
+                                displayer: "Overlay",
                                 value: false
                             },
                             {
@@ -632,15 +788,21 @@ class Social2 extends BaseSocial {
                                         displayer: "Social Icon",
                                         value: [
                                             {
-                                                type: "icon",
+                                                type: "media",
                                                 key: "icon",
                                                 displayer: "Icon",
-                                                value: "RiFacebookFill"
+                                                value: {
+                                                    type: "icon",
+                                                    name: "RiFacebookFill"
+                                                },
+                                                additionalParams: {
+                                                    availableTypes: ["icon", "image"],
+                                                }
                                             },
                                             {
                                                 type: "page",
                                                 key: "url",
-                                                displayer: "URL",
+                                                displayer: "Navigate To",
                                                 value: ""
                                             },
                                         ]
@@ -651,34 +813,21 @@ class Social2 extends BaseSocial {
                                         displayer: "Social Icon",
                                         value: [
                                             {
-                                                type: "icon",
+                                                type: "media",
                                                 key: "icon",
                                                 displayer: "Icon",
-                                                value: "ImLinkedin2"
+                                                value: {
+                                                    type: "icon",
+                                                    name: "ImLinkedin2"
+                                                },
+                                                additionalParams: {
+                                                    availableTypes: ["icon", "image"],
+                                                }
                                             },
                                             {
                                                 type: "page",
                                                 key: "url",
-                                                displayer: "URL",
-                                                value: ""
-                                            }
-                                        ]
-                                    },
-                                    {
-                                        type: "object",
-                                        key: "socialIcon",
-                                        displayer: "Social Icon",
-                                        value: [
-                                            {
-                                                type: "icon",
-                                                key: "icon",
-                                                displayer: "Icon",
-                                                value: "SiWhatsapp"
-                                            },
-                                            {
-                                                type: "page",
-                                                key: "url",
-                                                displayer: "URL",
+                                                displayer: "Navigate To",
                                                 value: ""
                                             }
                                         ]
@@ -689,15 +838,46 @@ class Social2 extends BaseSocial {
                                         displayer: "Social Icon",
                                         value: [
                                             {
-                                                type: "icon",
+                                                type: "media",
                                                 key: "icon",
                                                 displayer: "Icon",
-                                                value: "FaTwitter"
+                                                value: {
+                                                    type: "icon",
+                                                    name: "SiWhatsapp"
+                                                },
+                                                additionalParams: {
+                                                    availableTypes: ["icon", "image"],
+                                                }
                                             },
                                             {
                                                 type: "page",
                                                 key: "url",
-                                                displayer: "URL",
+                                                displayer: "Navigate To",
+                                                value: ""
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        type: "object",
+                                        key: "socialIcon",
+                                        displayer: "Social Icon",
+                                        value: [
+                                            {
+                                                type: "media",
+                                                key: "icon",
+                                                displayer: "Icon",
+                                                value: {
+                                                    type: "icon",
+                                                    name: "FaTwitter"
+                                                },
+                                                additionalParams: {
+                                                    availableTypes: ["icon", "image"],
+                                                }
+                                            },
+                                            {
+                                                type: "page",
+                                                key: "url",
+                                                displayer: "Navigate To",
                                                 value: ""
                                             }
                                         ]
@@ -764,6 +944,16 @@ class Social2 extends BaseSocial {
                 },
             ]
         });
+
+        this.addProp(INPUTS.SLIDER_SETTINGS("sliderSettings", "Slider Settings", {
+            dots: false,
+            arrows: false,
+            infinite: false,
+            autoplay: false,
+            speed: 500,
+            slidesToShow: 5,
+            slidesToScroll: 1,
+        }));
 
         this.setComponentState("intervalId", 0);
         this.setComponentState("slider-ref", React.createRef());
@@ -909,22 +1099,12 @@ class Social2 extends BaseSocial {
         const selectedIndex = this.getComponentState("selectedVideo");
 
 
+        const sliderSettings = this.transformSliderValues(this.getPropValue("sliderSettings"));
+
         const settings = {
-            dots: false,
-            arrows: false,
-            infinite: false,
-            autoplay: false,
-            slidesToShow: 5,
-            slidesToScroll: 1,
+            ...sliderSettings,
             adaptiveHeight: false,
             responsive: [
-                {
-                    breakpoint: 1024,
-                    settings: {
-                        slidesToShow: 2,
-                        slidesToScroll: 1,
-                    },
-                },
                 {
                     breakpoint: 640,
                     settings: {
@@ -933,7 +1113,6 @@ class Social2 extends BaseSocial {
                     },
                 },
             ],
-
         };
 
 
@@ -1024,7 +1203,7 @@ class Social2 extends BaseSocial {
                                     {sliderItems.map((item, index: number) => {
                                         return (
                                             <div key={index} className={this.decorateCSS("slider-item")}>
-                                                {item.media && (
+                                                {item.media?.url && (
                                                     <video
                                                         key={`video-${index}`}
                                                         id={`video-${index}`}
@@ -1034,11 +1213,11 @@ class Social2 extends BaseSocial {
                                                         loop
                                                         preload="auto"
                                                         className={this.decorateCSS("video")}
-                                                        src={item.media}
+                                                        src={item.media.url}
                                                     />
                                                 )}
-                                                {item.imageOverlay && (
-                                                    <div className={this.decorateCSS("image-overlay")} />
+                                                {item.overlay && (
+                                                    <div className={this.decorateCSS("overlay-item")} />
                                                 )}
                                                 {player.playIcon && (
                                                     <div className={this.decorateCSS("icon-container")} onClick={() => { this.handleVideoPlay(index) }}>
@@ -1062,154 +1241,164 @@ class Social2 extends BaseSocial {
                             </div>
                         )}
                     </Base.MaxContent>
-                    {player.videoIframe && this.getComponentState("videoActive") && (
-                        <div className={`${this.decorateCSS("overlay")} ${this.getComponentState("shareContainerActive") && this.decorateCSS("popup-active")}`} >
-                            <ComposerSlider {...settingsVideo} ref={this.getComponentState("sliderRefOverlay")} className={this.decorateCSS("slider-container")}>
-                                {sliderItems.map((item, index: number) => {
-                                    return (
-                                        <div key={index} className={this.decorateCSS("video-container")}>
-                                            {item.media && (
-                                                <video
-                                                    key={`${item.media}-${index}`}
-                                                    autoPlay={true}
-                                                    muted={false}
-                                                    playsInline
-                                                    loop
-                                                    controls
-                                                    className={this.decorateCSS("selected-video")}
-                                                    src={item.media}
-                                                />
-                                            )}
-                                            {this.castToString(item.description) && (
-                                                <div className={this.decorateCSS("video-text-container")}>
-                                                    <div className={this.decorateCSS("video-text")}>
-                                                        {item.description}
-                                                    </div>
-                                                </div>
-                                            )}
-                                            {share.closeIcon && (
-                                                <div className={this.decorateCSS("close-icon-container")}>
-                                                    <Base.Icon name={share.closeIcon} propsIcon={{ className: this.decorateCSS("close-icon"), onClick: () => this.handleVideoClose() }}></Base.Icon>
-                                                </div>
-                                            )}
-                                            {share.shareIcon && (
-                                                <div className={this.decorateCSS("share-icon-container")}>
-                                                    <Base.Icon name={share.shareIcon} propsIcon={{ className: this.decorateCSS("share-icon"), onClick: () => this.handleShareOpen() }}></Base.Icon>
-                                                </div>
-                                            )}
-                                            {(this.castToString(share.shareTitle) || share.closeIcon || (item.socialIcons.length > 0)) && (
-                                                <div className={`${this.decorateCSS("share-wrapper")} ${this.getComponentState("shareContainerActive") && this.decorateCSS("active")}`}>
-                                                    <div className={this.decorateCSS("share-popup-container")}>
-                                                        {(this.castToString(share.shareTitle) || share.closeIcon) && (
-                                                            <div className={this.decorateCSS("share-popup-upper")}>
-                                                                {this.castToString(share.shareTitle) && (
-                                                                    <div className={this.decorateCSS("share-popup-title")}>{share.shareTitle}</div>
-                                                                )}
-                                                                {share.closeIcon && (
-                                                                    <div className={this.decorateCSS("share-popup-close")} onClick={() => this.handleShareClose()}>
-                                                                        <Base.Icon name={share.closeIcon} propsIcon={{ className: this.decorateCSS("share-close-icon") }}></Base.Icon>
-                                                                    </div>
-                                                                )}
+                    {player.videoIframe && this.getComponentState("videoActive") && sliderItems[selectedIndex] && (
+                        <Base.Overlay isVisible={true} className={this.decorateCSS("overlay")} onClick={() => this.handleVideoClose()}>
+                            <div className={this.decorateCSS("modal-wrapper")} onClick={(e) => e.stopPropagation()}>
+                                <div className={this.decorateCSS("video-container")}>
+                                    {sliderItems[selectedIndex].media?.url && (
+                                        <video
+                                            key={`${sliderItems[selectedIndex].media.url}-${selectedIndex}`}
+                                            autoPlay={true}
+                                            muted={false}
+                                            playsInline
+                                            loop
+                                            controls
+                                            className={this.decorateCSS("selected-video")}
+                                            src={sliderItems[selectedIndex].media.url}
+                                        />
+                                    )}
+                                    {this.castToString(sliderItems[selectedIndex].description) && (
+                                        <div className={this.decorateCSS("video-text-container")}>
+                                            <div className={this.decorateCSS("video-text")}>
+                                                {sliderItems[selectedIndex].description}
+                                            </div>
+                                        </div>
+                                    )}
+                                    {share.closeIcon && (
+                                        <div className={this.decorateCSS("close-icon-container")}>
+                                            <Base.Icon name={share.closeIcon} propsIcon={{ className: this.decorateCSS("close-icon"), onClick: () => this.handleVideoClose() }}></Base.Icon>
+                                        </div>
+                                    )}
+                                    {share.shareIcon && (
+                                        <div className={this.decorateCSS("share-icon-container")}>
+                                            <Base.Icon name={share.shareIcon} propsIcon={{ className: this.decorateCSS("share-icon"), onClick: () => this.handleShareOpen() }}></Base.Icon>
+                                        </div>
+                                    )}
+                                    {(this.castToString(share.shareTitle) || share.closeIcon || (sliderItems[selectedIndex].socialIcons.length > 0)) && (
+                                        <div className={`${this.decorateCSS("share-wrapper")} ${this.getComponentState("shareContainerActive") && this.decorateCSS("active")}`}>
+                                            <div className={this.decorateCSS("share-popup-container")}>
+                                                {(this.castToString(share.shareTitle) || share.closeIcon) && (
+                                                    <div className={this.decorateCSS("share-popup-upper")}>
+                                                        {this.castToString(share.shareTitle) && (
+                                                            <div className={this.decorateCSS("share-popup-title")}>{share.shareTitle}</div>
+                                                        )}
+                                                        {share.closeIcon && (
+                                                            <div className={this.decorateCSS("share-popup-close")} onClick={() => this.handleShareClose()}>
+                                                                <Base.Icon name={share.closeIcon} propsIcon={{ className: this.decorateCSS("share-close-icon") }}></Base.Icon>
                                                             </div>
                                                         )}
-                                                        {item.socialIcons.length > 0 &&
-                                                            <div className={this.decorateCSS("social-icons-container")}>
-                                                                {item.socialIcons.map((social, socialIndex) => {
-                                                                    if (!social.icon) return null;
-                                                                    return (
-                                                                        <ComposerLink key={socialIndex} path={social.url}>
-                                                                            <div className={this.decorateCSS("social-icons")}>
-                                                                                <Base.Icon name={social.icon} propsIcon={{ className: this.decorateCSS("social-icon") }}></Base.Icon>
-                                                                            </div>
-                                                                        </ComposerLink>
-                                                                    )
-                                                                })}
-                                                            </div>
-                                                        }
                                                     </div>
-                                                </div>
-                                            )}
+                                                )}
+                                                {sliderItems[selectedIndex].socialIcons.length > 0 &&
+                                                    <div className={this.decorateCSS("social-icons-container")}>
+                                                        {sliderItems[selectedIndex].socialIcons.map((social, socialIndex) => {
+                                                            if (!social.icon) return null;
+                                                            return (
+                                                                <ComposerLink key={socialIndex} path={social.url}>
+                                                                    <div className={this.decorateCSS("social-icons")}>
+                                                                        <Base.Media value={social.icon} className={this.decorateCSS("social-icon")} />
+                                                                    </div>
+                                                                </ComposerLink>
+                                                            )
+                                                        })}
+                                                    </div>
+                                                }
+                                            </div>
                                         </div>
-                                    );
-                                })}
-
-                            </ComposerSlider>
-                        </div>
+                                    )}
+                                </div>
+                                {player.prevArrow && (
+                                    <div className={this.decorateCSS("modal-prev")} onClick={() => this.setComponentState("selectedVideo", (selectedIndex - 1 + sliderItems.length) % sliderItems.length)}>
+                                        <Base.Icon name={player.prevArrow} propsIcon={{ className: this.decorateCSS("modal-arrow-icon") }} />
+                                    </div>
+                                )}
+                                {player.nextArrow && (
+                                    <div className={this.decorateCSS("modal-next")} onClick={() => this.setComponentState("selectedVideo", (selectedIndex + 1) % sliderItems.length)}>
+                                        <Base.Icon name={player.nextArrow} propsIcon={{ className: this.decorateCSS("modal-arrow-icon") }} />
+                                    </div>
+                                )}
+                            </div>
+                        </Base.Overlay>
                     )}
                 </Base.Container>
-                {(this.getComponentState("videoActive") && !player.videoIframe) && (
-                    <div className={`${this.decorateCSS("base-overlay")}  ${this.getComponentState("shareContainerActive") && this.decorateCSS("popup-active")}`}>
-                        <ComposerSlider {...settingsVideo} className={this.decorateCSS("slider-container")}>
-                            {sliderItems.map((item, index: number) => {
-                                return (
-                                    <div key={index} className={this.decorateCSS("video-container")}>
-                                        {item.media && (
-                                            <video
-                                                key={`${item.media}-${index}`}
-                                                autoPlay={true}
-                                                muted={false}
-                                                playsInline
-                                                loop
-                                                controls
-                                                className={this.decorateCSS("selected-video")}
-                                                src={item.media}
-                                            />
-                                        )}
-                                        {this.castToString(item.description) && (
-                                            <div className={this.decorateCSS("video-text-container")}>
-                                                <div className={this.decorateCSS("video-text")}>
-                                                    {item.description}
-                                                </div>
-                                            </div>
-                                        )}
-                                        {share.closeIcon && (
-                                            <div className={this.decorateCSS("close-icon-container")}>
-                                                <Base.Icon name={share.closeIcon} propsIcon={{ className: this.decorateCSS("close-icon"), onClick: () => this.handleVideoClose() }}></Base.Icon>
-                                            </div>
-                                        )}
-                                        {share.shareIcon && (
-                                            <div className={this.decorateCSS("share-icon-container")}>
-                                                <Base.Icon name={share.shareIcon} propsIcon={{ className: this.decorateCSS("share-icon"), onClick: () => this.handleShareOpen() }}></Base.Icon>
-                                            </div>
-                                        )}
-                                        {(this.castToString(share.shareTitle) || share.closeIcon || (item.socialIcons.length > 0)) && (
-                                            <div className={`${this.decorateCSS("share-wrapper")} ${this.getComponentState("shareContainerActive") && this.decorateCSS("active")}`}>
-                                                <div className={this.decorateCSS("share-popup-container")}>
-                                                    {(this.castToString(share.shareTitle) || share.closeIcon) && (
-                                                        <div className={this.decorateCSS("share-popup-upper")}>
-                                                            {this.castToString(share.shareTitle) && (
-                                                                <div className={this.decorateCSS("share-popup-title")}>{share.shareTitle}</div>
-                                                            )}
-                                                            {share.closeIcon && (
-                                                                <div className={this.decorateCSS("share-popup-close")} onClick={() => this.handleShareClose()}>
-                                                                    <Base.Icon name={share.closeIcon} propsIcon={{ className: this.decorateCSS("share-close-icon") }}></Base.Icon>
-                                                                </div>
-                                                            )}
+                {(this.getComponentState("videoActive") && !player.videoIframe) && sliderItems[selectedIndex] && (
+                    <Base.Overlay isVisible={true} className={this.decorateCSS("base-overlay")} onClick={() => this.handleVideoClose()}>
+                        <div className={this.decorateCSS("modal-wrapper")} onClick={(e) => e.stopPropagation()}>
+                            <div className={this.decorateCSS("video-container")}>
+                                {sliderItems[selectedIndex].media && (
+                                    <video
+                                        key={`${sliderItems[selectedIndex].media}-${selectedIndex}`}
+                                        autoPlay={true}
+                                        muted={false}
+                                        playsInline
+                                        loop
+                                        controls
+                                        className={this.decorateCSS("selected-video")}
+                                        src={sliderItems[selectedIndex].media}
+                                    />
+                                )}
+                                {this.castToString(sliderItems[selectedIndex].description) && (
+                                    <div className={this.decorateCSS("video-text-container")}>
+                                        <div className={this.decorateCSS("video-text")}>
+                                            {sliderItems[selectedIndex].description}
+                                        </div>
+                                    </div>
+                                )}
+                                {share.closeIcon && (
+                                    <div className={this.decorateCSS("close-icon-container")}>
+                                        <Base.Icon name={share.closeIcon} propsIcon={{ className: this.decorateCSS("close-icon"), onClick: () => this.handleVideoClose() }}></Base.Icon>
+                                    </div>
+                                )}
+                                {share.shareIcon && (
+                                    <div className={this.decorateCSS("share-icon-container")}>
+                                        <Base.Icon name={share.shareIcon} propsIcon={{ className: this.decorateCSS("share-icon"), onClick: () => this.handleShareOpen() }}></Base.Icon>
+                                    </div>
+                                )}
+                                {(this.castToString(share.shareTitle) || share.closeIcon || (sliderItems[selectedIndex].socialIcons.length > 0)) && (
+                                    <div className={`${this.decorateCSS("share-wrapper")} ${this.getComponentState("shareContainerActive") && this.decorateCSS("active")}`}>
+                                        <div className={this.decorateCSS("share-popup-container")}>
+                                            {(this.castToString(share.shareTitle) || share.closeIcon) && (
+                                                <div className={this.decorateCSS("share-popup-upper")}>
+                                                    {this.castToString(share.shareTitle) && (
+                                                        <div className={this.decorateCSS("share-popup-title")}>{share.shareTitle}</div>
+                                                    )}
+                                                    {share.closeIcon && (
+                                                        <div className={this.decorateCSS("share-popup-close")} onClick={() => this.handleShareClose()}>
+                                                            <Base.Icon name={share.closeIcon} propsIcon={{ className: this.decorateCSS("share-close-icon") }}></Base.Icon>
                                                         </div>
                                                     )}
-                                                    {item.socialIcons.length > 0 &&
-                                                        <div className={this.decorateCSS("social-icons-container")}>
-                                                            {item.socialIcons.map((social, socialIndex) => {
-                                                                if (!social.icon) return null;
-                                                                return (
-                                                                    <ComposerLink key={socialIndex} path={social.url}>
-                                                                        <div className={this.decorateCSS("social-icons")}>
-                                                                            <Base.Icon name={social.icon} propsIcon={{ className: this.decorateCSS("social-icon") }}></Base.Icon>
-                                                                        </div>
-                                                                    </ComposerLink>
-                                                                )
-                                                            })}
-                                                        </div>
-                                                    }
                                                 </div>
-                                            </div>
-                                        )}
+                                            )}
+                                            {sliderItems[selectedIndex].socialIcons.length > 0 &&
+                                                <div className={this.decorateCSS("social-icons-container")}>
+                                                    {sliderItems[selectedIndex].socialIcons.map((social, socialIndex) => {
+                                                        if (!social.icon) return null;
+                                                        return (
+                                                            <ComposerLink key={socialIndex} path={social.url}>
+                                                                <div className={this.decorateCSS("social-icons")}>
+                                                                    <Base.Icon name={social.icon} propsIcon={{ className: this.decorateCSS("social-icon") }}></Base.Icon>
+                                                                </div>
+                                                            </ComposerLink>
+                                                        )
+                                                    })}
+                                                </div>
+                                            }
+                                        </div>
                                     </div>
-                                );
-                            })}
-
-                        </ComposerSlider>
-                    </div>
+                                )}
+                            </div>
+                            {player.prevArrow && (
+                                <div className={this.decorateCSS("modal-prev")} onClick={() => this.setComponentState("selectedVideo", (selectedIndex - 1 + sliderItems.length) % sliderItems.length)}>
+                                    <Base.Icon name={player.prevArrow} propsIcon={{ className: this.decorateCSS("modal-arrow-icon") }} />
+                                </div>
+                            )}
+                            {player.nextArrow && (
+                                <div className={this.decorateCSS("modal-next")} onClick={() => this.setComponentState("selectedVideo", (selectedIndex + 1) % sliderItems.length)}>
+                                    <Base.Icon name={player.nextArrow} propsIcon={{ className: this.decorateCSS("modal-arrow-icon") }} />
+                                </div>
+                            )}
+                        </div>
+                    </Base.Overlay>
                 )}
             </div>
         );

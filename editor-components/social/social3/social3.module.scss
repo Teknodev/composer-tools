@@ -1,11 +1,13 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
-.container{
+.container {
   .max-content {
     display: flex;
     flex-direction: column;
     gap: var(--composer-gap-lg);
+
     .upper-container {
+
       .title,
       .subtitle,
       .description {
@@ -19,6 +21,7 @@
 
         .button-wrapper {
           .button {
+
             .button-text,
             .button-icon {
               content: "";
@@ -100,7 +103,7 @@
           display: block;
         }
 
-        .image-overlay {
+        .overlay-item {
           position: absolute;
           inset: 0;
           background-color: var(--composer-overlay-color);
@@ -201,6 +204,7 @@
   .container {
     .max-content {
       gap: var(--composer-gap-md);
+
       .post-container {
         gap: var(--composer-gap-sm);
       }
