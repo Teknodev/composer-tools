@@ -57,6 +57,9 @@ class Team11 extends Team {
       type: "media",
       key: "nextIcon",
       displayer: "Next icon",
+      additionalParams: {
+        availableTypes: ["icon", "image"],
+      },
       value: {
         type: "icon",
         name: "GrCaretNext",
@@ -66,6 +69,9 @@ class Team11 extends Team {
       type: "media",
       key: "prevIcon",
       displayer: "Prev icon",
+      additionalParams: {
+        availableTypes: ["icon", "image"],
+      },
       value: {
         type: "icon",
         name: "GrCaretPrevious",
@@ -1071,7 +1077,8 @@ class Team11 extends Team {
 
           <div className={slider.length > 3 ? this.decorateCSS("nav-buttons") : this.decorateCSS("visible-navs")}>
             <div
-              className={this.decorateCSS("prev_icon")}
+              className={`${this.decorateCSS("prev_icon")}
+              ${this.getPropValue("prevIcon").type === "image" && this.decorateCSS("prev-icon-has-image")}`}
               onClick={() => {
                 this.getComponentState("slider-ref").current.slickPrev();
               }}
@@ -1079,7 +1086,8 @@ class Team11 extends Team {
               <Base.Media value={this.getPropValue("prevIcon")} />
             </div>
             <div
-              className={this.decorateCSS("next_icon")}
+              className={`${this.decorateCSS("next_icon")}
+              ${this.getPropValue("nextIcon").type === "image" && this.decorateCSS("next-icon-has-image")}`}
               onClick={() => {
                 this.getComponentState("slider-ref").current.slickNext();
               }}

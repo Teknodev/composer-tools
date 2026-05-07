@@ -67,18 +67,22 @@
         }
 
         .info-container {
+          align-items: flex-start;
 
           .subtitle,
           .title {
-            content: "";
+            text-align: left;
+            margin-left: 0;
           }
         }
 
         .label {
+          align-items: flex-start;
           gap: var(--composer-gap-xl);
 
           .description {
             color: var(--composer-tertiary-color);
+            text-align: left;
           }
 
           .button-and-line-container {
@@ -134,7 +138,6 @@
         width: 100%;
         min-height: 700px;
         height: 100%;
-        gap: var(--composer-gap-sm);
 
         .img-wrapper {
           overflow: hidden;

@@ -13,9 +13,40 @@ type Card = {
   profileImage: TypeMediaInputValue;
 };
 
+interface BackgroundMedia {
+  backgroundMedia: TypeMediaInputValue;
+  overlay: boolean;
+}
+
 class Team8 extends Team {
   constructor(props?: any) {
     super(props, styles);
+
+    this.addProp({
+      type: "object",
+      key: "backgroundMedia",
+      displayer: "Background Media",
+      value: [
+        {
+          type: "media",
+          key: "backgroundMedia",
+          displayer: "Background Media",
+          additionalParams: {
+            availableTypes: ["image"],
+          },
+          value: {
+            type: "image",
+            url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66ace46d03b007002cc763cb?alt=media",
+          },
+        },
+        {
+          type: "boolean",
+          key: "overlay",
+          displayer: "Overlay",
+          value: true,
+        },
+      ],
+    });
 
     this.addProp({
       type: "string",
@@ -43,13 +74,6 @@ class Team8 extends Team {
       key: "buttons",
       displayer: "Buttons",
       value: [INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary")],
-    });
-
-    this.addProp({
-      type: "boolean",
-      key: "overlay",
-      displayer: "Overlay",
-      value: true,
     });
 
     this.addProp({
@@ -320,24 +344,10 @@ class Team8 extends Team {
     });
 
     this.addProp({
-      type: "media",
-      key: "backroundImage",
-      displayer: "Background Image",
-      additionalParams: {
-        availableTypes: ["image"],
-      },
-      value: {
-        type: "image",
-        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66ace46d03b007002cc763cb?alt=media",
-      },
-    });
-
-    this.addProp({
       type: "number",
-      key: "slidesToShow",
-      displayer: "Slides To Show",
+      key: "itemCount",
+      displayer: "Item count in a row",
       value: 5,
-      max: 10,
     });
 
     this.addProp({
@@ -368,7 +378,7 @@ class Team8 extends Team {
       autoplaySpeed: 3000,
       centerMode: true,
       customPaging: (i: number) => <button className={this.getComponentState("current-slide") === i ? this.decorateCSS("currentPaging") : ""}></button>,
-      slidesToShow: cards.length < this.getPropValue("slidesToShow") ? cards.length : this.getPropValue("slidesToShow"),
+      slidesToShow: cards.length < this.getPropValue("itemCount") ? cards.length : this.getPropValue("itemCount"),
       slidesToScroll: 1,
       afterChange: (currentSlide: number) => {
         this.setComponentState("current-slide", currentSlide);
@@ -398,7 +408,8 @@ class Team8 extends Team {
     const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons") || [];
     const visibleButtons = buttons.filter(btn => this.castToString(btn.text));
     const hasContent = subtitle || title || description || visibleButtons.length > 0;
-    const imageExist = this.getPropValue("backroundImage") as TypeMediaInputValue | undefined;
+    const backgroundMedia = this.castToObject<BackgroundMedia>("backgroundMedia");
+    const imageExist = backgroundMedia?.backgroundMedia;
 
     return (
       <Base.Container className={this.decorateCSS("container")} style={{ backgroundImage: imageExist?.type === "image" ? `url(${imageExist.url})` : undefined, }}>
@@ -456,7 +467,7 @@ class Team8 extends Team {
               </ComposerSlider>
             </div>
           </div>
-          {this.getPropValue("overlay") && <div className={this.decorateCSS("overlay")} />}
+          {backgroundMedia?.overlay && <div className={this.decorateCSS("overlay")} />}
         </Base.MaxContent>
       </Base.Container>
     );

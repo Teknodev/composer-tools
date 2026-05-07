@@ -34,6 +34,33 @@ class Team10 extends Team {
   constructor(props?: any) {
     super(props, styles);
 
+
+    this.addProp({
+      type: "object",
+      key: "background",
+      displayer: "Background Media",
+      value: [
+        {
+          type: "media",
+          key: "componentBackground",
+          displayer: "Background Image",
+          additionalParams: {
+            availableTypes: ["image"],
+          },
+          value: {
+            type: "image",
+            url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b520bd2970002c628226?alt=media&timestamp=1719558632841",
+          },
+        },
+        {
+          type: "boolean",
+          key: "overlay",
+          displayer: "Overlay",
+          value: true,
+        },
+      ]
+    })
+
     this.addProp({
       type: "string",
       key: "subtitle",
@@ -61,32 +88,6 @@ class Team10 extends Team {
       displayer: "Buttons",
       value: [INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary")],
     });
-
-    this.addProp({
-      type: "object",
-      key: "background",
-      displayer: "Background Media",
-      value: [
-        {
-          type: "media",
-          key: "componentBackground",
-          displayer: "Background Image",
-          additionalParams: {
-            availableTypes: ["image"],
-          },
-          value: {
-            type: "image",
-            url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b520bd2970002c628226?alt=media&timestamp=1719558632841",
-          },
-        },
-        {
-          type: "boolean",
-          key: "overlay",
-          displayer: "Overlay",
-          value: true,
-        },
-      ]
-    })
 
     this.addProp({
       type: "array",
@@ -1084,13 +1085,13 @@ class Team10 extends Team {
                         {teamMember.features?.map((feature: Feature, indexFeatures: number) => (
                           <Base.VerticalContent key={indexFeatures} className={this.decorateCSS("features")}>
                             {feature.subtitle && (
-                              <Base.H5 className={this.decorateCSS("feature-subtitle")}>{feature.subtitle}</Base.H5>
+                              <Base.P className={this.decorateCSS("feature-subtitle")}>{feature.subtitle}</Base.P>
                             )}
                             {feature.title && (
-                              <Base.H5 className={this.decorateCSS("feature-title")}>{feature.title}</Base.H5>
+                              <Base.P className={this.decorateCSS("feature-title")}>{feature.title}</Base.P>
                             )}
                             {feature.description && (
-                              <Base.H5 className={this.decorateCSS("feature-description")}>{feature.description}</Base.H5>
+                              <Base.P className={this.decorateCSS("feature-description")}>{feature.description}</Base.P>
                             )}
                           </Base.VerticalContent>
                         ))}

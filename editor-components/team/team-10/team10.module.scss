@@ -44,17 +44,13 @@
       &.has-image {
         .subtitle {
           color: white;
-
-          &::before {
-            background-color: white;
-          }
+          background: none;
+          padding: 0;
         }
 
         .title,
         .description {
-          &.image {
-            color: white;
-          }
+          color: white;
         }
       }
 
@@ -93,6 +89,7 @@
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
+        align-items: flex-start;
         gap: 10px;
         padding: var(--composer-gap-lg);
         box-sizing: border-box;
@@ -130,11 +127,13 @@
         .title-group {
           .member-subtitle {
             color: var(--composer-tertiary-color);
+            text-align: left;
           }
 
           .member-title {
             color: var(--composer-primary-color);
             transition: opacity 0.3s ease;
+            text-align: left;
           }
         }
 
@@ -149,23 +148,24 @@
 
             .feature-subtitle {
               color: var(--composer-tertiary-color);
-              font-size: 1rem;
+              text-align: left;
             }
 
             .feature-title {
               color: var(--composer-tertiary-color);
-              font-size: 1rem;
+              text-align: left;
             }
 
             .feature-description {
               color: var(--composer-font-color-primary);
-              font-size: 1rem;
+              text-align: left;
             }
           }
         }
 
         .member-description {
           color: var(--composer-font-color-primary);
+          text-align: left;
         }
       }
 
@@ -227,40 +227,38 @@
 
 @container (max-width: #{$composer-tablet-width}) {
   .container {
-    height: 100%;
-    flex-direction: column;
-    overflow-x: hidden;
-    overflow-y: auto;
+    height: auto;
+    min-height: 100vh;
 
     .left {
-      min-height: 400px;
-      min-width: auto;
-      max-width: none;
-      height: auto;
+      min-height: 500px;
+      min-width: 350px;
+      max-width: 350px;
+      height: 600px;
+
+      .vertical-content {
+        padding-top: var(--composer-gap-md);
+      }
     }
 
     .right {
-      flex-direction: column;
+      height: 600px;
 
       .team-member {
-        flex-direction: row;
-        min-width: auto;
+        min-width: 350px;
+        height: 100%;
 
         .info {
-          width: 50%;
-
+          height: 45%;
+          
           .features-wrapper {
             gap: var(--composer-gap-md);
           }
         }
 
         .image-container {
-          width: 50%;
-          height: 580px;
-        }
-
-        &:nth-child(2n) {
-          flex-direction: row-reverse;
+          width: 100%;
+          height: 55%;
         }
       }
     }
@@ -270,32 +268,39 @@
 @container (max-width: #{$composer-phone-width}) {
   .container {
     height: 100%;
+    flex-direction: column;
+    overflow-x: hidden;
+    overflow-y: auto;
 
     .left {
       min-height: 300px;
-
-      .vertical-content {
-        padding-top: var(--composer-gap-md);
-      }
+      min-width: auto;
+      max-width: none;
+      height: auto;
     }
 
     .right {
+      flex-direction: column;
+
       .team-member {
-        flex-direction: column;
+        flex-direction: column-reverse !important;
         width: 100%;
         min-width: auto;
+        height: auto;
+        margin-bottom: var(--composer-gap-lg);
 
         .info {
           width: 100%;
+          height: auto;
         }
 
         .image-container {
           width: 100%;
-          height: 100%;
+          height: 400px;
         }
 
         &:nth-child(2n) {
-          flex-direction: column;
+          flex-direction: column-reverse !important;
         }
       }
     }

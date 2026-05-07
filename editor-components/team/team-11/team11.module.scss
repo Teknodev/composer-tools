@@ -209,6 +209,14 @@
         transition: 0.5s;
         line-height: 0;
 
+        &.prev-icon-has-image {
+          img {
+            width: var(--composer-gap-lg);
+            height: var(--composer-gap-lg);
+            object-fit: cover;
+          }
+        }
+
         &:hover {
           color: var(--composer-primary-color);
           opacity: 1;
@@ -221,6 +229,14 @@
         font-size: 2.5rem;
         transition: 0.5s;
         line-height: 0;
+
+        &.next-icon-has-image {
+          img {
+            width: var(--composer-gap-lg);
+            height: var(--composer-gap-lg);
+            object-fit: cover;
+          }
+        }
 
         &:hover {
           color: var(--composer-primary-color);
@@ -242,6 +258,14 @@
         transition: 0.5s;
         line-height: 0;
 
+        &.prev-icon-has-image {
+          img {
+            width: var(--composer-gap-lg);
+            height: var(--composer-gap-lg);
+            object-fit: cover;
+          }
+        }
+
         &:hover {
           color: var(--composer-primary-color);
           opacity: 1;
@@ -254,6 +278,14 @@
         font-size: 2.5rem;
         transition: 0.5s;
         line-height: 0;
+
+        &.next-icon-has-image {
+          img {
+            width: var(--composer-gap-lg);
+            height: var(--composer-gap-lg);
+            object-fit: cover;
+          }
+        }
 
         &:hover {
           color: var(--composer-primary-color);

@@ -638,7 +638,7 @@ class Team9 extends Team {
     this.addProp({
       type: "number",
       key: "reverse",
-      displayer: "Item Count",
+      displayer: "Item count in a row",
       value: 4,
     });
 
