@@ -296,6 +296,45 @@ class Social1 extends BaseSlider {
         });
         const hasAnyHeader = subtitleExist || titleExist || descriptionExist || hasValidButtons;
 
+        const allItems: ItemType[] = cardItems.flatMap((card) => card.items);
+        const mobileSettings = {
+            ...sliderSettings,
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            responsive: [],
+        };
+
+        const renderCardItem = (item: ItemType, index: number) => {
+            const hasAnyContent = item.url || (item.icon as any) || item.name || item.media || item.text;
+            if (!hasAnyContent) return null;
+            return (
+                <ComposerLink key={index} path={item.url}>
+                    <div className={this.decorateCSS("card-container")}>
+                        {(item.icon || item.media || item.name) && (
+                            <div className={this.decorateCSS("card-upper")}>
+                                {(item.icon || item.media) && (
+                                    <div className={this.decorateCSS("image-icon-container")}>
+                                        {item.icon && (
+                                            <Base.Media value={item.icon} className={this.decorateCSS("icon")} />
+                                        )}
+                                        {item.media && (
+                                            <Base.Media value={item.media} className={this.decorateCSS("image")} />
+                                        )}
+                                    </div>
+                                )}
+                                {item.name && (
+                                    <div className={this.decorateCSS("name")}>{item.name}</div>
+                                )}
+                            </div>
+                        )}
+                        {item.text && (
+                            <div className={this.decorateCSS("comment")}>{item.text}</div>
+                        )}
+                    </div>
+                </ComposerLink>
+            );
+        };
+
         return (
             <div className={`${this.decorateCSS("wrapper")} ${!hasAnyHeader && this.decorateCSS("no-header")}`}>
                 <Base.Container className={`${this.decorateCSS("container")} ${(cardItems.length > 0) && this.decorateCSS("container-with-cards")}`}>
@@ -352,46 +391,28 @@ class Social1 extends BaseSlider {
                     )}
                 </Base.Container>
                 {(cardItems.length > 0) && (
-                    <div className={this.decorateCSS("slider-parent")}>
+                    <div className={`${this.decorateCSS("slider-parent")} ${this.decorateCSS("desktop-slider")}`}>
                         <ComposerSlider {...settings} className={this.decorateCSS("carousel")} ref={sliderRef}>
-                            {cardItems.map((item, index: number) => {
-                                return (
-                                    <div key={index} className={this.decorateCSS("cards")}>
-                                        <div className={this.decorateCSS("cards-wrapper")}>
-                                            {item.items.map((item: ItemType, index: number) => {
-                                                const hasAnyContent = item.url || (item.icon as any) || item.name || item.media || item.text;
-                                                if (!hasAnyContent) return null;
-                                                return (
-                                                    <ComposerLink key={index} path={item.url}>
-                                                        <div className={this.decorateCSS("card-container")}>
-                                                            {(item.icon || item.media || item.name) && (
-                                                                <div className={this.decorateCSS("card-upper")}>
-                                                                    {(item.icon || item.media) && (
-                                                                        <div className={this.decorateCSS("image-icon-container")}>
-                                                                            {item.icon && (
-                                                                                <Base.Media value={item.icon} className={this.decorateCSS("icon")} />
-                                                                            )}
-                                                                            {item.media && (
-                                                                                <Base.Media value={item.media} className={this.decorateCSS("image")} />
-                                                                            )}
-                                                                        </div>
-                                                                    )}
-                                                                    {item.name && (
-                                                                        <div className={this.decorateCSS("name")}>{item.name}</div>
-                                                                    )}
-                                                                </div>
-                                                            )}
-                                                            {item.text && (
-                                                                <div className={this.decorateCSS("comment")}>{item.text}</div>
-                                                            )}
-                                                        </div>
-                                                    </ComposerLink>
-                                                );
-                                            })}
-                                        </div>
+                            {cardItems.map((item, index: number) => (
+                                <div key={index} className={this.decorateCSS("cards")}>
+                                    <div className={this.decorateCSS("cards-wrapper")}>
+                                        {item.items.map((cardItem: ItemType, i: number) => renderCardItem(cardItem, i))}
                                     </div>
-                                );
-                            })}
+                                </div>
+                            ))}
+                        </ComposerSlider>
+                    </div>
+                )}
+                {(allItems.length > 0) && (
+                    <div className={`${this.decorateCSS("slider-parent")} ${this.decorateCSS("mobile-slider")}`}>
+                        <ComposerSlider {...mobileSettings} className={this.decorateCSS("carousel")}>
+                            {allItems.map((item: ItemType, index: number) => (
+                                <div key={index} className={this.decorateCSS("cards")}>
+                                    <div className={this.decorateCSS("cards-wrapper")}>
+                                        {renderCardItem(item, index)}
+                                    </div>
+                                </div>
+                            ))}
                         </ComposerSlider>
                     </div>
                 )}

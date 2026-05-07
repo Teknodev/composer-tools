@@ -47,6 +47,10 @@
         }
     }
 
+    .mobile-slider {
+        display: none;
+    }
+
     .slider-parent {
         width: 100%;
         overflow: hidden;
@@ -235,6 +239,14 @@
                     }
                 }
             }
+        }
+
+        .desktop-slider {
+            display: none;
+        }
+
+        .mobile-slider {
+            display: block;
         }
 
         &.no-header {
