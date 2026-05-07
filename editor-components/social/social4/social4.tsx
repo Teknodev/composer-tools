@@ -1991,7 +1991,7 @@ class Social4 extends BaseSocial {
                                 </Base.VerticalContent>
                             )}
 
-                        <Base.ListGrid gridCount={{ pc: pagination.rowCount, tablet: 3 }} className={this.decorateCSS("gallery-grid")}>
+                        <Base.ListGrid gridCount={{ pc: pagination.rowCount, tablet: pagination.rowCount }} className={this.decorateCSS("gallery-grid")}>
                             {cardItems.slice(0, this.getComponentState("imageCount")).map((item: CardItem, index: number) => {
                                 return (
                                     <div className={this.decorateCSS("gallery-item")} key={index}>
