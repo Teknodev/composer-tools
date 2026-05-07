@@ -82,10 +82,16 @@ class Social3 extends BaseSocial {
           value: "03-03-2019"
         },
         {
-          type: "icon",
+          type: "media",
           key: "dateIcon",
           displayer: "Date Icon",
-          value: "CiClock2"
+          value: {
+            type: "icon",
+            name: "CiClock2"
+          },
+          additionalParams: {
+            availableTypes: ["icon", "image"],
+          }
         }
       ]
     })
@@ -416,11 +422,9 @@ class Social3 extends BaseSocial {
                           this.castToString(profile.date)) && (
                             <div className={this.decorateCSS("date-container")}>
                               {profile.dateIcon && (
-                                <Base.Icon
-                                  name={profile.dateIcon}
-                                  propsIcon={{
-                                    className: this.decorateCSS("date-icon"),
-                                  }}
+                                <Base.Media
+                                  value={profile.dateIcon}
+                                  className={this.decorateCSS("date-icon")}
                                 />
                               )}
                               {this.castToString(profile.date) && (
