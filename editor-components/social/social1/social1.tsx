@@ -289,7 +289,10 @@ class Social1 extends BaseSlider {
         const cardItems = this.castToObject<CardItem[]>("cards");
         const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
         const hasValidButtons = buttons.some((btn) => {
-            return !!(btn.text || (btn.icon && btn.icon.name));
+            const textExist = this.castToString(btn.text);
+            const iconValue = btn.icon as TypeMediaInputValue | string;
+            const iconExist = typeof iconValue === "string" ? iconValue : (iconValue?.name || iconValue?.url);
+            return !!(textExist || iconExist);
         });
         const hasAnyHeader = subtitleExist || titleExist || descriptionExist || hasValidButtons;
 
@@ -299,52 +302,53 @@ class Social1 extends BaseSlider {
                     {hasAnyHeader && (
                         <Base.MaxContent className={this.decorateCSS("max-content")}>
                             <Base.VerticalContent className={this.decorateCSS("upper-content")}>
-                            {subtitleExist && (
-                                <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
-                                    {this.getPropValue("subtitle")}
-                                </Base.SectionSubTitle>
-                            )}
-                            {titleExist && (
-                                <Base.SectionTitle className={this.decorateCSS("title")}>
-                                    {this.getPropValue("title")}
-                                </Base.SectionTitle>
-                            )}
-                            {descriptionExist && (
-                                <Base.SectionDescription className={this.decorateCSS("description")}>
-                                    {this.getPropValue("description")}
-                                </Base.SectionDescription>
-                            )}
-                            {hasValidButtons && (
-                                <div className={this.decorateCSS("button-container")}>
-                                    {buttons.map((item: INPUTS.CastedButton, index: number) => {
-                                        const iconExist = item.icon && (typeof item.icon === "string" ? item.icon : item.icon.name);
-                                        if (!item.text && !iconExist) return null;
-                                        return (
-                                            <div className={this.decorateCSS("button-wrapper")} key={index}>
-                                                <ComposerLink path={item.url}>
-                                                    <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
-                                                        {item.text && (
-                                                            <div className={this.decorateCSS("button-text")}>
-                                                                {item.text}
-                                                            </div>
-                                                        )}
-                                                        {iconExist && (
-                                                            <Base.Icon
-                                                                name={iconExist}
-                                                                propsIcon={{
-                                                                    className: this.decorateCSS("button-icon"),
-                                                                }}
-                                                            />
-                                                        )}
-                                                    </Base.Button>
-                                                </ComposerLink>
-                                            </div>
-                                        );
-                                    })}
-                                </div>
-                            )}
-                        </Base.VerticalContent>
-                    </Base.MaxContent>
+                                {subtitleExist && (
+                                    <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                                        {this.getPropValue("subtitle")}
+                                    </Base.SectionSubTitle>
+                                )}
+                                {titleExist && (
+                                    <Base.SectionTitle className={this.decorateCSS("title")}>
+                                        {this.getPropValue("title")}
+                                    </Base.SectionTitle>
+                                )}
+                                {descriptionExist && (
+                                    <Base.SectionDescription className={this.decorateCSS("description")}>
+                                        {this.getPropValue("description")}
+                                    </Base.SectionDescription>
+                                )}
+                                {hasValidButtons && (
+                                    <div className={this.decorateCSS("button-container")}>
+                                        {buttons.map((item: INPUTS.CastedButton, index: number) => {
+                                            const textExist = this.castToString(item.text);
+                                            const iconValue = item.icon as TypeMediaInputValue | string;
+                                            const iconExist = typeof iconValue === "string" ? iconValue : (iconValue?.name || iconValue?.url);
+
+                                            if (!textExist && !iconExist) return null;
+                                            return (
+                                                <div className={this.decorateCSS("button-wrapper")} key={index}>
+                                                    <ComposerLink path={item.url}>
+                                                        <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
+                                                            {textExist && (
+                                                                <div className={this.decorateCSS("button-text")}>
+                                                                    {item.text}
+                                                                </div>
+                                                            )}
+                                                            {iconExist && (
+                                                                <Base.Media
+                                                                    value={typeof iconValue === "string" ? { type: "icon", name: iconValue } : iconValue}
+                                                                    className={this.decorateCSS("button-icon")}
+                                                                />
+                                                            )}
+                                                        </Base.Button>
+                                                    </ComposerLink>
+                                                </div>
+                                            );
+                                        })}
+                                    </div>
+                                )}
+                            </Base.VerticalContent>
+                        </Base.MaxContent>
                     )}
                 </Base.Container>
                 {(cardItems.length > 0) && (
