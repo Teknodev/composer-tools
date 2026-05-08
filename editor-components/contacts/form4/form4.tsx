@@ -530,7 +530,7 @@ class Form4 extends BaseContacts {
                   {descriptionExist && (
                     <Base.SectionDescription className={this.decorateCSS("description")}>
                       {this.getPropValue("description")}
-                      {this.getPropValue("mail")}
+                      {" "}<span className={this.decorateCSS("mail")}>{this.getPropValue("mail")}</span>
                     </Base.SectionDescription>
                   )}
                 </Base.VerticalContent>

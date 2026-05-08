@@ -156,6 +156,10 @@
   color: var(--composer-font-color-primary);
 }
 
+.mail {
+  color: var(--composer-secondary-color);
+}
+
 .input {
   resize: vertical;
   padding: var(--composer-gap-sm) var(--composer-gap-sm);
