@@ -42,7 +42,6 @@
         box-shadow: var(--box-shadow-active);
         padding: var(--composer-gap-xl);
         gap: var(--composer-gap-xl);
-        border-radius: var(--composer-border-radius-md);
         background: rgba(0, 0, 0, 0.52);
         backdrop-filter: blur(4.1px);
         -webkit-backdrop-filter: blur(4.1px);
@@ -117,7 +116,6 @@
             .input {
               width: 100%;
               min-height: var(--composer-gap-xl);
-              border-radius: var(--composer-border-radius-sm);
               transition: border-color 0.3s ease;
               background-color: rgba(255, 255, 255, 0);
               padding-left: var(--composer-gap-sm);

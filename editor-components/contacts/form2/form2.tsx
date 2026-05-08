@@ -31,7 +31,7 @@ class Form2 extends BaseContacts {
           type: "boolean",
           key: "overlay",
           displayer: "Overlay",
-          value: false,
+          value: true,
         },
       ],
     });
@@ -414,4 +414,3 @@ class Form2 extends BaseContacts {
 }
 
 export default Form2;
-
