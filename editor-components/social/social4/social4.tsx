@@ -1847,39 +1847,32 @@ class Social4 extends BaseSocial {
                                     )}
                                     {hasValidButtons && (
                                         <div className={this.decorateCSS("button-container")}>
-                                            {buttons.map((item: INPUTS.CastedButton, index: number) => {
-                                                const textExist = this.castToString(item.text);
-                                                const iconExist =
-                                                    item.icon && this.castToString((item.icon as any).name);
-                                                if (!textExist && !iconExist) return null;
-                                                return (
-                                                    <div
-                                                        className={this.decorateCSS("button-wrapper")}
-                                                        key={index}
-                                                    >
-                                                        <ComposerLink path={item.url}>
-                                                            <Base.Button
-                                                                buttonType={item.type}
-                                                                className={this.decorateCSS("button")}
-                                                            >
-                                                                {textExist && (
-                                                                    <div className={this.decorateCSS("button-text")}>
-                                                                        {item.text}
-                                                                    </div>
-                                                                )}
-                                                                {iconExist && (
-                                                                    <Base.Icon
-                                                                        name={item.icon}
-                                                                        propsIcon={{
-                                                                            className: this.decorateCSS("button-icon"),
-                                                                        }}
-                                                                    />
-                                                                )}
-                                                            </Base.Button>
-                                                        </ComposerLink>
-                                                    </div>
-                                                );
-                                            })}
+                                                    {buttons.map((item: INPUTS.CastedButton, index: number) => {
+                                                        const textExist = this.castToString(item.text);
+                                                        const iconExist =
+                                                            item.icon && this.castToString((item.icon as any).name);
+                                                        if (!textExist && !iconExist) return null;
+                                                        return (
+                                                            <ComposerLink key={index} path={item.url}>
+                                                                <Base.Button
+                                                                    buttonType={item.type}
+                                                                    className={this.decorateCSS("button")}
+                                                                >
+                                                                    {textExist && (
+                                                                        <div className={this.decorateCSS("button-text")}>
+                                                                            {item.text}
+                                                                        </div>
+                                                                    )}
+                                                                    {iconExist && (
+                                                                        <Base.Media
+                                                                            value={item.icon!}
+                                                                            className={this.decorateCSS("button-icon")}
+                                                                        />
+                                                                    )}
+                                                                </Base.Button>
+                                                            </ComposerLink>
+                                                        );
+                                                    })}
                                         </div>
                                     )}
                                 </Base.VerticalContent>
@@ -1911,8 +1904,8 @@ class Social4 extends BaseSocial {
                                         )}
                                         {((icons.videoIcon && isVideo && item.videoIconActive) || (icons.imageIcon && item.mediaItems.length > 1 && item.imageIconActive)) && (
                                             <div className={this.decorateCSS("icon-container")}>
-                                                {(icons.videoIcon && isVideo && item.videoIconActive) && (<Base.Media value={icons.videoIcon} className={this.decorateCSS("icon")} />)}
-                                                {(icons.imageIcon && item.mediaItems.length > 1 && item.imageIconActive) && (<Base.Media value={icons.imageIcon} className={this.decorateCSS("icon")} />)}
+                                                {(icons.videoIcon && isVideo && item.videoIconActive) && (<Base.Media value={icons.videoIcon} className={`${this.decorateCSS("indicator-icon")} ${icons.videoIcon.type === "icon" ? this.decorateCSS("is-icon") : ""}`} />)}
+                                                {(icons.imageIcon && item.mediaItems.length > 1 && item.imageIconActive) && (<Base.Media value={icons.imageIcon} className={`${this.decorateCSS("indicator-icon")} ${icons.imageIcon.type === "icon" ? this.decorateCSS("is-icon") : ""}`} />)}
                                             </div>
                                         )}
                                         <div className={this.decorateCSS("overlay")} onClick={() => this.handleClickItem(index)}>
@@ -1921,13 +1914,13 @@ class Social4 extends BaseSocial {
                                                     <div className={this.decorateCSS("like-and-commnet-container")}>
                                                         {(icons.likeIcon || this.castToString(item.likeCount)) && (
                                                             <div className={this.decorateCSS("like-container")}>
-                                                                {icons.likeIcon && (<Base.Media value={icons.likeIcon} className={this.decorateCSS("like-icon")} />)}
+                                                                {icons.likeIcon && (<Base.Media value={icons.likeIcon} className={`${this.decorateCSS("like-icon")} ${icons.likeIcon.type === "icon" ? this.decorateCSS("is-icon") : ""}`} />)}
                                                                 {this.castToString(item.likeCount) && (<div className={this.decorateCSS("like-number")}>{item.likeCount}</div>)}
                                                             </div>
                                                         )}
                                                         {(icons.commentIcon || this.castToString(item.commentCount)) && (
                                                             <div className={this.decorateCSS("comment-container")}>
-                                                                {icons.commentIcon && (<Base.Media value={icons.commentIcon} className={this.decorateCSS("comment-icon")} />)}
+                                                                {icons.commentIcon && (<Base.Media value={icons.commentIcon} className={`${this.decorateCSS("comment-icon")} ${icons.commentIcon.type === "icon" ? this.decorateCSS("is-icon") : ""}`} />)}
                                                                 {this.castToString(item.commentCount) && (<div className={this.decorateCSS("comment-number")}>{item.commentCount}</div>)}
                                                             </div>
                                                         )}
@@ -2003,7 +1996,7 @@ class Social4 extends BaseSocial {
                                                     )}
                                                     {item.socialIcon && (
                                                         <ComposerLink path={item.url}>
-                                                            <Base.Media value={item.socialIcon} className={this.decorateCSS("socail-icon")} />
+                                                            <Base.Media value={item.socialIcon} className={`${this.decorateCSS("socail-icon")} ${item.socialIcon.type === "icon" ? this.decorateCSS("is-icon") : ""}`} />
                                                         </ComposerLink>
                                                     )}
                                                 </div>
@@ -2047,7 +2040,7 @@ class Social4 extends BaseSocial {
                                                             <div className={this.decorateCSS("share-part")}>
                                                                 {icons.shareIcon && (
                                                                     <div className={this.decorateCSS("share-icon-container")}>
-                                                                        <Base.Media value={icons.shareIcon} className={this.decorateCSS("share-icon")} />
+                                                                        <Base.Media value={icons.shareIcon} className={`${this.decorateCSS("share-icon")} ${icons.shareIcon.type === "icon" ? this.decorateCSS("is-icon") : ""}`} />
                                                                     </div>
                                                                 )}
                                                                 {this.castToString(icons.shareText) && (<div className={this.decorateCSS("share-text")}>{icons.shareText}</div>)}
@@ -2079,7 +2072,7 @@ class Social4 extends BaseSocial {
                     {icons.closeIcon && (
                         <div className={this.decorateCSS("icon-container")}>
                             <div className={this.decorateCSS("close-icon")} onClick={() => this.handleCloseOverlay()}>
-                                <Base.Media value={icons.closeIcon} className={this.decorateCSS("icon")} />
+                                <Base.Media value={icons.closeIcon} className={`${this.decorateCSS("close-icon-item")} ${icons.closeIcon.type === "icon" ? this.decorateCSS("is-icon") : ""}`} />
                             </div>
                         </div>
                     )}

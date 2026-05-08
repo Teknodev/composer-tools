@@ -23,13 +23,12 @@
                 gap: var(--composer-gap-sm);
                 flex-wrap: wrap;
 
-                .button-wrapper {
-                    .button {
+                .button {
+                    content: "";
 
-                        .button-text,
-                        .button-icon {
-                            content: "";
-                        }
+                    .button-text,
+                    .button-icon {
+                        content: "";
                     }
                 }
             }
@@ -71,9 +70,17 @@
                     top: var(--composer-gap-sm);
                     right: var(--composer-gap-sm);
 
-                    .icon {
-                        font-size: 1.5rem;
-                        color: white;
+                    .indicator-icon {
+                        width: 1.75rem;
+                        height: 1.75rem;
+                        object-fit: contain;
+
+                        &.is-icon {
+                            width: auto;
+                            height: auto;
+                            font-size: 1.5rem;
+                            color: white;
+                        }
                     }
                 }
 
@@ -127,10 +134,18 @@
 
                                 .like-icon,
                                 .comment-icon {
+                                    width: 1.5rem;
+                                    height: 1.5rem;
+                                    object-fit: contain;
                                     display: flex;
                                     align-items: center;
-                                    font-size: 1.25rem;
-                                    color: white;
+
+                                    &.is-icon {
+                                        width: auto;
+                                        height: auto;
+                                        font-size: 1.25rem;
+                                        color: white;
+                                    }
                                 }
 
                                 .like-number,
@@ -262,10 +277,18 @@
                     }
 
                     .socail-icon {
+                        width: 1.75rem;
+                        height: 1.75rem;
+                        object-fit: contain;
                         display: flex;
                         align-items: center;
-                        font-size: 1.5rem;
-                        color: var(--composer-font-color-primary);
+
+                        &.is-icon {
+                            width: auto;
+                            height: auto;
+                            font-size: 1.5rem;
+                            color: var(--composer-font-color-primary);
+                        }
                     }
                 }
             }
@@ -367,8 +390,16 @@
 
                         .share-icon-container {
                             .share-icon {
-                                color: var(--composer-font-color-primary);
-                                font-size: 1.5rem;
+                                width: 1.75rem;
+                                height: 1.75rem;
+                                object-fit: contain;
+
+                                &.is-icon {
+                                    width: auto;
+                                    height: auto;
+                                    color: var(--composer-font-color-primary);
+                                    font-size: 1.5rem;
+                                }
                             }
                         }
 
@@ -426,34 +457,23 @@
             top: 0px;
             right: 0px;
 
-            .icon {
-                font-size: 2rem;
-                color: white;
+            .close-icon-item {
+                width: 2.25rem;
+                height: 2.25rem;
+                object-fit: contain;
+
+                &.is-icon {
+                    width: auto;
+                    height: auto;
+                    font-size: 2rem;
+                    color: white;
+                }
             }
         }
     }
 }
 
 @container (max-width: #{$composer-tablet-width}) {
-    .container {
-        .max-content {
-            .gallery-grid {
-                .gallery-item {
-                    .overlay {
-                        .content-container {
-                            .like-and-commnet-container {
-                                .like-container,
-                                .comment-container {
-                                }
-                            }
-
-                    }
-                    }
-                }
-            }
-        }
-    }
-
     .post-overlay {
         .slider-wrapper {
             width: 70%;
