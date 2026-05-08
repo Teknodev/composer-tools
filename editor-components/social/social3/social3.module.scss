@@ -24,7 +24,15 @@
 
             .button-text,
             .button-icon {
-              content: "";
+              width: 1.25rem;
+              height: 1.25rem;
+              object-fit: contain;
+
+              &.is-icon {
+                width: auto;
+                height: auto;
+                font-size: 1.25rem;
+              }
             }
           }
         }
@@ -48,12 +56,15 @@
           min-height: 50px;
           border-radius: 50%;
           object-fit: cover;
-          font-size: 50px;
           display: flex;
           align-items: center;
           justify-content: center;
           overflow: hidden;
           color: var(--composer-font-color-primary);
+
+          &.is-icon {
+            font-size: var(--composer-gap-xl);
+          }
         }
 
         .right-container {
@@ -80,8 +91,16 @@
             }
 
             .date-icon {
-              font-size: 1rem;
+              width: 1rem;
+              height: 1rem;
+              object-fit: contain;
               color: var(--composer-font-color-primary);
+
+              &.is-icon {
+                width: auto;
+                height: auto;
+                font-size: 1rem;
+              }
             }
           }
         }
@@ -175,7 +194,15 @@
                 }
 
                 .social-icon {
-                  content: "";
+                  width: 1.25rem;
+                  height: 1.25rem;
+                  object-fit: contain;
+
+                  &.is-icon {
+                    width: auto;
+                    height: auto;
+                    font-size: 1.25rem;
+                  }
                 }
               }
 
@@ -192,9 +219,15 @@
           }
 
           .icon {
-            width: 15px;
-            height: 15px;
-            font-size: 15px;
+            width: 1.25rem;
+            height: 1.25rem;
+            object-fit: contain;
+
+            &.is-icon {
+              width: auto;
+              height: auto;
+              font-size: 1.25rem;
+            }
 
             &.liked {
               fill: var(--composer-primary-color);

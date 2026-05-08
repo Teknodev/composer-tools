@@ -60,7 +60,7 @@ class Social3 extends BaseSocial {
         {
           type: "media",
           key: "profileImage",
-          displayer: "Profile Image",
+          displayer: "Profile Media",
           value: {
             type: "image",
             url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67e40a6cfb049c002cc41c31?alt=media&timestamp=1744289020159"
@@ -133,77 +133,87 @@ class Social3 extends BaseSocial {
       ]
     })
     this.addProp({
-      type: "object",
-      key: "likeInteraction",
-      displayer: "Like Interaction",
+      type: "array",
+      key: "interactions",
+      displayer: "Interactions",
       value: [
         {
-          type: "media",
-          key: "icon",
-          displayer: "Icon",
-          value: {
-            type: "icon",
-            name: "AiOutlineLike"
-          },
-          additionalParams: {
-            availableTypes: ["icon", "image"],
-          }
+          type: "object",
+          key: "interaction",
+          displayer: "Interaction",
+          value: [
+            {
+              type: "media",
+              key: "icon",
+              displayer: "Icon",
+              value: {
+                type: "icon",
+                name: "AiOutlineLike"
+              },
+              additionalParams: {
+                availableTypes: ["icon", "image"],
+              }
+            },
+            {
+              type: "string",
+              key: "text",
+              displayer: "Text",
+              value: "Like"
+            }
+          ]
         },
         {
-          type: "string",
-          key: "text",
-          displayer: "Text",
-          value: "Like"
-        }]
+          type: "object",
+          key: "interaction",
+          displayer: "Interaction",
+          value: [
+            {
+              type: "media",
+              key: "icon",
+              displayer: "Icon",
+              value: {
+                type: "icon",
+                name: "FaRegCommentAlt"
+              },
+              additionalParams: {
+                availableTypes: ["icon", "image"],
+              }
+            },
+            {
+              type: "string",
+              key: "text",
+              displayer: "Text",
+              value: "Comment"
+            }
+          ]
+        },
+        {
+          type: "object",
+          key: "interaction",
+          displayer: "Interaction",
+          value: [
+            {
+              type: "media",
+              key: "icon",
+              displayer: "Icon",
+              value: {
+                type: "icon",
+                name: "RiShareForwardLine"
+              },
+              additionalParams: {
+                availableTypes: ["icon", "image"],
+              }
+            },
+            {
+              type: "string",
+              key: "text",
+              displayer: "Text",
+              value: "Share"
+            }
+          ]
+        }
+      ]
     }),
-      this.addProp({
-        type: "object",
-        key: "commentInteraction",
-        displayer: "Comment Interaction",
-        value: [
-          {
-            type: "media",
-            key: "icon",
-            displayer: "Icon",
-            value: {
-              type: "icon",
-              name: "FaRegCommentAlt"
-            },
-            additionalParams: {
-              availableTypes: ["icon", "image"],
-            }
-          },
-          {
-            type: "string",
-            key: "text",
-            displayer: "Text",
-            value: "Comment"
-          }]
-      }),
-      this.addProp({
-        type: "object",
-        key: "shareInteraction",
-        displayer: "Share Interaction",
-        value: [
-          {
-            type: "media",
-            key: "icon",
-            displayer: "Icon",
-            value: {
-              type: "icon",
-              name: "RiShareForwardLine"
-            },
-            additionalParams: {
-              availableTypes: ["icon", "image"],
-            }
-          },
-          {
-            type: "string",
-            key: "text",
-            displayer: "Text",
-            value: "Share"
-          }]
-      }),
       this.addProp({
         type: "array",
         key: "socials",
@@ -316,11 +326,7 @@ class Social3 extends BaseSocial {
   }
   render() {
     const post = this.castToObject<PostItem>("post");
-    const likeInteraction = this.castToObject<Interaction>("likeInteraction");
-    const commentInteraction = this.castToObject<Interaction>(
-      "commentInteraction"
-    );
-    const shareInteraction = this.castToObject<Interaction>("shareInteraction");
+    const interactions = this.castToObject<Interaction[]>("interactions");
     const socials = this.castToObject<Social[]>("socials");
     const profile = this.castToObject<any>("profile");
 
@@ -381,11 +387,9 @@ class Social3 extends BaseSocial {
                               </div>
                             )}
                             {iconExist && (
-                              <Base.Icon
-                                name={item.icon}
-                                propsIcon={{
-                                  className: this.decorateCSS("button-icon"),
-                                }}
+                              <Base.Media
+                                value={item.icon!}
+                                className={`${this.decorateCSS("button-icon")} ${item.icon!.type === "icon" ? this.decorateCSS("is-icon") : ""}`}
                               />
                             )}
                           </Base.Button>
@@ -424,7 +428,7 @@ class Social3 extends BaseSocial {
                               {profile.dateIcon && (
                                 <Base.Media
                                   value={profile.dateIcon}
-                                  className={this.decorateCSS("date-icon")}
+                                  className={`${this.decorateCSS("date-icon")} ${profile.dateIcon.type === "icon" ? this.decorateCSS("is-icon") : ""}`}
                                 />
                               )}
                               {this.castToString(profile.date) && (
@@ -459,100 +463,62 @@ class Social3 extends BaseSocial {
                 )}
               </div>
             )}
-            {(likeInteraction.icon ||
-              this.castToString(likeInteraction.text) ||
-              commentInteraction.icon ||
-              this.castToString(commentInteraction.text) ||
-              socials.length > 0 ||
-              shareInteraction.icon ||
-              this.castToString(shareInteraction.text)) && (
-                <div className={this.decorateCSS("interactions-container")}>
-                  {(likeInteraction.icon ||
-                    this.castToString(likeInteraction.text)) && (
-                      <div
-                        className={this.decorateCSS("interaction")}
-                        onClick={() => this.handleLikeClick()}
-                      >
-                        {likeInteraction.icon && (
-                          <Base.Media
-                            value={likeInteraction.icon}
-                            className={`${this.decorateCSS("icon")} ${this.getComponentState("isLiked") ? this.decorateCSS("liked") : ""}`}
-                          />
-                        )}
-                        {this.castToString(likeInteraction.text) && (
-                          <div className={this.decorateCSS("text")}>
-                            {likeInteraction.text}
-                          </div>
-                        )}
-                      </div>
-                    )}
-                  {(commentInteraction.icon ||
-                    this.castToString(commentInteraction.text)) && (
-                      <div className={this.decorateCSS("interaction")}>
-                        {commentInteraction.icon && (
-                          <Base.Media
-                            value={commentInteraction.icon}
-                            className={this.decorateCSS("icon")}
-                          />
-                        )}
-                        {this.castToString(commentInteraction.text) && (
-                          <div className={this.decorateCSS("text")}>
-                            {commentInteraction.text}
-                          </div>
-                        )}
-                      </div>
-                    )}
-                  {(socials.length > 0 ||
-                    shareInteraction.icon ||
-                    this.castToString(shareInteraction.text)) && (
-                      <div
-                        className={`${this.decorateCSS(
-                          "interaction"
-                        )} ${this.decorateCSS("share")}`}
-                      >
-                        {shareInteraction.icon && (
-                          <Base.Media
-                            value={shareInteraction.icon}
-                            className={this.decorateCSS("icon")}
-                          />
-                        )}
-                        {this.castToString(shareInteraction.text) && (
-                          <div className={this.decorateCSS("text")}>
-                            {shareInteraction.text}
-                          </div>
-                        )}
-                        {socials.length > 0 && (
-                          <div className={this.decorateCSS("socials")}>
-                            {socials.map((item, index: number) => {
-                              if (!item.icon && !this.castToString(item.text)) return null;
-                              return (
-                                <ComposerLink path={item.url} key={index}>
-                                  <div
-                                    className={this.decorateCSS("social")}
-                                  >
-                                    {item.icon && (
-                                      <Base.Media
-                                        value={item.icon}
-                                        className={this.decorateCSS("social-icon")}
-                                      />
-                                    )}
-                                    {this.castToString(item.text) && (
-                                      <div
-                                        className={this.decorateCSS("social-text")}
-                                      >
-                                        {item.text}
-                                      </div>
-                                    )}
-                                  </div>
-                                </ComposerLink>
-                              );
-                            })}
-                          </div>
-                        )}
-                      </div>
-                    )}
-                </div>
-              )}
+            {interactions.length > 0 && (
+              <div className={this.decorateCSS("interactions-container")}>
+                {interactions.map((item: Interaction, index: number) => {
+                  const isLike = index === 0;
+                  const isShare = index === interactions.length - 1;
+                  const iconExist = item.icon && (item.icon.type === "icon" ? this.castToString((item.icon as any).name) : (item.icon as any).url);
+                  const textExist = this.castToString(item.text);
+
+                  if (!iconExist && !textExist && !(isShare && socials.length > 0)) return null;
+
+                  return (
+                    <div
+                      key={index}
+                      className={`${this.decorateCSS("interaction")} ${isShare ? this.decorateCSS("share") : ""}`}
+                      onClick={isLike ? () => this.handleLikeClick() : undefined}
+                    >
+                      {iconExist && (
+                        <Base.Media
+                          value={item.icon}
+                          className={`${this.decorateCSS("icon")} ${item.icon.type === "icon" ? this.decorateCSS("is-icon") : ""} ${isLike && this.getComponentState("isLiked") ? this.decorateCSS("liked") : ""}`}
+                        />
+                      )}
+                      {textExist && (
+                        <div className={this.decorateCSS("text")}>
+                          {item.text}
+                        </div>
+                      )}
+                      {isShare && socials.length > 0 && (
+                        <div className={this.decorateCSS("socials")}>
+                          {socials.map((social, sIndex: number) => {
+                            if (!social.icon && !this.castToString(social.text)) return null;
+                            return (
+                              <ComposerLink path={social.url} key={sIndex}>
+                                <div className={this.decorateCSS("social")}>
+                                  {social.icon && (
+                                    <Base.Media
+                                      value={social.icon}
+                                      className={`${this.decorateCSS("social-icon")} ${social.icon.type === "icon" ? this.decorateCSS("is-icon") : ""}`}
+                                    />
+                                  )}
+                                  {this.castToString(social.text) && (
+                                    <div className={this.decorateCSS("social-text")}>
+                                      {social.text}
+                                    </div>
+                                  )}
+                                </div>
+                              </ComposerLink>
+                            );
+                          })}
+                        </div>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+            )}
           </div>
         </Base.MaxContent>
       </Base.Container>
