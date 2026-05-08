@@ -24,32 +24,6 @@ class Form3 extends BaseContacts {
     super(props, styles);
 
     this.addProp({
-      type: "object",
-      key: "backgroundSettings",
-      displayer: "Media",
-      value: [
-        {
-          type: "media",
-          key: "background",
-          displayer: "Media",
-          additionalParams: {
-            availableTypes: ["image", "video"],
-          },
-          value: {
-            type: "image",
-            url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66bb57653292c6002b23ff58?alt=media",
-          },
-        },
-        {
-          type: "boolean",
-          key: "overlay",
-          displayer: "Overlay",
-          value: false,
-        },
-      ],
-    });
-
-    this.addProp({
       type: "string",
       key: "subtitle",
       displayer: "Subtitle",
@@ -84,6 +58,31 @@ class Form3 extends BaseContacts {
       key: "leftSection",
       displayer: "Left Section",
       value: [
+        {
+          type: "object",
+          key: "backgroundSettings",
+          displayer: "Media",
+          value: [
+            {
+              type: "media",
+              key: "background",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["image", "video"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66bb57653292c6002b23ff58?alt=media",
+              },
+            },
+            {
+              type: "boolean",
+              key: "overlay",
+              displayer: "Overlay",
+              value: false,
+            },
+          ],
+        },
         {
           type: "string",
           key: "leftSubtitle",
@@ -619,10 +618,11 @@ class Form3 extends BaseContacts {
       return btnText || !!btn.icon;
     });
 
-    const backgroundSettings = this.castToObject<any>("backgroundSettings");
-    const background = backgroundSettings.background;
+    const leftSectionArray = this.getPropValue("leftSection");
+    const backgroundSettingsGroup = leftSectionArray.find((item: any) => item.key === "backgroundSettings");
+    const background = backgroundSettingsGroup?.getPropValue("background");
     const backgroundImage = background?.url;
-    const overlay = backgroundSettings.overlay;
+    const overlay = backgroundSettingsGroup?.getPropValue("overlay");
 
     const leftSection = this.castToObject<any>("leftSection");
     const leftSubtitle = this.castToString(leftSection.leftSubtitle);
