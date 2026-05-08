@@ -1,5 +1,5 @@
 import * as React from "react";
-import { BaseSlider, TypeMediaInputValue } from "../../EditorComponent";
+import { BaseSocial, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./social1.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "../../../custom-hooks/input-templates";
@@ -17,7 +17,7 @@ type ItemType = {
     url: string,
 }
 
-class Social1 extends BaseSlider {
+class Social1 extends BaseSocial {
     constructor(props?: any) {
         super(props, styles);
         this.addProp({
@@ -266,6 +266,12 @@ class Social1 extends BaseSlider {
     static getName(): string {
         return "Social 1";
     }
+
+    transformSliderValues = (sliderProps: any[]): any => {
+        const flatObject: Record<string, any> = {};
+        sliderProps.forEach((prop: any) => { flatObject[prop.key] = prop.value; });
+        return flatObject;
+    };
 
     render() {
         const sliderSettings = this.transformSliderValues(this.getPropValue("sliderSettings"));

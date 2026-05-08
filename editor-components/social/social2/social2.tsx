@@ -1,5 +1,5 @@
 import * as React from "react";
-import { BaseSlider, TypeMediaInputValue } from "../../EditorComponent";
+import { BaseSocial, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./social2.module.scss";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import { Base } from "../../../composer-base-components/base/base";
@@ -18,7 +18,7 @@ type SocialIcon = {
     url: string
 }
 
-class Social2 extends BaseSlider {
+class Social2 extends BaseSocial {
     constructor(props?: any) {
         super(props, styles);
         this.addProp({
@@ -974,6 +974,13 @@ class Social2 extends BaseSlider {
     static getName(): string {
         return "Social 2";
     }
+
+    transformSliderValues = (sliderProps: any[]): any => {
+        const flatObject: Record<string, any> = {};
+        sliderProps.forEach((prop: any) => { flatObject[prop.key] = prop.value; });
+        return flatObject;
+    };
+
     onComponentDidMount() {
         const containerRef = this.getComponentState("containerRef");
         const container = containerRef.current;
