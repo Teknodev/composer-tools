@@ -160,11 +160,13 @@
                                 display: flex;
                                 align-items: center;
                                 color: var(--composer-font-color-primary);
+                                font-size: 1.25rem;
                             }
                         }
 
                         .comment {
                             color: var(--composer-tertiary-color);
+                            font-size: 1.25rem !important;
                         }
                     }
                 }
