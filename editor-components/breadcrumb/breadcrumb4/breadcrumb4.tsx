@@ -27,7 +27,7 @@ class Breadcrumb4 extends BaseBreadcrumb {
             value: [
                 {
                     type: "media",
-                    key: "image",
+                    key: "componentBackground",
                     displayer: "Background Media",
                     additionalParams: { availableTypes: ["image", "video"] },
                     value: { type: "image", url: "" },
@@ -182,8 +182,8 @@ class Breadcrumb4 extends BaseBreadcrumb {
 
     render() {
         const vectors = this.castToObject<VectorsItem>("vectors");
-        const background = this.castToObject<{ image: TypeMediaInputValue; overlay: boolean }>("background");
-        const backgroundImage = background?.image;
+        const background = this.castToObject<{ componentBackground: TypeMediaInputValue; overlay: boolean }>("background");
+        const backgroundImage = background?.componentBackground;
         const bgImageExist = backgroundImage && (backgroundImage.type === "icon" ? backgroundImage.name : backgroundImage.url);
         const overlay = background?.overlay;
         const isTitleExist = this.castToString(this.getPropValue("title"));

@@ -19,7 +19,7 @@ class Breadcrumb2 extends BaseBreadcrumb {
       value: [
         {
           type: "media",
-          key: "image",
+          key: "componentBackground",
           displayer: "Background Media",
           additionalParams: { availableTypes: ["image", "video"] },
           value: { type: "image", url: "" },
@@ -149,8 +149,8 @@ class Breadcrumb2 extends BaseBreadcrumb {
     const isSubtitleExist = this.castToString(this.getPropValue("subtitle"));
     const isDescriptionExist = this.castToString(this.getPropValue("description"));
     const showGradient = this.getPropValue("showGradient");
-    const background = this.castToObject<{ image: TypeMediaInputValue; overlay: boolean }>("background");
-    const bgImage = background?.image;
+    const background = this.castToObject<{ componentBackground: TypeMediaInputValue; overlay: boolean }>("background");
+    const bgImage = background?.componentBackground;
     const bgImageExist = bgImage && (bgImage.type === "icon" ? bgImage.name : bgImage.url);
     const overlay = background?.overlay;
     const separatorIconValue = this.getPropValue("separatorIcon");

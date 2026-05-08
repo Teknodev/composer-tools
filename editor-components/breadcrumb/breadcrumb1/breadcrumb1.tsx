@@ -20,7 +20,7 @@ class Breadcrumb1 extends BaseBreadcrumb {
             value: [
                 {
                     type: "media",
-                    key: "image",
+                    key: "componentBackground",
                     displayer: "Background Media",
                     additionalParams: { availableTypes: ["image", "video"] },
                     value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/694543ec875e15002c68e5f0?alt=media" },
@@ -144,8 +144,8 @@ class Breadcrumb1 extends BaseBreadcrumb {
     }
 
     render() {
-        const background = this.castToObject<{ image: TypeMediaInputValue; overlay: boolean }>("background");
-        const bgImage = background?.image;
+        const background = this.castToObject<{ componentBackground: TypeMediaInputValue; overlay: boolean }>("background");
+        const bgImage = background?.componentBackground;
         const bgImageExist = bgImage && (bgImage.type === "icon" ? bgImage.name : bgImage.url);
         const overlay = background?.overlay;
 
