@@ -967,14 +967,14 @@ class Social2 extends BaseSlider {
         this.setComponentState("videoRefs", React.createRef());
         this.getComponentState("videoRefs").current = [];
         this.setComponentState("activeIndexRef", React.createRef());
-        this.setComponentState("activeVideoIndex", React.createRef());
+        this.setComponentState("activeVideoIndex", 0);
 
     }
 
     static getName(): string {
         return "Social 2";
     }
-    componentDidMount() {
+    onComponentDidMount() {
         const containerRef = this.getComponentState("containerRef");
         const container = containerRef.current;
         if (!container) return;
@@ -1094,9 +1094,9 @@ class Social2 extends BaseSlider {
         }
     }
     render() {
-        const sliderItems = this.castToObject<SlideItems[]>("sliderItems");
+        const sliderItems = this.castToObject<SlideItems[]>("sliderItems") || [];
         const sliderRef = this.getComponentState("slider-ref");
-        const selectedIndex = this.getComponentState("selectedVideo");
+        const selectedIndex = this.getComponentState("selectedVideo") || 0;
 
 
         const sliderSettings = this.transformSliderValues(this.getPropValue("sliderSettings"));
@@ -1132,12 +1132,12 @@ class Social2 extends BaseSlider {
             initialSlide: selectedIndex,
 
         };
-        const player = this.castToObject<any>("player");
-        const share = this.castToObject<any>("share");
+        const player = this.castToObject<any>("player") || {};
+        const share = this.castToObject<any>("share") || {};
         const titleExist = this.castToString(this.getPropValue("title"));
         const subtitleExist = this.castToString(this.getPropValue("subtitle"));
         const descriptionExist = this.castToString(this.getPropValue("description"));
-        const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
+        const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons") || [];
         const hasValidButtons = buttons.some((btn) => {
             const textExist = this.castToString(btn.text);
             const iconExist = btn.icon && this.castToString((btn.icon as any).name);
@@ -1197,7 +1197,7 @@ class Social2 extends BaseSlider {
                                 )}
                             </Base.VerticalContent>
                         )}
-                        {(sliderItems.length > 0) && (
+                        {(sliderItems?.length > 0) && (
                             <div className={this.decorateCSS("slider-container")} ref={this.getComponentState("containerRef")}>
                                 <ComposerSlider {...settings} ref={sliderRef} key={this.getComponentState("selectedVideo")} className={this.decorateCSS("slider")}>
                                     {sliderItems.map((item, index: number) => {
@@ -1274,7 +1274,7 @@ class Social2 extends BaseSlider {
                                             <Base.Icon name={share.shareIcon} propsIcon={{ className: this.decorateCSS("share-icon"), onClick: () => this.handleShareOpen() }}></Base.Icon>
                                         </div>
                                     )}
-                                    {(this.castToString(share.shareTitle) || share.closeIcon || (sliderItems[selectedIndex].socialIcons.length > 0)) && (
+                                    {(this.castToString(share.shareTitle) || share.closeIcon || (sliderItems[selectedIndex]?.socialIcons?.length > 0)) && (
                                         <div className={`${this.decorateCSS("share-wrapper")} ${this.getComponentState("shareContainerActive") && this.decorateCSS("active")}`}>
                                             <div className={this.decorateCSS("share-popup-container")}>
                                                 {(this.castToString(share.shareTitle) || share.closeIcon) && (
@@ -1289,7 +1289,7 @@ class Social2 extends BaseSlider {
                                                         )}
                                                     </div>
                                                 )}
-                                                {sliderItems[selectedIndex].socialIcons.length > 0 &&
+                                                {sliderItems[selectedIndex]?.socialIcons?.length > 0 &&
                                                     <div className={this.decorateCSS("social-icons-container")}>
                                                         {sliderItems[selectedIndex].socialIcons.map((social, socialIndex) => {
                                                             if (!social.icon) return null;
@@ -1325,16 +1325,16 @@ class Social2 extends BaseSlider {
                     <Base.Overlay isVisible={true} className={this.decorateCSS("base-overlay")} onClick={() => this.handleVideoClose()}>
                         <div className={this.decorateCSS("modal-wrapper")} onClick={(e) => e.stopPropagation()}>
                             <div className={this.decorateCSS("video-container")}>
-                                {sliderItems[selectedIndex].media && (
+                                {sliderItems[selectedIndex].media?.url && (
                                     <video
-                                        key={`${sliderItems[selectedIndex].media}-${selectedIndex}`}
+                                        key={`${sliderItems[selectedIndex].media.url}-${selectedIndex}`}
                                         autoPlay={true}
                                         muted={false}
                                         playsInline
                                         loop
                                         controls
                                         className={this.decorateCSS("selected-video")}
-                                        src={sliderItems[selectedIndex].media}
+                                        src={sliderItems[selectedIndex].media.url}
                                     />
                                 )}
                                 {this.castToString(sliderItems[selectedIndex].description) && (
@@ -1354,7 +1354,7 @@ class Social2 extends BaseSlider {
                                         <Base.Icon name={share.shareIcon} propsIcon={{ className: this.decorateCSS("share-icon"), onClick: () => this.handleShareOpen() }}></Base.Icon>
                                     </div>
                                 )}
-                                {(this.castToString(share.shareTitle) || share.closeIcon || (sliderItems[selectedIndex].socialIcons.length > 0)) && (
+                                {(this.castToString(share.shareTitle) || share.closeIcon || (sliderItems[selectedIndex]?.socialIcons?.length > 0)) && (
                                     <div className={`${this.decorateCSS("share-wrapper")} ${this.getComponentState("shareContainerActive") && this.decorateCSS("active")}`}>
                                         <div className={this.decorateCSS("share-popup-container")}>
                                             {(this.castToString(share.shareTitle) || share.closeIcon) && (
@@ -1369,14 +1369,14 @@ class Social2 extends BaseSlider {
                                                     )}
                                                 </div>
                                             )}
-                                            {sliderItems[selectedIndex].socialIcons.length > 0 &&
+                                            {sliderItems[selectedIndex]?.socialIcons?.length > 0 &&
                                                 <div className={this.decorateCSS("social-icons-container")}>
                                                     {sliderItems[selectedIndex].socialIcons.map((social, socialIndex) => {
                                                         if (!social.icon) return null;
                                                         return (
                                                             <ComposerLink key={socialIndex} path={social.url}>
                                                                 <div className={this.decorateCSS("social-icons")}>
-                                                                    <Base.Icon name={social.icon} propsIcon={{ className: this.decorateCSS("social-icon") }}></Base.Icon>
+                                                                    <Base.Media value={social.icon} className={this.decorateCSS("social-icon")} />
                                                                 </div>
                                                             </ComposerLink>
                                                         )

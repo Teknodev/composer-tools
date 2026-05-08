@@ -286,9 +286,9 @@ class Social1 extends BaseSlider {
         const titleExist = this.castToString(this.getPropValue("title"));
         const subtitleExist = this.castToString(this.getPropValue("subtitle"));
         const descriptionExist = this.castToString(this.getPropValue("description"));
-        const cardItems = this.castToObject<CardItem[]>("cards");
-        const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
-        const hasValidButtons = buttons.some((btn) => {
+        const cardItems = this.castToObject<CardItem[]>("cards") || [];
+        const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons") || [];
+        const hasValidButtons = buttons?.some((btn) => {
             const textExist = this.castToString(btn.text);
             const iconValue = btn.icon as TypeMediaInputValue | string;
             const iconExist = typeof iconValue === "string" ? iconValue : (iconValue?.name || iconValue?.url);
@@ -296,7 +296,7 @@ class Social1 extends BaseSlider {
         });
         const hasAnyHeader = subtitleExist || titleExist || descriptionExist || hasValidButtons;
 
-        const allItems: ItemType[] = cardItems.flatMap((card) => card.items);
+        const allItems: ItemType[] = (cardItems || []).flatMap((card) => card?.items || []);
         const mobileSettings = {
             ...sliderSettings,
             slidesToShow: 1,
@@ -337,7 +337,7 @@ class Social1 extends BaseSlider {
 
         return (
             <div className={`${this.decorateCSS("wrapper")} ${!hasAnyHeader && this.decorateCSS("no-header")}`}>
-                <Base.Container className={`${this.decorateCSS("container")} ${(cardItems.length > 0) && this.decorateCSS("container-with-cards")}`}>
+                <Base.Container className={`${this.decorateCSS("container")} ${(cardItems?.length > 0) && this.decorateCSS("container-with-cards")}`}>
                     {hasAnyHeader && (
                         <Base.MaxContent className={this.decorateCSS("max-content")}>
                             <Base.VerticalContent className={this.decorateCSS("upper-content")}>
@@ -390,7 +390,7 @@ class Social1 extends BaseSlider {
                         </Base.MaxContent>
                     )}
                 </Base.Container>
-                {(cardItems.length > 0) && (
+                {(cardItems?.length > 0) && (
                     <div className={`${this.decorateCSS("slider-parent")} ${this.decorateCSS("desktop-slider")}`}>
                         <ComposerSlider {...settings} className={this.decorateCSS("carousel")} ref={sliderRef}>
                             {cardItems.map((item, index: number) => (
@@ -403,7 +403,7 @@ class Social1 extends BaseSlider {
                         </ComposerSlider>
                     </div>
                 )}
-                {(allItems.length > 0) && (
+                {(allItems?.length > 0) && (
                     <div className={`${this.decorateCSS("slider-parent")} ${this.decorateCSS("mobile-slider")}`}>
                         <ComposerSlider {...mobileSettings} className={this.decorateCSS("carousel")}>
                             {allItems.map((item: ItemType, index: number) => (
