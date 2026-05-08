@@ -9,7 +9,6 @@ import { FaLessThanEqual } from "react-icons/fa";
 import { TbRubberStamp } from "react-icons/tb";
 
 type CardItem = {
-    media: TypeMediaInputValue,
     mediaItems: MediaItem[],
     likeCount: React.JSX.Element,
     commentCount: React.JSX.Element,
@@ -98,13 +97,6 @@ class Social4 extends BaseSocial {
                     displayer: "Card Item",
                     value: [
                         {
-                            type: "media",
-                            key: "media",
-                            displayer: "Media",
-                            value: { type: "video", url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6801fec5bf76cc002cc3bca5?alt=media&timestamp=1744961224764" },
-                            additionalParams: { availableTypes: ["image", "video"] }
-                        },
-                        {
                             type: "array",
                             key: "mediaItems",
                             displayer: "Media Items",
@@ -119,7 +111,7 @@ class Social4 extends BaseSocial {
                                                 type: "media",
                                                 key: "media",
                                                 displayer: "Media",
-                                                value: { type: "image", url: "" },
+                                                value: { type: "video", url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6801fec5bf76cc002cc3bca5?alt=media&timestamp=1744961224764" },
                                                 additionalParams: { availableTypes: ["image", "video"] }
                                             }
                                         ]
@@ -205,13 +197,6 @@ class Social4 extends BaseSocial {
                     displayer: "Card Item",
                     value: [
                         {
-                            type: "media",
-                            key: "media",
-                            displayer: "Media",
-                            value: { type: "video", url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6801ffc5bf76cc002cc3bd38?alt=media&timestamp=1744961479941" },
-                            additionalParams: { availableTypes: ["image", "video"] }
-                        },
-                        {
                             type: "array",
                             key: "mediaItems",
                             displayer: "Media Items",
@@ -226,7 +211,7 @@ class Social4 extends BaseSocial {
                                                 type: "media",
                                                 key: "media",
                                                 displayer: "Media",
-                                                value: { type: "image", url: "" },
+                                                value: { type: "video", url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6801ffc5bf76cc002cc3bd38?alt=media&timestamp=1744961479941" },
                                                 additionalParams: { availableTypes: ["image", "video"] }
                                             }
                                         ]
@@ -310,13 +295,6 @@ class Social4 extends BaseSocial {
                     key: "cardItem",
                     displayer: "Card Item",
                     value: [
-                        {
-                            type: "media",
-                            key: "media",
-                            displayer: "Media",
-                            value: { type: "video", url: "" },
-                            additionalParams: { availableTypes: ["image", "video"] }
-                        },
                         {
                             type: "array",
                             key: "mediaItems",
@@ -416,13 +394,6 @@ class Social4 extends BaseSocial {
                     key: "cardItem",
                     displayer: "Card Item",
                     value: [
-                        {
-                            type: "media",
-                            key: "media",
-                            displayer: "Media",
-                            value: { type: "video", url: "" },
-                            additionalParams: { availableTypes: ["image", "video"] }
-                        },
                         {
                             type: "array",
                             key: "mediaItems",
@@ -538,13 +509,6 @@ class Social4 extends BaseSocial {
                     displayer: "Card Item",
                     value: [
                         {
-                            type: "media",
-                            key: "media",
-                            displayer: "Media",
-                            value: { type: "video", url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6801ff32bf76cc002cc3bcea?alt=media&timestamp=1744961331979" },
-                            additionalParams: { availableTypes: ["image", "video"] }
-                        },
-                        {
                             type: "array",
                             key: "mediaItems",
                             displayer: "Media Items",
@@ -559,7 +523,7 @@ class Social4 extends BaseSocial {
                                                 type: "media",
                                                 key: "media",
                                                 displayer: "Media",
-                                                value: { type: "image", url: "" },
+                                                value: { type: "video", url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6801ff32bf76cc002cc3bcea?alt=media&timestamp=1744961331979" },
                                                 additionalParams: { availableTypes: ["image", "video"] }
                                             },
                                         ]
@@ -643,13 +607,6 @@ class Social4 extends BaseSocial {
                     key: "cardItem",
                     displayer: "Card Item",
                     value: [
-                        {
-                            type: "media",
-                            key: "media",
-                            displayer: "Media",
-                            value: { type: "video", url: "" },
-                            additionalParams: { availableTypes: ["image", "video"] }
-                        },
                         {
                             type: "array",
                             key: "mediaItems",
@@ -750,13 +707,6 @@ class Social4 extends BaseSocial {
                     displayer: "Card Item",
                     value: [
                         {
-                            type: "media",
-                            key: "media",
-                            displayer: "Media",
-                            value: { type: "video", url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6801ff06bf76cc002cc3bce4?alt=media&timestamp=1744961288526" },
-                            additionalParams: { availableTypes: ["image", "video"] }
-                        },
-                        {
                             type: "array",
                             key: "mediaItems",
                             displayer: "Media Items",
@@ -771,7 +721,7 @@ class Social4 extends BaseSocial {
                                                 type: "media",
                                                 key: "media",
                                                 displayer: "Media",
-                                                value: { type: "image", url: "" },
+                                                value: { type: "video", url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6801ff06bf76cc002cc3bce4?alt=media&timestamp=1744961288526" },
                                                 additionalParams: { availableTypes: ["image", "video"] }
                                             },
                                         ]
@@ -855,13 +805,6 @@ class Social4 extends BaseSocial {
                     key: "cardItem",
                     displayer: "Card Item",
                     value: [
-                        {
-                            type: "media",
-                            key: "media",
-                            displayer: "Media",
-                            value: { type: "video", url: "" },
-                            additionalParams: { availableTypes: ["image", "video"] }
-                        },
                         {
                             type: "array",
                             key: "mediaItems",
@@ -992,13 +935,6 @@ class Social4 extends BaseSocial {
                     displayer: "Card Item",
                     value: [
                         {
-                            type: "media",
-                            key: "media",
-                            displayer: "Media",
-                            value: { type: "video", url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/68020059bf76cc002cc3bd6b?alt=media&timestamp=1744961627435" },
-                            additionalParams: { availableTypes: ["image", "video"] }
-                        },
-                        {
                             type: "array",
                             key: "mediaItems",
                             displayer: "Media Items",
@@ -1013,7 +949,7 @@ class Social4 extends BaseSocial {
                                                 type: "media",
                                                 key: "media",
                                                 displayer: "Media",
-                                                value: { type: "image", url: "" },
+                                                value: { type: "video", url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/68020059bf76cc002cc3bd6b?alt=media&timestamp=1744961627435" },
                                                 additionalParams: { availableTypes: ["image", "video"] }
                                             },
                                         ]
@@ -1097,13 +1033,6 @@ class Social4 extends BaseSocial {
                     key: "cardItem",
                     displayer: "Card Item",
                     value: [
-                        {
-                            type: "media",
-                            key: "media",
-                            displayer: "Media",
-                            value: { type: "video", url: "" },
-                            additionalParams: { availableTypes: ["image", "video"] }
-                        },
                         {
                             type: "array",
                             key: "mediaItems",
@@ -1204,13 +1133,6 @@ class Social4 extends BaseSocial {
                     displayer: "Card Item",
                     value: [
                         {
-                            type: "media",
-                            key: "media",
-                            displayer: "Media",
-                            value: { type: "video", url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/680201efbf76cc002cc3be21?alt=media&timestamp=1744962032906" },
-                            additionalParams: { availableTypes: ["image", "video"] }
-                        },
-                        {
                             type: "array",
                             key: "mediaItems",
                             displayer: "Media Items",
@@ -1225,7 +1147,7 @@ class Social4 extends BaseSocial {
                                                 type: "media",
                                                 key: "media",
                                                 displayer: "Media",
-                                                value: { type: "image", url: "" },
+                                                value: { type: "video", url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/680201efbf76cc002cc3be21?alt=media&timestamp=1744962032906" },
                                                 additionalParams: { availableTypes: ["image", "video"] }
                                             },
                                         ]
@@ -1309,13 +1231,6 @@ class Social4 extends BaseSocial {
                     key: "cardItem",
                     displayer: "Card Item",
                     value: [
-                        {
-                            type: "media",
-                            key: "media",
-                            displayer: "Media",
-                            value: { type: "video", url: "" },
-                            additionalParams: { availableTypes: ["image", "video"] }
-                        },
                         {
                             type: "array",
                             key: "mediaItems",
@@ -1431,13 +1346,6 @@ class Social4 extends BaseSocial {
                     displayer: "Card Item",
                     value: [
                         {
-                            type: "media",
-                            key: "media",
-                            displayer: "Media",
-                            value: { type: "video", url: "" },
-                            additionalParams: { availableTypes: ["image", "video"] }
-                        },
-                        {
                             type: "array",
                             key: "mediaItems",
                             displayer: "Media Items",
@@ -1536,13 +1444,6 @@ class Social4 extends BaseSocial {
                     key: "cardItem",
                     displayer: "Card Item",
                     value: [
-                        {
-                            type: "media",
-                            key: "media",
-                            displayer: "Media",
-                            value: { type: "video", url: "" },
-                            additionalParams: { availableTypes: ["image", "video"] }
-                        },
                         {
                             type: "array",
                             key: "mediaItems",
@@ -1687,13 +1588,6 @@ class Social4 extends BaseSocial {
                     key: "cardItem",
                     displayer: "Card Item",
                     value: [
-                        {
-                            type: "media",
-                            key: "media",
-                            displayer: "Media",
-                            value: { type: "video", url: "" },
-                            additionalParams: { availableTypes: ["image", "video"] }
-                        },
                         {
                             type: "array",
                             key: "mediaItems",
@@ -1991,29 +1885,33 @@ class Social4 extends BaseSocial {
                                 </Base.VerticalContent>
                             )}
 
-                        <Base.ListGrid gridCount={{ pc: pagination.rowCount, tablet: pagination.rowCount }} className={this.decorateCSS("gallery-grid")}>
+                        <Base.ListGrid gridCount={{ pc: pagination.rowCount, tablet: pagination.rowCount, phone: 2 }} className={this.decorateCSS("gallery-grid")}>
                             {cardItems.slice(0, this.getComponentState("imageCount")).map((item: CardItem, index: number) => {
+                                const firstMedia = item.mediaItems[0]?.media;
+                                const isVideo = firstMedia?.type === "video" && (firstMedia as any)?.url;
+                                const isImage = firstMedia?.type === "image" && (firstMedia as any)?.url;
+
                                 return (
                                     <div className={this.decorateCSS("gallery-item")} key={index}>
-                                        {(item.mediaItems.length > 0 && !(item.media as any)?.url && (item.mediaItems[0].media as any)?.url) &&
+                                        {isImage && (
                                             <div className={this.decorateCSS("image-container")}>
-                                                <Base.Media value={item.mediaItems[0].media} className={this.decorateCSS("gallery-image")} />
-                                                {item.overlay && (
-                                                    <div className={this.decorateCSS("overlay-item")} />
-                                                )}
-                                            </div>
-                                        }
-                                        {(item.media as any)?.url && (
-                                            <div className={this.decorateCSS("video-container")}>
-                                                <Base.Media value={item.media} controls={false} className={this.decorateCSS("gallery-video")} />
+                                                <Base.Media value={firstMedia} className={this.decorateCSS("gallery-image")} />
                                                 {item.overlay && (
                                                     <div className={this.decorateCSS("overlay-item")} />
                                                 )}
                                             </div>
                                         )}
-                                        {((icons.videoIcon && (item.media as any)?.url && item.videoIconActive) || (icons.imageIcon && item.mediaItems.length > 1 && item.imageIconActive)) && (
+                                        {isVideo && (
+                                            <div className={this.decorateCSS("video-container")}>
+                                                <Base.Media value={firstMedia} controls={false} className={this.decorateCSS("gallery-video")} />
+                                                {item.overlay && (
+                                                    <div className={this.decorateCSS("overlay-item")} />
+                                                )}
+                                            </div>
+                                        )}
+                                        {((icons.videoIcon && isVideo && item.videoIconActive) || (icons.imageIcon && item.mediaItems.length > 1 && item.imageIconActive)) && (
                                             <div className={this.decorateCSS("icon-container")}>
-                                                {(icons.videoIcon && (item.media as any)?.url && item.videoIconActive) && (<Base.Media value={icons.videoIcon} className={this.decorateCSS("icon")} />)}
+                                                {(icons.videoIcon && isVideo && item.videoIconActive) && (<Base.Media value={icons.videoIcon} className={this.decorateCSS("icon")} />)}
                                                 {(icons.imageIcon && item.mediaItems.length > 1 && item.imageIconActive) && (<Base.Media value={icons.imageIcon} className={this.decorateCSS("icon")} />)}
                                             </div>
                                         )}
@@ -2046,7 +1944,11 @@ class Social4 extends BaseSocial {
                             <div className={this.decorateCSS("button-wrapper")}>
                                 <ComposerLink path={this.getComponentState("imageCount") < cardItems.length ? "" : button.url}>
                                     <Base.Button className={this.decorateCSS("button")} buttonType={button.type} onClick={this.handleButtonClick} >
-                                        {button.text}
+                                        {button.text && (
+                                            <div className={this.decorateCSS("button-text")}>
+                                                {button.text}
+                                            </div>
+                                        )}
                                     </Base.Button>
                                 </ComposerLink>
                             </div>
@@ -2065,6 +1967,9 @@ class Social4 extends BaseSocial {
                                 const profileMediaValue = typeof item.profileMedia === "string" && item.profileMedia
                                     ? { type: "image", url: item.profileMedia as string }
                                     : item.profileMedia;
+                                const firstMedia = item.mediaItems[0]?.media;
+                                const isVideo = item.mediaItems.length === 1 && firstMedia?.type === "video" && (firstMedia as any)?.url;
+
                                 return (
                                     <div className={this.decorateCSS("post-container")}
                                         key={index}
@@ -2104,21 +2009,21 @@ class Social4 extends BaseSocial {
                                                 </div>
                                             )}
                                         </div>
-                                        {(item.media as any)?.url && (
+                                        {isVideo && (
                                             <div className={this.decorateCSS("post-video-container")}>
-                                                <Base.Media value={item.media} controls autoPlay={true} muted className={this.decorateCSS("video")} />
+                                                <Base.Media value={firstMedia} controls autoPlay={true} muted className={this.decorateCSS("video")} />
                                                 {item.overlay && (
                                                     <div className={this.decorateCSS("overlay-item")} />
                                                 )}
                                             </div>
                                         )}
-                                        {(item.mediaItems.length > 0 && !(item.media as any)?.url) && (
+                                        {(!isVideo && item.mediaItems.length > 0) && (
                                             <div className={this.decorateCSS("post-image-container")}>
                                                 <ComposerSlider {...settingsCard} className={this.decorateCSS("post-slider")}>
-                                                    {item.mediaItems.map((item: MediaItem, index: number) => {
-                                                        if (!(item.media as any)?.url) return null;
+                                                    {item.mediaItems.map((mediaItem: MediaItem, mIndex: number) => {
+                                                        if (!(mediaItem.media as any)?.url) return null;
                                                         return (
-                                                            <Base.Media key={index} value={item.media} className={this.decorateCSS("image")} />
+                                                            <Base.Media key={mIndex} value={mediaItem.media} className={this.decorateCSS("image")} />
                                                         )
                                                     })
                                                     }
