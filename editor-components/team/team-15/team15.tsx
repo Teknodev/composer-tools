@@ -26,6 +26,13 @@ class Team15 extends Team {
     super(props, styles);
 
     this.addProp({
+      type: "boolean",
+      key: "overlay",
+      displayer: "Overlay",
+      value: false,
+    });
+
+    this.addProp({
       type: "string",
       key: "subtitle",
       displayer: "Subtitle",
@@ -46,25 +53,10 @@ class Team15 extends Team {
       value: "",
     });
 
-
-    this.addProp({
-      type: "array",
-      key: "buttons",
-      displayer: "Buttons",
-      value: [INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary")],
-    });
-
-    this.addProp({
-      type: "boolean",
-      key: "overlay",
-      displayer: "Overlay",
-      value: true,
-    });
-
     this.addProp({
       type: "array",
       key: "cards",
-      displayer: "cards",
+      displayer: "Cards",
       value: [
         {
           type: "object",
@@ -74,7 +66,7 @@ class Team15 extends Team {
             {
               type: "string",
               key: "title",
-              displayer: "Title",
+              displayer: "Person Name",
               value: "Aleesha Charlotte",
             },
             {
@@ -86,7 +78,7 @@ class Team15 extends Team {
             {
               type: "media",
               key: "profileImage",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
                 availableTypes: ["image"],
               },
@@ -134,7 +126,7 @@ class Team15 extends Team {
             {
               type: "array",
               key: "socials",
-              displayer: "Socials",
+              displayer: "Social Media",
               value: [
                 {
                   type: "object",
@@ -248,7 +240,7 @@ class Team15 extends Team {
             {
               type: "string",
               key: "title",
-              displayer: "Title",
+              displayer: "Person Name",
               value: "David Michale",
             },
             {
@@ -260,7 +252,7 @@ class Team15 extends Team {
             {
               type: "media",
               key: "profileImage",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
                 availableTypes: ["image"],
               },
@@ -308,7 +300,7 @@ class Team15 extends Team {
             {
               type: "array",
               key: "socials",
-              displayer: "Socials",
+              displayer: "Social Media",
               value: [
                 {
                   type: "object",
@@ -423,7 +415,7 @@ class Team15 extends Team {
             {
               type: "string",
               key: "title",
-              displayer: "Title",
+              displayer: "Person Name",
               value: "Jorge Schiro",
             },
             {
@@ -435,7 +427,7 @@ class Team15 extends Team {
             {
               type: "media",
               key: "profileImage",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
                 availableTypes: ["image"],
               },
@@ -483,7 +475,7 @@ class Team15 extends Team {
             {
               type: "array",
               key: "socials",
-              displayer: "Socials",
+              displayer: "Social Media",
               value: [
                 {
                   type: "object",
@@ -597,7 +589,7 @@ class Team15 extends Team {
             {
               type: "string",
               key: "title",
-              displayer: "Title",
+              displayer: "Person Name",
               value: "John Arlnoald",
             },
             {
@@ -609,7 +601,7 @@ class Team15 extends Team {
             {
               type: "media",
               key: "profileImage",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
                 availableTypes: ["image"],
               },
@@ -657,7 +649,7 @@ class Team15 extends Team {
             {
               type: "array",
               key: "socials",
-              displayer: "Socials",
+              displayer: "Social Media",
               value: [
                 {
                   type: "object",
@@ -767,9 +759,16 @@ class Team15 extends Team {
     });
 
     this.addProp({
+      type: "array",
+      key: "buttons",
+      displayer: "Buttons",
+      value: [INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary")],
+    });
+
+    this.addProp({
       type: "number",
       key: "itemCount",
-      displayer: "Item count in a row",
+      displayer: "Item Count In a Row",
       value: 4,
     });
 
@@ -792,9 +791,9 @@ class Team15 extends Team {
     const subtitle = this.castToString(this.getPropValue("subtitle"));
     const title = this.castToString(this.getPropValue("title"));
     const description = this.castToString(this.getPropValue("description"));
+    const hasContent = subtitle || title || description;
     const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons") || [];
     const visibleButtons = buttons.filter(btn => this.castToString(btn.text));
-    const hasContent = subtitle || title || description || visibleButtons.length > 0;
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
@@ -804,19 +803,6 @@ class Team15 extends Team {
               {subtitle && <Base.SectionDescription className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionDescription>}
               {title && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
               {description && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
-              {visibleButtons.length > 0 && (
-                <div className={this.decorateCSS("button-container")}>
-                  {visibleButtons.map((item: INPUTS.CastedButton, index: number) => {
-                    return this.castToString(item.text) && (
-                      <ComposerLink key={`button-${index}`} path={item.url}>
-                        <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
-                          <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>
-                        </Base.Button>
-                      </ComposerLink>
-                    );
-                  })}
-                </div>
-              )}
             </Base.VerticalContent>
           )}
           <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount"), tablet: 2, phone: 1 }} className={this.decorateCSS("cards-box")}>
@@ -878,6 +864,19 @@ class Team15 extends Team {
               );
             })}
           </Base.ListGrid>
+          {visibleButtons.length > 0 && (
+            <div className={this.decorateCSS("button-container")}>
+              {visibleButtons.map((item: INPUTS.CastedButton, index: number) => {
+                return this.castToString(item.text) && (
+                  <ComposerLink key={`button-${index}`} path={item.url}>
+                    <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
+                      <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>
+                    </Base.Button>
+                  </ComposerLink>
+                );
+              })}
+            </div>
+          )}
         </Base.MaxContent>
       </Base.Container>
     );

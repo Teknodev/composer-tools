@@ -23,6 +23,13 @@ class Team6 extends Team {
     super(props, styles);
 
     this.addProp({
+      type: "boolean",
+      key: "overlay",
+      displayer: "Overlay",
+      value: false,
+    });
+
+    this.addProp({
       type: "string",
       key: "subtitle",
       displayer: "Subtitle",
@@ -70,7 +77,7 @@ class Team6 extends Team {
             {
               type: "media",
               key: "profileImage",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
                 availableTypes: ["image"],
               },
@@ -211,7 +218,7 @@ class Team6 extends Team {
             {
               type: "media",
               key: "profileImage",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
                 availableTypes: ["image"],
               },
@@ -355,7 +362,7 @@ class Team6 extends Team {
             {
               type: "media",
               key: "profileImage",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
                 availableTypes: ["image"],
               },
@@ -499,7 +506,7 @@ class Team6 extends Team {
             {
               type: "media",
               key: "profileImage",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
                 availableTypes: ["image"],
               },
@@ -648,7 +655,7 @@ class Team6 extends Team {
     this.addProp({
       type: "number",
       key: "itemCount",
-      displayer: "Item count in a row",
+      displayer: "Item Count In a Row",
       value: 4,
     });
 
@@ -718,6 +725,7 @@ class Team6 extends Team {
                             className={`${this.decorateCSS("image")} ${this.getComponentState("activeIndex") === indexItems && card.features.length > 0 ? this.decorateCSS("shrink") : ""}`}
                             data-animation={this.getPropValue("hoverAnimation").join(" ")}
                           />
+                          {this.getPropValue("overlay") && <div className={this.decorateCSS("overlay")} />}
                         </div>
                         <Base.VerticalContent className={this.decorateCSS("card-info")}>
                           {cardNameExist && <Base.H2 className={this.decorateCSS("card-name")}>{card.name}</Base.H2>}

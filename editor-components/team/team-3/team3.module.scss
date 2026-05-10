@@ -160,6 +160,18 @@
           border-radius: var(--composer-border-radius-sm);
           overflow: hidden;
 
+          .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--composer-overlay-color);
+            pointer-events: none;
+            border-radius: var(--composer-border-radius-sm);
+            z-index: 3;
+          }
+
           .image {
             position: relative;
             width: 100%;
@@ -236,6 +248,7 @@
       display: flex;
       flex-wrap: wrap;
       gap: var(--composer-gap-sm);
+      justify-content: center;
 
       .button {
         .button-text {

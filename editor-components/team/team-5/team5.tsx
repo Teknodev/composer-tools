@@ -24,6 +24,13 @@ class Team5 extends Team {
     super(props, styles);
 
     this.addProp({
+      type: "boolean",
+      key: "overlay",
+      displayer: "Overlay",
+      value: false,
+    });
+
+    this.addProp({
       type: "string",
       key: "subtitle",
       displayer: "Subtitle",
@@ -69,7 +76,7 @@ class Team5 extends Team {
             {
               type: "media",
               key: "picture",
-              displayer: "Picture",
+              displayer: "Media",
               additionalParams: {
                 availableTypes: ["image"],
               },
@@ -81,7 +88,7 @@ class Team5 extends Team {
             {
               type: "string",
               key: "name",
-              displayer: "Name",
+              displayer: "Person Name",
               value: "Ronald R.",
             },
             {
@@ -99,7 +106,7 @@ class Team5 extends Team {
             {
               type: "array",
               key: "socials",
-              displayer: "Socials",
+              displayer: "Social Media",
               value: [
                 {
                   type: "object",
@@ -225,7 +232,7 @@ class Team5 extends Team {
             {
               type: "media",
               key: "picture",
-              displayer: "Picture",
+              displayer: "Media",
               additionalParams: {
                 availableTypes: ["image"],
               },
@@ -237,7 +244,7 @@ class Team5 extends Team {
             {
               type: "string",
               key: "name",
-              displayer: "Name",
+              displayer: "Person Name",
               value: "McKinney",
             },
             {
@@ -255,7 +262,7 @@ class Team5 extends Team {
             {
               type: "array",
               key: "socials",
-              displayer: "Socials",
+              displayer: "Social Media",
               value: [
                 {
                   type: "object",
@@ -381,7 +388,7 @@ class Team5 extends Team {
             {
               type: "media",
               key: "picture",
-              displayer: "Picture",
+              displayer: "Media",
               additionalParams: {
                 availableTypes: ["image"],
               },
@@ -393,7 +400,7 @@ class Team5 extends Team {
             {
               type: "string",
               key: "name",
-              displayer: "Name",
+              displayer: "Person Name",
               value: "Olivia Davis",
             },
             {
@@ -411,7 +418,7 @@ class Team5 extends Team {
             {
               type: "array",
               key: "socials",
-              displayer: "Socials",
+              displayer: "Social Media",
               value: [
                 {
                   type: "object",
@@ -537,7 +544,7 @@ class Team5 extends Team {
             {
               type: "media",
               key: "picture",
-              displayer: "Picture",
+              displayer: "Media",
               additionalParams: {
                 availableTypes: ["image"],
               },
@@ -549,7 +556,7 @@ class Team5 extends Team {
             {
               type: "string",
               key: "name",
-              displayer: "Name",
+              displayer: "Person Name",
               value: "Robertson",
             },
             {
@@ -567,7 +574,7 @@ class Team5 extends Team {
             {
               type: "array",
               key: "socials",
-              displayer: "Socials",
+              displayer: "Social Media",
               value: [
                 {
                   type: "object",
@@ -686,7 +693,7 @@ class Team5 extends Team {
     this.addProp({
       type: "number",
       key: "itemCount",
-      displayer: "Item count in a row",
+      displayer: "Item Count In a Row",
       value: 4,
     });
 
@@ -741,6 +748,7 @@ class Team5 extends Team {
                     <div className={this.decorateCSS("image-container")} data-animation={(this.getPropValue("hoverAnimation") || []).join(" ")} >
                       {item.background && <Base.Media value={item.background} className={this.decorateCSS("background-image")} />}
                       {item.picture && <Base.Media value={item.picture} className={this.decorateCSS("member-image")} />}
+                      {this.getPropValue("overlay") && <div className={this.decorateCSS("overlay")} />}
                     </div>
                   )}
                   <Base.VerticalContent className={this.decorateCSS("members-container")}>

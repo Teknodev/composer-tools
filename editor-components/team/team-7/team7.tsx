@@ -23,6 +23,13 @@ class Team7 extends Team {
     super(props, styles);
 
     this.addProp({
+      type: "boolean",
+      key: "overlay",
+      displayer: "Overlay",
+      value: false,
+    });
+
+    this.addProp({
       type: "string",
       key: "subtitle",
       displayer: "Subtitle",
@@ -56,7 +63,7 @@ class Team7 extends Team {
             {
               type: "media",
               key: "profileImage",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
                 availableTypes: ["image"],
               },
@@ -86,7 +93,7 @@ class Team7 extends Team {
             {
               type: "array",
               key: "socials",
-              displayer: "Socials",
+              displayer: "Social Media",
               value: [
                 {
                   type: "object",
@@ -200,7 +207,7 @@ class Team7 extends Team {
             {
               type: "media",
               key: "profileImage",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
                 availableTypes: ["image"],
               },
@@ -230,7 +237,7 @@ class Team7 extends Team {
             {
               type: "array",
               key: "socials",
-              displayer: "Socials",
+              displayer: "Social Media",
               value: [
                 {
                   type: "object",
@@ -344,7 +351,7 @@ class Team7 extends Team {
             {
               type: "media",
               key: "profileImage",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
                 availableTypes: ["image"],
               },
@@ -374,7 +381,7 @@ class Team7 extends Team {
             {
               type: "array",
               key: "socials",
-              displayer: "Socials",
+              displayer: "Social Media",
               value: [
                 {
                   type: "object",
@@ -488,7 +495,7 @@ class Team7 extends Team {
             {
               type: "media",
               key: "profileImage",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
                 availableTypes: ["image"],
               },
@@ -518,7 +525,7 @@ class Team7 extends Team {
             {
               type: "array",
               key: "socials",
-              displayer: "Socials",
+              displayer: "Social Media",
               value: [
                 {
                   type: "object",
@@ -636,7 +643,7 @@ class Team7 extends Team {
     this.addProp({
       type: "number",
       key: "itemCount",
-      displayer: "Item Count",
+      displayer: "Item Count In a Row",
       value: 4,
     });
 
@@ -703,13 +710,14 @@ class Team7 extends Team {
                             </ComposerLink>
                           ))}
                       </div>
-                      <div className={this.decorateCSS("overlay")}></div>
+                      <div className={this.decorateCSS("gradient-overlay")}></div>
+                      {this.getPropValue("overlay") && <div className={this.decorateCSS("overlay")}></div>}
                     </div>
                   )}
                   {hasItem &&
                     <Base.VerticalContent className={this.decorateCSS("text-group")}>
                       {itemName && <Base.H3 className={this.decorateCSS("item-name")}>{item.name}</Base.H3>}
-                      {itemPosition && <Base.P className={this.decorateCSS("item-position")}>{item.position}</Base.P>}
+                      {itemPosition && <Base.H4 className={this.decorateCSS("item-position")}>{item.position}</Base.H4>}
                       {itemDescription && <Base.P className={this.decorateCSS("item-description")}>{item.description}</Base.P>}
                     </Base.VerticalContent>
                   }

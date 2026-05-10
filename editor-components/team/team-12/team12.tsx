@@ -23,6 +23,13 @@ class Team12 extends Team {
     super(props, styles);
 
     this.addProp({
+      type: "boolean",
+      key: "overlay",
+      displayer: "Overlay",
+      value: false,
+    });
+
+    this.addProp({
       type: "string",
       key: "subtitle",
       displayer: "Subtitle",
@@ -53,23 +60,23 @@ class Team12 extends Team {
     this.addProp({
       type: "array",
       key: "cards",
-      displayer: "Team",
+      displayer: "Cards",
       value: [
         {
           type: "object",
           key: "card",
-          displayer: "Team Card",
+          displayer: "Card",
           value: [
             {
               type: "string",
               key: "name",
-              displayer: "Name",
+              displayer: "Person Name",
               value: "Alex John",
             },
             {
               type: "string",
               key: "profession",
-              displayer: "Profession",
+              displayer: "Position",
               value: "FRENCH CUISINE ",
             },
             {
@@ -81,7 +88,7 @@ class Team12 extends Team {
             {
               type: "media",
               key: "profileImage",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
                 availableTypes: ["image"],
               },
@@ -93,7 +100,7 @@ class Team12 extends Team {
             {
               type: "array",
               key: "socials",
-              displayer: "Socials",
+              displayer: "Social Media",
               value: [
                 {
                   type: "object",
@@ -202,18 +209,18 @@ class Team12 extends Team {
         {
           type: "object",
           key: "card",
-          displayer: "Team Card",
+          displayer: "Card",
           value: [
             {
               type: "string",
               key: "name",
-              displayer: "Name",
+              displayer: "Person Name",
               value: "Danial Frankie",
             },
             {
               type: "string",
               key: "profession",
-              displayer: "Profession",
+              displayer: "Position",
               value: "CHINESE CUISINE ",
             },
             {
@@ -225,7 +232,7 @@ class Team12 extends Team {
             {
               type: "media",
               key: "profileImage",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
                 availableTypes: ["image"],
               },
@@ -237,7 +244,7 @@ class Team12 extends Team {
             {
               type: "array",
               key: "socials",
-              displayer: "Socials",
+              displayer: "Social Media",
               value: [
                 {
                   type: "object",
@@ -346,18 +353,18 @@ class Team12 extends Team {
         {
           type: "object",
           key: "card",
-          displayer: "Team Card",
+          displayer: "Card",
           value: [
             {
               type: "string",
               key: "name",
-              displayer: "Name",
+              displayer: "Person Name",
               value: "Michal Smart ",
             },
             {
               type: "string",
               key: "profession",
-              displayer: "Profession",
+              displayer: "Position",
               value: "Cook ",
             },
             {
@@ -369,7 +376,7 @@ class Team12 extends Team {
             {
               type: "media",
               key: "profileImage",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
                 availableTypes: ["image"],
               },
@@ -381,7 +388,7 @@ class Team12 extends Team {
             {
               type: "array",
               key: "socials",
-              displayer: "Socials",
+              displayer: "Social Media",
               value: [
                 {
                   type: "object",
@@ -490,18 +497,18 @@ class Team12 extends Team {
         {
           type: "object",
           key: "card",
-          displayer: "Team Card",
+          displayer: "Card",
           value: [
             {
               type: "string",
               key: "name",
-              displayer: "Name",
+              displayer: "Person Name",
               value: "Alex John",
             },
             {
               type: "string",
               key: "profession",
-              displayer: "Profession",
+              displayer: "Position",
               value: "Cook ",
             },
             {
@@ -513,7 +520,7 @@ class Team12 extends Team {
             {
               type: "media",
               key: "profileImage",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
                 availableTypes: ["image"],
               },
@@ -525,7 +532,7 @@ class Team12 extends Team {
             {
               type: "array",
               key: "socials",
-              displayer: "Socials",
+              displayer: "Social Media",
               value: [
                 {
                   type: "object",
@@ -637,7 +644,7 @@ class Team12 extends Team {
     this.addProp({
       type: "number",
       key: "itemCount",
-      displayer: "Item count in a row",
+      displayer: "Item Count In a Row",
       value: 4,
     });
 
@@ -696,6 +703,7 @@ class Team12 extends Team {
                 hasItem && (
                   <div className={this.decorateCSS("member")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
                     {teamMember.profileImage && <Base.Media value={teamMember.profileImage} className={this.decorateCSS("image")} />}
+                    {this.getPropValue("overlay") && <div className={this.decorateCSS("overlay")} />}
                     <Base.VerticalContent className={this.decorateCSS("info")}>
                       {nameExist && <Base.H2 className={this.decorateCSS("name")}>{teamMember.name}</Base.H2>}
                       {professionExist && <Base.H5 className={this.decorateCSS("profession")}>{teamMember.profession}</Base.H5>}

@@ -23,6 +23,13 @@ class Team3 extends Team {
     super(props, styles);
 
     this.addProp({
+      type: "boolean",
+      key: "overlay",
+      displayer: "Overlay",
+      value: false,
+    });
+
+    this.addProp({
       type: "string",
       key: "subtitle",
       displayer: "Subtitle",
@@ -56,7 +63,7 @@ class Team3 extends Team {
             {
               type: "media",
               key: "profileImage",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
                 availableTypes: ["image"],
               },
@@ -200,7 +207,7 @@ class Team3 extends Team {
             {
               type: "media",
               key: "profileImage",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
                 availableTypes: ["image"],
               },
@@ -344,7 +351,7 @@ class Team3 extends Team {
             {
               type: "media",
               key: "profileImage",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
                 availableTypes: ["image"],
               },
@@ -488,7 +495,7 @@ class Team3 extends Team {
             {
               type: "media",
               key: "profileImage",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
                 availableTypes: ["image"],
               },
@@ -632,7 +639,7 @@ class Team3 extends Team {
             {
               type: "media",
               key: "profileImage",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
                 availableTypes: ["image"],
               },
@@ -776,7 +783,7 @@ class Team3 extends Team {
             {
               type: "media",
               key: "profileImage",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
                 availableTypes: ["image"],
               },
@@ -925,7 +932,7 @@ class Team3 extends Team {
     this.addProp({
       type: "number",
       key: "itemCount",
-      displayer: "Item Count in a Row",
+      displayer: "Item Count In a Row",
       value: 3,
     });
 
@@ -972,11 +979,12 @@ class Team3 extends Team {
                         {card.profileImage && (
                           <div className={this.decorateCSS("image-container")}>
                             <Base.Media value={card.profileImage} className={this.decorateCSS("image")} data-animation={this.getPropValue("hoverAnimation").join(" ")} />
+                            {this.getPropValue("overlay") && <div className={this.decorateCSS("overlay")} />}
                           </div>
                         )}
                         <Base.VerticalContent className={card.profileImage ? this.decorateCSS("box-text") : this.decorateCSS("no-image-box-text")}>
-                          <Base.H2 className={this.decorateCSS("item-name")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>{card.name}</Base.H2>
-                          <Base.P className={this.decorateCSS("item-position")}>{card.position}</Base.P>
+                          <Base.H4 className={this.decorateCSS("item-name")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>{card.name}</Base.H4>
+                          <Base.H5 className={this.decorateCSS("item-position")}>{card.position}</Base.H5>
                           <Base.P className={this.decorateCSS("item-description")}>{card.description}</Base.P>
                           <div className={this.decorateCSS("icon-group")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
                             {card.socials?.map((item: socials, indexSocials: number) => (

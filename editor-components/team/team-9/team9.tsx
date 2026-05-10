@@ -24,6 +24,13 @@ class Team9 extends Team {
     super(props, styles);
 
     this.addProp({
+      type: "boolean",
+      key: "overlay",
+      displayer: "Overlay",
+      value: false,
+    });
+
+    this.addProp({
       type: "string",
       key: "subtitle",
       displayer: "Subtitle",
@@ -57,7 +64,7 @@ class Team9 extends Team {
             {
               type: "media",
               key: "profileImage",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
                 availableTypes: ["image"],
               },
@@ -75,19 +82,19 @@ class Team9 extends Team {
             {
               type: "string",
               key: "personPosition",
-              displayer: "Person Position",
+              displayer: "Position",
               value: "Founder",
             },
             {
               type: "string",
               key: "personDescription",
-              displayer: "Person Description",
+              displayer: "Description",
               value: "",
             },
             {
               type: "array",
               key: "socials",
-              displayer: "Socials",
+              displayer: "Social Media",
               value: [
                 {
                   type: "object",
@@ -201,7 +208,7 @@ class Team9 extends Team {
             {
               type: "media",
               key: "profileImage",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
                 availableTypes: ["image"],
               },
@@ -219,19 +226,19 @@ class Team9 extends Team {
             {
               type: "string",
               key: "personPosition",
-              displayer: "Person Position",
+              displayer: "Position",
               value: "Founder",
             },
             {
               type: "string",
               key: "personDescription",
-              displayer: "Person Description",
+              displayer: "Description",
               value: "",
             },
             {
               type: "array",
               key: "socials",
-              displayer: "Socials",
+              displayer: "Social Media",
               value: [
                 {
                   type: "object",
@@ -345,7 +352,7 @@ class Team9 extends Team {
             {
               type: "media",
               key: "profileImage",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
                 availableTypes: ["image"],
               },
@@ -363,19 +370,19 @@ class Team9 extends Team {
             {
               type: "string",
               key: "personPosition",
-              displayer: "Person Position",
+              displayer: "Position",
               value: "Founder",
             },
             {
               type: "string",
               key: "personDescription",
-              displayer: "Person Description",
+              displayer: "Description",
               value: "",
             },
             {
               type: "array",
               key: "socials",
-              displayer: "Socials",
+              displayer: "Social Media",
               value: [
                 {
                   type: "object",
@@ -489,7 +496,7 @@ class Team9 extends Team {
             {
               type: "media",
               key: "profileImage",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
                 availableTypes: ["image"],
               },
@@ -507,19 +514,19 @@ class Team9 extends Team {
             {
               type: "string",
               key: "personPosition",
-              displayer: "Person Position",
+              displayer: "Position",
               value: "Founder",
             },
             {
               type: "string",
               key: "personDescription",
-              displayer: "Person Description",
+              displayer: "Description",
               value: "",
             },
             {
               type: "array",
               key: "socials",
-              displayer: "Socials",
+              displayer: "Social Media",
               value: [
                 {
                   type: "object",
@@ -638,7 +645,7 @@ class Team9 extends Team {
     this.addProp({
       type: "number",
       key: "reverse",
-      displayer: "Item count in a row",
+      displayer: "Item Count In a Row",
       value: 4,
     });
 
@@ -715,27 +722,28 @@ class Team9 extends Team {
                       {item.profileImage && (
                         <div className={this.decorateCSS("image-container")}>
                           <Base.Media value={item.profileImage} className={this.decorateCSS("person-image")} />
+                          {this.getPropValue("overlay") && <div className={this.decorateCSS("overlay")} />}
                         </div>
                       )}
                       <div className={this.decorateCSS("person-info")}>
-                        {item.socials && item.socials.length > 0 && (
-                          <div className={this.decorateCSS("icons-bar")}>
-                            {item.socials.map((social: Social, iconIndex: number) => {
-                              return social.icon && (
-                                <ComposerLink key={iconIndex} path={social.url}>
-                                  <Base.Media
-                                    value={social.icon}
-                                    className={this.decorateCSS("icon")}
-                                    style={{ "--icon-index": iconIndex } as React.CSSProperties}
-                                  />
-                                </ComposerLink>
-                              );
-                            })}
-                          </div>
-                        )}
                         <Base.VerticalContent className={this.decorateCSS("text-group")}>
+                          {item.socials && item.socials.length > 0 && (
+                            <div className={this.decorateCSS("icons-bar")}>
+                              {item.socials.map((social: Social, iconIndex: number) => {
+                                return social.icon && (
+                                  <ComposerLink key={iconIndex} path={social.url}>
+                                    <Base.Media
+                                      value={social.icon}
+                                      className={this.decorateCSS("icon")}
+                                      style={{ "--icon-index": iconIndex } as React.CSSProperties}
+                                    />
+                                  </ComposerLink>
+                                );
+                              })}
+                            </div>
+                          )}
                           {personName && <Base.H2 className={this.decorateCSS("item-name")}>{item.personName}</Base.H2>}
-                          {personPosition && <Base.P className={this.decorateCSS("item-position")}>{item.personPosition}</Base.P>}
+                          {personPosition && <Base.H4 className={this.decorateCSS("item-position")}>{item.personPosition}</Base.H4>}
                           {personDescription && <Base.P className={this.decorateCSS("item-description")}>{item.personDescription}</Base.P>}
                         </Base.VerticalContent>
                       </div>
@@ -752,7 +760,12 @@ class Team9 extends Team {
                   if (item.profileImage || personName || personPosition || personDescription || (item.socials && item.socials.length > 0)) {
                     return (
                       <div key={indexCard} className={this.decorateCSS("card")}>
-                        {item.profileImage && <Base.Media value={item.profileImage} className={this.decorateCSS("person-image")} />}
+                        {item.profileImage && (
+                          <div className={this.decorateCSS("image-container")}>
+                            <Base.Media value={item.profileImage} className={this.decorateCSS("person-image")} />
+                            {this.getPropValue("overlay") && <div className={this.decorateCSS("overlay")} />}
+                          </div>
+                        )}
                         <Base.VerticalContent className={this.decorateCSS("person-info")}>
                           {item.socials && item.socials.length > 0 && (
                             <Base.Row className={this.decorateCSS("icons-bar")}>

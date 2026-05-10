@@ -22,6 +22,13 @@ class Team13 extends Team {
     super(props, styles);
 
     this.addProp({
+      type: "boolean",
+      key: "overlay",
+      displayer: "Overlay",
+      value: false,
+    });
+
+    this.addProp({
       type: "string",
       key: "subtitle",
       displayer: "Subtitle",
@@ -61,7 +68,7 @@ class Team13 extends Team {
     this.addProp({
       type: "array",
       key: "socials",
-      displayer: "Socials",
+      displayer: "Social Media",
       value: [
         {
           type: "object",
@@ -179,7 +186,7 @@ class Team13 extends Team {
             {
               type: "media",
               key: "profileImage",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
                 availableTypes: ["image"],
               },
@@ -197,13 +204,13 @@ class Team13 extends Team {
             {
               type: "string",
               key: "job",
-              displayer: "Person Job",
+              displayer: "Position",
               value: "Art Director",
             },
             {
               type: "string",
               key: "description",
-              displayer: "Person Description",
+              displayer: "Description",
               value: "",
             },
           ],
@@ -216,7 +223,7 @@ class Team13 extends Team {
             {
               type: "media",
               key: "profileImage",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
                 availableTypes: ["image"],
               },
@@ -234,13 +241,13 @@ class Team13 extends Team {
             {
               type: "string",
               key: "job",
-              displayer: "Person Job",
+              displayer: "Position",
               value: "UI Designer",
             },
             {
               type: "string",
               key: "description",
-              displayer: "Person Description",
+              displayer: "Description",
               value: "",
             },
           ],
@@ -251,7 +258,7 @@ class Team13 extends Team {
     this.addProp({
       type: "number",
       key: "itemCount",
-      displayer: "Item count in a row",
+      displayer: "Item Count In a Row",
       value: 3,
     });
 
@@ -338,6 +345,7 @@ class Team13 extends Team {
                   {card.profileImage && (
                     <div className={this.decorateCSS("img-wrapper")} data-animation={this.getPropValue("hoverAnimation").join(" ")} >
                       <Base.Media value={card.profileImage} className={this.decorateCSS("image")} data-animation={this.getPropValue("hoverAnimation").join(" ")} />
+                      {this.getPropValue("overlay") && <div className={this.decorateCSS("overlay")} />}
                     </div>
                   )}
                   {nameExist && <Base.H4 className={this.decorateCSS("name")}>{card.name}</Base.H4>}

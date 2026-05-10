@@ -4,7 +4,7 @@ import { Team } from "../../EditorComponent";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 import { Base } from "../../../composer-base-components/base/base";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
-import { TypeMediaInputValue } from "../../EditorComponent";
+import { TypeMediaInputValue, TypeUsableComponentProps } from "../../EditorComponent";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type Social = {
@@ -23,6 +23,13 @@ type Card = {
 class Team11 extends Team {
   constructor(props?: any) {
     super(props, styles);
+
+    this.addProp({
+      type: "boolean",
+      key: "overlay",
+      displayer: "Overlay",
+      value: false,
+    });
 
     this.addProp({
       type: "string",
@@ -52,7 +59,6 @@ class Team11 extends Team {
       value: [INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary")],
     });
 
-
     this.addProp({
       type: "media",
       key: "nextIcon",
@@ -80,18 +86,18 @@ class Team11 extends Team {
 
     this.addProp({
       type: "array",
-      key: "slider",
-      displayer: "Slider",
+      key: "cards",
+      displayer: "Cards",
       value: [
         {
           type: "object",
-          key: "slider-card",
-          displayer: "Slider Card",
+          key: "card",
+          displayer: "Card",
           value: [
             {
               type: "media",
               key: "profileImage",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
                 availableTypes: ["image"],
               },
@@ -109,7 +115,7 @@ class Team11 extends Team {
             {
               type: "string",
               key: "position",
-              displayer: "position",
+              displayer: "Position",
               value: "Defender",
             },
             {
@@ -121,7 +127,7 @@ class Team11 extends Team {
             {
               type: "array",
               key: "socials",
-              displayer: "Socials",
+              displayer: "Social Media",
               value: [
                 {
                   type: "object",
@@ -229,13 +235,13 @@ class Team11 extends Team {
         },
         {
           type: "object",
-          key: "slider-card",
-          displayer: "Slider Card",
+          key: "card",
+          displayer: "Card",
           value: [
             {
               type: "media",
               key: "profileImage",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
                 availableTypes: ["image"],
               },
@@ -253,7 +259,7 @@ class Team11 extends Team {
             {
               type: "string",
               key: "position",
-              displayer: "position",
+              displayer: "Position",
               value: "Defender",
             },
             {
@@ -265,7 +271,7 @@ class Team11 extends Team {
             {
               type: "array",
               key: "socials",
-              displayer: "Socials",
+              displayer: "Social Media",
               value: [
                 {
                   type: "object",
@@ -373,13 +379,13 @@ class Team11 extends Team {
         },
         {
           type: "object",
-          key: "slider-card",
-          displayer: "Slider Card",
+          key: "card",
+          displayer: "Card",
           value: [
             {
               type: "media",
               key: "profileImage",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
                 availableTypes: ["image"],
               },
@@ -397,7 +403,7 @@ class Team11 extends Team {
             {
               type: "string",
               key: "position",
-              displayer: "position",
+              displayer: "Position",
               value: "Defender",
             },
             {
@@ -409,7 +415,7 @@ class Team11 extends Team {
             {
               type: "array",
               key: "socials",
-              displayer: "Socials",
+              displayer: "Social Media",
               value: [
                 {
                   type: "object",
@@ -517,13 +523,13 @@ class Team11 extends Team {
         },
         {
           type: "object",
-          key: "slider-card",
-          displayer: "Slider Card",
+          key: "card",
+          displayer: "Card",
           value: [
             {
               type: "media",
               key: "profileImage",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
                 availableTypes: ["image"],
               },
@@ -541,7 +547,7 @@ class Team11 extends Team {
             {
               type: "string",
               key: "position",
-              displayer: "position",
+              displayer: "Position",
               value: "Defender",
             },
             {
@@ -553,7 +559,7 @@ class Team11 extends Team {
             {
               type: "array",
               key: "socials",
-              displayer: "Socials",
+              displayer: "Social Media",
               value: [
                 {
                   type: "object",
@@ -661,13 +667,13 @@ class Team11 extends Team {
         },
         {
           type: "object",
-          key: "slider-card",
-          displayer: "Slider Card",
+          key: "card",
+          displayer: "Card",
           value: [
             {
               type: "media",
               key: "profileImage",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
                 availableTypes: ["image"],
               },
@@ -685,7 +691,7 @@ class Team11 extends Team {
             {
               type: "string",
               key: "position",
-              displayer: "position",
+              displayer: "Position",
               value: "Defender",
             },
             {
@@ -697,7 +703,7 @@ class Team11 extends Team {
             {
               type: "array",
               key: "socials",
-              displayer: "Socials",
+              displayer: "Social Media",
               value: [
                 {
                   type: "object",
@@ -805,13 +811,13 @@ class Team11 extends Team {
         },
         {
           type: "object",
-          key: "slider-card",
-          displayer: "Slider Card",
+          key: "card",
+          displayer: "Card",
           value: [
             {
               type: "media",
               key: "profileImage",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
                 availableTypes: ["image"],
               },
@@ -829,7 +835,7 @@ class Team11 extends Team {
             {
               type: "string",
               key: "position",
-              displayer: "position",
+              displayer: "Position",
               value: "Defender",
             },
             {
@@ -841,7 +847,7 @@ class Team11 extends Team {
             {
               type: "array",
               key: "socials",
-              displayer: "Socials",
+              displayer: "Social Media",
               value: [
                 {
                   type: "object",
@@ -953,7 +959,7 @@ class Team11 extends Team {
     this.addProp({
       type: "number",
       key: "itemCount",
-      displayer: "Item count in a row",
+      displayer: "Item Count In a Row",
       value: 3,
     });
 
@@ -967,8 +973,32 @@ class Team11 extends Team {
       }
     });
 
+    this.addProp(
+      INPUTS.SLIDER_SETTINGS("slider-settings", "Slider Settings", {
+        dots: false,
+        arrows: true,
+        infinite: true,
+        speed: 500,
+        autoplay: true,
+        autoplaySpeed: 3000,
+        slidesToScroll: 1,
+        adaptiveHeight: false,
+      })
+    );
+
     this.setComponentState("slider-ref", React.createRef());
   }
+
+  transformSliderValues = (sliderProps: TypeUsableComponentProps[]): INPUTS.TYPE_SLIDER_SETTINGS => {
+    const flatObject: Record<string, any> = {};
+    if (Array.isArray(sliderProps)) {
+      sliderProps.forEach((prop: TypeUsableComponentProps) => {
+        flatObject[prop.key] = prop.value;
+      });
+    }
+    return flatObject as INPUTS.TYPE_SLIDER_SETTINGS;
+  };
+
   static getName(): string {
     return "Team 11";
   }
@@ -979,18 +1009,15 @@ class Team11 extends Team {
     const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons") || [];
     const visibleButtons = buttons.filter(btn => this.castToString(btn.text));
     const hasContent = subtitle || title || description || visibleButtons.length > 0;
-    const slider = this.castToObject<Card[]>("slider");
+    const cards = this.castToObject<Card[]>("cards");
+    const sliderSettings = this.getPropValue("slider-settings") || [];
+    const userSettings = this.transformSliderValues(sliderSettings);
 
     const settings = {
-      dots: false,
+      ...userSettings,
       arrows: false,
-      infinite: true,
-      speed: 500,
-      autoplay: true,
       dotsClass: this.decorateCSS("dots"),
-      autoplaySpeed: 3000,
-      slidesToShow: slider.length < this.getPropValue("itemCount") ? slider.length : this.getPropValue("itemCount"),
-      slidesToScroll: 1,
+      slidesToShow: cards.length < this.getPropValue("itemCount") ? cards.length : this.getPropValue("itemCount"),
       responsive: [
         {
           breakpoint: 1024,
@@ -1038,7 +1065,7 @@ class Team11 extends Team {
           )}
 
           <ComposerSlider {...settings} ref={this.getComponentState("slider-ref")} className={this.decorateCSS("down-page")}>
-            {slider.map((item: Card, indexSlider: number) => {
+            {cards.map((item: Card, indexSlider: number) => {
               const itemNameExist = this.castToString(item.name);
               const itemPositionExist = this.castToString(item.position);
               const itemDescriptionExist = this.castToString(item.description);
@@ -1050,6 +1077,7 @@ class Team11 extends Team {
                     <Base.VerticalContent className={this.decorateCSS("card")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
                       <div className={this.decorateCSS("hover")}>
                         <Base.Media value={item.profileImage} className={this.decorateCSS("person-image")} />
+                        {this.getPropValue("overlay") && <div className={this.decorateCSS("overlay")} />}
                         {item.socials && item.socials.length > 0 && (
                           <div className={this.decorateCSS("icons-bar")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
                             {item.socials.map((social: Social, indexIcon: number) => (
@@ -1075,26 +1103,28 @@ class Team11 extends Team {
             })}
           </ComposerSlider>
 
-          <div className={slider.length > 3 ? this.decorateCSS("nav-buttons") : this.decorateCSS("visible-navs")}>
-            <div
-              className={`${this.decorateCSS("prev_icon")}
+          {userSettings.arrows && (
+            <div className={cards.length > 3 ? this.decorateCSS("nav-buttons") : this.decorateCSS("visible-navs")}>
+              <div
+                className={`${this.decorateCSS("prev_icon")}
               ${this.getPropValue("prevIcon").type === "image" && this.decorateCSS("prev-icon-has-image")}`}
-              onClick={() => {
-                this.getComponentState("slider-ref").current.slickPrev();
-              }}
-            >
-              <Base.Media value={this.getPropValue("prevIcon")} />
-            </div>
-            <div
-              className={`${this.decorateCSS("next_icon")}
+                onClick={() => {
+                  this.getComponentState("slider-ref").current.slickPrev();
+                }}
+              >
+                <Base.Media value={this.getPropValue("prevIcon")} />
+              </div>
+              <div
+                className={`${this.decorateCSS("next_icon")}
               ${this.getPropValue("nextIcon").type === "image" && this.decorateCSS("next-icon-has-image")}`}
-              onClick={() => {
-                this.getComponentState("slider-ref").current.slickNext();
-              }}
-            >
-              <Base.Media value={this.getPropValue("nextIcon")} />
+                onClick={() => {
+                  this.getComponentState("slider-ref").current.slickNext();
+                }}
+              >
+                <Base.Media value={this.getPropValue("nextIcon")} />
+              </div>
             </div>
-          </div>
+          )}
         </Base.MaxContent>
       </Base.Container>
     );

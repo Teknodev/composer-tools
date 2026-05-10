@@ -17,6 +17,13 @@ class Team16 extends Team {
     super(props, styles);
 
     this.addProp({
+      type: "boolean",
+      key: "overlay",
+      displayer: "Overlay",
+      value: false,
+    });
+
+    this.addProp({
       type: "string",
       key: "subtitle",
       displayer: "Subtitle",
@@ -49,7 +56,7 @@ class Team16 extends Team {
     this.addProp({
       type: "array",
       key: "cards",
-      displayer: "cards",
+      displayer: "Cards",
       value: [
         {
           type: "object",
@@ -59,13 +66,13 @@ class Team16 extends Team {
             {
               type: "string",
               key: "name",
-              displayer: "Name",
+              displayer: "Person Name",
               value: "Dianne Russell",
             },
             {
               type: "string",
               key: "job",
-              displayer: "Job",
+              displayer: "Position",
               value: "Sales Lead",
             },
             {
@@ -77,7 +84,7 @@ class Team16 extends Team {
             {
               type: "media",
               key: "profileImage",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
                 availableTypes: ["image"],
               },
@@ -96,13 +103,13 @@ class Team16 extends Team {
             {
               type: "string",
               key: "name",
-              displayer: "Name",
+              displayer: "Person Name",
               value: "Michael Cannon",
             },
             {
               type: "string",
               key: "job",
-              displayer: "Job",
+              displayer: "Position",
               value: "Founder",
             },
             {
@@ -114,7 +121,7 @@ class Team16 extends Team {
             {
               type: "media",
               key: "profileImage",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
                 availableTypes: ["image"],
               },
@@ -133,13 +140,13 @@ class Team16 extends Team {
             {
               type: "string",
               key: "name",
-              displayer: "Name",
+              displayer: "Person Name",
               value: "Sylvia Morales",
             },
             {
               type: "string",
               key: "job",
-              displayer: "Job",
+              displayer: "Position",
               value: "Product Manager",
             },
             {
@@ -151,7 +158,7 @@ class Team16 extends Team {
             {
               type: "media",
               key: "profileImage",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
                 availableTypes: ["image"],
               },
@@ -168,7 +175,7 @@ class Team16 extends Team {
     this.addProp({
       type: "number",
       key: "itemCount",
-      displayer: "Item Count in a Row",
+      displayer: "Item Count In a Row",
       value: 3,
     });
 
@@ -216,6 +223,7 @@ class Team16 extends Team {
                   {card.profileImage && (
                     <div className={this.decorateCSS("image-wrapper")}>
                       <Base.Media value={card.profileImage} className={this.decorateCSS("image")} />
+                      {this.getPropValue("overlay") && <div className={this.decorateCSS("overlay")} />}
                     </div>
                   )}
                   <div className={this.decorateCSS("text-box")}>

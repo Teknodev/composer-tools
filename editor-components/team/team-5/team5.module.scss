@@ -134,6 +134,16 @@
           position: relative;
           aspect-ratio: 10 / 7;
 
+          .overlay {
+            position: absolute;
+            width: 70%;
+            aspect-ratio: 1;
+            border-radius: 50%;
+            background-color: var(--composer-overlay-color);
+            pointer-events: none;
+            z-index: 3;
+          }
+
           .background-image,
           .member-image {
             transition: transform 0.3s ease;
@@ -212,6 +222,7 @@
       display: flex;
       flex-wrap: wrap;
       gap: var(--composer-gap-sm);
+      justify-content: center;
 
       .button {
         .button-text {

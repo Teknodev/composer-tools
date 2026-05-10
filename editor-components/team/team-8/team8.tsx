@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Team, TypeMediaInputValue } from "../../EditorComponent";
+import { Team, TypeMediaInputValue, TypeUsableComponentProps } from "../../EditorComponent";
 import styles from "./team8.module.scss";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import { Base } from "../../../composer-base-components/base/base";
@@ -7,8 +7,8 @@ import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 import ComposerLink from "composer-tools/composer-base-components/Link/ComposerLinkProvider";
 
 type Card = {
-  imagesubtitle: React.JSX.Element;
-  imagetitle: React.JSX.Element;
+  name: React.JSX.Element;
+  position: React.JSX.Element;
   description: React.JSX.Element;
   profileImage: TypeMediaInputValue;
 };
@@ -46,6 +46,13 @@ class Team8 extends Team {
           value: true,
         },
       ],
+    });
+
+    this.addProp({
+      type: "boolean",
+      key: "overlay",
+      displayer: "Overlay",
+      value: false,
     });
 
     this.addProp({
@@ -88,15 +95,15 @@ class Team8 extends Team {
           value: [
             {
               type: "string",
-              key: "imagesubtitle",
-              displayer: "Image Subtitle",
-              value: "Joseph Hall",
+              key: "name",
+              displayer: "Person Name",
+              value: "Pinch Hitter",
             },
             {
               type: "string",
-              key: "imagetitle",
-              displayer: "Image Title",
-              value: "Pinch Hitter",
+              key: "position",
+              displayer: "Position",
+              value: "Joseph Hall",
             },
             {
               type: "string",
@@ -107,7 +114,7 @@ class Team8 extends Team {
             {
               type: "media",
               key: "profileImage",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
                 availableTypes: ["image"],
               },
@@ -120,20 +127,20 @@ class Team8 extends Team {
         },
         {
           type: "object",
-          key: "slidercontent",
-          displayer: "Slider Content",
+          key: "card",
+          displayer: "Card",
           value: [
             {
               type: "string",
-              key: "imagesubtitle",
-              displayer: "Image Subtitle",
-              value: "Steve Gareth",
+              key: "name",
+              displayer: "Person Name",
+              value: "Relief Pitcher",
             },
             {
               type: "string",
-              key: "imagetitle",
-              displayer: "Image Title",
-              value: "Relief Pitcher",
+              key: "position",
+              displayer: "Position",
+              value: "Steve Gareth",
             },
             {
               type: "string",
@@ -144,7 +151,7 @@ class Team8 extends Team {
             {
               type: "media",
               key: "profileImage",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
                 availableTypes: ["image"],
               },
@@ -157,20 +164,20 @@ class Team8 extends Team {
         },
         {
           type: "object",
-          key: "slidercontent",
-          displayer: "Slider Content",
+          key: "card",
+          displayer: "Card",
           value: [
             {
               type: "string",
-              key: "imagesubtitle",
-              displayer: "Image Subtitle",
-              value: "Juan Quadra",
+              key: "name",
+              displayer: "Person Name",
+              value: "Closer",
             },
             {
               type: "string",
-              key: "imagetitle",
-              displayer: "Image Title",
-              value: "Closer",
+              key: "position",
+              displayer: "Position",
+              value: "Juan Quadra",
             },
             {
               type: "string",
@@ -181,7 +188,7 @@ class Team8 extends Team {
             {
               type: "media",
               key: "profileImage",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
                 availableTypes: ["image"],
               },
@@ -194,20 +201,20 @@ class Team8 extends Team {
         },
         {
           type: "object",
-          key: "slidercontent",
-          displayer: "Slider Content",
+          key: "card",
+          displayer: "Card",
           value: [
             {
               type: "string",
-              key: "imagesubtitle",
-              displayer: "Image Subtitle",
-              value: "Robert Caton",
+              key: "name",
+              displayer: "Person Name",
+              value: "Middle Reliever",
             },
             {
               type: "string",
-              key: "imagetitle",
-              displayer: "Image Title",
-              value: "Middle Reliever",
+              key: "position",
+              displayer: "Position",
+              value: "Robert Caton",
             },
             {
               type: "string",
@@ -218,7 +225,7 @@ class Team8 extends Team {
             {
               type: "media",
               key: "profileImage",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
                 availableTypes: ["image"],
               },
@@ -231,20 +238,20 @@ class Team8 extends Team {
         },
         {
           type: "object",
-          key: "slidercontent",
-          displayer: "Slider Content",
+          key: "card",
+          displayer: "Card",
           value: [
             {
               type: "string",
-              key: "imagesubtitle",
-              displayer: "Image Subtitle",
-              value: "James Strans",
+              key: "name",
+              displayer: "Person Name",
+              value: "Pinch Runner",
             },
             {
               type: "string",
-              key: "imagetitle",
-              displayer: "Image Title",
-              value: "Pinch Runner",
+              key: "position",
+              displayer: "Position",
+              value: "James Strans",
             },
             {
               type: "string",
@@ -255,7 +262,7 @@ class Team8 extends Team {
             {
               type: "media",
               key: "profileImage",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
                 availableTypes: ["image"],
               },
@@ -268,20 +275,20 @@ class Team8 extends Team {
         },
         {
           type: "object",
-          key: "slidercontent",
-          displayer: "Slider Content",
+          key: "card",
+          displayer: "Card",
           value: [
             {
               type: "string",
-              key: "imagesubtitle",
-              displayer: "Image Subtitle",
-              value: "David Davis",
+              key: "name",
+              displayer: "Person Name",
+              value: "Long Reliever",
             },
             {
               type: "string",
-              key: "imagetitle",
-              displayer: "Image Title",
-              value: "Long Reliever",
+              key: "position",
+              displayer: "Position",
+              value: "David Davis",
             },
             {
               type: "string",
@@ -292,7 +299,7 @@ class Team8 extends Team {
             {
               type: "media",
               key: "profileImage",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
                 availableTypes: ["image"],
               },
@@ -305,20 +312,20 @@ class Team8 extends Team {
         },
         {
           type: "object",
-          key: "slidercontent",
-          displayer: "Slider Content",
+          key: "card",
+          displayer: "Card",
           value: [
             {
               type: "string",
-              key: "imagesubtitle",
-              displayer: "Image Subtitle",
-              value: "Joshua Olds",
+              key: "name",
+              displayer: "Person Name",
+              value: "Closer",
             },
             {
               type: "string",
-              key: "imagetitle",
-              displayer: "Image Title",
-              value: "Closer",
+              key: "position",
+              displayer: "Position",
+              value: "Joshua Olds",
             },
             {
               type: "string",
@@ -329,7 +336,7 @@ class Team8 extends Team {
             {
               type: "media",
               key: "profileImage",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
                 availableTypes: ["image"],
               },
@@ -346,7 +353,7 @@ class Team8 extends Team {
     this.addProp({
       type: "number",
       key: "itemCount",
-      displayer: "Item count in a row",
+      displayer: "Item Count In a Row",
       value: 5,
     });
 
@@ -359,7 +366,30 @@ class Team8 extends Team {
         selectItems: ["animate1", "animate2", "animate3"]
       }
     });
+
+    this.addProp(
+      INPUTS.SLIDER_SETTINGS("slider-settings", "Slider Settings", {
+        dots: true,
+        arrows: false,
+        infinite: true,
+        speed: 500,
+        autoplay: true,
+        autoplaySpeed: 3000,
+        slidesToScroll: 1,
+        adaptiveHeight: false,
+      })
+    );
   }
+
+  transformSliderValues = (sliderProps: TypeUsableComponentProps[]): INPUTS.TYPE_SLIDER_SETTINGS => {
+    const flatObject: Record<string, any> = {};
+    if (Array.isArray(sliderProps)) {
+      sliderProps.forEach((prop: TypeUsableComponentProps) => {
+        flatObject[prop.key] = prop.value;
+      });
+    }
+    return flatObject as INPUTS.TYPE_SLIDER_SETTINGS;
+  };
 
   static getName(): string {
     return "Team 8";
@@ -367,15 +397,12 @@ class Team8 extends Team {
 
   render() {
     const cards = this.castToObject<Card[]>("cards");
+    const sliderSettings = this.getPropValue("slider-settings") || [];
+    const userSettings = this.transformSliderValues(sliderSettings);
 
     const settings = {
-      arrows: false,
-      dots: true,
+      ...userSettings,
       dotsClass: this.decorateCSS("dots"),
-      infinite: true,
-      speed: 500,
-      autoplay: true,
-      autoplaySpeed: 3000,
       centerMode: true,
       customPaging: (i: number) => <button className={this.getComponentState("current-slide") === i ? this.decorateCSS("currentPaging") : ""}></button>,
       slidesToShow: cards.length < this.getPropValue("itemCount") ? cards.length : this.getPropValue("itemCount"),
@@ -438,8 +465,8 @@ class Team8 extends Team {
             <div className={this.decorateCSS("slider-parent")}>
               <ComposerSlider {...settings} className={this.decorateCSS("carousel")}>
                 {cards.map((item: Card, index: number) => {
-                  const subtitleExist = this.castToString(item.imagesubtitle);
-                  const titleExist = this.castToString(item.imagetitle);
+                  const subtitleExist = this.castToString(item.name);
+                  const titleExist = this.castToString(item.position);
                   const descriptionExist = this.castToString(item.description);
                   const hasSlider = titleExist || subtitleExist || descriptionExist || item.profileImage;
 
@@ -450,12 +477,13 @@ class Team8 extends Team {
                           {item.profileImage && (
                             <div className={this.decorateCSS("image-box")}>
                               <Base.Media value={item.profileImage} className={this.decorateCSS("img")} />
+                              {this.getPropValue("overlay") && <div className={this.decorateCSS("overlay")} />}
                             </div>
                           )}
                           {(titleExist || subtitleExist) && (
                             <Base.VerticalContent className={this.decorateCSS("header-page")}>
-                              {subtitleExist && <Base.H2 className={`${this.decorateCSS("card-subtitle")} ${imageExist ? this.decorateCSS("image") : this.decorateCSS("no-image")}`}>{item.imagesubtitle}</Base.H2>}
-                              {titleExist && <Base.P className={`${this.decorateCSS("card-title")} ${imageExist ? this.decorateCSS("image") : this.decorateCSS("no-image")}`}>{item.imagetitle}</Base.P>}
+                              {subtitleExist && <Base.H5 className={`${this.decorateCSS("card-subtitle")} ${imageExist ? this.decorateCSS("image") : this.decorateCSS("no-image")}`}>{item.name}</Base.H5>}
+                              {titleExist && <Base.H2 className={`${this.decorateCSS("card-title")} ${imageExist ? this.decorateCSS("image") : this.decorateCSS("no-image")}`}>{item.position}</Base.H2>}
                               {descriptionExist && <Base.P className={`${this.decorateCSS("card-description")} ${imageExist && this.decorateCSS("image")}`}>{item.description}</Base.P>}
                             </Base.VerticalContent>
                           )}

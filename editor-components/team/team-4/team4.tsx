@@ -23,6 +23,13 @@ class Team4 extends Team {
     super(props, styles);
 
     this.addProp({
+      type: "boolean",
+      key: "overlay",
+      displayer: "Overlay",
+      value: false,
+    });
+
+    this.addProp({
       type: "string",
       key: "subtitle",
       displayer: "Subtitle",
@@ -56,7 +63,7 @@ class Team4 extends Team {
             {
               type: "media",
               key: "profileImage",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
                 availableTypes: ["image"],
               },
@@ -68,7 +75,7 @@ class Team4 extends Team {
             {
               type: "string",
               key: "name",
-              displayer: "Name",
+              displayer: "Person Name",
               value: "Matilda Jarod",
             },
             {
@@ -86,7 +93,7 @@ class Team4 extends Team {
             {
               type: "array",
               key: "socials",
-              displayer: "Socials",
+              displayer: "Social Media",
               value: [
                 {
                   type: "object",
@@ -200,7 +207,7 @@ class Team4 extends Team {
             {
               type: "media",
               key: "profileImage",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
                 availableTypes: ["image"],
               },
@@ -212,7 +219,7 @@ class Team4 extends Team {
             {
               type: "string",
               key: "name",
-              displayer: "Name",
+              displayer: "Person Name",
               value: "Reagan Colby",
             },
             {
@@ -230,7 +237,7 @@ class Team4 extends Team {
             {
               type: "array",
               key: "socials",
-              displayer: "Socials",
+              displayer: "Social Media",
               value: [
                 {
                   type: "object",
@@ -344,7 +351,7 @@ class Team4 extends Team {
             {
               type: "media",
               key: "profileImage",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
                 availableTypes: ["image"],
               },
@@ -356,7 +363,7 @@ class Team4 extends Team {
             {
               type: "string",
               key: "name",
-              displayer: "Name",
+              displayer: "Person Name",
               value: "Genevieve Sara",
             },
             {
@@ -374,7 +381,7 @@ class Team4 extends Team {
             {
               type: "array",
               key: "socials",
-              displayer: "Socials",
+              displayer: "Social Media",
               value: [
                 {
                   type: "object",
@@ -488,7 +495,7 @@ class Team4 extends Team {
             {
               type: "media",
               key: "profileImage",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
                 availableTypes: ["image"],
               },
@@ -500,7 +507,7 @@ class Team4 extends Team {
             {
               type: "string",
               key: "name",
-              displayer: "Name",
+              displayer: "Person Name",
               value: "Matilda Jarod",
             },
             {
@@ -518,7 +525,7 @@ class Team4 extends Team {
             {
               type: "array",
               key: "socials",
-              displayer: "Socials",
+              displayer: "Social Media",
               value: [
                 {
                   type: "object",
@@ -637,7 +644,7 @@ class Team4 extends Team {
     this.addProp({
       type: "number",
       key: "itemCount",
-      displayer: "Item count in a row",
+      displayer: "Item Count In a Row",
       value: 4,
     });
 
@@ -681,11 +688,12 @@ class Team4 extends Team {
                   {card.profileImage &&
                     <div className={this.decorateCSS("image-container")}>
                       <Base.Media value={card.profileImage} className={this.decorateCSS("image")} data-animation={this.getPropValue("hoverAnimation").join(" ")} />
+                      {this.getPropValue("overlay") && <div className={this.decorateCSS("overlay")} />}
                     </div>
                   }
                   <Base.VerticalContent className={this.decorateCSS("name-and-position")}>
-                    {card.name && <Base.H4 className={this.decorateCSS("team-member-name")}>{card.name}</Base.H4>}
-                    {card.position && <Base.P className={this.decorateCSS("team-member-position")}>{card.position}</Base.P>}
+                    {card.name && <Base.H3 className={this.decorateCSS("team-member-name")}>{card.name}</Base.H3>}
+                    {card.position && <Base.H5 className={this.decorateCSS("team-member-position")}>{card.position}</Base.H5>}
                     {card.description && <Base.P className={this.decorateCSS("team-member-description")}>{card.description}</Base.P>}
                     <div className={this.decorateCSS("icon-group")}>
                       {card.socials?.map((item: Socials, indexSocials: number) => (

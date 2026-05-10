@@ -43,7 +43,7 @@ class Team10 extends Team {
         {
           type: "media",
           key: "componentBackground",
-          displayer: "Background Image",
+          displayer: "Background Media",
           additionalParams: {
             availableTypes: ["image"],
           },
@@ -56,10 +56,17 @@ class Team10 extends Team {
           type: "boolean",
           key: "overlay",
           displayer: "Overlay",
-          value: true,
+          value: false,
         },
       ]
     })
+
+    this.addProp({
+      type: "boolean",
+      key: "overlay",
+      displayer: "Overlay",
+      value: false,
+    });
 
     this.addProp({
       type: "string",
@@ -92,17 +99,17 @@ class Team10 extends Team {
     this.addProp({
       type: "array",
       key: "team",
-      displayer: "Team",
+      displayer: "Cards",
       value: [
         {
           type: "object",
           key: "member",
-          displayer: "Team Member",
+          displayer: "Card",
           value: [
             {
               type: "media",
               key: "profileImage",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
                 availableTypes: ["image"],
               },
@@ -120,7 +127,7 @@ class Team10 extends Team {
             {
               type: "string",
               key: "title",
-              displayer: "Title",
+              displayer: "Person Name",
               value: "MARINA GONZALES",
             },
             {
@@ -214,7 +221,7 @@ class Team10 extends Team {
             {
               type: "array",
               key: "socials",
-              displayer: "Socials",
+              displayer: "Social Media",
               value: [
                 {
                   type: "object",
@@ -323,12 +330,12 @@ class Team10 extends Team {
         {
           type: "object",
           key: "member",
-          displayer: "Team Member",
+          displayer: "Card",
           value: [
             {
               type: "media",
               key: "profileImage",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
                 availableTypes: ["image"],
               },
@@ -346,7 +353,7 @@ class Team10 extends Team {
             {
               type: "string",
               key: "title",
-              displayer: "Title",
+              displayer: "Person Name",
               value: "MARINA GONZALES",
             },
             {
@@ -440,7 +447,7 @@ class Team10 extends Team {
             {
               type: "array",
               key: "socials",
-              displayer: "Socials",
+              displayer: "Social Media",
               value: [
                 {
                   type: "object",
@@ -549,12 +556,12 @@ class Team10 extends Team {
         {
           type: "object",
           key: "member",
-          displayer: "Team Member",
+          displayer: "Card",
           value: [
             {
               type: "media",
               key: "profileImage",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
                 availableTypes: ["image"],
               },
@@ -572,7 +579,7 @@ class Team10 extends Team {
             {
               type: "string",
               key: "title",
-              displayer: "Title",
+              displayer: "Person Name",
               value: "MARINA GONZALES",
             },
             {
@@ -666,7 +673,7 @@ class Team10 extends Team {
             {
               type: "array",
               key: "socials",
-              displayer: "Socials",
+              displayer: "Social Media",
               value: [
                 {
                   type: "object",
@@ -775,12 +782,12 @@ class Team10 extends Team {
         {
           type: "object",
           key: "member",
-          displayer: "Team Member",
+          displayer: "Card",
           value: [
             {
               type: "media",
               key: "profileImage",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
                 availableTypes: ["image"],
               },
@@ -798,7 +805,7 @@ class Team10 extends Team {
             {
               type: "string",
               key: "title",
-              displayer: "Title",
+              displayer: "Person Name",
               value: "MARINA GONZALES",
             },
             {
@@ -892,7 +899,7 @@ class Team10 extends Team {
             {
               type: "array",
               key: "socials",
-              displayer: "Socials",
+              displayer: "Social Media",
               value: [
                 {
                   type: "object",
@@ -1076,8 +1083,8 @@ class Team10 extends Team {
                     </div>
                     {(teamMember.subtitle || teamMember.title) && (
                       <Base.VerticalContent className={this.decorateCSS("title-group")}>
-                        {teamMember.subtitle && <Base.H5 className={this.decorateCSS("member-subtitle")}>{teamMember.subtitle}</Base.H5>}
-                        {teamMember.title && <Base.H4 className={this.decorateCSS("member-title")} data-animation={hoverAnimation.join(" ")}>{teamMember.title}</Base.H4>}
+                        {teamMember.subtitle && <Base.H6 className={this.decorateCSS("member-subtitle")}>{teamMember.subtitle}</Base.H6>}
+                        {teamMember.title && <Base.H2 className={this.decorateCSS("member-title")} data-animation={hoverAnimation.join(" ")}>{teamMember.title}</Base.H2>}
                       </Base.VerticalContent>
                     )}
                     {teamMember.features?.length > 0 && (
@@ -1105,6 +1112,7 @@ class Team10 extends Team {
                   <div className={this.decorateCSS("image-container")}>
                     <Base.Media value={imageValue} className={this.decorateCSS("image")} />
                     <div className={this.decorateCSS("image-overlay")} data-animation={hoverAnimation.join(" ")}></div>
+                    {this.getPropValue("overlay") && <div className={this.decorateCSS("overlay")}></div>}
                   </div>
                 )}
               </Base.VerticalContent>

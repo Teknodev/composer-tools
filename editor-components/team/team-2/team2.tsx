@@ -23,6 +23,13 @@ class Team2 extends Team {
     super(props, styles);
 
     this.addProp({
+      type: "boolean",
+      key: "overlay",
+      displayer: "Overlay",
+      value: false,
+    });
+
+    this.addProp({
       type: "string",
       key: "subtitle",
       displayer: "Subtitle",
@@ -63,7 +70,7 @@ class Team2 extends Team {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6437073668c3c2002cd307a8?alt=media&timestamp=1719483639146",
               },
-              displayer: "Image",
+              displayer: "Media",
             },
             {
               type: "string",
@@ -207,7 +214,7 @@ class Team2 extends Team {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6437073668c3c2002cd307a4?alt=media&timestamp=1719483639146",
               },
-              displayer: "Image",
+              displayer: "Media",
             },
             {
               type: "string",
@@ -351,7 +358,7 @@ class Team2 extends Team {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6437073668c3c2002cd307a0?alt=media&timestamp=1719483639146",
               },
-              displayer: "Image",
+              displayer: "Media",
             },
             {
               type: "string",
@@ -495,7 +502,7 @@ class Team2 extends Team {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6437073668c3c2002cd307a8?alt=media&timestamp=1719483639146",
               },
-              displayer: "Image",
+              displayer: "Media",
             },
             {
               type: "string",
@@ -639,7 +646,7 @@ class Team2 extends Team {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6437073668c3c2002cd307a4?alt=media&timestamp=1719483639146",
               },
-              displayer: "Image",
+              displayer: "Media",
             },
             {
               type: "string",
@@ -783,7 +790,7 @@ class Team2 extends Team {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6437073668c3c2002cd307a0?alt=media&timestamp=1719483639146",
               },
-              displayer: "Image",
+              displayer: "Media",
             },
             {
               type: "string",
@@ -925,7 +932,7 @@ class Team2 extends Team {
     this.addProp({
       type: "number",
       key: "itemCount",
-      displayer: "Item count in a row",
+      displayer: "Item Count In a Row",
       value: 3,
     });
 
@@ -969,10 +976,11 @@ class Team2 extends Team {
                   {card.profileImage &&
                     <div className={this.decorateCSS("image-container")}>
                       <Base.Media value={card.profileImage} className={this.decorateCSS("image")} data-animation={this.getPropValue("hoverAnimation").join(" ")} />
+                      {this.getPropValue("overlay") && <div className={this.decorateCSS("overlay")} />}
                     </div>
                   }
                   {card.name && <Base.H6 className={this.decorateCSS("title")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>{card.name}</Base.H6>}
-                  {card.position && <Base.P className={this.decorateCSS("position")}>{card.position}</Base.P>}
+                  {card.position && <Base.H5 className={this.decorateCSS("position")}>{card.position}</Base.H5>}
                   {card.description && <Base.P className={this.decorateCSS("long-text")}>{card.description}</Base.P>}
                   <div className={this.decorateCSS("icon-group")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
                     {card.socials?.map((item: socials, indexSocials: number) => {

@@ -23,6 +23,13 @@ class Team1 extends Team {
     super(props, styles);
 
     this.addProp({
+      type: "boolean",
+      key: "overlay",
+      displayer: "Overlay",
+      value: false,
+    });
+
+    this.addProp({
       type: "string",
       key: "subtitle",
       displayer: "Subtitle",
@@ -56,7 +63,7 @@ class Team1 extends Team {
             {
               type: "media",
               key: "profileImage",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
                 availableTypes: ["image"],
               },
@@ -200,7 +207,7 @@ class Team1 extends Team {
             {
               type: "media",
               key: "profileImage",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
                 availableTypes: ["image"],
               },
@@ -344,7 +351,7 @@ class Team1 extends Team {
             {
               type: "media",
               key: "profileImage",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
                 availableTypes: ["image"],
               },
@@ -374,7 +381,7 @@ class Team1 extends Team {
             {
               type: "array",
               key: "socials",
-              displayer: "Social Medias",
+              displayer: "Social Media",
               value: [
                 {
                   type: "object",
@@ -488,7 +495,7 @@ class Team1 extends Team {
             {
               type: "media",
               key: "profileImage",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
                 availableTypes: ["image"],
               },
@@ -637,7 +644,7 @@ class Team1 extends Team {
     this.addProp({
       type: "number",
       key: "itemCount",
-      displayer: "Item count in a row",
+      displayer: "Item Count In a Row",
       value: 4,
     });
 
@@ -682,6 +689,7 @@ class Team1 extends Team {
                     {card.profileImage && (
                       <div className={this.decorateCSS("image-container")}>
                         <Base.Media value={card.profileImage} className={this.decorateCSS("image")} data-animation={this.getPropValue("hoverAnimation").join(" ")} />
+                        {this.getPropValue("overlay") && <div className={this.decorateCSS("overlay")} />}
                       </div>
                     )}
                     <Base.H6 className={this.decorateCSS("card-name")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>{card.name}</Base.H6>
