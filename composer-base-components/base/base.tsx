@@ -464,6 +464,19 @@ export namespace Base {
   export function Icon({ name, propsIcon }: IconProps): React.JSX.Element {
     if (!name) return <></>;
 
+    // Custom SVG uploaded as data URL
+    if (typeof name === "string" && name.startsWith("data:image/svg")) {
+      const { className, style, size } = (propsIcon ?? {}) as any;
+      return (
+        <img
+          src={name}
+          className={className}
+          style={{ width: size ?? 24, height: size ?? 24, ...style }}
+          alt=""
+        />
+      );
+    }
+
     let ElementIcon: any = null;
 
     for (const iconLibrary of iconLibraries) {
