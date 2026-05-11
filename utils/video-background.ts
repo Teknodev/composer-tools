@@ -42,6 +42,7 @@ const VIDEO_STYLES: Partial<CSSStyleDeclaration> = {
 };
 
 const videoBackgroundObservers = new WeakMap<Document | HTMLElement, MutationObserver>();
+const scheduledScans = new WeakMap<Document | HTMLElement, number>();
 
 type VideoBackgroundTarget = {
   element: HTMLElement;
@@ -198,6 +199,17 @@ export function observeVideoBackgrounds(root: HTMLElement | Document = document)
     observer.disconnect();
     videoBackgroundObservers.delete(root);
   };
+}
+
+export function scheduleApplyVideoBackgrounds(root: HTMLElement | Document = document): void {
+  if (scheduledScans.has(root)) return;
+
+  const frameId = requestAnimationFrame(() => {
+    scheduledScans.delete(root);
+    applyVideoBackgrounds(root);
+  });
+
+  scheduledScans.set(root, frameId);
 }
 
 /**
