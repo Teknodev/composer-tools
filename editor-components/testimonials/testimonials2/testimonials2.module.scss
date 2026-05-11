@@ -6,7 +6,7 @@
     margin-bottom: var(--composer-gap-lg);
     .top-content {
       width: 100%;
-      .badge,
+      .subtitle,
       .title,
       .description,
       .button-container,
@@ -54,7 +54,7 @@
           }
         }
 
-        .item-description {
+        .item-text {
           color: var(--composer-font-color-primary);
         }
       }
@@ -86,12 +86,6 @@
 
 @container (max-width: #{$composer-tablet-width}) {
   .container {
-    .max-content {
-      .testimonials2 {
-        .top-content {
-        }
-      }
-    }
     .slider-style {
       padding-bottom: 100px;
       .card {

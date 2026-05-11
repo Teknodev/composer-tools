@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Testimonials } from "../../EditorComponent";
+import { Testimonials, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./testimonials2.module.scss";
 
 import ComposerSlider from "../../../composer-base-components/slider/slider";
@@ -8,11 +8,20 @@ import { INPUTS } from "../../../custom-hooks/input-templates";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 
 type Item = {
-  name: React.JSX.Element;
-  description: React.JSX.Element;
-  subtitle: React.JSX.Element;
-  icon: string;
+  text: React.JSX.Element;
+  icon: TypeMediaInputValue;
   star: number;
+  author: {
+    name: React.JSX.Element;
+    subtitle: React.JSX.Element;
+  };
+};
+
+type Button = {
+  text: React.JSX.Element;
+  url: string;
+  icon: TypeMediaInputValue;
+  type: string;
 };
 
 class Testimonials2Page extends Testimonials {
@@ -20,7 +29,7 @@ class Testimonials2Page extends Testimonials {
     super(props, styles);
     this.addProp({
       type: "string",
-      key: "badge",
+      key: "subtitle",
       displayer: "Subtitle",
       value: "WHAT OUR CLIENTS SAY",
     });
@@ -52,186 +61,226 @@ class Testimonials2Page extends Testimonials {
         {
           type: "object",
           key: "card1",
-          displayer: "Card1",
+          displayer: "Card 1",
           value: [
             {
               type: "number",
               key: "star",
               value: 5,
-              displayer: "Icon Number",
+              displayer: "Star Count",
             },
             {
-              type: "icon",
+              type: "media",
               key: "icon",
               displayer: "Icon",
-              value: "RiStarSFill",
+              additionalParams: { availableTypes: ["icon", "image"] },
+              value: { type: "icon", name: "RiStarSFill" },
             },
             {
               type: "string",
-              key: "description",
+              key: "text",
               displayer: "Review Text",
               value: "Flat design is characterized by simple, two-dimensional elements and a clean, minimal aesthetic. It's a great way to create a streamlined and modern look.",
             },
             {
-              type: "string",
-              key: "name",
-              displayer: "Author Name",
-              value: "Mary Sheram",
-            },
-            {
-              type: "string",
-              key: "subtitle",
-              displayer: "Author Position",
-              value: "Designer",
-            },
+              type: "object",
+              key: "author",
+              displayer: "Author",
+              value: [
+                {
+                  type: "string",
+                  key: "name",
+                  displayer: "Name",
+                  value: "Mary Sheram",
+                },
+                {
+                  type: "string",
+                  key: "subtitle",
+                  displayer: "Position",
+                  value: "Designer",
+                },
+              ]
+            }
           ],
         },
         {
           type: "object",
-          key: "card1",
-          displayer: "Card1",
+          key: "card2",
+          displayer: "Card 2",
           value: [
             {
               type: "number",
               key: "star",
               value: 5,
-              displayer: "Icon Number",
+              displayer: "Star Count",
             },
             {
-              type: "icon",
+              type: "media",
               key: "icon",
               displayer: "Icon",
-              value: "RiStarSFill",
+              additionalParams: { availableTypes: ["icon", "image"] },
+              value: { type: "icon", name: "RiStarSFill" },
             },
             {
               type: "string",
-              key: "description",
+              key: "text",
               displayer: "Review Text",
               value: "Flat design is characterized by simple, two-dimensional elements and a clean, minimal aesthetic. It's a great way to create a streamlined and modern look.",
             },
             {
-              type: "string",
-              key: "name",
-              displayer: "Author Name",
-              value: "Mary Sheram",
-            },
-            {
-              type: "string",
-              key: "subtitle",
-              displayer: "Author Position",
-              value: "Designer",
-            },
+              type: "object",
+              key: "author",
+              displayer: "Author",
+              value: [
+                {
+                  type: "string",
+                  key: "name",
+                  displayer: "Name",
+                  value: "Mary Sheram",
+                },
+                {
+                  type: "string",
+                  key: "subtitle",
+                  displayer: "Position",
+                  value: "Designer",
+                },
+              ]
+            }
           ],
         },
         {
           type: "object",
-          key: "card1",
-          displayer: "Card1",
+          key: "card3",
+          displayer: "Card 3",
           value: [
             {
               type: "number",
               key: "star",
               value: 5,
-              displayer: "Icon Number",
+              displayer: "Star Count",
             },
             {
-              type: "icon",
+              type: "media",
               key: "icon",
               displayer: "Icon",
-              value: "RiStarSFill",
+              additionalParams: { availableTypes: ["icon", "image"] },
+              value: { type: "icon", name: "RiStarSFill" },
             },
             {
               type: "string",
-              key: "description",
+              key: "text",
               displayer: "Review Text",
               value: "Flat design is characterized by simple, two-dimensional elements and a clean, minimal aesthetic. It's a great way to create a streamlined and modern look.",
             },
             {
-              type: "string",
-              key: "name",
-              displayer: "Author Name",
-              value: "Mary Sheram",
-            },
-            {
-              type: "string",
-              key: "subtitle",
-              displayer: "Author Position",
-              value: "Designer",
-            },
+              type: "object",
+              key: "author",
+              displayer: "Author",
+              value: [
+                {
+                  type: "string",
+                  key: "name",
+                  displayer: "Name",
+                  value: "Mary Sheram",
+                },
+                {
+                  type: "string",
+                  key: "subtitle",
+                  displayer: "Position",
+                  value: "Designer",
+                },
+              ]
+            }
           ],
         },
         {
           type: "object",
-          key: "card1",
-          displayer: "Card1",
+          key: "card4",
+          displayer: "Card 4",
           value: [
             {
               type: "number",
               key: "star",
               value: 5,
-              displayer: "Icon Number",
+              displayer: "Star Count",
             },
             {
-              type: "icon",
+              type: "media",
               key: "icon",
               displayer: "Icon",
-              value: "RiStarSFill",
+              additionalParams: { availableTypes: ["icon", "image"] },
+              value: { type: "icon", name: "RiStarSFill" },
             },
             {
               type: "string",
-              key: "description",
+              key: "text",
               displayer: "Review Text",
               value: "Flat design is characterized by simple, two-dimensional elements and a clean, minimal aesthetic. It's a great way to create a streamlined and modern look.",
             },
             {
-              type: "string",
-              key: "name",
-              displayer: "Author Name",
-              value: "Mary Sheram",
-            },
-            {
-              type: "string",
-              key: "subtitle",
-              displayer: "Subtitle",
-              value: "Author Position",
-            },
+              type: "object",
+              key: "author",
+              displayer: "Author",
+              value: [
+                {
+                  type: "string",
+                  key: "name",
+                  displayer: "Name",
+                  value: "Mary Sheram",
+                },
+                {
+                  type: "string",
+                  key: "subtitle",
+                  displayer: "Position",
+                  value: "Designer",
+                },
+              ]
+            }
           ],
         },
         {
           type: "object",
-          key: "card1",
-          displayer: "Card1",
+          key: "card5",
+          displayer: "Card 5",
           value: [
             {
               type: "number",
               key: "star",
               value: 5,
-              displayer: "Icon Number",
+              displayer: "Star Count",
             },
             {
-              type: "icon",
+              type: "media",
               key: "icon",
               displayer: "Icon",
-              value: "RiStarSFill",
+              additionalParams: { availableTypes: ["icon", "image"] },
+              value: { type: "icon", name: "RiStarSFill" },
             },
             {
               type: "string",
-              key: "description",
+              key: "text",
               displayer: "Review Text",
               value: "Flat design is characterized by simple, two-dimensional elements and a clean, minimal aesthetic. It's a great way to create a streamlined and modern look.",
             },
             {
-              type: "string",
-              key: "name",
-              displayer: "Author Name",
-              value: "Mary Sheram",
-            },
-            {
-              type: "string",
-              key: "subtitle",
-              displayer: "Author Position",
-              value: "Designer",
-            },
+              type: "object",
+              key: "author",
+              displayer: "Author",
+              value: [
+                {
+                  type: "string",
+                  key: "name",
+                  displayer: "Name",
+                  value: "Mary Sheram",
+                },
+                {
+                  type: "string",
+                  key: "subtitle",
+                  displayer: "Position",
+                  value: "Designer",
+                },
+              ]
+            }
           ],
         },
       ],
@@ -243,11 +292,11 @@ class Testimonials2Page extends Testimonials {
   }
 
   render() {
-    const subtitleExist = this.castToString(this.getPropValue("badge"));
+    const subtitleExist = this.castToString(this.getPropValue("subtitle"));
     const titleExist = this.castToString(this.getPropValue("title"));
     const descriptionExist = this.castToString(this.getPropValue("description"));
-    const buttons = this.castToObject<any[]>("buttons");
-    const hasValidButtons = buttons.some((btn: any) => {
+    const buttons = this.castToObject<Button[]>("buttons");
+    const hasValidButtons = buttons.some((btn: Button) => {
       const buttonText = this.castToString(btn.text);
       const iconExist = btn.icon && (btn.icon.type === "icon" ? btn.icon.name : btn.icon.url);
       return buttonText || iconExist;
@@ -289,12 +338,12 @@ class Testimonials2Page extends Testimonials {
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           {hasAnyTopContent && (
               <Base.VerticalContent className={this.decorateCSS("top-content")}>
-                {subtitleExist && <Base.SectionSubTitle className={this.decorateCSS("badge")}>{this.getPropValue("badge")}</Base.SectionSubTitle>}
+                {subtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
                 {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
                 {descriptionExist && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
                 {hasValidButtons && (
                   <div className={this.decorateCSS("button-container")}>
-                    {buttons.map((item: any, index: number) => {
+                    {buttons.map((item: Button, index: number) => {
                       const buttonText = this.castToString(item.text);
                       const iconExist = item.icon && (item.icon.type === "icon" ? item.icon.name : item.icon.url);
                       if (!buttonText && !iconExist) return null;
@@ -314,28 +363,34 @@ class Testimonials2Page extends Testimonials {
         </Base.MaxContent>
 
         <ComposerSlider {...settings} className={this.decorateCSS("slider-style")}>
-          {this.castToObject<Item[]>("card-items").map((item: Item, index: number) => (
-            <div className={this.decorateCSS("card")}>
-              {(item.star > 0 || item.icon || this.castToString(item.description)) && (
-                <Base.VerticalContent className={this.decorateCSS("top-container")}>
-                  {(item.star > 0 || item.icon) && (
-                    <Base.Row className={this.decorateCSS("icon-element")}>
-                      {[...Array(Number(item.star))].map((_: any, index: number) => (
-                        <Base.Icon propsIcon={{ className: this.decorateCSS("icon") }} name={item.icon} />
-                      ))}
-                    </Base.Row>
-                  )}
-                  {this.castToString(item.description) && <Base.P className={this.decorateCSS("item-description")}>{item.description}</Base.P>}
-                </Base.VerticalContent>
-              )}
-              {(this.castToString(item.name) || this.castToString(item.subtitle)) && (
-                <Base.VerticalContent className={this.decorateCSS("bottom-container")}>
-                  {this.castToString(item.name) && <Base.P className={this.decorateCSS("item-name")}>{item.name}</Base.P>}
-                  {this.castToString(item.subtitle) && <Base.P className={this.decorateCSS("item-subtitle")}>{item.subtitle}</Base.P>}
-                </Base.VerticalContent>
-              )}
-            </div>
-          ))}
+          {this.castToObject<Item[]>("card-items").map((item: Item, index: number) => {
+            const iconExist = item.icon && (item.icon.type === "icon" ? item.icon.name : item.icon.url);
+            const textExist = this.castToString(item.text);
+            const authorExist = item.author && (item.author.name || item.author.subtitle);
+            
+            return (
+              <div className={this.decorateCSS("card")} key={index}>
+                {((item.star > 0 && iconExist) || textExist) && (
+                  <Base.VerticalContent className={this.decorateCSS("top-container")}>
+                    {(item.star > 0 && iconExist) && (
+                      <Base.Row className={this.decorateCSS("icon-element")}>
+                        {[...Array(Number(item.star))].map((_: unknown, idx: number) => (
+                          <Base.Media value={item.icon} className={this.decorateCSS("icon")} key={idx} />
+                        ))}
+                      </Base.Row>
+                    )}
+                    {textExist && <Base.P className={this.decorateCSS("item-text")}>{item.text}</Base.P>}
+                  </Base.VerticalContent>
+                )}
+                {authorExist && (
+                  <Base.VerticalContent className={this.decorateCSS("bottom-container")}>
+                    {item.author.name && <Base.P className={this.decorateCSS("item-name")}>{item.author.name}</Base.P>}
+                    {item.author.subtitle && <Base.P className={this.decorateCSS("item-subtitle")}>{item.author.subtitle}</Base.P>}
+                  </Base.VerticalContent>
+                )}
+              </div>
+            );
+          })}
         </ComposerSlider>
       </Base.Container>
     );
