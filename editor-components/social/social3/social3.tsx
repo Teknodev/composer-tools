@@ -59,7 +59,7 @@ class Social3 extends BaseSocial {
       value: [
         {
           type: "media",
-          key: "profileImage",
+          key: "profileMedia",
           displayer: "Profile Media",
           value: {
             type: "image",
@@ -402,15 +402,15 @@ class Social3 extends BaseSocial {
             </Base.VerticalContent>
           )}
           <div className={this.decorateCSS("post-container")}>
-            {(profile.profileImage ||
+            {(profile.profileMedia ||
               this.castToString(profile.name) ||
               profile.dateIcon ||
               this.castToString(profile.date)) && (
                 <div className={this.decorateCSS("upper-section")}>
-                  {profile.profileImage && (
+                  {profile.profileMedia && (
                     <Base.Media
-                      value={profile.profileImage}
-                      className={this.decorateCSS("profile-image")}
+                      value={profile.profileMedia}
+                      className={`${this.decorateCSS("profile-media")} ${profile.profileMedia.type === "icon" ? this.decorateCSS("is-icon") : ""}`}
                     />
                   )}
                   {(this.castToString(profile.name) ||
