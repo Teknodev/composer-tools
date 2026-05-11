@@ -906,20 +906,6 @@ class Social2 extends BaseSocial {
                     value: { type: "icon", name: "FaPlay" },
                     additionalParams: { availableTypes: ["icon", "image"] }
                 },
-                {
-                    type: "media",
-                    key: "nextArrow",
-                    displayer: "Next Arrow",
-                    value: { type: "icon", name: "IoIosArrowForward" },
-                    additionalParams: { availableTypes: ["icon", "image"] }
-                },
-                {
-                    type: "media",
-                    key: "prevArrow",
-                    displayer: "Prev Arrow",
-                    value: { type: "icon", name: "IoIosArrowBack" },
-                    additionalParams: { availableTypes: ["icon", "image"] }
-                },
             ]
         });
         this.addProp({
@@ -951,7 +937,7 @@ class Social2 extends BaseSocial {
         });
 
         this.addProp(INPUTS.SLIDER_SETTINGS("sliderSettings", "Slider Settings", {
-            dots: false,
+            dots: true,
             arrows: false,
             infinite: true,
             autoplay: true,
@@ -1005,34 +991,6 @@ class Social2 extends BaseSocial {
         const observer = this.getComponentState("observer");
         if (observer) observer.disconnect();
     }
-    handleRightArrowClick = () => {
-        const sliderRef = this.getComponentState("slider-ref");
-        const slider = sliderRef.current;
-        const currentSlide = slider.innerSlider.state.currentSlide;
-        const totalSlides = slider.innerSlider.props.children.length;
-        const slidesToShow = slider.innerSlider.props.slidesToShow;
-
-        if (currentSlide >= totalSlides - slidesToShow) {
-            slider.slickGoTo(0);
-        } else {
-            slider.slickNext();
-        }
-    };
-
-    handleLeftArrowClick = () => {
-        const sliderRef = this.getComponentState("slider-ref");
-        const slider = sliderRef.current;
-        const currentSlide = slider.innerSlider.state.currentSlide;
-        const totalSlides = slider.innerSlider.props.children.length;
-        const slidesToShow = slider.innerSlider.props.slidesToShow;
-
-        if (currentSlide === 0) {
-            slider.slickGoTo(totalSlides - slidesToShow);
-        } else {
-            slider.slickPrev();
-        }
-    };
-
     handleVideoPlay = (index: number) => {
         this.setComponentState("selectedVideo", index);
         this.setComponentState("videoActive", true);
@@ -1194,20 +1152,6 @@ class Social2 extends BaseSocial {
                                         );
                                     })}
                                 </ComposerSlider>
-                                {(player.nextArrow || player.prevArrow) && (
-                                    <div className={this.decorateCSS("arrows")}>
-                                        {player.nextArrow && (
-                                            <div className={this.decorateCSS("next-arrow")} onClick={() => { this.handleRightArrowClick() }}>
-                                                <Base.Media value={player.nextArrow} className={`${this.decorateCSS("next-arrow-icon")} ${player.nextArrow.type === "icon" ? this.decorateCSS("is-icon") : ""}`} />
-                                            </div>
-                                        )}
-                                        {player.prevArrow && (
-                                            <div className={this.decorateCSS("prev-arrow")} onClick={() => { this.handleLeftArrowClick() }}>
-                                                <Base.Media value={player.prevArrow} className={`${this.decorateCSS("prev-arrow-icon")} ${player.prevArrow.type === "icon" ? this.decorateCSS("is-icon") : ""}`} />
-                                            </div>
-                                        )}
-                                    </div>
-                                )}
                             </div>
                         )}
                     </Base.MaxContent>
@@ -1277,16 +1221,6 @@ class Social2 extends BaseSocial {
                                         </div>
                                     )}
                                 </div>
-                                {player.prevArrow && (
-                                    <div className={this.decorateCSS("modal-prev")} onClick={() => this.setComponentState("selectedVideo", (selectedIndex - 1 + sliderItems.length) % sliderItems.length)}>
-                                        <Base.Media value={player.prevArrow} className={`${this.decorateCSS("modal-arrow-icon")} ${player.prevArrow.type === "icon" ? this.decorateCSS("is-icon") : ""}`} />
-                                    </div>
-                                )}
-                                {player.nextArrow && (
-                                    <div className={this.decorateCSS("modal-next")} onClick={() => this.setComponentState("selectedVideo", (selectedIndex + 1) % sliderItems.length)}>
-                                        <Base.Media value={player.nextArrow} className={`${this.decorateCSS("modal-arrow-icon")} ${player.nextArrow.type === "icon" ? this.decorateCSS("is-icon") : ""}`} />
-                                    </div>
-                                )}
                             </div>
                         </Base.Overlay>
                     )}
