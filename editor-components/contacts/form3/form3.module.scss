@@ -149,7 +149,9 @@
               word-wrap: break-word;
               display: flex;
               flex-direction: column;
-              gap: var(--composer-gap-lg);
+              gap: var(--composer-gap-md);
+              flex: 1;
+              justify-content: center;
 
               .left-top-content {
                 position: relative;
