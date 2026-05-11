@@ -2,12 +2,43 @@ import * as React from "react";
 import { Testimonials, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./testimonials1.module.scss";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
-
+import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 import { Base } from "../../../composer-base-components/base/base";
+import { INPUTS } from "../../../custom-hooks/input-templates";
 
 class Testimonials1Page extends Testimonials {
   constructor(props?: any) {
     super(props, styles);
+
+    this.addProp({
+      type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "",
+    });
+
+    this.addProp({
+      type: "string",
+      key: "title",
+      displayer: "Title",
+      value: "",
+    });
+
+    this.addProp({
+      type: "string",
+      key: "description",
+      displayer: "Description",
+      value: "",
+    });
+
+    this.addProp({
+      type: "array",
+      key: "buttons",
+      displayer: "Buttons",
+      value: [
+        INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+      ],
+    });
 
     this.addProp({
       type: "image",
@@ -150,6 +181,18 @@ class Testimonials1Page extends Testimonials {
   }
 
   render() {
+    const subtitleExist = this.castToString(this.getPropValue("subtitle"));
+    const titleExist = this.castToString(this.getPropValue("title"));
+    const descriptionExist = this.castToString(this.getPropValue("description"));
+    const buttons = this.castToObject<any[]>("buttons");
+    const hasValidButtons = buttons.some((btn: any) => {
+      const buttonText = this.castToString(btn.text);
+      const iconExist = btn.icon && (btn.icon.type === "icon" ? btn.icon.name : btn.icon.url);
+      return buttonText || iconExist;
+    });
+
+    const hasAnyTopContent = subtitleExist || titleExist || descriptionExist || hasValidButtons;
+
     const settings = {
       dots: false,
       infinite: true,
@@ -176,6 +219,30 @@ class Testimonials1Page extends Testimonials {
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("wrapper")}>
             <div className={this.decorateCSS("content-wrapper")}>
+              {hasAnyTopContent && (
+                <Base.VerticalContent className={this.decorateCSS("top-content")}>
+                  {subtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
+                  {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
+                  {descriptionExist && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
+                  {hasValidButtons && (
+                    <div className={this.decorateCSS("button-container")}>
+                      {buttons.map((item: any, index: number) => {
+                        const buttonText = this.castToString(item.text);
+                        const iconExist = item.icon && (item.icon.type === "icon" ? item.icon.name : item.icon.url);
+                        if (!buttonText && !iconExist) return null;
+                        return (
+                          <ComposerLink key={index} path={item.url}>
+                            <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
+                              {buttonText && <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>}
+                              {iconExist && <Base.Media className={this.decorateCSS("button-icon")} value={item.icon!} />}
+                            </Base.Button>
+                          </ComposerLink>
+                        );
+                      })}
+                    </div>
+                  )}
+                </Base.VerticalContent>
+              )}
               <div className={`${this.decorateCSS("content")} ${!imageExist && this.decorateCSS("content-no-image")}`}>
                 <ComposerSlider {...settings} ref={this.getComponentState("slider-ref")}>
                   {this.castToObject<any>("items").map((item: any, index: number) => (
