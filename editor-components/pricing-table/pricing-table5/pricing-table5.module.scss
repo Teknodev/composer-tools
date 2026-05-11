@@ -98,7 +98,7 @@
           background: color-mix(in srgb,
               var(--composer-html-background),
               var(--composer-font-color-primary) 5%);
-          padding: var(--composer-gap-md);
+          padding: var(--composer-gap-md) var(--composer-gap-lg) var(--composer-gap-md) var(--composer-gap-md);
           border-radius: var(--composer-border-radius-md);
           display: flex;
           flex-direction: column;
