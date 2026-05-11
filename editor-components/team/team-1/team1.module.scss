@@ -23,16 +23,20 @@
         transition: transform 0.3s ease;
 
         .card {
+          align-items: flex-start !important;
+
           .position {
             color: var(--composer-primary-color);
             word-break: break-all;
             transition: transform 0.3s ease;
+            text-align: left;
           }
 
           .card-name {
             color: var(--composer-font-color-primary);
             word-break: break-all;
             transition: transform 0.3s ease;
+            text-align: left;
           }
 
           .image-container {
@@ -48,6 +52,7 @@
               width: 100%;
               height: 100%;
               background-color: var(--composer-overlay-color);
+              transition: transform 0.3s ease;
               pointer-events: none;
               border-radius: 50%;
               z-index: 2;
@@ -61,15 +66,24 @@
               transition: transform 0.3s ease;
               position: relative;
               z-index: 1;
+
+              &.has-icon {
+                font-size: 100px;
+                color: var(--composer-primary-color);
+                border-radius: 0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                line-height: 0;
+              }
             }
-
-
           }
 
           .card-description {
             color: var(--composer-font-color-primary);
             transition: transform 0.3s ease;
             word-break: break-word;
+            text-align: left;
           }
 
           .icon-group {
@@ -213,7 +227,11 @@
           &:hover {
             .card {
               .image {
-                transform: scale(125%);
+                transform: scale(1.2);
+              }
+
+              .overlay {
+                transform: scale(1.2);
               }
             }
           }

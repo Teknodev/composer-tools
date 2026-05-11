@@ -23,13 +23,6 @@ class Team1 extends Team {
     super(props, styles);
 
     this.addProp({
-      type: "boolean",
-      key: "overlay",
-      displayer: "Overlay",
-      value: false,
-    });
-
-    this.addProp({
       type: "string",
       key: "subtitle",
       displayer: "Subtitle",
@@ -51,6 +44,13 @@ class Team1 extends Team {
     });
 
     this.addProp({
+      type: "boolean",
+      key: "overlay",
+      displayer: "Overlay",
+      value: false,
+    });
+
+    this.addProp({
       type: "array",
       key: "cards",
       displayer: "Cards",
@@ -64,9 +64,6 @@ class Team1 extends Team {
               type: "media",
               key: "profileImage",
               displayer: "Media",
-              additionalParams: {
-                availableTypes: ["image"],
-              },
               value: {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6437064b68c3c2002cd30784?alt=media&timestamp=1719483639146",
@@ -208,9 +205,6 @@ class Team1 extends Team {
               type: "media",
               key: "profileImage",
               displayer: "Media",
-              additionalParams: {
-                availableTypes: ["image"],
-              },
               value: {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6437064b68c3c2002cd30783?alt=media&timestamp=1719483639146",
@@ -352,9 +346,6 @@ class Team1 extends Team {
               type: "media",
               key: "profileImage",
               displayer: "Media",
-              additionalParams: {
-                availableTypes: ["image"],
-              },
               value: {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6437064b68c3c2002cd30782?alt=media&timestamp=1719483639146",
@@ -496,9 +487,6 @@ class Team1 extends Team {
               type: "media",
               key: "profileImage",
               displayer: "Media",
-              additionalParams: {
-                availableTypes: ["image"],
-              },
               value: {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6437064b68c3c2002cd30781?alt=media&timestamp=1719483639146",
@@ -652,7 +640,7 @@ class Team1 extends Team {
       type: "multiSelect",
       key: "hoverAnimation",
       displayer: "Hover Animation Style",
-      value: ["animate1"],
+      value: [],
       additionalParams: {
         selectItems: ["animate1", "animate2", "animate3", "animate4", "animate5", "animate6", "animate7"]
       }
@@ -688,7 +676,7 @@ class Team1 extends Team {
                   <Base.VerticalContent className={this.decorateCSS("card")}>
                     {card.profileImage && (
                       <div className={this.decorateCSS("image-container")}>
-                        <Base.Media value={card.profileImage} className={this.decorateCSS("image")} data-animation={this.getPropValue("hoverAnimation").join(" ")} />
+                        <Base.Media value={card.profileImage} className={`${this.decorateCSS("image")} ${card.profileImage?.type === "icon" ? this.decorateCSS("has-icon") : ""}`} data-animation={this.getPropValue("hoverAnimation").join(" ")} />
                         {this.getPropValue("overlay") && <div className={this.decorateCSS("overlay")} />}
                       </div>
                     )}
