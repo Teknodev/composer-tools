@@ -24,13 +24,6 @@ class Team5 extends Team {
     super(props, styles);
 
     this.addProp({
-      type: "boolean",
-      key: "overlay",
-      displayer: "Overlay",
-      value: false,
-    });
-
-    this.addProp({
       type: "string",
       key: "subtitle",
       displayer: "Subtitle",
@@ -41,7 +34,7 @@ class Team5 extends Team {
       type: "string",
       key: "title",
       displayer: "Title",
-      value: "Introduce Our Team Work Members",
+      value: "Introduce Our <span style='color: var(--composer-primary-color)'>Team Work</span> Members",
     });
 
     this.addProp({
@@ -49,6 +42,13 @@ class Team5 extends Team {
       key: "description",
       displayer: "Description",
       value: "Viverra tempor, turpis egestas lectus enim viverra diam est tincidunt tortor sit pretium pulvinaron maecenas aliquet in cursus egestas ac elit massa ut et in gravida",
+    });
+
+    this.addProp({
+      type: "boolean",
+      key: "overlay",
+      displayer: "Overlay",
+      value: false,
     });
 
     this.addProp({
@@ -66,7 +66,7 @@ class Team5 extends Team {
               key: "background",
               displayer: "Background",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
@@ -78,7 +78,7 @@ class Team5 extends Team {
               key: "picture",
               displayer: "Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
@@ -222,7 +222,7 @@ class Team5 extends Team {
               key: "background",
               displayer: "Background",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
@@ -234,7 +234,7 @@ class Team5 extends Team {
               key: "picture",
               displayer: "Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
@@ -378,7 +378,7 @@ class Team5 extends Team {
               key: "background",
               displayer: "Background",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
@@ -390,7 +390,7 @@ class Team5 extends Team {
               key: "picture",
               displayer: "Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
@@ -534,7 +534,7 @@ class Team5 extends Team {
               key: "background",
               displayer: "Background",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
@@ -546,7 +546,7 @@ class Team5 extends Team {
               key: "picture",
               displayer: "Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
@@ -763,8 +763,8 @@ class Team5 extends Team {
                         </ComposerLink>
                       ))}
                     </Base.Row>
-                    {itemName && <Base.H4 className={this.decorateCSS("name")}>{item.name}</Base.H4>}
-                    {itemPosition && <Base.H5 className={this.decorateCSS("position")}>{item.position}</Base.H5>}
+                    {itemName && <Base.H5 className={this.decorateCSS("name")}>{item.name}</Base.H5>}
+                    {itemPosition && <Base.H6 className={this.decorateCSS("position")}>{item.position}</Base.H6>}
                     {itemDescription && <Base.P className={this.decorateCSS("card-description")}>{item.description}</Base.P>}
                   </Base.VerticalContent>
                 </Base.VerticalContent>

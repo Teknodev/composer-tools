@@ -50,16 +50,6 @@
             transition: filter 0.5s ease;
             border-radius: var(--composer-border-radius-sm);
 
-            &.has-icon {
-              font-size: 400px;
-              color: var(--composer-primary-color);
-              border-radius: 0;
-              display: flex;
-              align-items: center;
-              justify-content: center;
-              line-height: 0;
-            }
-
             &[data-animation~="animate3"] {
               filter: grayscale(100%);
 

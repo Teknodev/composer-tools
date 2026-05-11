@@ -26,11 +26,11 @@
 
 @keyframes colorChangeIcon {
   0% {
-    color: var(--composer-font-color-primary);
+    color: var(--composer-primary-color);
   }
 
   100% {
-    color: var(--composer-primary-color);
+    color: var(--composer-font-color-primary);
   }
 }
 
@@ -75,8 +75,8 @@
       gap: var(--composer-gap-xl);
 
       .card-item {
-        justify-content: center;
         align-items: center;
+        justify-content: flex-start !important;
         transition: transform 0.3s ease;
         gap: var(--composer-gap-md);
 
@@ -175,7 +175,7 @@
             font-size: 1.5rem;
 
             .icon {
-              color: var(--composer-font-color-primary);
+              color: var(--composer-primary-color);
               transition: transform 0.3s ease, color 0.3s ease, opacity 0.3s ease;
               display: inline-flex;
               align-items: center;
