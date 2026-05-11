@@ -112,7 +112,7 @@
                     gap: var(--composer-gap-sm);
 
                     .card-container {
-                        border: 1px solid var(--composer-tertiary-color);
+                        border: 0.5px solid var(--composer-tertiary-color);
                         background-color: var(--composer-html-background);
                         border-radius: var(--composer-border-radius-sm);
                         padding: var(--composer-gap-md);
@@ -177,7 +177,6 @@
 
                         .comment {
                             color: var(--composer-tertiary-color);
-                            font-size: 1.25rem !important;
                         }
                     }
                 }

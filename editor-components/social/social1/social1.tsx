@@ -281,6 +281,13 @@ class Social1 extends BaseSocial {
             ...sliderSettings,
             responsive: [
                 {
+                    breakpoint: 1024,
+                    settings: {
+                        slidesToShow: 3,
+                        slidesToScroll: 1,
+                    },
+                },
+                {
                     breakpoint: 640,
                     settings: {
                         slidesToShow: 1,
@@ -334,7 +341,7 @@ class Social1 extends BaseSocial {
                             </div>
                         )}
                         {item.text && (
-                            <div className={this.decorateCSS("comment")}>{item.text}</div>
+                            <Base.P className={this.decorateCSS("comment")}>{item.text}</Base.P>
                         )}
                     </div>
                 </ComposerLink>
