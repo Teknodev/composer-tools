@@ -67,7 +67,7 @@ class Social1 extends BaseSocial {
                                     key: "item",
                                     displayer: "Item",
                                     value: [
-                                        { type: "media", key: "media", displayer: "Media", value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6790ceccd61bca002cb54e20?alt=media&timestamp=1742997958593" }, additionalParams: { availableTypes: ["image", "video"] } },
+                                        { type: "media", key: "media", displayer: "Media", value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6790ceccd61bca002cb54e20?alt=media&timestamp=1742997958593" }, additionalParams: { availableTypes: ["image", "icon"] } },
                                         { type: "media", key: "icon", displayer: "Icon", value: { type: "icon", name: "MdNavigateNext" }, additionalParams: { availableTypes: ["icon", "image"] } },
                                         { type: "string", key: "name", displayer: "Name", value: "Clover Ruth" },
                                         { type: "string", key: "text", displayer: "Text", value: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." },
@@ -79,7 +79,7 @@ class Social1 extends BaseSocial {
                                     key: "item",
                                     displayer: "Item",
                                     value: [
-                                        { type: "media", key: "media", displayer: "Media", value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6790cd32d61bca002cb54d47?alt=media&timestamp=1742997958593" }, additionalParams: { availableTypes: ["image", "video"] } },
+                                        { type: "media", key: "media", displayer: "Media", value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6790cd32d61bca002cb54d47?alt=media&timestamp=1742997958593" }, additionalParams: { availableTypes: ["image", "icon"] } },
                                         { type: "media", key: "icon", displayer: "Icon", value: { type: "icon", name: "MdNavigateNext" }, additionalParams: { availableTypes: ["icon", "image"] } },
                                         { type: "string", key: "name", displayer: "Name", value: "Sarah Brown" },
                                         { type: "string", key: "text", displayer: "Text", value: "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat." },
@@ -105,7 +105,7 @@ class Social1 extends BaseSocial {
                                     key: "item",
                                     displayer: "Item",
                                     value: [
-                                        { type: "media", key: "media", displayer: "Media", value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6799df51d61bca002cb826eb?alt=media&timestamp=1742997958593" }, additionalParams: { availableTypes: ["image", "video"] } },
+                                        { type: "media", key: "media", displayer: "Media", value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6799df51d61bca002cb826eb?alt=media&timestamp=1742997958593" }, additionalParams: { availableTypes: ["image", "icon"] } },
                                         { type: "media", key: "icon", displayer: "Icon", value: { type: "icon", name: "MdNavigateNext" }, additionalParams: { availableTypes: ["icon", "image"] } },
                                         { type: "string", key: "name", displayer: "Name", value: "Jacklyn Mia" },
                                         { type: "string", key: "text", displayer: "Text", value: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur." },
@@ -117,7 +117,7 @@ class Social1 extends BaseSocial {
                                     key: "item",
                                     displayer: "Item",
                                     value: [
-                                        { type: "media", key: "media", displayer: "Media", value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67e6c8a3fb049c002cc4b4a4?alt=media" }, additionalParams: { availableTypes: ["image", "video"] } },
+                                        { type: "media", key: "media", displayer: "Media", value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67e6c8a3fb049c002cc4b4a4?alt=media" }, additionalParams: { availableTypes: ["image", "icon"] } },
                                         { type: "media", key: "icon", displayer: "Icon", value: { type: "icon", name: "MdNavigateNext" }, additionalParams: { availableTypes: ["icon", "image"] } },
                                         { type: "string", key: "name", displayer: "Name", value: "Lachlan Linnette" },
                                         { type: "string", key: "text", displayer: "Text", value: "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." },
@@ -143,7 +143,7 @@ class Social1 extends BaseSocial {
                                     key: "item",
                                     displayer: "Item",
                                     value: [
-                                        { type: "media", key: "media", displayer: "Media", value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67a9d2166341de002b7b7fd0?alt=media&timestamp=1742997958593" }, additionalParams: { availableTypes: ["image", "video"] } },
+                                        { type: "media", key: "media", displayer: "Media", value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67a9d2166341de002b7b7fd0?alt=media&timestamp=1742997958593" }, additionalParams: { availableTypes: ["image", "icon"] } },
                                         { type: "media", key: "icon", displayer: "Icon", value: { type: "icon", name: "MdNavigateNext" }, additionalParams: { availableTypes: ["icon", "image"] } },
                                         { type: "string", key: "name", displayer: "Name", value: "Jaykyn Kaleigh" },
                                         { type: "string", key: "text", displayer: "Text", value: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam." },
@@ -155,7 +155,7 @@ class Social1 extends BaseSocial {
                                     key: "item",
                                     displayer: "Item",
                                     value: [
-                                        { type: "media", key: "media", displayer: "Media", value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67e40a86fb049c002cc41c55?alt=media&timestamp=1742998151797" }, additionalParams: { availableTypes: ["image", "video"] } },
+                                        { type: "media", key: "media", displayer: "Media", value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67e40a86fb049c002cc41c55?alt=media&timestamp=1742998151797" }, additionalParams: { availableTypes: ["image", "icon"] } },
                                         { type: "media", key: "icon", displayer: "Icon", value: { type: "icon", name: "MdNavigateNext" }, additionalParams: { availableTypes: ["icon", "image"] } },
                                         { type: "string", key: "name", displayer: "Name", value: "Mary Johnson" },
                                         { type: "string", key: "text", displayer: "Text", value: "Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur." },
@@ -181,7 +181,7 @@ class Social1 extends BaseSocial {
                                     key: "item",
                                     displayer: "Item",
                                     value: [
-                                        { type: "media", key: "media", displayer: "Media", value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67e40a3cfb049c002cc41bc7?alt=media&timestamp=1742998077864" }, additionalParams: { availableTypes: ["image", "video"] } },
+                                        { type: "media", key: "media", displayer: "Media", value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67e40a3cfb049c002cc41bc7?alt=media&timestamp=1742998077864" }, additionalParams: { availableTypes: ["image", "icon"] } },
                                         { type: "media", key: "icon", displayer: "Icon", value: { type: "icon", name: "MdNavigateNext" }, additionalParams: { availableTypes: ["icon", "image"] } },
                                         { type: "string", key: "name", displayer: "Name", value: "Kristen Gertie" },
                                         { type: "string", key: "text", displayer: "Text", value: "Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia." },
@@ -193,7 +193,7 @@ class Social1 extends BaseSocial {
                                     key: "item",
                                     displayer: "Item",
                                     value: [
-                                        { type: "media", key: "media", displayer: "Media", value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67e6c925fb049c002cc4b4cb?alt=media" }, additionalParams: { availableTypes: ["image", "video"] } },
+                                        { type: "media", key: "media", displayer: "Media", value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67e6c925fb049c002cc4b4cb?alt=media" }, additionalParams: { availableTypes: ["image", "icon"] } },
                                         { type: "media", key: "icon", displayer: "Icon", value: { type: "icon", name: "MdNavigateNext" }, additionalParams: { availableTypes: ["icon", "image"] } },
                                         { type: "string", key: "name", displayer: "Name", value: "McKinney" },
                                         { type: "string", key: "text", displayer: "Text", value: "Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur." },
@@ -219,7 +219,7 @@ class Social1 extends BaseSocial {
                                     key: "item",
                                     displayer: "Item",
                                     value: [
-                                        { type: "media", key: "media", displayer: "Media", value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67e40a6cfb049c002cc41c31?alt=media&timestamp=1742998125897" }, additionalParams: { availableTypes: ["image", "video"] } },
+                                        { type: "media", key: "media", displayer: "Media", value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67e40a6cfb049c002cc41c31?alt=media&timestamp=1742998125897" }, additionalParams: { availableTypes: ["image", "icon"] } },
                                         { type: "media", key: "icon", displayer: "Icon", value: { type: "icon", name: "MdNavigateNext" }, additionalParams: { availableTypes: ["icon", "image"] } },
                                         { type: "string", key: "name", displayer: "Name", value: "James Pearce" },
                                         { type: "string", key: "text", displayer: "Text", value: "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque." },
@@ -231,7 +231,7 @@ class Social1 extends BaseSocial {
                                     key: "item",
                                     displayer: "Item",
                                     value: [
-                                        { type: "media", key: "media", displayer: "Media", value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67e6c969fb049c002cc4b4d7?alt=media" }, additionalParams: { availableTypes: ["image", "video"] } },
+                                        { type: "media", key: "media", displayer: "Media", value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67e6c969fb049c002cc4b4d7?alt=media" }, additionalParams: { availableTypes: ["image", "icon"] } },
                                         { type: "media", key: "icon", displayer: "Icon", value: { type: "icon", name: "MdNavigateNext" }, additionalParams: { availableTypes: ["icon", "image"] } },
                                         { type: "string", key: "name", displayer: "Name", value: "Olivia Davis" },
                                         { type: "string", key: "text", displayer: "Text", value: "Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime." },
@@ -324,7 +324,7 @@ class Social1 extends BaseSocial {
                                             <Base.Media value={item.icon} className={this.decorateCSS("icon")} />
                                         )}
                                         {item.media && (
-                                            <Base.Media value={item.media} className={this.decorateCSS("image")} />
+                                            <Base.Media value={item.media} className={`${this.decorateCSS("image")} ${item.media.type === "icon" ? this.decorateCSS("is-icon") : ""}`} />
                                         )}
                                     </div>
                                 )}

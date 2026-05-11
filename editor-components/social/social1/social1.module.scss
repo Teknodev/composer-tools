@@ -153,6 +153,17 @@
                                     height: 50px;
                                     border-radius: 50%;
                                     object-fit: cover;
+                                    display: flex;
+                                    align-items: center;
+                                    justify-content: center;
+
+                                    &.is-icon {
+                                        width: auto;
+                                        height: auto;
+                                        border-radius: 0;
+                                        font-size: 2rem;
+                                        color: var(--composer-font-color-primary);
+                                    }
                                 }
                             }
 
