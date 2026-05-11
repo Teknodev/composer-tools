@@ -6,6 +6,15 @@
     flex-direction: column;
     gap: var(--composer-gap-lg);
 
+    .vertical-content {
+
+      .title,
+      .subtitle,
+      .description {
+        content: "";
+      }
+    }
+
     .down-page,
     .slider {
       .card {
@@ -32,8 +41,8 @@
           }
 
           .person-image {
-            height: 400px;
-            min-height: 400px;
+            height: 500px;
+            min-height: 500px;
             width: 100%;
             object-fit: cover;
             transition: 0.4s;
@@ -41,56 +50,53 @@
           }
         }
 
+        .text-group {
+          transition: margin-bottom 1s, border-bottom 1s, padding-bottom 1s;
+          align-items: flex-start;
+          z-index: 2;
 
-        .person-info {
-          .text-group {
-            transition: margin-bottom 1s, border-bottom 1s, padding-bottom 1s;
-            align-items: flex-start;
-            z-index: 2;
+          .icons-bar {
+            display: flex;
+            flex-direction: row;
+            opacity: 1;
+            gap: var(--composer-gap-sm);
+            width: 100%;
+            transition: opacity 0.3s ease-in-out;
 
-            .icons-bar {
-              display: flex;
-              flex-direction: row;
+            .icon {
+              font-size: 1.5rem;
+              color: var(--composer-font-color-primary);
+              border-radius: 50%;
+              border: 1px solid var(--composer-font-color-primary);
+              padding: var(--composer-gap-sm);
               opacity: 1;
-              gap: var(--composer-gap-sm);
-              width: 100%;
-              transition: opacity 0.3s ease-in-out;
+              transition: color 300ms;
+              line-height: 0;
+              display: block;
+              cursor: pointer;
 
-              .icon {
-                font-size: 1.5rem;
-                color: var(--composer-font-color-primary);
-                border-radius: 50%;
-                border: 1px solid var(--composer-font-color-primary);
-                padding: var(--composer-gap-sm);
-                opacity: 1;
-                transition: color 300ms;
-                line-height: 0;
-                display: block;
-                cursor: pointer;
-
-                &:hover {
-                  color: var(--composer-primary-color);
-                }
+              &:hover {
+                color: var(--composer-primary-color);
               }
             }
+          }
 
-            .item-name {
-              color: var(--composer-font-color-primary);
-              transition: color 0.3s ease;
-              text-align: left;
-            }
+          .item-name {
+            color: var(--composer-font-color-primary);
+            transition: color 0.3s ease;
+            text-align: left;
+          }
 
-            .item-position {
-              color: var(--composer-font-color-secondary);
-              transition: color 0.3s ease;
-              text-align: left;
-            }
+          .item-position {
+            color: var(--composer-font-color-secondary);
+            transition: color 0.3s ease;
+            text-align: left;
+          }
 
-            .item-description {
-              color: var(--composer-font-color-secondary);
-              transition: color 0.3s ease;
-              text-align: left;
-            }
+          .item-description {
+            color: var(--composer-font-color-secondary);
+            transition: color 0.3s ease;
+            text-align: left;
           }
         }
 
@@ -230,12 +236,8 @@
           }
         }
 
-        .person-info {
-          width: 100%;
-
-          .text-group .item-name {
-            font-size: 1.2rem;
-          }
+        .text-group .item-name {
+          font-size: 1.2rem;
         }
       }
     }

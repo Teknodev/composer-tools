@@ -14,7 +14,7 @@ type Card = {
   profileImage: TypeMediaInputValue;
   name: React.JSX.Element;
   position: React.JSX.Element;
-  description: React.JSX.Element;
+  cardDescription: React.JSX.Element;
   features: Feature[];
 };
 
@@ -100,7 +100,7 @@ class Team6 extends Team {
             },
             {
               type: "string",
-              key: "description",
+              key: "cardDescription",
               displayer: "Description",
               value: "",
             },
@@ -241,7 +241,7 @@ class Team6 extends Team {
             },
             {
               type: "string",
-              key: "description",
+              key: "cardDescription",
               displayer: "Description",
               value: "",
             },
@@ -385,7 +385,7 @@ class Team6 extends Team {
             },
             {
               type: "string",
-              key: "description",
+              key: "cardDescription",
               displayer: "Description",
               value: "",
             },
@@ -529,7 +529,7 @@ class Team6 extends Team {
             },
             {
               type: "string",
-              key: "description",
+              key: "cardDescription",
               displayer: "Description",
               value: "",
             },
@@ -705,7 +705,7 @@ class Team6 extends Team {
             {this.castToObject<Card[]>("items").map((card: Card, indexItems: number) => {
               const cardNameExist = this.castToString(card.name);
               const cardPositionExist = this.castToString(card.position);
-              const cardDescriptionExist = this.castToString(card.description);
+              const cardDescriptionExist = this.castToString(card.cardDescription);
               const hasCard = cardNameExist || cardPositionExist || cardDescriptionExist || card.profileImage || card.features.length > 0;
 
               return (
@@ -730,7 +730,7 @@ class Team6 extends Team {
                         <Base.VerticalContent className={this.decorateCSS("card-info")}>
                           {cardNameExist && <Base.H3 className={this.decorateCSS("card-name")}>{card.name}</Base.H3>}
                           {cardPositionExist && <Base.H5 className={this.decorateCSS("card-position")}>{card.position}</Base.H5>}
-                          {cardDescriptionExist && <Base.P className={this.decorateCSS("card-description")}>{card.description}</Base.P>}
+                          {cardDescriptionExist && <Base.P className={this.decorateCSS("card-description")}>{card.cardDescription}</Base.P>}
                           {this.getComponentState("activeIndex") === indexItems && card.features.length > 0 && (
                             <Base.VerticalContent className={this.decorateCSS("features")}>
                               {card.features.map((feature: Feature, idx: number) => (

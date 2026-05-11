@@ -40,13 +40,13 @@
               transition: color 0.5s;
             }
 
-            .job {
+            .position {
               color: var(--composer-tertiary-color);
               transition: color 0.5s;
             }
           }
 
-          .description {
+          .card-description {
             color: var(--composer-tertiary-color);
             transition: color 0.5s;
           }
@@ -88,8 +88,8 @@
               color: var(--composer-font-color-secondary);
             }
 
-            .text-box .text-up .job,
-            .text-box .description {
+            .text-box .text-up .position,
+            .text-box .card-description {
               color: var(--composer-font-color-secondary);
             }
           }
@@ -148,15 +148,6 @@
           .text-box {
             .text-up {
               flex-direction: column;
-              gap: var(--composer-gap-sm);
-
-              .name {
-                margin: 0;
-              }
-
-              .job {
-                margin: 0;
-              }
             }
           }
         }

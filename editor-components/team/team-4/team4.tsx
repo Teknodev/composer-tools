@@ -14,7 +14,7 @@ interface Card {
   profileImage: TypeMediaInputValue;
   name: string;
   position: string;
-  description: string;
+  cardDescription: string;
   socials: Socials[];
 }
 
@@ -86,7 +86,7 @@ class Team4 extends Team {
             },
             {
               type: "string",
-              key: "description",
+              key: "cardDescription",
               displayer: "Description",
               value: "",
             },
@@ -230,7 +230,7 @@ class Team4 extends Team {
             },
             {
               type: "string",
-              key: "description",
+              key: "cardDescription",
               displayer: "Description",
               value: "",
             },
@@ -374,7 +374,7 @@ class Team4 extends Team {
             },
             {
               type: "string",
-              key: "description",
+              key: "cardDescription",
               displayer: "Description",
               value: "",
             },
@@ -518,7 +518,7 @@ class Team4 extends Team {
             },
             {
               type: "string",
-              key: "description",
+              key: "cardDescription",
               displayer: "Description",
               value: "",
             },
@@ -681,20 +681,20 @@ class Team4 extends Team {
               {description && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
             </Base.VerticalContent>
           )}
-          <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount"), tablet: 3, phone: 1 }} className={this.decorateCSS("team-members")}>
+          <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount"), tablet: 3, phone: 1 }} className={this.decorateCSS("cards")}>
             {this.castToObject<Card[]>("cards").map((card: Card, indexCards: number) => {
               return (
-                <Base.VerticalContent key={indexCards} className={this.decorateCSS("team-member")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
+                <Base.VerticalContent key={indexCards} className={this.decorateCSS("card")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
                   {card.profileImage &&
                     <div className={this.decorateCSS("image-container")}>
                       <Base.Media value={card.profileImage} className={this.decorateCSS("image")} data-animation={this.getPropValue("hoverAnimation").join(" ")} />
                       {this.getPropValue("overlay") && <div className={this.decorateCSS("overlay")} />}
                     </div>
                   }
-                  <Base.VerticalContent className={this.decorateCSS("name-and-position")}>
-                    {card.name && <Base.H4 className={this.decorateCSS("team-member-name")}>{card.name}</Base.H4>}
-                    {card.position && <Base.H6 className={this.decorateCSS("team-member-position")}>{card.position}</Base.H6>}
-                    {card.description && <Base.P className={this.decorateCSS("team-member-description")}>{card.description}</Base.P>}
+                  <Base.VerticalContent className={this.decorateCSS("box-text")}>
+                    {card.name && <Base.H4 className={this.decorateCSS("card-name")}>{card.name}</Base.H4>}
+                    {card.position && <Base.H6 className={this.decorateCSS("card-position")}>{card.position}</Base.H6>}
+                    {card.cardDescription && <Base.P className={this.decorateCSS("card-description")}>{card.cardDescription}</Base.P>}
                     <div className={this.decorateCSS("icon-group")}>
                       {card.socials?.map((item: Socials, indexSocials: number) => (
                         <ComposerLink key={indexSocials} path={item.url}>

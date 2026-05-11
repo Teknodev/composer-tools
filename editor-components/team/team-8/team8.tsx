@@ -9,7 +9,7 @@ import ComposerLink from "composer-tools/composer-base-components/Link/ComposerL
 type Card = {
   name: React.JSX.Element;
   position: React.JSX.Element;
-  description: React.JSX.Element;
+  cardDescription: React.JSX.Element;
   profileImage: TypeMediaInputValue;
 };
 
@@ -49,13 +49,6 @@ class Team8 extends Team {
     });
 
     this.addProp({
-      type: "boolean",
-      key: "overlay",
-      displayer: "Overlay",
-      value: false,
-    });
-
-    this.addProp({
       type: "string",
       key: "subtitle",
       displayer: "Subtitle",
@@ -81,6 +74,13 @@ class Team8 extends Team {
       key: "buttons",
       displayer: "Buttons",
       value: [INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary")],
+    });
+
+    this.addProp({
+      type: "boolean",
+      key: "cardOverlay",
+      displayer: "Overlay",
+      value: false,
     });
 
     this.addProp({
@@ -116,7 +116,7 @@ class Team8 extends Team {
             },
             {
               type: "string",
-              key: "description",
+              key: "cardDescription",
               displayer: "Description",
               value: "",
             },
@@ -150,7 +150,7 @@ class Team8 extends Team {
             },
             {
               type: "string",
-              key: "description",
+              key: "cardDescription",
               displayer: "Description",
               value: "",
             },
@@ -184,7 +184,7 @@ class Team8 extends Team {
             },
             {
               type: "string",
-              key: "description",
+              key: "cardDescription",
               displayer: "Description",
               value: "",
             },
@@ -218,7 +218,7 @@ class Team8 extends Team {
             },
             {
               type: "string",
-              key: "description",
+              key: "cardDescription",
               displayer: "Description",
               value: "",
             },
@@ -252,7 +252,7 @@ class Team8 extends Team {
             },
             {
               type: "string",
-              key: "description",
+              key: "cardDescription",
               displayer: "Description",
               value: "",
             },
@@ -286,7 +286,7 @@ class Team8 extends Team {
             },
             {
               type: "string",
-              key: "description",
+              key: "cardDescription",
               displayer: "Description",
               value: "",
             },
@@ -320,7 +320,7 @@ class Team8 extends Team {
             },
             {
               type: "string",
-              key: "description",
+              key: "cardDescription",
               displayer: "Description",
               value: "",
             },
@@ -446,7 +446,7 @@ class Team8 extends Team {
                 {cards.map((item: Card, index: number) => {
                   const subtitleExist = this.castToString(item.name);
                   const titleExist = this.castToString(item.position);
-                  const descriptionExist = this.castToString(item.description);
+                  const descriptionExist = this.castToString(item.cardDescription);
                   const hasSlider = titleExist || subtitleExist || descriptionExist || item.profileImage;
 
                   return (
@@ -456,14 +456,14 @@ class Team8 extends Team {
                           {item.profileImage && (
                             <div className={this.decorateCSS("image-box")}>
                               <Base.Media value={item.profileImage} className={`${this.decorateCSS("img")} ${item.profileImage?.type === "icon" && this.decorateCSS("has-icon")}`} />
-                              {this.getPropValue("overlay") && <div className={this.decorateCSS("overlay")} />}
+                              {this.getPropValue("cardOverlay") && <div className={this.decorateCSS("cardOverlay")} />}
                             </div>
                           )}
-                          {(titleExist || subtitleExist) && (
+                          {(titleExist || subtitleExist || descriptionExist) && (
                             <Base.VerticalContent className={this.decorateCSS("header-page")}>
-                              {subtitleExist && <Base.H5 className={`${this.decorateCSS("card-subtitle")} ${imageExist ? this.decorateCSS("image") : this.decorateCSS("no-image")}`}>{item.name}</Base.H5>}
-                              {titleExist && <Base.H2 className={`${this.decorateCSS("card-title")} ${imageExist ? this.decorateCSS("image") : this.decorateCSS("no-image")}`}>{item.position}</Base.H2>}
-                              {descriptionExist && <Base.P className={`${this.decorateCSS("card-description")} ${imageExist && this.decorateCSS("image")}`}>{item.description}</Base.P>}
+                              {subtitleExist && <Base.P className={`${this.decorateCSS("card-subtitle")} ${imageExist ? this.decorateCSS("image") : this.decorateCSS("no-image")}`}>{item.name}</Base.P>}
+                              {titleExist && <Base.H4 className={`${this.decorateCSS("card-title")} ${imageExist ? this.decorateCSS("image") : this.decorateCSS("no-image")}`}>{item.position}</Base.H4>}
+                              {descriptionExist && <Base.P className={`${this.decorateCSS("card-description")} ${imageExist ? this.decorateCSS("image") : this.decorateCSS("no-image")}`}>{item.cardDescription}</Base.P>}
                             </Base.VerticalContent>
                           )}
                         </Base.VerticalContent>

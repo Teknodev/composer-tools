@@ -15,10 +15,10 @@
       }
     }
 
-    .team-members {
+    .cards {
       gap: var(--composer-gap-lg);
 
-      .team-member {
+      .card {
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -60,22 +60,22 @@
           }
         }
 
-        .name-and-position {
+        .box-text {
           align-items: center;
-          flex-grow: 1;
           justify-content: flex-start;
+          flex-grow: 1;
 
-          .team-member-name {
+          .card-name {
             color: var(--composer-font-color-primary);
             text-align: center;
           }
 
-          .team-member-position {
+          .card-position {
             color: var(--composer-primary-color);
             text-align: center;
           }
 
-          .team-member-description {
+          .card-description {
             color: var(--composer-font-color-primary);
             text-align: center;
           }
@@ -131,9 +131,8 @@
 @container (max-width: #{$composer-phone-width}) {
   .container {
     .max-content {
-      .team-members {
-        .team-member {
-
+      .cards {
+        .card {
           &[data-animation~="animate2"]:hover {
             transform: scale(1.05);
           }

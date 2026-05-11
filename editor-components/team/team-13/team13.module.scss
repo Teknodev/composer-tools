@@ -143,6 +143,7 @@
           overflow: hidden;
           border-radius: var(--composer-border-radius-sm);
           position: relative;
+          width: 100%;
 
           .overlay {
             position: absolute;
@@ -209,7 +210,7 @@
           text-align: left;
         }
 
-        .job {
+        .position {
           color: var(--composer-tertiary-color);
           text-align: left;
         }

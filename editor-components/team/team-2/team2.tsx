@@ -13,7 +13,7 @@ type socials = {
 type Card = {
   name: string;
   position: string;
-  description: string;
+  cardDescription: string;
   profileImage: TypeMediaInputValue;
   socials: socials[];
 };
@@ -83,7 +83,7 @@ class Team2 extends Team {
             },
             {
               type: "string",
-              key: "description",
+              key: "cardDescription",
               value: "Their design skills are truly exceptional, and they have a keen eye for aesthetics that sets them apart from others in the field.",
               displayer: "Description",
             },
@@ -224,7 +224,7 @@ class Team2 extends Team {
             },
             {
               type: "string",
-              key: "description",
+              key: "cardDescription",
               value: "We are a group of experienced professionals with diverse backgrounds and skill sets, working together to achieve.",
               displayer: "Description",
             },
@@ -365,7 +365,7 @@ class Team2 extends Team {
             },
             {
               type: "string",
-              key: "description",
+              key: "cardDescription",
               value: "An online learning platform can provide access to educational content from anywhere with an internet connection.",
               displayer: "Description",
             },
@@ -506,7 +506,7 @@ class Team2 extends Team {
             },
             {
               type: "string",
-              key: "description",
+              key: "cardDescription",
               value: "Their design skills are truly exceptional, and they have a keen eye for aesthetics that sets them apart from others in the field.",
               displayer: "Description",
             },
@@ -647,7 +647,7 @@ class Team2 extends Team {
             },
             {
               type: "string",
-              key: "description",
+              key: "cardDescription",
               value: "We are a group of experienced professionals with diverse backgrounds and skill sets, working together to achieve.",
               displayer: "Description",
             },
@@ -961,9 +961,9 @@ class Team2 extends Team {
                       {this.getPropValue("overlay") && <div className={this.decorateCSS("overlay")} />}
                     </div>
                   }
-                  {card.name && <Base.H6 className={this.decorateCSS("title")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>{card.name}</Base.H6>}
-                  {card.position && <Base.H6 className={this.decorateCSS("position")}>{card.position}</Base.H6>}
-                  {card.description && <Base.P className={this.decorateCSS("long-text")}>{card.description}</Base.P>}
+                  {card.name && <Base.H6 className={this.decorateCSS("card-title")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>{card.name}</Base.H6>}
+                  {card.position && <Base.H6 className={this.decorateCSS("card-position")}>{card.position}</Base.H6>}
+                  {card.cardDescription && <Base.P className={this.decorateCSS("card-description")}>{card.cardDescription}</Base.P>}
                   <div className={this.decorateCSS("icon-group")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
                     {card.socials?.map((item: socials, indexSocials: number) => {
                       return (

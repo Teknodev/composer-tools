@@ -18,7 +18,7 @@ type Socials = {
 type Feature = {
   subtitle: string;
   title: string;
-  description: string;
+  featureDescription: string;
 };
 
 type Card = {
@@ -33,7 +33,6 @@ type Card = {
 class Team10 extends Team {
   constructor(props?: any) {
     super(props, styles);
-
 
     this.addProp({
       type: "object",
@@ -60,13 +59,6 @@ class Team10 extends Team {
         },
       ]
     })
-
-    this.addProp({
-      type: "boolean",
-      key: "overlay",
-      displayer: "Overlay",
-      value: false,
-    });
 
     this.addProp({
       type: "string",
@@ -97,6 +89,13 @@ class Team10 extends Team {
     });
 
     this.addProp({
+      type: "boolean",
+      key: "cardOverlay",
+      displayer: "Overlay",
+      value: false,
+    });
+
+    this.addProp({
       type: "array",
       key: "team",
       displayer: "Cards",
@@ -111,7 +110,7 @@ class Team10 extends Team {
               key: "profileImage",
               displayer: "Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
@@ -154,7 +153,7 @@ class Team10 extends Team {
                     },
                     {
                       type: "string",
-                      key: "description",
+                      key: "featureDescription",
                       displayer: "Description",
                       value: "22 YEARS",
                     },
@@ -179,7 +178,7 @@ class Team10 extends Team {
                     },
                     {
                       type: "string",
-                      key: "description",
+                      key: "featureDescription",
                       displayer: "Description",
                       value: "2016",
                     },
@@ -204,7 +203,7 @@ class Team10 extends Team {
                     },
                     {
                       type: "string",
-                      key: "description",
+                      key: "featureDescription",
                       displayer: "Description",
                       value: "COSTA RİCA",
                     },
@@ -215,7 +214,7 @@ class Team10 extends Team {
             {
               type: "string",
               key: "cardDescription",
-              displayer: "Card Description",
+              displayer: "Description",
               value: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
             },
             {
@@ -337,7 +336,7 @@ class Team10 extends Team {
               key: "profileImage",
               displayer: "Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
@@ -380,7 +379,7 @@ class Team10 extends Team {
                     },
                     {
                       type: "string",
-                      key: "description",
+                      key: "featureDescription",
                       displayer: "Description",
                       value: "22 YEARS",
                     },
@@ -405,7 +404,7 @@ class Team10 extends Team {
                     },
                     {
                       type: "string",
-                      key: "description",
+                      key: "featureDescription",
                       displayer: "Description",
                       value: "2016",
                     },
@@ -430,7 +429,7 @@ class Team10 extends Team {
                     },
                     {
                       type: "string",
-                      key: "description",
+                      key: "featureDescription",
                       displayer: "Description",
                       value: "COSTA RİCA",
                     },
@@ -441,7 +440,7 @@ class Team10 extends Team {
             {
               type: "string",
               key: "cardDescription",
-              displayer: "Card Description",
+              displayer: "Description",
               value: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
             },
             {
@@ -563,7 +562,7 @@ class Team10 extends Team {
               key: "profileImage",
               displayer: "Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
@@ -606,7 +605,7 @@ class Team10 extends Team {
                     },
                     {
                       type: "string",
-                      key: "description",
+                      key: "featureDescription",
                       displayer: "Description",
                       value: "22 YEARS",
                     },
@@ -631,7 +630,7 @@ class Team10 extends Team {
                     },
                     {
                       type: "string",
-                      key: "description",
+                      key: "featureDescription",
                       displayer: "Description",
                       value: "2016",
                     },
@@ -656,7 +655,7 @@ class Team10 extends Team {
                     },
                     {
                       type: "string",
-                      key: "description",
+                      key: "featureDescription",
                       displayer: "Description",
                       value: "COSTA RİCA",
                     },
@@ -667,7 +666,7 @@ class Team10 extends Team {
             {
               type: "string",
               key: "cardDescription",
-              displayer: "Card Description",
+              displayer: "Description",
               value: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
             },
             {
@@ -789,7 +788,7 @@ class Team10 extends Team {
               key: "profileImage",
               displayer: "Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
@@ -832,7 +831,7 @@ class Team10 extends Team {
                     },
                     {
                       type: "string",
-                      key: "description",
+                      key: "featureDescription",
                       displayer: "Description",
                       value: "22 YEARS",
                     },
@@ -857,7 +856,7 @@ class Team10 extends Team {
                     },
                     {
                       type: "string",
-                      key: "description",
+                      key: "featureDescription",
                       displayer: "Description",
                       value: "2016",
                     },
@@ -882,7 +881,7 @@ class Team10 extends Team {
                     },
                     {
                       type: "string",
-                      key: "description",
+                      key: "featureDescription",
                       displayer: "Description",
                       value: "COSTA RİCA",
                     },
@@ -893,7 +892,7 @@ class Team10 extends Team {
             {
               type: "string",
               key: "cardDescription",
-              displayer: "Card Description",
+              displayer: "Description",
               value: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
             },
             {
@@ -1061,7 +1060,7 @@ class Team10 extends Team {
           {backgroundImageExist && <Base.Media value={backgroundImage} className={this.decorateCSS("background-image")} />}
         </div>
         <div className={this.decorateCSS("right")}>
-          {this.castToObject<Card[]>("team").map((teamMember: Card, index: number) => {
+          {(this.castToObject<Card[]>("team") || []).map((teamMember: Card, index: number) => {
             const imageValue = teamMember.profileImage;
             const socials = teamMember.socials || [];
             return (
@@ -1097,14 +1096,14 @@ class Team10 extends Team {
                             {feature.title && (
                               <Base.P className={this.decorateCSS("feature-title")}>{feature.title}</Base.P>
                             )}
-                            {feature.description && (
-                              <Base.P className={this.decorateCSS("feature-description")}>{feature.description}</Base.P>
+                            {feature.featureDescription && (
+                              <Base.P className={this.decorateCSS("feature-description")}>{feature.featureDescription}</Base.P>
                             )}
                           </Base.VerticalContent>
                         ))}
                       </div>
                     )}
-                    {teamMember.cardDescription && (<Base.SectionDescription className={this.decorateCSS("member-description")}>{teamMember.cardDescription}</Base.SectionDescription>
+                    {teamMember.cardDescription && (<Base.SectionDescription className={this.decorateCSS("card-description")}>{teamMember.cardDescription}</Base.SectionDescription>
                     )}
                   </div>
                 )}
@@ -1112,7 +1111,7 @@ class Team10 extends Team {
                   <div className={this.decorateCSS("image-container")}>
                     <Base.Media value={imageValue} className={this.decorateCSS("image")} />
                     <div className={this.decorateCSS("image-overlay")} data-animation={hoverAnimation.join(" ")}></div>
-                    {this.getPropValue("overlay") && <div className={this.decorateCSS("overlay")}></div>}
+                    {this.getPropValue("cardOverlay") && <div className={this.decorateCSS("cardOverlay")}></div>}
                   </div>
                 )}
               </Base.VerticalContent>

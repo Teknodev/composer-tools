@@ -12,8 +12,9 @@ type Socials = {
 
 type Card = {
   profileImage: TypeMediaInputValue;
-  title: string;
-  description: string;
+  name: React.JSX.Element;
+  position: React.JSX.Element;
+  cardDescription: React.JSX.Element;
   firstIcon: TypeMediaInputValue;
   firstIconUrl: string;
   secondIcon: TypeMediaInputValue;
@@ -24,13 +25,6 @@ type Card = {
 class Team15 extends Team {
   constructor(props?: any) {
     super(props, styles);
-
-    this.addProp({
-      type: "boolean",
-      key: "overlay",
-      displayer: "Overlay",
-      value: false,
-    });
 
     this.addProp({
       type: "string",
@@ -54,6 +48,13 @@ class Team15 extends Team {
     });
 
     this.addProp({
+      type: "boolean",
+      key: "overlay",
+      displayer: "Overlay",
+      value: true,
+    });
+
+    this.addProp({
       type: "array",
       key: "cards",
       displayer: "Cards",
@@ -64,23 +65,11 @@ class Team15 extends Team {
           displayer: "Card",
           value: [
             {
-              type: "string",
-              key: "title",
-              displayer: "Person Name",
-              value: "Aleesha Charlotte",
-            },
-            {
-              type: "string",
-              key: "description",
-              displayer: "Description",
-              value: "-CEO Founder",
-            },
-            {
               type: "media",
               key: "profileImage",
               displayer: "Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
@@ -88,6 +77,24 @@ class Team15 extends Team {
               },
             },
             {
+              type: "string",
+              key: "name",
+              displayer: "Person Name",
+              value: "Aleesha Charlotte",
+            },
+            {
+              type: "string",
+              key: "position",
+              displayer: "Position",
+              value: "- CEO Founder",
+            },
+            {
+              type: "string",
+              key: "cardDescription",
+              displayer: "Description",
+              value: "",
+            },
+            {
               type: "media",
               key: "firstIcon",
               displayer: "First Icon",
@@ -238,23 +245,11 @@ class Team15 extends Team {
           displayer: "Card",
           value: [
             {
-              type: "string",
-              key: "title",
-              displayer: "Person Name",
-              value: "David Michale",
-            },
-            {
-              type: "string",
-              key: "description",
-              displayer: "Description",
-              value: "-Therapist",
-            },
-            {
               type: "media",
               key: "profileImage",
               displayer: "Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
@@ -262,6 +257,24 @@ class Team15 extends Team {
               },
             },
             {
+              type: "string",
+              key: "name",
+              displayer: "Person Name",
+              value: "David Michale",
+            },
+            {
+              type: "string",
+              key: "position",
+              displayer: "Position",
+              value: "- Therapist",
+            },
+            {
+              type: "string",
+              key: "cardDescription",
+              displayer: "Description",
+              value: "",
+            },
+            {
               type: "media",
               key: "firstIcon",
               displayer: "First Icon",
@@ -406,30 +419,17 @@ class Team15 extends Team {
             },
           ],
         },
-
         {
           type: "object",
           key: "card",
           displayer: "Card",
           value: [
             {
-              type: "string",
-              key: "title",
-              displayer: "Person Name",
-              value: "Jorge Schiro",
-            },
-            {
-              type: "string",
-              key: "description",
-              displayer: "Description",
-              value: "-Counselor",
-            },
-            {
               type: "media",
               key: "profileImage",
               displayer: "Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
@@ -437,6 +437,24 @@ class Team15 extends Team {
               },
             },
             {
+              type: "string",
+              key: "name",
+              displayer: "Person Name",
+              value: "Jorge Schiro",
+            },
+            {
+              type: "string",
+              key: "position",
+              displayer: "Position",
+              value: "- Counselor",
+            },
+            {
+              type: "string",
+              key: "cardDescription",
+              displayer: "Description",
+              value: "",
+            },
+            {
               type: "media",
               key: "firstIcon",
               displayer: "First Icon",
@@ -587,28 +605,34 @@ class Team15 extends Team {
           displayer: "Card",
           value: [
             {
-              type: "string",
-              key: "title",
-              displayer: "Person Name",
-              value: "John Arlnoald",
-            },
-            {
-              type: "string",
-              key: "description",
-              displayer: "Description",
-              value: "-Counselor",
-            },
-            {
               type: "media",
               key: "profileImage",
               displayer: "Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6727b8527acba6002c5dfa3e?alt=media&timestamp=1730656339472",
               },
+            },
+            {
+              type: "string",
+              key: "name",
+              displayer: "Person Name",
+              value: "John Arlnoald",
+            },
+            {
+              type: "string",
+              key: "position",
+              displayer: "Position",
+              value: "- Counselor",
+            },
+            {
+              type: "string",
+              key: "cardDescription",
+              displayer: "Description",
+              value: "",
             },
             {
               type: "media",
@@ -800,7 +824,7 @@ class Team15 extends Team {
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           {hasContent && (
             <Base.VerticalContent className={this.decorateCSS("vertical-content")}>
-              {subtitle && <Base.SectionDescription className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionDescription>}
+              {subtitle && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
               {title && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
               {description && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
             </Base.VerticalContent>
@@ -808,18 +832,19 @@ class Team15 extends Team {
           <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount"), tablet: 2, phone: 1 }} className={this.decorateCSS("cards-box")}>
             {this.castToObject<Card[]>("cards").map((card: Card, index: number) => {
               const profileImage = card.profileImage;
-              const titleExists = this.castToString(card.title);
-              const descriptionExists = this.castToString(card.description);
+              const nameExists = this.castToString(card.name);
+              const positionExists = this.castToString(card.position);
+              const cardDescriptionExist = this.castToString(card.cardDescription);
               const overlay = this.getPropValue("overlay");
 
-              const cardExists = profileImage || titleExists || descriptionExists;
+              const cardExists = profileImage || nameExists || positionExists || cardDescriptionExist;
               return cardExists && (
-                <div key={index} className={this.decorateCSS("card")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
+                <div key={index} className={`${this.decorateCSS("card")} ${profileImage && this.decorateCSS("has-image")}`} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
                   {profileImage && <Base.Media value={profileImage} className={this.decorateCSS("image")} />}
                   {overlay && <div className={this.decorateCSS("overlay")}></div>}
                   {overlay && <div className={this.decorateCSS("overlay2")}></div>}
                   <div className={this.decorateCSS("card-content")}>
-                    {titleExists && <Base.H2 className={this.decorateCSS("card-title")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>{card.title}</Base.H2>}
+                    {nameExists && <Base.H5 className={this.decorateCSS("card-name")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>{card.name}</Base.H5>}
                     <div className={this.decorateCSS("labels")}>
                       {card.socials && card.socials.length > 0 && (
                         <Base.VerticalContent className={this.decorateCSS("icon-list-container")}>
@@ -838,7 +863,12 @@ class Team15 extends Team {
                           })}
                         </Base.VerticalContent>
                       )}
-                      {descriptionExists && <Base.P className={this.decorateCSS("card-description")}>{card.description}</Base.P>}
+                      {(positionExists || cardDescriptionExist) && (
+                        <Base.VerticalContent className={this.decorateCSS("card-info")}>
+                          {positionExists && <Base.P className={this.decorateCSS("card-position")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>{card.position}</Base.P>}
+                          {cardDescriptionExist && <Base.P className={this.decorateCSS("card-description")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>{card.cardDescription}</Base.P>}
+                        </Base.VerticalContent>
+                      )}
                       <div className={this.decorateCSS("icons")}>
                         <ComposerLink path={card.firstIconUrl}>
                           {card.firstIcon && (
@@ -848,7 +878,6 @@ class Team15 extends Team {
                             />
                           )}
                         </ComposerLink>
-
                         <ComposerLink path={card.secondIconUrl}>
                           {card.secondIcon && (
                             <Base.Media

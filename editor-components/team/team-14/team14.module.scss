@@ -92,8 +92,9 @@
             background-color: color-mix(in srgb,
                 var(--composer-html-background),
                 var(--composer-font-color-primary) 10%);
-            padding: 1rem;
+            padding: 15px;
             border-radius: var(--composer-border-radius-sm);
+            z-index: 2;
 
             &[data-animation~="animate1"] {
               opacity: 0;
@@ -119,8 +120,9 @@
 
             .name,
             .position,
-            .description {
+            .card-description {
               color: var(--composer-font-color-primary);
+              text-align: left !important;
             }
           }
         }
@@ -131,6 +133,7 @@
       display: flex;
       flex-wrap: wrap;
       gap: var(--composer-gap-sm);
+      justify-content: center;
 
       .button {
         .button-text {

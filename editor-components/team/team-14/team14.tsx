@@ -9,19 +9,12 @@ type Card = {
   profileImage: TypeMediaInputValue;
   name: React.JSX.Element;
   position: React.JSX.Element;
-  description: React.JSX.Element;
+  cardDescription: React.JSX.Element;
 };
 
 class Team14 extends Team {
   constructor(props?: any) {
     super(props, styles);
-
-    this.addProp({
-      type: "boolean",
-      key: "overlay",
-      displayer: "Overlay",
-      value: false,
-    });
 
     this.addProp({
       type: "string",
@@ -45,6 +38,13 @@ class Team14 extends Team {
     });
 
     this.addProp({
+      type: "boolean",
+      key: "overlay",
+      displayer: "Overlay",
+      value: false,
+    });
+
+    this.addProp({
       type: "array",
       key: "cards",
       displayer: "Cards",
@@ -54,6 +54,18 @@ class Team14 extends Team {
           key: "card",
           displayer: "Card",
           value: [
+            {
+              type: "media",
+              key: "profileImage",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["image", "video"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b68ebd2970002c628416?alt=media&timestamp=1719558632841",
+              },
+            },
             {
               type: "string",
               key: "name",
@@ -68,29 +80,29 @@ class Team14 extends Team {
             },
             {
               type: "string",
-              key: "description",
+              key: "cardDescription",
               displayer: "Description",
               value: "Crafting innovative design for the future, with a blend of experience and creativity.",
-            },
-            {
-              type: "media",
-              key: "profileImage",
-              displayer: "Media",
-              additionalParams: {
-                availableTypes: ["image"],
-              },
-              value: {
-                type: "image",
-                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b68ebd2970002c628416?alt=media&timestamp=1719558632841",
-              },
             },
           ],
         },
         {
           type: "object",
-          key: "portfolio",
-          displayer: "Portfolio Card",
+          key: "card",
+          displayer: "Card",
           value: [
+            {
+              type: "media",
+              key: "profileImage",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["image", "video"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b68ebd2970002c628418?alt=media&timestamp=1719558632841",
+              },
+            },
             {
               type: "string",
               key: "name",
@@ -105,29 +117,29 @@ class Team14 extends Team {
             },
             {
               type: "string",
-              key: "description",
+              key: "cardDescription",
               displayer: "Description",
               value: "Cragfting captivating content to inform, inspire and engage. Let's tell your story together.",
-            },
-            {
-              type: "media",
-              key: "profileImage",
-              displayer: "Media",
-              additionalParams: {
-                availableTypes: ["image"],
-              },
-              value: {
-                type: "image",
-                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b68ebd2970002c628418?alt=media&timestamp=1719558632841",
-              },
             },
           ],
         },
         {
           type: "object",
-          key: "portfolio",
-          displayer: "Portfolio Card",
+          key: "card",
+          displayer: "Card",
           value: [
+            {
+              type: "media",
+              key: "profileImage",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["image", "video"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b68ebd2970002c628417?alt=media&timestamp=1719558632841",
+              },
+            },
             {
               type: "string",
               key: "name",
@@ -142,21 +154,9 @@ class Team14 extends Team {
             },
             {
               type: "string",
-              key: "description",
+              key: "cardDescription",
               displayer: "Description",
               value: "Bringing visions to life through innovative ideas and strategic executions. Transforming concenpts into captivating visual stories.",
-            },
-            {
-              type: "media",
-              key: "profileImage",
-              displayer: "Media",
-              additionalParams: {
-                availableTypes: ["image"],
-              },
-              value: {
-                type: "image",
-                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b68ebd2970002c628417?alt=media&timestamp=1719558632841",
-              },
             },
           ],
         },
@@ -205,7 +205,7 @@ class Team14 extends Team {
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           {(subtitle || title || description) && (
             <Base.VerticalContent className={this.decorateCSS("vertical-content")}>
-              {subtitle && <Base.SectionDescription className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionDescription>}
+              {subtitle && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
               {title && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
               {description && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
             </Base.VerticalContent>
@@ -218,18 +218,18 @@ class Team14 extends Team {
                   const image = cardItem.profileImage;
                   const name = this.castToString(cardItem.name);
                   const position = this.castToString(cardItem.position);
-                  const description = this.castToString(cardItem.description);
+                  const cardDescription = this.castToString(cardItem.cardDescription);
 
                   return (
                     <div key={index} className={this.decorateCSS("card")}>
                       <div className={this.decorateCSS("portfolio")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
                         {image && <Base.Media value={image} className={this.decorateCSS("image")} data-animation={this.getPropValue("hoverAnimation").join(" ")} />}
                         {this.getPropValue("overlay") && <div className={this.decorateCSS("overlay")} />}
-                        {(name || position || description) && (
+                        {(name || position || cardDescription) && (
                           <Base.VerticalContent className={this.decorateCSS("info")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
-                            {name && <Base.H3 className={this.decorateCSS("name")}>{cardItem.name}</Base.H3>}
-                            {position && <Base.H4 className={this.decorateCSS("position")}>{cardItem.position}</Base.H4>}
-                            {description && <Base.P className={this.decorateCSS("description")}>{cardItem.description}</Base.P>}
+                            {name && <Base.H4 className={this.decorateCSS("name")}>{cardItem.name}</Base.H4>}
+                            {position && <Base.H5 className={this.decorateCSS("position")}>{cardItem.position}</Base.H5>}
+                            {cardDescription && <Base.P className={this.decorateCSS("card-description")}>{cardItem.cardDescription}</Base.P>}
                           </Base.VerticalContent>
                         )}
                       </div>

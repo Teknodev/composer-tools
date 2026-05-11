@@ -14,20 +14,13 @@ type Card = {
   profileImage: TypeMediaInputValue;
   name: React.JSX.Element;
   position: React.JSX.Element;
-  description: React.JSX.Element;
+  cardDescription: React.JSX.Element;
   socials: Socials[];
 }
 
 class Team7 extends Team {
   constructor(props?: any) {
     super(props, styles);
-
-    this.addProp({
-      type: "boolean",
-      key: "overlay",
-      displayer: "Overlay",
-      value: false,
-    });
 
     this.addProp({
       type: "string",
@@ -48,6 +41,13 @@ class Team7 extends Team {
       key: "description",
       displayer: "Description",
       value: "Our skilled team continuously innovates, ensuring our product stays ahead of industry standards.",
+    });
+
+    this.addProp({
+      type: "boolean",
+      key: "overlay",
+      displayer: "Overlay",
+      value: false,
     });
 
     this.addProp({
@@ -86,7 +86,7 @@ class Team7 extends Team {
             },
             {
               type: "string",
-              key: "description",
+              key: "cardDescription",
               displayer: "Description",
               value: "",
             },
@@ -230,7 +230,7 @@ class Team7 extends Team {
             },
             {
               type: "string",
-              key: "description",
+              key: "cardDescription",
               displayer: "Description",
               value: "",
             },
@@ -374,7 +374,7 @@ class Team7 extends Team {
             },
             {
               type: "string",
-              key: "description",
+              key: "cardDescription",
               displayer: "Description",
               value: "",
             },
@@ -518,7 +518,7 @@ class Team7 extends Team {
             },
             {
               type: "string",
-              key: "description",
+              key: "cardDescription",
               displayer: "Description",
               value: "",
             },
@@ -664,8 +664,8 @@ class Team7 extends Team {
 
   render() {
     const subtitle = this.castToString(this.getPropValue("subtitle"));
-    const description = this.castToString(this.getPropValue("description"));
     const title = this.castToString(this.getPropValue("title"));
+    const description = this.castToString(this.getPropValue("description"));
     const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons") || [];
     const visibleButtons = buttons.filter(btn => this.castToString(btn.text));
     const contentAlignment = Base.getContentAlignment();
@@ -692,7 +692,7 @@ class Team7 extends Team {
             {this.castToObject<Card[]>("cards").map((item: Card, indexCard: number) => {
               const itemName = this.castToString(item.name);
               const itemPosition = this.castToString(item.position);
-              const itemDescription = this.castToString(item.description);
+              const itemDescription = this.castToString(item.cardDescription);
               const hasItem = itemName || itemPosition || itemDescription || item.profileImage || item.socials.length > 0;
 
               return hasItem && (
@@ -716,9 +716,9 @@ class Team7 extends Team {
                   )}
                   {hasItem &&
                     <Base.VerticalContent className={this.decorateCSS("text-group")}>
-                      {itemName && <Base.H5 className={this.decorateCSS("item-name")}>{item.name}</Base.H5>}
-                      {itemPosition && <Base.H6 className={this.decorateCSS("item-position")}>{item.position}</Base.H6>}
-                      {itemDescription && <Base.P className={this.decorateCSS("item-description")}>{item.description}</Base.P>}
+                      {itemName && <Base.H5 className={this.decorateCSS("card-name")}>{item.name}</Base.H5>}
+                      {itemPosition && <Base.H6 className={this.decorateCSS("card-position")}>{item.position}</Base.H6>}
+                      {itemDescription && <Base.P className={this.decorateCSS("card-description")}>{item.cardDescription}</Base.P>}
                     </Base.VerticalContent>
                   }
                 </div>

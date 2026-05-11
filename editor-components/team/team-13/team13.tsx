@@ -8,8 +8,8 @@ import { INPUTS } from "../../../custom-hooks/input-templates";
 interface Card {
   profileImage: TypeMediaInputValue;
   name: string;
-  job: string;
-  description: string;
+  position: string;
+  cardDescription: string;
 }
 
 type Socials = {
@@ -20,13 +20,6 @@ type Socials = {
 class Team13 extends Team {
   constructor(props?: any) {
     super(props, styles);
-
-    this.addProp({
-      type: "boolean",
-      key: "overlay",
-      displayer: "Overlay",
-      value: false,
-    });
 
     this.addProp({
       type: "string",
@@ -174,6 +167,13 @@ class Team13 extends Team {
     });
 
     this.addProp({
+      type: "boolean",
+      key: "overlay",
+      displayer: "Overlay",
+      value: false,
+    });
+
+    this.addProp({
       type: "array",
       key: "cards",
       displayer: "Cards",
@@ -188,7 +188,7 @@ class Team13 extends Team {
               key: "profileImage",
               displayer: "Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
@@ -203,13 +203,13 @@ class Team13 extends Team {
             },
             {
               type: "string",
-              key: "job",
+              key: "position",
               displayer: "Position",
               value: "Art Director",
             },
             {
               type: "string",
-              key: "description",
+              key: "cardDescription",
               displayer: "Description",
               value: "",
             },
@@ -225,7 +225,7 @@ class Team13 extends Team {
               key: "profileImage",
               displayer: "Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
@@ -240,13 +240,13 @@ class Team13 extends Team {
             },
             {
               type: "string",
-              key: "job",
+              key: "position",
               displayer: "Position",
               value: "UI Designer",
             },
             {
               type: "string",
-              key: "description",
+              key: "cardDescription",
               displayer: "Description",
               value: "",
             },
@@ -299,7 +299,7 @@ class Team13 extends Team {
                   {title && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
                 </Base.VerticalContent>
                 <Base.VerticalContent className={this.decorateCSS("label")}>
-                  {description && <Base.P className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.P>}
+                  {description && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
                   <div className={this.decorateCSS("button-and-line-container")}>
                     {buttons.length > 0 && (
                       <div className={this.decorateCSS("button-container")}>
@@ -338,9 +338,9 @@ class Team13 extends Team {
             )}
             {cards && cards.length > 0 && cards.map((card: Card, index: number) => {
               const nameExist = this.castToString(card.name);
-              const jobExist = this.castToString(card.job);
-              const descriptionExist = this.castToString(card.description);
-              return (nameExist || jobExist || card.profileImage || descriptionExist) && (
+              const positionExist = this.castToString(card.position);
+              const cardDescriptionExist = this.castToString(card.cardDescription);
+              return (nameExist || positionExist || card.profileImage || cardDescriptionExist) && (
                 <Base.VerticalContent key={index} className={this.decorateCSS("team-card")}>
                   {card.profileImage && (
                     <div className={this.decorateCSS("img-wrapper")} data-animation={this.getPropValue("hoverAnimation").join(" ")} >
@@ -349,8 +349,8 @@ class Team13 extends Team {
                     </div>
                   )}
                   {nameExist && <Base.H4 className={this.decorateCSS("name")}>{card.name}</Base.H4>}
-                  {jobExist && <Base.H5 className={this.decorateCSS("job")}>{card.job}</Base.H5>}
-                  {descriptionExist && <Base.P className={this.decorateCSS("card-description")}>{card.description}</Base.P>}
+                  {positionExist && <Base.H5 className={this.decorateCSS("position")}>{card.position}</Base.H5>}
+                  {cardDescriptionExist && <Base.P className={this.decorateCSS("card-description")}>{card.cardDescription}</Base.P>}
                 </Base.VerticalContent>
               );
             })}

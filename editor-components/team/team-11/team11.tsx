@@ -16,20 +16,13 @@ type Card = {
   profileImage: TypeMediaInputValue;
   name: string;
   position: string;
-  description: string;
+  cardDescription: string;
   socials: Social[];
 };
 
 class Team11 extends Team {
   constructor(props?: any) {
     super(props, styles);
-
-    this.addProp({
-      type: "boolean",
-      key: "overlay",
-      displayer: "Overlay",
-      value: false,
-    });
 
     this.addProp({
       type: "string",
@@ -71,6 +64,7 @@ class Team11 extends Team {
         name: "GrCaretNext",
       },
     });
+
     this.addProp({
       type: "media",
       key: "prevIcon",
@@ -82,6 +76,13 @@ class Team11 extends Team {
         type: "icon",
         name: "GrCaretPrevious",
       },
+    });
+
+    this.addProp({
+      type: "boolean",
+      key: "overlay",
+      displayer: "Overlay",
+      value: false,
     });
 
     this.addProp({
@@ -99,7 +100,7 @@ class Team11 extends Team {
               key: "profileImage",
               displayer: "Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
@@ -120,7 +121,7 @@ class Team11 extends Team {
             },
             {
               type: "string",
-              key: "description",
+              key: "cardDescription",
               displayer: "Description",
               value: "",
             },
@@ -243,7 +244,7 @@ class Team11 extends Team {
               key: "profileImage",
               displayer: "Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
@@ -264,7 +265,7 @@ class Team11 extends Team {
             },
             {
               type: "string",
-              key: "description",
+              key: "cardDescription",
               displayer: "Description",
               value: "",
             },
@@ -387,7 +388,7 @@ class Team11 extends Team {
               key: "profileImage",
               displayer: "Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
@@ -408,7 +409,7 @@ class Team11 extends Team {
             },
             {
               type: "string",
-              key: "description",
+              key: "cardDescription",
               displayer: "Description",
               value: "",
             },
@@ -531,7 +532,7 @@ class Team11 extends Team {
               key: "profileImage",
               displayer: "Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
@@ -552,7 +553,7 @@ class Team11 extends Team {
             },
             {
               type: "string",
-              key: "description",
+              key: "cardDescription",
               displayer: "Description",
               value: "",
             },
@@ -675,7 +676,7 @@ class Team11 extends Team {
               key: "profileImage",
               displayer: "Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
@@ -696,7 +697,7 @@ class Team11 extends Team {
             },
             {
               type: "string",
-              key: "description",
+              key: "cardDescription",
               displayer: "Description",
               value: "",
             },
@@ -819,7 +820,7 @@ class Team11 extends Team {
               key: "profileImage",
               displayer: "Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
@@ -840,7 +841,7 @@ class Team11 extends Team {
             },
             {
               type: "string",
-              key: "description",
+              key: "cardDescription",
               displayer: "Description",
               value: "",
             },
@@ -1009,7 +1010,7 @@ class Team11 extends Team {
     const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons") || [];
     const visibleButtons = buttons.filter(btn => this.castToString(btn.text));
     const hasContent = subtitle || title || description || visibleButtons.length > 0;
-    const cards = this.castToObject<Card[]>("cards");
+    const cards = this.castToObject<Card[]>("cards") || [];
     const sliderSettings = this.getPropValue("slider-settings") || [];
     const userSettings = this.transformSliderValues(sliderSettings);
 
@@ -1068,18 +1069,17 @@ class Team11 extends Team {
             {cards.map((item: Card, indexSlider: number) => {
               const itemNameExist = this.castToString(item.name);
               const itemPositionExist = this.castToString(item.position);
-              const itemDescriptionExist = this.castToString(item.description);
-
-              const itemExits = itemNameExist || itemPositionExist || itemDescriptionExist || item.profileImage || (item.socials && item.socials.length > 0);
+              const itemCardDescriptionExist = this.castToString(item.cardDescription);
+              const itemExits = itemNameExist || itemPositionExist || itemCardDescriptionExist || item.profileImage || (item.socials && item.socials.length > 0);
               return (
                 itemExits && (
                   <div key={indexSlider} className={this.decorateCSS("item")}>
-                    <Base.VerticalContent className={this.decorateCSS("card")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
+                    <Base.VerticalContent className={this.decorateCSS("card")} data-animation={(this.getPropValue("hoverAnimation") || []).join(" ")}>
                       <div className={this.decorateCSS("hover")}>
                         <Base.Media value={item.profileImage} className={this.decorateCSS("person-image")} />
                         {this.getPropValue("overlay") && <div className={this.decorateCSS("overlay")} />}
                         {item.socials && item.socials.length > 0 && (
-                          <div className={this.decorateCSS("icons-bar")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
+                          <div className={this.decorateCSS("icons-bar")} data-animation={(this.getPropValue("hoverAnimation") || []).join(" ")}>
                             {item.socials.map((social: Social, indexIcon: number) => (
                               <ComposerLink path={social.url} key={indexIcon}>
                                 <Base.Media
@@ -1094,7 +1094,7 @@ class Team11 extends Team {
                       <Base.VerticalContent className={this.decorateCSS("text-group")}>
                         {itemNameExist && <Base.H3 className={this.decorateCSS("item-name")}>{item.name}</Base.H3>}
                         {itemPositionExist && <Base.H4 className={this.decorateCSS("item-position")}>{item.position}</Base.H4>}
-                        {itemDescriptionExist && <Base.P className={this.decorateCSS("item-description")}>{item.description}</Base.P>}
+                        {itemCardDescriptionExist && <Base.P className={this.decorateCSS("card-description")}>{item.cardDescription}</Base.P>}
                       </Base.VerticalContent>
                     </Base.VerticalContent>
                   </div>
@@ -1105,24 +1105,28 @@ class Team11 extends Team {
 
           {userSettings.arrows && (
             <div className={cards.length > 3 ? this.decorateCSS("nav-buttons") : this.decorateCSS("visible-navs")}>
-              <div
-                className={`${this.decorateCSS("prev_icon")}
-              ${this.getPropValue("prevIcon").type === "image" && this.decorateCSS("prev-icon-has-image")}`}
-                onClick={() => {
-                  this.getComponentState("slider-ref").current.slickPrev();
-                }}
-              >
-                <Base.Media value={this.getPropValue("prevIcon")} />
-              </div>
-              <div
-                className={`${this.decorateCSS("next_icon")}
-              ${this.getPropValue("nextIcon").type === "image" && this.decorateCSS("next-icon-has-image")}`}
-                onClick={() => {
-                  this.getComponentState("slider-ref").current.slickNext();
-                }}
-              >
-                <Base.Media value={this.getPropValue("nextIcon")} />
-              </div>
+              {this.getPropValue("prevIcon") && (
+                <div
+                  className={`${this.decorateCSS("prev_icon")}
+                ${this.getPropValue("prevIcon")?.type === "image" && this.decorateCSS("prev-icon-has-image")}`}
+                  onClick={() => {
+                    this.getComponentState("slider-ref")?.current?.slickPrev?.();
+                  }}
+                >
+                  <Base.Media value={this.getPropValue("prevIcon")} />
+                </div>
+              )}
+              {this.getPropValue("nextIcon") && (
+                <div
+                  className={`${this.decorateCSS("next_icon")}
+                ${this.getPropValue("nextIcon")?.type === "image" && this.decorateCSS("next-icon-has-image")}`}
+                  onClick={() => {
+                    this.getComponentState("slider-ref")?.current?.slickNext?.();
+                  }}
+                >
+                  <Base.Media value={this.getPropValue("nextIcon")} />
+                </div>
+              )}
             </div>
           )}
         </Base.MaxContent>

@@ -13,21 +13,14 @@ type Socials = {
 interface TeamMember {
   profileImage: TypeMediaInputValue;
   name: string;
-  profession: string;
-  description: string;
+  position: string;
+  cardDescription: string;
   socials: Socials[];
 }
 
 class Team12 extends Team {
   constructor(props?: any) {
     super(props, styles);
-
-    this.addProp({
-      type: "boolean",
-      key: "overlay",
-      displayer: "Overlay",
-      value: false,
-    });
 
     this.addProp({
       type: "string",
@@ -58,6 +51,13 @@ class Team12 extends Team {
     });
 
     this.addProp({
+      type: "boolean",
+      key: "overlay",
+      displayer: "Overlay",
+      value: false,
+    });
+
+    this.addProp({
       type: "array",
       key: "cards",
       displayer: "Cards",
@@ -68,6 +68,18 @@ class Team12 extends Team {
           displayer: "Card",
           value: [
             {
+              type: "media",
+              key: "profileImage",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["image", "video"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64370ff268c3c2002cd3083a?alt=media&timestamp=1719558632843",
+              },
+            },
+            {
               type: "string",
               key: "name",
               displayer: "Person Name",
@@ -75,27 +87,15 @@ class Team12 extends Team {
             },
             {
               type: "string",
-              key: "profession",
+              key: "position",
               displayer: "Position",
               value: "FRENCH CUISINE ",
             },
             {
               type: "string",
-              key: "description",
+              key: "cardDescription",
               displayer: "Description",
               value: "There are many variations of passages of ıpsum available, but the majority sued alteration",
-            },
-            {
-              type: "media",
-              key: "profileImage",
-              displayer: "Media",
-              additionalParams: {
-                availableTypes: ["image"],
-              },
-              value: {
-                type: "image",
-                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64370ff268c3c2002cd3083a?alt=media&timestamp=1719558632843",
-              },
             },
             {
               type: "array",
@@ -211,6 +211,18 @@ class Team12 extends Team {
           key: "card",
           displayer: "Card",
           value: [
+            {
+              type: "media",
+              key: "profileImage",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["image", "video"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667e65e00181a1002c334d64?alt=media&timestamp=1719559667575",
+              },
+            },
             {
               type: "string",
               key: "name",
@@ -219,27 +231,15 @@ class Team12 extends Team {
             },
             {
               type: "string",
-              key: "profession",
+              key: "position",
               displayer: "Position",
               value: "CHINESE CUISINE ",
             },
             {
               type: "string",
-              key: "description",
+              key: "cardDescription",
               displayer: "Description",
               value: "There are many variations of passages of ıpsum available, but the majority sued alteration",
-            },
-            {
-              type: "media",
-              key: "profileImage",
-              displayer: "Media",
-              additionalParams: {
-                availableTypes: ["image"],
-              },
-              value: {
-                type: "image",
-                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667e65e00181a1002c334d64?alt=media&timestamp=1719559667575",
-              },
             },
             {
               type: "array",
@@ -355,6 +355,18 @@ class Team12 extends Team {
           key: "card",
           displayer: "Card",
           value: [
+            {
+              type: "media",
+              key: "profileImage",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["image", "video"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667e68d60181a1002c334db9?alt=media&timestamp=1719560421360",
+              },
+            },
             {
               type: "string",
               key: "name",
@@ -363,27 +375,15 @@ class Team12 extends Team {
             },
             {
               type: "string",
-              key: "profession",
+              key: "position",
               displayer: "Position",
               value: "Cook ",
             },
             {
               type: "string",
-              key: "description",
+              key: "cardDescription",
               displayer: "Description",
               value: "There are many variations of passages of ıpsum available, but the majority sued alteration",
-            },
-            {
-              type: "media",
-              key: "profileImage",
-              displayer: "Media",
-              additionalParams: {
-                availableTypes: ["image"],
-              },
-              value: {
-                type: "image",
-                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667e68d60181a1002c334db9?alt=media&timestamp=1719560421360",
-              },
             },
             {
               type: "array",
@@ -500,6 +500,18 @@ class Team12 extends Team {
           displayer: "Card",
           value: [
             {
+              type: "media",
+              key: "profileImage",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["image", "video"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667e68d60181a1002c334dba?alt=media&timestamp=1719560421360",
+              },
+            },
+            {
               type: "string",
               key: "name",
               displayer: "Person Name",
@@ -507,27 +519,15 @@ class Team12 extends Team {
             },
             {
               type: "string",
-              key: "profession",
+              key: "position",
               displayer: "Position",
               value: "Cook ",
             },
             {
               type: "string",
-              key: "description",
+              key: "cardDescription",
               displayer: "Description",
               value: "There are many variations of passages of ıpsum available, but the majority sued alteration",
-            },
-            {
-              type: "media",
-              key: "profileImage",
-              displayer: "Media",
-              additionalParams: {
-                availableTypes: ["image"],
-              },
-              value: {
-                type: "image",
-                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667e68d60181a1002c334dba?alt=media&timestamp=1719560421360",
-              },
             },
             {
               type: "array",
@@ -693,21 +693,20 @@ class Team12 extends Team {
             </Base.VerticalContent>
           )}
           <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount"), tablet: 2, phone: 1 }} className={this.decorateCSS("cards")}>
-            {this.castToObject<TeamMember[]>("cards").map((teamMember: TeamMember) => {
+            {(this.castToObject<TeamMember[]>("cards") || []).map((teamMember: TeamMember) => {
               const nameExist = this.castToString(teamMember.name);
-              const professionExist = this.castToString(teamMember.profession);
-              const descriptionExist = this.castToString(teamMember.description);
-
-              const hasItem = nameExist || professionExist || descriptionExist || teamMember.profileImage || (teamMember.socials && teamMember.socials.length > 0);
+              const positionExist = this.castToString(teamMember.position);
+              const cardDescriptionExist = this.castToString(teamMember.cardDescription);
+              const hasItem = nameExist || positionExist || cardDescriptionExist || teamMember.profileImage || (teamMember.socials && teamMember.socials.length > 0);
               return (
                 hasItem && (
-                  <div className={this.decorateCSS("member")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
+                  <div className={this.decorateCSS("member")} data-animation={(this.getPropValue("hoverAnimation") || []).join(" ")}>
                     {teamMember.profileImage && <Base.Media value={teamMember.profileImage} className={this.decorateCSS("image")} />}
                     {this.getPropValue("overlay") && <div className={this.decorateCSS("overlay")} />}
                     <Base.VerticalContent className={this.decorateCSS("info")}>
                       {nameExist && <Base.H2 className={this.decorateCSS("name")}>{teamMember.name}</Base.H2>}
-                      {professionExist && <Base.H5 className={this.decorateCSS("profession")}>{teamMember.profession}</Base.H5>}
-                      {descriptionExist && <Base.P className={this.decorateCSS("description")}>{teamMember.description}</Base.P>}
+                      {positionExist && <Base.H5 className={this.decorateCSS("position")}>{teamMember.position}</Base.H5>}
+                      {cardDescriptionExist && <Base.P className={this.decorateCSS("card-description")}>{teamMember.cardDescription}</Base.P>}
                       {teamMember.socials && teamMember.socials.length > 0 && (
                         <Base.Row className={this.decorateCSS("platforms")}>
                           {teamMember.socials.map((social: Socials, index: number) => (

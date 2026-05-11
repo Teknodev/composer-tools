@@ -24,13 +24,6 @@ class Team9 extends Team {
     super(props, styles);
 
     this.addProp({
-      type: "boolean",
-      key: "overlay",
-      displayer: "Overlay",
-      value: false,
-    });
-
-    this.addProp({
       type: "string",
       key: "subtitle",
       displayer: "Subtitle",
@@ -52,6 +45,13 @@ class Team9 extends Team {
     });
 
     this.addProp({
+      type: "boolean",
+      key: "overlay",
+      displayer: "Overlay",
+      value: false,
+    });
+
+    this.addProp({
       type: "array",
       key: "cards",
       displayer: "Cards",
@@ -66,12 +66,119 @@ class Team9 extends Team {
               key: "profileImage",
               displayer: "Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b493bd2970002c62816a?alt=media&timestamp=1719558632841",
               },
+            },
+            {
+              type: "array",
+              key: "socials",
+              displayer: "Social Media",
+              value: [
+                {
+                  type: "object",
+                  key: "social",
+                  displayer: "Social",
+                  value: [
+                    {
+                      type: "media",
+                      key: "icon",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "FaFacebookSquare"
+                      },
+                      displayer: "Icon",
+                    },
+                    {
+                      type: "page",
+                      key: "url",
+                      displayer: "Navigate To",
+                      value: "",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "social",
+                  displayer: "Social",
+                  value: [
+                    {
+                      type: "media",
+                      key: "icon",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "FaTwitterSquare"
+                      },
+                      displayer: "Icon",
+                    },
+                    {
+                      type: "page",
+                      key: "url",
+                      displayer: "Navigate To",
+                      value: "",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "social",
+                  displayer: "Social",
+                  value: [
+                    {
+                      type: "media",
+                      key: "icon",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "FaInstagram"
+                      },
+                      displayer: "Icon",
+                    },
+                    {
+                      type: "page",
+                      key: "url",
+                      displayer: "Navigate To",
+                      value: "",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "social",
+                  displayer: "Social",
+                  value: [
+                    {
+                      type: "media",
+                      key: "icon",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "FaLinkedin"
+                      },
+                      displayer: "Icon",
+                    },
+                    {
+                      type: "page",
+                      key: "url",
+                      displayer: "Navigate To",
+                      value: "",
+                    },
+                  ],
+                },
+              ],
             },
             {
               type: "string",
@@ -91,6 +198,25 @@ class Team9 extends Team {
               displayer: "Description",
               value: "",
             },
+          ],
+        },
+        {
+          type: "object",
+          key: "card",
+          displayer: "Card",
+          value: [
+            {
+              type: "media",
+              key: "profileImage",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["image", "video"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b493bd2970002c62816b?alt=media&timestamp=1719558632841",
+              },
+            },
             {
               type: "array",
               key: "socials",
@@ -197,25 +323,6 @@ class Team9 extends Team {
                   ],
                 },
               ],
-            },
-          ],
-        },
-        {
-          type: "object",
-          key: "card",
-          displayer: "Card",
-          value: [
-            {
-              type: "media",
-              key: "profileImage",
-              displayer: "Media",
-              additionalParams: {
-                availableTypes: ["image"],
-              },
-              value: {
-                type: "image",
-                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b493bd2970002c62816b?alt=media&timestamp=1719558632841",
-              },
             },
             {
               type: "string",
@@ -235,6 +342,25 @@ class Team9 extends Team {
               displayer: "Description",
               value: "",
             },
+          ],
+        },
+        {
+          type: "object",
+          key: "card",
+          displayer: "Card",
+          value: [
+            {
+              type: "media",
+              key: "profileImage",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["image", "video"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b493bd2970002c62816c?alt=media&timestamp=1719558632841",
+              },
+            },
             {
               type: "array",
               key: "socials",
@@ -341,25 +467,6 @@ class Team9 extends Team {
                   ],
                 },
               ],
-            },
-          ],
-        },
-        {
-          type: "object",
-          key: "card",
-          displayer: "Card",
-          value: [
-            {
-              type: "media",
-              key: "profileImage",
-              displayer: "Media",
-              additionalParams: {
-                availableTypes: ["image"],
-              },
-              value: {
-                type: "image",
-                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b493bd2970002c62816c?alt=media&timestamp=1719558632841",
-              },
             },
             {
               type: "string",
@@ -379,6 +486,25 @@ class Team9 extends Team {
               displayer: "Description",
               value: "",
             },
+          ],
+        },
+        {
+          type: "object",
+          key: "card",
+          displayer: "Card",
+          value: [
+            {
+              type: "media",
+              key: "profileImage",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["image", "video"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b493bd2970002c62816d?alt=media&timestamp=1719558632841",
+              },
+            },
             {
               type: "array",
               key: "socials",
@@ -485,25 +611,6 @@ class Team9 extends Team {
                   ],
                 },
               ],
-            },
-          ],
-        },
-        {
-          type: "object",
-          key: "card",
-          displayer: "Card",
-          value: [
-            {
-              type: "media",
-              key: "profileImage",
-              displayer: "Media",
-              additionalParams: {
-                availableTypes: ["image"],
-              },
-              value: {
-                type: "image",
-                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b493bd2970002c62816d?alt=media&timestamp=1719558632841",
-              },
             },
             {
               type: "string",
@@ -522,113 +629,6 @@ class Team9 extends Team {
               key: "personDescription",
               displayer: "Description",
               value: "",
-            },
-            {
-              type: "array",
-              key: "socials",
-              displayer: "Social Media",
-              value: [
-                {
-                  type: "object",
-                  key: "social",
-                  displayer: "Social",
-                  value: [
-                    {
-                      type: "media",
-                      key: "icon",
-                      additionalParams: {
-                        availableTypes: ["icon", "image"],
-                      },
-                      value: {
-                        type: "icon",
-                        name: "FaFacebookSquare"
-                      },
-                      displayer: "Icon",
-                    },
-                    {
-                      type: "page",
-                      key: "url",
-                      displayer: "Navigate To",
-                      value: "",
-                    },
-                  ],
-                },
-                {
-                  type: "object",
-                  key: "social",
-                  displayer: "Social",
-                  value: [
-                    {
-                      type: "media",
-                      key: "icon",
-                      additionalParams: {
-                        availableTypes: ["icon", "image"],
-                      },
-                      value: {
-                        type: "icon",
-                        name: "FaTwitterSquare"
-                      },
-                      displayer: "Icon",
-                    },
-                    {
-                      type: "page",
-                      key: "url",
-                      displayer: "Navigate To",
-                      value: "",
-                    },
-                  ],
-                },
-                {
-                  type: "object",
-                  key: "social",
-                  displayer: "Social",
-                  value: [
-                    {
-                      type: "media",
-                      key: "icon",
-                      additionalParams: {
-                        availableTypes: ["icon", "image"],
-                      },
-                      value: {
-                        type: "icon",
-                        name: "FaInstagram"
-                      },
-                      displayer: "Icon",
-                    },
-                    {
-                      type: "page",
-                      key: "url",
-                      displayer: "Navigate To",
-                      value: "",
-                    },
-                  ],
-                },
-                {
-                  type: "object",
-                  key: "social",
-                  displayer: "Social",
-                  value: [
-                    {
-                      type: "media",
-                      key: "icon",
-                      additionalParams: {
-                        availableTypes: ["icon", "image"],
-                      },
-                      value: {
-                        type: "icon",
-                        name: "FaLinkedin"
-                      },
-                      displayer: "Icon",
-                    },
-                    {
-                      type: "page",
-                      key: "url",
-                      displayer: "Navigate To",
-                      value: "",
-                    },
-                  ],
-                },
-              ],
             },
           ],
         },
@@ -725,28 +725,26 @@ class Team9 extends Team {
                           {this.getPropValue("overlay") && <div className={this.decorateCSS("overlay")} />}
                         </div>
                       )}
-                      <div className={this.decorateCSS("person-info")}>
-                        <Base.VerticalContent className={this.decorateCSS("text-group")}>
-                          {item.socials && item.socials.length > 0 && (
-                            <div className={this.decorateCSS("icons-bar")}>
-                              {item.socials.map((social: Social, iconIndex: number) => {
-                                return social.icon && (
-                                  <ComposerLink key={iconIndex} path={social.url}>
-                                    <Base.Media
-                                      value={social.icon}
-                                      className={this.decorateCSS("icon")}
-                                      style={{ "--icon-index": iconIndex } as React.CSSProperties}
-                                    />
-                                  </ComposerLink>
-                                );
-                              })}
-                            </div>
-                          )}
-                          {personName && <Base.H2 className={this.decorateCSS("item-name")}>{item.personName}</Base.H2>}
-                          {personPosition && <Base.H4 className={this.decorateCSS("item-position")}>{item.personPosition}</Base.H4>}
-                          {personDescription && <Base.P className={this.decorateCSS("item-description")}>{item.personDescription}</Base.P>}
-                        </Base.VerticalContent>
-                      </div>
+                      <Base.VerticalContent className={this.decorateCSS("text-group")}>
+                        {item.socials && item.socials.length > 0 && (
+                          <div className={this.decorateCSS("icons-bar")}>
+                            {item.socials.map((social: Social, iconIndex: number) => {
+                              return social.icon && (
+                                <ComposerLink key={iconIndex} path={social.url}>
+                                  <Base.Media
+                                    value={social.icon}
+                                    className={this.decorateCSS("icon")}
+                                    style={{ "--icon-index": iconIndex } as React.CSSProperties}
+                                  />
+                                </ComposerLink>
+                              );
+                            })}
+                          </div>
+                        )}
+                        {personName && <Base.H4 className={this.decorateCSS("item-name")}>{item.personName}</Base.H4>}
+                        {personPosition && <Base.H5 className={this.decorateCSS("item-position")}>{item.personPosition}</Base.H5>}
+                        {personDescription && <Base.P className={this.decorateCSS("item-description")}>{item.personDescription}</Base.P>}
+                      </Base.VerticalContent>
                     </Base.VerticalContent>
                   );
                 })}

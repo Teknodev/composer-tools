@@ -69,13 +69,10 @@
         color: var(--composer-font-color-secondary);
         z-index: 4;
 
-        .card-title {
-          min-width: 100px;
-          width: 100%;
-          margin: var(--composer-gap-sm) var(--composer-gap-md);
-          color: white;
-          font-size: 1.5rem;
+        .card-name {
+          color: var(--composer-font-color-primary);
           transition: letter-spacing 0.4s ease-in-out;
+          padding: var(--composer-gap-sm) var(--composer-gap-md) var(--composer-gap-sm);
           text-align: left;
         }
 
@@ -89,8 +86,25 @@
           justify-content: space-between;
           border-top: 1px solid rgba(255, 255, 255, 0.2);
           color: var(--composer-font-color-secondary);
-          padding: var(--composer-gap-sm) var(--composer-gap-md) var(--composer-gap-sm);
           gap: var(--composer-gap-sm);
+
+          .card-info {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: var(--composer-gap-sm) var(--composer-gap-md) var(--composer-gap-sm);
+
+            .card-position {
+              text-align: left;
+              color: var(--composer-font-color-primary);
+              opacity: 0.5;
+            }
+
+            .card-description {
+              text-align: left;
+              color: var(--composer-tertiary-color);
+            }
+          }
 
           .icon-list-container {
             position: absolute;
@@ -123,13 +137,6 @@
             }
           }
 
-          .card-description {
-            text-align: left;
-            color: white;
-            opacity: 0.5;
-            margin: 0;
-          }
-
           .icons {
             display: flex;
             gap: var(--composer-gap-sm);
@@ -137,7 +144,7 @@
 
             .firstIcon {
               font-size: 1.5rem;
-              color: white;
+              color: var(--composer-font-color-primary);
 
               &.first-icon-has-image {
                 width: var(--composer-gap-md);
@@ -152,7 +159,7 @@
 
             .secondIcon {
               font-size: 1.5rem;
-              color: white;
+              color: var(--composer-font-color-primary);
 
               &.second-icon-has-image {
                 width: var(--composer-gap-md);
@@ -199,7 +206,7 @@
       &[data-animation~="animate2"] {
         &:hover {
           .card-content {
-            .card-title {
+            .card-name {
               letter-spacing: 4px;
             }
           }
@@ -258,6 +265,36 @@
           transform: translateY(0);
         }
       }
+
+      &.has-image {
+        .card-content {
+          .card-name {
+            color: #ffffff;
+          }
+
+          .labels {
+            .card-info {
+
+              .card-position,
+              .card-description {
+                color: #ffffff;
+              }
+            }
+
+            .icons {
+
+              .firstIcon,
+              .secondIcon {
+                color: #ffffff;
+
+                &:hover {
+                  color: var(--composer-primary-color);
+                }
+              }
+            }
+          }
+        }
+      }
     }
   }
 
@@ -285,16 +322,6 @@
       bottom: var(--composer-gap-sm);
       top: var(--composer-gap-sm);
       right: var(--composer-gap-sm);
-
-      .title {
-        font-size: 1rem;
-        margin: var(--composer-gap-md);
-        width: 95%;
-      }
-
-      .description {
-        font-size: 1rem;
-      }
     }
   }
 }
@@ -304,15 +331,6 @@
     height: 400px;
 
     .card-content {
-      .labels {
-        padding: var(--composer-gap-sm);
-      }
-
-      .title {
-        font-size: 1rem;
-        margin: var(--composer-gap-sm);
-      }
-
       .icon-list-container {
         padding: var(--composer-gap-xs) !important;
 

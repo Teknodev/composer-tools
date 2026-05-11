@@ -14,20 +14,13 @@ interface Card {
   profileImage: TypeMediaInputValue;
   name: string;
   position: string;
-  description: string;
+  cardDescription: string;
   socials: socials[];
 }
 
 class Team3 extends Team {
   constructor(props?: any) {
     super(props, styles);
-
-    this.addProp({
-      type: "boolean",
-      key: "overlay",
-      displayer: "Overlay",
-      value: false,
-    });
 
     this.addProp({
       type: "string",
@@ -48,6 +41,13 @@ class Team3 extends Team {
       key: "description",
       displayer: "Description",
       value: "",
+    });
+
+    this.addProp({
+      type: "boolean",
+      key: "overlay",
+      displayer: "Overlay",
+      value: false,
     });
 
     this.addProp({
@@ -83,7 +83,7 @@ class Team3 extends Team {
             },
             {
               type: "string",
-              key: "description",
+              key: "cardDescription",
               displayer: "Description",
               value: "",
             },
@@ -224,7 +224,7 @@ class Team3 extends Team {
             },
             {
               type: "string",
-              key: "description",
+              key: "cardDescription",
               displayer: "Description",
               value: "",
             },
@@ -365,7 +365,7 @@ class Team3 extends Team {
             },
             {
               type: "string",
-              key: "description",
+              key: "cardDescription",
               displayer: "Description",
               value: "",
             },
@@ -506,7 +506,7 @@ class Team3 extends Team {
             },
             {
               type: "string",
-              key: "description",
+              key: "cardDescription",
               displayer: "Description",
               value: "",
             },
@@ -647,7 +647,7 @@ class Team3 extends Team {
             },
             {
               type: "string",
-              key: "description",
+              key: "cardDescription",
               displayer: "Description",
               value: "",
             },
@@ -788,7 +788,7 @@ class Team3 extends Team {
             },
             {
               type: "string",
-              key: "description",
+              key: "cardDescription",
               displayer: "Description",
               value: "",
             },
@@ -957,7 +957,7 @@ class Team3 extends Team {
                 <div key={indexCards} className={this.decorateCSS("all-card")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
                   <div className={`${this.decorateCSS("card")} ${card.profileImage && this.decorateCSS("card-image")}`} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
                     <div className={this.decorateCSS("card-items")}>
-                      <div className={this.decorateCSS("item-content")}>
+                      <div className={this.decorateCSS("card-content")}>
                         {card.profileImage && (
                           <div className={this.decorateCSS("image-container")}>
                             <Base.Media value={card.profileImage} className={`${this.decorateCSS("image")} ${card.profileImage?.type === "icon" && this.decorateCSS("has-icon")}`} data-animation={this.getPropValue("hoverAnimation").join(" ")} />
@@ -965,9 +965,9 @@ class Team3 extends Team {
                           </div>
                         )}
                         <Base.VerticalContent className={card.profileImage ? this.decorateCSS("box-text") : this.decorateCSS("no-image-box-text")}>
-                          <Base.H5 className={this.decorateCSS("item-name")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>{card.name}</Base.H5>
-                          <Base.H6 className={this.decorateCSS("item-position")}>{card.position}</Base.H6>
-                          <Base.P className={this.decorateCSS("item-description")}>{card.description}</Base.P>
+                          <Base.H5 className={this.decorateCSS("card-name")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>{card.name}</Base.H5>
+                          <Base.H6 className={this.decorateCSS("card-position")}>{card.position}</Base.H6>
+                          <Base.P className={this.decorateCSS("card-description")}>{card.cardDescription}</Base.P>
                           <div className={this.decorateCSS("icon-group")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
                             {card.socials?.map((item: socials, indexSocials: number) => (
                               <ComposerLink key={indexSocials} path={item.url}>

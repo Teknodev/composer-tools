@@ -16,7 +16,7 @@ type Card = {
   socials: Social[];
   name: string;
   position: string;
-  description: string;
+  cardDescription: string;
 };
 
 class Team5 extends Team {
@@ -86,24 +86,6 @@ class Team5 extends Team {
               },
             },
             {
-              type: "string",
-              key: "name",
-              displayer: "Person Name",
-              value: "Ronald R.",
-            },
-            {
-              type: "string",
-              key: "position",
-              displayer: "Position",
-              value: "Office Manager",
-            },
-            {
-              type: "string",
-              key: "description",
-              displayer: "Description",
-              value: "",
-            },
-            {
               type: "array",
               key: "socials",
               displayer: "Social Media",
@@ -209,6 +191,24 @@ class Team5 extends Team {
                   ],
                 },
               ],
+            },
+            {
+              type: "string",
+              key: "name",
+              displayer: "Person Name",
+              value: "Ronald R.",
+            },
+            {
+              type: "string",
+              key: "position",
+              displayer: "Position",
+              value: "Office Manager",
+            },
+            {
+              type: "string",
+              key: "cardDescription",
+              displayer: "Description",
+              value: "",
             },
           ],
         },
@@ -242,24 +242,6 @@ class Team5 extends Team {
               },
             },
             {
-              type: "string",
-              key: "name",
-              displayer: "Person Name",
-              value: "McKinney",
-            },
-            {
-              type: "string",
-              key: "position",
-              displayer: "Position",
-              value: "Receptionist",
-            },
-            {
-              type: "string",
-              key: "description",
-              displayer: "Description",
-              value: "",
-            },
-            {
               type: "array",
               key: "socials",
               displayer: "Social Media",
@@ -365,6 +347,24 @@ class Team5 extends Team {
                   ],
                 },
               ],
+            },
+            {
+              type: "string",
+              key: "name",
+              displayer: "Person Name",
+              value: "McKinney",
+            },
+            {
+              type: "string",
+              key: "position",
+              displayer: "Position",
+              value: "Receptionist",
+            },
+            {
+              type: "string",
+              key: "cardDescription",
+              displayer: "Description",
+              value: "",
             },
           ],
         },
@@ -398,24 +398,6 @@ class Team5 extends Team {
               },
             },
             {
-              type: "string",
-              key: "name",
-              displayer: "Person Name",
-              value: "Olivia Davis",
-            },
-            {
-              type: "string",
-              key: "position",
-              displayer: "Position",
-              value: "Accounting",
-            },
-            {
-              type: "string",
-              key: "description",
-              displayer: "Description",
-              value: "",
-            },
-            {
               type: "array",
               key: "socials",
               displayer: "Social Media",
@@ -521,6 +503,24 @@ class Team5 extends Team {
                   ],
                 },
               ],
+            },
+            {
+              type: "string",
+              key: "name",
+              displayer: "Person Name",
+              value: "Olivia Davis",
+            },
+            {
+              type: "string",
+              key: "position",
+              displayer: "Position",
+              value: "Accounting",
+            },
+            {
+              type: "string",
+              key: "cardDescription",
+              displayer: "Description",
+              value: "",
             },
           ],
         },
@@ -554,24 +554,6 @@ class Team5 extends Team {
               },
             },
             {
-              type: "string",
-              key: "name",
-              displayer: "Person Name",
-              value: "Robertson",
-            },
-            {
-              type: "string",
-              key: "position",
-              displayer: "Position",
-              value: "Pet Trainer",
-            },
-            {
-              type: "string",
-              key: "description",
-              displayer: "Description",
-              value: "",
-            },
-            {
               type: "array",
               key: "socials",
               displayer: "Social Media",
@@ -677,6 +659,24 @@ class Team5 extends Team {
                   ],
                 },
               ],
+            },
+            {
+              type: "string",
+              key: "name",
+              displayer: "Person Name",
+              value: "Robertson",
+            },
+            {
+              type: "string",
+              key: "position",
+              displayer: "Position",
+              value: "Pet Trainer",
+            },
+            {
+              type: "string",
+              key: "cardDescription",
+              displayer: "Description",
+              value: "",
             },
           ],
         },
@@ -739,7 +739,7 @@ class Team5 extends Team {
             {cards.map((item: Card, index: number) => {
               const itemName = this.castToString(item?.name);
               const itemPosition = this.castToString(item?.position);
-              const itemDescription = this.castToString(item?.description);
+              const itemDescription = this.castToString(item?.cardDescription);
               const hasItem = itemName || itemPosition || item?.background || item?.picture || (item?.socials && item.socials.length > 0);
 
               return hasItem && (
@@ -747,8 +747,12 @@ class Team5 extends Team {
                   {(item.background || item.picture) && (
                     <div className={this.decorateCSS("image-container")} data-animation={(this.getPropValue("hoverAnimation") || []).join(" ")} >
                       {item.background && <Base.Media value={item.background} className={this.decorateCSS("background-image")} />}
-                      {item.picture && <Base.Media value={item.picture} className={this.decorateCSS("member-image")} />}
-                      {this.getPropValue("overlay") && <div className={this.decorateCSS("overlay")} />}
+                      {item.picture && (
+                        <div className={this.decorateCSS("member-image-wrapper")}>
+                          <Base.Media value={item.picture} className={this.decorateCSS("member-image")} />
+                          {this.getPropValue("overlay") && <div className={this.decorateCSS("overlay")} />}
+                        </div>
+                      )}
                     </div>
                   )}
                   <Base.VerticalContent className={this.decorateCSS("members-container")}>
@@ -763,9 +767,9 @@ class Team5 extends Team {
                         </ComposerLink>
                       ))}
                     </Base.Row>
-                    {itemName && <Base.H5 className={this.decorateCSS("name")}>{item.name}</Base.H5>}
-                    {itemPosition && <Base.H6 className={this.decorateCSS("position")}>{item.position}</Base.H6>}
-                    {itemDescription && <Base.P className={this.decorateCSS("card-description")}>{item.description}</Base.P>}
+                    {itemName && <Base.H5 className={this.decorateCSS("card-name")}>{item.name}</Base.H5>}
+                    {itemPosition && <Base.H6 className={this.decorateCSS("card-position")}>{item.position}</Base.H6>}
+                    {itemDescription && <Base.P className={this.decorateCSS("card-description")}>{item.cardDescription}</Base.P>}
                   </Base.VerticalContent>
                 </Base.VerticalContent>
               );
