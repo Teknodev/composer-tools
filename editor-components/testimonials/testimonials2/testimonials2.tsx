@@ -4,6 +4,8 @@ import styles from "./testimonials2.module.scss";
 
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import { Base } from "../../../composer-base-components/base/base";
+import { INPUTS } from "../../../custom-hooks/input-templates";
+import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 
 type Item = {
   name: React.JSX.Element;
@@ -27,6 +29,20 @@ class Testimonials2Page extends Testimonials {
       key: "title",
       displayer: "Title",
       value: "Happy Clients' Testimonials",
+    });
+    this.addProp({
+      type: "string",
+      key: "description",
+      displayer: "Description",
+      value: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem, molestias.",
+    });
+    this.addProp({
+      type: "array",
+      key: "buttons",
+      displayer: "Buttons",
+      value: [
+        INPUTS.BUTTON("button", "Button", "Lorem", "", null, null, "Primary"),
+      ],
     });
     this.addProp({
       type: "array",
@@ -227,6 +243,18 @@ class Testimonials2Page extends Testimonials {
   }
 
   render() {
+    const subtitleExist = this.castToString(this.getPropValue("badge"));
+    const titleExist = this.castToString(this.getPropValue("title"));
+    const descriptionExist = this.castToString(this.getPropValue("description"));
+    const buttons = this.castToObject<any[]>("buttons");
+    const hasValidButtons = buttons.some((btn: any) => {
+      const buttonText = this.castToString(btn.text);
+      const iconExist = btn.icon && (btn.icon.type === "icon" ? btn.icon.name : btn.icon.url);
+      return buttonText || iconExist;
+    });
+
+    const hasAnyTopContent = subtitleExist || titleExist || descriptionExist || hasValidButtons;
+
     const cardCount = this.getPropValue("card-items").length;
     const settings = {
       arrows: false,
@@ -258,16 +286,32 @@ class Testimonials2Page extends Testimonials {
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
-        <Base.Container className={this.decorateCSS("header")}>
-          <Base.MaxContent className={this.decorateCSS("max-content")}>
-            {(this.castToString(this.getPropValue("badge")) || this.castToString(this.getPropValue("title"))) && (
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
+          {hasAnyTopContent && (
               <Base.VerticalContent className={this.decorateCSS("top-content")}>
-                {this.castToString(this.getPropValue("badge")) && <Base.SectionSubTitle className={this.decorateCSS("badge")}>{this.getPropValue("badge")}</Base.SectionSubTitle>}
-                {this.castToString(this.getPropValue("title")) && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
+                {subtitleExist && <Base.SectionSubTitle className={this.decorateCSS("badge")}>{this.getPropValue("badge")}</Base.SectionSubTitle>}
+                {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
+                {descriptionExist && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
+                {hasValidButtons && (
+                  <div className={this.decorateCSS("button-container")}>
+                    {buttons.map((item: any, index: number) => {
+                      const buttonText = this.castToString(item.text);
+                      const iconExist = item.icon && (item.icon.type === "icon" ? item.icon.name : item.icon.url);
+                      if (!buttonText && !iconExist) return null;
+                      return (
+                        <ComposerLink key={index} path={item.url}>
+                          <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
+                            {buttonText && <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>}
+                            {iconExist && <Base.Media className={this.decorateCSS("button-icon")} value={item.icon!} />}
+                          </Base.Button>
+                        </ComposerLink>
+                      );
+                    })}
+                  </div>
+                )}
               </Base.VerticalContent>
             )}
-          </Base.MaxContent>
-        </Base.Container>
+        </Base.MaxContent>
 
         <ComposerSlider {...settings} className={this.decorateCSS("slider-style")}>
           {this.castToObject<Item[]>("card-items").map((item: Item, index: number) => (

@@ -2,37 +2,49 @@
 .container {
   padding: 0;
   background: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
-  .header {
-    background: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
-
-    .max-content {
-      .top-content {
-        width: 100%;
-        .badge {
-        }
-        .title {
-        }
+  .max-content {
+    margin-bottom: var(--composer-gap-lg);
+    .top-content {
+      width: 100%;
+      .badge,
+      .title,
+      .description,
+      .button-container,
+      .button,
+      .button-text,
+      .button-icon {
+        content: "";
       }
     }
   }
 
   .slider-style {
-    padding-bottom: var(--composer-gap-md);
+    padding-bottom: 120px;
+    display: flex;
+    flex-direction: column;
+    gap: var(--composer-gap-md);
+
     > div {
-      margin-bottom: var(--composer-gap-md);
       > div {
         margin-left: unset;
       }
+    }
+
+    :global(.slick-slide) {
+      padding: 0 var(--composer-gap-md);
+    }
+    :global(.slick-list) {
+      margin: 0 calc(var(--composer-gap-md) * -1);
     }
 
     .card {
       border-radius: var(--composer-border-radius-xs);
       background: var(--composer-html-background);
       padding: var(--composer-gap-xl) var(--composer-gap-lg);
-      gap: var(--composer-gap-md);
       display: flex !important;
       flex-direction: column;
-      margin: var(--composer-gap-md);
+      gap: var(--composer-gap-md);
+      height: 100%;
       .top-container {
         .icon-element {
           width: 100%;
@@ -81,6 +93,7 @@
       }
     }
     .slider-style {
+      padding-bottom: 100px;
       .card {
         padding: var(--composer-gap-lg) var(--composer-gap-md);
         gap: var(--composer-gap-sm);
@@ -92,6 +105,7 @@
 @container (max-width: #{$composer-phone-width}) {
   .container {
     .slider-style {
+      padding-bottom: 0px;
       .card {
         padding: var(--composer-gap-md) var(--composer-gap-md);
       }
