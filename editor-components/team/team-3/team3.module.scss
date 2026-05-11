@@ -181,6 +181,16 @@
             object-fit: cover;
             z-index: 2;
             border-radius: var(--composer-border-radius-sm);
+
+            &.has-icon {
+              font-size: 140px;
+              color: var(--composer-primary-color);
+              border-radius: 0;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              line-height: 0;
+            }
           }
         }
 

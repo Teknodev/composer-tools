@@ -64,9 +64,6 @@ class Team4 extends Team {
               type: "media",
               key: "profileImage",
               displayer: "Media",
-              additionalParams: {
-                availableTypes: ["image"],
-              },
               value: {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6437087c68c3c2002cd307d3?alt=media&timestamp=1719502692150",
@@ -208,9 +205,6 @@ class Team4 extends Team {
               type: "media",
               key: "profileImage",
               displayer: "Media",
-              additionalParams: {
-                availableTypes: ["image"],
-              },
               value: {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6437087c68c3c2002cd307d2?alt=media&timestamp=1719502692150",
@@ -352,9 +346,6 @@ class Team4 extends Team {
               type: "media",
               key: "profileImage",
               displayer: "Media",
-              additionalParams: {
-                availableTypes: ["image"],
-              },
               value: {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6437087c68c3c2002cd307d1?alt=media&timestamp=1719502692150",
@@ -496,9 +487,6 @@ class Team4 extends Team {
               type: "media",
               key: "profileImage",
               displayer: "Media",
-              additionalParams: {
-                availableTypes: ["image"],
-              },
               value: {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6437087c68c3c2002cd307d3?alt=media&timestamp=1719502692150",
@@ -687,13 +675,13 @@ class Team4 extends Team {
                 <Base.VerticalContent key={indexCards} className={this.decorateCSS("team-member")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
                   {card.profileImage &&
                     <div className={this.decorateCSS("image-container")}>
-                      <Base.Media value={card.profileImage} className={this.decorateCSS("image")} data-animation={this.getPropValue("hoverAnimation").join(" ")} />
+                      <Base.Media value={card.profileImage} className={`${this.decorateCSS("image")} ${card.profileImage?.type === "icon" && this.decorateCSS("has-icon")}`} data-animation={this.getPropValue("hoverAnimation").join(" ")} />
                       {this.getPropValue("overlay") && <div className={this.decorateCSS("overlay")} />}
                     </div>
                   }
                   <Base.VerticalContent className={this.decorateCSS("name-and-position")}>
-                    {card.name && <Base.H3 className={this.decorateCSS("team-member-name")}>{card.name}</Base.H3>}
-                    {card.position && <Base.H5 className={this.decorateCSS("team-member-position")}>{card.position}</Base.H5>}
+                    {card.name && <Base.H4 className={this.decorateCSS("team-member-name")}>{card.name}</Base.H4>}
+                    {card.position && <Base.H6 className={this.decorateCSS("team-member-position")}>{card.position}</Base.H6>}
                     {card.description && <Base.P className={this.decorateCSS("team-member-description")}>{card.description}</Base.P>}
                     <div className={this.decorateCSS("icon-group")}>
                       {card.socials?.map((item: Socials, indexSocials: number) => (
