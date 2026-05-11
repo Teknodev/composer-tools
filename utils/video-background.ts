@@ -41,6 +41,165 @@ const VIDEO_STYLES: Partial<CSSStyleDeclaration> = {
   pointerEvents: "none",
 };
 
+const videoBackgroundObservers = new WeakMap<Document | HTMLElement, MutationObserver>();
+
+type VideoBackgroundTarget = {
+  element: HTMLElement;
+  hasOwnDeclaration: boolean;
+};
+
+function ensurePositioningContext(el: HTMLElement, computed: CSSStyleDeclaration): void {
+  if (computed.position === "static") {
+    el.style.position = "relative";
+    el.dataset.videoBgPositioned = "true";
+  }
+}
+
+function restorePositioningContext(el: HTMLElement): void {
+  if (el.dataset.videoBgPositioned === "true") {
+    el.style.removeProperty("position");
+    delete el.dataset.videoBgPositioned;
+  }
+}
+
+function addSelectorMatchesToSet(
+  selectorText: string,
+  root: HTMLElement | Document,
+  targets: Set<HTMLElement>
+): void {
+  const scope = root instanceof Document ? root : root.ownerDocument;
+
+  try {
+    if (root instanceof HTMLElement && root.matches(selectorText) && root.matches("[data-video-bg]")) {
+      targets.add(root);
+    }
+
+    const selectorTargets = root.querySelectorAll<HTMLElement>(selectorText);
+    selectorTargets.forEach((el) => {
+      if (el.matches("[data-video-bg]")) {
+        targets.add(el);
+      }
+    });
+  } catch {
+    logger.debug("Skipped unsupported video background selector", { selectorText, href: scope.location?.href });
+  }
+}
+
+function collectRuleTargets(rule: CSSRule, root: HTMLElement | Document, targets: Set<HTMLElement>): void {
+  if (rule instanceof CSSStyleRule) {
+    if (rule.style.getPropertyValue(VIDEO_BG_VARS.URL).trim()) {
+      addSelectorMatchesToSet(rule.selectorText, root, targets);
+    }
+
+    return;
+  }
+
+  const nestedRules = (rule as CSSGroupingRule).cssRules;
+  if (!nestedRules) return;
+
+  Array.from(nestedRules).forEach((nestedRule) => collectRuleTargets(nestedRule, root, targets));
+}
+
+function collectVideoBackgroundTargets(root: HTMLElement | Document): VideoBackgroundTarget[] {
+  const explicitTargets = new Set<HTMLElement>();
+  const cleanupTargets = new Set<HTMLElement>();
+
+  if (root instanceof HTMLElement && root.matches("[data-video-bg]") && root.style.getPropertyValue(VIDEO_BG_VARS.URL).trim()) {
+    explicitTargets.add(root);
+  }
+
+  root.querySelectorAll<HTMLElement>("[data-video-bg]").forEach((el) => {
+    if (el.style.getPropertyValue(VIDEO_BG_VARS.URL).trim()) {
+      explicitTargets.add(el);
+    }
+  });
+
+  Array.from(document.styleSheets).forEach((sheet) => {
+    let rules: CSSRuleList;
+
+    try {
+      rules = sheet.cssRules;
+    } catch {
+      return;
+    }
+
+    Array.from(rules).forEach((rule) => collectRuleTargets(rule, root, explicitTargets));
+  });
+
+  root.querySelectorAll<HTMLElement>("[data-bg-video]").forEach((video) => {
+    const parent = video.parentElement;
+    if (parent?.matches("[data-video-bg]")) {
+      cleanupTargets.add(parent);
+    }
+  });
+
+  const allTargets = new Set(explicitTargets);
+  cleanupTargets.forEach((el) => allTargets.add(el));
+
+  return Array.from(allTargets).map((element) => ({
+    element,
+    hasOwnDeclaration: explicitTargets.has(element),
+  }));
+}
+
+function hasVideoBackgroundTarget(node: Node): boolean {
+  if (!(node instanceof Element)) return false;
+
+  return node.matches("[data-video-bg]") || !!node.querySelector("[data-video-bg]");
+}
+
+function shouldRescanForMutation(mutation: MutationRecord): boolean {
+  if (mutation.type === "attributes") {
+    return mutation.target instanceof Element && mutation.target.matches("[data-video-bg]");
+  }
+
+  return Array.from(mutation.addedNodes).some(hasVideoBackgroundTarget);
+}
+
+export function observeVideoBackgrounds(root: HTMLElement | Document = document): () => void {
+  const target = root instanceof Document ? root.documentElement : root;
+
+  if (!target || typeof MutationObserver === "undefined") {
+    return () => undefined;
+  }
+
+  videoBackgroundObservers.get(root)?.disconnect();
+
+  let frameId: number | null = null;
+  const scheduleScan = () => {
+    if (frameId !== null) return;
+
+    frameId = requestAnimationFrame(() => {
+      frameId = null;
+      applyVideoBackgrounds(root);
+    });
+  };
+
+  const observer = new MutationObserver((mutations) => {
+    if (mutations.some(shouldRescanForMutation)) {
+      scheduleScan();
+    }
+  });
+
+  observer.observe(target, {
+    subtree: true,
+    childList: true,
+    attributes: true,
+    attributeFilter: ["data-video-bg"],
+  });
+
+  videoBackgroundObservers.set(root, observer);
+
+  return () => {
+    if (frameId !== null) {
+      cancelAnimationFrame(frameId);
+    }
+
+    observer.disconnect();
+    videoBackgroundObservers.delete(root);
+  };
+}
+
 /**
  * Creates a new <video> element configured as a background layer.
  */
@@ -103,7 +262,7 @@ function updateVideoElement(
 export function applyVideoBackgrounds(
   root: HTMLElement | Document = document
 ): void {
-  const targets = root.querySelectorAll<HTMLElement>("[data-video-bg]");
+  const targets = collectVideoBackgroundTargets(root);
 
   if (targets.length === 0) {
     return;
@@ -111,9 +270,9 @@ export function applyVideoBackgrounds(
 
   logger.debug("Scanning for video backgrounds", { targetCount: targets.length });
 
-  targets.forEach((el) => {
+  targets.forEach(({ element: el, hasOwnDeclaration }) => {
     const computed = getComputedStyle(el);
-    const rawUrl = computed.getPropertyValue(VIDEO_BG_VARS.URL)?.trim() || "";
+    const rawUrl = hasOwnDeclaration ? computed.getPropertyValue(VIDEO_BG_VARS.URL)?.trim() || "" : "";
     const url = sanitizeUrl(rawUrl);
     const loop = computed.getPropertyValue(VIDEO_BG_VARS.LOOP)?.trim() || "";
     const muted = computed.getPropertyValue(VIDEO_BG_VARS.MUTED)?.trim() || "";
@@ -129,10 +288,13 @@ export function applyVideoBackgrounds(
         existingVideo.pause();
         existingVideo.removeAttribute("src");
         existingVideo.remove();
+        restorePositioningContext(el);
         logger.info("Video background removed (URL cleared)");
       }
       return;
     }
+
+    ensurePositioningContext(el, computed);
 
     if (existingVideo) {
       updateVideoElement(existingVideo, url, loop, muted, autoplay);
