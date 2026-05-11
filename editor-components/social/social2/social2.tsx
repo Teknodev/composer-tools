@@ -900,22 +900,25 @@ class Social2 extends BaseSocial {
                     value: true
                 },
                 {
-                    type: "icon",
+                    type: "media",
                     key: "playIcon",
                     displayer: "Play Icon",
-                    value: "FaPlay"
+                    value: { type: "icon", name: "FaPlay" },
+                    additionalParams: { availableTypes: ["icon", "image"] }
                 },
                 {
-                    type: "icon",
+                    type: "media",
                     key: "nextArrow",
                     displayer: "Next Arrow",
-                    value: "IoIosArrowForward"
+                    value: { type: "icon", name: "IoIosArrowForward" },
+                    additionalParams: { availableTypes: ["icon", "image"] }
                 },
                 {
-                    type: "icon",
+                    type: "media",
                     key: "prevArrow",
                     displayer: "Prev Arrow",
-                    value: "IoIosArrowBack"
+                    value: { type: "icon", name: "IoIosArrowBack" },
+                    additionalParams: { availableTypes: ["icon", "image"] }
                 },
             ]
         });
@@ -925,16 +928,18 @@ class Social2 extends BaseSocial {
             displayer: "Share",
             value: [
                 {
-                    type: "icon",
+                    type: "media",
                     key: "closeIcon",
                     displayer: "Close Icon",
-                    value: "IoCloseOutline"
+                    value: { type: "icon", name: "IoCloseOutline" },
+                    additionalParams: { availableTypes: ["icon", "image"] }
                 },
                 {
-                    type: "icon",
+                    type: "media",
                     key: "shareIcon",
                     displayer: "Share Icon",
-                    value: "RiShareForwardLine"
+                    value: { type: "icon", name: "RiShareForwardLine" },
+                    additionalParams: { availableTypes: ["icon", "image"] }
                 },
                 {
                     type: "string",
@@ -1182,7 +1187,7 @@ class Social2 extends BaseSocial {
                                                 )}
                                                 {player.playIcon && (
                                                     <div className={this.decorateCSS("icon-container")} onClick={() => { this.handleVideoPlay(index) }}>
-                                                        <Base.Icon name={player.playIcon} propsIcon={{ className: this.decorateCSS("icon") }} />
+                                                        <Base.Media value={player.playIcon} className={`${this.decorateCSS("icon")} ${player.playIcon.type === "icon" ? this.decorateCSS("is-icon") : ""}`} />
                                                     </div>
                                                 )}
                                             </div>
@@ -1192,10 +1197,14 @@ class Social2 extends BaseSocial {
                                 {(player.nextArrow || player.prevArrow) && (
                                     <div className={this.decorateCSS("arrows")}>
                                         {player.nextArrow && (
-                                            <Base.Icon name={player.nextArrow} propsIcon={{ className: this.decorateCSS("next-arrow"), onClick: () => { this.handleRightArrowClick() } }} />
+                                            <div className={this.decorateCSS("next-arrow")} onClick={() => { this.handleRightArrowClick() }}>
+                                                <Base.Media value={player.nextArrow} className={`${this.decorateCSS("next-arrow-icon")} ${player.nextArrow.type === "icon" ? this.decorateCSS("is-icon") : ""}`} />
+                                            </div>
                                         )}
                                         {player.prevArrow && (
-                                            <Base.Icon name={player.prevArrow} propsIcon={{ className: this.decorateCSS("prev-arrow"), onClick: () => { this.handleLeftArrowClick() } }} />
+                                            <div className={this.decorateCSS("prev-arrow")} onClick={() => { this.handleLeftArrowClick() }}>
+                                                <Base.Media value={player.prevArrow} className={`${this.decorateCSS("prev-arrow-icon")} ${player.prevArrow.type === "icon" ? this.decorateCSS("is-icon") : ""}`} />
+                                            </div>
                                         )}
                                     </div>
                                 )}
@@ -1226,13 +1235,13 @@ class Social2 extends BaseSocial {
                                         </div>
                                     )}
                                     {share.closeIcon && (
-                                        <div className={this.decorateCSS("close-icon-container")}>
-                                            <Base.Icon name={share.closeIcon} propsIcon={{ className: this.decorateCSS("close-icon"), onClick: () => this.handleVideoClose() }}></Base.Icon>
+                                        <div className={this.decorateCSS("close-icon-container")} onClick={() => this.handleVideoClose()}>
+                                            <Base.Media value={share.closeIcon} className={`${this.decorateCSS("close-icon")} ${share.closeIcon.type === "icon" ? this.decorateCSS("is-icon") : ""}`} />
                                         </div>
                                     )}
                                     {share.shareIcon && (
-                                        <div className={this.decorateCSS("share-icon-container")}>
-                                            <Base.Icon name={share.shareIcon} propsIcon={{ className: this.decorateCSS("share-icon"), onClick: () => this.handleShareOpen() }}></Base.Icon>
+                                        <div className={this.decorateCSS("share-icon-container")} onClick={() => this.handleShareOpen()}>
+                                            <Base.Media value={share.shareIcon} className={`${this.decorateCSS("share-icon")} ${share.shareIcon.type === "icon" ? this.decorateCSS("is-icon") : ""}`} />
                                         </div>
                                     )}
                                     {(this.castToString(share.shareTitle) || share.closeIcon || (sliderItems[selectedIndex]?.socialIcons?.length > 0)) && (
@@ -1245,7 +1254,7 @@ class Social2 extends BaseSocial {
                                                         )}
                                                         {share.closeIcon && (
                                                             <div className={this.decorateCSS("share-popup-close")} onClick={() => this.handleShareClose()}>
-                                                                <Base.Icon name={share.closeIcon} propsIcon={{ className: this.decorateCSS("share-close-icon") }}></Base.Icon>
+                                                                <Base.Media value={share.closeIcon} className={`${this.decorateCSS("share-close-icon")} ${share.closeIcon.type === "icon" ? this.decorateCSS("is-icon") : ""}`} />
                                                             </div>
                                                         )}
                                                     </div>
@@ -1270,12 +1279,12 @@ class Social2 extends BaseSocial {
                                 </div>
                                 {player.prevArrow && (
                                     <div className={this.decorateCSS("modal-prev")} onClick={() => this.setComponentState("selectedVideo", (selectedIndex - 1 + sliderItems.length) % sliderItems.length)}>
-                                        <Base.Icon name={player.prevArrow} propsIcon={{ className: this.decorateCSS("modal-arrow-icon") }} />
+                                        <Base.Media value={player.prevArrow} className={`${this.decorateCSS("modal-arrow-icon")} ${player.prevArrow.type === "icon" ? this.decorateCSS("is-icon") : ""}`} />
                                     </div>
                                 )}
                                 {player.nextArrow && (
                                     <div className={this.decorateCSS("modal-next")} onClick={() => this.setComponentState("selectedVideo", (selectedIndex + 1) % sliderItems.length)}>
-                                        <Base.Icon name={player.nextArrow} propsIcon={{ className: this.decorateCSS("modal-arrow-icon") }} />
+                                        <Base.Media value={player.nextArrow} className={`${this.decorateCSS("modal-arrow-icon")} ${player.nextArrow.type === "icon" ? this.decorateCSS("is-icon") : ""}`} />
                                     </div>
                                 )}
                             </div>
@@ -1306,13 +1315,13 @@ class Social2 extends BaseSocial {
                                     </div>
                                 )}
                                 {share.closeIcon && (
-                                    <div className={this.decorateCSS("close-icon-container")}>
-                                        <Base.Icon name={share.closeIcon} propsIcon={{ className: this.decorateCSS("close-icon"), onClick: () => this.handleVideoClose() }}></Base.Icon>
+                                    <div className={this.decorateCSS("close-icon-container")} onClick={() => this.handleVideoClose()}>
+                                        <Base.Media value={share.closeIcon} className={`${this.decorateCSS("close-icon")} ${share.closeIcon.type === "icon" ? this.decorateCSS("is-icon") : ""}`} />
                                     </div>
                                 )}
                                 {share.shareIcon && (
-                                    <div className={this.decorateCSS("share-icon-container")}>
-                                        <Base.Icon name={share.shareIcon} propsIcon={{ className: this.decorateCSS("share-icon"), onClick: () => this.handleShareOpen() }}></Base.Icon>
+                                    <div className={this.decorateCSS("share-icon-container")} onClick={() => this.handleShareOpen()}>
+                                        <Base.Media value={share.shareIcon} className={`${this.decorateCSS("share-icon")} ${share.shareIcon.type === "icon" ? this.decorateCSS("is-icon") : ""}`} />
                                     </div>
                                 )}
                                 {(this.castToString(share.shareTitle) || share.closeIcon || (sliderItems[selectedIndex]?.socialIcons?.length > 0)) && (
@@ -1325,7 +1334,7 @@ class Social2 extends BaseSocial {
                                                     )}
                                                     {share.closeIcon && (
                                                         <div className={this.decorateCSS("share-popup-close")} onClick={() => this.handleShareClose()}>
-                                                            <Base.Icon name={share.closeIcon} propsIcon={{ className: this.decorateCSS("share-close-icon") }}></Base.Icon>
+                                                            <Base.Media value={share.closeIcon} className={`${this.decorateCSS("share-close-icon")} ${share.closeIcon.type === "icon" ? this.decorateCSS("is-icon") : ""}`} />
                                                         </div>
                                                     )}
                                                 </div>
@@ -1350,12 +1359,12 @@ class Social2 extends BaseSocial {
                             </div>
                             {player.prevArrow && (
                                 <div className={this.decorateCSS("modal-prev")} onClick={() => this.setComponentState("selectedVideo", (selectedIndex - 1 + sliderItems.length) % sliderItems.length)}>
-                                    <Base.Icon name={player.prevArrow} propsIcon={{ className: this.decorateCSS("modal-arrow-icon") }} />
+                                    <Base.Media value={player.prevArrow} className={`${this.decorateCSS("modal-arrow-icon")} ${player.prevArrow.type === "icon" ? this.decorateCSS("is-icon") : ""}`} />
                                 </div>
                             )}
                             {player.nextArrow && (
                                 <div className={this.decorateCSS("modal-next")} onClick={() => this.setComponentState("selectedVideo", (selectedIndex + 1) % sliderItems.length)}>
-                                    <Base.Icon name={player.nextArrow} propsIcon={{ className: this.decorateCSS("modal-arrow-icon") }} />
+                                    <Base.Media value={player.nextArrow} className={`${this.decorateCSS("modal-arrow-icon")} ${player.nextArrow.type === "icon" ? this.decorateCSS("is-icon") : ""}`} />
                                 </div>
                             )}
                         </div>

@@ -54,13 +54,35 @@
         cursor: pointer;
 
         .close-icon {
-          color: rgba(0, 0, 0, 0.5);
-          font-size: 2rem;
+          width: 1.5rem;
+          height: 1.5rem;
+          object-fit: contain;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          &.is-icon {
+            width: auto;
+            height: auto;
+            font-size: 1.5rem;
+            color: rgba(0, 0, 0, 0.5);
+          }
         }
 
         .share-icon {
-          color: white;
-          font-size: 2rem;
+          width: 1.5rem;
+          height: 1.5rem;
+          object-fit: contain;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          &.is-icon {
+            width: auto;
+            height: auto;
+            font-size: 1.5rem;
+            color: white;
+          }
         }
       }
 
@@ -107,8 +129,19 @@
               cursor: pointer;
 
               .share-close-icon {
-                color: var(--composer-font-color-primary);
-                font-size: 1.5rem;
+                width: 1.5rem;
+                height: 1.5rem;
+                object-fit: contain;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                &.is-icon {
+                  width: auto;
+                  height: auto;
+                  font-size: 1.5rem;
+                  color: var(--composer-font-color-primary);
+                }
               }
             }
           }
@@ -230,8 +263,19 @@
             cursor: pointer;
 
             .icon {
-              font-size: 1.5rem;
-              color: white;
+              width: 1.5rem;
+              height: 1.5rem;
+              object-fit: contain;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+
+              &.is-icon {
+                width: auto;
+                height: auto;
+                font-size: 1.5rem;
+                color: white;
+              }
             }
 
             &::after {
@@ -265,9 +309,27 @@
           position: absolute;
           top: 50%;
           transform: translateY(-50%);
-          color: var(--composer-font-color-primary);
-          font-size: 1.5rem;
           cursor: pointer;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          .next-arrow-icon,
+          .prev-arrow-icon {
+            width: 1.5rem;
+            height: 1.5rem;
+            object-fit: contain;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            &.is-icon {
+              width: auto;
+              height: auto;
+              font-size: 1.5rem;
+              color: var(--composer-font-color-primary);
+            }
+          }
         }
 
         .next-arrow {
@@ -323,10 +385,19 @@
         }
 
         .modal-arrow-icon {
-          font-size: 40px;
-          color: #fff;
           width: 40px;
           height: 40px;
+          object-fit: contain;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          &.is-icon {
+            width: auto;
+            height: auto;
+            font-size: 40px;
+            color: #fff;
+          }
         }
       }
 
