@@ -948,26 +948,23 @@ class Social2 extends BaseSocial {
         this.addProp(INPUTS.SLIDER_SETTINGS("sliderSettings", "Slider Settings", {
             dots: false,
             arrows: false,
-            infinite: false,
-            autoplay: false,
+            infinite: true,
+            autoplay: true,
+            autoplaySpeed: 3000,
             speed: 500,
             slidesToShow: 5,
             slidesToScroll: 1,
         }));
 
-        this.setComponentState("intervalId", 0);
         this.setComponentState("slider-ref", React.createRef());
         this.setComponentState("sliderRefOverlay", React.createRef());
         this.setComponentState("videoActive", false);
         this.setComponentState("selectedVideo", 0);
         this.setComponentState("shareContainerActive", false)
-        this.setComponentState("slideToShow", 5);
         this.setComponentState("containerRef", React.createRef())
         this.setComponentState("width", 0);
         this.setComponentState("videoRefs", React.createRef());
         this.getComponentState("videoRefs").current = [];
-        this.setComponentState("activeIndexRef", React.createRef());
-        this.setComponentState("activeVideoIndex", 0);
 
     }
 
@@ -992,55 +989,9 @@ class Social2 extends BaseSocial {
         const observer = new ResizeObserver(() => {
             const boundingClient = container.getBoundingClientRect();
             this.setComponentState("width", boundingClient.width);
-
-            let newSlideToShow = 5;
-            if (boundingClient.width < 400) {
-                newSlideToShow = 1;
-            } else if (boundingClient.width < 1000) {
-                newSlideToShow = 2;
-            }
-
-            this.setComponentState("slideToShow", newSlideToShow);
         });
         this.setComponentState("observer", observer);
         observer.observe(container);
-
-
-        const sliderItems = this.getPropValue("sliderItems") || [];
-
-        const activeIndexRef = this.getComponentState("activeIndexRef");
-        if (activeIndexRef) {
-            activeIndexRef.current = -1;
-        }
-
-        const interval = setInterval(() => {
-            if (!activeIndexRef) return;
-
-            const current = activeIndexRef.current || 0;
-            const next = (current + 1) % sliderItems.length;
-            activeIndexRef.current = next;
-
-            const sliderRef = this.getComponentState("slider-ref");
-            const currentIndex = this.getComponentState("activeVideoIndex") || 0;
-            const nextIndex = (currentIndex + 1) % sliderItems.length;
-            this.setComponentState("activeVideoIndex", nextIndex);
-            sliderRef.current.slickGoTo(Math.max((this.getComponentState("activeVideoIndex") - (this.getComponentState("slideToShow") - 1)), 0));
-
-            setTimeout(() => {
-                const nextSlide = document.querySelector(`.slick-slide.slick-active [data-video-index="${next}"]`) as HTMLVideoElement;
-                const currentSlide = document.querySelector(`.slick-slide.slick-active [data-video-index="${current}"]`) as HTMLVideoElement;
-                if (nextSlide !== null) {
-                    nextSlide.play();
-                }
-                if (currentSlide) {
-                    currentSlide.pause();
-                    currentSlide.currentTime = 0;
-                }
-            }, 100);
-
-        }, 5000);
-
-        this.setComponentState("intervalId", interval);
     }
 
 
@@ -1048,10 +999,6 @@ class Social2 extends BaseSocial {
     onComponentWillUnmount() {
         const observer = this.getComponentState("observer");
         if (observer) observer.disconnect();
-        const interval = this.getComponentState("intervalId");
-        if (interval) {
-            clearInterval(interval);
-        }
     }
     handleRightArrowClick = () => {
         const sliderRef = this.getComponentState("slider-ref");
@@ -1113,6 +1060,13 @@ class Social2 extends BaseSocial {
             adaptiveHeight: false,
             responsive: [
                 {
+                    breakpoint: 1000,
+                    settings: {
+                        slidesToShow: 2,
+                        slidesToScroll: 1,
+                    },
+                },
+                {
                     breakpoint: 640,
                     settings: {
                         slidesToShow: 1,
@@ -1147,7 +1101,8 @@ class Social2 extends BaseSocial {
         const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons") || [];
         const hasValidButtons = buttons.some((btn) => {
             const textExist = this.castToString(btn.text);
-            const iconExist = btn.icon && this.castToString((btn.icon as any).name);
+            const iconValue = btn.icon as TypeMediaInputValue | string;
+            const iconExist = typeof iconValue === "string" ? iconValue : (iconValue?.name || iconValue?.url);
             return !!(textExist || iconExist);
         });
 
@@ -1188,11 +1143,9 @@ class Social2 extends BaseSocial {
                                                                 </div>
                                                             )}
                                                             {iconExist && (
-                                                                <Base.Icon
-                                                                    name={item.icon}
-                                                                    propsIcon={{
-                                                                        className: this.decorateCSS("button-icon"),
-                                                                    }}
+                                                                <Base.Media
+                                                                    value={typeof item.icon === "string" ? { type: "icon", name: item.icon } : item.icon}
+                                                                    className={this.decorateCSS("button-icon")}
                                                                 />
                                                             )}
                                                         </Base.Button>
@@ -1215,6 +1168,7 @@ class Social2 extends BaseSocial {
                                                         key={`video-${index}`}
                                                         id={`video-${index}`}
                                                         data-video-index={index}
+                                                        autoPlay={true}
                                                         muted={true}
                                                         playsInline
                                                         loop
