@@ -676,7 +676,7 @@ class Team1 extends Team {
                   <Base.VerticalContent className={this.decorateCSS("card")}>
                     {card.profileImage && (
                       <div className={this.decorateCSS("image-container")}>
-                        <Base.Media value={card.profileImage} className={`${this.decorateCSS("image")} ${card.profileImage?.type === "icon" ? this.decorateCSS("has-icon") : ""}`} data-animation={this.getPropValue("hoverAnimation").join(" ")} />
+                        <Base.Media value={card.profileImage} className={`${this.decorateCSS("image")} ${card.profileImage?.type === "icon" && this.decorateCSS("has-icon")}`} data-animation={this.getPropValue("hoverAnimation").join(" ")} />
                         {this.getPropValue("overlay") && <div className={this.decorateCSS("overlay")} />}
                       </div>
                     )}
