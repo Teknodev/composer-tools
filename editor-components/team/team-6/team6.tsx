@@ -23,13 +23,6 @@ class Team6 extends Team {
     super(props, styles);
 
     this.addProp({
-      type: "boolean",
-      key: "overlay",
-      displayer: "Overlay",
-      value: false,
-    });
-
-    this.addProp({
       type: "string",
       key: "subtitle",
       displayer: "Subtitle",
@@ -65,6 +58,13 @@ class Team6 extends Team {
     });
 
     this.addProp({
+      type: "boolean",
+      key: "overlay",
+      displayer: "Overlay",
+      value: false,
+    });
+
+    this.addProp({
       type: "array",
       key: "items",
       displayer: "Card",
@@ -79,7 +79,7 @@ class Team6 extends Team {
               key: "profileImage",
               displayer: "Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
@@ -220,7 +220,7 @@ class Team6 extends Team {
               key: "profileImage",
               displayer: "Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
@@ -364,7 +364,7 @@ class Team6 extends Team {
               key: "profileImage",
               displayer: "Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
@@ -508,7 +508,7 @@ class Team6 extends Team {
               key: "profileImage",
               displayer: "Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
@@ -715,9 +715,9 @@ class Team6 extends Team {
                       <div onClick={() => handleButton(indexItems)} className={this.decorateCSS("image-button")}>
                         {card.features.length > 0 &&
                           (this.getComponentState("activeIndex") === indexItems ? (
-                            <Base.Icon name={this.getPropValue("inactiveIcon")} propsIcon={{ className: this.decorateCSS("image-icon") }} />
+                            <Base.Icon name={this.getPropValue("inactiveIcon")} propsIcon={{ className: `${this.decorateCSS("inactive-icon")} ${card.profileImage && this.decorateCSS("has-image-inactive")}` }} />
                           ) : (
-                            <Base.Icon name={this.getPropValue("activeIcon")} propsIcon={{ className: this.decorateCSS("image-icon") }} />
+                            <Base.Icon name={this.getPropValue("activeIcon")} propsIcon={{ className: `${this.decorateCSS("active-icon")} ${card.profileImage && this.decorateCSS("has-image-active")}` }} />
                           ))}
                         <div className={this.decorateCSS("image-container")}>
                           <Base.Media
@@ -728,8 +728,8 @@ class Team6 extends Team {
                           {this.getPropValue("overlay") && <div className={this.decorateCSS("overlay")} />}
                         </div>
                         <Base.VerticalContent className={this.decorateCSS("card-info")}>
-                          {cardNameExist && <Base.H2 className={this.decorateCSS("card-name")}>{card.name}</Base.H2>}
-                          {cardPositionExist && <Base.H4 className={this.decorateCSS("card-position")}>{card.position}</Base.H4>}
+                          {cardNameExist && <Base.H3 className={this.decorateCSS("card-name")}>{card.name}</Base.H3>}
+                          {cardPositionExist && <Base.H5 className={this.decorateCSS("card-position")}>{card.position}</Base.H5>}
                           {cardDescriptionExist && <Base.P className={this.decorateCSS("card-description")}>{card.description}</Base.P>}
                           {this.getComponentState("activeIndex") === indexItems && card.features.length > 0 && (
                             <Base.VerticalContent className={this.decorateCSS("features")}>

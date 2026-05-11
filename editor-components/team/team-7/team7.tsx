@@ -65,7 +65,7 @@ class Team7 extends Team {
               key: "profileImage",
               displayer: "Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
@@ -209,7 +209,7 @@ class Team7 extends Team {
               key: "profileImage",
               displayer: "Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
@@ -353,7 +353,7 @@ class Team7 extends Team {
               key: "profileImage",
               displayer: "Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
@@ -497,7 +497,7 @@ class Team7 extends Team {
               key: "profileImage",
               displayer: "Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
@@ -700,7 +700,7 @@ class Team7 extends Team {
                   {item.profileImage && (
                     <div className={this.decorateCSS("image-container")}>
                       <div className={this.decorateCSS("image-wrapper")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
-                        <Base.Media value={item.profileImage} className={this.decorateCSS("person-image")} />
+                        <Base.Media value={item.profileImage} className={`${this.decorateCSS("person-image")} ${item.profileImage?.type === "icon" && this.decorateCSS("has-icon")}`} />
                       </div>
                       <div className={this.decorateCSS("icons-bar")}>
                         {item.socials &&
@@ -716,8 +716,8 @@ class Team7 extends Team {
                   )}
                   {hasItem &&
                     <Base.VerticalContent className={this.decorateCSS("text-group")}>
-                      {itemName && <Base.H3 className={this.decorateCSS("item-name")}>{item.name}</Base.H3>}
-                      {itemPosition && <Base.H4 className={this.decorateCSS("item-position")}>{item.position}</Base.H4>}
+                      {itemName && <Base.H5 className={this.decorateCSS("item-name")}>{item.name}</Base.H5>}
+                      {itemPosition && <Base.H6 className={this.decorateCSS("item-position")}>{item.position}</Base.H6>}
                       {itemDescription && <Base.P className={this.decorateCSS("item-description")}>{item.description}</Base.P>}
                     </Base.VerticalContent>
                   }

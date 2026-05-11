@@ -94,6 +94,15 @@ class Team8 extends Team {
           displayer: "Card",
           value: [
             {
+              type: "media",
+              key: "profileImage",
+              displayer: "Media",
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b0822803b007002cc7714f?alt=media",
+              },
+            },
+            {
               type: "string",
               key: "name",
               displayer: "Person Name",
@@ -111,18 +120,6 @@ class Team8 extends Team {
               displayer: "Description",
               value: "",
             },
-            {
-              type: "media",
-              key: "profileImage",
-              displayer: "Media",
-              additionalParams: {
-                availableTypes: ["image"],
-              },
-              value: {
-                type: "image",
-                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b0822803b007002cc7714f?alt=media",
-              },
-            },
           ],
         },
         {
@@ -130,6 +127,15 @@ class Team8 extends Team {
           key: "card",
           displayer: "Card",
           value: [
+            {
+              type: "media",
+              key: "profileImage",
+              displayer: "Media",
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b0828d03b007002cc77195?alt=media",
+              },
+            },
             {
               type: "string",
               key: "name",
@@ -148,18 +154,6 @@ class Team8 extends Team {
               displayer: "Description",
               value: "",
             },
-            {
-              type: "media",
-              key: "profileImage",
-              displayer: "Media",
-              additionalParams: {
-                availableTypes: ["image"],
-              },
-              value: {
-                type: "image",
-                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b0828d03b007002cc77195?alt=media",
-              },
-            },
           ],
         },
         {
@@ -167,6 +161,15 @@ class Team8 extends Team {
           key: "card",
           displayer: "Card",
           value: [
+            {
+              type: "media",
+              key: "profileImage",
+              displayer: "Media",
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b082e503b007002cc771bb?alt=media",
+              },
+            },
             {
               type: "string",
               key: "name",
@@ -185,18 +188,6 @@ class Team8 extends Team {
               displayer: "Description",
               value: "",
             },
-            {
-              type: "media",
-              key: "profileImage",
-              displayer: "Media",
-              additionalParams: {
-                availableTypes: ["image"],
-              },
-              value: {
-                type: "image",
-                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b082e503b007002cc771bb?alt=media",
-              },
-            },
           ],
         },
         {
@@ -204,6 +195,15 @@ class Team8 extends Team {
           key: "card",
           displayer: "Card",
           value: [
+            {
+              type: "media",
+              key: "profileImage",
+              displayer: "Media",
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b0833903b007002cc771e4?alt=media",
+              },
+            },
             {
               type: "string",
               key: "name",
@@ -222,18 +222,6 @@ class Team8 extends Team {
               displayer: "Description",
               value: "",
             },
-            {
-              type: "media",
-              key: "profileImage",
-              displayer: "Media",
-              additionalParams: {
-                availableTypes: ["image"],
-              },
-              value: {
-                type: "image",
-                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b0833903b007002cc771e4?alt=media",
-              },
-            },
           ],
         },
         {
@@ -241,6 +229,15 @@ class Team8 extends Team {
           key: "card",
           displayer: "Card",
           value: [
+            {
+              type: "media",
+              key: "profileImage",
+              displayer: "Media",
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b0838203b007002cc771fe?alt=media",
+              },
+            },
             {
               type: "string",
               key: "name",
@@ -259,18 +256,6 @@ class Team8 extends Team {
               displayer: "Description",
               value: "",
             },
-            {
-              type: "media",
-              key: "profileImage",
-              displayer: "Media",
-              additionalParams: {
-                availableTypes: ["image"],
-              },
-              value: {
-                type: "image",
-                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b0838203b007002cc771fe?alt=media",
-              },
-            },
           ],
         },
         {
@@ -278,6 +263,15 @@ class Team8 extends Team {
           key: "card",
           displayer: "Card",
           value: [
+            {
+              type: "media",
+              key: "profileImage",
+              displayer: "Media",
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b0884803b007002cc77454?alt=media",
+              },
+            },
             {
               type: "string",
               key: "name",
@@ -296,18 +290,6 @@ class Team8 extends Team {
               displayer: "Description",
               value: "",
             },
-            {
-              type: "media",
-              key: "profileImage",
-              displayer: "Media",
-              additionalParams: {
-                availableTypes: ["image"],
-              },
-              value: {
-                type: "image",
-                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b0884803b007002cc77454?alt=media",
-              },
-            },
           ],
         },
         {
@@ -315,6 +297,15 @@ class Team8 extends Team {
           key: "card",
           displayer: "Card",
           value: [
+            {
+              type: "media",
+              key: "profileImage",
+              displayer: "Media",
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b0e2e803b007002cc79759?alt=media",
+              },
+            },
             {
               type: "string",
               key: "name",
@@ -332,18 +323,6 @@ class Team8 extends Team {
               key: "description",
               displayer: "Description",
               value: "",
-            },
-            {
-              type: "media",
-              key: "profileImage",
-              displayer: "Media",
-              additionalParams: {
-                availableTypes: ["image"],
-              },
-              value: {
-                type: "image",
-                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b0e2e803b007002cc79759?alt=media",
-              },
             },
           ],
         },
@@ -476,7 +455,7 @@ class Team8 extends Team {
                         <Base.VerticalContent className={this.decorateCSS("content-div")}>
                           {item.profileImage && (
                             <div className={this.decorateCSS("image-box")}>
-                              <Base.Media value={item.profileImage} className={this.decorateCSS("img")} />
+                              <Base.Media value={item.profileImage} className={`${this.decorateCSS("img")} ${item.profileImage?.type === "icon" && this.decorateCSS("has-icon")}`} />
                               {this.getPropValue("overlay") && <div className={this.decorateCSS("overlay")} />}
                             </div>
                           )}

@@ -44,13 +44,19 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
           object-fit: cover;
           position: relative;
 
-          .image-icon {
+          .inactive-icon,
+          .active-icon {
             position: absolute;
             top: var(--composer-gap-xs);
             right: var(--composer-gap-xs);
             z-index: 1;
             font-size: 2em;
             color: var(--composer-font-color-primary);
+
+            &.has-image-active,
+            &.has-image-inactive {
+              color: #ffffff;
+            }
           }
 
           .image-container {
