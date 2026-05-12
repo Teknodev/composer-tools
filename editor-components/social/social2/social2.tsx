@@ -71,16 +71,16 @@ class Social2 extends BaseSocial {
                                 },
                             },
                             {
-                                type: "string",
-                                key: "description",
-                                displayer: "Description",
-                                value: "🍀Acne safe skincare routine with CHANDO Himalaya Toner - Himalayan Essence Toner Essence - Rejuvenation Repairing Essence Cream - Time Frozen Aging Resistance Activating Essence Cream"
-                            },
-                            {
                                 type: "boolean",
                                 key: "overlay",
                                 displayer: "Overlay",
                                 value: false
+                            },
+                            {
+                                type: "string",
+                                key: "description",
+                                displayer: "Description",
+                                value: "🍀Acne safe skincare routine with CHANDO Himalaya Toner - Himalayan Essence Toner Essence - Rejuvenation Repairing Essence Cream - Time Frozen Aging Resistance Activating Essence Cream"
                             },
                             {
                                 type: "array",
@@ -210,16 +210,16 @@ class Social2 extends BaseSocial {
                                 },
                             },
                             {
-                                type: "string",
-                                key: "description",
-                                displayer: "Description",
-                                value: ""
-                            },
-                            {
                                 type: "boolean",
                                 key: "overlay",
                                 displayer: "Overlay",
                                 value: false
+                            },
+                            {
+                                type: "string",
+                                key: "description",
+                                displayer: "Description",
+                                value: ""
                             },
                             {
                                 type: "array",
@@ -349,16 +349,16 @@ class Social2 extends BaseSocial {
                                 },
                             },
                             {
-                                type: "string",
-                                key: "description",
-                                displayer: "Description",
-                                value: "Skincare Over 40: Achieve Porcelain Skin with This 3-Step Routine ft. Chando Himalaya! Want flawless, porcelain-like skin like the girls on Douyin? While we can’t be them, we can definitely get our skin looking and feeling just as smooth! Thanks to Chando Himalaya and its star ingredient HiMurchaSin, glowing skin is as easy as 1, 2, 3! @chandohimalaya_official #SkincareOver40 #PorcelainSkin #DouyinBeauty #ChandoHimalaya #GlassSkinGoals #AntiAgingRoutine #FlawlessSkin Comment SHOP below to receive a DM with the link to shop this post on my LTK ⬇ https://liketk.it/4UMpx #ltkbeauty #ltkstyletip #ltkover40"
-                            },
-                            {
                                 type: "boolean",
                                 key: "overlay",
                                 displayer: "Overlay",
                                 value: false
+                            },
+                            {
+                                type: "string",
+                                key: "description",
+                                displayer: "Description",
+                                value: "Skincare Over 40: Achieve Porcelain Skin with This 3-Step Routine ft. Chando Himalaya! Want flawless, porcelain-like skin like the girls on Douyin? While we can’t be them, we can definitely get our skin looking and feeling just as smooth! Thanks to Chando Himalaya and its star ingredient HiMurchaSin, glowing skin is as easy as 1, 2, 3! @chandohimalaya_official #SkincareOver40 #PorcelainSkin #DouyinBeauty #ChandoHimalaya #GlassSkinGoals #AntiAgingRoutine #FlawlessSkin Comment SHOP below to receive a DM with the link to shop this post on my LTK ⬇ https://liketk.it/4UMpx #ltkbeauty #ltkstyletip #ltkover40"
                             },
                             {
                                 type: "array",
@@ -488,16 +488,16 @@ class Social2 extends BaseSocial {
                                 },
                             },
                             {
-                                type: "string",
-                                key: "description",
-                                displayer: "Description",
-                                value: "One drop to zap that fatigue from your skin! Try CHANDO's Himalaya 3-step routine and let Himalayan yeast transform you from saggy to sassy! 🍃#chandohimalaya #FindYourBeauty #fallskincare #HiMurchaSin"
-                            },
-                            {
                                 type: "boolean",
                                 key: "overlay",
                                 displayer: "Overlay",
                                 value: false
+                            },
+                            {
+                                type: "string",
+                                key: "description",
+                                displayer: "Description",
+                                value: "One drop to zap that fatigue from your skin! Try CHANDO's Himalaya 3-step routine and let Himalayan yeast transform you from saggy to sassy! 🍃#chandohimalaya #FindYourBeauty #fallskincare #HiMurchaSin"
                             },
                             {
                                 type: "array",
@@ -627,16 +627,16 @@ class Social2 extends BaseSocial {
                                 },
                             },
                             {
-                                type: "string",
-                                key: "description",
-                                displayer: "Description",
-                                value: "Just tried the CHANDO Himalaya Green Tea Purifying Mask! 🧖‍♀️ It's so relaxing, even your hubby is considering a spa day. Who knew green tea could be this persuasive? #chandohimalaya #FindYourBeauty #fallskincare"
-                            },
-                            {
                                 type: "boolean",
                                 key: "overlay",
                                 displayer: "Overlay",
                                 value: false
+                            },
+                            {
+                                type: "string",
+                                key: "description",
+                                displayer: "Description",
+                                value: "Just tried the CHANDO Himalaya Green Tea Purifying Mask! 🧖‍♀️ It's so relaxing, even your hubby is considering a spa day. Who knew green tea could be this persuasive? #chandohimalaya #FindYourBeauty #fallskincare"
                             },
                             {
                                 type: "array",
@@ -766,16 +766,16 @@ class Social2 extends BaseSocial {
                                 },
                             },
                             {
-                                type: "string",
-                                key: "description",
-                                displayer: "Description",
-                                value: ""
-                            },
-                            {
                                 type: "boolean",
                                 key: "overlay",
                                 displayer: "Overlay",
                                 value: false
+                            },
+                            {
+                                type: "string",
+                                key: "description",
+                                displayer: "Description",
+                                value: ""
                             },
                             {
                                 type: "array",
