@@ -1,12 +1,12 @@
 import * as React from "react";
 import styles from "./breadcrumb5.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
-import { BaseBreadcrumb } from "../../EditorComponent";
+import { BaseBreadcrumb, TypeMediaInputValue } from "../../EditorComponent";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 
 type BreadcrumbItem = {
-    title: string;
-    icon: string;
+    title: JSX.Element;
+    icon: TypeMediaInputValue;
     navigateTo: string;
 };
 
@@ -23,30 +23,61 @@ class Breadcrumb5 extends BaseBreadcrumb {
                     key: "item",
                     displayer: "Item",
                     value: [
-            {
-              type: "string",
-              key: "title",
-              displayer: "Title",
-              value: "Home",
-            },
-            {
-              type: "media",
-              key: "icon",
-              displayer: "Icon",
-              additionalParams: {
-                availableTypes: ["icon"],
-              },
-              value: {
-                type: "icon",
-                name: "",
-              },
-            },
-            {
-              type: "page",
-              key: "navigateTo",
-              displayer: "Navigate To",
-              value: "",
-            },
+                        {
+                            type: "string",
+                            key: "title",
+                            displayer: "Title",
+                            value: "",
+                        },
+                        {
+                            type: "media",
+                            key: "icon",
+                            displayer: "Media",
+                            additionalParams: {
+                                availableTypes: ["image", "icon"],
+                            },
+                            value: {
+                                type: "icon",
+                                name: "AiFillHome",
+                            },
+                        },
+                        {
+                            type: "page",
+                            key: "navigateTo",
+                            displayer: "Navigate To",
+                            value: "",
+                        },
+                    ],
+                },
+                {
+                    type: "object",
+                    key: "item",
+                    displayer: "Item",
+                    value: [
+                        {
+                            type: "string",
+                            key: "title",
+                            displayer: "Title",
+                            value: "Current Page",
+                        },
+                        {
+                            type: "media",
+                            key: "icon",
+                            displayer: "Media",
+                            additionalParams: {
+                                availableTypes: ["image", "icon"],
+                            },
+                            value: {
+                                type: "icon",
+                                name: "",
+                            },
+                        },
+                        {
+                            type: "page",
+                            key: "navigateTo",
+                            displayer: "Navigate To",
+                            value: "",
+                        },
                     ],
                 },
             ],
@@ -59,40 +90,15 @@ class Breadcrumb5 extends BaseBreadcrumb {
         });
         this.addProp({
             type: "media",
-            key: "breadcrumbIcon",
-            displayer: "Breadcrumb Icon",
+            key: "separatorIcon",
+            displayer: "Separator Icon",
             additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["image", "icon"],
             },
             value: {
                 type: "icon",
                 name: "RxDividerVertical",
             },
-        });
-        this.addProp({
-            type: "object",
-            key: "currentPage",
-            displayer: "Current Page",
-            value: [
-                {
-                    type: "string",
-                    key: "title",
-                    displayer: "Title",
-                    value: "Current Page",
-                },
-                {
-                    type: "media",
-                    key: "icon",
-                    displayer: "Icon",
-                    additionalParams: {
-                        availableTypes: ["icon"],
-                    },
-                    value: {
-                        type: "icon",
-                        name: "",
-                    },
-                },
-            ],
         });
     }
 
@@ -103,58 +109,51 @@ class Breadcrumb5 extends BaseBreadcrumb {
     render() {
         const breadcrumbItems = this.castToObject<BreadcrumbItem[]>("breadcrumbItems") || [];
         const showBreadcrumb = this.getPropValue("showBreadcrumb");
-        const currentPage = this.castToObject<any>("currentPage");
-        const currentPageTitle = currentPage?.title || "";
-        const currentPageIcon = currentPage?.icon || "";
+        const separatorIconValue = this.getPropValue("separatorIcon");
+        const separatorIconExist = separatorIconValue && (separatorIconValue.type === "icon" ? separatorIconValue.name : separatorIconValue.url);
 
         return (
             <Base.Container className={this.decorateCSS("container")}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
                     {showBreadcrumb && (
                         <div className={this.decorateCSS("section")}>
-                            {breadcrumbItems.map((item: BreadcrumbItem, index: number) => (
-                                <div key={index} className={this.decorateCSS("breadcrumb-item")}>
-                                    {(this.castToString(item.title) || item.icon.name) && (
-                                        <ComposerLink path={item.navigateTo}>
-                                            <div className={this.decorateCSS("breadcrumb-link")}>
-                                                {item.icon.name && (
-                                                    <Base.Media
-                                                        value={item.icon}
-                                                        className={this.decorateCSS("icon")}
-                                                    />
-                                                )}
-                                                {this.castToString(item.title) && <Base.P className={this.decorateCSS("home-page-title")}>
-                                                    {item.title}
-                                                </Base.P>}
-                                            </div>
-                                        </ComposerLink>
-                                    )}
-                                </div>
-                            ))}
-                            {breadcrumbItems.length > 0 && (
-                                <div className={this.decorateCSS("current-page-wrapper")}>
-                                    <Base.Media
-                                        value={this.getPropValue("breadcrumbIcon")}
-                                        className={this.decorateCSS("icon")}
-                                    />
-                                    <div className={this.decorateCSS("current-page-container")}>
-                                        {currentPageIcon.name && (
+                            {breadcrumbItems.map((item: BreadcrumbItem, index: number) => {
+                                const itemTitleExist = this.castToString(item.title);
+                                const itemIconExist = item.icon && (item.icon.type === "icon" ? item.icon.name : item.icon.url);
+                                const isLast = index === breadcrumbItems.length - 1;
+                                return (
+                                    <div key={index} className={this.decorateCSS("breadcrumb-item")}>
+                                        {(itemTitleExist || itemIconExist) && (
+                                            <ComposerLink path={item.navigateTo}>
+                                                <div className={this.decorateCSS("breadcrumb-link")}>
+                                                    {itemIconExist && (
+                                                        <Base.Media
+                                                            value={item.icon}
+                                                            className={this.decorateCSS("icon")}
+                                                        />
+                                                    )}
+                                                    {itemTitleExist && (
+                                                        <Base.P className={this.decorateCSS("home-page-title")}>
+                                                            {item.title}
+                                                        </Base.P>
+                                                    )}
+                                                </div>
+                                            </ComposerLink>
+                                        )}
+                                        {!isLast && separatorIconExist && (
                                             <Base.Media
-                                                value={currentPageIcon}
-                                                className={this.decorateCSS("current-page-icon")}
+                                                value={separatorIconValue}
+                                                className={this.decorateCSS("icon")}
                                             />
                                         )}
-                                        {this.castToString(currentPageTitle) && <Base.P className={this.decorateCSS("current-page-title")}>
-                                            {currentPageTitle}
-                                        </Base.P>}
                                     </div>
-                                </div>
-                            )}
+                                );
+                            })}
                         </div>
                     )}
                 </Base.MaxContent>
             </Base.Container>
-        )
+        );
     }
 }
 

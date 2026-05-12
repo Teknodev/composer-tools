@@ -1,7 +1,8 @@
 @use "./utitilities/viewports.module.scss" as *;
 @import "./effects.scss";
 
-.h1{
+// Wrapped in :where() so AI-managed (.auto-generate-*) and design-tab class rules trivially win the cascade. Spec: design > theme.
+:where(.h1){
      font-size: calc(3.5 * var(--composer-font-size-md));
      line-height: 1.2em;
      letter-spacing: -0.02em;
@@ -22,7 +23,8 @@
      }
 }
 
-.h2{
+// Wrapped in :where() so AI-managed (.auto-generate-*) and design-tab class rules trivially win the cascade. Spec: design > theme.
+:where(.h2){
     font-size: calc(2.75 * var(--composer-font-size-md));
     line-height: 1.25em;
     letter-spacing: -0.01em;
@@ -43,7 +45,8 @@
     }
 }
 
-.h3{
+// Wrapped in :where() so AI-managed (.auto-generate-*) and design-tab class rules trivially win the cascade. Spec: design > theme.
+:where(.h3){
     font-size: calc(2 * var(--composer-font-size-md));
     line-height: 1.3em;
     letter-spacing: -0.01em;
@@ -63,7 +66,8 @@
     }
 }
 
-.h4{
+// Wrapped in :where() so AI-managed (.auto-generate-*) and design-tab class rules trivially win the cascade. Spec: design > theme.
+:where(.h4){
     font-size: calc(1.75 * var(--composer-font-size-md));
     line-height: 1.35em;
     letter-spacing: 0em;
@@ -83,7 +87,8 @@
     }
 }
 
-.h5{
+// Wrapped in :where() so AI-managed (.auto-generate-*) and design-tab class rules trivially win the cascade. Spec: design > theme.
+:where(.h5){
     font-size: calc(1.5 * var(--composer-font-size-md));
     line-height: 1.4em;
     letter-spacing: 0em;
@@ -103,7 +108,8 @@
     }
 }
 
-.h6{
+// Wrapped in :where() so AI-managed (.auto-generate-*) and design-tab class rules trivially win the cascade. Spec: design > theme.
+:where(.h6){
     font-size: calc(1.25 * var(--composer-font-size-md));
     line-height: 1.45em;
     letter-spacing: 0em;
@@ -123,7 +129,8 @@
     }
 }
 
-.p{
+// Wrapped in :where() so AI-managed (.auto-generate-*) and design-tab class rules trivially win the cascade. Spec: design > theme.
+:where(.p){
     line-height: 1.6em;
     font-size: calc(1 * var(--composer-font-size-md));
     margin-top: 0;
@@ -142,11 +149,14 @@
 }
 
 
+// Wrapped background-color (theme palette plumbing) in :where() so AI-managed (.auto-generate-*) and design-tab class rules trivially win the cascade. Spec: design > theme.
+:where(.container) {
+    background-color: var(--composer-html-background);
+}
 .container{
     position: relative;
     width: 100%;
     padding: 120px 60px;
-    background-color: var(--composer-html-background);
     container-type: inline-size;
 
     &.full {
@@ -298,7 +308,6 @@
     .sectionDescription{
         font-size: calc(1.125 * var(--composer-font-size-md));
         line-height: 1.6em;
-        color: var(--composer-tertiary-color);
         margin-bottom: 1.5em;
 
         @container (max-width: #{$composer-tablet-width}) {
@@ -309,36 +318,45 @@
             font-size: calc(1 * var(--composer-font-size-md)) !important;
         }
     }
-    
 
-    &.colorful{
-        .sectionTitle{
-            color: var(--composer-primary-color);
-        }
-        .sectionSubTitle{
-            color: var(--composer-primary-color);
-            &.badge{
-                background: color-mix(in srgb, var(--composer-primary-color), var(--composer-html-background) 80%);
-            }
-        }
-        .sectionDescription{
-            color: var(--composer-tertiary-color);
+
+}
+
+// Wrapped in :where() so AI-managed (.auto-generate-*) and design-tab class rules trivially win the cascade. Spec: design > theme.
+:where(.sectionDescription) {
+    color: var(--composer-tertiary-color);
+}
+
+// Wrapped in :where() so AI-managed (.auto-generate-*) and design-tab class rules trivially win the cascade. Spec: design > theme.
+:where(.container.colorful) {
+    :where(.sectionTitle){
+        color: var(--composer-primary-color);
+    }
+    :where(.sectionSubTitle){
+        color: var(--composer-primary-color);
+        &:where(.badge){
+            background: color-mix(in srgb, var(--composer-primary-color), var(--composer-html-background) 80%);
         }
     }
-    &.monochrome{
-        .sectionTitle{
+    :where(.sectionDescription){
+        color: var(--composer-tertiary-color);
+    }
+}
+
+// Wrapped in :where() so AI-managed (.auto-generate-*) and design-tab class rules trivially win the cascade. Spec: design > theme.
+:where(.container.monochrome) {
+    :where(.sectionTitle){
+        color: var(--composer-font-color-primary);
+    }
+    :where(.sectionSubTitle){
+        color: var(--composer-font-color-primary);
+        &:where(.badge){
             color: var(--composer-font-color-primary);
+            background: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 10%);
         }
-        .sectionSubTitle{
-            color: var(--composer-font-color-primary);
-            &.badge{
-                color: var(--composer-font-color-primary);
-                background: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 10%);
-            }
-        }
-        .sectionDescription{
-            color: var(--composer-tertiary-color);
-        }
+    }
+    :where(.sectionDescription){
+        color: var(--composer-tertiary-color);
     }
 }
 

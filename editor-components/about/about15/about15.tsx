@@ -5,7 +5,8 @@ import { INPUTS } from "../../../custom-hooks/input-templates";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 
 type ImageItemType = {
-    image: TypeMediaInputValue;
+    media: TypeMediaInputValue;
+    overlay: boolean;
 }
 
 class About15 extends BaseAbout {
@@ -21,21 +22,21 @@ class About15 extends BaseAbout {
 
         this.addProp({
             type: "array",
-            key: "images",
-            displayer: "Images",
+            key: "media",
+            displayer: "Media",
             additionalParams: {
                 maxElementCount: 3,
             },
             value: [
                 {
                     type: "object",
-                    key: "ImageItem",
-                    displayer: "Image Item",
+                    key: "mediaItem",
+                    displayer: "Media Item",
                     value: [
                         {
                             type: "media",
-                            key: "image",
-                            displayer: "Image",
+                            key: "media",
+                            displayer: "Media",
                             additionalParams: {
                                 availableTypes: ["image", "video"],
                             },
@@ -44,17 +45,23 @@ class About15 extends BaseAbout {
                                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/69368796496aa1002ca9ccab?alt=media",
                             },
                         },
+                        {
+                            type: "boolean",
+                            key: "overlay",
+                            displayer: "Overlay",
+                            value: false,
+                        },
                     ]
                 },
                 {
                     type: "object",
-                    key: "ImageItem",
-                    displayer: "Image Item",
+                    key: "mediaItem",
+                    displayer: "Media Item",
                     value: [
                         {
                             type: "media",
-                            key: "image",
-                            displayer: "Image",
+                            key: "media",
+                            displayer: "Media",
                             additionalParams: {
                                 availableTypes: ["image", "video"],
                             },
@@ -63,17 +70,23 @@ class About15 extends BaseAbout {
                                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/693687bb496aa1002ca9cda0?alt=media",
                             },
                         },
+                        {
+                            type: "boolean",
+                            key: "overlay",
+                            displayer: "Overlay",
+                            value: false,
+                        },
                     ]
                 },
                 {
                     type: "object",
-                    key: "ImageItem",
-                    displayer: "Image Item",
+                    key: "mediaItem",
+                    displayer: "Media Item",
                     value: [
                         {
                             type: "media",
-                            key: "image",
-                            displayer: "Image",
+                            key: "media",
+                            displayer: "Media",
                             additionalParams: {
                                 availableTypes: ["image", "video"],
                             },
@@ -82,17 +95,17 @@ class About15 extends BaseAbout {
                                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6937fc4a875e15002c5f02f2?alt=media",
                             },
                         },
+                        {
+                            type: "boolean",
+                            key: "overlay",
+                            displayer: "Overlay",
+                            value: false,
+                        },
                     ]
                 },
             ],
         });
 
-        this.addProp({
-            type: "boolean",
-            key: "overlay",
-            displayer: "Overlay",
-            value: false,
-        });
 
         this.addProp({
             type: "string",
@@ -135,9 +148,12 @@ class About15 extends BaseAbout {
         const titleExist = this.castToString(this.getPropValue("title"));
         const descriptionExist = this.castToString(this.getPropValue("description"));
         const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
-        const images = this.castToObject<ImageItemType[]>("images") || [];
-        const enableOverlay = this.getPropValue("overlay");
-        const hasImages = images.length > 0;
+        const media = this.castToObject<ImageItemType[]>("media") || [];
+        const validMedia = media.filter((item) => {
+            const m = item.media;
+            return m && (m.url || m.name);
+        });
+        const hasMedia = validMedia.length > 0;
         const hasContent = subtitleExist || titleExist || descriptionExist || buttons.length > 0;
 
         return (
@@ -145,7 +161,7 @@ class About15 extends BaseAbout {
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
                     <div className={this.decorateCSS("wrapper")}>
                         {hasContent && (
-                            <Base.VerticalContent className={`${this.decorateCSS("vertical-content")} ${!hasImages ? this.decorateCSS("full-width") : ""}`}>
+                            <Base.VerticalContent className={`${this.decorateCSS("vertical-content")} ${!hasMedia ? this.decorateCSS("full-width") : ""}`}>
                                 {subtitleExist && (<Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>)}
                                 {titleExist && (<Base.SectionTitle className={this.decorateCSS("title")}> {this.getPropValue("title")} </Base.SectionTitle>)}
                                 {descriptionExist && <Base.SectionDescription className={this.decorateCSS("description")}> {this.getPropValue("description")} </Base.SectionDescription>}
@@ -158,7 +174,7 @@ class About15 extends BaseAbout {
                                             return (
                                                 <ComposerLink key={`dw-btn-${index}`} path={buttonUrl}>
                                                     <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
-                                                        {item.icon && (<Base.Media className={this.decorateCSS("button-icon")} value={item.icon as any} />)}
+                                                        {item.icon && (<Base.Media className={this.decorateCSS("button-icon")} value={item.icon as unknown as TypeMediaInputValue} />)}
                                                         {buttonText && <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>}
                                                     </Base.Button>
                                                 </ComposerLink>
@@ -168,16 +184,14 @@ class About15 extends BaseAbout {
                                 )}
                             </Base.VerticalContent>
                         )}
-                        {hasImages && (
-                            <div className={this.decorateCSS("images-content")}>
-                                <div className={this.decorateCSS("images-wrapper")}>
-                                    {images.map((item: ImageItemType, index: number) => {
-                                        const imageSource = item.image;
-                                        if (!imageSource) return null;
+                        {hasMedia && (
+                            <div className={this.decorateCSS("media-content")}>
+                                <div className={this.decorateCSS("media-wrapper")}>
+                                    {validMedia.map((item: ImageItemType, index: number) => {
                                         return (
-                                            <div key={`img-${index}`} className={this.decorateCSS("image-box")}>
-                                                <Base.Media value={imageSource} className={this.decorateCSS("image")} />
-                                                {enableOverlay && (<div className={this.decorateCSS("overlay")}></div>)}
+                                            <div key={`img-${index}`} className={this.decorateCSS("media-box")}>
+                                                <Base.Media value={item.media} className={this.decorateCSS("media-item")} />
+                                                {item.overlay && (<div className={this.decorateCSS("overlay")}></div>)}
                                             </div>
                                         );
                                     })}
