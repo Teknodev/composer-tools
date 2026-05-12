@@ -187,7 +187,7 @@ class Faq3 extends BaseFAQ {
       displayer: "Active Icon",
       key: "active_icon",
       additionalParams: {
-        availableTypes: ["icon"],
+        availableTypes: ["icon", "image"],
       },
       value: {
         type: "icon",
@@ -200,7 +200,7 @@ class Faq3 extends BaseFAQ {
       displayer: "Inactive Icon",
       key: "inactive_icon",
       additionalParams: {
-        availableTypes: ["icon"],
+        availableTypes: ["icon", "image"],
       },
       value: {
         type: "icon",
@@ -258,6 +258,13 @@ class Faq3 extends BaseFAQ {
       ],
     });
 
+    this.addProp({
+      type: "boolean",
+      key: "line",
+      displayer: "Line",
+      value: true,
+    });
+
     this.setComponentState("selectCardIndex", null);
   }
 
@@ -289,6 +296,7 @@ class Faq3 extends BaseFAQ {
     const infoArray = this.castToObject<InfoArrayItem[]>("infoArray");
     const faqItems = this.castToObject<Faq[]>("faqItems");
     const showLine = this.getPropValue("showLine");
+    const lineEnabled = this.getPropValue("line");
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
@@ -327,21 +335,21 @@ class Faq3 extends BaseFAQ {
                         return (
                           <div
                             key={index}
-                            className={this.decorateCSS("card")}
+                            className={`${this.decorateCSS("card")}${!lineEnabled ? ` ${this.decorateCSS("no-line")}` : ""}`}
                             onClick={() => this.onItemClick(index)}
                           >
                             {(titleExist || descExist || item.index) && (
                               <div className={this.decorateCSS("top-card")}>
                                 <div className={this.decorateCSS("card-left")}>
                                   {item.index && (
-                                    <Base.H4 className={this.decorateCSS("question-index")}>
+                                    <Base.H6 className={this.decorateCSS("question-index")}>
                                       {item.index}
-                                    </Base.H4>
+                                    </Base.H6>
                                   )}
                                   {titleExist && (
-                                    <Base.H4 className={this.decorateCSS("card-subtitle")}>
+                                    <Base.H6 className={this.decorateCSS("card-subtitle")}>
                                       {item.title}
-                                    </Base.H4>
+                                    </Base.H6>
                                   )}
                                 </div>
                                 {(this.getPropValue("inactive_icon") || this.getPropValue("active_icon")) && (
@@ -375,9 +383,9 @@ class Faq3 extends BaseFAQ {
                     {infoArray.map((item: InfoArrayItem, index: number) => (
                       <Base.VerticalContent key={index} className={this.decorateCSS("info-items")}>
                         {this.castToString(item.title) && (
-                          <Base.H4 className={this.decorateCSS("title-info")}>
+                          <Base.H6 className={this.decorateCSS("title-info")}>
                             {item.title}
-                          </Base.H4>
+                          </Base.H6>
                         )}
                         {this.castToString(item.description) && (
                           <Base.P className={this.decorateCSS("description-info")}>

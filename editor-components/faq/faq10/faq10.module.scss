@@ -30,6 +30,18 @@
       gap: var(--composer-gap-lg);
     }
 
+    .buttons-wrapper {
+      display: flex;
+      justify-content: center;
+      gap: var(--composer-gap-sm);
+      flex-wrap: wrap;
+      .button {
+        .button-text {
+          content: "";
+        }
+      }
+    }
+
     .faq-col {
       display: flex;
       flex-direction: column;
@@ -45,7 +57,7 @@
         display: flex;
         align-items: center;
         border-radius: var(--composer-border-radius-sm);
-        padding: var(--composer-gap-sm) var(--composer-gap-md);
+        padding: var(--composer-gap-md);
         background: color-mix(
           in srgb,
           var(--composer-html-background),

@@ -14,36 +14,63 @@
 
       .card-page {
         .card {
-          display: flex;
-          gap: var(--composer-gap-md);
-          flex-direction: column;  
+          
           background-color: color-mix(in srgb, var(--composer-html-background),var(--composer-font-color-primary) 5%);   
-          border-radius: var(--composer-border-radius-sm);
-          padding: var(--composer-gap-xl);   
-          .icon-wrapper {
-            display: flex;
-            justify-content: center;
-            border-radius: 50%;
-            background: var(--composer-primary-color);
-            position: relative;
-            align-items: center;
-            width: fit-content;
-            padding: var(--composer-gap-sm);
-            .icon{
-              width: 30px;
-              height: 30px;
-              font-size: 2rem;
-              color: var(--composer-font-color-secondary);
+          border-radius: var(--composer-border-radius-md);
+          padding: var(--composer-gap-xl);
+          display: flex;
+          flex-direction: column;
+          gap: var(--composer-gap-md);
+          .card-content {
+            .icon-wrapper {
+              display: flex;
+              justify-content: center;
+              align-self: flex-start;
+              border-radius: 50%;
+              background: var(--composer-primary-color);
+              position: relative;
+              align-items: center;
+              width: fit-content;
+              padding: var(--composer-gap-sm);
+              &.no-icon-bg {
+                background: none;
+                border-radius: 0;
+                padding: 0;
+                .icon{
+                  color: var(--composer-primary-color);
+                }
+              }
+              .icon{
+                width: 32px;
+                height: 32px;
+                font-size: 2rem;
+                object-fit: contain;
+                color: var(--composer-font-color-secondary);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+              }
+            }
+            .card-title {
+              color: var(--composer-font-color-primary);
+              text-align: left;
+            }
+
+            .card-description {
+              color: var(--composer-tertiary-color);
+              text-align: left;
             }
           }
-          .card-title {
-            color: var(--composer-font-color-primary);
-            margin: 0px;
-          }
-
-          .card-description {
-            color: var(--composer-tertiary-color);
-            margin: 0px;
+          .card-buttons {
+            display: flex;
+            align-items: center;
+            gap: var(--composer-gap-sm);
+            flex-wrap: wrap;
+            .card-button {
+              .card-button-text {
+                content: "";
+              }
+            }
           }
         }
       }
@@ -57,18 +84,13 @@
         gap: var(--composer-gap-md);
         align-items: center;
         .content{
-          display: flex;
-          flex-direction: column;
           flex: 1;
-          gap: var(--composer-gap-lg);
           align-items: start;
           .down-title{
-            margin: 0;
             color: var(--composer-font-color-primary);
             text-align: start;
           }
           .down-description{
-            margin: 0;
             color: var(--composer-font-color-primary);
             text-align: start;
           }
@@ -77,7 +99,7 @@
         .buttons{
           display: flex;
           align-items: center;
-          gap: var(--composer-gap-md);
+          gap: var(--composer-gap-sm);
           flex-wrap: wrap;
           max-width: 50%;
           justify-content: end;
@@ -96,10 +118,47 @@
   }
 }
 
+@container (max-width: #{$composer-tablet-width}){
+  .container{
+    .max-content{
+      .page{
+        .card-page{
+          .card{
+            .card-content{
+              .icon-wrapper{
+                padding: var(--composer-gap-xs);
+                .icon{
+                  width: 24px;
+                  height: 24px;
+                  font-size: 1.5rem;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
 @container (max-width: #{$composer-phone-width}){
   .container{
     .max-content{
       .page{
+        .card-page{
+          .card{
+            .card-content{
+              .icon-wrapper{
+                padding: var(--composer-gap-xs);
+                .icon{
+                  width: 20px;
+                  height: 20px;
+                  font-size: 1.25rem;
+                }
+              }
+            }
+          }
+        }
         .down-container{
           flex-direction: column;
           gap: var(--composer-gap-xl);
