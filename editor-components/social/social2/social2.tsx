@@ -63,7 +63,7 @@ class Social2 extends BaseSocial {
                                 key: "media",
                                 displayer: "Media",
                                 additionalParams: {
-                                    availableTypes: ["video"],
+                                    availableTypes: ["video", "image"],
                                 },
                                 value: {
                                     type: "video",
@@ -202,7 +202,7 @@ class Social2 extends BaseSocial {
                                 key: "media",
                                 displayer: "Media",
                                 additionalParams: {
-                                    availableTypes: ["video"],
+                                    availableTypes: ["video", "image"],
                                 },
                                 value: {
                                     type: "video",
@@ -341,7 +341,7 @@ class Social2 extends BaseSocial {
                                 key: "media",
                                 displayer: "Media",
                                 additionalParams: {
-                                    availableTypes: ["video"],
+                                    availableTypes: ["video", "image"],
                                 },
                                 value: {
                                     type: "video",
@@ -480,7 +480,7 @@ class Social2 extends BaseSocial {
                                 key: "media",
                                 displayer: "Media",
                                 additionalParams: {
-                                    availableTypes: ["video"],
+                                    availableTypes: ["video", "image"],
                                 },
                                 value: {
                                     type: "video",
@@ -619,7 +619,7 @@ class Social2 extends BaseSocial {
                                 key: "media",
                                 displayer: "Media",
                                 additionalParams: {
-                                    availableTypes: ["video"],
+                                    availableTypes: ["video", "image"],
                                 },
                                 value: {
                                     type: "video",
@@ -758,7 +758,7 @@ class Social2 extends BaseSocial {
                                 key: "media",
                                 displayer: "Media",
                                 additionalParams: {
-                                    availableTypes: ["video"],
+                                    availableTypes: ["video", "image"],
                                 },
                                 value: {
                                     type: "video",
@@ -1011,28 +1011,25 @@ class Social2 extends BaseSocial {
         }
     }
     render() {
-        const sliderItems = this.castToObject<SlideItems[]>("sliderItems") || [];
+        const sliderItems = (this.castToObject<SlideItems[]>("sliderItems") || []).filter(item => item.media?.url);
         const sliderRef = this.getComponentState("slider-ref");
         const selectedIndex = this.getComponentState("selectedVideo") || 0;
 
 
         const sliderSettings = this.transformSliderValues(this.getPropValue("sliderSettings"));
+        const configuredSlidesToShow = sliderSettings.slidesToShow || 5;
+        const effectiveSlidesToShow = Math.min(sliderItems.length, configuredSlidesToShow);
 
         const settings = {
             ...sliderSettings,
+            slidesToShow: effectiveSlidesToShow,
+            infinite: sliderItems.length > configuredSlidesToShow,
             adaptiveHeight: false,
             responsive: [
                 {
-                    breakpoint: 1000,
-                    settings: {
-                        slidesToShow: 2,
-                        slidesToScroll: 1,
-                    },
-                },
-                {
                     breakpoint: 640,
                     settings: {
-                        slidesToShow: 1,
+                        slidesToShow: Math.min(sliderItems.length, 1),
                         slidesToScroll: 1,
                     },
                 },
@@ -1127,18 +1124,25 @@ class Social2 extends BaseSocial {
                                         return (
                                             <div key={index} className={this.decorateCSS("slider-item")}>
                                                 {item.media?.url && (
-                                                    <video
-                                                        key={`video-${index}`}
-                                                        id={`video-${index}`}
-                                                        data-video-index={index}
-                                                        autoPlay={true}
-                                                        muted={true}
-                                                        playsInline
-                                                        loop
-                                                        preload="auto"
-                                                        className={this.decorateCSS("video")}
-                                                        src={item.media.url}
-                                                    />
+                                                    item.media.type === "image"
+                                                        ? <img
+                                                            key={`image-${index}`}
+                                                            className={this.decorateCSS("video")}
+                                                            src={item.media.url}
+                                                            alt=""
+                                                        />
+                                                        : <video
+                                                            key={`video-${index}`}
+                                                            id={`video-${index}`}
+                                                            data-video-index={index}
+                                                            autoPlay={true}
+                                                            muted={true}
+                                                            playsInline
+                                                            loop
+                                                            preload="auto"
+                                                            className={this.decorateCSS("video")}
+                                                            src={item.media.url}
+                                                        />
                                                 )}
                                                 {item.overlay && (
                                                     <div className={this.decorateCSS("overlay-item")} />
@@ -1160,16 +1164,23 @@ class Social2 extends BaseSocial {
                             <div className={this.decorateCSS("modal-wrapper")} onClick={(e) => e.stopPropagation()}>
                                 <div className={this.decorateCSS("video-container")}>
                                     {sliderItems[selectedIndex].media?.url && (
-                                        <video
-                                            key={`${sliderItems[selectedIndex].media.url}-${selectedIndex}`}
-                                            autoPlay={true}
-                                            muted={false}
-                                            playsInline
-                                            loop
-                                            controls
-                                            className={this.decorateCSS("selected-video")}
-                                            src={sliderItems[selectedIndex].media.url}
-                                        />
+                                        sliderItems[selectedIndex].media.type === "image"
+                                            ? <img
+                                                key={`${sliderItems[selectedIndex].media.url}-${selectedIndex}`}
+                                                className={this.decorateCSS("selected-video")}
+                                                src={sliderItems[selectedIndex].media.url}
+                                                alt=""
+                                            />
+                                            : <video
+                                                key={`${sliderItems[selectedIndex].media.url}-${selectedIndex}`}
+                                                autoPlay={true}
+                                                muted={false}
+                                                playsInline
+                                                loop
+                                                controls
+                                                className={this.decorateCSS("selected-video")}
+                                                src={sliderItems[selectedIndex].media.url}
+                                            />
                                     )}
                                     {this.castToString(sliderItems[selectedIndex].description) && (
                                         <div className={this.decorateCSS("video-text-container")}>
@@ -1230,16 +1241,23 @@ class Social2 extends BaseSocial {
                         <div className={this.decorateCSS("modal-wrapper")} onClick={(e) => e.stopPropagation()}>
                             <div className={this.decorateCSS("video-container")}>
                                 {sliderItems[selectedIndex].media?.url && (
-                                    <video
-                                        key={`${sliderItems[selectedIndex].media.url}-${selectedIndex}`}
-                                        autoPlay={true}
-                                        muted={false}
-                                        playsInline
-                                        loop
-                                        controls
-                                        className={this.decorateCSS("selected-video")}
-                                        src={sliderItems[selectedIndex].media.url}
-                                    />
+                                    sliderItems[selectedIndex].media.type === "image"
+                                        ? <img
+                                            key={`${sliderItems[selectedIndex].media.url}-${selectedIndex}`}
+                                            className={this.decorateCSS("selected-video")}
+                                            src={sliderItems[selectedIndex].media.url}
+                                            alt=""
+                                        />
+                                        : <video
+                                            key={`${sliderItems[selectedIndex].media.url}-${selectedIndex}`}
+                                            autoPlay={true}
+                                            muted={false}
+                                            playsInline
+                                            loop
+                                            controls
+                                            className={this.decorateCSS("selected-video")}
+                                            src={sliderItems[selectedIndex].media.url}
+                                        />
                                 )}
                                 {this.castToString(sliderItems[selectedIndex].description) && (
                                     <div className={this.decorateCSS("video-text-container")}>
