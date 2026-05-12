@@ -44,7 +44,7 @@ class Team10 extends Team {
           key: "componentBackground",
           displayer: "Background Media",
           additionalParams: {
-            availableTypes: ["image"],
+            availableTypes: ["image", "video"],
           },
           value: {
             type: "image",
@@ -71,7 +71,7 @@ class Team10 extends Team {
       type: "string",
       key: "title",
       displayer: "Title",
-      value: "MANAGEMENT&STAFF",
+      value: "MANAGEMENT & STAFF",
     });
 
     this.addProp({
@@ -1082,8 +1082,8 @@ class Team10 extends Team {
                     </div>
                     {(teamMember.subtitle || teamMember.title) && (
                       <Base.VerticalContent className={this.decorateCSS("title-group")}>
-                        {teamMember.subtitle && <Base.H6 className={this.decorateCSS("member-subtitle")}>{teamMember.subtitle}</Base.H6>}
-                        {teamMember.title && <Base.H2 className={this.decorateCSS("member-title")} data-animation={hoverAnimation.join(" ")}>{teamMember.title}</Base.H2>}
+                        {teamMember.subtitle && <Base.P className={this.decorateCSS("member-subtitle")}>{teamMember.subtitle}</Base.P>}
+                        {teamMember.title && <Base.H3 className={this.decorateCSS("member-title")} data-animation={hoverAnimation.join(" ")}>{teamMember.title}</Base.H3>}
                       </Base.VerticalContent>
                     )}
                     {teamMember.features?.length > 0 && (

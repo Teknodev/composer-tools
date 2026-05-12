@@ -1017,17 +1017,20 @@ class Team11 extends Team {
     const settings = {
       ...userSettings,
       arrows: false,
-      dotsClass: this.decorateCSS("dots"),
+      dots: false,
+      beforeChange: (_oldIndex: number, newIndex: number) => {
+        this.setComponentState("currentSlide", newIndex);
+      },
       slidesToShow: cards.length < this.getPropValue("itemCount") ? cards.length : this.getPropValue("itemCount"),
       responsive: [
         {
           breakpoint: 1024,
           settings: {
-            slidesToShow: 2,
+            slidesToShow: 3,
           },
         },
         {
-          breakpoint: 500,
+          breakpoint: 640,
           settings: {
             slidesToShow: 1,
           },
@@ -1080,20 +1083,23 @@ class Team11 extends Team {
                         {this.getPropValue("overlay") && <div className={this.decorateCSS("overlay")} />}
                         {item.socials && item.socials.length > 0 && (
                           <div className={this.decorateCSS("icons-bar")} data-animation={(this.getPropValue("hoverAnimation") || []).join(" ")}>
-                            {item.socials.map((social: Social, indexIcon: number) => (
-                              <ComposerLink path={social.url} key={indexIcon}>
-                                <Base.Media
-                                  value={social.icon}
-                                  className={`${this.decorateCSS("icon")} ${social.icon.type === "image" && this.decorateCSS("has-image")}`}
-                                />
-                              </ComposerLink>
-                            ))}
+                            {item.socials.map((social: Social, indexIcon: number) => {
+                              const iconExists = social.icon && (social.icon.type === "icon" || social.icon.type === "image");
+                              return iconExists && (
+                                <ComposerLink path={social.url} key={indexIcon}>
+                                  <Base.Media
+                                    value={social.icon}
+                                    className={`${this.decorateCSS("icon")} ${social.icon?.type === "image" && this.decorateCSS("has-image")}`}
+                                  />
+                                </ComposerLink>
+                              );
+                            })}
                           </div>
                         )}
                       </div>
                       <Base.VerticalContent className={this.decorateCSS("text-group")}>
-                        {itemNameExist && <Base.H3 className={this.decorateCSS("item-name")}>{item.name}</Base.H3>}
-                        {itemPositionExist && <Base.H4 className={this.decorateCSS("item-position")}>{item.position}</Base.H4>}
+                        {itemNameExist && <Base.H4 className={this.decorateCSS("item-name")}>{item.name}</Base.H4>}
+                        {itemPositionExist && <Base.H5 className={this.decorateCSS("item-position")}>{item.position}</Base.H5>}
                         {itemCardDescriptionExist && <Base.P className={this.decorateCSS("card-description")}>{item.cardDescription}</Base.P>}
                       </Base.VerticalContent>
                     </Base.VerticalContent>
@@ -1104,27 +1110,40 @@ class Team11 extends Team {
           </ComposerSlider>
 
           {userSettings.arrows && (
-            <div className={cards.length > 3 ? this.decorateCSS("nav-buttons") : this.decorateCSS("visible-navs")}>
-              {this.getPropValue("prevIcon") && (
-                <div
-                  className={`${this.decorateCSS("prev_icon")}
-                ${this.getPropValue("prevIcon")?.type === "image" && this.decorateCSS("prev-icon-has-image")}`}
-                  onClick={() => {
-                    this.getComponentState("slider-ref")?.current?.slickPrev?.();
-                  }}
-                >
-                  <Base.Media value={this.getPropValue("prevIcon")} />
-                </div>
-              )}
-              {this.getPropValue("nextIcon") && (
-                <div
-                  className={`${this.decorateCSS("next_icon")}
-                ${this.getPropValue("nextIcon")?.type === "image" && this.decorateCSS("next-icon-has-image")}`}
-                  onClick={() => {
-                    this.getComponentState("slider-ref")?.current?.slickNext?.();
-                  }}
-                >
-                  <Base.Media value={this.getPropValue("nextIcon")} />
+            <div className={this.decorateCSS("navigation-container")}>
+              <div className={cards.length > 3 ? this.decorateCSS("nav-buttons") : this.decorateCSS("visible-navs")}>
+                {this.getPropValue("prevIcon") && (
+                  <div
+                    className={`${this.decorateCSS("prev_icon")}
+                  ${this.getPropValue("prevIcon")?.type === "image" && this.decorateCSS("prev-icon-has-image")}`}
+                    onClick={() => {
+                      this.getComponentState("slider-ref")?.current?.slickPrev?.();
+                    }}
+                  >
+                    <Base.Media value={this.getPropValue("prevIcon")} />
+                  </div>
+                )}
+                {this.getPropValue("nextIcon") && (
+                  <div
+                    className={`${this.decorateCSS("next_icon")}
+                  ${this.getPropValue("nextIcon")?.type === "image" && this.decorateCSS("next-icon-has-image")}`}
+                    onClick={() => {
+                      this.getComponentState("slider-ref")?.current?.slickNext?.();
+                    }}
+                  >
+                    <Base.Media value={this.getPropValue("nextIcon")} />
+                  </div>
+                )}
+              </div>
+              {userSettings.dots && (
+                <div className={this.decorateCSS("dots")}>
+                  {cards.map((_, index) => (
+                    <div
+                      key={index}
+                      className={`${this.decorateCSS("dot")} ${this.getComponentState("currentSlide") === index ? this.decorateCSS("active") : ""}`}
+                      onClick={() => this.getComponentState("slider-ref")?.current?.slickGoTo(index)}
+                    ></div>
+                  ))}
                 </div>
               )}
             </div>

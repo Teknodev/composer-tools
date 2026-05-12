@@ -692,7 +692,7 @@ class Team12 extends Team {
               )}
             </Base.VerticalContent>
           )}
-          <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount"), tablet: 2, phone: 1 }} className={this.decorateCSS("cards")}>
+          <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount"), tablet: 4, phone: 1 }} className={this.decorateCSS("cards")}>
             {(this.castToObject<TeamMember[]>("cards") || []).map((teamMember: TeamMember) => {
               const nameExist = this.castToString(teamMember.name);
               const positionExist = this.castToString(teamMember.position);
@@ -704,22 +704,25 @@ class Team12 extends Team {
                     {teamMember.profileImage && <Base.Media value={teamMember.profileImage} className={this.decorateCSS("image")} />}
                     {this.getPropValue("overlay") && <div className={this.decorateCSS("overlay")} />}
                     <Base.VerticalContent className={this.decorateCSS("info")}>
-                      {nameExist && <Base.H2 className={this.decorateCSS("name")}>{teamMember.name}</Base.H2>}
-                      {positionExist && <Base.H5 className={this.decorateCSS("position")}>{teamMember.position}</Base.H5>}
+                      {nameExist && <Base.H4 className={this.decorateCSS("name")}>{teamMember.name}</Base.H4>}
+                      {positionExist && <Base.H6 className={this.decorateCSS("position")}>{teamMember.position}</Base.H6>}
                       {cardDescriptionExist && <Base.P className={this.decorateCSS("card-description")}>{teamMember.cardDescription}</Base.P>}
                       {teamMember.socials && teamMember.socials.length > 0 && (
                         <Base.Row className={this.decorateCSS("platforms")}>
-                          {teamMember.socials.map((social: Socials, index: number) => (
-                            <div className={this.decorateCSS("platform")} key={index}>
-                              <ComposerLink path={social.url}>
-                                <Base.Media
-                                  value={social.icon}
-                                  className={`${this.decorateCSS("icon")} ${social.icon.type === "image" && this.decorateCSS("has-image")}`}
-                                  style={{ "--icon-index": index } as React.CSSProperties}
-                                ></Base.Media>
-                              </ComposerLink>
-                            </div>
-                          ))}
+                          {teamMember.socials.map((social: Socials, index: number) => {
+                            const iconExists = social.icon && (social.icon.type === "icon" || social.icon.type === "image");
+                            return iconExists && (
+                              <div className={this.decorateCSS("platform")} key={index}>
+                                <ComposerLink path={social.url}>
+                                  <Base.Media
+                                    value={social.icon}
+                                    className={`${this.decorateCSS("icon")} ${social.icon?.type === "image" && this.decorateCSS("has-image")}`}
+                                    style={{ "--icon-index": index } as React.CSSProperties}
+                                  ></Base.Media>
+                                </ComposerLink>
+                              </div>
+                            );
+                          })}
                         </Base.Row>
                       )}
                     </Base.VerticalContent>
