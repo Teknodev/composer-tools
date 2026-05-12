@@ -209,13 +209,13 @@ class Testimonials1Page extends Testimonials {
     const imageExist = this.getPropValue("componentBackground");
 
     return (
-      <Base.Container
-        className={this.decorateCSS("container")}
-        isFull={this.getPropValue("componentBackground") ? true : false}
-        style={{
-          backgroundImage: `url(${this.getPropValue("componentBackground")})`,
-        }}
-      >
+      <Base.Container className={`${this.decorateCSS("container")} ${imageExist ? this.decorateCSS("with-background") : ""}`}>
+        {imageExist && (
+          <Base.Media
+            value={{ type: "image", url: imageExist }}
+            className={this.decorateCSS("component-background")}
+          />
+        )}
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("wrapper")}>
             <div className={this.decorateCSS("content-wrapper")}>
@@ -225,16 +225,18 @@ class Testimonials1Page extends Testimonials {
                   {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
                   {descriptionExist && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
                   {hasValidButtons && (
-                    <div className={this.decorateCSS("button-container")}>
-                      {buttons.map((item: any, index: number) => {
-                        const buttonText = this.castToString(item.text);
-                        const iconExist = item.icon && (item.icon.type === "icon" ? item.icon.name : item.icon.url);
-                        if (!buttonText && !iconExist) return null;
+                    <div className={this.decorateCSS("button-wrapper")}>
+                      {buttons.map((button: INPUTS.CastedButton, index: number) => {
+                        const buttonTextExist = this.castToString(button.text);
+                        const buttonIconExist = button.icon && !!button.icon.name;
+
+                        if (!buttonTextExist && !buttonIconExist) return null;
+
                         return (
-                          <ComposerLink key={index} path={item.url}>
-                            <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
-                              {buttonText && <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>}
-                              {iconExist && <Base.Media className={this.decorateCSS("button-icon")} value={item.icon!} />}
+                          <ComposerLink key={index} path={button.url}>
+                            <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
+                              {buttonTextExist && <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>}
+                              {buttonIconExist && <Base.Media className={this.decorateCSS("button-icon")} value={button.icon!} />}
                             </Base.Button>
                           </ComposerLink>
                         );
