@@ -198,6 +198,7 @@
           flex: 0 0 70%;
           padding: 0 var(--composer-gap-md);
           height: 100%;
+          align-items: flex-start;
         }
 
         .no-image-box-text {
@@ -209,15 +210,18 @@
 
         .card-name {
           color: var(--composer-font-color-primary);
+          text-align: left;
         }
 
         .card-position {
           color: var(--composer-primary-color);
+          text-align: left;
         }
 
         .card-description {
           color: var(--composer-font-color-primary);
           flex-grow: 1;
+          text-align: left;
         }
 
         .icon-group {

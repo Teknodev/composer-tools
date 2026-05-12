@@ -644,7 +644,7 @@ class Team9 extends Team {
 
     this.addProp({
       type: "number",
-      key: "reverse",
+      key: "itemCountInRow",
       displayer: "Item Count In a Row",
       value: 4,
     });
@@ -710,7 +710,7 @@ class Team9 extends Team {
           )}
           {members && members.length > 0 && (
             <>
-              <Base.ListGrid gridCount={{ pc: this.getPropValue("reverse"), tablet: 2, phone: 1 }} className={this.decorateCSS("down-page")}>
+              <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCountInRow"), tablet: 4, phone: 1 }} className={this.decorateCSS("down-page")}>
                 {members.map((item: Card, index: number) => {
                   const personName = this.castToString(item.personName);
                   const personPosition = this.castToString(item.personPosition);
@@ -741,8 +741,8 @@ class Team9 extends Team {
                             })}
                           </div>
                         )}
-                        {personName && <Base.H4 className={this.decorateCSS("item-name")}>{item.personName}</Base.H4>}
-                        {personPosition && <Base.H5 className={this.decorateCSS("item-position")}>{item.personPosition}</Base.H5>}
+                        {personName && <Base.H5 className={this.decorateCSS("item-name")}>{item.personName}</Base.H5>}
+                        {personPosition && <Base.H6 className={this.decorateCSS("item-position")}>{item.personPosition}</Base.H6>}
                         {personDescription && <Base.P className={this.decorateCSS("item-description")}>{item.personDescription}</Base.P>}
                       </Base.VerticalContent>
                     </Base.VerticalContent>

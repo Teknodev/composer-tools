@@ -7,6 +7,7 @@
   margin: 0 auto;
   background-repeat: no-repeat;
   background-size: cover;
+  padding: 0 !important;
 
   .max-content {
     display: flex;
@@ -14,7 +15,7 @@
 
     .vertical-content {
       align-items: center;
-      padding: var(--composer-gap-lg);
+      padding: 120px 60px 20px;
       z-index: 2;
 
       .subtitle {
@@ -78,8 +79,19 @@
 
       .slider-parent {
         width: 100%;
+        position: relative;
 
         .carousel {
+          :global {
+            .slick-prev {
+              left: 20px;
+            }
+
+            .slick-next {
+              right: 20px;
+            }
+          }
+
           .slider-inner-div {
             .content-div {
               min-height: 300px;
@@ -242,7 +254,7 @@
   align-items: center;
   gap: var(--composer-gap-sm);
   list-style-type: none;
-  padding-left: 0;
+  padding: 0 0 60px 0;
 
   .currentPaging {
     background: white;
@@ -292,5 +304,79 @@
   100% {
     transform: rotate(360deg);
     border-top: 1px solid white;
+  }
+}
+
+@container (max-width: #{$composer-tablet-width}) {
+  .container {
+    .max-content {
+      .vertical-content {
+        padding: 100px 50px 20px;
+      }
+    }
+  }
+
+  .dots {
+    padding: 0 0 50px 0;
+  }
+
+  .container {
+    .max-content {
+      .slider-parent {
+        .nav-buttons {
+          .prev_icon {
+            left: -20px;
+            font-size: 2rem;
+          }
+
+          .next_icon {
+            right: -20px;
+            font-size: 2rem;
+          }
+        }
+
+        .carousel {
+          :global {
+            .slick-prev {
+              left: -20px;
+            }
+
+            .slick-next {
+              right: -20px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+  .container {
+    .max-content {
+      .vertical-content {
+        padding: 50px 30px 0;
+      }
+    }
+  }
+
+  .dots {
+    padding: 0 0 30px 0;
+  }
+
+  .container {
+    .max-content {
+      .slider-parent {
+        .carousel {
+          :global {
+
+            .slick-prev,
+            .slick-next {
+              display: none !important;
+            }
+          }
+        }
+      }
+    }
   }
 }

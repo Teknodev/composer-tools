@@ -88,7 +88,7 @@
           }
 
           .item-position {
-            color: var(--composer-font-color-secondary);
+            color: var(--composer-font-color-primary);
             transition: color 0.3s ease;
             text-align: left;
           }
@@ -209,6 +209,34 @@
     .max-content {
       .down-page {
         gap: var(--composer-gap-md);
+
+        .card {
+          .image-container {
+            .person-image {
+              height: 400px;
+              min-height: 400px;
+            }
+          }
+
+          .text-group {
+            .icons-bar {
+              gap: 8px;
+              .icon {
+                font-size: 1.2rem;
+                padding: 8px;
+              }
+            }
+          }
+
+          &[data-animation~="animate2"] {
+            .icons-bar {
+              .icon {
+                font-size: 1.8rem;
+                padding: 8px;
+              }
+            }
+          }
+        }
       }
 
       .slider {
@@ -232,12 +260,32 @@
       .card {
         .image-container {
           .person-image {
-            height: 300px;
+            height: 350px;
+            min-height: 350px;
           }
         }
 
-        .text-group .item-name {
-          font-size: 1.2rem;
+        .text-group {
+          .icons-bar {
+            gap: 6px;
+            .icon {
+              font-size: 1rem;
+              padding: 6px;
+            }
+          }
+
+          .item-name {
+            font-size: 1.2rem;
+          }
+        }
+
+        &[data-animation~="animate2"] {
+          .icons-bar {
+            .icon {
+              font-size: 1.5rem;
+              padding: 6px;
+            }
+          }
         }
       }
     }

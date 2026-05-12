@@ -688,7 +688,7 @@ class Team7 extends Team {
               {description && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
             </Base.VerticalContent>
           ) : null}
-          <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount"), tablet: 2, phone: 1 }} className={this.decorateCSS("down-page")}>
+          <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount"), tablet: 4, phone: 1 }} className={this.decorateCSS("down-page")}>
             {this.castToObject<Card[]>("cards").map((item: Card, indexCard: number) => {
               const itemName = this.castToString(item.name);
               const itemPosition = this.castToString(item.position);

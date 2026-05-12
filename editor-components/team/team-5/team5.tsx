@@ -735,7 +735,7 @@ class Team5 extends Team {
               </div>
             </Base.VerticalContent>
           )}
-          <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount"), tablet: 2, phone: 1 }} className={this.decorateCSS("container-bottom")}>
+          <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount"), tablet: 4, phone: 1 }} className={this.decorateCSS("container-bottom")}>
             {cards.map((item: Card, index: number) => {
               const itemName = this.castToString(item?.name);
               const itemPosition = this.castToString(item?.position);
