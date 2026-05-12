@@ -49,7 +49,9 @@ class Social3 extends BaseSocial {
       type: "array",
       key: "buttons",
       displayer: "Buttons",
-      value: [INPUTS.BUTTON("button", "Button", "", "", null, "", "Primary")],
+      value: [
+        INPUTS.BUTTON("button", "Button", "", "", null, "", "Primary"),
+      ],
     });
 
     this.addProp({
