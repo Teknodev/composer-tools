@@ -124,7 +124,7 @@
 
                         .like-and-commnet-container {
                             display: flex;
-                            gap: var(--composer-gap-lg);
+                            gap: var(--composer-gap-md);
 
                             .like-container,
                             .comment-container {
@@ -529,6 +529,44 @@
     .container {
         .max-content {
             gap: var(--composer-gap-md);
+
+            .gallery-grid {
+                .gallery-item {
+                    .overlay {
+                        .content-container {
+                            gap: var(--composer-gap-sm);
+                            padding: var(--composer-gap-sm);
+
+                            .like-and-commnet-container {
+                                .like-container,
+                                .comment-container {
+                                    gap: var(--composer-gap-xs);
+
+                                    .like-icon,
+                                    .comment-icon {
+                                        width: 1.25rem;
+                                        height: 1.25rem;
+
+                                        &.is-icon {
+                                            font-size: 1rem;
+                                        }
+                                    }
+
+                                    .like-number,
+                                    .comment-number {
+                                        font-size: 1rem;
+                                    }
+                                }
+                            }
+
+                            .description {
+                                font-size: 0.875rem;
+                                -webkit-line-clamp: 3;
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 
