@@ -184,7 +184,7 @@ class Social1 extends BaseSocial {
                                         { type: "media", key: "media", displayer: "Media", value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67e40a3cfb049c002cc41bc7?alt=media&timestamp=1742998077864" }, additionalParams: { availableTypes: ["image", "icon"] } },
                                         { type: "media", key: "icon", displayer: "Icon", value: { type: "icon", name: "MdNavigateNext" }, additionalParams: { availableTypes: ["icon", "image"] } },
                                         { type: "string", key: "name", displayer: "Name", value: "Kristen Gertie" },
-                                        { type: "string", key: "text", displayer: "Text", value: "Excellent platform for developers of all skill levels. The learning curve is very shallow." },
+                                        { type: "string", key: "text", displayer: "Text", value: "Excellent platform. Easy to pick up." },
                                         { type: "page", key: "url", displayer: "Navigate To", value: "" },
                                     ]
                                 },
@@ -196,7 +196,7 @@ class Social1 extends BaseSocial {
                                         { type: "media", key: "media", displayer: "Media", value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67e6c925fb049c002cc4b4cb?alt=media" }, additionalParams: { availableTypes: ["image", "icon"] } },
                                         { type: "media", key: "icon", displayer: "Icon", value: { type: "icon", name: "MdNavigateNext" }, additionalParams: { availableTypes: ["icon", "image"] } },
                                         { type: "string", key: "name", displayer: "Name", value: "McKinney" },
-                                        { type: "string", key: "text", displayer: "Text", value: "Highly recommended for any serious project." },
+                                        { type: "string", key: "text", displayer: "Text", value: "Highly recommended for any serious project. The tooling is mature, the API is clean, and the overall developer experience is genuinely one of the best I've encountered. We've shipped three major features in the time it would have taken us to set up our old stack." },
                                         { type: "page", key: "url", displayer: "Navigate To", value: "" },
                                     ]
                                 }
@@ -252,7 +252,7 @@ class Social1 extends BaseSocial {
             value: true
         })
         this.addProp(INPUTS.SLIDER_SETTINGS("sliderSettings", "Slider Settings", {
-            dots: true,
+            dots: false,
             infinite: true,
             speed: 500,
             autoplay: true,
