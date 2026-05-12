@@ -6,6 +6,20 @@ import ComposerLink from "../../../composer-base-components/Link/ComposerLinkPro
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "../../../custom-hooks/input-templates";
 
+type Item = {
+  description: React.JSX.Element;
+  name: React.JSX.Element;
+  icon: TypeMediaInputValue;
+  profileImage: TypeMediaInputValue;
+};
+
+type Button = {
+  text: React.JSX.Element;
+  url: string;
+  icon: TypeMediaInputValue;
+  type: string;
+};
+
 class Testimonials1Page extends Testimonials {
   constructor(props?: any) {
     super(props, styles);
@@ -14,21 +28,21 @@ class Testimonials1Page extends Testimonials {
       type: "string",
       key: "subtitle",
       displayer: "Subtitle",
-      value: "",
+      value: "Lorem",
     });
 
     this.addProp({
       type: "string",
       key: "title",
       displayer: "Title",
-      value: "",
+      value: "Lorem Ipsum",
     });
 
     this.addProp({
       type: "string",
       key: "description",
       displayer: "Description",
-      value: "",
+      value: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
     });
 
     this.addProp({
@@ -36,15 +50,28 @@ class Testimonials1Page extends Testimonials {
       key: "buttons",
       displayer: "Buttons",
       value: [
-        INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+        INPUTS.BUTTON("button", "Button", "Lorem", "", null, null, "Primary"),
       ],
     });
 
     this.addProp({
-      type: "image",
+      type: "media",
       key: "componentBackground",
       displayer: "Background Image",
-      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6729d54e7acba6002c5e6e52?alt=media&timestamp=1730794845964",
+      additionalParams: {
+        availableTypes: ["image"],
+      },
+      value: {
+        type: "image",
+        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6729d54e7acba6002c5e6e52?alt=media&timestamp=1730794845964",
+      },
+    });
+
+    this.addProp({
+      type: "boolean",
+      key: "overlayActive",
+      displayer: "Overlay Active",
+      value: false,
     });
 
     this.addProp({
@@ -59,7 +86,7 @@ class Testimonials1Page extends Testimonials {
           value: [
             {
               type: "string",
-              key: "longtext",
+              key: "description",
               displayer: "Review Text",
               value:
                 "I really like the clean and simple aesthetic of flat design. It's great for creating a modern and minimal look, and it also works well for responsive design since it's easy to adapt to different screen sizes. Plus, the lack of textures and gradients makes it easier to focus on the content itself.",
@@ -71,10 +98,16 @@ class Testimonials1Page extends Testimonials {
               value: "Jerrie Corinna",
             },
             {
-              type: "icon",
-              key: "icons",
+              type: "media",
+              key: "icon",
               displayer: "Icon",
-              value: "RiDoubleQuotesL",
+              additionalParams: {
+                availableTypes: ["icon", "image"],
+              },
+              value: {
+                type: "icon",
+                name: "RiDoubleQuotesL",
+              },
             },
             {
               type: "media",
@@ -97,7 +130,7 @@ class Testimonials1Page extends Testimonials {
           value: [
             {
               type: "string",
-              key: "longtext",
+              key: "description",
               displayer: "Review Text",
               value: "This product has changed my life! It's incredibly useful and packed with creative features. I would highly recommend it to everyone!",
             },
@@ -108,10 +141,16 @@ class Testimonials1Page extends Testimonials {
               value: "Kevin Corinna",
             },
             {
-              type: "icon",
-              key: "icons",
+              type: "media",
+              key: "icon",
               displayer: "Icon",
-              value: "RiDoubleQuotesL",
+              additionalParams: {
+                availableTypes: ["icon", "image"],
+              },
+              value: {
+                type: "icon",
+                name: "RiDoubleQuotesL",
+              },
             },
             {
               type: "media",
@@ -134,7 +173,7 @@ class Testimonials1Page extends Testimonials {
           value: [
             {
               type: "string",
-              key: "longtext",
+              key: "description",
               displayer: "Review Text",
               value: "This product has changed my life! It's incredibly useful and packed with creative features. I would highly recommend it to everyone!",
             },
@@ -145,10 +184,16 @@ class Testimonials1Page extends Testimonials {
               value: "Kevin Corinna",
             },
             {
-              type: "icon",
-              key: "icons",
+              type: "media",
+              key: "icon",
               displayer: "Icon",
-              value: "RiDoubleQuotesL",
+              additionalParams: {
+                availableTypes: ["icon", "image"],
+              },
+              value: {
+                type: "icon",
+                name: "RiDoubleQuotesL",
+              },
             },
             {
               type: "media",
@@ -184,8 +229,8 @@ class Testimonials1Page extends Testimonials {
     const subtitleExist = this.castToString(this.getPropValue("subtitle"));
     const titleExist = this.castToString(this.getPropValue("title"));
     const descriptionExist = this.castToString(this.getPropValue("description"));
-    const buttons = this.castToObject<any[]>("buttons");
-    const hasValidButtons = buttons.some((btn: any) => {
+    const buttons = this.castToObject<Button[]>("buttons");
+    const hasValidButtons = buttons.some((btn: Button) => {
       const buttonText = this.castToString(btn.text);
       const iconExist = btn.icon && (btn.icon.type === "icon" ? btn.icon.name : btn.icon.url);
       return buttonText || iconExist;
@@ -201,34 +246,49 @@ class Testimonials1Page extends Testimonials {
       autoplay: true,
       autoplaySpeed: 3000,
       slidesToShow: 1,
-      beforeChange: (oldIndex: number, nextIndex: number) => {
+      beforeChange: (_oldIndex: number, nextIndex: number) => {
         this.setComponentState("active_index", nextIndex);
       },
     };
 
-    const imageExist = this.getPropValue("componentBackground");
+    const bgMedia = this.getPropValue("componentBackground") as TypeMediaInputValue;
+    const imageExist = bgMedia && bgMedia.url;
+    const overlayActive = this.getPropValue("overlayActive");
 
     return (
       <Base.Container className={`${this.decorateCSS("container")} ${imageExist ? this.decorateCSS("with-background") : ""}`}>
         {imageExist && (
           <Base.Media
-            value={{ type: "image", url: imageExist }}
+            value={bgMedia}
             className={this.decorateCSS("component-background")}
           />
         )}
+        {overlayActive && imageExist && <div className={this.decorateCSS("overlay")} />}
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("wrapper")}>
             <div className={this.decorateCSS("content-wrapper")}>
               {hasAnyTopContent && (
                 <Base.VerticalContent className={this.decorateCSS("top-content")}>
-                  {subtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
-                  {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
-                  {descriptionExist && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
+                  {subtitleExist && (
+                    <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                      {this.getPropValue("subtitle")}
+                    </Base.SectionSubTitle>
+                  )}
+                  {titleExist && (
+                    <Base.SectionTitle className={this.decorateCSS("title")}>
+                      {this.getPropValue("title")}
+                    </Base.SectionTitle>
+                  )}
+                  {descriptionExist && (
+                    <Base.SectionDescription className={this.decorateCSS("description")}>
+                      {this.getPropValue("description")}
+                    </Base.SectionDescription>
+                  )}
                   {hasValidButtons && (
                     <div className={this.decorateCSS("button-wrapper")}>
-                      {buttons.map((button: INPUTS.CastedButton, index: number) => {
+                      {buttons.map((button: Button, index: number) => {
                         const buttonTextExist = this.castToString(button.text);
-                        const buttonIconExist = button.icon && !!button.icon.name;
+                        const buttonIconExist = button.icon && (button.icon.type === "icon" ? button.icon.name : button.icon.url);
 
                         if (!buttonTextExist && !buttonIconExist) return null;
 
@@ -245,22 +305,38 @@ class Testimonials1Page extends Testimonials {
                   )}
                 </Base.VerticalContent>
               )}
-              <div className={`${this.decorateCSS("content")} ${!imageExist && this.decorateCSS("content-no-image")}`}>
+              <div className={this.decorateCSS("content")}>
                 <ComposerSlider {...settings} ref={this.getComponentState("slider-ref")}>
-                  {this.castToObject<any>("items").map((item: any, index: number) => (
-                    <div className={this.decorateCSS("items")}>
-                      {item.icons && <Base.Icon name={item.icons} propsIcon={{ className: `${this.decorateCSS("icons")} ${!imageExist && this.decorateCSS("icons-no-image")}` }} />}
-                      {this.castToString(item.longtext) && <div className={`${this.decorateCSS("longtext")} ${!imageExist && this.decorateCSS("longtext-no-image")}`}>{item.longtext}</div>}
-                      {this.castToString(item.name) && <div className={`${this.decorateCSS("name")} ${!imageExist && this.decorateCSS("name-no-image")}`}>{item.name}</div>}
-                    </div>
-                  ))}
+                  {this.castToObject<Item[]>("items").map((item: Item, index: number) => {
+                    const iconExist = item.icon && (item.icon.type === "icon" ? item.icon.name : item.icon.url);
+                    return (
+                      <div key={index} className={this.decorateCSS("items")}>
+                        {iconExist && <Base.Media value={item.icon} className={this.decorateCSS("icon")} />}
+                        {this.castToString(item.description) && (
+                          <div className={this.decorateCSS("description")}>{item.description}</div>
+                        )}
+                        {this.castToString(item.name) && (
+                          <div className={this.decorateCSS("name")}>{item.name}</div>
+                        )}
+                      </div>
+                    );
+                  })}
                 </ComposerSlider>
                 <div className={this.decorateCSS("images")}>
-                  {this.castToObject<any>("items").map((item: any, itemIndex: number) => {
+                  {this.castToObject<Item[]>("items").map((item: Item, itemIndex: number) => {
                     const isActive = this.getComponentState("active_index") === itemIndex;
                     return (
-                      <div className={this.decorateCSS("image-container")} onClick={() => this.onImageClick(itemIndex)}>
-                        {item.profileImage && <Base.Media value={item.profileImage as TypeMediaInputValue} className={`${this.decorateCSS("image")} ${isActive && this.decorateCSS("active")}`} />}
+                      <div
+                        key={itemIndex}
+                        className={this.decorateCSS("image-container")}
+                        onClick={() => this.onImageClick(itemIndex)}
+                      >
+                        {item.profileImage && (
+                          <Base.Media
+                            value={item.profileImage}
+                            className={`${this.decorateCSS("image")} ${isActive ? this.decorateCSS("active") : ""}`}
+                          />
+                        )}
                       </div>
                     );
                   })}

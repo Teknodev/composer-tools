@@ -9,6 +9,13 @@
     z-index: 0;
     object-fit: cover;
   }
+  .overlay {
+    position: absolute;
+    inset: 0;
+    background-color: var(--composer-overlay-color);
+    pointer-events: none;
+    z-index: 1;
+  }
   &.with-background,
   &.center {
     .top-content {
@@ -34,6 +41,9 @@
         text-align: center !important;
         justify-content: center !important;
       }
+      .content .items .description {
+        color: black !important;
+      }
       .subtitle {
         margin: 0 !important;
         padding: 0 !important;
@@ -49,6 +59,8 @@
   .max-content {
     display: flex;
     gap: var(--composer-gap-xl);
+    position: relative;
+    z-index: 2;
     .wrapper {
       width: 100%;
       .content-wrapper {
@@ -77,13 +89,11 @@
 
 
         .content {
+          width: 40%;
           display: flex;
           flex-direction: column;
-          gap: var(--composer-gap-xl);
+          gap: var(--composer-gap-lg);
 
-          &.content-no-image {
-            width: 100%;
-          }
           > div {
             > div {
               > div {
@@ -99,33 +109,28 @@
               }
             }
           }
+
           .items {
             display: flex !important;
             flex-direction: column;
             gap: var(--composer-gap-md);
             align-items: center;
-            .icons {
+
+            .icon {
               font-size: 3rem;
-              border-radius: 50%;
-              display: inline-block;
+              border-radius: var(--composer-border-radius-full);
+              display: inline-flex;
+              align-items: center;
+              justify-content: center;
               padding: var(--composer-gap-sm);
               background-color: #d39121;
               color: white;
-
-              &.icons-no-image {
-                color: var(--composer-font-color-secondary);
-                background-color: var(--composer-primary-color);
-              }
             }
 
-            .longtext {
+            .description {
               font-size: 1.5rem;
               text-align: center;
-              color: black;
-
-              &.longtext-no-image {
-                color: var(--composer-font-color-primary);
-              }
+              color: var(--composer-tertiary-color);
             }
 
             .name {
@@ -133,12 +138,9 @@
               font-size: 1.5rem;
               text-align: center;
               color: #d39121;
-
-              &.name-no-image {
-                color: var(--composer-primary-color);
-              }
             }
           }
+
           .images {
             display: flex;
             flex-wrap: wrap;
@@ -160,9 +162,6 @@
             }
           }
         }
-        .content {
-          width: 30%;
-        }
       }
     }
   }
@@ -170,7 +169,6 @@
 
 @container (max-width: #{$composer-tablet-width}) {
   .container {
-    background-size: cover;
     .max-content {
       .wrapper {
         .content-wrapper {
@@ -194,7 +192,6 @@
 
 @container (max-width: #{$composer-phone-width}) {
   .container {
-    background-size: cover;
     .max-content {
       .wrapper {
         .content-wrapper {
