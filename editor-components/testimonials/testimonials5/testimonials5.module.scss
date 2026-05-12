@@ -28,6 +28,14 @@
               color: white;
             }
           }
+
+          .top-description,
+          .button-container,
+          .button,
+          .button-text,
+          .button-icon {
+            content: "";
+          }
         }
         .arrow {
           display: flex;
