@@ -1,4 +1,5 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+
 .container {
   .maxContent {
     display: flex;
@@ -7,10 +8,21 @@
       display: flex;
       flex-direction: column;
       gap: var(--composer-gap-xl);
-      .title {
+
+      .top-content {
         width: 100%;
-        margin: 0px;
+
+        .subtitle,
+        .title,
+        .description,
+        .button-container,
+        .button,
+        .button-text,
+        .button-icon {
+          content: "";
+        }
       }
+
       .content {
         width: 100%;
         display: flex;
@@ -39,15 +51,21 @@
           transform: translateY(-50%);
           display: flex;
           align-items: center;
+          justify-content: center;
           z-index: 1;
           background-color: transparent;
-          border: none;
-          width: var(--composer-gap-lg);
-          height: var(--composer-gap-lg);
           border: 1px solid var(--composer-font-color-primary);
           border-radius: 50%;
-          justify-content: center;
+          width: var(--composer-gap-lg);
+          height: var(--composer-gap-lg);
           color: var(--composer-font-color-primary);
+          cursor: pointer;
+          padding: 0px;
+
+          .arrow {
+            width: var(--composer-gap-md);
+            height: var(--composer-gap-md);
+          }
         }
         .prevArrow {
           left: 0;
@@ -55,6 +73,7 @@
         .nextArrow {
           right: 0;
         }
+
         > div {
           width: 100%;
           > div {
@@ -72,6 +91,7 @@
             }
           }
         }
+
         .card {
           background: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
           border-radius: var(--composer-border-radius-md);
@@ -81,6 +101,7 @@
           gap: var(--composer-gap-md);
           margin-bottom: var(--composer-gap-md);
           height: 100%;
+
           .topContainer {
             display: flex;
             gap: var(--composer-gap-sm);
@@ -103,16 +124,17 @@
               }
             }
           }
+
           .description {
             color: var(--composer-font-color-primary);
           }
+
           .bottomContainer {
             display: flex;
             gap: var(--composer-gap-sm);
             .star {
               display: flex;
               gap: var(--composer-gap-xs);
-
               .icon {
                 color: var(--composer-primary-color);
                 font-size: 1rem;
@@ -130,10 +152,10 @@
           }
         }
       }
+
       .contentPaddingLeft {
         padding-left: calc(var(--composer-gap-xl) * 3);
       }
-
       .contentPaddingRight {
         padding-right: calc(var(--composer-gap-xl) * 3);
       }
@@ -171,6 +193,7 @@
     }
   }
 }
+
 @container (max-width: #{$composer-phone-width}) {
   .container {
     .maxContent {
@@ -178,8 +201,8 @@
         .content {
           .prevArrow,
           .nextArrow {
-            width: 30px;
-            height: 30px;
+            width: calc(var(--composer-gap-lg) + var(--composer-gap-sm));
+            height: calc(var(--composer-gap-lg) + var(--composer-gap-sm));
           }
           .card {
             padding: var(--composer-gap-sm);
