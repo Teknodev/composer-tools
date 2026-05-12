@@ -1,9 +1,10 @@
+@use '../../../composer-base-components/base/utitilities/viewports.module.scss' as *;
 .container {
     .max-content {
         .page {
             display: flex;
             flex-direction: column;
-            gap: var(--composer-gap-md);
+            gap: var(--composer-gap-lg);
             .up-page {
                 .title, .description, .subtitle {
                     content: "";
@@ -21,7 +22,7 @@
                         var(--composer-html-background),
                         var(--composer-font-color-primary) 5%
                       );
-                      padding: var(--composer-gap-lg);
+                      padding: var(--composer-gap-md);
                       position: relative;
                       display: flex;
                       align-items: center;
@@ -46,6 +47,7 @@
                             .card-title {
                                 color: var(--composer-font-color-primary);
                                 transition: color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+                                text-align: left;
                                 &.active{
                                    color: var(--composer-primary-color); 
                                 }
@@ -57,9 +59,10 @@
                             justify-content: center;            
                             .icon {
                                 color: var(--composer-font-color-primary);
-                                width: 16px;
-                                height: 16px;
-                                font-size: 1rem;
+                                width: 24px;
+                                height: 24px;
+                                font-size: 1.25rem;
+                                object-fit: contain;
                             }
                         }
                     }
@@ -75,6 +78,7 @@
                             opacity: 0;
                             transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
                             padding: var(--composer-gap-md) var(--composer-gap-md) var(--composer-gap-md) 0px;
+                            text-align: left;
                             &.active {
                                 opacity: 1;
                             }
@@ -94,5 +98,25 @@
             }
         }
 
+    }
+}
+
+@container (max-width: #{$composer-phone-width}){
+    .container{
+        .max-content{
+            .page{
+                .down-page{
+                    .card{
+                        .child-container{
+                            .icon-wrapper{
+                                .icon{
+                                    font-size: 1rem;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 }

@@ -38,7 +38,7 @@ class Faq7 extends BaseFAQ {
       key: "iconInactive",
       displayer: "Inactive Icon",
       additionalParams: {
-        availableTypes: ["icon"],
+        availableTypes: ["icon", "image"],
       },
       value: {
         type: "icon",
@@ -50,7 +50,7 @@ class Faq7 extends BaseFAQ {
       key: "iconActive",
       displayer: "Active Icon",
       additionalParams: {
-        availableTypes: ["icon"],
+        availableTypes: ["icon", "image"],
       },
       value: {
         type: "icon",
@@ -200,7 +200,7 @@ class Faq7 extends BaseFAQ {
     this.addProp({
       type: "boolean",
       key: "line",
-      displayer: "Enable Line",
+      displayer: "Line",
       value: true,
     })
 
@@ -258,7 +258,7 @@ class Faq7 extends BaseFAQ {
                           <div className={this.decorateCSS("child-container")}>
                             {this.castToString(card.title) && (
                               <div className={this.decorateCSS("card-title-wrapper")}>
-                                <Base.H4 className={`${this.decorateCSS("card-title")} ${isActive ? this.decorateCSS("active") : ""}`}>{card.title}</Base.H4>
+                                <Base.H6 className={`${this.decorateCSS("card-title")} ${isActive ? this.decorateCSS("active") : ""}`}>{card.title}</Base.H6>
                               </div>
                             )}
                             {(this.getPropValue("iconActive") || this.getPropValue("iconInactive")) && (
