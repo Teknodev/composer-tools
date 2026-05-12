@@ -5,10 +5,17 @@
       display: flex;
       flex-direction: column;
       gap: var(--composer-gap-md);
-      .up-page {
+      .top-content {
         width: 100%;
-        .title {
-          margin: 0px;
+
+        .subtitle,
+        .title,
+        .description,
+        .button-container,
+        .button,
+        .button-text,
+        .button-icon {
+          content: "";
         }
       }
       .down-page {
@@ -29,8 +36,8 @@
             }
 
             .img {
-              width: 70px;
-              height: 70px;
+              width: calc(var(--composer-gap-xl) + var(--composer-gap-lg));
+              height: calc(var(--composer-gap-xl) + var(--composer-gap-lg));
               border-radius: 50%;
               object-fit: cover;
             }
@@ -40,21 +47,21 @@
               align-items: baseline;
               gap: var(--composer-gap-xs);
 
-              .title {
+              .card-title {
                 color: var(--composer-font-color-primary);
                 margin: 0;
               }
 
-              .subtitle {
+              .card-subtitle {
                 color: var(--composer-tertiary-color);
               }
             }
 
-            &.active .text .title {
+            &.active .text .card-title {
               color: var(--composer-font-color-secondary);
             }
 
-            &.active .text .subtitle {
+            &.active .text .card-subtitle {
               color: var(--composer-font-color-secondary);
             }
           }
@@ -77,8 +84,8 @@
           .right-icon {
             color: var(--composer-primary-color);
             position: absolute;
-            width: 40px;
-            height: 40px;
+            width: calc(var(--composer-gap-lg) + var(--composer-gap-sm));
+            height: calc(var(--composer-gap-lg) + var(--composer-gap-sm));
           }
 
           .left-icon {
@@ -125,8 +132,8 @@
             .card-inner {
               padding: var(--composer-gap-sm);
               .img {
-                width: 60px;
-                height: 60px;
+                width: calc(var(--composer-gap-xl) + var(--composer-gap-md));
+                height: calc(var(--composer-gap-xl) + var(--composer-gap-md));
               }
             }
           }
