@@ -11,7 +11,7 @@
     height: 100%;
     z-index: -1;
     pointer-events: none;
-    
+
     :global(img),
     :global(video) {
       width: 100%;
@@ -23,7 +23,7 @@
   .max-content {
     display: flex;
     flex-direction: column;
-    gap: var(--composer-gap-md);
+    gap: var(--composer-gap-xl);
 
     .top-content {
       width: 100%;
@@ -43,7 +43,6 @@
       .card {
         display: flex;
         flex-direction: column;
-        gap: var(--composer-gap-xs);
         align-items: center;
 
         .stars {
@@ -58,13 +57,18 @@
         }
 
         .item-text {
+          width: 100%;
           color: var(--composer-font-color-primary);
         }
 
-        .image {
+        .author-container {
           align-items: center;
-          max-width: 30%;
-          border-radius: var(--composer-border-radius-xs);
+
+          .author-image {
+            width: 15rem;
+            height: 10rem;
+            border-radius: var(--composer-border-radius-sm);
+          }
         }
       }
     }
@@ -76,9 +80,7 @@
     .max-content {
       .card-container {
         .card {
-          .image {
-            max-width: 50%;
-          }
+          content: "";
         }
       }
     }
@@ -88,11 +90,10 @@
 @container (max-width: #{$composer-phone-width}) {
   .container {
     .max-content {
+      gap: var(--composer-gap-lg);
       .card-container {
         .card {
-          .image {
-            max-width: 80%;
-          }
+          content: "";
         }
       }
     }

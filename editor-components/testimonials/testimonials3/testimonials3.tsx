@@ -9,7 +9,9 @@ import ComposerLink from "../../../composer-base-components/Link/ComposerLinkPro
 type Item = {
   star: number;
   text: React.JSX.Element;
-  image: TypeMediaInputValue;
+  author: {
+    image: TypeMediaInputValue;
+  };
 };
 
 type Button = {
@@ -55,7 +57,7 @@ class Testimonials3Page extends Testimonials {
     });
     this.addProp({
       type: "media",
-      key: "star_icon",
+      key: "starIcon",
       displayer: "Icon",
       additionalParams: { availableTypes: ["icon", "image"] },
       value: { type: "icon", name: "FaStar" },
@@ -73,88 +75,111 @@ class Testimonials3Page extends Testimonials {
       value: [
         {
           type: "object",
-          key: "card",
+          key: "card1",
           displayer: "Card",
           value: [
             {
               type: "number",
               key: "star",
               value: 5,
-              displayer: "Icon Number",
+              displayer: "Star Count",
             },
             {
               type: "string",
               key: "text",
               value: "Thanks to pagedone, I feel more informed and confident about my investment decisions than ever before.",
-              displayer: "Review Text",
+              displayer: "Text",
             },
             {
-              type: "media",
-              key: "image",
-              value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/645516a9f72de2002caaf056?alt=media&timestamp=1719584962573" },
-              additionalParams: { availableTypes: ["image", "video"] },
-              displayer: "Image",
+              type: "object",
+              key: "author",
+              displayer: "Author",
+              value: [
+                {
+                  type: "media",
+                  key: "image",
+                  displayer: "Image",
+                  additionalParams: { availableTypes: ["image"] },
+                  value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/645516a9f72de2002caaf056?alt=media&timestamp=1719584962573" },
+                },
+              ],
             },
           ],
         },
         {
           type: "object",
-          key: "card",
+          key: "card2",
           displayer: "Card",
           value: [
             {
               type: "number",
               key: "star",
               value: 5,
-              displayer: "Icon Number",
+              displayer: "Star Count",
             },
             {
               type: "string",
               key: "text",
               value: "Pagedone has made it possible for me to stay on top of my portolio and make informed decisions quickly and easily.",
-              displayer: "Review Text",
+              displayer: "Text",
             },
             {
-              type: "media",
-              key: "image",
-              value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/645516a9f72de2002caaf055?alt=media&timestamp=1719584962573" },
-              additionalParams: { availableTypes: ["image", "video"] },
-              displayer: "Image",
+              type: "object",
+              key: "author",
+              displayer: "Author",
+              value: [
+                {
+                  type: "media",
+                  key: "image",
+                  displayer: "Image",
+                  additionalParams: { availableTypes: ["image"] },
+                  value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/645516a9f72de2002caaf055?alt=media&timestamp=1719584962573" },
+                },
+              ],
             },
           ],
         },
         {
           type: "object",
-          key: "card",
+          key: "card3",
           displayer: "Card",
           value: [
             {
               type: "number",
               key: "star",
               value: 5,
-              displayer: "Icon Number",
+              displayer: "Star Count",
             },
             {
               type: "string",
               key: "text",
               value: "The customer service team at pagedone went above and beyond to help me resolve a billing issue.",
-              displayer: "Review Text",
+              displayer: "Text",
             },
             {
-              type: "media",
-              key: "image",
-              value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/645516a9f72de2002caaf054?alt=media&timestamp=1719584962573" },
-              additionalParams: { availableTypes: ["image", "video"] },
-              displayer: "Image",
+              type: "object",
+              key: "author",
+              displayer: "Author",
+              value: [
+                {
+                  type: "media",
+                  key: "image",
+                  displayer: "Image",
+                  additionalParams: { availableTypes: ["image"] },
+                  value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/645516a9f72de2002caaf054?alt=media&timestamp=1719584962573" },
+                },
+              ],
             },
           ],
         },
       ],
     });
   }
+
   static getName(): string {
     return "Testimonials 3";
   }
+
   render() {
     const subtitleExist = this.castToString(this.getPropValue("subtitle"));
     const titleExist = this.castToString(this.getPropValue("title"));
@@ -168,17 +193,20 @@ class Testimonials3Page extends Testimonials {
     const hasAnyTopContent = subtitleExist || titleExist || descriptionExist || hasValidButtons;
 
     const card = this.castToObject<Item[]>("card-items");
-    const starIcon = this.getPropValue("star_icon");
-    const componentBackground = this.getPropValue("componentBackground");
+    const starIcon = this.getPropValue("starIcon") as TypeMediaInputValue;
+    const starIconExist = starIcon && (starIcon.type === "icon" ? starIcon.name : starIcon.url);
+    const componentBackground = this.getPropValue("componentBackground") as TypeMediaInputValue;
+    const componentBgExist = componentBackground && (componentBackground.type === "icon" ? componentBackground.name : componentBackground.url);
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
-        {componentBackground && (
+        {componentBgExist && (
           <Base.Media
             value={componentBackground}
             className={this.decorateCSS("component-background")}
           />
         )}
+        {componentBgExist && <div className={this.decorateCSS("overlay")} />}
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           {hasAnyTopContent && (
             <Base.VerticalContent className={this.decorateCSS("top-content")}>
@@ -220,20 +248,30 @@ class Testimonials3Page extends Testimonials {
               )}
             </Base.VerticalContent>
           )}
-          <Base.ListGrid className={this.decorateCSS("card-container")} gridCount={{ pc: this.getPropValue("itemCount"), tablet: 2, phone: 1 }}>
-            {card.map((item: Item, index: number) => (
-              <div className={this.decorateCSS("card")} key={index}>
-                {item.star > 0 && starIcon && (
-                  <div className={this.decorateCSS("stars")}>
-                    {[...Array(Number(item.star))].map((_: any, starIndex: number) => (
-                      <Base.Media value={starIcon} className={this.decorateCSS("icon")} key={starIndex} />
-                    ))}
-                  </div>
-                )}
-                {this.castToString(item.text) && <Base.P className={this.decorateCSS("item-text")}>{item.text}</Base.P>}
-                {item.image && <Base.Media className={this.decorateCSS("image")} value={item.image} />}
-              </div>
-            ))}
+          <Base.ListGrid className={this.decorateCSS("card-container")} gridCount={{ pc: this.getPropValue("itemCount"), tablet: this.getPropValue("itemCount"), phone: 1 }}>
+            {card.map((item: Item, index: number) => {
+              const imageExist = item.author && item.author.image && (item.author.image.type === "icon" ? item.author.image.name : item.author.image.url);
+              const authorExist = item.author && imageExist;
+              return (
+                <Base.VerticalContent className={this.decorateCSS("card")} key={index}>
+                  {(item.star > 0 && starIconExist) && (
+                    <div className={this.decorateCSS("stars")}>
+                      {[...Array(Number(item.star))].map((_: unknown, starIndex: number) => (
+                        <Base.Media value={starIcon} className={this.decorateCSS("icon")} key={starIndex} />
+                      ))}
+                    </div>
+                  )}
+                  {this.castToString(item.text) && <Base.P className={this.decorateCSS("item-text")}>{item.text}</Base.P>}
+                  {authorExist && (
+                    <Base.VerticalContent className={this.decorateCSS("author-container")}>
+                      {imageExist && (
+                        <Base.Media className={this.decorateCSS("author-image")} value={item.author.image} />
+                      )}
+                    </Base.VerticalContent>
+                  )}
+                </Base.VerticalContent>
+              );
+            })}
           </Base.ListGrid>
         </Base.MaxContent>
       </Base.Container>
@@ -242,4 +280,3 @@ class Testimonials3Page extends Testimonials {
 }
 
 export default Testimonials3Page;
-
