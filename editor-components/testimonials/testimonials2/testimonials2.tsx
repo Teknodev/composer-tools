@@ -14,6 +14,7 @@ type Item = {
   author: {
     name: React.JSX.Element;
     subtitle: React.JSX.Element;
+    image: TypeMediaInputValue;
   };
 };
 
@@ -50,7 +51,7 @@ class Testimonials2Page extends Testimonials {
       key: "buttons",
       displayer: "Buttons",
       value: [
-        INPUTS.BUTTON("button", "Button", "Lorem", "", null, null, "Primary"),
+        INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
       ],
     });
     this.addProp({
@@ -79,7 +80,7 @@ class Testimonials2Page extends Testimonials {
             {
               type: "string",
               key: "text",
-              displayer: "Review Text",
+              displayer: "Text",
               value: "Flat design is characterized by simple, two-dimensional elements and a clean, minimal aesthetic. It's a great way to create a streamlined and modern look.",
             },
             {
@@ -87,6 +88,13 @@ class Testimonials2Page extends Testimonials {
               key: "author",
               displayer: "Author",
               value: [
+                {
+                  type: "media",
+                  key: "image",
+                  displayer: "Image",
+                  additionalParams: { availableTypes: ["image"] },
+                  value: { type: "image", url: "" },
+                },
                 {
                   type: "string",
                   key: "name",
@@ -99,8 +107,8 @@ class Testimonials2Page extends Testimonials {
                   displayer: "Position",
                   value: "Designer",
                 },
-              ]
-            }
+              ],
+            },
           ],
         },
         {
@@ -124,7 +132,7 @@ class Testimonials2Page extends Testimonials {
             {
               type: "string",
               key: "text",
-              displayer: "Review Text",
+              displayer: "Text",
               value: "Flat design is characterized by simple, two-dimensional elements and a clean, minimal aesthetic. It's a great way to create a streamlined and modern look.",
             },
             {
@@ -132,6 +140,13 @@ class Testimonials2Page extends Testimonials {
               key: "author",
               displayer: "Author",
               value: [
+                {
+                  type: "media",
+                  key: "image",
+                  displayer: "Image",
+                  additionalParams: { availableTypes: ["image"] },
+                  value: { type: "image", url: "" },
+                },
                 {
                   type: "string",
                   key: "name",
@@ -144,8 +159,8 @@ class Testimonials2Page extends Testimonials {
                   displayer: "Position",
                   value: "Designer",
                 },
-              ]
-            }
+              ],
+            },
           ],
         },
         {
@@ -169,7 +184,7 @@ class Testimonials2Page extends Testimonials {
             {
               type: "string",
               key: "text",
-              displayer: "Review Text",
+              displayer: "Text",
               value: "Flat design is characterized by simple, two-dimensional elements and a clean, minimal aesthetic. It's a great way to create a streamlined and modern look.",
             },
             {
@@ -177,6 +192,13 @@ class Testimonials2Page extends Testimonials {
               key: "author",
               displayer: "Author",
               value: [
+                {
+                  type: "media",
+                  key: "image",
+                  displayer: "Image",
+                  additionalParams: { availableTypes: ["image"] },
+                  value: { type: "image", url: "" },
+                },
                 {
                   type: "string",
                   key: "name",
@@ -189,8 +211,8 @@ class Testimonials2Page extends Testimonials {
                   displayer: "Position",
                   value: "Designer",
                 },
-              ]
-            }
+              ],
+            },
           ],
         },
         {
@@ -214,7 +236,7 @@ class Testimonials2Page extends Testimonials {
             {
               type: "string",
               key: "text",
-              displayer: "Review Text",
+              displayer: "Text",
               value: "Flat design is characterized by simple, two-dimensional elements and a clean, minimal aesthetic. It's a great way to create a streamlined and modern look.",
             },
             {
@@ -222,6 +244,13 @@ class Testimonials2Page extends Testimonials {
               key: "author",
               displayer: "Author",
               value: [
+                {
+                  type: "media",
+                  key: "image",
+                  displayer: "Image",
+                  additionalParams: { availableTypes: ["image"] },
+                  value: { type: "image", url: "" },
+                },
                 {
                   type: "string",
                   key: "name",
@@ -234,8 +263,8 @@ class Testimonials2Page extends Testimonials {
                   displayer: "Position",
                   value: "Designer",
                 },
-              ]
-            }
+              ],
+            },
           ],
         },
         {
@@ -259,7 +288,7 @@ class Testimonials2Page extends Testimonials {
             {
               type: "string",
               key: "text",
-              displayer: "Review Text",
+              displayer: "Text",
               value: "Flat design is characterized by simple, two-dimensional elements and a clean, minimal aesthetic. It's a great way to create a streamlined and modern look.",
             },
             {
@@ -267,6 +296,13 @@ class Testimonials2Page extends Testimonials {
               key: "author",
               displayer: "Author",
               value: [
+                {
+                  type: "media",
+                  key: "image",
+                  displayer: "Image",
+                  additionalParams: { availableTypes: ["image"] },
+                  value: { type: "image", url: "" },
+                },
                 {
                   type: "string",
                   key: "name",
@@ -279,8 +315,8 @@ class Testimonials2Page extends Testimonials {
                   displayer: "Position",
                   value: "Designer",
                 },
-              ]
-            }
+              ],
+            },
           ],
         },
       ],
@@ -335,39 +371,41 @@ class Testimonials2Page extends Testimonials {
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
+        <div className={this.decorateCSS("overlay")} />
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           {hasAnyTopContent && (
-              <Base.VerticalContent className={this.decorateCSS("top-content")}>
-                {subtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
-                {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
-                {descriptionExist && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
-                {hasValidButtons && (
-                  <div className={this.decorateCSS("button-container")}>
-                    {buttons.map((item: Button, index: number) => {
-                      const buttonText = this.castToString(item.text);
-                      const iconExist = item.icon && (item.icon.type === "icon" ? item.icon.name : item.icon.url);
-                      if (!buttonText && !iconExist) return null;
-                      return (
-                        <ComposerLink key={index} path={item.url}>
-                          <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
-                            {buttonText && <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>}
-                            {iconExist && <Base.Media className={this.decorateCSS("button-icon")} value={item.icon!} />}
-                          </Base.Button>
-                        </ComposerLink>
-                      );
-                    })}
-                  </div>
-                )}
-              </Base.VerticalContent>
-            )}
+            <Base.VerticalContent className={this.decorateCSS("top-content")}>
+              {subtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
+              {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
+              {descriptionExist && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
+              {hasValidButtons && (
+                <div className={this.decorateCSS("button-container")}>
+                  {buttons.map((item: Button, index: number) => {
+                    const buttonText = this.castToString(item.text);
+                    const iconExist = item.icon && (item.icon.type === "icon" ? item.icon.name : item.icon.url);
+                    if (!buttonText && !iconExist) return null;
+                    return (
+                      <ComposerLink key={index} path={item.url}>
+                        <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
+                          {buttonText && <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>}
+                          {iconExist && <Base.Media className={this.decorateCSS("button-icon")} value={item.icon!} />}
+                        </Base.Button>
+                      </ComposerLink>
+                    );
+                  })}
+                </div>
+              )}
+            </Base.VerticalContent>
+          )}
         </Base.MaxContent>
 
         <ComposerSlider {...settings} className={this.decorateCSS("slider-style")}>
           {this.castToObject<Item[]>("card-items").map((item: Item, index: number) => {
             const iconExist = item.icon && (item.icon.type === "icon" ? item.icon.name : item.icon.url);
             const textExist = this.castToString(item.text);
-            const authorExist = item.author && (item.author.name || item.author.subtitle);
-            
+            const imageExist = item.author && item.author.image && (item.author.image.type === "image" ? item.author.image.url : item.author.image.name);
+            const authorExist = item.author && (item.author.name || item.author.subtitle || imageExist);
+
             return (
               <div className={this.decorateCSS("card")} key={index}>
                 {((item.star > 0 && iconExist) || textExist) && (
@@ -384,6 +422,9 @@ class Testimonials2Page extends Testimonials {
                 )}
                 {authorExist && (
                   <Base.VerticalContent className={this.decorateCSS("bottom-container")}>
+                    {imageExist && (
+                      <Base.Media value={item.author.image} className={this.decorateCSS("author-image")} />
+                    )}
                     {item.author.name && <Base.P className={this.decorateCSS("item-name")}>{item.author.name}</Base.P>}
                     {item.author.subtitle && <Base.P className={this.decorateCSS("item-subtitle")}>{item.author.subtitle}</Base.P>}
                   </Base.VerticalContent>
