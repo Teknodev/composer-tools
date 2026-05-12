@@ -1,5 +1,4 @@
-@use "../../../composer-base-components/base/utitilities/viewports.module.scss"
-  as *;
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
   .max-content {
@@ -54,6 +53,15 @@
         display: flex;
         align-items: center;
 
+        &.no-image {
+          flex: 1;
+          max-width: 100%;
+
+          .vertical-content {
+            width: 100%;
+          }
+        }
+
         &.no-image-center {
           .vertical-content {
             align-items: center;
@@ -68,7 +76,9 @@
               margin-left: auto;
             }
 
+            .buttons-container,
             .icons {
+              align-self: center;
               justify-content: center;
             }
           }
@@ -76,6 +86,7 @@
       }
 
       .vertical-content {
+
         .section-title,
         .section-subtitle,
         .section-description {
@@ -87,12 +98,27 @@
           margin-right: auto;
         }
 
+        .buttons-container {
+          display: flex;
+          gap: var(--composer-gap-sm);
+          flex-wrap: wrap;
+          align-self: flex-start;
+
+          .button {
+
+            .button-text {
+              content: "";
+            }
+          }
+        }
+
         .icons {
           display: flex;
           justify-content: flex-start;
           align-items: center;
           width: 100%;
           gap: var(--composer-gap-sm);
+          margin-top: var(--composer-gap-sm);
           flex-wrap: wrap;
 
           .icon-wrapper {
@@ -102,11 +128,9 @@
             width: 4.5rem;
             height: 4.5rem;
             border-radius: 50%;
-            background-color: color-mix(
-              in srgb,
-              var(--composer-html-background),
-              var(--composer-font-color-primary) 5%
-            );
+            background-color: color-mix(in srgb,
+                var(--composer-html-background),
+                var(--composer-font-color-primary) 5%);
             transition: background-color 0.3s ease;
 
             &:hover {
@@ -124,8 +148,8 @@
               color: var(--composer-font-color-primary);
               font-size: 1.5rem;
               transition: color 0.3s ease;
-              width: 25px;
-              height: 25px;
+              width: calc(var(--composer-gap-xl) / 2);
+              height: calc(var(--composer-gap-xl) / 2);
             }
           }
 
@@ -139,8 +163,8 @@
               color: var(--composer-font-color-primary);
               font-size: 1.5rem;
               transition: color 0.3s ease;
-              width: 25px;
-              height: 25px;
+              width: calc(var(--composer-gap-xl) / 2);
+              height: calc(var(--composer-gap-xl) / 2);
 
               &:hover {
                 color: var(--composer-font-color-secondary);
@@ -153,20 +177,66 @@
   }
 }
 
+@container (max-width: #{$composer-tablet-width}) {
+  .container {
+    .max-content {
+      .content {
+        display: flex !important;
+        flex-direction: row !important;
+
+        .left,
+        .right {
+          flex: 1;
+          max-width: 50%;
+        }
+
+        .right.no-image {
+          max-width: 100%;
+        }
+      }
+    }
+  }
+}
+
 @container (max-width: #{$composer-phone-width}) {
   .container {
     .max-content {
       .content {
-        align-items: flex-start;
-        flex-direction: column;
+        align-items: center;
+        flex-direction: column !important;
 
         .left,
         .right {
           padding: 0;
           max-width: 100%;
+          width: 100%;
+          justify-content: center;
         }
 
-        .right.center {
+        .vertical-content {
+          align-items: flex-start;
+          width: 100%;
+
+          .section-title,
+          .section-subtitle,
+          .section-description {
+            text-align: left;
+          }
+
+          .section-subtitle {
+            margin-left: 0;
+            margin-right: auto;
+          }
+
+          .buttons-container,
+          .icons {
+            justify-content: flex-start;
+            align-self: flex-start;
+          }
+        }
+
+        .right.is-centered,
+        .right.no-image-center {
           .vertical-content {
             align-items: center;
 
@@ -178,10 +248,13 @@
 
             .section-subtitle {
               margin-left: auto;
+              margin-right: auto;
             }
 
+            .buttons-container,
             .icons {
               justify-content: center;
+              align-self: center;
             }
           }
         }

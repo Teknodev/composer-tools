@@ -61,6 +61,12 @@ class Footer4Page extends BaseFooter {
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66fa9094cf1798002cc71d01?alt=media",
               },
             },
+            {
+              type: "page",
+              key: "url",
+              displayer: "Navigate To",
+              value: "",
+            },
           ],
         },
         {
