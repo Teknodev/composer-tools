@@ -69,7 +69,7 @@ class Feature51 extends BaseFeature {
                         {
                             type: "media",
                             key: "itemIcon",
-                            displayer: "Item Icon (Open)",
+                            displayer: "Active Icon",
                             additionalParams: {
                                 availableTypes: ["image", "icon"],
                             },
@@ -81,7 +81,7 @@ class Feature51 extends BaseFeature {
                         {
                             type: "media",
                             key: "itemIconClosed",
-                            displayer: "Item Icon (Closed)",
+                            displayer: "Inactive Icon",
                             additionalParams: {
                                 availableTypes: ["image", "icon"],
                             },
@@ -113,7 +113,7 @@ class Feature51 extends BaseFeature {
                         {
                             type: "media",
                             key: "itemIcon",
-                            displayer: "Item Icon (Open)",
+                            displayer: "Active Icon",
                             additionalParams: {
                                 availableTypes: ["image", "icon"],
                             },
@@ -125,7 +125,7 @@ class Feature51 extends BaseFeature {
                         {
                             type: "media",
                             key: "itemIconClosed",
-                            displayer: "Item Icon (Closed)",
+                            displayer: "Inactive Icon",
                             additionalParams: {
                                 availableTypes: ["image", "icon"],
                             },
@@ -157,7 +157,7 @@ class Feature51 extends BaseFeature {
                         {
                             type: "media",
                             key: "itemIcon",
-                            displayer: "Item Icon (Open)",
+                            displayer: "Active Icon",
                             additionalParams: {
                                 availableTypes: ["image", "icon"],
                             },
@@ -169,7 +169,7 @@ class Feature51 extends BaseFeature {
                         {
                             type: "media",
                             key: "itemIconClosed",
-                            displayer: "Item Icon (Closed)",
+                            displayer: "Inactive Icon",
                             additionalParams: {
                                 availableTypes: ["image", "icon"],
                             },
@@ -201,7 +201,7 @@ class Feature51 extends BaseFeature {
                         {
                             type: "media",
                             key: "itemIcon",
-                            displayer: "Item Icon (Open)",
+                            displayer: "Active Icon",
                             additionalParams: {
                                 availableTypes: ["image", "icon"],
                             },
@@ -213,7 +213,7 @@ class Feature51 extends BaseFeature {
                         {
                             type: "media",
                             key: "itemIconClosed",
-                            displayer: "Item Icon (Closed)",
+                            displayer: "Inactive Icon",
                             additionalParams: {
                                 availableTypes: ["image", "icon"],
                             },
@@ -250,7 +250,7 @@ class Feature51 extends BaseFeature {
         this.addProp({
             type: "boolean",
             key: "enableIconAnimation",
-            displayer: "Enable Icon Animation",
+            displayer: "Icon Animation",
             value: true,
         });
 
@@ -497,9 +497,9 @@ class Feature51 extends BaseFeature {
                                                     className={this.decorateCSS("item-header")}
                                                 >
                                                     {itemTitle && (
-                                                        <Base.H4 className={this.decorateCSS("item-title")}>
+                                                        <Base.H5 className={this.decorateCSS("item-title")}>
                                                             {item.itemTitle}
-                                                        </Base.H4>
+                                                        </Base.H5>
                                                     )}
                                                     {displayIcon && (
                                                         <Base.Media
