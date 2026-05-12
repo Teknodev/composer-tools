@@ -33,22 +33,26 @@
 
           .text-up {
             display: flex;
-            gap: var(--composer-gap-md);
+            gap: var(--composer-gap-sm);
+            width: 100%;
 
             .name {
               color: var(--composer-font-color-primary);
               transition: color 0.5s;
+              text-align: left;
             }
 
             .position {
               color: var(--composer-tertiary-color);
               transition: color 0.5s;
+              text-align: left;
             }
           }
 
           .card-description {
             color: var(--composer-tertiary-color);
             transition: color 0.5s;
+            text-align: left;
           }
         }
 
@@ -143,15 +147,7 @@
 @container (max-width: #{$composer-tablet-width}) {
   .container {
     .max-content {
-      .down-content {
-        .card {
-          .text-box {
-            .text-up {
-              flex-direction: column;
-            }
-          }
-        }
-      }
+      gap: var(--composer-gap-md);
     }
   }
 }

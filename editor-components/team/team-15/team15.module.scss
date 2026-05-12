@@ -18,7 +18,7 @@
 
   .cards-box {
     .card {
-      border-radius: var(--composer-border-radius-sm);
+      border-radius: var(--composer-border-radius-md);
       overflow: hidden;
       min-height: 400px;
       max-height: 500px;
@@ -78,9 +78,6 @@
 
         .labels {
           position: relative;
-          bottom: 0;
-          left: 0;
-          right: 0;
           display: flex;
           align-items: center;
           justify-content: space-between;
@@ -92,7 +89,7 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
-            padding: var(--composer-gap-sm) var(--composer-gap-md) var(--composer-gap-sm);
+            padding: var(--composer-gap-sm) 0 var(--composer-gap-sm) var(--composer-gap-md);
 
             .card-position {
               text-align: left;
@@ -106,47 +103,20 @@
             }
           }
 
-          .icon-list-container {
-            position: absolute;
-            right: 1.5%;
-            bottom: 50%;
-            text-align: center;
-            transform: scaleY(0);
-            background-color: white;
-            border-radius: var(--composer-border-radius-sm);
-            padding: calc(3 * var(--composer-gap-xs));
-            margin-bottom: var(--composer-gap-sm);
-            gap: var(--composer-gap-sm);
-            height: auto;
-            overflow: hidden;
-            transform-origin: bottom center;
-            z-index: 5;
-            display: flex;
-            justify-content: center;
-
-            .icon {
-              font-size: 1.5rem;
-              line-height: 0;
-              color: black;
-
-              &.has-image {
-                width: var(--composer-gap-md);
-                height: var(--composer-gap-md);
-                object-fit: cover;
-              }
-            }
-          }
-
           .icons {
             display: flex;
             gap: var(--composer-gap-sm);
             color: var(--composer-font-color-secondary);
+            padding: var(--composer-gap-sm) var(--composer-gap-md) var(--composer-gap-sm) 0;
+            line-height: 0;
+            align-items: center;
 
-            .firstIcon {
-              font-size: 1.5rem;
+            .contactIcon {
+              font-size: 1rem;
               color: var(--composer-font-color-primary);
+              transition: color 0.3s;
 
-              &.first-icon-has-image {
+              &.contact-icon-has-image {
                 width: var(--composer-gap-md);
                 height: var(--composer-gap-md);
                 object-fit: cover;
@@ -157,38 +127,101 @@
               }
             }
 
-            .secondIcon {
-              font-size: 1.5rem;
-              color: var(--composer-font-color-primary);
-
-              &.second-icon-has-image {
-                width: var(--composer-gap-md);
-                height: var(--composer-gap-md);
-                object-fit: cover;
-              }
-
-              &:hover {
-                color: var(--composer-primary-color);
-              }
-            }
-          }
-        }
-
-        &:hover {
-          .icon-list-container {
-            transform: scaleY(1);
-            text-align: end;
-            margin-bottom: var(--composer-gap-md);
-
-            .icon {
-              width: var(--composer-gap-md);
-              height: var(--composer-gap-md);
-              object-fit: cover;
+            .share-wrapper {
               position: relative;
-              color: black;
+              display: flex;
+              align-items: center;
+              justify-content: center;
 
               &:hover {
-                color: var(--composer-primary-color);
+                .icon-list-container {
+                  transform: translateX(50%) scaleY(1);
+                  opacity: 1;
+                }
+              }
+
+              .icon-list-container {
+                position: absolute;
+                right: 50%;
+                bottom: 100%;
+                margin-bottom: var(--composer-gap-md);
+                background-color: #ffffff;
+                border-radius: var(--composer-border-radius-sm);
+                padding: var(--composer-gap-sm);
+                gap: var(--composer-gap-sm);
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                transform: translateX(50%) scaleY(0);
+                transform-origin: bottom center;
+                box-shadow: var(--box-shadow-active);
+                transition: transform 0.3s ease, opacity 0.3s ease;
+                z-index: 10;
+                opacity: 0;
+
+                &::before {
+                  content: "";
+                  position: absolute;
+                  bottom: calc(-2 * var(--composer-gap-md));
+                  height: calc(2 * var(--composer-gap-md));
+                  background: transparent;
+                  left: 0;
+                  right: 0;
+                }
+
+                &::after {
+                  content: "";
+                  position: absolute;
+                  bottom: -8px;
+                  left: 50%;
+                  transform: translateX(-50%);
+                  border-left: 8px solid transparent;
+                  border-right: 8px solid transparent;
+                  border-top: 8px solid #ffffff;
+                }
+
+                .icon-item {
+                  line-height: 0;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+
+                  .icon {
+                    font-size: 1rem;
+                    width: 16px;
+                    height: 16px;
+                    line-height: 0;
+                    color: #000000;
+                    transition: color 0.3s;
+
+                    &.has-image {
+                      width: 1.2rem;
+                      height: 1.2rem;
+                      object-fit: cover;
+                    }
+
+                    &:hover {
+                      color: var(--composer-primary-color);
+                    }
+                  }
+                }
+              }
+
+              .shareIcon {
+                font-size: 1rem;
+                color: var(--composer-font-color-primary);
+                transition: color 0.3s;
+
+                &.share-icon-has-image {
+                  width: var(--composer-gap-md);
+                  height: var(--composer-gap-md);
+                  object-fit: cover;
+                }
+
+                &:hover {
+                  color: var(--composer-primary-color);
+                }
               }
             }
           }
@@ -214,30 +247,36 @@
       }
 
       &[data-animation~="animate3"] {
-        .icon-list-container {
-          transition: transform 0.5s ease;
-        }
-
-        &:hover {
+        .share-wrapper {
           .icon-list-container {
-            transform: scaleY(1);
-            text-align: end;
-            margin-bottom: var(--composer-gap-md);
-            animation: slideUp 0.5s ease forwards;
+            transition: transform 0.5s ease;
+          }
 
-            .icon {
-              width: var(--composer-gap-md);
-              height: var(--composer-gap-md);
-              object-fit: cover;
-              position: relative;
-              color: black;
-              opacity: 0;
-              transform: translateY(20px);
-              animation: fadeInUp 0.5s ease forwards;
-              animation-delay: calc(var(--icon-index, 0) * 0.15s);
+          &:hover {
+            .icon-list-container {
+              transform: scaleY(1);
+              text-align: end;
+              margin-bottom: var(--composer-gap-md);
+              animation: slideUp 0.5s ease forwards;
 
-              &:hover {
-                color: var(--composer-primary-color);
+              .icon {
+                font-size: 1rem;
+                width: 16px;
+                height: 16px;
+                line-height: 0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                position: relative;
+                transform: translateY(20px);
+                animation: fadeInUp 0.5s ease forwards;
+                animation-delay: calc(var(--icon-index, 0) * 0.15s);
+                color: #000000;
+                opacity: 0;
+
+                &:hover {
+                  color: var(--composer-primary-color) !important;
+                }
               }
             }
           }
@@ -246,11 +285,11 @@
 
       @keyframes slideUp {
         0% {
-          transform: scaleY(0);
+          transform: translateX(50%) scaleY(0);
         }
 
         100% {
-          transform: scaleY(1);
+          transform: translateX(50%) scaleY(1);
         }
       }
 
@@ -283,8 +322,8 @@
 
             .icons {
 
-              .firstIcon,
-              .secondIcon {
+              .contactIcon,
+              .share-wrapper .shareIcon {
                 color: #ffffff;
 
                 &:hover {
@@ -313,29 +352,33 @@
 }
 
 @container (max-width: #{$composer-tablet-width}) {
-  .container .max-content .up-page .cards-box .card {
-    height: 450px;
-    width: 100%;
+  .container {
+    .max-content {
+      gap: var(--composer-gap-md);
 
-    .card-content {
-      left: var(--composer-gap-sm);
-      bottom: var(--composer-gap-sm);
-      top: var(--composer-gap-sm);
-      right: var(--composer-gap-sm);
+      .cards-box {
+        .card {
+          height: 450px;
+          width: 100%;
+
+          .card-content {
+            left: var(--composer-gap-sm);
+            bottom: var(--composer-gap-sm);
+            top: var(--composer-gap-sm);
+            right: var(--composer-gap-sm);
+          }
+        }
+      }
     }
   }
 }
 
 @container (max-width: #{$composer-phone-width}) {
-  .container .max-content .up-page .cards-box .card {
-    height: 400px;
-
-    .card-content {
-      .icon-list-container {
-        padding: var(--composer-gap-xs) !important;
-
-        .icon {
-          margin-right: var(--composer-gap-xs) !important;
+  .container {
+    .max-content {
+      .cards-box {
+        .card {
+          height: 400px;
         }
       }
     }

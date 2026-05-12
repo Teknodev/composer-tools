@@ -211,31 +211,29 @@ class Team14 extends Team {
             </Base.VerticalContent>
           )}
           {cards.length > 0 && (
-            <Base.ListGrid gridCount={{ pc: itemCount, tablet: 2, phone: 1 }} className={this.decorateCSS("down-page")}>
-              {cards
-                .filter((cardItem) => cardItem.profileImage)
-                .map((cardItem: Card, index: number) => {
-                  const image = cardItem.profileImage;
-                  const name = this.castToString(cardItem.name);
-                  const position = this.castToString(cardItem.position);
-                  const cardDescription = this.castToString(cardItem.cardDescription);
+            <Base.ListGrid gridCount={{ pc: itemCount, tablet: 3, phone: 1 }} className={this.decorateCSS("down-page")}>
+              {cards.map((cardItem: Card, index: number) => {
+                const image = cardItem.profileImage;
+                const name = this.castToString(cardItem.name);
+                const position = this.castToString(cardItem.position);
+                const cardDescription = this.castToString(cardItem.cardDescription);
 
-                  return (
-                    <div key={index} className={this.decorateCSS("card")}>
-                      <div className={this.decorateCSS("portfolio")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
-                        {image && <Base.Media value={image} className={this.decorateCSS("image")} data-animation={this.getPropValue("hoverAnimation").join(" ")} />}
-                        {this.getPropValue("overlay") && <div className={this.decorateCSS("overlay")} />}
-                        {(name || position || cardDescription) && (
-                          <Base.VerticalContent className={this.decorateCSS("info")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
-                            {name && <Base.H4 className={this.decorateCSS("name")}>{cardItem.name}</Base.H4>}
-                            {position && <Base.H5 className={this.decorateCSS("position")}>{cardItem.position}</Base.H5>}
-                            {cardDescription && <Base.P className={this.decorateCSS("card-description")}>{cardItem.cardDescription}</Base.P>}
-                          </Base.VerticalContent>
-                        )}
-                      </div>
+                return (
+                  <div key={index} className={this.decorateCSS("card")}>
+                    <div className={this.decorateCSS("portfolio")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
+                      {image && <Base.Media value={image} className={this.decorateCSS("image")} data-animation={this.getPropValue("hoverAnimation").join(" ")} />}
+                      {this.getPropValue("overlay") && <div className={this.decorateCSS("overlay")} />}
+                      {(name || position || cardDescription) && (
+                        <Base.VerticalContent className={this.decorateCSS("info")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
+                          {name && <Base.H5 className={this.decorateCSS("name")}>{cardItem.name}</Base.H5>}
+                          {position && <Base.H6 className={this.decorateCSS("position")}>{cardItem.position}</Base.H6>}
+                          {cardDescription && <Base.P className={this.decorateCSS("card-description")}>{cardItem.cardDescription}</Base.P>}
+                        </Base.VerticalContent>
+                      )}
                     </div>
-                  );
-                })}
+                  </div>
+                );
+              })}
             </Base.ListGrid>
           )}
           {visibleButtons.length > 0 && (

@@ -211,7 +211,7 @@ class Team16 extends Team {
               {description && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
             </Base.VerticalContent>
           )}
-          <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount"), tablet: 2, phone: 1 }} className={this.decorateCSS("down-content")}>
+          <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount"), tablet: 3, phone: 1 }} className={this.decorateCSS("down-content")}>
             {this.castToObject<Card[]>("cards").map((card: Card, indexCards: number) => {
               const nameExist = this.castToString(card.name);
               const positionExist = this.castToString(card.position);
@@ -226,13 +226,13 @@ class Team16 extends Team {
                       {this.getPropValue("overlay") && <div className={this.decorateCSS("overlay")} />}
                     </div>
                   )}
-                  <div className={this.decorateCSS("text-box")}>
+                  <Base.VerticalContent className={this.decorateCSS("text-box")}>
                     <div className={this.decorateCSS("text-up")}>
                       {nameExist && <Base.H6 className={this.decorateCSS("name")}>{card.name}</Base.H6>}
                       {positionExist && <Base.H6 className={this.decorateCSS("position")}>{card.position}</Base.H6>}
                     </div>
                     {cardDescriptionExist && <Base.P className={this.decorateCSS("card-description")}>{card.cardDescription}</Base.P>}
-                  </div>
+                  </Base.VerticalContent>
                 </div>
               );
             })}

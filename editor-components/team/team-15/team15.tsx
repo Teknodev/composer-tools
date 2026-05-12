@@ -15,10 +15,10 @@ type Card = {
   name: React.JSX.Element;
   position: React.JSX.Element;
   cardDescription: React.JSX.Element;
-  firstIcon: TypeMediaInputValue;
-  firstIconUrl: string;
-  secondIcon: TypeMediaInputValue;
-  secondIconUrl: string;
+  contactIcon: TypeMediaInputValue;
+  contactIconUrl: string;
+  shareIcon: TypeMediaInputValue;
+  shareIconUrl: string;
   socials: Socials[];
 };
 
@@ -80,7 +80,7 @@ class Team15 extends Team {
               type: "string",
               key: "name",
               displayer: "Person Name",
-              value: "Aleesha Charlotte",
+              value: '<p dir="ltr"><span style="white-space: pre-wrap;">Aleesha </span></p><p dir="ltr"><span style="white-space: pre-wrap;">Charlotte</span></p>',
             },
             {
               type: "string",
@@ -96,8 +96,8 @@ class Team15 extends Team {
             },
             {
               type: "media",
-              key: "firstIcon",
-              displayer: "First Icon",
+              key: "contactIcon",
+              displayer: "Contact Icon",
               additionalParams: {
                 availableTypes: ["icon", "image"],
               },
@@ -108,14 +108,14 @@ class Team15 extends Team {
             },
             {
               type: "page",
-              key: "firstIconUrl",
-              displayer: "First Icon URL",
+              key: "contactIconUrl",
+              displayer: "Navigate To",
               value: "",
             },
             {
               type: "media",
-              key: "secondIcon",
-              displayer: "Second Icon",
+              key: "shareIcon",
+              displayer: "Share Icon",
               additionalParams: {
                 availableTypes: ["icon", "image"],
               },
@@ -126,8 +126,8 @@ class Team15 extends Team {
             },
             {
               type: "page",
-              key: "secondIconUrl",
-              displayer: "Second Icon URL",
+              key: "shareIconUrl",
+              displayer: "Navigate To",
               value: "",
             },
             {
@@ -260,7 +260,7 @@ class Team15 extends Team {
               type: "string",
               key: "name",
               displayer: "Person Name",
-              value: "David Michale",
+              value: '<p dir="ltr"><span style="white-space: pre-wrap;">David </span></p><p dir="ltr"><span style="white-space: pre-wrap;">Michael</span></p>',
             },
             {
               type: "string",
@@ -276,8 +276,8 @@ class Team15 extends Team {
             },
             {
               type: "media",
-              key: "firstIcon",
-              displayer: "First Icon",
+              key: "contactIcon",
+              displayer: "Contact Icon",
               additionalParams: {
                 availableTypes: ["icon", "image"],
               },
@@ -288,14 +288,14 @@ class Team15 extends Team {
             },
             {
               type: "page",
-              key: "firstIconUrl",
-              displayer: "First Icon URL",
+              key: "contactIconUrl",
+              displayer: "Navigate To",
               value: "",
             },
             {
               type: "media",
-              key: "secondIcon",
-              displayer: "Second Icon",
+              key: "shareIcon",
+              displayer: "Share Icon",
               additionalParams: {
                 availableTypes: ["icon", "image"],
               },
@@ -306,8 +306,8 @@ class Team15 extends Team {
             },
             {
               type: "page",
-              key: "secondIconUrl",
-              displayer: "Second Icon URL",
+              key: "shareIconUrl",
+              displayer: "Navigate To",
               value: "",
             },
             {
@@ -440,7 +440,7 @@ class Team15 extends Team {
               type: "string",
               key: "name",
               displayer: "Person Name",
-              value: "Jorge Schiro",
+              value: '<p dir="ltr"><span style="white-space: pre-wrap;">Jorge </span></p><p dir="ltr"><span style="white-space: pre-wrap;">Schiro</span></p>',
             },
             {
               type: "string",
@@ -456,8 +456,8 @@ class Team15 extends Team {
             },
             {
               type: "media",
-              key: "firstIcon",
-              displayer: "First Icon",
+              key: "contactIcon",
+              displayer: "Contact Icon",
               additionalParams: {
                 availableTypes: ["icon", "image"],
               },
@@ -468,14 +468,14 @@ class Team15 extends Team {
             },
             {
               type: "page",
-              key: "firstIconUrl",
-              displayer: "First Icon URL",
+              key: "contactIconUrl",
+              displayer: "Navigate To",
               value: "",
             },
             {
               type: "media",
-              key: "secondIcon",
-              displayer: "Second Icon",
+              key: "shareIcon",
+              displayer: "Share Icon",
               additionalParams: {
                 availableTypes: ["icon", "image"],
               },
@@ -486,8 +486,8 @@ class Team15 extends Team {
             },
             {
               type: "page",
-              key: "secondIconUrl",
-              displayer: "Second Icon URL",
+              key: "shareIconUrl",
+              displayer: "Navigate To",
               value: "",
             },
             {
@@ -620,7 +620,7 @@ class Team15 extends Team {
               type: "string",
               key: "name",
               displayer: "Person Name",
-              value: "John Arlnoald",
+              value: '<p dir="ltr"><span style="white-space: pre-wrap;">John </span></p><p dir="ltr"><span style="white-space: pre-wrap;">Arlnoald</span></p>',
             },
             {
               type: "string",
@@ -636,8 +636,8 @@ class Team15 extends Team {
             },
             {
               type: "media",
-              key: "firstIcon",
-              displayer: "First Icon",
+              key: "contactIcon",
+              displayer: "Contact Icon",
               additionalParams: {
                 availableTypes: ["icon", "image"],
               },
@@ -648,14 +648,14 @@ class Team15 extends Team {
             },
             {
               type: "page",
-              key: "firstIconUrl",
-              displayer: "First Icon URL",
+              key: "contactIconUrl",
+              displayer: "Navigate To",
               value: "",
             },
             {
               type: "media",
-              key: "secondIcon",
-              displayer: "Second Icon",
+              key: "shareIcon",
+              displayer: "Share Icon",
               additionalParams: {
                 availableTypes: ["icon", "image"],
               },
@@ -666,8 +666,8 @@ class Team15 extends Team {
             },
             {
               type: "page",
-              key: "secondIconUrl",
-              displayer: "Second Icon URL",
+              key: "shareIconUrl",
+              displayer: "Navigate To",
               value: "",
             },
             {
@@ -829,8 +829,8 @@ class Team15 extends Team {
               {description && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
             </Base.VerticalContent>
           )}
-          <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount"), tablet: 2, phone: 1 }} className={this.decorateCSS("cards-box")}>
-            {this.castToObject<Card[]>("cards").map((card: Card, index: number) => {
+          <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount"), tablet: 4, phone: 1 }} className={this.decorateCSS("cards-box")}>
+            {(this.castToObject<Card[]>("cards") || []).map((card: Card, index: number) => {
               const profileImage = card.profileImage;
               const nameExists = this.castToString(card.name);
               const positionExists = this.castToString(card.position);
@@ -839,50 +839,53 @@ class Team15 extends Team {
 
               const cardExists = profileImage || nameExists || positionExists || cardDescriptionExist;
               return cardExists && (
-                <div key={index} className={`${this.decorateCSS("card")} ${profileImage && this.decorateCSS("has-image")}`} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
+                <div key={index} className={`${this.decorateCSS("card")} ${profileImage && this.decorateCSS("has-image")}`} data-animation={(this.getPropValue("hoverAnimation") || []).join(" ")}>
                   {profileImage && <Base.Media value={profileImage} className={this.decorateCSS("image")} />}
                   {overlay && <div className={this.decorateCSS("overlay")}></div>}
                   {overlay && <div className={this.decorateCSS("overlay2")}></div>}
                   <div className={this.decorateCSS("card-content")}>
-                    {nameExists && <Base.H5 className={this.decorateCSS("card-name")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>{card.name}</Base.H5>}
+                    {nameExists && <Base.H5 className={this.decorateCSS("card-name")} data-animation={(this.getPropValue("hoverAnimation") || []).join(" ")}>{card.name}</Base.H5>}
                     <div className={this.decorateCSS("labels")}>
-                      {card.socials && card.socials.length > 0 && (
-                        <Base.VerticalContent className={this.decorateCSS("icon-list-container")}>
-                          {card.socials.map((social: Socials, indexIcons: number) => {
-                            return (
-                              <div key={indexIcons} className={this.decorateCSS("icon-item")}>
-                                <ComposerLink path={social.url}>
-                                  <Base.Media
-                                    value={social.icon}
-                                    className={`${this.decorateCSS("icon")} ${social.icon?.type === "image" && this.decorateCSS("has-image")}`}
-                                    style={{ "--icon-index": indexIcons } as React.CSSProperties}
-                                  />
-                                </ComposerLink>
-                              </div>
-                            );
-                          })}
-                        </Base.VerticalContent>
-                      )}
+
                       {(positionExists || cardDescriptionExist) && (
                         <Base.VerticalContent className={this.decorateCSS("card-info")}>
-                          {positionExists && <Base.P className={this.decorateCSS("card-position")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>{card.position}</Base.P>}
-                          {cardDescriptionExist && <Base.P className={this.decorateCSS("card-description")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>{card.cardDescription}</Base.P>}
+                          {positionExists && <Base.P className={this.decorateCSS("card-position")} data-animation={(this.getPropValue("hoverAnimation") || []).join(" ")}>{card.position}</Base.P>}
+                          {cardDescriptionExist && <Base.P className={this.decorateCSS("card-description")} data-animation={(this.getPropValue("hoverAnimation") || []).join(" ")}>{card.cardDescription}</Base.P>}
                         </Base.VerticalContent>
                       )}
                       <div className={this.decorateCSS("icons")}>
-                        <ComposerLink path={card.firstIconUrl}>
-                          {card.firstIcon && (
-                            <Base.Media
-                              value={card.firstIcon}
-                              className={`${this.decorateCSS("firstIcon")} ${card.firstIcon?.type === "image" && this.decorateCSS("first-icon-has-image")}`}
-                            />
+                        <div className={this.decorateCSS("share-wrapper")}>
+                          {card.socials && card.socials.length > 0 && (
+                            <Base.VerticalContent className={this.decorateCSS("icon-list-container")}>
+                              {card.socials.map((social: Socials, indexIcons: number) => {
+                                return (
+                                  <div key={indexIcons} className={this.decorateCSS("icon-item")}>
+                                    <ComposerLink path={social.url}>
+                                      <Base.Media
+                                        value={social.icon}
+                                        className={`${this.decorateCSS("icon")} ${social.icon?.type === "image" && this.decorateCSS("has-image")}`}
+                                        style={{ "--icon-index": indexIcons } as React.CSSProperties}
+                                      />
+                                    </ComposerLink>
+                                  </div>
+                                );
+                              })}
+                            </Base.VerticalContent>
                           )}
-                        </ComposerLink>
-                        <ComposerLink path={card.secondIconUrl}>
-                          {card.secondIcon && (
+                          <ComposerLink path={card.shareIconUrl}>
+                            {card.shareIcon && (
+                              <Base.Media
+                                value={card.shareIcon}
+                                className={`${this.decorateCSS("shareIcon")} ${card.shareIcon?.type === "image" && this.decorateCSS("share-icon-has-image")}`}
+                              />
+                            )}
+                          </ComposerLink>
+                        </div>
+                        <ComposerLink path={card.contactIconUrl}>
+                          {card.contactIcon && (
                             <Base.Media
-                              value={card.secondIcon}
-                              className={`${this.decorateCSS("secondIcon")} ${card.secondIcon?.type === "image" && this.decorateCSS("second-icon-has-image")}`}
+                              value={card.contactIcon}
+                              className={`${this.decorateCSS("contactIcon")} ${card.contactIcon?.type === "image" && this.decorateCSS("contact-icon-has-image")}`}
                             />
                           )}
                         </ComposerLink>
