@@ -659,14 +659,16 @@ class ECommerce1 extends BaseECommerce {
                 {images.map((item: Image, index: number) => {
                   return (
                     <div className={this.decorateCSS("img-container")}>
-                      {item.media?.url && (
-                        <Base.Media
-                          key={index} value={item.media}
-                          className={`${this.decorateCSS("img")} ${index === this.getComponentState("activeSliderIndex") && this.decorateCSS("active")}`}
-                          onClick={() => handleImageClick(index)}
-                        />
-                      )}
-                      {item.overlay && <div className={this.decorateCSS("overlay")}></div>}
+                      <div className={this.decorateCSS("image-wrapper")}>
+                        {item.media?.url && (
+                          <Base.Media
+                            key={index} value={item.media}
+                            className={`${this.decorateCSS("img")} ${index === this.getComponentState("activeSliderIndex") && this.decorateCSS("active")}`}
+                            onClick={() => handleImageClick(index)}
+                          />
+                        )}
+                        {item.overlay && <div className={this.decorateCSS("overlay")}></div>}
+                      </div>
                     </div>
                   )
                 })}
@@ -680,8 +682,10 @@ class ECommerce1 extends BaseECommerce {
                     {images.map((item: Image, index: number) => {
                       return (
                         <div className={this.decorateCSS("card")}>
-                          <Base.Media value={item.media} className={this.decorateCSS("product-img")} onClick={() => handleImageClick(index)} />
-                          {item.overlay && <div className={this.decorateCSS("overlay")}></div>}
+                          <div className={this.decorateCSS("image-wrapper")}>
+                            <Base.Media value={item.media} className={this.decorateCSS("product-img")} onClick={() => handleImageClick(index)} />
+                            {item.overlay && <div className={this.decorateCSS("overlay")}></div>}
+                          </div>
                         </div>
                       )
                     })}
