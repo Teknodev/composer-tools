@@ -33,7 +33,7 @@ class Header6 extends BaseHeader {
 
     this.addProp({
       type: "media",
-      key: "cover-image",
+      key: "componentBackground",
       displayer: "Media",
       additionalParams: {
         availableTypes: ["image", "video"],
@@ -73,7 +73,7 @@ class Header6 extends BaseHeader {
     const title = this.castToString(this.getPropValue("title")) || "";
     const description =
       this.castToString(this.getPropValue("description")) || "";
-    const coverImage = this.getPropValue("cover-image");
+    const coverImage = this.getPropValue("componentBackground");
     const button = this.castToObject<any>("button");
     const hasButton = !!(button && this.castToString(button.text));
     const alignemnt = Base.getContentAlignment();

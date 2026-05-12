@@ -21,7 +21,7 @@ class Comparison1 extends BaseComparison {
 
     this.addProp({
       type: "media",
-      key: "cover-image",
+      key: "componentBackground",
       displayer: "Background Media",
       additionalParams: {
         availableTypes: ["image","video"],
@@ -163,7 +163,7 @@ class Comparison1 extends BaseComparison {
   };
 
   render() {
-    const coverImage = this.getPropValue("cover-image");
+    const coverImage = this.getPropValue("componentBackground");
     const overlay = this.getPropValue("overlay");
     const title = this.getPropValue("title");
     const isTitleExist = this.castToString(title);

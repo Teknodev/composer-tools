@@ -331,7 +331,7 @@ export type TypeReactComponent = {
   id?: string;
   children?: string;
   customComponentId?: string;
-  customComponentVersion?: string;
+  customComponentVersion?: number;
   globalComponentId?: string;
 };
 export type TypeUsableComponentProps = {
@@ -409,13 +409,76 @@ export abstract class Component
   static category: CATEGORIES;
   private static _dbgStyle = 'padding:2px 4px;border-radius:2px;font-weight:bold;color:white;background:#4CAF50;';
 
+  // Hash of last-emitted structural state, used to skip emitting
+  // COMPONENT_DID_UPDATE on internal state changes (e.g. slider autoplay
+  // tick) that don't actually mutate any structural surface external
+  // subscribers care about. Subscribers in editor.tsx / preview.tsx
+  // re-scan the DOM and call setElementsTree on every emit; without
+  // this guard a slider tick cascades into a full Playground re-render.
+  private _lastStructuralEmitHash: string | null = null;
+
+  /**
+   * Computes a stable structural hash of the inputs that external
+   * subscribers actually care about: typed props, cssClasses,
+   * interactions, type, id. Internal state (this.state.states — slider
+   * activeSlide, hover flags, animation kicks, etc.) is intentionally
+   * excluded so it never triggers a structural emit.
+   *
+   * Hashing strategy: stringify each surface independently, join with a
+   * delimiter. Stringification preserves prop array order (important —
+   * reorders are structural). Hashing 50 sections × ~100 props each is
+   * trivial CPU compared to the React render avalanche it prevents.
+   */
+  private _computeStructuralHash(): string {
+    const componentProps = (this.state as any)?.componentProps || {};
+    const props = componentProps.props || [];
+    const cssClasses = componentProps.cssClasses || {};
+    const interactions = componentProps.interactions || {};
+    const type = (this.constructor as typeof Component).name;
+    try {
+      // Strip the dynamic getPropValue function before stringifying — it's a
+      // closure attached on every attachValueGetter pass and would not
+      // serialize stably (functions become undefined / different identity
+      // each render).
+      const propsForHash = props.map((p: any) => {
+        if (p && typeof p === "object") {
+          const { getPropValue, ...rest } = p;
+          return rest;
+        }
+        return p;
+      });
+      return JSON.stringify({
+        p: propsForHash,
+        c: cssClasses,
+        i: interactions,
+        t: type,
+        id: this.id,
+        gid: this.globalComponentId,
+      });
+    } catch {
+      // Fall back to a non-deterministic value so we always emit on
+      // serialization failure — preserves prior behavior for edge cases.
+      return `__unhashable_${Date.now()}`;
+    }
+  }
+
   componentDidUpdate(
     prevProps: Readonly<{}>,
     prevState: Readonly<{ states: any; componentProps: any; }>,
     snapshot?: any
   ): void {
-
-    EventEmitter.emit(EVENTS.COMPONENT_DID_UPDATE, { data: this });
+    // Structural-change guard: external subscribers only need to react when
+    // a structural surface (props array, cssClasses, interactions, type,
+    // id) actually changed. Internal state changes (slider autoplay tick,
+    // hover flag, animation tick) must NOT trigger the emit because each
+    // emit synchronously runs assignIdPageElements + applyStyleCSS and
+    // schedules a setElementsTree (which causes a context update and a
+    // full Playground re-render).
+    const nextHash = this._computeStructuralHash();
+    if (nextHash !== this._lastStructuralEmitHash) {
+      this._lastStructuralEmitHash = nextHash;
+      EventEmitter.emit(EVENTS.COMPONENT_DID_UPDATE, { data: this });
+    }
     this.onComponentDidUpdate?.(prevProps, prevState, snapshot);
   }
 
@@ -541,17 +604,14 @@ export abstract class Component
   }
 
   static getName(): string {
-    // console.error("Static Method Not Implemented", this.name);
     return this.name;
   }
 
   getName(): string {
-    // console.error("Static Method Not Implemented", this.name);
     return (this.constructor as typeof Component).getName();
   }
 
   static getInstanceName(): string {
-    // console.error("Static Method Not Implemented", this.name);
     return this.name;
   }
 
@@ -819,11 +879,9 @@ export abstract class Component
       prop.value === value;
 
     if (isInvalidIndex || isMatchingSimpleValue || isMatchingComplexValue) {
-      console.debug(`%cDEBUG%c [EditorComponent]`, Component._dbgStyle, 'color:#888;font-style:italic;', 'setProp skipped (no change)', { id: this.id, key });
       return;
     }
 
-    console.debug(`%cDEBUG%c [EditorComponent]`, Component._dbgStyle, 'color:#888;font-style:italic;', 'setProp → setState', { id: this.id, key, type: prop.type });
     this.state.componentProps.props[i].value = value;
     this.state.componentProps.props[i] = this.attachValueGetter(
       this.state.componentProps.props[i]

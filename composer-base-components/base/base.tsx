@@ -86,7 +86,7 @@ export namespace Base {
 
   export function H1({ className, children, ...props }: any) {
     return (
-      <h1 className={`${styles.h1} ${className}`} data-element-category={ELEMENT_CATEGORY.TEXT} {...props}>
+      <h1 className={`${styles.h1} ${className}`} data-element-category={ELEMENT_CATEGORY.TEXT} data-video-bg="" {...props}>
         {children}
       </h1>
     );
@@ -94,7 +94,7 @@ export namespace Base {
 
   export function H2({ className, children, ...props }: any) {
     return (
-      <h2 className={`${styles.h2} ${className}`} data-element-category={ELEMENT_CATEGORY.TEXT} {...props}>
+      <h2 className={`${styles.h2} ${className}`} data-element-category={ELEMENT_CATEGORY.TEXT} data-video-bg="" {...props}>
         {children}
       </h2>
     );
@@ -102,7 +102,7 @@ export namespace Base {
 
   export function H3({ className, children, ...props }: any) {
     return (
-      <h3 className={`${styles.h3} ${className}`} data-element-category={ELEMENT_CATEGORY.TEXT} {...props}>
+      <h3 className={`${styles.h3} ${className}`} data-element-category={ELEMENT_CATEGORY.TEXT} data-video-bg="" {...props}>
         {children}
       </h3>
     );
@@ -110,7 +110,7 @@ export namespace Base {
 
   export function H4({ className, children, ...props }: any) {
     return (
-      <h4 className={`${styles.h4} ${className}`} data-element-category={ELEMENT_CATEGORY.TEXT} {...props}>
+      <h4 className={`${styles.h4} ${className}`} data-element-category={ELEMENT_CATEGORY.TEXT} data-video-bg="" {...props}>
         {children}
       </h4>
     );
@@ -118,7 +118,7 @@ export namespace Base {
 
   export function H5({ className, children, ...props }: any) {
     return (
-      <h5 className={`${styles.h5} ${className}`} data-element-category={ELEMENT_CATEGORY.TEXT} {...props}>
+      <h5 className={`${styles.h5} ${className}`} data-element-category={ELEMENT_CATEGORY.TEXT} data-video-bg="" {...props}>
         {children}
       </h5>
     );
@@ -126,7 +126,7 @@ export namespace Base {
 
   export function H6({ className, children, ...props }: any) {
     return (
-      <h6 className={`${styles.h6} ${className}`} data-element-category={ELEMENT_CATEGORY.TEXT} {...props}>
+      <h6 className={`${styles.h6} ${className}`} data-element-category={ELEMENT_CATEGORY.TEXT} data-video-bg="" {...props}>
         {children}
       </h6>
     );
@@ -134,7 +134,7 @@ export namespace Base {
 
   export function P({ className, children, ...props }: any) {
     return (
-      <p className={`${styles.p} ${className}`} data-element-category={ELEMENT_CATEGORY.TEXT} {...props}>
+      <p className={`${styles.p} ${className}`} data-element-category={ELEMENT_CATEGORY.TEXT} data-video-bg="" {...props}>
         {children}
       </p>
     );
@@ -463,6 +463,19 @@ export namespace Base {
 
   export function Icon({ name, propsIcon }: IconProps): React.JSX.Element {
     if (!name) return <></>;
+
+    // Custom SVG uploaded as data URL
+    if (typeof name === "string" && name.startsWith("data:image/svg")) {
+      const { className, style, size } = (propsIcon ?? {}) as any;
+      return (
+        <img
+          src={name}
+          className={className}
+          style={{ width: size ?? 24, height: size ?? 24, ...style }}
+          alt=""
+        />
+      );
+    }
 
     let ElementIcon: any = null;
 

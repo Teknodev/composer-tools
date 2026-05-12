@@ -50,7 +50,7 @@ class Header9 extends BaseHeader {
       ],
     });
 
-    this.addProp({ type: "media", key: "background", displayer: "Background Image", additionalParams: { availableTypes: ["image"] }, value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/690cad863596a1002b203b24?alt=media" } });
+    this.addProp({ type: "media", key: "componentBackground", displayer: "Background Image", additionalParams: { availableTypes: ["image"] }, value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/690cad863596a1002b203b24?alt=media" } });
     this.addProp({ type: "boolean", key: "overlay", displayer: "Overlay", value: true });
     this.addProp({ type: "boolean", key: "statsAnimation", displayer: "Stats Animation", value: true });
     this.addProp({ type: "number", key: "animationDuration", displayer: "Number Animation Duration (ms)", value: 2000 });
@@ -147,7 +147,7 @@ class Header9 extends BaseHeader {
       return { number, suffix, label };
     });
     const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
-    const background = this.getPropValue("background");
+    const background = this.getPropValue("componentBackground");
     const overlay = !!this.getPropValue("overlay");
     const statsAnimation = !!this.getPropValue("statsAnimation");
     const alignment = Base.getContentAlignment();

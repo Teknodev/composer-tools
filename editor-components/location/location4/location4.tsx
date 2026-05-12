@@ -41,7 +41,7 @@ class Location4 extends Location {
 
     this.addProp({
       type: "image",
-      key: "image",
+      key: "componentBackground",
       displayer: "Image",
       value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/675c1a380655f8002ca6cb4c?alt=media",
     });
@@ -179,7 +179,7 @@ class Location4 extends Location {
     const markerZoom = this.getPropValue("markerZoom");
     const centerZoom = this.getPropValue("centerZoom");
 
-    const image = this.getPropValue("image");
+    const image = this.getPropValue("componentBackground");
     const overlay = this.getPropValue("overlay");
 
     const title = this.getPropValue("title");

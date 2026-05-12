@@ -1,12 +1,12 @@
 import * as React from "react";
-import { Team, TypeUsableComponentProps } from "../../EditorComponent";
+import { Team, TypeMediaInputValue, TypeUsableComponentProps } from "../../EditorComponent";
 import styles from "./team15.module.scss";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 
 import { Base } from "../../../composer-base-components/base/base";
 
 type Card = {
-  image: string;
+  image: TypeMediaInputValue;
   title: string;
   description: string;
   firstIcon: string;
@@ -115,10 +115,16 @@ class Team15 extends Team {
               value: "-CEO Founder",
             },
             {
-              type: "image",
-              key: "image",
+              type: "media",
+              key: "profileImage",
               displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b712bd2970002c6284b2?alt=media&timestamp=1719558632841",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b712bd2970002c6284b2?alt=media&timestamp=1719558632841",
+              },
             },
             {
               type: "icon",
@@ -170,10 +176,16 @@ class Team15 extends Team {
               value: "-Therapist",
             },
             {
-              type: "image",
-              key: "image",
+              type: "media",
+              key: "profileImage",
               displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6727b7ca7acba6002c5dfa2c?alt=media&timestamp=1730656203793",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6727b7ca7acba6002c5dfa2c?alt=media&timestamp=1730656203793",
+              },
             },
             {
               type: "icon",
@@ -226,10 +238,16 @@ class Team15 extends Team {
               value: "-Counselor",
             },
             {
-              type: "image",
-              key: "image",
+              type: "media",
+              key: "profileImage",
               displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6727b8437acba6002c5dfa38?alt=media&timestamp=1730656324011",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6727b8437acba6002c5dfa38?alt=media&timestamp=1730656324011",
+              },
             },
             {
               type: "icon",
@@ -281,10 +299,16 @@ class Team15 extends Team {
               value: "-Counselor",
             },
             {
-              type: "image",
-              key: "image",
+              type: "media",
+              key: "profileImage",
               displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6727b8527acba6002c5dfa3e?alt=media&timestamp=1730656339472",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6727b8527acba6002c5dfa3e?alt=media&timestamp=1730656339472",
+              },
             },
             {
               type: "icon",
@@ -355,7 +379,7 @@ class Team15 extends Team {
             {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
             <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount"), tablet: 2, phone: 1 }} className={this.decorateCSS("cards-box")}>
               {this.castToObject<Card[]>("cards").map((card: any, index: number) => {
-                const imageExists = card.getPropValue("image");
+                const imageExists = card.getPropValue("profileImage");
                 const titleExists = this.castToString(card.title);
                 const descriptionExists = this.castToString(card.description);
 
@@ -365,7 +389,7 @@ class Team15 extends Team {
                 return (
                   cardExists && (
                     <div key={index} className={this.decorateCSS("card")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
-                      {imageExists && <img src={card.getPropValue("image")} className={this.decorateCSS("image")} alt="" />}
+                      {imageExists && <Base.Media value={card.getPropValue("profileImage")} className={this.decorateCSS("image")} />}
                       {overlay && <div className={this.decorateCSS("overlay")}></div>}
                       {overlay && <div className={this.decorateCSS("overlay2")}></div>}
                       <div className={this.decorateCSS("card-content")}>
