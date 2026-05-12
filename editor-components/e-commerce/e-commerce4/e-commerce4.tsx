@@ -2301,7 +2301,7 @@ class ECommerce4 extends BaseECommerce {
                                                         <Base.P className={this.decorateCSS("card-right-text-container")}>
                                                             {this.castToString(item.cardRightText) && (
                                                                 <Base.P className={this.decorateCSS("card-right-text")}>{item.cardRightText}</Base.P>
-                                                            )}s
+                                                            )}
                                                         </Base.P>
                                                     </div>
                                                 ))}

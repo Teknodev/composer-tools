@@ -237,18 +237,21 @@ as *;
               right: 50%;
               align-items: center;
               justify-content: center;
-              width: 10rem;
-              height: 1.5rem;
+              width: max-content;
+              max-width: 8rem;
+              height: auto;
               background-color: var(--composer-font-color-primary);
               color: var(--composer-html-background);
-              padding: var(--composer-gap-sm) var(--composer-gap-xs);
-              border-radius: var(--border-radius-sm);
+              padding: var(--composer-gap-xs) var(--composer-gap-sm);
+              border-radius: var(--composer-border-radius-sm);
               opacity: 0;
               transition: opacity 0.4s ease-in-out, right 0.4s ease-in-out;
+              pointer-events: none;
+              z-index: 2;
 
               .card-right-text {
-                text-align: left;
-                font-size: 1rem;
+                text-align: center;
+                font-size: 1rem !important;
               }
             }
 
@@ -345,5 +348,33 @@ as *;
 @container (max-width: #{$composer-tablet-width}) {
   .image-container {
     max-height: 600px !important;
+
+    .image-right-side {
+      .right-side-items {
+        .card-right-text-container {
+          max-width: 6rem;
+
+          .card-right-text {
+            font-size: 0.75rem !important;
+          }
+        }
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+  .image-container {
+    .image-right-side {
+      .right-side-items {
+        .card-right-text-container {
+          max-width: 5rem;
+
+          .card-right-text {
+            font-size: 0.75rem !important;
+          }
+        }
+      }
+    }
   }
 }
