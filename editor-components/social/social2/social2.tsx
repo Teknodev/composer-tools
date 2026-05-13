@@ -1055,6 +1055,7 @@ class Social2 extends BaseSocial {
         };
         const player = this.castToObject<any>("player") || {};
         const share = this.castToObject<any>("share") || {};
+        const alignment = Base.getContentAlignment();
         const titleExist = this.castToString(this.getPropValue("title"));
         const subtitleExist = this.castToString(this.getPropValue("subtitle"));
         const descriptionExist = this.castToString(this.getPropValue("description"));
@@ -1088,7 +1089,7 @@ class Social2 extends BaseSocial {
                                     </Base.SectionDescription>
                                 )}
                                 {hasValidButtons && (
-                                    <div className={this.decorateCSS("button-container")}>
+                                    <div className={`${this.decorateCSS("button-container")} ${alignment === "center" ? this.decorateCSS("center") : ""}`}>
                                         {buttons.map((item: INPUTS.CastedButton, index: number) => {
                                             const textExist = this.castToString(item.text);
                                             const iconExist = item.icon && this.castToString((item.icon as any).name);
@@ -1232,6 +1233,16 @@ class Social2 extends BaseSocial {
                                         </div>
                                     )}
                                 </div>
+                                {player.prevArrow && (
+                                    <div className={this.decorateCSS("modal-prev")} onClick={() => this.setComponentState("selectedVideo", (selectedIndex - 1 + sliderItems.length) % sliderItems.length)}>
+                                        <Base.Media value={player.prevArrow} className={`${this.decorateCSS("modal-arrow-icon")} ${player.prevArrow.type === "icon" ? this.decorateCSS("is-icon") : ""}`} />
+                                    </div>
+                                )}
+                                {player.nextArrow && (
+                                    <div className={this.decorateCSS("modal-next")} onClick={() => this.setComponentState("selectedVideo", (selectedIndex + 1) % sliderItems.length)}>
+                                        <Base.Media value={player.nextArrow} className={`${this.decorateCSS("modal-arrow-icon")} ${player.nextArrow.type === "icon" ? this.decorateCSS("is-icon") : ""}`} />
+                                    </div>
+                                )}
                             </div>
                         </Base.Overlay>
                     )}
