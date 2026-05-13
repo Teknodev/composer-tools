@@ -6,72 +6,57 @@
   .maxContent {
     .containerGrid {
       display: flex;
+      gap: var(--composer-gap-xl);
       .leftContainer {
-        min-width: 25%;
-        max-width: 100%;
+        flex: 0 0 25%;
+        min-width: 0;
         .leftContainerText {
-          .title {
-            &.title-with-image {
-              color: black;
-            }
-          }
-
-          .subtitle {
-            &.subtitle-with-image {
-              color: black;
-              &:before {
-                background: black;
-              }
-            }
-            &.badge-with-image {
-              background-color: black;
-              color: white;
-            }
-          }
-
+          text-align: left !important;
+          align-items: flex-start !important;
+          .subtitle,
+          .title,
           .top-description,
           .button-container,
           .button,
           .button-text,
           .button-icon {
             content: "";
+            text-align: left !important;
+            justify-content: flex-start !important;
+            margin-left: 0 !important;
+            margin-right: 0 !important;
           }
-        }
-        .arrow {
-          display: flex;
-          gap: var(--composer-gap-md);
-
-          .prevArrow,
-          .nextArrow {
-            padding: var(--composer-gap-sm);
-            border-radius: 50%;
+          .arrow {
             display: flex;
-            align-items: center;
-            justify-content: center;
-            border: none;
-            background-color: white;
-            color: black;
+            gap: var(--composer-gap-md);
 
-            &.prevArrowPrimary,
-            &.nextArrowPrimary {
+            .prevArrow,
+            .nextArrow {
+              padding: var(--composer-gap-sm);
+              border-radius: 50%;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              border: none;
               background-color: var(--composer-font-color-primary);
               color: var(--composer-html-background);
-            }
-            .icon {
-              width: 15px;
-              height: 15px;
+
+              .icon {
+                width: 15px;
+                height: 15px;
+              }
             }
           }
         }
       }
       .slider {
-        width: 75%;
-        min-height: 330px;
+        flex: 1;
+        min-width: 0;
         display: flex;
         align-items: center;
 
         &.fullSlider {
-          width: 100%;
+          flex: 1 1 100%;
         }
         > div {
           width: 100%;
@@ -89,9 +74,7 @@
             }
           }
         }
-        .image {
-          padding-right: calc(var(--composer-gap-xl) * 2);
-        }
+      
         .rightWrapper {
           display: flex;
           align-items: center;
@@ -99,15 +82,16 @@
             writing-mode: vertical-rl;
             transform: rotate(180deg);
             text-align: center;
-            max-height: 300px;
-            color: black;
-
-            &.sliderTitlePrimary {
-              color: var(--composer-font-color-primary);
-            }
+            color: var(--composer-font-color-primary);
+            margin-right: 0;
+            height: fit-content;
+            width: fit-content;
+            align-self: center;
+            justify-content: flex-start !important;
           }
 
           .lineContainer {
+            padding: 0 var(--composer-gap-md);
             height: 100%;
             display: flex;
             align-items: center;
@@ -116,26 +100,20 @@
               height: 75%;
               width: 1px;
               opacity: 0.5;
-              background-color: black;
-
-              &.linePrimary {
-                background-color: var(--composer-font-color-primary);
-              }
+              background-color: var(--composer-font-color-primary);
             }
           }
           .rightContainer {
+            flex: 1;
             display: flex;
             flex-direction: column;
             justify-content: center;
+            align-items: flex-start;
             gap: var(--composer-gap-md);
-            padding-left: var(--composer-gap-xl);
             .description {
-              color: black;
+              color: var(--composer-font-color-primary);
               font-size: 1.5rem;
-
-              &.descriptionPrimary {
-                color: var(--composer-font-color-primary);
-              }
+              text-align: left !important;
             }
 
             .stars {
@@ -145,12 +123,11 @@
               align-items: center;
               justify-content: center;
               display: flex;
-              background-color: black;
-              color: white;
+              background-color: var(--composer-font-color-primary);
+              color: var(--composer-html-background);
 
-              &.starsPrimary {
-                background-color: var(--composer-font-color-primary);
-                color: var(--composer-html-background);
+              .star {
+                content: "";
               }
             }
           }
@@ -158,7 +135,80 @@
       }
     }
   }
+
+  &.center {
+    .maxContent {
+      .containerGrid {
+        .leftContainer {
+          .leftContainerText {
+            text-align: left !important;
+            align-items: flex-start !important;
+          }
+        }
+        .slider {
+          .rightWrapper {
+            .rightContainer {
+              align-items: flex-start !important;
+              text-align: left !important;
+              .description {
+                text-align: left !important;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &.with-background {
+    .leftContainer {
+      .leftContainerText {
+        .subtitle {
+          color: black;
+          background: transparent !important;
+          padding: 0 !important;
+          margin: 0 !important;
+          transform: none !important;
+          &::before {
+            display: none !important;
+            transform: none !important;
+          }
+        }
+        .title,
+        .top-description {
+          color: black;
+        }
+        .arrow {
+          .prevArrow,
+          .nextArrow {
+            background-color: black !important;
+            color: white !important;
+          }
+        }
+      }
+    }
+    .slider {
+      .sliderTitle {
+        color: black !important;
+      }
+      .lineContainer {
+        .line {
+          background-color: black !important;
+        }
+      }
+      .rightContainer {
+        .description {
+          color: black !important;
+        }
+        .stars {
+          background-color: black !important;
+          color: white !important;
+        }
+      }
+    }
+  }
 }
+
 @container (max-width: #{$composer-tablet-width}) {
   .container {
     .maxContent {
@@ -169,14 +219,14 @@
           flex-direction: column;
           gap: var(--composer-gap-xs);
           .title {
-            margin: 0px;
+            margin: 0;
           }
         }
         .slider {
           width: 100%;
 
           .image {
-            padding: 0px;
+            padding: 0;
             max-width: 40%;
             object-fit: cover;
           }
@@ -190,6 +240,7 @@
   .container {
     .maxContent {
       .containerGrid {
+        gap: var(--composer-gap-md);
         .slider {
           .image {
             max-width: 100%;
@@ -219,7 +270,7 @@
             }
             .rightContainer {
               align-items: center;
-              padding-left: 0px;
+              padding-left: 0;
             }
           }
         }

@@ -48,14 +48,14 @@ class Testimonials5Page extends Testimonials {
       type: "string",
       key: "description",
       displayer: "Description",
-      value: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+      value: "",
     });
     this.addProp({
       type: "array",
       key: "buttons",
       displayer: "Buttons",
       value: [
-        INPUTS.BUTTON("button", "Button", "Lorem", "", null, null, "Primary"),
+        INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
       ],
     });
     this.addProp({
@@ -280,17 +280,17 @@ class Testimonials5Page extends Testimonials {
       const iconExist = btn.icon && (btn.icon.type === "icon" ? btn.icon.name : btn.icon.url);
       return buttonText || iconExist;
     });
+    const hasAnyTopContent = subtitleExist || titleExist || descriptionExist || hasValidButtons;
 
     const leftItem = this.castToObject<LeftItem>("leftItem");
     const sliderItem = this.castToObject<SliderItem[]>("sliders");
     const sliderRef = this.getComponentState("slider-ref");
     const prevIconExist = leftItem.prevIcon && (leftItem.prevIcon.type === "icon" ? leftItem.prevIcon.name : leftItem.prevIcon.url);
     const nextIconExist = leftItem.nextIcon && (leftItem.nextIcon.type === "icon" ? leftItem.nextIcon.name : leftItem.nextIcon.url);
-    const hasLeftContent = Boolean(subtitleExist || titleExist || descriptionExist || hasValidButtons || prevIconExist || nextIconExist);
+    const hasLeftContent = Boolean(hasAnyTopContent || prevIconExist || nextIconExist);
 
     const bgMedia = this.getPropValue("componentBackground") as TypeMediaInputValue;
     const backgroundImageExist = bgMedia && bgMedia.url;
-    const subtitleType = Base.getSectionSubTitleType();
 
     const settings = {
       dots: false,
@@ -308,7 +308,7 @@ class Testimonials5Page extends Testimonials {
 
     return (
       <Base.Container
-        className={this.decorateCSS("container")}
+        className={`${this.decorateCSS("container")} ${backgroundImageExist ? this.decorateCSS("with-background") : ""}`}
         style={backgroundImageExist ? { backgroundImage: `url(${backgroundImageExist})` } : {}}
       >
         <Base.MaxContent className={this.decorateCSS("maxContent")}>
@@ -317,14 +317,12 @@ class Testimonials5Page extends Testimonials {
               <div className={this.decorateCSS("leftContainer")}>
                 <Base.VerticalContent className={this.decorateCSS("leftContainerText")}>
                   {subtitleExist && (
-                    <Base.SectionSubTitle
-                      className={`${this.decorateCSS("subtitle")} ${backgroundImageExist ? (subtitleType === "badge" ? this.decorateCSS("badge-with-image") : this.decorateCSS("subtitle-with-image")) : ""}`}
-                    >
+                    <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
                       {this.getPropValue("subtitle")}
                     </Base.SectionSubTitle>
                   )}
                   {titleExist && (
-                    <Base.SectionTitle className={`${this.decorateCSS("title")} ${backgroundImageExist ? this.decorateCSS("title-with-image") : ""}`}>
+                    <Base.SectionTitle className={this.decorateCSS("title")}>
                       {this.getPropValue("title")}
                     </Base.SectionTitle>
                   )}
@@ -354,24 +352,21 @@ class Testimonials5Page extends Testimonials {
                       })}
                     </div>
                   )}
-                </Base.VerticalContent>
-
-                <Base.Row>
                   {(prevIconExist || nextIconExist) && sliderItem.length > 1 && (
                     <div className={this.decorateCSS("arrow")}>
                       {prevIconExist && (
-                        <button onClick={() => this.handleSlideChange("prev")} className={`${this.decorateCSS("prevArrow")} ${!backgroundImageExist ? this.decorateCSS("prevArrowPrimary") : ""}`}>
+                        <button onClick={() => this.handleSlideChange("prev")} className={this.decorateCSS("prevArrow")}>
                           <Base.Media value={leftItem.prevIcon} className={this.decorateCSS("icon")} />
                         </button>
                       )}
                       {nextIconExist && (
-                        <button onClick={() => this.handleSlideChange("next")} className={`${this.decorateCSS("nextArrow")} ${!backgroundImageExist ? this.decorateCSS("nextArrowPrimary") : ""}`}>
+                        <button onClick={() => this.handleSlideChange("next")} className={this.decorateCSS("nextArrow")}>
                           <Base.Media value={leftItem.nextIcon} className={this.decorateCSS("icon")} />
                         </button>
                       )}
                     </div>
                   )}
-                </Base.Row>
+                </Base.VerticalContent>
               </div>
             )}
 
@@ -386,23 +381,23 @@ class Testimonials5Page extends Testimonials {
                     )}
                     <div className={this.decorateCSS("rightWrapper")}>
                       {item.author && this.castToString(item.author.name) && (
-                        <Base.H3 className={`${this.decorateCSS("sliderTitle")} ${!backgroundImageExist ? this.decorateCSS("sliderTitlePrimary") : ""}`}>
+                        <Base.H3 className={this.decorateCSS("sliderTitle")}>
                           {item.author.name}
                         </Base.H3>
                       )}
                       {this.getPropValue("lineIsActive") && (
                         <div className={this.decorateCSS("lineContainer")}>
-                          <div className={`${this.decorateCSS("line")} ${!backgroundImageExist ? this.decorateCSS("linePrimary") : ""}`}></div>
+                          <div className={this.decorateCSS("line")}></div>
                         </div>
                       )}
                       <Base.VerticalContent className={this.decorateCSS("rightContainer")}>
                         {this.castToString(item.description) && (
-                          <Base.P className={`${this.decorateCSS("description")} ${!backgroundImageExist ? this.decorateCSS("descriptionPrimary") : ""}`}>
+                          <Base.P className={this.decorateCSS("description")}>
                             {item.description}
                           </Base.P>
                         )}
                         {itemIconExist && item.star > 0 && (
-                          <div className={`${this.decorateCSS("stars")} ${!backgroundImageExist ? this.decorateCSS("starsPrimary") : ""}`}>
+                          <div className={this.decorateCSS("stars")}>
                             {[...Array(Number(item.star))].map((_: unknown, starIndex: number) => (
                               <Base.Media key={starIndex} value={item.icon} className={this.decorateCSS("star")} />
                             ))}
