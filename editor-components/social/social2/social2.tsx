@@ -1148,7 +1148,7 @@ class Social2 extends BaseSocial {
                                                 {item.overlay && (
                                                     <div className={this.decorateCSS("overlay-item")} />
                                                 )}
-                                                {player.playIcon && (
+                                                {player.videoIframe && player.playIcon && (
                                                     <div className={this.decorateCSS("icon-container")} onClick={() => { this.handleVideoPlay(index) }}>
                                                         <Base.Media value={player.playIcon} className={`${this.decorateCSS("icon")} ${player.playIcon.type === "icon" ? this.decorateCSS("is-icon") : ""}`} />
                                                     </div>
@@ -1247,92 +1247,6 @@ class Social2 extends BaseSocial {
                         </Base.Overlay>
                     )}
                 </Base.Container>
-                {(this.getComponentState("videoActive") && !player.videoIframe) && sliderItems[selectedIndex] && (
-                    <Base.Overlay isVisible={true} className={this.decorateCSS("base-overlay")} onClick={() => this.handleVideoClose()}>
-                        <div className={this.decorateCSS("modal-wrapper")} onClick={(e) => e.stopPropagation()}>
-                            <div className={this.decorateCSS("video-container")}>
-                                {sliderItems[selectedIndex].media?.url && (
-                                    sliderItems[selectedIndex].media.type === "image"
-                                        ? <img
-                                            key={`${sliderItems[selectedIndex].media.url}-${selectedIndex}`}
-                                            className={this.decorateCSS("selected-video")}
-                                            src={sliderItems[selectedIndex].media.url}
-                                            alt=""
-                                        />
-                                        : <video
-                                            key={`${sliderItems[selectedIndex].media.url}-${selectedIndex}`}
-                                            autoPlay={true}
-                                            muted={false}
-                                            playsInline
-                                            loop
-                                            controls
-                                            className={this.decorateCSS("selected-video")}
-                                            src={sliderItems[selectedIndex].media.url}
-                                        />
-                                )}
-                                {this.castToString(sliderItems[selectedIndex].description) && (
-                                    <div className={this.decorateCSS("video-text-container")}>
-                                        <div className={this.decorateCSS("video-text")}>
-                                            {sliderItems[selectedIndex].description}
-                                        </div>
-                                    </div>
-                                )}
-                                {share.closeIcon && (
-                                    <div className={this.decorateCSS("close-icon-container")} onClick={() => this.handleVideoClose()}>
-                                        <Base.Media value={share.closeIcon} className={`${this.decorateCSS("close-icon")} ${share.closeIcon.type === "icon" ? this.decorateCSS("is-icon") : ""}`} />
-                                    </div>
-                                )}
-                                {share.shareIcon && (
-                                    <div className={this.decorateCSS("share-icon-container")} onClick={() => this.handleShareOpen()}>
-                                        <Base.Media value={share.shareIcon} className={`${this.decorateCSS("share-icon")} ${share.shareIcon.type === "icon" ? this.decorateCSS("is-icon") : ""}`} />
-                                    </div>
-                                )}
-                                {(this.castToString(share.shareTitle) || share.closeIcon || (sliderItems[selectedIndex]?.socialIcons?.length > 0)) && (
-                                    <div className={`${this.decorateCSS("share-wrapper")} ${this.getComponentState("shareContainerActive") && this.decorateCSS("active")}`}>
-                                        <div className={this.decorateCSS("share-popup-container")}>
-                                            {(this.castToString(share.shareTitle) || share.closeIcon) && (
-                                                <div className={this.decorateCSS("share-popup-upper")}>
-                                                    {this.castToString(share.shareTitle) && (
-                                                        <div className={this.decorateCSS("share-popup-title")}>{share.shareTitle}</div>
-                                                    )}
-                                                    {share.closeIcon && (
-                                                        <div className={this.decorateCSS("share-popup-close")} onClick={() => this.handleShareClose()}>
-                                                            <Base.Media value={share.closeIcon} className={`${this.decorateCSS("share-close-icon")} ${share.closeIcon.type === "icon" ? this.decorateCSS("is-icon") : ""}`} />
-                                                        </div>
-                                                    )}
-                                                </div>
-                                            )}
-                                            {sliderItems[selectedIndex]?.socialIcons?.length > 0 &&
-                                                <div className={this.decorateCSS("social-icons-container")}>
-                                                    {sliderItems[selectedIndex].socialIcons.map((social, socialIndex) => {
-                                                        if (!social.icon) return null;
-                                                        return (
-                                                            <ComposerLink key={socialIndex} path={social.url}>
-                                                                <div className={this.decorateCSS("social-icons")}>
-                                                                    <Base.Media value={social.icon} className={this.decorateCSS("social-icon")} />
-                                                                </div>
-                                                            </ComposerLink>
-                                                        )
-                                                    })}
-                                                </div>
-                                            }
-                                        </div>
-                                    </div>
-                                )}
-                            </div>
-                            {player.prevArrow && (
-                                <div className={this.decorateCSS("modal-prev")} onClick={() => this.setComponentState("selectedVideo", (selectedIndex - 1 + sliderItems.length) % sliderItems.length)}>
-                                    <Base.Media value={player.prevArrow} className={`${this.decorateCSS("modal-arrow-icon")} ${player.prevArrow.type === "icon" ? this.decorateCSS("is-icon") : ""}`} />
-                                </div>
-                            )}
-                            {player.nextArrow && (
-                                <div className={this.decorateCSS("modal-next")} onClick={() => this.setComponentState("selectedVideo", (selectedIndex + 1) % sliderItems.length)}>
-                                    <Base.Media value={player.nextArrow} className={`${this.decorateCSS("modal-arrow-icon")} ${player.nextArrow.type === "icon" ? this.decorateCSS("is-icon") : ""}`} />
-                                </div>
-                            )}
-                        </div>
-                    </Base.Overlay>
-                )}
             </div>
         );
     }
