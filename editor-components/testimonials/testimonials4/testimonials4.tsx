@@ -12,8 +12,8 @@ type Item = {
   author: {
     name: React.JSX.Element;
     subtitle: React.JSX.Element;
+    image: TypeMediaInputValue;
   };
-  image: TypeMediaInputValue;
 };
 
 type Button = {
@@ -72,7 +72,7 @@ class Testimonials4Page extends Testimonials {
             {
               type: "string",
               key: "text",
-              displayer: "Review Text",
+              displayer: "Text",
               value:
                 "I really like the clean and simple aesthetic of flat design. It's great for creating a modern and minimal look, and it also works well for responsive design since it's easy to adapt to different screen sizes. Plus, the lack of textures and gradients makes it easier to focus on the content itself.",
             },
@@ -93,19 +93,17 @@ class Testimonials4Page extends Testimonials {
                   displayer: "Position",
                   value: "UX Developer",
                 },
+                {
+                  type: "media",
+                  key: "image",
+                  displayer: "Image",
+                  additionalParams: { availableTypes: ["image", "video"] },
+                  value: {
+                    type: "image",
+                    url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661701bbd2970002c623724?alt=media&timestamp=1719483639150",
+                  },
+                },
               ],
-            },
-            {
-              type: "media",
-              key: "image",
-              displayer: "Author Image",
-              additionalParams: {
-                availableTypes: ["image", "video"],
-              },
-              value: {
-                type: "image",
-                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661701bbd2970002c623724?alt=media&timestamp=1719483639150",
-              },
             },
           ],
         },
@@ -124,7 +122,7 @@ class Testimonials4Page extends Testimonials {
             {
               type: "string",
               key: "text",
-              displayer: "Review Text",
+              displayer: "Text",
               value: "This product has changed my life! It's incredibly useful and packed with creative features. I would highly recommend it to everyone!",
             },
             {
@@ -144,19 +142,17 @@ class Testimonials4Page extends Testimonials {
                   displayer: "Position",
                   value: "Solutions Architect",
                 },
+                {
+                  type: "media",
+                  key: "image",
+                  displayer: "Image",
+                  additionalParams: { availableTypes: ["image", "video"] },
+                  value: {
+                    type: "image",
+                    url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661701bbd2970002c623723?alt=media&timestamp=1719483639150",
+                  },
+                },
               ],
-            },
-            {
-              type: "media",
-              key: "image",
-              displayer: "Author Image",
-              additionalParams: {
-                availableTypes: ["image", "video"],
-              },
-              value: {
-                type: "image",
-                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661701bbd2970002c623723?alt=media&timestamp=1719483639150",
-              },
             },
           ],
         },
@@ -175,7 +171,7 @@ class Testimonials4Page extends Testimonials {
             {
               type: "string",
               key: "text",
-              displayer: "Review Text",
+              displayer: "Text",
               value: "I have been consistently impressed with the results achieved by this team. Their strategic approach and innovative ideas have greatly contributed to our marketing success.",
             },
             {
@@ -195,19 +191,17 @@ class Testimonials4Page extends Testimonials {
                   displayer: "Position",
                   value: "UX Developer",
                 },
+                {
+                  type: "media",
+                  key: "image",
+                  displayer: "Image",
+                  additionalParams: { availableTypes: ["image", "video"] },
+                  value: {
+                    type: "image",
+                    url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661701bbd2970002c623726?alt=media&timestamp=1719483639150",
+                  },
+                },
               ],
-            },
-            {
-              type: "media",
-              key: "image",
-              displayer: "Author Image",
-              additionalParams: {
-                availableTypes: ["image", "video"],
-              },
-              value: {
-                type: "image",
-                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661701bbd2970002c623726?alt=media&timestamp=1719483639150",
-              },
             },
           ],
         },
@@ -295,7 +289,7 @@ class Testimonials4Page extends Testimonials {
 
     return (
       <Base.Container
-        className={`${this.decorateCSS("container")} ${!componentBackgroundExist && this.decorateCSS("container-no-image")} ${this.getPropValue("overlay") ? this.decorateCSS("overlay") : ""}`}
+        className={`${this.decorateCSS("container")} ${componentBackgroundExist ? this.decorateCSS("with-background") : this.decorateCSS("container-no-image")} ${this.getPropValue("overlay") ? this.decorateCSS("overlay") : ""}`}
       >
         {componentBackgroundExist && (
           <Base.Media value={componentBackground} className={this.decorateCSS("component-background")} />
@@ -350,7 +344,7 @@ class Testimonials4Page extends Testimonials {
                   sliderRef.current.slickPrev();
                 }}
               >
-                <Base.Icon name={arrows.prevArrow} propsIcon={{ className: `${this.decorateCSS("arrow")} ${!componentBackgroundExist && this.decorateCSS("arrow-dark")} ` }}></Base.Icon>
+                <Base.Icon name={arrows.prevArrow} propsIcon={{ className: this.decorateCSS("arrow") }}></Base.Icon>
               </button>
             )}
 
@@ -359,7 +353,8 @@ class Testimonials4Page extends Testimonials {
                 {cardItems.map((item: Item, index: number) => {
                   const iconExist = item.icon && (item.icon.type === "icon" ? item.icon.name : item.icon.url);
                   const textExist = this.castToString(item.text);
-                  const authorExist = item.author && (this.castToString(item.author.name) || this.castToString(item.author.subtitle));
+                  const imageExist = item.author && item.author.image && (item.author.image.type === "icon" ? item.author.image.name : item.author.image.url);
+                  const authorExist = item.author && (this.castToString(item.author.name) || this.castToString(item.author.subtitle) || imageExist);
                   const hasContent = iconExist || textExist || authorExist;
 
                   if (!hasContent) return null;
@@ -367,24 +362,24 @@ class Testimonials4Page extends Testimonials {
                   return (
                     <div key={index} className={this.decorateCSS("items")}>
                       {iconExist && (
-                        <Base.Media value={item.icon} className={`${this.decorateCSS("icon")} ${!componentBackgroundExist && this.decorateCSS("icon-dark")}`} />
+                        <Base.Media value={item.icon} className={this.decorateCSS("icon")} />
                       )}
                       {textExist && (
-                        <Base.P className={`${this.decorateCSS("item-text")} ${!componentBackgroundExist && this.decorateCSS("item-text-dark")} `}>
+                        <Base.P className={this.decorateCSS("item-text")}>
                           {item.text}
                         </Base.P>
                       )}
                       {authorExist && (
                         <div className={this.decorateCSS("person-text")}>
                           {item.author.name && (
-                            <div className={`${this.decorateCSS("item-name")} ${!componentBackgroundExist && this.decorateCSS("item-name-dark")} `}>
+                            <Base.P className={this.decorateCSS("item-name")}>
                               {item.author.name}
-                            </div>
+                            </Base.P>
                           )}
                           {item.author.subtitle && (
-                            <div className={`${this.decorateCSS("item-subtitle")} ${!componentBackgroundExist && this.decorateCSS("item-subtitle-dark")}`}>
+                            <Base.P className={this.decorateCSS("item-subtitle")}>
                               {item.author.subtitle}
-                            </div>
+                            </Base.P>
                           )}
                         </div>
                       )}
@@ -396,9 +391,10 @@ class Testimonials4Page extends Testimonials {
                 <div className={this.decorateCSS("images")}>
                   {cardItems.map((item: Item, itemIndex: number) => {
                     const isActive = this.getComponentState("active_index") === itemIndex;
-                    return item.image ? (
-                      <div key={itemIndex} onClick={() => this.onImageClick(itemIndex)}>
-                        <Base.Media value={item.image} className={`${this.decorateCSS("image")} ${isActive ? this.decorateCSS("active") : ""}`} />
+                    const itemImageExist = item.author && item.author.image && (item.author.image.type === "icon" ? item.author.image.name : item.author.image.url);
+                    return itemImageExist ? (
+                      <div key={itemIndex} className={this.decorateCSS("image-wrapper")} onClick={() => this.onImageClick(itemIndex)}>
+                        <Base.Media value={item.author.image} className={`${this.decorateCSS("image")} ${isActive ? this.decorateCSS("active") : ""}`} />
                       </div>
                     ) : null;
                   })}
@@ -413,7 +409,7 @@ class Testimonials4Page extends Testimonials {
                   sliderRef.current.slickNext();
                 }}
               >
-                <Base.Icon name={arrows.nextArrow} propsIcon={{ className: `${this.decorateCSS("arrow")} ${!componentBackgroundExist && this.decorateCSS("arrow-dark")} ` }}></Base.Icon>
+                <Base.Icon name={arrows.nextArrow} propsIcon={{ className: this.decorateCSS("arrow") }}></Base.Icon>
               </button>
             )}
           </div>
