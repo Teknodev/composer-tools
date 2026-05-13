@@ -122,6 +122,7 @@
 
         .card-button-wrapper {
             display: block;
+            padding: 0px var(--composer-gap-xs) var(--composer-gap-xs) var(--composer-gap-xs);
 
             .card-button {
                 display: flex;
@@ -193,27 +194,27 @@
 
             .card {
                 .card-content {
-                    text-align: var(--composer-content-alignment);
                     padding: var(--composer-gap-lg) var(--composer-gap-lg) 30px var(--composer-gap-lg);
+                    align-items: flex-start;
 
                     .card-subtitle,
                     .card-title,
                     .card-description {
-                        text-align: var(--composer-content-alignment);
+                        text-align: left;
                     }
 
                     .card-price-row {
-                        justify-content: var(--composer-content-alignment);
+                        justify-content: left;
 
                         .card-price {
-                            text-align: var(--composer-content-alignment);
+                            text-align: left;
                         }
                     }
 
                     .card-features {
                         .feature-item {
-                            justify-content: var(--composer-content-alignment);
-                            text-align: var(--composer-content-alignment);
+                            justify-content: left;
+                            text-align: left;
                         }
                     }
                 }
