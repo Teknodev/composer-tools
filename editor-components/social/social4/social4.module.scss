@@ -115,12 +115,12 @@
 
                     .content-container {
                         height: 100%;
-                        padding: var(--composer-gap-md);
+                        padding: var(--composer-gap-sm);
                         display: flex;
                         flex-direction: column;
                         align-items: center;
                         justify-content: center;
-                        gap: var(--composer-gap-md);
+                        gap: var(--composer-gap-sm);
 
                         .like-and-commnet-container {
                             display: flex;
@@ -227,7 +227,7 @@
 
                 .left-container {
                     display: flex;
-                    gap: var(--composer-gap-md);
+                    gap: var(--composer-gap-sm);
                     align-items: center;
                     justify-content: center;
 
@@ -254,7 +254,7 @@
 
                 .right-container {
                     display: flex;
-                    gap: var(--composer-gap-md);
+                    gap: var(--composer-gap-sm);
                     align-items: center;
 
                     >div {
@@ -474,6 +474,41 @@
 }
 
 @container (max-width: #{$composer-tablet-width}) {
+    .container {
+        .max-content {
+            .gallery-grid {
+                .gallery-item {
+                    .overlay {
+                        .content-container {
+                            .like-and-commnet-container {
+                                gap: var(--composer-gap-sm) !important;
+
+                                .like-container,
+                                .comment-container {
+                                    .like-icon,
+                                    .comment-icon {
+                                        &.is-icon {
+                                            font-size: 1.125rem !important;
+                                        }
+                                    }
+
+                                    .like-number,
+                                    .comment-number {
+                                        font-size: 1.125rem !important;
+                                    }
+                                }
+                            }
+
+                            .description {
+                                font-size: 0.9rem !important;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
     .post-overlay {
         .slider-wrapper {
             width: 70%;
@@ -490,7 +525,7 @@
                         }
 
                         .name {
-                            font-size: 1.1rem;
+                            font-size: 1.25rem !important;
                         }
                     }
 
@@ -538,6 +573,7 @@
                             padding: var(--composer-gap-sm);
 
                             .like-and-commnet-container {
+
                                 .like-container,
                                 .comment-container {
                                     gap: var(--composer-gap-xs);
