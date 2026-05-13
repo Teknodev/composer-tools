@@ -1,7 +1,6 @@
 import * as React from "react";
 import styles from "./faq6.module.scss";
 import { BaseFAQ, TypeMediaInputValue } from "../../EditorComponent";
-
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "../../../custom-hooks/input-templates";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
@@ -206,6 +205,8 @@ class Faq6 extends BaseFAQ {
     const mediaValue = mediaSection?.value as TypeMediaInputValue | undefined;
     const showOverlay = !!(mediaSection?.overlay);
 
+    const alignment = Base.getContentAlignment();
+
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
@@ -214,7 +215,7 @@ class Faq6 extends BaseFAQ {
               {(this.castToString(this.getPropValue("title")) || (this.getPropValue("list_items").length > 0)) && (
                 <div className={this.decorateCSS("items-wrapper")}>
                   {(this.castToString(this.getPropValue("title")) || this.castToString(this.getPropValue("subtitle")) || descriptionExist || this.getPropValue("buttons").length > 0) && (
-                    <Base.VerticalContent className={this.decorateCSS("header-wrapper")}>
+                    <Base.VerticalContent className={`${this.decorateCSS("header-wrapper")} ${ (alignment === "center" || !mediaValue) ? this.decorateCSS("alignment-center") : ""}`}>
                       {this.castToString(this.getPropValue("subtitle")) && (
                         <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
                           {this.getPropValue("subtitle")}

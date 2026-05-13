@@ -1,38 +1,48 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss"
-  as *;
+as *;
 
 .container {
   container-type: inline-size;
+
   .max-content {
     .page {
       display: flex;
       flex-direction: column;
       gap: var(--composer-gap-md);
+
       .up-page {
-        .title, .description, .subtitle {
+
+        .title,
+        .description,
+        .subtitle {
           content: "";
         }
       }
+
       .buttons-wrapper {
         display: flex;
         justify-content: center;
         gap: var(--composer-gap-sm);
         flex-wrap: wrap;
+
         .button {
           .button-text {
             content: "";
           }
         }
       }
+
       .down-page {
         display: flex;
         gap: var(--composer-gap-lg);
+
         .questions-column {
           flex: 1;
           display: flex;
           flex-direction: column;
           gap: var(--composer-gap-md);
         }
+
         .card {
           border-radius: var(--composer-border-radius-sm);
           width: 100%;
@@ -52,12 +62,9 @@
             transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
             z-index: 2;
-            border: 1px solid
-              color-mix(
-                in srgb,
+            border: 1px solid color-mix(in srgb,
                 var(--composer-tertiary-color) 30%,
-                transparent
-              );
+                transparent);
 
             .card-title-wrapper {
               flex: 1;
@@ -104,6 +111,7 @@
             .child-container {
               border: none;
             }
+
             .inner-card {
               .inner-text {
                 border: none;
@@ -120,12 +128,9 @@
             background-color: var(--composer-html-background);
 
             .inner-text {
-              border: 1px solid
-                color-mix(
-                  in srgb,
+              border: 1px solid color-mix(in srgb,
                   var(--composer-tertiary-color) 30%,
-                  transparent
-                );
+                  transparent);
               border-top: 0;
               color: var(--composer-tertiary-color);
               padding: var(--composer-gap-md) var(--composer-gap-md);
@@ -135,6 +140,7 @@
 
             &.active {
               max-height: 250px;
+
               .inner-text {
                 content: "";
               }
@@ -152,6 +158,7 @@
       .page {
         .down-page {
           flex-direction: column;
+
           .questions-column {
             width: 100%;
           }

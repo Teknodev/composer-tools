@@ -150,26 +150,28 @@ class Faq1 extends BaseFAQ {
   }
 
   render() {
-    const descriptionExist = this.castToString(this.getPropValue("description"));
-    const description = this.getPropValue("description");
+    const subtitle = this.castToString(this.getPropValue("subtitle"))
+    const title = this.castToString(this.getPropValue("title"))
+    const description = this.castToString(this.getPropValue("description"))
+    const hasContent = subtitle || title || description
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          {(this.castToString(this.getPropValue("subtitle")) || this.castToString(this.getPropValue("title"))) && (
-            <Base.VerticalContent className={this.decorateCSS("title-container")}>
-              {this.castToString(this.getPropValue("subtitle")) && (
+          {hasContent && (
+            <Base.VerticalContent className={this.decorateCSS("vertical-content")}>
+              {subtitle && (
                 <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
                   {this.getPropValue("subtitle")}
                 </Base.SectionSubTitle>
               )}
-              {this.castToString(this.getPropValue("title")) && (
+              {title && (
                 <Base.SectionTitle className={this.decorateCSS("title")}>
                   {this.getPropValue("title")}
                 </Base.SectionTitle>
               )}
-              {descriptionExist && (
+              {description && (
                 <Base.SectionDescription className={this.decorateCSS("description")}>
-                  {description}
+                  {this.getPropValue("description")}
                 </Base.SectionDescription>
               )}
             </Base.VerticalContent>

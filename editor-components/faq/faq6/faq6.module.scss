@@ -1,30 +1,53 @@
 @use '../../../composer-base-components/base/utitilities/viewports.module.scss' as *;
+
 .container {
     .max-content {
-        .wrapper{
+        .wrapper {
             display: flex;
             flex-direction: column;
-            .content{
+
+            .content {
                 display: flex;
                 gap: var(--composer-gap-xl);
                 align-items: stretch;
+
                 .items-wrapper {
                     flex: 1;
                     display: flex;
                     flex-direction: column;
                     gap: var(--composer-gap-xl);
-                    .header-wrapper{
+
+                    .header-wrapper {
                         align-items: flex-start;
-                        .title, .subtitle, .description {
+
+                        &.alignment-center {
+                            align-items: center;
+
+                            .title,
+                            .subtitle,
+                            .description {
+                                text-align: center;
+                            }
+
+                            .buttons-wrapper {
+                                justify-content: center;
+                            }
+                        }
+
+                        .title,
+                        .subtitle,
+                        .description {
                             content: "";
                             text-align: left;
                             margin-left: 0;
                         }
+
                         .buttons-wrapper {
                             display: flex;
                             align-items: center;
                             gap: var(--composer-gap-sm);
                             flex-wrap: wrap;
+
                             .button {
                                 .button-text {
                                     content: "";
@@ -32,28 +55,35 @@
                             }
                         }
                     }
-                    .items{
+
+                    .items {
                         border: 1px solid var(--composer-tertiary-color);
                         border-bottom: none;
+
                         &.no-line {
                             border: none;
+
                             .item {
                                 .title-box {
                                     border-bottom: none;
                                 }
+
                                 .description-box.active {
                                     border-bottom: none;
                                 }
                             }
                         }
+
                         .item {
                             cursor: pointer;
+
                             .title-box {
                                 display: flex;
                                 gap: var(--composer-gap-sm);
                                 align-items: center;
                                 border-bottom: 1px solid var(--composer-tertiary-color);
                                 padding: var(--composer-gap-md);
+
                                 .title-text {
                                     flex: 1;
                                     color: var(--composer-font-color-primary);
@@ -67,19 +97,22 @@
                                     object-fit: contain;
                                     color: var(--composer-primary-color);
                                     transition: color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-                                    &.active{
+
+                                    &.active {
                                         color: var(--composer-font-color-primary);
                                     }
                                 }
                             }
                         }
+
                         .description-box {
                             overflow: hidden;
                             max-height: 0px;
                             transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
                             border-bottom: 0px;
+
                             .description-text {
-                                overflow: hidden;                    
+                                overflow: hidden;
                                 padding: var(--composer-gap-md);
                                 opacity: 0;
                                 color: var(--composer-font-color-primary);
@@ -87,30 +120,34 @@
                                 border-bottom: 1px solid var(--composer-tertiary-color);
                                 text-align: left;
                             }
+
                             &.active {
                                 max-height: 150px;
                                 border-bottom: 1px solid var(--composer-tertiary-color);
-                                .description-text{
+
+                                .description-text {
                                     opacity: 1;
                                     border-bottom: 0px;
                                 }
                             }
                         }
-            
+
                     }
-             
+
                 }
-        
+
                 .image-box {
                     flex: 1;
                     width: 100%;
                     position: relative;
+
                     .image {
                         width: 100%;
                         height: 100%;
                         object-fit: cover;
                         border-radius: 50%;
                     }
+
                     .overlay {
                         position: absolute;
                         inset: 0;
@@ -122,16 +159,18 @@
         }
     }
 }
-@container (max-width:#{$composer-tablet-width}){
-    .container{
-        .max-content{
-            .wrapper{
-                .content{
-                    .items-wrapper{
+
+@container (max-width:#{$composer-tablet-width}) {
+    .container {
+        .max-content {
+            .wrapper {
+                .content {
+                    .items-wrapper {
                         flex: 1;
                     }
-                    .image-box{
-                        .image{
+
+                    .image-box {
+                        .image {
                             min-height: 300px;
                         }
                     }
@@ -140,17 +179,19 @@
         }
     }
 }
-@container (max-width:#{$composer-phone-width}){
-    .container{
-        .max-content{
-            .wrapper{
-                .content{
+
+@container (max-width:#{$composer-phone-width}) {
+    .container {
+        .max-content {
+            .wrapper {
+                .content {
                     flex-direction: column;
-                    .items-wrapper{
-                        .items{
-                            .item{
-                                .title-box{
-                                    .icon{
+
+                    .items-wrapper {
+                        .items {
+                            .item {
+                                .title-box {
+                                    .icon {
                                         font-size: 1.2rem;
                                     }
                                 }

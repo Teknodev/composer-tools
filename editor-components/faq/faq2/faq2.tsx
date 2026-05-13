@@ -3,7 +3,6 @@ import styles from "./faq2.module.scss";
 import { BaseFAQ, TypeMediaInputValue } from "../../EditorComponent";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 import { Base } from "../../../composer-base-components/base/base";
-
 import { INPUTS } from "../../../custom-hooks/input-templates";
 
 type Card = {
@@ -15,6 +14,7 @@ type Card = {
 type BottomItem = {
   title: React.JSX.Element;
   description: React.JSX.Element;
+  buttons: any[];
 }
 
 class Faq2 extends BaseFAQ {
@@ -34,25 +34,28 @@ class Faq2 extends BaseFAQ {
       displayer: "Title",
       value: "Frequently asked questions",
     });
+
     this.addProp({
       type: "string",
       key: "description",
       displayer: "Description",
-      value:
-        "If you have ever wondered how to developed your brand, this is the place fot you. Take a big step forward in growing your business with this great tool.",
+      value: "If you have ever wondered how to developed your brand, this is the place fot you. Take a big step forward in growing your business with this great tool.",
     });
+
     this.addProp({
       type: "number",
       key: "itemCount",
       displayer: "Item Count in a Row",
       value: 3,
     });
+
     this.addProp({
       type: "boolean",
       key: "showIconBackground",
       displayer: "Icon Background",
       value: true,
     });
+
     this.addProp({
       type: "array",
       key: "card",
@@ -92,7 +95,9 @@ class Faq2 extends BaseFAQ {
               type: "array",
               key: "buttons",
               displayer: "Buttons",
-              value: [],
+              value: [
+                INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+              ],
             }
           ],
         },
@@ -130,7 +135,9 @@ class Faq2 extends BaseFAQ {
               type: "array",
               key: "buttons",
               displayer: "Buttons",
-              value: [],
+              value: [
+                INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+              ],
             }
           ],
         },
@@ -168,7 +175,9 @@ class Faq2 extends BaseFAQ {
               type: "array",
               key: "buttons",
               displayer: "Buttons",
-              value: [],
+              value: [
+                INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+              ],
             }
           ],
         },
@@ -206,7 +215,9 @@ class Faq2 extends BaseFAQ {
               type: "array",
               key: "buttons",
               displayer: "Buttons",
-              value: [],
+              value: [
+                INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+              ],
             }
           ],
         },
@@ -244,7 +255,9 @@ class Faq2 extends BaseFAQ {
               type: "array",
               key: "buttons",
               displayer: "Buttons",
-              value: [],
+              value: [
+                INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+              ],
             }
           ],
         },
@@ -282,7 +295,9 @@ class Faq2 extends BaseFAQ {
               type: "array",
               key: "buttons",
               displayer: "Buttons",
-              value: [],
+              value: [
+                INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+              ],
             }
           ],
         },
@@ -306,16 +321,16 @@ class Faq2 extends BaseFAQ {
           value:
             "Can't find answer you're looking for? Please send us a message.",
         },
+        {
+          type: "array",
+          key: "buttons",
+          displayer: "Buttons",
+          value: [
+            INPUTS.BUTTON("button", "Button", "Open Positions", "", null, null, "Primary"),
+          ],
+        },
       ],
     });
-    this.addProp({
-      type: "array",
-      key: "buttons",
-      displayer: "Buttons",
-      value: [
-        INPUTS.BUTTON("button", "Button", "Open Positions", "", null, null, "Primary"),
-      ],
-    })
   }
 
   static getName(): string {
@@ -323,106 +338,115 @@ class Faq2 extends BaseFAQ {
   }
 
   render() {
+    const subtitle = this.castToString(this.getPropValue("subtitle"))
+    const title = this.castToString(this.getPropValue("title"))
+    const description = this.castToString(this.getPropValue("description"))
+    const hasContent = subtitle || title || description
     const downContainer = this.castToObject<BottomItem>("downContainer");
+
+    const downContainerButtons = (downContainer.buttons || []).map((button: any) => {
+      const isRawProp = Array.isArray(button.value);
+      return {
+        text: isRawProp ? this.getPropValue("text", { parent_object: button.value }) : button.text,
+        type: isRawProp ? this.getPropValue("type", { parent_object: button.value }) : button.type,
+        url: isRawProp ? this.getPropValue("url", { parent_object: button.value }) : button.url
+      }
+    });
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("page")}>
-            {(this.castToString(this.getPropValue("subtitle")) || this.castToString(this.getPropValue("title")) || this.castToString(this.getPropValue("description"))) && (
-              <Base.VerticalContent className={this.decorateCSS("up-page")}>
-                {this.castToString(this.getPropValue("subtitle")) && (
-                  <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
-                    {this.getPropValue("subtitle")}
-                  </Base.SectionSubTitle>
-                )}
-                {this.castToString(this.getPropValue("title")) && (
-                  <Base.SectionTitle className={this.decorateCSS("title")}>
-                    {this.getPropValue("title")}
-                  </Base.SectionTitle>
-                )}
-                {this.castToString(this.getPropValue("description")) && (
-                  <Base.SectionDescription className={this.decorateCSS("description")}>
-                    {this.getPropValue("description")}
-                  </Base.SectionDescription>
-                )}
-              </Base.VerticalContent>
-            )}
-            {(this.getPropValue("card").length > 0) && (
-              <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount") }} className={this.decorateCSS("card-page")}>
-                {this.castToObject<Card[]>("card").map(
-                  (item: Card) => {
-                    return (
-                      <div className={this.decorateCSS("card")}>
-                        <Base.VerticalContent className={this.decorateCSS("card-content")}>
-                          {item.cardIcon && (
-                            <Base.Row className={`${this.decorateCSS("icon-wrapper")}${!this.getPropValue("showIconBackground") ? ` ${this.decorateCSS("no-icon-bg")}` : ""}`}>
-                              <Base.Media value={item.cardIcon} className={this.decorateCSS("icon")} />
-                            </Base.Row>
-                          )}
-                          {this.castToString(item.cardTitle) && (
-                            <Base.H6 className={this.decorateCSS("card-title")}>
-                              {item.cardTitle}
-                            </Base.H6>
-                          )}
-                          {this.castToString(item.description) && (
-                            <Base.P className={this.decorateCSS("card-description")}>
-                              {item.description}
-                            </Base.P>
-                          )}
-                        </Base.VerticalContent>
-                        {item.buttons?.length > 0 && (
-                          <div className={this.decorateCSS("card-buttons")}>
-                            {item.buttons.map((button: INPUTS.CastedButton) => {
-                              return this.castToString(button.text) && (
-                                <ComposerLink path={button.url}>
-                                  <Base.Button buttonType={button.type} className={this.decorateCSS("card-button")}>
-                                    <Base.P className={this.decorateCSS("card-button-text")}>{button.text}</Base.P>
-                                  </Base.Button>
-                                </ComposerLink>
-                              )
-                            })}
-                          </div>
+          {hasContent && (
+            <Base.VerticalContent className={this.decorateCSS("vertical-content")}>
+              {subtitle && (
+                <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                  {this.getPropValue("subtitle")}
+                </Base.SectionSubTitle>
+              )}
+              {title && (
+                <Base.SectionTitle className={this.decorateCSS("title")}>
+                  {this.getPropValue("title")}
+                </Base.SectionTitle>
+              )}
+              {description && (
+                <Base.SectionDescription className={this.decorateCSS("description")}>
+                  {this.getPropValue("description")}
+                </Base.SectionDescription>
+              )}
+            </Base.VerticalContent>
+          )}
+          {(this.getPropValue("card").length > 0) && (
+            <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount") }} className={this.decorateCSS("card-page")}>
+              {this.castToObject<Card[]>("card").map(
+                (item: Card) => {
+                  return (
+                    <div className={this.decorateCSS("card")}>
+                      <Base.VerticalContent className={this.decorateCSS("card-content")}>
+                        {item.cardIcon && (
+                          <Base.Row className={`${this.decorateCSS("icon-wrapper")}${!this.getPropValue("showIconBackground") ? ` ${this.decorateCSS("no-icon-bg")}` : ""}`}>
+                            <Base.Media value={item.cardIcon} className={this.decorateCSS("icon")} />
+                          </Base.Row>
                         )}
-                      </div>
-                    );
-                  }
-                )}
-              </Base.ListGrid>
-            )}
-
-
-            {(this.castToString(downContainer.title) || this.castToString(downContainer.description) || this.getPropValue("buttons").length > 0) && (
-              <div className={this.decorateCSS("down-container")}>
-                {(this.castToString(downContainer.title) || this.castToString(downContainer.description)) && (
-                  <Base.VerticalContent className={this.decorateCSS("content")}>
-                    {this.castToString(downContainer.title) && (
-                      <Base.H5 className={this.decorateCSS("down-title")}>
-                        {downContainer.title}
-                      </Base.H5>
-                    )}
-                    {this.castToString(downContainer.description) && (
-                      <Base.P className={this.decorateCSS("down-description")}>
-                        {downContainer.description}
-                      </Base.P>
-                    )}
-                  </Base.VerticalContent>
-                )}
-                {(this.getPropValue("buttons").length > 0) && (
-                  <div className={this.decorateCSS("buttons")}>
-                    {this.castToObject<INPUTS.CastedButton[]>("buttons").map((button: INPUTS.CastedButton) => {
-                      return this.castToString(button.text) && (
-                        <ComposerLink path={button.url}>
-                          <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
-                            <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
-                          </Base.Button>
-                        </ComposerLink>
-                      )
-                    })}
-                  </div>
-                )}
-              </div>
-            )}
-          </div>
+                        {this.castToString(item.cardTitle) && (
+                          <Base.H6 className={this.decorateCSS("card-title")}>
+                            {item.cardTitle}
+                          </Base.H6>
+                        )}
+                        {this.castToString(item.description) && (
+                          <Base.P className={this.decorateCSS("card-description")}>
+                            {item.description}
+                          </Base.P>
+                        )}
+                      </Base.VerticalContent>
+                      {item.buttons?.length > 0 && (
+                        <div className={this.decorateCSS("card-buttons")}>
+                          {item.buttons.map((button: INPUTS.CastedButton) => {
+                            return this.castToString(button.text) && (
+                              <ComposerLink path={button.url}>
+                                <Base.Button buttonType={button.type} className={this.decorateCSS("card-button")}>
+                                  <Base.P className={this.decorateCSS("card-button-text")}>{button.text}</Base.P>
+                                </Base.Button>
+                              </ComposerLink>
+                            )
+                          })}
+                        </div>
+                      )}
+                    </div>
+                  );
+                }
+              )}
+            </Base.ListGrid>
+          )}
+          {(this.castToString(downContainer.title) || this.castToString(downContainer.description) || downContainerButtons.length > 0) && (
+            <div className={this.decorateCSS("down-container")}>
+              {(this.castToString(downContainer.title) || this.castToString(downContainer.description)) && (
+                <Base.VerticalContent className={this.decorateCSS("content")}>
+                  {this.castToString(downContainer.title) && (
+                    <Base.H5 className={this.decorateCSS("down-title")}>
+                      {downContainer.title}
+                    </Base.H5>
+                  )}
+                  {this.castToString(downContainer.description) && (
+                    <Base.P className={this.decorateCSS("down-description")}>
+                      {downContainer.description}
+                    </Base.P>
+                  )}
+                </Base.VerticalContent>
+              )}
+              {downContainerButtons.length > 0 && (
+                <div className={this.decorateCSS("button-container")}>
+                  {downContainerButtons.map((button: any, index: number) => (
+                    this.castToString(button.text) && (
+                      <ComposerLink key={index} path={button.url}>
+                        <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
+                          <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
+                        </Base.Button>
+                      </ComposerLink>
+                    )
+                  ))}
+                </div>
+              )}
+            </div>
+          )}
         </Base.MaxContent>
       </Base.Container>
     );
