@@ -5,7 +5,7 @@ import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "../../../custom-hooks/input-templates";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 
-type CardItem = {
+type Item = {
   star: number;
   description: React.JSX.Element;
   image: TypeMediaInputValue;
@@ -414,7 +414,7 @@ class Testimonials6Page extends Testimonials {
     });
     const hasAnyTopContent = subtitleExist || titleExist || descriptionExist || hasValidButtons;
 
-    const cards = this.castToObject<CardItem[]>("cards");
+    const cards = this.castToObject<Item[]>("cards");
     const starIcon = this.getPropValue("starIcon") as TypeMediaInputValue;
     const starIconExist = starIcon && (starIcon.type === "icon" ? starIcon.name : starIcon.url);
 
@@ -462,26 +462,26 @@ class Testimonials6Page extends Testimonials {
             </Base.VerticalContent>
           )}
         </Base.MaxContent>
-        <Base.MaxContent className={this.decorateCSS("maxContent")}>
-          <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount"), tablet: this.getPropValue("itemCount"), phone: 1 }} className={this.decorateCSS("cardContainer")}>
-            {cards.map((item: CardItem, index: number) => (
+        <Base.MaxContent className={this.decorateCSS("cards-wrapper")}>
+          <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount"), tablet: this.getPropValue("itemCount"), phone: 1 }} className={this.decorateCSS("card-container")}>
+            {cards.map((item: Item, index: number) => (
               <div key={index} className={this.decorateCSS("card")}>
                 {this.castToString(item.description) && (
-                  <Base.P className={this.decorateCSS("description")}>{item.description}</Base.P>
+                  <Base.P className={this.decorateCSS("item-text")}>{item.description}</Base.P>
                 )}
                 {item.line && <div className={this.decorateCSS("line")}></div>}
                 {(item.image || (item.author && (this.castToString(item.author.name) || this.castToString(item.author.subtitle))) || item.star > 0) && (
-                  <div className={this.decorateCSS("bottomContainer")}>
+                  <div className={this.decorateCSS("bottom-container")}>
                     {item.image && (
                       <Base.Media value={item.image} className={this.decorateCSS("image")} />
                     )}
                     {item.author && (this.castToString(item.author.name) || this.castToString(item.author.subtitle)) && (
                       <Base.VerticalContent className={this.decorateCSS("person")}>
                         {this.castToString(item.author.name) && (
-                          <Base.P className={this.decorateCSS("name")}>{item.author.name}</Base.P>
+                          <Base.P className={this.decorateCSS("item-name")}>{item.author.name}</Base.P>
                         )}
                         {this.castToString(item.author.subtitle) && (
-                          <Base.P className={this.decorateCSS("personTitle")}>{item.author.subtitle}</Base.P>
+                          <Base.P className={this.decorateCSS("item-subtitle")}>{item.author.subtitle}</Base.P>
                         )}
                       </Base.VerticalContent>
                     )}
