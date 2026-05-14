@@ -894,12 +894,6 @@ class Social2 extends BaseSocial {
             displayer: "Player",
             value: [
                 {
-                    type: "boolean",
-                    key: "videoIframe",
-                    displayer: "Video Iframe",
-                    value: true
-                },
-                {
                     type: "media",
                     key: "playIcon",
                     displayer: "Play Icon",
@@ -1148,7 +1142,7 @@ class Social2 extends BaseSocial {
                                                 {item.overlay && (
                                                     <div className={this.decorateCSS("overlay-item")} />
                                                 )}
-                                                {player.videoIframe && player.playIcon && (
+                                                {player.playIcon && (
                                                     <div className={this.decorateCSS("icon-container")} onClick={() => { this.handleVideoPlay(index) }}>
                                                         <Base.Media value={player.playIcon} className={`${this.decorateCSS("icon")} ${player.playIcon.type === "icon" ? this.decorateCSS("is-icon") : ""}`} />
                                                     </div>
@@ -1160,7 +1154,7 @@ class Social2 extends BaseSocial {
                             </div>
                         )}
                     </Base.MaxContent>
-                    {player.videoIframe && this.getComponentState("videoActive") && sliderItems[selectedIndex] && (
+                    {this.getComponentState("videoActive") && sliderItems[selectedIndex] && (
                         <Base.Overlay isVisible={true} className={this.decorateCSS("overlay")} onClick={() => this.handleVideoClose()}>
                             <div className={this.decorateCSS("modal-wrapper")} onClick={(e) => e.stopPropagation()}>
                                 <div className={this.decorateCSS("video-container")}>
