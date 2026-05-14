@@ -1,24 +1,62 @@
-@use "../../../composer-base-components/base//utitilities/viewports.module.scss" as *;
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+
 .container {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
+
   .max-content {
-    padding: var(--composer-gap-xl) 0px;
 
     .wrapper {
       display: flex;
       flex-direction: column;
       gap: var(--composer-gap-xl);
-      .title {
-        margin: 0px;
-        &.title-with-image {
-          color: white;
+
+      .top-content {
+        width: 100%;
+
+        .button-container,
+        .button,
+        .button-text,
+        .button-icon {
+          content: "";
+        }
+
+        .subtitle {
+          content: "";
+
+          &.subtitle-with-image {
+            background: transparent;
+            padding: 0;
+            border: none;
+            color: white;
+
+            &::before {
+              background-color: white;
+            }
+          }
+        }
+
+        .title {
+          content: "";
+
+          &.title-with-image {
+            color: white;
+          }
+        }
+
+        .description {
+          content: "";
+
+          &.description-with-image {
+            color: white;
+          }
         }
       }
 
       .content {
         gap: var(--composer-gap-xl);
+
         .cards {
           display: flex;
           flex-direction: column;
@@ -38,25 +76,34 @@
           .card-top {
             display: flex;
             gap: var(--composer-gap-md);
+
             .card-image {
               border-radius: 50%;
               width: 70px;
               height: 70px;
             }
+
             .card-top-right {
               display: flex;
               flex-direction: column;
               align-items: baseline;
+
               .card-title {
-                margin: 0;
+                text-align: left !important;
+                justify-content: flex-start !important;
               }
+
               .card-subtitle {
                 color: var(--composer-tertiary-color);
+                text-align: left !important;
+                justify-content: flex-start !important;
               }
             }
           }
+
           .card-description {
-            text-align: left;
+            text-align: left !important;
+            justify-content: flex-start !important;
           }
         }
       }
@@ -68,9 +115,24 @@
   .container {
     .max-content {
       .wrapper {
-        gap: calc(var(--composer-gap-xl));
+        gap: var(--composer-gap-lg);
+
         .content {
-          gap: calc(var(--composer-gap-xl));
+          gap: var(--composer-gap-lg);
+        }
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+  .container {
+    .max-content {
+      .wrapper {
+        gap: var(--composer-gap-md);
+
+        .content {
+          gap: var(--composer-gap-md);
         }
       }
     }
