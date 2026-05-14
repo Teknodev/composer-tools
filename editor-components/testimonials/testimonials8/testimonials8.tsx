@@ -7,12 +7,14 @@ import { INPUTS } from "../../../custom-hooks/input-templates";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 
 type Item = {
-  profileImage: TypeMediaInputValue;
-  name: React.JSX.Element;
-  nameId: React.JSX.Element;
-  description: React.JSX.Element;
+  image: TypeMediaInputValue;
+  author: {
+    name: React.JSX.Element;
+    subtitle: React.JSX.Element;
+  };
+  text: React.JSX.Element;
   starNumber: number;
-  starIcon: TypeMediaInputValue;
+  icon: TypeMediaInputValue;
 };
 
 type Button = {
@@ -34,7 +36,7 @@ class Testimonials8Page extends Testimonials {
       type: "string",
       key: "subtitle",
       displayer: "Subtitle",
-      value: "Lorem",
+      value: "",
     });
     this.addProp({
       type: "string",
@@ -46,14 +48,14 @@ class Testimonials8Page extends Testimonials {
       type: "string",
       key: "description",
       displayer: "Description",
-      value: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      value: "",
     });
     this.addProp({
       type: "array",
       key: "buttons",
       displayer: "Buttons",
       value: [
-        INPUTS.BUTTON("button", "Button", "Lorem", "", null, null, "Primary"),
+        INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
       ],
     });
     this.addProp({
@@ -75,12 +77,12 @@ class Testimonials8Page extends Testimonials {
       value: [
         {
           type: "object",
-          key: "card",
-          displayer: "Card",
+          key: "card1",
+          displayer: "Card 1",
           value: [
             {
               type: "media",
-              key: "profileImage",
+              key: "image",
               additionalParams: { availableTypes: ["image"] },
               value: {
                 type: "image",
@@ -89,20 +91,27 @@ class Testimonials8Page extends Testimonials {
               displayer: "Author Image",
             },
             {
-              type: "string",
-              key: "name",
-              value: "Erle Philomena",
-              displayer: "Author Name",
+              type: "object",
+              key: "author",
+              displayer: "Author",
+              value: [
+                {
+                  type: "string",
+                  key: "name",
+                  value: "Erle Philomena",
+                  displayer: "Name",
+                },
+                {
+                  type: "string",
+                  key: "subtitle",
+                  value: "Product Designer",
+                  displayer: "Position",
+                },
+              ],
             },
             {
               type: "string",
-              key: "nameId",
-              value: "Product Designer",
-              displayer: "Author Position",
-            },
-            {
-              type: "string",
-              key: "description",
+              key: "text",
               value: "I have been using pagedone for several months now, and I must say that it has made my life a lot easier. The platform's intuitive interface and ease of use have allowed me to manage my finances more effectively and make informed investment decisions.",
               displayer: "Review Text",
             },
@@ -114,7 +123,7 @@ class Testimonials8Page extends Testimonials {
             },
             {
               type: "media",
-              key: "starIcon",
+              key: "icon",
               displayer: "Icon",
               additionalParams: { availableTypes: ["icon", "image"] },
               value: { type: "icon", name: "FaStar" },
@@ -123,12 +132,12 @@ class Testimonials8Page extends Testimonials {
         },
         {
           type: "object",
-          key: "card",
-          displayer: "Card",
+          key: "card2",
+          displayer: "Card 2",
           value: [
             {
               type: "media",
-              key: "profileImage",
+              key: "image",
               additionalParams: { availableTypes: ["image"] },
               value: {
                 type: "image",
@@ -137,20 +146,27 @@ class Testimonials8Page extends Testimonials {
               displayer: "Author Image",
             },
             {
-              type: "string",
-              key: "name",
-              value: "Shonda Kadence",
-              displayer: "Author Name",
+              type: "object",
+              key: "author",
+              displayer: "Author",
+              value: [
+                {
+                  type: "string",
+                  key: "name",
+                  value: "Shonda Kadence",
+                  displayer: "Name",
+                },
+                {
+                  type: "string",
+                  key: "subtitle",
+                  value: "Developer",
+                  displayer: "Position",
+                },
+              ],
             },
             {
               type: "string",
-              key: "nameId",
-              value: "Developer",
-              displayer: "Author Position",
-            },
-            {
-              type: "string",
-              key: "description",
+              key: "text",
               value: "Grunge design is all about creating a rough, raw, and edgy look. It can be a great way to add personality and attitude to a design.",
               displayer: "Review Text",
             },
@@ -162,7 +178,7 @@ class Testimonials8Page extends Testimonials {
             },
             {
               type: "media",
-              key: "starIcon",
+              key: "icon",
               displayer: "Icon",
               additionalParams: { availableTypes: ["icon", "image"] },
               value: { type: "icon", name: "FaStar" },
@@ -171,12 +187,12 @@ class Testimonials8Page extends Testimonials {
         },
         {
           type: "object",
-          key: "card",
-          displayer: "Card",
+          key: "card3",
+          displayer: "Card 3",
           value: [
             {
               type: "media",
-              key: "profileImage",
+              key: "image",
               additionalParams: { availableTypes: ["image"] },
               value: {
                 type: "image",
@@ -185,20 +201,27 @@ class Testimonials8Page extends Testimonials {
               displayer: "Author Image",
             },
             {
-              type: "string",
-              key: "name",
-              value: "Laurie Darwin",
-              displayer: "Author Name",
+              type: "object",
+              key: "author",
+              displayer: "Author",
+              value: [
+                {
+                  type: "string",
+                  key: "name",
+                  value: "Laurie Darwin",
+                  displayer: "Name",
+                },
+                {
+                  type: "string",
+                  key: "subtitle",
+                  value: "Design Lead",
+                  displayer: "Position",
+                },
+              ],
             },
             {
               type: "string",
-              key: "nameId",
-              value: "Design Lead",
-              displayer: "Author Position",
-            },
-            {
-              type: "string",
-              key: "description",
+              key: "text",
               value: "Responsive design is a must for modern websites and interfaces. It ensures that content is displayed optimally on different screen sizes and devices.",
               displayer: "Review Text",
             },
@@ -210,7 +233,7 @@ class Testimonials8Page extends Testimonials {
             },
             {
               type: "media",
-              key: "starIcon",
+              key: "icon",
               displayer: "Icon",
               additionalParams: { availableTypes: ["icon", "image"] },
               value: { type: "icon", name: "FaStar" },
@@ -341,24 +364,30 @@ class Testimonials8Page extends Testimonials {
               )}
               <ComposerSlider {...settings} ref={sliderRef}>
                 {cards.map((item: Item, index: number) => {
-                  const starIconExist = item.starIcon && (item.starIcon.type === "icon" ? item.starIcon.name : item.starIcon.url);
+                  const iconExist = item.icon && (item.icon.type === "icon" ? item.icon.name : item.icon.url);
                   return (
-                    <div key={index} className={this.decorateCSS("card")}>
+                    <Base.VerticalContent key={index} className={this.decorateCSS("card")}>
                       <Base.Row className={this.decorateCSS("topContainer")}>
-                        {item.profileImage && <Base.Media value={item.profileImage} className={this.decorateCSS("image")} />}
-                        <div className={this.decorateCSS("personal")}>
-                          {this.castToString(item.name) && <div className={this.decorateCSS("name")}>{item.name}</div>}
-                          {this.castToString(item.nameId) && <div className={this.decorateCSS("personTitle")}>{item.nameId}</div>}
-                        </div>
+                        {item.image && <Base.Media value={item.image} className={this.decorateCSS("image")} />}
+                        {item.author && (item.author.name || item.author.subtitle) && (
+                          <div className={this.decorateCSS("personal")}>
+                            {item.author.name && (
+                              <Base.P className={this.decorateCSS("item-name")}>{item.author.name}</Base.P>
+                            )}
+                            {item.author.subtitle && (
+                              <Base.P className={this.decorateCSS("item-subtitle")}>{item.author.subtitle}</Base.P>
+                            )}
+                          </div>
+                        )}
                       </Base.Row>
-                      {this.castToString(item.description) && (
-                        <Base.P className={this.decorateCSS("description")}>{item.description}</Base.P>
+                      {this.castToString(item.text) && (
+                        <Base.P className={this.decorateCSS("item-text")}>{item.text}</Base.P>
                       )}
                       <Base.Row className={this.decorateCSS("bottomContainer")}>
-                        {starIconExist && item.starNumber > 0 && (
+                        {iconExist && item.starNumber > 0 && (
                           <div className={this.decorateCSS("star")}>
                             {[...Array(Number(item.starNumber))].map((_: unknown, starIndex: number) => (
-                              <Base.Media key={starIndex} value={item.starIcon} className={this.decorateCSS("icon")} />
+                              <Base.Media key={starIndex} value={item.icon} className={this.decorateCSS("icon")} />
                             ))}
                           </div>
                         )}
@@ -367,7 +396,7 @@ class Testimonials8Page extends Testimonials {
                           <div className={this.decorateCSS("starNumber")}>{item.starNumber}</div>
                         )}
                       </Base.Row>
-                    </div>
+                    </Base.VerticalContent>
                   );
                 })}
               </ComposerSlider>

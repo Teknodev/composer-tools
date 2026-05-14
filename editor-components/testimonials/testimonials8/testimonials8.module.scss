@@ -47,7 +47,7 @@
         .prevArrow,
         .nextArrow {
           position: absolute;
-          top: calc(50% - var(--composer-gap-md));
+          top: 50%;
           transform: translateY(-50%);
           display: flex;
           align-items: center;
@@ -63,8 +63,11 @@
           padding: 0px;
 
           .arrow {
-            width: var(--composer-gap-md);
-            height: var(--composer-gap-md);
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
           }
         }
         .prevArrow {
@@ -98,14 +101,16 @@
           padding: var(--composer-gap-xl);
           display: flex;
           flex-direction: column;
+          align-items: flex-start;
           gap: var(--composer-gap-md);
-          margin-bottom: var(--composer-gap-md);
           height: 100%;
+          text-align: left;
 
           .topContainer {
             display: flex;
             gap: var(--composer-gap-sm);
             align-items: center;
+            justify-content: flex-start;
             .image {
               width: var(--composer-gap-xl);
               height: var(--composer-gap-xl);
@@ -115,23 +120,35 @@
             .personal {
               display: flex;
               flex-direction: column;
-              gap: var(--composer-gap-sm);
-              .name {
+              .item-name {
                 color: var(--composer-font-color-primary);
+                text-align: left;
+                margin-left: 0;
+                margin-right: 0;
+                justify-content: flex-start;
               }
-              .personTitle {
+              .item-subtitle {
                 color: var(--composer-tertiary-color);
+                text-align: left;
+                margin-left: 0;
+                margin-right: 0;
+                justify-content: flex-start;
               }
             }
           }
 
-          .description {
+          .item-text {
             color: var(--composer-font-color-primary);
+            text-align: left;
+            margin-left: 0;
+            margin-right: 0;
+            justify-content: flex-start;
           }
 
           .bottomContainer {
             display: flex;
             gap: var(--composer-gap-sm);
+            justify-content: flex-start;
             .star {
               display: flex;
               gap: var(--composer-gap-xs);
@@ -142,6 +159,7 @@
             }
             .line {
               width: 1px;
+              height: var(--composer-gap-md);
               background-color: rgba(var(--composer-font-color-primary-rgb), 0.2);
             }
             .starNumber {
@@ -176,14 +194,6 @@
           }
           > div {
             padding: 0px;
-            > div {
-              padding-bottom: var(--composer-gap-sm);
-              > div {
-                > div {
-                  padding: var(--composer-gap-sm);
-                }
-              }
-            }
           }
           .card {
             padding: var(--composer-gap-lg);
@@ -205,7 +215,7 @@
             height: calc(var(--composer-gap-lg) + var(--composer-gap-sm));
           }
           .card {
-            padding: var(--composer-gap-sm);
+            padding: 30px;
             .topContainer {
               .image {
                 width: var(--composer-gap-lg);
