@@ -6,11 +6,13 @@ import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "../../../custom-hooks/input-templates";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 
-type Card = {
-  profileImage: TypeMediaInputValue;
-  title: React.JSX.Element;
-  subtitle: React.JSX.Element;
-  description: React.JSX.Element;
+type Item = {
+  image: TypeMediaInputValue;
+  text: React.JSX.Element;
+  author: {
+    name: React.JSX.Element;
+    subtitle: React.JSX.Element;
+  };
 };
 
 type Button = {
@@ -71,12 +73,12 @@ class Testimonials9Page extends Testimonials {
       value: [
         {
           type: "object",
-          key: "slider object",
-          displayer: "Slider Object",
+          key: "slider1",
+          displayer: "Slider 1",
           value: [
             {
               type: "media",
-              key: "profileImage",
+              key: "image",
               displayer: "Author Image",
               additionalParams: { availableTypes: ["image"] },
               value: {
@@ -85,33 +87,30 @@ class Testimonials9Page extends Testimonials {
               },
             },
             {
-              type: "string",
-              key: "title",
-              value: "Thein N.",
-              displayer: "Author Name",
+              type: "object",
+              key: "author",
+              displayer: "Author",
+              value: [
+                { type: "string", key: "name", displayer: "Name", value: "Thein N." },
+                { type: "string", key: "subtitle", displayer: "Subtitle", value: "18th December 2022" },
+              ],
             },
             {
               type: "string",
-              key: "subtitle",
-              value: "18th December 2022",
-              displayer: "Subtitle",
-            },
-            {
-              type: "string",
-              key: "description",
-              value: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed aliquet velit id nunc posuere, et fringilla leo convallis. Nam ullamcorper, arcu id ullamcorper congue, turpis urna interdum ligula, id congue purus nunc ac sem.",
+              key: "text",
               displayer: "Review Text",
+              value: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed aliquet velit id nunc posuere, et fringilla leo convallis. Nam ullamcorper, arcu id ullamcorper congue, turpis urna interdum ligula, id congue purus nunc ac sem.",
             },
           ],
         },
         {
           type: "object",
-          key: "slider object",
-          displayer: "Slider Object",
+          key: "slider2",
+          displayer: "Slider 2",
           value: [
             {
               type: "media",
-              key: "profileImage",
+              key: "image",
               displayer: "Author Image",
               additionalParams: { availableTypes: ["image"] },
               value: {
@@ -120,33 +119,30 @@ class Testimonials9Page extends Testimonials {
               },
             },
             {
-              type: "string",
-              key: "title",
-              value: "Bailey H.",
-              displayer: "Author Name",
+              type: "object",
+              key: "author",
+              displayer: "Author",
+              value: [
+                { type: "string", key: "name", displayer: "Name", value: "Bailey H." },
+                { type: "string", key: "subtitle", displayer: "Subtitle", value: "21st November 2022" },
+              ],
             },
             {
               type: "string",
-              key: "subtitle",
-              value: "21st November 2022",
-              displayer: "Subtitle",
-            },
-            {
-              type: "string",
-              key: "description",
-              value: "Nulla facilisi. Fusce et justo eget tortor consectetur facilisis vel id turpis. Nam ullamcorper, arcu id ullamcorper congue, turpis urna interdum ligula, id congue purus nunc ac sem.",
+              key: "text",
               displayer: "Review Text",
+              value: "Nulla facilisi. Fusce et justo eget tortor consectetur facilisis vel id turpis. Nam ullamcorper, arcu id ullamcorper congue, turpis urna interdum ligula, id congue purus nunc ac sem.",
             },
           ],
         },
         {
           type: "object",
-          key: "slider object",
-          displayer: "Slider Object",
+          key: "slider3",
+          displayer: "Slider 3",
           value: [
             {
               type: "media",
-              key: "profileImage",
+              key: "image",
               displayer: "Author Image",
               additionalParams: { availableTypes: ["image"] },
               value: {
@@ -155,33 +151,30 @@ class Testimonials9Page extends Testimonials {
               },
             },
             {
-              type: "string",
-              key: "title",
-              value: "Ashley S.",
-              displayer: "Author Name",
+              type: "object",
+              key: "author",
+              displayer: "Author",
+              value: [
+                { type: "string", key: "name", displayer: "Name", value: "Ashley S." },
+                { type: "string", key: "subtitle", displayer: "Subtitle", value: "2nd July 2022" },
+              ],
             },
             {
               type: "string",
-              key: "subtitle",
-              value: "2nd July 2022",
-              displayer: "Subtitle",
-            },
-            {
-              type: "string",
-              key: "description",
-              value: "Duis blandit est eu magna tristique, ut vestibulum orci feugiat. Integer nec semper neque. Nam ullamcorper, arcu id ullamcorper congue, turpis urna interdum ligula, id congue purus nunc ac sem.",
+              key: "text",
               displayer: "Review Text",
+              value: "Duis blandit est eu magna tristique, ut vestibulum orci feugiat. Integer nec semper neque. Nam ullamcorper, arcu id ullamcorper congue, turpis urna interdum ligula, id congue purus nunc ac sem.",
             },
           ],
         },
         {
           type: "object",
-          key: "slider object",
-          displayer: "Slider Object",
+          key: "slider4",
+          displayer: "Slider 4",
           value: [
             {
               type: "media",
-              key: "profileImage",
+              key: "image",
               displayer: "Author Image",
               additionalParams: { availableTypes: ["image"] },
               value: {
@@ -190,33 +183,30 @@ class Testimonials9Page extends Testimonials {
               },
             },
             {
-              type: "string",
-              key: "title",
-              value: "Tom H.",
-              displayer: "Author Name",
+              type: "object",
+              key: "author",
+              displayer: "Author",
+              value: [
+                { type: "string", key: "name", displayer: "Name", value: "Tom H." },
+                { type: "string", key: "subtitle", displayer: "Subtitle", value: "15th June 2022" },
+              ],
             },
             {
               type: "string",
-              key: "subtitle",
-              value: "15th June 2022",
-              displayer: "Subtitle",
-            },
-            {
-              type: "string",
-              key: "description",
-              value: "Quisque sodales justo nec ante vestibulum, ut dictum justo facilisis. Nam ullamcorper, arcu id ullamcorper congue, turpis urna interdum ligula, id congue purus nunc ac sem.",
+              key: "text",
               displayer: "Review Text",
+              value: "Quisque sodales justo nec ante vestibulum, ut dictum justo facilisis. Nam ullamcorper, arcu id ullamcorper congue, turpis urna interdum ligula, id congue purus nunc ac sem.",
             },
           ],
         },
         {
           type: "object",
-          key: "slider object",
-          displayer: "Slider Object",
+          key: "slider5",
+          displayer: "Slider 5",
           value: [
             {
               type: "media",
-              key: "profileImage",
+              key: "image",
               displayer: "Author Image",
               additionalParams: { availableTypes: ["image"] },
               value: {
@@ -225,33 +215,30 @@ class Testimonials9Page extends Testimonials {
               },
             },
             {
-              type: "string",
-              key: "title",
-              value: "Ronald R.",
-              displayer: "Author Name",
+              type: "object",
+              key: "author",
+              displayer: "Author",
+              value: [
+                { type: "string", key: "name", displayer: "Name", value: "Ronald R." },
+                { type: "string", key: "subtitle", displayer: "Subtitle", value: "18th December 2022" },
+              ],
             },
             {
               type: "string",
-              key: "subtitle",
-              value: "18th December 2022",
-              displayer: "Subtitle",
-            },
-            {
-              type: "string",
-              key: "description",
-              value: "Sed id condimentum mi. Aliquam cursus scelerisque elit ut facilisis. Nam ullamcorper, arcu id ullamcorper congue, turpis urna interdum ligula, id congue purus nunc ac sem.",
+              key: "text",
               displayer: "Review Text",
+              value: "Sed id condimentum mi. Aliquam cursus scelerisque elit ut facilisis. Nam ullamcorper, arcu id ullamcorper congue, turpis urna interdum ligula, id congue purus nunc ac sem.",
             },
           ],
         },
         {
           type: "object",
-          key: "slider object",
-          displayer: "Slider Object",
+          key: "slider6",
+          displayer: "Slider 6",
           value: [
             {
               type: "media",
-              key: "profileImage",
+              key: "image",
               displayer: "Author Image",
               additionalParams: { availableTypes: ["image"] },
               value: {
@@ -260,33 +247,30 @@ class Testimonials9Page extends Testimonials {
               },
             },
             {
-              type: "string",
-              key: "title",
-              value: "Olivia D.",
-              displayer: "Author Name",
+              type: "object",
+              key: "author",
+              displayer: "Author",
+              value: [
+                { type: "string", key: "name", displayer: "Name", value: "Olivia D." },
+                { type: "string", key: "subtitle", displayer: "Subtitle", value: "21st November 2022" },
+              ],
             },
             {
               type: "string",
-              key: "subtitle",
-              value: "21st November 2022",
-              displayer: "Subtitle",
-            },
-            {
-              type: "string",
-              key: "description",
-              value: "Vivamus nec sem quis enim iaculis gravida. Donec volutpat fermentum erat, sit amet cursus risus tincidunt quis. Nam ullamcorper, arcu id ullamcorper congue, turpis urna interdum ligula, id congue purus nunc ac sem.",
+              key: "text",
               displayer: "Review Text",
+              value: "Vivamus nec sem quis enim iaculis gravida. Donec volutpat fermentum erat, sit amet cursus risus tincidunt quis. Nam ullamcorper, arcu id ullamcorper congue, turpis urna interdum ligula, id congue purus nunc ac sem.",
             },
           ],
         },
         {
           type: "object",
-          key: "slider object",
-          displayer: "Slider Object",
+          key: "slider7",
+          displayer: "Slider 7",
           value: [
             {
               type: "media",
-              key: "profileImage",
+              key: "image",
               displayer: "Author Image",
               additionalParams: { availableTypes: ["image"] },
               value: {
@@ -295,33 +279,30 @@ class Testimonials9Page extends Testimonials {
               },
             },
             {
-              type: "string",
-              key: "title",
-              value: "Sarah B.",
-              displayer: "Author Name",
+              type: "object",
+              key: "author",
+              displayer: "Author",
+              value: [
+                { type: "string", key: "name", displayer: "Name", value: "Sarah B." },
+                { type: "string", key: "subtitle", displayer: "Subtitle", value: "2nd July 2022" },
+              ],
             },
             {
               type: "string",
-              key: "subtitle",
-              value: "2nd July 2022",
-              displayer: "Subtitle",
-            },
-            {
-              type: "string",
-              key: "description",
-              value: "Aenean euismod, velit a lacinia fringilla, urna libero ultrices lectus, non interdum quam nunc eu elit. Ut non lobortis purus. Nam ullamcorper, id congue purus nunc ac sem.",
+              key: "text",
               displayer: "Review Text",
+              value: "Aenean euismod, velit a lacinia fringilla, urna libero ultrices lectus, non interdum quam nunc eu elit. Ut non lobortis purus. Nam ullamcorper, id congue purus nunc ac sem.",
             },
           ],
         },
         {
           type: "object",
-          key: "slider object",
-          displayer: "Slider Object",
+          key: "slider8",
+          displayer: "Slider 8",
           value: [
             {
               type: "media",
-              key: "profileImage",
+              key: "image",
               displayer: "Author Image",
               additionalParams: { availableTypes: ["image"] },
               value: {
@@ -330,22 +311,19 @@ class Testimonials9Page extends Testimonials {
               },
             },
             {
-              type: "string",
-              key: "title",
-              value: "Mary J.",
-              displayer: "Author Name",
+              type: "object",
+              key: "author",
+              displayer: "Author",
+              value: [
+                { type: "string", key: "name", displayer: "Name", value: "Mary J." },
+                { type: "string", key: "subtitle", displayer: "Subtitle", value: "15th June 2022" },
+              ],
             },
             {
               type: "string",
-              key: "subtitle",
-              value: "15th June 2022",
-              displayer: "Subtitle",
-            },
-            {
-              type: "string",
-              key: "description",
-              value: "Curabitur a sapien ut neque eleifend vehicula id a sem. Phasellus sodales, ex sit amet eleifend consectetur, erat magna dictum elit, eu interdum nisi lacus id nunc.",
+              key: "text",
               displayer: "Review Text",
+              value: "Curabitur a sapien ut neque eleifend vehicula id a sem. Phasellus sodales, ex sit amet eleifend consectetur, erat magna dictum elit, eu interdum nisi lacus id nunc.",
             },
           ],
         },
@@ -388,7 +366,7 @@ class Testimonials9Page extends Testimonials {
       verticalSwiping: slider.length > 1,
       arrows: false,
       beforeChange: (newIndex: number) => {
-        let adjustedIndex = (newIndex + 1) % this.castToObject<Card[]>("slider").length;
+        let adjustedIndex = (newIndex + 1) % this.castToObject<Item[]>("slider").length;
         this.setComponentState("active-index", adjustedIndex);
       },
     };
@@ -442,13 +420,17 @@ class Testimonials9Page extends Testimonials {
             <Base.ContainerGrid className={this.decorateCSS("down-page")}>
               <Base.GridCell className={this.decorateCSS("carousel")}>
                 <ComposerSlider {...settings}>
-                  {this.castToObject<Card[]>("slider").map((item: Card, index: number) => (
+                  {this.castToObject<Item[]>("slider").map((item: Item, index: number) => (
                     <div key={index} className={`${this.decorateCSS("card-inner")} ${activeIndex === index ? this.decorateCSS("active") : ""}`}>
-                      {item.profileImage && <Base.Media value={item.profileImage} className={this.decorateCSS("img")} />}
-                      {(this.castToString(item.title) || this.castToString(item.subtitle)) && (
-                        <Base.VerticalContent className={this.decorateCSS("text")}>
-                          {this.castToString(item.title) && <Base.H4 className={this.decorateCSS("card-title")}>{item.title}</Base.H4>}
-                          {this.castToString(item.subtitle) && <Base.H5 className={this.decorateCSS("card-subtitle")}>{item.subtitle}</Base.H5>}
+                      {item.image && <Base.Media value={item.image} className={this.decorateCSS("img")} />}
+                      {item.author && (item.author.name || item.author.subtitle) && (
+                        <Base.VerticalContent className={this.decorateCSS("bottom-container")}>
+                          {item.author.name && (
+                            <Base.H4 className={this.decorateCSS("item-name")}>{item.author.name}</Base.H4>
+                          )}
+                          {item.author.subtitle && (
+                            <Base.H5 className={this.decorateCSS("item-subtitle")}>{item.author.subtitle}</Base.H5>
+                          )}
                         </Base.VerticalContent>
                       )}
                     </div>
@@ -459,10 +441,10 @@ class Testimonials9Page extends Testimonials {
                 {leftIconExist && (
                   <Base.Media value={leftIconMedia} className={this.decorateCSS("left-icon")} />
                 )}
-                {this.castToObject<Card[]>("slider").map((item: Card, index: number) => (
+                {this.castToObject<Item[]>("slider").map((item: Item, index: number) => (
                   <div key={index} className={this.decorateCSS("text")}>
-                    {index === activeIndex && this.castToString(item.description) && (
-                      <Base.H3 className={this.decorateCSS("description")}>{item.description}</Base.H3>
+                    {index === activeIndex && this.castToString(item.text) && (
+                      <Base.H3 className={this.decorateCSS("item-text")}>{item.text}</Base.H3>
                     )}
                   </div>
                 ))}

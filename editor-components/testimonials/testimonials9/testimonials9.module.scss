@@ -4,7 +4,7 @@
     .wrapper {
       display: flex;
       flex-direction: column;
-      gap: var(--composer-gap-md);
+      gap: var(--composer-gap-lg);
       .top-content {
         width: 100%;
 
@@ -42,26 +42,30 @@
               object-fit: cover;
             }
 
-            .text {
+            .bottom-container {
               text-align: left;
               align-items: baseline;
               gap: var(--composer-gap-xs);
 
-              .card-title {
+              .item-name {
                 color: var(--composer-font-color-primary);
                 margin: 0;
+                text-align: left;
+                justify-content: flex-start;
               }
 
-              .card-subtitle {
+              .item-subtitle {
                 color: var(--composer-tertiary-color);
+                text-align: left;
+                justify-content: flex-start;
               }
             }
 
-            &.active .text .card-title {
+            &.active .bottom-container .item-name {
               color: var(--composer-font-color-secondary);
             }
 
-            &.active .text .card-subtitle {
+            &.active .bottom-container .item-subtitle {
               color: var(--composer-font-color-secondary);
             }
           }
@@ -98,7 +102,7 @@
             right: 0;
           }
           .text {
-            .description {
+            .item-text {
               color: var(--composer-tertiary-color);
               text-align: center;
             }
@@ -114,7 +118,7 @@
       .wrapper {
         .right-page {
           .text {
-            .description {
+            .item-text {
               padding: var(--composer-gap-md);
             }
           }
@@ -127,6 +131,7 @@
   .container {
     .max-content {
       .wrapper {
+        gap: var(--composer-gap-md);
         .down-page {
           .carousel {
             .card-inner {
