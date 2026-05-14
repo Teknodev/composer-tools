@@ -256,7 +256,7 @@ class Social1 extends BaseSocial {
             infinite: true,
             speed: 500,
             autoplay: true,
-            autoplaySpeed: 2000,
+            autoplaySpeed: 5000,
             slidesToShow: 4,
             slidesToScroll: 1,
         }));
@@ -279,6 +279,8 @@ class Social1 extends BaseSocial {
 
         const settings = {
             ...sliderSettings,
+            cssEase: "linear",
+            pauseOnHover: false,
             responsive: [
                 {
                     breakpoint: 1024,
@@ -312,6 +314,8 @@ class Social1 extends BaseSocial {
         const allItems: ItemType[] = (cardItems || []).flatMap((card) => card?.items || []);
         const mobileSettings = {
             ...sliderSettings,
+            cssEase: "linear",
+            pauseOnHover: false,
             slidesToShow: 1,
             slidesToScroll: 1,
             responsive: [],
