@@ -30,7 +30,7 @@ class Testimonials9Page extends Testimonials {
       type: "string",
       key: "subtitle",
       displayer: "Subtitle",
-      value: "Lorem",
+      value: "",
     });
     this.addProp({
       type: "string",
@@ -42,14 +42,14 @@ class Testimonials9Page extends Testimonials {
       type: "string",
       key: "description",
       displayer: "Description",
-      value: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      value: "",
     });
     this.addProp({
       type: "array",
       key: "buttons",
       displayer: "Buttons",
       value: [
-        INPUTS.BUTTON("button", "Button", "Lorem", "", null, null, "Primary"),
+        INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
       ],
     });
     this.addProp({
