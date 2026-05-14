@@ -24,15 +24,25 @@
           .top-content {
             display: flex;
             flex-direction: column;
+            align-items: flex-start !important;
+
             .subtitle,
             .title,
             .description {
               content: "";
+              text-align: left !important;
+              justify-content: flex-start !important;
+              align-self: flex-start !important;
+              margin-left: 0 !important;
             }
+
             .button-container {
               display: flex;
               flex-direction: row;
               gap: var(--composer-gap-md);
+              justify-content: flex-start !important;
+              align-self: flex-start !important;
+
               .button,
               .button-text,
               .button-icon {
@@ -139,16 +149,26 @@
                     .card {
                       .text {
                         color: var(--composer-font-color-primary);
+                        text-align: left !important;
+                        justify-content: flex-start !important;
                       }
                       .bottom-container {
+                        align-items: flex-start !important;
+
                         .item-name {
                           color: var(--composer-font-color-primary);
                           font-size: 1.5rem;
                           margin-bottom: 0;
+                          text-align: left !important;
+                          justify-content: flex-start !important;
+                          margin-left: 0 !important;
                         }
                         .item-subtitle {
                           color: var(--composer-font-color-primary);
                           font-size: 1rem;
+                          text-align: left !important;
+                          justify-content: flex-start !important;
+                          margin-left: 0 !important;
                         }
                       }
                     }
