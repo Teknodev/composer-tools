@@ -9,7 +9,24 @@
         display: flex;
         .top-content-text {
           width: 100%;
-          .title, .subtitle {
+          align-items: flex-start !important;
+          text-align: left !important;
+          .subtitle,
+          .title,
+          .description {
+            content: "";
+            text-align: left !important;
+            justify-content: flex-start !important;
+            margin-left: 0 !important;
+            margin-right: 0 !important;
+          }
+          .button-container {
+            content: "";
+            justify-content: flex-start !important;
+          }
+          .button,
+          .button-text,
+          .button-icon {
             content: "";
           }
         }
@@ -18,16 +35,16 @@
           align-items: center;
           justify-content: center;
           gap: var(--composer-gap-xl);
-          .button {
+          .arrow-button {
             border: none;
             background-color: transparent;
+            cursor: pointer;
             .prev-arrow,
             .next-arrow {
               width: 30px;
               height: 30px;
               color: var(--composer-tertiary-color);
               transition: color 0.5s ease;
-              cursor: pointer;
             }
             &:hover {
               .prev-arrow,
@@ -43,27 +60,34 @@
         > div {
           > div {
             display: flex;
-            gap: var(--composer-gap-lg);
+            gap: var(--composer-gap-md) ;
           }
         }
         button {
           display: none !important;
         }
         .card {
-          border-radius: var(--composer-gap-md);
+          border-radius: var(--composer-gap-sm);
           padding: var(--composer-gap-md);
           background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+          display: flex !important;
+          flex-direction: column;
+          gap: var(--composer-gap-md);
           .span-image {
             width: 45px;
             height: 45px;
+            font-size: 4rem;
             color: var(--composer-font-color-primary);
           }
           .card-description {
             color: var(--composer-font-color-primary);
+            text-align: left !important;
+            justify-content: flex-start !important;
           }
           .below-content {
             display: flex;
             gap: var(--composer-gap-md);
+            align-items: center;
             .card-image {
               width: 60px;
               height: 60px;
@@ -71,14 +95,35 @@
             }
             .below-right-content {
               justify-content: center;
-              .below-title {
+              .item-name {
                 font-size: 1rem;
                 color: var(--composer-font-color-primary);
+                margin: 0;
+                text-align: left !important;
+                justify-content: flex-start !important;
               }
-              .below-subtitle {
+              .item-subtitle {
                 font-size: 1rem;
                 color: var(--composer-tertiary-color);
+                text-align: left !important;
+                justify-content: flex-start !important;
               }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-tablet-width}) {
+  .container {
+    .max-content {
+      .page {
+        .slider-style {
+          > div {
+            > div {
+              gap: var(--composer-gap-md);
             }
           }
         }
