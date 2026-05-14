@@ -3381,7 +3381,7 @@ class ECommerce2 extends BaseECommerce {
                             );
                         })}
                     </Base.Row>
-                    <Base.ListGrid gridCount={{ pc: itemCount }} className={this.decorateCSS("grid")}>
+                    <Base.ListGrid gridCount={{ pc: itemCount, tablet: 4}} className={this.decorateCSS("grid")}>
                         {filteredImages.map((image, imgIndex) => {
                             const shouldRenderCard =
                                 this.castToString(image.title) ||
