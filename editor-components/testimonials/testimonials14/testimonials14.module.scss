@@ -1,5 +1,4 @@
-@use "../../../composer-base-components/base/utitilities/viewports.module.scss"
-  as *;
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
   .max-content {
@@ -8,6 +7,20 @@
     align-items: center;
     justify-content: center;
     gap: var(--composer-gap-xl);
+
+    .top-content {
+      width: 100%;
+
+      .subtitle,
+      .title,
+      .description,
+      .button-container,
+      .button,
+      .button-text,
+      .button-icon {
+        content: "";
+      }
+    }
 
     .divider-top {
       border: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.2);
@@ -24,7 +37,7 @@
         display: flex;
         justify-content: center;
         order: 0;
-        margin-left: 20px;
+        margin-left: var(--composer-gap-md);
 
         .image {
           width: 70px;
@@ -55,12 +68,7 @@
           display: flex;
           flex-direction: column;
           align-items: flex-start;
-          gap: var(--composer-gap-xs);
           transition: opacity 0.5s ease;
-
-          .active-item {
-            opacity: 1;
-          }
 
           .icon-and-name {
             display: flex;
@@ -70,6 +78,7 @@
             .span-icon {
               min-height: 30px;
               min-width: 30px;
+              font-size: 3rem;
               color: var(--composer-primary-color);
               display: block !important;
             }
@@ -77,20 +86,36 @@
             .icon {
               min-height: 30px;
               min-width: 30px;
+              font-size: 3rem;
               color: var(--composer-primary-color);
               display: block !important;
             }
 
-            .author-name {
-              font-weight: bold;
-              font-size: 2rem;
-              margin: 0;
+            .author-details {
+              display: flex;
+              flex-direction: column;
+              gap: 0;
+
+              .author-name {
+                font-weight: bold;
+                font-size: 2rem;
+                margin: 0 !important;
+                text-align: left !important;
+              }
+
+              .author-subtitle {
+                font-size: 1rem;
+                color: var(--composer-font-color-secondary);
+                margin: 0 !important;
+                text-align: left !important;
+              }
             }
           }
 
           .comment {
             font-size: 1.5rem;
-            margin: 0 0 0 2.5rem;
+            margin: 0 auto 0 2.5rem !important;
+            text-align: left !important;
           }
         }
       }
@@ -130,87 +155,86 @@
 }
 
 @container (max-width: #{$composer-tablet-width}) {
-  .max-content {
-    gap: var(--composer-gap-md) !important;
+  .container {
+    .max-content {
+      gap: var(--composer-gap-md) !important;
 
-    .content {
-      gap: var(--composer-gap-lg) !important;
+      .content {
+        gap: var(--composer-gap-lg) !important;
 
-      .icon-and-name {
-        gap: var(--composer-gap-sm) !important;
+        .item-content {
+          .items {
+            .icon-and-name {
+
+              .author-details {
+                .author-name {
+                  font-size: 1.5rem !important;
+                }
+              }
+
+              .icon {
+                min-height: 25px !important;
+                min-width: 25px !important;
+              }
+            }
+          }
+        }
+
+        .arrow-container {
+          margin-top: 1rem;
+        }
       }
-
-      .author-name {
-        font-size: 1.5rem !important;
-      }
-
-      .icon {
-        min-height: 25px !important;
-        min-width: 25px !important;
-      }
-    }
-
-    .arrow-container {
-      margin-top: 1rem;
     }
   }
 }
 
 @container (max-width: #{$composer-phone-width}) {
-  .max-content {
-    flex-direction: column;
-    gap: var(--composer-gap-md) !important;
-
-    .content {
+  .container {
+    .max-content {
       flex-direction: column;
       gap: var(--composer-gap-md) !important;
 
-      .items {
+      .content {
+        flex-direction: column;
         gap: var(--composer-gap-md) !important;
-        .icon-and-name {
-          flex-direction: column;
-        }
-      }
 
-      .author-name {
-        font-size: 1.5rem !important;
-      }
-    }
+        .images {
+          order: 1 !important;
 
-    .images {
-      order: 1 !important;
-    }
-
-    .image {
-      width: 45px !important;
-      height: 45px !important;
-      margin-left: -10px !important;
-    }
-
-    .divider {
-      display: none;
-    }
-
-    .item-content {
-      width: 100% !important;
-      order: 0 !important;
-
-      .items {
-        align-items: center !important;
-
-        .icon-and-name {
-          justify-content: center !important;
+          .image {
+            width: 45px !important;
+            height: 45px !important;
+            margin-left: -10px !important;
+          }
         }
 
-        .comment {
-          text-align: center;
-          margin: 0 !important;
+        .divider {
+          display: none;
+        }
+
+        .item-content {
+          width: 100% !important;
+          order: 0 !important;
+
+          .items {
+            align-items: center !important;
+
+            .icon-and-name {
+              justify-content: center !important;
+              flex-direction: column;
+            }
+
+            .comment {
+              text-align: center;
+              margin: 0 !important;
+            }
+          }
+        }
+
+        .arrow-container {
+          display: none !important;
         }
       }
-    }
-
-    .arrow-container {
-      display: none !important;
     }
   }
 }
