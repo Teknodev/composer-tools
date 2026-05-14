@@ -3,8 +3,8 @@
   position: relative;
   .overlay-left {
     position: absolute;
-    left: 0px;
-    top: 0px;
+    left: 0;
+    top: 0;
     width: 40%;
     height: 80%;
     background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
@@ -21,19 +21,21 @@
         .left-content {
           height: 100%;
           flex-grow: 1;
-          .content {
+          .top-content {
             display: flex;
-            gap: var(--composer-gap-sm);
             flex-direction: column;
-            .subtitle, .title, .description {
+            .subtitle,
+            .title,
+            .description {
               content: "";
             }
-            
-            .button-group {
+            .button-container {
               display: flex;
               flex-direction: row;
               gap: var(--composer-gap-md);
-              .button {
+              .button,
+              .button-text,
+              .button-icon {
                 content: "";
               }
             }
@@ -71,7 +73,7 @@
               flex-direction: column;
               justify-content: center;
               align-items: center;
-              padding: 0px var(--composer-gap-sm);
+              padding: 0 var(--composer-gap-sm);
               .slider-card {
                 width: 100%;
                 .header-page-container {
@@ -111,6 +113,10 @@
                         gap: var(--composer-gap-sm);
                         z-index: 2;
                         color: var(--composer-font-color-primary);
+                        .previcon,
+                        .nexticon {
+                          content: "";
+                        }
                         svg {
                           cursor: pointer;
                           transition: 0.4s;
@@ -126,19 +132,24 @@
                       color: rgba(var(--composer-primary-color-rgb), 0.5);
                       top: var(--composer-gap-md);
                       left: var(--composer-gap-xl);
+                      .quoteicon {
+                        content: "";
+                      }
                     }
                     .card {
                       .text {
                         color: var(--composer-font-color-primary);
                       }
-                      .author {
-                        color: var(--composer-font-color-primary);
-                        font-size: 1.5rem;
-                        margin-bottom: 0;
-                      }
-                      .position {
-                        color: var(--composer-font-color-primary);
-                        font-size: 1rem;
+                      .bottom-container {
+                        .item-name {
+                          color: var(--composer-font-color-primary);
+                          font-size: 1.5rem;
+                          margin-bottom: 0;
+                        }
+                        .item-subtitle {
+                          color: var(--composer-font-color-primary);
+                          font-size: 1rem;
+                        }
                       }
                     }
                   }
@@ -180,15 +191,15 @@
     }
   }
 }
+
 @container (max-width: #{$composer-tablet-width}) {
   .container {
-    padding: var(--composer-gap-md) var(--composer-gap-lg) !important;
     .overlay-left {
-      right: 0px;
-      top: 0px;
+      right: 0;
+      top: 0;
     }
     .max-content {
-      padding: 0px;
+      padding: 0;
       .container2 {
         .testimonials10 {
           flex-direction: column;
@@ -200,7 +211,7 @@
             flex-basis: auto;
             max-width: 100%;
             .slider-style {
-              padding-left: 0px;
+              padding-left: 0;
               width: 100%;
             }
           }
@@ -208,8 +219,8 @@
       }
     }
     .hiliteTitle {
-      max-width: calc(100% - 80px);
-      margin: 0px var(--composer-gap-lg);
+      max-width: calc(100% - var(--composer-gap-lg) * 2);
+      margin: 0 var(--composer-gap-lg);
       right: var(--composer-gap-sm);
     }
   }
@@ -217,13 +228,12 @@
 
 @container (max-width: #{$composer-phone-width}) {
   .container {
-    padding: var(--composer-gap-md) !important;
     .max-content {
       .container2 {
         .testimonials10 {
           .left-content {
-            .content {
-              .button-group {
+            .top-content {
+              .button-container {
                 > div {
                   width: 100% !important;
                 }
@@ -234,14 +244,14 @@
             }
           }
           .right-content {
-            padding-bottom: 0px;
+            padding-bottom: 0;
             .slider-style {
-              padding-left: 0px;
+              padding-left: 0;
               .slider-inner-div {
                 .slider-card {
                   padding: var(--composer-gap-md) var(--composer-gap-sm);
                   .header-page-container {
-                    padding-left: 0px;
+                    padding-left: 0;
                     padding-top: var(--composer-gap-xs);
                     .header-page {
                       padding: var(--composer-gap-md);
