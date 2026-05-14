@@ -67,7 +67,7 @@
                 margin: 0;
               }
 
-              .card-subtitle {
+              .question-text {
                 color: var(--composer-font-color-primary);
                 transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
                 width: fit-content;
@@ -81,7 +81,7 @@
                   cursor: pointer;
                 }
 
-                .card-subtitle {
+                .question-text {
                   color: var(--composer-primary-color);
                   cursor: pointer;
                 }
@@ -101,13 +101,13 @@
             }
           }
 
-          .text-box {
+          .answer-box {
             overflow: hidden;
             height: 0px;
             padding: 0px;
             transition: padding 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 
-            .card-text {
+            .answer-text {
               display: none;
               color: var(--composer-tertiary-color);
               text-align: left;
@@ -118,7 +118,7 @@
               padding-bottom: var(--composer-gap-md);
               height: 100%;
 
-              .card-text {
+              .answer-text {
                 display: flex;
                 height: 0px;
                 transition: height 0.4s cubic-bezier(0.4, 0, 0.2, 1);

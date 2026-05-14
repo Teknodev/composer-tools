@@ -6,8 +6,8 @@ import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "../../../custom-hooks/input-templates";
 
 type Faq = {
-  title: React.JSX.Element;
-  description: React.JSX.Element;
+  question: React.JSX.Element;
+  answer: React.JSX.Element;
   index?: number;
 };
 
@@ -68,14 +68,14 @@ class Faq3 extends BaseFAQ {
             },
             {
               type: "string",
-              key: "title",
-              displayer: "Title",
+              key: "question",
+              displayer: "Question",
               value: "When can we get started?",
             },
             {
               type: "string",
-              key: "description",
-              displayer: "Description",
+              key: "answer",
+              displayer: "Answer",
               value:
                 "Tincidunt elit magnis nulla facilisis. Dolor sagittis maecenas. Sapien nunc amet ultrices, dolores sit ipsum velit purus aliquet, massa fringilla leo orci.",
             },
@@ -94,13 +94,13 @@ class Faq3 extends BaseFAQ {
             },
             {
               type: "string",
-              key: "title",
+              key: "question",
               displayer: "Question",
               value: "How do I go about conducting market research?",
             },
             {
               type: "string",
-              key: "description",
+              key: "answer",
               displayer: "Answer",
               value:
                 "Tincidunt elit magnis nulla facilisis. Dolor sagittis maecenas. Sapien nunc amet ultrices, dolores sit ipsum velit purus aliquet, massa fringilla leo orci.",
@@ -120,14 +120,14 @@ class Faq3 extends BaseFAQ {
             },
             {
               type: "string",
-              key: "title",
-              displayer: "Title",
+              key: "question",
+              displayer: "Question",
               value: "What do I need in order to start selling?",
             },
             {
               type: "string",
-              key: "description",
-              displayer: "Description",
+              key: "answer",
+              displayer: "Answer",
               value:
                 "Tincidunt elit magnis nulla facilisis. Dolor sagittis maecenas. Sapien nunc amet ultrices, dolores sit ipsum velit purus aliquet, massa fringilla leo orci.",
             },
@@ -146,14 +146,14 @@ class Faq3 extends BaseFAQ {
             },
             {
               type: "string",
-              key: "title",
-              displayer: "Title",
+              key: "question",
+              displayer: "Question",
               value: "How much does it cost?",
             },
             {
               type: "string",
-              key: "description",
-              displayer: "Description",
+              key: "answer",
+              displayer: "Answer",
               value:
                 "Tincidunt elit magnis nulla facilisis. Dolor sagittis maecenas. Sapien nunc amet ultrices, dolores sit ipsum velit purus aliquet, massa fringilla leo orci.",
             },
@@ -172,14 +172,14 @@ class Faq3 extends BaseFAQ {
             },
             {
               type: "string",
-              key: "title",
-              displayer: "Title",
+              key: "question",
+              displayer: "Question",
               value: "What other help is available?",
             },
             {
               type: "string",
-              key: "description",
-              displayer: "Description",
+              key: "answer",
+              displayer: "Answer",
               value:
                 "Tincidunt elit magnis nulla facilisis. Dolor sagittis maecenas. Sapien nunc amet ultrices, dolores sit ipsum velit purus aliquet, massa fringilla leo orci.",
             },
@@ -348,8 +348,8 @@ class Faq3 extends BaseFAQ {
                   {faqItems.map((item: Faq, index: number) => {
                     const is_active =
                       this.getComponentState("active_index") == index;
-                    const titleExist = this.castToString(item.title);
-                    const descExist = this.castToString(item.description);
+                    const titleExist = this.castToString(item.question);
+                    const descExist = this.castToString(item.answer);
 
                     if (titleExist || descExist)
                       return (
@@ -367,8 +367,8 @@ class Faq3 extends BaseFAQ {
                                   </Base.H6>
                                 )}
                                 {titleExist && (
-                                  <Base.H6 className={this.decorateCSS("card-subtitle")}>
-                                    {item.title}
+                                  <Base.H6 className={this.decorateCSS("question-text")}>
+                                    {item.question}
                                   </Base.H6>
                                 )}
                               </div>
@@ -387,9 +387,9 @@ class Faq3 extends BaseFAQ {
                             </div>
                           )}
                           {descExist && (
-                            <div className={`${this.decorateCSS("text-box")} ${is_active && this.decorateCSS("active")}`} >
-                              <Base.P className={`${this.decorateCSS("card-text")} ${is_active && this.decorateCSS("active")}`}>
-                                {item.description}
+                            <div className={`${this.decorateCSS("answer-box")} ${is_active && this.decorateCSS("active")}`} >
+                              <Base.P className={`${this.decorateCSS("answer-text")} ${is_active && this.decorateCSS("active")}`}>
+                                {item.answer}
                               </Base.P>
                             </div>
                           )}

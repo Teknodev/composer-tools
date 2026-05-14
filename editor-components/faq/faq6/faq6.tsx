@@ -48,15 +48,15 @@ class Faq6 extends BaseFAQ {
           value: [
             {
               type: "string",
-              key: "title",
-              displayer: "Title",
+              key: "question",
+              displayer: "Question",
               value: "Ut Neque Augue Interdum Ad Integer Tempus Convallis?"
             },
             {
               type: "string",
-              key: "description",
+              key: "answer",
               value: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. In vitae turpis massa sed elementum tempus egestas sed. Diam in arcu cursus euismod.",
-              displayer: "Description"
+              displayer: "Answer"
             }
           ]
         },
@@ -67,15 +67,15 @@ class Faq6 extends BaseFAQ {
           value: [
             {
               type: "string",
-              key: "title",
-              displayer: "Title",
+              key: "question",
+              displayer: "Question",
               value: "Dictum Feugiat Tincidunt Nam Commodo?"
             },
             {
               type: "string",
-              key: "description",
+              key: "answer",
               value: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. In vitae turpis massa sed elementum tempus egestas sed. Diam in arcu cursus euismod.",
-              displayer: "Description"
+              displayer: "Answer"
             }
           ]
         },
@@ -86,15 +86,15 @@ class Faq6 extends BaseFAQ {
           value: [
             {
               type: "string",
-              key: "title",
-              displayer: "Title",
+              key: "question",
+              displayer: "Question",
               value: "Scelerisque Metus Sem Nostra Pulvinar Sagittis?"
             },
             {
               type: "string",
-              key: "description",
+              key: "answer",
               value: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. In vitae turpis massa sed elementum tempus egestas sed. Diam in arcu cursus euismod.",
-              displayer: "Description"
+              displayer: "Answer"
             }
           ]
         },
@@ -105,15 +105,15 @@ class Faq6 extends BaseFAQ {
           value: [
             {
               type: "string",
-              key: "title",
-              displayer: "Title",
+              key: "question",
+              displayer: "Question",
               value: "Consectetur Scelerisque Lacus Gravida Proin Dolor Sem?"
             },
             {
               type: "string",
-              key: "description",
+              key: "answer",
               value: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. In vitae turpis massa sed elementum tempus egestas sed. Diam in arcu cursus euismod.",
-              displayer: "Description"
+              displayer: "Answer"
             }
           ]
         }
@@ -197,8 +197,10 @@ class Faq6 extends BaseFAQ {
   }
 
   render() {
-    const descriptionExist = this.castToString(this.getPropValue("description"));
-    const description = this.getPropValue("description");
+    const subtitle = this.castToString(this.getPropValue("subtitle"));
+    const title = this.castToString(this.getPropValue("title"));
+    const description = this.castToString(this.getPropValue("description"));
+    const hasContent = subtitle || title || description || this.getPropValue("buttons").length > 0;
     const lineEnabled = this.getPropValue("line");
 
     const mediaSection = this.castToObject<{ value?: TypeMediaInputValue; overlay?: boolean }>("media");
@@ -210,79 +212,76 @@ class Faq6 extends BaseFAQ {
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("wrapper")}>
-            <div className={this.decorateCSS("content")}>
-              {(this.castToString(this.getPropValue("title")) || (this.getPropValue("list_items").length > 0)) && (
-                <div className={this.decorateCSS("items-wrapper")}>
-                  {(this.castToString(this.getPropValue("title")) || this.castToString(this.getPropValue("subtitle")) || descriptionExist || this.getPropValue("buttons").length > 0) && (
-                    <Base.VerticalContent className={`${this.decorateCSS("header-wrapper")} ${ (alignment === "center" || !mediaValue) ? this.decorateCSS("alignment-center") : ""}`}>
-                      {this.castToString(this.getPropValue("subtitle")) && (
-                        <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
-                          {this.getPropValue("subtitle")}
-                        </Base.SectionSubTitle>
-                      )}
-
-                      <Base.SectionTitle className={this.decorateCSS("title")}>
-                        {this.getPropValue("title")}
-                      </Base.SectionTitle>
-                      {descriptionExist && (
-                        <Base.SectionDescription className={this.decorateCSS("description")}>
-                          {description}
-                        </Base.SectionDescription>
-                      )}
-                      {this.getPropValue("buttons").length > 0 && (
-                        <div className={this.decorateCSS("buttons-wrapper")}>
-                          {this.castToObject<INPUTS.CastedButton[]>("buttons").map((button: INPUTS.CastedButton) =>
-                            this.castToString(button.text) && (
-                              <ComposerLink path={button.url}>
-                                <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
-                                  <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
-                                </Base.Button>
-                              </ComposerLink>
-                            )
-                          )}
-                        </div>
-                      )}
-                    </Base.VerticalContent>
+          {(title || (this.getPropValue("list_items").length > 0)) && (
+            <div className={this.decorateCSS("items-wrapper")}>
+              {hasContent && (
+                <Base.VerticalContent className={this.decorateCSS("vertical-content")}>
+                  {subtitle && (
+                    <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                      {this.getPropValue("subtitle")}
+                    </Base.SectionSubTitle>
                   )}
-                  {(this.getPropValue("list_items").length > 0) && (
-                    <div className={`${this.decorateCSS("items")}${!lineEnabled ? ` ${this.decorateCSS("no-line")}` : ""}`}>
-                      {this.getPropValue("list_items").map((item: any, index: number) => {
-                        const is_active = this.getComponentState("active_index") == index;
-
-                        return <div key={index} className={this.decorateCSS("item")} onClick={() => this.onItemClick(index)}>
-                          {(this.castToString(item.getPropValue("title")) || this.getPropValue("inactive_icon") || this.getPropValue("active_icon")) && (
-                            <div className={this.decorateCSS("title-box")}>
-                              {this.castToString(item.getPropValue("title")) && (
-                                <Base.H6 className={this.decorateCSS("title-text")}>{item.getPropValue("title")}</Base.H6>
-                              )}
-                              {(this.getPropValue("inactive_icon") || this.getPropValue("active_icon")) && (
-                                <Base.Media
-                                  value={is_active ? this.getPropValue("inactive_icon") : this.getPropValue("active_icon")}
-                                  className={`${this.decorateCSS("icon")} ${is_active ? this.decorateCSS("active") : ""}`}
-                                />
-                              )}
-                            </div>
-                          )}
-                          {this.castToString(item.getPropValue("description")) && (
-                            <div className={`${this.decorateCSS("description-box")} ${is_active && this.decorateCSS("active")}`}>
-                              <Base.P className={this.decorateCSS("description-text")}>{item.getPropValue("description")}</Base.P>
-                            </div>
-                          )}
-                        </div>
-                      })}
+                  {title && (
+                    <Base.SectionTitle className={this.decorateCSS("title")}>
+                      {this.getPropValue("title")}
+                    </Base.SectionTitle>
+                  )}
+                  {description && (
+                    <Base.SectionDescription className={this.decorateCSS("description")}>
+                      {this.getPropValue("description")}
+                    </Base.SectionDescription>
+                  )}
+                  {this.getPropValue("buttons").length > 0 && (
+                    <div className={this.decorateCSS("buttons-wrapper")}>
+                      {this.castToObject<INPUTS.CastedButton[]>("buttons").map((button: INPUTS.CastedButton) =>
+                        this.castToString(button.text) && (
+                          <ComposerLink path={button.url}>
+                            <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
+                              <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
+                            </Base.Button>
+                          </ComposerLink>
+                        )
+                      )}
                     </div>
                   )}
-                </div>
+                </Base.VerticalContent>
               )}
-              {mediaValue && (
-                <div className={this.decorateCSS("image-box")}>
-                  <Base.Media value={mediaValue} className={this.decorateCSS("image")} />
-                  {showOverlay && <div className={this.decorateCSS("overlay")} />}
+              {(this.getPropValue("list_items").length > 0) && (
+                <div className={`${this.decorateCSS("items")}${!lineEnabled ? ` ${this.decorateCSS("no-line")}` : ""}`}>
+                  {this.getPropValue("list_items").map((item: any, index: number) => {
+                    const is_active = this.getComponentState("active_index") == index;
+
+                    return <div key={index} className={this.decorateCSS("item")} onClick={() => this.onItemClick(index)}>
+                      {(this.castToString(item.getPropValue("question")) || this.getPropValue("inactive_icon") || this.getPropValue("active_icon")) && (
+                        <div className={this.decorateCSS("question-box")}>
+                          {this.castToString(item.getPropValue("question")) && (
+                            <Base.H6 className={this.decorateCSS("question-text")}>{item.getPropValue("question")}</Base.H6>
+                          )}
+                          {(this.getPropValue("inactive_icon") || this.getPropValue("active_icon")) && (
+                            <Base.Media
+                              value={is_active ? this.getPropValue("inactive_icon") : this.getPropValue("active_icon")}
+                              className={`${this.decorateCSS("icon")} ${is_active ? this.decorateCSS("active") : ""}`}
+                            />
+                          )}
+                        </div>
+                      )}
+                      {this.castToString(item.getPropValue("answer")) && (
+                        <div className={`${this.decorateCSS("answer-box")} ${is_active && this.decorateCSS("active")}`}>
+                          <Base.P className={this.decorateCSS("answer-text")}>{item.getPropValue("answer")}</Base.P>
+                        </div>
+                      )}
+                    </div>
+                  })}
                 </div>
               )}
             </div>
-          </div>
+          )}
+          {mediaValue && (
+            <div className={this.decorateCSS("image-box")}>
+              <Base.Media value={mediaValue} className={this.decorateCSS("image")} />
+              {showOverlay && <div className={this.decorateCSS("overlay")} />}
+            </div>
+          )}
         </Base.MaxContent>
       </Base.Container>
     );

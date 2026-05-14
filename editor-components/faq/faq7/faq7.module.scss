@@ -49,10 +49,10 @@
                         width: 100%;
                         gap: var(--composer-gap-xs);
 
-                        .card-title-wrapper {
+                        .question-wrapper {
                             flex: 1;
 
-                            .card-title {
+                            .question-text {
                                 color: var(--composer-font-color-primary);
                                 transition: color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
                                 text-align: left;
@@ -78,7 +78,7 @@
                         }
                     }
 
-                    .inner-card {
+                    .answer-box {
                         overflow: hidden;
                         max-height: 0px;
                         transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -87,7 +87,7 @@
                             max-height: 150px;
                         }
 
-                        .inner-text {
+                        .answer-text {
                             color: var(--composer-tertiary-color);
                             opacity: 0;
                             transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
