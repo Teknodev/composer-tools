@@ -1902,10 +1902,10 @@ class Social4 extends BaseSocial {
                                                 )}
                                             </div>
                                         )}
-                                        {((icons.videoIcon && isVideo && item.videoIconActive) || (icons.imageIcon && item.mediaItems.length > 1 && item.imageIconActive)) && (
+                                        {((icons.videoIcon && isVideo && item.videoIconActive) || (icons.imageIcon && !isVideo && item.imageIconActive)) && (
                                             <div className={this.decorateCSS("icon-container")}>
                                                 {(icons.videoIcon && isVideo && item.videoIconActive) && (<Base.Media value={icons.videoIcon} className={`${this.decorateCSS("indicator-icon")} ${icons.videoIcon.type === "icon" ? this.decorateCSS("is-icon") : ""}`} />)}
-                                                {(icons.imageIcon && item.mediaItems.length > 1 && item.imageIconActive) && (<Base.Media value={icons.imageIcon} className={`${this.decorateCSS("indicator-icon")} ${icons.imageIcon.type === "icon" ? this.decorateCSS("is-icon") : ""}`} />)}
+                                                {(icons.imageIcon && !isVideo && item.imageIconActive) && (<Base.Media value={icons.imageIcon} className={`${this.decorateCSS("indicator-icon")} ${icons.imageIcon.type === "icon" ? this.decorateCSS("is-icon") : ""}`} />)}
                                             </div>
                                         )}
                                         <div className={this.decorateCSS("overlay")} onClick={() => this.handleClickItem(index)}>
@@ -2005,9 +2005,6 @@ class Social4 extends BaseSocial {
                                         {isVideo && (
                                             <div className={this.decorateCSS("post-video-container")}>
                                                 <Base.Media value={firstMedia} controls autoPlay={true} muted className={this.decorateCSS("video")} />
-                                                {item.overlay && (
-                                                    <div className={this.decorateCSS("overlay-item")} />
-                                                )}
                                             </div>
                                         )}
                                         {(!isVideo && item.mediaItems.length > 0) && (
@@ -2021,9 +2018,6 @@ class Social4 extends BaseSocial {
                                                     })
                                                     }
                                                 </ComposerSlider>
-                                                {item.overlay && (
-                                                    <div className={this.decorateCSS("overlay-item")} />
-                                                )}
                                             </div>
                                         )}
                                         <div className={this.decorateCSS("bottom-container")}>

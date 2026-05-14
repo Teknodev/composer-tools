@@ -269,6 +269,7 @@
                         .follow-button {
                             content: "";
                             margin-top: 0;
+                            transition: background-color 0.3s, border-color 0.3s, color 0.3s, transform 0.3s !important;
                         }
 
                         .button {
@@ -299,6 +300,7 @@
                 align-items: center;
                 justify-content: center;
                 overflow: hidden;
+                position: relative;
 
                 .video {
                     width: 100%;
@@ -321,6 +323,7 @@
                 align-items: center;
                 justify-content: center;
                 overflow: hidden;
+                position: relative;
 
                 >div {
                     width: 100%;
