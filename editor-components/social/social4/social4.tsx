@@ -1996,7 +1996,7 @@ class Social4 extends BaseSocial {
                                                     )}
                                                     {item.socialIcon && (
                                                         <ComposerLink path={item.url}>
-                                                            <Base.Media value={item.socialIcon} className={`${this.decorateCSS("socail-icon")} ${item.socialIcon.type === "icon" ? this.decorateCSS("is-icon") : ""}`} />
+                                                            <Base.Media value={item.socialIcon} className={`${this.decorateCSS("social-icon")} ${item.socialIcon.type === "icon" ? this.decorateCSS("is-icon") : ""}`} />
                                                         </ComposerLink>
                                                     )}
                                                 </div>
