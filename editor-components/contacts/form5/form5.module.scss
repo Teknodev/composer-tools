@@ -75,11 +75,6 @@
             color: var(--composer-font-color-primary);
             transform: translateY(var(--composer-gap-xs));
 
-            &::-webkit-outer-spin-button,
-            &::-webkit-inner-spin-button {
-              -webkit-appearance: none;
-              margin: 0;
-            }
           }
 
           .input:focus+.placeholder,
@@ -125,8 +120,7 @@
 
         .submit-button {
           .button-text {
-            text-align: center !important;
-            margin: 0 !important;
+            content: "";
           }
         }
       }

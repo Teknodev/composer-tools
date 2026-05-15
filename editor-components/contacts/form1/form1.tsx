@@ -1,9 +1,26 @@
 import * as React from "react";
-import { BaseContacts } from "../../EditorComponent";
+import { BaseContacts, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./form1.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 import { INPUTS } from "../../../custom-hooks/input-templates";
+
+type Item = {
+  icon: TypeMediaInputValue;
+  isIconFilled: boolean;
+  subtitle: React.JSX.Element;
+  title: React.JSX.Element;
+  description: React.JSX.Element;
+  buttons: Button[];
+  rows: { item: React.JSX.Element }[];
+};
+
+type Button = {
+  text: React.JSX.Element;
+  url: string;
+  icon: TypeMediaInputValue;
+  type: string;
+};
 
 
 class Form1 extends BaseContacts {
@@ -321,13 +338,14 @@ class Form1 extends BaseContacts {
     const description = this.getPropValue("description");
     const descriptionExist = this.castToString(description);
 
-    const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
-    const hasValidButtons = buttons.some((btn) => {
+    const buttons = this.castToObject<Button[]>("buttons");
+    const hasValidButtons = buttons.some((btn: Button) => {
       const buttonText = this.castToString(btn.text);
-      return buttonText || !!btn.icon;
+      const iconExist = btn.icon && (btn.icon.type === "icon" ? btn.icon.name : btn.icon.url);
+      return buttonText || iconExist;
     });
 
-    const cards = this.castToObject<any>("cards");
+    const cards = this.castToObject<Item[]>("cards");
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
@@ -339,9 +357,9 @@ class Form1 extends BaseContacts {
               {descriptionExist && <Base.SectionDescription className={this.decorateCSS("section-description")}>{description}</Base.SectionDescription>}
               {hasValidButtons && (
                 <div className={this.decorateCSS("button-container")}>
-                  {buttons.map((item: INPUTS.CastedButton, index: number) => {
+                  {buttons.map((item: Button, index: number) => {
                     const buttonText = this.castToString(item.text);
-                    const iconExist = !!item.icon;
+                    const iconExist = item.icon && (item.icon.type === "icon" ? item.icon.name : item.icon.url);
                     if (!buttonText && !iconExist) return null;
                     return (
                       <ComposerLink key={index} path={item.url}>
@@ -355,7 +373,7 @@ class Form1 extends BaseContacts {
                             </Base.P>
                           )}
                           {iconExist && (
-                            <Base.Icon name={item.icon} propsIcon={{ className: this.decorateCSS("button-icon") }} />
+                            <Base.Media value={item.icon!} className={this.decorateCSS("button-icon")} />
                           )}
                         </Base.Button>
                       </ComposerLink>
@@ -368,15 +386,16 @@ class Form1 extends BaseContacts {
 
           {cards?.length > 0 && (
             <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount"), tablet: 3, phone: 1 }} className={this.decorateCSS("cards-container")}>
-              {cards.map((item: any, index: number) => {
-                const iconExist = !!item.icon;
+              {cards.map((item: Item, index: number) => {
+                const iconExist = item.icon && (item.icon.type === "icon" ? item.icon.name : item.icon.url);
                 const cardTitleExist = !!this.castToString(item.title);
                 const cardSubtitleExist = this.castToString(item.subtitle);
                 const cardDescriptionExist = this.castToString(item.description);
                 const cardButtons = item.buttons || [];
-                const hasValidCardButtons = cardButtons.some((btn: any) => {
+                const hasValidCardButtons = cardButtons.some((btn: Button) => {
                   const btnText = this.castToString(btn.text);
-                  return btnText || !!btn.icon;
+                  const btnIconExist = btn.icon && (btn.icon.type === "icon" ? btn.icon.name : btn.icon.url);
+                  return btnText || btnIconExist;
                 });
 
                 if (!iconExist && !cardTitleExist && !item.rows.length && !cardSubtitleExist && !cardDescriptionExist && !hasValidCardButtons) return null;
@@ -397,16 +416,16 @@ class Form1 extends BaseContacts {
                       {cardSubtitleExist && <Base.H6 className={this.decorateCSS("card-subtitle")}>{item.subtitle}</Base.H6>}
                       {cardTitleExist && <Base.H5 className={this.decorateCSS("title")}>{item.title}</Base.H5>}
                       {cardDescriptionExist && <Base.P className={this.decorateCSS("card-description")}>{item.description}</Base.P>}
-                      {item.rows.map((row: any, rowIndex: number) => {
+                      {item.rows.map((row: { item: React.JSX.Element }, rowIndex: number) => {
                         const itemExist = this.castToString(row.item);
                         return itemExist && <Base.P key={rowIndex} className={this.decorateCSS("row-item")}>{row.item}</Base.P>;
                       })}
                       {hasValidCardButtons && (
                         <div className={this.decorateCSS("card-button-container")}>
-                          {cardButtons.map((btn: any, btnIndex: number) => {
+                          {cardButtons.map((btn: Button, btnIndex: number) => {
                             const btnText = this.castToString(btn.text);
-                            const btnIcon = !!btn.icon;
-                            if (!btnText && !btnIcon) return null;
+                            const btnIconExist = btn.icon && (btn.icon.type === "icon" ? btn.icon.name : btn.icon.url);
+                            if (!btnText && !btnIconExist) return null;
                             return (
                               <ComposerLink key={btnIndex} path={btn.url}>
                                 <Base.Button
@@ -418,8 +437,8 @@ class Form1 extends BaseContacts {
                                       {btn.text}
                                     </Base.P>
                                   )}
-                                  {btnIcon && (
-                                    <Base.Icon name={btn.icon} propsIcon={{ className: this.decorateCSS("card-button-icon") }} />
+                                  {btnIconExist && (
+                                    <Base.Media value={btn.icon!} className={this.decorateCSS("card-button-icon")} />
                                   )}
                                 </Base.Button>
                               </ComposerLink>
