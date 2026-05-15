@@ -24,7 +24,7 @@ class Social1 extends BaseSocial {
             type: "string",
             key: "subtitle",
             displayer: "Subtitle",
-            value: ""
+            value: "Lorem"
         })
         this.addProp({
             type: "string",
@@ -36,7 +36,7 @@ class Social1 extends BaseSocial {
             type: "string",
             key: "description",
             displayer: "Description",
-            value: "Discover what our community has to say about their Supabase experience."
+            value: "Discover what our community has to say about their BlinkPage experience."
         })
         this.addProp({
             type: "array",
@@ -70,7 +70,7 @@ class Social1 extends BaseSocial {
                                         { type: "media", key: "media", displayer: "Media", value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6790ceccd61bca002cb54e20?alt=media&timestamp=1742997958593" }, additionalParams: { availableTypes: ["image", "icon"] } },
                                         { type: "media", key: "icon", displayer: "Icon", value: { type: "icon", name: "MdNavigateNext" }, additionalParams: { availableTypes: ["icon", "image"] } },
                                         { type: "string", key: "name", displayer: "Name", value: "Clover Ruth" },
-                                        { type: "string", key: "text", displayer: "Text", value: "Supabase has completely changed our workflow. The real-time capabilities and seamless integration with our existing stack made it a no-brainer for our team. We've seen a 40% increase in developer productivity since switching over." },
+                                        { type: "string", key: "text", displayer: "Text", value: "BlinkPage has completely changed our workflow. The real-time capabilities and seamless integration with our existing stack made it a no-brainer for our team. We've seen a 40% increase in developer productivity since switching over." },
                                         { type: "page", key: "url", displayer: "Navigate To", value: "" },
                                     ]
                                 },
@@ -318,6 +318,8 @@ class Social1 extends BaseSocial {
             pauseOnHover: false,
             slidesToShow: 1,
             slidesToScroll: 1,
+            centerMode: true,
+            centerPadding: "50px",
             responsive: [],
         };
 
@@ -356,7 +358,7 @@ class Social1 extends BaseSocial {
             <div className={`${this.decorateCSS("wrapper")} ${!hasAnyHeader && this.decorateCSS("no-header")}`}>
                 <Base.Container className={`${this.decorateCSS("container")} ${(cardItems?.length > 0) && this.decorateCSS("container-with-cards")}`}>
                     {hasAnyHeader && (
-                        <Base.MaxContent className={this.decorateCSS("max-content")}>
+                        <Base.MaxContent className={`${this.decorateCSS("max-content")} ${this.decorateCSS("alignment-center")}`}>
                             <Base.VerticalContent className={this.decorateCSS("upper-content")}>
                                 {subtitleExist && (
                                     <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>

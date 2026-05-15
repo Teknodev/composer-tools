@@ -19,13 +19,29 @@
         .max-content {
             display: flex;
             flex-direction: column;
+            align-items: center;
 
             .upper-content {
+                display: flex;
+                flex-direction: column;
+                align-items: center !important;
+                text-align: center !important;
+                width: 100%;
 
-                .subtitle,
+                .subtitle {
+                    text-align: center !important;
+                    justify-content: center !important;
+                    transform: translateX(0) !important;
+
+                    &::before {
+                        display: none !important;
+                    }
+                }
+
                 .title,
                 .description {
-                    content: "";
+                    text-align: center !important;
+                    justify-content: center !important;
                 }
             }
 
@@ -33,6 +49,8 @@
                 display: flex;
                 gap: var(--composer-gap-sm);
                 flex-wrap: wrap;
+                justify-content: center !important;
+                width: 100% !important;
 
                 .button-wrapper {
                     .button {
@@ -64,7 +82,7 @@
                 overflow: visible;
             }
 
-            :global(.slick-slide) > div {
+            :global(.slick-slide)>div {
                 height: auto;
             }
 
@@ -141,12 +159,12 @@
 
                                 .icon {
                                     position: absolute;
-                                    color: var(--composer-html-background);
+                                    color: var(--composer-font-color-primary);
                                     width: 20px;
                                     height: 20px;
                                     left: -5px;
                                     top: -5px;
-                                    background-color: var(--composer-font-color-primary);
+                                    background-color: var(--composer-html-background);
                                     border-radius: 50%;
                                     z-index: 1;
                                     display: flex;
@@ -173,17 +191,17 @@
                                 }
                             }
 
-                        .name {
-                            display: flex;
-                            align-items: center;
-                            color: var(--composer-font-color-primary);
-                            font-size: 1.25rem;
+                            .name {
+                                display: flex;
+                                align-items: center;
+                                color: var(--composer-font-color-primary);
+                                font-size: 1.25rem;
+                            }
                         }
-                    }
 
-                    .comment {
-                        color: var(--composer-tertiary-color);
-                    }
+                        .comment {
+                            color: var(--composer-tertiary-color);
+                        }
                     }
                 }
             }
@@ -255,7 +273,7 @@
                 padding: 0 0 50px 0;
 
                 .cards {
-                    padding: 0 30px;
+                    padding: 0 10px;
 
                     .cards-wrapper {
                         flex-direction: column;
