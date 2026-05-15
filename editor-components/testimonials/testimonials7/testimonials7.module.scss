@@ -1,83 +1,68 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
-  background-size: cover;
-  background-position: center center;
-  padding: 0px !important;
+  position: relative;
+  min-height: 70vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding-bottom: 0 !important;
+  background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
 
-  &.container-no-image {
-    background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+  .background-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
   }
 
-  .contentWrapper {
-    display: flex;
-    justify-content: center;
-    min-height: 70vh;
+  &.no-background {
+    min-height: fit-content;
+  }
+
+  .max-content {
     position: relative;
+    z-index: 2;
+    margin-bottom: 0 !important;
 
-    &.contentWrapper-no-image {
+    &.max-content-no-image {
       min-height: fit-content;
-    }
-
-    .overlay {
-      position: absolute;
-      inset: 0;
-      background-color: var(--composer-overlay-color);
-      pointer-events: none;
-      z-index: 1;
-    }
-
-    .background-image {
-      display: none;
+      width: 100%;
     }
 
     .testimonials7 {
       flex-direction: column;
       display: flex;
-      width: 50%;
-      position: relative;
-      z-index: 2;
-      justify-content: flex-start;
+      min-width: 35%;
+      max-width: 60%;
+      margin-right: auto;
+      align-items: flex-start;
+      background: var(--composer-html-background);
+      box-shadow: var(--composer-box-shadow);
+      color: var(--composer-font-color-primary);
+      padding: 80px;
 
       &.testimonials7-no-image {
         width: 100%;
-      }
-
-      .top-content {
-        gap: var(--composer-gap-md);
-        padding-bottom: var(--composer-gap-md);
-
-        .subtitle,
-        .title,
-        .description,
-        .button-container,
-        .button,
-        .button-text,
-        .button-icon {
-          content: "";
-        }
-
-        &.top-content-with-image {
-          .subtitle,
-          .title,
-          .description {
-            color: var(--composer-html-background);
-          }
-          .button-text {
-            color: var(--composer-html-background);
-          }
-        }
+        min-width: 100%;
+        max-width: 100%;
+        margin-right: 0;
+        background: transparent;
+        box-shadow: none;
+        padding: 0;
       }
 
       .slider-wrapper {
-        width: 80%;
+        width: 100%;
         height: auto;
-        margin-top: auto;
 
         &.slider-wrapper-no-image {
           width: 100%;
           height: 100%;
-          margin-top: 0;
           > div {
             > div {
               > div {
@@ -93,6 +78,9 @@
           width: 100%;
           display: flex;
           bottom: 0px;
+          > ul {
+            display: none !important;
+          }
           > div {
             > div {
               display: flex;
@@ -111,11 +99,9 @@
             width: 100%;
             position: relative;
             align-items: center;
-            background-color: var(--composer-overlay-color);
-            padding: calc(var(--composer-gap-xl) * 2);
+            padding: var(--composer-gap-md) calc(var(--composer-gap-xl) * 2);
 
             &.card-no-image {
-              background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
               padding: 0px calc(var(--composer-gap-xl) * 2);
             }
 
@@ -134,7 +120,7 @@
               gap: var(--composer-gap-md);
               .item-description {
                 font-size: 1.5rem;
-                color: var(--composer-html-background);
+                color: var(--composer-font-color-primary);
 
                 &.item-description-no-image {
                   color: var(--composer-font-color-primary);
@@ -149,7 +135,7 @@
                   flex-direction: column;
 
                   .item-name {
-                    color: var(--composer-html-background);
+                    color: var(--composer-font-color-primary);
                     font-size: 1rem;
 
                     &.item-name-no-image {
@@ -159,7 +145,7 @@
 
                   .item-name-id {
                     font-size: 1rem;
-                    color: var(--composer-html-background);
+                    color: var(--composer-primary-color);
 
                     &.item-name-id-no-image {
                       color: var(--composer-primary-color);
@@ -168,8 +154,8 @@
                 }
               }
               .image {
-                width: calc(var(--composer-gap-xl) * 2);
-                height: calc(var(--composer-gap-xl) * 2);
+                width: 100px;
+                height: 100px;
               }
             }
             .button-right {
@@ -178,7 +164,7 @@
               position: absolute;
               cursor: pointer;
               padding: 0px;
-              color: var(--composer-html-background);
+              color: var(--composer-font-color-primary);
               right: var(--composer-gap-md);
 
               &.button-right-no-image {
@@ -187,8 +173,8 @@
               }
 
               .arrow {
-                width: calc(var(--composer-gap-md) + var(--composer-gap-xs));
-                height: calc(var(--composer-gap-md) + var(--composer-gap-xs));
+                width: 25px;
+                height: 25px;
               }
             }
 
@@ -199,7 +185,7 @@
               cursor: pointer;
               padding: 0px;
               left: var(--composer-gap-md);
-              color: var(--composer-html-background);
+              color: var(--composer-font-color-primary);
 
               &.button-left-no-image {
                 left: 0px;
@@ -207,8 +193,8 @@
               }
 
               .arrow {
-                width: calc(var(--composer-gap-md) + var(--composer-gap-xs));
-                height: calc(var(--composer-gap-md) + var(--composer-gap-xs));
+                width: 25px;
+                height: 25px;
               }
             }
           }
@@ -220,23 +206,31 @@
 
 @container (max-width: #{$composer-tablet-width}) {
   .container {
-    .contentWrapper {
+    min-height: fit-content;
+
+    .max-content {
       .testimonials7 {
-        width: 80%;
+        min-width: 35%;
+        max-width: 60%;
 
         &.testimonials7-no-image {
           width: 100%;
+          min-width: 100%;
+          max-width: 100%;
         }
 
         .slider-wrapper {
-          width: 70%;
+          width: 100%;
 
           &.slider-wrapper-no-image {
             width: 100%;
           }
-          .slider-style {
-            .card {
-              padding: var(--composer-gap-xl);
+            .slider-style {
+              > ul {
+                display: none !important;
+              }
+              .card {
+              padding: var(--composer-gap-md) var(--composer-gap-xl);
 
               &.card-no-image {
                 padding: 0px var(--composer-gap-xl);
@@ -268,25 +262,21 @@
     }
   }
 }
-
 @container (max-width: #{$composer-phone-width}) {
   .container {
-    background-image: none !important;
-    .contentWrapper {
+    .max-content {
+      position: relative;
       min-height: 100%;
       width: 100%;
       display: flex;
       flex-direction: column;
       justify-content: unset;
 
-      .background-image {
-        display: block;
-        min-height: calc(var(--composer-gap-xl) * 5);
-        width: 100%;
-        object-fit: cover;
-      }
       .testimonials7 {
         width: 100%;
+        min-width: 100%;
+        max-width: 100%;
+        padding: 40px;
         .button-left {
           display: none;
         }
@@ -294,13 +284,13 @@
           display: none;
         }
         .slider-wrapper {
-          margin-top: 0;
+          margin-top: 0px;
           width: 100%;
           .slider-style {
             position: static;
             .card {
-              border: 1px solid var(--composer-tertiary-color);
-              padding: var(--composer-gap-xl) var(--composer-gap-md);
+              border: var(--composer-testiary-color);
+              padding: 0;
 
               &.card-no-image,
               &.card-no-image-right,
@@ -312,11 +302,11 @@
                 padding: var(--composer-gap-xs);
                 .profile {
                   .profile-text {
-                    margin-top: var(--composer-gap-xs);
+                    margin-top: 5px;
                   }
                   .image {
-                    width: calc(var(--composer-gap-xl) + var(--composer-gap-md) + var(--composer-gap-sm));
-                    height: calc(var(--composer-gap-xl) + var(--composer-gap-md) + var(--composer-gap-sm));
+                    width: 80px;
+                    height: 80px;
                   }
                 }
               }
@@ -329,6 +319,11 @@
               position: static;
               > ul {
                 bottom: 0px;
+                display: flex !important;
+                justify-content: center;
+                width: 100%;
+                left: 0;
+                padding: 0;
                 > li {
                   > button {
                     &::before {
@@ -342,11 +337,16 @@
           .slider-style {
             position: static;
             > ul {
-              bottom: var(--composer-gap-md);
+              bottom: 20px;
+              display: flex !important;
+              justify-content: center;
+              width: 100%;
+              left: 0;
+              padding: 0;
               > li {
                 > button {
                   &::before {
-                    color: var(--composer-html-background);
+                    color: var(--composer-font-color-primary);
                   }
                 }
               }
