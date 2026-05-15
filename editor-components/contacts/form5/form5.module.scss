@@ -119,7 +119,8 @@
         justify-content: center;
 
         .submit-button {
-          .button-text {
+          .button-text,
+          .button-icon {
             content: "";
           }
         }

@@ -1,11 +1,18 @@
 import * as React from "react";
-import { BaseContacts, TypeUsableComponentProps } from "../../EditorComponent";
+import { BaseContacts, TypeUsableComponentProps, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./form6.module.scss";
 import { ErrorMessage, Formik, Form } from "formik";
 import * as Yup from "yup";
 import { Base } from "../../../composer-base-components/base/base";
 
 import { INPUTS } from "../../../custom-hooks/input-templates";
+ 
+type Button = {
+  text: React.JSX.Element;
+  url: string;
+  icon: TypeMediaInputValue;
+  type: string;
+};
 
 class Form6 extends BaseContacts {
   constructor(props?: any) {
@@ -427,10 +434,11 @@ class Form6 extends BaseContacts {
     const titleExist = this.castToString(title);
     const descriptionExist = this.castToString(description);
 
-    const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
+    const buttons = this.castToObject<Button[]>("buttons");
     const hasValidButtons = buttons.some((btn) => {
       const btnText = this.castToString(btn.text);
-      return btnText || !!btn.icon;
+      const btnIconExist = btn.icon && (btn.icon.type === "icon" ? btn.icon.name : btn.icon.url);
+      return btnText || btnIconExist;
     });
 
     const textExist = titleExist || descriptionExist || subtitleExist;
@@ -577,14 +585,14 @@ class Form6 extends BaseContacts {
                         })}
                         {hasValidButtons && (
                           <div className={this.decorateCSS("button-container")}>
-                            {buttons.map((btn: INPUTS.CastedButton, btnIndex: number) => {
+                            {buttons.map((btn: Button, btnIndex: number) => {
                               const btnText = this.castToString(btn.text);
-                              const btnIconExist = !!btn.icon;
+                              const btnIconExist = btn.icon && (btn.icon.type === "icon" ? btn.icon.name : btn.icon.url);
                               if (!btnText && !btnIconExist) return null;
                               return (
                                 <Base.Button key={btnIndex} buttonType={btn.type} className={this.decorateCSS("submit-button")} type="submit">
                                   {btnText && <Base.P className={this.decorateCSS("button-text")}>{btn.text}</Base.P>}
-                                  {btnIconExist && <Base.Icon name={btn.icon} propsIcon={{ className: this.decorateCSS("button-icon") }} />}
+                                  {btnIconExist && <Base.Media value={btn.icon!} className={this.decorateCSS("button-icon")} />}
                                 </Base.Button>
                               );
                             })}

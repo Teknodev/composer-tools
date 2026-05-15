@@ -1,11 +1,18 @@
 import { ErrorMessage, Formik, Form } from "formik";
 import * as React from "react";
 import * as Yup from "yup";
-import { BaseContacts } from "../../EditorComponent";
+import { BaseContacts, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./form7.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 
 import { INPUTS } from "../../../custom-hooks/input-templates";
+ 
+type Button = {
+  text: React.JSX.Element;
+  url: string;
+  icon: TypeMediaInputValue;
+  type: string;
+};
 
 class Form7 extends BaseContacts {
   constructor(props?: any) {
@@ -251,10 +258,11 @@ class Form7 extends BaseContacts {
     const textExist = this.castToString(text);
 
     const inputItems = this.getPropValue("inputItems")!;
-    const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
+    const button: Button = this.castToObject<Button>("button");
 
     const buttonTextExist = this.castToString(button.text);
-    const rightItemsExist = inputItems.length > 0 || textExist || buttonTextExist;
+    const buttonIconExist = button.icon && (button.icon.type === "icon" ? button.icon.name : button.icon.url);
+    const rightItemsExist = inputItems.length > 0 || textExist || buttonTextExist || buttonIconExist;
 
     function getInputType(type: string): string {
       switch (type) {
@@ -386,14 +394,15 @@ class Form7 extends BaseContacts {
                           </div>
                         ))}
 
-                        {(textExist || buttonTextExist) && (
+                        {(textExist || buttonTextExist || buttonIconExist) && (
                           <div className={this.decorateCSS("bottom-section")}>
                             {textExist && (
                               <Base.P className={this.decorateCSS("text")}>{text}</Base.P>
                             )}
-                            {buttonTextExist && (
+                            {(buttonTextExist || buttonIconExist) && (
                               <Base.Button buttonType={button.type} className={this.decorateCSS("submit-button")} type="submit">
-                                <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
+                                {buttonTextExist && <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>}
+                                {buttonIconExist && <Base.Media value={button.icon!} className={this.decorateCSS("button-icon")} />}
                               </Base.Button>
                             )}
                           </div>

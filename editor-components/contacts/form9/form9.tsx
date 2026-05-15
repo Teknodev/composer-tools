@@ -1,10 +1,17 @@
 import { ErrorMessage, Formik, Form } from "formik";
 import * as React from "react";
 import * as Yup from "yup";
-import { BaseContacts, TypeUsableComponentProps } from "../../EditorComponent";
+import { BaseContacts, TypeUsableComponentProps, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./form9.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "../../../custom-hooks/input-templates";
+ 
+type Button = {
+  text: React.JSX.Element;
+  url: string;
+  icon: TypeMediaInputValue;
+  type: string;
+};
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 
 class Form9 extends BaseContacts {
@@ -448,8 +455,8 @@ class Form9 extends BaseContacts {
 
   render() {
     const title = this.getPropValue("title");
-    const button: INPUTS.CastedButton =
-      this.castToObject<INPUTS.CastedButton>("button");
+    const button: Button =
+      this.castToObject<Button>("button");
     const features = this.getPropValue(
       "features"
     ) as TypeUsableComponentProps[];
@@ -458,7 +465,9 @@ class Form9 extends BaseContacts {
     const titleStr = this.castToString(title) || "";
 
     const consent = this.castToObject<any>("consent");
-    const hasButton = !!(this.castToString(button?.text) || "");
+    const buttonTextExist = this.castToString(button?.text) || "";
+    const buttonIconExist = button.icon && (button.icon.type === "icon" ? button.icon.name : button.icon.url);
+    const hasButton = !!(buttonTextExist || buttonIconExist);
     const consentLabelPrefix = this.castToString(consent?.label_prefix) || "";
     const consentLinkText = this.castToString(consent?.link_text) || "";
     const consentLinkUrl = this.castToString(consent?.link_url) || "";
@@ -916,11 +925,19 @@ class Form9 extends BaseContacts {
                               className={this.decorateCSS("submit-button")}
                               type="submit"
                             >
-                              <Base.P
-                                className={this.decorateCSS("button-text")}
-                              >
-                                {button!.text}
-                              </Base.P>
+                              {buttonTextExist && (
+                                <Base.P
+                                  className={this.decorateCSS("button-text")}
+                                >
+                                  {button!.text}
+                                </Base.P>
+                              )}
+                              {buttonIconExist && (
+                                <Base.Media
+                                  value={button.icon!}
+                                  className={this.decorateCSS("button-icon")}
+                                />
+                              )}
                             </Base.Button>
                           )}
                         </Form>

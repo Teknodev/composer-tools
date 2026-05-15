@@ -1,10 +1,17 @@
 import * as React from "react";
-import { BaseContacts, TypeUsableComponentProps } from "../../EditorComponent";
+import { BaseContacts, TypeUsableComponentProps, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./form2.module.scss";
 import { ErrorMessage, Form, Formik } from "formik";
 import * as Yup from "yup";
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "../../../custom-hooks/input-templates";
+ 
+type Button = {
+  text: React.JSX.Element;
+  url: string;
+  icon: TypeMediaInputValue;
+  type: string;
+};
 
 class Form2 extends BaseContacts {
   constructor(props?: any) {
@@ -241,10 +248,11 @@ class Form2 extends BaseContacts {
     const description = this.getPropValue("description");
     const descriptionExist = this.castToString(description);
 
-    const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
+    const button: Button = this.castToObject<Button>("button");
 
     const buttonText = button.text;
     const buttonTextExist = this.castToString(button.text);
+    const buttonIconExist = button.icon && (button.icon.type === "icon" ? button.icon.name : button.icon.url);
 
     const background = this.castToObject<any>("background");
     const backgroundImage = background["componentBackground"];
@@ -346,7 +354,7 @@ class Form2 extends BaseContacts {
         {imageExist && <Base.Media value={backgroundImage} className={this.decorateCSS("background-media")} />}
         {overlay && imageExist && <div className={this.decorateCSS("overlay")}></div>}
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          {((inputs.length > 0 || buttonTextExist) || (titleExist || subtitleExist || descriptionExist)) && (
+          {((inputs.length > 0 || buttonTextExist || buttonIconExist) || (titleExist || subtitleExist || descriptionExist)) && (
             <div className={this.decorateCSS("input-items")}>
               <div className={`${this.decorateCSS("input-item")} ${!imageExist && this.decorateCSS("input-item-no-image")}`}>
                 {(subtitleExist || titleExist || descriptionExist) && <Base.VerticalContent className={this.decorateCSS("header")}>
@@ -354,7 +362,7 @@ class Form2 extends BaseContacts {
                   {titleExist && <Base.SectionTitle className={`${this.decorateCSS("title")} ${imageExist && this.decorateCSS("title-with-image")}`}>{title}</Base.SectionTitle>}
                   {descriptionExist && <Base.SectionDescription className={`${this.decorateCSS("description")} ${imageExist && this.decorateCSS("description-with-image")}`}>{description}</Base.SectionDescription>}
                 </Base.VerticalContent>}
-                {(inputs.length > 0 || buttonTextExist) && (
+                {(inputs.length > 0 || buttonTextExist || buttonIconExist) && (
                   <Formik
                     initialValues={initialValue}
                     validationSchema={getSchema}
@@ -395,9 +403,16 @@ class Form2 extends BaseContacts {
                             </div>
                           </>
                         ))}
-                        {buttonTextExist && (
+                        {(buttonTextExist || buttonIconExist) && (
                           <Base.Button buttonType={button.type} className={this.decorateCSS("button")} type="submit">
-                            <Base.P className={this.decorateCSS("button-text")}>{buttonText}</Base.P>
+                            {buttonTextExist && (
+                              <Base.P className={this.decorateCSS("button-text")}>
+                                {button.text}
+                              </Base.P>
+                            )}
+                            {buttonIconExist && (
+                              <Base.Media value={button.icon!} className={this.decorateCSS("button-icon")} />
+                            )}
                           </Base.Button>
                         )}
                       </Form>

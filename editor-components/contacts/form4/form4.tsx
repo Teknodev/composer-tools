@@ -5,6 +5,13 @@ import { BaseContacts, TypeMediaInputValue, TypeUsableComponentProps } from "../
 import styles from "./form4.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "../../../custom-hooks/input-templates";
+ 
+type Button = {
+  text: React.JSX.Element;
+  url: string;
+  icon: TypeMediaInputValue;
+  type: string;
+};
 
 type RightSection = {
   image: TypeMediaInputValue;
@@ -391,7 +398,7 @@ class Form4 extends BaseContacts {
     const descriptionExist = this.castToString(this.getPropValue("description"));
     const isContactVisible = subtitleExist || titleExist || descriptionExist;
 
-    const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
+    const button: Button = this.castToObject<Button>("button");
 
     const rightSection = this.castToObject<RightSection>("rightSection");
     const image = rightSection.image;
@@ -514,7 +521,8 @@ class Form4 extends BaseContacts {
     }
 
     const buttonTextExist = this.castToString(button.text);
-    const formContainerExist = inputItems.length > 0 || buttonTextExist;
+    const buttonIconExist = button.icon && (button.icon.type === "icon" ? button.icon.name : button.icon.url);
+    const formContainerExist = inputItems.length > 0 || buttonTextExist || buttonIconExist;
 
     const isTopVisible = isContactVisible || isAddressVisible;
 
@@ -596,9 +604,10 @@ class Form4 extends BaseContacts {
                           </div>
                         </div>
                       ))}
-                      {buttonTextExist && (
+                      {(buttonTextExist || buttonIconExist) && (
                         <Base.Button buttonType={button.type} className={this.decorateCSS("submit-button")} type="submit">
-                          <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
+                          {buttonTextExist && <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>}
+                          {buttonIconExist && <Base.Media value={button.icon!} className={this.decorateCSS("button-icon")} />}
                         </Base.Button>
                       )}
                     </Form>

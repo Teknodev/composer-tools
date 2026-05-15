@@ -1,5 +1,5 @@
 import * as React from "react";
-import { BaseContacts } from "../../EditorComponent";
+import { BaseContacts, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./form3.module.scss";
 import { ErrorMessage, Formik, Form } from "formik";
 import * as Yup from "yup";
@@ -615,7 +615,8 @@ class Form3 extends BaseContacts {
     const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
     const hasValidButtons = buttons.some((btn) => {
       const btnText = this.castToString(btn.text);
-      return btnText || !!btn.icon;
+      const iconExist = btn.icon && (btn.icon.type === "icon" ? btn.icon.name : btn.icon.url);
+      return btnText || iconExist;
     });
 
     const leftSectionArray = this.getPropValue("leftSection");
@@ -734,7 +735,7 @@ class Form3 extends BaseContacts {
                       <ComposerLink key={index} path={item.url}>
                         <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
                           {btnText && <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>}
-                          {iconExist && <Base.Icon name={item.icon} propsIcon={{ className: this.decorateCSS("button-icon") }} />}
+                          {iconExist && <Base.Media value={item.icon!} className={this.decorateCSS("button-icon")} />}
                         </Base.Button>
                       </ComposerLink>
                     );

@@ -1,10 +1,17 @@
 import * as React from "react";
-import { BaseContacts, TypeUsableComponentProps } from "../../EditorComponent";
+import { BaseContacts, TypeUsableComponentProps, TypeMediaInputValue } from "../../EditorComponent";
 import * as Yup from "yup";
 import styles from "./form8.module.scss";
 import { ErrorMessage, Formik, Form } from "formik";
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "../../../custom-hooks/input-templates";
+ 
+type Button = {
+  text: React.JSX.Element;
+  url: string;
+  icon: TypeMediaInputValue;
+  type: string;
+};
 
 type LeftData = {
   firstText: JSX.Element;
@@ -322,10 +329,12 @@ class Form8 extends BaseContacts {
     const contactTexts = left.contactItems;
 
     const input = this.castToObject<InputData>("input");
-    const button = this.castToObject<INPUTS.CastedButton>("button");
+    const button = this.castToObject<Button>("button");
+    const buttonTextExist = this.castToString(button.text);
+    const buttonIconExist = button.icon && (button.icon.type === "icon" ? button.icon.name : button.icon.url);
     const inputItems = input.inputItems;
 
-    const pageContentExist = firstTextExist || secondTextExist || contactTexts?.length > 0 || inputItems.length > 0 || this.castToString(button.text);
+    const pageContentExist = firstTextExist || secondTextExist || contactTexts?.length > 0 || inputItems.length > 0 || buttonTextExist || buttonIconExist;
 
 
     function toObjectKey(str: string) {
@@ -503,10 +512,12 @@ class Form8 extends BaseContacts {
                         </div>
                       ))
                     )}
-                   {this.castToString(button.text) && 
-                   <Base.Button buttonType={button.type} type="submit" className={this.decorateCSS("form-button")}>
-                     <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
-                    </Base.Button>}
+                   {(buttonTextExist || buttonIconExist) && (
+                     <Base.Button buttonType={button.type} type="submit" className={this.decorateCSS("form-button")}>
+                       {buttonTextExist && <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>}
+                       {buttonIconExist && <Base.Media value={button.icon!} className={this.decorateCSS("button-icon")} />}
+                     </Base.Button>
+                   )}
                   </Form>
                 )}
               </Formik>

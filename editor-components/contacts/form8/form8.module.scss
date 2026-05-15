@@ -95,8 +95,9 @@ $content-background-color: color-mix(in srgb, var(--composer-html-background), v
           .form-button {
             justify-content: center;
 
-            .button-text {
-              text-align: center;
+            .button-text,
+            .button-icon {
+              content: "";
             }
           }
         }

@@ -1,10 +1,17 @@
 import * as React from "react";
-import { BaseContacts, TypeUsableComponentProps } from "../../EditorComponent";
+import { BaseContacts, TypeUsableComponentProps, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./form5.module.scss";
 import { ErrorMessage, Form, Formik } from "formik";
 import * as Yup from "yup";
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "../../../custom-hooks/input-templates";
+ 
+type Button = {
+  text: React.JSX.Element;
+  url: string;
+  icon: TypeMediaInputValue;
+  type: string;
+};
 
 class Form5 extends BaseContacts {
   constructor(props?: any) {
@@ -344,9 +351,10 @@ class Form5 extends BaseContacts {
     const title = this.castToString(this.getPropValue("title"));
     const description = this.castToString(this.getPropValue("description"));
 
-    const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
+    const button: Button = this.castToObject<Button>("button");
 
     const buttonText = this.castToString(button.text);
+    const buttonIconExist = button.icon && (button.icon.type === "icon" ? button.icon.name : button.icon.url);
 
     const firstInputs = this.getPropValue("first_inputs");
     const secondInputs = this.getPropValue("second_inputs");
@@ -526,10 +534,11 @@ class Form5 extends BaseContacts {
                         </div>
                       )}
                     </div>
-                    {buttonText && (
+                    {(buttonText || buttonIconExist) && (
                       <div className={this.decorateCSS("button-container")}>
                         <Base.Button buttonType={button.type} className={this.decorateCSS("submit-button")}>
-                          <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
+                          {buttonText && <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>}
+                          {buttonIconExist && <Base.Media value={button.icon!} className={this.decorateCSS("button-icon")} />}
                         </Base.Button>
                       </div>
                     )}
