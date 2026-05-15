@@ -55,11 +55,7 @@
           flex-grow: 1;
           max-width: 60%;
           position: relative;
-          padding-bottom: var(--composer-gap-xl);
-
-          &.right-content-padding {
-            padding-bottom: calc(var(--composer-gap-xl) * 3);
-          }
+          padding-bottom: calc(var(--composer-gap-xl) * 2);
 
           &::after {
             content: "";
@@ -194,20 +190,22 @@
     }
   }
   .hiliteTitle {
-    font-size: 5rem;
+    font-size: 6rem;
     color: var(--composer-html-background);
-    width: fit-content;
-    background-color: var(--composer-font-color-primary);
     position: absolute;
     z-index: 10;
-    right: var(--composer-gap-xl);
-    bottom: var(--composer-gap-md);
-    max-width: calc(55% - var(--composer-gap-md) - var(--composer-gap-xl));
+    right: 0;
+    bottom: 0;
+    font-weight: 900;
+    text-transform: uppercase;
+    line-height: 0.8;
+    pointer-events: none;
+    user-select: none;
+    transform: translateY(10%); // Slightly offset for "integrated" look
+    
     > blinkpage {
       display: block;
       white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
     }
   }
 }
@@ -239,9 +237,9 @@
       }
     }
     .hiliteTitle {
-      max-width: calc(100% - var(--composer-gap-lg) * 2);
-      margin: 0 var(--composer-gap-lg);
-      right: var(--composer-gap-sm);
+      font-size: 5rem;
+      right: var(--composer-gap-md);
+      bottom: var(--composer-gap-sm);
     }
   }
 }

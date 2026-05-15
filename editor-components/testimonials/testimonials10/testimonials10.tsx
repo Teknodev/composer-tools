@@ -382,14 +382,14 @@ class Testimonials10Page extends Testimonials {
                       })}
                     </ComposerSlider>
                   </div>
+                  {hiliteTitle && (
+                    <div className={this.decorateCSS("hiliteTitle")}>{this.getPropValue("hiliteTitle")}</div>
+                  )}
                 </div>
               )}
             </div>
           </div>
         </Base.MaxContent>
-        {hiliteTitle && (
-          <div className={this.decorateCSS("hiliteTitle")}>{this.getPropValue("hiliteTitle")}</div>
-        )}
       </Base.Container>
     );
   }
