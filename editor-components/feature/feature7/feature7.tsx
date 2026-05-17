@@ -19,7 +19,7 @@ class Feature7 extends BaseFeature {
       key: "image",
       displayer: "Media",
       additionalParams: {
-        availableTypes: ["image","video"],
+        availableTypes: ["image", "video"],
       },
       value: {
         type: "image",
@@ -162,10 +162,10 @@ class Feature7 extends BaseFeature {
       (this.getPropValue("links").length > 0) ||
       (this.getPropValue("features").length > 0);
 
-      const alignment = Base.getContentAlignment();
-      
+    const alignment = Base.getContentAlignment();
+
     return (
-      <Base.Container className={this.decorateCSS("container")}>
+      <Base.Container className={`${this.decorateCSS("container")} ${!image && this.decorateCSS("no-image")}`}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <Base.ContainerGrid className={this.decorateCSS("wrapper")}>
             {!!image?.url && (
@@ -249,8 +249,6 @@ class Feature7 extends BaseFeature {
                     )}
                   </Base.VerticalContent>
                 )}
-
-
               </Base.GridCell>
             )}
           </Base.ContainerGrid>
