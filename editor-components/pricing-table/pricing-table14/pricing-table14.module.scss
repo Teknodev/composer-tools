@@ -5,28 +5,32 @@
     display: flex;
     flex-direction: row;
     gap: var(--composer-gap-xl);
-    align-items: flex-start;
 
     .left-column {
       flex: 0 0 40%;
       display: flex;
       flex-direction: column;
-      text-align: left;
+      align-items: flex-start;
 
       &.full-width {
         flex: 1;
         width: 100%;
       }
 
-      .subtitle,
+      .subtitle {
+        text-align: left;
+        margin-left: 0;
+      }
+
       .title,
       .description {
-        content: "";
+        text-align: left;
       }
 
       .stats-container {
         display: flex;
         flex-direction: row;
+        flex-wrap: wrap;
         gap: var(--composer-gap-xl);
 
         .stat-item {
@@ -37,10 +41,12 @@
           .stat-number {
             color: var(--composer-primary-color);
             font-size: 6rem;
+            text-align: left;
           }
 
           .stat-label {
             color: var(--composer-font-color-primary);
+            text-align: left;
           }
         }
       }
@@ -72,10 +78,12 @@
           .card-title {
             font-size: 1.5rem;
             color: var(--composer-font-color-primary);
+            text-align: left;
           }
 
           .card-description {
             color: var(--composer-tertiary-color);
+            text-align: left;
           }
 
           .features-list {
@@ -97,6 +105,7 @@
 
               .feature-text {
                 color: var(--composer-tertiary-color);
+                text-align: left;
               }
             }
           }
@@ -157,15 +166,41 @@
       flex-direction: column;
 
       .left-column {
+        align-items: var(--composer-content-alignment);
+
+        .subtitle {
+          text-align: var(--composer-content-alignment);
+          margin-right: 0;
+        }
+
+        .title,
+        .description {
+          text-align: var(--composer-content-alignment);
+        }
+
         .stats-container {
           flex-direction: column;
           gap: var(--composer-gap-md);
+          align-items: var(--composer-content-alignment);
+
+          .stat-item {
+            align-items: var(--composer-content-alignment);
+
+            .stat-number {
+              text-align: var(--composer-content-alignment);
+            }
+
+            .stat-label {
+              text-align: var(--composer-content-alignment);
+            }
+          }
         }
       }
 
       .right-column {
         .card {
           flex-direction: column;
+          gap: var(--composer-gap-lg);
 
           .card-left-section {
             width: 100%;
@@ -178,6 +213,7 @@
 
             .card-buttons {
               align-items: flex-start;
+              justify-content: left;
             }
 
             .card-button {

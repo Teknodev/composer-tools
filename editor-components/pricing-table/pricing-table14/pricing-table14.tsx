@@ -138,6 +138,9 @@ class PricingTable14 extends BasePricingTable {
                       type: "media",
                       key: "icon",
                       displayer: "Icon",
+                      additionalParams: {
+                        availableTypes: ["image", "icon"],
+                      },
                       value: {
                         type: "icon",
                         name: "FaCheckCircle",
@@ -160,6 +163,9 @@ class PricingTable14 extends BasePricingTable {
                       type: "media",
                       key: "icon",
                       displayer: "Icon",
+                      additionalParams: {
+                        availableTypes: ["image", "icon"],
+                      },
                       value: {
                         type: "icon",
                         name: "FaCheckCircle",
@@ -182,6 +188,9 @@ class PricingTable14 extends BasePricingTable {
                       type: "media",
                       key: "icon",
                       displayer: "Icon",
+                      additionalParams: {
+                        availableTypes: ["image", "icon"],
+                      },
                       value: {
                         type: "icon",
                         name: "FaCheckCircle",
@@ -256,6 +265,9 @@ class PricingTable14 extends BasePricingTable {
                       type: "media",
                       key: "icon",
                       displayer: "Icon",
+                      additionalParams: {
+                        availableTypes: ["image", "icon"],
+                      },
                       value: {
                         type: "icon",
                         name: "FaCheckCircle",
@@ -278,6 +290,9 @@ class PricingTable14 extends BasePricingTable {
                       type: "media",
                       key: "icon",
                       displayer: "Icon",
+                      additionalParams: {
+                        availableTypes: ["image", "icon"],
+                      },
                       value: {
                         type: "icon",
                         name: "FaCheckCircle",
@@ -300,6 +315,9 @@ class PricingTable14 extends BasePricingTable {
                       type: "media",
                       key: "icon",
                       displayer: "Icon",
+                      additionalParams: {
+                        availableTypes: ["image", "icon"],
+                      },
                       value: {
                         type: "icon",
                         name: "FaCheckCircle",
