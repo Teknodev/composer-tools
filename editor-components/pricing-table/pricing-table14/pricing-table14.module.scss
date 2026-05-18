@@ -1,0 +1,191 @@
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+
+.container {
+  .max-content {
+    display: flex;
+    flex-direction: row;
+    gap: var(--composer-gap-xl);
+    align-items: flex-start;
+
+    .left-column {
+      flex: 0 0 40%;
+      display: flex;
+      flex-direction: column;
+      text-align: left;
+
+      &.full-width {
+        flex: 1;
+        width: 100%;
+      }
+
+      .subtitle,
+      .title,
+      .description {
+        content: "";
+      }
+
+      .stats-container {
+        display: flex;
+        flex-direction: row;
+        gap: var(--composer-gap-xl);
+
+        .stat-item {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+
+          .stat-number {
+            color: var(--composer-primary-color);
+            font-size: 6rem;
+          }
+
+          .stat-label {
+            color: var(--composer-font-color-primary);
+          }
+        }
+      }
+    }
+
+    .right-column {
+      flex: 1;
+      gap: var(--composer-gap-lg);
+      width: 100%;
+
+      .card {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        border: 1px solid color-mix(in srgb, var(--composer-font-color-primary) 8%, transparent);
+        border-radius: var(--composer-border-radius-md);
+        padding: var(--composer-gap-xl);
+        gap: var(--composer-gap-xl);
+
+        .card-left-section {
+          display: flex;
+          flex-direction: column;
+          gap: var(--composer-gap-md);
+          text-align: left;
+          flex: 1;
+          width: 50%;
+
+          .card-subtitle,
+          .card-title {
+            font-size: 1.5rem;
+            color: var(--composer-font-color-primary);
+          }
+
+          .card-description {
+            color: var(--composer-tertiary-color);
+          }
+
+          .features-list {
+            display: flex;
+            flex-direction: column;
+            gap: var(--composer-gap-sm);
+
+            .feature-item {
+              display: flex;
+              align-items: center;
+              gap: var(--composer-gap-sm);
+
+              .feature-icon {
+                color: var(--composer-primary-color);
+                width: 15px;
+                height: 15px;
+                font-size: 1rem;
+              }
+
+              .feature-text {
+                color: var(--composer-tertiary-color);
+              }
+            }
+          }
+        }
+
+        .card-right-section {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-end;
+          justify-content: space-between;
+          flex: 1;
+          width: 50%;
+          gap: var(--composer-gap-md);
+
+          .price-container {
+            display: flex;
+            align-items: baseline;
+            gap: var(--composer-gap-xs);
+
+            .card-price {
+              color: var(--composer-font-color-primary);
+            }
+
+            .card-period {
+              color: var(--composer-font-color-primary);
+            }
+          }
+
+          .card-buttons {
+            display: flex;
+            align-items: flex-end;
+            justify-content: flex-end;
+            flex-wrap: wrap;
+            gap: var(--composer-gap-sm);
+            width: 100%;
+
+            .card-button {
+              .button-text {
+                content: "";
+              }
+
+              .button-arrow {
+                width: 15px;
+                height: 15px;
+                font-size: 1rem;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+  .container {
+    .max-content {
+      flex-direction: column;
+
+      .left-column {
+        .stats-container {
+          flex-direction: column;
+          gap: var(--composer-gap-md);
+        }
+      }
+
+      .right-column {
+        .card {
+          flex-direction: column;
+
+          .card-left-section {
+            width: 100%;
+          }
+
+          .card-right-section {
+            width: 100%;
+            align-items: flex-start;
+            gap: 0;
+
+            .card-buttons {
+              align-items: flex-start;
+            }
+
+            .card-button {
+              width: auto;
+            }
+          }
+        }
+      }
+    }
+  }
+}
