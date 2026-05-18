@@ -24,7 +24,7 @@ class Social1 extends BaseSocial {
             type: "string",
             key: "subtitle",
             displayer: "Subtitle",
-            value: "Lorem"
+            value: ""
         })
         this.addProp({
             type: "string",
