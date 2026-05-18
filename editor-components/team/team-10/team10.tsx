@@ -127,7 +127,8 @@ class Team10 extends Team {
               type: "string",
               key: "title",
               displayer: "Person Name",
-              value: "MARINA GONZALES",
+              value:
+                '<p dir="ltr"><span style="white-space: pre-wrap;">MARINA </span></p><p dir="ltr"><span style="white-space: pre-wrap;">GONZALES</span></p>',
             },
             {
               type: "array",
@@ -353,7 +354,8 @@ class Team10 extends Team {
               type: "string",
               key: "title",
               displayer: "Person Name",
-              value: "MARINA GONZALES",
+              value:
+                '<p dir="ltr"><span style="white-space: pre-wrap;">MARINA </span></p><p dir="ltr"><span style="white-space: pre-wrap;">GONZALES</span></p>',
             },
             {
               type: "array",
@@ -579,7 +581,8 @@ class Team10 extends Team {
               type: "string",
               key: "title",
               displayer: "Person Name",
-              value: "MARINA GONZALES",
+              value:
+                '<p dir="ltr"><span style="white-space: pre-wrap;">MARINA </span></p><p dir="ltr"><span style="white-space: pre-wrap;">GONZALES</span></p>',
             },
             {
               type: "array",
@@ -805,7 +808,8 @@ class Team10 extends Team {
               type: "string",
               key: "title",
               displayer: "Person Name",
-              value: "MARINA GONZALES",
+              value:
+                '<p dir="ltr"><span style="white-space: pre-wrap;">MARINA </span></p><p dir="ltr"><span style="white-space: pre-wrap;">GONZALES</span></p>',
             },
             {
               type: "array",
@@ -1083,7 +1087,7 @@ class Team10 extends Team {
                     {(teamMember.subtitle || teamMember.title) && (
                       <Base.VerticalContent className={this.decorateCSS("title-group")}>
                         {teamMember.subtitle && <Base.P className={this.decorateCSS("member-subtitle")}>{teamMember.subtitle}</Base.P>}
-                        {teamMember.title && <Base.H3 className={this.decorateCSS("member-title")} data-animation={hoverAnimation.join(" ")}>{teamMember.title}</Base.H3>}
+                        {teamMember.title && <Base.H5 className={this.decorateCSS("member-title")} data-animation={hoverAnimation.join(" ")}>{teamMember.title}</Base.H5>}
                       </Base.VerticalContent>
                     )}
                     {teamMember.features?.length > 0 && (
@@ -1103,7 +1107,7 @@ class Team10 extends Team {
                         ))}
                       </div>
                     )}
-                    {teamMember.cardDescription && (<Base.SectionDescription className={this.decorateCSS("card-description")}>{teamMember.cardDescription}</Base.SectionDescription>
+                    {teamMember.cardDescription && (<Base.P className={this.decorateCSS("card-description")}>{teamMember.cardDescription}</Base.P>
                     )}
                   </div>
                 )}

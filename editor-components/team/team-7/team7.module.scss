@@ -10,29 +10,29 @@
       width: 100%;
       gap: var(--composer-gap-sm);
 
-      .subtitle {
-        margin-bottom: 0;
-      }
-
       .up-page-bottom {
         display: flex;
-        width: 100%;
         align-items: center;
         gap: var(--composer-gap-md);
-        margin: 0;
+        width: 100%;
 
-        .title {
-          width: 100%;
+        .title-container {
           flex: 1;
-          margin: 0;
+          display: flex;
+          flex-direction: column;
+          gap: var(--composer-gap-xs);
+          width: 100%;
+
+          .subtitle,
+          .title {
+            content: "";
+          }
         }
 
         .description {
-          color: var(--composer-tertiary-color);
           flex: 1;
 
           &.middle {
-            margin: 0;
             text-align: right;
           }
 
@@ -44,20 +44,11 @@
     }
 
     .up-page-center {
-      width: 100%;
-      gap: var(--composer-gap-sm);
 
-      .subtitle {
-        margin-bottom: 0;
-      }
-
-      .title {
-        margin: 0;
-      }
-
+      .subtitle,
+      .title,
       .description {
-        color: var(--composer-tertiary-color);
-        margin: 0;
+        content: "";
       }
     }
 
@@ -238,14 +229,25 @@
   .container {
     .max-content {
       gap: var(--composer-gap-md);
+    }
+  }
+}
 
-      .basic-page {
-        .up-page {
-          .up-page-bottom {
-            flex-direction: column;
-            align-items: baseline;
+@container (max-width: #{$composer-phone-width}) {
+  .container {
+    .max-content {
+      .up-page {
+        gap: 0;
 
-            .card-description {
+        .up-page-bottom {
+          flex-direction: column;
+          align-items: baseline;
+          gap: 0;
+
+          .description {
+            text-align: left;
+
+            &.middle {
               text-align: left;
             }
           }

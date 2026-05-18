@@ -44,17 +44,29 @@ class Team6 extends Team {
     });
 
     this.addProp({
-      type: "icon",
+      type: "media",
       key: "activeIcon",
       displayer: "Active icon",
-      value: "IoAddCircleOutline",
+      additionalParams: {
+        availableTypes: ["icon", "image"],
+      },
+      value: {
+        type: "icon",
+        name: "IoAddCircleOutline",
+      },
     });
 
     this.addProp({
-      type: "icon",
+      type: "media",
       key: "inactiveIcon",
       displayer: "Inactive icon",
-      value: "IoRemoveCircleOutline",
+      additionalParams: {
+        availableTypes: ["icon", "image"],
+      },
+      value: {
+        type: "icon",
+        name: "IoRemoveCircleOutline",
+      },
     });
 
     this.addProp({
@@ -691,6 +703,9 @@ class Team6 extends Team {
     const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons") || [];
     const visibleButtons = buttons.filter(btn => this.castToString(btn.text));
 
+    const activeIcon = this.getPropValue("activeIcon");
+    const inactiveIcon = this.getPropValue("inactiveIcon");
+
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
@@ -715,9 +730,19 @@ class Team6 extends Team {
                       <div onClick={() => handleButton(indexItems)} className={this.decorateCSS("image-button")}>
                         {card.features.length > 0 &&
                           (this.getComponentState("activeIndex") === indexItems ? (
-                            <Base.Icon name={this.getPropValue("inactiveIcon")} propsIcon={{ className: `${this.decorateCSS("inactive-icon")} ${card.profileImage && this.decorateCSS("has-image-inactive")}` }} />
+                            inactiveIcon && (
+                              <Base.Media
+                                value={inactiveIcon}
+                                className={`${this.decorateCSS("inactive-icon")} ${card.profileImage && this.decorateCSS("has-image-inactive")}`}
+                              />
+                            )
                           ) : (
-                            <Base.Icon name={this.getPropValue("activeIcon")} propsIcon={{ className: `${this.decorateCSS("active-icon")} ${card.profileImage && this.decorateCSS("has-image-active")}` }} />
+                            activeIcon && (
+                              <Base.Media
+                                value={activeIcon}
+                                className={`${this.decorateCSS("active-icon")} ${card.profileImage && this.decorateCSS("has-image-active")}`}
+                              />
+                            )
                           ))}
                         <div className={this.decorateCSS("image-container")}>
                           <Base.Media
@@ -728,7 +753,7 @@ class Team6 extends Team {
                           {this.getPropValue("overlay") && <div className={this.decorateCSS("overlay")} />}
                         </div>
                         <Base.VerticalContent className={this.decorateCSS("card-info")}>
-                          {cardNameExist && <Base.H4 className={this.decorateCSS("card-name")}>{card.name}</Base.H4>}
+                          {cardNameExist && <Base.H5 className={this.decorateCSS("card-name")}>{card.name}</Base.H5>}
                           {cardPositionExist && <Base.P className={this.decorateCSS("card-position")}>{card.position}</Base.P>}
                           {cardDescriptionExist && <Base.P className={this.decorateCSS("card-description")}>{card.cardDescription}</Base.P>}
                           {this.getComponentState("activeIndex") === indexItems && card.features.length > 0 && (

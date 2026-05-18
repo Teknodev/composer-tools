@@ -214,15 +214,19 @@ class Team14 extends Team {
             <Base.ListGrid gridCount={{ pc: itemCount, tablet: 3, phone: 1 }} className={this.decorateCSS("down-page")}>
               {cards.map((cardItem: Card, index: number) => {
                 const image = cardItem.profileImage;
+                const hasImage = !!(image && (image.type === "image" || image.type === "video") && image.url);
                 const name = this.castToString(cardItem.name);
                 const position = this.castToString(cardItem.position);
                 const cardDescription = this.castToString(cardItem.cardDescription);
 
                 return (
                   <div key={index} className={this.decorateCSS("card")}>
-                    <div className={this.decorateCSS("portfolio")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
-                      {image && <Base.Media value={image} className={this.decorateCSS("image")} data-animation={this.getPropValue("hoverAnimation").join(" ")} />}
-                      {this.getPropValue("overlay") && <div className={this.decorateCSS("overlay")} />}
+                    <div
+                      className={`${this.decorateCSS("portfolio")} ${!hasImage && this.decorateCSS("no-image")}`}
+                      data-animation={this.getPropValue("hoverAnimation").join(" ")}
+                    >
+                      {hasImage && <Base.Media value={image} className={this.decorateCSS("image")} data-animation={this.getPropValue("hoverAnimation").join(" ")} />}
+                      {this.getPropValue("overlay") && hasImage && <div className={this.decorateCSS("overlay")} />}
                       {(name || position || cardDescription) && (
                         <Base.VerticalContent className={this.decorateCSS("info")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
                           {name && <Base.H5 className={this.decorateCSS("name")}>{cardItem.name}</Base.H5>}

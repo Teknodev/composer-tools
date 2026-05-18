@@ -43,7 +43,7 @@ class Team8 extends Team {
           type: "boolean",
           key: "overlay",
           displayer: "Overlay",
-          value: true,
+          value: false,
         },
       ],
     });
@@ -418,7 +418,7 @@ class Team8 extends Team {
     const imageExist = backgroundMedia?.backgroundMedia;
 
     return (
-      <Base.Container className={this.decorateCSS("container")} style={{ backgroundImage: imageExist?.type === "image" ? `url(${imageExist.url})` : undefined, }}>
+      <Base.Container isFull={true} className={this.decorateCSS("container")} style={{ backgroundImage: imageExist?.type === "image" ? `url(${imageExist.url})` : undefined, }}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           {hasContent &&
             <Base.VerticalContent className={`${this.decorateCSS("vertical-content")} ${imageExist && this.decorateCSS("has-image")}`}>
@@ -462,7 +462,7 @@ class Team8 extends Team {
                           {(titleExist || subtitleExist || descriptionExist) && (
                             <Base.VerticalContent className={this.decorateCSS("header-page")}>
                               {subtitleExist && <Base.P className={`${this.decorateCSS("card-subtitle")} ${imageExist ? this.decorateCSS("image") : this.decorateCSS("no-image")}`}>{item.name}</Base.P>}
-                              {titleExist && <Base.H4 className={`${this.decorateCSS("card-title")} ${imageExist ? this.decorateCSS("image") : this.decorateCSS("no-image")}`}>{item.position}</Base.H4>}
+                              {titleExist && <Base.H5 className={`${this.decorateCSS("card-title")} ${imageExist ? this.decorateCSS("image") : this.decorateCSS("no-image")}`}>{item.position}</Base.H5>}
                               {descriptionExist && <Base.P className={`${this.decorateCSS("card-description")} ${imageExist ? this.decorateCSS("image") : this.decorateCSS("no-image")}`}>{item.cardDescription}</Base.P>}
                             </Base.VerticalContent>
                           )}

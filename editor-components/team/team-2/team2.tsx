@@ -951,7 +951,7 @@ class Team2 extends Team {
               {description && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
             </Base.VerticalContent>
           )}
-          <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount"), tablet: 2, phone: 1 }} className={this.decorateCSS("team-members")}>
+          <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount"), tablet: 3, phone: 1 }} className={this.decorateCSS("team-members")}>
             {this.castToObject<Card[]>("cards").map((card: Card, indexCards: number) => {
               return (
                 <Base.VerticalContent className={this.decorateCSS("team")} key={indexCards} data-animation={this.getPropValue("hoverAnimation").join(" ")}>

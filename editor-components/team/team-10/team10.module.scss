@@ -109,7 +109,7 @@
             color: var(--composer-font-color-secondary);
             transition: background-color 0.5s ease;
             padding: var(--composer-gap-sm);
-            font-size: 1.25rem;
+            font-size: 0.75rem;
             line-height: 0;
             cursor: pointer;
 
@@ -132,7 +132,7 @@
           }
 
           .member-title {
-            color: var(--composer-primary-color);
+            color: var(--composer-font-color-primary);
             transition: opacity 0.3s ease;
             text-align: left;
           }
@@ -147,19 +147,18 @@
             display: flex;
             flex-direction: column;
 
-            .feature-subtitle {
-              color: var(--composer-tertiary-color);
-              text-align: left;
-            }
-
+            .feature-subtitle,
             .feature-title {
               color: var(--composer-tertiary-color);
               text-align: left;
+              font-size: 10px;
+              margin: 0;
             }
 
             .feature-description {
               color: var(--composer-font-color-primary);
               text-align: left;
+              font-size: 10px;
             }
           }
         }
@@ -304,6 +303,7 @@
         .info {
           width: 100%;
           height: auto;
+          padding: 30px;
         }
 
         .image-container {

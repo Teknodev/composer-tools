@@ -51,6 +51,12 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
             right: var(--composer-gap-xs);
             z-index: 1;
             font-size: 2em;
+            width: var(--composer-gap-md);
+            height: var(--composer-gap-md);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            object-fit: cover;
             color: var(--composer-font-color-primary);
 
             &.has-image-active,

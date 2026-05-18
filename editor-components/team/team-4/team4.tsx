@@ -692,7 +692,7 @@ class Team4 extends Team {
                     </div>
                   }
                   <Base.VerticalContent className={this.decorateCSS("box-text")}>
-                    {card.name && <Base.H4 className={this.decorateCSS("card-name")}>{card.name}</Base.H4>}
+                    {card.name && <Base.H5 className={this.decorateCSS("card-name")}>{card.name}</Base.H5>}
                     {card.position && <Base.H6 className={this.decorateCSS("card-position")}>{card.position}</Base.H6>}
                     {card.cardDescription && <Base.P className={this.decorateCSS("card-description")}>{card.cardDescription}</Base.P>}
                     <div className={this.decorateCSS("icon-group")}>

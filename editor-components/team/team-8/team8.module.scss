@@ -7,7 +7,10 @@
   margin: 0 auto;
   background-repeat: no-repeat;
   background-size: cover;
-  padding: 0 !important;
+
+  &.container {
+    padding: 0 !important;
+  }
 
   .max-content {
     display: flex;
@@ -15,7 +18,7 @@
 
     .vertical-content {
       align-items: center;
-      padding: 120px 60px 20px;
+      padding: 120px 60px 40px;
       z-index: 2;
 
       .subtitle {
@@ -69,9 +72,10 @@
     }
 
     .wrapper {
-      z-index: 3;
-      width: 100%;
       gap: var(--composer-gap-md);
+      padding: 0 0 120px 0;
+      width: 100%;
+      z-index: 3;
 
       &-reverse {
         flex-flow: row-reverse;
@@ -94,7 +98,7 @@
 
           .slider-inner-div {
             .content-div {
-              min-height: 300px;
+              min-height: 190px;
               justify-content: center;
               align-items: center;
 
@@ -254,7 +258,6 @@
   align-items: center;
   gap: var(--composer-gap-sm);
   list-style-type: none;
-  padding: 0 0 60px 0;
 
   .currentPaging {
     background: white;
@@ -313,36 +316,32 @@
       .vertical-content {
         padding: 100px 50px 20px;
       }
-    }
-  }
 
-  .dots {
-    padding: 0 0 50px 0;
-  }
+      .wrapper {
+        padding: 0 0 100px 0;
 
-  .container {
-    .max-content {
-      .slider-parent {
-        .nav-buttons {
-          .prev_icon {
-            left: -20px;
-            font-size: 2rem;
-          }
-
-          .next_icon {
-            right: -20px;
-            font-size: 2rem;
-          }
-        }
-
-        .carousel {
-          :global {
-            .slick-prev {
+        .slider-parent {
+          .nav-buttons {
+            .prev_icon {
               left: -20px;
+              font-size: 2rem;
             }
 
-            .slick-next {
+            .next_icon {
               right: -20px;
+              font-size: 2rem;
+            }
+          }
+
+          .carousel {
+            :global {
+              .slick-prev {
+                left: -20px;
+              }
+
+              .slick-next {
+                right: -20px;
+              }
             }
           }
         }
@@ -355,24 +354,20 @@
   .container {
     .max-content {
       .vertical-content {
-        padding: 50px 30px 0;
+        padding: 50px 30px 20px;
       }
-    }
-  }
 
-  .dots {
-    padding: 0 0 30px 0;
-  }
+      .wrapper {
+        padding: 0 0 50px 0;
 
-  .container {
-    .max-content {
-      .slider-parent {
-        .carousel {
-          :global {
+        .slider-parent {
+          .carousel {
+            :global {
 
-            .slick-prev,
-            .slick-next {
-              display: none !important;
+              .slick-prev,
+              .slick-next {
+                display: none !important;
+              }
             }
           }
         }

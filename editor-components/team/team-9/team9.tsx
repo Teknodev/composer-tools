@@ -733,7 +733,7 @@ class Team9 extends Team {
                                 <ComposerLink key={iconIndex} path={social.url}>
                                   <Base.Media
                                     value={social.icon}
-                                    className={this.decorateCSS("icon")}
+                                    className={`${this.decorateCSS("icon")} ${social.icon.type === "image" && this.decorateCSS("has-image")}`}
                                     style={{ "--icon-index": iconIndex } as React.CSSProperties}
                                   />
                                 </ComposerLink>

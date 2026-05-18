@@ -267,7 +267,8 @@
               background: none !important;
             }
 
-            justify-content: center;
+            text-align: var(--composer-content-alignment);
+            display: block;
           }
 
           .title {
