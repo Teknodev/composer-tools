@@ -27,15 +27,38 @@
 
     .top-content {
       width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
 
       .subtitle,
       .title,
-      .description,
-      .button-container,
+      .description {
+        text-align: center !important;
+        justify-content: center !important;
+      }
+
+      .subtitle {
+        transform: none !important;
+        &::before {
+          display: none !important;
+          transform: none !important;
+        }
+      }
+
       .button,
       .button-text,
       .button-icon {
         content: "";
+      }
+
+      .button-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--composer-gap-sm);
+        justify-content: center;
       }
     }
 
@@ -53,12 +76,16 @@
 
           .icon {
             font-size: 1rem;
+            width: 1rem;
+            height: 1rem;
+            object-fit: contain;
           }
         }
 
         .item-text {
           width: 100%;
           color: var(--composer-font-color-primary);
+          text-align: center !important;
         }
 
         .author-container {
@@ -66,8 +93,9 @@
 
           .author-image {
             width: 15rem;
-            height: 10rem;
+            height: 5rem;
             border-radius: var(--composer-border-radius-sm);
+            object-fit: contain;
           }
         }
       }

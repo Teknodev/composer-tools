@@ -25,6 +25,13 @@ class Testimonials3Page extends Testimonials {
   constructor(props?: any) {
     super(props, styles);
     this.addProp({
+      type: "media",
+      key: "componentBackground",
+      displayer: "Background Media",
+      additionalParams: { availableTypes: ["image", "video"] },
+      value: null,
+    });
+    this.addProp({
       type: "string",
       key: "subtitle",
       displayer: "Subtitle",
@@ -46,14 +53,9 @@ class Testimonials3Page extends Testimonials {
       type: "array",
       key: "buttons",
       displayer: "Buttons",
-      value: [INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary")],
-    });
-    this.addProp({
-      type: "media",
-      key: "componentBackground",
-      displayer: "Component Background",
-      additionalParams: { availableTypes: ["image", "video"] },
-      value: null,
+      value: [
+        INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+      ],
     });
     this.addProp({
       type: "media",
@@ -82,7 +84,7 @@ class Testimonials3Page extends Testimonials {
               type: "number",
               key: "star",
               value: 5,
-              displayer: "Star Count",
+              displayer: "Count",
             },
             {
               type: "string",
@@ -98,8 +100,8 @@ class Testimonials3Page extends Testimonials {
                 {
                   type: "media",
                   key: "image",
-                  displayer: "Image",
-                  additionalParams: { availableTypes: ["image"] },
+                  displayer: "Media",
+                  additionalParams: { availableTypes: ["image", "icon"] },
                   value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/645516a9f72de2002caaf056?alt=media&timestamp=1719584962573" },
                 },
               ],
@@ -115,7 +117,7 @@ class Testimonials3Page extends Testimonials {
               type: "number",
               key: "star",
               value: 5,
-              displayer: "Star Count",
+              displayer: "Count",
             },
             {
               type: "string",
@@ -131,8 +133,8 @@ class Testimonials3Page extends Testimonials {
                 {
                   type: "media",
                   key: "image",
-                  displayer: "Image",
-                  additionalParams: { availableTypes: ["image"] },
+                  displayer: "Media",
+                  additionalParams: { availableTypes: ["image", "icon"] },
                   value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/645516a9f72de2002caaf055?alt=media&timestamp=1719584962573" },
                 },
               ],
@@ -148,7 +150,7 @@ class Testimonials3Page extends Testimonials {
               type: "number",
               key: "star",
               value: 5,
-              displayer: "Star Count",
+              displayer: "Count",
             },
             {
               type: "string",
@@ -164,8 +166,8 @@ class Testimonials3Page extends Testimonials {
                 {
                   type: "media",
                   key: "image",
-                  displayer: "Image",
-                  additionalParams: { availableTypes: ["image"] },
+                  displayer: "Media",
+                  additionalParams: { availableTypes: ["image", "icon"] },
                   value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/645516a9f72de2002caaf054?alt=media&timestamp=1719584962573" },
                 },
               ],
@@ -261,7 +263,6 @@ class Testimonials3Page extends Testimonials {
                       ))}
                     </div>
                   )}
-                  {this.castToString(item.text) && <Base.P className={this.decorateCSS("item-text")}>{item.text}</Base.P>}
                   {authorExist && (
                     <Base.VerticalContent className={this.decorateCSS("author-container")}>
                       {imageExist && (
@@ -269,6 +270,7 @@ class Testimonials3Page extends Testimonials {
                       )}
                     </Base.VerticalContent>
                   )}
+                  {this.castToString(item.text) && <Base.P className={this.decorateCSS("item-text")}>{item.text}</Base.P>}
                 </Base.VerticalContent>
               );
             })}
