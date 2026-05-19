@@ -385,7 +385,7 @@
 
         .image-info {
           width: 90%;
-          bottom: 8%;
+          bottom: calc(50% - 30vh - 45px);
         }
       }
     }
