@@ -439,81 +439,87 @@ class PricingTable14 extends BasePricingTable {
 
                 return (
                   <div key={`card-${index}`} className={this.decorateCSS("card")}>
-                    <div className={this.decorateCSS("card-left-section")}>
-                      {cardSubtitleExist && (
-                        <Base.H5 className={this.decorateCSS("card-subtitle")}>
-                          {card.cardSubtitle}
-                        </Base.H5>
-                      )}
-                      {cardTitleExist && (
-                        <Base.H4 className={this.decorateCSS("card-title")}>
-                          {card.cardTitle}
-                        </Base.H4>
-                      )}
-                      {cardDescriptionExist && (
-                        <Base.P className={this.decorateCSS("card-description")}>
-                          {card.cardDescription}
-                        </Base.P>
-                      )}
-                      {cardFeatures.length > 0 && (
-                        <div className={this.decorateCSS("features-list")}>
-                          {cardFeatures.map((feature: FeatureItem, idx: number) => {
-                            return this.castToString(feature.text) && (
-                              <div key={`feat-${idx}`} className={this.decorateCSS("feature-item")}>
-                                {feature.icon && (
-                                  <Base.Media
-                                    value={feature.icon}
-                                    className={this.decorateCSS("feature-icon")}
-                                  />
-                                )}
-                                <Base.P className={this.decorateCSS("feature-text")}>
-                                  {feature.text}
-                                </Base.P>
-                              </div>
-                            );
-                          })}
-                        </div>
-                      )}
-                    </div>
-
-                    <div className={this.decorateCSS("card-right-section")}>
-                      <div className={this.decorateCSS("price-container")}>
-                        {cardPriceExist && (
-                          <Base.H3 className={this.decorateCSS("card-price")}>
-                            {card.cardPrice}
-                          </Base.H3>
+                    <div className={this.decorateCSS("card-inner")}>
+                      <div className={this.decorateCSS("card-left-section")}>
+                        {(cardSubtitleExist || cardTitleExist || cardDescriptionExist) && (
+                          <Base.VerticalContent className={this.decorateCSS("card-header")}>
+                            {cardSubtitleExist && (
+                              <Base.H5 className={this.decorateCSS("card-subtitle")}>
+                                {card.cardSubtitle}
+                              </Base.H5>
+                            )}
+                            {cardTitleExist && (
+                              <Base.H4 className={this.decorateCSS("card-title")}>
+                                {card.cardTitle}
+                              </Base.H4>
+                            )}
+                            {cardDescriptionExist && (
+                              <Base.P className={this.decorateCSS("card-description")}>
+                                {card.cardDescription}
+                              </Base.P>
+                            )}
+                          </Base.VerticalContent>
                         )}
-                        {cardPeriodExist && (
-                          <Base.P className={this.decorateCSS("card-period")}>
-                            {card.cardPeriod}
-                          </Base.P>
-                        )}
-                      </div>
-                      {cardButtons.filter((item: INPUTS.CastedButton) => this.castToString(item.text)).length > 0 && (
-                        <div className={this.decorateCSS("card-buttons")}>
-                          {cardButtons.filter((item: INPUTS.CastedButton) => this.castToString(item.text)).map((item: INPUTS.CastedButton, idx: number) => {
-                            const btnType = this.castToString(item.type);
-                            return (
-                              <ComposerLink key={idx} path={this.castToString(item.url)}>
-                                <Base.Button
-                                  buttonType={btnType}
-                                  className={this.decorateCSS("card-button")}
-                                >
-                                  <Base.P className={this.decorateCSS("button-text")}>
-                                    {item.text}
-                                  </Base.P>
-                                  {item.icon && (
+                        {cardFeatures.length > 0 && (
+                          <div className={this.decorateCSS("features-list")}>
+                            {cardFeatures.map((feature: FeatureItem, idx: number) => {
+                              return this.castToString(feature.text) && (
+                                <div key={`feat-${idx}`} className={this.decorateCSS("feature-item")}>
+                                  {feature.icon && (
                                     <Base.Media
-                                      value={item.icon}
-                                      className={this.decorateCSS("button-arrow")}
+                                      value={feature.icon}
+                                      className={this.decorateCSS("feature-icon")}
                                     />
                                   )}
-                                </Base.Button>
-                              </ComposerLink>
-                            );
-                          })}
+                                  <Base.P className={this.decorateCSS("feature-text")}>
+                                    {feature.text}
+                                  </Base.P>
+                                </div>
+                              );
+                            })}
+                          </div>
+                        )}
+                      </div>
+
+                      <div className={this.decorateCSS("card-right-section")}>
+                        <div className={this.decorateCSS("price-container")}>
+                          {cardPriceExist && (
+                            <Base.H3 className={this.decorateCSS("card-price")}>
+                              {card.cardPrice}
+                            </Base.H3>
+                          )}
+                          {cardPeriodExist && (
+                            <Base.P className={this.decorateCSS("card-period")}>
+                              {card.cardPeriod}
+                            </Base.P>
+                          )}
                         </div>
-                      )}
+                        {cardButtons.filter((item: INPUTS.CastedButton) => this.castToString(item.text)).length > 0 && (
+                          <div className={this.decorateCSS("card-buttons")}>
+                            {cardButtons.filter((item: INPUTS.CastedButton) => this.castToString(item.text)).map((item: INPUTS.CastedButton, idx: number) => {
+                              const btnType = this.castToString(item.type);
+                              return (
+                                <ComposerLink key={idx} path={this.castToString(item.url)}>
+                                  <Base.Button
+                                    buttonType={btnType}
+                                    className={this.decorateCSS("card-button")}
+                                  >
+                                    <Base.P className={this.decorateCSS("button-text")}>
+                                      {item.text}
+                                    </Base.P>
+                                    {item.icon && (
+                                      <Base.Media
+                                        value={item.icon}
+                                        className={this.decorateCSS("button-arrow")}
+                                      />
+                                    )}
+                                  </Base.Button>
+                                </ComposerLink>
+                              );
+                            })}
+                          </div>
+                        )}
+                      </div>
                     </div>
                   </div>
                 );

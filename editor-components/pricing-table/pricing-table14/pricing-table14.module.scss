@@ -40,7 +40,7 @@
 
           .stat-number {
             color: var(--composer-primary-color);
-            font-size: 6rem;
+            font-size: 6rem !important;
             text-align: left;
           }
 
@@ -58,99 +58,108 @@
       width: 100%;
 
       .card {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
+        container-type: inline-size;
+        width: 100%;
         border: 1px solid color-mix(in srgb, var(--composer-font-color-primary) 8%, transparent);
         border-radius: var(--composer-border-radius-md);
         padding: var(--composer-gap-xl);
-        gap: var(--composer-gap-xl);
 
-        .card-left-section {
+        .card-inner {
           display: flex;
-          flex-direction: column;
-          gap: var(--composer-gap-md);
-          text-align: left;
-          flex: 1;
-          width: 50%;
+          flex-direction: row;
+          justify-content: space-between;
+          gap: var(--composer-gap-xl);
+          width: 100%;
 
-          .card-subtitle,
-          .card-title {
-            font-size: 1.5rem;
-            color: var(--composer-font-color-primary);
-            text-align: left;
-          }
-
-          .card-description {
-            color: var(--composer-tertiary-color);
-            text-align: left;
-          }
-
-          .features-list {
+          .card-left-section {
             display: flex;
             flex-direction: column;
-            gap: var(--composer-gap-sm);
+            gap: var(--composer-gap-md);
+            text-align: left;
+            flex: 1;
+            width: 50%;
 
-            .feature-item {
-              display: flex;
-              align-items: center;
-              gap: var(--composer-gap-sm);
+            .card-header {
 
-              .feature-icon {
-                color: var(--composer-primary-color);
-                width: 15px;
-                height: 15px;
-                font-size: 1rem;
+              .card-subtitle,
+              .card-title {
+                font-size: 1.5rem;
+                color: var(--composer-font-color-primary);
+                text-align: left;
               }
 
-              .feature-text {
+              .card-description {
                 color: var(--composer-tertiary-color);
                 text-align: left;
               }
             }
-          }
-        }
 
-        .card-right-section {
-          display: flex;
-          flex-direction: column;
-          align-items: flex-end;
-          justify-content: space-between;
-          flex: 1;
-          width: 50%;
-          gap: var(--composer-gap-md);
+            .features-list {
+              display: flex;
+              flex-direction: column;
+              gap: var(--composer-gap-sm);
 
-          .price-container {
-            display: flex;
-            align-items: baseline;
-            gap: var(--composer-gap-xs);
+              .feature-item {
+                display: flex;
+                align-items: center;
+                gap: var(--composer-gap-sm);
 
-            .card-price {
-              color: var(--composer-font-color-primary);
+                .feature-icon {
+                  color: var(--composer-primary-color);
+                  width: 15px;
+                  height: 15px;
+                  font-size: 1rem;
+                }
+
+                .feature-text {
+                  color: var(--composer-tertiary-color);
+                  text-align: left;
+                }
+              }
             }
-
-            .card-period {
-              color: var(--composer-font-color-primary);
-            }
           }
 
-          .card-buttons {
+          .card-right-section {
             display: flex;
+            flex-direction: column;
             align-items: flex-end;
-            justify-content: flex-end;
-            flex-wrap: wrap;
-            gap: var(--composer-gap-sm);
-            width: 100%;
+            justify-content: space-between;
+            flex: 1;
+            width: 50%;
+            gap: var(--composer-gap-md);
 
-            .card-button {
-              .button-text {
-                content: "";
+            .price-container {
+              display: flex;
+              align-items: baseline;
+              gap: var(--composer-gap-xs);
+
+              .card-price {
+                color: var(--composer-font-color-primary);
               }
 
-              .button-arrow {
-                width: 15px;
-                height: 15px;
-                font-size: 1rem;
+              .card-period {
+                color: var(--composer-font-color-primary);
+              }
+            }
+
+            .card-buttons {
+              display: flex;
+              align-items: flex-end;
+              justify-content: flex-end;
+              flex-wrap: wrap;
+              gap: var(--composer-gap-sm);
+              width: 100%;
+
+              .card-button {
+                .button-text {
+                  content: "";
+                }
+
+                .button-arrow {
+                  width: 15px;
+                  height: 15px;
+                  font-size: 1rem;
+                }
               }
             }
           }
@@ -199,25 +208,29 @@
 
       .right-column {
         .card {
-          flex-direction: column;
-          gap: var(--composer-gap-lg);
+          padding: var(--composer-gap-md);
 
-          .card-left-section {
-            width: 100%;
-          }
+          .card-inner {
+            flex-direction: column;
+            gap: var(--composer-gap-lg);
 
-          .card-right-section {
-            width: 100%;
-            align-items: flex-start;
-            gap: 0;
-
-            .card-buttons {
-              align-items: flex-start;
-              justify-content: left;
+            .card-left-section {
+              width: 100%;
             }
 
-            .card-button {
-              width: auto;
+            .card-right-section {
+              width: 100%;
+              align-items: flex-start;
+              gap: var(--composer-gap-md);
+
+              .card-buttons {
+                align-items: flex-start;
+                justify-content: flex-start;
+              }
+
+              .card-button {
+                width: auto;
+              }
             }
           }
         }
