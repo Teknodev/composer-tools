@@ -4,6 +4,10 @@ import styles from "./testimonials7.module.scss";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import { Base } from "../../../composer-base-components/base/base";
 
+type Background = {
+  componentBackground: TypeMediaInputValue;
+  overlay: boolean;
+};
 
 type Item = {
   profileImage: TypeMediaInputValue;
@@ -11,14 +15,32 @@ type Item = {
   nameId: React.JSX.Element;
   description: React.JSX.Element;
 };
+
 class Testimonials7Page extends Testimonials {
   constructor(props?: any) {
     super(props, styles);
     this.addProp({
-      type: "image",
-      key: "componentBackground",
-      displayer: "Background Image",
-      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617330bd2970002c623799?alt=media&timestamp=1719483639150",
+      type: "object",
+      key: "background",
+      displayer: "Background",
+      value: [
+        {
+          type: "media",
+          key: "componentBackground",
+          displayer: "Background Media",
+          additionalParams: { availableTypes: ["image", "video"] },
+          value: {
+            type: "image",
+            url: "",
+          },
+        },
+        {
+          type: "boolean",
+          key: "overlay",
+          displayer: "Overlay",
+          value: false,
+        },
+      ],
     });
     this.addProp({
       type: "icon",
@@ -51,14 +73,12 @@ class Testimonials7Page extends Testimonials {
             {
               type: "media",
               key: "profileImage",
-              additionalParams: {
-                availableTypes: ["image"],
-              },
+              additionalParams: { availableTypes: ["icon", "image"] },
               value: {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617301bd2970002c623790?alt=media&timestamp=1719483639150",
               },
-              displayer: "Image",
+              displayer: "Media",
             },
             {
               type: "string",
@@ -70,7 +90,7 @@ class Testimonials7Page extends Testimonials {
               type: "string",
               key: "nameId",
               value: "CLIENT OF CLUB",
-              displayer: "Name Id",
+              displayer: "Position",
             },
           ],
         },
@@ -88,14 +108,12 @@ class Testimonials7Page extends Testimonials {
             {
               type: "media",
               key: "profileImage",
-              additionalParams: {
-                availableTypes: ["image"],
-              },
+              additionalParams: { availableTypes: ["icon", "image"] },
               value: {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617301bd2970002c623791?alt=media&timestamp=1719483639150",
               },
-              displayer: "Image",
+              displayer: "Media",
             },
             {
               type: "string",
@@ -107,7 +125,7 @@ class Testimonials7Page extends Testimonials {
               type: "string",
               key: "nameId",
               value: "CLIENT OF CLUB",
-              displayer: "Name Id",
+              displayer: "Position",
             },
           ],
         },
@@ -119,20 +137,18 @@ class Testimonials7Page extends Testimonials {
             {
               type: "string",
               key: "description",
-              value: "'“Our office is something we are pleased with. We consider it the little magnet; it is wanting to come here and afterward difficult to leave it. Our office is additionally a big name.”'",
+              value: "'\"Our office is something we are pleased with. We consider it the little magnet; it is wanting to come here and afterward difficult to leave it. Our office is additionally a big name.\"'",
               displayer: "Description",
             },
             {
               type: "media",
               key: "profileImage",
-              additionalParams: {
-                availableTypes: ["image"],
-              },
+              additionalParams: { availableTypes: ["icon", "image"] },
               value: {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617301bd2970002c623792?alt=media&timestamp=1719483639150",
               },
-              displayer: "Image",
+              displayer: "Media",
             },
             {
               type: "string",
@@ -144,7 +160,7 @@ class Testimonials7Page extends Testimonials {
               type: "string",
               key: "nameId",
               value: "CLIENT OF CLUB",
-              displayer: "Name Id",
+              displayer: "Position",
             },
           ],
         },
@@ -183,57 +199,43 @@ class Testimonials7Page extends Testimonials {
       ],
     };
     const sliderRef = this.getComponentState("slider-ref");
-    const hasBackground = !!this.getPropValue("componentBackground");
+    const bg = this.castToObject<Background>("background");
+    const hasBackground = !!(bg.componentBackground && (bg.componentBackground.type === "icon" ? bg.componentBackground.name : bg.componentBackground.url));
     return (
       <Base.Container
-        className={`${this.decorateCSS("container")} ${hasBackground ? this.decorateCSS("background") : this.decorateCSS("no-background")}`}
+        className={`${this.decorateCSS("container")} ${!hasBackground ? this.decorateCSS("no-background") : ""}`}
       >
-        {hasBackground && <img src={this.getPropValue("componentBackground")} className={this.decorateCSS("background-image")} />}
-        <Base.MaxContent className={`${this.decorateCSS("max-content")} ${!hasBackground && this.decorateCSS("max-content-no-image")}`}>
-          <div className={`${this.decorateCSS("testimonials7")} ${!hasBackground && this.decorateCSS("testimonials7-no-image")}`}>
-            <div className={`${this.decorateCSS("slider-wrapper")} ${!this.getPropValue("componentBackground") && this.decorateCSS("slider-wrapper-no-image")}`}>
+        {hasBackground && <Base.Media value={bg.componentBackground} className={this.decorateCSS("background-image")} />}
+        {bg.overlay && <div className={this.decorateCSS("overlay")} />}
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
+          <div className={this.decorateCSS("testimonials7")}>
+            <div className={this.decorateCSS("slider-wrapper")}>
               <ComposerSlider ref={sliderRef} {...settings} className={this.decorateCSS("slider-style")}>
                 {this.castToObject<Item[]>("card-items").map((item: Item, index: number) => (
-                  <div
-                    className={(() => {
-                      const hasCoverImage = this.getPropValue("componentBackground");
-                      const hasPrevIcon = this.getPropValue("prevIcon");
-                      const hasNextIcon = this.getPropValue("nextIcon");
-
-                      if (!hasCoverImage) {
-                        if (!hasPrevIcon && !hasNextIcon) {
-                          return `${this.decorateCSS("card")} ${this.decorateCSS("card-no-image-padding")}`;
-                        } else if (!hasPrevIcon) {
-                          return `${this.decorateCSS("card")} ${this.decorateCSS("card-no-image-left")}`;
-                        } else if (!hasNextIcon) {
-                          return `${this.decorateCSS("card")} ${this.decorateCSS("card-no-image-right")}`;
-                        } else {
-                          return `${this.decorateCSS("card")} ${this.decorateCSS("card-no-image")}`;
-                        }
-                      } else {
-                        return this.decorateCSS("card");
-                      }
-                    })()}
-                  >
+                  <div key={index} className={this.decorateCSS("card")}>
                     {this.getPropValue("prevIcon") && (
                       <button
-                        onClick={() => {
-                          sliderRef.current.slickPrev();
-                        }}
-                        className={`${this.decorateCSS("button-left")} ${!this.getPropValue("componentBackground") && this.decorateCSS("button-left-no-image")}`}
+                        onClick={() => { sliderRef.current.slickPrev(); }}
+                        className={this.decorateCSS("button-left")}
                       >
                         <Base.Icon name={this.getPropValue("prevIcon")} propsIcon={{ className: this.decorateCSS("arrow") }}></Base.Icon>
                       </button>
                     )}
                     {(this.castToString(item.description) || item.profileImage || this.castToString(item.name) || this.castToString(item.nameId)) && (
                       <Base.VerticalContent className={this.decorateCSS("item-content")}>
-                        {this.castToString(item.description) && <Base.P className={`${this.decorateCSS("item-description")} ${!this.getPropValue("componentBackground") && this.decorateCSS("item-description-no-image")}`}>{item.description}</Base.P>}
+                        {this.castToString(item.description) && (
+                          <Base.P className={this.decorateCSS("item-description")}>{item.description}</Base.P>
+                        )}
                         {(item.profileImage || this.castToString(item.name) || this.castToString(item.nameId)) && (
                           <div className={this.decorateCSS("profile")}>
                             {item.profileImage && <Base.Media value={item.profileImage} className={this.decorateCSS("image")} />}
                             <Base.VerticalContent className={this.decorateCSS("profile-text")}>
-                              {this.castToString(item.name) && <div className={`${this.decorateCSS("item-name")} ${!this.getPropValue("componentBackground") && this.decorateCSS("item-name-no-image")}`}>{item.name}</div>}
-                              {this.castToString(item.nameId) && <div className={`${this.decorateCSS("item-name-id")} ${!this.getPropValue("componentBackground") && this.decorateCSS("item-name-id-no-image")}`}>{item.nameId}</div>}
+                              {this.castToString(item.name) && (
+                                <div className={this.decorateCSS("item-name")}>{item.name}</div>
+                              )}
+                              {this.castToString(item.nameId) && (
+                                <div className={this.decorateCSS("item-name-id")}>{item.nameId}</div>
+                              )}
                             </Base.VerticalContent>
                           </div>
                         )}
@@ -241,10 +243,8 @@ class Testimonials7Page extends Testimonials {
                     )}
                     {this.getPropValue("nextIcon") && (
                       <button
-                        onClick={() => {
-                          sliderRef.current.slickNext();
-                        }}
-                        className={`${this.decorateCSS("button-right")} ${!this.getPropValue("componentBackground") && this.decorateCSS("button-right-no-image")}`}
+                        onClick={() => { sliderRef.current.slickNext(); }}
+                        className={this.decorateCSS("button-right")}
                       >
                         <Base.Icon name={this.getPropValue("nextIcon")} propsIcon={{ className: this.decorateCSS("arrow") }}></Base.Icon>
                       </button>
