@@ -97,8 +97,8 @@ class Testimonials13Page extends Testimonials {
             {
               type: "media",
               key: "image",
-              displayer: "Author Image",
-              additionalParams: { availableTypes: ["image"] },
+              displayer: "Media",
+              additionalParams: { availableTypes: ["image", "icon"] },
               value: {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661792ebd2970002c623f41?alt=media&timestamp=1719483639150",
@@ -107,7 +107,7 @@ class Testimonials13Page extends Testimonials {
             {
               type: "string",
               key: "text",
-              displayer: "Review Text",
+              displayer: "Text",
               value:
                 "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odio, dolorum dignissimos, natus qui tenetur obcaecati explicabo excepturi, placeat ullam odit cumque necessitatibus? Delectus quis suscipit magnam dolorum, unde odio reprehenderit! Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odio, dolorum dignissimos, natus qui tenetur obcaecati explicabo excepturi, placeat ullam odit cumque necessitatibus? Delectus quis suscipit magnam dolorum, unde odio reprehenderit!",
             },
@@ -130,8 +130,8 @@ class Testimonials13Page extends Testimonials {
             {
               type: "media",
               key: "image",
-              displayer: "Author Image",
-              additionalParams: { availableTypes: ["image"] },
+              displayer: "Media",
+              additionalParams: { availableTypes: ["image", "icon"] },
               value: {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661792ebd2970002c623f3f?alt=media&timestamp=1719483639150",
@@ -140,7 +140,7 @@ class Testimonials13Page extends Testimonials {
             {
               type: "string",
               key: "text",
-              displayer: "Review Text",
+              displayer: "Text",
               value:
                 "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odio, dolorum dignissimos, natus qui tenetur obcaecati explicabo excepturi, placeat ullam odit cumque necessitatibus? Delectus quis suscipit magnam dolorum, unde odio reprehenderit! Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odio, dolorum dignissimos, natus qui tenetur obcaecati explicabo excepturi, placeat ullam odit cumque necessitatibus? Delectus quis suscipit magnam dolorum, unde odio reprehenderit!",
             },
@@ -163,8 +163,8 @@ class Testimonials13Page extends Testimonials {
             {
               type: "media",
               key: "image",
-              displayer: "Author Image",
-              additionalParams: { availableTypes: ["image"] },
+              displayer: "Media",
+              additionalParams: { availableTypes: ["image", "icon"] },
               value: {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661792ebd2970002c623f40?alt=media&timestamp=1719483639150",
@@ -173,7 +173,7 @@ class Testimonials13Page extends Testimonials {
             {
               type: "string",
               key: "text",
-              displayer: "Review Text",
+              displayer: "Text",
               value:
                 "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odio, dolorum dignissimos, natus qui tenetur obcaecati explicabo excepturi, placeat ullam odit cumque necessitatibus? Delectus quis suscipit magnam dolorum, unde odio reprehenderit! Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odio, dolorum dignissimos, natus qui tenetur obcaecati explicabo excepturi, placeat ullam odit cumque necessitatibus? Delectus quis suscipit magnam dolorum, unde odio reprehenderit!",
             },

@@ -65,14 +65,14 @@ class Testimonials10Page extends Testimonials {
             {
               type: "media",
               key: "image",
-              displayer: "Author Image",
-              additionalParams: { availableTypes: ["image"] },
+              displayer: "Media",
+              additionalParams: { availableTypes: ["image", "icon"] },
               value: { type: "image", url: "https://gridvalley.net/wp/industroz/wp-content/uploads/2020/04/pic3-5.jpg" },
             },
             {
               type: "string",
               key: "text",
-              displayer: "Review Text",
+              displayer: "Text",
               value: "This is not just another nail salon! These ladies are super talented! My nails have never looked/felt more amazing!! the environment here is so happy and cheery!",
             },
             {
@@ -94,14 +94,14 @@ class Testimonials10Page extends Testimonials {
             {
               type: "media",
               key: "image",
-              displayer: "Author Image",
-              additionalParams: { availableTypes: ["image"] },
+              displayer: "Media",
+              additionalParams: { availableTypes: ["image", "icon"] },
               value: { type: "image", url: "https://gridvalley.net/wp/industroz/wp-content/uploads/2020/04/pic3-5.jpg" },
             },
             {
               type: "string",
               key: "text",
-              displayer: "Review Text",
+              displayer: "Text",
               value: "This is not just another nail salon! These ladies are super talented! My nails have never looked/felt more amazing!! the environment here is so happy and cheery!",
             },
             {
@@ -123,14 +123,14 @@ class Testimonials10Page extends Testimonials {
             {
               type: "media",
               key: "image",
-              displayer: "Author Image",
-              additionalParams: { availableTypes: ["image"] },
+              displayer: "Media",
+              additionalParams: { availableTypes: ["image", "icon"] },
               value: { type: "image", url: "https://gridvalley.net/wp/industroz/wp-content/uploads/2020/04/pic3-5.jpg" },
             },
             {
               type: "string",
               key: "text",
-              displayer: "Review Text",
+              displayer: "Text",
               value: "This is not just another nail salon! These ladies are super talented! My nails have never looked/felt more amazing!! the environment here is so happy and cheery!",
             },
             {
@@ -152,14 +152,14 @@ class Testimonials10Page extends Testimonials {
             {
               type: "media",
               key: "image",
-              displayer: "Author Image",
-              additionalParams: { availableTypes: ["image"] },
+              displayer: "Media",
+              additionalParams: { availableTypes: ["image", "icon"] },
               value: { type: "image", url: "https://gridvalley.net/wp/industroz/wp-content/uploads/2020/04/pic3-5.jpg" },
             },
             {
               type: "string",
               key: "text",
-              displayer: "Review Text",
+              displayer: "Text",
               value: "This is not just another nail salon! These ladies are super talented! My nails have never looked/felt more amazing!! the environment here is so happy and cheery!",
             },
             {
@@ -181,14 +181,14 @@ class Testimonials10Page extends Testimonials {
             {
               type: "media",
               key: "image",
-              displayer: "Author Image",
-              additionalParams: { availableTypes: ["image"] },
+              displayer: "Media",
+              additionalParams: { availableTypes: ["image", "icon"] },
               value: { type: "image", url: "https://gridvalley.net/wp/industroz/wp-content/uploads/2020/04/pic3-5.jpg" },
             },
             {
               type: "string",
               key: "text",
-              displayer: "Review Text",
+              displayer: "Text",
               value: "This is not just another nail salon! These ladies are super talented! My nails have never looked/felt more amazing!! the environment here is so happy and cheery!",
             },
             {

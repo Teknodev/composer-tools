@@ -325,6 +325,8 @@
 
           .button-wrapper {
             display: flex;
+            flex-wrap: wrap;
+            gap: var(--composer-gap-sm);
             justify-content: flex-start;
             width: 100%;
 

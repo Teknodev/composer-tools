@@ -278,6 +278,10 @@
       }
 
       .button-container {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: var(--composer-gap-sm);
         justify-content: flex-start !important;
         align-self: flex-start !important;
       }

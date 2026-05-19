@@ -39,6 +39,7 @@
             .button-container {
               display: flex;
               flex-direction: row;
+              flex-wrap: wrap;
               gap: var(--composer-gap-md);
               justify-content: flex-start !important;
               align-self: flex-start !important;
@@ -145,6 +146,9 @@
                       left: var(--composer-gap-xl);
                       .quoteicon {
                         content: "";
+                        width: 5rem;
+                        height: 5rem;
+                        object-fit: contain;
                       }
                     }
                     .card {

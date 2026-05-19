@@ -6,12 +6,21 @@
 
     .subtitle,
     .title,
-    .description,
-    .button-container,
-    .button,
-    .button-text,
-    .button-icon {
+    .description {
       content: "";
+    }
+
+    .button-container {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: var(--composer-gap-sm);
+
+      .button,
+      .button-text,
+      .button-icon {
+        content: "";
+      }
     }
   }
 }

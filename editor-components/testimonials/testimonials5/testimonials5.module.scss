@@ -15,16 +15,24 @@
           align-items: flex-start !important;
           .subtitle,
           .title,
-          .top-description,
-          .button-container,
-          .button,
-          .button-text,
-          .button-icon {
+          .top-description {
             content: "";
             text-align: left !important;
             justify-content: flex-start !important;
             margin-left: 0 !important;
             margin-right: 0 !important;
+          }
+          .button-container {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            gap: var(--composer-gap-sm);
+
+            .button,
+            .button-text,
+            .button-icon {
+              content: "";
+            }
           }
           .arrow {
             display: flex;

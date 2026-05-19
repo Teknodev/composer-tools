@@ -91,7 +91,7 @@ class Testimonials6Page extends Testimonials {
               type: "string",
               key: "description",
               value: "Their design skills are truly exceptional, and they have a keen eye for aesthetics that sets them apart from others in the field.",
-              displayer: "Review Text",
+              displayer: "Text",
             },
             {
               type: "media",
@@ -145,7 +145,7 @@ class Testimonials6Page extends Testimonials {
               type: "string",
               key: "description",
               value: "An online learning platform can provide access to educational content from anywhere with an internet connection.",
-              displayer: "Review Text",
+              displayer: "Text",
             },
             {
               type: "media",
@@ -199,7 +199,7 @@ class Testimonials6Page extends Testimonials {
               type: "string",
               key: "description",
               value: "A personal finance website can be incredibly helpful for people looking to improve their financial literacy and manage their money better.",
-              displayer: "Review Text",
+              displayer: "Text",
             },
             {
               type: "media",
@@ -253,7 +253,7 @@ class Testimonials6Page extends Testimonials {
               type: "string",
               key: "description",
               value: "Their design skills are truly exceptional, and they have a keen eye for aesthetics that sets them apart from others in the field.",
-              displayer: "Review Text",
+              displayer: "Text",
             },
             {
               type: "media",
@@ -307,7 +307,7 @@ class Testimonials6Page extends Testimonials {
               type: "string",
               key: "description",
               value: "An online learning platform can provide access to educational content from anywhere with an internet connection.",
-              displayer: "Review Text",
+              displayer: "Text",
             },
             {
               type: "media",
@@ -361,7 +361,7 @@ class Testimonials6Page extends Testimonials {
               type: "string",
               key: "description",
               value: "A personal finance website can be incredibly helpful for people looking to improve their financial literacy and manage their money better.",
-              displayer: "Review Text",
+              displayer: "Text",
             },
             {
               type: "media",

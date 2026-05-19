@@ -88,14 +88,14 @@ class Testimonials11Page extends Testimonials {
             {
               type: "media",
               key: "image",
-              displayer: "Author Image",
-              additionalParams: { availableTypes: ["image"] },
+              displayer: "Media",
+              additionalParams: { availableTypes: ["image", "icon"] },
               value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617822bd2970002c623daf?alt=media&timestamp=1719483639150" },
             },
             {
               type: "string",
               key: "text",
-              displayer: "Review Text",
+              displayer: "Text",
               value: "I think if you do something and it turns out pretty good, then you should go do something else wonderful, not dwell on it for too long.",
             },
             {
@@ -117,14 +117,14 @@ class Testimonials11Page extends Testimonials {
             {
               type: "media",
               key: "image",
-              displayer: "Author Image",
-              additionalParams: { availableTypes: ["image"] },
+              displayer: "Media",
+              additionalParams: { availableTypes: ["image", "icon"] },
               value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617822bd2970002c623db0?alt=media&timestamp=1719483639150" },
             },
             {
               type: "string",
               key: "text",
-              displayer: "Review Text",
+              displayer: "Text",
               value: "The principal element of Suprematism in painting, as in architecture, is its liberation from all social or materialist tendencies. Through Suprematism, art comes into its pure and unpolluted form.",
             },
             {
@@ -146,14 +146,14 @@ class Testimonials11Page extends Testimonials {
             {
               type: "media",
               key: "image",
-              displayer: "Author Image",
-              additionalParams: { availableTypes: ["image"] },
+              displayer: "Media",
+              additionalParams: { availableTypes: ["image", "icon"] },
               value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617822bd2970002c623db1?alt=media&timestamp=1719483639150" },
             },
             {
               type: "string",
               key: "text",
-              displayer: "Review Text",
+              displayer: "Text",
               value: "I think if you do something and it turns out pretty good, then you should go do something else wonderful, not dwell on it for too long.",
             },
             {
@@ -175,14 +175,14 @@ class Testimonials11Page extends Testimonials {
             {
               type: "media",
               key: "image",
-              displayer: "Author Image",
-              additionalParams: { availableTypes: ["image"] },
+              displayer: "Media",
+              additionalParams: { availableTypes: ["image", "icon"] },
               value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617822bd2970002c623db1?alt=media&timestamp=1719483639150" },
             },
             {
               type: "string",
               key: "text",
-              displayer: "Review Text",
+              displayer: "Text",
               value: "I think if you do something and it turns out pretty good, then you should go do something else wonderful, not dwell on it for too long.",
             },
             {
@@ -204,14 +204,14 @@ class Testimonials11Page extends Testimonials {
             {
               type: "media",
               key: "image",
-              displayer: "Author Image",
-              additionalParams: { availableTypes: ["image"] },
+              displayer: "Media",
+              additionalParams: { availableTypes: ["image", "icon"] },
               value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617822bd2970002c623db1?alt=media&timestamp=1719483639150" },
             },
             {
               type: "string",
               key: "text",
-              displayer: "Review Text",
+              displayer: "Text",
               value: "I think if you do something and it turns out pretty good, then you should go do something else wonderful, not dwell on it for too long.",
             },
             {
@@ -233,14 +233,14 @@ class Testimonials11Page extends Testimonials {
             {
               type: "media",
               key: "image",
-              displayer: "Author Image",
-              additionalParams: { availableTypes: ["image"] },
+              displayer: "Media",
+              additionalParams: { availableTypes: ["image", "icon"] },
               value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617822bd2970002c623db1?alt=media&timestamp=1719483639150" },
             },
             {
               type: "string",
               key: "text",
-              displayer: "Review Text",
+              displayer: "Text",
               value: "I think if you do something and it turns out pretty good, then you should go do something else wonderful, not dwell on it for too long.",
             },
             {

@@ -83,12 +83,12 @@ class Testimonials8Page extends Testimonials {
             {
               type: "media",
               key: "image",
-              additionalParams: { availableTypes: ["image"] },
+              additionalParams: { availableTypes: ["image", "icon"] },
               value: {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666173eabd2970002c62388a?alt=media&timestamp=1719483639150",
               },
-              displayer: "Author Image",
+              displayer: "Media",
             },
             {
               type: "object",
@@ -113,7 +113,7 @@ class Testimonials8Page extends Testimonials {
               type: "string",
               key: "text",
               value: "I have been using pagedone for several months now, and I must say that it has made my life a lot easier. The platform's intuitive interface and ease of use have allowed me to manage my finances more effectively and make informed investment decisions.",
-              displayer: "Review Text",
+              displayer: "Text",
             },
             {
               type: "number",
@@ -138,12 +138,12 @@ class Testimonials8Page extends Testimonials {
             {
               type: "media",
               key: "image",
-              additionalParams: { availableTypes: ["image"] },
+              additionalParams: { availableTypes: ["image", "icon"] },
               value: {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666173eabd2970002c62388b?alt=media&timestamp=1719483639150",
               },
-              displayer: "Author Image",
+              displayer: "Media",
             },
             {
               type: "object",
@@ -168,7 +168,7 @@ class Testimonials8Page extends Testimonials {
               type: "string",
               key: "text",
               value: "Grunge design is all about creating a rough, raw, and edgy look. It can be a great way to add personality and attitude to a design.",
-              displayer: "Review Text",
+              displayer: "Text",
             },
             {
               type: "number",
@@ -193,12 +193,12 @@ class Testimonials8Page extends Testimonials {
             {
               type: "media",
               key: "image",
-              additionalParams: { availableTypes: ["image"] },
+              additionalParams: { availableTypes: ["image", "icon"] },
               value: {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661740cbd2970002c623895?alt=media&timestamp=1719483639150",
               },
-              displayer: "Author Image",
+              displayer: "Media",
             },
             {
               type: "object",
@@ -223,7 +223,7 @@ class Testimonials8Page extends Testimonials {
               type: "string",
               key: "text",
               value: "Responsive design is a must for modern websites and interfaces. It ensures that content is displayed optimally on different screen sizes and devices.",
-              displayer: "Review Text",
+              displayer: "Text",
             },
             {
               type: "number",

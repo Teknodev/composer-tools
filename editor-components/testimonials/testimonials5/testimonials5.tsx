@@ -106,8 +106,8 @@ class Testimonials5Page extends Testimonials {
             {
               type: "media",
               key: "image",
-              displayer: "Author Image",
-              additionalParams: { availableTypes: ["image"] },
+              displayer: "Media",
+              additionalParams: { availableTypes: ["image", "icon"] },
               value: { type: "image", url: "https://craftohtml.themezaa.com/images/demo-travel-agency-home-18.png" },
             },
             {
@@ -126,7 +126,7 @@ class Testimonials5Page extends Testimonials {
             {
               type: "string",
               key: "description",
-              displayer: "Review Text",
+              displayer: "Text",
               value: "This is itinerary was a perfect combination of city sights, history and culture together with the peace of the amazon rainforest and the adventure.",
             },
             {
@@ -152,8 +152,8 @@ class Testimonials5Page extends Testimonials {
             {
               type: "media",
               key: "image",
-              displayer: "Author Image",
-              additionalParams: { availableTypes: ["image"] },
+              displayer: "Media",
+              additionalParams: { availableTypes: ["image", "icon"] },
               value: { type: "image", url: "https://craftohtml.themezaa.com/images/demo-travel-agency-home-17.png" },
             },
             {
@@ -172,7 +172,7 @@ class Testimonials5Page extends Testimonials {
             {
               type: "string",
               key: "description",
-              displayer: "Review Text",
+              displayer: "Text",
               value: "This is itinerary was a perfect combination of city sights, history and culture together with the peace of the amazon rainforest and the adventure.",
             },
             {
@@ -198,8 +198,8 @@ class Testimonials5Page extends Testimonials {
             {
               type: "media",
               key: "image",
-              displayer: "Author Image",
-              additionalParams: { availableTypes: ["image"] },
+              displayer: "Media",
+              additionalParams: { availableTypes: ["image", "icon"] },
               value: { type: "image", url: "https://craftohtml.themezaa.com/images/demo-travel-agency-home-15.png" },
             },
             {
@@ -218,7 +218,7 @@ class Testimonials5Page extends Testimonials {
             {
               type: "string",
               key: "description",
-              displayer: "Review Text",
+              displayer: "Text",
               value: "This is itinerary was a perfect combination of city sights, history and culture together with the peace of the amazon rainforest and the adventure.",
             },
             {

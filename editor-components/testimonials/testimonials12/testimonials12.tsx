@@ -85,14 +85,14 @@ class Testimonials12Page extends Testimonials {
             {
               type: "string",
               key: "text",
-              displayer: "Review Text",
+              displayer: "Text",
               value: "I love your system. Agency is both attractive and highly adaptable. Man, this thing is getting better and better as I learn more about it. I am so pleased with this product.",
             },
             {
               type: "media",
               key: "image",
-              displayer: "Author Image",
-              additionalParams: { availableTypes: ["image"] },
+              displayer: "Media",
+              additionalParams: { availableTypes: ["image", "icon"] },
               value: {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666178b7bd2970002c623eba?alt=media&timestamp=1719483639150",
@@ -117,14 +117,14 @@ class Testimonials12Page extends Testimonials {
             {
               type: "string",
               key: "text",
-              displayer: "Review Text",
+              displayer: "Text",
               value: "I love your system. Agency is both attractive and highly adaptable. Man, this thing is getting better and better as I learn more about it. I am so pleased with this product.",
             },
             {
               type: "media",
               key: "image",
-              displayer: "Author Image",
-              additionalParams: { availableTypes: ["image"] },
+              displayer: "Media",
+              additionalParams: { availableTypes: ["image", "icon"] },
               value: {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666178b7bd2970002c623ebb?alt=media&timestamp=1719483639150",
@@ -149,14 +149,14 @@ class Testimonials12Page extends Testimonials {
             {
               type: "string",
               key: "text",
-              displayer: "Review Text",
+              displayer: "Text",
               value: "I love your system. Agency is both attractive and highly adaptable. Man, this thing is getting better and better as I learn more about it. I am so pleased with this product.",
             },
             {
               type: "media",
               key: "image",
-              displayer: "Author Image",
-              additionalParams: { availableTypes: ["image"] },
+              displayer: "Media",
+              additionalParams: { availableTypes: ["image", "icon"] },
               value: {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666178b7bd2970002c623eba?alt=media&timestamp=1719483639150",
@@ -181,14 +181,14 @@ class Testimonials12Page extends Testimonials {
             {
               type: "string",
               key: "text",
-              displayer: "Review Text",
+              displayer: "Text",
               value: "I love your system. Agency is both attractive and highly adaptable. Man, this thing is getting better and better as I learn more about it. I am so pleased with this product.",
             },
             {
               type: "media",
               key: "image",
-              displayer: "Author Image",
-              additionalParams: { availableTypes: ["image"] },
+              displayer: "Media",
+              additionalParams: { availableTypes: ["image", "icon"] },
               value: {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666178b7bd2970002c623ebb?alt=media&timestamp=1719483639150",

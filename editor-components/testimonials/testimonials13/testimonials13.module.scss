@@ -25,13 +25,17 @@
               margin-right: 0 !important;
             }
             .button-container {
-              content: "";
+              display: flex;
+              flex-direction: row;
+              flex-wrap: wrap;
+              gap: var(--composer-gap-sm);
               justify-content: flex-start !important;
-            }
-            .button,
-            .button-text,
-            .button-icon {
-              content: "";
+
+              .button,
+              .button-text,
+              .button-icon {
+                content: "";
+              }
             }
           }
 
