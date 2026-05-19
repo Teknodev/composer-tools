@@ -21,9 +21,34 @@ type Button = {
   type: string;
 };
 
+type BackgroundObj = {
+  media: TypeMediaInputValue;
+  overlayActive: boolean;
+};
+
 class Testimonials11Page extends Testimonials {
   constructor(props?: any) {
     super(props, styles);
+    this.addProp({
+      type: "object",
+      key: "componentBackground",
+      displayer: "Background",
+      value: [
+        {
+          type: "media",
+          key: "media",
+          displayer: "Background Media",
+          additionalParams: { availableTypes: ["image"] },
+          value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67239fe77acba6002c5d6377?alt=media" },
+        },
+        {
+          type: "boolean",
+          key: "overlayActive",
+          displayer: "Overlay",
+          value: false,
+        },
+      ],
+    });
     this.addProp({
       type: "string",
       key: "subtitle",
@@ -49,12 +74,6 @@ class Testimonials11Page extends Testimonials {
       value: [
         INPUTS.BUTTON("button", "Button", "", "", null, null, "White"),
       ],
-    });
-    this.addProp({
-      type: "image",
-      key: "componentBackground",
-      displayer: "Background Image",
-      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67239fe77acba6002c5d6377?alt=media",
     });
     this.addProp({
       type: "array",
@@ -261,7 +280,10 @@ class Testimonials11Page extends Testimonials {
     });
     const hasAnyTopContent = subtitleExist || titleExist || descriptionExist || hasValidButtons;
 
-    const coverImage = this.getPropValue("componentBackground");
+    const backgroundObj = this.castToObject<BackgroundObj>("componentBackground");
+    const coverMedia = backgroundObj.media;
+    const coverImage = coverMedia && (coverMedia.type === "image" ? coverMedia.url : undefined);
+    const overlayActive = backgroundObj.overlayActive;
     const cardList = this.castToObject<Item[]>("items");
 
     return (
@@ -271,6 +293,7 @@ class Testimonials11Page extends Testimonials {
           backgroundImage: coverImage ? `url(${coverImage})` : undefined,
         }}
       >
+        {overlayActive && coverImage && <div className={this.decorateCSS("overlay")} />}
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("wrapper")}>
             {hasAnyTopContent && (
@@ -323,10 +346,10 @@ class Testimonials11Page extends Testimonials {
                     {item.author && (item.author.name || item.author.subtitle) && (
                       <div className={this.decorateCSS("card-top-right")}>
                         {item.author.name && (
-                          <Base.H4 className={this.decorateCSS("card-title")}>{item.author.name}</Base.H4>
+                            <Base.H6 className={this.decorateCSS("card-title")}>{item.author.name}</Base.H6>
                         )}
                         {item.author.subtitle && (
-                          <Base.H5 className={this.decorateCSS("card-subtitle")}>{item.author.subtitle}</Base.H5>
+                          <Base.P className={this.decorateCSS("card-subtitle")}>{item.author.subtitle}</Base.P>
                         )}
                       </div>
                     )}
