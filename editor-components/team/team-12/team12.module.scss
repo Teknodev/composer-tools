@@ -9,7 +9,14 @@
     gap: var(--composer-gap-lg);
 
     .vertical-content {
-      padding: 120px 60px 0;
+      padding: 120px 0 0;
+      max-width: var(--composer-content-width);
+      margin: 0 auto;
+      width: 100%;
+
+      &.full-width {
+        padding: 120px 60px 0;
+      }
 
       .subtitle,
       .title,
@@ -100,6 +107,40 @@
                   width: var(--composer-gap-md);
                   height: var(--composer-gap-md);
                   object-fit: cover;
+                }
+              }
+            }
+          }
+        }
+
+        &.no-image {
+          .info {
+            transform: translateX(0) !important;
+            opacity: 1 !important;
+            transition: none !important;
+
+            .platforms {
+              .platform {
+                .icon {
+                  opacity: 1 !important;
+                  transform: none !important;
+                  animation: none !important;
+                  transition: color 0.3s ease !important;
+                }
+              }
+            }
+          }
+
+          &:hover {
+            .info {
+              transform: translateX(0) !important;
+              opacity: 1 !important;
+
+              .platforms {
+                .platform {
+                  .icon {
+                    animation: none !important;
+                  }
                 }
               }
             }
@@ -223,7 +264,7 @@
 
     .max-content {
       .vertical-content {
-        padding: 0;
+        padding: 100px 50px 0 !important;
       }
 
       .cards {
@@ -251,5 +292,11 @@
 @container (max-width: #{$composer-phone-width}) {
   .container {
     padding: 50px 30px !important;
+
+    .max-content {
+      .vertical-content {
+        padding: 0 !important;
+      }
+    }
   }
 }

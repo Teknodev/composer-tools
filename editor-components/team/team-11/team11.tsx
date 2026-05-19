@@ -1115,32 +1115,34 @@ class Team11 extends Team {
             })}
           </ComposerSlider>
 
-          {(userSettings.arrows && hasArrows) && (
+          {((userSettings.arrows && hasArrows) || userSettings.dots) && (
             <div className={this.decorateCSS("navigation-container")}>
-              <div className={cards.length > 3 ? this.decorateCSS("nav-buttons") : this.decorateCSS("visible-navs")}>
-                {hasPrevIcon && (
-                  <div
-                    className={`${this.decorateCSS("prev_icon")}
-                  ${prevIcon?.type === "image" && this.decorateCSS("prev-icon-has-image")}`}
-                    onClick={() => {
-                      this.getComponentState("slider-ref")?.current?.slickPrev?.();
-                    }}
-                  >
-                    <Base.Media value={prevIcon} />
-                  </div>
-                )}
-                {hasNextIcon && (
-                  <div
-                    className={`${this.decorateCSS("next_icon")}
-                  ${nextIcon?.type === "image" && this.decorateCSS("next-icon-has-image")}`}
-                    onClick={() => {
-                      this.getComponentState("slider-ref")?.current?.slickNext?.();
-                    }}
-                  >
-                    <Base.Media value={nextIcon} />
-                  </div>
-                )}
-              </div>
+              {(userSettings.arrows && hasArrows) && (
+                <div className={cards.length > 3 ? this.decorateCSS("nav-buttons") : this.decorateCSS("visible-navs")}>
+                  {hasPrevIcon && (
+                    <div
+                      className={`${this.decorateCSS("prev_icon")}
+                    ${prevIcon?.type === "image" && this.decorateCSS("prev-icon-has-image")}`}
+                      onClick={() => {
+                        this.getComponentState("slider-ref")?.current?.slickPrev?.();
+                      }}
+                    >
+                      <Base.Media value={prevIcon} />
+                    </div>
+                  )}
+                  {hasNextIcon && (
+                    <div
+                      className={`${this.decorateCSS("next_icon")}
+                    ${nextIcon?.type === "image" && this.decorateCSS("next-icon-has-image")}`}
+                      onClick={() => {
+                        this.getComponentState("slider-ref")?.current?.slickNext?.();
+                      }}
+                    >
+                      <Base.Media value={nextIcon} />
+                    </div>
+                  )}
+                </div>
+              )}
               {userSettings.dots && (
                 <div className={this.decorateCSS("dots")}>
                   {cards.map((_, index) => (

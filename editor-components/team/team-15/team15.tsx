@@ -55,6 +55,13 @@ class Team15 extends Team {
     });
 
     this.addProp({
+      type: "boolean",
+      key: "showLines",
+      displayer: "Show Lines",
+      value: true,
+    });
+
+    this.addProp({
       type: "array",
       key: "cards",
       displayer: "Cards",
@@ -836,10 +843,11 @@ class Team15 extends Team {
               const positionExists = this.castToString(card.position);
               const cardDescriptionExist = this.castToString(card.cardDescription);
               const overlay = this.getPropValue("overlay");
+              const showLines = this.getPropValue("showLines") !== false;
 
               const cardExists = profileImage || nameExists || positionExists || cardDescriptionExist;
               return cardExists && (
-                <div key={index} className={`${this.decorateCSS("card")} ${profileImage && this.decorateCSS("has-image")}`} data-animation={(this.getPropValue("hoverAnimation") || []).join(" ")}>
+                <div key={index} className={`${this.decorateCSS("card")} ${profileImage && this.decorateCSS("has-image")}`} data-animation={(this.getPropValue("hoverAnimation") || []).join(" ")} data-show-lines={showLines}>
                   {profileImage && <Base.Media value={profileImage} className={this.decorateCSS("image")} />}
                   {overlay && <div className={this.decorateCSS("overlay")}></div>}
                   {overlay && <div className={this.decorateCSS("overlay2")}></div>}

@@ -9,6 +9,7 @@ type Card = {
   profileImage: TypeMediaInputValue;
   name: React.JSX.Element;
   position: React.JSX.Element;
+  separatorIcon: TypeMediaInputValue;
   cardDescription: React.JSX.Element;
 };
 
@@ -68,7 +69,7 @@ class Team16 extends Team {
               key: "profileImage",
               displayer: "Media",
               additionalParams: {
-                availableTypes: ["image", "video"],
+                availableTypes: ["image", "video", "icon"],
               },
               value: {
                 type: "image",
@@ -80,6 +81,18 @@ class Team16 extends Team {
               key: "name",
               displayer: "Person Name",
               value: "Dianne Russell",
+            },
+            {
+              type: "media",
+              key: "separatorIcon",
+              displayer: "Separator Icon",
+              additionalParams: {
+                availableTypes: ["icon", "image"],
+              },
+              value: {
+                type: "icon",
+                name: "RxDividerVertical",
+              },
             },
             {
               type: "string",
@@ -105,7 +118,7 @@ class Team16 extends Team {
               key: "profileImage",
               displayer: "Media",
               additionalParams: {
-                availableTypes: ["image", "video"],
+                availableTypes: ["image", "video", "icon"],
               },
               value: {
                 type: "image",
@@ -117,6 +130,18 @@ class Team16 extends Team {
               key: "name",
               displayer: "Person Name",
               value: "Michael Cannon",
+            },
+            {
+              type: "media",
+              key: "separatorIcon",
+              displayer: "Separator Icon",
+              additionalParams: {
+                availableTypes: ["icon", "image"],
+              },
+              value: {
+                type: "icon",
+                name: "RxDividerVertical",
+              },
             },
             {
               type: "string",
@@ -142,7 +167,7 @@ class Team16 extends Team {
               key: "profileImage",
               displayer: "Media",
               additionalParams: {
-                availableTypes: ["image", "video"],
+                availableTypes: ["image", "video", "icon"],
               },
               value: {
                 type: "image",
@@ -154,6 +179,18 @@ class Team16 extends Team {
               key: "name",
               displayer: "Person Name",
               value: "Sylvia Morales",
+            },
+            {
+              type: "media",
+              key: "separatorIcon",
+              displayer: "Separator Icon",
+              additionalParams: {
+                availableTypes: ["icon", "image"],
+              },
+              value: {
+                type: "icon",
+                name: "RxDividerVertical",
+              },
             },
             {
               type: "string",
@@ -229,6 +266,9 @@ class Team16 extends Team {
                   <Base.VerticalContent className={this.decorateCSS("text-box")}>
                     <div className={this.decorateCSS("text-up")}>
                       {nameExist && <Base.H6 className={this.decorateCSS("name")}>{card.name}</Base.H6>}
+                      {nameExist && positionExist && card.separatorIcon && (
+                        <Base.Media value={card.separatorIcon} className={this.decorateCSS("separator")} />
+                      )}
                       {positionExist && <Base.H6 className={this.decorateCSS("position")}>{card.position}</Base.H6>}
                     </div>
                     {cardDescriptionExist && <Base.P className={this.decorateCSS("card-description")}>{card.cardDescription}</Base.P>}

@@ -662,6 +662,8 @@ class Team12 extends Team {
     return "Team 12";
   }
   render() {
+    const contentWidth = Base.getContentWidth();
+    const isFullWidth = contentWidth === "100%";
     const subtitle = this.castToString(this.getPropValue("subtitle"));
     const title = this.castToString(this.getPropValue("title"));
     const description = this.castToString(this.getPropValue("description"));
@@ -673,7 +675,7 @@ class Team12 extends Team {
       <Base.Container className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
           {hasContent && (
-            <Base.VerticalContent className={this.decorateCSS("vertical-content")}>
+            <Base.VerticalContent className={`${this.decorateCSS("vertical-content")} ${isFullWidth && this.decorateCSS("full-width")}`}>
               {subtitle && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
               {title && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
               {description && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
@@ -697,12 +699,14 @@ class Team12 extends Team {
               const nameExist = this.castToString(teamMember.name);
               const positionExist = this.castToString(teamMember.position);
               const cardDescriptionExist = this.castToString(teamMember.cardDescription);
-              const hasItem = nameExist || positionExist || cardDescriptionExist || teamMember.profileImage || (teamMember.socials && teamMember.socials.length > 0);
+              const image = teamMember.profileImage;
+              const hasImage = !!(image && image.url);
+              const hasItem = nameExist || positionExist || cardDescriptionExist || hasImage || (teamMember.socials && teamMember.socials.length > 0);
               return (
                 hasItem && (
-                  <div className={this.decorateCSS("member")} data-animation={(this.getPropValue("hoverAnimation") || []).join(" ")}>
-                    {teamMember.profileImage && <Base.Media value={teamMember.profileImage} className={this.decorateCSS("image")} />}
-                    {this.getPropValue("overlay") && <div className={this.decorateCSS("overlay")} />}
+                  <div className={`${this.decorateCSS("member")} ${!hasImage && this.decorateCSS("no-image")}`} data-animation={(this.getPropValue("hoverAnimation") || []).join(" ")}>
+                    {hasImage && <Base.Media value={teamMember.profileImage} className={this.decorateCSS("image")} />}
+                    {this.getPropValue("overlay") && hasImage && <div className={this.decorateCSS("overlay")} />}
                     <Base.VerticalContent className={this.decorateCSS("info")}>
                       {nameExist && <Base.H4 className={this.decorateCSS("name")}>{teamMember.name}</Base.H4>}
                       {positionExist && <Base.H6 className={this.decorateCSS("position")}>{teamMember.position}</Base.H6>}

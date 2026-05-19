@@ -666,13 +666,13 @@ class Team9 extends Team {
 
   render() {
     const settings = {
-      dots: true,
-      dotsClass: this.decorateCSS("dots"),
-      infinite: true,
+      dots: false,
+      infinite: false,
       arrows: false,
       speed: 500,
       autoplay: true,
       autoplaySpeed: 3000,
+      slidesToShow: this.getPropValue("itemCountInRow") || 4,
       responsive: [
         {
           breakpoint: 1024,
@@ -718,7 +718,14 @@ class Team9 extends Team {
                   const hasCard = personName || item.profileImage || personPosition || personDescription || (item.socials && item.socials.length > 0);
 
                   return hasCard && (
-                    <Base.VerticalContent key={index} className={this.decorateCSS("card")} data-animation={hoverAnimation.join(" ")}>
+                    <Base.VerticalContent
+                      key={index}
+                      className={this.decorateCSS("card")}
+                      data-animation={hoverAnimation.join(" ")}
+                      onTouchStart={(e) => e.currentTarget.classList.add(this.decorateCSS("active"))}
+                      onTouchEnd={(e) => e.currentTarget.classList.remove(this.decorateCSS("active"))}
+                      onTouchCancel={(e) => e.currentTarget.classList.remove(this.decorateCSS("active"))}
+                    >
                       {item.profileImage && (
                         <div className={this.decorateCSS("image-container")}>
                           <Base.Media value={item.profileImage} className={this.decorateCSS("person-image")} />
@@ -757,39 +764,41 @@ class Team9 extends Team {
 
                   if (item.profileImage || personName || personPosition || personDescription || (item.socials && item.socials.length > 0)) {
                     return (
-                      <div key={indexCard} className={this.decorateCSS("card")}>
+                      <Base.VerticalContent
+                        key={indexCard}
+                        className={this.decorateCSS("card")}
+                        data-animation={hoverAnimation.join(" ")}
+                        onTouchStart={(e) => e.currentTarget.classList.add(this.decorateCSS("active"))}
+                        onTouchEnd={(e) => e.currentTarget.classList.remove(this.decorateCSS("active"))}
+                        onTouchCancel={(e) => e.currentTarget.classList.remove(this.decorateCSS("active"))}
+                      >
                         {item.profileImage && (
                           <div className={this.decorateCSS("image-container")}>
                             <Base.Media value={item.profileImage} className={this.decorateCSS("person-image")} />
                             {this.getPropValue("overlay") && <div className={this.decorateCSS("overlay")} />}
                           </div>
                         )}
-                        <Base.VerticalContent className={this.decorateCSS("person-info")}>
+                        <Base.VerticalContent className={this.decorateCSS("text-group")}>
                           {item.socials && item.socials.length > 0 && (
-                            <Base.Row className={this.decorateCSS("icons-bar")}>
-                              {item.socials.map((social: Social, indexIcons: number) => {
-                                if (social.icon) {
-                                  return (
-                                    <ComposerLink key={indexIcons} path={social.url}>
-                                      <Base.Media
-                                        value={social.icon}
-                                        className={this.decorateCSS("icon")}
-                                        style={{ "--icon-index": indexIcons } as React.CSSProperties}
-                                      />
-                                    </ComposerLink>
-                                  );
-                                }
-                                return null;
+                            <div className={this.decorateCSS("icons-bar")}>
+                              {item.socials.map((social: Social, iconIndex: number) => {
+                                return social.icon && (
+                                  <ComposerLink key={iconIndex} path={social.url}>
+                                    <Base.Media
+                                      value={social.icon}
+                                      className={`${this.decorateCSS("icon")} ${social.icon.type === "image" && this.decorateCSS("has-image")}`}
+                                      style={{ "--icon-index": iconIndex } as React.CSSProperties}
+                                    />
+                                  </ComposerLink>
+                                );
                               })}
-                            </Base.Row>
+                            </div>
                           )}
-                          <Base.VerticalContent className={this.decorateCSS("text-group")}>
-                            {personName && <Base.H2 className={this.decorateCSS("item-name")}>{item.personName}</Base.H2>}
-                            {personPosition && <Base.P className={this.decorateCSS("item-position")}>{item.personPosition}</Base.P>}
-                            {personDescription && <Base.P className={this.decorateCSS("item-description")}>{item.personDescription}</Base.P>}
-                          </Base.VerticalContent>
+                          {personName && <Base.H2 className={this.decorateCSS("item-name")}>{item.personName}</Base.H2>}
+                          {personPosition && <Base.P className={this.decorateCSS("item-position")}>{item.personPosition}</Base.P>}
+                          {personDescription && <Base.P className={this.decorateCSS("item-description")}>{item.personDescription}</Base.P>}
                         </Base.VerticalContent>
-                      </div>
+                      </Base.VerticalContent>
                     );
                   }
                   return null;

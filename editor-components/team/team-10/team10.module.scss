@@ -241,10 +241,10 @@
     height: auto;
 
     .left {
-      min-height: 500px;
+      min-height: 600px;
       min-width: 350px;
       max-width: 350px;
-      height: 600px;
+      height: auto;
 
       .vertical-content {
         padding-top: var(--composer-gap-md);
@@ -252,15 +252,20 @@
     }
 
     .right {
-      height: 600px;
+      height: auto;
+      min-height: 600px;
 
       .team-member {
         min-width: 350px;
         flex: 1;
         height: 100%;
+        display: grid;
+        grid-template-rows: 1fr 1fr;
 
         .info {
-          height: 45%;
+          height: auto;
+          grid-row: 1;
+          overflow: visible;
 
           .features-wrapper {
             gap: var(--composer-gap-md);
@@ -269,7 +274,18 @@
 
         .image-container {
           width: 100%;
-          height: 55%;
+          height: 100%;
+          min-height: 0;
+          grid-row: 2;
+        }
+
+        &:nth-child(2n) {
+          .info {
+            grid-row: 2;
+          }
+          .image-container {
+            grid-row: 1;
+          }
         }
       }
     }
@@ -294,6 +310,7 @@
       flex-direction: column;
 
       .team-member {
+        display: flex;
         flex-direction: column-reverse !important;
         width: 100%;
         min-width: auto;

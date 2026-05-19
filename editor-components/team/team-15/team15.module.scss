@@ -28,6 +28,28 @@
       cursor: pointer;
       margin: 0 auto;
 
+      &[data-show-lines="false"] {
+        .card-content {
+          border: none;
+
+          .card-name {
+            padding: 0;
+          }
+
+          .labels {
+            border-top: none;
+
+            .card-info {
+              padding: 0;
+            }
+
+            .icons {
+              padding: 0;
+            }
+          }
+        }
+      }
+
       .image {
         width: 100%;
         height: 100%;
@@ -113,7 +135,7 @@
 
             .contactIcon {
               font-size: 1rem;
-              color: var(--composer-font-color-primary);
+              color: var(--composer-primary-color);
               transition: color 0.3s;
 
               &.contact-icon-has-image {
@@ -123,7 +145,7 @@
               }
 
               &:hover {
-                color: var(--composer-primary-color);
+                color: var(--composer-font-color-primary);
               }
             }
 
@@ -210,7 +232,7 @@
 
               .shareIcon {
                 font-size: 1rem;
-                color: var(--composer-font-color-primary);
+                color: var(--composer-primary-color);
                 transition: color 0.3s;
 
                 &.share-icon-has-image {
@@ -220,7 +242,7 @@
                 }
 
                 &:hover {
-                  color: var(--composer-primary-color);
+                  color: var(--composer-font-color-primary);
                 }
               }
             }
@@ -324,10 +346,10 @@
 
               .contactIcon,
               .share-wrapper .shareIcon {
-                color: #ffffff;
+                color: var(--composer-primary-color);
 
                 &:hover {
-                  color: var(--composer-primary-color);
+                  color: #ffffff;
                 }
               }
             }

@@ -51,6 +51,13 @@ class Team3 extends Team {
     });
 
     this.addProp({
+      type: "boolean",
+      key: "showLines",
+      displayer: "Show Lines",
+      value: true,
+    });
+
+    this.addProp({
       type: "array",
       key: "cards",
       displayer: "Cards",
@@ -941,6 +948,8 @@ class Team3 extends Team {
     const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons") || [];
     const visibleButtons = buttons.filter(btn => this.castToString(btn.text));
 
+    const showLines = this.getPropValue("showLines");
+
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
@@ -955,7 +964,11 @@ class Team3 extends Team {
             {this.castToObject<Card[]>("cards").map((card: Card, indexCards: number) => {
               return (
                 <div key={indexCards} className={this.decorateCSS("all-card")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
-                  <div className={`${this.decorateCSS("card")} ${card.profileImage && this.decorateCSS("card-image")}`} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
+                  <div
+                    className={`${this.decorateCSS("card")} ${card.profileImage && this.decorateCSS("card-image")}`}
+                    data-animation={this.getPropValue("hoverAnimation").join(" ")}
+                    data-show-lines={showLines}
+                  >
                     <div className={this.decorateCSS("card-items")}>
                       <div className={this.decorateCSS("card-content")}>
                         {card.profileImage && (

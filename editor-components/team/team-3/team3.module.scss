@@ -64,6 +64,14 @@
               var(--composer-html-background),
               var(--composer-font-color-primary) 5%);
 
+          &[data-show-lines="false"] {
+            border: none;
+
+            &::after {
+              display: none !important;
+            }
+          }
+
           &.card-image {
             margin-left: var(--composer-gap-lg);
           }
