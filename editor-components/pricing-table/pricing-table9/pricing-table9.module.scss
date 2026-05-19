@@ -185,7 +185,7 @@
 
             .content-item {
               border-bottom: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.2);
-              min-height: var(--composer-gap-xl);
+              min-height: calc(var(--composer-gap-xl) + var(--composer-gap-md));
               display: flex;
               align-items: center;
               justify-content: center;
