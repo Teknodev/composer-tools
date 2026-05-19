@@ -27,6 +27,12 @@ interface ArrowItem {
   prevArrow: TypeMediaInputValue;
 }
 
+type DividerObj = {
+  divider: boolean;
+  dividerTop: boolean;
+  dividerBottom: boolean;
+};
+
 class Testimonials14 extends Testimonials {
   private autoplayInterval: NodeJS.Timeout | null = null;
   private readonly autoplaySpeed: number = 3000;
@@ -72,9 +78,9 @@ class Testimonials14 extends Testimonials {
             {
               type: "media",
               key: "image",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "icon"],
               },
               value: {
                 type: "image",
@@ -128,9 +134,9 @@ class Testimonials14 extends Testimonials {
             {
               type: "media",
               key: "image",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "icon"],
               },
               value: {
                 type: "image",
@@ -184,9 +190,9 @@ class Testimonials14 extends Testimonials {
             {
               type: "media",
               key: "image",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "icon"],
               },
               value: {
                 type: "image",
@@ -240,9 +246,9 @@ class Testimonials14 extends Testimonials {
             {
               type: "media",
               key: "image",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "icon"],
               },
               value: {
                 type: "image",
@@ -322,22 +328,14 @@ class Testimonials14 extends Testimonials {
       ],
     });
     this.addProp({
-      type: "boolean",
-      key: "divider",
-      displayer: "Divider",
-      value: true,
-    });
-    this.addProp({
-      type: "boolean",
-      key: "dividerTop",
-      displayer: "Divider Top",
-      value: true,
-    });
-    this.addProp({
-      type: "boolean",
-      key: "dividerBottom",
-      displayer: "Divider Bottom",
-      value: true,
+      type: "object",
+      key: "dividers",
+      displayer: "Dividers",
+      value: [
+        { type: "boolean", key: "divider", displayer: "Divider", value: true },
+        { type: "boolean", key: "dividerTop", displayer: "Divider Top", value: true },
+        { type: "boolean", key: "dividerBottom", displayer: "Divider Bottom", value: true },
+      ],
     });
     this.addProp({
       type: "boolean",
@@ -424,9 +422,10 @@ class Testimonials14 extends Testimonials {
 
     const images = this.castToObject<Item[]>("images");
     const arrows = this.castToObject<ArrowItem>("arrows");
-    const showDivider = this.getPropValue("divider");
-    const showDividerTop = this.getPropValue("dividerTop");
-    const showDividerBottom = this.getPropValue("dividerBottom");
+    const dividers = this.castToObject<DividerObj>("dividers");
+    const showDivider = dividers.divider;
+    const showDividerTop = dividers.dividerTop;
+    const showDividerBottom = dividers.dividerBottom;
     const activeIndex = this.getComponentState("activeIndex");
     const textAnimation = this.getPropValue("textAnimation");
     const animationClass = textAnimation ? `animate__animated ${this.getComponentState("contentAnimationClass")}` : "";
