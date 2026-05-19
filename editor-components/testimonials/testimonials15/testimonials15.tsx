@@ -58,7 +58,7 @@ class Testimonials15Page extends Testimonials {
       key: "image",
       displayer: "Image",
       additionalParams: {
-        availableTypes: ["image"],
+        availableTypes: ["image", "icon"],
       },
       value: {
         type: "image",
