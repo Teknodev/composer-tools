@@ -70,7 +70,7 @@ class Feature7 extends BaseFeature {
               key: "iconFeature",
               displayer: "Icon",
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon", "image"],
               },
               value: {
                 type: "icon",
@@ -95,7 +95,7 @@ class Feature7 extends BaseFeature {
               key: "iconFeature",
               displayer: "Icon",
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon", "image"],
               },
               value: {
                 type: "icon",
@@ -120,7 +120,7 @@ class Feature7 extends BaseFeature {
               key: "iconFeature",
               displayer: "Icon",
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon", "image"],
               },
               value: {
                 type: "icon",
@@ -162,23 +162,23 @@ class Feature7 extends BaseFeature {
       (this.getPropValue("links").length > 0) ||
       (this.getPropValue("features").length > 0);
 
+    const hasImage = !!image?.url;
     const alignment = Base.getContentAlignment();
 
     return (
-      <Base.Container className={`${this.decorateCSS("container")} ${!image && this.decorateCSS("no-image")}`}>
-        <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <Base.ContainerGrid className={this.decorateCSS("wrapper")}>
-            {!!image?.url && (
-              <Base.GridCell className={this.decorateCSS("image-container")}>
-                <Base.Media
-                  value={image}
-                  className={hasTextContent ? this.decorateCSS("image") : this.decorateCSS("image-no-border-radius")}
-                />
-              </Base.GridCell>
-            )}
-            {hasTextContent && (
-              <Base.GridCell
-                className={this.decorateCSS("text-container")}>
+      <Base.Container className={`${this.decorateCSS("container")} ${!hasImage && this.decorateCSS("no-image")}`}>
+        <div className={this.decorateCSS("wrapper")}>
+          {hasImage && (
+            <div className={this.decorateCSS("image-container")}>
+              <Base.Media
+                value={image}
+                className={hasTextContent ? this.decorateCSS("image") : this.decorateCSS("image-no-border-radius")}
+              />
+            </div>
+          )}
+          {hasTextContent && (
+            <Base.MaxContent className={this.decorateCSS("max-content")}>
+              <div className={this.decorateCSS("text-container")}>
                 {(subtitleExist || titleExist || descriptionExist || features.length > 0 || links.length > 0) && (
                   <Base.VerticalContent className={`${this.decorateCSS("title-wrapper")}`}>
                     {subtitleExist && (
@@ -204,9 +204,9 @@ class Feature7 extends BaseFeature {
                           if (!titleExist && !item.iconFeature) return null;
 
                           return (
-                            <div key={index} className={`${this.decorateCSS("feature")} ${alignment === "center" ? this.decorateCSS("feature-center") : ""}`}>
+                            <div key={index} className={`${this.decorateCSS("feature")} ${alignment === "center" && this.decorateCSS("feature-center")}`}>
                               {item.iconFeature && (
-                                <div className={this.decorateCSS("icon-wrapper")}>
+                                <div className={`${this.decorateCSS("icon-wrapper")} ${item.iconFeature.type === "image" && this.decorateCSS("has-image")}`}>
                                   <Base.Media
                                     value={item.iconFeature}
                                     className={this.decorateCSS("iconFeature")}
@@ -214,9 +214,9 @@ class Feature7 extends BaseFeature {
                                 </div>
                               )}
                               {titleExist && (
-                                <Base.H4 className={this.decorateCSS("featureTitle")}>
+                                <Base.H6 className={this.decorateCSS("featureTitle")}>
                                   {item.title}
-                                </Base.H4>
+                                </Base.H6>
                               )}
                             </div>
                           );
@@ -249,10 +249,10 @@ class Feature7 extends BaseFeature {
                     )}
                   </Base.VerticalContent>
                 )}
-              </Base.GridCell>
-            )}
-          </Base.ContainerGrid>
-        </Base.MaxContent>
+              </div>
+            </Base.MaxContent>
+          )}
+        </div>
       </Base.Container>
     );
   }
