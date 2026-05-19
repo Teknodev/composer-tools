@@ -12,7 +12,7 @@ type Item = {
   author: {
     name: React.JSX.Element;
     subtitle: React.JSX.Element;
-    image: TypeMediaInputValue;
+    media: TypeMediaInputValue;
   };
 };
 
@@ -26,6 +26,30 @@ type Button = {
 class Testimonials4Page extends Testimonials {
   constructor(props?: any) {
     super(props, styles);
+
+    this.addProp({
+      type: "object",
+      key: "background",
+      displayer: "Background",
+      value: [
+        {
+          type: "media",
+          key: "componentBackground",
+          displayer: "Background Media",
+          additionalParams: { availableTypes: ["image", "video"] },
+          value: {
+            type: "image",
+            url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661701bbd2970002c623725?alt=media&timestamp=1719483639150",
+          },
+        },
+        {
+          type: "boolean",
+          key: "overlay",
+          displayer: "Overlay",
+          value: false,
+        },
+      ],
+    });
 
     this.addProp({
       type: "string",
@@ -95,9 +119,9 @@ class Testimonials4Page extends Testimonials {
                 },
                 {
                   type: "media",
-                  key: "image",
-                  displayer: "Image",
-                  additionalParams: { availableTypes: ["image", "video"] },
+                  key: "media",
+                  displayer: "Media",
+                  additionalParams: { availableTypes: ["image", "icon"] },
                   value: {
                     type: "image",
                     url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661701bbd2970002c623724?alt=media&timestamp=1719483639150",
@@ -144,9 +168,9 @@ class Testimonials4Page extends Testimonials {
                 },
                 {
                   type: "media",
-                  key: "image",
-                  displayer: "Image",
-                  additionalParams: { availableTypes: ["image", "video"] },
+                  key: "media",
+                  displayer: "Media",
+                  additionalParams: { availableTypes: ["image", "icon"] },
                   value: {
                     type: "image",
                     url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661701bbd2970002c623723?alt=media&timestamp=1719483639150",
@@ -193,9 +217,9 @@ class Testimonials4Page extends Testimonials {
                 },
                 {
                   type: "media",
-                  key: "image",
-                  displayer: "Image",
-                  additionalParams: { availableTypes: ["image", "video"] },
+                  key: "media",
+                  displayer: "Media",
+                  additionalParams: { availableTypes: ["image", "icon"] },
                   value: {
                     type: "image",
                     url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661701bbd2970002c623726?alt=media&timestamp=1719483639150",
@@ -208,22 +232,6 @@ class Testimonials4Page extends Testimonials {
       ],
     });
 
-    this.addProp({
-      type: "media",
-      key: "componentBackground",
-      displayer: "Background Media",
-      additionalParams: { availableTypes: ["image", "video"] },
-      value: {
-        type: "image",
-        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661701bbd2970002c623725?alt=media&timestamp=1719483639150",
-      },
-    });
-    this.addProp({
-      type: "boolean",
-      key: "overlay",
-      displayer: "Overlay",
-      value: true,
-    });
     this.addProp({
       type: "object",
       key: "arrows",
@@ -268,7 +276,8 @@ class Testimonials4Page extends Testimonials {
     });
     const hasAnyTopContent = subtitleExist || titleExist || descriptionExist || hasValidButtons;
 
-    const componentBackground = this.getPropValue("componentBackground") as TypeMediaInputValue;
+    const background = this.castToObject<{ componentBackground: TypeMediaInputValue; overlay: boolean }>("background");
+    const componentBackground = background.componentBackground as TypeMediaInputValue;
     const componentBackgroundExist = componentBackground && (componentBackground.type === "icon" ? componentBackground.name : componentBackground.url);
 
     const settings = {
@@ -289,10 +298,16 @@ class Testimonials4Page extends Testimonials {
 
     return (
       <Base.Container
-        className={`${this.decorateCSS("container")} ${componentBackgroundExist ? this.decorateCSS("with-background") : this.decorateCSS("container-no-image")} ${this.getPropValue("overlay") ? this.decorateCSS("overlay") : ""}`}
+        className={`${this.decorateCSS("container")} ${componentBackgroundExist ? this.decorateCSS("with-background") : this.decorateCSS("container-no-image")}`}
       >
         {componentBackgroundExist && (
           <Base.Media value={componentBackground} className={this.decorateCSS("component-background")} />
+        )}
+        {componentBackgroundExist && (
+          <div className={this.decorateCSS("color-mix-layer")} />
+        )}
+        {componentBackgroundExist && background.overlay && (
+          <div className={this.decorateCSS("overlay")} />
         )}
         <Base.MaxContent className={`${this.decorateCSS("max-content")} ${!componentBackgroundExist && this.decorateCSS("max-content-no-image")}`}>
           {hasAnyTopContent && (
@@ -353,7 +368,7 @@ class Testimonials4Page extends Testimonials {
                 {cardItems.map((item: Item, index: number) => {
                   const iconExist = item.icon && (item.icon.type === "icon" ? item.icon.name : item.icon.url);
                   const textExist = this.castToString(item.text);
-                  const imageExist = item.author && item.author.image && (item.author.image.type === "icon" ? item.author.image.name : item.author.image.url);
+                  const imageExist = item.author && item.author.media && (item.author.media.type === "icon" ? item.author.media.name : item.author.media.url);
                   const authorExist = item.author && (this.castToString(item.author.name) || this.castToString(item.author.subtitle) || imageExist);
                   const hasContent = iconExist || textExist || authorExist;
 
@@ -391,10 +406,10 @@ class Testimonials4Page extends Testimonials {
                 <div className={this.decorateCSS("images")}>
                   {cardItems.map((item: Item, itemIndex: number) => {
                     const isActive = this.getComponentState("active_index") === itemIndex;
-                    const itemImageExist = item.author && item.author.image && (item.author.image.type === "icon" ? item.author.image.name : item.author.image.url);
+                    const itemImageExist = item.author && item.author.media && (item.author.media.type === "icon" ? item.author.media.name : item.author.media.url);
                     return itemImageExist ? (
                       <div key={itemIndex} className={this.decorateCSS("image-wrapper")} onClick={() => this.onImageClick(itemIndex)}>
-                        <Base.Media value={item.author.image} className={`${this.decorateCSS("image")} ${isActive ? this.decorateCSS("active") : ""}`} />
+                        <Base.Media value={item.author.media} className={`${this.decorateCSS("image")} ${isActive ? this.decorateCSS("active") : ""}`} />
                       </div>
                     ) : null;
                   })}

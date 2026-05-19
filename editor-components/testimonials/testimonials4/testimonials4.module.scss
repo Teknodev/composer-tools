@@ -3,7 +3,7 @@
 .container {
   position: relative;
   z-index: 1;
-  background-color: transparent;
+  background-color: var(--composer-html-background);
 
   .component-background {
     position: absolute;
@@ -22,7 +22,28 @@
     }
   }
 
+  .color-mix-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(var(--composer-primary-color-rgb), 0.5);
+    z-index: 0;
+  }
+
+  .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--composer-overlay-color);
+    z-index: 1;
+  }
+
   &.with-background {
+
     .max-content {
       .top-content {
         align-items: center !important;
@@ -87,20 +108,9 @@
     }
   }
 
-  &.overlay::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgb(var(--composer-primary-color-rgb), 0.5);
-    z-index: 1;
-  }
-
   .max-content {
     position: relative;
-    z-index: 2;
+    z-index: 3;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -204,13 +214,14 @@
           text-align: center !important;
 
           .icon {
-            width: 48px;
-            height: 48px;
+            width: 64px;
+            height: 64px;
+            font-size: 2.5rem;
             color: var(--composer-font-color-primary);
           }
 
           .item-text {
-            font-size: 1.5rem;
+            font-size: 1.75rem !important;
             color: var(--composer-font-color-primary);
             text-align: center !important;
           }
@@ -222,13 +233,13 @@
             align-items: center !important;
 
             .item-name {
-              font-size: 1.25rem;
+              font-size: 1.5rem !important;
               color: var(--composer-font-color-primary);
               text-align: center !important;
             }
 
             .item-subtitle {
-              font-size: 1rem;
+              font-size: 1rem !important;
               color: var(--composer-font-color-primary);
               text-align: center !important;
             }
@@ -244,8 +255,8 @@
           margin-top: var(--composer-gap-md);
 
           .image {
-            width: 60px;
-            height: 60px;
+            width: 55px;
+            height: 55px;
             object-fit: cover;
             border-radius: 50%;
             transition: transform 0.3s ease;
@@ -295,10 +306,25 @@
           
           .items {
              .item-text {
-               font-size: 1.2rem;
+               font-size: 1.5rem !important;
+             }
+
+             .person-text {
+               .item-name {
+                 font-size: 1.25rem !important;
+               }
              }
           }
         }
+        .testimonials4 {
+          .images {
+            .image {
+              width: 45px;
+              height: 45px;
+            }
+          }
+        }
+
         .prevArrow,
         .nextArrow {
           display: none !important;
