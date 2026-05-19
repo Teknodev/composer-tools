@@ -23,6 +23,7 @@
           flex: 1;
           .card-inner {
             display: flex !important;
+            align-items: center;
             margin-bottom: var(--composer-gap-sm);
             padding: var(--composer-gap-md);
             width: 90% !important;
@@ -58,6 +59,7 @@
                 color: var(--composer-tertiary-color);
                 text-align: left;
                 justify-content: flex-start;
+                font-size: 1.5rem !important;
               }
             }
 
@@ -88,6 +90,7 @@
           .right-icon {
             color: var(--composer-primary-color);
             position: absolute;
+            font-size: 3rem;
             width: calc(var(--composer-gap-lg) + var(--composer-gap-sm));
             height: calc(var(--composer-gap-lg) + var(--composer-gap-sm));
           }
@@ -116,6 +119,9 @@
   .container {
     .max-content {
       .wrapper {
+        .down-page {
+          flex-direction: row !important;
+        }
         .right-page {
           .text {
             .item-text {
@@ -133,6 +139,7 @@
       .wrapper {
         gap: var(--composer-gap-md);
         .down-page {
+          flex-direction: column !important;
           .carousel {
             .card-inner {
               padding: var(--composer-gap-sm);

@@ -426,7 +426,7 @@ class Testimonials9Page extends Testimonials {
                       {item.author && (item.author.name || item.author.subtitle) && (
                         <Base.VerticalContent className={this.decorateCSS("bottom-container")}>
                           {item.author.name && (
-                            <Base.H4 className={this.decorateCSS("item-name")}>{item.author.name}</Base.H4>
+                            <Base.H5 className={this.decorateCSS("item-name")}>{item.author.name}</Base.H5>
                           )}
                           {item.author.subtitle && (
                             <Base.H5 className={this.decorateCSS("item-subtitle")}>{item.author.subtitle}</Base.H5>
@@ -444,7 +444,7 @@ class Testimonials9Page extends Testimonials {
                 {this.castToObject<Item[]>("slider").map((item: Item, index: number) => (
                   <div key={index} className={this.decorateCSS("text")}>
                     {index === activeIndex && this.castToString(item.text) && (
-                      <Base.H3 className={this.decorateCSS("item-text")}>{item.text}</Base.H3>
+                      <Base.H4 className={this.decorateCSS("item-text")}>{item.text}</Base.H4>
                     )}
                   </div>
                 ))}
