@@ -491,18 +491,9 @@
     .container {
         .max-content {
             .image-popup {
-                display: flex !important;
-                align-items: center !important;
-                justify-content: center !important;
-
                 .popup-content {
                     width: 70%;
-                    height: auto;
-                    max-height: 85vh;
-
-                    .image-container {
-                        max-height: calc(85vh - 80px);
-                    }
+                    max-height: 90vh;
                 }
             }
         }
@@ -516,18 +507,9 @@
             gap: var(--composer-gap-lg);
 
             .image-popup {
-                display: flex !important;
-                align-items: center !important;
-                justify-content: center !important;
-
                 .popup-content {
                     width: 90%;
-                    height: auto;
-                    max-height: 85vh;
-
-                    .image-container {
-                        max-height: calc(85vh - 80px);
-                    }
+                    max-height: 90vh;
                 }
             }
 
