@@ -44,7 +44,7 @@ class Testimonials2Page extends Testimonials {
       type: "string",
       key: "description",
       displayer: "Description",
-      value: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem, molestias.",
+      value: "",
     });
     this.addProp({
       type: "array",
@@ -68,7 +68,7 @@ class Testimonials2Page extends Testimonials {
               type: "number",
               key: "star",
               value: 5,
-              displayer: "Star Count",
+              displayer: "Count",
             },
             {
               type: "media",
@@ -91,8 +91,8 @@ class Testimonials2Page extends Testimonials {
                 {
                   type: "media",
                   key: "image",
-                  displayer: "Image",
-                  additionalParams: { availableTypes: ["image"] },
+                  displayer: "Media",
+                  additionalParams: { availableTypes: ["image", "icon"] },
                   value: { type: "image", url: "" },
                 },
                 {
@@ -120,7 +120,7 @@ class Testimonials2Page extends Testimonials {
               type: "number",
               key: "star",
               value: 5,
-              displayer: "Star Count",
+              displayer: "Count",
             },
             {
               type: "media",
@@ -143,8 +143,8 @@ class Testimonials2Page extends Testimonials {
                 {
                   type: "media",
                   key: "image",
-                  displayer: "Image",
-                  additionalParams: { availableTypes: ["image"] },
+                  displayer: "Media",
+                  additionalParams: { availableTypes: ["image", "icon"] },
                   value: { type: "image", url: "" },
                 },
                 {
@@ -172,7 +172,7 @@ class Testimonials2Page extends Testimonials {
               type: "number",
               key: "star",
               value: 5,
-              displayer: "Star Count",
+              displayer: "Count",
             },
             {
               type: "media",
@@ -195,8 +195,8 @@ class Testimonials2Page extends Testimonials {
                 {
                   type: "media",
                   key: "image",
-                  displayer: "Image",
-                  additionalParams: { availableTypes: ["image"] },
+                  displayer: "Media",
+                  additionalParams: { availableTypes: ["image", "icon"] },
                   value: { type: "image", url: "" },
                 },
                 {
@@ -224,7 +224,7 @@ class Testimonials2Page extends Testimonials {
               type: "number",
               key: "star",
               value: 5,
-              displayer: "Star Count",
+              displayer: "Count",
             },
             {
               type: "media",
@@ -247,8 +247,8 @@ class Testimonials2Page extends Testimonials {
                 {
                   type: "media",
                   key: "image",
-                  displayer: "Image",
-                  additionalParams: { availableTypes: ["image"] },
+                  displayer: "Media",
+                  additionalParams: { availableTypes: ["image", "icon"] },
                   value: { type: "image", url: "" },
                 },
                 {
@@ -276,7 +276,7 @@ class Testimonials2Page extends Testimonials {
               type: "number",
               key: "star",
               value: 5,
-              displayer: "Star Count",
+              displayer: "Count",
             },
             {
               type: "media",
@@ -299,8 +299,8 @@ class Testimonials2Page extends Testimonials {
                 {
                   type: "media",
                   key: "image",
-                  displayer: "Image",
-                  additionalParams: { availableTypes: ["image"] },
+                  displayer: "Media",
+                  additionalParams: { availableTypes: ["image", "icon"] },
                   value: { type: "image", url: "" },
                 },
                 {
