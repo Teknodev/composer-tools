@@ -30,26 +30,26 @@ class Testimonials6Page extends Testimonials {
       type: "string",
       key: "subtitle",
       displayer: "Subtitle",
-      value: "Lorem",
+      value: "",
     });
     this.addProp({
       type: "string",
       key: "title",
       displayer: "Title",
-      value: "What our customers say about Pagedone",
+      value: "What our customers say about <span style='color: var(--composer-primary-color)'>Pagedone</span>",
     });
     this.addProp({
       type: "string",
       key: "description",
       displayer: "Description",
-      value: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quis lobortis consequat feugiat donec tristique. Nibh leo vestibulum scelerisque sed.",
+      value: "",
     });
     this.addProp({
       type: "array",
       key: "buttons",
       displayer: "Buttons",
       value: [
-        INPUTS.BUTTON("button", "Button", "Lorem", "", null, null, "Primary"),
+        INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
       ],
     });
     this.addProp({
@@ -96,12 +96,12 @@ class Testimonials6Page extends Testimonials {
             {
               type: "media",
               key: "image",
-              additionalParams: { availableTypes: ["image"] },
+              additionalParams: { availableTypes: ["icon", "image"] },
               value: {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/644933b3f72de2002caa9a16?alt=media&timestamp=1719483639147",
               },
-              displayer: "Author Image",
+              displayer: "Media",
             },
             {
               type: "object",
@@ -150,12 +150,12 @@ class Testimonials6Page extends Testimonials {
             {
               type: "media",
               key: "image",
-              additionalParams: { availableTypes: ["image"] },
+              additionalParams: { availableTypes: ["icon", "image"] },
               value: {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64493501f72de2002caa9a46?alt=media&timestamp=1719483639147",
               },
-              displayer: "Author Image",
+              displayer: "Media",
             },
             {
               type: "object",
@@ -204,12 +204,12 @@ class Testimonials6Page extends Testimonials {
             {
               type: "media",
               key: "image",
-              additionalParams: { availableTypes: ["image"] },
+              additionalParams: { availableTypes: ["icon", "image"] },
               value: {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6449364af72de2002caa9ad0?alt=media&timestamp=1719483639147",
               },
-              displayer: "Author Image",
+              displayer: "Media",
             },
             {
               type: "object",
@@ -258,12 +258,12 @@ class Testimonials6Page extends Testimonials {
             {
               type: "media",
               key: "image",
-              additionalParams: { availableTypes: ["image"] },
+              additionalParams: { availableTypes: ["icon", "image"] },
               value: {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/644933b3f72de2002caa9a16?alt=media&timestamp=1719483639147",
               },
-              displayer: "Author Image",
+              displayer: "Media",
             },
             {
               type: "object",
@@ -312,12 +312,12 @@ class Testimonials6Page extends Testimonials {
             {
               type: "media",
               key: "image",
-              additionalParams: { availableTypes: ["image"] },
+              additionalParams: { availableTypes: ["icon", "image"] },
               value: {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64493501f72de2002caa9a46?alt=media&timestamp=1719483639147",
               },
-              displayer: "Author Image",
+              displayer: "Media",
             },
             {
               type: "object",
@@ -366,12 +366,12 @@ class Testimonials6Page extends Testimonials {
             {
               type: "media",
               key: "image",
-              additionalParams: { availableTypes: ["image"] },
+              additionalParams: { availableTypes: ["icon", "image"] },
               value: {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6449364af72de2002caa9ad0?alt=media&timestamp=1719483639147",
               },
-              displayer: "Author Image",
+              displayer: "Media",
             },
             {
               type: "object",
