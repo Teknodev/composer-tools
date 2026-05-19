@@ -55,7 +55,7 @@
           flex-grow: 1;
           max-width: 60%;
           position: relative;
-          padding-bottom: calc(var(--composer-gap-xl) * 2);
+          padding-bottom: calc(var(--composer-gap-xl) * 3);
 
           &::after {
             content: "";
@@ -64,7 +64,7 @@
             left: 0;
             width: calc(100% + var(--composer-content-width));
             height: 100%;
-            background: var(--composer-font-color-primary);
+            background: var(--composer-primary-color);
             z-index: -1;
             border-radius: var(--composer-border-radius-xs);
           }
@@ -119,6 +119,11 @@
                         gap: var(--composer-gap-sm);
                         z-index: 2;
                         color: var(--composer-font-color-primary);
+                        .icon-btn {
+                          display: flex;
+                          align-items: center;
+                          cursor: pointer;
+                        }
                         .previcon,
                         .nexticon {
                           content: "";
@@ -150,6 +155,8 @@
                       }
                       .bottom-container {
                         align-items: flex-start !important;
+                        align-self: flex-start !important;
+                        width: 100%;
 
                         .item-name {
                           color: var(--composer-font-color-primary);
@@ -191,18 +198,15 @@
   }
   .hiliteTitle {
     font-size: 6rem;
-    color: var(--composer-html-background);
+    color: var(--composer-font-color-secondary);
     position: absolute;
     z-index: 10;
     right: 0;
     bottom: 0;
-    font-weight: 900;
-    text-transform: uppercase;
     line-height: 0.8;
     pointer-events: none;
     user-select: none;
-    transform: translateY(10%); // Slightly offset for "integrated" look
-    
+
     > blinkpage {
       display: block;
       white-space: nowrap;
@@ -220,26 +224,14 @@
       padding: 0;
       .container2 {
         .testimonials10 {
-          flex-direction: column;
           gap: var(--composer-gap-md);
-          .right-content {
-            &::after {
-              width: 100%;
-            }
-            flex-basis: auto;
-            max-width: 100%;
-            .slider-style {
-              padding-left: 0;
-              width: 100%;
-            }
-          }
         }
       }
     }
     .hiliteTitle {
       font-size: 5rem;
-      right: var(--composer-gap-md);
-      bottom: var(--composer-gap-sm);
+      right: 0;
+      bottom: 0;
     }
   }
 }
@@ -249,6 +241,21 @@
     .max-content {
       .container2 {
         .testimonials10 {
+          flex-direction: column;
+          .right-content {
+            &::after {
+              left: 50%;
+              transform: translateX(-50%);
+              width: 100vw;
+              border-radius: 0;
+            }
+            flex-basis: auto;
+            max-width: 100%;
+            .slider-style {
+              padding-left: 0;
+              width: 100%;
+            }
+          }
           .left-content {
             .top-content {
               .button-container {
@@ -266,8 +273,9 @@
             .slider-style {
               padding-left: 0;
               .slider-inner-div {
+                padding: 0;
                 .slider-card {
-                  padding: var(--composer-gap-md) var(--composer-gap-sm);
+                  padding: var(--composer-gap-md) 0;
                   .header-page-container {
                     padding-left: 0;
                     padding-top: var(--composer-gap-xs);

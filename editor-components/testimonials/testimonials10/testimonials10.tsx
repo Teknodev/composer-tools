@@ -313,7 +313,7 @@ class Testimonials10Page extends Testimonials {
                 </div>
               )}
               {(this.getPropValue("profile-itemList").length > 0 || hiliteTitle) && (
-                <div className={`${this.decorateCSS("right-content")} ${hiliteTitle ? this.decorateCSS("right-content-padding") : ""}`}>
+                <div className={this.decorateCSS("right-content")}>
                   <div className={this.decorateCSS("slider-style")}>
                     <ComposerSlider {...settings} ref={this.getComponentState("slider-ref")}>
                       {this.castToObject<Item[]>("profile-itemList").map((item: Item, index: number) => {
@@ -341,12 +341,12 @@ class Testimonials10Page extends Testimonials {
                                       {(prevIconExist || nextIconExist) && (
                                         <div className={this.decorateCSS("icons")}>
                                           {prevIconExist && (
-                                            <span onClick={() => this.getComponentState("slider-ref").current.slickPrev()}>
+                                            <span className={this.decorateCSS("icon-btn")} onClick={() => this.getComponentState("slider-ref").current.slickPrev()}>
                                               <Base.Media value={prevIconValue} className={this.decorateCSS("previcon")} />
                                             </span>
                                           )}
                                           {nextIconExist && (
-                                            <span onClick={() => this.getComponentState("slider-ref").current.slickNext()}>
+                                            <span className={this.decorateCSS("icon-btn")} onClick={() => this.getComponentState("slider-ref").current.slickNext()}>
                                               <Base.Media value={nextIconValue} className={this.decorateCSS("nexticon")} />
                                             </span>
                                           )}
@@ -359,19 +359,21 @@ class Testimonials10Page extends Testimonials {
                                       </div>
                                     )}
                                     <div className={this.decorateCSS("card")}>
-                                      {textExist && (
-                                        <Base.P className={this.decorateCSS("text")}>{item.text}</Base.P>
-                                      )}
-                                      {item.author && (authorNameExist || authorSubtitleExist) && (
-                                        <Base.VerticalContent className={this.decorateCSS("bottom-container")}>
-                                          {authorNameExist && (
-                                            <Base.P className={this.decorateCSS("item-name")}>{item.author.name}</Base.P>
-                                          )}
-                                          {authorSubtitleExist && (
-                                            <Base.P className={this.decorateCSS("item-subtitle")}>{item.author.subtitle}</Base.P>
-                                          )}
-                                        </Base.VerticalContent>
-                                      )}
+                                      <Base.VerticalContent className={this.decorateCSS("card-content")}>
+                                        {textExist && (
+                                          <Base.P className={this.decorateCSS("text")}>{item.text}</Base.P>
+                                        )}
+                                        {item.author && (authorNameExist || authorSubtitleExist) && (
+                                          <Base.VerticalContent className={this.decorateCSS("bottom-container")}>
+                                            {authorNameExist && (
+                                              <Base.P className={this.decorateCSS("item-name")}>{item.author.name}</Base.P>
+                                            )}
+                                            {authorSubtitleExist && (
+                                              <Base.P className={this.decorateCSS("item-subtitle")}>{item.author.subtitle}</Base.P>
+                                            )}
+                                          </Base.VerticalContent>
+                                        )}
+                                      </Base.VerticalContent>
                                     </div>
                                   </div>
                                 </div>
