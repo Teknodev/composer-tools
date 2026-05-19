@@ -76,8 +76,8 @@
           .span-image {
             width: 45px;
             height: 45px;
-            font-size: 4rem;
-            color: var(--composer-font-color-primary);
+            font-size: 3rem;
+            color: var(--composer-primary-color);
           }
           .card-description {
             color: var(--composer-font-color-primary);
@@ -126,6 +126,16 @@
               gap: var(--composer-gap-md);
             }
           }
+          .card {
+            .below-content {
+              .below-right-content {
+                .item-name,
+                .item-subtitle {
+                  font-size: 1rem !important;
+                }
+              }
+            }
+          }
         }
       }
     }
@@ -151,6 +161,14 @@
             .span-image {
               width: 40px;
               height: 40px;
+            }
+            .below-content {
+              .below-right-content {
+                .item-name,
+                .item-subtitle {
+                  font-size: 1rem !important;
+                }
+              }
             }
           }
         }
