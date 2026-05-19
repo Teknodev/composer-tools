@@ -44,14 +44,14 @@ class Testimonials2Page extends Testimonials {
       type: "string",
       key: "description",
       displayer: "Description",
-      value: "",
+      value: "Lorem ipsum dolor sit amet consectetur adipiscing elit ",
     });
     this.addProp({
       type: "array",
       key: "buttons",
       displayer: "Buttons",
       value: [
-        INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+        INPUTS.BUTTON("button", "Button", "Lorem ipsum", "", null, null, "Primary"),
       ],
     });
     this.addProp({
@@ -355,7 +355,7 @@ class Testimonials2Page extends Testimonials {
         {
           breakpoint: 1024,
           settings: {
-            slidesToShow: 1.65,
+            slidesToShow: 2.5,
           },
         },
         {

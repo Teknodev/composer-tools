@@ -7,10 +7,7 @@
       width: 100%;
       .subtitle,
       .title,
-      .description,
-      .button,
-      .button-text,
-      .button-icon {
+      .description {
         content: "";
       }
 
@@ -18,6 +15,11 @@
         display: flex;
         flex-wrap: wrap;
         gap: var(--composer-gap-sm);
+        .button,
+        .button-text,
+        .button-icon {
+          content: "";
+        }
       }
     }
   }
@@ -34,10 +36,10 @@
     }
 
     :global(.slick-slide) {
-      padding: 0 var(--composer-gap-md);
+      padding: 0 calc(var(--composer-gap-md) / 2);
     }
     :global(.slick-list) {
-      margin: 0 calc(var(--composer-gap-md) * -1);
+      margin: 0 calc(var(--composer-gap-md) / -2);
     }
 
     .card {
@@ -126,6 +128,14 @@
   .container {
     .slider-style {
       padding-bottom: 0;
+
+      :global(.slick-slide) {
+        padding: 0 var(--composer-gap-xs);
+      }
+      :global(.slick-list) {
+        margin: 0 calc(var(--composer-gap-xs) * -1);
+      }
+
       .card {
         padding: var(--composer-gap-md) var(--composer-gap-md);
       }
