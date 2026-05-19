@@ -185,12 +185,12 @@
                 }
 
                 .middleWriting {
-                  font-size: 3rem;
+                  font-size: 4.5rem;
                   color: var(--composer-font-color-secondary);
                 }
 
                 .bottomWriting {
-                  font-size: 1rem;
+                  font-size: 1.25rem;
                   color: var(--composer-font-color-secondary);
                 }
               }
@@ -201,26 +201,17 @@
     }
   }
 }
+
 @container (max-width: #{$composer-tablet-width}) {
   .container {
     .max-content {
       .container-grid {
-        flex-direction: row;
+        flex-direction: row !important;
         .grid-cell {
-          .flexItem1 {
-            .carousel {
-              .slider-inner-div {
-                .content-div {
-                  .image-arrow {
-                    gap: var(--composer-gap-xl);
-                  }
-                  .item-description {
-                    font-size: 1rem;
-                  }
-                }
-              }
-            }
-          }
+          width: 50% !important;
+        }
+        .container3 {
+          width: 50% !important;
         }
       }
     }
@@ -231,16 +222,32 @@
   .container {
     .max-content {
       .container-grid {
-        flex-direction: column;
+        flex-direction: column !important;
         .grid-cell {
+          width: 100% !important;
           .flexItem1 {
             .subtitle {
               width: 85%;
             }
+            .carousel {
+              overflow: hidden;
+              .slider-inner-div {
+                .content-div {
+                  padding: 40px 20px;
+                  .image-arrow {
+                    gap: var(--composer-gap-md);
+                    .img-div {
+                      width: 80px;
+                      height: 80px;
+                    }
+                  }
+                }
+              }
+            }
           }
         }
         .container3 {
-          width: 100%;
+          width: 100% !important;
         }
       }
     }

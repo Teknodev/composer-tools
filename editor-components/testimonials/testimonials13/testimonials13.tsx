@@ -28,6 +28,11 @@ type Box = {
   bottomText: React.JSX.Element;
 };
 
+type RightSection = {
+  boxHeader: React.JSX.Element;
+  rightBoxs: Box[];
+};
+
 class Testimonials13Page extends Testimonials {
   constructor(props?: any) {
     super(props, styles);
@@ -188,72 +193,78 @@ class Testimonials13Page extends Testimonials {
     this.addProp({
       type: "media",
       key: "image",
-      displayer: "Image",
-      additionalParams: { availableTypes: ["image"] },
+      displayer: "Media",
+      additionalParams: { availableTypes: ["image", "video"] },
       value: {
         type: "image",
         url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661792ebd2970002c623f3e?alt=media&timestamp=1719483639150",
       },
     });
     this.addProp({
-      type: "string",
-      key: "boxHeader",
-      displayer: "BoxTitle",
-      value: "We Provide the best service for Clients",
-    });
-
-    this.addProp({
-      type: "array",
-      key: "rightBoxs",
-      displayer: "Right Boxs",
+      type: "object",
+      key: "rightSection",
+      displayer: "Right Section",
       value: [
         {
-          type: "object",
-          key: "rightBox1",
-          displayer: "Right Box 1",
-          value: [
-            {
-              type: "string",
-              key: "topText",
-              displayer: "Top Text",
-              value: "People",
-            },
-            {
-              type: "number",
-              key: "number",
-              displayer: "Number",
-              value: 100,
-            },
-            {
-              type: "string",
-              key: "bottomText",
-              displayer: "Bottom Text",
-              value: "Adipiscing elit, sed do.",
-            },
-          ],
+          type: "string",
+          key: "boxHeader",
+          displayer: "Box Title",
+          value: "We Provide the best service for Clients",
         },
         {
-          type: "object",
-          key: "rightBox2",
-          displayer: "Right Box 2",
+          type: "array",
+          key: "rightBoxs",
+          displayer: "Right Boxes",
           value: [
             {
-              type: "string",
-              key: "topText",
-              displayer: "Top Text",
-              value: "Offices",
+              type: "object",
+              key: "rightBox1",
+              displayer: "Right Box 1",
+              value: [
+                {
+                  type: "string",
+                  key: "topText",
+                  displayer: "Top Text",
+                  value: "People",
+                },
+                {
+                  type: "number",
+                  key: "number",
+                  displayer: "Number",
+                  value: 100,
+                },
+                {
+                  type: "string",
+                  key: "bottomText",
+                  displayer: "Bottom Text",
+                  value: "Adipiscing elit, sed do.",
+                },
+              ],
             },
             {
-              type: "number",
-              key: "number",
-              displayer: "Number",
-              value: 12,
-            },
-            {
-              type: "string",
-              key: "bottomText",
-              displayer: "Bottom Text",
-              value: "Sed do eiusmod tempor.",
+              type: "object",
+              key: "rightBox2",
+              displayer: "Right Box 2",
+              value: [
+                {
+                  type: "string",
+                  key: "topText",
+                  displayer: "Top Text",
+                  value: "Offices",
+                },
+                {
+                  type: "number",
+                  key: "number",
+                  displayer: "Number",
+                  value: 12,
+                },
+                {
+                  type: "string",
+                  key: "bottomText",
+                  displayer: "Bottom Text",
+                  value: "Sed do eiusmod tempor.",
+                },
+              ],
             },
           ],
         },
@@ -280,7 +291,13 @@ class Testimonials13Page extends Testimonials {
     });
     const hasAnyTopContent = subtitleExist || titleExist || descriptionExist || hasValidButtons;
 
-    const box = this.castToObject<Box[]>("rightBoxs");
+    const rightSection = this.castToObject<RightSection>("rightSection");
+    const rawBoxes = (rightSection.rightBoxs || []) as any[];
+    const box: Box[] = rawBoxes.map((rawBox: any) => ({
+      topText: rawBox.getPropValue?.("topText"),
+      number: rawBox.getPropValue?.("number"),
+      bottomText: rawBox.getPropValue?.("bottomText"),
+    }));
     const card = this.castToObject<Item[]>("profiles");
 
     const prevIcon = this.getPropValue("prevIcon") as TypeMediaInputValue;
@@ -400,7 +417,7 @@ class Testimonials13Page extends Testimonials {
                                 <Base.Media value={sliderIcon} className={this.decorateCSS("item-icon")} />
                               )}
                               {item.author && this.castToString(item.author.name) && (
-                                <Base.H2 className={this.decorateCSS("first-header")}>{item.author.name}</Base.H2>
+                                <Base.H6 className={this.decorateCSS("first-header")}>{item.author.name}</Base.H6>
                               )}
                               {item.author && this.castToString(item.author.subtitle) && (
                                 <Base.P className={this.decorateCSS("item-title")}>{item.author.subtitle}</Base.P>
@@ -415,7 +432,7 @@ class Testimonials13Page extends Testimonials {
               </Base.GridCell>
             )}
 
-            {(sideImageExist || this.castToString(this.getPropValue("boxHeader")) || box.length > 0) && (
+            {(sideImageExist || this.castToString(rightSection.boxHeader) || box.length > 0) && (
               <Base.GridCell className={this.decorateCSS("container3")}>
                 <Base.ContainerGrid className={this.decorateCSS("containerGrid")}>
                   {sideImageExist && (
@@ -423,11 +440,11 @@ class Testimonials13Page extends Testimonials {
                       <Base.Media value={sideImage} className={this.decorateCSS("side-image")} />
                     </Base.GridCell>
                   )}
-                  {(this.castToString(this.getPropValue("boxHeader")) || box.length > 0) && (
+                  {(this.castToString(rightSection.boxHeader) || box.length > 0) && (
                     <Base.GridCell className={this.decorateCSS("flexItem3")}>
                       <Base.VerticalContent className={this.decorateCSS("flexItem3-content")}>
-                        {this.castToString(this.getPropValue("boxHeader")) && (
-                          <Base.H1 className={this.decorateCSS("item_title_text")}>{this.getPropValue("boxHeader")}</Base.H1>
+                        {this.castToString(rightSection.boxHeader) && (
+                          <Base.H4 className={this.decorateCSS("item_title_text")}>{rightSection.boxHeader}</Base.H4>
                         )}
                         <div className={this.decorateCSS("container4")}>
                           {box.map((item: Box, index: number) => (
