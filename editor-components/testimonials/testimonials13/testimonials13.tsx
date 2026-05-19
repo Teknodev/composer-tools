@@ -63,6 +63,15 @@ class Testimonials13Page extends Testimonials {
         INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
       ],
     });
+    this.addProp(INPUTS.SLIDER_SETTINGS("slider-settings", "Slider Settings", {
+      dots: false,
+      infinite: true,
+      speed: 700,
+      autoplay: true,
+      autoplaySpeed: 3000,
+      slidesToShow: 1,
+      slidesToScroll: 1,
+    }));
     this.addProp({
       type: "media",
       key: "prevIcon",
@@ -312,15 +321,11 @@ class Testimonials13Page extends Testimonials {
     const sideImage = this.getPropValue("image") as TypeMediaInputValue;
     const sideImageExist = sideImage && sideImage.url;
 
+    const rawSettings = this.getPropValue("slider-settings");
+    const sliderSettings = Object.fromEntries((rawSettings as any[]).map((p: any) => [p.key, p.value]));
     const settings = {
+      ...sliderSettings,
       arrows: false,
-      dots: false,
-      infinite: true,
-      speed: 700,
-      autoplay: true,
-      autoplaySpeed: 3000,
-      slidesToShow: 1,
-      slidesToScroll: 1,
       beforeChange: (_current: number, next: number) => {
         this.setComponentState("active", next);
         this.setComponentState("activeSlideIndex", next);

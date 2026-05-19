@@ -76,6 +76,16 @@ class Testimonials4Page extends Testimonials {
       value: [INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary")],
     });
 
+    this.addProp(INPUTS.SLIDER_SETTINGS("slider-settings", "Slider Settings", {
+      dots: false,
+      infinite: true,
+      speed: 700,
+      autoplay: true,
+      autoplaySpeed: 3000,
+      slidesToShow: 1,
+      slidesToScroll: 1,
+    }));
+
     this.addProp({
       type: "array",
       key: "card-items",
@@ -238,16 +248,18 @@ class Testimonials4Page extends Testimonials {
       displayer: "Arrows",
       value: [
         {
-          type: "icon",
+          type: "media",
           key: "prevArrow",
           displayer: "Prev Icon",
-          value: "GrLinkPrevious",
+          additionalParams: { availableTypes: ["icon", "image"] },
+          value: { type: "icon", name: "GrLinkPrevious" },
         },
         {
-          type: "icon",
+          type: "media",
           key: "nextArrow",
           displayer: "Next Icon",
-          value: "GrLinkNext",
+          additionalParams: { availableTypes: ["icon", "image"] },
+          value: { type: "icon", name: "GrLinkNext" },
         },
       ],
     });
@@ -280,14 +292,11 @@ class Testimonials4Page extends Testimonials {
     const componentBackground = background.componentBackground as TypeMediaInputValue;
     const componentBackgroundExist = componentBackground && (componentBackground.type === "icon" ? componentBackground.name : componentBackground.url);
 
+    const rawSettings = this.getPropValue("slider-settings");
+    const sliderSettings = Object.fromEntries((rawSettings as any[]).map((p: any) => [p.key, p.value]));
     const settings = {
-      dots: false,
-      infinite: true,
+      ...sliderSettings,
       arrows: false,
-      speed: 700,
-      autoplay: true,
-      autoplaySpeed: 3000,
-      slidesToShow: 1,
       beforeChange: (oldIndex: number, nextIndex: number) => {
         this.setComponentState("active_index", nextIndex);
       },
@@ -295,6 +304,8 @@ class Testimonials4Page extends Testimonials {
     const cardItems = this.castToObject<Item[]>("card-items");
     const sliderRef = this.getComponentState("slider-ref");
     const arrows = this.castToObject<any>("arrows");
+    const prevArrowExist = arrows.prevArrow && (arrows.prevArrow.type === "icon" ? arrows.prevArrow.name : arrows.prevArrow.url);
+    const nextArrowExist = arrows.nextArrow && (arrows.nextArrow.type === "icon" ? arrows.nextArrow.name : arrows.nextArrow.url);
 
     return (
       <Base.Container
@@ -352,18 +363,18 @@ class Testimonials4Page extends Testimonials {
           )}
 
           <div className={this.decorateCSS("slider-wrapper")}>
-            {arrows.prevArrow && cardItems.length > 1 && (
+            {prevArrowExist && cardItems.length > 1 && (
               <button
                 className={this.decorateCSS("prevArrow")}
                 onClick={() => {
                   sliderRef.current.slickPrev();
                 }}
               >
-                <Base.Icon name={arrows.prevArrow} propsIcon={{ className: this.decorateCSS("arrow") }}></Base.Icon>
+                <Base.Media value={arrows.prevArrow} className={this.decorateCSS("arrow")} />
               </button>
             )}
 
-            <div className={`${this.decorateCSS("testimonials4")} ${!(arrows.nextArrow || arrows.prevArrow) && this.decorateCSS("testimonials4-no-icon")}`}>
+            <div className={`${this.decorateCSS("testimonials4")} ${!(nextArrowExist || prevArrowExist) && this.decorateCSS("testimonials4-no-icon")}`}>
               <ComposerSlider {...settings} ref={this.getComponentState("slider-ref")}>
                 {cardItems.map((item: Item, index: number) => {
                   const iconExist = item.icon && (item.icon.type === "icon" ? item.icon.name : item.icon.url);
@@ -417,14 +428,14 @@ class Testimonials4Page extends Testimonials {
               )}
             </div>
 
-            {arrows.nextArrow && cardItems.length > 1 && (
+            {nextArrowExist && cardItems.length > 1 && (
               <button
                 className={this.decorateCSS("nextArrow")}
                 onClick={() => {
                   sliderRef.current.slickNext();
                 }}
               >
-                <Base.Icon name={arrows.nextArrow} propsIcon={{ className: this.decorateCSS("arrow") }}></Base.Icon>
+                <Base.Media value={arrows.nextArrow} className={this.decorateCSS("arrow")} />
               </button>
             )}
           </div>

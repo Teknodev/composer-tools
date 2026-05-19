@@ -80,6 +80,16 @@ class Testimonials1Page extends Testimonials {
       ],
     });
 
+    this.addProp(INPUTS.SLIDER_SETTINGS("slider-settings", "Slider Settings", {
+      dots: false,
+      infinite: true,
+      speed: 500,
+      autoplay: true,
+      autoplaySpeed: 3000,
+      slidesToShow: 1,
+      slidesToScroll: 1,
+    }));
+
     this.addProp({
       type: "array",
       key: "items",
@@ -244,14 +254,11 @@ class Testimonials1Page extends Testimonials {
 
     const hasAnyTopContent = subtitleExist || titleExist || descriptionExist || hasValidButtons;
 
+    const rawSettings = this.getPropValue("slider-settings");
+    const sliderSettings = Object.fromEntries((rawSettings as any[]).map((p: any) => [p.key, p.value]));
     const settings = {
-      dots: false,
-      infinite: true,
+      ...sliderSettings,
       arrows: false,
-      speed: 500,
-      autoplay: true,
-      autoplaySpeed: 3000,
-      slidesToShow: 1,
       beforeChange: (_oldIndex: number, nextIndex: number) => {
         this.setComponentState("active_index", nextIndex);
       },

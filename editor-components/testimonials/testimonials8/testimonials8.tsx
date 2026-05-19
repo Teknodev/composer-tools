@@ -58,6 +58,17 @@ class Testimonials8Page extends Testimonials {
         INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
       ],
     });
+
+    this.addProp(INPUTS.SLIDER_SETTINGS("slider-settings", "Slider Settings", {
+      dots: true,
+      infinite: true,
+      speed: 700,
+      autoplay: true,
+      autoplaySpeed: 3000,
+      slidesToShow: 1,
+      slidesToScroll: 1,
+    }));
+
     this.addProp({
       type: "boolean",
       key: "numberIsActive",
@@ -283,15 +294,11 @@ class Testimonials8Page extends Testimonials {
     });
     const hasAnyTopContent = subtitleExist || titleExist || descriptionExist || hasValidButtons;
 
+    const rawSettings = this.getPropValue("slider-settings");
+    const sliderSettings = Object.fromEntries((rawSettings as any[]).map((p: any) => [p.key, p.value]));
     const settings = {
-      dots: true,
+      ...sliderSettings,
       arrows: false,
-      infinite: true,
-      speed: 700,
-      autoplay: true,
-      autoplaySpeed: 3000,
-      slidesToShow: 1,
-      slidesToScroll: 1,
       beforeChange: (current: number, next: number) => {
         this.setComponentState("active_index", next);
       },

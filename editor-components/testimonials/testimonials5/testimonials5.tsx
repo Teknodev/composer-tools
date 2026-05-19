@@ -58,6 +58,16 @@ class Testimonials5Page extends Testimonials {
         INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
       ],
     });
+
+    this.addProp(INPUTS.SLIDER_SETTINGS("slider-settings", "Slider Settings", {
+      dots: false,
+      autoplay: true,
+      infinite: false,
+      speed: 500,
+      slidesToShow: 1,
+      slidesToScroll: 1,
+    }));
+
     this.addProp({
       type: "media",
       key: "componentBackground",
@@ -292,14 +302,11 @@ class Testimonials5Page extends Testimonials {
     const bgMedia = this.getPropValue("componentBackground") as TypeMediaInputValue;
     const backgroundImageExist = bgMedia && bgMedia.url;
 
+    const rawSettings = this.getPropValue("slider-settings");
+    const sliderSettings = Object.fromEntries((rawSettings as any[]).map((p: any) => [p.key, p.value]));
     const settings = {
-      dots: false,
-      autoplay: true,
-      infinite: false,
+      ...sliderSettings,
       arrows: false,
-      speed: 500,
-      slidesToShow: 1,
-      slidesToScroll: 1,
       beforeChange: (current: number, next: number) => {
         this.setComponentState("active", next);
         this.setComponentState("activeSlideIndex", next);

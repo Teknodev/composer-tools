@@ -52,6 +52,17 @@ class Testimonials9Page extends Testimonials {
         INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
       ],
     });
+
+    this.addProp(INPUTS.SLIDER_SETTINGS("slider-settings", "Slider Settings", {
+      dots: false,
+      infinite: true,
+      speed: 500,
+      autoplay: true,
+      autoplaySpeed: 2500,
+      slidesToShow: 1,
+      slidesToScroll: 1,
+    }));
+
     this.addProp({
       type: "media",
       key: "left_icon",
@@ -354,17 +365,14 @@ class Testimonials9Page extends Testimonials {
     const rightIconExist = rightIconMedia && (rightIconMedia.type === "icon" ? rightIconMedia.name : rightIconMedia.url);
 
     const slider = this.getPropValue("slider");
+    const rawSettings = this.getPropValue("slider-settings");
+    const sliderSettings = Object.fromEntries((rawSettings as any[]).map((p: any) => [p.key, p.value]));
     const settings = {
-      dots: false,
-      infinite: true,
-      speed: 500,
-      autoplay: true,
-      autoplaySpeed: 2500,
-      slidesToShow: Math.min(Math.max(slider.length, 1), 4),
-      slidesToScroll: 1,
-      vertical: true,
-      verticalSwiping: slider.length > 1,
+      ...sliderSettings,
       arrows: false,
+      vertical: true,
+      slidesToShow: Math.min(Math.max(slider.length, 1), 4),
+      verticalSwiping: slider.length > 1,
       beforeChange: (newIndex: number) => {
         let adjustedIndex = (newIndex + 1) % this.castToObject<Item[]>("slider").length;
         this.setComponentState("active-index", adjustedIndex);

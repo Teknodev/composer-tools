@@ -51,6 +51,14 @@ class Testimonials12Page extends Testimonials {
         INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
       ],
     });
+    this.addProp(INPUTS.SLIDER_SETTINGS("slider-settings", "Slider Settings", {
+      infinite: false,
+      speed: 700,
+      autoplay: true,
+      autoplaySpeed: 4000,
+      slidesToShow: 2,
+      slidesToScroll: 1,
+    }));
     this.addProp({
       type: "media",
       key: "icon",
@@ -261,13 +269,10 @@ class Testimonials12Page extends Testimonials {
     const nextIcon = this.getPropValue("nextIcon") as TypeMediaInputValue;
     const nextIconExist = nextIcon && (nextIcon.type === "icon" ? nextIcon.name : nextIcon.url);
 
+    const rawSettings = this.getPropValue("slider-settings");
+    const sliderSettings = Object.fromEntries((rawSettings as any[]).map((p: any) => [p.key, p.value]));
     const settings = {
-      infinite: false,
-      speed: 700,
-      autoplay: true,
-      autoplaySpeed: 4000,
-      slidesToShow: 2,
-      slidesToScroll: 1,
+      ...sliderSettings,
       responsive: [
         {
           breakpoint: 450,

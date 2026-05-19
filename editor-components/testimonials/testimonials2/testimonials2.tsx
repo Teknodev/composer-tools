@@ -54,6 +54,18 @@ class Testimonials2Page extends Testimonials {
         INPUTS.BUTTON("button", "Button", "Lorem ipsum", "", null, null, "Primary"),
       ],
     });
+
+    this.addProp(INPUTS.SLIDER_SETTINGS("slider-settings", "Slider Settings", {
+      dots: true,
+      infinite: true,
+      speed: 725,
+      autoplay: true,
+      autoplaySpeed: 3000,
+      slidesToShow: 3.65,
+      centerMode: true,
+      slidesToScroll: 1,
+    }));
+
     this.addProp({
       type: "array",
       key: "card-items",
@@ -341,16 +353,12 @@ class Testimonials2Page extends Testimonials {
     const hasAnyTopContent = subtitleExist || titleExist || descriptionExist || hasValidButtons;
 
     const cardCount = this.getPropValue("card-items").length;
+    const rawSettings = this.getPropValue("slider-settings");
+    const sliderSettings = Object.fromEntries((rawSettings as any[]).map((p: any) => [p.key, p.value]));
     const settings = {
+      ...sliderSettings,
       arrows: false,
-      dots: true,
       infinite: cardCount > 3,
-      speed: 725,
-      autoplay: true,
-      autoplaySpeed: 3000,
-      slidesToShow: 3.65,
-      centerMode: true,
-      slidesToScroll: 1,
       responsive: [
         {
           breakpoint: 1024,

@@ -64,6 +64,16 @@ class Testimonials16 extends Testimonials {
       ],
     });
 
+    this.addProp(INPUTS.SLIDER_SETTINGS("slider-settings", "Slider Settings", {
+      dots: false,
+      infinite: true,
+      speed: 700,
+      autoplay: true,
+      autoplaySpeed: 5200,
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      centerMode: false,
+    }));
     this.addProp({
       type: "array",
       key: "links",
@@ -309,16 +319,13 @@ class Testimonials16 extends Testimonials {
     const hideBadgeBackground = subtitleType === "badge" && !!activePortrait;
     const subtitleClasses = `${this.decorateCSS("subtitle")} ${hideBadgeBackground ? this.decorateCSS("subtitle-badge-hidden") : ""}`;
 
+    const rawSettings = this.getPropValue("slider-settings");
+    const sliderSettings = Object.fromEntries((rawSettings as any[]).map((p: any) => [p.key, p.value]));
     const baseSettings = {
+      ...sliderSettings,
       arrows: false,
-      dots: false,
       infinite: filteredTestimonials.length > 1,
-      speed: 700,
       autoplay: autoplayEnabled && filteredTestimonials.length > 1,
-      autoplaySpeed: 5200,
-      slidesToShow: 1,
-      slidesToScroll: 1,
-      centerMode: false,
       beforeChange: (_current: number, next: number) => {
         const img = filteredTestimonials[_current]?.image;
         this.setComponentState("prevBackground", img && img.type === "image" && img.url ? img : null);
