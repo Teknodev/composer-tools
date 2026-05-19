@@ -11,10 +11,22 @@
 
       .top-content {
         width: 100%;
+        align-items: center;
 
-        .subtitle,
+        .subtitle {
+          text-align: center;
+          transform: none !important;
+          &::before {
+            display: none !important;
+            transform: none !important;
+          }
+        }
+
         .title,
-        .description,
+        .description {
+          text-align: center;
+        }
+
         .button-container,
         .button,
         .button-text,

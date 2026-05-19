@@ -61,13 +61,13 @@ class Testimonials8Page extends Testimonials {
     this.addProp({
       type: "boolean",
       key: "numberIsActive",
-      displayer: "Icon Number Active",
+      displayer: "Number",
       value: true,
     });
     this.addProp({
       type: "boolean",
       key: "lineActive",
-      displayer: "Line Active",
+      displayer: "Line",
       value: true,
     });
     this.addProp({
