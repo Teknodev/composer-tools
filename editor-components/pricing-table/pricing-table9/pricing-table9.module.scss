@@ -276,9 +276,7 @@
               }
 
               .button-text {
-                margin: 0;
-                white-space: nowrap;
-
+                content: "";
                 .button-suffix {
                   font-size: 0.75rem;
                 }

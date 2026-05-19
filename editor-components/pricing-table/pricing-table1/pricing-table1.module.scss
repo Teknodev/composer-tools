@@ -312,51 +312,79 @@
 }
 
 @container (max-width: #{$composer-tablet-width}) {
-  .container .max-content .upper-section .items .item-card .card-bottom .card-bottom-content .card-price .price {
-    font-size: 3.5rem !important;
-  }
+  .container {
+    .max-content {
+      .upper-section {
+        .items {
+          .item-card {
+            .card-top-content {
+              padding: var(--composer-gap-md) var(--composer-gap-md) var(--composer-gap-sm);
 
-  .container .max-content .upper-section .items .item-card .card-top-content {
-    padding: var(--composer-gap-md) var(--composer-gap-md) var(--composer-gap-sm);
+              .cardsubtitle {
+                font-size: 1rem !important;
+              }
+            }
 
-    .cardsubtitle {
-      font-size: 0.9rem !important;
+            .card-list {
+              .card-list-item {
+                padding: var(--composer-gap-sm) var(--composer-gap-md);
+              }
+            }
+
+            .card-bottom {
+              padding: var(--composer-gap-md);
+
+              .card-bottom-content {
+                .card-price {
+                  .price {
+                    font-size: 3.5rem !important;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
-  }
-
-  .container .max-content .upper-section .items .item-card .card-list .card-list-item {
-    padding: var(--composer-gap-sm) var(--composer-gap-md);
-  }
-
-  .container .max-content .upper-section .items .item-card .card-bottom {
-    padding: var(--composer-gap-md);
   }
 }
 
 @container (max-width: #{$composer-phone-width}) {
-  .container .max-content .upper-section {
-    gap: var(--composer-gap-md);
-  }
+  .container {
+    .max-content {
+      .upper-section {
+        gap: var(--composer-gap-md);
 
-  .container .max-content .upper-section .items {
-    gap: var(--composer-gap-md);
-  }
+        .items {
+          gap: var(--composer-gap-md);
 
-  .container .max-content .upper-section .items .item-card {
-    overflow: hidden;
-  }
+          .item-card {
+            overflow: hidden;
 
-  .container .max-content .upper-section .items .item-card .card-bottom .card-bottom-content .card-price .price {
-    font-size: 3.25rem !important;
-  }
+            .card-top-content {
+              .cardsubtitle {
+                font-size: 0.75rem !important;
+              }
+            }
 
-  .container .max-content .upper-section .items .item-card .card-top-content .cardsubtitle {
-    font-size: 0.75rem !important;
-  }
+            .card-bottom {
+              .card-bottom-content {
+                .card-price {
+                  .price {
+                    font-size: 3.25rem !important;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
 
-  .container .max-content .titles {
-    gap: var(--composer-gap-md);
-    margin-top: var(--composer-gap-md);
-    flex-direction: column;
+      .titles {
+        gap: var(--composer-gap-md);
+        margin-top: var(--composer-gap-md);
+        flex-direction: column;
+      }
+    }
   }
 }
