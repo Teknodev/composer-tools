@@ -16,24 +16,8 @@
     pointer-events: none;
     z-index: 1;
   }
-  &.with-background,
-  &.center {
-    .top-content {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center !important;
-      .button-wrapper {
-        justify-content: center;
-      }
-    }
-  }
   &.with-background {
     .top-content {
-      align-items: center !important;
-      text-align: center !important;
-
       .subtitle,
       .title,
       .description {
@@ -72,12 +56,32 @@
         justify-content: center;
         .top-content {
           width: 100%;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          text-align: center;
 
-        
+          .subtitle,
+          .title,
+          .description {
+            text-align: center !important;
+            justify-content: center !important;
+          }
+
+          .subtitle {
+            transform: none !important;
+            &::before {
+              display: none !important;
+              transform: none !important;
+            }
+          }
+
           .button-wrapper {
             display: flex;
             flex-wrap: wrap;
             gap: var(--composer-gap-sm);
+            justify-content: center;
 
             .button {
               .button-text {
@@ -117,6 +121,8 @@
             align-items: center;
 
             .icon {
+              width: 75px;
+              height: 75px;
               font-size: 3rem;
               border-radius: var(--composer-border-radius-full);
               display: inline-flex;
@@ -128,7 +134,7 @@
             }
 
             .description {
-              font-size: 1.5rem;
+              font-size: 2.5rem;
               text-align: center;
               color: var(--composer-tertiary-color);
             }
@@ -148,8 +154,8 @@
             gap: var(--composer-gap-md);
             .image-container {
               .image {
-                width: 50px;
-                height: 50px;
+                width: 100px;
+                height: 100px;
                 object-fit: cover;
                 border-radius: 50%;
                 transition: 0.3s;
@@ -197,6 +203,11 @@
         .content-wrapper {
           .content {
             width: 100%;
+            .items {
+              .description {
+                font-size: 2rem;
+              }
+            }
             .images {
               .image-container {
                 .image {

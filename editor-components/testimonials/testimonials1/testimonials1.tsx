@@ -25,24 +25,50 @@ class Testimonials1Page extends Testimonials {
     super(props, styles);
 
     this.addProp({
+      type: "object",
+      key: "background",
+      displayer: "Background",
+      value: [
+        {
+          type: "media",
+          key: "componentBackground",
+          displayer: "Background Media",
+          additionalParams: {
+            availableTypes: ["image", "video"],
+          },
+          value: {
+            type: "image",
+            url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6729d54e7acba6002c5e6e52?alt=media&timestamp=1730794845964",
+          },
+        },
+        {
+          type: "boolean",
+          key: "overlayActive",
+          displayer: "Overlay",
+          value: false,
+        },
+      ],
+    });
+
+    this.addProp({
       type: "string",
       key: "subtitle",
       displayer: "Subtitle",
-      value: "Lorem",
+      value: "",
     });
 
     this.addProp({
       type: "string",
       key: "title",
       displayer: "Title",
-      value: "Lorem Ipsum",
+      value: "",
     });
 
     this.addProp({
       type: "string",
       key: "description",
       displayer: "Description",
-      value: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+      value: "",
     });
 
     this.addProp({
@@ -50,28 +76,8 @@ class Testimonials1Page extends Testimonials {
       key: "buttons",
       displayer: "Buttons",
       value: [
-        INPUTS.BUTTON("button", "Button", "Lorem", "", null, null, "Primary"),
+        INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
       ],
-    });
-
-    this.addProp({
-      type: "media",
-      key: "componentBackground",
-      displayer: "Background Image",
-      additionalParams: {
-        availableTypes: ["image"],
-      },
-      value: {
-        type: "image",
-        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6729d54e7acba6002c5e6e52?alt=media&timestamp=1730794845964",
-      },
-    });
-
-    this.addProp({
-      type: "boolean",
-      key: "overlayActive",
-      displayer: "Overlay Active",
-      value: false,
     });
 
     this.addProp({
@@ -87,7 +93,7 @@ class Testimonials1Page extends Testimonials {
             {
               type: "string",
               key: "description",
-              displayer: "Review Text",
+              displayer: "Text",
               value:
                 "I really like the clean and simple aesthetic of flat design. It's great for creating a modern and minimal look, and it also works well for responsive design since it's easy to adapt to different screen sizes. Plus, the lack of textures and gradients makes it easier to focus on the content itself.",
             },
@@ -112,9 +118,9 @@ class Testimonials1Page extends Testimonials {
             {
               type: "media",
               key: "profileImage",
-              displayer: "Author Image",
+              displayer: "Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "icon"],
               },
               value: {
                 type: "image",
@@ -131,7 +137,7 @@ class Testimonials1Page extends Testimonials {
             {
               type: "string",
               key: "description",
-              displayer: "Review Text",
+              displayer: "Text",
               value: "This product has changed my life! It's incredibly useful and packed with creative features. I would highly recommend it to everyone!",
             },
             {
@@ -155,9 +161,9 @@ class Testimonials1Page extends Testimonials {
             {
               type: "media",
               key: "profileImage",
-              displayer: "Author Image",
+              displayer: "Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "icon"],
               },
               value: {
                 type: "image",
@@ -174,7 +180,7 @@ class Testimonials1Page extends Testimonials {
             {
               type: "string",
               key: "description",
-              displayer: "Review Text",
+              displayer: "Text",
               value: "This product has changed my life! It's incredibly useful and packed with creative features. I would highly recommend it to everyone!",
             },
             {
@@ -198,9 +204,9 @@ class Testimonials1Page extends Testimonials {
             {
               type: "media",
               key: "profileImage",
-              displayer: "Author Image",
+              displayer: "Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "icon"],
               },
               value: {
                 type: "image",
@@ -251,9 +257,10 @@ class Testimonials1Page extends Testimonials {
       },
     };
 
-    const bgMedia = this.getPropValue("componentBackground") as TypeMediaInputValue;
+    const background = this.castToObject<{ componentBackground: TypeMediaInputValue; overlayActive: boolean }>("background");
+    const bgMedia = background.componentBackground as TypeMediaInputValue;
     const imageExist = bgMedia && bgMedia.url;
-    const overlayActive = this.getPropValue("overlayActive");
+    const overlayActive = background.overlayActive;
 
     return (
       <Base.Container className={`${this.decorateCSS("container")} ${imageExist ? this.decorateCSS("with-background") : ""}`}>
