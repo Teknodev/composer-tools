@@ -85,6 +85,9 @@
             .icon {
               color: var(--composer-primary-color);
               font-size: 1rem;
+              width: 15px;
+              height: 15px;
+              object-fit: contain;
             }
           }
         }

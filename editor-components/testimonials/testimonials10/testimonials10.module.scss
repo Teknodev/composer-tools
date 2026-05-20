@@ -56,18 +56,18 @@
           flex-grow: 1;
           max-width: 60%;
           position: relative;
+          isolation: isolate;
+          background: var(--composer-primary-color);
           padding-bottom: calc(var(--composer-gap-xl) * 3);
 
           &::after {
             content: "";
             position: absolute;
             top: 0;
-            left: 0;
-            width: calc(100% + var(--composer-content-width));
-            height: 100%;
+            bottom: 0;
+            left: 100%;
+            width: 9999px;
             background: var(--composer-primary-color);
-            z-index: -1;
-            border-radius: var(--composer-border-radius-xs);
           }
           .slider-style {
             width: 100%;
@@ -252,6 +252,7 @@
               transform: translateX(-50%);
               width: 100vw;
               border-radius: 0;
+              z-index: -1;
             }
             flex-basis: auto;
             max-width: 100%;

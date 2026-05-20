@@ -33,6 +33,26 @@ class Testimonials5Page extends Testimonials {
     super(props, styles);
 
     this.addProp({
+      type: "object",
+      key: "background",
+      displayer: "Background",
+      value: [
+        {
+          type: "media",
+          key: "componentBackground",
+          displayer: "Background Media",
+          additionalParams: { availableTypes: ["image", "video"] },
+          value: { type: "image", url: "https://craftohtml.themezaa.com/images/demo-travel-agency-home-bg-03.jpg" },
+        },
+        {
+          type: "boolean",
+          key: "overlayActive",
+          displayer: "Overlay",
+          value: false,
+        },
+      ],
+    });
+    this.addProp({
       type: "string",
       key: "subtitle",
       displayer: "Subtitle",
@@ -69,16 +89,9 @@ class Testimonials5Page extends Testimonials {
     }));
 
     this.addProp({
-      type: "media",
-      key: "componentBackground",
-      displayer: "Background Image",
-      additionalParams: { availableTypes: ["image"] },
-      value: { type: "image", url: "https://craftohtml.themezaa.com/images/demo-travel-agency-home-bg-03.jpg" },
-    });
-    this.addProp({
       type: "boolean",
       key: "lineIsActive",
-      displayer: "Line Active",
+      displayer: "Line",
       value: true,
     });
 
@@ -299,8 +312,10 @@ class Testimonials5Page extends Testimonials {
     const nextIconExist = leftItem.nextIcon && (leftItem.nextIcon.type === "icon" ? leftItem.nextIcon.name : leftItem.nextIcon.url);
     const hasLeftContent = Boolean(hasAnyTopContent || prevIconExist || nextIconExist);
 
-    const bgMedia = this.getPropValue("componentBackground") as TypeMediaInputValue;
+    const background = this.castToObject<{ componentBackground: TypeMediaInputValue; overlayActive: boolean }>("background");
+    const bgMedia = background.componentBackground as TypeMediaInputValue;
     const backgroundImageExist = bgMedia && bgMedia.url;
+    const overlayActive = background.overlayActive;
 
     const rawSettings = this.getPropValue("slider-settings");
     const sliderSettings = Object.fromEntries((rawSettings as any[]).map((p: any) => [p.key, p.value]));
@@ -314,10 +329,14 @@ class Testimonials5Page extends Testimonials {
     };
 
     return (
-      <Base.Container
-        className={`${this.decorateCSS("container")} ${backgroundImageExist ? this.decorateCSS("with-background") : ""}`}
-        style={backgroundImageExist ? { backgroundImage: `url(${backgroundImageExist})` } : {}}
-      >
+      <Base.Container className={`${this.decorateCSS("container")} ${backgroundImageExist ? this.decorateCSS("with-background") : ""}`}>
+        {backgroundImageExist && (
+          <Base.Media
+            value={bgMedia}
+            className={this.decorateCSS("component-background")}
+          />
+        )}
+        {overlayActive && backgroundImageExist && <div className={this.decorateCSS("overlay")} />}
         <Base.MaxContent className={this.decorateCSS("maxContent")}>
           <div className={this.decorateCSS("containerGrid")}>
             {hasLeftContent && (
@@ -388,9 +407,9 @@ class Testimonials5Page extends Testimonials {
                     )}
                     <div className={this.decorateCSS("rightWrapper")}>
                       {item.author && this.castToString(item.author.name) && (
-                        <Base.H3 className={this.decorateCSS("sliderTitle")}>
+                        <Base.H5 className={this.decorateCSS("sliderTitle")}>
                           {item.author.name}
-                        </Base.H3>
+                        </Base.H5>
                       )}
                       {this.getPropValue("lineIsActive") && (
                         <div className={this.decorateCSS("lineContainer")}>

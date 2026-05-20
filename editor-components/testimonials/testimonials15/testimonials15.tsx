@@ -314,12 +314,17 @@ class Testimonials15Page extends Testimonials {
     const videoBox = this.castToObject<any>("videoBox");
 
     const { visibleCount } = this.getVisibilityInfo(topRightBox, bottomRightBox, videoBox);
-    const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
+    const buttons = this.castToObject<Button[]>("buttons");
+    const hasValidButtons = buttons.some((btn: Button) => {
+      const buttonText = this.castToString(btn.text);
+      const iconExist = btn.icon && (btn.icon.type === "icon" ? btn.icon.name : btn.icon.url);
+      return buttonText || iconExist;
+    });
 
     const renderRightSide = visibleCount > 0;
 
     const leftExist = this.getPropValue("image") || (bottomLeftBox.visibility && (this.castToString(bottomLeftBox.title) || this.castToString(bottomLeftBox.subtitle) || bottomLeftBox.number));
-    const topExist = topRightBox.visibility && (subtitleExist || titleExist || descriptionExist || buttons.length > 0);
+    const topExist = topRightBox.visibility && (subtitleExist || titleExist || descriptionExist || hasValidButtons);
     const bottomExist = bottomRightBox.visibility && (this.castToString(bottomRightBox.text) || (bottomRightBox.author && (this.castToString(bottomRightBox.author.name) || this.castToString(bottomRightBox.author.subtitle))) || bottomRightBox.starNumber);
     const videoExist = videoBox.visibility;
 
@@ -397,11 +402,12 @@ class Testimonials15Page extends Testimonials {
                             {this.getPropValue("description")}
                           </Base.SectionDescription>
                         )}
-                        <div className={this.decorateCSS("button-wrapper")}>
-                          {buttons.map((button, index) => {
-                            const buttonTextExist = this.castToString(button.text);
-                            const btnIconExist = Boolean(button.icon && (button.icon.type === "icon" ? (button.icon.name && button.icon.name.length > 0) : (button.icon.url && button.icon.url.length > 0)));
-                            if (!button.image && (btnIconExist || buttonTextExist)) {
+                        {hasValidButtons && (
+                          <div className={this.decorateCSS("button-wrapper")}>
+                            {buttons.map((button: Button, index: number) => {
+                              const buttonTextExist = this.castToString(button.text);
+                              const btnIconExist = button.icon && (button.icon.type === "icon" ? button.icon.name : button.icon.url);
+                              if (!buttonTextExist && !btnIconExist) return null;
                               return (
                                 <ComposerLink key={index} path={button.url}>
                                   <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
@@ -411,14 +417,15 @@ class Testimonials15Page extends Testimonials {
                                         className={this.decorateCSS("button-icon")}
                                       />
                                     )}
-                                    {buttonTextExist && <div className={this.decorateCSS("button-text")}>{button.text}</div>}
+                                    {buttonTextExist && (
+                                      <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
+                                    )}
                                   </Base.Button>
                                 </ComposerLink>
                               );
-                            }
-                            return null;
-                          })}
-                        </div>
+                            })}
+                          </div>
+                        )}
                       </Base.VerticalContent>
                     </div>
                   )}
