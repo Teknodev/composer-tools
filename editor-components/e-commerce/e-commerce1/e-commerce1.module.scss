@@ -407,7 +407,7 @@
             background-color: var(--composer-overlay-color) !important;
 
             .popup-content {
-                width: 40%;
+                width: min(40%, calc(90vh - 80px));
                 height: auto;
                 max-height: 90vh;
                 position: relative;
@@ -420,6 +420,7 @@
                     overflow: hidden;
                     width: 100%;
                     aspect-ratio: 1 / 1;
+                    border-radius: var(--composer-border-radius-sm);
                 }
 
                 .image {
@@ -450,21 +451,29 @@
                     align-items: center;
                     padding: var(--composer-gap-xs) var(--composer-gap-sm);
                     width: 100%;
-                    height: 60px;
+                    height: 50px;
                     flex: none;
-                    margin-top: 10px;
+                    margin-top: var(--composer-gap-sm);
                     z-index: 2;
 
                     .icon-group {
+                        display: flex;
+                        align-items: center;
+                        gap: var(--composer-gap-sm);
 
                         .left-arrow,
                         .right-arrow {
                             color: var(--composer-font-color-primary);
-                            font-size: 2rem !important;
+                            font-size: 1.75rem !important;
                             width: 1em;
                             height: 1em;
                             object-fit: contain;
                             cursor: pointer;
+                            transition: transform 0.3s ease;
+
+                            &:hover {
+                                transform: scale(1.1);
+                            }
                         }
                     }
 
@@ -475,11 +484,16 @@
 
                     .close {
                         color: var(--composer-font-color-primary);
-                        font-size: 2rem !important;
+                        font-size: 1.75rem !important;
                         width: 1em;
                         height: 1em;
                         object-fit: contain;
                         cursor: pointer;
+                        transition: transform 0.5s ease;
+
+                        &:hover {
+                            transform: rotate(180deg);
+                        }
                     }
                 }
             }
@@ -526,6 +540,21 @@
                 .popup-content {
                     width: min(88%, calc(90vh - 80px));
                     max-height: 90vh;
+
+                    .items {
+                        height: 40px;
+
+                        .icon-group {
+                            .left-arrow,
+                            .right-arrow {
+                                font-size: 1.5rem !important;
+                            }
+                        }
+
+                        .close {
+                            font-size: 1.5rem !important;
+                        }
+                    }
                 }
             }
 

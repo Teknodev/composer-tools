@@ -1423,17 +1423,6 @@ class ECommerce7 extends BaseECommerce {
           isVisible={this.getComponentState("zoomImage")}
           className={this.decorateCSS("zoom-image")}
         >
-          {icons?.closeIcon && (
-            <div
-              className={this.decorateCSS("close-icon")}
-              onClick={() => this.handleClickClose()}
-            >
-              <Base.Media
-                value={icons.closeIcon}
-                className={this.decorateCSS("icon")}
-              />
-            </div>
-          )}
           {icons?.leftArrow && (
             <div
               className={this.decorateCSS("left-icon")}
@@ -1456,15 +1445,30 @@ class ECommerce7 extends BaseECommerce {
               />
             </div>
           )}
-          {media[this.getComponentState("selectedImage")]?.item && (
-            <Base.Media
-              value={media[this.getComponentState("selectedImage")].item}
-              onClick={() => this.toggleZoomOverlayImage()}
-              className={`${this.decorateCSS("image")} ${this.getComponentState("overlayZoomImage") &&
-                this.decorateCSS("zoom")
-                }`}
-            />
-          )}
+          <div className={this.decorateCSS("image-outer-wrapper")}>
+            {icons?.closeIcon && (
+              <div
+                className={this.decorateCSS("close-icon")}
+                onClick={() => this.handleClickClose()}
+              >
+                <Base.Media
+                  value={icons.closeIcon}
+                  className={this.decorateCSS("icon")}
+                />
+              </div>
+            )}
+            <div className={this.decorateCSS("image-wrapper")}>
+              {media[this.getComponentState("selectedImage")]?.item && (
+                <Base.Media
+                  value={media[this.getComponentState("selectedImage")].item}
+                  onClick={() => this.toggleZoomOverlayImage()}
+                  className={`${this.decorateCSS("image")} ${this.getComponentState("overlayZoomImage") &&
+                    this.decorateCSS("zoom")
+                    }`}
+                />
+              )}
+            </div>
+          </div>
           {media.length > 0 && icons?.sliderDotIcon && (
             <div className={this.decorateCSS("dots")}>
               {media.map((item, index: number) => {
