@@ -491,8 +491,16 @@
     .container {
         .max-content {
             .image-popup {
+                position: fixed !important;
+                inset: 0 !important;
+                width: 100vw !important;
+                height: 100vh !important;
+                display: flex !important;
+                align-items: center !important;
+                justify-content: center !important;
+
                 .popup-content {
-                    width: 70%;
+                    width: min(60%, calc(90vh - 80px));
                     max-height: 90vh;
                 }
             }
@@ -507,8 +515,16 @@
             gap: var(--composer-gap-lg);
 
             .image-popup {
+                position: fixed !important;
+                inset: 0 !important;
+                width: 100vw !important;
+                height: 100vh !important;
+                display: flex !important;
+                align-items: center !important;
+                justify-content: center !important;
+
                 .popup-content {
-                    width: 90%;
+                    width: min(88%, calc(90vh - 80px));
                     max-height: 90vh;
                 }
             }

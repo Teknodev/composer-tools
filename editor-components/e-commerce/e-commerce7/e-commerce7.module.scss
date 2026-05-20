@@ -713,11 +713,11 @@
                 justify-content: center;
 
                 .icon {
-                    font-size: 1.5rem;
+                    font-size: 1rem !important;
                     width: 1em;
                     height: 1em;
                     object-fit: contain;
-                    margin: var(--composer-gap-sm);
+                    margin: var(--composer-gap-xs);
                     transition: all 0.5s ease;
                     color: white;
 
@@ -862,9 +862,18 @@
         }
 
         .zoom-image {
+            position: fixed !important;
+            inset: 0 !important;
+            width: 100vw !important;
+            height: 100vh !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+
             .image {
-                width: 85%;
-                height: 70%;
+                width: min(80%, 75vh);
+                height: auto;
+                max-height: 75vh;
             }
 
             .dots {
@@ -946,6 +955,14 @@
         }
 
         .zoom-image {
+            position: fixed !important;
+            inset: 0 !important;
+            width: 100vw !important;
+            height: 100vh !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+
             .close-icon {
                 right: var(--composer-gap-xs);
 
@@ -955,8 +972,9 @@
             }
 
             .image {
-                width: 90%;
-                height: 70%;
+                width: min(88%, 65vh);
+                height: auto;
+                max-height: 65vh;
             }
 
             .left-icon {
@@ -970,7 +988,7 @@
             .dots {
                 .dot {
                     .icon {
-                        font-size: 0.75rem;
+                        font-size: 0.75rem !important;
                         margin: var(--composer-gap-xs);
                     }
                 }
