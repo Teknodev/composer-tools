@@ -58,7 +58,6 @@
       width: 100%;
 
       .card {
-        container-type: inline-size;
         width: 100%;
         border: 1px solid color-mix(in srgb, var(--composer-font-color-primary) 8%, transparent);
         border-radius: var(--composer-border-radius-md);
@@ -161,6 +160,22 @@
                   font-size: 1rem;
                 }
               }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-tablet-width}) {
+  .container {
+    .max-content {
+      .left-column {
+        .stats-container {
+          .stat-item {
+            .stat-number {
+              font-size: 5rem !important;
             }
           }
         }
