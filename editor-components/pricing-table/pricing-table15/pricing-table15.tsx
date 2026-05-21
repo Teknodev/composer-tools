@@ -25,24 +25,21 @@ type ButtonTypeObj = {
 };
 
 type LeftSection = {
-  leftSubtitle: React.JSX.Element;
-  leftTitle: React.JSX.Element;
-  leftDescription: React.JSX.Element;
   leftIconBackground: boolean;
   leftFeatures: FeatureItem[];
   leftItemCount: number;
 };
 
 type RightSection = {
-  rightSetupFeeSymbol: React.JSX.Element;
-  rightSetupFeePrice: React.JSX.Element;
-  rightSetupFeeLabel: React.JSX.Element;
+  rightSetupFeePrefix: React.JSX.Element;
+  rightSetupFeeValue: React.JSX.Element;
+  rightSetupFeeSuffix: React.JSX.Element;
   rightOperator: TypeMediaInputValue;
-  rightMonthlySymbol: React.JSX.Element;
-  rightMonthlyPrice: React.JSX.Element;
+  rightMonthlyPrefix: React.JSX.Element;
+  rightMonthlyValue: React.JSX.Element;
   enableStatAnimation: boolean;
   animationDuration: number;
-  rightMonthlyLabel: React.JSX.Element;
+  rightMonthlySuffix: React.JSX.Element;
   rightCheckmarkFeaturesOverlay: boolean;
   rightCheckmarkFeatures: CheckmarkFeature[];
   rightItemCount: number;
@@ -54,28 +51,31 @@ class PricingTable15 extends BasePricingTable {
     super(props, styles);
 
     this.addProp({
+      type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "Full-featured",
+    });
+
+    this.addProp({
+      type: "string",
+      key: "title",
+      displayer: "Title",
+      value: "Everything you need to talk with customers",
+    });
+
+    this.addProp({
+      type: "string",
+      key: "description",
+      displayer: "Description",
+      value: "Choose the package that fits your business needs.",
+    });
+
+    this.addProp({
       type: "object",
       key: "left",
       displayer: "Left Section",
       value: [
-        {
-          type: "string",
-          key: "leftSubtitle",
-          displayer: "Subtitle",
-          value: "Full-featured",
-        },
-        {
-          type: "string",
-          key: "leftTitle",
-          displayer: "Title",
-          value: "Everything you need to talk with customers",
-        },
-        {
-          type: "string",
-          key: "leftDescription",
-          displayer: "Description",
-          value: "Choose the package that fits your business needs.",
-        },
         {
           type: "boolean",
           key: "leftIconBackground",
@@ -216,20 +216,20 @@ class PricingTable15 extends BasePricingTable {
       value: [
         {
           type: "string",
-          key: "rightSetupFeeSymbol",
-          displayer: "Setup Symbol",
+          key: "rightSetupFeePrefix",
+          displayer: "Setup Prefix",
           value: "$",
         },
         {
           type: "string",
-          key: "rightSetupFeePrice",
-          displayer: "Setup Price",
+          key: "rightSetupFeeValue",
+          displayer: "Setup Value",
           value: "99",
         },
         {
           type: "string",
-          key: "rightSetupFeeLabel",
-          displayer: "Setup Fee Label",
+          key: "rightSetupFeeSuffix",
+          displayer: "Setup Suffix",
           value: "Setup fee",
         },
         {
@@ -246,15 +246,21 @@ class PricingTable15 extends BasePricingTable {
         },
         {
           type: "string",
-          key: "rightMonthlySymbol",
-          displayer: "Monthly Symbol",
+          key: "rightMonthlyPrefix",
+          displayer: "Monthly Prefix",
           value: "$",
         },
         {
           type: "string",
-          key: "rightMonthlyPrice",
-          displayer: "Monthly Price",
+          key: "rightMonthlyValue",
+          displayer: "Monthly Value",
           value: "4",
+        },
+        {
+          type: "string",
+          key: "rightMonthlySuffix",
+          displayer: "Monthly Suffix",
+          value: "Per month",
         },
         {
           type: "boolean",
@@ -267,12 +273,6 @@ class PricingTable15 extends BasePricingTable {
           key: "animationDuration",
           displayer: "Stat Animation Duration",
           value: 3,
-        },
-        {
-          type: "string",
-          key: "rightMonthlyLabel",
-          displayer: "Monthly Label",
-          value: "Per month",
         },
         {
           type: "boolean",
@@ -491,9 +491,9 @@ class PricingTable15 extends BasePricingTable {
     const leftProps = this.getPropValue("left") as TypeUsableComponentProps[];
     const rightProps = this.getPropValue("right") as TypeUsableComponentProps[];
 
-    const leftSubtitle = this.castToString(this.getPropValue("leftSubtitle", { parent_object: leftProps }));
-    const leftTitle = this.castToString(this.getPropValue("leftTitle", { parent_object: leftProps }));
-    const leftDescription = this.castToString(this.getPropValue("leftDescription", { parent_object: leftProps }));
+    const subtitle = this.castToString(this.getPropValue("subtitle"));
+    const title = this.castToString(this.getPropValue("title"));
+    const description = this.castToString(this.getPropValue("description"));
     const leftIconBackground = !!this.getPropValue("leftIconBackground", { parent_object: leftProps });
     const leftItemCount = this.getPropValue("leftItemCount", { parent_object: leftProps }) || 1;
 
@@ -504,13 +504,13 @@ class PricingTable15 extends BasePricingTable {
       featureDescription: this.getPropValue("featureDescription", { parent_object: item.value }),
     }));
 
-    const rightSetupFeeSymbolExist = this.castToString(this.getPropValue("rightSetupFeeSymbol", { parent_object: rightProps }));
-    const rightSetupFeePriceExist = this.castToString(this.getPropValue("rightSetupFeePrice", { parent_object: rightProps }));
-    const rightSetupFeeLabelExist = this.castToString(this.getPropValue("rightSetupFeeLabel", { parent_object: rightProps }));
+    const rightSetupFeePrefixExist = this.castToString(this.getPropValue("rightSetupFeePrefix", { parent_object: rightProps }));
+    const rightSetupFeeValueExist = this.castToString(this.getPropValue("rightSetupFeeValue", { parent_object: rightProps }));
+    const rightSetupFeeSuffixExist = this.castToString(this.getPropValue("rightSetupFeeSuffix", { parent_object: rightProps }));
     const rightOperatorExist = this.getPropValue("rightOperator", { parent_object: rightProps }) as TypeMediaInputValue;
-    const rightMonthlySymbolExist = this.castToString(this.getPropValue("rightMonthlySymbol", { parent_object: rightProps }));
-    const rightMonthlyPriceExist = this.castToString(this.getPropValue("rightMonthlyPrice", { parent_object: rightProps }));
-    const rightMonthlyLabelExist = this.castToString(this.getPropValue("rightMonthlyLabel", { parent_object: rightProps }));
+    const rightMonthlyPrefixExist = this.castToString(this.getPropValue("rightMonthlyPrefix", { parent_object: rightProps }));
+    const rightMonthlyValueExist = this.castToString(this.getPropValue("rightMonthlyValue", { parent_object: rightProps }));
+    const rightMonthlySuffixExist = this.castToString(this.getPropValue("rightMonthlySuffix", { parent_object: rightProps }));
 
     const enableStatAnimation = this.getPropValue("enableStatAnimation", { parent_object: rightProps });
     const animationDuration = this.getPropValue("animationDuration", { parent_object: rightProps }) || 3;
@@ -533,21 +533,21 @@ class PricingTable15 extends BasePricingTable {
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          {(leftSubtitle || leftTitle || leftDescription || leftFeatures.length > 0) && (
+          {(subtitle || title || description || leftFeatures.length > 0) && (
             <Base.VerticalContent className={this.decorateCSS("left-column")}>
-              {leftSubtitle && (
+              {subtitle && (
                 <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
-                  {this.getPropValue("leftSubtitle", { parent_object: leftProps })}
+                  {this.getPropValue("subtitle")}
                 </Base.SectionSubTitle>
               )}
-              {leftTitle && (
+              {title && (
                 <Base.SectionTitle className={this.decorateCSS("title")}>
-                  {this.getPropValue("leftTitle", { parent_object: leftProps })}
+                  {this.getPropValue("title")}
                 </Base.SectionTitle>
               )}
-              {leftDescription && (
+              {description && (
                 <Base.SectionDescription className={this.decorateCSS("description")}>
-                  {this.getPropValue("leftDescription", { parent_object: leftProps })}
+                  {this.getPropValue("description")}
                 </Base.SectionDescription>
               )}
               {leftFeatures && leftFeatures.length > 0 && (
@@ -598,26 +598,26 @@ class PricingTable15 extends BasePricingTable {
               )}
             </Base.VerticalContent>
           )}
-          {(rightSetupFeePriceExist || rightSetupFeeLabelExist || rightMonthlyPriceExist || rightMonthlyLabelExist || rightCheckmarkFeatures.length > 0 || visibleButtons.length > 0) && (
+          {(rightSetupFeeValueExist || rightSetupFeeSuffixExist || rightMonthlyValueExist || rightMonthlySuffixExist || rightCheckmarkFeatures.length > 0 || visibleButtons.length > 0) && (
             <div className={this.decorateCSS("right-column")}>
               <div className={this.decorateCSS("pricing-card")}>
-                {(rightSetupFeePriceExist || rightSetupFeeLabelExist || rightMonthlyPriceExist || rightMonthlyLabelExist) && (
+                {(rightSetupFeeValueExist || rightSetupFeeSuffixExist || rightMonthlyValueExist || rightMonthlySuffixExist) && (
                   <div className={this.decorateCSS("prices-container")}>
-                    {(rightSetupFeePriceExist || rightSetupFeeLabelExist) && (
+                    {(rightSetupFeeValueExist || rightSetupFeeSuffixExist) && (
                       <div className={this.decorateCSS("setup-price-box")}>
-                        {(rightSetupFeePriceExist || rightSetupFeeSymbolExist) && (
+                        {(rightSetupFeeValueExist || rightSetupFeePrefixExist) && (
                           <Base.H1 className={this.decorateCSS("setup-price-value")}>
-                            <span className={this.decorateCSS("stat-symbol")}>{rightSetupFeeSymbolExist}</span>
+                            <span className={this.decorateCSS("stat-symbol")}>{rightSetupFeePrefixExist}</span>
                             {enableStatAnimation ? (
-                              <this.AnimatedNumber targetValue={parseFloat(rightSetupFeePriceExist) || 0} duration={animationDuration * 1000} />
+                              <this.AnimatedNumber targetValue={parseFloat(rightSetupFeeValueExist) || 0} duration={animationDuration * 1000} />
                             ) : (
-                              rightSetupFeePriceExist
+                              rightSetupFeeValueExist
                             )}
                           </Base.H1>
                         )}
-                        {rightSetupFeeLabelExist && (
+                        {rightSetupFeeSuffixExist && (
                           <Base.P className={this.decorateCSS("setup-price-label")}>
-                            {this.getPropValue("rightSetupFeeLabel", { parent_object: rightProps })}
+                            {this.getPropValue("rightSetupFeeSuffix", { parent_object: rightProps })}
                           </Base.P>
                         )}
                       </div>
@@ -630,21 +630,21 @@ class PricingTable15 extends BasePricingTable {
                         />
                       </div>
                     )}
-                    {(rightMonthlyPriceExist || rightMonthlyLabelExist) && (
+                    {(rightMonthlyValueExist || rightMonthlySuffixExist) && (
                       <div className={this.decorateCSS("monthly-price-box")}>
-                        {(rightMonthlyPriceExist || rightMonthlySymbolExist) && (
+                        {(rightMonthlyValueExist || rightMonthlyPrefixExist) && (
                           <Base.H1 className={this.decorateCSS("monthly-price-value")}>
-                            <span className={this.decorateCSS("stat-symbol")}>{rightMonthlySymbolExist}</span>
+                            <span className={this.decorateCSS("stat-symbol")}>{rightMonthlyPrefixExist}</span>
                             {enableStatAnimation ? (
-                              <this.AnimatedNumber targetValue={parseFloat(rightMonthlyPriceExist) || 0} duration={animationDuration * 1000} />
+                              <this.AnimatedNumber targetValue={parseFloat(rightMonthlyValueExist) || 0} duration={animationDuration * 1000} />
                             ) : (
-                              rightMonthlyPriceExist
+                              rightMonthlyValueExist
                             )}
                           </Base.H1>
                         )}
-                        {rightMonthlyLabelExist && (
+                        {rightMonthlySuffixExist && (
                           <Base.P className={this.decorateCSS("monthly-price-label")}>
-                            {this.getPropValue("rightMonthlyLabel", { parent_object: rightProps })}
+                            {this.getPropValue("rightMonthlySuffix", { parent_object: rightProps })}
                           </Base.P>
                         )}
                       </div>
