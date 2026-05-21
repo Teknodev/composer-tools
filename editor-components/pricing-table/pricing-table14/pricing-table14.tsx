@@ -52,6 +52,13 @@ class PricingTable14 extends BasePricingTable {
 
     this.addProp({
       type: "array",
+      key: "buttons",
+      displayer: "Buttons",
+      value: [INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary")],
+    });
+
+    this.addProp({
+      type: "array",
       key: "stats",
       displayer: "Stats",
       value: [
@@ -374,6 +381,8 @@ class PricingTable14 extends BasePricingTable {
     const subtitleExist = this.castToString(this.getPropValue("subtitle"));
     const titleExist = this.castToString(this.getPropValue("title"));
     const descriptionExist = this.castToString(this.getPropValue("description"));
+    const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons") || [];
+    const visibleButtons = buttons.filter(btn => this.castToString(btn.text));
     const stats = this.castToObject<StatItem[]>("stats") || [];
     const cards = this.castToObject<CardItem[]>("cards") || [];
     const itemCountInARow = this.getPropValue("itemCountInARow") || 1;
@@ -382,7 +391,7 @@ class PricingTable14 extends BasePricingTable {
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           {(subtitleExist || titleExist || descriptionExist || stats.length > 0) && (
-            <div className={`${this.decorateCSS("left-column")} ${cards.length === 0 ? this.decorateCSS("full-width") : ""}`}>
+            <Base.VerticalContent className={`${this.decorateCSS("left-column")} ${cards.length === 0 ? this.decorateCSS("full-width") : ""}`}>
               {subtitleExist && (
                 <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
                   {this.getPropValue("subtitle")}
@@ -397,6 +406,19 @@ class PricingTable14 extends BasePricingTable {
                 <Base.SectionDescription className={this.decorateCSS("description")}>
                   {this.getPropValue("description")}
                 </Base.SectionDescription>
+              )}
+              {visibleButtons.length > 0 && (
+                <div className={this.decorateCSS("button-container")}>
+                  {visibleButtons.map((item: INPUTS.CastedButton, index: number) => {
+                    return this.castToString(item.text) && (
+                      <ComposerLink key={`button-${index}`} path={item.url}>
+                        <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
+                          <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>
+                        </Base.Button>
+                      </ComposerLink>
+                    );
+                  })}
+                </div>
               )}
               {stats.length > 0 && (
                 <div className={this.decorateCSS("stats-container")}>
@@ -420,7 +442,7 @@ class PricingTable14 extends BasePricingTable {
                   })}
                 </div>
               )}
-            </div>
+            </Base.VerticalContent>
           )}
 
           {cards.length > 0 && (

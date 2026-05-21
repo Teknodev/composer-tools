@@ -27,6 +27,19 @@
         text-align: left;
       }
 
+      .button-container {
+        display: flex;
+        flex-direction: row;
+        gap: var(--composer-gap-sm);
+        flex-wrap: wrap;
+
+        .button {
+          .button-text {
+            content: "";
+          }
+        }
+      }
+
       .stats-container {
         display: flex;
         flex-direction: row;
