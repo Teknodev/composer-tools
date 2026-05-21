@@ -960,6 +960,7 @@ class ECommerce7 extends BaseECommerce {
       slidesToScroll: 1,
     };
     return (
+      <div className={this.decorateCSS("e-commerce7-root")}>
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           {media.length > 0 && (
@@ -1419,78 +1420,79 @@ class ECommerce7 extends BaseECommerce {
             </Base.VerticalContent>
           )}
         </Base.MaxContent>
-        <Base.Overlay
-          isVisible={this.getComponentState("zoomImage")}
-          className={this.decorateCSS("zoom-image")}
-        >
-          {icons?.leftArrow && (
-            <div
-              className={this.decorateCSS("left-icon")}
-              onClick={() => this.handleClickPrevOverlay()}
-            >
-              <Base.Media
-                value={icons.leftArrow}
-                className={this.decorateCSS("icon")}
-              />
-            </div>
-          )}
-          {this.decorateCSS("right-icon") && (
-            <div
-              className={this.decorateCSS("right-icon")}
-              onClick={() => this.handleClickNextOverlay()}
-            >
-              <Base.Media
-                value={icons?.rightArrow}
-                className={this.decorateCSS("icon")}
-              />
-            </div>
-          )}
-          <div className={this.decorateCSS("image-outer-wrapper")}>
-            {icons?.closeIcon && (
-              <div
-                className={this.decorateCSS("close-icon")}
-                onClick={() => this.handleClickClose()}
-              >
-                <Base.Media
-                  value={icons.closeIcon}
-                  className={this.decorateCSS("icon")}
-                />
-              </div>
-            )}
-            <div className={this.decorateCSS("image-wrapper")}>
-              {media[this.getComponentState("selectedImage")]?.item && (
-                <Base.Media
-                  value={media[this.getComponentState("selectedImage")].item}
-                  onClick={() => this.toggleZoomOverlayImage()}
-                  className={`${this.decorateCSS("image")} ${this.getComponentState("overlayZoomImage") &&
-                    this.decorateCSS("zoom")
-                    }`}
-                />
-              )}
-            </div>
-          </div>
-          {media.length > 0 && icons?.sliderDotIcon && (
-            <div className={this.decorateCSS("dots")}>
-              {media.map((item, index: number) => {
-                return (
-                  <div
-                    className={this.decorateCSS("dot")}
-                    onClick={() => this.handleDotClick(index)}
-                    key={index}
-                  >
-                    <Base.Media
-                      value={icons.sliderDotIcon}
-                      className={`${this.decorateCSS("icon")} ${this.getComponentState("selectedImage") === index &&
-                        this.decorateCSS("active")
-                        }`}
-                    />
-                  </div>
-                );
-              })}
-            </div>
-          )}
-        </Base.Overlay>
       </Base.Container>
+      <Base.Overlay
+        isVisible={this.getComponentState("zoomImage")}
+        className={this.decorateCSS("zoom-image")}
+      >
+        {icons?.leftArrow && (
+          <div
+            className={this.decorateCSS("left-icon")}
+            onClick={() => this.handleClickPrevOverlay()}
+          >
+            <Base.Media
+              value={icons.leftArrow}
+              className={this.decorateCSS("icon")}
+            />
+          </div>
+        )}
+        {this.decorateCSS("right-icon") && (
+          <div
+            className={this.decorateCSS("right-icon")}
+            onClick={() => this.handleClickNextOverlay()}
+          >
+            <Base.Media
+              value={icons?.rightArrow}
+              className={this.decorateCSS("icon")}
+            />
+          </div>
+        )}
+        <div className={this.decorateCSS("image-outer-wrapper")}>
+          {icons?.closeIcon && (
+            <div
+              className={this.decorateCSS("close-icon")}
+              onClick={() => this.handleClickClose()}
+            >
+              <Base.Media
+                value={icons.closeIcon}
+                className={this.decorateCSS("icon")}
+              />
+            </div>
+          )}
+          <div className={this.decorateCSS("image-wrapper")}>
+            {media[this.getComponentState("selectedImage")]?.item && (
+              <Base.Media
+                value={media[this.getComponentState("selectedImage")].item}
+                onClick={() => this.toggleZoomOverlayImage()}
+                className={`${this.decorateCSS("image")} ${this.getComponentState("overlayZoomImage") &&
+                  this.decorateCSS("zoom")
+                  }`}
+              />
+            )}
+          </div>
+        </div>
+        {media.length > 0 && icons?.sliderDotIcon && (
+          <div className={this.decorateCSS("dots")}>
+            {media.map((item, index: number) => {
+              return (
+                <div
+                  className={this.decorateCSS("dot")}
+                  onClick={() => this.handleDotClick(index)}
+                  key={index}
+                >
+                  <Base.Media
+                    value={icons.sliderDotIcon}
+                    className={`${this.decorateCSS("icon")} ${this.getComponentState("selectedImage") === index &&
+                      this.decorateCSS("active")
+                      }`}
+                  />
+                </div>
+              );
+            })}
+          </div>
+        )}
+      </Base.Overlay>
+      </div>
     );
   }
 }

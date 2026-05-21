@@ -3317,6 +3317,7 @@ class ECommerce2 extends BaseECommerce {
             : imageGallery[selectedIndex]?.images?.slice(0, currentImageCount) || [];
 
         return (
+            <div className={this.decorateCSS("e-commerce2-root")}>
             <Base.Container
                 className={`${this.decorateCSS("container")} ${this.decorateCSS("with-overlay")}`}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
@@ -3474,73 +3475,74 @@ class ECommerce2 extends BaseECommerce {
                             </div>
                         );
                     })()}
-                    {activePopup &&
-                        activePopup.popupImages &&
-                        activePopup.popupImages.length > 0 && (
-                            <Base.Overlay
-                                className={this.decorateCSS("popup-overlay")}
-                                onClick={this.closePopup}
-                                isVisible={true}>
-                                <div
-                                    className={this.decorateCSS("popup-content-wrapper")}
-                                    onClick={this.closePopup}
-                                >
-                                    <div className={this.decorateCSS("popup-image-container")}
-                                        onClick={(e) => e.stopPropagation()}>
-                                        <Base.Media
-                                            value={activePopup.popupImages[this.getComponentState("popupImageIndex")]?.popupImg}
-                                            className={this.decorateCSS("popup-image")}
-                                        />
-                                        {activePopup.popupImages.length > 1 && (
-                                            <>
-                                                {popupSettings.prevArrow && (
-                                                    <button
-                                                        className={this.decorateCSS("prevArrow")}
-                                                        onClick={this.handlePrevImage}>
-                                                        <Base.Media
-                                                            value={popupSettings.prevArrow}
-                                                            className={this.decorateCSS("arrow")}
-                                                        />
-                                                    </button>
-                                                )}
-                                                {popupSettings.nextArrow && (
-                                                    <button
-                                                        className={this.decorateCSS("nextArrow")}
-                                                        onClick={this.handleNextImage}>
-                                                        <Base.Media
-                                                            value={popupSettings.nextArrow}
-                                                            className={this.decorateCSS("arrow")}
-                                                        />
-                                                    </button>
-                                                )}
-                                            </>
-                                        )}
-                                        {popupSettings.closeIcon && (
+                </Base.MaxContent>
+            </Base.Container>
+            {activePopup &&
+                activePopup.popupImages &&
+                activePopup.popupImages.length > 0 && (
+                    <Base.Overlay
+                        className={this.decorateCSS("popup-overlay")}
+                        onClick={this.closePopup}
+                        isVisible={true}>
+                        <div
+                            className={this.decorateCSS("popup-content-wrapper")}
+                            onClick={this.closePopup}
+                        >
+                            <div className={this.decorateCSS("popup-image-container")}
+                                onClick={(e) => e.stopPropagation()}>
+                                <Base.Media
+                                    value={activePopup.popupImages[this.getComponentState("popupImageIndex")]?.popupImg}
+                                    className={this.decorateCSS("popup-image")}
+                                />
+                                {activePopup.popupImages.length > 1 && (
+                                    <>
+                                        {popupSettings.prevArrow && (
                                             <button
-                                                className={this.decorateCSS("popup-close")}
-                                                onClick={this.closePopup}>
+                                                className={this.decorateCSS("prevArrow")}
+                                                onClick={this.handlePrevImage}>
                                                 <Base.Media
-                                                    value={popupSettings.closeIcon}
+                                                    value={popupSettings.prevArrow}
                                                     className={this.decorateCSS("arrow")}
                                                 />
                                             </button>
                                         )}
-                                    </div>
-                                    <div className={this.decorateCSS("image-info")}>
-                                        <Base.P className={this.decorateCSS("image-title")}>
-                                            {activePopup.title}
-                                        </Base.P>
-                                        {imgCounter && (
-                                            <Base.P className={this.decorateCSS("image-count")}>
-                                                {imgCount}
-                                            </Base.P>
+                                        {popupSettings.nextArrow && (
+                                            <button
+                                                className={this.decorateCSS("nextArrow")}
+                                                onClick={this.handleNextImage}>
+                                                <Base.Media
+                                                    value={popupSettings.nextArrow}
+                                                    className={this.decorateCSS("arrow")}
+                                                />
+                                            </button>
                                         )}
-                                    </div>
-                                </div>
-                            </Base.Overlay>
-                        )}
-                </Base.MaxContent>
-            </Base.Container>
+                                    </>
+                                )}
+                                {popupSettings.closeIcon && (
+                                    <button
+                                        className={this.decorateCSS("popup-close")}
+                                        onClick={this.closePopup}>
+                                        <Base.Media
+                                            value={popupSettings.closeIcon}
+                                            className={this.decorateCSS("arrow")}
+                                        />
+                                    </button>
+                                )}
+                            </div>
+                            <div className={this.decorateCSS("image-info")}>
+                                <Base.P className={this.decorateCSS("image-title")}>
+                                    {activePopup.title}
+                                </Base.P>
+                                {imgCounter && (
+                                    <Base.P className={this.decorateCSS("image-count")}>
+                                        {imgCount}
+                                    </Base.P>
+                                )}
+                            </div>
+                        </div>
+                    </Base.Overlay>
+                )}
+            </div>
         );
     }
 }
