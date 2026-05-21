@@ -1,10 +1,17 @@
 import { ErrorMessage, Formik, Form } from "formik";
 import * as React from "react";
 import * as Yup from "yup";
-import { BaseContacts, TypeUsableComponentProps } from "../../EditorComponent";
+import { BaseContacts, TypeUsableComponentProps, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./form9.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "../../../custom-hooks/input-templates";
+ 
+type Button = {
+  text: React.JSX.Element;
+  url: string;
+  icon: TypeMediaInputValue;
+  type: string;
+};
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 
 class Form9 extends BaseContacts {
@@ -22,7 +29,14 @@ class Form9 extends BaseContacts {
       type: "string",
       key: "title",
       displayer: "Title",
-      value: "Get Started with Apcopay",
+      value: "Get Started with Blinkpage",
+    });
+
+    this.addProp({
+      type: "string",
+      key: "description",
+      displayer: "Description",
+      value: "",
     });
 
     this.addProp({
@@ -38,7 +52,7 @@ class Form9 extends BaseContacts {
             {
               type: "media",
               key: "icon",
-              displayer: "Icon or Image",
+              displayer: "Icon",
               additionalParams: { availableTypes: ["icon", "image"] },
               value: { type: "icon", name: "FaCheckCircle" },
             },
@@ -65,7 +79,7 @@ class Form9 extends BaseContacts {
             {
               type: "media",
               key: "icon",
-              displayer: "Icon or Image",
+              displayer: "Icon",
               additionalParams: { availableTypes: ["icon", "image"] },
               value: { type: "icon", name: "FaCheckCircle" },
             },
@@ -92,7 +106,7 @@ class Form9 extends BaseContacts {
             {
               type: "media",
               key: "icon",
-              displayer: "Icon or Image",
+              displayer: "Icon",
               additionalParams: { availableTypes: ["icon", "image"] },
               value: { type: "icon", name: "FaCheckCircle" },
             },
@@ -149,7 +163,7 @@ class Form9 extends BaseContacts {
                     {
                       type: "boolean",
                       key: "is_required",
-                      displayer: "Is Required",
+                      displayer: "Required Message",
                       value: true,
                     },
                     {
@@ -209,7 +223,7 @@ class Form9 extends BaseContacts {
                     {
                       type: "boolean",
                       key: "is_required",
-                      displayer: "Is Required",
+                      displayer: "Required Message",
                       value: true,
                     },
                     {
@@ -249,7 +263,7 @@ class Form9 extends BaseContacts {
                     {
                       type: "boolean",
                       key: "is_required",
-                      displayer: "Is Required",
+                      displayer: "Required Message",
                       value: true,
                     },
                     {
@@ -309,7 +323,7 @@ class Form9 extends BaseContacts {
                     {
                       type: "boolean",
                       key: "is_required",
-                      displayer: "Is Required",
+                      displayer: "Required Message",
                       value: true,
                     },
                     {
@@ -370,7 +384,7 @@ class Form9 extends BaseContacts {
                     {
                       type: "boolean",
                       key: "is_required",
-                      displayer: "Is Required",
+                      displayer: "Required Message",
                       value: false,
                     },
                     {
@@ -441,8 +455,8 @@ class Form9 extends BaseContacts {
 
   render() {
     const title = this.getPropValue("title");
-    const button: INPUTS.CastedButton =
-      this.castToObject<INPUTS.CastedButton>("button");
+    const button: Button =
+      this.castToObject<Button>("button");
     const features = this.getPropValue(
       "features"
     ) as TypeUsableComponentProps[];
@@ -451,7 +465,9 @@ class Form9 extends BaseContacts {
     const titleStr = this.castToString(title) || "";
 
     const consent = this.castToObject<any>("consent");
-    const hasButton = !!(this.castToString(button?.text) || "");
+    const buttonTextExist = this.castToString(button?.text) || "";
+    const buttonIconExist = button.icon && (button.icon.type === "icon" ? button.icon.name : button.icon.url);
+    const hasButton = !!(buttonTextExist || buttonIconExist);
     const consentLabelPrefix = this.castToString(consent?.label_prefix) || "";
     const consentLinkText = this.castToString(consent?.link_text) || "";
     const consentLinkUrl = this.castToString(consent?.link_url) || "";
@@ -459,6 +475,8 @@ class Form9 extends BaseContacts {
 
     const subtitle = this.getPropValue("subtitle");
     const subtitleText = this.castToString(subtitle);
+    const description = this.getPropValue("description");
+    const descriptionText = this.castToString(description);
 
     const hasAnyFeature =
       Array.isArray(features) &&
@@ -474,7 +492,7 @@ class Form9 extends BaseContacts {
           (featureDescription && featureDescription)
         );
       });
-    const showLeft = !!(titleStr || hasAnyFeature);
+    const showLeft = !!(titleStr || descriptionText || hasAnyFeature);
 
     function toObjectKey(str: string) {
       if (/^\d/.test(str)) str = "_" + str;
@@ -543,10 +561,10 @@ class Form9 extends BaseContacts {
             let fieldSchema: any = Yup.string();
             fieldSchema = isRequired
               ? fieldSchema.required(
-                  (input.getPropValue("required_error_message", {
-                    as_string: true,
-                  }) as string) || "Required"
-                )
+                (input.getPropValue("required_error_message", {
+                  as_string: true,
+                }) as string) || "Required"
+              )
               : fieldSchema.nullable();
             if (isEmail) {
               fieldSchema = fieldSchema.email(
@@ -618,15 +636,24 @@ class Form9 extends BaseContacts {
               <Base.VerticalContent
                 className={this.decorateCSS("left-vertical-content")}
               >
-                {subtitleText && (
-                  <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
-                    {subtitle}
-                  </Base.SectionSubTitle>
-                )}
-                {titleStr && (
-                  <Base.SectionTitle className={this.decorateCSS("title")}>
-                    {title}
-                  </Base.SectionTitle>
+                {(subtitleText || titleStr || descriptionText) && (
+                  <Base.VerticalContent className={this.decorateCSS("left-header")}>
+                    {subtitleText && (
+                      <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                        {subtitle}
+                      </Base.SectionSubTitle>
+                    )}
+                    {titleStr && (
+                      <Base.SectionTitle className={this.decorateCSS("title")}>
+                        {title}
+                      </Base.SectionTitle>
+                    )}
+                    {descriptionText && (
+                      <Base.SectionDescription className={this.decorateCSS("description")}>
+                        {description}
+                      </Base.SectionDescription>
+                    )}
+                  </Base.VerticalContent>
                 )}
 
                 {hasAnyFeature && (
@@ -734,11 +761,10 @@ class Form9 extends BaseContacts {
                                     })}
                                   </Base.P>
                                   <div
-                                    className={`${this.decorateCSS("inputs")} ${
-                                      isTwoInputs
-                                        ? this.decorateCSS("inputs-two")
-                                        : ""
-                                    }`}
+                                    className={`${this.decorateCSS("inputs")} ${isTwoInputs
+                                      ? this.decorateCSS("inputs-two")
+                                      : ""
+                                      }`}
                                   >
                                     {inputs?.map(
                                       (inputObj: any, inputIndex: number) => (
@@ -763,13 +789,13 @@ class Form9 extends BaseContacts {
                                               )}
                                               value={
                                                 (values as any)[
-                                                  getInputName(
-                                                    inputItemIndex,
-                                                    inputItem.getPropValue(
-                                                      "label"
-                                                    ),
-                                                    inputIndex
-                                                  )
+                                                getInputName(
+                                                  inputItemIndex,
+                                                  inputItem.getPropValue(
+                                                    "label"
+                                                  ),
+                                                  inputIndex
+                                                )
                                                 ]
                                               }
                                               placeholder={
@@ -794,13 +820,13 @@ class Form9 extends BaseContacts {
                                               )}
                                               value={
                                                 (values as any)[
-                                                  getInputName(
-                                                    inputItemIndex,
-                                                    inputItem.getPropValue(
-                                                      "label"
-                                                    ),
-                                                    inputIndex
-                                                  )
+                                                getInputName(
+                                                  inputItemIndex,
+                                                  inputItem.getPropValue(
+                                                    "label"
+                                                  ),
+                                                  inputIndex
+                                                )
                                                 ]
                                               }
                                               placeholder={
@@ -860,7 +886,7 @@ class Form9 extends BaseContacts {
                                   >
                                     {consentLabelPrefix}
                                     {(consentLinkText || consentLinkUrl) &&
-                                    consentLinkUrl ? (
+                                      consentLinkUrl ? (
                                       <ComposerLink path={consentLinkUrl}>
                                         <span
                                           className={this.decorateCSS(
@@ -899,11 +925,19 @@ class Form9 extends BaseContacts {
                               className={this.decorateCSS("submit-button")}
                               type="submit"
                             >
-                              <Base.P
-                                className={this.decorateCSS("button-text")}
-                              >
-                                {button!.text}
-                              </Base.P>
+                              {buttonTextExist && (
+                                <Base.P
+                                  className={this.decorateCSS("button-text")}
+                                >
+                                  {button!.text}
+                                </Base.P>
+                              )}
+                              {buttonIconExist && (
+                                <Base.Media
+                                  value={button.icon!}
+                                  className={this.decorateCSS("button-icon")}
+                                />
+                              )}
                             </Base.Button>
                           )}
                         </Form>
@@ -921,3 +955,4 @@ class Form9 extends BaseContacts {
 }
 
 export default Form9;
+

@@ -1,10 +1,17 @@
 import * as React from "react";
-import { BaseContacts, TypeUsableComponentProps } from "../../EditorComponent";
+import { BaseContacts, TypeUsableComponentProps, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./form5.module.scss";
 import { ErrorMessage, Form, Formik } from "formik";
 import * as Yup from "yup";
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "../../../custom-hooks/input-templates";
+ 
+type Button = {
+  text: React.JSX.Element;
+  url: string;
+  icon: TypeMediaInputValue;
+  type: string;
+};
 
 class Form5 extends BaseContacts {
   constructor(props?: any) {
@@ -24,7 +31,12 @@ class Form5 extends BaseContacts {
       value: "SAY HELLO",
     });
 
-    this.addProp(INPUTS.BUTTON("button", "Button", "Submit", null, null, null, "Primary"));
+    this.addProp({
+      type: "string",
+      key: "description",
+      displayer: "Description",
+      value: "",
+    });
 
     this.addProp({
       type: "array",
@@ -45,7 +57,7 @@ class Form5 extends BaseContacts {
             {
               type: "boolean",
               key: "is_required",
-              displayer: "Is Required",
+              displayer: "Required Message",
               value: true,
             },
             {
@@ -68,26 +80,6 @@ class Form5 extends BaseContacts {
               key: "type_error_message",
               displayer: "Type Error Message",
               value: "Invalid type",
-            },
-            {
-              type: "array",
-              key: "options",
-              displayer: "Options",
-              value: [
-                {
-                  type: "object",
-                  key: "option",
-                  displayer: "Option",
-                  value: [
-                    {
-                      type: "string",
-                      key: "value",
-                      displayer: "Value",
-                      value: "Lorem ipsum", 
-                    },
-                  ],
-                }
-              ],
             },
           ],
         },
@@ -105,7 +97,7 @@ class Form5 extends BaseContacts {
             {
               type: "boolean",
               key: "is_required",
-              displayer: "Is Required",
+              displayer: "Required Message",
               value: true,
             },
             {
@@ -129,26 +121,6 @@ class Form5 extends BaseContacts {
               displayer: "Type Error Message",
               value: "Invalid type",
             },
-            {
-              type: "array",
-              key: "options",
-              displayer: "Options",
-              value: [
-                {
-                  type: "object",
-                  key: "option",
-                  displayer: "Option",
-                  value: [
-                    {
-                      type: "string",
-                      key: "value",
-                      displayer: "Value",
-                      value: "Lorem ipsum", 
-                    },
-                  ],
-                },
-              ],
-            },
           ],
         },
         {
@@ -165,7 +137,7 @@ class Form5 extends BaseContacts {
             {
               type: "boolean",
               key: "is_required",
-              displayer: "Is Required",
+              displayer: "Required Message",
               value: true,
             },
             {
@@ -203,7 +175,7 @@ class Form5 extends BaseContacts {
                       type: "string",
                       key: "value",
                       displayer: "Value",
-                      value: "Under $1000", 
+                      value: "Under $1000",
                     },
                   ],
                 },
@@ -216,7 +188,7 @@ class Form5 extends BaseContacts {
                       type: "string",
                       key: "value",
                       displayer: "Value",
-                      value: "$1000 - $5000", 
+                      value: "$1000 - $5000",
                     },
                   ],
                 },
@@ -229,7 +201,7 @@ class Form5 extends BaseContacts {
                       type: "string",
                       key: "value",
                       displayer: "Value",
-                      value: "Above $5000", 
+                      value: "Above $5000",
                     },
                   ],
                 },
@@ -258,7 +230,7 @@ class Form5 extends BaseContacts {
             {
               type: "boolean",
               key: "is_required",
-              displayer: "Is Required",
+              displayer: "Required Message",
               value: true,
             },
             {
@@ -282,19 +254,6 @@ class Form5 extends BaseContacts {
               displayer: "Type Error Message",
               value: "Invalid type",
             },
-            {
-              type: "array",
-              key: "options",
-              displayer: "Options",
-              value: [
-                {
-                  type: "string",
-                  key: "option",
-                  displayer: "Option",
-                  value: "Lorem ipsum",
-                },
-              ],
-            },
           ],
         },
         {
@@ -311,7 +270,7 @@ class Form5 extends BaseContacts {
             {
               type: "boolean",
               key: "is_required",
-              displayer: "Is Required",
+              displayer: "Required Message",
               value: true,
             },
             {
@@ -335,19 +294,6 @@ class Form5 extends BaseContacts {
               displayer: "Type Error Message",
               value: "Invalid type",
             },
-            {
-              type: "array",
-              key: "options",
-              displayer: "Options",
-              value: [
-                {
-                  type: "string",
-                  key: "option",
-                  displayer: "Option",
-                  value: "Lorem ipsum",
-                },
-              ],
-            },
           ],
         },
         {
@@ -364,7 +310,7 @@ class Form5 extends BaseContacts {
             {
               type: "boolean",
               key: "is_required",
-              displayer: "Is Required",
+              displayer: "Required Message",
               value: true,
             },
             {
@@ -388,23 +334,12 @@ class Form5 extends BaseContacts {
               displayer: "Type Error Message",
               value: "Invalid type",
             },
-            {
-              type: "array",
-              key: "options",
-              displayer: "Options",
-              value: [
-                {
-                  type: "string",
-                  key: "option",
-                  displayer: "Option",
-                  value: "Lorem ipsum",
-                },
-              ],
-            },
           ],
         },
       ],
     });
+
+    this.addProp(INPUTS.BUTTON("button", "Button", "Submit", null, null, null, "Primary"));
   }
 
   static getName(): string {
@@ -414,10 +349,12 @@ class Form5 extends BaseContacts {
   render() {
     const subtitle = this.castToString(this.getPropValue("subtitle"));
     const title = this.castToString(this.getPropValue("title"));
+    const description = this.castToString(this.getPropValue("description"));
 
-    const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
+    const button: Button = this.castToObject<Button>("button");
 
     const buttonText = this.castToString(button.text);
+    const buttonIconExist = button.icon && (button.icon.type === "icon" ? button.icon.name : button.icon.url);
 
     const firstInputs = this.getPropValue("first_inputs");
     const secondInputs = this.getPropValue("second_inputs");
@@ -500,10 +437,11 @@ class Form5 extends BaseContacts {
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <Base.VerticalContent className={this.decorateCSS("wrapper")}>
-            {(subtitle || title) && (
+            {(subtitle || title || description) && (
               <Base.VerticalContent className={this.decorateCSS("header")}>
                 {subtitle && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
                 {title && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
+                {description && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
               </Base.VerticalContent>
             )}
             <div className={this.decorateCSS("input-items")}>
@@ -596,10 +534,13 @@ class Form5 extends BaseContacts {
                         </div>
                       )}
                     </div>
-                    {buttonText && (
-                      <Base.Button buttonType={button.type} className={this.decorateCSS("submit-button")}>
-                        <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
-                      </Base.Button>
+                    {(buttonText || buttonIconExist) && (
+                      <div className={this.decorateCSS("button-container")}>
+                        <Base.Button buttonType={button.type} className={this.decorateCSS("submit-button")}>
+                          {buttonText && <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>}
+                          {buttonIconExist && <Base.Media value={button.icon!} className={this.decorateCSS("button-icon")} />}
+                        </Base.Button>
+                      </div>
                     )}
                   </Form>
                 )}
@@ -613,3 +554,4 @@ class Form5 extends BaseContacts {
 }
 
 export default Form5;
+
