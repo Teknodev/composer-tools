@@ -166,7 +166,7 @@ class Feature7 extends BaseFeature {
     const alignment = Base.getContentAlignment();
 
     return (
-      <Base.Container className={`${this.decorateCSS("container")} ${!hasImage && this.decorateCSS("no-image")}`}>
+      <Base.Container className={`${this.decorateCSS("container")} ${!hasImage && this.decorateCSS("no-image")} ${!hasTextContent && this.decorateCSS("no-text")}`}>
         <div className={this.decorateCSS("wrapper")}>
           {hasImage && (
             <div className={this.decorateCSS("image-container")}>
@@ -204,9 +204,9 @@ class Feature7 extends BaseFeature {
                           if (!titleExist && !item.iconFeature) return null;
 
                           return (
-                            <div key={index} className={`${this.decorateCSS("feature")} ${alignment === "center" && this.decorateCSS("feature-center")}`}>
+                            <div key={index} className={`${this.decorateCSS("feature")} ${alignment === "center" && this.decorateCSS("feature-center")} ${item.iconFeature?.type === "image" && this.decorateCSS("has-image")}`}>
                               {item.iconFeature && (
-                                <div className={`${this.decorateCSS("icon-wrapper")} ${item.iconFeature.type === "image" && this.decorateCSS("has-image")}`}>
+                                <div className={`${this.decorateCSS("icon-wrapper")}`}>
                                   <Base.Media
                                     value={item.iconFeature}
                                     className={this.decorateCSS("iconFeature")}
