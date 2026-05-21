@@ -1,5 +1,9 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
+.e-commerce1-root {
+    display: contents;
+}
+
 @keyframes fadeOutIn {
     0% {
         opacity: 0;
@@ -395,25 +399,30 @@
             }
         }
 
-        .image-popup {
-            position: fixed !important;
-            inset: 0 !important;
-            width: 100vw !important;
-            height: 100vh !important;
-            z-index: 9999 !important;
-            display: flex !important;
-            align-items: center !important;
-            justify-content: center !important;
-            background-color: var(--composer-overlay-color) !important;
+    }
+}
 
-            .popup-content {
-                width: min(40%, calc(90vh - 80px));
-                height: auto;
-                max-height: 90vh;
-                position: relative;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
+.image-popup {
+    position: fixed;
+    inset: 0;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--composer-overlay-color);
+
+    .popup-content {
+        width: min(40%, calc(90vh - 80px));
+        height: auto;
+        max-height: 90vh;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
 
                 .image-container {
                     position: relative;
@@ -498,41 +507,37 @@
                 }
             }
         }
-    }
-}
 
 @container (max-width: #{$composer-tablet-width}) {
-    .container {
-        .max-content {
-            .image-popup {
-                position: fixed !important;
-                inset: 0 !important;
-                width: 100vw !important;
-                height: 100vh !important;
-                display: flex !important;
-                align-items: center !important;
-                justify-content: center !important;
+    .image-popup {
+        position: fixed;
+        inset: 0;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
 
-                .popup-content {
-                    width: 90%;
-                    max-width: 500px;
-                    height: auto;
-                    max-height: 90vh;
-                    align-items: center;
+        .popup-content {
+            width: 90%;
+            max-width: 500px;
+            height: auto;
+            max-height: 90vh;
+            align-items: center;
 
-                    .image-container {
-                        width: 100%;
-                        max-width: 500px;
-                        max-height: 500px;
-                        height: auto;
-                        aspect-ratio: 1 / 1;
+            .image-container {
+                width: 100%;
+                max-width: 500px;
+                max-height: 500px;
+                height: auto;
+                aspect-ratio: 1 / 1;
 
-                        .image {
-                            width: 100%;
-                            height: 100%;
-                            object-fit: cover;
-                        }
-                    }
+                .image {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
                 }
             }
         }
@@ -540,68 +545,70 @@
 }
 
 @container (max-width: #{$composer-phone-width}) {
+    .image-popup {
+        position: fixed;
+        inset: 0;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        .popup-content {
+            width: 92%;
+            max-width: 340px;
+            height: auto;
+            max-height: 90vh;
+            align-items: center;
+
+            .image-container {
+                width: 100%;
+                max-width: 340px;
+                max-height: 340px;
+                height: auto;
+                aspect-ratio: 1 / 1;
+
+                .image {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: contain;
+                }
+            }
+
+            .items {
+                width: 100%;
+                max-width: 340px;
+                height: 36px;
+                padding: var(--composer-gap-xs) var(--composer-gap-xs);
+                margin-top: var(--composer-gap-xs);
+                gap: var(--composer-gap-xs);
+
+                .icon-group {
+                    gap: var(--composer-gap-xs);
+
+                    .left-arrow,
+                    .right-arrow {
+                        font-size: 1.25rem !important;
+                    }
+                }
+
+                .pages {
+                    font-size: 0.875rem !important;
+                }
+
+                .close {
+                    font-size: 1.25rem !important;
+                }
+            }
+        }
+    }
+
     .container {
         .max-content {
             flex-direction: column;
             gap: var(--composer-gap-lg);
-
-            .image-popup {
-                position: fixed !important;
-                inset: 0 !important;
-                width: 100vw !important;
-                height: 100vh !important;
-                display: flex !important;
-                align-items: center !important;
-                justify-content: center !important;
-
-                .popup-content {
-                    width: 92%;
-                    max-width: 340px;
-                    height: auto;
-                    max-height: 90vh;
-                    align-items: center;
-
-                    .image-container {
-                        width: 100%;
-                        max-width: 340px;
-                        max-height: 340px;
-                        height: auto;
-                        aspect-ratio: 1 / 1;
-
-                        .image {
-                            width: 100%;
-                            height: 100%;
-                            object-fit: contain;
-                        }
-                    }
-
-                    .items {
-                        width: 100%;
-                        max-width: 340px;
-                        height: 36px;
-                        padding: var(--composer-gap-xs) var(--composer-gap-xs);
-                        margin-top: var(--composer-gap-xs);
-                        gap: var(--composer-gap-xs);
-
-                        .icon-group {
-                            gap: var(--composer-gap-xs);
-
-                            .left-arrow,
-                            .right-arrow {
-                                font-size: 1.25rem !important;
-                            }
-                        }
-
-                        .pages {
-                            font-size: 0.875rem !important;
-                        }
-
-                        .close {
-                            font-size: 1.25rem !important;
-                        }
-                    }
-                }
-            }
 
             .left {
                 flex: none;

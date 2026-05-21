@@ -651,6 +651,7 @@ class ECommerce1 extends BaseECommerce {
       descriptionExist || this.castToString(quantitySection.quantityText) || quantitySection.leftArrow || quantitySection.rightArrow || this.castToString(buttonText) || this.castToString(quantitySection.wishlist.wishlistText) || quantitySection.wishlist.wishlistIcon ||
       (categoriesAndTags.length > 0)
     return (
+      <div className={this.decorateCSS("e-commerce1-root")}>
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           {(images.length > 0) && (
@@ -803,43 +804,44 @@ class ECommerce1 extends BaseECommerce {
               )}
             </Base.VerticalContent>
           )}
-          {isActive && (
-            <Base.Overlay isVisible={true} className={this.decorateCSS("image-popup")}>
-              <div className={this.decorateCSS("popup-content")}>
-                <div className={this.decorateCSS("image-container")}>
-                  {images.map((img: Image, index) => {
-                    return (
-                      <>
-                        <Base.Media
-                          key={index}
-                          value={img.media}
-                          className={`${this.decorateCSS("image")} ${((index === activeImage) && this.decorateCSS("active"))}`}
-                        />
-                        <Base.Media
-                          key={index}
-                          value={img.media}
-                          className={`${this.decorateCSS("image")} ${(index === this.getComponentState("prevIndex")) && this.decorateCSS("exits")}`}
-                        />
-                      </>
-                    )
-                  }
-                  )}
-                </div>
-                <div className={this.decorateCSS("items")}>
-                  <div className={this.decorateCSS("icon-group")}>
-                    <Base.Media value={icons.leftArrowPopup} className={this.decorateCSS("left-arrow")} onClick={moveLeft} />
-                    <Base.Media value={icons.rightArrowPopup} className={this.decorateCSS("right-arrow")} onClick={moveRight} />
-                  </div>
-                  <Base.P className={this.decorateCSS("pages")}>
-                    {activeImage + 1}/{images.length}
-                  </Base.P>
-                  <Base.Media value={icons.closeIconPopup} className={this.decorateCSS("close")} onClick={handleClose} />
-                </div>
-              </div>
-            </Base.Overlay>
-          )}
         </Base.MaxContent>
       </Base.Container>
+      {isActive && (
+        <Base.Overlay isVisible={true} className={this.decorateCSS("image-popup")}>
+          <div className={this.decorateCSS("popup-content")}>
+            <div className={this.decorateCSS("image-container")}>
+              {images.map((img: Image, index) => {
+                return (
+                  <>
+                    <Base.Media
+                      key={index}
+                      value={img.media}
+                      className={`${this.decorateCSS("image")} ${((index === activeImage) && this.decorateCSS("active"))}`}
+                    />
+                    <Base.Media
+                      key={index}
+                      value={img.media}
+                      className={`${this.decorateCSS("image")} ${(index === this.getComponentState("prevIndex")) && this.decorateCSS("exits")}`}
+                    />
+                  </>
+                )
+              }
+              )}
+            </div>
+            <div className={this.decorateCSS("items")}>
+              <div className={this.decorateCSS("icon-group")}>
+                <Base.Media value={icons.leftArrowPopup} className={this.decorateCSS("left-arrow")} onClick={moveLeft} />
+                <Base.Media value={icons.rightArrowPopup} className={this.decorateCSS("right-arrow")} onClick={moveRight} />
+              </div>
+              <Base.P className={this.decorateCSS("pages")}>
+                {activeImage + 1}/{images.length}
+              </Base.P>
+              <Base.Media value={icons.closeIconPopup} className={this.decorateCSS("close")} onClick={handleClose} />
+            </div>
+          </div>
+        </Base.Overlay>
+      )}
+      </div>
     )
   }
 }
