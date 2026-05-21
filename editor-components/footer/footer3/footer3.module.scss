@@ -1,4 +1,4 @@
-@use "../../../../composer-tools//composer-base-components//base//utitilities/viewports.module.scss" as *;
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
   width: 100%;
@@ -30,7 +30,7 @@
       flex-direction: column;
 
       .first-container {
-        padding: 80px var(--composer-gap-xl) var(--composer-gap-md) var(--composer-gap-xl) !important;
+        padding: 120px 60px 20px 60px !important;
         .first-max-content {
             .items {
               display: flex;
@@ -39,18 +39,7 @@
               width: 100%;
               gap: var(--composer-gap-lg);
 
-              &.center-alignment {
-                justify-content: center;
-                text-align: center;
-
-                .header {
-                  align-items: center;
-
-                  .description {
-                    text-align: center;
-                  }
-                }
-              }            .header,
+            .header,
             .list-group {
               flex: 1;
               min-width: 200px;
@@ -61,7 +50,7 @@
             .header {
               display: flex;
               flex-direction: column;
-              align-items: baseline;
+              align-items: flex-start !important;
               gap: var(--composer-gap-md);
 
               .logo {
@@ -73,7 +62,9 @@
               }
 
               .description {
-                text-align: left;
+                text-align: left !important;
+                margin-left: 0 !important;
+                margin-right: 0 !important;
                 color: var(--composer-font-color-primary);
               }
 
@@ -127,36 +118,19 @@
               display: flex;
               flex-direction: column;
               justify-content: flex-start;
-              align-items: flex-start;
+              align-items: flex-start !important;
               gap: var(--composer-gap-md);
-
-              &.center-alignment {
-                align-items: center;
-
-                .title {
-                  text-align: center;
-                }
-
-                .text-container {
-                  align-items: center;
-
-                  .element {
-                    justify-content: center;
-
-                    .text {
-                      text-align: center;
-                    }
-                  }
-                }
-              }
 
               .title {
                 color: var(--composer-font-color-primary);
+                text-align: left !important;
+                margin-left: 0 !important;
+                margin-right: 0 !important;
               }
 
               .text-container {
-                gap: var(--composer-gap-xs);
                 width: 100%;
+                align-items: flex-start !important;
 
                 .element {
                   display: flex;
@@ -208,13 +182,13 @@
       }
 
       .line {
-        border-top: 1px solid rgb(var(--composer-font-color-primary-rgb), 0.5);
+        border-top: 1px solid color-mix(in srgb, var(--composer-font-color-primary) 50%, transparent);
         width: 100%;
         height: 1px;
       }
 
       .second-container {
-        padding: var(--composer-gap-md) var(--composer-gap-xl) !important;
+        padding: 20px 60px 20px 60px !important;
 
         .second-max-content {
           .footer-bottom {
@@ -283,63 +257,11 @@
   .container {
     .max-content {
       .footer-page {
-        flex-direction: column;
-
         .first-container {
-          .first-max-content {
-            .items {
-              .header,
-              .list-group {
-                flex: 1;
-                min-width: 300px;
-                max-width: 310px;
-                width: 100%;
-              }
-
-              .list-group {
-                display: flex;
-                flex-direction: column;
-                justify-content: flex-start;
-                align-items: flex-start;
-
-                .title {
-                  text-align: left;
-                }
-
-                .text-container {
-                  align-items: baseline;
-                  .element {
-                    display: flex;
-                    align-items: baseline;
-                    gap: var(--composer-gap-sm);
-                  }
-                }
-              }
-            }
-          }
+          padding: 100px 50px 20px 50px !important;
         }
-
         .second-container {
-          padding: var(--composer-gap-md) var(--composer-gap-lg) !important;
-
-          .second-max-content {
-            .footer-bottom {
-              flex-direction: column;
-              align-items: center;
-
-              .bottom-text {
-                width: fit-content;
-              }
-
-              &.center {
-                align-items: center;
-              }
-
-              .links {
-                content: "";
-              }
-            }
-          }
+          padding: 20px 50px 20px 50px !important;
         }
       }
     }
@@ -351,6 +273,7 @@
     .max-content {
       .footer-page {
         .first-container {
+          padding: 50px 30px 20px 30px !important;
           .first-max-content {
             .items {
               flex-direction: column;
@@ -392,7 +315,7 @@
         }
 
         .second-container {
-          padding: var(--composer-gap-md) !important;
+          padding: 20px 30px 20px 30px !important;
 
           .second-max-content {
             .footer-bottom {

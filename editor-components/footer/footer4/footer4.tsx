@@ -14,8 +14,8 @@ type FooterValues = {
 };
 
 type FooterTextValues = {
-  footerText: React.JSX.Element;
-  path: string;
+  navTitle: React.JSX.Element;
+  navNavigateTo: string;
 };
 
 class Footer4Page extends BaseFooter {
@@ -125,14 +125,14 @@ class Footer4Page extends BaseFooter {
                   value: [
                     {
                       type: "string",
-                      key: "footerText",
+                      key: "navTitle",
                       displayer: "Text",
                       value: "Delivery Information",
                     },
                     {
                       type: "page",
                       displayer: "Navigate To",
-                      key: "path",
+                      key: "navNavigateTo",
                       value: "",
                     },
                   ],
@@ -144,13 +144,13 @@ class Footer4Page extends BaseFooter {
                   value: [
                     {
                       type: "string",
-                      key: "footerText",
+                      key: "navTitle",
                       displayer: "Text",
                       value: "Sale Terms & Conditions",
                     },
                     {
                       type: "page",
-                      key: "path",
+                      key: "navNavigateTo",
                       displayer: "Navigate To",
                       value: "",
                     },
@@ -163,13 +163,13 @@ class Footer4Page extends BaseFooter {
                   value: [
                     {
                       type: "string",
-                      key: "footerText",
+                      key: "navTitle",
                       displayer: "Text",
                       value: "Returns & Refunds",
                     },
                     {
                       type: "page",
-                      key: "path",
+                      key: "navNavigateTo",
                       displayer: "Navigate To",
                       value: "",
                     },
@@ -182,13 +182,13 @@ class Footer4Page extends BaseFooter {
                   value: [
                     {
                       type: "string",
-                      key: "footerText",
+                      key: "navTitle",
                       displayer: "Text",
                       value: "Privacy Notice",
                     },
                     {
                       type: "page",
-                      key: "path",
+                      key: "navNavigateTo",
                       displayer: "Navigate To",
                       value: "",
                     },
@@ -201,13 +201,13 @@ class Footer4Page extends BaseFooter {
                   value: [
                     {
                       type: "string",
-                      key: "footerText",
+                      key: "navTitle",
                       displayer: "Text",
                       value: "Shopping FAQs",
                     },
                     {
                       type: "page",
-                      key: "path",
+                      key: "navNavigateTo",
                       displayer: "Navigate To",
                       value: "",
                     },
@@ -240,14 +240,14 @@ class Footer4Page extends BaseFooter {
                   value: [
                     {
                       type: "string",
-                      key: "footerText",
+                      key: "navTitle",
                       displayer: "Text",
                       value: "Accessories (0)",
                     },
                     {
                       type: "page",
                       displayer: "Navigate To",
-                      key: "path",
+                      key: "navNavigateTo",
                       value: "",
                     },
                   ],
@@ -259,13 +259,13 @@ class Footer4Page extends BaseFooter {
                   value: [
                     {
                       type: "string",
-                      key: "footerText",
+                      key: "navTitle",
                       displayer: "Text",
                       value: "Chairs (2)",
                     },
                     {
                       type: "page",
-                      key: "path",
+                      key: "navNavigateTo",
                       displayer: "Navigate To",
                       value: "",
                     },
@@ -278,13 +278,13 @@ class Footer4Page extends BaseFooter {
                   value: [
                     {
                       type: "string",
-                      key: "footerText",
+                      key: "navTitle",
                       displayer: "Text",
                       value: "Decoration (0)",
                     },
                     {
                       type: "page",
-                      key: "path",
+                      key: "navNavigateTo",
                       displayer: "Navigate To",
                       value: "",
                     },
@@ -297,13 +297,13 @@ class Footer4Page extends BaseFooter {
                   value: [
                     {
                       type: "string",
-                      key: "footerText",
+                      key: "navTitle",
                       displayer: "Text",
                       value: "Kitchen (2)",
                     },
                     {
                       type: "page",
-                      key: "path",
+                      key: "navNavigateTo",
                       displayer: "Navigate To",
                       value: "",
                     },
@@ -316,13 +316,13 @@ class Footer4Page extends BaseFooter {
                   value: [
                     {
                       type: "string",
-                      key: "footerText",
+                      key: "navTitle",
                       displayer: "Text",
                       value: "Lightning (0)",
                     },
                     {
                       type: "page",
-                      key: "path",
+                      key: "navNavigateTo",
                       displayer: "Navigate To",
                       value: "",
                     },
@@ -335,13 +335,13 @@ class Footer4Page extends BaseFooter {
                   value: [
                     {
                       type: "string",
-                      key: "footerText",
+                      key: "navTitle",
                       displayer: "Text",
                       value: "Livestyle (0)",
                     },
                     {
                       type: "page",
-                      key: "path",
+                      key: "navNavigateTo",
                       displayer: "Navigate To",
                       value: "",
                     },
@@ -354,13 +354,13 @@ class Footer4Page extends BaseFooter {
                   value: [
                     {
                       type: "string",
-                      key: "footerText",
+                      key: "navTitle",
                       displayer: "Text",
                       value: "Stools (3)",
                     },
                     {
                       type: "page",
-                      key: "path",
+                      key: "navNavigateTo",
                       displayer: "Navigate To",
                       value: "",
                     },
@@ -373,13 +373,13 @@ class Footer4Page extends BaseFooter {
                   value: [
                     {
                       type: "string",
-                      key: "footerText",
+                      key: "navTitle",
                       displayer: "Text",
                       value: "Uncategorized (0)",
                     },
                     {
                       type: "page",
-                      key: "path",
+                      key: "navNavigateTo",
                       displayer: "Navigate To",
                       value: "",
                     },
@@ -592,17 +592,17 @@ class Footer4Page extends BaseFooter {
                         footerExist && (
                           <div key={indexFooter} className={this.decorateCSS("list-group")}>
                             {footerTitleExist && <Base.H3 className={this.decorateCSS("title")}>{item.footerTitle}</Base.H3>}
-                            {item.footerText.map((item: FooterTextValues, indexFooterText: number) => {
-                              const footerTextExist = this.castToString(item.footerText);
+                            {item.footerText.map((v: FooterTextValues, indexFooterText: number) => {
+                              const footerTextExist = this.castToString(v.navTitle);
                               return (
                                 footerTextExist && (
-                                  <ComposerLink key={indexFooterText} path={item.path}>
-                                    <Base.P 
+                                  <ComposerLink key={indexFooterText} path={v.navNavigateTo}>
+                                    <Base.P
                                       className={this.decorateCSS("text")}
-                                      data-animation={item.path ? this.getPropValue("hoverAnimation").join(" ") : ""}
-                                      data-has-link={Boolean(item.path)}
+                                      data-animation={v.navNavigateTo ? this.getPropValue("hoverAnimation").join(" ") : ""}
+                                      data-has-link={Boolean(v.navNavigateTo)}
                                     >
-                                      {item.footerText}
+                                      {v.navTitle}
                                     </Base.P>
                                   </ComposerLink>
                                 )

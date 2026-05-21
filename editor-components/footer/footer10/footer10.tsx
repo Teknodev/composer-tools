@@ -10,6 +10,16 @@ type icon = {
   page: string;
 };
 
+type FooterValues = {
+  footerTitle: React.JSX.Element;
+  footerText: FooterTextValues[];
+};
+
+type FooterTextValues = {
+  navTitle: React.JSX.Element;
+  navNavigateTo: string;
+};
+
 class Footer10Page extends BaseFooter {
   constructor(props?: any) {
     super(props, styles);
@@ -50,6 +60,155 @@ class Footer10Page extends BaseFooter {
       ],
     });
 
+
+    this.addProp({
+      type: "array",
+      key: "footer",
+      displayer: "Footer",
+      value: [
+        {
+          type: "object",
+          key: "footer-title",
+          displayer: "Footer Column",
+          value: [
+            {
+              type: "string",
+              key: "footerTitle",
+              displayer: "Footer Title",
+              value: "",
+            },
+            {
+              type: "array",
+              key: "footerText",
+              displayer: "Footer Text",
+              value: [
+                {
+                  type: "object",
+                  key: "footer-text",
+                  displayer: "Text Values",
+                  value: [
+                    { type: "string", key: "navTitle", displayer: "Text", value: "" },
+                    { type: "page", key: "navNavigateTo", displayer: "Navigate To", value: "" },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "footer-text",
+                  displayer: "Text Values",
+                  value: [
+                    { type: "string", key: "navTitle", displayer: "Text", value: "" },
+                    { type: "page", key: "navNavigateTo", displayer: "Navigate To", value: "" },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "footer-text",
+                  displayer: "Text Values",
+                  value: [
+                    { type: "string", key: "navTitle", displayer: "Text", value: "" },
+                    { type: "page", key: "navNavigateTo", displayer: "Navigate To", value: "" },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "footer-title",
+          displayer: "Footer Column",
+          value: [
+            {
+              type: "string",
+              key: "footerTitle",
+              displayer: "Footer Title",
+              value: "",
+            },
+            {
+              type: "array",
+              key: "footerText",
+              displayer: "Footer Text",
+              value: [
+                {
+                  type: "object",
+                  key: "footer-text",
+                  displayer: "Text Values",
+                  value: [
+                    { type: "string", key: "navTitle", displayer: "Text", value: "" },
+                    { type: "page", key: "navNavigateTo", displayer: "Navigate To", value: "" },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "footer-text",
+                  displayer: "Text Values",
+                  value: [
+                    { type: "string", key: "navTitle", displayer: "Text", value: "" },
+                    { type: "page", key: "navNavigateTo", displayer: "Navigate To", value: "" },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "footer-text",
+                  displayer: "Text Values",
+                  value: [
+                    { type: "string", key: "navTitle", displayer: "Text", value: "" },
+                    { type: "page", key: "navNavigateTo", displayer: "Navigate To", value: "" },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "footer-title",
+          displayer: "Footer Column",
+          value: [
+            {
+              type: "string",
+              key: "footerTitle",
+              displayer: "Footer Title",
+              value: "",
+            },
+            {
+              type: "array",
+              key: "footerText",
+              displayer: "Footer Text",
+              value: [
+                {
+                  type: "object",
+                  key: "footer-text",
+                  displayer: "Text Values",
+                  value: [
+                    { type: "string", key: "navTitle", displayer: "Text", value: "" },
+                    { type: "page", key: "navNavigateTo", displayer: "Navigate To", value: "" },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "footer-text",
+                  displayer: "Text Values",
+                  value: [
+                    { type: "string", key: "navTitle", displayer: "Text", value: "" },
+                    { type: "page", key: "navNavigateTo", displayer: "Navigate To", value: "" },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "footer-text",
+                  displayer: "Text Values",
+                  value: [
+                    { type: "string", key: "navTitle", displayer: "Text", value: "" },
+                    { type: "page", key: "navNavigateTo", displayer: "Navigate To", value: "" },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    });
 
     this.addProp({
       type: "array",
@@ -274,12 +433,22 @@ class Footer10Page extends BaseFooter {
     const logoObject = this.castToObject<any>("logo");
     const logo = logoObject?.logo;
     const logoUrl = logoObject?.logoUrl;
+    const footer = this.castToObject<FooterValues[]>("footer");
     const links = this.castToObject<any[]>("links");
     const line = this.getPropValue("line");
 
     const icons = this.castToObject<icon[]>("icons");
 
-    const upperExist = logo || links.length > 0;
+    const logoExist = !!logo?.url;
+    const linksPropExist = links.some((item: any) => this.castToString(item.text));
+    const footerColumnsExist = footer.some((item: FooterValues) => {
+      const footerTitleExist = this.castToString(item.footerTitle);
+      const hasItems = item.footerText?.some((v: FooterTextValues) => this.castToString(v.navTitle));
+      return footerTitleExist || hasItems;
+    });
+
+    const upperExist = logoExist || linksPropExist;
+    const middleExist = footerColumnsExist;
 
     const footerTextExist = this.castToString(this.getPropValue("footerText"));
 
@@ -292,20 +461,20 @@ class Footer10Page extends BaseFooter {
 
     return (
       <div className={`${this.decorateCSS("container")} ${position === "Absolute" ? this.decorateCSS("absolute") : ""}`}>
-        {upperExist && (
-          <Base.Container className={this.decorateCSS("first-container")}>
-            <Base.MaxContent className={this.decorateCSS("first-max-content")}>
+        {(upperExist || middleExist) && (
+          <Base.Container className={this.decorateCSS("footer-wrapper")}>
+            <Base.MaxContent className={this.decorateCSS("max-content")}>
               {upperExist && (
                 <div className={`${this.decorateCSS("upper")} ${alignment === "center" && this.decorateCSS("center")}`}>
-                  {logo?.url && (
+                  {logoExist && (
                     <ComposerLink path={logoUrl}>
                       <div className={this.decorateCSS("logo")}>
                         <Base.Media value={logo} className={this.decorateCSS("image")} />
                       </div>
                     </ComposerLink>
                   )}
-                  {links.length > 0 && (
-                    <div className={`${this.decorateCSS("links")} ${logo?.url && this.decorateCSS("full-width")}`}>
+                  {linksPropExist && (
+                    <div className={`${this.decorateCSS("links")} ${logoExist && this.decorateCSS("full-width")}`}>
                       {links.map((item: any, index: number) => {
                         const textExist = this.castToString(item.text);
                         return (
@@ -323,6 +492,43 @@ class Footer10Page extends BaseFooter {
                       })}
                     </div>
                   )}
+                </div>
+              )}
+
+              {middleExist && (
+                <div className={this.decorateCSS("footer-columns")}>
+                  {footer.map((item: FooterValues, indexFooter: number) => {
+                    const footerTitleExist = this.castToString(item.footerTitle);
+                    const footerTextExist = item.footerText.length > 0;
+                    const listExist = footerTitleExist || footerTextExist;
+                    return (
+                      listExist && (
+                        <div key={indexFooter} className={this.decorateCSS("list-group")}>
+                          {footerTitleExist && <Base.P className={this.decorateCSS("column-title")}>{item.footerTitle}</Base.P>}
+                          {item.footerText.length > 0 && (
+                            <Base.VerticalContent className={this.decorateCSS("text-container")}>
+                              {item.footerText.map((v: FooterTextValues, indexFooterText: number) => {
+                                const textExist = this.castToString(v.navTitle);
+                                return (
+                                  textExist && (
+                                    <ComposerLink key={indexFooterText} path={v.navNavigateTo}>
+                                      <Base.P
+                                        className={this.decorateCSS("footer-text")}
+                                        data-animation={v.navNavigateTo ? this.getPropValue("hoverAnimation").join(" ") : ""}
+                                        data-has-link={Boolean(v.navNavigateTo)}
+                                      >
+                                        {v.navTitle}
+                                      </Base.P>
+                                    </ComposerLink>
+                                  )
+                                );
+                              })}
+                            </Base.VerticalContent>
+                          )}
+                        </div>
+                      )
+                    );
+                  })}
                 </div>
               )}
             </Base.MaxContent>

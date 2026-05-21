@@ -1,7 +1,7 @@
 @use "../../../../composer-tools//composer-base-components//base//utitilities/viewports.module.scss" as *;
 
 .container {
-  padding: var(--composer-gap-md) var(--composer-gap-xl) !important;
+  padding: 120px 60px 20px 60px !important;
 
   &.absolute {
     position: absolute;
@@ -14,11 +14,11 @@
     .footer-page {
       display: flex;
       justify-content: space-between;
-      align-items: center;
-      gap: var(--composer-gap-md);
+      align-items: flex-start;
+      gap: var(--composer-gap-lg);
 
       .left {
-        max-width: 20%;
+        flex: 0 0 200px;
 
         .image {
            width: 200px;
@@ -27,11 +27,51 @@
         }
       }
 
+      .footer-columns {
+        display: flex;
+        flex: 1;
+        justify-content: center;
+        gap: var(--composer-gap-md);
+        flex-wrap: wrap;
+
+        .list-group {
+          display: flex;
+          flex-direction: column;
+          gap: var(--composer-gap-sm);
+          min-width: 120px;
+          align-items: flex-start !important;
+
+          .column-title {
+            color: var(--composer-font-color-primary);
+            text-align: left !important;
+            margin-left: 0 !important;
+            margin-right: 0 !important;
+          }
+
+          .text-container {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start !important;
+
+            .footer-text {
+              color: var(--composer-tertiary-color);
+              transition: all 0.3s ease;
+              text-align: left !important;
+
+              &:hover {
+                color: var(--composer-primary-color);
+              }
+            }
+          }
+        }
+      }
+
       .right {
         display: flex;
         flex-direction: column;
-        max-width: 70%;
+        flex: 0 0 300px;
         gap: var(--composer-gap-xs);
+        align-items: flex-end;
 
         .upper {
           display: flex;
@@ -111,8 +151,7 @@
         }
 
         &.full-width {
-          max-width: 100%;
-          width: 100%;
+          flex: 1;
 
           .upper, .bottom {
             justify-content: flex-start;
@@ -133,15 +172,24 @@
 
 @container (max-width: #{$composer-tablet-width}) {
   .container {
-    padding: var(--composer-gap-md) var(--composer-gap-lg) !important;
+    padding: 100px 50px 20px 50px !important;
     .max-content {
       .footer-page {
+        gap: var(--composer-gap-md);
+
         .left {
-          max-width: 30%;
+          flex: 0 0 150px;
+          .image {
+            width: 150px;
+          }
+        }
+
+        .footer-columns {
+          gap: var(--composer-gap-md);
         }
 
         .right {
-          max-width: 70%;
+          flex: 0 0 250px;
         }
       }
     }
@@ -150,14 +198,15 @@
 
 @container (max-width: #{$composer-phone-width}) {
   .container {
-    padding: var(--composer-gap-md) !important;
+    padding: 50px 30px 20px 30px !important;
     .max-content {
       .footer-page {
         flex-direction: column;
-        align-items: center;
-        gap: var(--composer-gap-xs);
+        align-items: flex-start;
+        gap: var(--composer-gap-md);
 
         .left {
+          flex: none;
           max-width: 100%;
 
           .image {
@@ -166,28 +215,43 @@
           }
         }
 
+        .footer-columns {
+          flex-direction: column;
+          align-items: flex-start;
+          width: 100%;
+          gap: var(--composer-gap-md);
+
+          .list-group {
+            align-items: flex-start !important;
+            .column-title, .footer-text {
+              text-align: left !important;
+            }
+          }
+        }
+
         .right {
+          flex: none;
           display: flex;
           flex-direction: column;
           max-width: 100%;
           gap: var(--composer-gap-xs);
           width: 100%;
-          align-items: center;
+          align-items: flex-start;
 
           .upper {
-            justify-content: center;
+            justify-content: flex-start;
             .link-element{
               .link-text{
-                text-align: center;
+                text-align: left;
               }
             }
           }
 
           .bottom {
-            justify-content: center;
+            justify-content: flex-start;
 
             .text {
-              text-align: center;
+              text-align: left;
             }
           }
         }
