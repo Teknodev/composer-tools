@@ -1078,7 +1078,7 @@ class Team10 extends Team {
                         return iconData && (
                           <div key={indexIcons} className={this.decorateCSS("icon-item")} data-animation={hoverAnimation.join(" ")}>
                             <ComposerLink path={urlData}>
-                              <Base.Media value={iconData} className={this.decorateCSS("icon")} />
+                              <Base.Media value={iconData} className={`${this.decorateCSS("icon")} ${iconData?.type === "image" && this.decorateCSS("has-image")}`} />
                             </ComposerLink>
                           </div>
                         );

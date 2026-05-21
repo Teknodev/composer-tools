@@ -788,7 +788,7 @@ class Team2 extends Team {
             },
             {
               type: "string",
-              key: "description",
+              key: "cardDescription",
               value: "An online learning platform can provide access to educational content from anywhere with an internet connection.",
               displayer: "Description",
             },

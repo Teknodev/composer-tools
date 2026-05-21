@@ -134,6 +134,10 @@
                     align-items: center;
                     justify-content: center;
                     line-height: 0;
+
+                    &.image {
+                      color: #ffffff;
+                    }
                   }
                 }
               }
@@ -258,6 +262,9 @@
   align-items: center;
   gap: var(--composer-gap-sm);
   list-style-type: none;
+  margin-top: var(--composer-gap-xl) !important;
+  margin: 0;
+  padding: 0;
 
   .currentPaging {
     background: white;

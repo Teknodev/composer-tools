@@ -455,7 +455,7 @@ class Team8 extends Team {
                         <Base.VerticalContent className={this.decorateCSS("content-div")}>
                           {item.profileImage && (
                             <div className={this.decorateCSS("image-box")}>
-                              <Base.Media value={item.profileImage} className={`${this.decorateCSS("img")} ${item.profileImage?.type === "icon" && this.decorateCSS("has-icon")}`} />
+                              <Base.Media value={item.profileImage} className={`${this.decorateCSS("img")} ${item.profileImage?.type === "icon" && this.decorateCSS("has-icon")} ${imageExist ? this.decorateCSS("image") : this.decorateCSS("no-image")}`} />
                               {this.getPropValue("cardOverlay") && <div className={this.decorateCSS("cardOverlay")} />}
                             </div>
                           )}

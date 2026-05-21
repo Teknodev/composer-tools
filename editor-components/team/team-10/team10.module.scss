@@ -115,6 +115,13 @@
 
             .icon {
               content: "";
+
+              &.has-image {
+                width: var(--composer-gap-sm);
+                height: var(--composer-gap-sm);
+                object-fit: cover;
+                display: block;
+              }
             }
 
             &[data-animation~="animate2"] {
@@ -283,6 +290,7 @@
           .info {
             grid-row: 2;
           }
+
           .image-container {
             grid-row: 1;
           }

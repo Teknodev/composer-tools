@@ -57,7 +57,7 @@ class Team15 extends Team {
     this.addProp({
       type: "boolean",
       key: "showLines",
-      displayer: "Show Lines",
+      displayer: "Line",
       value: true,
     });
 
