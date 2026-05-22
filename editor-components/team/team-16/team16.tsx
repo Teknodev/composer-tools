@@ -69,7 +69,7 @@ class Team16 extends Team {
               key: "profileImage",
               displayer: "Media",
               additionalParams: {
-                availableTypes: ["image", "video", "icon"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
@@ -118,7 +118,7 @@ class Team16 extends Team {
               key: "profileImage",
               displayer: "Media",
               additionalParams: {
-                availableTypes: ["image", "video", "icon"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
@@ -167,7 +167,7 @@ class Team16 extends Team {
               key: "profileImage",
               displayer: "Media",
               additionalParams: {
-                availableTypes: ["image", "video", "icon"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
