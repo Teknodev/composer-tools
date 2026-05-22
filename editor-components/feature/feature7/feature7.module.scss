@@ -50,6 +50,22 @@
     .image-container {
       width: 50%;
       flex-shrink: 0;
+      position: relative;
+
+      .overlay {
+        position: absolute;
+        inset: 0;
+        background: var(--composer-overlay-color);
+        pointer-events: none;
+        z-index: 1;
+        border-top-right-radius: var(--composer-border-radius-sm);
+        border-bottom-right-radius: var(--composer-border-radius-sm);
+
+        &.overlay-no-border-radius {
+          border-top-right-radius: 0px;
+          border-bottom-right-radius: 0px;
+        }
+      }
 
       .image,
       .image-no-border-radius {

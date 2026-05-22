@@ -1,5 +1,5 @@
 import * as React from "react";
-import { BaseFeature, TypeMediaInputValue } from "../../EditorComponent";
+import { BaseFeature, TypeMediaInputValue, TypeUsableComponentProps } from "../../EditorComponent";
 import styles from "./feature7.module.scss";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 import { Base } from "../../../composer-base-components/base/base";
@@ -10,21 +10,39 @@ type Feature = {
   iconFeature: TypeMediaInputValue;
 };
 
+type MediaArea = {
+  image: TypeMediaInputValue;
+  overlay: boolean;
+};
+
 class Feature7 extends BaseFeature {
   constructor(props?: any) {
     super(props, styles);
 
     this.addProp({
-      type: "media",
-      key: "image",
+      type: "object",
+      key: "mediaArea",
       displayer: "Media",
-      additionalParams: {
-        availableTypes: ["image", "video"],
-      },
-      value: {
-        type: "image",
-        url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6916dae63596a1002b276ed2?alt=media",
-      },
+      value: [
+        {
+          type: "media",
+          key: "image",
+          displayer: "Media",
+          additionalParams: {
+            availableTypes: ["image", "video"],
+          },
+          value: {
+            type: "image",
+            url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6916dae63596a1002b276ed2?alt=media",
+          },
+        },
+        {
+          type: "boolean",
+          key: "overlay",
+          displayer: "Overlay",
+          value: false,
+        }
+      ]
     });
 
     this.addProp({
@@ -148,9 +166,11 @@ class Feature7 extends BaseFeature {
 
   render() {
     const subtitleExist = this.castToString(this.getPropValue("subtitle"));
-    const titleExist = this.castToString(this.getPropValue("title"))
-    const descriptionExist = this.castToString(this.getPropValue("description"))
-    const image = this.getPropValue("image");
+    const titleExist = this.castToString(this.getPropValue("title"));
+    const descriptionExist = this.castToString(this.getPropValue("description"));
+    const mediaArea = this.getPropValue("mediaArea") as TypeUsableComponentProps[];
+    const image = this.getPropValue("image", { parent_object: mediaArea }) as TypeMediaInputValue;
+    const overlay = this.getPropValue("overlay", { parent_object: mediaArea }) as boolean;
 
     const features = this.castToObject<Feature[]>("features");
     const links = this.castToObject<INPUTS.CastedButton[]>("links");
@@ -174,6 +194,7 @@ class Feature7 extends BaseFeature {
                 value={image}
                 className={hasTextContent ? this.decorateCSS("image") : this.decorateCSS("image-no-border-radius")}
               />
+              {overlay && <div className={`${this.decorateCSS("overlay")} ${!hasTextContent && this.decorateCSS("overlay-no-border-radius")} `} />}
             </div>
           )}
           {hasTextContent && (
