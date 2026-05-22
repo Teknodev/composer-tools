@@ -188,6 +188,7 @@
         .card-actions {
           display: flex;
           flex-direction: row;
+          justify-content: center;
           gap: var(--composer-gap-sm);
           width: 100%;
 
