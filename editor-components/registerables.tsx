@@ -160,6 +160,7 @@ import FeatureComponent46 from "./feature/feature46/feature46";
 import FeatureComponent47 from "./feature/feature47/feature47";
 import FeatureComponent50 from "./feature/feature50/feature50";
 import FeatureComponent51 from "./feature/feature51/feature51";
+import FeatureComponent52 from "./feature/feature52/feature52";
 import CallToAction1 from "./call_to_action/call_to_action1/call_to_action1";
 import CallToAction2 from "./call_to_action/call_to_action2/call_to_action2";
 import CallToAction3 from "./call_to_action/call_to_action3/call_to_action3";
