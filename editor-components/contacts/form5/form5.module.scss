@@ -3,8 +3,13 @@
 .container {
   .max-content {
     .wrapper {
+      gap: var(--composer-gap-lg);
+
       .header {
-        .subtitle, .title {
+
+        .subtitle,
+        .title,
+        .description {
           content: "";
         }
       }
@@ -20,7 +25,7 @@
           display: flex;
           flex-direction: column;
           align-items: center;
-          gap: var(--composer-gap-md);
+          gap: var(--composer-gap-lg);
 
           .inputs {
             display: flex;
@@ -69,10 +74,11 @@
             background-color: transparent;
             color: var(--composer-font-color-primary);
             transform: translateY(var(--composer-gap-xs));
+
           }
 
-          .input:focus + .placeholder,
-          .input:not(:placeholder-shown) + .placeholder {
+          .input:focus+.placeholder,
+          .input:not(:placeholder-shown)+.placeholder {
             bottom: var(--composer-gap-lg);
           }
 
@@ -96,21 +102,27 @@
             }
           }
 
-          .select:focus + .placeholder,
-          .select:valid + .placeholder {
+          .select:focus+.placeholder,
+          .select:valid+.placeholder {
             bottom: 45px;
           }
 
-          .select:invalid + .placeholder {
+          .select:invalid+.placeholder {
             bottom: 25px;
           }
         }
       }
 
-      .submit-button {
-        align-self: flex-end;
-        .button-text {
-          text-align: center;
+      .button-container {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+
+        .submit-button {
+          .button-text,
+          .button-icon {
+            content: "";
+          }
         }
       }
     }
@@ -128,8 +140,10 @@
             }
           }
 
-          .submit-button {
-            margin-right: 0;
+          .button-container {
+            .submit-button {
+              margin-right: 0;
+            }
           }
         }
       }
@@ -149,8 +163,10 @@
             }
           }
 
-          .submit-button {
-            width: 100%;
+          .button-container {
+            .submit-button {
+              width: 100%;
+            }
           }
         }
       }
