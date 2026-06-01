@@ -92,8 +92,8 @@
           align-items: center;
 
           .author-image {
-            width: 15rem;
-            height: 5rem;
+            width: 100%;
+            aspect-ratio: 3 / 1;
             border-radius: var(--composer-border-radius-sm);
             object-fit: contain;
           }

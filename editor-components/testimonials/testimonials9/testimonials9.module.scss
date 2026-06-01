@@ -30,6 +30,40 @@
       .down-page {
         .carousel {
           flex: 1;
+
+          .carousel-inner {
+            display: flex;
+            gap: var(--composer-gap-sm);
+            align-items: stretch;
+
+            .v-dots {
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              justify-content: center;
+              gap: 6px;
+              padding: var(--composer-gap-xs) 0;
+
+              .v-dot {
+                width: 6px;
+                height: 6px;
+                border-radius: 50%;
+                border: none;
+                cursor: pointer;
+                padding: 0;
+                background: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 20%);
+                transition: all 0.3s ease;
+                flex-shrink: 0;
+
+                &.v-dot-active {
+                  height: 22px;
+                  border-radius: 3px;
+                  background: var(--composer-primary-color);
+                }
+              }
+            }
+          }
+
           .card-inner {
             display: flex !important;
             align-items: center;
@@ -46,10 +80,11 @@
             }
 
             .img {
-              width: calc(var(--composer-gap-xl) + var(--composer-gap-lg));
-              height: calc(var(--composer-gap-xl) + var(--composer-gap-lg));
+              width: 90px;
+              height: 90px;
               border-radius: 50%;
               object-fit: cover;
+              font-size: 3rem;
             }
 
             .bottom-container {
@@ -80,10 +115,12 @@
               color: var(--composer-font-color-secondary);
             }
           }
-          > div {
+          .carousel-inner {
             > div {
               > div {
-                height: 100% !important;
+                > div {
+                  height: 100% !important;
+                }
               }
             }
           }
@@ -149,12 +186,26 @@
         gap: var(--composer-gap-md);
         .down-page {
           flex-direction: column !important;
+          .right-page {
+            padding: var(--composer-gap-sm);
+            .left-icon,
+            .right-icon {
+              font-size: 2rem;
+              width: var(--composer-gap-lg);
+              height: var(--composer-gap-lg);
+            }
+          }
           .carousel {
             .card-inner {
               padding: var(--composer-gap-sm);
               .img {
                 width: calc(var(--composer-gap-xl) + var(--composer-gap-md));
                 height: calc(var(--composer-gap-xl) + var(--composer-gap-md));
+              }
+              .bottom-container {
+                .item-subtitle {
+                  font-size: 1rem !important;
+                }
               }
             }
           }

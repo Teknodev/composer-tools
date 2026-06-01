@@ -10,7 +10,7 @@ type Item = {
   image: TypeMediaInputValue;
   author: {
     name: React.JSX.Element;
-    subtitle: React.JSX.Element;
+    position: React.JSX.Element;
   };
   text: React.JSX.Element;
   starNumber: number;
@@ -114,7 +114,7 @@ class Testimonials8Page extends Testimonials {
                 },
                 {
                   type: "string",
-                  key: "subtitle",
+                  key: "position",
                   value: "Product Designer",
                   displayer: "Position",
                 },
@@ -169,7 +169,7 @@ class Testimonials8Page extends Testimonials {
                 },
                 {
                   type: "string",
-                  key: "subtitle",
+                  key: "position",
                   value: "Developer",
                   displayer: "Position",
                 },
@@ -224,7 +224,7 @@ class Testimonials8Page extends Testimonials {
                 },
                 {
                   type: "string",
-                  key: "subtitle",
+                  key: "position",
                   value: "Design Lead",
                   displayer: "Position",
                 },
@@ -299,6 +299,7 @@ class Testimonials8Page extends Testimonials {
     const settings = {
       ...sliderSettings,
       arrows: false,
+      dots: false,
       beforeChange: (current: number, next: number) => {
         this.setComponentState("active_index", next);
       },
@@ -309,6 +310,7 @@ class Testimonials8Page extends Testimonials {
     const nextArrowExist = arrows.nextArrow && (arrows.nextArrow.type === "icon" ? arrows.nextArrow.name : arrows.nextArrow.url);
     const sliderRef = this.getComponentState("slider-ref");
     const cards = this.castToObject<Item[]>("card-items");
+    const activeIndex = this.getComponentState("active_index") || 0;
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
@@ -376,13 +378,13 @@ class Testimonials8Page extends Testimonials {
                     <Base.VerticalContent key={index} className={this.decorateCSS("card")}>
                       <Base.Row className={this.decorateCSS("topContainer")}>
                         {item.image && <Base.Media value={item.image} className={this.decorateCSS("image")} />}
-                        {item.author && (item.author.name || item.author.subtitle) && (
+                        {item.author && (item.author.name || item.author.position) && (
                           <div className={this.decorateCSS("personal")}>
                             {item.author.name && (
                               <Base.P className={this.decorateCSS("item-name")}>{item.author.name}</Base.P>
                             )}
-                            {item.author.subtitle && (
-                              <Base.P className={this.decorateCSS("item-subtitle")}>{item.author.subtitle}</Base.P>
+                            {item.author.position && (
+                              <Base.P className={this.decorateCSS("item-subtitle")}>{item.author.position}</Base.P>
                             )}
                           </div>
                         )}
@@ -418,6 +420,17 @@ class Testimonials8Page extends Testimonials {
                 </button>
               )}
             </div>
+            {cards.length > 1 && (
+              <div className={this.decorateCSS("dot-panel")}>
+                {cards.map((_: Item, idx: number) => (
+                  <button
+                    key={idx}
+                    className={`${this.decorateCSS("dot")} ${activeIndex === idx ? this.decorateCSS("dot-active") : ""}`}
+                    onClick={() => sliderRef.current.slickGoTo(idx)}
+                  />
+                ))}
+              </div>
+            )}
           </div>
         </Base.MaxContent>
       </Base.Container>

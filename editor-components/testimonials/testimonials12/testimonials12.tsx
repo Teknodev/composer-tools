@@ -11,7 +11,7 @@ type Item = {
   image: TypeMediaInputValue;
   author: {
     name: React.JSX.Element;
-    subtitle: React.JSX.Element;
+    position: React.JSX.Element;
   };
 };
 
@@ -112,7 +112,7 @@ class Testimonials12Page extends Testimonials {
               displayer: "Author",
               value: [
                 { type: "string", key: "name", displayer: "Name", value: "Billu Gol" },
-                { type: "string", key: "subtitle", displayer: "Position", value: "CEO, Agrok Inc" },
+                { type: "string", key: "position", displayer: "Position", value: "CEO, Agrok Inc" },
               ],
             },
           ],
@@ -144,7 +144,7 @@ class Testimonials12Page extends Testimonials {
               displayer: "Author",
               value: [
                 { type: "string", key: "name", displayer: "Name", value: "Ani Jhon" },
-                { type: "string", key: "subtitle", displayer: "Position", value: "CEO, Agrok Inc" },
+                { type: "string", key: "position", displayer: "Position", value: "CEO, Agrok Inc" },
               ],
             },
           ],
@@ -176,7 +176,7 @@ class Testimonials12Page extends Testimonials {
               displayer: "Author",
               value: [
                 { type: "string", key: "name", displayer: "Name", value: "Billu Gol" },
-                { type: "string", key: "subtitle", displayer: "Position", value: "CEO, Agrok Inc" },
+                { type: "string", key: "position", displayer: "Position", value: "CEO, Agrok Inc" },
               ],
             },
           ],
@@ -208,7 +208,7 @@ class Testimonials12Page extends Testimonials {
               displayer: "Author",
               value: [
                 { type: "string", key: "name", displayer: "Name", value: "Ani Jhon" },
-                { type: "string", key: "subtitle", displayer: "Position", value: "CEO, Agrok Inc" },
+                { type: "string", key: "position", displayer: "Position", value: "CEO, Agrok Inc" },
               ],
             },
           ],
@@ -273,6 +273,7 @@ class Testimonials12Page extends Testimonials {
     const sliderSettings = Object.fromEntries((rawSettings as any[]).map((p: any) => [p.key, p.value]));
     const settings = {
       ...sliderSettings,
+      arrows: false,
       responsive: [
         {
           breakpoint: 450,
@@ -352,7 +353,7 @@ class Testimonials12Page extends Testimonials {
                 const textExist = this.castToString(card.text);
                 const imageExist = card.image && card.image.url;
                 const nameExist = card.author && this.castToString(card.author.name);
-                const subtitleCardExist = card.author && this.castToString(card.author.subtitle);
+                const subtitleCardExist = card.author && this.castToString(card.author.position);
                 const shouldRenderCard = textExist || imageExist || nameExist || subtitleCardExist;
 
                 if (!shouldRenderCard) return null;
@@ -376,7 +377,7 @@ class Testimonials12Page extends Testimonials {
                               <Base.H4 className={this.decorateCSS("item-name")}>{card.author.name}</Base.H4>
                             )}
                             {subtitleCardExist && (
-                              <Base.H5 className={this.decorateCSS("item-subtitle")}>{card.author.subtitle}</Base.H5>
+                              <Base.H5 className={this.decorateCSS("item-subtitle")}>{card.author.position}</Base.H5>
                             )}
                           </Base.VerticalContent>
                         )}

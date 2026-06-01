@@ -11,7 +11,7 @@ type Item = {
   text: React.JSX.Element;
   author: {
     name: React.JSX.Element;
-    subtitle: React.JSX.Element;
+    position: React.JSX.Element;
   };
 };
 
@@ -54,6 +54,7 @@ class Testimonials10Page extends Testimonials {
     });
     this.addProp(INPUTS.SLIDER_SETTINGS("slider-settings", "Slider Settings", {
       dots: false,
+      arrows: false,
       infinite: true,
       speed: 700,
       autoplay: true,
@@ -90,7 +91,7 @@ class Testimonials10Page extends Testimonials {
               displayer: "Author",
               value: [
                 { type: "string", key: "name", displayer: "Name", value: "Alex Madson" },
-                { type: "string", key: "subtitle", displayer: "Position", value: "Contractor" },
+                { type: "string", key: "position", displayer: "Position", value: "Contractor" },
               ],
             },
           ],
@@ -119,7 +120,7 @@ class Testimonials10Page extends Testimonials {
               displayer: "Author",
               value: [
                 { type: "string", key: "name", displayer: "Name", value: "Helen Lee" },
-                { type: "string", key: "subtitle", displayer: "Position", value: "Contractor" },
+                { type: "string", key: "position", displayer: "Position", value: "Contractor" },
               ],
             },
           ],
@@ -148,7 +149,7 @@ class Testimonials10Page extends Testimonials {
               displayer: "Author",
               value: [
                 { type: "string", key: "name", displayer: "Name", value: "Helen Lee" },
-                { type: "string", key: "subtitle", displayer: "Position", value: "Contractor" },
+                { type: "string", key: "position", displayer: "Position", value: "Contractor" },
               ],
             },
           ],
@@ -177,7 +178,7 @@ class Testimonials10Page extends Testimonials {
               displayer: "Author",
               value: [
                 { type: "string", key: "name", displayer: "Name", value: "Helen Lee" },
-                { type: "string", key: "subtitle", displayer: "Position", value: "Contractor" },
+                { type: "string", key: "position", displayer: "Position", value: "Contractor" },
               ],
             },
           ],
@@ -206,7 +207,7 @@ class Testimonials10Page extends Testimonials {
               displayer: "Author",
               value: [
                 { type: "string", key: "name", displayer: "Name", value: "Helen Lee" },
-                { type: "string", key: "subtitle", displayer: "Position", value: "Contractor" },
+                { type: "string", key: "position", displayer: "Position", value: "Contractor" },
               ],
             },
           ],
@@ -249,12 +250,23 @@ class Testimonials10Page extends Testimonials {
   }
 
   render() {
+    const prevIconValue = this.getPropValue("previcon") as TypeMediaInputValue;
+    const nextIconValue = this.getPropValue("nexticon") as TypeMediaInputValue;
+    const quoteIconValue = this.getPropValue("quoteicon") as TypeMediaInputValue;
+    const prevIconExist = prevIconValue && (prevIconValue.type === "icon" ? prevIconValue.name : prevIconValue.url);
+    const nextIconExist = nextIconValue && (nextIconValue.type === "icon" ? nextIconValue.name : nextIconValue.url);
+    const quoteIconExist = quoteIconValue && (quoteIconValue.type === "icon" ? quoteIconValue.name : quoteIconValue.url);
+    const activeSlideIndex = this.getComponentState("activeSlideIndex") || 0;
+
     const rawSettings = this.getPropValue("slider-settings");
     const sliderSettings = Object.fromEntries((rawSettings as any[]).map((p: any) => [p.key, p.value]));
     const settings = {
       ...sliderSettings,
       arrows: false,
       className: this.decorateCSS("slider"),
+      beforeChange: (_current: number, next: number) => {
+        this.setComponentState("activeSlideIndex", next);
+      },
     };
 
     const subtitleExist = this.castToString(this.getPropValue("subtitle"));
@@ -319,18 +331,26 @@ class Testimonials10Page extends Testimonials {
               )}
               {(this.getPropValue("profile-itemList").length > 0 || hiliteTitle) && (
                 <div className={this.decorateCSS("right-content")}>
+                  {sliderSettings.arrows && (prevIconExist || nextIconExist) && this.getPropValue("profile-itemList").length > 1 && (
+                    <div className={this.decorateCSS("slider-icons")}>
+                      {prevIconExist && (
+                        <span className={this.decorateCSS("icon-btn")} onClick={() => this.getComponentState("slider-ref").current.slickPrev()}>
+                          <Base.Media value={prevIconValue} className={this.decorateCSS("previcon")} />
+                        </span>
+                      )}
+                      {nextIconExist && (
+                        <span className={this.decorateCSS("icon-btn")} onClick={() => this.getComponentState("slider-ref").current.slickNext()}>
+                          <Base.Media value={nextIconValue} className={this.decorateCSS("nexticon")} />
+                        </span>
+                      )}
+                    </div>
+                  )}
                   <div className={this.decorateCSS("slider-style")}>
                     <ComposerSlider {...settings} ref={this.getComponentState("slider-ref")}>
                       {this.castToObject<Item[]>("profile-itemList").map((item: Item, index: number) => {
                         const textExist = this.castToString(item.text);
                         const authorNameExist = item.author && this.castToString(item.author.name);
-                        const authorSubtitleExist = item.author && this.castToString(item.author.subtitle);
-                        const quoteIconValue = this.getPropValue("quoteicon") as TypeMediaInputValue;
-                        const prevIconValue = this.getPropValue("previcon") as TypeMediaInputValue;
-                        const nextIconValue = this.getPropValue("nexticon") as TypeMediaInputValue;
-                        const quoteIconExist = quoteIconValue && (quoteIconValue.type === "icon" ? quoteIconValue.name : quoteIconValue.url);
-                        const prevIconExist = prevIconValue && (prevIconValue.type === "icon" ? prevIconValue.name : prevIconValue.url);
-                        const nextIconExist = nextIconValue && (nextIconValue.type === "icon" ? nextIconValue.name : nextIconValue.url);
+                        const authorSubtitleExist = item.author && this.castToString(item.author.position);
                         return (
                           <div key={index} className={this.decorateCSS("slider-inner-div")}>
                             <div className={this.decorateCSS("slider-card")}>
@@ -341,20 +361,6 @@ class Testimonials10Page extends Testimonials {
                                       {item.image && (
                                         <div className={this.decorateCSS("img-div")}>
                                           <Base.Media value={item.image} className={this.decorateCSS("img")} />
-                                        </div>
-                                      )}
-                                      {(prevIconExist || nextIconExist) && (
-                                        <div className={this.decorateCSS("icons")}>
-                                          {prevIconExist && (
-                                            <span className={this.decorateCSS("icon-btn")} onClick={() => this.getComponentState("slider-ref").current.slickPrev()}>
-                                              <Base.Media value={prevIconValue} className={this.decorateCSS("previcon")} />
-                                            </span>
-                                          )}
-                                          {nextIconExist && (
-                                            <span className={this.decorateCSS("icon-btn")} onClick={() => this.getComponentState("slider-ref").current.slickNext()}>
-                                              <Base.Media value={nextIconValue} className={this.decorateCSS("nexticon")} />
-                                            </span>
-                                          )}
                                         </div>
                                       )}
                                     </div>
@@ -374,7 +380,7 @@ class Testimonials10Page extends Testimonials {
                                               <Base.P className={this.decorateCSS("item-name")}>{item.author.name}</Base.P>
                                             )}
                                             {authorSubtitleExist && (
-                                              <Base.P className={this.decorateCSS("item-subtitle")}>{item.author.subtitle}</Base.P>
+                                              <Base.P className={this.decorateCSS("item-subtitle")}>{item.author.position}</Base.P>
                                             )}
                                           </Base.VerticalContent>
                                         )}
@@ -389,6 +395,17 @@ class Testimonials10Page extends Testimonials {
                       })}
                     </ComposerSlider>
                   </div>
+                  {sliderSettings.dots && this.getPropValue("profile-itemList").length > 1 && (
+                    <div className={this.decorateCSS("dot-panel")}>
+                      {this.castToObject<Item[]>("profile-itemList").map((_: Item, idx: number) => (
+                        <button
+                          key={idx}
+                          className={`${this.decorateCSS("dot")} ${activeSlideIndex === idx ? this.decorateCSS("dot-active") : ""}`}
+                          onClick={() => this.getComponentState("slider-ref").current.slickGoTo(idx)}
+                        />
+                      ))}
+                    </div>
+                  )}
                   {hiliteTitle && (
                     <div className={this.decorateCSS("hiliteTitle")}>{this.getPropValue("hiliteTitle")}</div>
                   )}

@@ -39,6 +39,49 @@
             }
           }
 
+          .carousel-wrapper {
+            position: relative;
+            width: 100%;
+
+            .nav-arrows {
+              display: flex;
+              justify-content: center;
+              gap: var(--composer-gap-md);
+              padding-bottom: var(--composer-gap-md);
+
+              .arrow-button {
+                width: 44px;
+                height: 44px;
+                border-radius: 50%;
+                border: 1px solid color-mix(in srgb, var(--composer-font-color-primary), transparent 55%);
+                background-color: transparent;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                transition: all 0.25s ease;
+
+                .prev-arrow,
+                .next-arrow {
+                  width: 16px;
+                  height: 16px;
+                  color: var(--composer-font-color-primary);
+                  object-fit: contain;
+                  transition: color 0.25s ease;
+                }
+
+                &:hover {
+                  background-color: var(--composer-font-color-primary);
+                  border-color: var(--composer-font-color-primary);
+                  .prev-arrow,
+                  .next-arrow {
+                    color: var(--composer-html-background);
+                  }
+                }
+              }
+            }
+          }
+
           .carousel {
             width: 100%;
             .slider-inner-div {
@@ -54,32 +97,17 @@
                 background-color: var(--composer-html-backgrounds);
                 padding: calc(var(--composer-gap-xl) * 2) var(--composer-gap-xl);
                 gap: var(--composer-gap-xl);
-                .image-arrow {
-                  display: flex;
-                  align-items: center;
-                  gap: calc(var(--composer-gap-xl) * 2);
-                  .arrow-button {
-                    border: none;
-                    background-color: transparent;
-                    cursor: pointer;
-                    .next-arrow,
-                    .prev-arrow {
-                      width: 20px;
-                      height: 20px;
-                      color: var(--composer-tertiary-color);
-                    }
+                .img-div {
+                  width: 120px;
+                  height: 120px;
+                  border-radius: 50%;
+                  overflow: hidden;
+                  img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
                   }
-                  .img-div {
-                    width: 120px;
-                    height: 120px;
-                    border-radius: 50%;
-                    overflow: hidden;
-                    img {
-                      width: 100%;
-                      height: 100%;
-                      object-fit: cover;
-                    }
-                  }
+                  font-size: 3rem;
                 }
 
                 .item-description {
@@ -144,9 +172,12 @@
 
         .containerGrid {
           flex-direction: column;
+          height: 100%;
+          flex: 1;
         }
 
         .flexItem2 {
+          flex-shrink: 0;
           .side-image {
             width: 100%;
             height: 100%;
@@ -156,11 +187,13 @@
         }
 
         .flexItem3 {
+          flex: 1;
           background-color: var(--composer-secondary-color);
           display: flex;
           flex-direction: column;
+          justify-content: center;
           border-radius: var(--composer-border-radius-sm);
-          padding: var(--composer-gap-lg);
+          padding: 60px;
           .flexItem3-content {
             align-items: flex-start !important;
             .item_title_text {
@@ -233,13 +266,18 @@
             .subtitle {
               width: 85%;
             }
-            .carousel {
-              overflow: hidden;
-              .slider-inner-div {
-                .content-div {
-                  padding: 40px 20px;
-                  .image-arrow {
-                    gap: var(--composer-gap-md);
+            .carousel-wrapper {
+              .nav-arrows {
+                .arrow-button {
+                  width: 36px;
+                  height: 36px;
+                }
+              }
+              .carousel {
+                overflow: hidden;
+                .slider-inner-div {
+                  .content-div {
+                    padding: 40px 20px;
                     .img-div {
                       width: 80px;
                       height: 80px;

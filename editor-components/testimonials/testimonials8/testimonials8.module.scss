@@ -98,20 +98,6 @@
 
         > div {
           width: 100%;
-          > div {
-            padding-bottom: var(--composer-gap-lg);
-          }
-          > ul {
-            left: 0px;
-            bottom: 0px;
-            > li {
-              > button {
-                &::before {
-                  color: var(--composer-font-color-primary);
-                }
-              }
-            }
-          }
         }
 
         .card {
@@ -131,10 +117,11 @@
             align-items: center;
             justify-content: flex-start;
             .image {
-              width: var(--composer-gap-xl);
-              height: var(--composer-gap-xl);
+              width: 50px;
+              height: 50px;
               border-radius: 50%;
               object-fit: cover;
+              font-size: 3rem;
             }
             .personal {
               display: flex;
@@ -198,6 +185,30 @@
       }
       .contentPaddingRight {
         padding-right: calc(var(--composer-gap-xl) * 3);
+      }
+
+      .dot-panel {
+        display: flex;
+        justify-content: center;
+        gap: var(--composer-gap-xs);
+        padding-top: var(--composer-gap-md);
+
+        .dot {
+          width: 8px;
+          height: 8px;
+          border-radius: 50%;
+          border: none;
+          cursor: pointer;
+          padding: 0;
+          background: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 25%);
+          transition: all 0.25s ease;
+
+          &.dot-active {
+            width: 24px;
+            border-radius: 4px;
+            background: var(--composer-primary-color);
+          }
+        }
       }
     }
   }

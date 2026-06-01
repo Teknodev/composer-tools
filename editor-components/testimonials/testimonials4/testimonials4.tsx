@@ -11,7 +11,7 @@ type Item = {
   text: React.JSX.Element;
   author: {
     name: React.JSX.Element;
-    subtitle: React.JSX.Element;
+    position: React.JSX.Element;
     media: TypeMediaInputValue;
   };
 };
@@ -30,7 +30,7 @@ class Testimonials4Page extends Testimonials {
     this.addProp({
       type: "object",
       key: "background",
-      displayer: "Background",
+      displayer: "Background Media",
       value: [
         {
           type: "media",
@@ -78,6 +78,7 @@ class Testimonials4Page extends Testimonials {
 
     this.addProp(INPUTS.SLIDER_SETTINGS("slider-settings", "Slider Settings", {
       dots: false,
+      arrows: true,
       infinite: true,
       speed: 700,
       autoplay: true,
@@ -123,7 +124,7 @@ class Testimonials4Page extends Testimonials {
                 },
                 {
                   type: "string",
-                  key: "subtitle",
+                  key: "position",
                   displayer: "Position",
                   value: "UX Developer",
                 },
@@ -172,7 +173,7 @@ class Testimonials4Page extends Testimonials {
                 },
                 {
                   type: "string",
-                  key: "subtitle",
+                  key: "position",
                   displayer: "Position",
                   value: "Solutions Architect",
                 },
@@ -221,7 +222,7 @@ class Testimonials4Page extends Testimonials {
                 },
                 {
                   type: "string",
-                  key: "subtitle",
+                  key: "position",
                   displayer: "Position",
                   value: "UX Developer",
                 },
@@ -296,6 +297,7 @@ class Testimonials4Page extends Testimonials {
     const sliderSettings = Object.fromEntries((rawSettings as any[]).map((p: any) => [p.key, p.value]));
     const settings = {
       ...sliderSettings,
+      dots: false,
       arrows: false,
       beforeChange: (oldIndex: number, nextIndex: number) => {
         this.setComponentState("active_index", nextIndex);
@@ -306,6 +308,7 @@ class Testimonials4Page extends Testimonials {
     const arrows = this.castToObject<any>("arrows");
     const prevArrowExist = arrows.prevArrow && (arrows.prevArrow.type === "icon" ? arrows.prevArrow.name : arrows.prevArrow.url);
     const nextArrowExist = arrows.nextArrow && (arrows.nextArrow.type === "icon" ? arrows.nextArrow.name : arrows.nextArrow.url);
+    const showArrows = !!sliderSettings.arrows && cardItems.length > 1;
 
     return (
       <Base.Container
@@ -363,7 +366,7 @@ class Testimonials4Page extends Testimonials {
           )}
 
           <div className={this.decorateCSS("slider-wrapper")}>
-            {prevArrowExist && cardItems.length > 1 && (
+            {showArrows && prevArrowExist && (
               <button
                 className={this.decorateCSS("prevArrow")}
                 onClick={() => {
@@ -380,7 +383,7 @@ class Testimonials4Page extends Testimonials {
                   const iconExist = item.icon && (item.icon.type === "icon" ? item.icon.name : item.icon.url);
                   const textExist = this.castToString(item.text);
                   const imageExist = item.author && item.author.media && (item.author.media.type === "icon" ? item.author.media.name : item.author.media.url);
-                  const authorExist = item.author && (this.castToString(item.author.name) || this.castToString(item.author.subtitle) || imageExist);
+                  const authorExist = item.author && (this.castToString(item.author.name) || this.castToString(item.author.position) || imageExist);
                   const hasContent = iconExist || textExist || authorExist;
 
                   if (!hasContent) return null;
@@ -402,9 +405,9 @@ class Testimonials4Page extends Testimonials {
                               {item.author.name}
                             </Base.P>
                           )}
-                          {item.author.subtitle && (
+                          {item.author.position && (
                             <Base.P className={this.decorateCSS("item-subtitle")}>
-                              {item.author.subtitle}
+                              {item.author.position}
                             </Base.P>
                           )}
                         </div>
@@ -426,9 +429,26 @@ class Testimonials4Page extends Testimonials {
                   })}
                 </div>
               )}
+
+              {sliderSettings.dots && cardItems.length > 1 && (
+                <div className={this.decorateCSS("navigation-dots")}>
+                  {cardItems.map((_: Item, index: number) => {
+                    const isActive = this.getComponentState("active_index") === index;
+                    return (
+                      <div
+                        key={index}
+                        className={`${this.decorateCSS("navigation-dot")} ${isActive ? this.decorateCSS("active") : ""}`}
+                        onClick={() => {
+                          sliderRef.current.slickGoTo(index);
+                        }}
+                      />
+                    );
+                  })}
+                </div>
+              )}
             </div>
 
-            {nextArrowExist && cardItems.length > 1 && (
+            {showArrows && nextArrowExist && (
               <button
                 className={this.decorateCSS("nextArrow")}
                 onClick={() => {

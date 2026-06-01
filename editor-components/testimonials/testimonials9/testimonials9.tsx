@@ -11,7 +11,7 @@ type Item = {
   text: React.JSX.Element;
   author: {
     name: React.JSX.Element;
-    subtitle: React.JSX.Element;
+    position: React.JSX.Element;
   };
 };
 
@@ -103,7 +103,7 @@ class Testimonials9Page extends Testimonials {
               displayer: "Author",
               value: [
                 { type: "string", key: "name", displayer: "Name", value: "Thein N." },
-                { type: "string", key: "subtitle", displayer: "Subtitle", value: "18th December 2022" },
+                { type: "string", key: "position", displayer: "Position", value: "18th December 2022" },
               ],
             },
             {
@@ -135,7 +135,7 @@ class Testimonials9Page extends Testimonials {
               displayer: "Author",
               value: [
                 { type: "string", key: "name", displayer: "Name", value: "Bailey H." },
-                { type: "string", key: "subtitle", displayer: "Subtitle", value: "21st November 2022" },
+                { type: "string", key: "position", displayer: "Position", value: "21st November 2022" },
               ],
             },
             {
@@ -167,7 +167,7 @@ class Testimonials9Page extends Testimonials {
               displayer: "Author",
               value: [
                 { type: "string", key: "name", displayer: "Name", value: "Ashley S." },
-                { type: "string", key: "subtitle", displayer: "Subtitle", value: "2nd July 2022" },
+                { type: "string", key: "position", displayer: "Position", value: "2nd July 2022" },
               ],
             },
             {
@@ -199,7 +199,7 @@ class Testimonials9Page extends Testimonials {
               displayer: "Author",
               value: [
                 { type: "string", key: "name", displayer: "Name", value: "Tom H." },
-                { type: "string", key: "subtitle", displayer: "Subtitle", value: "15th June 2022" },
+                { type: "string", key: "position", displayer: "Position", value: "15th June 2022" },
               ],
             },
             {
@@ -231,7 +231,7 @@ class Testimonials9Page extends Testimonials {
               displayer: "Author",
               value: [
                 { type: "string", key: "name", displayer: "Name", value: "Ronald R." },
-                { type: "string", key: "subtitle", displayer: "Subtitle", value: "18th December 2022" },
+                { type: "string", key: "position", displayer: "Position", value: "18th December 2022" },
               ],
             },
             {
@@ -263,7 +263,7 @@ class Testimonials9Page extends Testimonials {
               displayer: "Author",
               value: [
                 { type: "string", key: "name", displayer: "Name", value: "Olivia D." },
-                { type: "string", key: "subtitle", displayer: "Subtitle", value: "21st November 2022" },
+                { type: "string", key: "position", displayer: "Position", value: "21st November 2022" },
               ],
             },
             {
@@ -295,7 +295,7 @@ class Testimonials9Page extends Testimonials {
               displayer: "Author",
               value: [
                 { type: "string", key: "name", displayer: "Name", value: "Sarah B." },
-                { type: "string", key: "subtitle", displayer: "Subtitle", value: "2nd July 2022" },
+                { type: "string", key: "position", displayer: "Position", value: "2nd July 2022" },
               ],
             },
             {
@@ -327,7 +327,7 @@ class Testimonials9Page extends Testimonials {
               displayer: "Author",
               value: [
                 { type: "string", key: "name", displayer: "Name", value: "Mary J." },
-                { type: "string", key: "subtitle", displayer: "Subtitle", value: "15th June 2022" },
+                { type: "string", key: "position", displayer: "Position", value: "15th June 2022" },
               ],
             },
             {
@@ -341,6 +341,7 @@ class Testimonials9Page extends Testimonials {
       ],
     });
     this.setComponentState("active-index", 1);
+    this.setComponentState("slider-ref", React.createRef());
   }
 
   static getName(): string {
@@ -370,6 +371,7 @@ class Testimonials9Page extends Testimonials {
     const settings = {
       ...sliderSettings,
       arrows: false,
+      dots: false,
       vertical: true,
       slidesToShow: Math.min(Math.max(slider.length, 1), 4),
       verticalSwiping: slider.length > 1,
@@ -380,6 +382,7 @@ class Testimonials9Page extends Testimonials {
     };
 
     const activeIndex = this.getComponentState("active-index");
+    const sliderRef = this.getComponentState("slider-ref");
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
@@ -427,7 +430,19 @@ class Testimonials9Page extends Testimonials {
             )}
             <Base.ContainerGrid className={this.decorateCSS("down-page")}>
               <Base.GridCell className={this.decorateCSS("carousel")}>
-                <ComposerSlider {...settings}>
+                <div className={this.decorateCSS("carousel-inner")}>
+                {sliderSettings.dots && slider.length > 1 && (
+                  <div className={this.decorateCSS("v-dots")}>
+                    {this.castToObject<Item[]>("slider").map((_: Item, idx: number) => (
+                      <button
+                        key={idx}
+                        className={`${this.decorateCSS("v-dot")} ${activeIndex === idx ? this.decorateCSS("v-dot-active") : ""}`}
+                        onClick={() => sliderRef?.current?.slickGoTo(idx)}
+                      />
+                    ))}
+                  </div>
+                )}
+                <ComposerSlider {...settings} ref={sliderRef}>
                   {this.castToObject<Item[]>("slider").map((item: Item, index: number) => (
                     <div key={index} className={`${this.decorateCSS("card-inner")} ${activeIndex === index ? this.decorateCSS("active") : ""}`}>
                       {item.image && <Base.Media value={item.image} className={this.decorateCSS("img")} />}
@@ -436,14 +451,15 @@ class Testimonials9Page extends Testimonials {
                           {item.author.name && (
                             <Base.H5 className={this.decorateCSS("item-name")}>{item.author.name}</Base.H5>
                           )}
-                          {item.author.subtitle && (
-                            <Base.H5 className={this.decorateCSS("item-subtitle")}>{item.author.subtitle}</Base.H5>
+                          {item.author.position && (
+                            <Base.H5 className={this.decorateCSS("item-subtitle")}>{item.author.position}</Base.H5>
                           )}
                         </Base.VerticalContent>
                       )}
                     </div>
                   ))}
                 </ComposerSlider>
+                </div>
               </Base.GridCell>
               <Base.GridCell className={this.decorateCSS("right-page")}>
                 {leftIconExist && (

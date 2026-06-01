@@ -38,22 +38,32 @@
           display: flex;
           align-items: center;
           justify-content: center;
-          gap: var(--composer-gap-xl);
+          gap: var(--composer-gap-md);
           .arrow-button {
-            border: none;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            border: 1px solid color-mix(in srgb, var(--composer-font-color-primary), transparent 55%);
             background-color: transparent;
             cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.25s ease;
             .prev-arrow,
             .next-arrow {
-              width: 30px;
-              height: 30px;
-              color: var(--composer-tertiary-color);
-              transition: color 0.5s ease;
+              width: 16px;
+              height: 16px;
+              color: var(--composer-font-color-primary);
+              object-fit: contain;
+              transition: color 0.25s ease;
             }
             &:hover {
+              background-color: var(--composer-font-color-primary);
+              border-color: var(--composer-font-color-primary);
               .prev-arrow,
               .next-arrow {
-                color: var(--composer-font-color-primary);
+                color: var(--composer-html-background);
               }
             }
           }
@@ -64,11 +74,22 @@
         > div {
           > div {
             display: flex;
-            gap: var(--composer-gap-md) ;
+            gap: var(--composer-gap-md);
           }
         }
-        button {
-          display: none !important;
+        > :global(.slick-dots) {
+          position: static;
+          margin-top: var(--composer-gap-sm);
+          > li {
+            > button::before {
+              color: var(--composer-font-color-primary);
+              opacity: 0.4;
+            }
+            &:global(.slick-active) > button::before {
+              color: var(--composer-primary-color);
+              opacity: 1;
+            }
+          }
         }
         .card {
           border-radius: var(--composer-gap-sm);
@@ -97,6 +118,8 @@
               width: 60px;
               height: 60px;
               border-radius: 50%;
+              object-fit: cover;
+              font-size: 3rem;
             }
             .below-right-content {
               justify-content: center;

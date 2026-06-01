@@ -15,10 +15,10 @@ type LinkItem = {
 type TestimonialItem = {
   logoImage?: TypeMediaInputValue;
   image?: TypeMediaInputValue;
-  quote?: React.JSX.Element;
+  text?: React.JSX.Element;
   author?: {
     name: React.JSX.Element;
-    subtitle: React.JSX.Element;
+    position: React.JSX.Element;
   };
   company?: React.JSX.Element;
 };
@@ -140,7 +140,7 @@ class Testimonials16 extends Testimonials {
             },
             {
               type: "string",
-              key: "quote",
+              key: "text",
               displayer: "Quote",
               value: "If I can give my clients value—even if they don't have the budget—I will. Blinkpage's AI tools make that possible.",
             },
@@ -150,7 +150,7 @@ class Testimonials16 extends Testimonials {
               displayer: "Author",
               value: [
                 { type: "string", key: "name", displayer: "Name", value: "Josh Neimark" },
-                { type: "string", key: "subtitle", displayer: "Position", value: "CEO" },
+                { type: "string", key: "position", displayer: "Position", value: "CEO" },
               ],
             },
             { type: "string", key: "company", displayer: "Company", value: "Fix8" },
@@ -177,7 +177,7 @@ class Testimonials16 extends Testimonials {
             },
             {
               type: "string",
-              key: "quote",
+              key: "text",
               displayer: "Quote",
               value: "Blinkpage's AI Assistant should save us 3 to 6 hours on most websites.",
             },
@@ -187,7 +187,7 @@ class Testimonials16 extends Testimonials {
               displayer: "Author",
               value: [
                 { type: "string", key: "name", displayer: "Name", value: "Nat Rosasco" },
-                { type: "string", key: "subtitle", displayer: "Position", value: "Principal" },
+                { type: "string", key: "position", displayer: "Position", value: "Principal" },
               ],
             },
             { type: "string", key: "company", displayer: "Company", value: "Olive Street Design" },
@@ -214,7 +214,7 @@ class Testimonials16 extends Testimonials {
             },
             {
               type: "string",
-              key: "quote",
+              key: "text",
               displayer: "Quote",
               value: "Blinkpage is a great option for agencies looking to leverage AI in their website building.",
             },
@@ -224,7 +224,7 @@ class Testimonials16 extends Testimonials {
               displayer: "Author",
               value: [
                 { type: "string", key: "name", displayer: "Name", value: "Owain Williams" },
-                { type: "string", key: "subtitle", displayer: "Position", value: "Editor" },
+                { type: "string", key: "position", displayer: "Position", value: "Editor" },
               ],
             },
             { type: "string", key: "company", displayer: "Company", value: "TechRadar" },
@@ -291,9 +291,9 @@ class Testimonials16 extends Testimonials {
       const hasLogo = logoVal && (logoVal.type === "icon" ? logoVal.name : logoVal.url);
       const imgVal = item.image;
       const hasImage = imgVal && imgVal.type === "image" && imgVal.url;
-      const hasQuote = this.castToString(item.quote);
+      const hasQuote = this.castToString(item.text);
       const hasAuthorName = item.author && this.castToString(item.author.name);
-      const hasAuthorSubtitle = item.author && this.castToString(item.author.subtitle);
+      const hasAuthorSubtitle = item.author && this.castToString(item.author.position);
       const hasCompany = this.castToString(item.company);
       return hasLogo || hasImage || hasQuote || hasAuthorName || hasAuthorSubtitle || hasCompany;
     });
@@ -324,6 +324,7 @@ class Testimonials16 extends Testimonials {
     const baseSettings = {
       ...sliderSettings,
       arrows: false,
+      dots: false,
       infinite: filteredTestimonials.length > 1,
       autoplay: autoplayEnabled && filteredTestimonials.length > 1,
       beforeChange: (_current: number, next: number) => {
@@ -429,9 +430,9 @@ class Testimonials16 extends Testimonials {
             <div className={this.decorateCSS("slider-wrapper")}>
               <ComposerSlider {...baseSettings} ref={sliderRef} className={this.decorateCSS("slider")}>
                 {filteredTestimonials.map((item: TestimonialItem, index: number) => {
-                  const hasQuote = this.castToString(item.quote);
+                  const hasQuote = this.castToString(item.text);
                   const hasAuthorName = item.author && this.castToString(item.author.name);
-                  const hasAuthorSubtitle = item.author && this.castToString(item.author.subtitle);
+                  const hasAuthorSubtitle = item.author && this.castToString(item.author.position);
                   const logoVal = item.logoImage;
                   const logoImage = logoVal && (logoVal.type === "icon" ? logoVal.name : logoVal.url) ? logoVal : null;
                   const imgVal = item.image;
@@ -468,7 +469,7 @@ class Testimonials16 extends Testimonials {
                                   {quoteIconValue && (
                                     <Base.Media value={quoteIconValue} className={this.decorateCSS("quote-icon")} />
                                   )}
-                                  <Base.H3 className={this.decorateCSS("quote")}>{item.quote}</Base.H3>
+                                  <Base.H3 className={this.decorateCSS("quote")}>{item.text}</Base.H3>
                                 </div>
                               )}
                               {(hasAuthorName || hasAuthorSubtitle || hasCompany) && (
@@ -487,7 +488,7 @@ class Testimonials16 extends Testimonials {
                                     )}
                                     {(hasAuthorSubtitle || hasCompany) && (
                                       <Base.P className={this.decorateCSS("role-company")}>
-                                        {hasAuthorSubtitle && item.author!.subtitle}
+                                        {hasAuthorSubtitle && item.author!.position}
                                         {hasAuthorSubtitle && hasCompany && ", "}
                                         {hasCompany && item.company}
                                       </Base.P>
@@ -510,7 +511,7 @@ class Testimonials16 extends Testimonials {
                                     )}
                                     {(hasAuthorSubtitle || hasCompany) && (
                                       <Base.P className={this.decorateCSS("role")}>
-                                        {hasAuthorSubtitle && item.author!.subtitle}
+                                        {hasAuthorSubtitle && item.author!.position}
                                         {hasAuthorSubtitle && hasCompany && ", "}
                                         {hasCompany && item.company}
                                       </Base.P>

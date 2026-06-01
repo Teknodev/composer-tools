@@ -263,6 +263,7 @@ class Testimonials3Page extends Testimonials {
                       ))}
                     </div>
                   )}
+                  {this.castToString(item.text) && <Base.P className={this.decorateCSS("item-text")}>{item.text}</Base.P>}
                   {authorExist && (
                     <Base.VerticalContent className={this.decorateCSS("author-container")}>
                       {imageExist && (
@@ -270,7 +271,6 @@ class Testimonials3Page extends Testimonials {
                       )}
                     </Base.VerticalContent>
                   )}
-                  {this.castToString(item.text) && <Base.P className={this.decorateCSS("item-text")}>{item.text}</Base.P>}
                 </Base.VerticalContent>
               );
             })}

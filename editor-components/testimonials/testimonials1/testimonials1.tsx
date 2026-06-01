@@ -11,6 +11,7 @@ type Item = {
   name: React.JSX.Element;
   icon: TypeMediaInputValue;
   profileImage: TypeMediaInputValue;
+  iconBackground: boolean;
 };
 
 type Button = {
@@ -27,7 +28,7 @@ class Testimonials1Page extends Testimonials {
     this.addProp({
       type: "object",
       key: "background",
-      displayer: "Background",
+      displayer: "Background Media",
       value: [
         {
           type: "media",
@@ -82,6 +83,7 @@ class Testimonials1Page extends Testimonials {
 
     this.addProp(INPUTS.SLIDER_SETTINGS("slider-settings", "Slider Settings", {
       dots: false,
+      arrows: false,
       infinite: true,
       speed: 500,
       autoplay: true,
@@ -89,6 +91,22 @@ class Testimonials1Page extends Testimonials {
       slidesToShow: 1,
       slidesToScroll: 1,
     }));
+
+    this.addProp({
+      type: "media",
+      key: "prevIcon",
+      displayer: "Prev Icon",
+      additionalParams: { availableTypes: ["icon", "image"] },
+      value: { type: "icon", name: "FaArrowLeft" },
+    });
+
+    this.addProp({
+      type: "media",
+      key: "nextIcon",
+      displayer: "Next Icon",
+      additionalParams: { availableTypes: ["icon", "image"] },
+      value: { type: "icon", name: "FaArrowRight" },
+    });
 
     this.addProp({
       type: "array",
@@ -137,6 +155,12 @@ class Testimonials1Page extends Testimonials {
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66616deebd2970002c62361d?alt=media&timestamp=1719483639149",
               },
             },
+            {
+              type: "boolean",
+              key: "iconBackground",
+              displayer: "Icon Background",
+              value: true,
+            },
           ],
         },
         {
@@ -179,6 +203,12 @@ class Testimonials1Page extends Testimonials {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66616deebd2970002c62361e?alt=media&timestamp=1719483639149",
               },
+            },
+            {
+              type: "boolean",
+              key: "iconBackground",
+              displayer: "Icon Background",
+              value: true,
             },
           ],
         },
@@ -223,6 +253,12 @@ class Testimonials1Page extends Testimonials {
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66616deebd2970002c62361f?alt=media&timestamp=1719483639150",
               },
             },
+            {
+              type: "boolean",
+              key: "iconBackground",
+              displayer: "Icon Background",
+              value: true,
+            },
           ],
         },
       ],
@@ -258,6 +294,7 @@ class Testimonials1Page extends Testimonials {
     const sliderSettings = Object.fromEntries((rawSettings as any[]).map((p: any) => [p.key, p.value]));
     const settings = {
       ...sliderSettings,
+      dots: false,
       arrows: false,
       beforeChange: (_oldIndex: number, nextIndex: number) => {
         this.setComponentState("active_index", nextIndex);
@@ -268,6 +305,13 @@ class Testimonials1Page extends Testimonials {
     const bgMedia = background.componentBackground as TypeMediaInputValue;
     const imageExist = bgMedia && bgMedia.url;
     const overlayActive = background.overlayActive;
+
+    const prevIcon = this.getPropValue("prevIcon") as TypeMediaInputValue;
+    const prevIconExist = prevIcon && (prevIcon.type === "icon" ? prevIcon.name : prevIcon.url);
+    const nextIcon = this.getPropValue("nextIcon") as TypeMediaInputValue;
+    const nextIconExist = nextIcon && (nextIcon.type === "icon" ? nextIcon.name : nextIcon.url);
+    const sliderRef = this.getComponentState("slider-ref");
+    const showArrows = !!sliderSettings.arrows && this.castToObject<Item[]>("items").length > 1;
 
     return (
       <Base.Container className={`${this.decorateCSS("container")} ${imageExist ? this.decorateCSS("with-background") : ""}`}>
@@ -320,22 +364,47 @@ class Testimonials1Page extends Testimonials {
                 </Base.VerticalContent>
               )}
               <div className={this.decorateCSS("content")}>
-                <ComposerSlider {...settings} ref={this.getComponentState("slider-ref")}>
-                  {this.castToObject<Item[]>("items").map((item: Item, index: number) => {
-                    const iconExist = item.icon && (item.icon.type === "icon" ? item.icon.name : item.icon.url);
-                    return (
-                      <div key={index} className={this.decorateCSS("items")}>
-                        {iconExist && <Base.Media value={item.icon} className={this.decorateCSS("icon")} />}
-                        {this.castToString(item.description) && (
-                          <div className={this.decorateCSS("description")}>{item.description}</div>
-                        )}
-                        {this.castToString(item.name) && (
-                          <div className={this.decorateCSS("name")}>{item.name}</div>
-                        )}
-                      </div>
-                    );
-                  })}
-                </ComposerSlider>
+                <div className={this.decorateCSS("slider-container")}>
+                  {showArrows && prevIconExist && (
+                    <button
+                      className={this.decorateCSS("prev-arrow-btn")}
+                      onClick={() => sliderRef.current?.slickPrev()}
+                    >
+                      <Base.Media value={prevIcon} className={this.decorateCSS("arrow-icon")} />
+                    </button>
+                  )}
+
+                  <ComposerSlider {...settings} ref={sliderRef} className={this.decorateCSS("slider")}>
+                    {this.castToObject<Item[]>("items").map((item: Item, index: number) => {
+                      const iconExist = item.icon && (item.icon.type === "icon" ? item.icon.name : item.icon.url);
+                      return (
+                        <div key={index} className={this.decorateCSS("items")}>
+                          {iconExist && (
+                            <Base.Media
+                              value={item.icon}
+                              className={`${this.decorateCSS("icon")} ${item.iconBackground ? this.decorateCSS("icon-bg") : ""}`}
+                            />
+                          )}
+                          {this.castToString(item.description) && (
+                            <div className={this.decorateCSS("description")}>{item.description}</div>
+                          )}
+                          {this.castToString(item.name) && (
+                            <div className={this.decorateCSS("name")}>{item.name}</div>
+                          )}
+                        </div>
+                      );
+                    })}
+                  </ComposerSlider>
+
+                  {showArrows && nextIconExist && (
+                    <button
+                      className={this.decorateCSS("next-arrow-btn")}
+                      onClick={() => sliderRef.current?.slickNext()}
+                    >
+                      <Base.Media value={nextIcon} className={this.decorateCSS("arrow-icon")} />
+                    </button>
+                  )}
+                </div>
                 <div className={this.decorateCSS("images")}>
                   {this.castToObject<Item[]>("items").map((item: Item, itemIndex: number) => {
                     const isActive = this.getComponentState("active_index") === itemIndex;
@@ -355,6 +424,23 @@ class Testimonials1Page extends Testimonials {
                     );
                   })}
                 </div>
+
+                {sliderSettings.dots && this.castToObject<Item[]>("items").length > 1 && (
+                  <div className={this.decorateCSS("navigation-dots")}>
+                    {this.castToObject<Item[]>("items").map((_: Item, index: number) => {
+                      const isActive = this.getComponentState("active_index") === index;
+                      return (
+                        <div
+                          key={index}
+                          className={`${this.decorateCSS("navigation-dot")} ${isActive ? this.decorateCSS("active") : ""}`}
+                          onClick={() => {
+                            sliderRef.current?.slickGoTo(index);
+                          }}
+                        />
+                      );
+                    })}
+                  </div>
+                )}
               </div>
             </div>
           </div>

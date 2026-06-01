@@ -35,7 +35,7 @@ class Testimonials5Page extends Testimonials {
     this.addProp({
       type: "object",
       key: "background",
-      displayer: "Background",
+      displayer: "Background Media",
       value: [
         {
           type: "media",
@@ -130,7 +130,7 @@ class Testimonials5Page extends Testimonials {
               type: "media",
               key: "image",
               displayer: "Media",
-              additionalParams: { availableTypes: ["image", "icon"] },
+              additionalParams: { availableTypes: ["image", "icon", "video"] },
               value: { type: "image", url: "https://craftohtml.themezaa.com/images/demo-travel-agency-home-18.png" },
             },
             {
@@ -176,7 +176,7 @@ class Testimonials5Page extends Testimonials {
               type: "media",
               key: "image",
               displayer: "Media",
-              additionalParams: { availableTypes: ["image", "icon"] },
+              additionalParams: { availableTypes: ["image", "icon", "video"] },
               value: { type: "image", url: "https://craftohtml.themezaa.com/images/demo-travel-agency-home-17.png" },
             },
             {
@@ -222,7 +222,7 @@ class Testimonials5Page extends Testimonials {
               type: "media",
               key: "image",
               displayer: "Media",
-              additionalParams: { availableTypes: ["image", "icon"] },
+              additionalParams: { availableTypes: ["image", "icon", "video"] },
               value: { type: "image", url: "https://craftohtml.themezaa.com/images/demo-travel-agency-home-15.png" },
             },
             {
@@ -294,6 +294,7 @@ class Testimonials5Page extends Testimonials {
   }
 
   render() {
+    const alignmentValue = Base.getContentAlignment();
     const subtitleExist = this.castToString(this.getPropValue("subtitle"));
     const titleExist = this.castToString(this.getPropValue("title"));
     const descriptionExist = this.castToString(this.getPropValue("description"));
@@ -329,7 +330,7 @@ class Testimonials5Page extends Testimonials {
     };
 
     return (
-      <Base.Container className={`${this.decorateCSS("container")} ${backgroundImageExist ? this.decorateCSS("with-background") : ""}`}>
+      <Base.Container className={`${this.decorateCSS("container")} ${backgroundImageExist ? this.decorateCSS("with-background") : ""} ${alignmentValue === "center" ? this.decorateCSS("center") : ""}`}>
         {backgroundImageExist && (
           <Base.Media
             value={bgMedia}

@@ -10,7 +10,7 @@ type Item = {
   icon: TypeMediaInputValue;
   author: {
     name: React.JSX.Element;
-    subtitle: React.JSX.Element;
+    position: React.JSX.Element;
   };
   text: React.JSX.Element;
 };
@@ -112,8 +112,8 @@ class Testimonials14 extends Testimonials {
                 },
                 {
                   type: "string",
-                  key: "subtitle",
-                  displayer: "Subtitle",
+                  key: "position",
+                  displayer: "Position",
                   value: "",
                 },
               ],
@@ -168,8 +168,8 @@ class Testimonials14 extends Testimonials {
                 },
                 {
                   type: "string",
-                  key: "subtitle",
-                  displayer: "Subtitle",
+                  key: "position",
+                  displayer: "Position",
                   value: "",
                 },
               ],
@@ -224,8 +224,8 @@ class Testimonials14 extends Testimonials {
                 },
                 {
                   type: "string",
-                  key: "subtitle",
-                  displayer: "Subtitle",
+                  key: "position",
+                  displayer: "Position",
                   value: "",
                 },
               ],
@@ -280,8 +280,8 @@ class Testimonials14 extends Testimonials {
                 },
                 {
                   type: "string",
-                  key: "subtitle",
-                  displayer: "Subtitle",
+                  key: "position",
+                  displayer: "Position",
                   value: "",
                 },
               ],
@@ -510,16 +510,16 @@ class Testimonials14 extends Testimonials {
                         className={this.decorateCSS("icon")}
                       />
                     ) : (<span className={this.decorateCSS("span-icon")} />)}
-                    {activeItem.author && (this.castToString(activeItem.author.name) || this.castToString(activeItem.author.subtitle)) && (
+                    {activeItem.author && (this.castToString(activeItem.author.name) || this.castToString(activeItem.author.position)) && (
                       <div className={this.decorateCSS("author-details")}>
                         {this.castToString(activeItem.author.name) && (
                           <Base.SectionTitle className={this.decorateCSS("author-name")}>
                             {activeItem.author.name}
                           </Base.SectionTitle>
                         )}
-                        {this.castToString(activeItem.author.subtitle) && (
+                        {this.castToString(activeItem.author.position) && (
                           <Base.P className={this.decorateCSS("author-subtitle")}>
-                            {activeItem.author.subtitle}
+                            {activeItem.author.position}
                           </Base.P>
                         )}
                       </div>

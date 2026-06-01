@@ -13,7 +13,7 @@ type Item = {
   star: number;
   author: {
     name: React.JSX.Element;
-    subtitle: React.JSX.Element;
+    position: React.JSX.Element;
     image: TypeMediaInputValue;
   };
 };
@@ -115,7 +115,7 @@ class Testimonials2Page extends Testimonials {
                 },
                 {
                   type: "string",
-                  key: "subtitle",
+                  key: "position",
                   displayer: "Position",
                   value: "Designer",
                 },
@@ -167,7 +167,7 @@ class Testimonials2Page extends Testimonials {
                 },
                 {
                   type: "string",
-                  key: "subtitle",
+                  key: "position",
                   displayer: "Position",
                   value: "Designer",
                 },
@@ -219,7 +219,7 @@ class Testimonials2Page extends Testimonials {
                 },
                 {
                   type: "string",
-                  key: "subtitle",
+                  key: "position",
                   displayer: "Position",
                   value: "Designer",
                 },
@@ -271,7 +271,7 @@ class Testimonials2Page extends Testimonials {
                 },
                 {
                   type: "string",
-                  key: "subtitle",
+                  key: "position",
                   displayer: "Position",
                   value: "Designer",
                 },
@@ -323,7 +323,7 @@ class Testimonials2Page extends Testimonials {
                 },
                 {
                   type: "string",
-                  key: "subtitle",
+                  key: "position",
                   displayer: "Position",
                   value: "Designer",
                 },
@@ -333,6 +333,22 @@ class Testimonials2Page extends Testimonials {
         },
       ],
     });
+    this.addProp({
+      type: "media",
+      key: "prevIcon",
+      displayer: "Prev Icon",
+      additionalParams: { availableTypes: ["icon", "image"] },
+      value: { type: "icon", name: "FaArrowLeft" },
+    });
+    this.addProp({
+      type: "media",
+      key: "nextIcon",
+      displayer: "Next Icon",
+      additionalParams: { availableTypes: ["icon", "image"] },
+      value: { type: "icon", name: "FaArrowRight" },
+    });
+    this.setComponentState("slider-ref", React.createRef());
+    this.setComponentState("activeSlideIndex", 0);
   }
 
   static getName(): string {
@@ -353,12 +369,20 @@ class Testimonials2Page extends Testimonials {
     const hasAnyTopContent = subtitleExist || titleExist || descriptionExist || hasValidButtons;
 
     const cardCount = this.getPropValue("card-items").length;
+    const prevIconVal = this.getPropValue("prevIcon") as TypeMediaInputValue;
+    const prevIconExist = prevIconVal && (prevIconVal.type === "icon" ? prevIconVal.name : prevIconVal.url);
+    const nextIconVal = this.getPropValue("nextIcon") as TypeMediaInputValue;
+    const nextIconExist = nextIconVal && (nextIconVal.type === "icon" ? nextIconVal.name : nextIconVal.url);
+    const sliderRef = this.getComponentState("slider-ref");
     const rawSettings = this.getPropValue("slider-settings");
     const sliderSettings = Object.fromEntries((rawSettings as any[]).map((p: any) => [p.key, p.value]));
     const settings = {
       ...sliderSettings,
       arrows: false,
       infinite: cardCount > 3,
+      beforeChange: (_current: number, next: number) => {
+        this.setComponentState("activeSlideIndex", next);
+      },
       responsive: [
         {
           breakpoint: 1024,
@@ -407,12 +431,12 @@ class Testimonials2Page extends Testimonials {
           )}
         </Base.MaxContent>
 
-        <ComposerSlider {...settings} className={this.decorateCSS("slider-style")}>
+        <ComposerSlider {...settings} ref={sliderRef} className={this.decorateCSS("slider-style")}>
           {this.castToObject<Item[]>("card-items").map((item: Item, index: number) => {
             const iconExist = item.icon && (item.icon.type === "icon" ? item.icon.name : item.icon.url);
             const textExist = this.castToString(item.text);
             const imageExist = item.author && item.author.image && (item.author.image.type === "image" ? item.author.image.url : item.author.image.name);
-            const authorExist = item.author && (item.author.name || item.author.subtitle || imageExist);
+            const authorExist = item.author && (item.author.name || item.author.position || imageExist);
 
             return (
               <div className={this.decorateCSS("card")} key={index}>
@@ -434,13 +458,27 @@ class Testimonials2Page extends Testimonials {
                       <Base.Media value={item.author.image} className={this.decorateCSS("author-image")} />
                     )}
                     {item.author.name && <Base.P className={this.decorateCSS("item-name")}>{item.author.name}</Base.P>}
-                    {item.author.subtitle && <Base.P className={this.decorateCSS("item-subtitle")}>{item.author.subtitle}</Base.P>}
+                    {item.author.position && <Base.P className={this.decorateCSS("item-subtitle")}>{item.author.position}</Base.P>}
                   </Base.VerticalContent>
                 )}
               </div>
             );
           })}
         </ComposerSlider>
+        {sliderSettings.arrows && (prevIconExist || nextIconExist) && cardCount > 1 && (
+          <div className={this.decorateCSS("nav-arrows")}>
+            {prevIconExist && (
+              <button className={this.decorateCSS("nav-arrow-btn")} onClick={() => sliderRef?.current?.slickPrev()}>
+                <Base.Media value={prevIconVal} className={this.decorateCSS("nav-arrow-icon")} />
+              </button>
+            )}
+            {nextIconExist && (
+              <button className={this.decorateCSS("nav-arrow-btn")} onClick={() => sliderRef?.current?.slickNext()}>
+                <Base.Media value={nextIconVal} className={this.decorateCSS("nav-arrow-icon")} />
+              </button>
+            )}
+          </div>
+        )}
       </Base.Container>
     );
   }

@@ -31,7 +31,7 @@ class Testimonials7Page extends Testimonials {
     this.addProp({
       type: "object",
       key: "background",
-      displayer: "Background",
+      displayer: "Background Media",
       value: [
         {
           type: "media",
@@ -55,19 +55,19 @@ class Testimonials7Page extends Testimonials {
       type: "string",
       key: "subtitle",
       displayer: "Subtitle",
-      value: "",
+      value: "Lorem",
     });
     this.addProp({
       type: "string",
       key: "title",
       displayer: "Title",
-      value: "",
+      value: "Lorem Ipsum",
     });
     this.addProp({
       type: "string",
       key: "description",
       displayer: "Description",
-      value: "",
+      value: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
     });
     this.addProp({
       type: "array",
@@ -243,20 +243,15 @@ class Testimonials7Page extends Testimonials {
     const settings = {
       ...sliderSettings,
       arrows: false,
+      dots: false,
       beforeChange: (current: number, next: number) => {
         this.setComponentState("active", next);
         this.setComponentState("activeSlideIndex", next);
       },
-      responsive: [
-        {
-          breakpoint: 450,
-          settings: {
-            dots: true,
-          },
-        },
-      ],
     };
     const sliderRef = this.getComponentState("slider-ref");
+    const activeSlideIndex = this.getComponentState("activeSlideIndex") || 0;
+    const items = this.castToObject<Item[]>("card-items");
     const bg = this.castToObject<Background>("background");
     const hasBackground = !!(bg.componentBackground && (bg.componentBackground.type === "icon" ? bg.componentBackground.name : bg.componentBackground.url));
     return (
@@ -308,17 +303,17 @@ class Testimonials7Page extends Testimonials {
           )}
           <div className={this.decorateCSS("testimonials7")}>
             <div className={this.decorateCSS("slider-wrapper")}>
+              {prevIconExist && items.length > 1 && (
+                <button
+                  onClick={() => { sliderRef.current.slickPrev(); }}
+                  className={this.decorateCSS("button-left")}
+                >
+                  <Base.Media value={prevIconVal} className={this.decorateCSS("arrow")} />
+                </button>
+              )}
               <ComposerSlider ref={sliderRef} {...settings} className={this.decorateCSS("slider-style")}>
-                {this.castToObject<Item[]>("card-items").map((item: Item, index: number) => (
+                {items.map((item: Item, index: number) => (
                   <div key={index} className={this.decorateCSS("card")}>
-                    {prevIconExist && (
-                      <button
-                        onClick={() => { sliderRef.current.slickPrev(); }}
-                        className={this.decorateCSS("button-left")}
-                      >
-                        <Base.Media value={prevIconVal} className={this.decorateCSS("arrow")} />
-                      </button>
-                    )}
                     {(this.castToString(item.description) || item.profileImage || this.castToString(item.name) || this.castToString(item.nameId)) && (
                       <Base.VerticalContent className={this.decorateCSS("item-content")}>
                         {this.castToString(item.description) && (
@@ -339,18 +334,29 @@ class Testimonials7Page extends Testimonials {
                         )}
                       </Base.VerticalContent>
                     )}
-                    {nextIconExist && (
-                      <button
-                        onClick={() => { sliderRef.current.slickNext(); }}
-                        className={this.decorateCSS("button-right")}
-                      >
-                        <Base.Media value={nextIconVal} className={this.decorateCSS("arrow")} />
-                      </button>
-                    )}
                   </div>
                 ))}
               </ComposerSlider>
+              {nextIconExist && items.length > 1 && (
+                <button
+                  onClick={() => { sliderRef.current.slickNext(); }}
+                  className={this.decorateCSS("button-right")}
+                >
+                  <Base.Media value={nextIconVal} className={this.decorateCSS("arrow")} />
+                </button>
+              )}
             </div>
+            {sliderSettings.dots && items.length > 1 && (
+              <div className={this.decorateCSS("dots-panel")}>
+                {items.map((_: Item, dotIndex: number) => (
+                  <button
+                    key={dotIndex}
+                    className={`${this.decorateCSS("dot")} ${activeSlideIndex === dotIndex ? this.decorateCSS("dot-active") : ""}`}
+                    onClick={() => sliderRef.current.slickGoTo(dotIndex)}
+                  />
+                ))}
+              </div>
+            )}
           </div>
         </Base.MaxContent>
       </Base.Container>

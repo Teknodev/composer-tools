@@ -11,7 +11,7 @@ type Item = {
   text: React.JSX.Element;
   author: {
     name: React.JSX.Element;
-    subtitle: React.JSX.Element;
+    position: React.JSX.Element;
   };
 };
 
@@ -65,6 +65,7 @@ class Testimonials13Page extends Testimonials {
     });
     this.addProp(INPUTS.SLIDER_SETTINGS("slider-settings", "Slider Settings", {
       dots: false,
+      arrows: false,
       infinite: true,
       speed: 700,
       autoplay: true,
@@ -126,7 +127,7 @@ class Testimonials13Page extends Testimonials {
               displayer: "Author",
               value: [
                 { type: "string", key: "name", displayer: "Name", value: "Alex Madson" },
-                { type: "string", key: "subtitle", displayer: "Position", value: "Student" },
+                { type: "string", key: "position", displayer: "Position", value: "Student" },
               ],
             },
           ],
@@ -159,7 +160,7 @@ class Testimonials13Page extends Testimonials {
               displayer: "Author",
               value: [
                 { type: "string", key: "name", displayer: "Name", value: "Helen Lee" },
-                { type: "string", key: "subtitle", displayer: "Position", value: "Artist" },
+                { type: "string", key: "position", displayer: "Position", value: "Artist" },
               ],
             },
           ],
@@ -192,7 +193,7 @@ class Testimonials13Page extends Testimonials {
               displayer: "Author",
               value: [
                 { type: "string", key: "name", displayer: "Name", value: "Michael Moore" },
-                { type: "string", key: "subtitle", displayer: "Position", value: "Designer" },
+                { type: "string", key: "position", displayer: "Position", value: "Designer" },
               ],
             },
           ],
@@ -380,59 +381,57 @@ class Testimonials13Page extends Testimonials {
                       )}
                     </Base.VerticalContent>
                   )}
-                  <ComposerSlider ref={sliderRef} {...settings} className={this.decorateCSS("carousel")}>
-                    {card.map((item: Item, index: number) => (
-                      <div key={index} className={this.decorateCSS("slider-inner-div")}>
-                        <div className={this.decorateCSS("content-div")}>
-                          {(prevIconExist || nextIconExist || (item.image && item.image.url)) && (
-                            <div className={this.decorateCSS("image-arrow")}>
-                              {prevIconExist && (
-                                <button
-                                  onClick={() => {
-                                    sliderRef.current.slickPrev();
-                                  }}
-                                  className={this.decorateCSS("arrow-button")}
-                                >
-                                  <Base.Media value={prevIcon} className={this.decorateCSS("prev-arrow")} />
-                                </button>
-                              )}
-                              {item.image && item.image.url && (
-                                <div className={this.decorateCSS("img-div")}>
-                                  <Base.Media value={item.image} className={this.decorateCSS("img")} />
-                                </div>
-                              )}
-                              {nextIconExist && (
-                                <button
-                                  onClick={() => {
-                                    sliderRef.current.slickNext();
-                                  }}
-                                  className={this.decorateCSS("arrow-button")}
-                                >
-                                  <Base.Media value={nextIcon} className={this.decorateCSS("next-arrow")} />
-                                </button>
-                              )}
-                            </div>
-                          )}
-                          {this.castToString(item.text) && (
-                            <Base.P className={this.decorateCSS("item-description")}>{item.text}</Base.P>
-                          )}
-                          {(sliderIconExist || (item.author && (this.castToString(item.author.name) || this.castToString(item.author.subtitle)))) && (
-                            <Base.VerticalContent className={this.decorateCSS("bottom-container")}>
-                              {sliderIconExist && (
-                                <Base.Media value={sliderIcon} className={this.decorateCSS("item-icon")} />
-                              )}
-                              {item.author && this.castToString(item.author.name) && (
-                                <Base.H6 className={this.decorateCSS("first-header")}>{item.author.name}</Base.H6>
-                              )}
-                              {item.author && this.castToString(item.author.subtitle) && (
-                                <Base.P className={this.decorateCSS("item-title")}>{item.author.subtitle}</Base.P>
-                              )}
-                            </Base.VerticalContent>
-                          )}
-                        </div>
+                  <div className={this.decorateCSS("carousel-wrapper")}>
+                    {sliderSettings.arrows && (prevIconExist || nextIconExist) && card.length > 1 && (
+                      <div className={this.decorateCSS("nav-arrows")}>
+                        {prevIconExist && (
+                          <button
+                            onClick={() => sliderRef.current.slickPrev()}
+                            className={this.decorateCSS("arrow-button")}
+                          >
+                            <Base.Media value={prevIcon} className={this.decorateCSS("prev-arrow")} />
+                          </button>
+                        )}
+                        {nextIconExist && (
+                          <button
+                            onClick={() => sliderRef.current.slickNext()}
+                            className={this.decorateCSS("arrow-button")}
+                          >
+                            <Base.Media value={nextIcon} className={this.decorateCSS("next-arrow")} />
+                          </button>
+                        )}
                       </div>
-                    ))}
-                  </ComposerSlider>
+                    )}
+                    <ComposerSlider ref={sliderRef} {...settings} className={this.decorateCSS("carousel")}>
+                      {card.map((item: Item, index: number) => (
+                        <div key={index} className={this.decorateCSS("slider-inner-div")}>
+                          <div className={this.decorateCSS("content-div")}>
+                            {item.image && item.image.url && (
+                              <div className={this.decorateCSS("img-div")}>
+                                <Base.Media value={item.image} className={this.decorateCSS("img")} />
+                              </div>
+                            )}
+                            {this.castToString(item.text) && (
+                              <Base.P className={this.decorateCSS("item-description")}>{item.text}</Base.P>
+                            )}
+                            {(sliderIconExist || (item.author && (this.castToString(item.author.name) || this.castToString(item.author.position)))) && (
+                              <Base.VerticalContent className={this.decorateCSS("bottom-container")}>
+                                {sliderIconExist && (
+                                  <Base.Media value={sliderIcon} className={this.decorateCSS("item-icon")} />
+                                )}
+                                {item.author && this.castToString(item.author.name) && (
+                                  <Base.H6 className={this.decorateCSS("first-header")}>{item.author.name}</Base.H6>
+                                )}
+                                {item.author && this.castToString(item.author.position) && (
+                                  <Base.P className={this.decorateCSS("item-title")}>{item.author.position}</Base.P>
+                                )}
+                              </Base.VerticalContent>
+                            )}
+                          </div>
+                        </div>
+                      ))}
+                    </ComposerSlider>
+                  </div>
                 </div>
               </Base.GridCell>
             )}

@@ -11,7 +11,7 @@ type Item = {
   star: number;
   author: {
     name: React.JSX.Element;
-    subtitle: React.JSX.Element;
+    position: React.JSX.Element;
   };
 };
 
@@ -55,10 +55,10 @@ class Testimonials15Page extends Testimonials {
 
     this.addProp({
       type: "media",
-      key: "image",
-      displayer: "Image",
+      key: "media",
+      displayer: "Media",
       additionalParams: {
-        availableTypes: ["image", "icon"],
+        availableTypes: ["image", "video"],
       },
       value: {
         type: "image",
@@ -94,7 +94,7 @@ class Testimonials15Page extends Testimonials {
           key: "numberIcon",
           displayer: "Icon",
           additionalParams: {
-            availableTypes: ["icon", "image"],
+            availableTypes: ["image", "video"],
           },
           value: {
             type: "icon",
@@ -152,7 +152,7 @@ class Testimonials15Page extends Testimonials {
           key: "starIcon",
           displayer: "Icon",
           additionalParams: {
-            availableTypes: ["icon", "image"],
+            availableTypes: ["image", "video"],
           },
           value: {
             type: "icon",
@@ -167,8 +167,8 @@ class Testimonials15Page extends Testimonials {
         },
         {
           type: "string",
-          key: "text",
-          displayer: "Company Quote",
+          key: "quoteText",
+          displayer: "Quote Text",
           value: "We believe in building lasting relationships with our clients through trust, innovation, and exceptional service.",
         },
         {
@@ -184,7 +184,7 @@ class Testimonials15Page extends Testimonials {
             },
             {
               type: "string",
-              key: "subtitle",
+              key: "position",
               displayer: "Position",
               value: "Co. Founder",
             },
@@ -195,7 +195,7 @@ class Testimonials15Page extends Testimonials {
           key: "quoteIcon",
           displayer: "Icon",
           additionalParams: {
-            availableTypes: ["icon", "image"],
+            availableTypes: ["image", "video"],
           },
           value: {
             type: "icon",
@@ -230,10 +230,10 @@ class Testimonials15Page extends Testimonials {
         },
         {
           type: "media",
-          key: "coverImage",
-          displayer: "Cover image of the video",
+          key: "media",
+          displayer: "Media",
           additionalParams: {
-            availableTypes: ["image"],
+            availableTypes: ["image", "video"],
           },
           value: {
             type: "image",
@@ -245,7 +245,7 @@ class Testimonials15Page extends Testimonials {
           key: "playIcon",
           displayer: "Play Button Icon",
           additionalParams: {
-            availableTypes: ["icon", "image"],
+            availableTypes: ["image", "video"],
           },
           value: {
             type: "icon",
@@ -257,7 +257,7 @@ class Testimonials15Page extends Testimonials {
           key: "closeIcon",
           displayer: "Close Button Icon",
           additionalParams: {
-            availableTypes: ["icon", "image"],
+            availableTypes: ["image", "video"],
           },
           value: {
             type: "icon",
@@ -323,16 +323,18 @@ class Testimonials15Page extends Testimonials {
 
     const renderRightSide = visibleCount > 0;
 
-    const leftExist = this.getPropValue("image") || (bottomLeftBox.visibility && (this.castToString(bottomLeftBox.title) || this.castToString(bottomLeftBox.subtitle) || bottomLeftBox.number));
+    const mediaProp = this.getPropValue("media") as TypeMediaInputValue;
+    const isImageExist = Boolean(mediaProp && (mediaProp.url || mediaProp.name));
+
+    const leftExist = isImageExist || (bottomLeftBox.visibility && (this.castToString(bottomLeftBox.title) || this.castToString(bottomLeftBox.subtitle) || bottomLeftBox.number));
     const topExist = topRightBox.visibility && (subtitleExist || titleExist || descriptionExist || hasValidButtons);
-    const bottomExist = bottomRightBox.visibility && (this.castToString(bottomRightBox.text) || (bottomRightBox.author && (this.castToString(bottomRightBox.author.name) || this.castToString(bottomRightBox.author.subtitle))) || bottomRightBox.starNumber);
+    const bottomExist = bottomRightBox.visibility && (this.castToString(bottomRightBox.quoteText) || (bottomRightBox.author && (this.castToString(bottomRightBox.author.name) || this.castToString(bottomRightBox.author.position))) || bottomRightBox.starNumber);
     const videoExist = videoBox.visibility;
 
     const rightExist = topExist || bottomExist || videoExist;
 
     const rightSectionClass = this.getRightSideClass(topExist, bottomExist, videoExist);
     const gridLayoutClass = this.getGridLayoutClass(leftExist, rightExist);
-    const isImageExist = Boolean(this.getPropValue("image"));
 
     const numberIconExist = bottomLeftBox.numberIcon && (bottomLeftBox.numberIcon.type === "icon" ? bottomLeftBox.numberIcon.name : bottomLeftBox.numberIcon.url);
     const starIconExist = bottomRightBox.starIcon && (bottomRightBox.starIcon.type === "icon" ? bottomRightBox.starIcon.name : bottomRightBox.starIcon.url);
@@ -349,7 +351,7 @@ class Testimonials15Page extends Testimonials {
                 <div className={`${this.decorateCSS("main-image-container")} ${!isImageExist ? this.decorateCSS("box-alone") : ""}`}>
                   {isImageExist && (
                     <Base.Media
-                      value={this.getPropValue("image")}
+                      value={mediaProp}
                       className={this.decorateCSS("main-image")}
                     />
                   )}
@@ -445,22 +447,22 @@ class Testimonials15Page extends Testimonials {
                                 ))}
                               </div>
                             )}
-                            {this.castToString(bottomRightBox.text) && (
+                            {this.castToString(bottomRightBox.quoteText) && (
                               <p className={this.decorateCSS("quote-text")}>
-                                {bottomRightBox.text}
+                                {bottomRightBox.quoteText}
                               </p>
                             )}
                             <div className={this.decorateCSS("author-info")}>
-                              {bottomRightBox.author && (this.castToString(bottomRightBox.author.name) || this.castToString(bottomRightBox.author.subtitle)) && (
+                              {bottomRightBox.author && (this.castToString(bottomRightBox.author.name) || this.castToString(bottomRightBox.author.position)) && (
                                 <div className={this.decorateCSS("author-details")}>
                                   {this.castToString(bottomRightBox.author.name) && (
                                     <span className={this.decorateCSS("author-name")}>
                                       {bottomRightBox.author.name}
                                     </span>
                                   )}
-                                  {this.castToString(bottomRightBox.author.subtitle) && (
+                                  {this.castToString(bottomRightBox.author.position) && (
                                     <span className={this.decorateCSS("author-subtitle")}>
-                                      {bottomRightBox.author.subtitle}
+                                      {bottomRightBox.author.position}
                                     </span>
                                   )}
                                 </div>
@@ -481,9 +483,9 @@ class Testimonials15Page extends Testimonials {
                             className={this.decorateCSS("video-container")}
                             onClick={() => this.setComponentState("isVideoVisible", true)}
                           >
-                            {videoBox.coverImage && (
+                            {videoBox.media && (
                               <Base.Media
-                                value={videoBox.coverImage}
+                                value={videoBox.media}
                                 className={this.decorateCSS("video-cover")}
                               />
                             )}

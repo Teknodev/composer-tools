@@ -10,7 +10,7 @@ type Item = {
   text: React.JSX.Element;
   author: {
     name: React.JSX.Element;
-    subtitle: React.JSX.Element;
+    position: React.JSX.Element;
   };
 };
 
@@ -104,7 +104,7 @@ class Testimonials11Page extends Testimonials {
               displayer: "Author",
               value: [
                 { type: "string", key: "name", displayer: "Name", value: "Sarah Lewin" },
-                { type: "string", key: "subtitle", displayer: "Position", value: "Project manager in Pixels" },
+                { type: "string", key: "position", displayer: "Position", value: "Project manager in Pixels" },
               ],
             },
           ],
@@ -133,7 +133,7 @@ class Testimonials11Page extends Testimonials {
               displayer: "Author",
               value: [
                 { type: "string", key: "name", displayer: "Name", value: "Gregory Tabot" },
-                { type: "string", key: "subtitle", displayer: "Position", value: "Photographer" },
+                { type: "string", key: "position", displayer: "Position", value: "Photographer" },
               ],
             },
           ],
@@ -162,7 +162,7 @@ class Testimonials11Page extends Testimonials {
               displayer: "Author",
               value: [
                 { type: "string", key: "name", displayer: "Name", value: "Jess Simpson" },
-                { type: "string", key: "subtitle", displayer: "Position", value: "Team lead in TBB" },
+                { type: "string", key: "position", displayer: "Position", value: "Team lead in TBB" },
               ],
             },
           ],
@@ -191,7 +191,7 @@ class Testimonials11Page extends Testimonials {
               displayer: "Author",
               value: [
                 { type: "string", key: "name", displayer: "Name", value: "Jess Simpson" },
-                { type: "string", key: "subtitle", displayer: "Position", value: "Team lead in TBB" },
+                { type: "string", key: "position", displayer: "Position", value: "Team lead in TBB" },
               ],
             },
           ],
@@ -220,7 +220,7 @@ class Testimonials11Page extends Testimonials {
               displayer: "Author",
               value: [
                 { type: "string", key: "name", displayer: "Name", value: "Jess Simpson" },
-                { type: "string", key: "subtitle", displayer: "Position", value: "Team lead in TBB" },
+                { type: "string", key: "position", displayer: "Position", value: "Team lead in TBB" },
               ],
             },
           ],
@@ -249,7 +249,7 @@ class Testimonials11Page extends Testimonials {
               displayer: "Author",
               value: [
                 { type: "string", key: "name", displayer: "Name", value: "Jess Simpson" },
-                { type: "string", key: "subtitle", displayer: "Position", value: "Team lead in TBB" },
+                { type: "string", key: "position", displayer: "Position", value: "Team lead in TBB" },
               ],
             },
           ],
@@ -343,13 +343,13 @@ class Testimonials11Page extends Testimonials {
                     {item.image && (
                       <Base.Media value={item.image} className={this.decorateCSS("card-image")} />
                     )}
-                    {item.author && (item.author.name || item.author.subtitle) && (
+                    {item.author && (item.author.name || item.author.position) && (
                       <div className={this.decorateCSS("card-top-right")}>
                         {item.author.name && (
                             <Base.H6 className={this.decorateCSS("card-title")}>{item.author.name}</Base.H6>
                         )}
-                        {item.author.subtitle && (
-                          <Base.P className={this.decorateCSS("card-subtitle")}>{item.author.subtitle}</Base.P>
+                        {item.author.position && (
+                          <Base.P className={this.decorateCSS("card-subtitle")}>{item.author.position}</Base.P>
                         )}
                       </div>
                     )}
