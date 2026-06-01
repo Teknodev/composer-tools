@@ -177,7 +177,6 @@ export class DomInteractionRuntime {
     setModalFn: SetModalInstanceFn,
     deviceType: string = "desktop"
   ): void {
-    console.log("configs: ", configs)
     this.destroy();
     this.destroyed = false;
     this.rootElement = root;
@@ -247,22 +246,6 @@ export class DomInteractionRuntime {
   }
 
   /**
-   * Register a modal's interaction config with the runtime after it opens.
-   * This lets elements inside the modal respond to their own interactions.
-   *
-   * @param config  ComponentInteractionConfig for the modal component
-   */
-  registerModal(config: ComponentInteractionConfig): void {
-    if (this.destroyed) return;
-
-    // Assign IDs to modal DOM elements so interaction selectors resolve
-    this.assignComponentIds(config);
-
-    // Re-use registerComponent to set up the manager
-    this.registerComponent(config);
-  }
-
-  /**
    * Tear down everything.
    */
   destroy(): void {
@@ -307,7 +290,6 @@ export class DomInteractionRuntime {
     // The InteractionManager resolves section elements from DOM at init time.
     // We pass document.documentElement as root so it can find elements globally.
     if (animationInteractions && Object.keys(animationInteractions).length > 0) {
-        console.log("animationInteractions: ", animationInteractions)
       manager.initialize(
         document.documentElement,
         componentId,
@@ -337,13 +319,19 @@ export class DomInteractionRuntime {
   }
 
   private assignComponentIds(config: ComponentInteractionConfig): void {
-    if (!config.cssClasses) return;
+    if (!config.cssClasses || !this.rootElement) return;
 
-    // Find the component's root element in the DOM
-    const selector = `[class*="auto-generate-${CSS.escape(config.componentId)}-"]`;
-    const elements = document.querySelectorAll<HTMLElement>(selector);
+    // Find only the root-level element for this component (direct child of playground).
+    // Using querySelectorAll would also match nested auto-generate elements and
+    // call assignIdsToComponentElements on each one with a fresh counter, causing
+    // duplicate IDs (e.g. every repeated card getting "card-1").
+    const el = Array.from(this.rootElement.children).find((child) =>
+      Array.from(child.classList).some((cls) =>
+        cls.startsWith(`auto-generate-${config.componentId}-`)
+      )
+    ) as HTMLElement | undefined;
 
-    for (const el of elements) {
+    if (el) {
       assignIdsToComponentElements(el, config.componentId, config.cssClasses);
     }
   }

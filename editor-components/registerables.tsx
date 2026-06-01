@@ -570,6 +570,7 @@ function Registerables(composer: ComponentsRegistery) {
     FeatureComponent47,
     FeatureComponent50,
     FeatureComponent51,
+    FeatureComponent52,
     CallToAction1,
     CallToAction2,
     CallToAction3,
