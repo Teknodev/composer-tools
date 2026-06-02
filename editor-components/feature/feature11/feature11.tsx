@@ -37,7 +37,14 @@ class Feature11 extends BaseFeature {
       value: "Powerful tool for creating landing pages, websites and dashboards in Figma. Contains UI Kit (web), Data Visualization, Icon Set."
     });
 
-    this.addProp(INPUTS.BUTTON("button", "Button", "Start Creating", "", null, null, "Primary"));
+    this.addProp({
+      type: "array",
+      key: "buttons",
+      displayer: "Buttons",
+      value: [
+        INPUTS.BUTTON("button", "Button", "Start Creating", "", null, null, "Primary"),
+      ]
+    });
 
     this.addProp({
       type: "array",
@@ -250,17 +257,20 @@ class Feature11 extends BaseFeature {
 
   render() {
     const cards = this.castToObject<Card[]>("cards");
-    const button = this.castToObject<INPUTS.CastedButton>("button");
+    const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
     const subtitle = this.getPropValue("subtitle");
     const title = this.getPropValue("title");
     const description = this.getPropValue("description");
     const alignment = Base.getContentAlignment();
+
+    const hasValidButtons = buttons && buttons.some((btn: INPUTS.CastedButton) => this.castToString(btn.text));
+
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("wrapper")}>
             {(this.castToString(subtitle) || this.castToString(title) ||
-              this.castToString(description) || this.castToString(button.text)) && (
+              this.castToString(description) || hasValidButtons) && (
                 <Base.VerticalContent 
                   className={this.decorateCSS("left")}
                   data-alignment={alignment}
@@ -283,12 +293,21 @@ class Feature11 extends BaseFeature {
                     </Base.SectionDescription>
                   )}
 
-                  {this.castToString(button.text) && (
-                    <ComposerLink path={button.url}>
-                      <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
-                        <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
-                      </Base.Button>
-                    </ComposerLink>
+                  {hasValidButtons && (
+                    <div className={this.decorateCSS("buttons-container")}>
+                      {buttons.map((btn: INPUTS.CastedButton, index: number) => {
+                        if (this.castToString(btn.text)) {
+                          return (
+                            <ComposerLink key={index} path={btn.url}>
+                              <Base.Button buttonType={btn.type} className={this.decorateCSS("button")}>
+                                <Base.P className={this.decorateCSS("button-text")}>{btn.text}</Base.P>
+                              </Base.Button>
+                            </ComposerLink>
+                          );
+                        }
+                        return null;
+                      })}
+                    </div>
                   )}
                 </Base.VerticalContent>
               )}

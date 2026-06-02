@@ -13,9 +13,16 @@
                 .section-subtitle {
                     margin-left: 0;
                 }
-                .button { 
-                    .button-text {
-                        content: "";
+                .buttons-container {
+                    display: flex;
+                    flex-wrap: wrap;
+                    gap: var(--composer-gap-sm);
+                    width: 100%;
+                    justify-content: flex-start;
+                    .button { 
+                        .button-text {
+                            content: "";
+                        }
                     }
                 }
             }
@@ -67,6 +74,9 @@
                         }
                         .section-subtitle {
                             margin-left: auto;
+                        }
+                        .buttons-container {
+                            justify-content: center;
                         }
                     }
                 }
