@@ -2,6 +2,8 @@ import * as React from "react";
 import { BaseFeature, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./feature2.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
+import { INPUTS } from "../../../custom-hooks/input-templates";
+import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 
 
 type Box = {
@@ -10,9 +12,46 @@ type Box = {
   icon: TypeMediaInputValue;
 };
 
+type Button = {
+  text: React.JSX.Element;
+  url: string;
+  icon: TypeMediaInputValue;
+  type: string;
+};
+
 class Feature2 extends BaseFeature {
   constructor(props?: any) {
     super(props, styles);
+    this.addProp({
+      type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "",
+    });
+
+    this.addProp({
+      type: "string",
+      key: "title",
+      displayer: "Title",
+      value: "",
+    });
+
+    this.addProp({
+      type: "string",
+      key: "description",
+      displayer: "Description",
+      value: "",
+    });
+
+    this.addProp({
+      type: "array",
+      key: "buttons",
+      displayer: "Buttons",
+      value: [
+        INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+      ],
+    });
+
     this.addProp({
       type: "array",
       key: "items",
@@ -155,19 +194,26 @@ class Feature2 extends BaseFeature {
 
     this.addProp({
       type: "boolean",
-      key: "showBadge",
-      displayer: "Show Badge",
+      key: "number",
+      displayer: "Number",
       value: true
     });
 
     this.addProp({
       type: "boolean",
-      key: "showLine",
-      displayer: "Show Line",
+      key: "line",
+      displayer: "Line",
       value: true,
     });
+  }
 
-    window.addEventListener('resize', () => {this.setComponentState("windowWidth", window.innerWidth)});
+  componentDidMount() {
+    if (typeof window !== "undefined") {
+      this.setComponentState("windowWidth", window.innerWidth);
+      window.addEventListener('resize', () => {
+        this.setComponentState("windowWidth", window.innerWidth);
+      });
+    }
   }
 
   static getName(): string {
@@ -175,22 +221,78 @@ class Feature2 extends BaseFeature {
   }
 
   getItemCount(): number {
-    if (this.getComponentState("windowWidth") <= 1024) return 2;
-    else if (this.getComponentState("windowWidth") <= 896) return 1;
+    if (this.getComponentState("windowWidth") <= 896) return 1;
 
     return this.getPropValue("itemCount");
   }
 
   render() {
+    const subtitle = this.getPropValue("subtitle");
+    const title = this.getPropValue("title");
+    const description = this.getPropValue("description");
+    const buttons = this.castToObject<Button[]>("buttons");
+
+    const subtitleExist = this.castToString(subtitle);
+    const titleExist = this.castToString(title);
+    const descriptionExist = this.castToString(description);
+
+    const hasValidButtons = buttons && buttons.some((btn: Button) => {
+      const buttonText = this.castToString(btn.text);
+      const iconExist = btn.icon && (btn.icon.type === "icon" ? btn.icon.name : btn.icon.url);
+      return buttonText || iconExist;
+    });
+
+    const hasAnyTopContent = subtitleExist || titleExist || descriptionExist || hasValidButtons;
+
     const items = this.castToObject<Box[]>("items");
     const itemCount: number = this.getItemCount();
-    const showBadge = !!this.getPropValue("showBadge");
-    const showLine = !!this.getPropValue("showLine");
+    const showBadge = !!this.getPropValue("number");
+    const showLine = !!this.getPropValue("line");
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <Base.ListGrid gridCount={{ pc: itemCount }} className={this.decorateCSS("wrapper")}>
+          {hasAnyTopContent && (
+            <Base.VerticalContent className={this.decorateCSS("top-content")}>
+              {subtitleExist && (
+                <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                  {subtitle}
+                </Base.SectionSubTitle>
+              )}
+              {titleExist && (
+                <Base.SectionTitle className={this.decorateCSS("title")}>
+                  {title}
+                </Base.SectionTitle>
+              )}
+              {descriptionExist && (
+                <Base.SectionDescription className={this.decorateCSS("description")}>
+                  {description}
+                </Base.SectionDescription>
+              )}
+              {hasValidButtons && (
+                <div className={this.decorateCSS("button-container")}>
+                  {buttons.map((item: Button, index: number) => {
+                    const buttonText = this.castToString(item.text);
+                    const iconExist  = item.icon && (item.icon.type === "icon" ? item.icon.name : item.icon.url);
+                    if (!buttonText && !iconExist) return null;
+                    return (
+                      <ComposerLink key={index} path={item.url}>
+                        <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
+                          {buttonText && (
+                            <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>
+                          )}
+                          {iconExist && (
+                            <Base.Media className={this.decorateCSS("button-icon")} value={item.icon!} />
+                          )}
+                        </Base.Button>
+                      </ComposerLink>
+                    );
+                  })}
+                </div>
+              )}
+            </Base.VerticalContent>
+          )}
+          <Base.ListGrid gridCount={{ pc: itemCount, tablet: 4, phone: 1 }} className={this.decorateCSS("wrapper")}>
             {items.map((item: Box, index: number) => {
               const titleExist = !!this.castToString(item.title);
               const descExist = !!this.castToString(item.description);
@@ -213,20 +315,20 @@ class Feature2 extends BaseFeature {
                     `}
                 >
                   {iconExist && (
-                    <>
+                    <div className={this.decorateCSS("icon-container")}>
                       {showBadge && (
-                        <Base.P className={this.decorateCSS("item-index")}>{index + 1}</Base.P>
+                        <Base.P className={this.decorateCSS("item-index")}>{index + 1}.</Base.P>
                       )}
                       <Base.Media
                         value={item.icon}
                         className={this.decorateCSS("icon")}
                       />
-                    </>
+                    </div>
                   )}
                   {titleExist && (
-                    <Base.H3 className={this.decorateCSS("title")}>
+                    <Base.H4 className={this.decorateCSS("title")}>
                       {item.title}
-                    </Base.H3>
+                    </Base.H4>
                   )}
                   {descExist && (
                     <Base.P className={this.decorateCSS("description")}>
