@@ -4,7 +4,7 @@
   .max-content {
     .content {
       display: flex;
-      gap: var(--composer-gap-md);
+      gap: var(--composer-gap-lg);
       align-items: stretch;
 
       .left-page {
@@ -13,7 +13,7 @@
         gap: var(--composer-gap-lg);
         min-width: 0;
         flex: 1;
-        max-width: 50%;
+        max-width: 100%;
         overflow: hidden;
 
         &.no-list {
@@ -87,6 +87,8 @@
 
       &.has-image {
         .left-page {
+          max-width: 50%;
+
           .header {
 
             .subtitle,
@@ -178,9 +180,11 @@
     .max-content {
       .content {
         flex-direction: column;
+        gap: var(--composer-gap-md);
 
         .left-page {
           gap: var(--composer-gap-md);
+          max-width: 100%;
         }
 
         .right-page {

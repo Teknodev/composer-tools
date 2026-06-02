@@ -22,7 +22,6 @@
           text-align: center;
           transform: translateX(0);
 
-          /* No subtitle line for both card-enabled and card-disabled */
           &::before {
             display: none;
           }
