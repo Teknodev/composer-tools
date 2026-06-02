@@ -251,7 +251,7 @@ class ECommerce7 extends BaseECommerce {
     this.addProp({
       type: "boolean",
       key: "dividerActive",
-      displayer: "Divider Active",
+      displayer: "Divider",
       value: true,
     });
     this.addProp({
@@ -537,7 +537,7 @@ class ECommerce7 extends BaseECommerce {
         {
           type: "media",
           key: "minusIcon",
-          displayer: "Decrease Icon",
+          displayer: "Active Icon",
           additionalParams: {
             availableTypes: ["icon", "image"],
           },
@@ -549,7 +549,7 @@ class ECommerce7 extends BaseECommerce {
         {
           type: "media",
           key: "addIcon",
-          displayer: "Increase Icon",
+          displayer: "Inactive Icon",
           additionalParams: {
             availableTypes: ["icon", "image"],
           },
@@ -657,7 +657,7 @@ class ECommerce7 extends BaseECommerce {
         {
           type: "boolean",
           key: "hasLines",
-          displayer: "Enable Lines",
+          displayer: "Line",
           value: true,
         },
         {

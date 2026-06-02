@@ -894,8 +894,10 @@
         width: 100vw;
         height: 100vh;
         display: flex;
+        flex-direction: column;
         align-items: center;
         justify-content: center;
+        gap: var(--composer-gap-md);
 
             .image-outer-wrapper {
                 width: 90%;
@@ -934,6 +936,9 @@
             }
 
             .dots {
+                position: static;
+                transform: none;
+
                 .dot {
                     .icon {
                         font-size: 1rem;
@@ -1019,8 +1024,10 @@
         width: 100vw;
         height: 100vh;
         display: flex;
+        flex-direction: column;
         align-items: center;
         justify-content: center;
+        gap: var(--composer-gap-md);
 
             .image-outer-wrapper {
                 width: 92%;
@@ -1071,6 +1078,9 @@
             }
 
             .dots {
+                position: static;
+                transform: none;
+
                 .dot {
                     .icon {
                         font-size: 0.75rem !important;
