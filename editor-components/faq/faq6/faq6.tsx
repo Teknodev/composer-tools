@@ -212,7 +212,7 @@ class Faq6 extends BaseFAQ {
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          {(title || (this.getPropValue("list_items").length > 0)) && (
+          {(hasContent || (this.getPropValue("list_items").length > 0)) && (
             <div className={this.decorateCSS("items-wrapper")}>
               {hasContent && (
                 <Base.VerticalContent className={this.decorateCSS("vertical-content")}>
