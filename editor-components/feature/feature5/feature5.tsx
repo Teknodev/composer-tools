@@ -25,6 +25,22 @@ class Feature5 extends BaseFeature {
     });
 
     this.addProp({
+      type: "string",
+      key: "description",
+      displayer: "Description",
+      value: "",
+    });
+
+    this.addProp({
+      type: "array",
+      key: "buttons",
+      displayer: "Buttons",
+      value: [
+        INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+      ],
+    });
+
+    this.addProp({
       type: "object",
       key: "row1",
       displayer: "First Row",
@@ -237,6 +253,9 @@ class Feature5 extends BaseFeature {
     }>("row1");
     const subtitle = this.getPropValue("subtitle");
     const subtitleExist = this.castToString(subtitle);
+    const descriptionExist = this.castToString(this.getPropValue("description"));
+    const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons") || [];
+    const hasValidButtons = buttons.some((btn) => this.castToString(btn.text));
     const row2 = this.castToObject<{
       first_item: {
         description: React.JSX.Element;
@@ -327,179 +346,201 @@ class Feature5 extends BaseFeature {
               {this.getPropValue("title")}
             </Base.SectionTitle>
           )}
-          </Base.VerticalContent>
-          {isRow1Visible && (
-            <ComposerLink path={row1.link} isFullWidth={true}>
-              <div className={this.decorateCSS("row1")}>
-                {row1.left_image && (
-                  <div
-                    className={`
-                      ${this.decorateCSS("image-wrapper")}
-                      ${!this.castToString(row1.title) ? this.decorateCSS("row1-image-only") : ""}
-                    `}
-                  >
-                    <Base.Media
-                      value={row1.left_image}
-                      className={this.decorateCSS("left-image")}
-                    />
+          {descriptionExist && (
+            <Base.SectionDescription className={this.decorateCSS("description")}>
+              {this.getPropValue("description")}
+            </Base.SectionDescription>
+          )}
+          {hasValidButtons && (
+            <div className={this.decorateCSS("button-container")}>
+              {buttons.map((item: INPUTS.CastedButton, index: number) => {
+                const buttonTextExist = this.castToString(item.text);
+                if (!buttonTextExist) return null;
+                return (
+                  <ComposerLink key={index} path={item.url}>
+                    <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
+                      <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>
+                    </Base.Button>
+                  </ComposerLink>
+                );
+              })}
+            </div>
+          )}
+        </Base.VerticalContent>
+          <div className={this.decorateCSS("rows-wrapper")}>
+            {isRow1Visible && (
+              <ComposerLink path={row1.link} isFullWidth={true}>
+                <div className={this.decorateCSS("row1")}>
+                  {row1.left_image && (
+                    <div
+                      className={`
+                        ${this.decorateCSS("image-wrapper")}
+                        ${!this.castToString(row1.title) ? this.decorateCSS("row1-image-only") : ""}
+                      `}
+                    >
+                      <Base.Media
+                        value={row1.left_image}
+                        className={this.decorateCSS("left-image")}
+                      />
+                    </div>
+                  )}
+                  {this.castToString(row1.title) && (
+                    <Base.H3
+                      className={`
+                        ${this.decorateCSS("title")}
+                        ${!row1.left_image?.url ? this.decorateCSS("row1-title-only") : ""} 
+                      `}
+                    >
+                      {row1.title}
+                    </Base.H3>
+                  )}
+                </div>
+              </ComposerLink>
+            )}
+
+            {isRow2Visible && (
+              <div className={this.decorateCSS("row2")}>
+                {isFirstColumnVisible && (
+                  <div className={this.decorateCSS("first")}>
+                    {(!!this.castToString(row2.first_item.description) ||
+                      !!this.castToString(row2.first_item.button.text)) && (
+                        <div className={this.decorateCSS("first-items-wrapper")}>
+                          {!!this.castToString(row2.first_item.description) && (
+                            <Base.P className={this.decorateCSS("description")}>
+                              {row2.first_item.description}
+                            </Base.P>
+                          )}
+                          {!!this.castToString(row2.first_item.button.text) && (
+                            <Base.Row className={this.decorateCSS("button-text-container")}>
+                              <ComposerLink path={row2.first_item.button.url}>
+                                <Base.Button buttonType={row2.first_item.button.type} className={this.decorateCSS("button-text")}>
+                                  {row2.first_item.button.text}
+                                </Base.Button>
+                              </ComposerLink>
+                            </Base.Row>
+                          )}
+                        </div>
+                      )}
                   </div>
                 )}
-                {this.castToString(row1.title) && (
-                  <Base.H2
-                    className={`
-                      ${this.decorateCSS("title")}
-                      ${!row1.left_image?.url ? this.decorateCSS("row1-title-only") : ""} 
-                    `}
+                {isSecondColumnVisible && (
+                  <div className={this.decorateCSS("second")}>
+                    {!!this.castToString(row2.second_item.text) && (
+                      <Base.H4 className={this.decorateCSS("text")}>
+                        <ComposerLink path={row2.second_item.link}>
+                          {row2.second_item.text}
+                        </ComposerLink>
+                      </Base.H4>
+                    )}
+                  </div>
+                )}
+                {isThirdColumnVisible && (
+                  <div
+                    className={this.decorateCSS("third")}
+                    style={{
+                      position: "relative",
+                      width: "100%",
+                    }}
                   >
-                    {row1.title}
-                  </Base.H2>
+                    {row2.third_item.image && (
+                      <ComposerLink path={row2.third_item.link}>
+                        <Base.Media
+                          value={row2.third_item.image}
+                          className={this.decorateCSS("image")}
+                        />
+                      </ComposerLink>
+                    )}
+                  </div>
                 )}
               </div>
-            </ComposerLink>
-          )}
+            )}
+            {isRow3Visible && (
+              <div
+                className={`
+                    ${this.decorateCSS("row3")} 
+                    ${!row3.image_and_subtitle_1.image?.url &&
+                    !row3.image_and_subtitle_2.image?.url &&
+                    !row3.image_and_subtitle_3.image?.url
+                    ? this.decorateCSS("row3-no-image")
+                    : ""
+                  }`}
+              >
+                {imageOrSubtitleExist1 && (
+                  <ComposerLink
+                    path={row3.image_and_subtitle_1.link}
+                    isFullWidth={true}
+                  >
+                    <div className={this.decorateCSS("image_and_subtitle_1")}>
+                      {row3.image_and_subtitle_1.image && (
+                        <Base.Media
+                          value={row3.image_and_subtitle_1.image}
+                          className={`
+                            ${this.decorateCSS("image")} 
+                            ${row3Status ? this.decorateCSS("row3-images-less") : ""} 
+                            ${noSubtitleFirstImage ? this.decorateCSS("row3-no-subtitle") : ""}
+                          `}
+                        />
+                      )}
 
-          {isRow2Visible && (
-            <div className={this.decorateCSS("row2")}>
-              {isFirstColumnVisible && (
-                <div className={this.decorateCSS("first")}>
-                  {(!!this.castToString(row2.first_item.description) ||
-                    !!this.castToString(row2.first_item.button.text)) && (
-                      <div className={this.decorateCSS("first-items-wrapper")}>
-                        {!!this.castToString(row2.first_item.description) && (
-                          <Base.P className={this.decorateCSS("description")}>
-                            {row2.first_item.description}
-                          </Base.P>
-                        )}
-                        {!!this.castToString(row2.first_item.button.text) && (
-                          <Base.Row className={this.decorateCSS("button-text-container")}>
-                            <ComposerLink path={row2.first_item.button.url}>
-                              <Base.Button buttonType={row2.first_item.button.type} className={this.decorateCSS("button-text")}>
-                                {row2.first_item.button.text}
-                              </Base.Button>
-                            </ComposerLink>
-                          </Base.Row>
-                        )}
-                      </div>
-                    )}
-                </div>
-              )}
-              {isSecondColumnVisible && (
-                <div className={this.decorateCSS("second")}>
-                  {!!this.castToString(row2.second_item.text) && (
-                    <Base.H2 className={this.decorateCSS("text")}>
-                      <ComposerLink path={row2.second_item.link}>
-                        {row2.second_item.text}
-                      </ComposerLink>
-                    </Base.H2>
-                  )}
-                </div>
-              )}
-              {isThirdColumnVisible && (
-                <div
-                  className={this.decorateCSS("third")}
-                  style={{
-                    position: "relative",
-                    width: "100%",
-                  }}
-                >
-                  {row2.third_item.image && (
-                    <ComposerLink path={row2.third_item.link}>
-                      <Base.Media
-                        value={row2.third_item.image}
-                        className={this.decorateCSS("image")}
-                      />
-                    </ComposerLink>
-                  )}
-                </div>
-              )}
-            </div>
-          )}
-          {isRow3Visible && (
-            <div
-              className={`
-                  ${this.decorateCSS("row3")} 
-                  ${!row3.image_and_subtitle_1.image?.url &&
-                  !row3.image_and_subtitle_2.image?.url &&
-                  !row3.image_and_subtitle_3.image?.url
-                  ? this.decorateCSS("row3-no-image")
-                  : ""
-                }`}
-            >
-              {imageOrSubtitleExist1 && (
-                <ComposerLink
-                  path={row3.image_and_subtitle_1.link}
-                  isFullWidth={true}
-                >
-                  <div className={this.decorateCSS("image_and_subtitle_1")}>
-                    {row3.image_and_subtitle_1.image && (
-                      <Base.Media
-                        value={row3.image_and_subtitle_1.image}
-                        className={`
-                          ${this.decorateCSS("image")} 
-                          ${row3Status ? this.decorateCSS("row3-images-less") : ""} 
-                          ${noSubtitleFirstImage ? this.decorateCSS("row3-no-subtitle") : ""}
-                        `}
-                      />
-                    )}
-
-                    {!!this.castToString(row3.image_and_subtitle_1.sub_title) && (
-                      <Base.H4 className={this.decorateCSS("subtitle")}>
-                        {row3.image_and_subtitle_1.sub_title}
-                      </Base.H4>
-                    )}
-                  </div>
-                </ComposerLink>
-              )}
-              {imageOrSubtitleExist2 && (
-                <ComposerLink
-                  path={row3.image_and_subtitle_2.link}
-                  isFullWidth={true}
-                >
-                  <div className={this.decorateCSS("image_and_subtitle_2")}>
-                    {row3.image_and_subtitle_2.image && (
-                      <Base.Media
-                        value={row3.image_and_subtitle_2.image}
-                        className={`
-                          ${this.decorateCSS("image")} 
-                          ${row3Status ? this.decorateCSS("row3-images-less") : ""}
-                          ${noSubtitleSecondImage ? this.decorateCSS("row3-no-subtitle") : ""}
-                        `}
-                      />
-                    )}
-                    {!!this.castToString(row3.image_and_subtitle_2.sub_title) && (
-                      <Base.H4 className={this.decorateCSS("subtitle")}>
-                        {row3.image_and_subtitle_2.sub_title}
-                      </Base.H4>
-                    )}
-                  </div>
-                </ComposerLink>
-              )}
-              {imageOrSubtitleExist3 && (
-                <ComposerLink
-                  path={row3.image_and_subtitle_3.link}
-                  isFullWidth={true}
-                >
-                  <div className={this.decorateCSS("image_and_subtitle_3")}>
-                    {!!row3.image_and_subtitle_3.image && (
-                      <Base.Media
-                        value={row3.image_and_subtitle_3.image}
-                        className={`
-                          ${this.decorateCSS("image")} 
-                          ${row3Status ? this.decorateCSS("row3-images-less") : ""}
-                          ${noSubtitleThirdImage ? this.decorateCSS("row3-no-subtitle") : ""}
-                        `}
-                      />
-                    )}
-                    {!!this.castToString(row3.image_and_subtitle_3.sub_title) && (
-                      <Base.H4 className={this.decorateCSS("subtitle")}>
-                        {row3.image_and_subtitle_3.sub_title}
-                      </Base.H4>
-                    )}
-                  </div>
-                </ComposerLink>
-              )}
-            </div>
-          )}
+                      {!!this.castToString(row3.image_and_subtitle_1.sub_title) && (
+                        <Base.H5 className={this.decorateCSS("subtitle")}>
+                          {row3.image_and_subtitle_1.sub_title}
+                        </Base.H5>
+                      )}
+                    </div>
+                  </ComposerLink>
+                )}
+                {imageOrSubtitleExist2 && (
+                  <ComposerLink
+                    path={row3.image_and_subtitle_2.link}
+                    isFullWidth={true}
+                  >
+                    <div className={this.decorateCSS("image_and_subtitle_2")}>
+                      {row3.image_and_subtitle_2.image && (
+                        <Base.Media
+                          value={row3.image_and_subtitle_2.image}
+                          className={`
+                            ${this.decorateCSS("image")} 
+                            ${row3Status ? this.decorateCSS("row3-images-less") : ""}
+                            ${noSubtitleSecondImage ? this.decorateCSS("row3-no-subtitle") : ""}
+                          `}
+                        />
+                      )}
+                      {!!this.castToString(row3.image_and_subtitle_2.sub_title) && (
+                        <Base.H5 className={this.decorateCSS("subtitle")}>
+                          {row3.image_and_subtitle_2.sub_title}
+                        </Base.H5>
+                      )}
+                    </div>
+                  </ComposerLink>
+                )}
+                {imageOrSubtitleExist3 && (
+                  <ComposerLink
+                    path={row3.image_and_subtitle_3.link}
+                    isFullWidth={true}
+                  >
+                    <div className={this.decorateCSS("image_and_subtitle_3")}>
+                      {!!row3.image_and_subtitle_3.image && (
+                        <Base.Media
+                          value={row3.image_and_subtitle_3.image}
+                          className={`
+                            ${this.decorateCSS("image")} 
+                            ${row3Status ? this.decorateCSS("row3-images-less") : ""}
+                            ${noSubtitleThirdImage ? this.decorateCSS("row3-no-subtitle") : ""}
+                          `}
+                        />
+                      )}
+                      {!!this.castToString(row3.image_and_subtitle_3.sub_title) && (
+                        <Base.H5 className={this.decorateCSS("subtitle")}>
+                          {row3.image_and_subtitle_3.sub_title}
+                        </Base.H5>
+                      )}
+                    </div>
+                  </ComposerLink>
+                )}
+              </div>
+            )}
+          </div>
         </Base.MaxContent>
       </Base.Container >
     );

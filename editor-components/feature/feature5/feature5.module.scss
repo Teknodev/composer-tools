@@ -2,10 +2,35 @@
 
 .container {
   .max-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--composer-gap-lg);
+
     .header {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+
       .subtitle,
-      .section-title {
+      .section-title,
+      .description {
         content: "";
+        text-align: left;
+        margin-left: 0;
+        margin-right: auto;
+      }
+
+      .button-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--composer-gap-sm);
+        margin-left: 0;
+        margin-right: auto;
+
+        .button {
+          content: "";
+        }
       }
     }
 
@@ -13,6 +38,7 @@
       display: flex;
       align-items: center;
       width: 100%;
+      gap: var(--composer-gap-lg);
 
       .image-wrapper {
         position: relative;
@@ -37,7 +63,6 @@
       .title {
         display: flex;
         margin: 0;
-        margin-left: var(--composer-gap-md);
         max-width: 40%;
         color: var(--composer-font-color-primary);
         min-height: 300px;
@@ -92,12 +117,22 @@
           flex-direction: column;
           padding: var(--composer-gap-lg);
           gap: var(--composer-gap-sm);
+          align-items: flex-start;
 
           .description {
             margin: 0;  
+            text-align: left;
+            margin-left: 0;
+            margin-right: auto;
           }
 
           .button-text-container {
+            justify-content: flex-start;
+            align-items: flex-start;
+            margin-left: 0;
+            margin-right: auto;
+            width: fit-content;
+
             .button-text {
               content: "";
             }
@@ -113,7 +148,7 @@
       .second {
         display: flex;
         width: 100%;
-        align-items: center;
+        align-items: flex-start;
         justify-content: center;
         background: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
 
@@ -130,6 +165,7 @@
         width: 100%;
         box-sizing: border-box;
         padding: 0 var(--composer-gap-lg);
+        text-align: left;
       }
 
       .third .image {
@@ -175,10 +211,11 @@
         }
 
         .subtitle {
-          align-items: center;
+          align-items: flex-start;
           justify-content: center;
           padding: var(--composer-gap-md);
           display: flex;
+          flex-direction: column;
           height: 100%;
           text-align: left;
         }
@@ -203,10 +240,11 @@
         }
 
         .subtitle {
-          align-items: center;
+          align-items: flex-start;
           justify-content: center;
           padding: var(--composer-gap-xl);
           display: flex;
+          flex-direction: column;
           height: 100%;
           text-align: left;
         }
@@ -231,11 +269,12 @@
         }
 
         .subtitle {
-          align-items: center;
+          align-items: flex-start;
           justify-content: center;
           text-align: left;
           padding: 0 var(--composer-gap-lg);
           display: flex;
+          flex-direction: column;
           height: 100%;
         }
       }
@@ -318,11 +357,13 @@
 
           .subtitle {
             height: auto;
-            align-items: center;
+            align-items: flex-start;
             justify-content: center;
+            flex-direction: column;
             padding: var(--composer-gap-md);
             margin: 0;
             width: 100%;
+            text-align: left;
           }
         }
 
@@ -336,8 +377,9 @@
 
           .subtitle {
             height: auto;
-            align-items: center;
+            align-items: flex-start;
             justify-content: center;
+            flex-direction: column;
             padding: var(--composer-gap-sm);
             margin: 0;
             width: 100%;
@@ -355,12 +397,13 @@
 
           .subtitle {
             height: auto;
-            align-items: center;
+            align-items: flex-start;
             justify-content: center;
+            flex-direction: column;
             padding: var(--composer-gap-sm);
             margin: 0;
-
             width: 100%;
+            text-align: left;
           }
         }
       }
@@ -384,7 +427,6 @@
           min-height: auto;
           margin-left: 0;
           max-width: none;
-          margin-top: var(--composer-gap-lg);
 
           >div {
             width: 100%;
@@ -427,7 +469,8 @@
           display: flex;
           width: 100%;
           align-items: center;
-          justify-content: center;
+          justify-content: flex-start;
+          text-align: left;
           min-height: 200px;
         }
 
@@ -478,13 +521,14 @@
           }
 
           .subtitle {
-            align-items: center;
+            align-items: flex-start;
             justify-content: center;
-
+            flex-direction: column;
             width: 100%;
             max-width: 100%;
             height: auto;
             padding: var(--composer-gap-sm);
+            text-align: left;
           }
         }
 
@@ -499,13 +543,14 @@
           }
 
           .subtitle {
-            align-items: center;
+            align-items: flex-start;
             justify-content: center;
-
+            flex-direction: column;
             width: 100%;
             max-width: 100%;
             height: auto;
             gap: var(--composer-gap-sm);
+            text-align: left;
           }
         }
 
@@ -520,12 +565,14 @@
           }
 
           .subtitle {
-            align-items: center;
+            align-items: flex-start;
             justify-content: center;
+            flex-direction: column;
             width: 100%;
             max-width: 100%;
             height: auto;
             padding: var(--composer-gap-sm);
+            text-align: left;
           }
         }
       }
