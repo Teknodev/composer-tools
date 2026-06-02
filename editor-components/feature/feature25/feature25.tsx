@@ -10,6 +10,7 @@ type ITabs = {
   title: React.JSX.Element;
   text: React.JSX.Element;
   image: TypeMediaInputValue;
+  overlay: boolean;
   description: React.JSX.Element;
   button: INPUTS.CastedButton;
 };
@@ -52,6 +53,12 @@ class Feature25 extends BaseFeature {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/69046abb2d05c1002bf1d255?alt=media",
               },
+            },
+            {
+              type: "boolean",
+              key: "overlay",
+              displayer: "Overlay",
+              value: false,
             },
             {
               type: "string",
@@ -107,6 +114,12 @@ class Feature25 extends BaseFeature {
               },
             },
             {
+              type: "boolean",
+              key: "overlay",
+              displayer: "Overlay",
+              value: false,
+            },
+            {
               type: "string",
               key: "text",
               displayer: "Subtitle",
@@ -158,6 +171,12 @@ class Feature25 extends BaseFeature {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6904687f2d05c1002bf1ca45?alt=media",
               },
+            },
+            {
+              type: "boolean",
+              key: "overlay",
+              displayer: "Overlay",
+              value: false,
             },
             {
               type: "string",
@@ -333,6 +352,7 @@ class Feature25 extends BaseFeature {
                             value={tab.image}
                             className={this.decorateCSS("image")}
                           />
+                          {tab.overlay && <div className={this.decorateCSS("overlay")} />}
                         </div>
                       )}
 
