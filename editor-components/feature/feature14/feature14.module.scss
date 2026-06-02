@@ -17,12 +17,16 @@
                 .subtitle, .header {
                     content:"";
                 }
-                .link {                    
-                    .button{
-                        .button-text {
+                .link {
+                    display: flex;
+                    align-items: center;
+                    flex-wrap: wrap;
+                    gap: var(--composer-gap-sm);
+                    .button {
+                        .button-text,
+                        .button-icon {
                             content: "";
                         }
-                        
                     }
                 }
             }
@@ -32,13 +36,17 @@
                 .description-1 {
                     content: "";
                 }
-    
+
                 .description-2 {
                     color: var(--composer-tertiary-color);
                     content: "";
                 }
-                .link {                    
-                    .button{
+                .link {
+                    display: flex;
+                    align-items: center;
+                    flex-wrap: wrap;
+                    gap: var(--composer-gap-sm);
+                    .button {
                         .button-text {
                             content: "";
                         }
