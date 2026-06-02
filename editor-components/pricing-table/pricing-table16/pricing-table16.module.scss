@@ -201,6 +201,24 @@
 
 
 
+@container (max-width: #{$composer-tablet-width}) {
+    .container {
+        .max-content {
+            .bottom-cards-row {
+                .bottom-card {
+                    .bottom-card-left {
+                        .bottom-icon {
+                            font-size: 4rem;
+                            width: 55px;
+                            height: 55px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
 @container (max-width: #{$composer-phone-width}) {
     .container {
         .max-content {
@@ -214,9 +232,9 @@
                 .bottom-card {
                     .bottom-card-left {
                         .bottom-icon {
-                            font-size: 4rem;
-                            width: 55px;
-                            height: 55px;
+                            font-size: 3rem;
+                            width: 40px;
+                            height: 40px;
                         }
                     }
                 }
