@@ -79,7 +79,7 @@ class PricingTable11 extends BasePricingTable {
     this.addProp({
       type: "boolean",
       key: "line",
-      displayer: "Feature Line",
+      displayer: "Line",
       value: true,
     });
 
