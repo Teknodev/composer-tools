@@ -72,6 +72,13 @@ class PricingTable15 extends BasePricingTable {
     });
 
     this.addProp({
+      type: "array",
+      key: "buttons",
+      displayer: "Buttons",
+      value: [INPUTS.BUTTON("button", "Button", "", "", null, null, "White")],
+    });
+
+    this.addProp({
       type: "object",
       key: "left",
       displayer: "Left Section",
@@ -494,6 +501,8 @@ class PricingTable15 extends BasePricingTable {
     const subtitle = this.castToString(this.getPropValue("subtitle"));
     const title = this.castToString(this.getPropValue("title"));
     const description = this.castToString(this.getPropValue("description"));
+    const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons") || [];
+    const SectionVisibleButtons = buttons.filter(btn => this.castToString(btn.text));
     const leftIconBackground = !!this.getPropValue("leftIconBackground", { parent_object: leftProps });
     const leftItemCount = this.getPropValue("leftItemCount", { parent_object: leftProps }) || 1;
 
@@ -529,11 +538,13 @@ class PricingTable15 extends BasePricingTable {
     }));
 
     const visibleButtons = rightButtons.filter(btn => this.castToString(btn.text));
+    const leftColumnExist = subtitle || title || description || leftFeatures.length > 0 || SectionVisibleButtons.length > 0;
+    const rightColumnExist = rightSetupFeeValueExist || rightSetupFeeSuffixExist || rightMonthlyValueExist || rightMonthlySuffixExist || rightCheckmarkFeatures.length > 0 || visibleButtons.length > 0;
 
     return (
-      <Base.Container className={this.decorateCSS("container")}>
+      <Base.Container className={`${this.decorateCSS("container")} ${!leftColumnExist && this.decorateCSS("no-left-column")} ${!rightColumnExist && this.decorateCSS("no-right-column")}`}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          {(subtitle || title || description || leftFeatures.length > 0) && (
+          {leftColumnExist && (
             <Base.VerticalContent className={this.decorateCSS("left-column")}>
               {subtitle && (
                 <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
@@ -550,55 +561,72 @@ class PricingTable15 extends BasePricingTable {
                   {this.getPropValue("description")}
                 </Base.SectionDescription>
               )}
-              {leftFeatures && leftFeatures.length > 0 && (
-                <Base.ListGrid
-                  gridCount={{
-                    pc: leftItemCount,
-                    tablet: 1,
-                    phone: 1,
-                  }}
-                  className={this.decorateCSS("features-list")}
-                >
-                  {leftFeatures.map((feature: FeatureItem, idx: number) => {
-                    const featureSubtitleExist = this.castToString(feature.featureSubtitle);
-                    const featureTitleExist = this.castToString(feature.featureTitle);
-                    const featureDescExist = this.castToString(feature.featureDescription);
+              {(SectionVisibleButtons.length > 0 || (leftFeatures && leftFeatures.length > 0)) && (
+                <div className={this.decorateCSS("features-container")}>
+                  {SectionVisibleButtons.length > 0 && (
+                    <div className={this.decorateCSS("button-container")}>
+                      {SectionVisibleButtons.map((item: INPUTS.CastedButton, index: number) => {
+                        return this.castToString(item.text) && (
+                          <ComposerLink key={`button-${index}`} path={item.url}>
+                            <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
+                              <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>
+                            </Base.Button>
+                          </ComposerLink>
+                        );
+                      })}
+                    </div>
+                  )}
+                  {leftFeatures && leftFeatures.length > 0 && (
+                    <Base.ListGrid
+                      gridCount={{
+                        pc: leftItemCount,
+                        tablet: 1,
+                        phone: 1,
+                      }}
+                      className={this.decorateCSS("features-list")}
+                    >
+                      {leftFeatures.map((feature: FeatureItem, idx: number) => {
+                        const featureSubtitleExist = this.castToString(feature.featureSubtitle);
+                        const featureTitleExist = this.castToString(feature.featureTitle);
+                        const featureDescExist = this.castToString(feature.featureDescription);
 
-                    return (
-                      <div key={idx} className={this.decorateCSS("feature-item")}>
-                        {feature.icon && (
-                          <div className={`${this.decorateCSS("feature-icon-wrapper")} ${leftIconBackground && this.decorateCSS("has-bg")}`}>
-                            <Base.Media
-                              value={feature.icon}
-                              className={`${this.decorateCSS("feature-icon")} ${feature.icon.type === "image" && this.decorateCSS("feature-has-image")}`}
-                            />
+                        return (
+                          <div key={idx} className={this.decorateCSS("feature-item")}>
+                            {feature.icon && (
+                              <div className={`${this.decorateCSS("feature-icon-wrapper")} ${leftIconBackground && this.decorateCSS("has-bg")}`}>
+                                <Base.Media
+                                  value={feature.icon}
+                                  className={`${this.decorateCSS("feature-icon")} ${feature.icon.type === "image" && this.decorateCSS("feature-has-image")}`}
+                                />
+                              </div>
+                            )}
+                            <Base.VerticalContent className={this.decorateCSS("feature-content")}>
+                              {featureSubtitleExist && (
+                                <Base.P className={this.decorateCSS("feature-subtitle")}>
+                                  {feature.featureSubtitle}
+                                </Base.P>
+                              )}
+                              {featureTitleExist && (
+                                <Base.H5 className={this.decorateCSS("feature-title")}>
+                                  {feature.featureTitle}
+                                </Base.H5>
+                              )}
+                              {featureDescExist && (
+                                <Base.P className={this.decorateCSS("feature-description")}>
+                                  {feature.featureDescription}
+                                </Base.P>
+                              )}
+                            </Base.VerticalContent>
                           </div>
-                        )}
-                        <Base.VerticalContent className={this.decorateCSS("feature-content")}>
-                          {featureSubtitleExist && (
-                            <Base.P className={this.decorateCSS("feature-subtitle")}>
-                              {feature.featureSubtitle}
-                            </Base.P>
-                          )}
-                          {featureTitleExist && (
-                            <Base.H5 className={this.decorateCSS("feature-title")}>
-                              {feature.featureTitle}
-                            </Base.H5>
-                          )}
-                          {featureDescExist && (
-                            <Base.P className={this.decorateCSS("feature-description")}>
-                              {feature.featureDescription}
-                            </Base.P>
-                          )}
-                        </Base.VerticalContent>
-                      </div>
-                    );
-                  })}
-                </Base.ListGrid>
+                        );
+                      })}
+                    </Base.ListGrid>
+                  )}
+                </div>
               )}
             </Base.VerticalContent>
           )}
-          {(rightSetupFeeValueExist || rightSetupFeeSuffixExist || rightMonthlyValueExist || rightMonthlySuffixExist || rightCheckmarkFeatures.length > 0 || visibleButtons.length > 0) && (
+          {rightColumnExist && (
             <div className={this.decorateCSS("right-column")}>
               <div className={this.decorateCSS("pricing-card")}>
                 {(rightSetupFeeValueExist || rightSetupFeeSuffixExist || rightMonthlyValueExist || rightMonthlySuffixExist) && (
