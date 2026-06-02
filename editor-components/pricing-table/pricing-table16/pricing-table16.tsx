@@ -360,7 +360,7 @@ class PricingTable16 extends BasePricingTable {
                                     <div key={`card-${index}`} className={this.decorateCSS("card")}>
                                         <Base.VerticalContent className={this.decorateCSS("card-top")}>
                                             {cardSubtitleExist && <Base.H6 className={this.decorateCSS("card-subtitle")}>{item.cardSubtitle}</Base.H6>}
-                                            {cardTitleExist && <Base.H4 className={this.decorateCSS("card-title")}>{item.cardTitle}</Base.H4>}
+                                            {cardTitleExist && <Base.H5 className={this.decorateCSS("card-title")}>{item.cardTitle}</Base.H5>}
                                             {cardDescriptionExist && <Base.P className={this.decorateCSS("card-description")}>{item.cardDescription}</Base.P>}
 
                                             {(cardPriceExist || cardDurationExist) && (
