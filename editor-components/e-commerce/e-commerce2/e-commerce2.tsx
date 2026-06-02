@@ -103,12 +103,12 @@ class ECommerce2 extends BaseECommerce {
                         {
                             type: "array",
                             key: "images",
-                            displayer: "Image Gallery",
+                            displayer: "Media Gallery",
                             value: [
                                 {
                                     type: "object",
                                     key: "media",
-                                    displayer: "Image",
+                                    displayer: "Media",
                                     value: [
                                         {
                                             type: "media",
@@ -119,7 +119,7 @@ class ECommerce2 extends BaseECommerce {
                                             },
                                             value: {
                                                 type: "image",
-                                                url: "https://depot.qodeinteractive.com/wp-content/uploads/2017/01/h1-product-8-600x728.jpg",
+                                                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/680a3d91c1ef0f002c95c2af?alt=media",
                                             },
                                         },
                                         {
@@ -201,7 +201,7 @@ class ECommerce2 extends BaseECommerce {
                                                             },
                                                             value: {
                                                                 type: "image",
-                                                                url: "https://depot.qodeinteractive.com/wp-content/uploads/2017/01/h1-product-8-600x728.jpg",
+                                                                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/680a3d91c1ef0f002c95c2af?alt=media",
                                                             },
                                                         },
                                                     ],
@@ -289,7 +289,7 @@ class ECommerce2 extends BaseECommerce {
                                 {
                                     type: "object",
                                     key: "media",
-                                    displayer: "Image",
+                                    displayer: "Media",
                                     value: [
                                         {
                                             type: "media",
@@ -300,7 +300,7 @@ class ECommerce2 extends BaseECommerce {
                                             },
                                             value: {
                                                 type: "image",
-                                                url: "https://depot.qodeinteractive.com/wp-content/uploads/2017/01/h1-product-6-600x728.jpg",
+                                                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/680a3dbcc1ef0f002c95c2cc?alt=media",
                                             },
                                         },
                                         {
@@ -382,7 +382,7 @@ class ECommerce2 extends BaseECommerce {
                                                             displayer: "Popup Media ",
                                                             value: {
                                                                 type: "image",
-                                                                url: "https://depot.qodeinteractive.com/wp-content/uploads/2017/01/h1-product-6-600x728.jpg",
+                                                                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/680a3dbcc1ef0f002c95c2cc?alt=media",
                                                             },
                                                         },
                                                     ],
@@ -470,7 +470,7 @@ class ECommerce2 extends BaseECommerce {
                                 {
                                     type: "object",
                                     key: "media",
-                                    displayer: "Image",
+                                    displayer: "Media",
                                     value: [
                                         {
                                             type: "media",
@@ -481,7 +481,7 @@ class ECommerce2 extends BaseECommerce {
                                             },
                                             value: {
                                                 type: "image",
-                                                url: "https://depot.qodeinteractive.com/wp-content/uploads/2017/01/h1-product-7-600x728.jpg",
+                                                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/680a3dd6c1ef0f002c95c2e4?alt=media",
                                             },
                                         },
                                         {
@@ -563,7 +563,7 @@ class ECommerce2 extends BaseECommerce {
                                                             displayer: "Popup Media ",
                                                             value: {
                                                                 type: "image",
-                                                                url: "https://depot.qodeinteractive.com/wp-content/uploads/2017/01/h1-product-7-600x728.jpg",
+                                                                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/680a3dd6c1ef0f002c95c2e4?alt=media",
                                                             },
                                                         },
                                                     ],
@@ -651,7 +651,7 @@ class ECommerce2 extends BaseECommerce {
                                 {
                                     type: "object",
                                     key: "media",
-                                    displayer: "Image",
+                                    displayer: "Media",
                                     value: [
                                         {
                                             type: "media",
@@ -662,7 +662,7 @@ class ECommerce2 extends BaseECommerce {
                                             },
                                             value: {
                                                 type: "image",
-                                                url: "https://depot.qodeinteractive.com/wp-content/uploads/2017/01/h1-product-5-600x728.jpg",
+                                                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/680a3df1c1ef0f002c95c2f9?alt=media",
                                             },
                                         },
                                         {
@@ -744,7 +744,7 @@ class ECommerce2 extends BaseECommerce {
                                                             displayer: "Popup Media ",
                                                             value: {
                                                                 type: "image",
-                                                                url: "https://depot.qodeinteractive.com/wp-content/uploads/2017/01/h1-product-5-600x728.jpg",
+                                                                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/680a3df1c1ef0f002c95c2f9?alt=media",
                                                             },
                                                         },
                                                     ],
@@ -832,7 +832,7 @@ class ECommerce2 extends BaseECommerce {
                                 {
                                     type: "object",
                                     key: "media",
-                                    displayer: "Image",
+                                    displayer: "Media",
                                     value: [
                                         {
                                             type: "media",
@@ -843,7 +843,7 @@ class ECommerce2 extends BaseECommerce {
                                             },
                                             value: {
                                                 type: "image",
-                                                url: "https://depot.qodeinteractive.com/wp-content/uploads/2017/01/h1-product-4-600x728.jpg",
+                                                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/680a3d91c1ef0f002c95c2af?alt=media",
                                             },
                                         },
                                         {
@@ -925,7 +925,7 @@ class ECommerce2 extends BaseECommerce {
                                                             displayer: "Popup Media ",
                                                             value: {
                                                                 type: "image",
-                                                                url: "https://depot.qodeinteractive.com/wp-content/uploads/2017/01/h1-product-4-600x728.jpg",
+                                                                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/680a3d91c1ef0f002c95c2af?alt=media",
                                                             },
                                                         },
                                                     ],
@@ -1013,7 +1013,7 @@ class ECommerce2 extends BaseECommerce {
                                 {
                                     type: "object",
                                     key: "media",
-                                    displayer: "Image",
+                                    displayer: "Media",
                                     value: [
                                         {
                                             type: "media",
@@ -1024,7 +1024,7 @@ class ECommerce2 extends BaseECommerce {
                                             },
                                             value: {
                                                 type: "image",
-                                                url: "https://depot.qodeinteractive.com/wp-content/uploads/2017/01/h1-product-2-600x728.jpg",
+                                                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/680a3dbcc1ef0f002c95c2cc?alt=media",
                                             },
                                         },
                                         {
@@ -1106,7 +1106,7 @@ class ECommerce2 extends BaseECommerce {
                                                             displayer: "Popup Media ",
                                                             value: {
                                                                 type: "image",
-                                                                url: "https://depot.qodeinteractive.com/wp-content/uploads/2017/01/h1-product-2-600x728.jpg",
+                                                                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/680a3dbcc1ef0f002c95c2cc?alt=media",
                                                             },
                                                         },
                                                     ],
@@ -1194,7 +1194,7 @@ class ECommerce2 extends BaseECommerce {
                                 {
                                     type: "object",
                                     key: "media",
-                                    displayer: "Image",
+                                    displayer: "Media",
                                     value: [
                                         {
                                             type: "media",
@@ -1205,7 +1205,7 @@ class ECommerce2 extends BaseECommerce {
                                             },
                                             value: {
                                                 type: "image",
-                                                url: "https://depot.qodeinteractive.com/wp-content/uploads/2017/01/h1-product-3-1-600x728.jpg",
+                                                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/680a3dd6c1ef0f002c95c2e4?alt=media",
                                             },
                                         },
                                         {
@@ -1287,7 +1287,7 @@ class ECommerce2 extends BaseECommerce {
                                                             displayer: "Popup Media ",
                                                             value: {
                                                                 type: "image",
-                                                                url: "https://depot.qodeinteractive.com/wp-content/uploads/2017/01/h1-product-3-1-600x728.jpg",
+                                                                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/680a3dd6c1ef0f002c95c2e4?alt=media",
                                                             },
                                                         },
                                                     ],
@@ -1375,7 +1375,7 @@ class ECommerce2 extends BaseECommerce {
                                 {
                                     type: "object",
                                     key: "media",
-                                    displayer: "Image",
+                                    displayer: "Media",
                                     value: [
                                         {
                                             type: "media",
@@ -1386,7 +1386,7 @@ class ECommerce2 extends BaseECommerce {
                                             },
                                             value: {
                                                 type: "image",
-                                                url: "https://depot.qodeinteractive.com/wp-content/uploads/2017/01/h1-product-1-600x728.jpg",
+                                                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/680a3df1c1ef0f002c95c2f9?alt=media",
                                             },
                                         },
                                         {
@@ -1468,7 +1468,7 @@ class ECommerce2 extends BaseECommerce {
                                                             displayer: "Popup Media ",
                                                             value: {
                                                                 type: "image",
-                                                                url: "https://depot.qodeinteractive.com/wp-content/uploads/2017/01/h1-product-1-600x728.jpg",
+                                                                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/680a3df1c1ef0f002c95c2f9?alt=media",
                                                             },
                                                         },
                                                     ],
@@ -1571,12 +1571,12 @@ class ECommerce2 extends BaseECommerce {
                         {
                             type: "array",
                             key: "images",
-                            displayer: "Image Gallery",
+                            displayer: "Media Gallery",
                             value: [
                                 {
                                     type: "object",
                                     key: "media",
-                                    displayer: "Image",
+                                    displayer: "Media",
                                     value: [
                                         {
                                             type: "media",
@@ -1587,7 +1587,7 @@ class ECommerce2 extends BaseECommerce {
                                             },
                                             value: {
                                                 type: "image",
-                                                url: "https://depot.qodeinteractive.com/wp-content/uploads/2017/01/h1-product-1-600x728.jpg",
+                                                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/680a3df1c1ef0f002c95c2f9?alt=media",
                                             },
                                         },
                                         {
@@ -1669,7 +1669,7 @@ class ECommerce2 extends BaseECommerce {
                                                             displayer: "Popup Media ",
                                                             value: {
                                                                 type: "image",
-                                                                url: "https://depot.qodeinteractive.com/wp-content/uploads/2017/01/h1-product-1-600x728.jpg",
+                                                                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/680a3df1c1ef0f002c95c2f9?alt=media",
                                                             },
                                                         },
                                                     ],
@@ -1772,12 +1772,12 @@ class ECommerce2 extends BaseECommerce {
                         {
                             type: "array",
                             key: "images",
-                            displayer: "Image Gallery",
+                            displayer: "Media Gallery",
                             value: [
                                 {
                                     type: "object",
                                     key: "media",
-                                    displayer: "Image",
+                                    displayer: "Media",
                                     value: [
                                         {
                                             type: "media",
@@ -1788,7 +1788,7 @@ class ECommerce2 extends BaseECommerce {
                                             },
                                             value: {
                                                 type: "image",
-                                                url: "https://depot.qodeinteractive.com/wp-content/uploads/2017/01/h1-product-8-600x728.jpg",
+                                                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/680a3d91c1ef0f002c95c2af?alt=media",
                                             },
                                         },
                                         {
@@ -1870,7 +1870,7 @@ class ECommerce2 extends BaseECommerce {
                                                             },
                                                             value: {
                                                                 type: "image",
-                                                                url: "https://depot.qodeinteractive.com/wp-content/uploads/2017/01/h1-product-8-600x728.jpg",
+                                                                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/680a3d91c1ef0f002c95c2af?alt=media",
                                                             },
                                                         },
                                                     ],
@@ -1958,7 +1958,7 @@ class ECommerce2 extends BaseECommerce {
                                 {
                                     type: "object",
                                     key: "media",
-                                    displayer: "Image",
+                                    displayer: "Media",
                                     value: [
                                         {
                                             type: "media",
@@ -1969,7 +1969,7 @@ class ECommerce2 extends BaseECommerce {
                                             },
                                             value: {
                                                 type: "image",
-                                                url: "https://depot.qodeinteractive.com/wp-content/uploads/2017/01/h1-product-3-1-600x728.jpg",
+                                                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/680a3dd6c1ef0f002c95c2e4?alt=media",
                                             },
                                         },
                                         {
@@ -2051,7 +2051,7 @@ class ECommerce2 extends BaseECommerce {
                                                             displayer: "Popup Media ",
                                                             value: {
                                                                 type: "image",
-                                                                url: "https://depot.qodeinteractive.com/wp-content/uploads/2017/01/h1-product-3-1-600x728.jpg",
+                                                                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/680a3dd6c1ef0f002c95c2e4?alt=media",
                                                             },
                                                         },
                                                     ],
@@ -2154,12 +2154,12 @@ class ECommerce2 extends BaseECommerce {
                         {
                             type: "array",
                             key: "images",
-                            displayer: "Image Gallery",
+                            displayer: "Media Gallery",
                             value: [
                                 {
                                     type: "object",
                                     key: "media",
-                                    displayer: "Image",
+                                    displayer: "Media",
                                     value: [
                                         {
                                             type: "media",
@@ -2170,7 +2170,7 @@ class ECommerce2 extends BaseECommerce {
                                             },
                                             value: {
                                                 type: "image",
-                                                url: "https://depot.qodeinteractive.com/wp-content/uploads/2017/01/h1-product-2-600x728.jpg",
+                                                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/680a3dbcc1ef0f002c95c2cc?alt=media",
                                             },
                                         },
                                         {
@@ -2252,7 +2252,7 @@ class ECommerce2 extends BaseECommerce {
                                                             displayer: "Popup Media ",
                                                             value: {
                                                                 type: "image",
-                                                                url: "https://depot.qodeinteractive.com/wp-content/uploads/2017/01/h1-product-2-600x728.jpg",
+                                                                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/680a3dbcc1ef0f002c95c2cc?alt=media",
                                                             },
                                                         },
                                                     ],
@@ -2340,7 +2340,7 @@ class ECommerce2 extends BaseECommerce {
                                 {
                                     type: "object",
                                     key: "media",
-                                    displayer: "Image",
+                                    displayer: "Media",
                                     value: [
                                         {
                                             type: "media",
@@ -2351,7 +2351,7 @@ class ECommerce2 extends BaseECommerce {
                                             },
                                             value: {
                                                 type: "image",
-                                                url: "https://depot.qodeinteractive.com/wp-content/uploads/2017/01/h1-product-7-600x728.jpg",
+                                                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/680a3dd6c1ef0f002c95c2e4?alt=media",
                                             },
                                         },
                                         {
@@ -2433,7 +2433,7 @@ class ECommerce2 extends BaseECommerce {
                                                             displayer: "Popup Media ",
                                                             value: {
                                                                 type: "image",
-                                                                url: "https://depot.qodeinteractive.com/wp-content/uploads/2017/01/h1-product-7-600x728.jpg",
+                                                                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/680a3dd6c1ef0f002c95c2e4?alt=media",
                                                             },
                                                         },
                                                     ],
@@ -2536,12 +2536,12 @@ class ECommerce2 extends BaseECommerce {
                         {
                             type: "array",
                             key: "images",
-                            displayer: "Image Gallery",
+                            displayer: "Media Gallery",
                             value: [
                                 {
                                     type: "object",
                                     key: "media",
-                                    displayer: "Image",
+                                    displayer: "Media",
                                     value: [
                                         {
                                             type: "media",
@@ -2552,7 +2552,7 @@ class ECommerce2 extends BaseECommerce {
                                             },
                                             value: {
                                                 type: "image",
-                                                url: "https://depot.qodeinteractive.com/wp-content/uploads/2017/01/h1-product-6-600x728.jpg",
+                                                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/680a3dbcc1ef0f002c95c2cc?alt=media",
                                             },
                                         },
                                         {
@@ -2634,7 +2634,7 @@ class ECommerce2 extends BaseECommerce {
                                                             displayer: "Popup Media ",
                                                             value: {
                                                                 type: "image",
-                                                                url: "https://depot.qodeinteractive.com/wp-content/uploads/2017/01/h1-product-6-600x728.jpg",
+                                                                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/680a3dbcc1ef0f002c95c2cc?alt=media",
                                                             },
                                                         },
                                                     ],
@@ -2722,7 +2722,7 @@ class ECommerce2 extends BaseECommerce {
                                 {
                                     type: "object",
                                     key: "media",
-                                    displayer: "Image",
+                                    displayer: "Media",
                                     value: [
                                         {
                                             type: "media",
@@ -2733,7 +2733,7 @@ class ECommerce2 extends BaseECommerce {
                                             },
                                             value: {
                                                 type: "image",
-                                                url: "https://depot.qodeinteractive.com/wp-content/uploads/2017/01/h1-product-5-600x728.jpg",
+                                                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/680a3df1c1ef0f002c95c2f9?alt=media",
                                             },
                                         },
                                         {
@@ -2815,7 +2815,7 @@ class ECommerce2 extends BaseECommerce {
                                                             displayer: "Popup Media ",
                                                             value: {
                                                                 type: "image",
-                                                                url: "https://depot.qodeinteractive.com/wp-content/uploads/2017/01/h1-product-5-600x728.jpg",
+                                                                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/680a3df1c1ef0f002c95c2f9?alt=media",
                                                             },
                                                         },
                                                     ],
@@ -2903,7 +2903,7 @@ class ECommerce2 extends BaseECommerce {
                                 {
                                     type: "object",
                                     key: "media",
-                                    displayer: "Image",
+                                    displayer: "Media",
                                     value: [
                                         {
                                             type: "media",
@@ -2914,7 +2914,7 @@ class ECommerce2 extends BaseECommerce {
                                             },
                                             value: {
                                                 type: "image",
-                                                url: "https://depot.qodeinteractive.com/wp-content/uploads/2017/01/h1-product-4-600x728.jpg",
+                                                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/680a3d91c1ef0f002c95c2af?alt=media",
                                             },
                                         },
                                         {
@@ -2996,7 +2996,7 @@ class ECommerce2 extends BaseECommerce {
                                                             displayer: "Popup Media ",
                                                             value: {
                                                                 type: "image",
-                                                                url: "https://depot.qodeinteractive.com/wp-content/uploads/2017/01/h1-product-4-600x728.jpg",
+                                                                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/680a3d91c1ef0f002c95c2af?alt=media",
                                                             },
                                                         },
                                                     ],
