@@ -5,11 +5,20 @@ import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "../../../custom-hooks/input-templates";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 
+type Button = {
+  text: React.JSX.Element;
+  url: string;
+  icon: TypeMediaInputValue;
+  type: string;
+};
+
 interface Item {
   image: TypeMediaInputValue;
+  overlay: boolean;
+  subtitle: React.JSX.Element;
   sectionHeading: React.JSX.Element;
   description: React.JSX.Element;
-  button: INPUTS.CastedButton;
+  button: Button;
 }
 
 class Feature20 extends BaseFeature {
@@ -49,7 +58,16 @@ class Feature20 extends BaseFeature {
       displayer: "Description",
       value: "Build a positive impact on your business. Check out what we have to offer.",
     });
-    
+
+    this.addProp({
+      type: "array",
+      key: "buttons",
+      displayer: "Buttons",
+      value: [
+        INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+      ],
+    });
+
     this.addProp({
       type: "array",
       key: "items",
@@ -69,8 +87,20 @@ class Feature20 extends BaseFeature {
               },
               value: {
                 type: "image",
-                url: "https://www.keydesign-themes.com/intact/business/wp-content/uploads/sites/2/2017/02/photo3.jpg",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/698f381d771c03002cc28774?alt=media",
               },
+            },
+            {
+              type: "boolean",
+              key: "overlay",
+              displayer: "Overlay",
+              value: false,
+            },
+            {
+              type: "string",
+              key: "subtitle",
+              displayer: "Subtitle",
+              value: "",
             },
             {
               type: "string",
@@ -103,8 +133,20 @@ class Feature20 extends BaseFeature {
               },
               value: {
                 type: "image",
-                url: "https://www.keydesign-themes.com/intact/business/wp-content/uploads/sites/2/2017/02/photo2.jpg",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/698f381d771c03002cc28774?alt=media",
               },
+            },
+            {
+              type: "boolean",
+              key: "overlay",
+              displayer: "Overlay",
+              value: false,
+            },
+            {
+              type: "string",
+              key: "subtitle",
+              displayer: "Subtitle",
+              value: "",
             },
             {
               type: "string",
@@ -137,8 +179,20 @@ class Feature20 extends BaseFeature {
               },
               value: {
                 type: "image",
-                url: "https://www.keydesign-themes.com/intact/business/wp-content/uploads/sites/2/2017/02/photobox.jpg",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/698f381d771c03002cc28774?alt=media",
               },
+            },
+            {
+              type: "boolean",
+              key: "overlay",
+              displayer: "Overlay",
+              value: false,
+            },
+            {
+              type: "string",
+              key: "subtitle",
+              displayer: "Subtitle",
+              value: "",
             },
             {
               type: "string",
@@ -159,12 +213,6 @@ class Feature20 extends BaseFeature {
       ],
     });
 
-    this.addProp({
-      type: "boolean",
-      key: "overlay",
-      displayer: "Overlay",
-      value: true,
-    });
   }
 
   static getName(): string {
@@ -177,14 +225,19 @@ class Feature20 extends BaseFeature {
     const subtitleExist = this.castToString(subtitle);
     const description = this.getPropValue("description");
     const items = this.castToObject<Item[]>("items") || [];
+    const buttons = this.castToObject<Button[]>("buttons");
+    const hasValidButtons = buttons && buttons.some((btn: Button) => {
+      const buttonText = this.castToString(btn.text);
+      const iconExist = btn.icon && (btn.icon.type === "icon" ? btn.icon.name : btn.icon.url);
+      return buttonText || iconExist;
+    });
     const showLine = this.getPropValue("showLine") as boolean;
     const showDividers = this.getPropValue("showDividers") as boolean;
-    const overlay = this.getPropValue("overlay") as boolean;
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("wrapper")}>
-           {(this.castToString(title) || this.castToString(description)) && <div className={this.decorateCSS("header")}>
+           {(this.castToString(title) || subtitleExist || this.castToString(description) || hasValidButtons) && <div className={this.decorateCSS("header")}>
             {subtitleExist && (
               <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
                 {subtitle}
@@ -193,10 +246,33 @@ class Feature20 extends BaseFeature {
               {this.castToString(title) && <Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>}
               {showLine && <div className={this.decorateCSS("line")} />}
               {this.castToString(description) && <Base.SectionDescription className={this.decorateCSS("description")}>{description}</Base.SectionDescription>}
+              {hasValidButtons && (
+                <div className={this.decorateCSS("button-container")}>
+                  {buttons.map((item: Button, index: number) => {
+                    const buttonText = this.castToString(item.text);
+                    const iconExist = item.icon && (item.icon.type === "icon" ? item.icon.name : item.icon.url);
+                    if (!buttonText && !iconExist) return null;
+                    return (
+                      <ComposerLink key={index} path={item.url}>
+                        <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
+                          {buttonText && (
+                            <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>
+                          )}
+                          {iconExist && (
+                            <Base.Media className={this.decorateCSS("button-icon")} value={item.icon} />
+                          )}
+                        </Base.Button>
+                      </ComposerLink>
+                    );
+                  })}
+                </div>
+              )}
             </div>}
 
-            {items.map((item, i) => {
-              const hasTextContent = this.castToString(item.sectionHeading) || this.castToString(item.description) || this.castToString(item.button.text);
+            {items.map((item: Item, i: number) => {
+              const btnText = this.castToString(item.button.text);
+              const btnIconExist = item.button.icon && (item.button.icon.type === "icon" ? item.button.icon.name : item.button.icon.url);
+              const hasTextContent = this.castToString(item.subtitle) || this.castToString(item.sectionHeading) || this.castToString(item.description) || btnText || btnIconExist;
               return (hasTextContent || item.image) && (
               <React.Fragment key={i}>
                 <div
@@ -211,15 +287,17 @@ class Feature20 extends BaseFeature {
                         className={`${this.decorateCSS("image")} ${!hasTextContent ? this.decorateCSS("full-width-image") : ""}`}
                       />
                     )}
-                    {overlay && item.image && <div className={this.decorateCSS("overlay")} />}
+                    {item.overlay && item.image && <div className={this.decorateCSS("overlay")} />}
                   </div>
-                  {(this.castToString(item.sectionHeading) || this.castToString(item.description) || this.castToString(item.button.text)) && <Base.VerticalContent className={this.decorateCSS("text")}>
+                  {hasTextContent && <Base.VerticalContent className={this.decorateCSS("text")}>
+                    {this.castToString(item.subtitle) && <Base.H5 className={this.decorateCSS("item-subtitle")}>{item.subtitle}</Base.H5>}
                     {this.castToString(item.sectionHeading) && <Base.H4 className={this.decorateCSS("section-heading")}>{item.sectionHeading}</Base.H4>}
                     {this.castToString(item.description) && <Base.P className={this.decorateCSS("desc")}>{item.description}</Base.P>}
-                    {this.castToString(item.button.text) && (
+                    {(btnText || btnIconExist) && (
                       <ComposerLink path={item.button.url || '#'}>
                         <Base.Button buttonType={item.button.type} className={this.decorateCSS("button")}>
-                          {item.button.text && <Base.P className={this.decorateCSS("button-text")}>{item.button.text}</Base.P>}
+                          {btnText && <Base.P className={this.decorateCSS("button-text")}>{item.button.text}</Base.P>}
+                          {btnIconExist && <Base.Media className={this.decorateCSS("button-icon")} value={item.button.icon} />}
                         </Base.Button>
                       </ComposerLink>
                     )}
