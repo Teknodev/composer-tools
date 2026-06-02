@@ -20,7 +20,7 @@
   }
 
   .first-container {
-    padding: 80px var(--composer-gap-xl) var(--composer-gap-md) var(--composer-gap-xl) !important;
+    padding: 120px 60px 20px 60px !important;
     .first-max-content {
       display: flex;
       flex-wrap: wrap;
@@ -54,8 +54,21 @@
       }
 
       .list-group {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start !important;
+
         .title {
-          color: var(--composer-tertiary-color);
+          color: var(--composer-tertiary-color) !important;
+          text-align: left !important;
+          margin-left: 0 !important;
+          margin-right: 0 !important;
+          margin-bottom: var(--composer-gap-sm);
+        }
+
+        .column-title {
+          color: var(--composer-tertiary-color) !important;
+          text-align: left !important;
         }
 
         .text {
@@ -65,6 +78,7 @@
           transition: all 0.3s ease;
           padding: var(--composer-gap-xs) 0;
           margin: 0;
+          text-align: left !important;
 
           &[data-animation~="animate1"] {
             &::after {
@@ -104,7 +118,7 @@
               width: 100%;
               height: 100%;
               background-color: rgba(var(--composer-primary-color-rgb), 0.1);
-              border-radius: var(--composer-gap-xs);
+              border-radius: var(--composer-border-radius-sm);
               left: 0;
               top: 0;
               transform: scaleY(0);
@@ -162,11 +176,12 @@
   }
 
   .second-container {
-    padding: var(--composer-gap-md) var(--composer-gap-xl) !important;
+    padding: 20px 60px 20px 60px !important;
     .second-max-content {
       .footer-bottom {
         display: flex;
-        justify-content: space-between;
+        justify-content: space-between !important;
+        align-items: center !important;
 
         .footer-text {
           max-width: 50%;
@@ -209,17 +224,27 @@
 @container (max-width: #{$composer-tablet-width}) {
   .container {
     .first-container{
-      .first-max-content{
-        .list-group{
-          align-items: baseline;
-          .title, .text{
-            text-align: left;
+      padding: 100px 50px 20px 50px !important;
+      .first-max-content {
+        gap: var(--composer-gap-md);
+
+        .left,
+        .list-group {
+          flex: 1 1 150px;
+          max-width: 250px;
+        }
+
+        .left {
+          .logo {
+            .image {
+              width: 150px;
+            }
           }
         }
       }
     }
     .second-container {
-      padding: var(--composer-gap-md) var(--composer-gap-lg) !important;
+      padding: 20px 50px 20px 50px !important;
     }
   }
 }
@@ -250,6 +275,7 @@
     }
 
     .first-container {
+      padding: 50px 30px 20px 30px !important;
       .first-max-content {
         gap: var(--composer-gap-md);
         flex-direction: column;
@@ -271,7 +297,7 @@
     }
 
     .second-container {
-      padding: var(--composer-gap-md) !important;
+      padding: 20px 30px 20px 30px !important;
       .second-max-content {
         .footer-bottom {
           flex-direction: column;

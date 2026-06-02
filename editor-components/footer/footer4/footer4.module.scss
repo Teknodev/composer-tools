@@ -23,7 +23,7 @@
 
   .max-content {
     .first-container {
-      padding: 80px var(--composer-gap-xl) var(--composer-gap-md) var(--composer-gap-xl) !important;
+      padding: 120px 60px 20px 60px !important;
       .first-max-content {
         .footer-page {
           display: flex;
@@ -166,6 +166,7 @@
                 }
 
                 .button{
+                  margin-top: 0 !important;
                   border-top-left-radius: 0;
                   border-bottom-left-radius: 0;
                   .button-text{
@@ -261,7 +262,7 @@
     }
 
     .second-container {
-      padding: var(--composer-gap-md) var(--composer-gap-xl) !important;
+      padding: 20px 60px 20px 60px !important;
 
       .second-max-content {
         .bottom {
@@ -343,84 +344,10 @@
   .container {
     .max-content {
       .first-container {
-        .first-max-content {
-          .footer-page {
-            .items {
-              gap: var(--composer-gap-xl);
-
-              .left,
-              .list-group,
-              .right {
-                min-width: 300px;
-              }
-
-              .left {
-                .images {
-                  .image-container {
-                    display: flex;
-                    flex-wrap: wrap;
-                    align-items: center;
-                    gap: var(--composer-gap-md);
-
-                    .image {
-                      width: var(--composer-gap-lg);
-                      height: var(--composer-gap-lg);
-                    }
-                  }
-                }
-              }
-
-              .right {
-                display: flex;
-                flex-direction: column;
-                gap: var(--composer-gap-sm);
-
-                .form {
-                  display: flex;
-                  flex-direction: column;
-                  gap: var(--composer-gap-sm);
-
-                  .input-element {
-                    .input {
-                      border-radius: var(--composer-border-radius-sm);
-                      border: 1px solid var(--composer-tertiary-color);
-                    }
-
-                    .error {
-                      position: unset;
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
+        padding: 100px 50px 20px 50px !important;
       }
-
       .second-container {
-        padding: var(--composer-gap-md) var(--composer-gap-lg) !important;
-
-        .second-max-content {
-          .bottom {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            gap: var(--composer-gap-xs);
-            width: 100%;
-
-            .links,
-            .footer-text {
-              flex: 1;
-              display: flex;
-              align-items: center;
-              color: var(--composer-font-color-primary);
-            }
-
-            .links {
-              content: "";
-            }
-          }
-        }
+        padding: 20px 50px 20px 50px !important;
       }
     }
   }
@@ -430,6 +357,7 @@
   .container {
     .max-content {
       .first-container {
+        padding: 50px 30px 20px 30px !important;
         .first-max-content {
           .footer-page {
             .items {
@@ -458,7 +386,7 @@
       }
 
       .second-container {
-        padding: var(--composer-gap-md) !important;
+        padding: 20px 30px 20px 30px !important;
 
         .second-max-content {
           .bottom {

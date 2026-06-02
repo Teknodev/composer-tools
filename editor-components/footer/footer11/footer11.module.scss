@@ -1,7 +1,7 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
-  padding: var(--composer-gap-md) var(--composer-gap-xl) !important;
+  padding: 120px 60px 20px 60px !important;
 
   &.absolute {
     position: absolute;
@@ -10,16 +10,51 @@
     right: 0;
     background: transparent;
   }
+
   .max-content {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: var(--composer-gap-sm);
+    gap: var(--composer-gap-lg);
 
-    .text {
-      text-align: center;
-      color: var(--composer-font-color-primary);
+    .footer-columns {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: var(--composer-gap-lg);
+      width: 100%;
+
+      .list-group {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: var(--composer-gap-md);
+        flex: 1;
+        min-width: 150px;
+
+        .column-title {
+          color: var(--composer-font-color-primary);
+          text-align: center;
+        }
+
+        .text-container {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: var(--composer-gap-sm);
+
+          .footer-text {
+            color: var(--composer-tertiary-color);
+            transition: all 0.3s ease;
+            text-align: center;
+
+            &:hover {
+              color: var(--composer-primary-color);
+            }
+          }
+        }
+      }
     }
 
     .socials-container {
@@ -33,7 +68,7 @@
         align-items: center;
         gap: var(--composer-gap-sm);
         position: relative;
-        
+
         .icon {
           font-size: 1.5rem;
           color: var(--composer-font-color-primary);
@@ -51,11 +86,11 @@
 
         &[data-animation~="animate2"] {
           perspective: 1000px;
-          
+
           .icon {
             transform-style: preserve-3d;
           }
-          
+
           &:hover {
             .icon {
               color: var(--composer-primary-color);
@@ -94,49 +129,60 @@
       }
     }
 
-    &:not(:has(.links)):not(:has(.socials-container)) .text {
-      justify-content: center;
-    }
-
-    &:not(:has(.links)):has(.socials-container) .text {
-      justify-content: flex-start;
-    }
-
-    &:not(:has(.socials-container)):has(.links) .text {
-      justify-content: flex-end;
+    .text {
+      text-align: center;
+      color: var(--composer-tertiary-color);
     }
   }
 }
 
 @container (max-width: #{$composer-tablet-width}) {
   .container {
-    padding: var(--composer-gap-md) var(--composer-gap-lg) !important;
+    padding: 100px 50px 20px 50px !important;
   }
 }
 
 @container (max-width: #{$composer-phone-width}) {
   .container {
-    padding: var(--composer-gap-md) !important;
+    padding: 50px 30px 20px 30px !important;
+
+    .max-content {
+      gap: var(--composer-gap-md);
+
+      .footer-columns {
+        flex-direction: column;
+        align-items: center;
+        gap: var(--composer-gap-md);
+
+        .list-group {
+          width: 100%;
+        }
+      }
+    }
   }
 }
-
 
 @keyframes bounce {
   from {
     transform: translateY(0);
   }
+
   to {
     transform: translateY(-10px);
   }
 }
 
 @keyframes shake {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: rotate(0deg);
   }
+
   25% {
     transform: rotate(-10deg);
   }
+
   75% {
     transform: rotate(10deg);
   }

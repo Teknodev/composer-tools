@@ -1,7 +1,7 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
-  padding: 80px var(--composer-gap-xl) var(--composer-gap-md) var(--composer-gap-xl) !important;
+  padding: 120px 60px 20px 60px !important;
 
   &.absolute {
     position: absolute;
@@ -9,8 +9,8 @@
     left: 0;
     right: 0;
     background: transparent;
-
   }
+
   .max-content {
     display: flex;
     flex-direction: column;
@@ -24,26 +24,30 @@
       gap: var(--composer-gap-md);
 
       .logo {
-         width: 200px;
-         height: var(--composer-gap-lg);
-              object-fit: cover;
+        width: 200px;
+        height: var(--composer-gap-lg);
+        object-fit: cover;
       }
 
       .content {
         justify-content: center;
         align-items: center;
-        .title, .subtitle, .description {
+
+        .title,
+        .subtitle,
+        .description {
           text-align: center;
         }
 
-        .subtitle{
+        .subtitle {
           transform: translateX(0);
+
           &::before {
             display: none;
           }
         }
 
-        .button{
+        .button {
           .button-text {
             content: "";
           }
@@ -51,80 +55,105 @@
       }
     }
 
-    .list-group {
+    .footer-columns {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      align-items: center;
-      gap: var(--composer-gap-md);
-      .text {
-        position: relative;
-        color: var(--composer-font-color-primary);
-        transition: all 0.3s ease;
-        
-        &[data-animation~="animate1"] {
-          &:hover {
-            color: var(--composer-primary-color);
-            transform: scale(1.1);
-          }
+      gap: var(--composer-gap-lg);
+      width: 100%;
+
+      .list-group {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: var(--composer-gap-md);
+        flex: 1;
+        min-width: 150px;
+
+        .column-title {
+          color: var(--composer-font-color-primary);
+          text-align: center;
         }
 
-        &[data-animation~="animate2"] {
-          &::after {
-            content: '';
-            position: absolute;
-            left: 50%;
-            bottom: -2px;
-            width: 0;
-            height: 2px;
-            background-color: var(--composer-primary-color);
+        .text-container {
+          display: flex;
+          flex-direction: row;
+          flex-wrap: wrap;
+          justify-content: center;
+          align-items: center;
+          gap: var(--composer-gap-md);
+
+          .text {
+            position: relative;
+            color: var(--composer-tertiary-color);
             transition: all 0.3s ease;
-            transform: translateX(-50%);
-          }
-          
-          &:hover {
-            color: var(--composer-primary-color);
-            
-            &::after {
-              width: 100%;
+            text-align: center;
+
+            &[data-animation~="animate1"] {
+              &:hover {
+                color: var(--composer-primary-color);
+                transform: scale(1.1);
+              }
             }
-          }
-        }
 
-        &[data-animation~="animate3"] {
-          border-radius: var(--composer-border-radius-sm);
-          
-          &:hover {
-            padding: 0 var(--composer-gap-sm);
-            color: var(--composer-primary-color);
-            background-color: rgba(var(--composer-primary-color-rgb), 0.1);
-          }
-        }
+            &[data-animation~="animate2"] {
+              &::after {
+                content: '';
+                position: absolute;
+                left: 50%;
+                bottom: -2px;
+                width: 0;
+                height: 2px;
+                background-color: var(--composer-primary-color);
+                transition: all 0.3s ease;
+                transform: translateX(-50%);
+              }
 
-        &[data-animation~="animate4"] {
-          &:hover {
-            color: var(--composer-primary-color);
-            transform: translateY(calc(var(--composer-gap-xs) * -1));
-          }
-        }
+              &:hover {
+                color: var(--composer-primary-color);
 
-        &[data-animation~="animate5"] {
-          &::before {
-            content: '→';
-            position: absolute;
-            left: -20px;
-            opacity: 0;
-            transition: all 0.3s ease;
-            color: var(--composer-primary-color);
-          }
-          
-          &:hover {
-            color: var(--composer-primary-color);
-            padding-left: 20px;
-            
-            &::before {
-              opacity: 1;
-              left: 0;
+                &::after {
+                  width: 100%;
+                }
+              }
+            }
+
+            &[data-animation~="animate3"] {
+              border-radius: var(--composer-border-radius-sm);
+
+              &:hover {
+                padding: 0 var(--composer-gap-sm);
+                color: var(--composer-primary-color);
+                background-color: rgba(var(--composer-primary-color-rgb), 0.1);
+              }
+            }
+
+            &[data-animation~="animate4"] {
+              &:hover {
+                color: var(--composer-primary-color);
+                transform: translateY(calc(var(--composer-gap-xs) * -1));
+              }
+            }
+
+            &[data-animation~="animate5"] {
+              &::before {
+                content: '→';
+                position: absolute;
+                left: -20px;
+                opacity: 0;
+                transition: all 0.3s ease;
+                color: var(--composer-primary-color);
+              }
+
+              &:hover {
+                color: var(--composer-primary-color);
+                padding-left: 20px;
+
+                &::before {
+                  opacity: 1;
+                  left: 0;
+                }
+              }
             }
           }
         }
@@ -137,23 +166,24 @@
       justify-content: center;
       align-items: center;
       gap: var(--composer-gap-lg);
+
       .icon-element {
         display: flex;
         align-items: center;
         gap: var(--composer-gap-sm);
         position: relative;
         transition: all 0.3s ease;
-        
+
         .icon-text,
         .icon {
           transition: all 0.3s ease;
           color: var(--composer-font-color-primary);
         }
 
-        .icon{
+        .icon {
           font-size: 1rem;
         }
-        
+
         &[data-animation~="animate1"] {
           &:hover {
             .icon, .icon-text {
@@ -169,6 +199,7 @@
               transform: rotate(15deg);
               color: var(--composer-primary-color);
             }
+
             .icon-text {
               color: var(--composer-primary-color);
             }
@@ -186,10 +217,11 @@
 
         &[data-animation~="animate4"] {
           border-radius: var(--composer-border-radius-sm);
-          
+
           &:hover {
             padding: 0 var(--composer-gap-sm);
             background-color: rgba(var(--composer-primary-color-rgb), 0.1);
+
             .icon, .icon-text {
               color: var(--composer-primary-color);
             }
@@ -207,12 +239,12 @@
             background-color: var(--composer-primary-color);
             transition: width 0.3s ease;
           }
-          
+
           &:hover {
             .icon, .icon-text {
               color: var(--composer-primary-color);
             }
-            
+
             &::after {
               width: 100%;
             }
@@ -224,6 +256,7 @@
     .bottom {
       display: flex;
       justify-content: space-between;
+
       .bottom-text {
         max-width: 50%;
         color: var(--composer-tertiary-color);
@@ -237,11 +270,12 @@
         display: flex;
         align-items: center;
         gap: var(--composer-gap-md);
+
         .item {
           position: relative;
           color: var(--composer-tertiary-color);
           transition: all 0.3s ease;
-          
+
           &[data-animation~="animate1"] {
             &:hover {
               color: var(--composer-primary-color);
@@ -261,10 +295,10 @@
               transition: all 0.3s ease;
               transform: translateX(-50%);
             }
-            
+
             &:hover {
               color: var(--composer-primary-color);
-              
+
               &::after {
                 width: 100%;
               }
@@ -273,7 +307,7 @@
 
           &[data-animation~="animate3"] {
             border-radius: var(--composer-border-radius-sm);
-            
+
             &:hover {
               padding: 0 var(--composer-gap-sm);
               color: var(--composer-primary-color);
@@ -297,11 +331,11 @@
               transition: all 0.3s ease;
               color: var(--composer-primary-color);
             }
-            
+
             &:hover {
               color: var(--composer-primary-color);
               padding-left: 20px;
-              
+
               &::before {
                 opacity: 1;
                 left: 0;
@@ -316,13 +350,14 @@
 
 @container (max-width: #{$composer-tablet-width}) {
   .container {
-    padding: 80px var(--composer-gap-lg) var(--composer-gap-md) var(--composer-gap-lg) !important;
+    padding: 100px 50px 20px 50px !important;
   }
 }
 
 @container (max-width: #{$composer-phone-width}) {
   .container {
-    padding: 80px var(--composer-gap-md) var(--composer-gap-md) var(--composer-gap-md) !important;
+    padding: 50px 30px 20px 30px !important;
+
     .max-content {
       display: flex;
       flex-direction: column;
@@ -341,19 +376,26 @@
         }
 
         .content {
-          .title, .subtitle {
+          .title,
+          .subtitle {
             text-align: center;
           }
         }
       }
 
-      .list-group {
-        row-gap: var(--composer-gap-sm);
-        column-gap: var(--composer-gap-sm);
+      .footer-columns {
+        flex-direction: column;
+        align-items: center;
+        gap: var(--composer-gap-md);
+
+        .list-group {
+          width: 100%;
+        }
       }
 
       .icon-container {
         gap: var(--composer-gap-sm);
+
         .icon-element {
           display: flex;
           align-items: center;
@@ -367,6 +409,7 @@
         justify-content: space-between;
         align-items: center;
         gap: var(--composer-gap-sm);
+
         .bottom-text {
           max-width: 100%;
           color: var(--composer-font-color-primary);

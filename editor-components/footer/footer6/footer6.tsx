@@ -10,8 +10,8 @@ type FooterValues = {
 };
 
 type FooterTextValues = {
-  footerText: React.JSX.Element;
-  path: string;
+  navTitle: React.JSX.Element;
+  navNavigateTo: string;
 };
 
 class Footer6Page extends BaseFooter {
@@ -70,14 +70,14 @@ class Footer6Page extends BaseFooter {
                   value: [
                     {
                       type: "string",
-                      key: "footerText",
+                      key: "navTitle",
                       displayer: "Text",
                       value: "About",
                     },
                     {
                       type: "page",
                       displayer: "Navigate To",
-                      key: "path",
+                      key: "navNavigateTo",
                       value: "",
                     },
                   ],
@@ -89,14 +89,14 @@ class Footer6Page extends BaseFooter {
                   value: [
                     {
                       type: "string",
-                      key: "footerText",
+                      key: "navTitle",
                       displayer: "Text",
                       value: "News",
                     },
                     {
                       type: "page",
                       displayer: "Navigate To",
-                      key: "path",
+                      key: "navNavigateTo",
                       value: "",
                     },
                   ],
@@ -108,14 +108,14 @@ class Footer6Page extends BaseFooter {
                   value: [
                     {
                       type: "string",
-                      key: "footerText",
+                      key: "navTitle",
                       displayer: "Text",
                       value: "Contact",
                     },
                     {
                       type: "page",
                       displayer: "Navigate To",
-                      key: "path",
+                      key: "navNavigateTo",
                       value: "",
                     },
                   ],
@@ -147,14 +147,14 @@ class Footer6Page extends BaseFooter {
                   value: [
                     {
                       type: "string",
-                      key: "footerText",
+                      key: "navTitle",
                       displayer: "Text",
                       value: "Care+ Family Parham Bridges Canton Jackson, MS 39211",
                     },
                     {
                       type: "page",
                       displayer: "Navigate To",
-                      key: "path",
+                      key: "navNavigateTo",
                       value: "",
                     },
                   ],
@@ -166,14 +166,14 @@ class Footer6Page extends BaseFooter {
                   value: [
                     {
                       type: "string",
-                      key: "footerText",
+                      key: "navTitle",
                       displayer: "Text",
                       value: "+1 601 978 2212",
                     },
                     {
                       type: "page",
                       displayer: "Navigate To",
-                      key: "path",
+                      key: "navNavigateTo",
                       value: "",
                     },
                   ],
@@ -185,14 +185,14 @@ class Footer6Page extends BaseFooter {
                   value: [
                     {
                       type: "string",
-                      key: "footerText",
+                      key: "navTitle",
                       displayer: "Text",
                       value: "hello@ozark.com",
                     },
                     {
                       type: "page",
                       displayer: "Navigate To",
-                      key: "path",
+                      key: "navNavigateTo",
                       value: "",
                     },
                   ],
@@ -224,14 +224,14 @@ class Footer6Page extends BaseFooter {
                   value: [
                     {
                       type: "string",
-                      key: "footerText",
+                      key: "navTitle",
                       displayer: "Text",
                       value: "Facebook",
                     },
                     {
                       type: "page",
                       displayer: "Navigate To",
-                      key: "path",
+                      key: "navNavigateTo",
                       value: "",
                     },
                   ],
@@ -243,14 +243,14 @@ class Footer6Page extends BaseFooter {
                   value: [
                     {
                       type: "string",
-                      key: "footerText",
+                      key: "navTitle",
                       displayer: "Text",
                       value: "Twitter",
                     },
                     {
                       type: "page",
                       displayer: "Navigate To",
-                      key: "path",
+                      key: "navNavigateTo",
                       value: "",
                     },
                   ],
@@ -262,14 +262,14 @@ class Footer6Page extends BaseFooter {
                   value: [
                     {
                       type: "string",
-                      key: "footerText",
+                      key: "navTitle",
                       displayer: "Text",
                       value: "Instagram",
                     },
                     {
                       type: "page",
                       displayer: "Navigate To",
-                      key: "path",
+                      key: "navNavigateTo",
                       value: "",
                     },
                   ],
@@ -338,16 +338,16 @@ class Footer6Page extends BaseFooter {
                       <div key={indexFooter} className={this.decorateCSS("list-group")}>
                         {footerTitleExist && <Base.H3 className={this.decorateCSS("list-title")}>{item.footerTitle}</Base.H3>}
                         {item.footerText.length > 0 &&
-                          item.footerText.map((item: FooterTextValues, indexFooterText: number) => {
-                            const footerTextExist = this.castToString(item.footerText);
+                          item.footerText.map((v: FooterTextValues, indexFooterText: number) => {
+                            const footerTextExist = this.castToString(v.navTitle);
                             return (
                               footerTextExist && (
-                                <ComposerLink key={indexFooterText} path={item.path}>
-                                  <Base.P 
+                                <ComposerLink key={indexFooterText} path={v.navNavigateTo}>
+                                  <Base.P
                                     className={this.decorateCSS("text")}
-                                    data-animation={item.path ? this.getPropValue("hoverAnimation").join(" ") : ""}
+                                    data-animation={v.navNavigateTo ? this.getPropValue("hoverAnimation").join(" ") : ""}
                                   >
-                                    {item.footerText}
+                                    {v.navTitle}
                                   </Base.P>
                                 </ComposerLink>
                               )

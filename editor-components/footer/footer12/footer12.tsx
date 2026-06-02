@@ -10,8 +10,8 @@ type FooterValues = {
 };
 
 type FooterTextValues = {
-  footerText: React.JSX.Element;
-  path: string;
+  navTitle: React.JSX.Element;
+  navNavigateTo: string;
 };
 
 class Footer12Page extends BaseFooter {
@@ -88,14 +88,14 @@ class Footer12Page extends BaseFooter {
                   value: [
                     {
                       type: "string",
-                      key: "footerText",
+                      key: "navTitle",
                       displayer: "Text",
                       value: "About",
                     },
                     {
                       type: "page",
                       displayer: "Navigate To",
-                      key: "path",
+                      key: "navNavigateTo",
                       value: "",
                     },
                   ],
@@ -107,13 +107,13 @@ class Footer12Page extends BaseFooter {
                   value: [
                     {
                       type: "string",
-                      key: "footerText",
+                      key: "navTitle",
                       displayer: "Text",
                       value: "Support",
                     },
                     {
                       type: "page",
-                      key: "path",
+                      key: "navNavigateTo",
                       displayer: "Navigate To",
                       value: "",
                     },
@@ -126,13 +126,13 @@ class Footer12Page extends BaseFooter {
                   value: [
                     {
                       type: "string",
-                      key: "footerText",
+                      key: "navTitle",
                       displayer: "Text",
                       value: "Products",
                     },
                     {
                       type: "page",
-                      key: "path",
+                      key: "navNavigateTo",
                       displayer: "Navigate To",
                       value: "",
                     },
@@ -145,13 +145,13 @@ class Footer12Page extends BaseFooter {
                   value: [
                     {
                       type: "string",
-                      key: "footerText",
+                      key: "navTitle",
                       displayer: "Text",
                       value: "Career",
                     },
                     {
                       type: "page",
-                      key: "path",
+                      key: "navNavigateTo",
                       displayer: "Navigate To",
                       value: "",
                     },
@@ -184,14 +184,14 @@ class Footer12Page extends BaseFooter {
                   value: [
                     {
                       type: "string",
-                      key: "footerText",
+                      key: "navTitle",
                       displayer: "Text",
                       value: "Customer Support",
                     },
                     {
                       type: "page",
                       displayer: "Navigate To",
-                      key: "path",
+                      key: "navNavigateTo",
                       value: "",
                     },
                   ],
@@ -203,13 +203,13 @@ class Footer12Page extends BaseFooter {
                   value: [
                     {
                       type: "string",
-                      key: "footerText",
+                      key: "navTitle",
                       displayer: "Text",
                       value: "Track Delivery",
                     },
                     {
                       type: "page",
-                      key: "path",
+                      key: "navNavigateTo",
                       displayer: "Navigate To",
                       value: "",
                     },
@@ -222,13 +222,13 @@ class Footer12Page extends BaseFooter {
                   value: [
                     {
                       type: "string",
-                      key: "footerText",
+                      key: "navTitle",
                       displayer: "Text",
                       value: "Terms & Conditions",
                     },
                     {
                       type: "page",
-                      key: "path",
+                      key: "navNavigateTo",
                       displayer: "Navigate To",
                       value: "",
                     },
@@ -241,13 +241,13 @@ class Footer12Page extends BaseFooter {
                   value: [
                     {
                       type: "string",
-                      key: "footerText",
+                      key: "navTitle",
                       displayer: "Text",
                       value: "Privacy Policy",
                     },
                     {
                       type: "page",
-                      key: "path",
+                      key: "navNavigateTo",
                       displayer: "Navigate To",
                       value: "",
                     },
@@ -280,14 +280,14 @@ class Footer12Page extends BaseFooter {
                   value: [
                     {
                       type: "string",
-                      key: "footerText",
+                      key: "navTitle",
                       displayer: "Text",
                       value: "Free Brochures",
                     },
                     {
                       type: "page",
                       displayer: "Navigate To",
-                      key: "path",
+                      key: "navNavigateTo",
                       value: "",
                     },
                   ],
@@ -299,13 +299,13 @@ class Footer12Page extends BaseFooter {
                   value: [
                     {
                       type: "string",
-                      key: "footerText",
+                      key: "navTitle",
                       displayer: "Text",
                       value: "Development Tutorial",
                     },
                     {
                       type: "page",
-                      key: "path",
+                      key: "navNavigateTo",
                       displayer: "Navigate To",
                       value: "",
                     },
@@ -318,13 +318,13 @@ class Footer12Page extends BaseFooter {
                   value: [
                     {
                       type: "string",
-                      key: "footerText",
+                      key: "navTitle",
                       displayer: "Text",
                       value: "How to - Blog",
                     },
                     {
                       type: "page",
-                      key: "path",
+                      key: "navNavigateTo",
                       displayer: "Navigate To",
                       value: "",
                     },
@@ -337,13 +337,13 @@ class Footer12Page extends BaseFooter {
                   value: [
                     {
                       type: "string",
-                      key: "footerText",
+                      key: "navTitle",
                       displayer: "Text",
                       value: "Youtube Playlist",
                     },
                     {
                       type: "page",
-                      key: "path",
+                      key: "navNavigateTo",
                       displayer: "Navigate To",
                       value: "",
                     },
@@ -508,15 +508,15 @@ class Footer12Page extends BaseFooter {
                       <div key={indexFooter} className={this.decorateCSS("list-group")}>
                         {footerTitleExist && <Base.H4 className={this.decorateCSS("title")}>{item.footerTitle}</Base.H4>}
                         {item.footerText.map((item: FooterTextValues, indexFooterText: number) => {
-                          const footerTextExist = this.castToString(item.footerText);
+                          const footerTextExist = this.castToString(item.navTitle);
                           return (
                             footerTextExist && (
-                              <ComposerLink key={indexFooterText} path={item.path}>
-                                <Base.P 
+                              <ComposerLink key={indexFooterText} path={item.navNavigateTo}>
+                                <Base.P
                                   className={this.decorateCSS("text")}
-                                  data-animation={item.path ? this.getPropValue("hoverAnimation").join(" ") : ""}
+                                  data-animation={item.navNavigateTo ? this.getPropValue("hoverAnimation").join(" ") : ""}
                                 >
-                                  {item.footerText}
+                                  {item.navTitle}
                                 </Base.P>
                               </ComposerLink>
                             )

@@ -4,6 +4,16 @@ import styles from "./footer7.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 
+type FooterValues = {
+  footerTitle: React.JSX.Element;
+  footerText: FooterTextValues[];
+};
+
+type FooterTextValues = {
+  navTitle: React.JSX.Element;
+  navNavigateTo: string;
+};
+
 class Footer7Page extends BaseFooter {
   constructor(props?: any) {
     super(props, styles);
@@ -40,6 +50,245 @@ class Footer7Page extends BaseFooter {
           key: "logoUrl",
           displayer: "Navigate To",
           value: ""
+        },
+      ],
+    });
+
+    this.addProp({
+      type: "array",
+      key: "footer",
+      displayer: "Footer",
+      value: [
+        {
+          type: "object",
+          key: "footer-title",
+          displayer: "Footer Column",
+          value: [
+            {
+              type: "string",
+              key: "footerTitle",
+              displayer: "Footer Title",
+              value: "",
+            },
+            {
+              type: "array",
+              key: "footerText",
+              displayer: "Footer Text",
+              value: [
+                {
+                  type: "object",
+                  key: "footer-text",
+                  displayer: "Text Values",
+                  value: [
+                    {
+                      type: "string",
+                      key: "navTitle",
+                      displayer: "Text",
+                      value: "",
+                    },
+                    {
+                      type: "page",
+                      key: "navNavigateTo",
+                      displayer: "Navigate To",
+                      value: "",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "footer-text",
+                  displayer: "Text Values",
+                  value: [
+                    {
+                      type: "string",
+                      key: "navTitle",
+                      displayer: "Text",
+                      value: "",
+                    },
+                    {
+                      type: "page",
+                      key: "navNavigateTo",
+                      displayer: "Navigate To",
+                      value: "",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "footer-text",
+                  displayer: "Text Values",
+                  value: [
+                    {
+                      type: "string",
+                      key: "navTitle",
+                      displayer: "Text",
+                      value: "",
+                    },
+                    {
+                      type: "page",
+                      key: "navNavigateTo",
+                      displayer: "Navigate To",
+                      value: "",
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "footer-title",
+          displayer: "Footer Column",
+          value: [
+            {
+              type: "string",
+              key: "footerTitle",
+              displayer: "Footer Title",
+              value: "",
+            },
+            {
+              type: "array",
+              key: "footerText",
+              displayer: "Footer Text",
+              value: [
+                {
+                  type: "object",
+                  key: "footer-text",
+                  displayer: "Text Values",
+                  value: [
+                    {
+                      type: "string",
+                      key: "navTitle",
+                      displayer: "Text",
+                      value: "",
+                    },
+                    {
+                      type: "page",
+                      key: "navNavigateTo",
+                      displayer: "Navigate To",
+                      value: "",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "footer-text",
+                  displayer: "Text Values",
+                  value: [
+                    {
+                      type: "string",
+                      key: "navTitle",
+                      displayer: "Text",
+                      value: "",
+                    },
+                    {
+                      type: "page",
+                      key: "navNavigateTo",
+                      displayer: "Navigate To",
+                      value: "",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "footer-text",
+                  displayer: "Text Values",
+                  value: [
+                    {
+                      type: "string",
+                      key: "navTitle",
+                      displayer: "Text",
+                      value: "",
+                    },
+                    {
+                      type: "page",
+                      key: "navNavigateTo",
+                      displayer: "Navigate To",
+                      value: "",
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "footer-title",
+          displayer: "Footer Column",
+          value: [
+            {
+              type: "string",
+              key: "footerTitle",
+              displayer: "Footer Title",
+              value: "",
+            },
+            {
+              type: "array",
+              key: "footerText",
+              displayer: "Footer Text",
+              value: [
+                {
+                  type: "object",
+                  key: "footer-text",
+                  displayer: "Text Values",
+                  value: [
+                    {
+                      type: "string",
+                      key: "navTitle",
+                      displayer: "Text",
+                      value: "",
+                    },
+                    {
+                      type: "page",
+                      key: "navNavigateTo",
+                      displayer: "Navigate To",
+                      value: "",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "footer-text",
+                  displayer: "Text Values",
+                  value: [
+                    {
+                      type: "string",
+                      key: "navTitle",
+                      displayer: "Text",
+                      value: "",
+                    },
+                    {
+                      type: "page",
+                      key: "navNavigateTo",
+                      displayer: "Navigate To",
+                      value: "",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "footer-text",
+                  displayer: "Text Values",
+                  value: [
+                    {
+                      type: "string",
+                      key: "navTitle",
+                      displayer: "Text",
+                      value: "",
+                    },
+                    {
+                      type: "page",
+                      key: "navNavigateTo",
+                      displayer: "Navigate To",
+                      value: "",
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
         },
       ],
     });
@@ -135,9 +384,19 @@ class Footer7Page extends BaseFooter {
     const logoObject = this.castToObject<any>("logo");
     const logo = logoObject?.logo;
     const logoUrl = logoObject?.logoUrl;
+    const footer = this.castToObject<any[]>("footer");
     const links = this.castToObject<any[]>("links");
 
     const footerTextExist = this.castToString(this.getPropValue("footerText"));
+
+    const logoExist = !!logo?.url;
+    const columnsExist = footer.some((item: FooterValues) => {
+      const footerTitleExist = this.castToString(item.footerTitle);
+      const hasItems = item.footerText?.some((v: FooterTextValues) => this.castToString(v.navTitle));
+      return footerTitleExist || hasItems;
+    });
+    const linksExist = links.some((item: any) => this.castToString(item.text));
+    const rightExist = linksExist || footerTextExist;
 
     const position = this.getPropValue("position");
 
@@ -145,7 +404,7 @@ class Footer7Page extends BaseFooter {
       <Base.Container className={`${this.decorateCSS("container")} ${position === "Absolute" ? this.decorateCSS("absolute") : ""}`}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("footer-page")}>
-            {logo?.url && (
+            {logoExist && (
              <ComposerLink path={logoUrl}>
                <div className={this.decorateCSS("left")}>
                 <Base.Media value={logo} className={this.decorateCSS("image")} />
@@ -153,33 +412,72 @@ class Footer7Page extends BaseFooter {
              </ComposerLink>
             )}
 
-            <div
-              className={`${this.decorateCSS("right")} ${!logo?.url && this.decorateCSS("full-width")}`}>
-              {links.length > 0 && (
-                <div className={this.decorateCSS("upper")}>
-                  {links.map((item: any, index: number) => {
-                    const textExist = this.castToString(item.text);
-                    return (
-                      textExist && (
-                        <div
-                          className={`${this.decorateCSS("link-element")} ${item.url && this.decorateCSS("has-path")}`}
-                          data-animation={item.url ? this.getPropValue("hoverAnimation").join(" ") : ""}>
-                          <ComposerLink key={index} path={item.url}>
-                            <Base.P className={this.decorateCSS("link-text")}>{item.text}</Base.P>
-                          </ComposerLink>
-                        </div>
-                      )
-                    );
-                  })}
-                </div>
-              )}
-              {footerTextExist && (
-                <div className={this.decorateCSS("bottom")}>
-                  <Base.P className={`${this.decorateCSS("text")} ${!logo?.url && this.decorateCSS("left")}`}
-                  >{this.getPropValue("footerText")}</Base.P>
-                </div>
-              )}
-            </div>
+            {columnsExist && (
+              <div className={this.decorateCSS("footer-columns")}>
+                {footer.map((item: FooterValues, indexFooter: number) => {
+                  const footerTitleExist = this.castToString(item.footerTitle);
+                  const hasItems = item.footerText?.some((v: FooterTextValues) => this.castToString(v.navTitle));
+                  const listExist = footerTitleExist || hasItems;
+                  return (
+                    listExist && (
+                      <div key={indexFooter} className={this.decorateCSS("list-group")}>
+                        {footerTitleExist && <Base.P className={this.decorateCSS("column-title")}>{item.footerTitle}</Base.P>}
+                        {hasItems && (
+                          <Base.VerticalContent className={this.decorateCSS("text-container")}>
+                            {item.footerText.map((v: FooterTextValues, indexFooterText: number) => {
+                              const textExist = this.castToString(v.navTitle);
+                              return (
+                                textExist && (
+                                  <ComposerLink key={indexFooterText} path={v.navNavigateTo}>
+                                    <Base.P
+                                      className={this.decorateCSS("footer-text")}
+                                      data-animation={v.navNavigateTo ? this.getPropValue("hoverAnimation").join(" ") : ""}
+                                      data-has-link={Boolean(v.navNavigateTo)}
+                                    >
+                                      {v.navTitle}
+                                    </Base.P>
+                                  </ComposerLink>
+                                )
+                              );
+                            })}
+                          </Base.VerticalContent>
+                        )}
+                      </div>
+                    )
+                  );
+                })}
+              </div>
+            )}
+
+            {rightExist && (
+              <div
+                className={`${this.decorateCSS("right")} ${!logoExist && this.decorateCSS("full-width")}`}>
+                {linksExist && (
+                  <div className={this.decorateCSS("upper")}>
+                    {links.map((item: any, index: number) => {
+                      const textExist = this.castToString(item.text);
+                      return (
+                        textExist && (
+                          <div
+                            className={`${this.decorateCSS("link-element")} ${item.url && this.decorateCSS("has-path")}`}
+                            data-animation={item.url ? this.getPropValue("hoverAnimation").join(" ") : ""}>
+                            <ComposerLink key={index} path={item.url}>
+                              <Base.P className={this.decorateCSS("link-text")}>{item.text}</Base.P>
+                            </ComposerLink>
+                          </div>
+                        )
+                      );
+                    })}
+                  </div>
+                )}
+                {footerTextExist && (
+                  <div className={this.decorateCSS("bottom")}>
+                    <Base.P className={`${this.decorateCSS("text")} ${!logoExist && this.decorateCSS("left")}`}
+                    >{this.getPropValue("footerText")}</Base.P>
+                  </div>
+                )}
+              </div>
+            )}
           </div>
         </Base.MaxContent>
       </Base.Container >

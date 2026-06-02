@@ -87,158 +87,178 @@ class Footer9Page extends BaseFooter {
 
     this.addProp({
       type: "array",
-      key: "links",
-      displayer: "Links",
+      key: "footer",
+      displayer: "Footer",
       value: [
         {
           type: "object",
-          key: "item",
-          displayer: "Item",
+          key: "footer-title",
+          displayer: "Footer Column",
           value: [
             {
               type: "string",
-              key: "title",
-              displayer: "Title",
-              value: "Contact",
+              key: "footerTitle",
+              displayer: "Footer Title",
+              value: "About",
             },
             {
-              type: "page",
-              key: "page",
-              displayer: "Navigate To",
-              value: "",
-            },
-          ],
-        },
-        {
-          type: "object",
-          key: "item",
-          displayer: "Item",
-          value: [
-            {
-              type: "string",
-              key: "title",
-              displayer: "Title",
-              value: "Blog",
-            },
-            {
-              type: "page",
-              key: "page",
-              displayer: "Navigate To",
-              value: "",
-            },
-          ],
-        },
-        {
-          type: "object",
-          key: "item",
-          displayer: "Item",
-          value: [
-            {
-              type: "string",
-              key: "title",
-              displayer: "Title",
-              value: "Our Story",
-            },
-            {
-              type: "page",
-              key: "page",
-              displayer: "Navigate To",
-              value: "",
-            },
-          ],
-        },
-        {
-          type: "object",
-          key: "item",
-          displayer: "Item",
-          value: [
-            {
-              type: "string",
-              key: "title",
-              displayer: "Title",
-              value: "Help centre",
-            },
-            {
-              type: "page",
-              key: "page",
-              displayer: "Navigate To",
-              value: "",
-            },
-          ],
-        },
-        {
-          type: "object",
-          key: "item",
-          displayer: "Item",
-          value: [
-            {
-              type: "string",
-              key: "title",
-              displayer: "Title",
-              value: "Careers",
-            },
-            {
-              type: "page",
-              key: "page",
-              displayer: "Navigate To",
-              value: "",
-            },
-          ],
-        },
-        {
-          type: "object",
-          key: "item",
-          displayer: "Item",
-          value: [
-            {
-              type: "string",
-              key: "title",
-              displayer: "Title",
-              value: "Changelong",
-            },
-            {
-              type: "page",
-              key: "page",
-              displayer: "Navigate To",
-              value: "",
-            },
-          ],
-        },
-        {
-          type: "object",
-          key: "item",
-          displayer: "Item",
-          value: [
-            {
-              type: "string",
-              key: "title",
-              displayer: "Title",
-              value: "Community",
-            },
-            {
-              type: "page",
-              key: "page",
-              displayer: "Navigate To",
-              value: "",
-            },
-          ],
-        },
-        {
-          type: "object",
-          key: "item",
-          displayer: "Item",
-          value: [
-            {
-              type: "string",
-              key: "title",
-              displayer: "Title",
-              value: "Guidelines",
-            },
-            {
-              type: "page",
-              key: "page",
-              displayer: "Navigate To",
-              value: "",
+              type: "array",
+              key: "footerText",
+              displayer: "Footer Text",
+              value: [
+                {
+                  type: "object",
+                  key: "footer-text",
+                  displayer: "Text Values",
+                  value: [
+                    {
+                      type: "string",
+                      key: "navTitle",
+                      displayer: "Text",
+                      value: "Contact",
+                    },
+                    {
+                      type: "page",
+                      key: "navNavigateTo",
+                      displayer: "Navigate To",
+                      value: "",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "footer-text",
+                  displayer: "Text Values",
+                  value: [
+                    {
+                      type: "string",
+                      key: "navTitle",
+                      displayer: "Text",
+                      value: "Blog",
+                    },
+                    {
+                      type: "page",
+                      key: "navNavigateTo",
+                      displayer: "Navigate To",
+                      value: "",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "footer-text",
+                  displayer: "Text Values",
+                  value: [
+                    {
+                      type: "string",
+                      key: "navTitle",
+                      displayer: "Text",
+                      value: "Our Story",
+                    },
+                    {
+                      type: "page",
+                      key: "navNavigateTo",
+                      displayer: "Navigate To",
+                      value: "",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "footer-text",
+                  displayer: "Text Values",
+                  value: [
+                    {
+                      type: "string",
+                      key: "navTitle",
+                      displayer: "Text",
+                      value: "Help centre",
+                    },
+                    {
+                      type: "page",
+                      key: "navNavigateTo",
+                      displayer: "Navigate To",
+                      value: "",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "footer-text",
+                  displayer: "Text Values",
+                  value: [
+                    {
+                      type: "string",
+                      key: "navTitle",
+                      displayer: "Text",
+                      value: "Careers",
+                    },
+                    {
+                      type: "page",
+                      key: "navNavigateTo",
+                      displayer: "Navigate To",
+                      value: "",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "footer-text",
+                  displayer: "Text Values",
+                  value: [
+                    {
+                      type: "string",
+                      key: "navTitle",
+                      displayer: "Text",
+                      value: "Changelong",
+                    },
+                    {
+                      type: "page",
+                      key: "navNavigateTo",
+                      displayer: "Navigate To",
+                      value: "",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "footer-text",
+                  displayer: "Text Values",
+                  value: [
+                    {
+                      type: "string",
+                      key: "navTitle",
+                      displayer: "Text",
+                      value: "Community",
+                    },
+                    {
+                      type: "page",
+                      key: "navNavigateTo",
+                      displayer: "Navigate To",
+                      value: "",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "footer-text",
+                  displayer: "Text Values",
+                  value: [
+                    {
+                      type: "string",
+                      key: "navTitle",
+                      displayer: "Text",
+                      value: "Guidelines",
+                    },
+                    {
+                      type: "page",
+                      key: "navNavigateTo",
+                      displayer: "Navigate To",
+                      value: "",
+                    },
+                  ],
+                },
+              ],
             },
           ],
         },
@@ -425,10 +445,9 @@ class Footer9Page extends BaseFooter {
     const buttonTextExist = this.castToString(button.text);
     const footerTextExist = this.castToString(this.getPropValue("footerText"));
 
-    const links = this.castToObject<link[]>("links");
+    const footer = this.castToObject<any[]>("footer");
     const icons = this.castToObject<icon[]>("icons");
     const pages = this.castToObject<page[]>("pages");
-
 
     const position = this.getPropValue("position");
 
@@ -455,15 +474,37 @@ class Footer9Page extends BaseFooter {
             </Base.VerticalContent>
           </div>
 
-          {links.length > 0 && (
-            <div className={this.decorateCSS("list-group")}>
-              {links.map((item: link) => {
+          {footer.length > 0 && (
+            <div className={this.decorateCSS("footer-columns")}>
+              {footer.map((item: any, indexFooter: number) => {
+                const footerTitleExist = this.castToString(item.footerTitle);
+                const footerTextExist = item.footerText?.length > 0;
+                const listExist = footerTitleExist || footerTextExist;
                 return (
-                  <ComposerLink path={item.page}>
-                    <Base.P className={this.decorateCSS("text")} data-animation={item.page ? this.getPropValue("hoverAnimation").join(" ") : ""}>
-                      {item.title}
-                    </Base.P>
-                  </ComposerLink>
+                  listExist && (
+                    <div key={indexFooter} className={this.decorateCSS("list-group")}>
+                      {footerTitleExist && <Base.P className={this.decorateCSS("column-title")}>{item.footerTitle}</Base.P>}
+                      {footerTextExist && (
+                        <div className={this.decorateCSS("text-container")}>
+                          {item.footerText.map((v: any, indexFooterText: number) => {
+                            const textExist = this.castToString(v.navTitle);
+                            return (
+                              textExist && (
+                                <ComposerLink key={indexFooterText} path={v.navNavigateTo}>
+                                  <Base.P
+                                    className={this.decorateCSS("text")}
+                                    data-animation={v.navNavigateTo ? this.getPropValue("hoverAnimation").join(" ") : ""}
+                                  >
+                                    {v.navTitle}
+                                  </Base.P>
+                                </ComposerLink>
+                              )
+                            );
+                          })}
+                        </div>
+                      )}
+                    </div>
+                  )
                 );
               })}
             </div>

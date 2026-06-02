@@ -5,6 +5,16 @@ import ComposerLink from "../../../composer-base-components/Link/ComposerLinkPro
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "../../../custom-hooks/input-templates";
 
+type FooterValues = {
+  footerTitle: React.JSX.Element;
+  footerText: FooterTextValues[];
+};
+
+type FooterTextValues = {
+  navTitle: React.JSX.Element;
+  navNavigateTo: string;
+};
+
 class Footer5Page extends BaseFooter {
   constructor(props?: any) {
     super(props, styles);
@@ -34,6 +44,245 @@ class Footer5Page extends BaseFooter {
     });
 
     this.addProp(INPUTS.BUTTON("button", "Button", "CONTACT US", "", null, null, "Primary"));
+
+    this.addProp({
+      type: "array",
+      key: "footer",
+      displayer: "Footer",
+      value: [
+        {
+          type: "object",
+          key: "footer-title",
+          displayer: "Footer Column",
+          value: [
+            {
+              type: "string",
+              key: "footerTitle",
+              displayer: "Footer Title",
+              value: "",
+            },
+            {
+              type: "array",
+              key: "footerText",
+              displayer: "Footer Text",
+              value: [
+                {
+                  type: "object",
+                  key: "footer-text",
+                  displayer: "Text Values",
+                  value: [
+                    {
+                      type: "string",
+                      key: "navTitle",
+                      displayer: "Text",
+                      value: "",
+                    },
+                    {
+                      type: "page",
+                      key: "navNavigateTo",
+                      displayer: "Navigate To",
+                      value: "",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "footer-text",
+                  displayer: "Text Values",
+                  value: [
+                    {
+                      type: "string",
+                      key: "navTitle",
+                      displayer: "Text",
+                      value: "",
+                    },
+                    {
+                      type: "page",
+                      key: "navNavigateTo",
+                      displayer: "Navigate To",
+                      value: "",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "footer-text",
+                  displayer: "Text Values",
+                  value: [
+                    {
+                      type: "string",
+                      key: "navTitle",
+                      displayer: "Text",
+                      value: "",
+                    },
+                    {
+                      type: "page",
+                      key: "navNavigateTo",
+                      displayer: "Navigate To",
+                      value: "",
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "footer-title",
+          displayer: "Footer Column",
+          value: [
+            {
+              type: "string",
+              key: "footerTitle",
+              displayer: "Footer Title",
+              value: "",
+            },
+            {
+              type: "array",
+              key: "footerText",
+              displayer: "Footer Text",
+              value: [
+                {
+                  type: "object",
+                  key: "footer-text",
+                  displayer: "Text Values",
+                  value: [
+                    {
+                      type: "string",
+                      key: "navTitle",
+                      displayer: "Text",
+                      value: "",
+                    },
+                    {
+                      type: "page",
+                      key: "navNavigateTo",
+                      displayer: "Navigate To",
+                      value: "",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "footer-text",
+                  displayer: "Text Values",
+                  value: [
+                    {
+                      type: "string",
+                      key: "navTitle",
+                      displayer: "Text",
+                      value: "",
+                    },
+                    {
+                      type: "page",
+                      key: "navNavigateTo",
+                      displayer: "Navigate To",
+                      value: "",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "footer-text",
+                  displayer: "Text Values",
+                  value: [
+                    {
+                      type: "string",
+                      key: "navTitle",
+                      displayer: "Text",
+                      value: "",
+                    },
+                    {
+                      type: "page",
+                      key: "navNavigateTo",
+                      displayer: "Navigate To",
+                      value: "",
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "footer-title",
+          displayer: "Footer Column",
+          value: [
+            {
+              type: "string",
+              key: "footerTitle",
+              displayer: "Footer Title",
+              value: "",
+            },
+            {
+              type: "array",
+              key: "footerText",
+              displayer: "Footer Text",
+              value: [
+                {
+                  type: "object",
+                  key: "footer-text",
+                  displayer: "Text Values",
+                  value: [
+                    {
+                      type: "string",
+                      key: "navTitle",
+                      displayer: "Text",
+                      value: "",
+                    },
+                    {
+                      type: "page",
+                      key: "navNavigateTo",
+                      displayer: "Navigate To",
+                      value: "",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "footer-text",
+                  displayer: "Text Values",
+                  value: [
+                    {
+                      type: "string",
+                      key: "navTitle",
+                      displayer: "Text",
+                      value: "",
+                    },
+                    {
+                      type: "page",
+                      key: "navNavigateTo",
+                      displayer: "Navigate To",
+                      value: "",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "footer-text",
+                  displayer: "Text Values",
+                  value: [
+                    {
+                      type: "string",
+                      key: "navTitle",
+                      displayer: "Text",
+                      value: "",
+                    },
+                    {
+                      type: "page",
+                      key: "navNavigateTo",
+                      displayer: "Navigate To",
+                      value: "",
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    });
 
     this.addProp({
       type: "boolean",
@@ -111,6 +360,7 @@ class Footer5Page extends BaseFooter {
   }
 
   render() {
+    const footer = this.castToObject<any[]>("footer");
     const subtitle = this.getPropValue("subtitle");
     const title = this.getPropValue("title");
     const footerDescription = this.getPropValue("footerDescription");
@@ -140,27 +390,66 @@ class Footer5Page extends BaseFooter {
 
     return (
       <div className={`${this.decorateCSS("container")} ${position === "Absolute" ? this.decorateCSS("absolute") : ""}`}>
-        {headerExist && (
-          <Base.Container className={this.decorateCSS("first-container")}>
-            <Base.MaxContent className={this.decorateCSS("first-max-content")}>
-              <div className={`${this.decorateCSS("header")} ${alignmentValue === "center" && this.decorateCSS("center")}`}>
-                {textsExist && (
-                  <Base.VerticalContent
-                    className={`${this.decorateCSS("left")} ${!this.castToString(button.text) && this.decorateCSS("left-full")}`}>
-                    {subtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
-                    {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
-                  </Base.VerticalContent>
-                )}
-                {this.castToString(button.text) && (
-                  <div className={this.decorateCSS("right")}>
-                    <ComposerLink path={button.url}>
-                      <Base.Button buttonType={button.type}className={this.decorateCSS("button")}>
-                        <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
-                      </Base.Button>
-                    </ComposerLink>
-                  </div>
-                )}
-              </div>
+        {(headerExist || footer.length > 0) && (
+          <Base.Container className={this.decorateCSS("footer-wrapper")}>
+            <Base.MaxContent className={this.decorateCSS("max-content")}>
+              {headerExist && (
+                <div className={`${this.decorateCSS("header")} ${alignmentValue === "center" && this.decorateCSS("center")}`}>
+                  {textsExist && (
+                    <Base.VerticalContent
+                      className={`${this.decorateCSS("left")} ${!this.castToString(button.text) && this.decorateCSS("left-full")}`}>
+                      {subtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
+                      {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
+                    </Base.VerticalContent>
+                  )}
+                  {this.castToString(button.text) && (
+                    <div className={this.decorateCSS("right")}>
+                      <ComposerLink path={button.url}>
+                        <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
+                          <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
+                        </Base.Button>
+                      </ComposerLink>
+                    </div>
+                  )}
+                </div>
+              )}
+
+              {footer.length > 0 && (
+                <div className={this.decorateCSS("footer-columns")}>
+                  {footer.map((item: FooterValues, indexFooter: number) => {
+                    const footerTitleExist = this.castToString(item.footerTitle);
+                    const footerTextExist = item.footerText.length > 0;
+                    const listExist = footerTitleExist || footerTextExist;
+                    return (
+                      listExist && (
+                        <div key={indexFooter} className={this.decorateCSS("list-group")}>
+                          {footerTitleExist && <Base.P className={this.decorateCSS("column-title")}>{item.footerTitle}</Base.P>}
+                          {item.footerText.length > 0 && (
+                            <Base.VerticalContent className={this.decorateCSS("text-container")}>
+                              {item.footerText.map((v: FooterTextValues, indexFooterText: number) => {
+                                const textExist = this.castToString(v.navTitle);
+                                return (
+                                  textExist && (
+                                    <ComposerLink key={indexFooterText} path={v.navNavigateTo}>
+                                      <Base.P
+                                        className={this.decorateCSS("footer-text")}
+                                        data-animation={v.navNavigateTo ? this.getPropValue("hoverAnimation").join(" ") : ""}
+                                        data-has-link={Boolean(v.navNavigateTo)}
+                                      >
+                                        {v.navTitle}
+                                      </Base.P>
+                                    </ComposerLink>
+                                  )
+                                );
+                              })}
+                            </Base.VerticalContent>
+                          )}
+                        </div>
+                      )
+                    );
+                  })}
+                </div>
+              )}
             </Base.MaxContent>
           </Base.Container>
         )}
