@@ -1,7 +1,16 @@
 import * as React from "react";
-import { BaseFeature } from "../../EditorComponent";
+import { BaseFeature, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./feature16.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
+import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
+import { INPUTS } from "../../../custom-hooks/input-templates";
+
+type Button = {
+    text: React.JSX.Element;
+    url: string;
+    icon: TypeMediaInputValue;
+    type: string;
+};
 
 class Feature16 extends BaseFeature {
     constructor(props?: any) {
@@ -25,8 +34,16 @@ class Feature16 extends BaseFeature {
             key: "description",
             displayer: "Description",
             value: ""
+        });
 
-        })
+        this.addProp({
+            type: "array",
+            key: "buttons",
+            displayer: "Buttons",
+            value: [
+                INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+            ],
+        });
 
         this.addProp({
             type: "object",
@@ -381,6 +398,12 @@ class Feature16 extends BaseFeature {
         const middleRightSide2 = this.castToObject<any>("middleRightSide2");
 
         const description = this.castToString(this.getPropValue("description"));
+        const buttons = this.castToObject<Button[]>("buttons");
+        const hasValidButtons = buttons && buttons.some((btn: Button) => {
+            const buttonText = this.castToString(btn.text);
+            const iconExist = btn.icon && (btn.icon.type === "icon" ? btn.icon.name : btn.icon.url);
+            return buttonText || iconExist;
+        });
 
         const hasTopLeftContent = topLeftSide.visibility && (
             this.castToString(topLeftSide.topLeftSideTitle) || 
@@ -458,6 +481,27 @@ class Feature16 extends BaseFeature {
                             <Base.SectionDescription className={this.decorateCSS("description")}>
                                 {description}
                             </Base.SectionDescription>
+                        )}
+                        {hasValidButtons && (
+                            <div className={this.decorateCSS("button-container")}>
+                                {buttons.map((item: Button, index: number) => {
+                                    const buttonText = this.castToString(item.text);
+                                    const iconExist = item.icon && (item.icon.type === "icon" ? item.icon.name : item.icon.url);
+                                    if (!buttonText && !iconExist) return null;
+                                    return (
+                                        <ComposerLink key={index} path={item.url}>
+                                            <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
+                                                {buttonText && (
+                                                    <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>
+                                                )}
+                                                {iconExist && (
+                                                    <Base.Media className={this.decorateCSS("button-icon")} value={item.icon} />
+                                                )}
+                                            </Base.Button>
+                                        </ComposerLink>
+                                    );
+                                })}
+                            </div>
                         )}
                     </Base.VerticalContent>
                     <div className={this.decorateCSS("side-container")}>
