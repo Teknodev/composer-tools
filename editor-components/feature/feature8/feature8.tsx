@@ -2,11 +2,20 @@ import * as React from "react";
 import { BaseFeature, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./feature8.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
+import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
+import { INPUTS } from "../../../custom-hooks/input-templates";
 
 type Card = {
   icon: TypeMediaInputValue;
   title: React.JSX.Element;
   description: React.JSX.Element;
+};
+
+type Button = {
+  text: React.JSX.Element;
+  url: string;
+  icon: TypeMediaInputValue;
+  type: string;
 };
 
 class Feature8 extends BaseFeature {
@@ -40,6 +49,15 @@ class Feature8 extends BaseFeature {
       key: "description",
       displayer: "Description",
       value: "",
+    });
+
+    this.addProp({
+      type: "array",
+      key: "buttons",
+      displayer: "Buttons",
+      value: [
+        INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+      ],
     });
 
     this.addProp({
@@ -215,8 +233,8 @@ class Feature8 extends BaseFeature {
     });
     this.addProp({
       type: "boolean",
-      key: "animationEnable",
-      displayer: "Animation Enable",
+      key: "animation",
+      displayer: "Animation",
       value: true,
     });
   }
@@ -241,7 +259,7 @@ class Feature8 extends BaseFeature {
     const visibleTokens = this.getTokens("visible");
     const shiftedTokens = this.getTokens("shifted");
 
-    if (!this.getPropValue("animationEnable") || this.isMobileOrTablet()) {
+    if (!this.getPropValue("animation") || this.isMobileOrTablet()) {
       element.classList.remove(...visibleTokens, ...shiftedTokens);
       element.dataset.position = "";
       element.style.marginTop = "";
@@ -320,7 +338,7 @@ class Feature8 extends BaseFeature {
   };
 
   callback: IntersectionObserverCallback = (entries) => {
-    if (this.getPropValue("animationEnable") && !this.isMobileOrTablet()) {
+    if (this.getPropValue("animation") && !this.isMobileOrTablet()) {
       const cards = this.getCardElements();
       const middle = Math.floor(cards.length / 2);
       entries.forEach((entry) => {
@@ -341,7 +359,7 @@ class Feature8 extends BaseFeature {
     const cards = this.getCardElements();
     if (!cards.length) return;
     const middle = Math.floor(cards.length / 2);
-    const animationEnabled = !!this.getPropValue("animationEnable");
+    const animationEnabled = !!this.getPropValue("animation");
     cards.forEach((el, index) => this.applyCardState(el, index, middle, animationEnabled ? false : true));
   };
 
@@ -350,7 +368,7 @@ class Feature8 extends BaseFeature {
       this.observer.disconnect();
     }
 
-    if (!this.getPropValue("animationEnable") || this.isMobileOrTablet()) {
+    if (!this.getPropValue("animation") || this.isMobileOrTablet()) {
       this.cleanupCardStates();
       return;
     }
@@ -410,11 +428,17 @@ class Feature8 extends BaseFeature {
     const descriptionExist = this.castToString(this.getPropValue("description"));
     const description = this.getPropValue("description");
     const cards = this.castToObject<Card[]>("cards");
+    const buttons = this.castToObject<Button[]>("buttons");
+    const hasValidButtons = buttons && buttons.some((btn: Button) => {
+        const buttonText = this.castToString(btn.text);
+        const iconExist = btn.icon && (btn.icon.type === "icon" ? btn.icon.name : btn.icon.url);
+        return buttonText || iconExist;
+    });
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          {(titleExist || descriptionExist || subtitleExist) && (
+          {(titleExist || descriptionExist || subtitleExist || hasValidButtons) && (
             <Base.VerticalContent className={this.decorateCSS("header")}>
               {subtitleExist && (
                 <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
@@ -430,6 +454,27 @@ class Feature8 extends BaseFeature {
                 <Base.SectionDescription className={this.decorateCSS("description")}>
                   {description}
                 </Base.SectionDescription>
+              )}
+              {hasValidButtons && (
+                <div className={this.decorateCSS("button-container")}>
+                  {buttons.map((item: Button, index: number) => {
+                    const buttonText = this.castToString(item.text);
+                    const iconExist = item.icon && (item.icon.type === "icon" ? item.icon.name : item.icon.url);
+                    if (!buttonText && !iconExist) return null;
+                    return (
+                      <ComposerLink key={index} path={item.url}>
+                        <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
+                          {buttonText && (
+                            <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>
+                          )}
+                          {iconExist && (
+                            <Base.Media className={this.decorateCSS("button-icon")} value={item.icon} />
+                          )}
+                        </Base.Button>
+                      </ComposerLink>
+                    );
+                  })}
+                </div>
               )}
             </Base.VerticalContent>
           )}
