@@ -5,6 +5,13 @@ import { Base } from "../../../composer-base-components/base/base";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 import { INPUTS } from "../../../custom-hooks/input-templates";
 
+type Button = {
+  text: React.JSX.Element;
+  url: string;
+  icon: TypeMediaInputValue;
+  type: string;
+};
+
 interface ListItem {
   title: string;
   text: string;
@@ -122,7 +129,14 @@ class Feature19 extends BaseFeature {
         },
       ],
     });
-    this.addProp(INPUTS.BUTTON("button", "Button", "Get In Tocuh!", "", null, null, "Primary"));
+    this.addProp({
+      type: "array",
+      key: "buttons",
+      displayer: "Buttons",
+      value: [
+        INPUTS.BUTTON("button", "Button", "Get In Tocuh!", "", null, null, "Primary"),
+      ],
+    });
 
     this.addProp({
       type: "multiSelect",
@@ -144,13 +158,18 @@ class Feature19 extends BaseFeature {
     const overlay = this.getPropValue("overlay") as boolean;
     const title = this.getPropValue("title");
     const description = this.getPropValue("description");
-    const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
+    const buttons = this.castToObject<Button[]>("buttons");
+    const hasValidButtons = buttons && buttons.some((btn: Button) => {
+      const buttonText = this.castToString(btn.text);
+      const iconExist = btn.icon && (btn.icon.type === "icon" ? btn.icon.name : btn.icon.url);
+      return buttonText || iconExist;
+    });
     const list = this.castToObject<ListItem[]>("items");
     const isAnyContentExists =
       this.castToString(subTitle) ||
       this.castToString(title) ||
       this.castToString(description) ||
-      this.castToString(button.text) ||
+      hasValidButtons ||
       list.length > 0;
 
     return (
@@ -208,12 +227,26 @@ class Feature19 extends BaseFeature {
                   ))}
                 </div>
               )}
-              {this.castToString(button.text) && (
-                <ComposerLink path={button.url}>
-                  <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
-                    {<Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>}
-                  </Base.Button>
-                </ComposerLink>
+              {hasValidButtons && (
+                <div className={this.decorateCSS("button-container")}>
+                  {buttons.map((item: Button, index: number) => {
+                    const buttonText = this.castToString(item.text);
+                    const iconExist = item.icon && (item.icon.type === "icon" ? item.icon.name : item.icon.url);
+                    if (!buttonText && !iconExist) return null;
+                    return (
+                      <ComposerLink key={index} path={item.url}>
+                        <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
+                          {buttonText && (
+                            <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>
+                          )}
+                          {iconExist && (
+                            <Base.Media className={this.decorateCSS("button-icon")} value={item.icon} />
+                          )}
+                        </Base.Button>
+                      </ComposerLink>
+                    );
+                  })}
+                </div>
               )}
             </Base.VerticalContent>
           )}
