@@ -42,7 +42,7 @@
       width: 100%;
       gap: var(--composer-gap-xl);
 
-      .images {
+      .media {
         display: flex;
         justify-content: center;
         order: 0;
@@ -94,8 +94,8 @@
             }
 
             .icon {
-              min-height: 30px;
-              min-width: 30px;
+              width: 30px;
+              height: 30px;
               font-size: 3rem;
               color: var(--composer-primary-color);
               display: block !important;
@@ -184,8 +184,8 @@
               }
 
               .icon {
-                min-height: 25px !important;
-                min-width: 25px !important;
+                width: 25px !important;
+                height: 25px !important;
               }
             }
           }
@@ -209,7 +209,7 @@
         flex-direction: column;
         gap: var(--composer-gap-md) !important;
 
-        .images {
+        .media {
           order: 1 !important;
 
           .image {

@@ -67,8 +67,8 @@ class Testimonials14 extends Testimonials {
     });
     this.addProp({
       type: "array",
-      key: "images",
-      displayer: "Images",
+      key: "media",
+      displayer: "Media",
       value: [
         {
           type: "object",
@@ -361,7 +361,7 @@ class Testimonials14 extends Testimonials {
   }
 
   startAutoplay = () => {
-    const images = this.castToObject<Item[]>("images");
+    const images = this.castToObject<Item[]>("media");
     if (images.length > 1 && this.autoplaySpeed > 0) {
       this.autoplayInterval = setInterval(this.goToNext, this.autoplaySpeed);
     }
@@ -395,14 +395,14 @@ class Testimonials14 extends Testimonials {
   };
 
   goToPrev = () => {
-    const images = this.castToObject<Item[]>("images");
+    const images = this.castToObject<Item[]>("media");
     const activeIndex = this.getComponentState("activeIndex");
     const prevIndex = (activeIndex - 1 + images.length) % images.length;
     this.updateActiveIndexWithAnimation(prevIndex);
   };
 
   goToNext = () => {
-    const images = this.castToObject<Item[]>("images");
+    const images = this.castToObject<Item[]>("media");
     const activeIndex = this.getComponentState("activeIndex");
     const nextIndex = (activeIndex + 1) % images.length;
     this.updateActiveIndexWithAnimation(nextIndex);
@@ -420,7 +420,7 @@ class Testimonials14 extends Testimonials {
     });
     const hasAnyTopContent = subtitleExist || titleExist || descriptionExist || hasValidButtons;
 
-    const images = this.castToObject<Item[]>("images");
+    const images = this.castToObject<Item[]>("media");
     const arrows = this.castToObject<ArrowItem>("arrows");
     const dividers = this.castToObject<DividerObj>("dividers");
     const showDivider = dividers.divider;
@@ -484,7 +484,7 @@ class Testimonials14 extends Testimonials {
           )}
           <div className={this.decorateCSS("content")}>
             {images.length > 0 && (
-              <div className={this.decorateCSS("images")}>
+              <div className={this.decorateCSS("media")}>
                 {images.map((item: Item, itemIndex: number) => (
                   item.image && (
                     <Base.Media
