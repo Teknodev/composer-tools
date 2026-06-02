@@ -66,9 +66,11 @@
       align-items: center;
       justify-content: center;
       width: 100%;
+      flex-wrap: wrap;
+      gap: var(--composer-gap-sm);
       .button {
-        border-radius: var(--composer-border-radius-sm);
-        .button-text {
+        .button-text,
+        .button-icon {
           content: "";
         }
       }
