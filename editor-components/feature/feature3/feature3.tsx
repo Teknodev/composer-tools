@@ -21,6 +21,13 @@ class Feature3 extends BaseFeature {
 
     this.addProp({
       type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: ""
+    });
+
+    this.addProp({
+      type: "string",
       key: "title",
       displayer: "Title",
       value: "The Right Digital Partner For Success"
@@ -61,7 +68,7 @@ class Feature3 extends BaseFeature {
               key: "icon",
               displayer: "Icon",
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon", "image"],
               },
               value: {
                 type: "icon",
@@ -86,7 +93,7 @@ class Feature3 extends BaseFeature {
               key: "icon",
               displayer: "Icon",
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon", "image"],
               },
               value: {
                 type: "icon",
@@ -111,7 +118,7 @@ class Feature3 extends BaseFeature {
               key: "icon",
               displayer: "Icon",
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon", "image"],
               },
               value: {
                 type: "icon",
@@ -152,7 +159,7 @@ class Feature3 extends BaseFeature {
               key: "image",
               displayer: "Logo Image",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "icon"],
               },
               value: {
                 type: "image",
@@ -177,7 +184,7 @@ class Feature3 extends BaseFeature {
               key: "image",
               displayer: "Logo Image",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "icon"],
               },
               value: {
                 type: "image",
@@ -202,7 +209,7 @@ class Feature3 extends BaseFeature {
               key: "image",
               displayer: "Logo Image",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "icon"],
               },
               value: {
                 type: "image",
@@ -227,7 +234,7 @@ class Feature3 extends BaseFeature {
               key: "image",
               displayer: "Logo Image",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "icon"],
               },
               value: {
                 type: "image",
@@ -252,7 +259,7 @@ class Feature3 extends BaseFeature {
               key: "image",
               displayer: "Logo Image",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "icon"],
               },
               value: {
                 type: "image",
@@ -295,8 +302,19 @@ class Feature3 extends BaseFeature {
 
     const circleExist = !!this.getPropValue("enableCircle");
 
+    const subtitle = this.getPropValue("subtitle");
+    const subtitleExist = !!this.castToString(subtitle);
     const titleExist = !!this.getPropValue("title");
     const descExist = !!this.getPropValue("description");
+
+    const renderSubtitle = subtitleExist ? (
+      <Base.SectionSubTitle className={`
+      ${this.decorateCSS("subtitle")}
+      ${circleExist ? this.decorateCSS("circle-exist") : ""}
+      `}>
+        {subtitle}
+      </Base.SectionSubTitle>
+    ) : null;
 
     const renderTitle = titleExist ? (
       <Base.SectionTitle className={`
@@ -322,7 +340,7 @@ class Feature3 extends BaseFeature {
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("wrapper")}>
-            {(titleExist || descExist || !!cards?.length) && (
+            {(subtitleExist || titleExist || descExist || !!cards?.length) && (
               <div
                 className={`
                   ${this.decorateCSS("upper")}
@@ -333,12 +351,14 @@ class Feature3 extends BaseFeature {
                 {circleExist && mobileDevice
                   ?
                   <div className={`${this.decorateCSS("circle")}`}>
+                    {renderSubtitle}
                     {renderTitle}
                     {renderDescription}
                   </div>
-                  : circleExist && (renderTitle || renderDescription) ?
+                  : circleExist && (renderSubtitle || renderTitle || renderDescription) ?
                     <>
                       <div className={`${this.decorateCSS("circle")}`}>
+                        {renderSubtitle}
                         {renderTitle}
                       </div>
                       {renderDescription}
@@ -347,6 +367,7 @@ class Feature3 extends BaseFeature {
                       <div className={`${this.decorateCSS("circle")} ${this.decorateCSS("absolute")}`}></div>
                       :
                       <>
+                        {renderSubtitle}
                         {renderTitle}
                         {renderDescription}
                       </>
@@ -362,7 +383,7 @@ class Feature3 extends BaseFeature {
                   >
                     {cards.map((card: Card, index: number) => {
                       const titleExist = !!this.castToString(card.title);
-                      const iconExist = !!card.icon?.name;
+                      const iconExist = !!(card.icon && (card.icon.type === "icon" ? card.icon.name : card.icon.url));
 
                       if (!titleExist && !iconExist) return null;
 
@@ -399,7 +420,8 @@ class Feature3 extends BaseFeature {
                 `}
               >
                 {logos.map((logo: Logo, index: number) => {
-                  if (!logo.image?.url) return null;
+                  const logoExist = !!(logo.image && (logo.image.type === "icon" ? logo.image.name : logo.image.url));
+                  if (!logoExist) return null;
 
                   return (
                     <div key={index} className={this.decorateCSS("logo-container")}>
