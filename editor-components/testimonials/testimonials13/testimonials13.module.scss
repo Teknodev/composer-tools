@@ -44,35 +44,40 @@
             width: 100%;
 
             .nav-arrows {
+              position: absolute;
+              top: 160px;
+              left: calc(50% - 140px);
+              right: calc(50% - 140px);
               display: flex;
-              justify-content: center;
-              gap: var(--composer-gap-md);
-              padding-bottom: var(--composer-gap-md);
+              justify-content: space-between;
+              pointer-events: none;
+              z-index: 10;
+              transform: translateY(-50%);
 
               .arrow-button {
-                width: 44px;
-                height: 44px;
-                border-radius: 50%;
-                border: 1px solid color-mix(in srgb, var(--composer-font-color-primary), transparent 55%);
+                pointer-events: auto;
                 background-color: transparent;
+                border: none;
                 cursor: pointer;
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                transition: all 0.25s ease;
+                transition: transform 0.25s ease;
 
                 .prev-arrow,
                 .next-arrow {
-                  width: 16px;
-                  height: 16px;
-                  color: var(--composer-font-color-primary);
+                  display: inline-flex;
+                  align-items: center;
+                  justify-content: center;
+                  width: 28px;
+                  height: 28px;
+                  color: color-mix(in srgb, var(--composer-font-color-primary), transparent 40%);
                   object-fit: contain;
                   transition: color 0.25s ease;
                 }
 
                 &:hover {
-                  background-color: var(--composer-font-color-primary);
-                  border-color: var(--composer-font-color-primary);
+                  transform: scale(1.1);
                   .prev-arrow,
                   .next-arrow {
                     color: var(--composer-html-background);
@@ -88,7 +93,7 @@
               display: flex !important;
               height: 100%;
               background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
-              border-radius: var(--composer-border-radius-xs);
+              border-radius: var(--composer-border-radius-sm);
               .content-div {
                 display: flex;
                 flex-direction: column;
@@ -207,14 +212,12 @@
             .container4 {
               height: auto;
               display: flex;
-              flex-wrap: wrap;
-              justify-content: space-between;
+              flex-direction: column;
               width: 100%;
               gap: var(--composer-gap-lg);
 
               .containerBottom {
-                flex-basis: 0;
-                flex-grow: 1;
+                width: 100%;
 
                 .topWriting {
                   font-size: 1.5rem;
@@ -268,9 +271,17 @@
             }
             .carousel-wrapper {
               .nav-arrows {
+                top: 80px;
+                left: calc(50% - 100px);
+                right: calc(50% - 100px);
                 .arrow-button {
-                  width: 36px;
-                  height: 36px;
+                  width: auto;
+                  height: auto;
+                  .prev-arrow,
+                  .next-arrow {
+                    width: 24px;
+                    height: 24px;
+                  }
                 }
               }
               .carousel {
