@@ -13,10 +13,18 @@ type Card = {
   icon: TypeMediaInputValue;
 };
 
+type Button = {
+  text: React.JSX.Element;
+  url: string;
+  icon: TypeMediaInputValue;
+  type: string;
+};
+
 type FirstItem = {
   title: React.JSX.Element;
   backgroundImage: TypeMediaInputValue;
   overlay: boolean;
+  buttons: Button[];
 };
 
 class Feature12 extends BaseFeature {
@@ -69,9 +77,16 @@ class Feature12 extends BaseFeature {
           displayer: "Overlay",
           value: true,
         },
+        {
+          type: "array",
+          key: "buttons",
+          displayer: "Buttons",
+          value: [
+            INPUTS.BUTTON("button", "Button", "SEE ALL SERVICES", "", null, null, "Primary"),
+          ],
+        },
       ],
     });
-    this.addProp(INPUTS.BUTTON("button", "Button", "SEE ALL SERVICES", "", null, null, "Primary"));
     this.addProp({
       type: "array",
       key: "cards",
@@ -206,12 +221,17 @@ class Feature12 extends BaseFeature {
     const firstItemBackgroundIsVideo = firstItemBackground?.type === "video";
     const firstItemOverlay = firstItem.overlay;
 
-    const button = this.castToObject<INPUTS.CastedButton>("button");
+    const buttonsProp = this.getProp("firstItem")?.value?.find((p: any) => p.key === "buttons");
+    const buttons = buttonsProp ? (this.castingProcess(buttonsProp) as Button[]) : [];
 
-    const buttonTextExist = this.castToString(button.text)
+    const hasValidButtons = buttons && buttons.some((btn: Button) => {
+      const buttonText = this.castToString(btn.text);
+      const iconExist = btn.icon && (btn.icon.type === "icon" ? btn.icon.name : btn.icon.url);
+      return buttonText || iconExist;
+    });
 
     const renderFirstItem =
-      firstCardTitleExist || buttonTextExist || !!firstItemBackgroundUrl;
+      firstCardTitleExist || hasValidButtons || !!firstItemBackgroundUrl;
     const renderHeader = subtitleExist || titleExist;
     return (
       <Base.Container className={this.decorateCSS("container")}>
@@ -257,12 +277,26 @@ class Feature12 extends BaseFeature {
                     {firstItem.title}
                   </Base.H3>
                 )}
-                {buttonTextExist && (
-                  <ComposerLink path={button.url}>
-                    <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
-                      <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
-                    </Base.Button>
-                  </ComposerLink>
+                {hasValidButtons && (
+                  <div className={this.decorateCSS("buttons-container")}>
+                    {buttons.map((item: Button, index: number) => {
+                      const buttonText = this.castToString(item.text);
+                      const iconExist = item.icon && (item.icon.type === "icon" ? item.icon.name : item.icon.url);
+                      if (!buttonText && !iconExist) return null;
+                      return (
+                        <ComposerLink key={index} path={item.url}>
+                          <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
+                            {buttonText && (
+                              <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>
+                            )}
+                            {iconExist && (
+                              <Base.Media className={this.decorateCSS("button-icon")} value={item.icon!} />
+                            )}
+                          </Base.Button>
+                        </ComposerLink>
+                      );
+                    })}
+                  </div>
                 )}
               </div>
             )}

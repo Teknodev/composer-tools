@@ -71,11 +71,18 @@
           margin: 0px;
         }
 
-        .button {
+        .buttons-container {
           position: relative;
           z-index: 2;
-          .button-text {
-            content: "";
+          display: flex;
+          flex-wrap: wrap;
+          gap: var(--composer-gap-sm);
+          justify-content: center;
+          width: 100%;
+          .button {
+            .button-text, .button-icon {
+              content: "";
+            }
           }
         }
       }
