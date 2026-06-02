@@ -35,6 +35,22 @@ class Feature9 extends BaseFeature {
     });
 
     this.addProp({
+      type: "string",
+      key: "description",
+      displayer: "Description",
+      value: "",
+    });
+
+    this.addProp({
+      type: "array",
+      key: "buttons",
+      displayer: "Buttons",
+      value: [
+        INPUTS.BUTTON("button", "Button", "View our services", "", null, null, "Primary")
+      ]
+    });
+
+    this.addProp({
       type: "array",
       key: "cards",
       displayer: "Cards",
@@ -226,15 +242,6 @@ class Feature9 extends BaseFeature {
         },
       ]
     });
-
-    this.addProp({
-      type: "array",
-      key: "buttons",
-      displayer: "Buttons",
-      value: [
-        INPUTS.BUTTON("button", "Button", "View our services", "", null, null, "Primary")
-      ]
-    });
   }
 
   static getName(): string {
@@ -270,6 +277,7 @@ class Feature9 extends BaseFeature {
     const cardElements = document.querySelectorAll("." + this.decorateCSS("card"));
     const title = this.getPropValue("title");
     const subtitle = this.getPropValue("subtitle");
+    const description = this.getPropValue("description");
 
     const cardsLengthIsChanged = this.getComponentState("cardLength") != cardElements.length;
 
@@ -277,13 +285,15 @@ class Feature9 extends BaseFeature {
       this.setupObserver();
     }
 
-    const wrapperExist = this.castToString(title) || this.castToString(subtitle) || cards?.length > 0;
+    const hasValidButtons = buttons && buttons.some((button: INPUTS.CastedButton) => this.castToString(button.text));
+
+    const wrapperExist = this.castToString(title) || this.castToString(subtitle) || this.castToString(description) || hasValidButtons || cards?.length > 0;
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
         {wrapperExist && <div className={this.decorateCSS("wrapper")}>
-            {(this.castToString(title) || this.castToString(subtitle)) &&
+            {(this.castToString(title) || this.castToString(subtitle) || this.castToString(description) || hasValidButtons) &&
               <Base.VerticalContent className={this.decorateCSS("header")}>
                 {this.castToString(subtitle) &&
                   <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
@@ -295,6 +305,27 @@ class Feature9 extends BaseFeature {
                     {title}
                   </Base.SectionTitle>
                 }
+                {this.castToString(description) &&
+                  <Base.SectionDescription className={this.decorateCSS("description")}>
+                    {description}
+                  </Base.SectionDescription>
+                }
+                {hasValidButtons && (
+                  <div className={this.decorateCSS("buttons-container")}>
+                    {buttons.map((button: INPUTS.CastedButton, index: number) => {
+                      if (this.castToString(button.text)) {
+                        return (
+                          <ComposerLink key={index} path={button.url}>
+                            <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
+                              <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
+                            </Base.Button>
+                          </ComposerLink>
+                        );
+                      }
+                      return null;
+                    })}
+                  </div>
+                )}
               </Base.VerticalContent>
             }
             {cards?.length > 0 &&
@@ -325,23 +356,23 @@ class Feature9 extends BaseFeature {
                             }
                             <div className={this.decorateCSS("card-title-container")}>
                               {numExist &&
-                                <Base.H2 className={this.decorateCSS("card-number")}>
+                                <Base.H3 className={this.decorateCSS("card-number")}>
                                   {card.num}
-                                </Base.H2>
+                                </Base.H3>
                               }
                               {titleExist &&
-                                <Base.H2 className={this.decorateCSS("card-title")}>
+                                <Base.H3 className={this.decorateCSS("card-title")}>
                                   {card.title}
-                                </Base.H2>
+                                </Base.H3>
                               }
                             </div>
                           </div>
                         }
                         {descExist &&
                           <div className={this.decorateCSS("description-container")}>
-                            <Base.H4 className={this.decorateCSS("description")}>
+                            <Base.H6 className={this.decorateCSS("description")}>
                               {card.description}
-                            </Base.H4>
+                            </Base.H6>
                           </div>
                         }
                       </div>
@@ -351,23 +382,6 @@ class Feature9 extends BaseFeature {
               </div>
             }
           </div>}
-          {(buttons?.length > 0) && (
-            <div className={this.decorateCSS("buttons-container")}>
-              {buttons.map((button: INPUTS.CastedButton, index: number) => {
-                if (this.castToString(button.text)) {
-                  return (
-                    <ComposerLink key={index} path={button.url}>
-                      <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
-                        <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
-                      </Base.Button>
-                    </ComposerLink>
-                  );
-                }
-                return null;
-              })}
-            </div>
-          )}
-
         </Base.MaxContent>
       </Base.Container>
     );
