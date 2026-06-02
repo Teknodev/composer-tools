@@ -1,10 +1,20 @@
 import * as React from "react";
-import { BaseFeature } from "../../EditorComponent";
+import { BaseFeature, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./feature15.module.scss";
 
 import { Base } from "../../../composer-base-components/base/base";
+import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
+import { INPUTS } from "../../../custom-hooks/input-templates";
+
+type Button = {
+  text: React.JSX.Element;
+  url: string;
+  icon: TypeMediaInputValue;
+  type: string;
+};
+
 interface Card {
-    icon: { type: "icon"; name: string };
+    icon: TypeMediaInputValue;
     title: React.JSX.Element;
     subtitle: React.JSX.Element;
     description: React.JSX.Element;
@@ -12,6 +22,33 @@ interface Card {
 class Feature15 extends BaseFeature {
     constructor(props?: any) {
         super(props, styles);
+
+        this.addProp({
+            type: "string",
+            key: "subtitle",
+            displayer: "Subtitle",
+            value: "",
+        });
+        this.addProp({
+            type: "string",
+            key: "title",
+            displayer: "Title",
+            value: "",
+        });
+        this.addProp({
+            type: "string",
+            key: "description",
+            displayer: "Description",
+            value: "",
+        });
+        this.addProp({
+            type: "array",
+            key: "buttons",
+            displayer: "Buttons",
+            value: [
+                INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+            ],
+        });
 
         this.addProp({
             type: "media",
@@ -238,70 +275,126 @@ class Feature15 extends BaseFeature {
     }
 
     render() {
+        const subtitleExist = this.castToString(this.getPropValue("subtitle"));
+        const titleExist = this.castToString(this.getPropValue("title"));
+        const descriptionExist = this.castToString(this.getPropValue("description"));
+        const buttons = this.castToObject<Button[]>("buttons");
+
+        const hasValidButtons = buttons && buttons.some((btn: Button) => {
+            const buttonText = this.castToString(btn.text);
+            const iconExist = btn.icon && (btn.icon.type === "icon" ? btn.icon.name : btn.icon.url);
+            return buttonText || iconExist;
+        });
+
+        const hasAnyTopContent = subtitleExist || titleExist || descriptionExist || hasValidButtons;
+
         const closeIcon: string = this.getPropValue("closeIcon");
         const overlay = this.getPropValue("overlay");
         return (
             <Base.Container className={`${this.decorateCSS("container")} ${!this.getPropValue("cover_image") ? this.decorateCSS("no-image") : ""} ${this.getComponentState("is_video_visible") && this.decorateCSS("with-overlay")}`}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
-                    { this.castToObject<Card[]>("cards").length > 0 && <Base.ListGrid
-                        gridCount={{ pc: 2 }}
-                        className={this.decorateCSS("cards")}
-                    >
-                        {this.castToObject<Card[]>("cards").map(
-                            (card: Card, index: number) => (
-                                <div key={index} className={this.decorateCSS("card")}>
-                                    {card.icon && (
-                                        <div className={this.decorateCSS("icon-box")}>
-                                            <Base.Media
-                                                value={card.icon}
-                                                className={this.decorateCSS("icon")}
-                                            />
-                                        </div>
-                                    )}
-                                    <Base.VerticalContent className={this.decorateCSS("labels")}>
-                                        {this.castToString(card.subtitle) && (
-                                            <Base.H4 className={this.decorateCSS("subtitle")}>
-                                                {card.subtitle}
-                                            </Base.H4>
-                                        )}
-                                        {this.castToString(card.title) && (
-                                            <Base.H3 className={this.decorateCSS("title")}>
-                                                {card.title}
-                                            </Base.H3>
-                                        )}
-                                        {this.castToString(card.description) && (
-                                            <Base.P className={this.decorateCSS("description")}>
-                                                {card.description}
-                                            </Base.P>
-                                        )}
-                                    </Base.VerticalContent>
-                                </div>
-                            )
-                        )}
-                    </Base.ListGrid>}
-                    {this.getPropValue("cover_image") && (
-                        <div className={this.decorateCSS("video-container")}>
-                            <Base.Media
-                                value={this.getPropValue("cover_image")}
-                                className={this.decorateCSS("image")}
-                            />
-                            {overlay && <div className={this.decorateCSS("overlay")} />}
-
-                            {this.getPropValue("video") && this.getPropValue("play_icon") && (
-                                <div
-                                    className={this.decorateCSS("play-icon-box")}
-                                    onClick={() => {
-                                        this.setComponentState("is_video_visible", true);
-                                    }}
-                                >
-                                    <Base.Media
-                                        value={this.getPropValue("play_icon")}
-                                        className={this.decorateCSS("play-icon")}
-                                    />
+                    {hasAnyTopContent && (
+                        <Base.VerticalContent className={this.decorateCSS("top-content")}>
+                            {subtitleExist && (
+                                <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                                    {this.getPropValue("subtitle")}
+                                </Base.SectionSubTitle>
+                            )}
+                            {titleExist && (
+                                <Base.SectionTitle className={this.decorateCSS("title")}>
+                                    {this.getPropValue("title")}
+                                </Base.SectionTitle>
+                            )}
+                            {descriptionExist && (
+                                <Base.SectionDescription className={this.decorateCSS("description")}>
+                                    {this.getPropValue("description")}
+                                </Base.SectionDescription>
+                            )}
+                            {hasValidButtons && (
+                                <div className={this.decorateCSS("button-container")}>
+                                    {buttons.map((item: Button, index: number) => {
+                                        const buttonText = this.castToString(item.text);
+                                        const iconExist = item.icon && (item.icon.type === "icon" ? item.icon.name : item.icon.url);
+                                        if (!buttonText && !iconExist) return null;
+                                        return (
+                                            <ComposerLink key={index} path={item.url}>
+                                                <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
+                                                    {buttonText && (
+                                                        <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>
+                                                    )}
+                                                    {iconExist && (
+                                                        <Base.Media className={this.decorateCSS("button-icon")} value={item.icon!} />
+                                                    )}
+                                                </Base.Button>
+                                            </ComposerLink>
+                                        );
+                                    })}
                                 </div>
                             )}
-                        </div>
+                        </Base.VerticalContent>
                     )}
+
+                    <div className={this.decorateCSS("content-wrapper")}>
+                        { this.castToObject<Card[]>("cards").length > 0 && <Base.ListGrid
+                            gridCount={{ pc: 2 }}
+                            className={this.decorateCSS("cards")}
+                        >
+                            {this.castToObject<Card[]>("cards").map(
+                                (card: Card, index: number) => (
+                                    <div key={index} className={this.decorateCSS("card")}>
+                                        {card.icon && (
+                                            <div className={this.decorateCSS("icon-box")}>
+                                                <Base.Media
+                                                    value={card.icon}
+                                                    className={this.decorateCSS("icon")}
+                                                />
+                                            </div>
+                                        )}
+                                        <Base.VerticalContent className={this.decorateCSS("labels")}>
+                                            {this.castToString(card.subtitle) && (
+                                                <Base.H5 className={this.decorateCSS("subtitle")}>
+                                                    {card.subtitle}
+                                                </Base.H5>
+                                            )}
+                                            {this.castToString(card.title) && (
+                                                <Base.H4 className={this.decorateCSS("title")}>
+                                                    {card.title}
+                                                </Base.H4>
+                                            )}
+                                            {this.castToString(card.description) && (
+                                                <Base.P className={this.decorateCSS("description")}>
+                                                    {card.description}
+                                                </Base.P>
+                                            )}
+                                        </Base.VerticalContent>
+                                    </div>
+                                )
+                            )}
+                        </Base.ListGrid>}
+                        {this.getPropValue("cover_image") && (
+                            <div className={this.decorateCSS("video-container")}>
+                                <Base.Media
+                                    value={this.getPropValue("cover_image")}
+                                    className={this.decorateCSS("image")}
+                                />
+                                {overlay && <div className={this.decorateCSS("overlay")} />}
+
+                                {this.getPropValue("video") && this.getPropValue("play_icon") && (
+                                    <div
+                                        className={this.decorateCSS("play-icon-box")}
+                                        onClick={() => {
+                                            this.setComponentState("is_video_visible", true);
+                                        }}
+                                    >
+                                        <Base.Media
+                                            value={this.getPropValue("play_icon")}
+                                            className={this.decorateCSS("play-icon")}
+                                        />
+                                    </div>
+                                )}
+                            </div>
+                        )}
+                    </div>
 
                     {(this.getComponentState("is_video_visible") && this.getPropValue("video")) && (
                         <Base.Overlay
