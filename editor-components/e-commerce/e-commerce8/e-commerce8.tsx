@@ -14,6 +14,7 @@ interface ProductCard {
     cardLeftText: React.JSX.Element;
     cardImage: TypeMediaInputValue;
     hoverImage: TypeMediaInputValue;
+    overlay: boolean;
     line: boolean;
     BottomLabels: BottomLabelItem[];
     enableLabelSeparator: boolean;
@@ -101,6 +102,12 @@ class ECommerce8 extends BaseECommerce {
                                 type: "image",
                                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/695cf8e8f959f6002d7e4ab6?alt=media",
                             },
+                        },
+                        {
+                            type: "boolean",
+                            key: "overlay",
+                            displayer: "Overlay",
+                            value: false,
                         },
                         {
                             type: "boolean",
@@ -271,6 +278,12 @@ class ECommerce8 extends BaseECommerce {
                         },
                         {
                             type: "boolean",
+                            key: "overlay",
+                            displayer: "Overlay",
+                            value: false,
+                        },
+                        {
+                            type: "boolean",
                             key: "line",
                             displayer: "Line",
                             value: true,
@@ -435,6 +448,12 @@ class ECommerce8 extends BaseECommerce {
                                 type: "image",
                                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/695cf95cf959f6002d7e4bda?alt=media",
                             },
+                        },
+                        {
+                            type: "boolean",
+                            key: "overlay",
+                            displayer: "Overlay",
+                            value: false,
                         },
                         {
                             type: "boolean",
@@ -605,6 +624,12 @@ class ECommerce8 extends BaseECommerce {
                         },
                         {
                             type: "boolean",
+                            key: "overlay",
+                            displayer: "Overlay",
+                            value: false,
+                        },
+                        {
+                            type: "boolean",
                             key: "line",
                             displayer: "Line",
                             value: true,
@@ -740,13 +765,6 @@ class ECommerce8 extends BaseECommerce {
 
         this.addProp({
             type: "boolean",
-            key: "enableOverlay",
-            displayer: "Overlay",
-            value: false,
-        });
-
-        this.addProp({
-            type: "boolean",
             key: "hoverAnimation",
             displayer: "Hover Animation",
             value: true,
@@ -769,7 +787,6 @@ class ECommerce8 extends BaseECommerce {
         const title = this.castToString(this.getPropValue("title"));
         const description = this.castToString(this.getPropValue("description"));
         const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons") || [];
-        const enableOverlay = this.getPropValue("enableOverlay");
         const hoverAnimation = this.getPropValue("hoverAnimation");
         const visibleButtons = buttons.filter(btn => this.castToString(btn.text));
         const cards = this.castToObject<ProductCard[]>("cards") || [];
@@ -852,7 +869,7 @@ class ECommerce8 extends BaseECommerce {
                                                                 className={this.decorateCSS("hover-image")}
                                                             />
                                                         )}
-                                                        {enableOverlay && (
+                                                        {card.overlay && (
                                                             <div className={this.decorateCSS("overlay")}></div>
                                                         )}
                                                     </div>
