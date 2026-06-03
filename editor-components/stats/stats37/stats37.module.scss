@@ -1,0 +1,62 @@
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+
+.container {
+    .max-content {
+        display: flex;
+        flex-direction: column;
+        gap: var(--composer-gap-lg);
+
+        .header-section {
+            align-items: flex-start;
+
+            .subtitle,
+            .title,
+            .description {
+                content: "";
+            }
+        }
+
+        .stats-grid {
+            gap: var(--composer-gap-xl);
+            width: 100%;
+
+            .stat-item {
+                align-items: flex-start;
+                gap: var(--composer-gap-sm);
+
+                .stat-value-row {
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    gap: var(--composer-gap-md);
+
+                    .stat-value {
+                        display: flex;
+                        align-items: baseline;
+                        color: var(--composer-primary-color);
+
+                        .stat-prefix,
+                        .stat-number,
+                        .stat-suffix {
+                            content: "";
+                        }
+                    }
+
+                    .stat-info {
+
+                        .stat-subtitle,
+                        .stat-title {
+                            text-align: left;
+                            color: var(--composer-font-color-primary);
+                        }
+                    }
+                }
+
+                .stat-description {
+                    text-align: left;
+                    color: var(--composer-font-color-primary);
+                }
+            }
+        }
+    }
+}
