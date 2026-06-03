@@ -130,18 +130,34 @@
             flex-direction: column;
             align-items: center;
 
-            .setup-price-value,
-            .monthly-price-value {
-              color: var(--composer-font-color-secondary);
-              font-size: 5rem !important;
-              font-weight: 500;
+            .setup-price-value-container,
+            .monthly-price-value-container {
+              display: flex;
+              align-items: baseline;
+              gap: 2px;
+
+              .setup-price-prefix,
+              .monthly-price-prefix {
+                color: var(--composer-font-color-secondary);
+                font-size: 5rem;
+                font-weight: 500;
+                margin: 0;
+              }
+
+              .setup-price-value,
+              .monthly-price-value {
+                color: var(--composer-font-color-secondary);
+                font-size: 5rem !important;
+                font-weight: 500;
+                margin: 0;
+              }
             }
 
-            .setup-price-label,
-            .monthly-price-label {
+            .setup-price-suffix,
+            .monthly-price-suffix {
               color: var(--composer-font-color-secondary);
               text-align: center;
-
+              margin: 0;
             }
           }
 

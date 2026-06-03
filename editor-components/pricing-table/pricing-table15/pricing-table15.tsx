@@ -634,18 +634,26 @@ class PricingTable15 extends BasePricingTable {
                     {(rightSetupFeeValueExist || rightSetupFeeSuffixExist) && (
                       <div className={this.decorateCSS("setup-price-box")}>
                         {(rightSetupFeeValueExist || rightSetupFeePrefixExist) && (
-                          <Base.H1 className={this.decorateCSS("setup-price-value")}>
-                            <span className={this.decorateCSS("stat-symbol")}>{rightSetupFeePrefixExist}</span>
-                            {enableStatAnimation ? (
-                              <this.AnimatedNumber targetValue={parseFloat(rightSetupFeeValueExist) || 0} duration={animationDuration * 1000} />
-                            ) : (
-                              rightSetupFeeValueExist
+                          <div className={this.decorateCSS("setup-price-value-container")}>
+                            {rightSetupFeePrefixExist && (
+                              <Base.H1 className={this.decorateCSS("setup-price-prefix")}>
+                                {rightSetupFeePrefixExist}
+                              </Base.H1>
                             )}
-                          </Base.H1>
+                            {rightSetupFeeValueExist && (
+                              <Base.H1 className={this.decorateCSS("setup-price-value")}>
+                                {enableStatAnimation ? (
+                                  <this.AnimatedNumber targetValue={parseFloat(rightSetupFeeValueExist) || 0} duration={animationDuration * 1000} />
+                                ) : (
+                                  rightSetupFeeValueExist
+                                )}
+                              </Base.H1>
+                            )}
+                          </div>
                         )}
                         {rightSetupFeeSuffixExist && (
-                          <Base.P className={this.decorateCSS("setup-price-label")}>
-                            {this.getPropValue("rightSetupFeeSuffix", { parent_object: rightProps })}
+                          <Base.P className={this.decorateCSS("setup-price-suffix")}>
+                            {rightSetupFeeSuffixExist}
                           </Base.P>
                         )}
                       </div>
@@ -661,18 +669,26 @@ class PricingTable15 extends BasePricingTable {
                     {(rightMonthlyValueExist || rightMonthlySuffixExist) && (
                       <div className={this.decorateCSS("monthly-price-box")}>
                         {(rightMonthlyValueExist || rightMonthlyPrefixExist) && (
-                          <Base.H1 className={this.decorateCSS("monthly-price-value")}>
-                            <span className={this.decorateCSS("stat-symbol")}>{rightMonthlyPrefixExist}</span>
-                            {enableStatAnimation ? (
-                              <this.AnimatedNumber targetValue={parseFloat(rightMonthlyValueExist) || 0} duration={animationDuration * 1000} />
-                            ) : (
-                              rightMonthlyValueExist
+                          <div className={this.decorateCSS("monthly-price-value-container")}>
+                            {rightMonthlyPrefixExist && (
+                              <Base.H1 className={this.decorateCSS("monthly-price-prefix")}>
+                                {rightMonthlyPrefixExist}
+                              </Base.H1>
                             )}
-                          </Base.H1>
+                            {rightMonthlyValueExist && (
+                              <Base.H1 className={this.decorateCSS("monthly-price-value")}>
+                                {enableStatAnimation ? (
+                                  <this.AnimatedNumber targetValue={parseFloat(rightMonthlyValueExist) || 0} duration={animationDuration * 1000} />
+                                ) : (
+                                  rightMonthlyValueExist
+                                )}
+                              </Base.H1>
+                            )}
+                          </div>
                         )}
                         {rightMonthlySuffixExist && (
-                          <Base.P className={this.decorateCSS("monthly-price-label")}>
-                            {this.getPropValue("rightMonthlySuffix", { parent_object: rightProps })}
+                          <Base.P className={this.decorateCSS("monthly-price-suffix")}>
+                            {rightMonthlySuffixExist}
                           </Base.P>
                         )}
                       </div>
