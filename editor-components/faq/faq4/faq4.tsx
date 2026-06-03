@@ -42,18 +42,6 @@ class Faq4 extends BaseFAQ {
 
     this.addProp({
       type: "media",
-      key: "inactiveIcon",
-      displayer: "Inactive Icon",
-      additionalParams: {
-        availableTypes: ["icon", "image"],
-      },
-      value: {
-        type: "icon",
-        name: "FaAngleDown",
-      },
-    });
-    this.addProp({
-      type: "media",
       key: "activeIcon",
       displayer: "Active Icon",
       additionalParams: {
@@ -62,6 +50,18 @@ class Faq4 extends BaseFAQ {
       value: {
         type: "icon",
         name: "FaAngleUp",
+      },
+    });
+    this.addProp({
+      type: "media",
+      key: "inactiveIcon",
+      displayer: "Inactive Icon",
+      additionalParams: {
+        availableTypes: ["icon", "image"],
+      },
+      value: {
+        type: "icon",
+        name: "FaAngleDown",
       },
     });
     this.addProp({

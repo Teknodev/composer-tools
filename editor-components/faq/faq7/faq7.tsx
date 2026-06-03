@@ -33,18 +33,7 @@ class Faq7 extends BaseFAQ {
       displayer: "Description",
       value: "Frequently Asked Questions About Dental Treatments in Turkey",
     });
-    this.addProp({
-      type: "media",
-      key: "iconInactive",
-      displayer: "Inactive Icon",
-      additionalParams: {
-        availableTypes: ["icon", "image"],
-      },
-      value: {
-        type: "icon",
-        name: "SlArrowDown",
-      },
-    });
+
     this.addProp({
       type: "media",
       key: "iconActive",
@@ -57,12 +46,27 @@ class Faq7 extends BaseFAQ {
         name: "SlArrowUp",
       },
     });
+
+    this.addProp({
+      type: "media",
+      key: "iconInactive",
+      displayer: "Inactive Icon",
+      additionalParams: {
+        availableTypes: ["icon", "image"],
+      },
+      value: {
+        type: "icon",
+        name: "SlArrowDown",
+      },
+    });
+
     this.addProp({
       type: "number",
       key: "initialCardCount",
       displayer: "Initial Card Count",
       value: 3,
     });
+
     this.addProp({
       type: "number",
       key: "moreCardCount",

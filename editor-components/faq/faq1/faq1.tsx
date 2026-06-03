@@ -34,18 +34,6 @@ class Faq1 extends BaseFAQ {
     })
     this.addProp({
       type: "media",
-      key: "inactiveIcon",
-      displayer: "Inactive Icon",
-      additionalParams: {
-        availableTypes: ["icon", "image"],
-      },
-      value: {
-        type: "icon",
-        name: "IoIosArrowDown",
-      },
-    })
-    this.addProp({
-      type: "media",
       key: "activeIcon",
       displayer: "Active Icon",
       additionalParams: {
@@ -54,6 +42,18 @@ class Faq1 extends BaseFAQ {
       value: {
         type: "icon",
         name: "IoIosArrowUp",
+      },
+    })
+    this.addProp({
+      type: "media",
+      key: "inactiveIcon",
+      displayer: "Inactive Icon",
+      additionalParams: {
+        availableTypes: ["icon", "image"],
+      },
+      value: {
+        type: "icon",
+        name: "IoIosArrowDown",
       },
     })
 

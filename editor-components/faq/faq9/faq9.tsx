@@ -30,6 +30,7 @@ class Faq9 extends BaseFAQ {
       displayer: "Title",
       value: "General Questions",
     });
+
     this.addProp({
       type: "string",
       key: "description",
@@ -37,18 +38,7 @@ class Faq9 extends BaseFAQ {
       value:
         "For More Information About Our Product & Services. Please Feel Free To Drop Us An Email. Our Staff Always Be There To Help You Out. Do Not Hesitate!",
     });
-    this.addProp({
-      type: "media",
-      key: "inactiveIcon",
-      displayer: "Inactive Icon",
-      additionalParams: {
-        availableTypes: ["icon", "image"],
-      },
-      value: {
-        type: "icon",
-        name: "SlArrowDown",
-      },
-    });
+
     this.addProp({
       type: "media",
       key: "activeIcon",
@@ -59,6 +49,19 @@ class Faq9 extends BaseFAQ {
       value: {
         type: "icon",
         name: "SlArrowUp",
+      },
+    });
+
+    this.addProp({
+      type: "media",
+      key: "inactiveIcon",
+      displayer: "Inactive Icon",
+      additionalParams: {
+        availableTypes: ["icon", "image"],
+      },
+      value: {
+        type: "icon",
+        name: "SlArrowDown",
       },
     });
 
@@ -234,12 +237,12 @@ class Faq9 extends BaseFAQ {
 
     const width = el.clientWidth;
 
-    const phonePx = 768; 
+    const phonePx = 768;
 
     const isMobile = width <= phonePx;
     const wasMobile = this.getComponentState("isMobile");
     this.setComponentState("isMobile", isMobile);
-    
+
     if (isMobile && !wasMobile) {
       this.setComponentState("activeLeftQuestionIndex", 0);
       this.setComponentState("activeRightQuestionIndex", -1);
@@ -284,7 +287,7 @@ class Faq9 extends BaseFAQ {
     const rightKey = "activeRightQuestionIndex";
     if (isMobile) {
       this.setComponentState(leftKey, getNextIndex(leftKey));
-      this.setComponentState(rightKey, -1); 
+      this.setComponentState(rightKey, -1);
     } else {
       const midPoint = Math.ceil(questions.length / 2);
       const isRightCol = index >= midPoint;
@@ -313,26 +316,26 @@ class Faq9 extends BaseFAQ {
             <div className={this.decorateCSS("page")}>
               {(this.castToString(this.getPropValue("title")) ||
                 this.castToString(this.getPropValue("description"))) && (
-                <Base.VerticalContent className={this.decorateCSS("up-page")}>
-                  {this.castToString(this.getPropValue("subtitle")) && (
-                    <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
-                      {this.getPropValue("subtitle")}
-                    </Base.SectionSubTitle>
-                  )}
-                  {this.castToString(this.getPropValue("title")) && (
-                    <Base.SectionTitle className={this.decorateCSS("title")}>
-                      {this.getPropValue("title")}
-                    </Base.SectionTitle>
-                  )}
-                  {this.castToString(this.getPropValue("description")) && (
-                    <Base.SectionDescription
-                      className={this.decorateCSS("description")}
-                    >
-                      {this.getPropValue("description")}
-                    </Base.SectionDescription>
-                  )}
-                </Base.VerticalContent>
-              )}
+                  <Base.VerticalContent className={this.decorateCSS("up-page")}>
+                    {this.castToString(this.getPropValue("subtitle")) && (
+                      <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                        {this.getPropValue("subtitle")}
+                      </Base.SectionSubTitle>
+                    )}
+                    {this.castToString(this.getPropValue("title")) && (
+                      <Base.SectionTitle className={this.decorateCSS("title")}>
+                        {this.getPropValue("title")}
+                      </Base.SectionTitle>
+                    )}
+                    {this.castToString(this.getPropValue("description")) && (
+                      <Base.SectionDescription
+                        className={this.decorateCSS("description")}
+                      >
+                        {this.getPropValue("description")}
+                      </Base.SectionDescription>
+                    )}
+                  </Base.VerticalContent>
+                )}
 
               <div className={this.decorateCSS("down-page")}>
                 <div className={this.decorateCSS("questions-column")}>
@@ -348,11 +351,10 @@ class Faq9 extends BaseFAQ {
                           <div
                             className={`${this.decorateCSS(
                               "child-container"
-                            )} ${
-                              activeLeft === idx
+                            )} ${activeLeft === idx
                                 ? this.decorateCSS("active")
                                 : ""
-                            }`}
+                              }`}
                           >
                             {questn.qq && (
                               <div
@@ -363,11 +365,10 @@ class Faq9 extends BaseFAQ {
                                 <Base.H6
                                   className={`${this.decorateCSS(
                                     "card-title"
-                                  )} ${
-                                    activeLeft === idx
+                                  )} ${activeLeft === idx
                                       ? this.decorateCSS("active")
                                       : ""
-                                  }`}
+                                    }`}
                                 >
                                   {questn.qq}
                                 </Base.H6>
@@ -377,11 +378,10 @@ class Faq9 extends BaseFAQ {
                               <div
                                 className={`${this.decorateCSS(
                                   "icon-wrapper"
-                                )} ${
-                                  activeLeft === idx
+                                )} ${activeLeft === idx
                                     ? this.decorateCSS("active")
                                     : ""
-                                }`}
+                                  }`}
                               >
                                 <Base.Media
                                   value={activeLeft === idx ? this.getPropValue("activeIcon") : this.getPropValue("inactiveIcon")}
@@ -394,13 +394,12 @@ class Faq9 extends BaseFAQ {
                         {questn.answer && (
                           <div
                             ref={(el) => (this.answerRefs[idx] = el)}
-                            className={`${this.decorateCSS("inner-card")} ${
-                              activeLeft === idx
+                            className={`${this.decorateCSS("inner-card")} ${activeLeft === idx
                                 ? this.decorateCSS("active")
                                 : ""
-                            }`}
+                              }`}
                           >
-                              <Base.P className={this.decorateCSS("inner-text")}>
+                            <Base.P className={this.decorateCSS("inner-text")}>
                               {questn.answer}
                             </Base.P>
                           </div>
@@ -423,11 +422,10 @@ class Faq9 extends BaseFAQ {
                             <div
                               className={`${this.decorateCSS(
                                 "child-container"
-                              )} ${
-                                activeRight === idx
+                              )} ${activeRight === idx
                                   ? this.decorateCSS("active")
                                   : ""
-                              }`}
+                                }`}
                             >
                               {questn.qq && (
                                 <div
@@ -438,11 +436,10 @@ class Faq9 extends BaseFAQ {
                                   <Base.H6
                                     className={`${this.decorateCSS(
                                       "card-title"
-                                    )} ${
-                                      activeRight === idx
+                                    )} ${activeRight === idx
                                         ? this.decorateCSS("active")
                                         : ""
-                                    }`}
+                                      }`}
                                   >
                                     {questn.qq}
                                   </Base.H6>
@@ -452,11 +449,10 @@ class Faq9 extends BaseFAQ {
                                 <div
                                   className={`${this.decorateCSS(
                                     "icon-wrapper"
-                                  )} ${
-                                    activeRight === idx
+                                  )} ${activeRight === idx
                                       ? this.decorateCSS("active")
                                       : ""
-                                  }`}
+                                    }`}
                                 >
                                   <Base.Media
                                     value={activeRight === idx ? this.getPropValue("activeIcon") : this.getPropValue("inactiveIcon")}
@@ -469,11 +465,10 @@ class Faq9 extends BaseFAQ {
                           {questn.answer && (
                             <div
                               ref={(el) => (this.answerRefs[idx] = el)}
-                              className={`${this.decorateCSS("inner-card")} ${
-                                activeRight === idx
+                              className={`${this.decorateCSS("inner-card")} ${activeRight === idx
                                   ? this.decorateCSS("active")
                                   : ""
-                              }`}
+                                }`}
                             >
                               <Base.P className={this.decorateCSS("inner-text")}>
                                 {questn.answer}

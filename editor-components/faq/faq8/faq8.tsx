@@ -63,18 +63,6 @@ class Faq8 extends BaseFAQ {
         },
         {
           type: "media",
-          key: "inactiveIcon",
-          displayer: "Inactive Icon",
-          additionalParams: {
-            availableTypes: ["icon", "image"],
-          },
-          value: {
-            type: "icon",
-            name: "FaAngleDown",
-          },
-        },
-        {
-          type: "media",
           key: "activeIcon",
           displayer: "Active Icon",
           additionalParams: {
@@ -83,6 +71,18 @@ class Faq8 extends BaseFAQ {
           value: {
             type: "icon",
             name: "FaAngleUp",
+          },
+        },
+        {
+          type: "media",
+          key: "inactiveIcon",
+          displayer: "Inactive Icon",
+          additionalParams: {
+            availableTypes: ["icon", "image"],
+          },
+          value: {
+            type: "icon",
+            name: "FaAngleDown",
           },
         },
       ],

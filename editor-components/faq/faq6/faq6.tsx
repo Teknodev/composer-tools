@@ -122,18 +122,6 @@ class Faq6 extends BaseFAQ {
 
     this.addProp({
       type: "media",
-      displayer: "Inactive Icon",
-      key: "inactive_icon",
-      additionalParams: {
-        availableTypes: ["icon", "image"],
-      },
-      value: {
-        type: "icon",
-        name: "FaMinus",
-      },
-    })
-    this.addProp({
-      type: "media",
       displayer: "Active Icon",
       key: "active_icon",
       additionalParams: {
@@ -142,6 +130,19 @@ class Faq6 extends BaseFAQ {
       value: {
         type: "icon",
         name: "FaPlus",
+      },
+    })
+
+    this.addProp({
+      type: "media",
+      displayer: "Inactive Icon",
+      key: "inactive_icon",
+      additionalParams: {
+        availableTypes: ["icon", "image"],
+      },
+      value: {
+        type: "icon",
+        name: "FaMinus",
       },
     })
 

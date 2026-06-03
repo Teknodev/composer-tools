@@ -52,19 +52,6 @@ class Faq5 extends BaseFAQ {
 
     this.addProp({
       type: "media",
-      key: "inactiveIcon",
-      displayer: "Inactive Icon",
-      additionalParams: {
-        availableTypes: ["icon", "image"],
-      },
-      value: {
-        type: "icon",
-        name: "IoIosArrowDown",
-      },
-    });
-
-    this.addProp({
-      type: "media",
       key: "activeIcon",
       displayer: "Active Icon",
       additionalParams: {
@@ -73,6 +60,19 @@ class Faq5 extends BaseFAQ {
       value: {
         type: "icon",
         name: "IoIosArrowUp",
+      },
+    });
+
+    this.addProp({
+      type: "media",
+      key: "inactiveIcon",
+      displayer: "Inactive Icon",
+      additionalParams: {
+        availableTypes: ["icon", "image"],
+      },
+      value: {
+        type: "icon",
+        name: "IoIosArrowDown",
       },
     });
 
@@ -663,7 +663,9 @@ class Faq5 extends BaseFAQ {
     const subtitle = this.castToString(this.getPropValue("subtitle"));
     const title = this.castToString(this.getPropValue("title"));
     const description = this.castToString(this.getPropValue("description"));
-    const hasContent = subtitle || title || description;
+    const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
+    const hasButtons = buttons && buttons.length > 0 && buttons.some((button: INPUTS.CastedButton) => !!this.castToString(button.text));
+    const hasContent = subtitle || title || description || hasButtons;
     const cards = this.castToObject<Card[]>("cards");
 
     const alignment = Base.getContentAlignment();
@@ -681,9 +683,9 @@ class Faq5 extends BaseFAQ {
               {description && (
                 <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>
               )}
-              {this.getPropValue("buttons").length > 0 && (
+              {hasButtons && (
                 <div className={this.decorateCSS("left-buttons")}>
-                  {this.castToObject<INPUTS.CastedButton[]>("buttons").map((button: INPUTS.CastedButton) =>
+                  {buttons.map((button: INPUTS.CastedButton) =>
                     this.castToString(button.text) && (
                       <ComposerLink path={button.url}>
                         <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
@@ -709,56 +711,63 @@ class Faq5 extends BaseFAQ {
               </div>
               {(cards[this.getComponentState("activeSection")].items.length > 0) && (
                 <div className={this.decorateCSS("bottom-wrapper")}>
-                  {cards[this.getComponentState("activeSection")].items.map((item: Item, index: number) => (
-                    <div className={this.decorateCSS("card")} onClick={() => this.handleCard(index)}>
-                      {(this.castToString(item.cardIndex) || this.castToString(item.cardTitle) || this.getPropValue("activeIcon") || this.getPropValue("inactiveIcon")) && (
-                        <div className={this.decorateCSS("little-container")}>
-                          {this.castToString(item.cardIndex) && (
-                            <div className={`${this.decorateCSS("card-index")} ${this.getComponentState("activeCard") === index ? this.decorateCSS("active") : ""}`}>
-                              <Base.H6 className={this.decorateCSS("index")}>
-                                {item.cardIndex}
+                  {cards[this.getComponentState("activeSection")].items.map((item: Item, index: number) => {
+                    const hasAnswer = !!this.castToString(item.answer);
+                    const hasButtons = item.buttons && item.buttons.some((button: INPUTS.CastedButton) => !!this.castToString(button.text));
+
+                    return (
+                      <div className={this.decorateCSS("card")} onClick={() => this.handleCard(index)}>
+                        {(this.castToString(item.cardIndex) || this.castToString(item.question) || this.getPropValue("activeIcon") || this.getPropValue("inactiveIcon")) && (
+                          <div className={this.decorateCSS("little-container")}>
+                            {this.castToString(item.cardIndex) && (
+                              <div className={`${this.decorateCSS("card-index")} ${this.getComponentState("activeCard") === index ? this.decorateCSS("active") : ""}`}>
+                                <Base.H6 className={this.decorateCSS("index")}>
+                                  {item.cardIndex}
+                                </Base.H6>
+                              </div>
+                            )}
+                            {this.castToString(item.question) && (
+                              <Base.H6 className={this.decorateCSS("card-title")}>
+                                {item.question}
                               </Base.H6>
-                            </div>
-                          )}
-                          {this.castToString(item.question) && (
-                            <Base.H6 className={this.decorateCSS("card-title")}>
-                              {item.question}
-                            </Base.H6>
-                          )}
-                          {(this.getPropValue("activeIcon") || this.getPropValue("inactiveIcon")) && (
-                            <div className={this.decorateCSS("icon-wrapper")}>
-                              <Base.Media
-                                value={this.getComponentState("activeCard") === index
-                                  ? this.getPropValue("activeIcon")
-                                  : this.getPropValue("inactiveIcon")}
-                                className={this.decorateCSS("icon")}
-                              />
-                            </div>
-                          )}
-                        </div>
-                      )}
-                      {this.castToString(item.answer) && (
-                        <div className={`${this.decorateCSS("text-wrapper")} ${this.getComponentState("activeCard") === index ? this.decorateCSS("active") : ""}`}>
-                          <Base.P className={`${this.decorateCSS("text")} ${this.getComponentState("activeCard") === index ? this.decorateCSS("active") : ""}`}>
-                            {item.answer}
-                          </Base.P>
-                          {item.buttons && item.buttons.length > 0 && (
-                            <div className={this.decorateCSS("buttons-wrapper")}>
-                              {item.buttons.map((button: INPUTS.CastedButton) =>
-                                this.castToString(button.text) && (
-                                  <ComposerLink path={button.url}>
-                                    <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
-                                      <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
-                                    </Base.Button>
-                                  </ComposerLink>
-                                )
-                              )}
-                            </div>
-                          )}
-                        </div>
-                      )}
-                    </div>
-                  ))}
+                            )}
+                            {(this.getPropValue("activeIcon") || this.getPropValue("inactiveIcon")) && (
+                              <div className={this.decorateCSS("icon-wrapper")}>
+                                <Base.Media
+                                  value={this.getComponentState("activeCard") === index
+                                    ? this.getPropValue("activeIcon")
+                                    : this.getPropValue("inactiveIcon")}
+                                  className={this.decorateCSS("icon")}
+                                />
+                              </div>
+                            )}
+                          </div>
+                        )}
+                        {(hasAnswer || hasButtons) && (
+                          <div className={`${this.decorateCSS("text-wrapper")} ${this.getComponentState("activeCard") === index ? this.decorateCSS("active") : ""}`}>
+                            {hasAnswer && (
+                              <Base.P className={`${this.decorateCSS("text")} ${this.getComponentState("activeCard") === index ? this.decorateCSS("active") : ""}`}>
+                                {item.answer}
+                              </Base.P>
+                            )}
+                            {hasButtons && (
+                              <div className={this.decorateCSS("buttons-wrapper")}>
+                                {item.buttons.map((button: INPUTS.CastedButton) =>
+                                  this.castToString(button.text) && (
+                                    <ComposerLink path={button.url}>
+                                      <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
+                                        <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
+                                      </Base.Button>
+                                    </ComposerLink>
+                                  )
+                                )}
+                              </div>
+                            )}
+                          </div>
+                        )}
+                      </div>
+                    );
+                  })}
                 </div>
               )}
             </div>
