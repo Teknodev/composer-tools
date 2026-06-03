@@ -14,7 +14,7 @@ type ICard = {
         media?: TypeMediaInputValue;
         overlay?: boolean;
     };
-    buttons: INPUTS.CastedButton[];
+    cardButtons: INPUTS.CastedButton[];
 };
 
 class Feature53 extends BaseFeature {
@@ -111,7 +111,7 @@ class Feature53 extends BaseFeature {
                         },
                         {
                             type: "array",
-                            key: "buttons",
+                            key: "cardButtons",
                             displayer: "Buttons",
                             value: [INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary")],
                         },
@@ -173,7 +173,7 @@ class Feature53 extends BaseFeature {
                         },
                         {
                             type: "array",
-                            key: "buttons",
+                            key: "cardButtons",
                             displayer: "Buttons",
                             value: [INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary")],
                         },
@@ -235,7 +235,7 @@ class Feature53 extends BaseFeature {
                         },
                         {
                             type: "array",
-                            key: "buttons",
+                            key: "cardButtons",
                             displayer: "Buttons",
                             value: [INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary")],
                         },
@@ -297,7 +297,7 @@ class Feature53 extends BaseFeature {
                         },
                         {
                             type: "array",
-                            key: "buttons",
+                            key: "cardButtons",
                             displayer: "Buttons",
                             value: [INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary")],
                         },
@@ -363,18 +363,19 @@ class Feature53 extends BaseFeature {
             const cardMedia = card.cardMedia;
             const mediaValue = cardMedia?.media as TypeMediaInputValue;
             const hasMedia = hasMediaValue(mediaValue);
-            const buttons = card.buttons || [];
-            const hasAnyButton = buttons.some((btn) => this.castToString(btn.text));
+            const cardButtons = card.cardButtons || [];
+            const hasAnyCardButton = cardButtons.some((btn) => this.castToString(btn.text));
 
-            const itemTitle = card.cardTitle;
-            const itemSubtitle = card.cardSubtitle;
-            const itemDescription = card.cardDescription;
+            const itemTitle = this.castToString(card.cardTitle);
+            const itemSubtitle = this.castToString(card.cardSubtitle);
+            const itemDescription = this.castToString(card.cardDescription);
 
-            return card.cardLabel || itemTitle || itemSubtitle || itemDescription || hasMedia || hasAnyButton;
+            return this.castToString(card.cardLabel) || itemTitle || itemSubtitle || itemDescription || hasMedia || hasAnyCardButton;
         });
 
         const viewType = Base.getViewType();
         const subtitleType = Base.getSectionSubTitleType();
+        const hasAnyCardLabel = filteredCards.some((card: ICard) => this.castToString(card.cardLabel));
 
         return (
             <Base.Container className={`${this.decorateCSS("container")} ${this.decorateCSS(viewType)}`}>
@@ -410,101 +411,102 @@ class Feature53 extends BaseFeature {
                             )}
                         </Base.VerticalContent>
                     )}
-
-                    <Base.VerticalContent className={`${this.decorateCSS("tabs")} ${activeCard === -1 ? this.decorateCSS("tablet-closed-default") : ""} ${this.getPropValue("showMobileLines") === false ? this.decorateCSS("no-lines") : ""}`}>
-                        <div className={this.decorateCSS("tab-buttons")}>
-                            {filteredCards.map((card: ICard, index: number) => {
-                                const cardLabelExist = card.cardLabel;
-                                return (
-                                    cardLabelExist && (
-                                        <Base.H5
-                                            key={`feature53-tab-btn-${index}`}
-                                            className={`${this.decorateCSS("tab-button")} ${desktopActive === index ? this.decorateCSS("active") : ""}`}
-                                            onClick={() => this.setDesktopCard(index)}
-                                        >
-                                            {card.cardLabel}
-                                        </Base.H5>
-                                    )
-                                );
-                            })}
-                        </div>
-
-                        <Base.VerticalContent className={this.decorateCSS("tab-content-area")}>
-                            {filteredCards.map((card: ICard, index: number) => {
-                                const cardLabelExist = card.cardLabel;
-                                const cardMedia = card.cardMedia;
-                                const mediaValue = cardMedia?.media as TypeMediaInputValue;
-                                const overlayEnabled = cardMedia?.overlay ?? false;
-                                const hasMedia = hasMediaValue(mediaValue);
-
-                                const buttons = card.buttons || [];
-                                const hasAnyButton = buttons.some((btn) => this.castToString(btn.text));
-
-                                const itemSubtitleExist = card.cardSubtitle;
-                                const itemTitleExist = card.cardTitle;
-                                const itemDescriptionExist = card.cardDescription;
-                                const hasAnyContent = itemSubtitleExist || itemTitleExist || itemDescriptionExist || hasAnyButton;
-                                const mediaOnly = !hasAnyContent && hasMedia;
-
-                                return (
-                                    <div key={`feature53-tab-${index}`} className={`${this.decorateCSS("tab")} ${desktopActive === index ? this.decorateCSS("active") : ""}`} >
-                                        {(cardLabelExist || mobileIconExist) && (
-                                            <Base.H5 className={`${this.decorateCSS("tab-header")} ${activeCard === index ? this.decorateCSS("active") : ""}`} onClick={() => this.setActiveCard(index)} >
-                                                {cardLabelExist && (
-                                                    <span className={this.decorateCSS("tab-header-title")}>{card.cardLabel}</span>
-                                                )}
-                                                {mobileIconExist && (
-                                                    <Base.Media
-                                                        value={mobileIcon}
-                                                        className={`${this.decorateCSS("tab-header-icon")} ${activeCard === index ? this.decorateCSS("active") : ""} ${mobileIconIsImage ? this.decorateCSS("is-image") : ""}`}
-                                                    />
-                                                )}
+                    {filteredCards.length > 0 && (
+                        <Base.VerticalContent className={`${this.decorateCSS("tabs")} ${activeCard === -1 ? this.decorateCSS("tablet-closed-default") : ""} ${this.getPropValue("showMobileLines") === false ? this.decorateCSS("no-lines") : ""}`}>
+                            {hasAnyCardLabel && (
+                                <div className={this.decorateCSS("tab-buttons")}>
+                                    {filteredCards.map((card: ICard, index: number) => {
+                                        const cardLabelExist = this.castToString(card.cardLabel);
+                                        return cardLabelExist && (
+                                            <Base.H5
+                                                key={`feature53-tab-btn-${index}`}
+                                                className={`${this.decorateCSS("tab-button")} ${desktopActive === index ? this.decorateCSS("active") : ""}`}
+                                                onClick={() => this.setDesktopCard(index)}
+                                            >
+                                                {card.cardLabel}
                                             </Base.H5>
-                                        )}
-                                        {(hasAnyContent || mediaOnly) && (
-                                            <div className={`${this.decorateCSS("tab-content")} ${mediaOnly && this.decorateCSS("media-only")}`}>
-                                                {hasAnyContent && (
-                                                    <Base.VerticalContent className={this.decorateCSS("content")}>
-                                                        {itemSubtitleExist && (
-                                                            <Base.H5 className={this.decorateCSS("card-subtitle")}>{card.cardSubtitle}</Base.H5>
-                                                        )}
-                                                        {itemTitleExist && (
-                                                            <Base.H3 className={this.decorateCSS("card-title")}>{card.cardTitle}</Base.H3>
-                                                        )}
-                                                        {itemDescriptionExist && (
-                                                            <Base.P className={this.decorateCSS("card-description")}>{card.cardDescription}</Base.P>
-                                                        )}
-                                                        {hasAnyButton && (
-                                                            <div className={this.decorateCSS("card-button-container")}>
-                                                                {buttons.map((button, btnIndex) => {
-                                                                    const buttonTextExist = this.castToString(button.text);
-                                                                    return (
-                                                                        buttonTextExist && (
-                                                                            <ComposerLink key={`feature53-btn-${index}-${btnIndex}`} path={button.url}>
-                                                                                <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
-                                                                                    <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
-                                                                                </Base.Button>
-                                                                            </ComposerLink>
-                                                                        )
-                                                                    );
-                                                                })}
-                                                            </div>
-                                                        )}
-                                                    </Base.VerticalContent>
-                                                )}
-                                                {hasMedia && (
-                                                    <div className={this.decorateCSS("media-container")}>
-                                                        <Base.Media value={mediaValue} className={this.decorateCSS("media")} />
-                                                        {overlayEnabled && <div className={this.decorateCSS("overlay")} />}
-                                                    </div>
-                                                )}
-                                            </div>
-                                        )}
-                                    </div>
-                                );
-                            })}
+                                        );
+                                    })}
+                                </div>
+                            )}
+
+                            <Base.VerticalContent className={this.decorateCSS("tab-content-area")}>
+                                {filteredCards.map((card: ICard, index: number) => {
+                                    const cardLabelExist = this.castToString(card.cardLabel);
+                                    const cardMedia = card.cardMedia;
+                                    const mediaValue = cardMedia?.media as TypeMediaInputValue;
+                                    const overlayEnabled = cardMedia?.overlay ?? false;
+                                    const hasMedia = hasMediaValue(mediaValue);
+
+                                    const cardButtons = card.cardButtons || [];
+                                    const hasAnyButton = cardButtons.some((btn) => this.castToString(btn.text));
+
+                                    const itemSubtitleExist = this.castToString(card.cardSubtitle);
+                                    const itemTitleExist = this.castToString(card.cardTitle);
+                                    const itemDescriptionExist = this.castToString(card.cardDescription);
+                                    const hasAnyContent = !!(itemSubtitleExist || itemTitleExist || itemDescriptionExist || hasAnyButton);
+                                    const mediaOnly = !hasAnyContent && hasMedia;
+
+                                    return (
+                                        <div key={`feature53-tab-${index}`} className={`${this.decorateCSS("tab")} ${desktopActive === index ? this.decorateCSS("active") : ""} ${mediaOnly ? this.decorateCSS("media-only") : ""}`} >
+                                            {(cardLabelExist || mobileIconExist) && (
+                                                <Base.H5 className={`${this.decorateCSS("tab-header")} ${activeCard === index ? this.decorateCSS("active") : ""}`} onClick={() => this.setActiveCard(index)} >
+                                                    {cardLabelExist && (
+                                                        <span className={this.decorateCSS("tab-header-title")}>{card.cardLabel}</span>
+                                                    )}
+                                                    {mobileIconExist && (
+                                                        <Base.Media
+                                                            value={mobileIcon}
+                                                            className={`${this.decorateCSS("tab-header-icon")} ${activeCard === index ? this.decorateCSS("active") : ""} ${mobileIconIsImage ? this.decorateCSS("is-image") : ""}`}
+                                                        />
+                                                    )}
+                                                </Base.H5>
+                                            )}
+                                            {(hasAnyContent || mediaOnly) && (
+                                                <div className={this.decorateCSS("tab-content")}>
+                                                    {hasAnyContent && (
+                                                        <Base.VerticalContent className={this.decorateCSS("content")}>
+                                                            {itemSubtitleExist && (
+                                                                <Base.H5 className={this.decorateCSS("card-subtitle")}>{card.cardSubtitle}</Base.H5>
+                                                            )}
+                                                            {itemTitleExist && (
+                                                                <Base.H3 className={this.decorateCSS("card-title")}>{card.cardTitle}</Base.H3>
+                                                            )}
+                                                            {itemDescriptionExist && (
+                                                                <Base.P className={this.decorateCSS("card-description")}>{card.cardDescription}</Base.P>
+                                                            )}
+                                                            {hasAnyButton && (
+                                                                <div className={this.decorateCSS("card-button-container")}>
+                                                                    {cardButtons.map((button, btnIndex) => {
+                                                                        const buttonTextExist = this.castToString(button.text);
+                                                                        return (
+                                                                            buttonTextExist && (
+                                                                                <ComposerLink key={`feature53-btn-${index}-${btnIndex}`} path={button.url}>
+                                                                                    <Base.Button buttonType={button.type} className={this.decorateCSS("card-button")}>
+                                                                                        <Base.P className={this.decorateCSS("card-button-text")}>{button.text}</Base.P>
+                                                                                    </Base.Button>
+                                                                                </ComposerLink>
+                                                                            )
+                                                                        );
+                                                                    })}
+                                                                </div>
+                                                            )}
+                                                        </Base.VerticalContent>
+                                                    )}
+                                                    {hasMedia && (
+                                                        <div className={this.decorateCSS("media-container")}>
+                                                            <Base.Media value={mediaValue} className={this.decorateCSS("media")} />
+                                                            {overlayEnabled && <div className={this.decorateCSS("overlay")} />}
+                                                        </div>
+                                                    )}
+                                                </div>
+                                            )}
+                                        </div>
+                                    );
+                                })}
+                            </Base.VerticalContent>
                         </Base.VerticalContent>
-                    </Base.VerticalContent>
+                    )}
                 </Base.MaxContent>
             </Base.Container>
         );

@@ -82,9 +82,11 @@
                 grid-template-columns: 1fr;
                 overflow: visible;
                 align-items: center;
+                width: 100%;
 
                 .tab {
                     grid-area: 1 / 1;
+                    pointer-events: none;
 
                     .tab-header {
                         display: none;
@@ -99,10 +101,31 @@
                         pointer-events: none;
                     }
 
-                    &.active .tab-content {
-                        opacity: 1;
-                        visibility: visible;
+                    &.media-only {
+                        .tab-content {
+                            width: 100%;
+
+                            .media-container {
+                                flex: unset;
+                                width: 100%;
+
+                                .media {
+                                    width: 100%;
+                                    height: auto;
+                                    aspect-ratio: 4 / 2;
+                                }
+                            }
+                        }
+                    }
+
+                    &.active {
                         pointer-events: auto;
+
+                        .tab-content {
+                            opacity: 1;
+                            visibility: visible;
+                            pointer-events: auto;
+                        }
                     }
 
                     .content {
@@ -125,8 +148,8 @@
                             gap: var(--composer-gap-sm);
                             justify-content: left;
 
-                            .button {
-                                .button-text {
+                            .card-button {
+                                .card-button-text {
                                     content: "";
                                 }
                             }
