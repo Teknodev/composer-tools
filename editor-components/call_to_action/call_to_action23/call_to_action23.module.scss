@@ -55,17 +55,15 @@
           width: 100%;
           gap: var(--composer-gap-sm);
 
-          .info-label,
-          .info-text {
-            text-align: left;
-          }
-
           .info-label {
             color: var(--composer-font-color-primary);
+            text-align: left;
           }
 
           .info-text {
             color: var(--composer-primary-color);
+            font-weight: 500;
+            text-align: left;
           }
         }
 
@@ -126,7 +124,7 @@
             }
 
             .info-text {
-              color: var(--composer-primary-color);
+              color: var(--composer-html-background);
             }
           }
         }

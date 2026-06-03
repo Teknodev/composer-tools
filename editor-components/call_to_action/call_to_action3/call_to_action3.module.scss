@@ -2,10 +2,23 @@
 
 .container {
   position: relative;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  padding: calc(var(--composer-gap-xl) * 2) var(--composer-gap-xl);
+
+  &.has-background {
+    .max-content {
+      .content-container {
+        .subtitle {
+          color: #ffffff;
+          background: transparent !important;
+          padding: 0 !important;
+        }
+
+        .title,
+        .description {
+          color: #ffffff;
+        }
+      }
+    }
+  }
 
   &.overlay-active {
     &::before {
@@ -37,27 +50,17 @@
     .content-container {
       align-items: center;
 
+      .subtitle,
       .title,
-      .subtitle {
+      .description {
         text-align: center !important;
-
-        &.with-image {
-          color: white;
-        }
       }
 
       .subtitle {
         transform: translateX(0);
+
         &::before {
           display: none;
-        }
-      }
-
-      .description {
-        text-align: center !important;
-
-        &.with-image {
-          color: white;
         }
       }
 
@@ -65,30 +68,17 @@
         display: flex;
         width: 100%;
         flex-wrap: wrap;
-        gap: var(--composer-gap-md);
+        gap: var(--composer-gap-sm);
         justify-content: center;
 
         .button {
           content: "";
+
           .button-text {
             content: "";
           }
         }
       }
     }
-  }
-}
-
-@container (max-width: #{$composer-tablet-width}) {
-
-  .container {
-    padding: calc(var(--composer-gap-xl) * 2) var(--composer-gap-lg);
-  }
-}
-
-@container (max-width: #{$composer-phone-width}) {
-
-  .container {
-    padding: calc(var(--composer-gap-xl) * 2) var(--composer-gap-md);
   }
 }

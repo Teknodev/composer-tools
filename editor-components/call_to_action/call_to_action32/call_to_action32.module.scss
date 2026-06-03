@@ -41,6 +41,10 @@
                 .content-wrapper .media-column {
                     padding-top: var(--composer-gap-xl);
 
+                    &.no-left-content {
+                        padding-top: 0;
+                    }
+
                     .media-container {
                         border-radius: var(--composer-border-radius-sm) 0 0 0;
                     }
@@ -92,6 +96,10 @@
 
                 .media-column {
                     width: 50%;
+
+                    &.no-left-content {
+                        width: 100%;
+                    }
 
                     .media-container {
                         border-radius: var(--composer-border-radius-sm);
