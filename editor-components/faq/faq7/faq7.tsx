@@ -6,8 +6,8 @@ import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "../../../custom-hooks/input-templates";
 
 type Card = {
-  title: React.JSX.Element;
-  description: React.JSX.Element;
+  question: React.JSX.Element;
+  answer: React.JSX.Element;
 };
 
 class Faq7 extends BaseFAQ {
@@ -33,36 +33,40 @@ class Faq7 extends BaseFAQ {
       displayer: "Description",
       value: "Frequently Asked Questions About Dental Treatments in Turkey",
     });
-    this.addProp({
-      type: "media",
-      key: "iconInactive",
-      displayer: "Inactive Icon",
-      additionalParams: {
-        availableTypes: ["icon"],
-      },
-      value: {
-        type: "icon",
-        name: "SlArrowDown",
-      },
-    });
+
     this.addProp({
       type: "media",
       key: "iconActive",
       displayer: "Active Icon",
       additionalParams: {
-        availableTypes: ["icon"],
+        availableTypes: ["icon", "image"],
       },
       value: {
         type: "icon",
         name: "SlArrowUp",
       },
     });
+
+    this.addProp({
+      type: "media",
+      key: "iconInactive",
+      displayer: "Inactive Icon",
+      additionalParams: {
+        availableTypes: ["icon", "image"],
+      },
+      value: {
+        type: "icon",
+        name: "SlArrowDown",
+      },
+    });
+
     this.addProp({
       type: "number",
       key: "initialCardCount",
       displayer: "Initial Card Count",
       value: 3,
     });
+
     this.addProp({
       type: "number",
       key: "moreCardCount",
@@ -82,15 +86,15 @@ class Faq7 extends BaseFAQ {
           value: [
             {
               type: "string",
-              key: "title",
-              displayer: "Title",
+              key: "question",
+              displayer: "Question",
               value:
                 "Why should I have my Dental Implants in Turkey?",
             },
             {
               type: "string",
-              key: "description",
-              displayer: "Description",
+              key: "answer",
+              displayer: "Answer",
               value: "Cost of dental implants in Turkey is around 30 to 40 percent of what the costs in Europe. Other dental procedures are also significantly low-priced. We use the same high quality materials and Implant brands however the cost of living, running a dental clinic and wages are much lower. Moreover, all your treatments are done by specialists using high-tech materials.",
             },
           ],
@@ -102,15 +106,15 @@ class Faq7 extends BaseFAQ {
           value: [
             {
               type: "string",
-              key: "title",
-              displayer: "Title",
+              key: "question",
+              displayer: "Question",
               value:
                 "How long does the dental implant procedure take?",
             },
             {
               type: "string",
-              key: "description",
-              displayer: "Description",
+              key: "answer",
+              displayer: "Answer",
               value: "You will need to make two visits to complete your treatment. For first visit you need to stay 5 days and for second visit you need to stay 8 days. During the first appointment, your surgeon places the implant in the jawbone. Then, the surgeon covers the implant with gum tissue to allow the implant to heal properly. The healing period may vary 3-6 months depending on the patient's bone condition. If you want to wait longer than 3-6 months for your Dental Crowns this will not affect your procedure and is perfectly safe. The choice is up-to-you depending on your available holiday dates and of course your budget.",
             },
           ],
@@ -122,15 +126,15 @@ class Faq7 extends BaseFAQ {
           value: [
             {
               type: "string",
-              key: "title",
-              displayer: "Title",
+              key: "question",
+              displayer: "Question",
               value:
                 " How can I overcome dental anxiety?",
             },
             {
               type: "string",
-              key: "description",
-              displayer: "Description",
+              key: "answer",
+              displayer: "Answer",
               value: "As many as 40 million people avoid dental treatment due to dental anxiety. We want to make your treatment as comfortable as possible and sedation simply adds the extra bit of relaxation. It can prevent gag reflexes and help patients who fear the dentist relax. It is completely painless and will give you a sense of calm and happiness! We offer different types of sedation and your dentist will decide which is right for you, for longer or more complicated treatments intravenous sedation may be advisable. Sedation will not make you unconscious, but it will make it unsafe for you to drive or operate any machinery for a while afterwards, so we recommend asking for a friend or family member to join you! At Dental Excellence Turkey we want all our patients to have a very pleasant experience, making sure you are happy with all the aspects of your treatment!.",
             },
           ],
@@ -141,15 +145,15 @@ class Faq7 extends BaseFAQ {
           value: [
             {
               type: "string",
-              key: "title",
-              displayer: "Title",
+              key: "question",
+              displayer: "Question",
               value:
                 "What is Digital Smile Design?",
             },
             {
               type: "string",
-              key: "description",
-              displayer: "Description",
+              key: "answer",
+              displayer: "Answer",
               value: "Whenever you look at the mirror, if the image caused by the shape, color, and shortness of your teeth bothers you, the smile design can be the key to the change you want. With the smile design, not only your teeth, but also your gums, lips and face are evaluated as a whole. Parameters such as your facial features, lip structure, gum levels, gender, skin color and even your character are evaluated and a special treatment plan is prepared for you. With a correct planning, your smile can erase the years on your face, and Hollywood smile can be your signature.",
             },
           ],
@@ -161,15 +165,15 @@ class Faq7 extends BaseFAQ {
           value: [
             {
               type: "string",
-              key: "title",
-              displayer: "Title",
+              key: "question",
+              displayer: "Question",
               value:
                 "Is Porcelain Laminate Veneer an invasive or painful treatment?",
             },
             {
               type: "string",
-              key: "description",
-              displayer: "Description",
+              key: "answer",
+              displayer: "Answer",
               value: "Not at all, nowadays porcelain veneers are getting thinner, so tooth carving is minimal. It is a simple treatment, fast and without pain.",
             },
           ],
@@ -181,15 +185,15 @@ class Faq7 extends BaseFAQ {
           value: [
             {
               type: "string",
-              key: "title",
-              displayer: "Title",
+              key: "question",
+              displayer: "Question",
               value:
                 "How to Care for Dental Veneers?",
             },
             {
               type: "string",
-              key: "description",
-              displayer: "Description",
+              key: "answer",
+              displayer: "Answer",
               value: "Porcelain veneers require the same maintenance as natural teeth. They are made of a material that is not affected by cavities but they are attached to a part of the tooth which is vulnerable to decay, so it is always recommended a good oral hygiene based on tooth brushing 3 times a day and the use of dental floss, once a day.",
             },
           ],
@@ -200,7 +204,7 @@ class Faq7 extends BaseFAQ {
     this.addProp({
       type: "boolean",
       key: "line",
-      displayer: "Enable Line",
+      displayer: "Line",
       value: true,
     })
 
@@ -254,11 +258,11 @@ class Faq7 extends BaseFAQ {
                     return (
                       <div className={this.decorateCSS("card")} key={indexCard} onClick={() => this.handleButton(indexCard)}>
                         {this.getPropValue("line") && (<div className={this.decorateCSS("line")}></div>)}
-                        {(this.castToString(card.title) || this.getPropValue("iconActive") || this.getPropValue("iconInactive")) && (
+                        {(this.castToString(card.question) || this.getPropValue("iconActive") || this.getPropValue("iconInactive")) && (
                           <div className={this.decorateCSS("child-container")}>
-                            {this.castToString(card.title) && (
-                              <div className={this.decorateCSS("card-title-wrapper")}>
-                                <Base.H4 className={`${this.decorateCSS("card-title")} ${isActive ? this.decorateCSS("active") : ""}`}>{card.title}</Base.H4>
+                            {this.castToString(card.question) && (
+                              <div className={this.decorateCSS("question-wrapper")}>
+                                <Base.H6 className={`${this.decorateCSS("question-text")} ${isActive ? this.decorateCSS("active") : ""}`}>{card.question}</Base.H6>
                               </div>
                             )}
                             {(this.getPropValue("iconActive") || this.getPropValue("iconInactive")) && (
@@ -268,10 +272,10 @@ class Faq7 extends BaseFAQ {
                             )}
                           </div>
                         )}
-                        {this.castToString(card.description) && (
-                          <div className={`${this.decorateCSS("inner-card")} ${isActive ? this.decorateCSS("active") : ""}`} >
-                            <Base.P className={`${this.decorateCSS("inner-text")} ${isActive ? this.decorateCSS("active") : ""}`}>
-                              {card.description}
+                        {this.castToString(card.answer) && (
+                          <div className={`${this.decorateCSS("answer-box")} ${isActive ? this.decorateCSS("active") : ""}`} >
+                            <Base.P className={`${this.decorateCSS("answer-text")} ${isActive ? this.decorateCSS("active") : ""}`}>
+                              {card.answer}
                             </Base.P>
                           </div>
                         )}
