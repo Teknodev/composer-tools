@@ -8,7 +8,7 @@ import ComposerLink from "../../../composer-base-components/Link/ComposerLinkPro
 type Feature29CardSide = {
   visibility?: boolean;
   overlay?: boolean;
-  image?: TypeMediaInputValue;
+  media?: TypeMediaInputValue;
   title: React.JSX.Element;
   description: React.JSX.Element;
   button?: TypeUsableComponentProps[];
@@ -52,7 +52,7 @@ class Feature28 extends BaseFeature {
         },
         {
           type: "media",
-          key: "image",
+          key: "media",
           displayer: "Media",
           additionalParams: {
             availableTypes: ["image", "video"],
@@ -98,7 +98,7 @@ class Feature28 extends BaseFeature {
         },
         {
           type: "media",
-          key: "image",
+          key: "media",
           displayer: "Media",
           additionalParams: {
             availableTypes: ["image", "video"],
@@ -144,7 +144,7 @@ class Feature28 extends BaseFeature {
         },
         {
           type: "media",
-          key: "image",
+          key: "media",
           displayer: "Media",
           additionalParams: {
             availableTypes: ["image", "video"],
@@ -189,7 +189,7 @@ class Feature28 extends BaseFeature {
         },
         {
           type: "media",
-          key: "image",
+          key: "media",
           displayer: "Media",
           additionalParams: {
             availableTypes: ["image", "video"],
@@ -234,7 +234,7 @@ class Feature28 extends BaseFeature {
         },
         {
           type: "media",
-          key: "image",
+          key: "media",
           displayer: "Media",
           additionalParams: {
             availableTypes: ["image", "video"],
@@ -280,7 +280,7 @@ class Feature28 extends BaseFeature {
         },
         {
           type: "media",
-          key: "image",
+          key: "media",
           displayer: "Media",
           additionalParams: {
             availableTypes: ["image", "video"],
@@ -372,23 +372,23 @@ class Feature28 extends BaseFeature {
     };
 
     const renderCard = (
-      image: TypeMediaInputValue | undefined,
+      media: TypeMediaInputValue | undefined,
       overlay: boolean,
       title: React.JSX.Element,
       description: React.JSX.Element,
       button?: TypeUsableComponentProps[],
       additionalClass?: string
     ) => {
-      const imageUrl = image && image.type !== "icon" && image.url;
+      const mediaUrl = media && media.type !== "icon" && media.url;
       const titleExist = !!this.castToString(title);
       const descriptionExist = this.castToString(description);
 
       return (
         <div
-        className={[this.decorateCSS("card"), additionalClass, imageUrl && this.decorateCSS("with-bg")]}
+        className={[this.decorateCSS("card"), additionalClass, mediaUrl && this.decorateCSS("with-bg")]}
           data-animation={hoverAnimation}
         >
-          {imageUrl && <Base.Media className={this.decorateCSS("card-media")} value={image} />}
+          {mediaUrl && <Base.Media className={this.decorateCSS("card-media")} value={media} />}
           {overlay && <div className={this.decorateCSS("overlay-layer")} />}
           <Base.VerticalContent className={this.decorateCSS("card-text-container")}>
             {titleExist && <Base.H3 className={this.decorateCSS("card-title")}>{title}</Base.H3>}
@@ -422,7 +422,7 @@ class Feature28 extends BaseFeature {
                 {topLeftSide.visibility && (
                   <div className={this.decorateCSS("left-top-card")}>
                     {renderCard(
-                      topLeftSide.image,
+                      topLeftSide.media,
                       !!topLeftSide.overlay,
                       topLeftSide.title,
                       topLeftSide.description,
@@ -435,7 +435,7 @@ class Feature28 extends BaseFeature {
                   <div className={this.decorateCSS("left-bottom-cards")}>
                     {bottomLeftCards.map((card, index) => (
                       <React.Fragment key={`left-card-${index}`}>
-                        {renderCard(card.image, !!card.overlay, card.title, card.description, card.button)}
+                        {renderCard(card.media, !!card.overlay, card.title, card.description, card.button)}
                       </React.Fragment>
                     ))}
                   </div>
@@ -446,7 +446,7 @@ class Feature28 extends BaseFeature {
             {middleSide.visibility && (
               <div className={this.decorateCSS("middle-side")}>
                 {renderCard(
-                  middleSide.image,
+                  middleSide.media,
                   !!middleSide.overlay,
                   middleSide.title,
                   middleSide.description,
@@ -460,7 +460,7 @@ class Feature28 extends BaseFeature {
                 {rightCards.map((card, index) => (
                   <div className={card.className} key={`${card.className}-${index}`}>
                     {renderCard(
-                      card.data.image,
+                      card.data.media,
                       !!card.data.overlay,
                       card.data.title,
                       card.data.description,

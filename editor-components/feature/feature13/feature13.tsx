@@ -63,7 +63,7 @@ class Feature13 extends BaseFeature {
       value: [
         {
           type: "object",
-          key: "image",
+          key: "media",
           displayer: "Media Item",
           value: [
             {
@@ -88,7 +88,7 @@ class Feature13 extends BaseFeature {
         },
         {
           type: "object",
-          key: "image",
+          key: "media",
           displayer: "Media Item",
           value: [
             {
@@ -113,7 +113,7 @@ class Feature13 extends BaseFeature {
         },
         {
           type: "object",
-          key: "image",
+          key: "media",
           displayer: "Media Item",
           value: [
             {

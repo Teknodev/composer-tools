@@ -49,7 +49,7 @@ class Feature27Component extends BaseFeature {
 
     this.addProp({
       type: "media",
-      key: "image",
+      key: "media",
       displayer: "Media",
       additionalParams: { availableTypes: ["image","video"] },
       value: {
@@ -70,7 +70,7 @@ class Feature27Component extends BaseFeature {
     const subtitleExist = this.castToString(subtitle);
     const description = this.getPropValue("description");
     const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
-    const image = this.getPropValue("image");
+    const media = this.getPropValue("media");
     const overlay = this.getPropValue("overlay");
     const alignment = Base.getContentAlignment();
     const isLeftContainerExist = isTitleExist || this.castToString(description) || buttons.length > 0;
@@ -141,14 +141,14 @@ class Feature27Component extends BaseFeature {
               </Base.VerticalContent>
             )}
 
-            {image && (
+            {media && (
               <div 
                 className={`${this.decorateCSS("right-container")} ${
                   !isLeftContainerExist ? this.decorateCSS("right-container-alone") : ""
                 }`}
               >
-                <Base.Media value={image} className={this.decorateCSS("image-circle")} />
-                {overlay && image?.url && <div className={this.decorateCSS("overlay")}></div>}
+                <Base.Media value={media} className={this.decorateCSS("image-circle")} />
+                {overlay && media?.url && <div className={this.decorateCSS("overlay")}></div>}
               </div>
             )}
           </div>

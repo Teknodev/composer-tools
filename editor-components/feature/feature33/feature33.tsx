@@ -9,7 +9,7 @@ class Feature33 extends BaseFeature {
 
         this.addProp({
             type: "media",
-            key: "image",
+            key: "media",
             displayer: "Media",
             value: {
                 type: "image",
@@ -108,7 +108,7 @@ class Feature33 extends BaseFeature {
     }
 
     render() {
-        const image = this.getPropValue("image") as TypeMediaInputValue;
+        const media = this.getPropValue("media") as TypeMediaInputValue;
 
         const rawTitle = this.getPropValue("title");
         const rawSubtitle = this.getPropValue("subtitle");
@@ -129,7 +129,7 @@ class Feature33 extends BaseFeature {
 
         const overlay = this.getPropValue("overlay");
 
-        const hasMedia = !!(image?.url || image?.name);
+        const hasMedia = !!(media?.url || media?.name);
 
         const alignmentValue = Base.getContentAlignment();
         const noImageCenterClass = !hasMedia && alignmentValue === "center" ? this.decorateCSS("no-image-center") : "";
@@ -144,7 +144,7 @@ class Feature33 extends BaseFeature {
                         >
                             <Base.Media
                                 className={this.decorateCSS("image")}
-                                value={image}
+                                value={media}
                             />
                             {overlay && (
                                 <div className={this.decorateCSS("overlay")} />

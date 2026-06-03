@@ -11,7 +11,7 @@ type Card = {
   subtitle: React.JSX.Element;
   icon: TypeMediaInputValue;
   description: React.JSX.Element;
-  image: TypeMediaInputValue;
+  media: TypeMediaInputValue;
   buttons: TypeButton[];
 };
 
@@ -124,8 +124,8 @@ class Feature4 extends BaseFeature {
             },
             {
               type: "media",
-              key: "image",
-              displayer: "Image",
+              key: "media",
+              displayer: "Media",
               additionalParams: {
                 availableTypes: ["image"],
               },
@@ -185,8 +185,8 @@ class Feature4 extends BaseFeature {
             },
             {
               type: "media",
-              key: "image",
-              displayer: "Image",
+              key: "media",
+              displayer: "Media",
               additionalParams: {
                 availableTypes: ["image"],
               },
@@ -246,8 +246,8 @@ class Feature4 extends BaseFeature {
             },
             {
               type: "media",
-              key: "image",
-              displayer: "Image",
+              key: "media",
+              displayer: "Media",
               additionalParams: {
                 availableTypes: ["image"],
               },
@@ -307,8 +307,8 @@ class Feature4 extends BaseFeature {
             },
             {
               type: "media",
-              key: "image",
-              displayer: "Image",
+              key: "media",
+              displayer: "Media",
               additionalParams: {
                 availableTypes: ["image"],
               },
@@ -368,8 +368,8 @@ class Feature4 extends BaseFeature {
             },
             {
               type: "media",
-              key: "image",
-              displayer: "Image",
+              key: "media",
+              displayer: "Media",
               additionalParams: {
                 availableTypes: ["image"],
               },
@@ -481,7 +481,7 @@ class Feature4 extends BaseFeature {
               const subtitleExist = !!this.castToString(card.subtitle);
               const descExist = !!this.castToString(card.description);
               const iconExist = !!card.icon?.name;
-              const imageExist = !!card.image?.url;
+              const imageExist = !!card.media?.url;
               const buttonsExist = card.buttons?.length > 0;
 
               const shouldRender = (titleExist || subtitleExist || descExist || iconExist || imageExist || buttonsExist);
@@ -522,14 +522,14 @@ class Feature4 extends BaseFeature {
                       (descExist || card?.buttons?.length > 0) && (
                         <div
                           className={this.decorateCSS("overlay")}
-                          style={{ backgroundImage: `url(${card.image?.url})` }}>
+                          style={{ backgroundImage: `url(${card.media?.url})` }}>
                           <Base.VerticalContent className={`${this.decorateCSS("overlay-content")}
                             ${imageOverlay ? this.decorateCSS("apply-overlay") : ""}`}>
                             {descExist && (
                               <Base.P
                                 className={`
                                 ${this.decorateCSS("long-text")}
-                                ${card.image?.url || imageOverlay ? this.decorateCSS("image-or-overlay-exist") : ""}
+                                ${card.media?.url || imageOverlay ? this.decorateCSS("image-or-overlay-exist") : ""}
                               `}
                               >
                                 {card.description}
@@ -547,7 +547,7 @@ class Feature4 extends BaseFeature {
                                           buttonType={item.type}
                                           key={index}
                                           className={`${this.decorateCSS("overlay-button")} 
-                                              ${card.image?.url || imageOverlay ? this.decorateCSS("image-or-overlay-exist") : ""}`}>
+                                              ${card.media?.url || imageOverlay ? this.decorateCSS("image-or-overlay-exist") : ""}`}>
                                           <ComposerLink path={item.page}>
                                             {item.text}
                                           </ComposerLink>

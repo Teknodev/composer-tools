@@ -19,7 +19,7 @@ interface Section {
 
 interface ProductCard {
     title: React.JSX.Element;
-    image: TypeMediaInputValue;
+    media: TypeMediaInputValue;
     sections: Section[];
     buttons: ButtonTypeObj[];
 }
@@ -67,7 +67,7 @@ class Feature38 extends BaseFeature {
                         },
                         {
                             type: "media",
-                            key: "image",
+                            key: "media",
                             displayer: "Media",
                             additionalParams: {
                                 availableTypes: ["image", "video"],
@@ -129,7 +129,7 @@ class Feature38 extends BaseFeature {
                         },
                         {
                             type: "media",
-                            key: "image",
+                            key: "media",
                             displayer: "Media",
                             additionalParams: {
                                 availableTypes: ["image", "video"],
@@ -191,7 +191,7 @@ class Feature38 extends BaseFeature {
                         },
                         {
                             type: "media",
-                            key: "image",
+                            key: "media",
                             displayer: "Media",
                             additionalParams: {
                                 availableTypes: ["image", "video"],
@@ -265,7 +265,7 @@ class Feature38 extends BaseFeature {
         const hasCards = cards.some((card: ProductCard) => this.castToString(card.title));
         const hasContent = subtitleExist || titleExist || descriptionExist || hasCards;
         const hasRightContent = cards.some((card: ProductCard) =>
-            card.image ||
+            card.media ||
             card.sections?.length > 0 ||
             card.buttons?.some((btn) => this.castToString(btn.text))
         );
@@ -313,10 +313,10 @@ class Feature38 extends BaseFeature {
                                         key={index}
                                         className={`${this.decorateCSS("right-content")} ${isActive && this.decorateCSS("active-item")}`}
                                     >
-                                        {card.image && (
+                                        {card.media && (
                                             <div className={this.decorateCSS("image-wrapper")}>
                                                 <Base.Media
-                                                    value={card.image}
+                                                    value={card.media}
                                                     className={this.decorateCSS("itemImage")}
                                                 />
                                             </div>

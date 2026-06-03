@@ -13,7 +13,7 @@ type ButtonTypeObj = {
 }
 
 type CardTypeObj = {
-    image: TypeMediaInputValue;
+    media: TypeMediaInputValue;
     enableOverlay: boolean;
     cardSubtitle: React.JSX.Element;
     cardTitle: React.JSX.Element;
@@ -66,7 +66,7 @@ class Feature41 extends BaseFeature {
                     value: [
                         {
                             type: "media",
-                            key: "image",
+                            key: "media",
                             displayer: "Media",
                             value: {
                                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/698309f72631ba002cff368a?alt=media",
@@ -114,7 +114,7 @@ class Feature41 extends BaseFeature {
                     value: [
                         {
                             type: "media",
-                            key: "image",
+                            key: "media",
                             displayer: "Media",
                             value: {
                                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/69830a1a2631ba002cff36b0?alt=media",
@@ -162,7 +162,7 @@ class Feature41 extends BaseFeature {
                     value: [
                         {
                             type: "media",
-                            key: "image",
+                            key: "media",
                             displayer: "Media",
                             value: {
                                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/69830a782631ba002cff36e6?alt=media",
@@ -249,7 +249,7 @@ class Feature41 extends BaseFeature {
                                 const cardSubtitleExist = this.castToString(card.cardSubtitle);
                                 const cardTitleExist = this.castToString(card.cardTitle);
                                 const cardDescriptionExist = this.castToString(card.cardDescription);
-                                const hasImage = !!(card.image && 'url' in card.image && card.image.url);
+                                const hasMedia = !!(card.media && 'url' in card.media && card.media.url);
                                 const buttonTextExist = this.castToString(card.button?.text);
                                 const hasButton = buttonTextExist;
 
@@ -258,10 +258,10 @@ class Feature41 extends BaseFeature {
                                         key={index}
                                         className={`${this.decorateCSS("card-content")} ${(card.rowReverse !== undefined ? card.rowReverse : index % 2 !== 0) && this.decorateCSS("row-reverse")}`}
                                     >
-                                        {hasImage && (
+                                        {hasMedia && (
                                             <div className={`${this.decorateCSS("image-wrapper")} ${!(cardTitleExist || cardDescriptionExist || cardSubtitleExist) && this.decorateCSS("full-width")}`}>
                                                 <Base.Media
-                                                    value={card.image}
+                                                    value={card.media}
                                                     className={this.decorateCSS("card-image")}
                                                 />
                                                 {card.enableOverlay && (
@@ -270,7 +270,7 @@ class Feature41 extends BaseFeature {
                                             </div>
                                         )}
                                         {(cardTitleExist || cardDescriptionExist || cardSubtitleExist) && (
-                                            <Base.VerticalContent className={`${this.decorateCSS("text-wrapper")} ${!hasImage && this.decorateCSS("no-image")}`}>
+                                            <Base.VerticalContent className={`${this.decorateCSS("text-wrapper")} ${!hasMedia && this.decorateCSS("no-image")}`}>
                                                 {cardSubtitleExist && (
                                                     <Base.H5 className={this.decorateCSS("card-subtitle")}>{card.cardSubtitle}</Base.H5>
                                                 )}

@@ -41,7 +41,7 @@ class Feature19 extends BaseFeature {
     });
     this.addProp({
       type: "media",
-      key: "image",
+      key: "media",
       displayer: "Media",
       additionalParams: {
         availableTypes: ["image","video"],
@@ -250,14 +250,14 @@ class Feature19 extends BaseFeature {
               )}
             </Base.VerticalContent>
           )}
-          {this.getPropValue("image") && (
+          {this.getPropValue("media") && (
             <div 
               className={`${this.decorateCSS("right-image")} ${!isAnyContentExists ? this.decorateCSS("no-content") : ""}`}
               data-animation={this.getPropValue("hoverAnimation").join(" ")}
               style={{ position: "relative" }}
             >
               <Base.Media
-                value={this.getPropValue("image")}
+                value={this.getPropValue("media")}
                 className={this.decorateCSS("img")}
               />
               {overlay && <div className={this.decorateCSS("overlay")} />}

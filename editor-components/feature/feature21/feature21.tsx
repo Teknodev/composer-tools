@@ -13,7 +13,7 @@ type Button = {
 };
 
 interface Card{
-    image: TypeMediaInputValue;
+    media: TypeMediaInputValue;
     video: TypeMediaInputValue;
     overlay: boolean;
     title: React.JSX.Element;
@@ -64,7 +64,7 @@ class Feature21 extends BaseFeature{
                     value: [
                         {
                             type: "media",
-                            key: "image",
+                            key: "media",
                             displayer: "Media",
                             additionalParams: {
                                 availableTypes: ["image","video"],
@@ -121,7 +121,7 @@ class Feature21 extends BaseFeature{
                     value: [
                         {
                             type: "media",
-                            key: "image",
+                            key: "media",
                             displayer: "Media",
                             additionalParams: {
                                 availableTypes: ["image","video"],
@@ -178,7 +178,7 @@ class Feature21 extends BaseFeature{
                     value: [
                         {
                             type: "media",
-                            key: "image",
+                            key: "media",
                             displayer: "Media",
                             additionalParams: {
                                 availableTypes: ["image","video"],
@@ -235,7 +235,7 @@ class Feature21 extends BaseFeature{
                     value: [
                         {
                             type: "media",
-                            key: "image",
+                            key: "media",
                             displayer: "Media",
                             additionalParams: {
                                 availableTypes: ["image","video"],
@@ -395,7 +395,7 @@ class Feature21 extends BaseFeature{
                     )}
                     <Base.ListGrid gridCount={{ pc: 4, tablet: 2, phone: 1 }} className={this.decorateCSS("grid-container")} >
                         {cards.map((card: Card, index: number) => {
-                            const cardImage = card?.image;
+                            const cardImage = card?.media;
                             const cardVideo = card?.video;
                             const cardTitle = card?.title;
                             const cardTitleExist = this.castToString(cardTitle);
@@ -436,7 +436,7 @@ class Feature21 extends BaseFeature{
                                                 />
                                             ) : cardImage && cardImage.url && (
                                                 <Base.Media
-                                                    value={card.image}
+                                                    value={card.media}
                                                     className={this.decorateCSS("card-image")}
                                                 />
                                             )}

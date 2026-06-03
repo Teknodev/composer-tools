@@ -9,7 +9,7 @@ type ITabs = {
   tabText: React.JSX.Element;
   title: React.JSX.Element;
   text: React.JSX.Element;
-  image: TypeMediaInputValue;
+  media: TypeMediaInputValue;
   overlay: boolean;
   description: React.JSX.Element;
   button: INPUTS.CastedButton;
@@ -44,7 +44,7 @@ class Feature25 extends BaseFeature {
             },
             {
               type: "media",
-              key: "image",
+              key: "media",
               displayer: "Media",
               additionalParams: {
                 availableTypes: ["image","video"],
@@ -103,7 +103,7 @@ class Feature25 extends BaseFeature {
             },
             {
               type: "media",
-              key: "image",
+              key: "media",
               displayer: "Media",
               additionalParams: {
                 availableTypes: ["image","video"],
@@ -162,7 +162,7 @@ class Feature25 extends BaseFeature {
             },
             {
               type: "media",
-              key: "image",
+              key: "media",
               displayer: "Media",
               additionalParams: {
                 availableTypes: ["image","video"],
@@ -286,7 +286,7 @@ class Feature25 extends BaseFeature {
                 const hasTitle = !!this.castToString(tab.title);
                 const hasDesc = !!this.castToString(tab.description);
                 const hasButton = !!this.castToString(tab.button?.text);
-                const hasImage = !!tab.image;
+                const hasImage = !!tab.media;
                 if (
                   !hasText &&
                   !hasTitle &&
@@ -324,7 +324,7 @@ class Feature25 extends BaseFeature {
                   const hasTitle = !!this.castToString(tab.title);
                   const hasDesc = !!this.castToString(tab.description);
                   const hasButton = !!this.castToString(tab.button?.text);
-                  const hasImage = !!tab.image;
+                  const hasImage = !!tab.media;
 
                   const isTextEmpty =
                     !hasText && !hasTitle && !hasDesc && !hasButton;
@@ -346,10 +346,10 @@ class Feature25 extends BaseFeature {
                       }`}
                       ref={this.tabContentRefs[index]}
                     >
-                      {tab.image && (
+                      {tab.media && (
                         <div className={this.decorateCSS("image-wrapper")}>
                           <Base.Media
-                            value={tab.image}
+                            value={tab.media}
                             className={this.decorateCSS("image")}
                           />
                           {tab.overlay && <div className={this.decorateCSS("overlay")} />}

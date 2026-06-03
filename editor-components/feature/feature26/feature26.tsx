@@ -14,7 +14,7 @@ class FeatureComponent26 extends BaseFeature {
 
     this.addProp({
       type: "media",
-      key: "image",
+      key: "media",
       displayer: "Media",
       value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6900d3202d05c1002bf00ca7?alt=media", },
       additionalParams: { availableTypes: ["image","video"] }
@@ -60,8 +60,8 @@ class FeatureComponent26 extends BaseFeature {
     const subtitle = this.getPropValue("subtitle");
     const title = this.getPropValue("title");
     const description = this.getPropValue("description");
-    const image = this.getPropValue("image");
-    const hasImage = !!(image && (image.url));
+    const media = this.getPropValue("media");
+    const hasMedia = !!(media && (media.url));
     const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
     const hoverAnimation = this.getPropValue("hoverAnimation");
     const imageOverlay = !!this.getPropValue("imageOverlay");
@@ -72,9 +72,9 @@ class FeatureComponent26 extends BaseFeature {
       <Base.Container className={this.decorateCSS("container")}>
           <Base.MaxContent className={this.decorateCSS("max-content")}>
             <div className={this.decorateCSS("wrapper")} data-animation={hoverAnimation?.join ? hoverAnimation.join(" ") : hoverAnimation}>
-              {hasImage && (
+              {hasMedia && (
                 <div className={this.decorateCSS("image-container")} data-animation={hoverAnimation?.join ? hoverAnimation.join(" ") : hoverAnimation}>
-                  <Base.Media value={image} className={this.decorateCSS("image")} />
+                  <Base.Media value={media} className={this.decorateCSS("image")} />
                   {imageOverlay && (<div className={`${this.decorateCSS("overlay")} ${this.decorateCSS("apply-overlay")}`}></div>)}
                 </div>
               )}

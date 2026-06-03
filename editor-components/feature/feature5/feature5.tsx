@@ -118,7 +118,7 @@ class Feature5 extends BaseFeature {
           value: [
             {
               type: "media",
-              key: "image",
+              key: "media",
               displayer: "Media",
               additionalParams: {
                 availableTypes: ["image","video"],
@@ -151,7 +151,7 @@ class Feature5 extends BaseFeature {
           value: [
             {
               type: "media",
-              key: "image",
+              key: "media",
               displayer: "Media",
               additionalParams: {
                 availableTypes: ["image","video"],
@@ -182,7 +182,7 @@ class Feature5 extends BaseFeature {
           value: [
             {
               type: "media",
-              key: "image",
+              key: "media",
               displayer: "Media",
               additionalParams: {
                 availableTypes: ["image","video"],
@@ -213,7 +213,7 @@ class Feature5 extends BaseFeature {
           value: [
             {
               type: "media",
-              key: "image",
+              key: "media",
               displayer: "Media",
               additionalParams: {
                 availableTypes: ["image","video"],
@@ -266,24 +266,24 @@ class Feature5 extends BaseFeature {
         link: string;
       };
       third_item: {
-        image: { type: "image"; url: string };
+        media: { type: "image"; url: string };
         link: string;
       };
     }>("row2");
 
     const row3 = this.castToObject<{
       image_and_subtitle_1: {
-        image: { type: "image"; url: string };
+        media: { type: "image"; url: string };
         sub_title: React.JSX.Element;
         link: string;
       };
       image_and_subtitle_2: {
-        image: { type: "image"; url: string };
+        media: { type: "image"; url: string };
         sub_title: React.JSX.Element;
         link: string;
       };
       image_and_subtitle_3: {
-        image: { type: "image"; url: string };
+        media: { type: "image"; url: string };
         sub_title: React.JSX.Element;
         link: string;
       };
@@ -296,30 +296,30 @@ class Feature5 extends BaseFeature {
       this.castToString(row2.first_item.button.text) ||
       row2.first_item.button.url;
     const isSecondColumnVisible = this.castToString(row2.second_item.text);
-    const isThirdColumnVisible = row2.third_item.image?.url;
+    const isThirdColumnVisible = row2.third_item.media?.url;
 
     const isRow2Visible =
       isFirstColumnVisible || isSecondColumnVisible || isThirdColumnVisible;
 
     const subtitle1 = this.castToString(row3.image_and_subtitle_1.sub_title);
-    const imageOrSubtitleExist1 = row3.image_and_subtitle_1.image?.url || subtitle1;
+    const imageOrSubtitleExist1 = row3.image_and_subtitle_1.media?.url || subtitle1;
 
     const subtitle2 = this.castToString(row3.image_and_subtitle_2.sub_title);
-    const imageOrSubtitleExist2 = row3.image_and_subtitle_2.image?.url || subtitle2;
+    const imageOrSubtitleExist2 = row3.image_and_subtitle_2.media?.url || subtitle2;
 
     const subtitle3 = this.castToString(row3.image_and_subtitle_3.sub_title);
-    const imageOrSubtitleExist3 = row3.image_and_subtitle_3.image?.url || subtitle3;
+    const imageOrSubtitleExist3 = row3.image_and_subtitle_3.media?.url || subtitle3;
 
     const isRow3Visible =
-      row3.image_and_subtitle_1.image?.url ||
-      row3.image_and_subtitle_2.image?.url ||
-      row3.image_and_subtitle_3.image?.url ||
+      row3.image_and_subtitle_1.media?.url ||
+      row3.image_and_subtitle_2.media?.url ||
+      row3.image_and_subtitle_3.media?.url ||
       subtitle1 ||
       subtitle2 ||
       subtitle3;
-    const isFirstImageExist = row3.image_and_subtitle_1.image?.url;
-    const isSecondImageExist = row3.image_and_subtitle_2.image?.url;
-    const isThirdImageExist = row3.image_and_subtitle_3.image?.url;
+    const isFirstImageExist = row3.image_and_subtitle_1.media?.url;
+    const isSecondImageExist = row3.image_and_subtitle_2.media?.url;
+    const isThirdImageExist = row3.image_and_subtitle_3.media?.url;
     const row3Status =
       !isFirstImageExist || !isSecondImageExist || !isThirdImageExist;
 
@@ -442,10 +442,10 @@ class Feature5 extends BaseFeature {
                       width: "100%",
                     }}
                   >
-                    {row2.third_item.image && (
+                    {row2.third_item.media && (
                       <ComposerLink path={row2.third_item.link}>
                         <Base.Media
-                          value={row2.third_item.image}
+                          value={row2.third_item.media}
                           className={this.decorateCSS("image")}
                         />
                       </ComposerLink>
@@ -458,9 +458,9 @@ class Feature5 extends BaseFeature {
               <div
                 className={`
                     ${this.decorateCSS("row3")} 
-                    ${!row3.image_and_subtitle_1.image?.url &&
-                    !row3.image_and_subtitle_2.image?.url &&
-                    !row3.image_and_subtitle_3.image?.url
+                    ${!row3.image_and_subtitle_1.media?.url &&
+                    !row3.image_and_subtitle_2.media?.url &&
+                    !row3.image_and_subtitle_3.media?.url
                     ? this.decorateCSS("row3-no-image")
                     : ""
                   }`}
@@ -471,9 +471,9 @@ class Feature5 extends BaseFeature {
                     isFullWidth={true}
                   >
                     <div className={this.decorateCSS("image_and_subtitle_1")}>
-                      {row3.image_and_subtitle_1.image && (
+                      {row3.image_and_subtitle_1.media && (
                         <Base.Media
-                          value={row3.image_and_subtitle_1.image}
+                          value={row3.image_and_subtitle_1.media}
                           className={`
                             ${this.decorateCSS("image")} 
                             ${row3Status ? this.decorateCSS("row3-images-less") : ""} 
@@ -496,9 +496,9 @@ class Feature5 extends BaseFeature {
                     isFullWidth={true}
                   >
                     <div className={this.decorateCSS("image_and_subtitle_2")}>
-                      {row3.image_and_subtitle_2.image && (
+                      {row3.image_and_subtitle_2.media && (
                         <Base.Media
-                          value={row3.image_and_subtitle_2.image}
+                          value={row3.image_and_subtitle_2.media}
                           className={`
                             ${this.decorateCSS("image")} 
                             ${row3Status ? this.decorateCSS("row3-images-less") : ""}
@@ -520,9 +520,9 @@ class Feature5 extends BaseFeature {
                     isFullWidth={true}
                   >
                     <div className={this.decorateCSS("image_and_subtitle_3")}>
-                      {!!row3.image_and_subtitle_3.image && (
+                      {!!row3.image_and_subtitle_3.media && (
                         <Base.Media
-                          value={row3.image_and_subtitle_3.image}
+                          value={row3.image_and_subtitle_3.media}
                           className={`
                             ${this.decorateCSS("image")} 
                             ${row3Status ? this.decorateCSS("row3-images-less") : ""}

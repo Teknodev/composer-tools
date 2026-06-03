@@ -16,7 +16,7 @@ class Feature7 extends BaseFeature {
 
     this.addProp({
       type: "media",
-      key: "image",
+      key: "media",
       displayer: "Media",
       additionalParams: {
         availableTypes: ["image","video"],
@@ -150,7 +150,7 @@ class Feature7 extends BaseFeature {
     const subtitleExist = this.castToString(this.getPropValue("subtitle"));
     const titleExist = this.castToString(this.getPropValue("title"))
     const descriptionExist = this.castToString(this.getPropValue("description"))
-    const image = this.getPropValue("image");
+    const media = this.getPropValue("media");
 
     const features = this.castToObject<Feature[]>("features");
     const links = this.castToObject<INPUTS.CastedButton[]>("links");
@@ -168,10 +168,10 @@ class Feature7 extends BaseFeature {
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <Base.ContainerGrid className={this.decorateCSS("wrapper")}>
-            {!!image?.url && (
+            {!!media?.url && (
               <Base.GridCell className={this.decorateCSS("image-container")}>
                 <Base.Media
-                  value={image}
+                  value={media}
                   className={hasTextContent ? this.decorateCSS("image") : this.decorateCSS("image-no-border-radius")}
                 />
               </Base.GridCell>

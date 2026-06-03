@@ -6,7 +6,7 @@ import { Base } from "../../../composer-base-components/base/base";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 
 type Logo = {
-  image: TypeMediaInputValue;
+  media: TypeMediaInputValue;
   url: string;
 };
 
@@ -156,7 +156,7 @@ class Feature3 extends BaseFeature {
             },
             {
               type: "media",
-              key: "image",
+              key: "media",
               displayer: "Logo Image",
               additionalParams: {
                 availableTypes: ["image", "icon"],
@@ -181,7 +181,7 @@ class Feature3 extends BaseFeature {
             },
             {
               type: "media",
-              key: "image",
+              key: "media",
               displayer: "Logo Image",
               additionalParams: {
                 availableTypes: ["image", "icon"],
@@ -206,7 +206,7 @@ class Feature3 extends BaseFeature {
             },
             {
               type: "media",
-              key: "image",
+              key: "media",
               displayer: "Logo Image",
               additionalParams: {
                 availableTypes: ["image", "icon"],
@@ -231,7 +231,7 @@ class Feature3 extends BaseFeature {
             },
             {
               type: "media",
-              key: "image",
+              key: "media",
               displayer: "Logo Image",
               additionalParams: {
                 availableTypes: ["image", "icon"],
@@ -256,7 +256,7 @@ class Feature3 extends BaseFeature {
             },
             {
               type: "media",
-              key: "image",
+              key: "media",
               displayer: "Logo Image",
               additionalParams: {
                 availableTypes: ["image", "icon"],
@@ -420,13 +420,13 @@ class Feature3 extends BaseFeature {
                 `}
               >
                 {logos.map((logo: Logo, index: number) => {
-                  const logoExist = !!(logo.image && (logo.image.type === "icon" ? logo.image.name : logo.image.url));
+                  const logoExist = !!(logo.media && (logo.media.type === "icon" ? logo.media.name : logo.media.url));
                   if (!logoExist) return null;
 
                   return (
                     <div key={index} className={this.decorateCSS("logo-container")}>
                       <ComposerLink path={logo.url}>
-                        <Base.Media value={logo.image} className={this.decorateCSS("logo-image")} />
+                        <Base.Media value={logo.media} className={this.decorateCSS("logo-image")} />
                       </ComposerLink>
                     </div>
                   );

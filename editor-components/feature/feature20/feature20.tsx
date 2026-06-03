@@ -13,7 +13,7 @@ type Button = {
 };
 
 interface Item {
-  image: TypeMediaInputValue;
+  media: TypeMediaInputValue;
   overlay: boolean;
   subtitle: React.JSX.Element;
   sectionHeading: React.JSX.Element;
@@ -80,7 +80,7 @@ class Feature20 extends BaseFeature {
           value: [
             {
               type: "media",
-              key: "image",
+              key: "media",
               displayer: "Media",
               additionalParams: {
                 availableTypes: ["image","video"],
@@ -125,7 +125,7 @@ class Feature20 extends BaseFeature {
           value: [
             {
               type: "media",
-              key: "image",
+              key: "media",
               displayer: "Media",
               additionalParams: {
                 availableTypes: ["image","video"],
@@ -171,7 +171,7 @@ class Feature20 extends BaseFeature {
           value: [
             {
               type: "media",
-              key: "image",
+              key: "media",
               displayer: "Media",
               additionalParams: {
                 availableTypes: ["image","video"],
@@ -273,7 +273,7 @@ class Feature20 extends BaseFeature {
               const btnText = this.castToString(item.button.text);
               const btnIconExist = item.button.icon && (item.button.icon.type === "icon" ? item.button.icon.name : item.button.icon.url);
               const hasTextContent = this.castToString(item.subtitle) || this.castToString(item.sectionHeading) || this.castToString(item.description) || btnText || btnIconExist;
-              return (hasTextContent || item.image) && (
+              return (hasTextContent || item.media) && (
               <React.Fragment key={i}>
                 <div
                   className={`${this.decorateCSS("content")} ${
@@ -281,13 +281,13 @@ class Feature20 extends BaseFeature {
                   }`}
                 >
                   <div className={`${this.decorateCSS("image-container")} ${!hasTextContent ? this.decorateCSS("full-width-container") : ""}`}>
-                    {item.image && (
+                    {item.media && (
                       <Base.Media
-                        value={item.image}
+                        value={item.media}
                         className={`${this.decorateCSS("image")} ${!hasTextContent ? this.decorateCSS("full-width-image") : ""}`}
                       />
                     )}
-                    {item.overlay && item.image && <div className={this.decorateCSS("overlay")} />}
+                    {item.overlay && item.media && <div className={this.decorateCSS("overlay")} />}
                   </div>
                   {hasTextContent && <Base.VerticalContent className={this.decorateCSS("text")}>
                     {this.castToString(item.subtitle) && <Base.H5 className={this.decorateCSS("item-subtitle")}>{item.subtitle}</Base.H5>}

@@ -7,7 +7,7 @@ import ComposerSlider from "../../../composer-base-components/slider/slider";
 import { INPUTS } from "../../../custom-hooks/input-templates";
 
 type Card = {
-  image: TypeMediaInputValue;
+  media: TypeMediaInputValue;
   title: React.JSX.Element;
   description: React.JSX.Element;
   url: string;
@@ -81,7 +81,7 @@ class Feature10 extends BaseFeature {
           value: [
             {
               type: "media",
-              key: "image",
+              key: "media",
               displayer: "Media",
               additionalParams: {
                 availableTypes: ["image","video"],
@@ -118,7 +118,7 @@ class Feature10 extends BaseFeature {
           value: [
             {
               type: "media",
-              key: "image",
+              key: "media",
               displayer: "Media",
               additionalParams: {
                 availableTypes: ["image","video"],
@@ -155,7 +155,7 @@ class Feature10 extends BaseFeature {
           value: [
             {
               type: "media",
-              key: "image",
+              key: "media",
               displayer: "Media",
               additionalParams: {
                 availableTypes: ["image","video"],
@@ -192,7 +192,7 @@ class Feature10 extends BaseFeature {
           value: [
             {
               type: "media",
-              key: "image",
+              key: "media",
               displayer: "Media",
               additionalParams: {
                 availableTypes: ["image","video"],
@@ -229,7 +229,7 @@ class Feature10 extends BaseFeature {
           value: [
             {
               type: "media",
-              key: "image",
+              key: "media",
               displayer: "Media",
               additionalParams: {
                 availableTypes: ["image","video"],
@@ -266,7 +266,7 @@ class Feature10 extends BaseFeature {
           value: [
             {
               type: "media",
-              key: "image",
+              key: "media",
               displayer: "Media",
               additionalParams: {
                 availableTypes: ["image","video"],
@@ -408,7 +408,7 @@ class Feature10 extends BaseFeature {
                     const titleExist = !!this.castToString(item.title);
                     const descExist = !!this.castToString(item.description);
 
-                    if (!item.image?.url && !titleExist && !descExist) return null;
+                    if (!item.media?.url && !titleExist && !descExist) return null;
 
                     return (
                       <ComposerLink path={item.url}>
@@ -416,8 +416,8 @@ class Feature10 extends BaseFeature {
                           key={index}
                           className={`${this.decorateCSS("card-container")} ${!(titleExist || descExist) && this.decorateCSS("fit-content")}`}
                         >
-                          {item.image && (
-                            <Base.Media value={item.image} className={`${this.decorateCSS("image")} ${!(titleExist || descExist) && this.decorateCSS("border-radius")}`} />
+                          {item.media && (
+                            <Base.Media value={item.media} className={`${this.decorateCSS("image")} ${!(titleExist || descExist) && this.decorateCSS("border-radius")}`} />
                           )}
                           {(titleExist || descExist) && (
                             <div className={this.decorateCSS("bottom")}>

@@ -7,7 +7,7 @@ import { INPUTS } from "../../../custom-hooks/input-templates";
 
 type Card = {
   title: React.JSX.Element;
-  image: TypeMediaInputValue;
+  media: TypeMediaInputValue;
   overlay: boolean;
   link: string;
 };
@@ -56,7 +56,7 @@ class Feature6 extends BaseFeature {
           value: [
             {
               type: "media",
-              key: "image",
+              key: "media",
               displayer: "Media",
               additionalParams: {
                 availableTypes: ["image","video"],
@@ -87,7 +87,7 @@ class Feature6 extends BaseFeature {
           value: [
             {
               type: "media",
-              key: "image",
+              key: "media",
               displayer: "Media",
               additionalParams: {
                 availableTypes: ["image","video"],
@@ -118,7 +118,7 @@ class Feature6 extends BaseFeature {
           value: [
             {
               type: "media",
-              key: "image",
+              key: "media",
               displayer: "Media",
               additionalParams: {
                 availableTypes: ["image","video"],
@@ -207,7 +207,7 @@ class Feature6 extends BaseFeature {
               <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount"), tablet: 3 }} className={this.decorateCSS("cards-container")}>
                 {cards.map((card: Card, index: number) => {
                   const titleExist = !!this.castToString(card.title);
-                  const imageExist = !!card.image;
+                  const imageExist = !!card.media;
 
                   const shouldRender = (titleExist || imageExist);
 
@@ -219,16 +219,16 @@ class Feature6 extends BaseFeature {
                       className={this.decorateCSS("card-item-count")}
                     >
                       <div className={this.decorateCSS("listed")}>
-                        {!!card.image && (
+                        {!!card.media && (
                           <Base.Media
-                            value={card.image}
+                            value={card.media}
                             className={this.decorateCSS("image")}
                           />
                         )}
                         <div
                           className={`
                             ${this.decorateCSS("image-shadow")}
-                            ${overlay && card.image ? this.decorateCSS("overlay") : ""}
+                            ${overlay && card.media ? this.decorateCSS("overlay") : ""}
                           `}
                         >
                           {titleExist && (
