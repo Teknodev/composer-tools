@@ -55,17 +55,6 @@ class Testimonials2Page extends Testimonials {
       ],
     });
 
-    this.addProp(INPUTS.SLIDER_SETTINGS("slider-settings", "Slider Settings", {
-      dots: true,
-      infinite: true,
-      speed: 725,
-      autoplay: true,
-      autoplaySpeed: 3000,
-      slidesToShow: 3.65,
-      centerMode: true,
-      slidesToScroll: 1,
-    }));
-
     this.addProp({
       type: "array",
       key: "card-items",
@@ -347,6 +336,16 @@ class Testimonials2Page extends Testimonials {
       additionalParams: { availableTypes: ["icon", "image"] },
       value: { type: "icon", name: "FaArrowRight" },
     });
+    this.addProp(INPUTS.SLIDER_SETTINGS("slider-settings", "Slider Settings", {
+      dots: true,
+      infinite: true,
+      speed: 725,
+      autoplay: true,
+      autoplaySpeed: 3000,
+      slidesToShow: 3.65,
+      centerMode: true,
+      slidesToScroll: 1,
+    }));
     this.setComponentState("slider-ref", React.createRef());
     this.setComponentState("activeSlideIndex", 0);
   }

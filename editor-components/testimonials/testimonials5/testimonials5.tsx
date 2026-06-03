@@ -79,15 +79,6 @@ class Testimonials5Page extends Testimonials {
       ],
     });
 
-    this.addProp(INPUTS.SLIDER_SETTINGS("slider-settings", "Slider Settings", {
-      dots: false,
-      autoplay: true,
-      infinite: false,
-      speed: 500,
-      slidesToShow: 1,
-      slidesToScroll: 1,
-    }));
-
     this.addProp({
       type: "boolean",
       key: "lineIsActive",
@@ -261,6 +252,14 @@ class Testimonials5Page extends Testimonials {
         },
       ],
     });
+    this.addProp(INPUTS.SLIDER_SETTINGS("slider-settings", "Slider Settings", {
+      dots: false,
+      autoplay: true,
+      infinite: false,
+      speed: 500,
+      slidesToShow: 1,
+      slidesToScroll: 1,
+    }));
     this.setComponentState("slider-ref", React.createRef());
     this.setComponentState("active", 0);
     this.setComponentState("activeSlideIndex", 0);

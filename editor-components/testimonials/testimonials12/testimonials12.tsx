@@ -51,14 +51,6 @@ class Testimonials12Page extends Testimonials {
         INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
       ],
     });
-    this.addProp(INPUTS.SLIDER_SETTINGS("slider-settings", "Slider Settings", {
-      infinite: false,
-      speed: 700,
-      autoplay: true,
-      autoplaySpeed: 4000,
-      slidesToShow: 2,
-      slidesToScroll: 1,
-    }));
     this.addProp({
       type: "media",
       key: "icon",
@@ -215,6 +207,14 @@ class Testimonials12Page extends Testimonials {
         },
       ],
     });
+    this.addProp(INPUTS.SLIDER_SETTINGS("slider-settings", "Slider Settings", {
+      infinite: false,
+      speed: 700,
+      autoplay: true,
+      autoplaySpeed: 4000,
+      slidesToShow: 2,
+      slidesToScroll: 1,
+    }));
     this.setComponentState("activeSlideIndex", 0);
     this.setComponentState("slider-ref", React.createRef());
   }

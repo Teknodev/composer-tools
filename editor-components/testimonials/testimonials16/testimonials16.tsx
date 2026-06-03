@@ -64,16 +64,6 @@ class Testimonials16 extends Testimonials {
       ],
     });
 
-    this.addProp(INPUTS.SLIDER_SETTINGS("slider-settings", "Slider Settings", {
-      dots: false,
-      infinite: true,
-      speed: 700,
-      autoplay: true,
-      autoplaySpeed: 5200,
-      slidesToShow: 1,
-      slidesToScroll: 1,
-      centerMode: false,
-    }));
     this.addProp({
       type: "array",
       key: "links",
@@ -263,6 +253,16 @@ class Testimonials16 extends Testimonials {
       value: { type: "icon", name: "FaQuoteLeft" },
     });
 
+    this.addProp(INPUTS.SLIDER_SETTINGS("slider-settings", "Slider Settings", {
+      dots: false,
+      infinite: true,
+      speed: 700,
+      autoplay: true,
+      autoplaySpeed: 5200,
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      centerMode: false,
+    }));
     this.setComponentState("activeSlideIndex", 0);
     this.setComponentState("sliderRef", React.createRef());
     this.setComponentState("prevBackground", null);

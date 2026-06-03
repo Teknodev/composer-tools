@@ -76,17 +76,6 @@ class Testimonials4Page extends Testimonials {
       value: [INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary")],
     });
 
-    this.addProp(INPUTS.SLIDER_SETTINGS("slider-settings", "Slider Settings", {
-      dots: false,
-      arrows: true,
-      infinite: true,
-      speed: 700,
-      autoplay: true,
-      autoplaySpeed: 3000,
-      slidesToShow: 1,
-      slidesToScroll: 1,
-    }));
-
     this.addProp({
       type: "array",
       key: "card-items",
@@ -264,6 +253,16 @@ class Testimonials4Page extends Testimonials {
         },
       ],
     });
+    this.addProp(INPUTS.SLIDER_SETTINGS("slider-settings", "Slider Settings", {
+      dots: false,
+      arrows: true,
+      infinite: true,
+      speed: 700,
+      autoplay: true,
+      autoplaySpeed: 3000,
+      slidesToShow: 1,
+      slidesToScroll: 1,
+    }));
     this.setComponentState("active_index", 0);
     this.setComponentState("slider-ref", React.createRef());
   }

@@ -53,16 +53,6 @@ class Testimonials9Page extends Testimonials {
       ],
     });
 
-    this.addProp(INPUTS.SLIDER_SETTINGS("slider-settings", "Slider Settings", {
-      dots: false,
-      infinite: true,
-      speed: 500,
-      autoplay: true,
-      autoplaySpeed: 2500,
-      slidesToShow: 1,
-      slidesToScroll: 1,
-    }));
-
     this.addProp({
       type: "media",
       key: "left_icon",
@@ -340,6 +330,15 @@ class Testimonials9Page extends Testimonials {
         },
       ],
     });
+    this.addProp(INPUTS.SLIDER_SETTINGS("slider-settings", "Slider Settings", {
+      dots: false,
+      infinite: true,
+      speed: 500,
+      autoplay: true,
+      autoplaySpeed: 2500,
+      slidesToShow: 1,
+      slidesToScroll: 1,
+    }));
     this.setComponentState("active-index", 1);
     this.setComponentState("slider-ref", React.createRef());
   }
