@@ -1,9 +1,10 @@
 import * as React from "react";
 import { BaseCallToAction, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./call_to_action5.module.scss";
-import { Base, TypeButton } from "../../../composer-base-components/base/base";
+import { Base } from "../../../composer-base-components/base/base";
 import { Form, Formik } from "formik";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
+import { INPUTS } from "../../../custom-hooks/input-templates";
 import * as Yup from "yup";
 
 type MediaObject = {
@@ -14,8 +15,6 @@ type MediaObject = {
 type InputData = {
   placeholder: string;
   submitText: string;
-  buttonText: React.JSX.Element;
-  buttonType: TypeButton;
 };
 
 class CallToAction5Page extends BaseCallToAction {
@@ -83,23 +82,12 @@ class CallToAction5Page extends BaseCallToAction {
           displayer: "Submit Text",
           value: "Form successfully submitted!",
         },
-        {
-          type: "string",
-          key: "buttonText",
-          displayer: "Button Text",
-          value: "SUBSCRIBE NOW",
-        },
-        {
-          type: "select",
-          key: "buttonType",
-          displayer: "Button Type",
-          value: "Primary",
-          additionalParams: {
-            selectItems: ["Primary", "Secondary", "Tertiary", "Link", "White", "Black", "Bare"],
-          },
-        },
       ],
     });
+
+    this.addProp(
+      INPUTS.BUTTON("button", "Button", "SUBSCRIBE NOW", "", null, null, "Primary")
+    );
 
     const inputData = this.castToObject<InputData>("inputData");
     this.setComponentState("placeholderText", this.castToString(inputData.placeholder));
@@ -134,8 +122,10 @@ class CallToAction5Page extends BaseCallToAction {
     const inputData = this.castToObject<InputData>("inputData");
     const placeholder = this.castToString(inputData.placeholder);
     const submitText = this.castToString(inputData.submitText);
-    const buttonText = this.castToString(inputData.buttonText);
-    const buttonType = inputData.buttonType;
+
+    const button = this.castToObject<INPUTS.CastedButton>("button");
+    const buttonText = this.castToString(button?.text);
+    const hasButton = !!buttonText;
 
     return (
       <Base.Container className={`${this.decorateCSS("container")} ${overlay && background && this.decorateCSS("overlay-active")} ${background && this.decorateCSS("has-background")}`}>
@@ -148,7 +138,7 @@ class CallToAction5Page extends BaseCallToAction {
               {descriptionExist && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
             </Base.VerticalContent>
           )}
-          {buttonText && placeholder && (
+          {hasButton && placeholder && (
             <div className={this.decorateCSS("form")}>
               <Formik
                 initialValues={{ email: "" }}
@@ -165,34 +155,40 @@ class CallToAction5Page extends BaseCallToAction {
               >
                 {({ handleSubmit, handleChange, values, errors, touched }) => (
                   <Form className={this.decorateCSS("newsletter")} onSubmit={handleSubmit}>
-                    {placeholder && buttonText && (
+                    {placeholder && (
                       <div className={this.decorateCSS("inputs")}>
                         <input
-                          placeholder={this.getComponentState("placeholderText") || placeholder}
-                          type="text"
-                          onChange={handleChange}
-                          value={values.email}
-                          name="email"
-                          className={`${this.decorateCSS("input")} ${!background && this.decorateCSS("no-image")}`}
+                           placeholder={this.getComponentState("placeholderText") || placeholder}
+                           type="text"
+                           onChange={handleChange}
+                           value={values.email}
+                           name="email"
+                           className={`${this.decorateCSS("input")} ${!background && this.decorateCSS("no-image")}`}
                         />
                         {errors.email && touched.email && <div className={this.decorateCSS("error")}>{errors.email}</div>}
                       </div>
                     )}
-                    {buttonText && (
-                      <Base.Button className={this.decorateCSS("submit-button")} buttonType={buttonType}>
-                        <Base.P className={this.decorateCSS("button-text")}>{inputData.buttonText}</Base.P>
-                      </Base.Button>
+                    {hasButton && (
+                      <div className={this.decorateCSS("button-container")}>
+                        <ComposerLink path={button?.url}>
+                          <Base.Button className={this.decorateCSS("submit-button")} buttonType={button?.type}>
+                            <Base.P className={this.decorateCSS("button-text")}>{button?.text}</Base.P>
+                          </Base.Button>
+                        </ComposerLink>
+                      </div>
                     )}
                   </Form>
                 )}
               </Formik>
             </div>
           )}
-          {buttonText && !placeholder && (
+          {hasButton && !placeholder && (
             <div className={this.decorateCSS("button-container")}>
-              <Base.Button buttonType={buttonType} className={`${this.decorateCSS("button")} ${!placeholder && this.decorateCSS("button-no-item")}`}>
-                <Base.P className={this.decorateCSS("button-text")}>{inputData.buttonText}</Base.P>
-              </Base.Button>
+              <ComposerLink path={button?.url}>
+                <Base.Button buttonType={button?.type} className={`${this.decorateCSS("button")} ${this.decorateCSS("button-no-item")}`}>
+                  <Base.P className={this.decorateCSS("button-text")}>{button?.text}</Base.P>
+                </Base.Button>
+              </ComposerLink>
             </div>
           )}
         </Base.MaxContent>

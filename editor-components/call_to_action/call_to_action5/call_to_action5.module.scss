@@ -78,7 +78,8 @@
         display: flex;
         justify-content: center;
         align-items: stretch;
-        width: 30%;
+        width: fit-content;
+        max-width: 100%;
         min-width: 500px;
 
         .inputs {
@@ -93,6 +94,7 @@
             padding: var(--composer-gap-md) var(--composer-gap-md);
             height: 100%;
             width: 100%;
+            min-width: 400px;
             outline: none;
             border: none;
             border-top-left-radius: var(--composer-border-radius-sm);
@@ -117,13 +119,20 @@
           }
         }
 
-        .submit-button {
-          border-top-left-radius: 0;
-          border-bottom-left-radius: 0;
-          margin-top: 0;
+        .button-container {
+          display: flex;
+          align-items: stretch;
+          width: auto;
 
-          .button-text {
-            content: "";
+          .submit-button {
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+            margin-top: 0;
+            height: 100%;
+
+            .button-text {
+              content: "";
+            }
           }
         }
       }

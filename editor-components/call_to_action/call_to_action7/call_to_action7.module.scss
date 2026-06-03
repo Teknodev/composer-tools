@@ -97,6 +97,7 @@
                 outline: none;
                 transition: border-color 0.3s ease;
                 width: 100%;
+                min-width: 400px;
                 padding: var(--composer-gap-md);
                 border-radius: var(--composer-border-radius-sm) 0 0 var(--composer-border-radius-sm);
                 background-color: var(--composer-html-background);
@@ -119,15 +120,32 @@
                 color: var(--warning);
               }
 
-              .button {
-                border-top-left-radius: 0;
-                border-bottom-left-radius: 0;
-                margin-top: 0;
+              .button-container {
+                display: flex;
+                align-items: stretch;
 
-                .button-text {
-                  content: "";
+                .button {
+                  border-top-left-radius: 0;
+                  border-bottom-left-radius: 0;
+                  margin-top: 0;
+                  height: 100%;
+
+                  .button-text {
+                    content: "";
+                  }
                 }
               }
+            }
+          }
+
+          .button-container {
+            display: flex;
+            gap: var(--composer-gap-sm);
+            justify-content: flex-start;
+            flex-wrap: wrap;
+
+            a {
+              display: flex;
             }
           }
         }
@@ -166,9 +184,14 @@
               justify-content: var(--composer-content-alignment);
 
               .input-div {
-                width: 30%;
+                width: fit-content;
+                max-width: 100%;
                 min-width: 500px;
               }
+            }
+
+            .button-container {
+              justify-content: var(--composer-content-alignment);
             }
           }
         }
