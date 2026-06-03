@@ -35,8 +35,9 @@
                         align-items: baseline;
                         color: var(--composer-primary-color);
 
+                        .stat-prefix,
                         .stat-number,
-                        .stat-symbol {
+                        .stat-suffix {
                             content: "";
                         }
                     }
