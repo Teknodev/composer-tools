@@ -44,6 +44,17 @@
     }
   }
 
+  &:not(.no-background) {
+    .max-content {
+      .top-content {
+        .subtitle {
+          padding: 0 !important;
+          background: transparent !important;
+        }
+      }
+    }
+  }
+
   .max-content {
     position: relative;
     z-index: 2;

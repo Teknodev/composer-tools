@@ -96,6 +96,13 @@
             aspect-ratio: 3 / 1;
             border-radius: var(--composer-border-radius-sm);
             object-fit: contain;
+
+            &.author-image-icon {
+              width: 3rem;
+              height: 3rem;
+              aspect-ratio: 1 / 1;
+              font-size: 3rem;
+            }
           }
         }
       }

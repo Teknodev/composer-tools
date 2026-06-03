@@ -32,7 +32,7 @@ class Testimonials11Page extends Testimonials {
     this.addProp({
       type: "object",
       key: "componentBackground",
-      displayer: "Background",
+      displayer: "Background Media",
       value: [
         {
           type: "media",

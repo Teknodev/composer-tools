@@ -4,7 +4,7 @@
     .page {
       display: flex;
       flex-direction: column;
-      gap: var(--composer-gap-md);
+      gap: var(--composer-gap-lg);
       .top-content {
         display: flex;
         .top-content-text {
@@ -59,11 +59,11 @@
               transition: color 0.25s ease;
             }
             &:hover {
-              background-color: var(--composer-font-color-primary);
-              border-color: var(--composer-font-color-primary);
+              background-color: var(--composer-primary-color);
+              border-color: var(--composer-primary-color);
               .prev-arrow,
               .next-arrow {
-                color: var(--composer-html-background);
+                color: var(--composer-font-color-secondary);
               }
             }
           }

@@ -267,7 +267,10 @@ class Testimonials3Page extends Testimonials {
                   {authorExist && (
                     <Base.VerticalContent className={this.decorateCSS("author-container")}>
                       {imageExist && (
-                        <Base.Media className={this.decorateCSS("author-image")} value={item.author.image} />
+                        <Base.Media
+                          className={`${this.decorateCSS("author-image")} ${item.author.image.type === "icon" ? this.decorateCSS("author-image-icon") : ""}`}
+                          value={item.author.image}
+                        />
                       )}
                     </Base.VerticalContent>
                   )}

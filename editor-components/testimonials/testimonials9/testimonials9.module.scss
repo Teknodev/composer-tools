@@ -167,6 +167,29 @@
       .wrapper {
         .down-page {
           flex-direction: row !important;
+          .carousel {
+            .card-inner {
+              padding: var(--composer-gap-sm);
+              gap: var(--composer-gap-sm);
+              .img {
+                width: 60px;
+                height: 60px;
+              }
+              .bottom-container {
+                .item-subtitle {
+                  font-size: 1rem !important;
+                }
+              }
+              &.active {
+                padding: var(--composer-gap-sm);
+                gap: var(--composer-gap-sm);
+                .img {
+                  width: 70px;
+                  height: 70px;
+                }
+              }
+            }
+          }
         }
         .right-page {
           .text {

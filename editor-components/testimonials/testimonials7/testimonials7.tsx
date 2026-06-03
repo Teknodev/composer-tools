@@ -55,19 +55,19 @@ class Testimonials7Page extends Testimonials {
       type: "string",
       key: "subtitle",
       displayer: "Subtitle",
-      value: "Lorem",
+      value: "",
     });
     this.addProp({
       type: "string",
       key: "title",
       displayer: "Title",
-      value: "Lorem Ipsum",
+      value: "",
     });
     this.addProp({
       type: "string",
       key: "description",
       displayer: "Description",
-      value: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+      value: "",
     });
     this.addProp({
       type: "array",
