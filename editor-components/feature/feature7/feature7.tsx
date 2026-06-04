@@ -15,16 +15,29 @@ class Feature7 extends BaseFeature {
     super(props, styles);
 
     this.addProp({
-      type: "media",
-      key: "media",
+      type: "object",
+      key: "mediaConfig",
       displayer: "Media",
-      additionalParams: {
-        availableTypes: ["image","video"],
-      },
-      value: {
-        type: "image",
-        url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6916dae63596a1002b276ed2?alt=media",
-      },
+      value: [
+        {
+          type: "media",
+          key: "media",
+          displayer: "Media",
+          additionalParams: {
+            availableTypes: ["image", "video"],
+          },
+          value: {
+            type: "image",
+            url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6916dae63596a1002b276ed2?alt=media",
+          },
+        },
+        {
+          type: "boolean",
+          key: "overlay",
+          displayer: "Overlay",
+          value: false,
+        },
+      ],
     });
 
     this.addProp({
@@ -150,7 +163,9 @@ class Feature7 extends BaseFeature {
     const subtitleExist = this.castToString(this.getPropValue("subtitle"));
     const titleExist = this.castToString(this.getPropValue("title"))
     const descriptionExist = this.castToString(this.getPropValue("description"))
-    const media = this.getPropValue("media");
+    const mediaConfig = this.castToObject<{ media: TypeMediaInputValue; overlay: boolean }>("mediaConfig");
+    const media = mediaConfig?.media;
+    const overlay = mediaConfig?.overlay;
 
     const features = this.castToObject<Feature[]>("features");
     const links = this.castToObject<INPUTS.CastedButton[]>("links");
@@ -174,6 +189,7 @@ class Feature7 extends BaseFeature {
                   value={media}
                   className={hasTextContent ? this.decorateCSS("image") : this.decorateCSS("image-no-border-radius")}
                 />
+                {overlay && <div className={this.decorateCSS("overlay")} />}
               </Base.GridCell>
             )}
             {hasTextContent && (

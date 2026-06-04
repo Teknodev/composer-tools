@@ -1,4 +1,4 @@
-import * as React from "react";
+﻿import * as React from "react";
 import { BaseFeature } from "../../EditorComponent";
 import styles from "./feature38.module.scss";
 import { Base, TypeButton } from "../../../composer-base-components/base/base";
@@ -20,6 +20,7 @@ interface Section {
 interface ProductCard {
     title: React.JSX.Element;
     media: TypeMediaInputValue;
+    overlay: boolean;
     sections: Section[];
     buttons: ButtonTypeObj[];
 }
@@ -73,6 +74,12 @@ class Feature38 extends BaseFeature {
                                 availableTypes: ["image", "video"],
                             },
                             value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6964a92af959f6002d8277e2?alt=media" }
+                        },
+                        {
+                            type: "boolean",
+                            key: "overlay",
+                            displayer: "Overlay",
+                            value: false,
                         },
                         {
                             type: "array",
@@ -137,6 +144,12 @@ class Feature38 extends BaseFeature {
                             value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6964a94ff959f6002d827822?alt=media" }
                         },
                         {
+                            type: "boolean",
+                            key: "overlay",
+                            displayer: "Overlay",
+                            value: false,
+                        },
+                        {
                             type: "array",
                             key: "sections",
                             displayer: "Sections",
@@ -197,6 +210,12 @@ class Feature38 extends BaseFeature {
                                 availableTypes: ["image", "video"],
                             },
                             value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6964a966f959f6002d8278af?alt=media" }
+                        },
+                        {
+                            type: "boolean",
+                            key: "overlay",
+                            displayer: "Overlay",
+                            value: false,
                         },
                         {
                             type: "array",
@@ -314,13 +333,16 @@ class Feature38 extends BaseFeature {
                                         className={`${this.decorateCSS("right-content")} ${isActive && this.decorateCSS("active-item")}`}
                                     >
                                         {card.media && (
-                                            <div className={this.decorateCSS("image-wrapper")}>
-                                                <Base.Media
-                                                    value={card.media}
-                                                    className={this.decorateCSS("itemImage")}
-                                                />
-                                            </div>
-                                        )}
+                            <div className={this.decorateCSS("image-wrapper")}>
+                                <div className={this.decorateCSS("image-inner")}>
+                                    <Base.Media
+                                        value={card.media}
+                                        className={this.decorateCSS("itemImage")}
+                                    />
+                                    {card.overlay && <div className={this.decorateCSS("overlay")} />}
+                                </div>
+                            </div>
+                        )}
                                         {card.sections.length > 0 && (
                                             <div className={this.decorateCSS("sectionsWrapper")}>
                                                 {card.sections.map((section: Section, sectionIndex: number) => {

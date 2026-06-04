@@ -1,4 +1,4 @@
-@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+﻿@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
     .max-content {
@@ -116,6 +116,23 @@
                 flex-direction: column;
                 flex: 1;
                 min-height: 0;
+
+                .image-inner {
+                    position: relative;
+                    display: flex;
+                    flex-direction: column;
+                    flex: 1;
+                    min-height: 0;
+                    border-radius: var(--composer-border-radius-sm);
+                    overflow: hidden;
+
+                    .overlay {
+                        position: absolute;
+                        inset: 0;
+                        background-color: var(--composer-overlay-color);
+                        pointer-events: none;
+                    }
+                }
 
                 .itemImage {
                     width: 100%;

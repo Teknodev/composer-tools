@@ -10,6 +10,13 @@
       gap: var(--composer-gap-lg);
       .image-container {
         width: 100%;
+        position: relative;
+        .overlay {
+          position: absolute;
+          inset: 0;
+          background-color: var(--composer-overlay-color);
+          pointer-events: none;
+        }
         .image, .image-no-border-radius {
           width: 100%;
           height: auto;
