@@ -205,8 +205,8 @@
               width: 8px;
               height: 8px;
               border-radius: 50%;
-              background: rgba(255, 255, 255, 0.25);
-              border: 1px solid rgba(255, 255, 255, 0.4);
+              background: color-mix(in srgb, var(--composer-font-color-primary), transparent 80%);
+              border: 1px solid color-mix(in srgb, var(--composer-font-color-primary), transparent 50%);
               cursor: pointer;
               transition: width 0.3s ease, background-color 0.3s ease, border-color 0.3s ease, border-radius 0.3s ease;
 
@@ -214,8 +214,8 @@
                 width: 45px;
                 height: 8px;
                 border-radius: 4px;
-                background: white;
-                border-color: white;
+                background: var(--composer-font-color-primary);
+                border-color: var(--composer-font-color-primary);
               }
             }
           }
@@ -245,14 +245,16 @@
             .icon {
               width: 75px;
               height: 75px;
-              font-size: 3rem;
               border-radius: var(--composer-border-radius-full);
-              display: inline-flex;
-              align-items: center;
-              justify-content: center;
-              padding: var(--composer-gap-sm);
+              object-fit: cover;
               color: var(--composer-primary-color);
-              object-fit: contain;
+              &.is-icon {
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                padding: var(--composer-gap-sm);
+                font-size: 3rem;
+              }
               &.icon-bg {
                 background-color: #d39121;
                 color: white;
