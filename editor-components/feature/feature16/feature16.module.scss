@@ -193,6 +193,12 @@
 
       .side-container {
         flex-direction: column;
+
+        .card {
+          .card-text-container {
+            gap: var(--composer-gap-sm) !important;
+          }
+        }
       }
 
       .right-side {
@@ -229,17 +235,5 @@
 }
 
 @container (max-width: #{$composer-tablet-width}) {
-  .container {
-    .max-content {
-      .side-container {
-        flex-direction: column;
-        
-        .card {
-          .card-text-container {
-            gap: var(--composer-gap-sm) !important;
-          }
-        }
-      }
-    }
-  }
+  // Tablet and desktop are identical
 }

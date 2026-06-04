@@ -135,47 +135,6 @@
   }
 }
 
-@container (max-width: #{$composer-tablet-width}) {
-  .container {
-    .max-content {
-      .tabs-wrapper {
-        gap: 0 !important;
-
-        .tab-content {
-          justify-content: flex-start !important;
-          margin-top: 5rem;
-        }
-
-        .vertical-content {
-          .text-content {
-            flex: 1 !important;
-
-            .description {
-              -webkit-line-clamp: 9;
-            }
-          }
-        }
-
-        .image-wrapper {
-          width: 50% !important;
-        }
-
-        .tab-text {
-          display: none !important;
-        }
-
-        .tab {
-          padding: 1rem !important;
-        }
-
-        .tabs {
-          height: 100%;
-        }
-      }
-    }
-  }
-}
-
 @container (max-width: #{$composer-phone-width}) {
   .container {
     .max-content {
@@ -188,6 +147,7 @@
           align-items: flex-start !important;
           height: auto !important;
           padding: 0 !important;
+          margin-top: 5rem;
 
           .button-wrapper {
             .button {
@@ -198,6 +158,8 @@
 
         .vertical-content {
           .text-content {
+            flex: 1 !important;
+
             .description {
               -webkit-line-clamp: 3 !important;
             }

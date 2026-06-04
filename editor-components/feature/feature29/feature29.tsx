@@ -1,4 +1,4 @@
-﻿import * as React from "react";
+import * as React from "react";
 import { BaseFeature } from "../../EditorComponent";
 import styles from "./feature29.module.scss";
 import { INPUTS } from "../../../custom-hooks/input-templates";
@@ -238,7 +238,7 @@ class Feature29 extends BaseFeature {
             <Base.ListGrid
               gridCount={{
                 pc: itemsPerRow,
-                tablet: 2,
+                tablet: 4,
                 phone: 1,
               }}
               className={gridClass}

@@ -1,4 +1,4 @@
-﻿import * as React from "react";
+import * as React from "react";
 import { BaseFeature, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./feature47.module.scss";
 import { Base, TypeButton } from "../../../composer-base-components/base/base";
@@ -235,7 +235,7 @@ class Feature47 extends BaseFeature {
                         </Base.VerticalContent>
                     )}
                     {cards?.length > 0 && (
-                        <Base.ListGrid className={this.decorateCSS("cards-container")} gridCount={{ pc: itemCount || 4, tablet: 2, phone: 1 }}>
+                        <Base.ListGrid className={this.decorateCSS("cards-container")} gridCount={{ pc: itemCount || 4, tablet: 4, phone: 1 }}>
                             {cards.map((card: Card, index: number) => {
                                 const titleExist = !!this.castToString(card.title);
                                 const descExist = !!this.castToString(card.description);

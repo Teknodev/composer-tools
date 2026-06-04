@@ -1,4 +1,4 @@
-﻿import * as React from "react";
+import * as React from "react";
 import { BaseFeature, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./feature39.module.scss";
 import { Base, TypeButton } from "../../../composer-base-components/base/base";
@@ -377,7 +377,7 @@ class Feature39 extends BaseFeature {
                     {cards?.length > 0 && (
                         <Base.ListGrid
                             className={this.decorateCSS("card-container")}
-                            gridCount={{ pc: this.getPropValue("itemCount") || 4, tablet: 2, phone: 1 }}
+                            gridCount={{ pc: this.getPropValue("itemCount") || 4, tablet: 4, phone: 1 }}
                         >
                             {cards.map((card: Card, index: number) => {
                                 const titleExist = !!this.castToString(card.title);

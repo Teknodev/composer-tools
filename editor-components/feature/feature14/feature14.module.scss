@@ -1,4 +1,4 @@
-﻿@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
     .max-content {
@@ -107,6 +107,20 @@
 }
 
 @container (max-width: #{$composer-tablet-width}) {
+  .container {
+    .max-content {
+      .section {
+        .cards {
+          .card {
+            padding: 20px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-phone-width}) {
     .container{
         .max-content{
             .title-wrapper{

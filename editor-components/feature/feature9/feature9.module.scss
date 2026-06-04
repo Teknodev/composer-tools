@@ -127,8 +127,6 @@
   .container{
     .max-content{
       .wrapper {
-        flex-direction: column;
-        gap: 0;
         .title-container {
           padding: var(--composer-gap-md);
         }

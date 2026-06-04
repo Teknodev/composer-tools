@@ -68,7 +68,6 @@
     .container{
         .max-content{
             .wrapper{
-                flex-direction: column;
                 .left {
                     &[data-alignment="center"] {
                         align-items: center;
@@ -99,6 +98,7 @@
     .container{
         .max-content{
             .wrapper{
+                flex-direction: column;
                 .right {
                     .card-container {
                         .card-icon {

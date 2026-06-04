@@ -1,4 +1,4 @@
-﻿import * as React from "react";
+import * as React from "react";
 import { BaseFeature, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./feature34.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
@@ -350,7 +350,7 @@ class Feature34 extends BaseFeature {
 
           {showFeatures && (
             <Base.ListGrid
-              gridCount={{ pc: itemCount }}
+              gridCount={{ pc: itemCount, tablet: 4 }}
               className={this.decorateCSS("features-grid")}
             >
               {features.map((feature, index) => {

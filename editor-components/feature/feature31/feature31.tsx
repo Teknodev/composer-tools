@@ -1,4 +1,4 @@
-﻿import * as React from "react";
+import * as React from "react";
 import { BaseFeature, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./feature31.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
@@ -176,7 +176,7 @@ class Feature31 extends BaseFeature {
                         {cards?.length > 0 && (
                             <Base.ListGrid
                                 className={this.decorateCSS("features-content")}
-                                gridCount={{ pc: this.getPropValue("itemCount") }}
+                                gridCount={{ pc: this.getPropValue("itemCount"), tablet: 1 }}
                             >
                                 {cards.map((card: Card, index: number) => {
                                     const titleExist = this.castToString(card.title);

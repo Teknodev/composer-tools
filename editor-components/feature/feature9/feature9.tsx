@@ -248,7 +248,25 @@ class Feature9 extends BaseFeature {
     return "Feature 9";
   }
 
+  componentDidMount() {
+    this.setupObserver();
+  }
+
+  componentDidUpdate() {
+    const cards = this.castToObject<Card[]>("cards");
+    if (this.getComponentState("cardLength") !== cards.length) {
+      this.setupObserver();
+    }
+  }
+
+  componentWillUnmount() {
+    if (this.observer) {
+      this.observer.disconnect();
+    }
+  }
+
   setupObserver() {
+    if (typeof document === 'undefined') return;
     const cardElements = document.querySelectorAll("." + this.decorateCSS("card"));
 
     const callback = (entries: IntersectionObserverEntry[]) => {
@@ -274,16 +292,9 @@ class Feature9 extends BaseFeature {
   render() {
     const cards = this.castToObject<Card[]>("cards");
     const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
-    const cardElements = document.querySelectorAll("." + this.decorateCSS("card"));
     const title = this.getPropValue("title");
     const subtitle = this.getPropValue("subtitle");
     const description = this.getPropValue("description");
-
-    const cardsLengthIsChanged = this.getComponentState("cardLength") != cardElements.length;
-
-    if (cardsLengthIsChanged) {
-      this.setupObserver();
-    }
 
     const hasValidButtons = buttons && buttons.some((button: INPUTS.CastedButton) => this.castToString(button.text));
 

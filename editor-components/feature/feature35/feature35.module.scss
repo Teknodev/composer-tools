@@ -81,6 +81,10 @@
                 .cards-container {
                     flex-direction: row;
                     gap: var(--composer-gap-md);
+
+                    .card {
+                        padding: 20px;
+                    }
                 }
             }
         }
@@ -95,6 +99,7 @@
 
                 .cards-container {
                     flex-direction: column;
+                    gap: var(--composer-gap-md);
 
                     .card {
                         padding: calc(var(--composer-gap-sm) * 3);

@@ -95,7 +95,7 @@
     }
 }
 
-@container (max-width: #{$composer-tablet-width}) {
+@container (max-width: #{$composer-phone-width}) {
     .container {
         .max-content {
             .wrapper {
@@ -126,30 +126,8 @@
 
                 .right {
                     width: 100%;
-                    row-gap: var(--composer-gap-md);
-
-                    .card-container {
-                        .icon-box {
-                            height: 60px;
-                            width: 60px;
-
-                            .card-icon {
-                                font-size: 2rem;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-}
-
-@container (max-width: #{$composer-phone-width}) {
-    .container {
-        .max-content {
-            .wrapper {
-                .right {
                     gap: var(--composer-gap-md);
+                    row-gap: var(--composer-gap-md);
 
                     .card-container {
                         .icon-box {

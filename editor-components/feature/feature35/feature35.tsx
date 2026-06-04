@@ -1,4 +1,4 @@
-﻿import * as React from "react";
+import * as React from "react";
 import { BaseFeature } from "../../EditorComponent";
 import styles from "./feature35.module.scss";
 import { Base, TypeButton } from "../../../composer-base-components/base/base";
@@ -151,7 +151,7 @@ class Feature35 extends BaseFeature {
                                 </Base.VerticalContent>
                             )}
                             {cards?.length > 0 && (
-                                <Base.ListGrid ref={this.cardsRootRef} gridCount={{ pc: this.getPropValue("itemCount") || 3, tablet: 2 }} className={this.decorateCSS("cards-container")}>
+                                <Base.ListGrid ref={this.cardsRootRef} gridCount={{ pc: this.getPropValue("itemCount") || 3, tablet: 3, phone: 1 }} className={this.decorateCSS("cards-container")}>
                                     {cards.map((card: Card) => {
                                         const titleExist = this.castToString(card.title);
                                         const descExist = this.castToString(card.description);

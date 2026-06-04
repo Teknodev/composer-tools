@@ -1,4 +1,4 @@
-﻿@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
   .max-content {
@@ -136,8 +136,9 @@
     .max-content {
       .wrapper {
         .comp-wrapper {
-          .comp-slider {
-            flex-basis: auto;
+          flex-direction: row !important;
+          .comp-slider, .comp-body-wrapper {
+            width: auto !important;
           }
         }
       }
@@ -150,7 +151,14 @@
     .max-content {
       .wrapper {
         .comp-wrapper {
-          flex-direction: column;
+          flex-direction: column !important;
+          .comp-slider {
+            flex-basis: auto;
+            width: 100% !important;
+          }
+          .comp-body-wrapper {
+            width: 100% !important;
+          }
         }
       }
     }

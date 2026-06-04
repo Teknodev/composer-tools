@@ -156,7 +156,7 @@
       gap: var(--composer-gap-md);
       .tabs {
         .tab {
-          flex-direction: row;
+          flex-direction: row !important;
 
           .image-container {
             .image {
@@ -172,13 +172,17 @@
 @container (max-width: #{$composer-phone-width}) {
   .container {
     .max-content {
+      gap: var(--composer-gap-md);
       .tabs {
         .tab {
           gap: var(--composer-gap-md);
-          flex-direction: column;
+          flex-direction: column !important;
 
           .image-container {
             order: -1;
+            .image {
+              aspect-ratio: 1;
+            }
           }
         }
       }

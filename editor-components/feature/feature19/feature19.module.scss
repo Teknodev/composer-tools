@@ -1,4 +1,4 @@
-﻿@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .overlay {
   position: absolute;
@@ -174,7 +174,8 @@
         }
     }
 }
-@container (max-width: #{$composer-tablet-width}) {
+
+@container (max-width: #{$composer-phone-width}) {
     .container{
         .max-content{
             flex-direction: column;
@@ -183,30 +184,6 @@
                 width: 100%;
                 
                 .img {
-                    height: 700px;
-                }
-            }
-            
-            .content {
-                .item-block {
-                    .list-item-content {
-                        .item-content-top {
-                            .icon {
-                                font-size: 2rem;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-}
-
-@container (max-width: #{$composer-phone-width}) {
-    .container{
-        .max-content{
-            .right-image {
-                .img {
                     height: 300px;
                 }
             }
@@ -214,6 +191,13 @@
                 gap: var(--composer-gap-md);
                 .item-block {
                     gap: var(--composer-gap-md);
+                    .list-item-content {
+                        .item-content-top {
+                            .icon {
+                                font-size: 2rem;
+                            }
+                        }
+                    }
                 }
             }
         }

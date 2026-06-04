@@ -1,4 +1,4 @@
-﻿import * as React from "react";
+import * as React from "react";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 import { BaseFeature, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./feature14.module.scss";
@@ -310,7 +310,7 @@ class Feature14 extends BaseFeature {
           }
 
           <div className={this.decorateCSS("section")}>
-            <Base.ListGrid className={this.decorateCSS("cards")} gridCount={{ pc: this.getPropValue("itemCount") }}>
+            <Base.ListGrid className={this.decorateCSS("cards")} gridCount={{ pc: this.getPropValue("itemCount"), tablet: 4 }}>
               {cardItems.map((item: CardItem, index: number) => {
                 return (
                   <Base.VerticalContent key={index} className={this.decorateCSS("card")}>
