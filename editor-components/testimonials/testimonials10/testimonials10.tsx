@@ -263,6 +263,7 @@ class Testimonials10Page extends Testimonials {
     const sliderSettings = Object.fromEntries((rawSettings as any[]).map((p: any) => [p.key, p.value]));
     const settings = {
       ...sliderSettings,
+      dots: false,
       arrows: false,
       className: this.decorateCSS("slider"),
       beforeChange: (_current: number, next: number) => {
