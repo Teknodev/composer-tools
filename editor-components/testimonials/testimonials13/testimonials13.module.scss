@@ -212,12 +212,12 @@
             .container4 {
               height: auto;
               display: flex;
-              flex-direction: column;
+              flex-direction: row;
               width: 100%;
               gap: var(--composer-gap-lg);
 
               .containerBottom {
-                width: 100%;
+                flex: 1;
 
                 .topWriting {
                   font-size: 1.5rem;
@@ -301,6 +301,13 @@
         }
         .container3 {
           width: 100% !important;
+          .flexItem3 {
+            .flexItem3-content {
+              .container4 {
+                flex-direction: column;
+              }
+            }
+          }
         }
       }
     }
