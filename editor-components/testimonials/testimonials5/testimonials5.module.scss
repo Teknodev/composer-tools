@@ -122,7 +122,7 @@
             writing-mode: vertical-rl;
             transform: rotate(180deg);
             text-align: center;
-            color: var(--composer-font-color-primary);
+            color: var(--composer-primary-color);
             margin: 0 !important;
             height: fit-content;
             width: fit-content;
@@ -164,7 +164,7 @@
               align-items: center;
               justify-content: center;
               display: flex;
-              background-color: var(--composer-font-color-primary);
+              background-color: var(--composer-primary-color);
               color: var(--composer-html-background);
 
               .star {
@@ -222,7 +222,7 @@
     }
     .slider {
       .sliderTitle {
-        color: black !important;
+        color: var(--composer-primary-color) !important;
       }
       .lineContainer {
         .line {
@@ -234,7 +234,7 @@
           color: black !important;
         }
         .stars {
-          background-color: black !important;
+          background-color: var(--composer-primary-color) !important;
           color: white !important;
         }
       }

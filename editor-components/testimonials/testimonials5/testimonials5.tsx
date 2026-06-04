@@ -407,9 +407,9 @@ class Testimonials5Page extends Testimonials {
                     )}
                     <div className={this.decorateCSS("rightWrapper")}>
                       {item.author && this.castToString(item.author.name) && (
-                        <Base.H5 className={this.decorateCSS("sliderTitle")}>
+                        <Base.H6 className={this.decorateCSS("sliderTitle")}>
                           {item.author.name}
-                        </Base.H5>
+                        </Base.H6>
                       )}
                       {this.getPropValue("lineIsActive") && (
                         <div className={this.decorateCSS("lineContainer")}>
