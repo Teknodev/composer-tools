@@ -467,7 +467,7 @@ class Testimonials9Page extends Testimonials {
                 {this.castToObject<Item[]>("slider").map((item: Item, index: number) => (
                   <div key={index} className={this.decorateCSS("text")}>
                     {index === activeIndex && this.castToString(item.text) && (
-                      <Base.H4 className={this.decorateCSS("item-text")}>{item.text}</Base.H4>
+                      <Base.H6 className={this.decorateCSS("item-text")}>{item.text}</Base.H6>
                     )}
                   </div>
                 ))}
