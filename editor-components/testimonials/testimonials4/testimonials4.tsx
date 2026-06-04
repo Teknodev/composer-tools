@@ -320,7 +320,7 @@ class Testimonials4Page extends Testimonials {
           <div className={this.decorateCSS("color-mix-layer")} />
         )}
         {componentBackgroundExist && background.overlay && (
-          <div className={this.decorateCSS("overlay")} />
+          <div className={this.decorateCSS("base-overlay")} />
         )}
         <Base.MaxContent className={`${this.decorateCSS("max-content")} ${!componentBackgroundExist && this.decorateCSS("max-content-no-image")}`}>
           {hasAnyTopContent && (
