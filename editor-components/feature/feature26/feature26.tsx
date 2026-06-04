@@ -1,4 +1,4 @@
-import { BaseFeature } from "../../EditorComponent";
+﻿import { BaseFeature } from "../../EditorComponent";
 import styles from "./feature26.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
@@ -45,7 +45,7 @@ class FeatureComponent26 extends BaseFeature {
       key: "icon",
       displayer: "Icon",
       additionalParams: {
-        availableTypes: ["icon"],
+        availableTypes: ["icon", "image"],
       },
       value: {
         type: "icon",

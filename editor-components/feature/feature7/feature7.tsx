@@ -1,4 +1,4 @@
-import * as React from "react";
+﻿import * as React from "react";
 import { BaseFeature, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./feature7.module.scss";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
@@ -70,7 +70,7 @@ class Feature7 extends BaseFeature {
               key: "iconFeature",
               displayer: "Icon",
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon", "image"],
               },
               value: {
                 type: "icon",
@@ -95,7 +95,7 @@ class Feature7 extends BaseFeature {
               key: "iconFeature",
               displayer: "Icon",
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon", "image"],
               },
               value: {
                 type: "icon",
@@ -120,7 +120,7 @@ class Feature7 extends BaseFeature {
               key: "iconFeature",
               displayer: "Icon",
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon", "image"],
               },
               value: {
                 type: "icon",

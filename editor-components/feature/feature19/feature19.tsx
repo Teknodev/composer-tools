@@ -1,4 +1,4 @@
-import * as React from "react";
+﻿import * as React from "react";
 import { BaseFeature, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./feature19.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
@@ -86,7 +86,7 @@ class Feature19 extends BaseFeature {
               key: "icon",
               displayer: "Icon",
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon", "image"],
               },
               value: {
                 type: "icon",
@@ -118,7 +118,7 @@ class Feature19 extends BaseFeature {
               key: "icon",
               displayer: "Icon",
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon", "image"],
               },
               value: {
                 type: "icon",

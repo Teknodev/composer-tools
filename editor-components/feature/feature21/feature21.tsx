@@ -1,4 +1,4 @@
-import * as React from "react";
+﻿import * as React from "react";
 import styles from "./feature21.module.scss";
 import { BaseFeature, TypeMediaInputValue } from "../../EditorComponent";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
@@ -250,7 +250,7 @@ class Feature21 extends BaseFeature{
                             key: "video",
                             displayer: "Video",
                             additionalParams: {
-                                availableTypes: ["image"],
+                                availableTypes: ["image", "video"],
                             },
                             value: {
                                 type: "video",

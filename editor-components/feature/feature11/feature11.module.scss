@@ -1,4 +1,4 @@
-@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+﻿@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 .container {
     .max-content {
         .wrapper {
@@ -35,6 +35,9 @@
                     gap: var(--composer-gap-md);
                     .card-icon {
                         font-size: 2rem;
+                        width: 32px;
+                        height: 32px;
+                        object-fit: contain;
                         color: var(--composer-primary-color);
                     }
 

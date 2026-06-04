@@ -1,4 +1,4 @@
-@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+﻿@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
   .max-content {
@@ -75,7 +75,7 @@
           align-items: flex-start;
           color: var(--composer-tertiary-color);
 
-          .icon { font-size: 1.5rem; }
+          .icon { font-size: 1.5rem; width: 24px; height: 24px; object-fit: contain; }
           .quote-text { color: var(--composer-tertiary-color); text-align: left !important; align-self: flex-start; }
         }
 

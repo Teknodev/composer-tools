@@ -1,4 +1,4 @@
-import * as React from "react";
+﻿import * as React from "react";
 import { BaseFeature, TypeMediaInputValue } from "../../EditorComponent";
 
 import styles from "./feature13.module.scss";
@@ -421,7 +421,7 @@ class Feature13 extends BaseFeature {
       key: "sliderGoLeft",
       displayer: "Slider Left Button Icon",
       additionalParams: {
-        availableTypes: ["icon"],
+        availableTypes: ["icon", "image"],
       },
       value: {
         type: "icon",
@@ -434,7 +434,7 @@ class Feature13 extends BaseFeature {
       key: "sliderGoRight",
       displayer: "Slider Right Button Icon",
       additionalParams: {
-        availableTypes: ["icon"],
+        availableTypes: ["icon", "image"],
       },
       value: {
         type: "icon",

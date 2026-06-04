@@ -1,4 +1,4 @@
-@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+﻿@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 @keyframes slideInLeft {
   from {
     transform: translateX(calc(var(--composer-gap-xl) * -1));
@@ -113,6 +113,9 @@
             .icon {
               color: var(--composer-primary-color);
               font-size: 3rem;
+              width: 48px;
+              height: 48px;
+              object-fit: contain;
             }
           }
           .card-title,

@@ -1,4 +1,4 @@
-import * as React from "react";
+﻿import * as React from "react";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 import { BaseFeature, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./feature10.module.scss";
@@ -42,7 +42,7 @@ class Feature10 extends BaseFeature {
       key: "rightArrow",
       displayer: "Right Arrow",
       additionalParams: {
-        availableTypes: ["icon"],
+        availableTypes: ["icon", "image"],
       },
       value: {
         type: "icon",
@@ -54,7 +54,7 @@ class Feature10 extends BaseFeature {
       key: "leftArrow",
       displayer: "Left Arrow",
       additionalParams: {
-        availableTypes: ["icon"],
+        availableTypes: ["icon", "image"],
       },
       value: {
         type: "icon",

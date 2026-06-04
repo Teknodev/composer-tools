@@ -1,4 +1,4 @@
-@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+﻿@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
     background-color:  color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
@@ -25,6 +25,9 @@
                     .icon{
                         background-color: transparent;
                         font-size: 3rem;
+                        width: 48px;
+                        height: 48px;
+                        object-fit: contain;
                         color: var(--composer-font-color-primary);
                         padding: var(--composer-gap-xs);
                     }

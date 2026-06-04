@@ -1,4 +1,4 @@
-@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+﻿@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
   position: relative;
@@ -78,6 +78,9 @@
                 flex-wrap: wrap;
                 .icon{
                   font-size: 2.5rem;
+                  width: 40px;
+                  height: 40px;
+                  object-fit: contain;
                   color: var(--composer-font-color-primary);
                 }
               }

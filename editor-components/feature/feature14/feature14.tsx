@@ -72,7 +72,7 @@ class Feature14 extends BaseFeature {
               key: "icon",
               displayer: "Card Icon",
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon", "image"],
               },
               value: {
                 type: "icon",
@@ -109,7 +109,7 @@ class Feature14 extends BaseFeature {
               key: "icon",
               displayer: "Card Icon",
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon", "image"],
               },
               value: {
                 type: "icon",
@@ -146,7 +146,7 @@ class Feature14 extends BaseFeature {
               key: "icon",
               displayer: "Card Icon",
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon", "image"],
               },
               value: {
                 type: "icon",
@@ -183,7 +183,7 @@ class Feature14 extends BaseFeature {
               key: "icon",
               displayer: "Card Icon",
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon", "image"],
               },
               value: {
                 type: "icon",

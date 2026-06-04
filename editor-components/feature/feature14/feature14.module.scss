@@ -1,4 +1,4 @@
-@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+﻿@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
     .max-content {
@@ -74,8 +74,11 @@
                         background-color: var(--composer-primary-color);                    
                         border-radius: var(--composer-border-radius-sm);
                         .icon {
-                            font-size: 2rem;
-                            color: var(--composer-font-color-secondary);
+                                font-size: 2rem;
+                                width: 32px;
+                                height: 32px;
+                                object-fit: contain;
+                                color: var(--composer-font-color-secondary);
                         }
                     }
 

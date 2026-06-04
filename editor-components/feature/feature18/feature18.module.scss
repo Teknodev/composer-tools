@@ -1,4 +1,4 @@
-@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+﻿@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
     padding-top: 0px !important;
@@ -45,6 +45,9 @@
 
                     .tab-icon {
                         font-size: 1.5rem;
+                        width: 24px;
+                        height: 24px;
+                        object-fit: contain;
                     }
 
                     .tab-text {
@@ -125,6 +128,9 @@
                         flex-wrap: wrap;
                         .icon {
                             font-size: 5rem;
+                            width: 80px;
+                            height: 80px;
+                            object-fit: contain;
                             color: var(--composer-primary-color);
                         }
     

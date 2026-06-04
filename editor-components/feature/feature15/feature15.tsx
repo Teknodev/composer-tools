@@ -1,4 +1,4 @@
-import * as React from "react";
+﻿import * as React from "react";
 import { BaseFeature, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./feature15.module.scss";
 
@@ -88,7 +88,7 @@ class Feature15 extends BaseFeature {
             displayer: "Play Icon",
             key: "play_icon",
             additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon", "image"],
             },
             value: {
                 type: "icon",
@@ -100,7 +100,7 @@ class Feature15 extends BaseFeature {
             key: "closeIcon",
             displayer: "Close Icon",
             additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon", "image"],
             },
             value: {
                 type: "icon",
@@ -122,7 +122,7 @@ class Feature15 extends BaseFeature {
                             key: "icon",
                             displayer: "Icon",
                             additionalParams: {
-                                availableTypes: ["icon"],
+                                availableTypes: ["icon", "image"],
                             },
                             value: {
                                 type: "icon",
@@ -160,7 +160,7 @@ class Feature15 extends BaseFeature {
                             key: "icon",
                             displayer: "Icon",
                             additionalParams: {
-                                availableTypes: ["icon"],
+                                availableTypes: ["icon", "image"],
                             },
                             value: {
                                 type: "icon",
@@ -198,7 +198,7 @@ class Feature15 extends BaseFeature {
                             key: "icon",
                             displayer: "Icon",
                             additionalParams: {
-                                availableTypes: ["icon"],
+                                availableTypes: ["icon", "image"],
                             },
                             value: {
                                 type: "icon",
@@ -236,7 +236,7 @@ class Feature15 extends BaseFeature {
                             key: "icon",
                             displayer: "Icon",
                             additionalParams: {
-                                availableTypes: ["icon"],
+                                availableTypes: ["icon", "image"],
                             },
                             value: {
                                 type: "icon",
