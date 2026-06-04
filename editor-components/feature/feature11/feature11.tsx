@@ -1,4 +1,4 @@
-import * as React from "react";
+﻿import * as React from "react";
 import { BaseFeature, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./feature11.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
@@ -243,7 +243,7 @@ class Feature11 extends BaseFeature {
     this.addProp({
       type: "number",
       key: "itemCount",
-      displayer: "Item count in a row",
+      displayer: "Item Count In A Row",
       value: 2,
       additionalParams: {
         maxElementCount: 5,

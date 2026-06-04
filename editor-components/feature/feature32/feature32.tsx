@@ -1,4 +1,4 @@
-import * as React from "react";
+﻿import * as React from "react";
 import { BaseFeature, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./feature32.module.scss";
 import { Base, TypeButton } from "../../../composer-base-components/base/base";
@@ -191,7 +191,7 @@ class Feature32 extends BaseFeature {
     this.addProp({
       type: "number",
       key: "itemCount",
-      displayer: "Item Count in a Row",
+      displayer: "Item Count In A Row",
       value: 2,
       additionalParams: {
         maxElementCount: 5,

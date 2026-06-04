@@ -1,4 +1,4 @@
-import * as React from "react";
+﻿import * as React from "react";
 import { BaseFeature, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./feature30.module.scss";
 import { INPUTS } from "../../../custom-hooks/input-templates";
@@ -185,7 +185,7 @@ class Feature30 extends BaseFeature {
         this.addProp({
             type: "number",
             key: "itemsPerRow",
-            displayer: "Items Count in a Row",
+            displayer: "Items Count In A Row",
             value: 5,
         });
 

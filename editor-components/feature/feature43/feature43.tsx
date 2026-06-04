@@ -1,4 +1,4 @@
-import {
+﻿import {
   BaseFeature,
   TypeMediaInputValue,
 } from "../../EditorComponent";
@@ -258,7 +258,7 @@ class Feature43 extends BaseFeature {
     this.addProp({
       type: "number",
       key: "itemCount",
-      displayer: "Item Count in a Row",
+      displayer: "Item Count In A Row",
       value: 3,
     });
 

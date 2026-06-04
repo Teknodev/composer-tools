@@ -1,4 +1,4 @@
-import * as React from "react";
+﻿import * as React from "react";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 import { BaseFeature, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./feature14.module.scss";
@@ -215,7 +215,7 @@ class Feature14 extends BaseFeature {
     this.addProp({
       type: "number",
       key: "itemCount",
-      displayer: "Item Count in a Row",
+      displayer: "Item Count In A Row",
       value: 4,
     });
   }

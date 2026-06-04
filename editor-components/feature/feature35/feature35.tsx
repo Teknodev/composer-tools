@@ -1,4 +1,4 @@
-import * as React from "react";
+﻿import * as React from "react";
 import { BaseFeature } from "../../EditorComponent";
 import styles from "./feature35.module.scss";
 import { Base, TypeButton } from "../../../composer-base-components/base/base";
@@ -120,7 +120,7 @@ class Feature35 extends BaseFeature {
         this.addProp({
             type: "number",
             key: "itemCount",
-            displayer: "Item Count in a Row",
+            displayer: "Item Count In A Row",
             value: 3,
         });
     }

@@ -1,4 +1,4 @@
-import * as React from "react";
+﻿import * as React from "react";
 import { BaseFeature, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./feature3.module.scss";
 
@@ -133,7 +133,7 @@ class Feature3 extends BaseFeature {
     this.addProp({
       type: "number",
       key: "cards-item-count",
-      displayer: "Cards Item Count in a Row",
+      displayer: "Cards Item Count In A Row",
       value: 3,
       max: 5
     });
@@ -274,7 +274,7 @@ class Feature3 extends BaseFeature {
     this.addProp({
       type: "number",
       key: "logos-item-count",
-      displayer: "Logos Item Count in a Row",
+      displayer: "Logos Item Count In A Row",
       value: 5,
       max: 5
     });

@@ -1,4 +1,4 @@
-import { BaseFeature } from "../../EditorComponent";
+﻿import { BaseFeature } from "../../EditorComponent";
 import styles from "./feature45.module.scss";
 import {
   Base,
@@ -183,7 +183,7 @@ class Feature45 extends BaseFeature {
     this.addProp({
       type: "number",
       key: "itemCount",
-      displayer: "Item Count in a Row",
+      displayer: "Item Count In A Row",
       value: 3,
     });
 
