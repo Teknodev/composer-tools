@@ -36,6 +36,13 @@
             gap: var(--composer-gap-sm);
             align-items: stretch;
 
+            .slider-style {
+              width: 100%;
+              :global(.slick-slide) {
+                width: 100% !important;
+              }
+            }
+
             .v-dots {
               display: flex;
               flex-direction: column;

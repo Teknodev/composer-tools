@@ -441,7 +441,7 @@ class Testimonials9Page extends Testimonials {
                     ))}
                   </div>
                 )}
-                <ComposerSlider {...settings} ref={sliderRef}>
+                <ComposerSlider {...settings} ref={sliderRef} className={this.decorateCSS("slider-style")}>
                   {this.castToObject<Item[]>("slider").map((item: Item, index: number) => (
                     <div key={index} className={`${this.decorateCSS("card-inner")} ${activeIndex === index ? this.decorateCSS("active") : ""}`}>
                       {item.image && <Base.Media value={item.image} className={this.decorateCSS("img")} />}
