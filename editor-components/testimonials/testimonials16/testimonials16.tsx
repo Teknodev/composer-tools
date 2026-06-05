@@ -226,7 +226,6 @@ class Testimonials16 extends Testimonials {
     this.addProp({ type: "boolean", key: "backgroundOverlay", displayer: "Background Overlay", value: true });
     this.addProp({ type: "boolean", key: "mediaOverlay", displayer: "Overlay", value: false });
     this.addProp({ type: "boolean", key: "autoplay", displayer: "Autoplay", value: true });
-    this.addProp({ type: "boolean", key: "navigation", displayer: "Navigation", value: true });
     this.addProp({ type: "boolean", key: "divider", displayer: "Divider", value: true });
 
     this.addProp({
@@ -254,14 +253,14 @@ class Testimonials16 extends Testimonials {
     });
 
     this.addProp(INPUTS.SLIDER_SETTINGS("slider-settings", "Slider Settings", {
-      dots: false,
+      dots: true,
+      arrows: true,
       infinite: true,
       speed: 700,
       autoplay: true,
       autoplaySpeed: 5200,
       slidesToShow: 1,
       slidesToScroll: 1,
-      centerMode: false,
     }));
     this.setComponentState("activeSlideIndex", 0);
     this.setComponentState("sliderRef", React.createRef());
@@ -312,7 +311,6 @@ class Testimonials16 extends Testimonials {
     const showMediaOverlay = this.getPropValue("mediaOverlay") !== false;
     const showBackgroundOverlay = this.getPropValue("backgroundOverlay");
     const autoplayEnabled = this.getPropValue("autoplay") !== false;
-    const showNavigation = this.getPropValue("navigation") !== false;
     const activeItemImage = filteredTestimonials[activeIndex]?.image;
     const activePortrait = activeItemImage && activeItemImage.type === "image" && activeItemImage.url ? activeItemImage : null;
     const subtitleType = Base.getSectionSubTitleType();
@@ -529,9 +527,9 @@ class Testimonials16 extends Testimonials {
               </ComposerSlider>
             </div>
           )}
-          {filteredTestimonials.length > 1 && showNavigation && (
+          {filteredTestimonials.length > 1 && (sliderSettings.arrows || sliderSettings.dots) && (
             <div className={this.decorateCSS("nav-wrapper")}>
-              {prevIcon && (
+              {sliderSettings.arrows && prevIcon && (
                 <div
                   className={this.decorateCSS("navigation-button")}
                   role="button"
@@ -543,22 +541,24 @@ class Testimonials16 extends Testimonials {
                   <Base.Media value={prevIcon} className={this.decorateCSS("navigation-icon")} />
                 </div>
               )}
-              <div className={this.decorateCSS("navigation-dots-panel")}>
-                <div className={this.decorateCSS("navigation-dots")}>
-                  {filteredTestimonials.map((_: TestimonialItem, index: number) => (
-                    <div
-                      key={index}
-                      className={`${this.decorateCSS("navigation-dot")} ${
-                        activeIndex === index && this.decorateCSS("navigation-dot-active")
-                      }`}
-                      onClick={() => {
-                        sliderRef?.current?.slickGoTo(index);
-                      }}
-                    />
-                  ))}
+              {sliderSettings.dots && (
+                <div className={this.decorateCSS("navigation-dots-panel")}>
+                  <div className={this.decorateCSS("navigation-dots")}>
+                    {filteredTestimonials.map((_: TestimonialItem, index: number) => (
+                      <div
+                        key={index}
+                        className={`${this.decorateCSS("navigation-dot")} ${
+                          activeIndex === index && this.decorateCSS("navigation-dot-active")
+                        }`}
+                        onClick={() => {
+                          sliderRef?.current?.slickGoTo(index);
+                        }}
+                      />
+                    ))}
+                  </div>
                 </div>
-              </div>
-              {nextIcon && (
+              )}
+              {sliderSettings.arrows && nextIcon && (
                 <div
                   className={this.decorateCSS("navigation-button")}
                   role="button"
