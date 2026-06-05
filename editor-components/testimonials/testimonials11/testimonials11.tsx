@@ -38,7 +38,7 @@ class Testimonials11Page extends Testimonials {
           type: "media",
           key: "media",
           displayer: "Background Media",
-          additionalParams: { availableTypes: ["image"] },
+          additionalParams: { availableTypes: ["image", "video"] },
           value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67239fe77acba6002c5d6377?alt=media" },
         },
         {
@@ -283,6 +283,8 @@ class Testimonials11Page extends Testimonials {
     const backgroundObj = this.castToObject<BackgroundObj>("componentBackground");
     const coverMedia = backgroundObj.media;
     const coverImage = coverMedia && (coverMedia.type === "image" ? coverMedia.url : undefined);
+    const coverVideo = coverMedia && (coverMedia.type === "video" ? coverMedia.url : undefined);
+    const coverMediaExist = coverMedia && coverMedia.url;
     const overlayActive = backgroundObj.overlayActive;
     const cardList = this.castToObject<Item[]>("items");
 
@@ -293,23 +295,29 @@ class Testimonials11Page extends Testimonials {
           backgroundImage: coverImage ? `url(${coverImage})` : undefined,
         }}
       >
-        {overlayActive && coverImage && <div className={this.decorateCSS("overlay")} />}
+        {coverVideo && (
+          <Base.Media
+            value={coverMedia}
+            className={this.decorateCSS("video-background")}
+          />
+        )}
+        {overlayActive && coverMediaExist && <div className={this.decorateCSS("overlay")} />}
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("wrapper")}>
             {hasAnyTopContent && (
               <Base.VerticalContent className={this.decorateCSS("top-content")}>
                 {subtitleExist && (
-                  <Base.SectionSubTitle className={`${this.decorateCSS("subtitle")}${coverImage ? ` ${this.decorateCSS("subtitle-with-image")}` : ""}`}>
+                  <Base.SectionSubTitle className={`${this.decorateCSS("subtitle")}${coverMediaExist ? ` ${this.decorateCSS("subtitle-with-image")}` : ""}`}>
                     {this.getPropValue("subtitle")}
                   </Base.SectionSubTitle>
                 )}
                 {titleExist && (
-                  <Base.SectionTitle className={`${this.decorateCSS("title")}${coverImage ? ` ${this.decorateCSS("title-with-image")}` : ""}`}>
+                  <Base.SectionTitle className={`${this.decorateCSS("title")}${coverMediaExist ? ` ${this.decorateCSS("title-with-image")}` : ""}`}>
                     {this.getPropValue("title")}
                   </Base.SectionTitle>
                 )}
                 {descriptionExist && (
-                  <Base.SectionDescription className={`${this.decorateCSS("description")}${coverImage ? ` ${this.decorateCSS("description-with-image")}` : ""}`}>
+                  <Base.SectionDescription className={`${this.decorateCSS("description")}${coverMediaExist ? ` ${this.decorateCSS("description-with-image")}` : ""}`}>
                     {this.getPropValue("description")}
                   </Base.SectionDescription>
                 )}
@@ -338,7 +346,7 @@ class Testimonials11Page extends Testimonials {
             )}
             <Base.ListGrid gridCount={{ phone: 1, tablet: 2, pc: this.getPropValue("itemCount") }} className={this.decorateCSS("content")}>
               {cardList.map((item: Item, index: number) => (
-                <div key={index} className={`${this.decorateCSS("cards")}${!coverImage ? ` ${this.decorateCSS("cards-no-background")}` : ""}`}>
+                <div key={index} className={`${this.decorateCSS("cards")}${!coverMediaExist ? ` ${this.decorateCSS("cards-no-background")}` : ""}`}>
                   <div className={this.decorateCSS("card-top")}>
                     {item.image && (
                       <Base.Media value={item.image} className={this.decorateCSS("card-image")} />
