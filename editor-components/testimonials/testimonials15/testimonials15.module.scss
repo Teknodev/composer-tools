@@ -457,7 +457,9 @@
               .play-icon {
                 font-size: 1.5rem;
                 color: var(--composer-font-color-secondary);
-                display: block !important;
+                display: flex !important;
+                align-items: center;
+                justify-content: center;
               }
 
               &:hover {
@@ -625,6 +627,19 @@
           order: 1;
           display: flex;
           flex-direction: column;
+
+          .video-content {
+            .video-container {
+              .play-button {
+                width: 45px !important;
+                height: 45px !important;
+
+                .play-icon {
+                  font-size: 1rem !important;
+                }
+              }
+            }
+          }
 
           .top-right-content {
             min-height: auto;
