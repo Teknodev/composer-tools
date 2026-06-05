@@ -48,6 +48,12 @@ class Testimonials4Page extends Testimonials {
           displayer: "Overlay",
           value: false,
         },
+        {
+          type: "boolean",
+          key: "baseOverlay",
+          displayer: "Colorful Overlay",
+          value: true,
+        },
       ],
     });
 
@@ -288,7 +294,7 @@ class Testimonials4Page extends Testimonials {
     });
     const hasAnyTopContent = subtitleExist || titleExist || descriptionExist || hasValidButtons;
 
-    const background = this.castToObject<{ componentBackground: TypeMediaInputValue; overlay: boolean }>("background");
+    const background = this.castToObject<{ componentBackground: TypeMediaInputValue; overlay: boolean; baseOverlay: boolean }>("background");
     const componentBackground = background.componentBackground as TypeMediaInputValue;
     const componentBackgroundExist = componentBackground && (componentBackground.type === "icon" ? componentBackground.name : componentBackground.url);
 
@@ -316,7 +322,7 @@ class Testimonials4Page extends Testimonials {
         {componentBackgroundExist && (
           <Base.Media value={componentBackground} className={this.decorateCSS("component-background")} />
         )}
-        {componentBackgroundExist && (
+        {componentBackgroundExist && background.baseOverlay && (
           <div className={this.decorateCSS("color-mix-layer")} />
         )}
         {componentBackgroundExist && background.overlay && (
