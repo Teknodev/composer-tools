@@ -79,10 +79,11 @@
           flex-direction: column;
           align-items: flex-start;
           transition: opacity 0.5s ease;
+          gap: var(--composer-gap-sm);
 
           .icon-and-name {
             display: flex;
-            gap: var(--composer-gap-xs);
+            gap: var(--composer-gap-md);
             align-items: center;
 
             .span-icon {
@@ -125,7 +126,7 @@
 
           .comment {
             font-size: 1.5rem;
-            margin: 0 auto 0 2.5rem !important;
+            margin: 0 auto 0 45px !important;
             text-align: left !important;
           }
         }
@@ -205,17 +206,46 @@
       flex-direction: column;
       gap: var(--composer-gap-md) !important;
 
+      .top-content {
+        align-items: center !important;
+
+        .subtitle {
+          text-align: center !important;
+          transform: none !important;
+          width: fit-content !important;
+          margin: 0 auto !important;
+
+          &::before {
+            display: none !important;
+          }
+        }
+
+        .title,
+        .description {
+          text-align: center !important;
+        }
+
+        .button-container {
+          justify-content: center !important;
+        }
+      }
+
       .content {
         flex-direction: column;
         gap: var(--composer-gap-md) !important;
 
         .media {
           order: 1 !important;
+          margin-left: 0 !important;
 
           .image {
             width: 45px !important;
             height: 45px !important;
             margin-left: -10px !important;
+
+            &:first-child {
+              margin-left: 0 !important;
+            }
           }
         }
 
@@ -233,6 +263,19 @@
             .icon-and-name {
               justify-content: center !important;
               flex-direction: column;
+              align-items: center !important;
+
+              .author-details {
+                align-items: center !important;
+
+                .author-name {
+                  text-align: center !important;
+                }
+
+                .author-subtitle {
+                  text-align: center !important;
+                }
+              }
             }
 
             .comment {
