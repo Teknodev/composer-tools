@@ -351,7 +351,7 @@ class Testimonials12Page extends Testimonials {
             <ComposerSlider {...settings} className={this.decorateCSS("slider-style")} ref={this.getComponentState("slider-ref")}>
               {cards.map((card: Item, index: number) => {
                 const textExist = this.castToString(card.text);
-                const imageExist = card.image && card.image.url;
+                const imageExist = card.image && (card.image.type === "icon" ? card.image.name : card.image.url);
                 const nameExist = card.author && this.castToString(card.author.name);
                 const subtitleCardExist = card.author && this.castToString(card.author.position);
                 const shouldRenderCard = textExist || imageExist || nameExist || subtitleCardExist;

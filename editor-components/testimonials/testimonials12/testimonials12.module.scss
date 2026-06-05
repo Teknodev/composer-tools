@@ -120,6 +120,9 @@
               border-radius: 50%;
               object-fit: cover;
               font-size: 3rem;
+              display: flex;
+              align-items: center;
+              justify-content: center;
             }
             .below-right-content {
               justify-content: center;
