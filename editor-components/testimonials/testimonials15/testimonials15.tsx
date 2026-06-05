@@ -94,7 +94,7 @@ class Testimonials15Page extends Testimonials {
           key: "numberIcon",
           displayer: "Icon",
           additionalParams: {
-            availableTypes: ["image", "video"],
+            availableTypes: ["icon", "image"],
           },
           value: {
             type: "icon",
@@ -152,7 +152,7 @@ class Testimonials15Page extends Testimonials {
           key: "starIcon",
           displayer: "Icon",
           additionalParams: {
-            availableTypes: ["image", "video"],
+            availableTypes: ["icon", "image"],
           },
           value: {
             type: "icon",
@@ -195,7 +195,7 @@ class Testimonials15Page extends Testimonials {
           key: "quoteIcon",
           displayer: "Icon",
           additionalParams: {
-            availableTypes: ["image", "video"],
+            availableTypes: ["icon", "image"],
           },
           value: {
             type: "icon",
@@ -245,7 +245,7 @@ class Testimonials15Page extends Testimonials {
           key: "playIcon",
           displayer: "Play Button Icon",
           additionalParams: {
-            availableTypes: ["image", "video"],
+            availableTypes: ["icon", "image"],
           },
           value: {
             type: "icon",
@@ -257,7 +257,7 @@ class Testimonials15Page extends Testimonials {
           key: "closeIcon",
           displayer: "Close Button Icon",
           additionalParams: {
-            availableTypes: ["image", "video"],
+            availableTypes: ["icon", "image"],
           },
           value: {
             type: "icon",

@@ -166,7 +166,10 @@
                   text-align: left !important;
 
                   .number-icon {
+                    width: 32px;
+                    height: 32px;
                     font-size: 2rem;
+                    object-fit: contain;
                     color: var(--composer-font-color-primary);
                     display: block !important;
                   }
@@ -369,8 +372,11 @@
               display: flex;
 
               .star-icon {
-                color: var(--composer-font-color-secondary);
+                width: 24px;
+                height: 24px;
                 font-size: 1.5rem;
+                object-fit: contain;
+                color: var(--composer-font-color-secondary);
                 display: block !important;
               }
             }
@@ -408,8 +414,11 @@
               }
 
               .quote-icon {
-                color: var(--composer-font-color-secondary);
+                width: 80px;
+                height: 80px;
                 font-size: 5rem;
+                object-fit: contain;
+                color: var(--composer-font-color-secondary);
                 display: block !important;
               }
             }
@@ -455,7 +464,10 @@
               transition: all 0.3s ease;
 
               .play-icon {
+                width: 24px;
+                height: 24px;
                 font-size: 1.5rem;
+                object-fit: contain;
                 color: var(--composer-font-color-secondary);
                 display: flex !important;
                 align-items: center;
@@ -636,6 +648,9 @@
 
                 .play-icon {
                   font-size: 1rem !important;
+                  width: 16px !important;
+                  height: 16px !important;
+                  object-fit: contain;
                 }
               }
             }
@@ -677,6 +692,8 @@
 
                   .star-icon {
                     font-size: 1rem;
+                    width: 16px;
+                    height: 16px;
                   }
 
                   .quote-text {
@@ -695,6 +712,8 @@
 
                     .quote-icon {
                       font-size: 4rem;
+                      width: 64px;
+                      height: 64px;
                     }
                   }
                 }
