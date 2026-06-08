@@ -191,6 +191,12 @@
                 .title {
                     color: var(--composer-html-background);
                 }
+
+                .subtitle-badge {
+                    background: transparent !important;
+                    color: var(--composer-html-background) !important;
+                    padding: 0 !important;
+                }
             }
         }
     }
@@ -198,6 +204,14 @@
     &.colorful {
         .max-content {
             .heading {
+                .subtitle {
+                    color: var(--composer-primary-color);
+
+                    &::before {
+                        background: var(--composer-primary-color) !important;
+                    }
+                }
+
                 .subtitle-badge {
                     background: var(--composer-font-color-secondary) !important;
                     color: var(--composer-primary-color) !important;
