@@ -38,6 +38,20 @@
       margin: 0 auto;
     }
 
+    .button-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: var(--composer-gap-sm);
+      .button {
+        display: flex;
+        align-items: center;
+        .button-text, .button-icon {
+          content: "";
+        }
+      }
+    }
+
     .box {
       background: var(--composer-primary-color);
       border-radius: var(--composer-border-radius-lg);

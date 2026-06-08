@@ -6,6 +6,13 @@ import { Base } from "../../../composer-base-components/base/base";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import { INPUTS } from "../../../custom-hooks/input-templates";
 
+type Button = {
+  text: React.JSX.Element;
+  url: string;
+  icon: TypeMediaInputValue;
+  type: string;
+};
+
 type Card = {
   media: TypeMediaInputValue;
   title: React.JSX.Element;
@@ -45,6 +52,7 @@ class Feature10 extends BaseFeature {
       displayer: "Description",
       value: "We've helped plenty of SaaS startups and scaleups develop reliable, secure infrastructure."
     });
+
     this.addProp({
       type: "media",
       key: "rightArrow",
@@ -310,7 +318,14 @@ class Feature10 extends BaseFeature {
         }
       ]
     });
-    this.addProp(INPUTS.BUTTON("button", "Button", "View our services", "", "GoArrowRight", null, "Primary"));
+    this.addProp({
+      type: "array",
+      key: "buttons",
+      displayer: "Buttons",
+      value: [
+        INPUTS.BUTTON("button", "Button", "View our services", "", "GoArrowRight", null, "Primary"),
+      ],
+    });
     this.setComponentState("slider-ref", React.createRef());
     this.setComponentState("active", 0);
     this.setComponentState("activeSlideIndex", 0);
@@ -329,7 +344,12 @@ class Feature10 extends BaseFeature {
     const subtitle = this.getPropValue("subtitle");
     const description = this.getPropValue("description");
 
-    const button = this.castToObject<INPUTS.CastedButton>("button");
+    const buttons = this.castToObject<Button[]>("buttons");
+    const hasValidButtons = buttons && buttons.some((btn: Button) => {
+      const buttonText = this.castToString(btn.text);
+      const iconExist = btn.icon && (btn.icon.type === "icon" ? btn.icon.name : btn.icon.url);
+      return buttonText || iconExist;
+    });
     const settings = {
       ...sliderSettings,
       arrows: false,
@@ -450,23 +470,29 @@ class Feature10 extends BaseFeature {
                 </ComposerSlider>
               )}
             </div>
-            <div className={this.decorateCSS("button-wrapper")}>
-              {!!this.castToString(button.text) && (
-                <ComposerLink path={button.url}>
-                  <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
-                    {button.icon && (
-                      <Base.Media
-                        value={{ type: "icon", name: button.icon }}
-                        className={this.decorateCSS("button-icon")}
-                      />
-                    )}
-                    <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
-                  </Base.Button>
-                </ComposerLink>
-              )}
-            </div>
 
 
+            {hasValidButtons && (
+              <div className={this.decorateCSS("button-wrapper")}>
+                {buttons.map((item: Button, index: number) => {
+                  const buttonText = this.castToString(item.text);
+                  const iconExist = item.icon && (item.icon.type === "icon" ? item.icon.name : item.icon.url);
+                  if (!buttonText && !iconExist) return null;
+                  return (
+                    <ComposerLink key={index} path={item.url}>
+                      <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
+                        {buttonText && (
+                          <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>
+                        )}
+                        {iconExist && (
+                          <Base.Media className={this.decorateCSS("button-icon")} value={item.icon!} />
+                        )}
+                      </Base.Button>
+                    </ComposerLink>
+                  );
+                })}
+              </div>
+            )}
           </div>
         </Base.MaxContent>
       </Base.Container>

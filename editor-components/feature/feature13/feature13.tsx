@@ -3,6 +3,15 @@ import { BaseFeature, TypeMediaInputValue } from "../../EditorComponent";
 
 import styles from "./feature13.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
+import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
+import { INPUTS } from "../../../custom-hooks/input-templates";
+
+type Button = {
+  text: React.JSX.Element;
+  url: string;
+  icon: TypeMediaInputValue;
+  type: string;
+};
 
 type Tab = {
   title: React.JSX.Element;
@@ -51,6 +60,15 @@ class Feature13 extends BaseFeature {
       key: "description",
       displayer: "Description",
       value: "Designing the future, today - welcome to our architecture.",
+    });
+
+    this.addProp({
+      type: "array",
+      key: "buttons",
+      displayer: "Buttons",
+      value: [
+        INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+      ],
     });
 
     this.addProp({
@@ -539,6 +557,31 @@ class Feature13 extends BaseFeature {
                 <Base.SectionDescription className={this.decorateCSS("header-description")}>
                   {this.getPropValue("description")}
                 </Base.SectionDescription>
+              )}
+              {this.castToObject<Button[]>("buttons").some((btn: Button) => {
+                const buttonText = this.castToString(btn.text);
+                const iconExist = btn.icon && (btn.icon.type === "icon" ? btn.icon.name : btn.icon.url);
+                return buttonText || iconExist;
+              }) && (
+                <div className={this.decorateCSS("button-container")}>
+                  {this.castToObject<Button[]>("buttons").map((item: Button, index: number) => {
+                    const buttonText = this.castToString(item.text);
+                    const iconExist = item.icon && (item.icon.type === "icon" ? item.icon.name : item.icon.url);
+                    if (!buttonText && !iconExist) return null;
+                    return (
+                      <ComposerLink key={index} path={item.url}>
+                        <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
+                          {buttonText && (
+                            <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>
+                          )}
+                          {iconExist && (
+                            <Base.Media className={this.decorateCSS("button-icon")} value={item.icon!} />
+                          )}
+                        </Base.Button>
+                      </ComposerLink>
+                    );
+                  })}
+                </div>
               )}
             </Base.VerticalContent>
             <Base.ContainerGrid className={this.decorateCSS("comp-wrapper")}>

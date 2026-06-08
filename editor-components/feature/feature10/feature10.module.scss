@@ -104,13 +104,17 @@
                 display: flex;
                 flex-wrap: wrap;
                 justify-content: center;
+                gap: var(--composer-gap-sm);
                 .button {
+                    display: flex;
+                    align-items: center;
                     .button-text {
                         content: "";
                     }
-                    .icon{
+                    .button-icon{
                         height: 15px;
                         width: 15px;
+                        flex-shrink: 0;
                     }
                 }
             }
