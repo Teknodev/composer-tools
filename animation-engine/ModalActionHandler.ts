@@ -20,19 +20,19 @@ export class ModalActionHandler {
       return;
     }
 
-    const allModals = editor.getModals();
-    const lower = config.modalId.toLowerCase();
-    const modal = allModals.find(
-      (m) =>
-        m.id === config.modalId ||
-        m.name === config.modalId ||
-        m.signature?.getName() === config.modalId ||
-        m.name.toLowerCase().includes(lower) ||
-        m.signature?.getName().toLowerCase().includes(lower)
-    );
+    const modal = editor.findModalByKey(config.modalId);
 
     if (!modal) {
-      console.warn(`[ModalActionHandler] Modal not found for ID: ${config.modalId}`);
+      const all = editor.getModals();
+      console.warn(
+        `[ModalActionHandler] Modal not found for ID: ${config.modalId}. ` +
+          `Available modals (${all.length}):`,
+        all.map((m) => ({
+          id: m.id,
+          name: m.name,
+          jsonIds: (m.localization || []).map((l) => (l.modal?.json as any)?.id),
+        }))
+      );
       return;
     }
 
