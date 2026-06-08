@@ -194,6 +194,17 @@
             }
         }
     }
+
+    &.colorful {
+        .max-content {
+            .heading {
+                .subtitle-badge {
+                    background: var(--composer-font-color-secondary) !important;
+                    color: var(--composer-primary-color) !important;
+                }
+            }
+        }
+    }
 }
 
 @container (max-width: #{$composer-phone-width}) {
