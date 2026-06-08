@@ -143,6 +143,26 @@
           }
         }
       }
+      .dots-panel {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: var(--composer-gap-sm);
+        margin-top: var(--composer-gap-md);
+      }
+      .dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background-color: color-mix(in srgb, var(--composer-font-color-primary), transparent 70%);
+        border: none;
+        cursor: pointer;
+        padding: 0;
+        transition: background-color 0.3s ease;
+      }
+      .dot-active {
+        background-color: var(--composer-primary-color) !important;
+      }
     }
   }
 }

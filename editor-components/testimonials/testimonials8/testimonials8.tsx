@@ -266,6 +266,7 @@ class Testimonials8Page extends Testimonials {
     });
     this.addProp(INPUTS.SLIDER_SETTINGS("slider-settings", "Slider Settings", {
       dots: true,
+      arrows: true,
       infinite: true,
       speed: 700,
       autoplay: true,
@@ -357,10 +358,10 @@ class Testimonials8Page extends Testimonials {
             )}
             <div
               className={`${this.decorateCSS("content")}
-              ${prevArrowExist && cards.length > 1 && this.decorateCSS("contentPaddingLeft")}
-              ${nextArrowExist && cards.length > 1 && this.decorateCSS("contentPaddingRight")}`}
+              ${sliderSettings.arrows && prevArrowExist && cards.length > 1 && this.decorateCSS("contentPaddingLeft")}
+              ${sliderSettings.arrows && nextArrowExist && cards.length > 1 && this.decorateCSS("contentPaddingRight")}`}
             >
-              {prevArrowExist && cards.length > 1 && (
+              {sliderSettings.arrows && prevArrowExist && cards.length > 1 && (
                 <button
                   className={this.decorateCSS("prevArrow")}
                   onClick={() => {
@@ -408,7 +409,7 @@ class Testimonials8Page extends Testimonials {
                   );
                 })}
               </ComposerSlider>
-              {nextArrowExist && cards.length > 1 && (
+              {sliderSettings.arrows && nextArrowExist && cards.length > 1 && (
                 <button
                   className={this.decorateCSS("nextArrow")}
                   onClick={() => {
@@ -419,7 +420,7 @@ class Testimonials8Page extends Testimonials {
                 </button>
               )}
             </div>
-            {cards.length > 1 && (
+            {sliderSettings.dots && cards.length > 1 && (
               <div className={this.decorateCSS("dot-panel")}>
                 {cards.map((_: Item, idx: number) => (
                   <button

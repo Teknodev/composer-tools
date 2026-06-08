@@ -254,6 +254,7 @@ class Testimonials5Page extends Testimonials {
     });
     this.addProp(INPUTS.SLIDER_SETTINGS("slider-settings", "Slider Settings", {
       dots: false,
+      arrows: true,
       autoplay: true,
       infinite: false,
       speed: 500,
@@ -378,7 +379,7 @@ class Testimonials5Page extends Testimonials {
                       })}
                     </div>
                   )}
-                  {(prevIconExist || nextIconExist) && sliderItem.length > 1 && (
+                  {sliderSettings.arrows && (prevIconExist || nextIconExist) && sliderItem.length > 1 && (
                     <div className={this.decorateCSS("arrow")}>
                       {prevIconExist && (
                         <button onClick={() => this.handleSlideChange("prev")} className={this.decorateCSS("prevArrow")}>

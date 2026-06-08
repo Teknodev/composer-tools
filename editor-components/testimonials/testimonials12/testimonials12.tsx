@@ -208,6 +208,8 @@ class Testimonials12Page extends Testimonials {
       ],
     });
     this.addProp(INPUTS.SLIDER_SETTINGS("slider-settings", "Slider Settings", {
+      dots: false,
+      arrows: true,
       infinite: false,
       speed: 700,
       autoplay: true,
@@ -292,7 +294,7 @@ class Testimonials12Page extends Testimonials {
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("page")}>
-            {(hasAnyTopContent || (prevIconExist && cards.length > 1) || (nextIconExist && cards.length > 1)) && (
+            {(hasAnyTopContent || (sliderSettings.arrows && (prevIconExist || nextIconExist) && cards.length > 1)) && (
               <div className={this.decorateCSS("top-content")}>
                 {hasAnyTopContent && (
                   <Base.VerticalContent className={this.decorateCSS("top-content-text")}>
@@ -335,12 +337,12 @@ class Testimonials12Page extends Testimonials {
                   </Base.VerticalContent>
                 )}
                 <div className={this.decorateCSS("arrows")}>
-                  {prevIconExist && cards.length > 1 && (
+                  {sliderSettings.arrows && prevIconExist && cards.length > 1 && (
                     <button onClick={() => this.handleSlideChange("prev")} className={this.decorateCSS("arrow-button")}>
                       <Base.Media value={prevIcon} className={this.decorateCSS("prev-arrow")} />
                     </button>
                   )}
-                  {nextIconExist && cards.length > 1 && (
+                  {sliderSettings.arrows && nextIconExist && cards.length > 1 && (
                     <button onClick={() => this.handleSlideChange("next")} className={this.decorateCSS("arrow-button")}>
                       <Base.Media value={nextIcon} className={this.decorateCSS("next-arrow")} />
                     </button>
@@ -387,6 +389,17 @@ class Testimonials12Page extends Testimonials {
                 );
               })}
             </ComposerSlider>
+            {sliderSettings.dots && cards.length > 1 && (
+              <div className={this.decorateCSS("dots-panel")}>
+                {cards.map((_: Item, dotIndex: number) => (
+                  <button
+                    key={dotIndex}
+                    className={`${this.decorateCSS("dot")} ${(this.getComponentState("activeSlideIndex") || 0) === dotIndex ? this.decorateCSS("dot-active") : ""}`}
+                    onClick={() => this.getComponentState("slider-ref").current.slickGoTo(dotIndex)}
+                  />
+                ))}
+              </div>
+            )}
           </div>
         </Base.MaxContent>
       </Base.Container>

@@ -343,6 +343,16 @@ class Testimonials14 extends Testimonials {
       displayer: "Text Animation",
       value: true,
     });
+    this.addProp(INPUTS.SLIDER_SETTINGS("slider-settings", "Slider Settings", {
+      dots: false,
+      arrows: true,
+      infinite: true,
+      speed: 500,
+      autoplay: true,
+      autoplaySpeed: 3000,
+      slidesToShow: 1,
+      slidesToScroll: 1,
+    }));
 
     this.setComponentState("activeIndex", 0);
     this.setComponentState("contentAnimationClass", "animate__fadeIn");
@@ -434,6 +444,8 @@ class Testimonials14 extends Testimonials {
     const iconExist = activeItem?.icon && (activeItem.icon.type === "icon" ? activeItem.icon.name : activeItem.icon.url);
     const prevArrowExist = arrows.prevArrow && (arrows.prevArrow.type === "icon" ? arrows.prevArrow.name : arrows.prevArrow.url);
     const nextArrowExist = arrows.nextArrow && (arrows.nextArrow.type === "icon" ? arrows.nextArrow.name : arrows.nextArrow.url);
+    const rawSettings = this.getPropValue("slider-settings");
+    const sliderSettings = Object.fromEntries((rawSettings as any[]).map((p: any) => [p.key, p.value]));
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
@@ -534,7 +546,7 @@ class Testimonials14 extends Testimonials {
               </div>
             )}
             <div className={this.decorateCSS("arrow-container")}>
-              {prevArrowExist && images.length > 1 && (
+              {sliderSettings.arrows && prevArrowExist && images.length > 1 && (
                 <button
                   className={this.decorateCSS("prevArrow")}
                   onClick={(e) => {
@@ -547,7 +559,7 @@ class Testimonials14 extends Testimonials {
                   />
                 </button>
               )}
-              {nextArrowExist && images.length > 1 && (
+              {sliderSettings.arrows && nextArrowExist && images.length > 1 && (
                 <button
                   className={this.decorateCSS("nextArrow")}
                   onClick={(e) => {
@@ -562,6 +574,17 @@ class Testimonials14 extends Testimonials {
               )}
             </div>
           </div>
+          {sliderSettings.dots && images.length > 1 && (
+            <div className={this.decorateCSS("dots-panel")}>
+              {images.map((_: Item, dotIndex: number) => (
+                <button
+                  key={dotIndex}
+                  className={`${this.decorateCSS("dot")} ${activeIndex === dotIndex ? this.decorateCSS("dot-active") : ""}`}
+                  onClick={() => this.onImageClick(dotIndex)}
+                />
+              ))}
+            </div>
+          )}
           {showDividerBottom && (
             <div className={this.decorateCSS("divider-bottom")} />
           )}

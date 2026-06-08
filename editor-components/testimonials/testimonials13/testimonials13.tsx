@@ -431,6 +431,17 @@ class Testimonials13Page extends Testimonials {
                         </div>
                       ))}
                     </ComposerSlider>
+                    {sliderSettings.dots && card.length > 1 && (
+                      <div className={this.decorateCSS("dots-panel")}>
+                        {card.map((_: Item, dotIndex: number) => (
+                          <button
+                            key={dotIndex}
+                            className={`${this.decorateCSS("dot")} ${(this.getComponentState("activeSlideIndex") || 0) === dotIndex ? this.decorateCSS("dot-active") : ""}`}
+                            onClick={() => sliderRef.current.slickGoTo(dotIndex)}
+                          />
+                        ))}
+                      </div>
+                    )}
                   </div>
                 </div>
               </Base.GridCell>

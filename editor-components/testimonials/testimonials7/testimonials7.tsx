@@ -204,6 +204,7 @@ class Testimonials7Page extends Testimonials {
     });
     this.addProp(INPUTS.SLIDER_SETTINGS("slider-settings", "Slider Settings", {
       dots: false,
+      arrows: true,
       infinite: true,
       speed: 700,
       autoplay: true,
@@ -302,7 +303,7 @@ class Testimonials7Page extends Testimonials {
           )}
           <div className={this.decorateCSS("testimonials7")}>
             <div className={this.decorateCSS("slider-wrapper")}>
-              {prevIconExist && items.length > 1 && (
+              {sliderSettings.arrows && prevIconExist && items.length > 1 && (
                 <button
                   onClick={() => { sliderRef.current.slickPrev(); }}
                   className={this.decorateCSS("button-left")}
@@ -336,7 +337,7 @@ class Testimonials7Page extends Testimonials {
                   </div>
                 ))}
               </ComposerSlider>
-              {nextIconExist && items.length > 1 && (
+              {sliderSettings.arrows && nextIconExist && items.length > 1 && (
                 <button
                   onClick={() => { sliderRef.current.slickNext(); }}
                   className={this.decorateCSS("button-right")}
