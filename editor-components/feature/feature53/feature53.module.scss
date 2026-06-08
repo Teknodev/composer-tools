@@ -263,6 +263,7 @@
                         width: 100%;
                         min-width: 0;
                         border-bottom: var(--composer-border-width-xs) solid var(--composer-tertiary-color);
+                        pointer-events: auto;
 
                         .tab-header {
                             display: flex;
@@ -282,9 +283,9 @@
 
                             .tab-header-icon {
                                 flex-shrink: 0;
-                                font-size: 1.25rem;
-                                width: 1.25rem;
-                                height: 1.25rem;
+                                font-size: 2rem;
+                                width: 20px;
+                                height: 20px;
                                 object-fit: contain;
                                 color: currentColor;
 
