@@ -142,6 +142,7 @@
                 font-size: 5rem;
                 font-weight: 500;
                 margin: 0;
+                white-space: nowrap;
               }
 
               .setup-price-value,
@@ -150,6 +151,15 @@
                 font-size: 5rem !important;
                 font-weight: 500;
                 margin: 0;
+                white-space: nowrap !important;
+                word-break: keep-all !important;
+                width: auto !important;
+
+                * {
+                  white-space: nowrap !important;
+                  word-break: keep-all !important;
+                  width: auto !important;
+                }
               }
             }
 
@@ -256,6 +266,13 @@
       .right-column {
         padding: 100px 50px;
       }
+
+      .right-column {
+        .setup-price-prefix,
+        .monthly-price-prefix {
+          font-size: 4rem;
+        }
+      }
     }
   }
 }
@@ -285,6 +302,11 @@
       .right-column {
         width: 100%;
         padding: 50px 30px;
+
+        .setup-price-prefix,
+        .monthly-price-prefix {
+          font-size: 3rem;
+        }
       }
     }
   }

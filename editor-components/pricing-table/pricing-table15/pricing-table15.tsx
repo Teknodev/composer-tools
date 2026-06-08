@@ -513,14 +513,22 @@ class PricingTable15 extends BasePricingTable {
       featureDescription: this.getPropValue("featureDescription", { parent_object: item.value }),
     }));
 
-    const rightSetupFeePrefixExist = this.castToString(this.getPropValue("rightSetupFeePrefix", { parent_object: rightProps }));
-    const rightSetupFeeValueExist = this.castToString(this.getPropValue("rightSetupFeeValue", { parent_object: rightProps }));
-    const rightSetupFeeSuffixExist = this.castToString(this.getPropValue("rightSetupFeeSuffix", { parent_object: rightProps }));
+    const rightSetupFeePrefixRaw = this.getPropValue("rightSetupFeePrefix", { parent_object: rightProps });
+    const rightSetupFeeValueRaw = this.getPropValue("rightSetupFeeValue", { parent_object: rightProps });
+    const rightSetupFeeSuffixRaw = this.getPropValue("rightSetupFeeSuffix", { parent_object: rightProps });
     const rightOperatorExist = this.getPropValue("rightOperator", { parent_object: rightProps }) as TypeMediaInputValue;
-    const rightMonthlyPrefixExist = this.castToString(this.getPropValue("rightMonthlyPrefix", { parent_object: rightProps }));
-    const rightMonthlyValueExist = this.castToString(this.getPropValue("rightMonthlyValue", { parent_object: rightProps }));
-    const rightMonthlySuffixExist = this.castToString(this.getPropValue("rightMonthlySuffix", { parent_object: rightProps }));
+    const rightMonthlyPrefixRaw = this.getPropValue("rightMonthlyPrefix", { parent_object: rightProps });
+    const rightMonthlyValueRaw = this.getPropValue("rightMonthlyValue", { parent_object: rightProps });
+    const rightMonthlySuffixRaw = this.getPropValue("rightMonthlySuffix", { parent_object: rightProps });
 
+    const rightSetupFeePrefixExist = this.castToString(rightSetupFeePrefixRaw);
+    const rightSetupFeeValueExist = this.castToString(rightSetupFeeValueRaw);
+    const rightSetupFeeSuffixExist = this.castToString(rightSetupFeeSuffixRaw);
+    const rightMonthlyPrefixExist = this.castToString(rightMonthlyPrefixRaw);
+    const rightMonthlyValueExist = this.castToString(rightMonthlyValueRaw);
+    const rightMonthlySuffixExist = this.castToString(rightMonthlySuffixRaw);
+
+    const isEditor = typeof document !== "undefined" && !!document.getElementById("playground");
     const enableStatAnimation = this.getPropValue("enableStatAnimation", { parent_object: rightProps });
     const animationDuration = this.getPropValue("animationDuration", { parent_object: rightProps }) || 3;
     const rightCheckmarkFeaturesOverlay = !!this.getPropValue("rightCheckmarkFeaturesOverlay", { parent_object: rightProps });
@@ -637,15 +645,15 @@ class PricingTable15 extends BasePricingTable {
                           <div className={this.decorateCSS("setup-price-value-container")}>
                             {rightSetupFeePrefixExist && (
                               <Base.H1 className={this.decorateCSS("setup-price-prefix")}>
-                                {rightSetupFeePrefixExist}
+                                {rightSetupFeePrefixRaw}
                               </Base.H1>
                             )}
                             {rightSetupFeeValueExist && (
                               <Base.H1 className={this.decorateCSS("setup-price-value")}>
-                                {enableStatAnimation ? (
+                                {enableStatAnimation && !isEditor ? (
                                   <this.AnimatedNumber targetValue={parseFloat(rightSetupFeeValueExist) || 0} duration={animationDuration * 1000} />
                                 ) : (
-                                  rightSetupFeeValueExist
+                                  rightSetupFeeValueRaw
                                 )}
                               </Base.H1>
                             )}
@@ -653,7 +661,7 @@ class PricingTable15 extends BasePricingTable {
                         )}
                         {rightSetupFeeSuffixExist && (
                           <Base.P className={this.decorateCSS("setup-price-suffix")}>
-                            {rightSetupFeeSuffixExist}
+                            {rightSetupFeeSuffixRaw}
                           </Base.P>
                         )}
                       </div>
@@ -672,15 +680,15 @@ class PricingTable15 extends BasePricingTable {
                           <div className={this.decorateCSS("monthly-price-value-container")}>
                             {rightMonthlyPrefixExist && (
                               <Base.H1 className={this.decorateCSS("monthly-price-prefix")}>
-                                {rightMonthlyPrefixExist}
+                                {rightMonthlyPrefixRaw}
                               </Base.H1>
                             )}
                             {rightMonthlyValueExist && (
                               <Base.H1 className={this.decorateCSS("monthly-price-value")}>
-                                {enableStatAnimation ? (
+                                {enableStatAnimation && !isEditor ? (
                                   <this.AnimatedNumber targetValue={parseFloat(rightMonthlyValueExist) || 0} duration={animationDuration * 1000} />
                                 ) : (
-                                  rightMonthlyValueExist
+                                  rightMonthlyValueRaw
                                 )}
                               </Base.H1>
                             )}
@@ -688,7 +696,7 @@ class PricingTable15 extends BasePricingTable {
                         )}
                         {rightMonthlySuffixExist && (
                           <Base.P className={this.decorateCSS("monthly-price-suffix")}>
-                            {rightMonthlySuffixExist}
+                            {rightMonthlySuffixRaw}
                           </Base.P>
                         )}
                       </div>
