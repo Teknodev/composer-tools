@@ -1,6 +1,6 @@
 ﻿import * as React from "react";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
-import { BaseFeature, TypeMediaInputValue } from "../../EditorComponent";
+import { BaseFeature, TypeMediaInputValue, TypeUsableComponentProps } from "../../EditorComponent";
 import styles from "./feature10.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
@@ -14,6 +14,14 @@ type Card = {
 };
 
 class Feature10 extends BaseFeature {
+  transformSliderValues = (sliderProps: TypeUsableComponentProps[]): INPUTS.TYPE_SLIDER_SETTINGS => {
+    const flatObject: Record<string, any> = {};
+    sliderProps.forEach((prop: TypeUsableComponentProps) => {
+      flatObject[prop.key] = prop.value;
+    });
+    return flatObject;
+  };
+
   constructor(props?: any) {
     super(props, styles);
 
@@ -62,12 +70,16 @@ class Feature10 extends BaseFeature {
       }
     });
 
-    this.addProp({
-      type: "boolean",
-      key: "autoplay",
-      displayer: "Autoplay",
-      value: true
-    });
+    this.addProp(INPUTS.SLIDER_SETTINGS("settings", "Slider Settings", {
+      arrows: true,
+      dots: false,
+      infinite: true,
+      speed: 725,
+      autoplay: true,
+      autoplaySpeed: 2000,
+      slidesToShow: 3,
+      slidesToScroll: 1,
+    }));
 
     this.addProp({
       type: "array",
@@ -311,6 +323,7 @@ class Feature10 extends BaseFeature {
   render() {
     const sliderRef = this.getComponentState("slider-ref");
     const cards = this.castToObject<Card[]>("cards");
+    const sliderSettings = this.transformSliderValues(this.getPropValue("settings"));
 
     const title = this.getPropValue("title");
     const subtitle = this.getPropValue("subtitle");
@@ -318,14 +331,11 @@ class Feature10 extends BaseFeature {
 
     const button = this.castToObject<INPUTS.CastedButton>("button");
     const settings = {
+      ...sliderSettings,
       arrows: false,
       dots: false,
-      speed: 725,
-      autoplay: this.getPropValue("autoplay"),
-      autoplaySpeed: 2000,
       slidesToShow: cards.length > 2 ? 3 : cards.length,
       slidesToScroll: 1,
-      infinity: true,
 
       responsive: [
         {
@@ -373,7 +383,7 @@ class Feature10 extends BaseFeature {
                 </Base.SectionDescription>
               )}
             </Base.VerticalContent>
-            {(this.getPropValue("leftArrow") || this.getPropValue("rightArrow")) && (
+            {sliderSettings.arrows !== false && (this.getPropValue("leftArrow") || this.getPropValue("rightArrow")) && (
               <div className={this.decorateCSS("arrow-container")}>
                 {this.getPropValue("leftArrow") && (
                   <button
