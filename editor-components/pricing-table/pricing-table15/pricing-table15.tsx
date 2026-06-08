@@ -468,8 +468,9 @@ class PricingTable15 extends BasePricingTable {
     return "Pricing 15";
   }
 
-  AnimatedNumber = ({ targetValue, duration = 4000 }: { targetValue: number, duration?: number }) => {
+  AnimatedNumber = ({ targetValue, duration = 4000, children }: { targetValue: number, duration?: number, children?: React.ReactNode }) => {
     const [currentValue, setCurrentValue] = useState(0);
+    const [isFinished, setIsFinished] = useState(false);
 
     useEffect(() => {
       const startTime = Date.now();
@@ -484,11 +485,17 @@ class PricingTable15 extends BasePricingTable {
         setCurrentValue(lerp(0, targetValue, easedProgress));
         if (progress < 1) {
           animationId = requestAnimationFrame(animate);
+        } else {
+          setIsFinished(true);
         }
       };
       animationId = requestAnimationFrame(animate);
       return () => cancelAnimationFrame(animationId);
     }, [targetValue, duration]);
+
+    if (isFinished && children) {
+      return <>{children}</>;
+    }
 
     const decimalPlaces = targetValue % 1 === 0 ? 0 : 1;
     return <span>{currentValue.toFixed(decimalPlaces)}</span>;
@@ -650,10 +657,12 @@ class PricingTable15 extends BasePricingTable {
                             )}
                             {rightSetupFeeValueExist && (
                               <Base.H1 className={this.decorateCSS("setup-price-value")}>
-                                {enableStatAnimation && !isEditor ? (
-                                  <this.AnimatedNumber targetValue={parseFloat(rightSetupFeeValueExist) || 0} duration={animationDuration * 1000} />
+                                {enableStatAnimation ? (
+                                  <this.AnimatedNumber targetValue={parseFloat(rightSetupFeeValueExist.replace(/\s/g, '')) || 0} duration={animationDuration * 1000}>
+                                    {rightSetupFeeValueExist}
+                                  </this.AnimatedNumber>
                                 ) : (
-                                  rightSetupFeeValueRaw
+                                  rightSetupFeeValueExist
                                 )}
                               </Base.H1>
                             )}
@@ -685,10 +694,12 @@ class PricingTable15 extends BasePricingTable {
                             )}
                             {rightMonthlyValueExist && (
                               <Base.H1 className={this.decorateCSS("monthly-price-value")}>
-                                {enableStatAnimation && !isEditor ? (
-                                  <this.AnimatedNumber targetValue={parseFloat(rightMonthlyValueExist) || 0} duration={animationDuration * 1000} />
+                                {enableStatAnimation ? (
+                                  <this.AnimatedNumber targetValue={parseFloat(rightMonthlyValueExist.replace(/\s/g, '')) || 0} duration={animationDuration * 1000}>
+                                    {rightMonthlyValueExist}
+                                  </this.AnimatedNumber>
                                 ) : (
-                                  rightMonthlyValueRaw
+                                  rightMonthlyValueExist
                                 )}
                               </Base.H1>
                             )}
@@ -740,8 +751,8 @@ class PricingTable15 extends BasePricingTable {
                     {visibleButtons.map((item: ButtonTypeObj, index: number) => {
                       return this.castToString(item.text) && (
                         <ComposerLink key={`button-${index}`} path={item.url}>
-                          <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
-                            <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>
+                          <Base.Button buttonType={item.type} className={this.decorateCSS("card-button")}>
+                            <Base.P className={this.decorateCSS("card-button-text")}>{item.text}</Base.P>
                           </Base.Button>
                         </ComposerLink>
                       );

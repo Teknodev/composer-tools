@@ -134,15 +134,14 @@
             .monthly-price-value-container {
               display: flex;
               align-items: baseline;
-              gap: 2px;
+              justify-content: center;
 
               .setup-price-prefix,
               .monthly-price-prefix {
                 color: var(--composer-font-color-secondary);
-                font-size: 5rem;
+                font-size: 5rem !important;
                 font-weight: 500;
                 margin: 0;
-                white-space: nowrap;
               }
 
               .setup-price-value,
@@ -151,15 +150,6 @@
                 font-size: 5rem !important;
                 font-weight: 500;
                 margin: 0;
-                white-space: nowrap !important;
-                word-break: keep-all !important;
-                width: auto !important;
-
-                * {
-                  white-space: nowrap !important;
-                  word-break: keep-all !important;
-                  width: auto !important;
-                }
               }
             }
 
@@ -247,8 +237,8 @@
           gap: var(--composer-gap-sm);
           width: 100%;
 
-          .button {
-            .button-text {
+          .card-button {
+            .card-button-text {
               content: "";
             }
           }
@@ -265,13 +255,6 @@
       .left-column,
       .right-column {
         padding: 100px 50px;
-      }
-
-      .right-column {
-        .setup-price-prefix,
-        .monthly-price-prefix {
-          font-size: 4rem;
-        }
       }
     }
   }
@@ -302,11 +285,6 @@
       .right-column {
         width: 100%;
         padding: 50px 30px;
-
-        .setup-price-prefix,
-        .monthly-price-prefix {
-          font-size: 3rem;
-        }
       }
     }
   }
