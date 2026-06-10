@@ -17,19 +17,15 @@ type CardItem = {
   cardPrice: React.JSX.Element;
   cardDuration: React.JSX.Element;
   cardFeature: CardFeatureItem[];
-  button: INPUTS.CastedButton;
+  buttons: INPUTS.CastedButton[];
 };
 
 type BottomCardItem = {
   bottomSubtitle: React.JSX.Element;
   bottomTitle: React.JSX.Element;
   bottomDescription: React.JSX.Element;
-  buttonBottom: any;
+  buttonsBottom: INPUTS.CastedButton[];
 };
-
-interface PricingTableSettings {
-  itemCount: number;
-}
 
 class PricingTable17 extends BasePricingTable {
   constructor(props?: TypeUsableComponentProps[]) {
@@ -121,7 +117,12 @@ class PricingTable17 extends BasePricingTable {
                 },
               ],
             },
-            INPUTS.BUTTON("button", "Button", "GET STARTED TODAY", "", null, null, "Primary"),
+            {
+              type: "array",
+              key: "buttons",
+              displayer: "Buttons",
+              value: [INPUTS.BUTTON("button", "Button", "GET STARTED TODAY", "", null, null, "Primary")],
+            },
           ],
         },
         {
@@ -186,7 +187,12 @@ class PricingTable17 extends BasePricingTable {
                 },
               ],
             },
-            INPUTS.BUTTON("button", "Button", "GET STARTED TODAY", "", null, null, "Primary"),
+            {
+              type: "array",
+              key: "buttons",
+              displayer: "Buttons",
+              value: [INPUTS.BUTTON("button", "Button", "GET STARTED TODAY", "", null, null, "Primary")],
+            },
           ],
         },
       ],
@@ -200,22 +206,20 @@ class PricingTable17 extends BasePricingTable {
         { type: "string", key: "bottomSubtitle", displayer: "Subtitle", value: "" },
         { type: "string", key: "bottomTitle", displayer: "Title", value: "Discounted" },
         { type: "string", key: "bottomDescription", displayer: "Description", value: "Get a full access to both licenses including extra super mega options for <span style='font-weight: bold; color: var(--composer-primary-color);'>$45 only</span>." },
-        INPUTS.BUTTON("buttonBottom", "Button", "BUY DISCOUNTED LICENSE", "", null, null, "Primary"),
+        {
+          type: "array",
+          key: "buttonsBottom",
+          displayer: "Buttons",
+          value: [INPUTS.BUTTON("buttonBottom", "Button", "BUY DISCOUNTED LICENSE", "", null, null, "Primary")],
+        },
       ],
     });
 
     this.addProp({
-      type: "object",
-      key: "settings",
-      displayer: "Settings",
-      value: [
-        {
-          type: "number",
-          key: "itemCount",
-          displayer: "Card Item Count in a Row",
-          value: 2,
-        },
-      ],
+      type: "number",
+      key: "itemCount",
+      displayer: "Item count in a row",
+      value: 2,
     });
   }
 
@@ -231,10 +235,9 @@ class PricingTable17 extends BasePricingTable {
     const visibleButtons = buttons.filter(btn => this.castToString(btn.text));
     const cards = this.castToObject<CardItem[]>("card");
     const bottomCard = this.castToObject<BottomCardItem>("bottomCard");
-    const settings = this.castToObject<PricingTableSettings>("settings") || { itemCount: 2 };
+    const itemCountValue = this.getPropValue("itemCount");
+    const itemCount = typeof itemCountValue === "number" ? itemCountValue : 2;
     const showHeader = subtitle || title || description || visibleButtons.length > 0;
-    const subtitleType = Base.getSectionSubTitleType();
-
     let hasCards = false;
     if (cards && cards.length > 0) {
       hasCards = cards.some(item => {
@@ -244,10 +247,16 @@ class PricingTable17 extends BasePricingTable {
         const cardPriceExist = this.castToString(item.cardPrice);
         const cardDurationExist = this.castToString(item.cardDuration);
 
-        const buttonTextExist = this.castToString(item.button?.text);
-        const buttonIconExist = item.button?.icon && item.button?.icon?.name;
-        const buttonImageExist = item.button?.image && item.button?.image?.url;
-        const buttonExist = buttonTextExist || buttonIconExist || buttonImageExist;
+        const rawButtons = item.buttons || ((item as any).button ? [(item as any).button] : []);
+        const buttons = Array.isArray(rawButtons) ? rawButtons : [];
+        const buttonExist = buttons.map((btn: any) => {
+          if (btn && btn.value && Array.isArray(btn.value)) {
+            return {
+              text: this.getPropValue("text", { parent_object: btn.value })
+            };
+          }
+          return btn;
+        }).some(btn => this.castToString(btn.text));
 
         const filteredFeatures = Array.isArray(item.cardFeature)
           ? item.cardFeature.filter((feature) => {
@@ -274,9 +283,19 @@ class PricingTable17 extends BasePricingTable {
       const bottomSubtitleExist = this.castToString(bottomCard.bottomSubtitle);
       const bottomTitleExist = this.castToString(bottomCard.bottomTitle);
       const bottomDescExist = this.castToString(bottomCard.bottomDescription);
-      const bottomButtonTextExist = this.castToString(this.getPropValue("text", { parent_object: bottomCard.buttonBottom }));
 
-      hasBottomCard = !!(bottomSubtitleExist || bottomTitleExist || bottomDescExist || bottomButtonTextExist);
+      const rawButtonsBottom = bottomCard.buttonsBottom || ((bottomCard as any).buttonBottom ? [(bottomCard as any).buttonBottom] : []);
+      const buttonsBottom = Array.isArray(rawButtonsBottom) ? rawButtonsBottom : [];
+      const bottomButtonExist = buttonsBottom.map((btn: any) => {
+        if (btn && btn.value && Array.isArray(btn.value)) {
+          return {
+            text: this.getPropValue("text", { parent_object: btn.value })
+          };
+        }
+        return btn;
+      }).some(btn => this.castToString(btn.text));
+
+      hasBottomCard = !!(bottomSubtitleExist || bottomTitleExist || bottomDescExist || bottomButtonExist);
     }
 
     const isOnlyHeader = showHeader && !hasCards && !hasBottomCard;
@@ -287,12 +306,7 @@ class PricingTable17 extends BasePricingTable {
           {showHeader && (
             <Base.VerticalContent className={this.decorateCSS("header")}>
               {subtitle && (
-                <Base.SectionSubTitle
-                  className={`
-                    ${this.decorateCSS("subtitle")}
-                    ${subtitleType === "badge" && this.decorateCSS("subtitle-header-only")}
-                  `}
-                >
+                <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
                   {this.getPropValue("subtitle")}
                 </Base.SectionSubTitle>
               )}
@@ -319,7 +333,7 @@ class PricingTable17 extends BasePricingTable {
 
           {cards.length > 0 && (
             <Base.ListGrid
-              gridCount={{ pc: settings.itemCount, tablet: 2, phone: 1 }}
+              gridCount={{ pc: itemCount, tablet: 2, phone: 1 }}
               className={this.decorateCSS("cards-row")}
             >
               {cards.map((item, index) => {
@@ -329,10 +343,19 @@ class PricingTable17 extends BasePricingTable {
                 const cardPriceExist = this.castToString(item.cardPrice);
                 const cardDurationExist = this.castToString(item.cardDuration);
 
-                const buttonTextExist = this.castToString(item.button?.text);
-                const buttonIconExist = item.button?.icon && item.button?.icon?.name;
-                const buttonImageExist = item.button?.image && item.button?.image?.url;
-                const buttonExist = buttonTextExist || buttonIconExist || buttonImageExist;
+                const rawButtons = item.buttons || ((item as any).button ? [(item as any).button] : []);
+                const buttons = Array.isArray(rawButtons) ? rawButtons : [];
+                const visibleCardButtons = buttons.map((btn: any) => {
+                  if (btn && btn.value && Array.isArray(btn.value)) {
+                    return {
+                      text: this.getPropValue("text", { parent_object: btn.value }),
+                      type: this.getPropValue("type", { parent_object: btn.value }),
+                      url: this.getPropValue("url", { parent_object: btn.value })
+                    };
+                  }
+                  return btn;
+                }).filter(btn => this.castToString(btn.text));
+                const buttonExist = visibleCardButtons.length > 0;
 
                 const filteredFeatures = Array.isArray(item.cardFeature)
                   ? item.cardFeature.filter((feature) => {
@@ -389,14 +412,13 @@ class PricingTable17 extends BasePricingTable {
                     <Base.VerticalContent className={this.decorateCSS("card-bottom")}>
                       {buttonExist && (
                         <div className={this.decorateCSS("card-buttons-container")}>
-                          <ComposerLink path={item?.button?.url}>
-                            {(
-                              <Base.Button buttonType={item.button?.type} className={this.decorateCSS("card-button")}>
-                                {item.button?.icon && item.button?.icon?.name && (<Base.Media value={item.button?.icon} className={this.decorateCSS("button-icon")} />)}
-                                {this.castToString(item.button?.text) && <Base.P className={this.decorateCSS("button-text")}>{item.button?.text}</Base.P>}
+                          {visibleCardButtons.map((btn, btnIndex) => (
+                            <ComposerLink key={`card-button-${index}-${btnIndex}`} path={btn.url}>
+                              <Base.Button buttonType={btn.type} className={this.decorateCSS("card-button")}>
+                                {this.castToString(btn.text) && <Base.P className={this.decorateCSS("button-text")}>{btn.text}</Base.P>}
                               </Base.Button>
-                            )}
-                          </ComposerLink>
+                            </ComposerLink>
+                          ))}
                         </div>
                       )}
                     </Base.VerticalContent>
@@ -411,14 +433,19 @@ class PricingTable17 extends BasePricingTable {
             const bottomTitleExist = this.castToString(bottomCard.bottomTitle);
             const bottomDescExist = this.castToString(bottomCard.bottomDescription);
 
-            const bottomButton = {
-              text: this.getPropValue("text", { parent_object: bottomCard.buttonBottom }),
-              type: this.getPropValue("type", { parent_object: bottomCard.buttonBottom }),
-              url: this.getPropValue("url", { parent_object: bottomCard.buttonBottom }),
-            };
-
-            const bottomButtonTextExist = this.castToString(bottomButton.text);
-            const bottomButtonExist = bottomButtonTextExist;
+            const rawButtonsBottom = bottomCard.buttonsBottom || ((bottomCard as any).buttonBottom ? [(bottomCard as any).buttonBottom] : []);
+            const buttonsBottom = Array.isArray(rawButtonsBottom) ? rawButtonsBottom : [];
+            const visibleBottomButtons = buttonsBottom.map((btn: any) => {
+              if (btn && btn.value && Array.isArray(btn.value)) {
+                return {
+                  text: this.getPropValue("text", { parent_object: btn.value }),
+                  type: this.getPropValue("type", { parent_object: btn.value }),
+                  url: this.getPropValue("url", { parent_object: btn.value })
+                };
+              }
+              return btn;
+            }).filter(btn => this.castToString(btn.text));
+            const bottomButtonExist = visibleBottomButtons.length > 0;
 
             const bottomCardContentExist = bottomSubtitleExist || bottomTitleExist || bottomDescExist || bottomButtonExist;
 
@@ -434,11 +461,13 @@ class PricingTable17 extends BasePricingTable {
 
                 {bottomButtonExist && (
                   <div className={this.decorateCSS("bottom-card-right")}>
-                    <ComposerLink path={bottomButton.url}>
-                      <Base.Button buttonType={bottomButton.type} className={this.decorateCSS("bottom-button")}>
-                        {bottomButtonTextExist && <Base.P className={this.decorateCSS("button-text")}>{bottomButton.text}</Base.P>}
-                      </Base.Button>
-                    </ComposerLink>
+                    {visibleBottomButtons.map((btn, btnIndex) => (
+                      <ComposerLink key={`bottom-button-${btnIndex}`} path={btn.url}>
+                        <Base.Button buttonType={btn.type} className={this.decorateCSS("bottom-button")}>
+                          {this.castToString(btn.text) && <Base.P className={this.decorateCSS("button-text")}>{btn.text}</Base.P>}
+                        </Base.Button>
+                      </ComposerLink>
+                    ))}
                   </div>
                 )}
               </div>
