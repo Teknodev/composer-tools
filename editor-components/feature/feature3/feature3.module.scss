@@ -7,6 +7,13 @@ $circlepaddingbottom: calc(300px + var(--composer-gap-xl));
 
 .container {
     min-height: auto;
+
+    &.center {
+        .upper {
+            text-align: center;
+        }
+    }
+
     .max-content {
         .wrapper {
             .upper {
@@ -25,9 +32,13 @@ $circlepaddingbottom: calc(300px + var(--composer-gap-xl));
 
                     &.circle-exist {
                         text-align: left;
-                        margin: 0;
-                        margin-bottom: var(--composer-gap-xs);
-                        color: var(--composer-font-color-secondary);
+                        color: var(--composer-font-color-secondary) !important;
+                        padding: 0 !important;
+                        background: transparent !important;
+
+                        &::before {
+                            background: var(--composer-font-color-secondary) !important;
+                        }
                     }
                 }
 
@@ -123,7 +134,8 @@ $circlepaddingbottom: calc(300px + var(--composer-gap-xl));
                                 transition: opacity var(--composer-transition-duration-slow) ease, transform var(--composer-transition-duration-slow) ease;
                             }
 
-                            .card-title {
+                            .card-title,
+                            .card-subtitle {
                                 color: var(--composer-font-color-primary);
                                 text-align: left;
                             }
@@ -188,80 +200,8 @@ $circlepaddingbottom: calc(300px + var(--composer-gap-xl));
 }
 
 @container (max-width: #{$composer-tablet-width}) {
-    $space : 5%;
-    $cardsmargintop : -150px;
-    $logosmargintop : calc(-1 * $cardsmargintop / 3);
-
     .container {
-        .max-content {
-            .wrapper {
-                .upper {
-                    &.circle-exist:has(.cards-container) {
-                        &.no-logos {
-                            padding-bottom: 0;
-                        }
-                    }
-
-                    .circle {
-                        padding: $space;
-                        padding-left: calc($space + var(--composer-gap-xl) + var(--composer-gap-md));
-                        padding-right: calc($space + var(--composer-gap-xl));
-                        padding-top: calc(var(--composer-gap-xl) + var(--composer-gap-lg));
-                        aspect-ratio: 1 / 1;
-                        padding-bottom: -$cardsmargintop;
-                        overflow: hidden;
-                        word-wrap: break-word;
-                        overflow-wrap: break-word;
-                    }
-
-                    .title {
-                        &.circle-exist {
-                            margin-top: 0;
-                        }
-                    }
-
-                    .description {
-                        &.circle-exist {
-                            top: calc($space + var(--composer-gap-md));
-
-                            line-clamp: 8;
-                            -webkit-line-clamp: 8;
-                        }
-                    }
-
-                    .cards-container {
-                        gap: var(--composer-gap-md);
-                        margin-top: var(--composer-gap-md);
-
-                        &.circle-exist {
-                            padding-left: calc($space + var(--composer-gap-md));
-                            margin-top: $cardsmargintop;
-                        }
-
-                        .card {
-                            min-height: auto;
-
-                            .card-content {
-                                padding: var(--composer-gap-md);
-                                gap: var(--composer-gap-sm);
-
-                                .card-icon {
-                                    font-size: 3rem;
-                                    width: var(--composer-gap-xl);
-                                    height: var(--composer-gap-xl);
-                                }
-                            }
-                        }
-                    }
-                }
-
-                .logos-container {
-                    &.circle-exist {
-                        margin-top: $logosmargintop;
-                    }
-                }
-            }
-        }
+        min-height: auto;
     }
 }
 
@@ -276,11 +216,16 @@ $circlepaddingbottom: calc(300px + var(--composer-gap-xl));
                     gap: var(--composer-gap-md);
 
                     .circle {
-                        padding: calc(2 * var(--composer-gap-xl)) var(--composer-gap-md);
+                        padding: var(--composer-gap-xl) var(--composer-gap-md);
                         width: 100%;
+                        aspect-ratio: 1 / 1;
                         overflow: hidden;
                         word-wrap: break-word;
                         overflow-wrap: break-word;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        flex-direction: column;
 
                         .subtitle {
                             text-align: center;
@@ -288,28 +233,23 @@ $circlepaddingbottom: calc(300px + var(--composer-gap-xl));
 
                         .title {
                             text-align: center;
+                            margin-bottom: var(--composer-gap-md);
                         }
 
                         .description {
                             text-align: center;
-                        }
-
-                        &:has(.title + .description) {
-                            padding: calc(1.5 * var(--composer-gap-xl)) var(--composer-gap-md);
-                            display: flex;
-                            justify-content: center;
-                            align-items: center;
-                            flex-direction: column;
-
-                            .title {
-                                margin-bottom: var(--composer-gap-md);
-                            }
                         }
                     }
 
                     .subtitle {
                         &.circle-exist {
                             text-align: center;
+                            transform: none !important;
+
+                            &::before {
+                                display: none !important;
+                                content: none !important;
+                            }
                         }
                     }
 

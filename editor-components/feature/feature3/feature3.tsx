@@ -1,4 +1,4 @@
-﻿import * as React from "react";
+import * as React from "react";
 import { BaseFeature, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./feature3.module.scss";
 
@@ -12,6 +12,7 @@ type Logo = {
 
 type Card = {
   title: React.JSX.Element;
+  subtitle: React.JSX.Element;
   icon: TypeMediaInputValue;
 };
 
@@ -42,8 +43,8 @@ class Feature3 extends BaseFeature {
 
     this.addProp({
       type: "boolean",
-      key: "enableCircle",
-      displayer: "Enable Circle",
+      key: "circle",
+      displayer: "Circle",
       value: true,
     });
 
@@ -57,6 +58,12 @@ class Feature3 extends BaseFeature {
           key: "card",
           displayer: "Card",
           value: [
+            {
+              type: "string",
+              key: "subtitle",
+              displayer: "Card Subtitle",
+              value: "SEO",
+            },
             {
               type: "string",
               key: "title",
@@ -84,6 +91,12 @@ class Feature3 extends BaseFeature {
           value: [
             {
               type: "string",
+              key: "subtitle",
+              displayer: "Card Subtitle",
+              value: "Marketing",
+            },
+            {
+              type: "string",
               key: "title",
               displayer: "Card Title",
               value: "Marketing & Advertisement",
@@ -107,6 +120,12 @@ class Feature3 extends BaseFeature {
           key: "card",
           displayer: "Card",
           value: [
+            {
+              type: "string",
+              key: "subtitle",
+              displayer: "Card Subtitle",
+              value: "Analytics",
+            },
             {
               type: "string",
               key: "title",
@@ -141,7 +160,7 @@ class Feature3 extends BaseFeature {
     this.addProp({
       type: "array",
       key: "logos",
-      displayer: "Logo Images",
+      displayer: "Logo Media",
       value: [
         {
           type: "object",
@@ -300,7 +319,7 @@ class Feature3 extends BaseFeature {
     const cardsItemCount = this.getPropValue("cards-item-count");
     const logosItemCount = this.getPropValue("logos-item-count");
 
-    const circleExist = !!this.getPropValue("enableCircle");
+    const circleExist = !!this.getPropValue("circle");
 
     const subtitle = this.getPropValue("subtitle");
     const subtitleExist = !!this.castToString(subtitle);
@@ -375,7 +394,10 @@ class Feature3 extends BaseFeature {
 
                 {cards?.length > 0 && (
                   <Base.ListGrid
-                    gridCount={{ pc: cardsItemCount, tablet: cardsItemCount <= 3 ? cardsItemCount : 3 }}
+                    gridCount={{
+                      pc: cardsItemCount,
+                      tablet: cardsItemCount
+                    }}
                     className={`
                       ${this.decorateCSS("cards-container")}
                       ${circleExist ? this.decorateCSS("circle-exist") : ""}
@@ -383,9 +405,10 @@ class Feature3 extends BaseFeature {
                   >
                     {cards.map((card: Card, index: number) => {
                       const titleExist = !!this.castToString(card.title);
+                      const subtitleExist = !!this.castToString(card.subtitle);
                       const iconExist = !!(card.icon && (card.icon.type === "icon" ? card.icon.name : card.icon.url));
 
-                      if (!titleExist && !iconExist) return null;
+                      if (!titleExist && !iconExist && !subtitleExist) return null;
 
                       return (
                         <div key={index} className={this.decorateCSS("card")}>
@@ -395,6 +418,11 @@ class Feature3 extends BaseFeature {
                                 value={card.icon}
                                 className={this.decorateCSS("card-icon")}
                               />
+                            )}
+                            {subtitleExist && (
+                              <Base.H6 className={this.decorateCSS("card-subtitle")}>
+                                {card.subtitle}
+                              </Base.H6>
                             )}
                             {titleExist && (
                               <Base.H4 className={this.decorateCSS("card-title")}>
@@ -412,7 +440,10 @@ class Feature3 extends BaseFeature {
 
             {logos?.length > 0 && (
               <Base.ListGrid
-                gridCount={{ pc: logosItemCount, tablet: logosItemCount <= 3 ? logosItemCount : 3 }}
+                gridCount={{
+                  pc: logosItemCount,
+                  tablet: logosItemCount
+                }}
                 className={`
                   ${this.decorateCSS("logos-container")}
                   ${circleExist ? this.decorateCSS("circle-exist") : ""}
