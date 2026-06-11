@@ -44,14 +44,14 @@ class Testimonials2Page extends Testimonials {
       type: "string",
       key: "description",
       displayer: "Description",
-      value: "Lorem ipsum dolor sit amet consectetur adipiscing elit ",
+      value: "",
     });
     this.addProp({
       type: "array",
       key: "buttons",
       displayer: "Buttons",
       value: [
-        INPUTS.BUTTON("button", "Button", "Lorem ipsum", "", null, null, "Primary"),
+        INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
       ],
     });
 
@@ -327,14 +327,14 @@ class Testimonials2Page extends Testimonials {
       key: "prevIcon",
       displayer: "Prev Icon",
       additionalParams: { availableTypes: ["icon", "image"] },
-      value: { type: "icon", name: "FaArrowLeft" },
+      value: { type: "icon", name: "BsArrowLeftCircle" },
     });
     this.addProp({
       type: "media",
       key: "nextIcon",
       displayer: "Next Icon",
       additionalParams: { availableTypes: ["icon", "image"] },
-      value: { type: "icon", name: "FaArrowRight" },
+      value: { type: "icon", name: "BsArrowRightCircle" },
     });
     this.addProp(INPUTS.SLIDER_SETTINGS("slider-settings", "Slider Settings", {
       dots: true,
@@ -375,6 +375,9 @@ class Testimonials2Page extends Testimonials {
     const sliderRef = this.getComponentState("slider-ref");
     const rawSettings = this.getPropValue("slider-settings");
     const sliderSettings = Object.fromEntries((rawSettings as any[]).map((p: any) => [p.key, p.value]));
+    const showArrows = sliderSettings.arrows !== false;
+    const hasNav = showArrows && (prevIconExist || nextIconExist) && cardCount > 1;
+
     const settings = {
       ...sliderSettings,
       arrows: false,
@@ -404,29 +407,51 @@ class Testimonials2Page extends Testimonials {
       <Base.Container className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("overlay")} />
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          {hasAnyTopContent && (
-            <Base.VerticalContent className={this.decorateCSS("top-content")}>
-              {subtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
-              {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
-              {descriptionExist && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
-              {hasValidButtons && (
-                <div className={this.decorateCSS("button-container")}>
-                  {buttons.map((item: Button, index: number) => {
-                    const buttonText = this.castToString(item.text);
-                    const iconExist = item.icon && (item.icon.type === "icon" ? item.icon.name : item.icon.url);
-                    if (!buttonText && !iconExist) return null;
-                    return (
-                      <ComposerLink key={index} path={item.url}>
-                        <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
-                          {buttonText && <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>}
-                          {iconExist && <Base.Media className={this.decorateCSS("button-icon")} value={item.icon!} />}
-                        </Base.Button>
-                      </ComposerLink>
-                    );
-                  })}
+          {(hasAnyTopContent || hasNav) && (
+            <div className={`${this.decorateCSS("section-header")} ${!showArrows && this.decorateCSS("no-arrows")}`}>
+              <Base.VerticalContent className={this.decorateCSS("top-content")}>
+                {subtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
+                {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
+                {descriptionExist && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
+                {hasValidButtons && (
+                  <div className={this.decorateCSS("button-container")}>
+                    {buttons.map((item: Button, index: number) => {
+                      const buttonText = this.castToString(item.text);
+                      const iconExist = item.icon && (item.icon.type === "icon" ? item.icon.name : item.icon.url);
+                      if (!buttonText && !iconExist) return null;
+                      return (
+                        <ComposerLink key={index} path={item.url}>
+                          <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
+                            {buttonText && <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>}
+                            {iconExist && <Base.Media className={this.decorateCSS("button-icon")} value={item.icon!} />}
+                          </Base.Button>
+                        </ComposerLink>
+                      );
+                    })}
+                  </div>
+                )}
+              </Base.VerticalContent>
+              {hasNav && (
+                <div className={this.decorateCSS("arrows-wrap")}>
+                  <div className={this.decorateCSS("arrows")}>
+                    {prevIconExist && (
+                      <div className={this.decorateCSS("arrow")}>
+                        <div className={this.decorateCSS("prevArrow")} onClick={() => sliderRef?.current?.slickPrev()}>
+                          <Base.Media value={prevIconVal} className={this.decorateCSS("arrow-media")} />
+                        </div>
+                      </div>
+                    )}
+                    {nextIconExist && (
+                      <div className={this.decorateCSS("arrow")}>
+                        <div className={this.decorateCSS("nextArrow")} onClick={() => sliderRef?.current?.slickNext()}>
+                          <Base.Media value={nextIconVal} className={this.decorateCSS("arrow-media")} />
+                        </div>
+                      </div>
+                    )}
+                  </div>
                 </div>
               )}
-            </Base.VerticalContent>
+            </div>
           )}
         </Base.MaxContent>
 
@@ -464,20 +489,6 @@ class Testimonials2Page extends Testimonials {
             );
           })}
         </ComposerSlider>
-        {sliderSettings.arrows && (prevIconExist || nextIconExist) && cardCount > 1 && (
-          <div className={this.decorateCSS("nav-arrows")}>
-            {prevIconExist && (
-              <button className={this.decorateCSS("nav-arrow-btn")} onClick={() => sliderRef?.current?.slickPrev()}>
-                <Base.Media value={prevIconVal} className={this.decorateCSS("nav-arrow-icon")} />
-              </button>
-            )}
-            {nextIconExist && (
-              <button className={this.decorateCSS("nav-arrow-btn")} onClick={() => sliderRef?.current?.slickNext()}>
-                <Base.Media value={nextIconVal} className={this.decorateCSS("nav-arrow-icon")} />
-              </button>
-            )}
-          </div>
-        )}
       </Base.Container>
     );
   }

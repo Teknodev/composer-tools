@@ -382,7 +382,7 @@ class Testimonials1Page extends Testimonials {
                           {iconExist && (
                             <Base.Media
                               value={item.icon}
-                              className={`${this.decorateCSS("icon")} ${item.icon.type === "icon" ? this.decorateCSS("is-icon") : ""} ${item.iconBackground ? this.decorateCSS("icon-bg") : ""}`}
+                              className={`${this.decorateCSS("icon")} ${item.icon.type === "icon" ? this.decorateCSS("is-icon") : this.decorateCSS("is-image")} ${item.iconBackground ? this.decorateCSS("icon-bg") : ""}`}
                             />
                           )}
                           {this.castToString(item.description) && (

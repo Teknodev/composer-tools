@@ -255,6 +255,10 @@
                 padding: var(--composer-gap-sm);
                 font-size: 3rem;
               }
+              &.is-image {
+                box-sizing: border-box;
+                object-fit: contain;
+              }
               &.icon-bg {
                 background-color: #d39121;
                 color: white;

@@ -331,7 +331,7 @@ class Testimonials9Page extends Testimonials {
       ],
     });
     this.addProp(INPUTS.SLIDER_SETTINGS("slider-settings", "Slider Settings", {
-      dots: false,
+      dots: true,
       infinite: true,
       speed: 500,
       autoplay: true,
@@ -430,34 +430,34 @@ class Testimonials9Page extends Testimonials {
             <Base.ContainerGrid className={this.decorateCSS("down-page")}>
               <Base.GridCell className={this.decorateCSS("carousel")}>
                 <div className={this.decorateCSS("carousel-inner")}>
-                {sliderSettings.dots && slider.length > 1 && (
-                  <div className={this.decorateCSS("v-dots")}>
-                    {this.castToObject<Item[]>("slider").map((_: Item, idx: number) => (
-                      <button
-                        key={idx}
-                        className={`${this.decorateCSS("v-dot")} ${activeIndex === idx ? this.decorateCSS("v-dot-active") : ""}`}
-                        onClick={() => sliderRef?.current?.slickGoTo(idx)}
-                      />
+                  <ComposerSlider {...settings} ref={sliderRef} className={this.decorateCSS("slider-style")}>
+                    {this.castToObject<Item[]>("slider").map((item: Item, index: number) => (
+                      <div key={index} className={`${this.decorateCSS("card-inner")} ${activeIndex === index ? this.decorateCSS("active") : ""}`}>
+                        {item.image && <Base.Media value={item.image} className={this.decorateCSS("img")} />}
+                        {item.author && (item.author.name || item.author.subtitle) && (
+                          <Base.VerticalContent className={this.decorateCSS("bottom-container")}>
+                            {item.author.name && (
+                              <Base.H5 className={this.decorateCSS("item-name")}>{item.author.name}</Base.H5>
+                            )}
+                            {item.author.position && (
+                              <Base.H5 className={this.decorateCSS("item-subtitle")}>{item.author.position}</Base.H5>
+                            )}
+                          </Base.VerticalContent>
+                        )}
+                      </div>
                     ))}
-                  </div>
-                )}
-                <ComposerSlider {...settings} ref={sliderRef} className={this.decorateCSS("slider-style")}>
-                  {this.castToObject<Item[]>("slider").map((item: Item, index: number) => (
-                    <div key={index} className={`${this.decorateCSS("card-inner")} ${activeIndex === index ? this.decorateCSS("active") : ""}`}>
-                      {item.image && <Base.Media value={item.image} className={this.decorateCSS("img")} />}
-                      {item.author && (item.author.name || item.author.subtitle) && (
-                        <Base.VerticalContent className={this.decorateCSS("bottom-container")}>
-                          {item.author.name && (
-                            <Base.H5 className={this.decorateCSS("item-name")}>{item.author.name}</Base.H5>
-                          )}
-                          {item.author.position && (
-                            <Base.H5 className={this.decorateCSS("item-subtitle")}>{item.author.position}</Base.H5>
-                          )}
-                        </Base.VerticalContent>
-                      )}
+                  </ComposerSlider>
+                  {sliderSettings.dots && slider.length > 1 && (
+                    <div className={this.decorateCSS("v-dots")}>
+                      {this.castToObject<Item[]>("slider").map((_: Item, idx: number) => (
+                        <button
+                          key={idx}
+                          className={`${this.decorateCSS("v-dot")} ${activeIndex === idx ? this.decorateCSS("v-dot-active") : ""}`}
+                          onClick={() => sliderRef?.current?.slickGoTo(idx)}
+                        />
+                      ))}
                     </div>
-                  ))}
-                </ComposerSlider>
+                  )}
                 </div>
               </Base.GridCell>
               <Base.GridCell className={this.decorateCSS("right-page")}>

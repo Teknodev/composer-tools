@@ -33,11 +33,13 @@
 
           .carousel-inner {
             display: flex;
+            flex-direction: column;
             gap: var(--composer-gap-sm);
             align-items: stretch;
 
             .slider-style {
               width: 100%;
+              margin-bottom: var(--composer-gap-md);
               :global(.slick-slide) {
                 width: 100% !important;
               }
@@ -45,7 +47,7 @@
 
             .v-dots {
               display: flex;
-              flex-direction: column;
+              flex-direction: row;
               align-items: center;
               justify-content: center;
               gap: 6px;
@@ -63,7 +65,8 @@
                 flex-shrink: 0;
 
                 &.v-dot-active {
-                  height: 22px;
+                  width: 22px;
+                  height: 6px;
                   border-radius: 3px;
                   background: var(--composer-primary-color);
                 }
@@ -92,6 +95,9 @@
               border-radius: 50%;
               object-fit: cover;
               font-size: 3rem;
+              display: flex;
+              align-items: center;
+              justify-content: center;
             }
 
             .bottom-container {
