@@ -1,4 +1,4 @@
-﻿import * as React from "react";
+import * as React from "react";
 import { BaseFeature, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./feature2.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
@@ -7,6 +7,7 @@ import ComposerLink from "../../../composer-base-components/Link/ComposerLinkPro
 
 
 type Box = {
+  subtitle: React.JSX.Element;
   title: React.JSX.Element;
   description: React.JSX.Element;
   icon: TypeMediaInputValue;
@@ -64,6 +65,12 @@ class Feature2 extends BaseFeature {
           value: [
             {
               type: "string",
+              key: "subtitle",
+              displayer: "Subtitle",
+              value: "",
+            },
+            {
+              type: "string",
               key: "title",
               displayer: "Title",
               value: "Consultation and initial meeting",
@@ -93,6 +100,12 @@ class Feature2 extends BaseFeature {
           key: "item",
           displayer: "List Item",
           value: [
+            {
+              type: "string",
+              key: "subtitle",
+              displayer: "Subtitle",
+              value: "",
+            },
             {
               type: "string",
               key: "title",
@@ -126,6 +139,12 @@ class Feature2 extends BaseFeature {
           value: [
             {
               type: "string",
+              key: "subtitle",
+              displayer: "Subtitle",
+              value: "",
+            },
+            {
+              type: "string",
               key: "title",
               displayer: "Title",
               value: "Design development",
@@ -155,6 +174,12 @@ class Feature2 extends BaseFeature {
           key: "item",
           displayer: "List Item",
           value: [
+            {
+              type: "string",
+              key: "subtitle",
+              displayer: "Subtitle",
+              value: "",
+            },
             {
               type: "string",
               key: "title",
@@ -294,10 +319,11 @@ class Feature2 extends BaseFeature {
           )}
           <Base.ListGrid gridCount={{ pc: itemCount, tablet: 4, phone: 1 }} className={this.decorateCSS("wrapper")}>
             {items.map((item: Box, index: number) => {
+              const subtitleExist = !!this.castToString(item.subtitle);
               const titleExist = !!this.castToString(item.title);
               const descExist = !!this.castToString(item.description);
               const iconExist = !!item.icon;
-              const shouldRender = titleExist || descExist || iconExist;
+              const shouldRender = subtitleExist || titleExist || descExist || iconExist;
 
               if (!shouldRender) return null;
 
@@ -325,10 +351,15 @@ class Feature2 extends BaseFeature {
                       />
                     </div>
                   )}
+                  {subtitleExist && (
+                    <Base.H6 className={this.decorateCSS("item-subtitle")}>
+                      {item.subtitle}
+                    </Base.H6>
+                  )}
                   {titleExist && (
-                    <Base.H4 className={this.decorateCSS("title")}>
+                    <Base.H5 className={this.decorateCSS("title")}>
                       {item.title}
-                    </Base.H4>
+                    </Base.H5>
                   )}
                   {descExist && (
                     <Base.P className={this.decorateCSS("description")}>
