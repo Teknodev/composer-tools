@@ -1,4 +1,4 @@
-﻿import * as React from "react";
+import * as React from "react";
 import { BaseFeature, TypeMediaInputValue } from "../../EditorComponent";
 
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
@@ -22,7 +22,7 @@ class Feature4 extends BaseFeature {
     this.addProp({
       type: "object",
       key: "background",
-      displayer: "Background",
+      displayer: "Background Media",
       value: [
         {
           type: "media",
@@ -79,6 +79,13 @@ class Feature4 extends BaseFeature {
       key: "itemCount",
       displayer: "Item Count In A Row",
       value: 3,
+    });
+
+    this.addProp({
+      type: "boolean",
+      key: "iconBackground",
+      displayer: "Icon Background",
+      value: true,
     });
 
     this.addProp({
@@ -404,6 +411,7 @@ class Feature4 extends BaseFeature {
 
     const itemCount = this.getPropValue("itemCount")
     const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons") || [];
+    const iconBackground = !!this.getPropValue("iconBackground");
 
     const subtitleExist = this.castToString(this.getPropValue("subtitle"));
     const titleExist = this.castToString(this.getPropValue("title"));
@@ -493,15 +501,18 @@ class Feature4 extends BaseFeature {
                     className={`${hasBg ? this.decorateCSS("card-item-count") : this.decorateCSS("card-item-count-no-bg")}`}>
                     <Base.VerticalContent className={this.decorateCSS("vertical")}>
                       {!!card.icon && (
-
-                        <div className={`${hasBg ? this.decorateCSS("icon-container") : this.decorateCSS("icon-container-no-bg")}`}>
+                        <div
+                          className={`
+                            ${hasBg ? this.decorateCSS("icon-container") : this.decorateCSS("icon-container-no-bg")}
+                            ${!iconBackground ? this.decorateCSS("no-background") : ""}
+                          `}
+                        >
                           <Base.Media
                             value={card.icon}
                             className={this.decorateCSS("icon")}
                           />
                         </div>
-                      )
-                      }
+                      )}
                       {
                         titleExist && (
                           <Base.H4 className={`${this.decorateCSS("title")} ${hasBg && this.decorateCSS("title-with-bg")}`}>
