@@ -418,13 +418,13 @@ class Feature53 extends BaseFeature {
                                     {filteredCards.map((card: ICard, index: number) => {
                                         const cardLabelExist = this.castToString(card.cardLabel);
                                         return cardLabelExist && (
-                                            <Base.H5
+                                            <Base.H6
                                                 key={`feature53-tab-btn-${index}`}
                                                 className={`${this.decorateCSS("tab-button")} ${desktopActive === index ? this.decorateCSS("active") : ""}`}
                                                 onClick={() => this.setDesktopCard(index)}
                                             >
                                                 {card.cardLabel}
-                                            </Base.H5>
+                                            </Base.H6>
                                         );
                                     })}
                                 </div>
@@ -470,7 +470,7 @@ class Feature53 extends BaseFeature {
                                                                 <Base.H5 className={this.decorateCSS("card-subtitle")}>{card.cardSubtitle}</Base.H5>
                                                             )}
                                                             {itemTitleExist && (
-                                                                <Base.H3 className={this.decorateCSS("card-title")}>{card.cardTitle}</Base.H3>
+                                                                <Base.H4 className={this.decorateCSS("card-title")}>{card.cardTitle}</Base.H4>
                                                             )}
                                                             {itemDescriptionExist && (
                                                                 <Base.P className={this.decorateCSS("card-description")}>{card.cardDescription}</Base.P>
