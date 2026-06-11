@@ -1,23 +1,69 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+
+.max-content {
+  .top-content {
+    width: 100%;
+
+    .subtitle,
+    .title,
+    .description {
+      content: "";
+    }
+
+    .button-container {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: var(--composer-gap-sm);
+
+      .button,
+      .button-text,
+      .button-icon {
+        content: "";
+      }
+    }
+  }
+}
+
 .container {
-  .maxContent {
+  display: flex;
+  flex-direction: column;
+  gap: var(--composer-gap-lg);
+  .cards-wrapper {
     display: flex;
     flex-direction: column;
     gap: calc(var(--composer-gap-lg) * 2);
-    .title {
-      margin: 0px;
-    }
-    .cardContainer {
+    .card-container {
       .card {
+        text-align: left;
         border: solid 1px rgba(var(--composer-font-color-primary-rgb), 0.5);
-        border-radius: var(--composer-border-radius-lg);
+        border-radius: var(--composer-border-radius-md);
         padding: var(--composer-gap-xl) var(--composer-gap-lg);
         display: flex;
         flex-direction: column;
         gap: var(--composer-gap-md);
         background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
-        .description {
-          margin: 0px;
+        .star {
+          display: flex;
+          align-items: center;
+          gap: var(--composer-gap-xs);
+          justify-content: flex-start !important;
+          margin-right: auto !important;
+          .icon {
+            color: var(--composer-primary-color);
+            font-size: 1.5rem;
+            width: 20px;
+            height: 20px;
+            object-fit: contain;
+          }
+          .rating {
+            color: var(--composer-primary-color);
+            text-align: left !important;
+            justify-content: flex-start !important;
+          }
+        }
+        .item-text {
+          text-align: left !important;
           color: var(--composer-font-color-primary);
         }
         .line {
@@ -25,7 +71,7 @@
           height: 1px;
           border-bottom: 1px solid rgb(var(--composer-font-color-primary-rgb), 0.2);
         }
-        .bottomContainer {
+        .bottom-container {
           display: flex;
           gap: var(--composer-gap-md);
           .image {
@@ -33,32 +79,32 @@
             width: 50px;
             height: 50px;
             object-fit: cover;
+            font-size: 3rem;
+            color: var(--composer-font-color-primary);
           }
           .person {
             display: flex;
             flex-direction: column;
             flex: 1;
-            .name {
+            .item-name {
               color: var(--composer-font-color-primary);
               font-size: 1rem;
+              text-align: left !important;
+              margin-left: 0 !important;
             }
-            .personTitle {
+            .item-subtitle {
               font-size: 1rem;
               color: var(--composer-tertiary-color);
-            }
-          }
-          .star {
-            .icon {
-              color: var(--composer-primary-color);
-              font-size: 1rem;
+              text-align: left !important;
+              margin-left: 0 !important;
             }
           }
         }
         &:hover {
           border: solid 1px var(--composer-primary-color);
-          .bottomContainer {
+          .bottom-container {
             .person {
-              .personTitle {
+              .item-subtitle {
                 color: var(--composer-primary-color);
               }
             }
@@ -69,10 +115,22 @@
   }
 }
 
+@container (max-width: #{$composer-tablet-width}) {
+  .container {
+    .cards-wrapper {
+      .card-container {
+        .card {
+          padding: calc(var(--composer-gap-xl) / 2) calc(var(--composer-gap-lg) / 2);
+        }
+      }
+    }
+  }
+}
+
 @container (max-width: #{$composer-phone-width}) {
   .container {
-    .maxContent {
-      .cardContainer {
+    .cards-wrapper {
+      .card-container {
         .card {
           padding: var(--composer-gap-lg) var(--composer-gap-md);
         }

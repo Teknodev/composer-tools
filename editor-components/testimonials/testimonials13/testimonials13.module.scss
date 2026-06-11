@@ -8,16 +8,112 @@
       .grid-cell {
         .flexItem1 {
           height: 100%;
-          .subtitle, .title, .description {
-            content: "";
+          display: flex;
+          flex-direction: column;
+          gap: var(--composer-gap-lg);
+
+          .top-content {
+            width: 100%;
+            align-items: flex-start !important;
+            .subtitle,
+            .title,
+            .description {
+              content: "";
+              text-align: left !important;
+              justify-content: flex-start !important;
+              margin-left: 0 !important;
+              margin-right: 0 !important;
+            }
+            .button-container {
+              display: flex;
+              flex-direction: row;
+              flex-wrap: wrap;
+              gap: var(--composer-gap-sm);
+              justify-content: flex-start !important;
+
+              .button,
+              .button-text,
+              .button-icon {
+                content: "";
+              }
+            }
           }
+
+          .carousel-wrapper {
+            position: relative;
+            width: 100%;
+
+            .nav-arrows {
+              position: absolute;
+              top: 160px;
+              left: calc(50% - 140px);
+              right: calc(50% - 140px);
+              display: flex;
+              justify-content: space-between;
+              pointer-events: none;
+              z-index: 10;
+              transform: translateY(-50%);
+
+              .arrow-button {
+                pointer-events: auto;
+                background-color: transparent;
+                border: none;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                transition: transform 0.25s ease;
+
+                .prev-arrow,
+                .next-arrow {
+                  display: inline-flex;
+                  align-items: center;
+                  justify-content: center;
+                  width: 28px;
+                  height: 28px;
+                  color: color-mix(in srgb, var(--composer-font-color-primary), transparent 40%);
+                  object-fit: contain;
+                  transition: color 0.25s ease;
+                }
+
+                &:hover {
+                  transform: scale(1.1);
+                  .prev-arrow,
+                  .next-arrow {
+                    color: var(--composer-html-background);
+                  }
+                }
+              }
+            }
+            .dots-panel {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              gap: var(--composer-gap-sm);
+              margin-top: var(--composer-gap-md);
+            }
+            .dot {
+              width: 10px;
+              height: 10px;
+              border-radius: 50%;
+              background-color: color-mix(in srgb, var(--composer-font-color-primary), transparent 70%);
+              border: none;
+              cursor: pointer;
+              padding: 0;
+              transition: background-color 0.3s ease;
+            }
+            .dot-active {
+              background-color: var(--composer-primary-color) !important;
+            }
+          }
+
           .carousel {
             width: 100%;
             .slider-inner-div {
               display: flex !important;
               height: 100%;
               background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
-              border-radius: var(--composer-border-radius-xs);
+              border-radius: var(--composer-border-radius-sm);
               .content-div {
                 display: flex;
                 flex-direction: column;
@@ -25,66 +121,52 @@
                 align-items: center;
                 background-color: var(--composer-html-backgrounds);
                 padding: calc(var(--composer-gap-xl) * 2) var(--composer-gap-xl);
-                .image-arrow {
-                  display: flex;
-                  align-items: center;
-                  gap: calc(var(--composer-gap-xl) * 2);
-                  .button {
-                    border: none;
-                    background-color: transparent;
-                    cursor: pointer;
-                    .next-arrow,
-                    .prev-arrow {
-                      width: 20px;
-                      height: 20px;
-                      color: var(--composer-tertiary-color);
-                    }
+                gap: var(--composer-gap-xl);
+                .img-div {
+                  width: 120px;
+                  height: 120px;
+                  border-radius: 50%;
+                  overflow: hidden;
+                  img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
                   }
-                  .img-div {
-                    width: 120px;
-                    height: 120px;
-                    border-radius: 50%;
-                    overflow: hidden;
-                    img {
-                      width: 100%;
-                      height: 100%;
-                      object-fit: cover;
-                    }
-                  }
+                  font-size: 3rem;
                 }
-                .header-page {
-                  display: flex;
-                  flex-direction: column;
-                  justify-content: center;
+
+                .item-description {
+                  color: var(--composer-font-color-primary);
+                  font-size: 1.5rem;
+                  text-align: center !important;
+                  justify-content: center !important;
+                  margin-left: auto !important;
+                  margin-right: auto !important;
+                }
+
+                .bottom-container {
                   align-items: center;
-                  gap: var(--composer-gap-xl);
-
-                  .item-description {
-                    color: var(--composer-font-color-primary);
-                    font-size: 1.5rem;
-                    margin: var(--composer-gap-xl) 0 0 0;
-                    text-align: center;
-
-                    &.item-description-no-margin {
-                      margin: 0px;
-                    }
+                  .item-icon {
+                    width: 30px;
+                    height: 30px;
+                    font-size: 2rem;
+                    color: var(--composer-primary-color);
                   }
 
-                  .bottom-container {
-                    align-items: center;
-                    .item-icon {
-                      width: 30px;
-                      height: 30px;
-                      color: var(--composer-primary-color);
-                    }
+                  .first-header {
+                    color: var(--composer-font-color-primary);
+                    text-align: center !important;
+                    justify-content: center !important;
+                    margin-left: auto !important;
+                    margin-right: auto !important;
+                  }
 
-                    .first-header {
-                      color: var(--composer-font-color-primary);
-                    }
-
-                    .item-title {
-                      color: var(--composer-font-color-primary);
-                    }
+                  .item-title {
+                    color: var(--composer-font-color-primary);
+                    text-align: center !important;
+                    justify-content: center !important;
+                    margin-left: auto !important;
+                    margin-right: auto !important;
                   }
                 }
               }
@@ -115,10 +197,13 @@
 
         .containerGrid {
           flex-direction: column;
+          height: 100%;
+          flex: 1;
         }
 
         .flexItem2 {
-          img {
+          flex-shrink: 0;
+          .side-image {
             width: 100%;
             height: 100%;
             object-fit: cover;
@@ -127,68 +212,46 @@
         }
 
         .flexItem3 {
+          flex: 1;
           background-color: var(--composer-secondary-color);
           display: flex;
           flex-direction: column;
+          justify-content: center;
           border-radius: var(--composer-border-radius-sm);
-          .item_title_text {
-            color: var(--composer-font-color-secondary);
-            text-align: center;
-          }
-
-          .container4 {
-            height: auto;
-            padding: var(--composer-gap-md) 10%;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            width: 100%;
-            gap: var(--composer-gap-lg);
-
-            .containerBottom {
-              flex-basis: 0;
-              flex-grow: 1;
-              margin-bottom: var(--composer-gap-xl);
-
-              .topWriting {
-                font-size: 1.5rem;
-                color: var(--composer-font-color-secondary);
-              }
-
-              .middleWriting {
-                font-size: 3rem;
-                color: var(--composer-font-color-secondary);
-              }
-
-              .bottomWriting {
-                font-size: 1rem;
-                color: var(--composer-font-color-secondary);
-              }
+          padding: 60px;
+          .flexItem3-content {
+            align-items: flex-start !important;
+            .item_title_text {
+              color: var(--composer-font-color-secondary);
+              text-align: left !important;
+              justify-content: flex-start !important;
+              margin-left: 0 !important;
+              margin-right: 0 !important;
             }
-          }
-        }
-      }
-    }
-  }
-}
-@container (max-width: #{$composer-tablet-width}) {
-  .container {
-    .max-content {
-      .container-grid {
-        flex-direction: row;
-        .grid-cell {
-          .flexItem1 {
-            .carousel {
-              .slider-inner-div {
-                .content-div {
-                  .image-arrow {
-                    gap: var(--composer-gap-xl);
-                  }
-                  .header-page {
-                    .item-description {
-                      font-size: 1rem;
-                    }
-                  }
+
+            .container4 {
+              height: auto;
+              display: flex;
+              flex-direction: row;
+              width: 100%;
+              gap: var(--composer-gap-lg);
+
+              .containerBottom {
+                flex: 1;
+
+                .topWriting {
+                  font-size: 1.5rem;
+                  color: var(--composer-font-color-secondary);
+                }
+
+                .middleWriting {
+                  font-size: 4.5rem;
+                  color: var(--composer-font-color-secondary);
+                }
+
+                .bottomWriting {
+                  font-size: 1.25rem;
+                  color: var(--composer-font-color-secondary);
                 }
               }
             }
@@ -199,20 +262,72 @@
   }
 }
 
+@container (max-width: #{$composer-tablet-width}) {
+  .container {
+    .max-content {
+      .container-grid {
+        flex-direction: row !important;
+        .grid-cell {
+          width: 50% !important;
+        }
+        .container3 {
+          width: 50% !important;
+        }
+      }
+    }
+  }
+}
+
 @container (max-width: #{$composer-phone-width}) {
   .container {
     .max-content {
       .container-grid {
-        flex-direction: column;
+        flex-direction: column !important;
         .grid-cell {
+          width: 100% !important;
           .flexItem1 {
             .subtitle {
               width: 85%;
             }
+            .carousel-wrapper {
+              .nav-arrows {
+                top: 80px;
+                left: calc(50% - 100px);
+                right: calc(50% - 100px);
+                .arrow-button {
+                  width: auto;
+                  height: auto;
+                  .prev-arrow,
+                  .next-arrow {
+                    width: 24px;
+                    height: 24px;
+                  }
+                }
+              }
+              .carousel {
+                overflow: hidden;
+                .slider-inner-div {
+                  .content-div {
+                    padding: 40px 20px;
+                    .img-div {
+                      width: 80px;
+                      height: 80px;
+                    }
+                  }
+                }
+              }
+            }
           }
         }
         .container3 {
-          width: 100%;
+          width: 100% !important;
+          .flexItem3 {
+            .flexItem3-content {
+              .container4 {
+                flex-direction: column;
+              }
+            }
+          }
         }
       }
     }
