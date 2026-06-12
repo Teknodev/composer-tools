@@ -321,13 +321,14 @@ class Slider3 extends BaseSlider {
     const description = this.castToString(this.getPropValue("description"));
     const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons") || [];
     const visibleButtons = buttons.filter(btn => this.castToString(btn.text));
+    const isFull = Base.getContentWidth() === "100%";
     const hasContent = subtitle || title || description || visibleButtons.length > 0;
 
     return (
       <Base.Container
-        className={`${this.decorateCSS("container")}  ${!hasContent && this.decorateCSS("no-header")}`}>
-        <Base.MaxContent className={this.decorateCSS("max-content")}>
-          {hasContent && (
+        className={`${this.decorateCSS("container")} ${!isFull && this.decorateCSS("full")} ${!hasContent && this.decorateCSS("no-header")}`.trim()}>
+        {hasContent && (
+          <Base.MaxContent className={this.decorateCSS("max-content")}>
             <Base.VerticalContent className={this.decorateCSS("vertical-content")}>
               {subtitle && (<Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>)}
               {title && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
@@ -346,59 +347,59 @@ class Slider3 extends BaseSlider {
                 </Base.Row>
               )}
             </Base.VerticalContent>
-          )}
-          {sliderItems.length > 0 && (
-            <div className={`${this.decorateCSS("slider-parent")} ${hideBottomPadding ? this.decorateCSS("no-bottom-padding") : ""}`}>
-              <ComposerSlider {...settings} className={this.decorateCSS("carousel")}>
-                {sliderItems.map((item: SliderItem, index: number) => {
-                  const imageElement = document.getElementById(`slider6Image${index}`);
-                  const imageHeight = imageElement?.clientHeight || "auto";
-                  return (
-                    <div
-                      className={`${this.decorateCSS("card")} 
+          </Base.MaxContent>
+        )}
+        {sliderItems.length > 0 && (
+          <div className={`${this.decorateCSS("slider-parent")} ${hideBottomPadding ? this.decorateCSS("no-bottom-padding") : ""}`}>
+            <ComposerSlider {...settings} className={this.decorateCSS("carousel")}>
+              {sliderItems.map((item: SliderItem, index: number) => {
+                const imageElement = document.getElementById(`slider6Image${index}`);
+                const imageHeight = imageElement?.clientHeight || "auto";
+                return (
+                  <div
+                    className={`${this.decorateCSS("card")} 
                       ${isMultipleItems && this.getComponentState("prevSlide") == index ? this.decorateCSS("prevSlide") : ""} 
                       ${isMultipleItems && this.getComponentState("nextSlide") == index ? this.decorateCSS("nextSlide") : ""}`}
-                      key={`sld-8-${index}`}
-                    >
-                      <Base.ContainerGrid className={this.decorateCSS("content-div")}>
-                        {(this.castToString(item.vertText) || item.media) && (
-                          <div className={`${this.decorateCSS("left-part")} ${!item.media && this.decorateCSS("no-image")} `}>
-                            {this.castToString(item.vertText) && (
-                              <span style={{ maxHeight: imageHeight }} className={this.decorateCSS("vert-text")}>
-                                {item.vertText}
-                              </span>
-                            )}
-                            {item.media && (
-                              <div className={this.decorateCSS("image-wrapper")}>
-                                <Base.Media value={item.media} className={this.decorateCSS("image")} />
-                                {isOverlayActive && item.media && <div className={this.decorateCSS("overlay")}></div>}
-                              </div>
-                            )}
-                          </div>
-                        )}
-                        {(this.castToString(item.Slidersubtitle) || this.castToString(item.Slidertitle) || this.castToString(item.Sliderdescription) || this.castToString(item.button.text)) && (
-                          <Base.VerticalContent className={this.decorateCSS("right-part")} id={"slider6Image" + index}>
-                            {this.castToString(item.Slidersubtitle) && <Base.P className={this.decorateCSS("card-subtitle")}>{item.Slidersubtitle}</Base.P>}
-                            {this.castToString(item.Slidertitle) && <Base.H5 className={this.decorateCSS("card-title")}>{item.Slidertitle}</Base.H5>}
-                            {this.castToString(item.Sliderdescription) && <Base.P className={this.decorateCSS("card-description")}>{item.Sliderdescription}</Base.P>}
-                            {this.castToString(item.button.text) && (
-                              <ComposerLink key={index} path={item.button.url}>
-                                <Base.Button buttonType={item.button.type} key={index} className={this.decorateCSS("card-button")}>
-                                  <span className={this.decorateCSS("card-button-text")}>{item.button.text}</span>
-                                  {item.button.icon && (item.button.icon)?.name && (<Base.Media value={item.button.icon} className={this.decorateCSS("card-icon")} />)}
-                                </Base.Button>
-                              </ComposerLink>
-                            )}
-                          </Base.VerticalContent>
-                        )}
-                      </Base.ContainerGrid>
-                    </div>
-                  );
-                })}
-              </ComposerSlider>
-            </div>
-          )}
-        </Base.MaxContent>
+                    key={`sld-8-${index}`}
+                  >
+                    <Base.ContainerGrid className={this.decorateCSS("content-div")}>
+                      {(this.castToString(item.vertText) || item.media) && (
+                        <div className={`${this.decorateCSS("left-part")} ${!item.media && this.decorateCSS("no-image")} `}>
+                          {this.castToString(item.vertText) && (
+                            <span style={{ maxHeight: imageHeight }} className={this.decorateCSS("vert-text")}>
+                              {item.vertText}
+                            </span>
+                          )}
+                          {item.media && (
+                            <div className={this.decorateCSS("image-wrapper")}>
+                              <Base.Media value={item.media} className={this.decorateCSS("image")} />
+                              {isOverlayActive && item.media && <div className={this.decorateCSS("overlay")}></div>}
+                            </div>
+                          )}
+                        </div>
+                      )}
+                      {(this.castToString(item.Slidersubtitle) || this.castToString(item.Slidertitle) || this.castToString(item.Sliderdescription) || this.castToString(item.button.text)) && (
+                        <Base.VerticalContent className={this.decorateCSS("right-part")} id={"slider6Image" + index}>
+                          {this.castToString(item.Slidersubtitle) && <Base.P className={this.decorateCSS("card-subtitle")}>{item.Slidersubtitle}</Base.P>}
+                          {this.castToString(item.Slidertitle) && <Base.H5 className={this.decorateCSS("card-title")}>{item.Slidertitle}</Base.H5>}
+                          {this.castToString(item.Sliderdescription) && <Base.P className={this.decorateCSS("card-description")}>{item.Sliderdescription}</Base.P>}
+                          {this.castToString(item.button.text) && (
+                            <ComposerLink key={index} path={item.button.url}>
+                              <Base.Button buttonType={item.button.type} key={index} className={this.decorateCSS("card-button")}>
+                                <span className={this.decorateCSS("card-button-text")}>{item.button.text}</span>
+                                {item.button.icon && (item.button.icon)?.name && (<Base.Media value={item.button.icon} className={this.decorateCSS("card-icon")} />)}
+                              </Base.Button>
+                            </ComposerLink>
+                          )}
+                        </Base.VerticalContent>
+                      )}
+                    </Base.ContainerGrid>
+                  </div>
+                );
+              })}
+            </ComposerSlider>
+          </div>
+        )}
       </Base.Container>
     );
   }
