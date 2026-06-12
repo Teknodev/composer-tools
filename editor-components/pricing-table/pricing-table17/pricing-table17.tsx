@@ -218,7 +218,7 @@ class PricingTable17 extends BasePricingTable {
     this.addProp({
       type: "number",
       key: "itemCount",
-      displayer: "Item count in a row",
+      displayer: "Item Count in a Row",
       value: 2,
     });
   }

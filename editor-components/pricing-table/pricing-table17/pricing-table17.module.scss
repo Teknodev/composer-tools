@@ -212,6 +212,11 @@
 
             .bottom-card {
                 flex-direction: column;
+
+                .bottom-card-right {
+                    justify-content: left !important;
+                    min-width: 100% !important;
+                }
             }
         }
     }
