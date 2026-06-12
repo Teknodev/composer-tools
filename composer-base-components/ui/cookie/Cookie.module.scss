@@ -159,17 +159,7 @@
     justify-content: center;
     flex-direction: row;
     .button {
-      border: 1.5px solid var(--composer-font-color-primary);
-      background: transparent;
-      color: inherit;
-      font-size: 14px;
-      padding: 8px 18px;
-      cursor: pointer;
-      transition: background 0.15s, color 0.15s, border 0.15s;
-      // Separate, individually-rounded buttons (not joined pill segments).
-      border-radius: 6px;
-      outline: none;
-      position: relative;
+
       // Was a hard 120px floor, which overflowed narrow floating-box slots.
       // Allow the buttons to shrink to fit; keep their label on one line.
       min-width: 0;
@@ -194,7 +184,7 @@
     }
     .buttonGroup .button {
       font-size: 14px;
-      padding: 8px 18px;
+      margin: 0;
     }
   }
   @container (max-width: 640px) {
