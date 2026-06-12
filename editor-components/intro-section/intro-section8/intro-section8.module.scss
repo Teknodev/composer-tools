@@ -38,10 +38,6 @@
         align-items: center;
       }
 
-      &:has(.spacer):not(:has(.action-buttons)) .vertical-content {
-        padding-bottom: 5rem;
-      }
-
       .subtitle {
         text-align: center;
         transform: translateX(0);
@@ -86,14 +82,6 @@
         }
       }
 
-      .spacer {
-        background-color: var(--composer-html-background);
-        position: absolute;
-        bottom: 0;
-        height: 3rem;
-        width: 100vw;
-        z-index: 1;
-      }
     }
   }
 }
@@ -111,9 +99,6 @@
               font-size: 1.5rem !important;
             }
           }
-        }
-        .spacer {
-          height: 2.5rem;
         }
       }
     }
