@@ -153,7 +153,7 @@ class Feature46 extends BaseFeature {
     this.addProp({
       type: "number",
       key: "itemsPerRow",
-      displayer: "Item Count In A Row",
+      displayer: "Item Count in a Row",
       value: 3,
     });
 

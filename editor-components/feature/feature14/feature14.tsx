@@ -215,7 +215,7 @@ class Feature14 extends BaseFeature {
     this.addProp({
       type: "number",
       key: "itemCount",
-      displayer: "Item Count In A Row",
+      displayer: "Item Count in a Row",
       value: 4,
     });
   }
@@ -325,7 +325,7 @@ class Feature14 extends BaseFeature {
 
                     <div className={this.decorateCSS("card-content")}>
                       {this.castToString(item.title) && (
-                        <Base.H3 className={this.decorateCSS("card-title")}>{item.title}</Base.H3>
+                        <Base.H5 className={this.decorateCSS("card-title")}>{item.title}</Base.H5>
                       )}
                       {this.castToString(item.description) && (
                         <Base.P className={this.decorateCSS("card-description")}>{item.description}</Base.P>

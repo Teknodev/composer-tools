@@ -1,4 +1,4 @@
-﻿import * as React from "react";
+import * as React from "react";
 import styles from "./feature21.module.scss";
 import { BaseFeature, TypeMediaInputValue } from "../../EditorComponent";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
@@ -446,9 +446,9 @@ class Feature21 extends BaseFeature{
                                         <div className={this.decorateCSS("text-content")}>
                                             {<div className={this.decorateCSS("left-side")}>
                                                 {cardTitleExist && (
-                                                    <Base.H4 className={this.decorateCSS("card-title")}>
+                                                    <Base.H5 className={this.decorateCSS("card-title")}>
                                                         {cardTitle}
-                                                    </Base.H4>
+                                                    </Base.H5>
                                                 )}
                                                 {cardDescriptionExist && (
                                                     <Base.P className={this.decorateCSS("card-description")}>

@@ -1,4 +1,4 @@
-﻿import * as React from "react";
+import * as React from "react";
 import { BaseFeature, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./feature11.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
@@ -243,7 +243,7 @@ class Feature11 extends BaseFeature {
     this.addProp({
       type: "number",
       key: "itemCount",
-      displayer: "Item Count In A Row",
+      displayer: "Item Count in a Row",
       value: 2,
       additionalParams: {
         maxElementCount: 5,
@@ -331,9 +331,9 @@ class Feature11 extends BaseFeature {
                       {card.icon && <Base.Media value={card.icon} className={this.decorateCSS("card-icon")} />}
                       <Base.VerticalContent className={this.decorateCSS("card-content")}>
                         {titleExist && (
-                          <Base.H3 className={this.decorateCSS("card-title")}>
+                          <Base.H5 className={this.decorateCSS("card-title")}>
                             {card.title}
-                          </Base.H3>
+                          </Base.H5>
                         )}
                         {descExist && (
                           <Base.P className={this.decorateCSS("card-description")}>

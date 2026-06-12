@@ -1,4 +1,4 @@
-﻿@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
     background-color:  color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
@@ -15,21 +15,30 @@
                 justify-content: end;
                 gap: var(--composer-gap-md);
                 .arrow-right, .arrow-left{
-                    border: none;
-                    padding: var(--composer-gap-xs);
+                    border: 1px solid var(--composer-font-color-primary);
+                    border-radius: 50%;
+                    width: 44px;
+                    height: 44px;
                     display: flex;
                     align-items: center;
                     justify-content: center;
                     cursor: pointer;
                     background-color: transparent;
+                    transition: border-color 0.3s ease, background-color 0.3s ease;
+
+                    &:hover {
+                        background-color: color-mix(in srgb, var(--composer-font-color-primary) 10%, transparent);
+                    }
+
                     .icon{
                         background-color: transparent;
-                        font-size: 3rem;
-                        width: 48px;
-                        height: 48px;
+                        width: 24px;
+                        height: 24px;
                         object-fit: contain;
                         color: var(--composer-font-color-primary);
-                        padding: var(--composer-gap-xs);
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
                     }
                 }
             }
@@ -128,8 +137,11 @@
             .wrapper {
                 .arrow-container{
                     .arrow-right, .arrow-left{
+                        width: 36px;
+                        height: 36px;
                         .icon{
-                            font-size: 1.5rem;
+                            width: 20px;
+                            height: 20px;
                         }
                     }
                 }

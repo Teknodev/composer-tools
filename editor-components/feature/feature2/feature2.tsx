@@ -212,7 +212,7 @@ class Feature2 extends BaseFeature {
     this.addProp({
       type: "number",
       key: "itemCount",
-      displayer: "Item Count In A Row",
+      displayer: "Item Count in a Row",
       value: 4,
       max: 4
     });

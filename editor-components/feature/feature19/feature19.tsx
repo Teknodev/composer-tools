@@ -1,4 +1,4 @@
-﻿import * as React from "react";
+import * as React from "react";
 import { BaseFeature, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./feature19.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
@@ -211,9 +211,9 @@ class Feature19 extends BaseFeature {
                           />
                         )}
                         {this.castToString(listItem.title) && (
-                          <Base.H3 className={this.decorateCSS("list-item-title")}>
+                          <Base.H5 className={this.decorateCSS("list-item-title")}>
                             {listItem.title}
-                          </Base.H3>
+                          </Base.H5>
                         )}
                       </Base.Row>
 

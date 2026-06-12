@@ -1,4 +1,4 @@
-﻿import * as React from "react";
+import * as React from "react";
 import { BaseFeature, TypeMediaInputValue } from "../../EditorComponent";
 
 import styles from "./feature13.module.scss";
@@ -28,6 +28,7 @@ type Progress = {
 type SliderImage = {
   imageSource: TypeMediaInputValue;
   imageIndex: number;
+  overlay: boolean;
 };
 
 class Feature13 extends BaseFeature {
@@ -53,6 +54,12 @@ class Feature13 extends BaseFeature {
       type: "boolean",
       key: "divider",
       displayer: "Line",
+      value: true,
+    });
+    this.addProp({
+      type: "boolean",
+      key: "showLines",
+      displayer: "Lines",
       value: true,
     });
     this.addProp({
@@ -102,6 +109,12 @@ class Feature13 extends BaseFeature {
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6687e87dba6bbe002b63ec07?alt=media",
               },
             },
+            {
+              type: "boolean",
+              key: "overlay",
+              displayer: "Overlay",
+              value: false,
+            },
           ],
         },
         {
@@ -127,6 +140,12 @@ class Feature13 extends BaseFeature {
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6687e8a5ba6bbe002b63ec1b?alt=media",
               },
             },
+            {
+              type: "boolean",
+              key: "overlay",
+              displayer: "Overlay",
+              value: false,
+            },
           ],
         },
         {
@@ -151,6 +170,12 @@ class Feature13 extends BaseFeature {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6687e8c6ba6bbe002b63ec3c?alt=media",
               },
+            },
+            {
+              type: "boolean",
+              key: "overlay",
+              displayer: "Overlay",
+              value: false,
             },
           ],
         },
@@ -527,6 +552,7 @@ class Feature13 extends BaseFeature {
     const sliderImages = this.castToObject<SliderImage[]>("slider-images");
     const titleExist = this.getPropValue("title", { as_string: true });
     const dividerExist = this.getPropValue("divider");
+    const showLines = this.getPropValue("showLines");
     const subtitle = this.getPropValue("subtitle");
     const subtitleExist = this.castToString(subtitle);
     const descExist = this.getPropValue("description", { as_string: true });
@@ -591,16 +617,23 @@ class Feature13 extends BaseFeature {
                     (image: SliderImage, index: number) => {
                       if (!image.imageSource) return null;
                       return (
-                        <Base.Media
+                        <div
                           key={index}
-                          value={image.imageSource}
                           style={{
                             marginLeft: `calc(${image.imageIndex} * var(--composer-gap-md))`,
                             marginTop: `calc(${image.imageIndex} * var(--composer-gap-md))`,
                             zIndex: image.imageIndex + 1,
                           }}
-                          className={this.decorateCSS("slider-item")}
-                        />
+                          className={this.decorateCSS("slider-item-wrapper")}
+                        >
+                          <Base.Media
+                            value={image.imageSource}
+                            className={this.decorateCSS("slider-item")}
+                          />
+                          {image.overlay && (
+                            <div className={this.decorateCSS("overlay")} />
+                          )}
+                        </div>
                       );
                     }
                   )}
@@ -647,7 +680,7 @@ class Feature13 extends BaseFeature {
                                 key={index}
                                 className={this.decorateCSS("tabs-list-item")}
                               >
-                                <Base.H3
+                                <Base.H5
                                   onClick={() => {
                                     this.switchTab(index);
                                   }}
@@ -657,7 +690,7 @@ class Feature13 extends BaseFeature {
                                     }`}
                                 >
                                   {item.title}
-                                </Base.H3>
+                                </Base.H5>
                               </div>
                             );
                           })}
@@ -683,16 +716,16 @@ class Feature13 extends BaseFeature {
                         return (
                           <div key={index} className={this.decorateCSS("progress-item")}>
                             <div className={this.decorateCSS("progress-header")}>
-                              <Base.H4 className={this.decorateCSS("progress-title")}>
+                              <Base.H6 className={this.decorateCSS("progress-title")}>
                                 {item.title}
-                              </Base.H4>
+                              </Base.H6>
                               {utility && (<Base.P
                                 className={this.decorateCSS(
                                   "progress-percent"
                                 )}
                               >{utility}</Base.P>)}
                             </div>
-                            {percentage && (
+                            {showLines && percentage && (
                               <div
                                 className={this.decorateCSS("progress-line")}
                                 style={{

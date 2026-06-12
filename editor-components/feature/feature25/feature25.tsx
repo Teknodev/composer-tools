@@ -12,7 +12,7 @@ type ITabs = {
   media: TypeMediaInputValue;
   overlay: boolean;
   description: React.JSX.Element;
-  button: INPUTS.CastedButton;
+  buttons: INPUTS.CastedButton[];
 };
 
 class Feature25 extends BaseFeature {
@@ -79,15 +79,22 @@ class Feature25 extends BaseFeature {
               value:
                 "Get your online business ready to accept credit cards. We've worked with countless startups to become established brands, with our flexible, no-fuss setup process.",
             },
-            INPUTS.BUTTON(
-              "button",
-              "Button",
-              "Learn More",
-              "",
-              null,
-              null,
-              "Primary"
-            ),
+            {
+              type: "array",
+              key: "buttons",
+              displayer: "Buttons",
+              value: [
+                INPUTS.BUTTON(
+                  "button",
+                  "Button",
+                  "Learn More",
+                  "",
+                  null,
+                  null,
+                  "Primary"
+                ),
+              ],
+            },
           ],
         },
         {
@@ -138,15 +145,31 @@ class Feature25 extends BaseFeature {
               value:
                 "Manage all your payments through a single unified interface. Everything you need in one, organised place.",
             },
-            INPUTS.BUTTON(
-              "button",
-              "Button",
-              "Learn More",
-              "",
-              null,
-              null,
-              "Primary"
-            ),
+            {
+              type: "array",
+              key: "buttons",
+              displayer: "Buttons",
+              value: [
+                INPUTS.BUTTON(
+                  "button",
+                  "Button",
+                  "Learn More",
+                  "",
+                  null,
+                  null,
+                  "Primary"
+                ),
+                 INPUTS.BUTTON(
+                  "button",
+                  "Button",
+                  "Learn More",
+                  "",
+                  null,
+                  null,
+                  "Primary"
+                ),
+              ],
+            },
           ],
         },
         {
@@ -197,15 +220,22 @@ class Feature25 extends BaseFeature {
               value:
                 "Reach the target markets you want. We keep your payments straightforward and efficient, no matter the complexity of the region.",
             },
-            INPUTS.BUTTON(
-              "button",
-              "Button",
-              "Learn More",
-              "",
-              null,
-              null,
-              "Primary"
-            ),
+            {
+              type: "array",
+              key: "buttons",
+              displayer: "Buttons",
+              value: [
+                INPUTS.BUTTON(
+                  "button",
+                  "Button",
+                  "Learn More",
+                  "",
+                  null,
+                  null,
+                  "Primary"
+                ),
+              ],
+            },
           ],
         },
       ],
@@ -285,7 +315,10 @@ class Feature25 extends BaseFeature {
                 const hasText = !!this.castToString(tab.text);
                 const hasTitle = !!this.castToString(tab.title);
                 const hasDesc = !!this.castToString(tab.description);
-                const hasButton = !!this.castToString(tab.button?.text);
+                const buttons = tab.buttons || [];
+                const hasButton = buttons.some((btn: INPUTS.CastedButton) =>
+                  this.castToString(btn.text)
+                );
                 const hasImage = !!tab.media;
                 if (
                   !hasText &&
@@ -323,7 +356,10 @@ class Feature25 extends BaseFeature {
                   const hasText = !!this.castToString(tab.text);
                   const hasTitle = !!this.castToString(tab.title);
                   const hasDesc = !!this.castToString(tab.description);
-                  const hasButton = !!this.castToString(tab.button?.text);
+                  const buttons = tab.buttons || [];
+                  const hasButton = buttons.some((btn: INPUTS.CastedButton) =>
+                    this.castToString(btn.text)
+                  );
                   const hasImage = !!tab.media;
 
                   const isTextEmpty =
@@ -381,26 +417,37 @@ class Feature25 extends BaseFeature {
                               {tab.description}
                             </Base.SectionDescription>
                           )}
-                          <div className={this.decorateCSS("button-wrapper")}>
-                            {hasButton && (
-                              <>
-                                <ComposerLink path={tab.button.url}>
-                                  <Base.Button
-                                    className={this.decorateCSS("button")}
-                                    buttonType={tab.button.type}
-                                  >
-                                    <Base.P
-                                      className={this.decorateCSS(
-                                        "button-text"
-                                      )}
+                          {hasButton && (
+                            <div className={this.decorateCSS("button-container")}>
+                              {buttons.map(
+                                (item: INPUTS.CastedButton, btnIndex: number) => {
+                                  const buttonTextExist = this.castToString(
+                                    item.text
+                                  );
+                                  if (!buttonTextExist) return null;
+                                  return (
+                                    <ComposerLink
+                                      key={btnIndex}
+                                      path={item.url}
                                     >
-                                      {tab.button.text}
-                                    </Base.P>
-                                  </Base.Button>
-                                </ComposerLink>
-                              </>
-                            )}
-                          </div>
+                                      <Base.Button
+                                        className={this.decorateCSS("button")}
+                                        buttonType={item.type}
+                                      >
+                                        <Base.P
+                                          className={this.decorateCSS(
+                                            "button-text"
+                                          )}
+                                        >
+                                          {item.text}
+                                        </Base.P>
+                                      </Base.Button>
+                                    </ComposerLink>
+                                  );
+                                }
+                              )}
+                            </div>
+                          )}
                         </Base.VerticalContent>
                       )}
                     </div>

@@ -45,12 +45,6 @@ class Feature20 extends BaseFeature {
       displayer: "Line",
       value: true,  
     });
-    this.addProp({
-      type: "boolean",
-      key: "showDividers",
-      displayer: "Dividers",
-      value: true,  
-    });
     
     this.addProp({
       type: "string",
@@ -66,6 +60,13 @@ class Feature20 extends BaseFeature {
       value: [
         INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
       ],
+    });
+
+    this.addProp({
+      type: "boolean",
+      key: "showDividers",
+      displayer: "Dividers",
+      value: true,  
     });
 
     this.addProp({
@@ -87,7 +88,7 @@ class Feature20 extends BaseFeature {
               },
               value: {
                 type: "image",
-                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/698f381d771c03002cc28774?alt=media",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/69a5989e771c03002ccbd6c4?alt=media",
               },
             },
             {
@@ -133,7 +134,7 @@ class Feature20 extends BaseFeature {
               },
               value: {
                 type: "image",
-                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/698f381d771c03002cc28774?alt=media",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/699c5a24771c03002cc6b0ca?alt=media",
               },
             },
             {

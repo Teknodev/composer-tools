@@ -1,4 +1,4 @@
-﻿import * as React from "react";
+import * as React from "react";
 import { BaseFeature, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./feature8.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
@@ -65,7 +65,7 @@ class Feature8 extends BaseFeature {
       key: "cards",
       displayer: "Cards",
       additionalParams: {
-        maxElementCount: 5
+        maxElementCount: 3
       },
       value: [
         {
@@ -161,75 +161,13 @@ class Feature8 extends BaseFeature {
             },
           ]
         },
-        {
-          type: "object",
-          key: "card",
-          displayer: "Card",
-          value: [
-            {
-              type: "media",
-              key: "icon",
-              displayer: "Icon",
-              additionalParams: {
-                availableTypes: ["icon", "image"],
-              },
-              value: {
-                type: "icon",
-                name: "FaHandPointer",
-              },
-            },
-            {
-              type: "string",
-              key: "title",
-              displayer: "Title",
-              value: "Non-visual Curation",
-            },
-            {
-              type: "string",
-              key: "description",
-              displayer: "Description",
-              value: "Manually curating your collections feels like doing your taxes.",
-            },
-          ]
-        },
-        {
-          type: "object",
-          key: "card",
-          displayer: "Card",
-          value: [
-            {
-              type: "media",
-              key: "icon",
-              displayer: "Icon",
-              additionalParams: {
-                availableTypes: ["icon", "image"],
-              },
-              value: {
-                type: "icon",
-                name: "FaHandPointer",
-              },
-            },
-            {
-              type: "string",
-              key: "title",
-              displayer: "Title",
-              value: "Non-visual Curation",
-            },
-            {
-              type: "string",
-              key: "description",
-              displayer: "Description",
-              value: "Manually curating your collections feels like doing your taxes.",
-            },
-          ]
-        },
       ],
     });
     this.addProp({
       type: "number",
       key: "itemCount",
-      displayer: "Item Count In A Row",
-      value: 5,
+      displayer: "Item Count in a Row",
+      value: 3,
     });
     this.addProp({
       type: "boolean",
@@ -479,7 +417,7 @@ class Feature8 extends BaseFeature {
             </Base.VerticalContent>
           )}
           {cards?.length > 0 && (
-            <Base.ListGrid ref={this.cardsRootRef} gridCount={{ pc: this.getPropValue("itemCount") || 5, tablet: 5 }} className={this.decorateCSS("cards-container")}>
+            <Base.ListGrid ref={this.cardsRootRef} gridCount={{ pc: this.getPropValue("itemCount") || 3, tablet: 3 }} className={this.decorateCSS("cards-container")}>
               {cards.map((card: Card) => {
                 const titleExist = this.castToString(card.title);
                 const descExist = this.castToString(card.description);

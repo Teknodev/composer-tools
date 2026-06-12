@@ -152,7 +152,7 @@ class Feature3 extends BaseFeature {
     this.addProp({
       type: "number",
       key: "cards-item-count",
-      displayer: "Cards Item Count In A Row",
+      displayer: "Cards Item Count in a Row",
       value: 3,
       max: 5
     });
@@ -293,7 +293,7 @@ class Feature3 extends BaseFeature {
     this.addProp({
       type: "number",
       key: "logos-item-count",
-      displayer: "Logos Item Count In A Row",
+      displayer: "Logos Item Count in a Row",
       value: 5,
       max: 5
     });

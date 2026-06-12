@@ -1,4 +1,4 @@
-﻿import * as React from "react";
+import * as React from "react";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 import { BaseFeature, TypeMediaInputValue, TypeUsableComponentProps } from "../../EditorComponent";
 import styles from "./feature10.module.scss";
@@ -452,9 +452,9 @@ class Feature10 extends BaseFeature {
                           {(titleExist || descExist) && (
                             <div className={this.decorateCSS("bottom")}>
                               {titleExist && (
-                                <Base.H3 className={this.decorateCSS("title")}>
+                                <Base.H5 className={this.decorateCSS("title")}>
                                   {item.title}
-                                </Base.H3>
+                                </Base.H5>
                               )}
                               {descExist && (
                                 <Base.P className={this.decorateCSS("description")}>

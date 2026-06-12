@@ -1,4 +1,4 @@
-﻿import * as React from "react";
+import * as React from "react";
 import { BaseFeature, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./feature15.module.scss";
 
@@ -51,36 +51,41 @@ class Feature15 extends BaseFeature {
         });
 
         this.addProp({
-            type: "media",
-            displayer: "Video",
-            key: "video",
-            additionalParams: {
-                availableTypes: ["video"],
-            },
-            value: {
-                type: "video",
-                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667e75d50181a1002c334f4f?alt=media&timestamp=1719563750188",
-            },
-        });
-
-        this.addProp({
-            type: "media",
-            displayer: "Cover Media",
-            key: "cover_image",
-            additionalParams: {
-                availableTypes: ["image","video"],
-            },
-            value: {
-                type: "image",
-                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b9b7bd2970002c6286c7?alt=media&timestamp=1719561551671",
-            },
-        });
-
-        this.addProp({
-            type: "boolean",
-            key: "overlay",
-            displayer: "Overlay",
-            value: true,
+            type: "object",
+            key: "media",
+            displayer: "Media",
+            value: [
+                {
+                    type: "media",
+                    displayer: "Video",
+                    key: "video",
+                    additionalParams: {
+                        availableTypes: ["video"],
+                    },
+                    value: {
+                        type: "video",
+                        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667e75d50181a1002c334f4f?alt=media&timestamp=1719563750188",
+                    },
+                },
+                {
+                    type: "media",
+                    displayer: "Media",
+                    key: "media",
+                    additionalParams: {
+                        availableTypes: ["image","video"],
+                    },
+                    value: {
+                        type: "image",
+                        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b9b7bd2970002c6286c7?alt=media&timestamp=1719561551671",
+                    },
+                },
+                {
+                    type: "boolean",
+                    key: "overlay",
+                    displayer: "Overlay",
+                    value: true,
+                },
+            ],
         });
 
         this.addProp({
@@ -289,9 +294,16 @@ class Feature15 extends BaseFeature {
         const hasAnyTopContent = subtitleExist || titleExist || descriptionExist || hasValidButtons;
 
         const closeIcon: string = this.getPropValue("closeIcon");
-        const overlay = this.getPropValue("overlay");
+        const media = this.castToObject<{
+            video: TypeMediaInputValue;
+            media: TypeMediaInputValue;
+            overlay: boolean;
+        }>("media");
+        const coverExist = media.media && (media.media.type === "icon" ? media.media.name : media.media.url);
+        const videoExist = media.video && (media.video.type === "icon" ? media.video.name : media.video.url);
+        const overlay = media.overlay;
         return (
-            <Base.Container className={`${this.decorateCSS("container")} ${!this.getPropValue("cover_image") ? this.decorateCSS("no-image") : ""} ${this.getComponentState("is_video_visible") && this.decorateCSS("with-overlay")}`}>
+            <Base.Container className={`${this.decorateCSS("container")} ${!coverExist ? this.decorateCSS("no-image") : ""} ${this.getComponentState("is_video_visible") && this.decorateCSS("with-overlay")}`}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
                     {hasAnyTopContent && (
                         <Base.VerticalContent className={this.decorateCSS("top-content")}>
@@ -357,9 +369,9 @@ class Feature15 extends BaseFeature {
                                                 </Base.H5>
                                             )}
                                             {this.castToString(card.title) && (
-                                                <Base.H4 className={this.decorateCSS("title")}>
+                                                <Base.H5 className={this.decorateCSS("title")}>
                                                     {card.title}
-                                                </Base.H4>
+                                                </Base.H5>
                                             )}
                                             {this.castToString(card.description) && (
                                                 <Base.P className={this.decorateCSS("description")}>
@@ -371,15 +383,15 @@ class Feature15 extends BaseFeature {
                                 )
                             )}
                         </Base.ListGrid>}
-                        {this.getPropValue("cover_image") && (
+                        {coverExist && (
                             <div className={this.decorateCSS("video-container")}>
                                 <Base.Media
-                                    value={this.getPropValue("cover_image")}
+                                    value={media.media}
                                     className={this.decorateCSS("image")}
                                 />
                                 {overlay && <div className={this.decorateCSS("overlay")} />}
 
-                                {this.getPropValue("video") && this.getPropValue("play_icon") && (
+                                {videoExist && this.getPropValue("play_icon") && (
                                     <div
                                         className={this.decorateCSS("play-icon-box")}
                                         onClick={() => {
@@ -396,7 +408,7 @@ class Feature15 extends BaseFeature {
                         )}
                     </div>
 
-                    {(this.getComponentState("is_video_visible") && this.getPropValue("video")) && (
+                    {(this.getComponentState("is_video_visible") && videoExist) && (
                         <Base.Overlay
                             onClick={() => this.setComponentState("is_video_visible", false)}
                             className={this.decorateCSS("video-overlay")}
@@ -408,7 +420,7 @@ class Feature15 extends BaseFeature {
                                     onClick={() => this.setComponentState("is_video_visible", false)}
                                 >
                                     <Base.Media
-                                        value={this.getPropValue("video")}
+                                        value={media.video}
                                         onClick={(event) => event.stopPropagation()}
                                         className={this.decorateCSS("player")}
                                     />

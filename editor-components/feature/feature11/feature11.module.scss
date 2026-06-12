@@ -1,4 +1,4 @@
-﻿@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 .container {
     .max-content {
         .wrapper {
@@ -32,6 +32,8 @@
                 gap: var(--composer-gap-lg);
                 .card-container {
                     display: flex;
+                    flex-direction: column;
+                    align-items: center;
                     gap: var(--composer-gap-md);
                     .card-icon {
                         font-size: 2rem;
@@ -43,19 +45,19 @@
 
                     .card-content {
                         flex: 1;
-                        align-items: baseline;
+                        align-items: center;
                         .card-title {
                             color: var(--composer-font-color-primary);
                             width: fit-content;
                             margin: 0;
-                            text-align: left;
+                            text-align: center;
                         }
 
                         .card-description {
                             color: var(--composer-tertiary-color);
                             width: fit-content;
                             margin: 0;
-                            text-align: left;
+                            text-align: center;
                         }
                     }
                 }
@@ -68,20 +70,6 @@
     .container{
         .max-content{
             .wrapper{
-                .left {
-                    &[data-alignment="center"] {
-                        align-items: center;
-                        .section-subtitle, .section-title, .section-description {
-                            text-align: center;
-                        }
-                        .section-subtitle {
-                            margin-left: auto;
-                        }
-                        .buttons-container {
-                            justify-content: center;
-                        }
-                    }
-                }
                 .right {
                     .card-container {
                         .card-icon {
@@ -99,6 +87,20 @@
         .max-content{
             .wrapper{
                 flex-direction: column;
+                .left {
+                    &[data-alignment="center"] {
+                        align-items: center;
+                        .section-subtitle, .section-title, .section-description {
+                            text-align: center;
+                        }
+                        .section-subtitle {
+                            margin-left: auto;
+                        }
+                        .buttons-container {
+                            justify-content: center;
+                        }
+                    }
+                }
                 .right {
                     .card-container {
                         .card-icon {

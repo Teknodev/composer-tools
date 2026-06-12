@@ -1,4 +1,4 @@
-﻿import * as React from "react";
+import * as React from "react";
 import { BaseFeature } from "../../EditorComponent";
 import styles from "./feature12.module.scss";
 
@@ -47,6 +47,14 @@ class Feature12 extends BaseFeature {
       key: "description",
       displayer: "Description",
       value: "",
+    });
+    this.addProp({
+      type: "array",
+      key: "buttons",
+      displayer: "Buttons",
+      value: [
+        INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+      ],
     });
     this.addProp({
       type: "object",
@@ -191,7 +199,7 @@ class Feature12 extends BaseFeature {
     this.addProp({
       type: "number",
       key: "itemCount",
-      displayer: "Item Count In A Row",
+      displayer: "Item Count in a Row",
       value: 4,
       max: 4,
     });
@@ -221,9 +229,16 @@ class Feature12 extends BaseFeature {
     const firstItemBackgroundIsVideo = firstItemBackground?.type === "video";
     const firstItemOverlay = firstItem.overlay;
 
-    const buttonsProp = this.getProp("firstItem")?.value?.find((p: any) => p.key === "buttons");
-    const buttons = buttonsProp ? (this.castingProcess(buttonsProp) as Button[]) : [];
+    const firstItemButtonsProp = this.getProp("firstItem")?.value?.find((p: any) => p.key === "buttons");
+    const firstItemButtons = firstItemButtonsProp ? (this.castingProcess(firstItemButtonsProp) as Button[]) : [];
 
+    const firstItemHasValidButtons = firstItemButtons && firstItemButtons.some((btn: Button) => {
+      const buttonText = this.castToString(btn.text);
+      const iconExist = btn.icon && (btn.icon.type === "icon" ? btn.icon.name : btn.icon.url);
+      return buttonText || iconExist;
+    });
+
+    const buttons = this.castToObject<Button[]>("buttons");
     const hasValidButtons = buttons && buttons.some((btn: Button) => {
       const buttonText = this.castToString(btn.text);
       const iconExist = btn.icon && (btn.icon.type === "icon" ? btn.icon.name : btn.icon.url);
@@ -231,13 +246,13 @@ class Feature12 extends BaseFeature {
     });
 
     const renderFirstItem =
-      firstCardTitleExist || hasValidButtons || !!firstItemBackgroundUrl;
-    const renderHeader = subtitleExist || titleExist;
+      firstCardTitleExist || firstItemHasValidButtons || !!firstItemBackgroundUrl;
+    const hasAnyTopContent = subtitleExist || titleExist || descriptionExist || hasValidButtons;
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          {renderHeader && (
-            <Base.VerticalContent className={this.decorateCSS("header")}>
+          {hasAnyTopContent && (
+            <Base.VerticalContent className={this.decorateCSS("top-content")}>
               {subtitleExist && (
                 <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
                   {subtitle}
@@ -250,6 +265,27 @@ class Feature12 extends BaseFeature {
                 <Base.SectionDescription className={this.decorateCSS("description")}>
                   {description}
                 </Base.SectionDescription>
+              )}
+              {hasValidButtons && (
+                <div className={this.decorateCSS("button-container")}>
+                  {buttons.map((item: Button, index: number) => {
+                    const buttonText = this.castToString(item.text);
+                    const iconExist = item.icon && (item.icon.type === "icon" ? item.icon.name : item.icon.url);
+                    if (!buttonText && !iconExist) return null;
+                    return (
+                      <ComposerLink key={index} path={item.url}>
+                        <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
+                          {buttonText && (
+                            <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>
+                          )}
+                          {iconExist && (
+                            <Base.Media className={this.decorateCSS("button-icon")} value={item.icon!} />
+                          )}
+                        </Base.Button>
+                      </ComposerLink>
+                    );
+                  })}
+                </div>
               )}
             </Base.VerticalContent>
           )}
@@ -277,9 +313,9 @@ class Feature12 extends BaseFeature {
                     {firstItem.title}
                   </Base.H3>
                 )}
-                {hasValidButtons && (
+                {firstItemHasValidButtons && (
                   <div className={this.decorateCSS("buttons-container")}>
-                    {buttons.map((item: Button, index: number) => {
+                    {firstItemButtons.map((item: Button, index: number) => {
                       const buttonText = this.castToString(item.text);
                       const iconExist = item.icon && (item.icon.type === "icon" ? item.icon.name : item.icon.url);
                       if (!buttonText && !iconExist) return null;
@@ -335,9 +371,9 @@ class Feature12 extends BaseFeature {
                             </div>
                           )}
                           {titleExist && (
-                            <Base.H3 className={this.decorateCSS("card-title")}>
+                            <Base.H5 className={this.decorateCSS("card-title")}>
                               {card.title}
-                            </Base.H3>
+                            </Base.H5>
                           )}
                           {descExist && (
                             <Base.P className={this.decorateCSS("card-description")}>
