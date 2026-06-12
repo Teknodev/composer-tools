@@ -640,7 +640,7 @@ export class InteractionManager {
   private dispatchNonAnimateAction(interaction: Interaction): void {
     switch (interaction.action.type) {
       case "open-modal":
-        ModalActionHandler.execute(interaction.action);
+        ModalActionHandler.execute(interaction.action, interaction.trigger.type);
         break;
       case "navigate":
         NavigateActionHandler.execute(interaction.action);
