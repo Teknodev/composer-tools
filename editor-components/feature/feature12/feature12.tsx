@@ -8,9 +8,11 @@ import { INPUTS } from "../../../custom-hooks/input-templates";
 import { TypeMediaInputValue } from "../../EditorComponent";
 
 type Card = {
+  subtitle: React.JSX.Element;
   title: React.JSX.Element;
   description: React.JSX.Element;
   icon: TypeMediaInputValue;
+  button: Button;
 };
 
 type Button = {
@@ -119,6 +121,12 @@ class Feature12 extends BaseFeature {
             },
             {
               type: "string",
+              key: "subtitle",
+              displayer: "Card Subtitle",
+              value: "",
+            },
+            {
+              type: "string",
               key: "title",
               displayer: "Title",
               value: "Graphic Clean Design",
@@ -129,6 +137,7 @@ class Feature12 extends BaseFeature {
               displayer: "Description",
               value: "Consectetur adipiscing elit",
             },
+            INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
           ],
         },
         {
@@ -150,6 +159,12 @@ class Feature12 extends BaseFeature {
             },
             {
               type: "string",
+              key: "subtitle",
+              displayer: "Card Subtitle",
+              value: "",
+            },
+            {
+              type: "string",
               key: "title",
               displayer: "Title",
               value: "Web & Mobile Design",
@@ -160,6 +175,7 @@ class Feature12 extends BaseFeature {
               displayer: "Description",
               value: "Sed do eiusmod tempor incididunt.",
             },
+            INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
           ],
         },
         {
@@ -181,6 +197,12 @@ class Feature12 extends BaseFeature {
             },
             {
               type: "string",
+              key: "subtitle",
+              displayer: "Card Subtitle",
+              value: "",
+            },
+            {
+              type: "string",
               key: "title",
               displayer: "Title",
               value: "Social Media Marketing",
@@ -191,6 +213,7 @@ class Feature12 extends BaseFeature {
               displayer: "Description",
               value: "Uttt labore et dolore magna aliqua.",
             },
+            INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
           ],
         },
       ],
@@ -339,10 +362,15 @@ class Feature12 extends BaseFeature {
 
             {cards?.length > 0 &&
               cards.map((card: Card, index: number) => {
+                const subtitleExist = !!this.castToString(card.subtitle);
                 const descExist = !!this.castToString(card.description);
                 const titleExist = !!this.castToString(card.title);
+                const iconExist = !!(card.icon && (card.icon.type === "icon" ? card.icon.name : card.icon.url));
+                const btnText = card.button ? this.castToString(card.button.text) : "";
+                const btnIconExist = card.button?.icon && (card.button.icon.type === "icon" ? card.button.icon.name : card.button.icon.url);
+                const hasCardButton = !!(btnText || btnIconExist);
 
-                const shouldRender = descExist || titleExist;
+                const shouldRender = subtitleExist || descExist || titleExist || iconExist;
 
                 if (!shouldRender) return null;
                 else
@@ -360,15 +388,20 @@ class Feature12 extends BaseFeature {
                       }}
                       key={index}
                     >
-                      {(card.icon || titleExist || descExist) && (
+                      {(iconExist || subtitleExist || titleExist || descExist || hasCardButton) && (
                         <div className={this.decorateCSS("message")}>
-                          {card.icon && (
+                          {iconExist && (
                             <div className={this.decorateCSS("icon-container")}>
                               <Base.Media
                                 value={card.icon}
                                 className={this.decorateCSS("icon")}
                               />
                             </div>
+                          )}
+                          {subtitleExist && (
+                            <Base.H6 className={this.decorateCSS("card-subtitle")}>
+                              {card.subtitle}
+                            </Base.H6>
                           )}
                           {titleExist && (
                             <Base.H5 className={this.decorateCSS("card-title")}>
@@ -379,6 +412,18 @@ class Feature12 extends BaseFeature {
                             <Base.P className={this.decorateCSS("card-description")}>
                               {card.description}
                             </Base.P>
+                          )}
+                          {hasCardButton && (
+                            <ComposerLink path={card.button.url}>
+                              <Base.Button buttonType={card.button.type} className={this.decorateCSS("card-button")}>
+                                {btnText && (
+                                  <Base.P className={this.decorateCSS("card-button-text")}>{card.button.text}</Base.P>
+                                )}
+                                {btnIconExist && (
+                                  <Base.Media className={this.decorateCSS("card-button-icon")} value={card.button.icon!} />
+                                )}
+                              </Base.Button>
+                            </ComposerLink>
                           )}
                         </div>
                       )}

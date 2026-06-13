@@ -52,6 +52,8 @@
 
                     .card-content {
                         align-items: baseline;
+
+                        .card-subtitle,
                         .card-title {
                             color: var(--composer-font-color-primary);
                             text-align: left;

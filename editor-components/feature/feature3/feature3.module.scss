@@ -113,7 +113,6 @@ $circlepaddingbottom: calc(300px + var(--composer-gap-xl));
                             align-items: flex-start;
                             text-align: left;
                             padding: var(--composer-gap-lg);
-                            gap: var(--composer-gap-md);
                             background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
                             border-radius: var(--composer-border-radius-sm);
                             z-index: 1;
@@ -135,9 +134,21 @@ $circlepaddingbottom: calc(300px + var(--composer-gap-xl));
                             }
 
                             .card-title,
-                            .card-subtitle {
+                            .card-subtitle,
+                            .card-description, {
                                 color: var(--composer-font-color-primary);
                                 text-align: left;
+                            }
+
+                            .card-button {
+                                display: flex;
+                                gap: var(--composer-gap-sm);
+                                flex-wrap: wrap;
+
+                                .card-button-text,
+                                .card-button-icon {
+                                    content: "";
+                                }
                             }
                         }
                     }

@@ -79,6 +79,7 @@
                         flex: 1;
                         align-items: flex-start;
 
+                        .card-subtitle,
                         .card-title {
                             color: var(--composer-font-color-primary);
                             text-align: left;
@@ -87,6 +88,17 @@
                         .card-description {
                             color: var(--composer-tertiary-color);
                             text-align: left;
+                        }
+
+                        .card-button {
+                            display: flex;
+                            gap: var(--composer-gap-sm);
+                            flex-wrap: wrap;
+
+                            .card-button-text,
+                            .card-button-icon {
+                                content: "";
+                            }
                         }
                     }
                 }

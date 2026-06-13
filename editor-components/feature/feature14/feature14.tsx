@@ -8,9 +8,11 @@ import { INPUTS } from "../../../custom-hooks/input-templates";
 
 type CardItem = {
   icon: TypeMediaInputValue;
+  subtitle: React.JSX.Element;
   title: React.JSX.Element;
   description: React.JSX.Element;
   iconBackground: boolean;
+  button: Button;
 };
 
 type Button = {
@@ -81,6 +83,12 @@ class Feature14 extends BaseFeature {
             },
             {
               type: "string",
+              key: "subtitle",
+              displayer: "Card Subtitle",
+              value: "",
+            },
+            {
+              type: "string",
               key: "title",
               displayer: "Card Title",
               value: "Best price guaranteed",
@@ -91,6 +99,7 @@ class Feature14 extends BaseFeature {
               displayer: "Card Description",
               value: "Lorem ipsum odor amet, consectetuer adipiscing elit. Vivamus vivamus semper vulputate venenatis vitae egestas commodo porta.",
             },
+            INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
             {
               type: "boolean",
               key: "iconBackground",
@@ -118,6 +127,12 @@ class Feature14 extends BaseFeature {
             },
             {
               type: "string",
+              key: "subtitle",
+              displayer: "Card Subtitle",
+              value: "",
+            },
+            {
+              type: "string",
               key: "title",
               displayer: "Card Title",
               value: "Great communication",
@@ -128,6 +143,7 @@ class Feature14 extends BaseFeature {
               displayer: "Card Description",
               value: "Lorem ipsum odor amet, consectetuer adipiscing elit. Vivamus vivamus semper vulputate venenatis vitae egestas commodo porta.",
             },
+            INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
             {
               type: "boolean",
               key: "iconBackground",
@@ -155,6 +171,12 @@ class Feature14 extends BaseFeature {
             },
             {
               type: "string",
+              key: "subtitle",
+              displayer: "Card Subtitle",
+              value: "",
+            },
+            {
+              type: "string",
               key: "title",
               displayer: "Card Title",
               value: "We provide high standards",
@@ -165,6 +187,7 @@ class Feature14 extends BaseFeature {
               displayer: "Card Description",
               value: "Lorem ipsum odor amet, consectetuer adipiscing elit. Vivamus vivamus semper vulputate venenatis vitae egestas commodo porta.",
             },
+            INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
             {
               type: "boolean",
               key: "iconBackground",
@@ -192,6 +215,12 @@ class Feature14 extends BaseFeature {
             },
             {
               type: "string",
+              key: "subtitle",
+              displayer: "Card Subtitle",
+              value: "",
+            },
+            {
+              type: "string",
               key: "title",
               displayer: "Card Title",
               value: "We worked with many big companies",
@@ -202,6 +231,7 @@ class Feature14 extends BaseFeature {
               displayer: "Card Description",
               value: "Lorem ipsum odor amet, consectetuer adipiscing elit. Vivamus vivamus semper vulputate venenatis vitae egestas commodo porta.",
             },
+            INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
             {
               type: "boolean",
               key: "iconBackground",
@@ -312,6 +342,10 @@ class Feature14 extends BaseFeature {
           <div className={this.decorateCSS("section")}>
             <Base.ListGrid className={this.decorateCSS("cards")} gridCount={{ pc: this.getPropValue("itemCount"), tablet: 4 }}>
               {cardItems.map((item: CardItem, index: number) => {
+                const subtitleExist = !!this.castToString(item.subtitle);
+                const btnText = item.button ? this.castToString(item.button.text) : "";
+                const btnIconExist = item.button?.icon && (item.button.icon.type === "icon" ? item.button.icon.name : item.button.icon.url);
+                const hasCardButton = !!(btnText || btnIconExist);
                 return (
                   <Base.VerticalContent key={index} className={this.decorateCSS("card")}>
                     {item.icon && (
@@ -324,11 +358,22 @@ class Feature14 extends BaseFeature {
                     )}
 
                     <div className={this.decorateCSS("card-content")}>
+                      {subtitleExist && (
+                        <Base.H6 className={this.decorateCSS("card-subtitle")}>{item.subtitle}</Base.H6>
+                      )}
                       {this.castToString(item.title) && (
                         <Base.H5 className={this.decorateCSS("card-title")}>{item.title}</Base.H5>
                       )}
                       {this.castToString(item.description) && (
                         <Base.P className={this.decorateCSS("card-description")}>{item.description}</Base.P>
+                      )}
+                      {hasCardButton && (
+                        <ComposerLink path={item.button.url}>
+                          <Base.Button buttonType={item.button.type} className={this.decorateCSS("card-button")}>
+                            {btnText && <Base.P className={this.decorateCSS("card-button-text")}>{item.button.text}</Base.P>}
+                            {btnIconExist && <Base.Media className={this.decorateCSS("card-button-icon")} value={item.button.icon!} />}
+                          </Base.Button>
+                        </ComposerLink>
                       )}
                     </div>
                   </Base.VerticalContent>

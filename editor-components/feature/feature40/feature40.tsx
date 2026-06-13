@@ -14,6 +14,7 @@ type ButtonTypeObj = {
 
 type Card = {
     icon: TypeMediaInputValue;
+    subtitle: React.JSX.Element;
     title: React.JSX.Element;
     description: React.JSX.Element;
     button: INPUTS.CastedButton;
@@ -68,6 +69,12 @@ class Feature40 extends BaseFeature {
                         },
                         {
                             type: "string",
+                            key: "subtitle",
+                            displayer: "Card Subtitle",
+                            value: "",
+                        },
+                        {
+                            type: "string",
                             key: "title",
                             displayer: "Title",
                             value: "Smooth Start"
@@ -100,6 +107,12 @@ class Feature40 extends BaseFeature {
                         },
                         {
                             type: "string",
+                            key: "subtitle",
+                            displayer: "Card Subtitle",
+                            value: "",
+                        },
+                        {
+                            type: "string",
                             key: "title",
                             displayer: "Title",
                             value: "Card Membership"
@@ -129,6 +142,12 @@ class Feature40 extends BaseFeature {
                                 type: "icon",
                                 name: "HiCurrencyDollar"
                             }
+                        },
+                        {
+                            type: "string",
+                            key: "subtitle",
+                            displayer: "Card Subtitle",
+                            value: "",
                         },
                         {
                             type: "string",
@@ -194,6 +213,7 @@ class Feature40 extends BaseFeature {
                                 gridCount={{ pc: this.getPropValue("itemCount") || 3, tablet: 3, phone: 1 }}
                             >
                                 {cards.map((card: Card, index: number) => {
+                                    const cardSubtitleExist = this.castToString(card.subtitle);
                                     const titleExist = !!this.castToString(card.title);
                                     const descExist = !!this.castToString(card.description);
                                     const isImage = card.icon?.type === "image";
@@ -204,7 +224,7 @@ class Feature40 extends BaseFeature {
                                     const iconExist = card.button?.icon && (card.button.icon)?.name ;
                                     const buttonExist = buttonTitleExist || iconExist;
 
-                                    return (!titleExist && !descExist && !card.icon) || (   
+                                    return (!cardSubtitleExist && !titleExist && !descExist && !card.icon) || (
                                         <div
                                             key={index}
                                             className={`${this.decorateCSS("card-wrapper")} ${isLastInRow && this.decorateCSS("last-in-row")}`}
@@ -212,8 +232,9 @@ class Feature40 extends BaseFeature {
                                             {card.icon &&
                                                 <Base.Media value={card.icon} className={`${this.decorateCSS("card-icon")} ${isImage && this.decorateCSS("is-image")}`} />
                                             }
-                                            {(titleExist || descExist) &&
+                                            {(cardSubtitleExist || titleExist || descExist) &&
                                                 <Base.VerticalContent className={this.decorateCSS("card-content")}>
+                                                    {cardSubtitleExist && <Base.H6 className={this.decorateCSS("card-subtitle")}>{card.subtitle}</Base.H6>}
                                                     {titleExist && <Base.H4 className={this.decorateCSS("card-title")}>{card.title}</Base.H4>}
                                                     {descExist && <Base.P className={this.decorateCSS("card-description")}>{card.description}</Base.P>}
                                                     {buttonExist && (

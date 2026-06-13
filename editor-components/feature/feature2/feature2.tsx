@@ -5,12 +5,12 @@ import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "../../../custom-hooks/input-templates";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 
-
 type Box = {
   subtitle: React.JSX.Element;
   title: React.JSX.Element;
   description: React.JSX.Element;
   icon: TypeMediaInputValue;
+  button: Button;
 };
 
 type Button = {
@@ -79,7 +79,7 @@ class Feature2 extends BaseFeature {
               type: "string",
               key: "description",
               displayer: "Description",
-              value: "The architecture company meets with the client to discuss their needs, budget, and timeline. They may also visit the site to get a better understanding of the project."
+              value: "The architecture company meets with the client to discuss their needs, budget, and timeline. They may also visit the site to get a better understanding of the project.",
             },
             {
               type: "media",
@@ -93,6 +93,7 @@ class Feature2 extends BaseFeature {
                 name: "FaGlobe",
               },
             },
+            INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
           ],
         },
         {
@@ -116,7 +117,7 @@ class Feature2 extends BaseFeature {
               type: "string",
               key: "description",
               displayer: "Description",
-              value: "Based on the client's requirements, the architecture company creates a concept design that outlines the overall vision for the project. This may include sketches, 3D models, or computer-generated renderings."
+              value: "Based on the client's requirements, the architecture company creates a concept design that outlines the overall vision for the project. This may include sketches, 3D models, or computer-generated renderings.",
             },
             {
               type: "media",
@@ -130,6 +131,7 @@ class Feature2 extends BaseFeature {
                 name: "SiAltiumdesigner",
               },
             },
+            INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
           ],
         },
         {
@@ -153,7 +155,7 @@ class Feature2 extends BaseFeature {
               type: "string",
               key: "description",
               displayer: "Description",
-              value: "Once the client approves the concept design, the architecture company begins to develop detailed drawings and plans. This may involve collaborating with engineers, contractors, and other specialists to ensure that the design is feasible."
+              value: "Once the client approves the concept design, the architecture company begins to develop detailed drawings and plans. This may involve collaborating with engineers, contractors, and other specialists to ensure that the design is feasible.",
             },
             {
               type: "media",
@@ -167,6 +169,7 @@ class Feature2 extends BaseFeature {
                 name: "CgIfDesign",
               },
             },
+            INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
           ],
         },
         {
@@ -190,7 +193,7 @@ class Feature2 extends BaseFeature {
               type: "string",
               key: "description",
               displayer: "Description",
-              value: "Before construction can begin, the architecture company must obtain the necessary permits and approvals from local authorities. This may involve submitting plans and documents for review and responding to any questions or co"
+              value: "Before construction can begin, the architecture company must obtain the necessary permits and approvals from local authorities. This may involve submitting plans and documents for review and responding to any questions or co",
             },
             {
               type: "media",
@@ -204,8 +207,9 @@ class Feature2 extends BaseFeature {
                 name: "FaRegNewspaper",
               },
             },
+            INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
           ],
-        }
+        },
       ],
     });
 
@@ -214,14 +218,14 @@ class Feature2 extends BaseFeature {
       key: "itemCount",
       displayer: "Item Count in a Row",
       value: 4,
-      max: 4
+      max: 4,
     });
 
     this.addProp({
       type: "boolean",
       key: "number",
       displayer: "Number",
-      value: true
+      value: true,
     });
 
     this.addProp({
@@ -235,7 +239,7 @@ class Feature2 extends BaseFeature {
   componentDidMount() {
     if (typeof window !== "undefined") {
       this.setComponentState("windowWidth", window.innerWidth);
-      window.addEventListener('resize', () => {
+      window.addEventListener("resize", () => {
         this.setComponentState("windowWidth", window.innerWidth);
       });
     }
@@ -298,7 +302,7 @@ class Feature2 extends BaseFeature {
                 <div className={this.decorateCSS("button-container")}>
                   {buttons.map((item: Button, index: number) => {
                     const buttonText = this.castToString(item.text);
-                    const iconExist  = item.icon && (item.icon.type === "icon" ? item.icon.name : item.icon.url);
+                    const iconExist = item.icon && (item.icon.type === "icon" ? item.icon.name : item.icon.url);
                     if (!buttonText && !iconExist) return null;
                     return (
                       <ComposerLink key={index} path={item.url}>
@@ -322,7 +326,10 @@ class Feature2 extends BaseFeature {
               const subtitleExist = !!this.castToString(item.subtitle);
               const titleExist = !!this.castToString(item.title);
               const descExist = !!this.castToString(item.description);
-              const iconExist = !!item.icon;
+              const iconExist = !!(item.icon && (item.icon.type === "icon" ? item.icon.name : item.icon.url));
+              const btnText = item.button ? this.castToString(item.button.text) : "";
+              const btnIconExist = item.button?.icon && (item.button.icon.type === "icon" ? item.button.icon.name : item.button.icon.url);
+              const hasItemButton = !!(btnText || btnIconExist);
               const shouldRender = subtitleExist || titleExist || descExist || iconExist;
 
               if (!shouldRender) return null;
@@ -332,12 +339,12 @@ class Feature2 extends BaseFeature {
                   key={index}
                   className={`
                       ${this.decorateCSS("item")}
-                      ${!showLine ?
-                      this.decorateCSS("remove-line")
-                      : (((index + 1) % itemCount === 0) ||
-                        (items[index + 1] && !items[index + 1]?.icon?.name))
+                      ${!showLine
                         ? this.decorateCSS("remove-line")
-                        : ""}
+                        : (((index + 1) % itemCount === 0) ||
+                          (items[index + 1] && !items[index + 1]?.icon?.name))
+                          ? this.decorateCSS("remove-line")
+                          : ""}
                     `}
                 >
                   {iconExist && (
@@ -351,21 +358,35 @@ class Feature2 extends BaseFeature {
                       />
                     </div>
                   )}
-                  {subtitleExist && (
-                    <Base.H6 className={this.decorateCSS("item-subtitle")}>
-                      {item.subtitle}
-                    </Base.H6>
-                  )}
-                  {titleExist && (
-                    <Base.H5 className={this.decorateCSS("title")}>
-                      {item.title}
-                    </Base.H5>
-                  )}
-                  {descExist && (
-                    <Base.P className={this.decorateCSS("description")}>
-                      {item.description}
-                    </Base.P>
-                  )}
+                  <Base.VerticalContent className={this.decorateCSS("item-content")}>
+                    {subtitleExist && (
+                      <Base.H5 className={this.decorateCSS("item-subtitle")}>
+                        {item.subtitle}
+                      </Base.H5>
+                    )}
+                    {titleExist && (
+                      <Base.H4 className={this.decorateCSS("item-title")}>
+                        {item.title}
+                      </Base.H4>
+                    )}
+                    {descExist && (
+                      <Base.P className={this.decorateCSS("item-description")}>
+                        {item.description}
+                      </Base.P>
+                    )}
+                    {hasItemButton && (
+                      <ComposerLink path={item.button.url}>
+                        <Base.Button buttonType={item.button.type} className={this.decorateCSS("item-button")}>
+                          {btnText && (
+                            <Base.P className={this.decorateCSS("item-button-text")}>{item.button.text}</Base.P>
+                          )}
+                          {btnIconExist && (
+                            <Base.Media className={this.decorateCSS("item-button-icon")} value={item.button.icon!} />
+                          )}
+                        </Base.Button>
+                      </ComposerLink>
+                    )}
+                  </Base.VerticalContent>
                 </div>
               );
             })}

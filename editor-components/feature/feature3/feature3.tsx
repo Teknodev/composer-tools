@@ -3,6 +3,7 @@ import { BaseFeature, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./feature3.module.scss";
 
 import { Base } from "../../../composer-base-components/base/base";
+import { INPUTS } from "../../../custom-hooks/input-templates";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 
 type Logo = {
@@ -10,10 +11,19 @@ type Logo = {
   url: string;
 };
 
+type Button = {
+  text: React.JSX.Element;
+  url: string;
+  icon: TypeMediaInputValue;
+  type: string;
+};
+
 type Card = {
   title: React.JSX.Element;
   subtitle: React.JSX.Element;
+  description: React.JSX.Element;
   icon: TypeMediaInputValue;
+  button: Button;
 };
 
 class Feature3 extends BaseFeature {
@@ -82,6 +92,13 @@ class Feature3 extends BaseFeature {
                 name: "FcSearch",
               },
             },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Card Description",
+              value: "",
+            },
+            INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
           ]
         },
         {
@@ -113,6 +130,13 @@ class Feature3 extends BaseFeature {
                 name: "FcStatistics",
               },
             },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Card Description",
+              value: "",
+            },
+            INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
           ]
         },
         {
@@ -144,6 +168,13 @@ class Feature3 extends BaseFeature {
                 name: "FcComboChart",
               },
             },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Card Description",
+              value: "",
+            },
+            INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
           ]
         },
       ]
@@ -406,7 +437,11 @@ class Feature3 extends BaseFeature {
                     {cards.map((card: Card, index: number) => {
                       const titleExist = !!this.castToString(card.title);
                       const subtitleExist = !!this.castToString(card.subtitle);
+                      const descExist = !!this.castToString(card.description);
                       const iconExist = !!(card.icon && (card.icon.type === "icon" ? card.icon.name : card.icon.url));
+                      const btnText = card.button ? this.castToString(card.button.text) : "";
+                      const btnIconExist = card.button?.icon && (card.button.icon.type === "icon" ? card.button.icon.name : card.button.icon.url);
+                      const hasCardButton = !!(btnText || btnIconExist);
 
                       if (!titleExist && !iconExist && !subtitleExist) return null;
 
@@ -428,6 +463,23 @@ class Feature3 extends BaseFeature {
                               <Base.H4 className={this.decorateCSS("card-title")}>
                                 {card.title}
                               </Base.H4>
+                            )}
+                            {descExist && (
+                              <Base.P className={this.decorateCSS("card-description")}>
+                                {card.description}
+                              </Base.P>
+                            )}
+                            {hasCardButton && (
+                              <ComposerLink path={card.button.url}>
+                                <Base.Button buttonType={card.button.type} className={this.decorateCSS("card-button")}>
+                                  {btnText && (
+                                    <Base.P className={this.decorateCSS("card-button-text")}>{card.button.text}</Base.P>
+                                  )}
+                                  {btnIconExist && (
+                                    <Base.Media className={this.decorateCSS("card-button-icon")} value={card.button.icon!} />
+                                  )}
+                                </Base.Button>
+                              </ComposerLink>
                             )}
                           </Base.VerticalContent>
                         </div>

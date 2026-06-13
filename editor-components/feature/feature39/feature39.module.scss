@@ -29,6 +29,7 @@
                 .card-wrapper {
                     .card-content {
 
+                        .card-subtitle,
                         .card-title,
                         .card-description {
                             color: var(--color-white);
@@ -133,6 +134,7 @@
                 .card-content {
                     align-items: flex-start;
 
+                    .card-subtitle,
                     .card-title,
                     .card-description {
                         color: var(--composer-font-color-primary);

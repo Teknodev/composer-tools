@@ -134,10 +134,24 @@
               object-fit: contain;
             }
           }
+
+
+          .card-subtitle,
           .card-title,
           .card-description {
             color: var(--composer-font-color-primary);
             text-align: center;
+          }
+
+          .card-button {
+            display: flex;
+            gap: var(--composer-gap-sm);
+            flex-wrap: wrap;
+
+            .card-button-text,
+            .card-button-icon {
+              content: "";
+            }
           }
         }
       }

@@ -18,6 +18,7 @@ interface Card {
     title: React.JSX.Element;
     subtitle: React.JSX.Element;
     description: React.JSX.Element;
+    button: Button;
 }
 class Feature15 extends BaseFeature {
     constructor(props?: any) {
@@ -153,6 +154,7 @@ class Feature15 extends BaseFeature {
                             value:
                                 "Nostra netus porttitor cursus Imperdiet proin. Vestibulum malesuada faucibus. Quam vivamus eu consectetuer praesent phasellus sapien dis natoque dignissim imperdiet morbi.",
                         },
+                        INPUTS.BUTTON("button", "", "", "", null, null, "White"),
                     ],
                 },
                 {
@@ -191,6 +193,7 @@ class Feature15 extends BaseFeature {
                             value:
                                 "Nostra netus porttitor cursus Imperdiet proin. Vestibulum malesuada faucibus. Quam vivamus eu consectetuer praesent phasellus sapien dis natoque dignissim imperdiet morbi.",
                         },
+                        INPUTS.BUTTON("button", "Button", "", "", null, null, "White"),
                     ],
                 },
                 {
@@ -229,6 +232,7 @@ class Feature15 extends BaseFeature {
                             value:
                                 "Nostra netus porttitor cursus Imperdiet proin. Vestibulum malesuada faucibus. Quam vivamus eu consectetuer praesent phasellus sapien dis natoque dignissim imperdiet morbi.",
                         },
+                        INPUTS.BUTTON("button", "Button", "", "", null, null, "White"),
                     ],
                 },
                 {
@@ -267,6 +271,7 @@ class Feature15 extends BaseFeature {
                             value:
                                 "Nostra netus porttitor cursus Imperdiet proin. Vestibulum malesuada faucibus. Quam vivamus eu consectetuer praesent phasellus sapien dis natoque dignissim imperdiet morbi.",
                         },
+                        INPUTS.BUTTON("button", "Button", "", "", null, null, "White"),
                     ],
                 },
             ],
@@ -352,35 +357,48 @@ class Feature15 extends BaseFeature {
                             className={this.decorateCSS("cards")}
                         >
                             {this.castToObject<Card[]>("cards").map(
-                                (card: Card, index: number) => (
-                                    <div key={index} className={this.decorateCSS("card")}>
-                                        {card.icon && (
-                                            <div className={this.decorateCSS("icon-box")}>
-                                                <Base.Media
-                                                    value={card.icon}
-                                                    className={this.decorateCSS("icon")}
-                                                />
-                                            </div>
-                                        )}
-                                        <Base.VerticalContent className={this.decorateCSS("labels")}>
-                                            {this.castToString(card.subtitle) && (
-                                                <Base.H5 className={this.decorateCSS("subtitle")}>
-                                                    {card.subtitle}
-                                                </Base.H5>
+                                (card: Card, index: number) => {
+                                    const btnText = card.button ? this.castToString(card.button.text) : "";
+                                    const btnIconExist = card.button?.icon && (card.button.icon.type === "icon" ? card.button.icon.name : card.button.icon.url);
+                                    const hasCardButton = !!(btnText || btnIconExist);
+                                    return (
+                                        <div key={index} className={this.decorateCSS("card")}>
+                                            {card.icon && (
+                                                <div className={this.decorateCSS("icon-box")}>
+                                                    <Base.Media
+                                                        value={card.icon}
+                                                        className={this.decorateCSS("icon")}
+                                                    />
+                                                </div>
                                             )}
-                                            {this.castToString(card.title) && (
-                                                <Base.H5 className={this.decorateCSS("title")}>
-                                                    {card.title}
-                                                </Base.H5>
-                                            )}
-                                            {this.castToString(card.description) && (
-                                                <Base.P className={this.decorateCSS("description")}>
-                                                    {card.description}
-                                                </Base.P>
-                                            )}
-                                        </Base.VerticalContent>
-                                    </div>
-                                )
+                                            <Base.VerticalContent className={this.decorateCSS("labels")}>
+                                                {this.castToString(card.subtitle) && (
+                                                    <Base.H5 className={this.decorateCSS("subtitle")}>
+                                                        {card.subtitle}
+                                                    </Base.H5>
+                                                )}
+                                                {this.castToString(card.title) && (
+                                                    <Base.H5 className={this.decorateCSS("title")}>
+                                                        {card.title}
+                                                    </Base.H5>
+                                                )}
+                                                {this.castToString(card.description) && (
+                                                    <Base.P className={this.decorateCSS("description")}>
+                                                        {card.description}
+                                                    </Base.P>
+                                                )}
+                                                {hasCardButton && (
+                                                    <ComposerLink path={card.button.url}>
+                                                        <Base.Button buttonType={card.button.type} className={this.decorateCSS("card-button")}>
+                                                            {btnText && <Base.P className={this.decorateCSS("card-button-text")}>{card.button.text}</Base.P>}
+                                                            {btnIconExist && <Base.Media className={this.decorateCSS("card-button-icon")} value={card.button.icon!} />}
+                                                        </Base.Button>
+                                                    </ComposerLink>
+                                                )}
+                                            </Base.VerticalContent>
+                                        </div>
+                                    );
+                                }
                             )}
                         </Base.ListGrid>}
                         {coverExist && (

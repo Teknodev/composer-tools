@@ -114,6 +114,17 @@
                         .title, .description {
                             text-align: left;
                         }
+
+                        .card-button {
+                            display: flex;
+                            gap: var(--composer-gap-sm);
+                            flex-wrap: wrap;
+
+                            .card-button-text,
+                            .card-button-icon {
+                                content: "";
+                            }
+                        }
                     }
 
                     &:hover {

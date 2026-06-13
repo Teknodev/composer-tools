@@ -41,6 +41,7 @@
                     overflow: hidden;
                     text-align: left !important;
 
+                    .card-subtitle,
                     .card-title,
                     .card-description {
                         color: var(--composer-font-color-primary);

@@ -61,9 +61,9 @@
                         background-color: var(--composer-font-color-primary);
                         color: var(--composer-html-background);
                         border-radius: var(--composer-border-radius-full);
-                        width: 25px;
-                        height: 25px;
-                        top: -15px;
+                        width: calc(var(--composer-gap-md) + var(--composer-gap-xs));
+                        height: calc(var(--composer-gap-md) + var(--composer-gap-xs));
+                        top: calc(-1 * (var(--composer-gap-sm) + var(--composer-gap-xs)));
                         left: calc(50% + var(--composer-gap-xl) / 2 + var(--composer-gap-xs));
                         transform: translateX(-50%);
                     }
@@ -77,7 +77,11 @@
                     }
                 }
 
-                .title,
+                .item-content {
+                    width: 100%;
+                }
+
+                .item-title,
                 .item-subtitle {
                     width: 100%;
                     margin: 0;
@@ -85,11 +89,17 @@
                     text-align: left;
                 }
 
-                .description {
+                .item-description {
                     width: 100%;
                     margin: 0;
                     color: var(--composer-tertiary-color);
                     text-align: left;
+                }
+
+                .item-button,
+                .item-button-text,
+                .item-button-icon {
+                    content: "";
                 }
 
                 &:not(:last-child)::after {
@@ -112,6 +122,18 @@
 }
 
 
+@container (max-width: #{$composer-tablet-width}) {
+    .container {
+        .max-content {
+            .wrapper {
+                .item {
+                    gap: var(--composer-gap-sm);
+                }
+            }
+        }
+    }
+}
+
 @container (max-width: #{$composer-phone-width}) {
     .container {
         .max-content {
@@ -129,10 +151,10 @@
                         position: relative;
 
                         .item-index {
-                            width: 25px;
-                            height: 25px;
-                            top: -15px;
-                            left: calc(50% + 1.5rem + var(--composer-gap-xs));
+                            width: calc(var(--composer-gap-md) + var(--composer-gap-xs));
+                            height: calc(var(--composer-gap-md) + var(--composer-gap-xs));
+                            top: calc(-1 * (var(--composer-gap-sm) + var(--composer-gap-xs)));
+                            left: calc(50% + var(--composer-gap-xl) / 2 + var(--composer-gap-xs));
                         }
 
                         .icon {
