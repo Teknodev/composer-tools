@@ -372,6 +372,7 @@ import Header6 from "./header/header6/header6";
 import Header7 from "./header/header7/header7";
 import Header8 from "./header/header8/header8";
 import Header9 from "./header/header9/header9";
+import Steps1 from "./steps/steps1/steps1";
 
 
 function Registerables(composer: ComponentsRegistery) {
@@ -748,6 +749,7 @@ function Registerables(composer: ComponentsRegistery) {
     Header7,
     Header8,
     Header9,
+    Steps1,
   ]);
 }
 

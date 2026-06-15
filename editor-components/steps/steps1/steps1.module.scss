@@ -1,0 +1,121 @@
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+
+.container {
+  .max-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--composer-gap-xl);
+
+    .header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      .subtitle {
+        text-align: center;
+        transform: none;
+
+        &::before {
+          display: none;
+        }
+      }
+
+      .title,
+      .description {
+        text-align: center;
+      }
+    }
+
+    .cards-container {
+      .card {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        gap: var(--composer-gap-md);
+        text-align: left;
+
+        .step-number {
+          width: var(--composer-gap-xl);
+          height: var(--composer-gap-xl);
+          flex-shrink: 0;
+          border-radius: 50%;
+          background-color: var(--composer-primary-color);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          .step-number-text {
+            color: var(--composer-font-color-secondary);
+            text-align: center;
+            width: auto;
+          }
+        }
+
+        .card-content {
+          display: flex;
+          flex-direction: column;
+
+          .card-subtitle,
+          .card-title {
+            color: var(--composer-font-color-primary);
+            text-align: left;
+          }
+
+          .card-description {
+            color: var(--composer-tertiary-color);
+            text-align: left;
+          }
+        }
+      }
+    }
+
+    .button-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--composer-gap-sm);
+      flex-wrap: wrap;
+
+      .button {
+        .button-text {
+          content: "";
+        }
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+  .container {
+    .max-content {
+      gap: var(--composer-gap-md);
+
+      .header {
+        align-items: var(--composer-content-alignment);
+
+        .subtitle {
+          text-align: var(--composer-content-alignment);
+          transform: revert;
+
+          &::before {
+            display: revert;
+          }
+        }
+
+        .title,
+        .description {
+          text-align: var(--composer-content-alignment);
+        }
+      }
+
+      .cards-container {
+        .card {
+          .step-number {
+            width: var(--composer-gap-lg);
+            height: var(--composer-gap-lg);
+          }
+        }
+      }
+    }
+  }
+}

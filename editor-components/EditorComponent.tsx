@@ -387,6 +387,7 @@ export enum CATEGORIES {
   PORTFOLIO = "portfolio",
   COMPARISON = "comparison",
   BACK_TO_TOP = "backToTop",
+  STEPS = "steps",
   CUSTOM = "custom",
   GLOBAL = "global",
   HEADER = "header",
@@ -1269,6 +1270,10 @@ export abstract class BaseComparison extends Component {
 
 export abstract class BaseBackToTop extends Component {
   static category = CATEGORIES.BACK_TO_TOP;
+}
+
+export abstract class BaseSteps extends Component {
+  static category = CATEGORIES.STEPS;
 }
 
 export abstract class BaseHeader extends Component {
