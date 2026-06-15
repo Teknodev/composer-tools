@@ -92,13 +92,13 @@
 
                 .item-icon {
                     transition: all 0.3s ease;
-                    width: 30px;
-                    height: 30px;
-                    font-size: 2.5rem;
+                    width: 25px;
+                    height: 25px;
+                    font-size: 2rem;
 
                     &.has-image {
-                        width: 27px;
-                        height: 27px;
+                        width: 20px;
+                        height: 20px;
                         object-fit: cover;
                     }
                 }
@@ -144,6 +144,21 @@
     .container {
         .max-content {
             gap: var(--composer-gap-sm);
+
+            .items-container {
+                .item {
+                    .item-icon {
+                        width: 20px;
+                        height: 20px;
+                        font-size: 1.75rem;
+
+                        &.has-image {
+                            width: 20px;
+                            height: 20px;
+                        }
+                    }
+                }
+            }
         }
     }
 }
