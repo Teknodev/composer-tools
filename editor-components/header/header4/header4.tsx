@@ -464,7 +464,7 @@ class Header4 extends BaseHeader {
     const activeIndex = this.getComponentState("active");
 
     return (
-      <Base.Container className={this.decorateCSS("container")}>
+      <Base.Container className={this.decorateCSS("container")} isFull={true}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("slider-wrapper")}>
             {slides?.length > 0 && (

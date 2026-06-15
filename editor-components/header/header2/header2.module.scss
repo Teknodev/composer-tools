@@ -4,6 +4,10 @@
   height: 100vh;
   padding: 0 !important;
 
+  &.container.container {
+    padding: 0 !important;
+  }
+
   .max-content {
     .carousel-wrapper {
       .carousel {

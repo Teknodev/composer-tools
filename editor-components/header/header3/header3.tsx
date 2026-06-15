@@ -438,7 +438,7 @@ class Header3 extends BaseHeader {
     };
 
     return (
-      <Base.Container className={this.decorateCSS("container")}>
+      <Base.Container className={this.decorateCSS("container")} isFull={true}>
         <Base.MaxContent className={`${this.decorateCSS("max-content")} ${anyImagesExist && this.decorateCSS("has-background")}`}>
           <div className={this.decorateCSS("slider-parent")}>
             {cards?.length && cards?.length > 0 && (

@@ -15,6 +15,10 @@
 .container {
   padding: 0 !important;
 
+  &.container.container {
+    padding: 0 !important;
+  }
+
   .max-content {
     .slider-wrapper {
       height: 100%;
