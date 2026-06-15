@@ -1,11 +1,4 @@
-@use "../../../composer-base-components/base/utitilities/viewports.module.scss"
-as *;
-
-.buttons-wrapper {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--composer-gap-sm);
-}
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
     .max-content {
@@ -97,22 +90,28 @@ as *;
                     }
                 }
 
-                .item-icon,
-                .item-icon svg {
+                .item-icon {
                     transition: all 0.3s ease;
-                    width: 26px;
-                    height: 26px;
+                    width: 30px;
+                    height: 30px;
+                    font-size: 2.5rem;
+
+                    &.has-image {
+                        width: 27px;
+                        height: 27px;
+                        object-fit: cover;
+                    }
                 }
             }
         }
 
         .buttons-wrapper {
-            @extend .buttons-wrapper;
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--composer-gap-sm);
             margin-inline: auto;
 
             .button {
-
-                .button-icon,
                 .button-text {
                     content: "";
                 }
@@ -132,13 +131,6 @@ as *;
 
             .items-container {
                 .item {
-
-                    .item-icon,
-                    .item-icon svg {
-                        width: 22px !important;
-                        height: 22px !important;
-                    }
-
                     &.with-lines:first-child {
                         border-top: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.2);
                     }
@@ -152,17 +144,6 @@ as *;
     .container {
         .max-content {
             gap: var(--composer-gap-sm);
-
-            .items-container {
-                .item {
-
-                    .item-icon,
-                    .item-icon svg {
-                        width: 18px !important;
-                        height: 18px !important;
-                    }
-                }
-            }
         }
     }
 }

@@ -18,13 +18,6 @@ type Item = {
     itemIconClosed?: TypeMediaInputValue;
 };
 
-type PrimaryButton = {
-    type: TypeButton;
-    text: Element;
-    url: string;
-    icon?: TypeMediaInputValue;
-};
-
 class Feature51 extends BaseFeature {
     private containerRef = React.createRef<HTMLDivElement>();
 
@@ -87,7 +80,7 @@ class Feature51 extends BaseFeature {
                             },
                             value: {
                                 type: "icon",
-                                name: "FaPlus",
+                                name: "LuPlus",
                             },
                         },
                         {
@@ -131,7 +124,7 @@ class Feature51 extends BaseFeature {
                             },
                             value: {
                                 type: "icon",
-                                name: "FaPlus",
+                                name: "LuPlus",
                             },
                         },
                         {
@@ -175,7 +168,7 @@ class Feature51 extends BaseFeature {
                             },
                             value: {
                                 type: "icon",
-                                name: "FaPlus",
+                                name: "LuPlus",
                             },
                         },
                         {
@@ -219,7 +212,7 @@ class Feature51 extends BaseFeature {
                             },
                             value: {
                                 type: "icon",
-                                name: "FaPlus",
+                                name: "LuPlus",
                             },
                         },
                         {
@@ -334,8 +327,8 @@ class Feature51 extends BaseFeature {
 
     private hasValidMedia(media: TypeMediaInputValue | undefined): boolean {
         if (!media) return false;
-        if (media.type === "icon") return !!media.name && media.name.trim() !== "";
-        if (media.type === "image") return !!media.url && media.url.trim() !== "";
+        if (media.type === "icon") return !!media.name && media.name !== "";
+        if (media.type === "image") return !!media.url && media.url !== "";
         return false;
     }
 
@@ -345,27 +338,23 @@ class Feature51 extends BaseFeature {
     ): { displayIcon: TypeMediaInputValue | undefined; shouldAnimate: boolean } {
         const hasOpenIcon = this.hasValidMedia(item.itemIcon);
         const hasClosedIcon = this.hasValidMedia(item.itemIconClosed);
-        const enableIconAnimation = this.getPropValue(
-            "enableIconAnimation",
-        ) as boolean;
+        const enableIconAnimation = this.getPropValue("enableIconAnimation") as boolean;
 
         if (hasOpenIcon) {
-            const displayIcon = isActive
-                ? item.itemIcon
-                : hasClosedIcon
-                    ? item.itemIconClosed
-                    : item.itemIcon;
+            const displayIcon =
+                isActive || !hasClosedIcon
+                    ? item.itemIcon
+                    : item.itemIconClosed;
+
             return { displayIcon, shouldAnimate: false };
         }
 
-        if (hasClosedIcon) {
-            return {
-                displayIcon: item.itemIconClosed,
-                shouldAnimate: enableIconAnimation,
-            };
-        }
+        const displayIcon = hasClosedIcon ? item.itemIconClosed : undefined;
 
-        return { displayIcon: undefined, shouldAnimate: false };
+        return {
+            displayIcon,
+            shouldAnimate: hasClosedIcon && enableIconAnimation,
+        };
     }
 
     private handleItemClick = (
@@ -376,7 +365,6 @@ class Feature51 extends BaseFeature {
 
         const updatedIndices = [...activeIndices];
 
-        // If clicking the same item, close it by setting to -1
         if (activeIndices[columnIndex] === itemIndexInColumn) {
             updatedIndices[columnIndex] = -1;
         } else {
@@ -398,7 +386,7 @@ class Feature51 extends BaseFeature {
         const items = this.castToObject<Item[]>("items");
         const isMobile = this.getComponentState("isMobile");
 
-        const buttons = this.castToObject<PrimaryButton[]>("buttons");
+        const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
         const buttonsExist = buttons.some(
             (button) => !!this.castToString(button.text),
         );
@@ -425,31 +413,22 @@ class Feature51 extends BaseFeature {
         const pcGridCount = columns.length;
 
         return (
-            <Base.Container
-                className={this.decorateCSS("container")}
-                ref={this.containerRef}
-            >
+            <Base.Container className={this.decorateCSS("container")} ref={this.containerRef}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
                     {isSectionHeadingExist && (
-                        <Base.VerticalContent
-                            className={this.decorateCSS("header-container")}
-                        >
+                        <Base.VerticalContent className={this.decorateCSS("header-container")}>
                             {sectionSubtitle && (
                                 <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
                                     {this.getPropValue("subtitle")}
                                 </Base.SectionSubTitle>
                             )}
-
                             {sectionTitle && (
                                 <Base.SectionTitle className={this.decorateCSS("title")}>
                                     {this.getPropValue("title")}
                                 </Base.SectionTitle>
                             )}
-
                             {sectionDescription && (
-                                <Base.SectionDescription
-                                    className={this.decorateCSS("description")}
-                                >
+                                <Base.SectionDescription className={this.decorateCSS("description")}>
                                     {this.getPropValue("description")}
                                 </Base.SectionDescription>
                             )}
@@ -457,72 +436,48 @@ class Feature51 extends BaseFeature {
                     )}
 
                     {items.length > 0 && (
-                        <Base.ListGrid
-                            className={this.decorateCSS("items-container")}
-                            gridCount={{ pc: pcGridCount, tablet: 1, phone: 1 }}
-                        >
+                        <Base.ListGrid className={this.decorateCSS("items-container")} gridCount={{ pc: pcGridCount, tablet: 1, phone: 1 }}>
                             {columns.map((columnItems, colIdx) => (
                                 <div key={colIdx} className={this.decorateCSS("column")}>
                                     {columnItems.map((item, idxInCol) => {
-                                        const globalIndex =
-                                            columns
-                                                .slice(0, colIdx)
-                                                .reduce((sum, col) => sum + col.length, 0) + idxInCol;
+                                        const globalIndex = columns.slice(0, colIdx).reduce((sum, col) => sum + col.length, 0) + idxInCol;
                                         const isActive = activeIndices[colIdx] === idxInCol;
                                         const itemTitle = this.castToString(item.itemTitle);
-                                        const itemDescription = this.castToString(
-                                            item.itemDescription,
-                                        );
-                                        const { displayIcon, shouldAnimate } = this.getItemIcon(
-                                            item,
-                                            isActive,
-                                        );
+                                        const itemDescription = this.castToString(item.itemDescription);
+                                        const { displayIcon, shouldAnimate } = this.getItemIcon(item, isActive);
 
                                         const itemClassName = [
                                             this.decorateCSS("item"),
-                                            isActive ? this.decorateCSS("active") : "",
-                                            this.getPropValue("withLines")
-                                                ? this.decorateCSS("with-lines")
-                                                : "",
-                                            pcGridCount === 1 ? this.decorateCSS("one-column") : "",
-                                        ].join(" ");
+                                            isActive && this.decorateCSS("active"),
+                                            this.getPropValue("withLines") && this.decorateCSS("with-lines"),
+                                            pcGridCount === 1 && this.decorateCSS("one-column"),
+                                        ].filter(Boolean).join(" ");
 
                                         return (
-                                            <Base.VerticalContent
-                                                className={itemClassName}
-                                                key={globalIndex}
-                                            >
-                                                <Base.Row
-                                                    onClick={() => this.handleItemClick(colIdx, idxInCol)}
-                                                    className={this.decorateCSS("item-header")}
-                                                >
-                                                    {itemTitle && (
-                                                        <Base.H5 className={this.decorateCSS("item-title")}>
-                                                            {item.itemTitle}
-                                                        </Base.H5>
-                                                    )}
-                                                    {displayIcon && (
-                                                        <Base.Media
-                                                            value={displayIcon}
-                                                            className={[
-                                                                this.decorateCSS("item-icon"),
-                                                                shouldAnimate
-                                                                    ? this.decorateCSS("item-icon-animated")
-                                                                    : "",
-                                                            ].join(" ")}
-                                                        />
-                                                    )}
-                                                </Base.Row>
+                                            <Base.VerticalContent className={itemClassName} key={globalIndex}>
+                                                {(itemTitle || displayIcon) && (
+                                                    <Base.Row onClick={() => this.handleItemClick(colIdx, idxInCol)} className={this.decorateCSS("item-header")}>
+                                                        {itemTitle && (
+                                                            <Base.H5 className={this.decorateCSS("item-title")}>
+                                                                {item.itemTitle}
+                                                            </Base.H5>
+                                                        )}
+                                                        {displayIcon && (
+                                                            <Base.Media
+                                                                value={displayIcon}
+                                                                className={[
+                                                                    this.decorateCSS("item-icon"),
+                                                                    shouldAnimate && this.decorateCSS("item-icon-animated"),
+                                                                    displayIcon.type === "image" && this.decorateCSS("has-image")
+                                                                ].filter(Boolean).join(" ")}
+                                                            />
+                                                        )}
+                                                    </Base.Row>
+                                                )}
 
                                                 {itemDescription && (
-                                                    <div
-                                                        className={this.decorateCSS(
-                                                            "item-description-wrapper",
-                                                        )}
-                                                    >
-                                                        <Base.P
-                                                            className={this.decorateCSS("item-description")}
-                                                        >
+                                                    <div className={this.decorateCSS("item-description-wrapper")}>
+                                                        <Base.P className={this.decorateCSS("item-description")}>
                                                             {item.itemDescription}
                                                         </Base.P>
                                                     </div>
@@ -540,28 +495,16 @@ class Feature51 extends BaseFeature {
                             {buttons.map((button, index) => {
                                 const buttonText = this.castToString(button.text);
                                 const buttonExist = buttonText || button.icon;
-                                return (
-                                    buttonExist && (
-                                        <ComposerLink path={button.url}>
-                                            <Base.Button
-                                                className={this.decorateCSS("button")}
-                                                key={index}
-                                                buttonType={button.type}
-                                            >
-                                                {button.icon && (
-                                                    <Base.Media
-                                                        value={button.icon}
-                                                        className={this.decorateCSS("button-icon")}
-                                                    />
-                                                )}
-                                                {buttonText && (
-                                                    <Base.P className={this.decorateCSS("button-text")}>
-                                                        {button.text}
-                                                    </Base.P>
-                                                )}
-                                            </Base.Button>
-                                        </ComposerLink>
-                                    )
+                                return buttonExist && (
+                                    <ComposerLink path={button.url}>
+                                        <Base.Button className={this.decorateCSS("button")} key={index} buttonType={button.type}>
+                                            {buttonText && (
+                                                <Base.P className={this.decorateCSS("button-text")}>
+                                                    {button.text}
+                                                </Base.P>
+                                            )}
+                                        </Base.Button>
+                                    </ComposerLink>
                                 );
                             })}
                         </Base.Row>
