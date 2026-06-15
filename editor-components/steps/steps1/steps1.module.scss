@@ -39,13 +39,13 @@
           height: var(--composer-gap-xl);
           flex-shrink: 0;
           border-radius: 50%;
-          background-color: var(--composer-primary-color);
+          background-color: var(--composer-font-color-primary);
           display: flex;
           align-items: center;
           justify-content: center;
 
           .step-number-text {
-            color: var(--composer-font-color-secondary);
+            color: var(--composer-html-background);
             text-align: center;
             width: auto;
           }
@@ -64,6 +64,20 @@
           .card-description {
             color: var(--composer-tertiary-color);
             text-align: left;
+          }
+
+          .card-buttons {
+            display: flex;
+            justify-content: flex-start;
+            gap: var(--composer-gap-sm);
+            flex-wrap: wrap;
+            width: 100%;
+
+            .card-button {
+              .card-button-text {
+                content: "";
+              }
+            }
           }
         }
       }

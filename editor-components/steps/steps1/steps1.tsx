@@ -6,9 +6,11 @@ import ComposerLink from "../../../composer-base-components/Link/ComposerLinkPro
 import { INPUTS } from "../../../custom-hooks/input-templates";
 
 type Card = {
+  stepNumber: React.JSX.Element;
   subtitle: React.JSX.Element;
   title: React.JSX.Element;
   description: React.JSX.Element;
+  buttons: INPUTS.CastedButton[];
 };
 
 class Steps1 extends BaseSteps {
@@ -48,6 +50,12 @@ class Steps1 extends BaseSteps {
           value: [
             {
               type: "string",
+              key: "stepNumber",
+              displayer: "Step Number",
+              value: "1",
+            },
+            {
+              type: "string",
               key: "subtitle",
               displayer: "Subtitle",
               value: "",
@@ -65,6 +73,14 @@ class Steps1 extends BaseSteps {
               value:
                 "Objectively innovate empowered manufactured products whereas parallel platforms. Holisticly predominate extensible testing procedures for chains.",
             },
+            {
+              type: "array",
+              key: "buttons",
+              displayer: "Buttons",
+              value: [
+                INPUTS.BUTTON("button", "Button", "Read More", "", null, null, "Link"),
+              ],
+            },
           ],
         },
         {
@@ -72,6 +88,12 @@ class Steps1 extends BaseSteps {
           key: "card",
           displayer: "Card",
           value: [
+            {
+              type: "string",
+              key: "stepNumber",
+              displayer: "Step Number",
+              value: "2",
+            },
             {
               type: "string",
               key: "subtitle",
@@ -91,6 +113,14 @@ class Steps1 extends BaseSteps {
               value:
                 "Dynamically procrastinate B2C users after installed base benefits. Dramatically visualize customer directed convergence without revolutionary ROI.",
             },
+            {
+              type: "array",
+              key: "buttons",
+              displayer: "Buttons",
+              value: [
+                INPUTS.BUTTON("button", "Button", "Read More", "", null, null, "Link"),
+              ],
+            },
           ],
         },
         {
@@ -98,6 +128,12 @@ class Steps1 extends BaseSteps {
           key: "card",
           displayer: "Card",
           value: [
+            {
+              type: "string",
+              key: "stepNumber",
+              displayer: "Step Number",
+              value: "3",
+            },
             {
               type: "string",
               key: "subtitle",
@@ -116,6 +152,14 @@ class Steps1 extends BaseSteps {
               displayer: "Description",
               value:
                 "Capitalize on low hanging fruit to identify a ballpark value added activity to beta test. Override the digital divide with additional clickthroughs from DevOps.",
+            },
+            {
+              type: "array",
+              key: "buttons",
+              displayer: "Buttons",
+              value: [
+                INPUTS.BUTTON("button", "Button", "Read More", "", null, null, "Link"),
+              ],
             },
           ],
         },
@@ -180,19 +224,21 @@ class Steps1 extends BaseSteps {
               className={this.decorateCSS("cards-container")}
             >
               {cards.map((card: Card, index: number) => {
+                const cardStepNumberExist = this.castToString(card.stepNumber);
                 const cardSubtitleExist = this.castToString(card.subtitle);
                 const cardTitleExist = this.castToString(card.title);
                 const cardDescriptionExist = this.castToString(card.description);
+                const cardButtonsExist = card.buttons?.some((btn) => this.castToString(btn.text));
 
-                if (!cardSubtitleExist && !cardTitleExist && !cardDescriptionExist) return null;
-
-                return (
+                return (cardStepNumberExist || cardSubtitleExist || cardTitleExist || cardDescriptionExist || cardButtonsExist) && (
                   <div key={index} className={this.decorateCSS("card")}>
-                    <div className={this.decorateCSS("step-number")}>
-                      <Base.H6 className={this.decorateCSS("step-number-text")}>
-                        {index + 1}
-                      </Base.H6>
-                    </div>
+                    {cardStepNumberExist && (
+                      <div className={this.decorateCSS("step-number")}>
+                        <Base.H6 className={this.decorateCSS("step-number-text")}>
+                          {card.stepNumber}
+                        </Base.H6>
+                      </div>
+                    )}
                     <Base.VerticalContent className={this.decorateCSS("card-content")}>
                       {cardSubtitleExist && (
                         <Base.H5 className={this.decorateCSS("card-subtitle")}>
@@ -200,14 +246,27 @@ class Steps1 extends BaseSteps {
                         </Base.H5>
                       )}
                       {cardTitleExist && (
-                        <Base.H4 className={this.decorateCSS("card-title")}>
+                        <Base.H5 className={this.decorateCSS("card-title")}>
                           {card.title}
-                        </Base.H4>
+                        </Base.H5>
                       )}
                       {cardDescriptionExist && (
                         <Base.P className={this.decorateCSS("card-description")}>
                           {card.description}
                         </Base.P>
+                      )}
+                      {cardButtonsExist && (
+                        <div className={this.decorateCSS("card-buttons")}>
+                          {card.buttons.map((button: INPUTS.CastedButton, btnIndex: number) =>
+                            this.castToString(button.text) && (
+                              <ComposerLink key={`card-${index}-btn-${btnIndex}`} path={button.url}>
+                                <Base.Button buttonType={button.type} className={this.decorateCSS("card-button")}>
+                                  <Base.P className={this.decorateCSS("card-button-text")}>{button.text}</Base.P>
+                                </Base.Button>
+                              </ComposerLink>
+                            )
+                          )}
+                        </div>
                       )}
                     </Base.VerticalContent>
                   </div>
