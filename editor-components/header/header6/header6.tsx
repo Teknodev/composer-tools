@@ -5,9 +5,40 @@ import { INPUTS } from "../../../custom-hooks/input-templates";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 import { TypeMediaInputValue } from "../../EditorComponent";
 
+interface BackgroundSettings {
+  componentBackground: TypeMediaInputValue;
+  overlay: boolean;
+}
+
 class Header6 extends BaseHeader {
   constructor(props?: any) {
     super(props, styles);
+
+    this.addProp({
+      type: "object",
+      key: "backgroundSettings",
+      displayer: "Media",
+      value: [
+        {
+          type: "media",
+          key: "componentBackground",
+          displayer: "Background Media",
+          additionalParams: {
+            availableTypes: ["image", "video"],
+          },
+          value: {
+            type: "image",
+            url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/690cc9f93596a1002b205a5f?alt=media",
+          },
+        },
+        {
+          type: "boolean",
+          key: "overlay",
+          displayer: "Overlay",
+          value: true,
+        }
+      ]
+    });
 
     this.addProp({
       type: "string",
@@ -29,26 +60,6 @@ class Header6 extends BaseHeader {
       displayer: "Description",
       value:
         "Nanotechnology immersion along the information highway will close the loop on focusing solely",
-    });
-
-    this.addProp({
-      type: "media",
-      key: "componentBackground",
-      displayer: "Media",
-      additionalParams: {
-        availableTypes: ["image", "video"],
-      },
-      value: {
-        type: "image",
-        url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/690cc9f93596a1002b205a5f?alt=media",
-      },
-    });
-
-    this.addProp({
-      type: "boolean",
-      key: "overlay",
-      displayer: "Overlay",
-      value: true,
     });
 
     this.addProp(
@@ -73,7 +84,9 @@ class Header6 extends BaseHeader {
     const title = this.castToString(this.getPropValue("title")) || "";
     const description =
       this.castToString(this.getPropValue("description")) || "";
-    const coverImage = this.getPropValue("componentBackground");
+    const backgroundSettings = this.castToObject<BackgroundSettings>("backgroundSettings");
+    const coverImage = backgroundSettings?.componentBackground;
+    const enableOverlay = backgroundSettings?.overlay;
     const button = this.castToObject<any>("button");
     const hasButton = !!(button && this.castToString(button.text));
     const alignemnt = Base.getContentAlignment();
@@ -83,7 +96,7 @@ class Header6 extends BaseHeader {
         className={`${this.decorateCSS("container")} ${
           coverImage && this.decorateCSS("hasBackground")
         } ${
-          coverImage && this.getPropValue("overlay")
+          coverImage && enableOverlay
             ? this.decorateCSS("overlay")
             : ""
         }`}

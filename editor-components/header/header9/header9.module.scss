@@ -97,14 +97,30 @@
           &.with-bg {
             color: white;
           }
+
+          .stat-prefix,
+          .stat-number,
+          .stat-suffix {
+            color: inherit;
+          }
         }
 
-        .stat-label {
-          margin: 0;
-          color: var(--composer-tertiary-color);
+        .stat-vertical-content {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: var(--composer-gap-xs);
 
-          &.with-bg {
-            color: white;
+          .stat-subtitle,
+          .stat-label,
+          .stat-description {
+            margin: 0;
+            color: var(--composer-tertiary-color);
+            text-align: center;
+
+            &.with-bg {
+              color: white;
+            }
           }
         }
       }
@@ -128,6 +144,20 @@
 
           .stats-row {
             justify-content: flex-start;
+
+            .stat {
+              align-items: flex-start;
+
+              .stat-vertical-content {
+                align-items: flex-start;
+
+                .stat-subtitle,
+                .stat-label,
+                .stat-description {
+                  text-align: left;
+                }
+              }
+            }
           }
         }
       }
