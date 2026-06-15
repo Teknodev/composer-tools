@@ -1,6 +1,7 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
+    background: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
     position: relative;
 
     .max-content {
@@ -51,7 +52,8 @@
         display: flex;
         flex-direction: column;
         border-radius: var(--composer-border-radius-md);
-        background: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+        background: var(--composer-html-background);
+        box-shadow: var(--box-shadow-active);
         overflow: hidden;
         height: 100%;
 
@@ -195,26 +197,38 @@
             .card {
                 .card-content {
                     padding: var(--composer-gap-lg) var(--composer-gap-lg) 30px var(--composer-gap-lg);
-                    align-items: flex-start;
+                    align-items: var(--composer-content-alignment);
 
                     .card-subtitle,
                     .card-title,
                     .card-description {
-                        text-align: left;
+                        text-align: var(--composer-content-alignment);
                     }
 
                     .card-price-row {
-                        justify-content: left;
+                        justify-content: var(--composer-content-alignment);
 
                         .card-price {
-                            text-align: left;
+                            text-align: var(--composer-content-alignment);
                         }
                     }
 
                     .card-features {
                         .feature-item {
-                            justify-content: left;
-                            text-align: left;
+                            justify-content: var(--composer-content-alignment);
+                            text-align: var(--composer-content-alignment);
+                        }
+                    }
+                }
+            }
+        }
+
+        &.alignment-center {
+            .max-content {
+                .card {
+                    .card-content {
+                        .card-features {
+                            padding-left: 0;
                         }
                     }
                 }

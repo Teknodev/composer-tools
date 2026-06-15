@@ -259,9 +259,10 @@ class PricingTable13 extends BasePricingTable {
         const itemCountInARow = this.getPropValue("itemCountInARow") || 3;
 
         const hasLeftSection = subtitleExist || titleExist || descriptionExist || hasValidButtons;
+        const alignment = Base.getContentAlignment();
 
         return (
-            <Base.Container className={this.decorateCSS("container")}>
+            <Base.Container className={`${this.decorateCSS("container")} ${alignment === "center" && this.decorateCSS("alignment-center")}`}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
                     <Base.ListGrid
                         gridCount={{ pc: itemCountInARow, tablet: 3, phone: 1 }}
