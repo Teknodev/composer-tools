@@ -360,14 +360,14 @@ class Feature2 extends BaseFeature {
                   )}
                   <Base.VerticalContent className={this.decorateCSS("item-content")}>
                     {subtitleExist && (
-                      <Base.H5 className={this.decorateCSS("item-subtitle")}>
+                      <Base.H6 className={this.decorateCSS("item-subtitle")}>
                         {item.subtitle}
-                      </Base.H5>
+                      </Base.H6>
                     )}
                     {titleExist && (
-                      <Base.H4 className={this.decorateCSS("item-title")}>
+                      <Base.H5 className={this.decorateCSS("item-title")}>
                         {item.title}
-                      </Base.H4>
+                      </Base.H5>
                     )}
                     {descExist && (
                       <Base.P className={this.decorateCSS("item-description")}>

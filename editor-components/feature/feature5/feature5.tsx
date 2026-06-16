@@ -61,7 +61,7 @@ class Feature5 extends BaseFeature {
           type: "string",
           key: "subtitle",
           displayer: "Subtitle",
-          value: "asd",
+          value: "",
         },
         {
           type: "string",
@@ -73,7 +73,7 @@ class Feature5 extends BaseFeature {
           type: "string",
           key: "description",
           displayer: "Description",
-          value: "asdasd",
+          value: "",
         },
         {
           type: "array",
