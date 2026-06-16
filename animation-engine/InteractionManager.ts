@@ -43,6 +43,7 @@ import { ModalActionHandler } from "./ModalActionHandler";
 import { NavigateActionHandler } from "./NavigateActionHandler";
 import { TrackEventActionHandler } from "./TrackEventActionHandler";
 import { detectSelectorSpecificity } from "./selector-utils";
+import { ConversionTrackingService } from "./ConversionTrackingService";
 
 // ── Baseline Style Store ───────────────────────────────────────────────────
 
@@ -506,6 +507,9 @@ export class InteractionManager {
                     undefined,
                     animFields.removeOnComplete
                   );
+                  if (interaction.isConversion) {
+                    ConversionTrackingService.track();
+                  }
                 };
 
                 if (delay <= 0) {
@@ -636,7 +640,7 @@ export class InteractionManager {
   private dispatchNonAnimateAction(interaction: Interaction): void {
     switch (interaction.action.type) {
       case "open-modal":
-        ModalActionHandler.execute(interaction.action);
+        ModalActionHandler.execute(interaction.action, interaction.trigger.type);
         break;
       case "navigate":
         NavigateActionHandler.execute(interaction.action);
@@ -648,6 +652,9 @@ export class InteractionManager {
         console.warn(
           `[InteractionManager] Unknown action type: ${(interaction.action as any).type}`
         );
+    }
+    if (interaction.isConversion) {
+      ConversionTrackingService.track();
     }
   }
 

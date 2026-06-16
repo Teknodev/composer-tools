@@ -17,7 +17,8 @@ export enum EVENTS {
   OPEN_INLINE_IMAGE_EDITOR = "openInlineImageEditor",
   OPEN_INLINE_VIDEO_EDITOR = "openInlineVideoEditor",
   HOVER_THEME_ELEMENT = "hoverThemeElement",
-  HOVER_TREE_ELEMENT = "hoverTreeElement"
+  HOVER_TREE_ELEMENT = "hoverTreeElement",
+  MODALS_INITIALIZED = "modalsInitialized"
 }
 
 class EventQ {

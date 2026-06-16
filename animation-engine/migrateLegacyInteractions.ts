@@ -18,8 +18,13 @@ import {
   Interaction,
   Interactions,
   OpenModalActionConfig,
+  AnimateActionConfig,
   InteractionTrigger,
+  DEFAULT_TIMING,
 } from "../../types/interaction";
+import { Logger } from "classes/Logger";
+
+const log = new Logger("migrateLegacyInteractions");
 
 // ---------------------------------------------------------------------------
 // Legacy types (from EditorComponent.tsx)
@@ -28,11 +33,15 @@ import {
 export interface LegacyInteractionType {
   type?: string; // "Click" | "Hover" | "Form Submission"
   modal?: string;
-  trigger_action?: string; // "Show Modal"
+  trigger_action?: string; // "Show Modal" | "animate" | "PlayAnimation"
   visible_on?: string; // "All" | "Desktop" | "Mobile" | "Tablet"
   show_once?: boolean;
   display_option?: "show_once" | "show_always" | "show_with_delay";
   delay_seconds?: number;
+  // D3-router animate fields (added when trigger_action === "animate")
+  animation_kind?: string;     // Animate.css name (one of 89), e.g. "fadeIn"
+  duration_ms?: number;        // Animation duration in milliseconds
+  easing?: string;             // CSS easing string, e.g. "ease-out"
 }
 
 const UUID_PATTERN = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/;
@@ -102,11 +111,56 @@ export function migrateLegacyInteractions(
     const selector = keyToSelector(key, componentId);
 
     for (const legacy of interactionList) {
-      // Only handle "Show Modal" trigger action
-      if (legacy.trigger_action !== "Show Modal") continue;
-      if (!legacy.modal) continue;
-
+      const triggerAction = legacy.trigger_action;
       const trigger = legacyTypeToTrigger(legacy.type);
+
+      // ── Animate action (D3 router output) ─────────────────────────
+      // The router now emits `trigger_action: "animate"` with new fields
+      // (animation_kind/duration_ms/easing). The very-old casing
+      // "PlayAnimation" is also accepted for backward compatibility.
+      if (triggerAction === "animate" || triggerAction === "PlayAnimation") {
+        let animationName = legacy.animation_kind;
+        if (!animationName) {
+          log.warn("missing_animation_kind_falling_back_to_fadeIn", { trigger_action: triggerAction, type: legacy.type });
+          animationName = "fadeIn";
+        }
+        const action: AnimateActionConfig = {
+          type: "animate",
+          animation: { engine: "animate-css", animationName },
+          timing: {
+            ...DEFAULT_TIMING,
+            duration: typeof legacy.duration_ms === "number" ? legacy.duration_ms : 600,
+            easing: legacy.easing ?? "ease-out",
+            delay: typeof legacy.delay_seconds === "number" ? legacy.delay_seconds * 1000 : DEFAULT_TIMING.delay,
+          },
+          target: { type: "selector", selector },
+        };
+
+        const interaction: Interaction = {
+          id: uuidv4(),
+          name: `Legacy: ${legacy.type || "Click"} → animate ${animationName}`,
+          trigger,
+          action,
+          enabled: true,
+          priority: trigger.type === "click" ? 20 : 15,
+        };
+
+        // Preserve the same legacy metadata block as the modal path so
+        // runtime code that reads visible_on / display_option keeps working.
+        (interaction as any)._legacyMeta = {
+          selector,
+          visibleOn: legacy.visible_on || "All",
+          displayOption: legacy.display_option || (legacy.show_once ? "show_once" : "show_always"),
+          delaySeconds: legacy.delay_seconds,
+        };
+
+        result.push(interaction);
+        continue;
+      }
+
+      // ── Open-modal action (existing path) ─────────────────────────
+      if (triggerAction !== "Show Modal") continue;
+      if (!legacy.modal) continue;
 
       const action: OpenModalActionConfig = {
         type: "open-modal",
