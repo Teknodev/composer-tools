@@ -38,6 +38,8 @@ import PricingComponent6 from "./pricing-table/pricing-table6/pricing-table6";
 import PricingComponent7 from "./pricing-table/pricing-table7/pricing-table7";
 import PricingComponent8 from "./pricing-table/pricing-table8/pricing-table8";
 import PricingComponent9 from "./pricing-table/pricing-table9/pricing-table9";
+import PricingComponent10 from "./pricing-table/pricing-table10/pricing-table10";
+
 import FaqComponent1 from "./faq/faq1/faq1";
 import FaqComponent2 from "./faq/faq2/faq2";
 import FaqComponent3 from "./faq/faq3/faq3";
@@ -157,6 +159,7 @@ import FeatureComponent45 from "./feature/feature45/feature45";
 import FeatureComponent46 from "./feature/feature46/feature46";
 import FeatureComponent47 from "./feature/feature47/feature47";
 import FeatureComponent50 from "./feature/feature50/feature50";
+import FeatureComponent52 from "./feature/feature52/feature52";
 import CallToAction1 from "./call_to_action/call_to_action1/call_to_action1";
 import CallToAction2 from "./call_to_action/call_to_action2/call_to_action2";
 import CallToAction3 from "./call_to_action/call_to_action3/call_to_action3";
@@ -187,6 +190,7 @@ import CallToAction27 from "./call_to_action/call_to_action27/call_to_action27";
 import CallToAction28 from "./call_to_action/call_to_action28/call_to_action28";
 import CallToAction29 from "./call_to_action/call_to_action29/call_to_action29";
 import CallToAction30 from "./call_to_action/call_to_action30/call_to_action30";
+import CallToAction31 from "./call_to_action/call_to_action31/call_to_action31";
 import CallToAction32 from "./call_to_action/call_to_action32/call_to_action32";
 import CallToAction33 from "./call_to_action/call_to_action33/call_to_action33";
 import CallToAction34 from "./call_to_action/call_to_action34/call_to_action34";
@@ -242,9 +246,13 @@ import StatsComponent22 from "./stats/stats22/stats22";
 import StatsComponent23 from "./stats/stats23/stats23";
 import StatsComponent24 from "./stats/stats24/stats24";
 import StatsComponent29 from "./stats/stats29/stats29";
+import StatsComponent30 from "./stats/stats30/stats30";
 import StatsComponent32 from "./stats/stats32/stats32";
 import StatsComponent33 from "./stats/stats33/stats33";
 import StatsComponent34 from "./stats/stats34/stats34";
+import StatsComponent35 from "./stats/stats35/stats35";
+import StatsComponent36 from "./stats/stats36/stats36";
+import StatsComponent38 from "./stats/stats38/stats38";
 import Form1 from "./contacts/form1/form1";
 import Form2 from "./contacts/form2/form2";
 import Form3 from "./contacts/form3/form3";
@@ -420,6 +428,7 @@ function Registerables(composer: ComponentsRegistery) {
     PricingComponent7,
     PricingComponent8,
     PricingComponent9,
+    PricingComponent10,
     FaqComponent1,
     FaqComponent2,
     FaqComponent3,
@@ -560,6 +569,7 @@ function Registerables(composer: ComponentsRegistery) {
     FeatureComponent46,
     FeatureComponent47,
     FeatureComponent50,
+    FeatureComponent52,
     CallToAction1,
     CallToAction2,
     CallToAction3,
@@ -590,6 +600,7 @@ function Registerables(composer: ComponentsRegistery) {
     CallToAction28,
     CallToAction29,
     CallToAction30,
+    CallToAction31,
     CallToAction32,
     CallToAction33,
     CallToAction34,
@@ -645,9 +656,13 @@ function Registerables(composer: ComponentsRegistery) {
     StatsComponent23,
     StatsComponent24,
     StatsComponent29,
+    StatsComponent30,
     StatsComponent32,
     StatsComponent33,
     StatsComponent34,
+    StatsComponent35,
+    StatsComponent36,
+    StatsComponent38,
     Form1,
     Form2,
     Form3,

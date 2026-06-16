@@ -5,36 +5,59 @@
         .wrapper {
             display: flex;
             gap: var(--composer-gap-xl);
+            width: 100%;
 
             .left-content {
-                width: 100%;
+                flex: 1;
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
                 flex-wrap: wrap;
 
                 .vertical-content {
-                    width: 100%;
+                    .title,
+                    .subtitle,
+                    .description {
+                        text-align: left;
+                    }
 
                     .subtitle {
                         width: fit-content;
-                    }
-
-                    .title,
-                    .description {
-                        content: "";
+                        margin-left: 0;
                     }
 
                     .button-container {
+                        width: 100%;
                         display: flex;
                         gap: var(--composer-gap-sm);
                         flex-wrap: wrap;
-                        width: 100%;
+                        justify-content: flex-start;
 
                         .button {
                             .button-text {
                                 content: "";
                             }
+                        }
+                    }
+                }
+
+                &.no-image-center {
+                    .vertical-content {
+                        align-items: center;
+
+                        .title,
+                        .subtitle,
+                        .description {
+                            text-align: center;
+                        }
+
+                        .subtitle {
+                            margin-left: auto;
+                            margin-right: auto;
+                        }
+
+                        .button-container {
+                            justify-content: center;
                         }
                     }
                 }
@@ -73,33 +96,6 @@
             }
         }
     }
-
-    &.has-image {
-        .max-content {
-            .wrapper {
-                .left-content {
-                    width: 50%;
-
-                    .vertical-content {
-                        text-align: left;
-
-                        .subtitle {
-                            margin-left: 0;
-                        }
-
-                        .title,
-                        .description {
-                            text-align: left;
-                        }
-
-                        .button-container {
-                            justify-content: left;
-                        }
-                    }
-                }
-            }
-        }
-    }
 }
 
 @container (max-width: #{$composer-phone-width}) {
@@ -108,35 +104,33 @@
             .wrapper {
                 flex-direction: column;
 
-                .right-content {
-                    width: 100% !important;
-                }
-            }
-        }
+                .left-content {
+                    width: 100%;
 
-        &.has-image {
-            .max-content {
-                .wrapper {
-                    .left-content {
-                        width: 100% !important;
-
+                    &.center {
                         .vertical-content {
-                            text-align: var(--composer-content-alignment);
-
-                            .subtitle {
-                                margin-right: 0;
-                            }
+                            align-items: center;
 
                             .title,
+                            .subtitle,
                             .description {
-                                text-align: var(--composer-content-alignment);
+                                text-align: center;
+                            }
+
+                            .subtitle {
+                                margin-left: auto;
+                                margin-right: auto;
                             }
 
                             .button-container {
-                                justify-content: var(--composer-content-alignment);
+                                justify-content: center;
                             }
                         }
                     }
+                }
+
+                .right-content {
+                    width: 100% !important;
                 }
             }
         }

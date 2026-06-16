@@ -10,9 +10,10 @@
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "outDir": "dist",
-    "rootDir": ".",
+    "rootDir": "..",
     "paths": {
-      "composer-tools/*": ["./*"]
+      "composer-tools/*": ["./*"],
+      "classes/*": ["../classes/*"]
     }
   },
   "include": ["**/*.ts", "**/*.tsx"],
