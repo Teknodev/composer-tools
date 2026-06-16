@@ -123,6 +123,19 @@ class Header2 extends BaseHeader {
       slidesToScroll: 1,
       vertical: true,
       verticalSwiping: true,
+      swipeToSlide: true,
+      touchThreshold: 10,
+      responsive: [
+        {
+          breakpoint: 1024,
+          settings: {
+            vertical: false,
+            verticalSwiping: false,
+            slidesToShow: 1,
+            slidesToScroll: 1,
+          },
+        },
+      ],
     };
 
     return (
