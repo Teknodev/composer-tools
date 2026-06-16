@@ -78,7 +78,7 @@ class Steps1 extends BaseSteps {
               key: "buttons",
               displayer: "Buttons",
               value: [
-                INPUTS.BUTTON("button", "Button", "Read More", "", null, null, "Link"),
+                INPUTS.BUTTON("button", "Button", "", "", null, null, "Link"),
               ],
             },
           ],
@@ -118,7 +118,7 @@ class Steps1 extends BaseSteps {
               key: "buttons",
               displayer: "Buttons",
               value: [
-                INPUTS.BUTTON("button", "Button", "Read More", "", null, null, "Link"),
+                INPUTS.BUTTON("button", "Button", "", "", null, null, "Link"),
               ],
             },
           ],
@@ -158,7 +158,7 @@ class Steps1 extends BaseSteps {
               key: "buttons",
               displayer: "Buttons",
               value: [
-                INPUTS.BUTTON("button", "Button", "Read More", "", null, null, "Link"),
+                INPUTS.BUTTON("button", "Button", "", "", null, null, "Link"),
               ],
             },
           ],
@@ -241,9 +241,9 @@ class Steps1 extends BaseSteps {
                     )}
                     <Base.VerticalContent className={this.decorateCSS("card-content")}>
                       {cardSubtitleExist && (
-                        <Base.H5 className={this.decorateCSS("card-subtitle")}>
+                        <Base.H6 className={this.decorateCSS("card-subtitle")}>
                           {card.subtitle}
-                        </Base.H5>
+                        </Base.H6>
                       )}
                       {cardTitleExist && (
                         <Base.H5 className={this.decorateCSS("card-title")}>
