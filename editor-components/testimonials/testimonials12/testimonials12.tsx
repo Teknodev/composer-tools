@@ -276,6 +276,7 @@ class Testimonials12Page extends Testimonials {
     const settings = {
       ...sliderSettings,
       arrows: false,
+      dots: false,
       responsive: [
         {
           breakpoint: 450,
