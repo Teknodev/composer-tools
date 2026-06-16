@@ -62,7 +62,7 @@
 
           .slider-icons {
             position: absolute;
-            right: calc(var(--composer-gap-xl) * 2);
+            right: var(--composer-gap-xl);
             top: calc(var(--composer-gap-xl) * 2 + var(--composer-gap-md));
             z-index: 10;
             padding: 0;
@@ -134,7 +134,7 @@
                 width: 100%;
                 .header-page-container {
                   display: flex;
-                  padding-top: calc(var(--composer-gap-xl) * 2);
+                  padding-top: calc(var(--composer-gap-md) * 5);
                   padding-left: calc(var(--composer-gap-xl) * 2);
 
                   &.header-page-container-no-image {
@@ -317,7 +317,7 @@
     }
     .hiliteTitle {
       font-size: 5rem;
-      right: 0;
+      right: calc(var(--composer-gap-md) * 3);
       bottom: 0;
     }
   }

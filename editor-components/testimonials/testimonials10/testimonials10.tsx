@@ -234,7 +234,7 @@ class Testimonials10Page extends Testimonials {
 
     this.addProp(INPUTS.SLIDER_SETTINGS("slider-settings", "Slider Settings", {
       dots: false,
-      arrows: false,
+      arrows: true,
       infinite: true,
       speed: 700,
       autoplay: true,
