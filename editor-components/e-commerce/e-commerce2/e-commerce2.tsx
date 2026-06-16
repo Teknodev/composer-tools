@@ -1952,7 +1952,7 @@ class ECommerce2 extends BaseECommerce {
                                                     ],
                                                 },
                                             ],
-                                        }
+                                        },
                                     ],
                                 },
                                 {
