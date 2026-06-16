@@ -15,6 +15,7 @@ type SliderItem = {
   image: TypeMediaInputValue;
   author: {
     name: React.JSX.Element;
+    position: React.JSX.Element;
   };
   description: React.JSX.Element;
   star: number;
@@ -135,6 +136,12 @@ class Testimonials5Page extends Testimonials {
                   displayer: "Name",
                   value: "Alexender Moore",
                 },
+                {
+                  type: "string",
+                  key: "position",
+                  displayer: "Position",
+                  value: "",
+                },
               ],
             },
             {
@@ -181,6 +188,12 @@ class Testimonials5Page extends Testimonials {
                   displayer: "Name",
                   value: "Alexender Moore",
                 },
+                {
+                  type: "string",
+                  key: "position",
+                  displayer: "Position",
+                  value: "",
+                },
               ],
             },
             {
@@ -226,6 +239,12 @@ class Testimonials5Page extends Testimonials {
                   key: "name",
                   displayer: "Name",
                   value: "Alexender Moore",
+                },
+                {
+                  type: "string",
+                  key: "position",
+                  displayer: "Position",
+                  value: "",
                 },
               ],
             },
@@ -407,10 +426,19 @@ class Testimonials5Page extends Testimonials {
                       <Base.Media value={item.image} className={this.decorateCSS("image")} />
                     )}
                     <div className={this.decorateCSS("rightWrapper")}>
-                      {item.author && this.castToString(item.author.name) && (
-                        <Base.H6 className={this.decorateCSS("sliderTitle")}>
-                          {item.author.name}
-                        </Base.H6>
+                      {item.author && (this.castToString(item.author.name) || this.castToString(item.author.position)) && (
+                        <div className={this.decorateCSS("authorContainer")}>
+                          {this.castToString(item.author.name) && (
+                            <Base.H6 className={this.decorateCSS("sliderTitle")}>
+                              {item.author.name}
+                            </Base.H6>
+                          )}
+                          {this.castToString(item.author.position) && (
+                            <Base.P className={this.decorateCSS("sliderPosition")}>
+                              {item.author.position}
+                            </Base.P>
+                          )}
+                        </div>
                       )}
                       {this.getPropValue("lineIsActive") && (
                         <div className={this.decorateCSS("lineContainer")}>
