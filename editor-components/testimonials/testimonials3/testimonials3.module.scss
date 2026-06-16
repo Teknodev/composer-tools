@@ -42,6 +42,7 @@
 
       .subtitle {
         transform: none !important;
+
         &::before {
           display: none !important;
           transform: none !important;
@@ -107,11 +108,9 @@
 
           .author-details {
             align-items: center;
-            gap: var(--composer-gap-xs);
 
             .author-name {
               color: var(--composer-font-color-primary);
-              font-weight: 600;
               text-align: center !important;
             }
 
@@ -142,6 +141,7 @@
   .container {
     .max-content {
       gap: var(--composer-gap-lg);
+
       .card-container {
         .card {
           content: "";
