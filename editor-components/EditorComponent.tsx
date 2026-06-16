@@ -320,7 +320,7 @@ type AvailablePropTypes =
   | { type: "dateTime"; value: string; additionalParams?: { mode?: string, timeInterval?: number, yearRange?: number, yearStart?: number } }
   | { type: "multiSelect"; value: string[] }
   | { type: "file"; value: string }
-  | { type: "media"; value: TypeMediaInputValue }
+  | { type: "media"; value: TypeMediaInputValue | null }
   | { type: "embededLink"; value: string }
 
 export type TypeReactComponent = {
