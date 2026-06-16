@@ -331,7 +331,7 @@ class Testimonials9Page extends Testimonials {
       ],
     });
     this.addProp(INPUTS.SLIDER_SETTINGS("slider-settings", "Slider Settings", {
-      dots: true,
+      dots: false,
       infinite: true,
       speed: 500,
       autoplay: true,
