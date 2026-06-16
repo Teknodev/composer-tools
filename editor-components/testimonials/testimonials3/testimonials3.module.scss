@@ -104,6 +104,22 @@
               font-size: 3rem;
             }
           }
+
+          .author-details {
+            align-items: center;
+            gap: var(--composer-gap-xs);
+
+            .author-name {
+              color: var(--composer-font-color-primary);
+              font-weight: 600;
+              text-align: center !important;
+            }
+
+            .author-position {
+              color: var(--composer-font-color-secondary);
+              text-align: center !important;
+            }
+          }
         }
       }
     }

@@ -11,6 +11,8 @@ type Item = {
   text: React.JSX.Element;
   author: {
     image: TypeMediaInputValue;
+    name: React.JSX.Element;
+    position: React.JSX.Element;
   };
 };
 
@@ -104,6 +106,18 @@ class Testimonials3Page extends Testimonials {
                   additionalParams: { availableTypes: ["image", "icon"] },
                   value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/645516a9f72de2002caaf056?alt=media&timestamp=1719584962573" },
                 },
+                {
+                  type: "string",
+                  key: "name",
+                  displayer: "Name",
+                  value: "John Carter",
+                },
+                {
+                  type: "string",
+                  key: "position",
+                  displayer: "Position",
+                  value: "Investor",
+                },
               ],
             },
           ],
@@ -137,6 +151,18 @@ class Testimonials3Page extends Testimonials {
                   additionalParams: { availableTypes: ["image", "icon"] },
                   value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/645516a9f72de2002caaf055?alt=media&timestamp=1719584962573" },
                 },
+                {
+                  type: "string",
+                  key: "name",
+                  displayer: "Name",
+                  value: "Emma Wilson",
+                },
+                {
+                  type: "string",
+                  key: "position",
+                  displayer: "Position",
+                  value: "Portfolio Manager",
+                },
               ],
             },
           ],
@@ -169,6 +195,18 @@ class Testimonials3Page extends Testimonials {
                   displayer: "Media",
                   additionalParams: { availableTypes: ["image", "icon"] },
                   value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/645516a9f72de2002caaf054?alt=media&timestamp=1719584962573" },
+                },
+                {
+                  type: "string",
+                  key: "name",
+                  displayer: "Name",
+                  value: "Michael Brown",
+                },
+                {
+                  type: "string",
+                  key: "position",
+                  displayer: "Position",
+                  value: "Financial Advisor",
                 },
               ],
             },
@@ -253,7 +291,9 @@ class Testimonials3Page extends Testimonials {
           <Base.ListGrid className={this.decorateCSS("card-container")} gridCount={{ pc: this.getPropValue("itemCount"), tablet: this.getPropValue("itemCount"), phone: 1 }}>
             {card.map((item: Item, index: number) => {
               const imageExist = item.author && item.author.image && (item.author.image.type === "icon" ? item.author.image.name : item.author.image.url);
-              const authorExist = item.author && imageExist;
+              const nameExist = item.author && this.castToString(item.author.name);
+              const positionExist = item.author && this.castToString(item.author.position);
+              const authorExist = item.author && (imageExist || nameExist || positionExist);
               return (
                 <Base.VerticalContent className={this.decorateCSS("card")} key={index}>
                   {(item.star > 0 && starIconExist) && (
@@ -271,6 +311,20 @@ class Testimonials3Page extends Testimonials {
                           className={`${this.decorateCSS("author-image")} ${item.author.image.type === "icon" ? this.decorateCSS("author-image-icon") : ""}`}
                           value={item.author.image}
                         />
+                      )}
+                      {(nameExist || positionExist) && (
+                        <Base.VerticalContent className={this.decorateCSS("author-details")}>
+                          {nameExist && (
+                            <Base.P className={this.decorateCSS("author-name")}>
+                              {item.author.name}
+                            </Base.P>
+                          )}
+                          {positionExist && (
+                            <Base.P className={this.decorateCSS("author-position")}>
+                              {item.author.position}
+                            </Base.P>
+                          )}
+                        </Base.VerticalContent>
                       )}
                     </Base.VerticalContent>
                   )}
