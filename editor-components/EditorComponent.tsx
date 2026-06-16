@@ -372,6 +372,7 @@ export enum CATEGORIES {
   MODAL = "modal",
   LOGOCLOUDS = "logoClouds",
   STATS = "stats",
+  STEPS = "steps",
   FEATURE = "feature",
   IMAGEGALLERY = "imageGallery",
   LOCATION = "location",
@@ -387,7 +388,6 @@ export enum CATEGORIES {
   PORTFOLIO = "portfolio",
   COMPARISON = "comparison",
   BACK_TO_TOP = "backToTop",
-  STEPS = "steps",
   CUSTOM = "custom",
   GLOBAL = "global",
   HEADER = "header",
@@ -1221,6 +1221,10 @@ export abstract class BaseStats extends Component {
   static category = CATEGORIES.STATS;
 }
 
+export abstract class BaseSteps extends Component {
+  static category = CATEGORIES.STEPS;
+}
+
 export abstract class BaseContacts extends Component {
   static category = CATEGORIES.FORM;
 }
@@ -1270,10 +1274,6 @@ export abstract class BaseComparison extends Component {
 
 export abstract class BaseBackToTop extends Component {
   static category = CATEGORIES.BACK_TO_TOP;
-}
-
-export abstract class BaseSteps extends Component {
-  static category = CATEGORIES.STEPS;
 }
 
 export abstract class BaseHeader extends Component {

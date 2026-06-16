@@ -253,6 +253,7 @@ import StatsComponent34 from "./stats/stats34/stats34";
 import StatsComponent35 from "./stats/stats35/stats35";
 import StatsComponent36 from "./stats/stats36/stats36";
 import StatsComponent38 from "./stats/stats38/stats38";
+import Steps1 from "./steps/steps1/steps1";
 import Form1 from "./contacts/form1/form1";
 import Form2 from "./contacts/form2/form2";
 import Form3 from "./contacts/form3/form3";
@@ -372,7 +373,6 @@ import Header6 from "./header/header6/header6";
 import Header7 from "./header/header7/header7";
 import Header8 from "./header/header8/header8";
 import Header9 from "./header/header9/header9";
-import Steps1 from "./steps/steps1/steps1";
 
 
 function Registerables(composer: ComponentsRegistery) {
@@ -664,6 +664,7 @@ function Registerables(composer: ComponentsRegistery) {
     StatsComponent35,
     StatsComponent36,
     StatsComponent38,
+    Steps1,
     Form1,
     Form2,
     Form3,
@@ -749,7 +750,6 @@ function Registerables(composer: ComponentsRegistery) {
     Header7,
     Header8,
     Header9,
-    Steps1,
   ]);
 }
 
