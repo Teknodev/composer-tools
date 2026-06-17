@@ -189,7 +189,6 @@ class Social4 extends BaseSocial {
 
                         }
                     ]
-
                 },
                 {
                     type: "object",
@@ -267,10 +266,11 @@ class Social4 extends BaseSocial {
                             value: "UrbanDreamer_"
                         },
                         {
-                            type: "image",
+                            type: "media",
                             key: "profileMedia",
                             displayer: "Media",
-                            value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67cb0f22fe2b08002d44d96d?alt=media&timestamp=1744960949771"
+                            value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67cb0f22fe2b08002d44d96d?alt=media&timestamp=1744960949771" },
+                            additionalParams: { availableTypes: ["icon", "image"] }
                         },
                         {
                             type: "media",
@@ -288,7 +288,6 @@ class Social4 extends BaseSocial {
                             value: "12/10/2024",
                         }
                     ]
-
                 },
                 {
                     type: "object",
@@ -366,10 +365,11 @@ class Social4 extends BaseSocial {
                             value: "PixelPursuit"
                         },
                         {
-                            type: "image",
+                            type: "media",
                             key: "profileMedia",
                             displayer: "Media",
-                            value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67c94af4fe2b08002d430306?alt=media&timestamp=1744960949770"
+                            value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67c94af4fe2b08002d430306?alt=media&timestamp=1744960949770" },
+                            additionalParams: { availableTypes: ["icon", "image"] }
                         },
                         {
                             type: "media",
@@ -387,7 +387,6 @@ class Social4 extends BaseSocial {
                             value: "12/12/2024",
                         }
                     ]
-
                 },
                 {
                     type: "object",
@@ -480,10 +479,11 @@ class Social4 extends BaseSocial {
                             value: "GlimmerAndGrit"
                         },
                         {
-                            type: "image",
+                            type: "media",
                             key: "profileMedia",
                             displayer: "Media",
-                            value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67c94b07fe2b08002d43030d?alt=media&timestamp=1744960949770"
+                            value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67c94b07fe2b08002d43030d?alt=media&timestamp=1744960949770" },
+                            additionalParams: { availableTypes: ["icon", "image"] }
                         },
                         {
                             type: "media",
@@ -501,7 +501,6 @@ class Social4 extends BaseSocial {
                             value: "01/01/2024",
                         }
                     ]
-
                 },
                 {
                     type: "object",
@@ -579,10 +578,11 @@ class Social4 extends BaseSocial {
                             value: "LunaVibes_"
                         },
                         {
-                            type: "image",
+                            type: "media",
                             key: "profileMedia",
                             displayer: "Media",
-                            value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67aca1d16341de002b7f73d2?alt=media&timestamp=1744960949770"
+                            value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67aca1d16341de002b7f73d2?alt=media&timestamp=1744960949770" },
+                            additionalParams: { availableTypes: ["icon", "image"] }
                         },
                         {
                             type: "media",
@@ -600,7 +600,6 @@ class Social4 extends BaseSocial {
                             value: "01/01/2024",
                         }
                     ]
-
                 },
                 {
                     type: "object",
@@ -678,10 +677,11 @@ class Social4 extends BaseSocial {
                             value: "WanderingSoul_23"
                         },
                         {
-                            type: "image",
+                            type: "media",
                             key: "profileMedia",
                             displayer: "Media",
-                            value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67f7bd84fb049c002cc6ffab?alt=media&timestamp=1744960949771"
+                            value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67f7bd84fb049c002cc6ffab?alt=media&timestamp=1744960949771" },
+                            additionalParams: { availableTypes: ["icon", "image"] }
                         },
                         {
                             type: "media",
@@ -699,7 +699,6 @@ class Social4 extends BaseSocial {
                             value: "01/01/2024",
                         }
                     ]
-
                 },
                 {
                     type: "object",
@@ -777,10 +776,11 @@ class Social4 extends BaseSocial {
                             value: "StarryHorizon_"
                         },
                         {
-                            type: "image",
+                            type: "media",
                             key: "profileMedia",
                             displayer: "Media",
-                            value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67e40a6cfb049c002cc41c31?alt=media&timestamp=1744799202064"
+                            value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67e40a6cfb049c002cc41c31?alt=media&timestamp=1744799202064" },
+                            additionalParams: { availableTypes: ["icon", "image"] }
                         },
                         {
                             type: "media",
@@ -798,7 +798,6 @@ class Social4 extends BaseSocial {
                             value: "01/01/2024",
                         }
                     ]
-
                 },
                 {
                     type: "object",
@@ -906,10 +905,11 @@ class Social4 extends BaseSocial {
                             value: "VelvetEchoes"
                         },
                         {
-                            type: "image",
+                            type: "media",
                             key: "profileMedia",
                             displayer: "Media",
-                            value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67f7bd53fb049c002cc6ff96?alt=media&timestamp=1744960949771"
+                            value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67f7bd53fb049c002cc6ff96?alt=media&timestamp=1744960949771" },
+                            additionalParams: { availableTypes: ["icon", "image"] }
                         },
                         {
                             type: "media",
@@ -927,7 +927,6 @@ class Social4 extends BaseSocial {
                             value: "01/01/2024",
                         }
                     ]
-
                 },
                 {
                     type: "object",
@@ -1005,10 +1004,11 @@ class Social4 extends BaseSocial {
                             value: "DaydreamingVibes"
                         },
                         {
-                            type: "image",
+                            type: "media",
                             key: "profileMedia",
                             displayer: "Media",
-                            value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67f3bd46fb049c002cc5ead5?alt=media&timestamp=1744960949771"
+                            value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67f3bd46fb049c002cc5ead5?alt=media&timestamp=1744960949771" },
+                            additionalParams: { availableTypes: ["icon", "image"] }
                         },
                         {
                             type: "media",
@@ -1026,7 +1026,6 @@ class Social4 extends BaseSocial {
                             value: "01/01/2024",
                         }
                     ]
-
                 },
                 {
                     type: "object",
@@ -1104,10 +1103,11 @@ class Social4 extends BaseSocial {
                             value: "InfiniteWanderer"
                         },
                         {
-                            type: "image",
+                            type: "media",
                             key: "profileMedia",
                             displayer: "Media",
-                            value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67e40a86fb049c002cc41c55?alt=media&timestamp=1744960949771"
+                            value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67e40a86fb049c002cc41c55?alt=media&timestamp=1744960949771" },
+                            additionalParams: { availableTypes: ["icon", "image"] }
                         },
                         {
                             type: "media",
@@ -1125,7 +1125,6 @@ class Social4 extends BaseSocial {
                             value: "01/01/2024",
                         }
                     ]
-
                 },
                 {
                     type: "object",
@@ -1203,10 +1202,11 @@ class Social4 extends BaseSocial {
                             value: "CosmicChaser_"
                         },
                         {
-                            type: "image",
+                            type: "media",
                             key: "profileMedia",
                             displayer: "Media",
-                            value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67e40a3cfb049c002cc41bc7?alt=media&timestamp=1744960949771"
+                            value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67e40a3cfb049c002cc41bc7?alt=media&timestamp=1744960949771" },
+                            additionalParams: { availableTypes: ["icon", "image"] }
                         },
                         {
                             type: "media",
@@ -1224,7 +1224,6 @@ class Social4 extends BaseSocial {
                             value: "01/01/2024",
                         }
                     ]
-
                 },
                 {
                     type: "object",
@@ -1317,10 +1316,11 @@ class Social4 extends BaseSocial {
                             value: "DreamscapeSeeker"
                         },
                         {
-                            type: "image",
+                            type: "media",
                             key: "profileMedia",
                             displayer: "Media",
-                            value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67a9d2166341de002b7b7fd0?alt=media&timestamp=1744960949770"
+                            value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67a9d2166341de002b7b7fd0?alt=media&timestamp=1744960949770" },
+                            additionalParams: { availableTypes: ["icon", "image"] }
                         },
                         {
                             type: "media",
@@ -1338,7 +1338,6 @@ class Social4 extends BaseSocial {
                             value: "01/01/2024",
                         }
                     ]
-
                 },
                 {
                     type: "object",
@@ -1416,10 +1415,11 @@ class Social4 extends BaseSocial {
                             value: "CrystalVibes_"
                         },
                         {
-                            type: "image",
+                            type: "media",
                             key: "profileMedia",
                             displayer: "Media",
-                            value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6799df51d61bca002cb826eb?alt=media&timestamp=1744960949770"
+                            value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6799df51d61bca002cb826eb?alt=media&timestamp=1744960949770" },
+                            additionalParams: { availableTypes: ["icon", "image"] }
                         },
                         {
                             type: "media",
@@ -1437,7 +1437,6 @@ class Social4 extends BaseSocial {
                             value: "01/01/2024",
                         }
                     ]
-
                 },
                 {
                     type: "object",
@@ -1560,10 +1559,11 @@ class Social4 extends BaseSocial {
                             value: "NeonExplorer"
                         },
                         {
-                            type: "image",
+                            type: "media",
                             key: "profileMedia",
                             displayer: "Media",
-                            value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6790cd32d61bca002cb54d47?alt=media&timestamp=1744960949770"
+                            value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6790cd32d61bca002cb54d47?alt=media&timestamp=1744960949770" },
+                            additionalParams: { availableTypes: ["icon", "image"] }
                         },
                         {
                             type: "media",
@@ -1581,7 +1581,6 @@ class Social4 extends BaseSocial {
                             value: "01/01/2024",
                         }
                     ]
-
                 },
                 {
                     type: "object",
@@ -1659,10 +1658,11 @@ class Social4 extends BaseSocial {
                             value: "EchoingWaves"
                         },
                         {
-                            type: "image",
+                            type: "media",
                             key: "profileMedia",
                             displayer: "Media",
-                            value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6790ceccd61bca002cb54e20?alt=media&timestamp=1744960949770"
+                            value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6790ceccd61bca002cb54e20?alt=media&timestamp=1744960949770" },
+                            additionalParams: { availableTypes: ["icon", "image"] }
                         },
                         {
                             type: "media",
@@ -1680,7 +1680,6 @@ class Social4 extends BaseSocial {
                             value: "01/01/2024",
                         }
                     ]
-
                 },
             ]
         })
@@ -1818,8 +1817,7 @@ class Social4 extends BaseSocial {
         );
 
         return (
-            <div className={this.decorateCSS("social4-root")}>
-                <Base.Container className={this.decorateCSS("container")}>
+            <Base.Container className={this.decorateCSS("container")}>
                     <Base.MaxContent className={this.decorateCSS("max-content")}>
                         {(titleExist ||
                             subtitleExist ||
@@ -1859,9 +1857,9 @@ class Social4 extends BaseSocial {
                                                                     className={this.decorateCSS("button")}
                                                                 >
                                                                     {textExist && (
-                                                                        <div className={this.decorateCSS("button-text")}>
+                                                                        <Base.P className={this.decorateCSS("button-text")}>
                                                                             {item.text}
-                                                                        </div>
+                                                                        </Base.P>
                                                                     )}
                                                                     {iconExist && (
                                                                         <Base.Media
@@ -1915,18 +1913,18 @@ class Social4 extends BaseSocial {
                                                         {(icons.likeIcon || this.castToString(item.likeCount)) && (
                                                             <div className={this.decorateCSS("like-container")}>
                                                                 {icons.likeIcon && (<Base.Media value={icons.likeIcon} className={`${this.decorateCSS("like-icon")} ${icons.likeIcon.type === "icon" ? this.decorateCSS("is-icon") : ""}`} />)}
-                                                                {this.castToString(item.likeCount) && (<div className={this.decorateCSS("like-number")}>{item.likeCount}</div>)}
+                                                                {this.castToString(item.likeCount) && (<Base.P className={this.decorateCSS("like-number")}>{item.likeCount}</Base.P>)}
                                                             </div>
                                                         )}
                                                         {(icons.commentIcon || this.castToString(item.commentCount)) && (
                                                             <div className={this.decorateCSS("comment-container")}>
                                                                 {icons.commentIcon && (<Base.Media value={icons.commentIcon} className={`${this.decorateCSS("comment-icon")} ${icons.commentIcon.type === "icon" ? this.decorateCSS("is-icon") : ""}`} />)}
-                                                                {this.castToString(item.commentCount) && (<div className={this.decorateCSS("comment-number")}>{item.commentCount}</div>)}
+                                                                {this.castToString(item.commentCount) && (<Base.P className={this.decorateCSS("comment-number")}>{item.commentCount}</Base.P>)}
                                                             </div>
                                                         )}
                                                     </div>
                                                 )}
-                                                {this.castToString(item.description) && (<div className={this.decorateCSS("description")}>{item.description}</div>)}
+                                                {this.castToString(item.description) && (<Base.P className={this.decorateCSS("description")}>{item.description}</Base.P>)}
                                             </div>
                                         </div>
                                     </div>
@@ -1938,20 +1936,19 @@ class Social4 extends BaseSocial {
                                 <ComposerLink path={this.getComponentState("imageCount") < cardItems.length ? "" : button.url}>
                                     <Base.Button className={this.decorateCSS("button")} buttonType={button.type} onClick={this.handleButtonClick} >
                                         {button.text && (
-                                            <div className={this.decorateCSS("button-text")}>
+                                            <Base.P className={this.decorateCSS("button-text")}>
                                                 {button.text}
-                                            </div>
+                                            </Base.P>
                                         )}
                                     </Base.Button>
                                 </ComposerLink>
                             </div>
                         )}
                     </Base.MaxContent>
-                </Base.Container>
                 <Base.Overlay className={`${this.decorateCSS("post-overlay")} ${this.getComponentState("postOverlayActive") && this.decorateCSS("active")}`} isVisible={true}>
                     {titleExist && (
                         <div className={this.decorateCSS("mobile-ovelay-title-container")}>
-                            <div className={this.decorateCSS("title")}>{this.getPropValue("title")}</div>
+                            <Base.H5 className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.H5>
                         </div>
                     )}
                     {(cardItems.length > 0) && (
@@ -1979,7 +1976,7 @@ class Social4 extends BaseSocial {
                                                     )}
                                                     {this.castToString(item.name) && (
                                                         <ComposerLink path={item.url}>
-                                                            <div className={this.decorateCSS("name")}>{item.name}</div>
+                                                            <Base.P className={this.decorateCSS("name")}>{item.name}</Base.P>
                                                         </ComposerLink>
 
                                                     )}
@@ -2025,8 +2022,8 @@ class Social4 extends BaseSocial {
                                                 <div className={this.decorateCSS("like-and-share-container")}>
                                                     {(this.castToString(item.likeCount) || this.castToString(icons.likeText)) && (
                                                         <div className={this.decorateCSS("like-part")}>
-                                                            {this.castToString(item.likeCount) && (<div className={this.decorateCSS("like-count")}>{item.likeCount}</div>)}
-                                                            {this.castToString(icons.likeText) && (<div className={this.decorateCSS("like-text")}>{icons.likeText}</div>)}
+                                                            {this.castToString(item.likeCount) && (<Base.P className={this.decorateCSS("like-count")}>{item.likeCount}</Base.P>)}
+                                                            {this.castToString(icons.likeText) && (<Base.P className={this.decorateCSS("like-text")}>{icons.likeText}</Base.P>)}
                                                         </div>
                                                     )}
                                                     {(icons.shareIcon || this.castToString(icons.shareText)) && (
@@ -2037,7 +2034,7 @@ class Social4 extends BaseSocial {
                                                                         <Base.Media value={icons.shareIcon} className={`${this.decorateCSS("share-icon")} ${icons.shareIcon.type === "icon" ? this.decorateCSS("is-icon") : ""}`} />
                                                                     </div>
                                                                 )}
-                                                                {this.castToString(icons.shareText) && (<div className={this.decorateCSS("share-text")}>{icons.shareText}</div>)}
+                                                                {this.castToString(icons.shareText) && (<Base.P className={this.decorateCSS("share-text")}>{icons.shareText}</Base.P>)}
                                                             </div>
                                                         </ComposerLink>
 
@@ -2047,14 +2044,14 @@ class Social4 extends BaseSocial {
                                             {(this.castToString(item.name) || this.castToString(item.description)) && (
                                                 <div className={this.decorateCSS("name-and-description")}>
                                                     <div className={this.decorateCSS("full-text")}>
-                                                        {this.castToString(item.name) && (<div className={this.decorateCSS("name")}>{item.name} </div>)}
-                                                        {this.castToString(item.description) && (<div className={this.decorateCSS("description")}>{item.description}</div>)}
+                                                        {this.castToString(item.name) && (<Base.P className={this.decorateCSS("name")}>{item.name}</Base.P>)}
+                                                        {this.castToString(item.description) && (<Base.P className={this.decorateCSS("description")}>{item.description}</Base.P>)}
                                                     </div>
                                                 </div>
                                             )}
                                             {this.castToString(item.date) && (
                                                 <div className={this.decorateCSS("date-container")}>
-                                                    <div className={this.decorateCSS("date")}>{item.date}</div>
+                                                    <Base.P className={this.decorateCSS("date")}>{item.date}</Base.P>
                                                 </div>
                                             )}
                                         </div>
@@ -2071,8 +2068,7 @@ class Social4 extends BaseSocial {
                         </div>
                     )}
                 </Base.Overlay>
-            </div>
-
+        </Base.Container>
         );
     }
 }

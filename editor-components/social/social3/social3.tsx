@@ -384,9 +384,9 @@ class Social3 extends BaseSocial {
                             className={this.decorateCSS("button")}
                           >
                             {textExist && (
-                              <div className={this.decorateCSS("button-text")}>
+                              <Base.P className={this.decorateCSS("button-text")}>
                                 {item.text}
-                              </div>
+                              </Base.P>
                             )}
                             {iconExist && (
                               <Base.Media
@@ -420,9 +420,9 @@ class Social3 extends BaseSocial {
                     profile.date) && (
                       <div className={this.decorateCSS("right-container")}>
                         {this.castToString(profile.name) && (
-                          <div className={this.decorateCSS("user-name")}>
+                          <Base.H4 className={this.decorateCSS("user-name")}>
                             {profile.name}
-                          </div>
+                          </Base.H4>
                         )}
                         {(profile.dateIcon ||
                           this.castToString(profile.date)) && (
@@ -434,9 +434,9 @@ class Social3 extends BaseSocial {
                                 />
                               )}
                               {this.castToString(profile.date) && (
-                                <div className={this.decorateCSS("date")}>
+                                <Base.P className={this.decorateCSS("date")}>
                                   {profile.date}
-                                </div>
+                                </Base.P>
                               )}
                             </div>
                           )}
@@ -445,14 +445,14 @@ class Social3 extends BaseSocial {
                 </div>
               )}
             {this.castToString(post.title) && (
-              <div className={this.decorateCSS("post-title")}>
+              <Base.H5 className={this.decorateCSS("post-title")}>
                 {post.title}
-              </div>
+              </Base.H5>
             )}
             {this.castToString(post.description) && (
-              <div className={this.decorateCSS("post-description")}>
+              <Base.P className={this.decorateCSS("post-description")}>
                 {post.description}
-              </div>
+              </Base.P>
             )}
             {post.media && (
               <div className={this.decorateCSS("post-image-container")}>
@@ -488,9 +488,9 @@ class Social3 extends BaseSocial {
                         />
                       )}
                       {textExist && (
-                        <div className={this.decorateCSS("text")}>
+                        <Base.P className={this.decorateCSS("text")}>
                           {item.text}
-                        </div>
+                        </Base.P>
                       )}
                       {isShare && socials.length > 0 && (
                         <div className={this.decorateCSS("socials")}>
@@ -506,9 +506,9 @@ class Social3 extends BaseSocial {
                                     />
                                   )}
                                   {this.castToString(social.text) && (
-                                    <div className={this.decorateCSS("social-text")}>
+                                    <Base.P className={this.decorateCSS("social-text")}>
                                       {social.text}
-                                    </div>
+                                    </Base.P>
                                   )}
                                 </div>
                               </ComposerLink>

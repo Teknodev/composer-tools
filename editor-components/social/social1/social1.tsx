@@ -342,7 +342,7 @@ class Social1 extends BaseSocial {
                                     </div>
                                 )}
                                 {item.name && (
-                                    <div className={this.decorateCSS("name")}>{item.name}</div>
+                                    <Base.P className={this.decorateCSS("name")}>{item.name}</Base.P>
                                 )}
                             </div>
                         )}
@@ -388,9 +388,9 @@ class Social1 extends BaseSocial {
                                                     <ComposerLink path={item.url}>
                                                         <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
                                                             {textExist && (
-                                                                <div className={this.decorateCSS("button-text")}>
+                                                                <Base.P className={this.decorateCSS("button-text")}>
                                                                     {item.text}
-                                                                </div>
+                                                                </Base.P>
                                                             )}
                                                             {iconExist && (
                                                                 <Base.Media

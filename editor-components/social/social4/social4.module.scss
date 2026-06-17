@@ -1,8 +1,5 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
-.social4-root {
-    display: contents;
-}
 
 .container {
     .max-content {
@@ -108,10 +105,6 @@
                     transition: all 0.5s ease;
                     display: flex;
                     flex-direction: column;
-
-                    >div {
-                        height: 100%;
-                    }
 
                     .content-container {
                         height: 100%;
@@ -257,11 +250,6 @@
                     gap: var(--composer-gap-sm);
                     align-items: center;
 
-                    >div {
-                        display: flex;
-                        align-items: center;
-                    }
-
                     .button-container {
                         display: flex;
                         align-items: center;
@@ -325,20 +313,17 @@
                 overflow: hidden;
                 position: relative;
 
-                >div {
+                .post-slider {
+                    content: "";
                     width: 100%;
 
-                    >div {
-                        >div {
-                            >div {
+                    .slick-list {
+                        .slick-track {
+                            .slick-slide {
                                 height: 100% !important;
                             }
                         }
                     }
-                }
-
-                .post-slider {
-                    content: "";
                 }
 
                 .image {

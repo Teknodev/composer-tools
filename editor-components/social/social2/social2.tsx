@@ -1062,8 +1062,7 @@ class Social2 extends BaseSocial {
         });
 
         return (
-            <div className={this.decorateCSS("social2-root")}>
-                <Base.Container className={this.decorateCSS("container")} id={"container"}  >
+            <Base.Container className={this.decorateCSS("container")} id={"container"}  >
                     <Base.MaxContent className={this.decorateCSS("max-content")}>
                         {(titleExist || subtitleExist || descriptionExist) && (
                             <Base.VerticalContent className={this.decorateCSS("upper-container")}>
@@ -1093,9 +1092,9 @@ class Social2 extends BaseSocial {
                                                     <ComposerLink path={item.url}>
                                                         <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
                                                             {textExist && (
-                                                                <div className={this.decorateCSS("button-text")}>
+                                                                <Base.P className={this.decorateCSS("button-text")}>
                                                                     {item.text}
-                                                                </div>
+                                                                </Base.P>
                                                             )}
                                                             {iconExist && (
                                                                 <Base.Media
@@ -1119,25 +1118,7 @@ class Social2 extends BaseSocial {
                                         return (
                                             <div key={index} className={this.decorateCSS("slider-item")}>
                                                 {item.media?.url && (
-                                                    item.media.type === "image"
-                                                        ? <img
-                                                            key={`image-${index}`}
-                                                            className={this.decorateCSS("video")}
-                                                            src={item.media.url}
-                                                            alt=""
-                                                        />
-                                                        : <video
-                                                            key={`video-${index}`}
-                                                            id={`video-${index}`}
-                                                            data-video-index={index}
-                                                            autoPlay={true}
-                                                            muted={true}
-                                                            playsInline
-                                                            loop
-                                                            preload="auto"
-                                                            className={this.decorateCSS("video")}
-                                                            src={item.media.url}
-                                                        />
+                                                    <Base.Media value={item.media} className={this.decorateCSS("video")} />
                                                 )}
                                                 {item.overlay && (
                                                     <div className={this.decorateCSS("overlay-item")} />
@@ -1159,29 +1140,13 @@ class Social2 extends BaseSocial {
                             <div className={this.decorateCSS("modal-wrapper")} onClick={(e) => e.stopPropagation()}>
                                 <div className={this.decorateCSS("video-container")}>
                                     {sliderItems[selectedIndex].media?.url && (
-                                        sliderItems[selectedIndex].media.type === "image"
-                                            ? <img
-                                                key={`${sliderItems[selectedIndex].media.url}-${selectedIndex}`}
-                                                className={this.decorateCSS("selected-video")}
-                                                src={sliderItems[selectedIndex].media.url}
-                                                alt=""
-                                            />
-                                            : <video
-                                                key={`${sliderItems[selectedIndex].media.url}-${selectedIndex}`}
-                                                autoPlay={true}
-                                                muted={false}
-                                                playsInline
-                                                loop
-                                                controls
-                                                className={this.decorateCSS("selected-video")}
-                                                src={sliderItems[selectedIndex].media.url}
-                                            />
+                                        <Base.Media value={sliderItems[selectedIndex].media} className={this.decorateCSS("selected-video")} />
                                     )}
                                     {this.castToString(sliderItems[selectedIndex].description) && (
                                         <div className={this.decorateCSS("video-text-container")}>
-                                            <div className={this.decorateCSS("video-text")}>
+                                            <Base.P className={this.decorateCSS("video-text")}>
                                                 {sliderItems[selectedIndex].description}
-                                            </div>
+                                            </Base.P>
                                         </div>
                                     )}
                                     {share.closeIcon && (
@@ -1200,7 +1165,7 @@ class Social2 extends BaseSocial {
                                                 {(this.castToString(share.shareTitle) || share.closeIcon) && (
                                                     <div className={this.decorateCSS("share-popup-upper")}>
                                                         {this.castToString(share.shareTitle) && (
-                                                            <div className={this.decorateCSS("share-popup-title")}>{share.shareTitle}</div>
+                                                            <Base.P className={this.decorateCSS("share-popup-title")}>{share.shareTitle}</Base.P>
                                                         )}
                                                         {share.closeIcon && (
                                                             <div className={this.decorateCSS("share-popup-close")} onClick={() => this.handleShareClose()}>
@@ -1241,7 +1206,6 @@ class Social2 extends BaseSocial {
                         </Base.Overlay>
                     )}
                 </Base.Container>
-            </div>
         );
     }
 }
