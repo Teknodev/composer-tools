@@ -591,7 +591,12 @@ class PricingTable2 extends BasePricingTable {
   }
 
   private getButtonsFromItem(item: PricingItems) {
-    const buttonsArray = item?.buttons;
+    // Newer pages store a `buttons` array; older ones a single `button` object.
+    let buttonsArray = item?.buttons;
+    if (!Array.isArray(buttonsArray)) {
+      const legacyButton = (item as any)?.button;
+      buttonsArray = legacyButton ? [legacyButton] : [];
+    }
     if (!Array.isArray(buttonsArray)) return [];
 
     return buttonsArray.map((btn) => {
@@ -711,6 +716,9 @@ class PricingTable2 extends BasePricingTable {
             >
               {this.castToObject<PricingItems[]>("pricingTableItem").map(
                 (table: PricingItems, index: number) => {
+                  // Legacy saved pages use cardTitle/cardPrice/cardDuration/
+                  // cardIcon; fall back to those when the new keys are absent.
+                  const legacy = table as any;
                   const cardSubtitle = table.subtitle;
                   const cardTitle = table.title;
                   const cardDescription = table.description;
@@ -730,9 +738,11 @@ class PricingTable2 extends BasePricingTable {
                   const cardListArr: ListItem[] = Array.isArray(table.cardList)
                     ? table.cardList
                     : [];
+                  const getListText = (listItem: ListItem) =>
+                    listItem.text ?? (listItem as any).cardListItem;
                   const hasCardList = cardListArr.some(
                     (listItem: ListItem) =>
-                      this.castToString(listItem.text) ||
+                      this.castToString(getListText(listItem)) ||
                       (!!listItem.listIcon &&
                         (listItem.listIcon.name ||
                           listItem.listIcon.url))
@@ -828,8 +838,9 @@ class PricingTable2 extends BasePricingTable {
                               >
                                 {cardListArr.map(
                                   (listItem: ListItem, listIndex: number) => {
+                                    const listText = getListText(listItem);
                                     const cardListItemText = this.castToString(
-                                      listItem.text
+                                      listText
                                     );
                                     const listIcon = listItem.listIcon;
                                     const listIconExists =
@@ -861,7 +872,7 @@ class PricingTable2 extends BasePricingTable {
                                               "list-item"
                                             )}
                                           >
-                                            {listItem.text}
+                                            {listText}
                                           </Base.P>
                                         )}
                                       </div>

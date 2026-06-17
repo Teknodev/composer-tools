@@ -718,8 +718,13 @@ class PricingTable1 extends BasePricingTable {
   }
 
   getButtonsFromItem = (item: Pricing) => {
-    if (!item?.buttons) return [];
-    return item.buttons.map((btn) => {
+    // Newer pages store a `buttons` array; older ones a single `buttonType` object.
+    let buttonsArray: RawButtonProp[] | undefined = item?.buttons;
+    if (!Array.isArray(buttonsArray)) {
+      const legacyButton = (item as any)?.buttonType;
+      buttonsArray = legacyButton ? [legacyButton] : [];
+    }
+    return buttonsArray.map((btn) => {
       const parent = btn?.value;
       return {
         text: this.getPropValue("text", { parent_object: parent }),
@@ -731,9 +736,16 @@ class PricingTable1 extends BasePricingTable {
   };
 
   render() {
-    const subtitleExist = this.castToString(this.getPropValue("subtitle"));
-    const titleExist = this.castToString(this.getPropValue("title"));
-    const descriptionExist = this.castToString(this.getPropValue("description"));
+    // Backward-compat: older saved pages use `pricing-table-*` header keys and
+    // per-card legacy keys (cardsubtitle/cardTitle/cardPrice/cardDuration*/
+    // pricingTableTitle/cardList → cardListItem, single buttonType). Read the
+    // new keys first, fall back to the legacy ones below.
+    const headerSubtitle = this.getPropValue("subtitle") ?? this.getPropValue("pricing-table-subtitle");
+    const headerTitle = this.getPropValue("title") ?? this.getPropValue("pricing-table-title");
+    const headerDescription = this.getPropValue("description") ?? this.getPropValue("pricing-table-description");
+    const subtitleExist = this.castToString(headerSubtitle);
+    const titleExist = this.castToString(headerTitle);
+    const descriptionExist = this.castToString(headerDescription);
     const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
     const hasValidButtons = buttons.some((btn) => {
       const buttonText = this.castToString(btn.text);
@@ -757,19 +769,19 @@ class PricingTable1 extends BasePricingTable {
                   <Base.SectionSubTitle
                     className={this.decorateCSS("subtitle")}
                   >
-                    {this.getPropValue("subtitle")}
+                    {headerSubtitle}
                   </Base.SectionSubTitle>
                 )}
                 {titleExist && (
                   <Base.SectionTitle className={this.decorateCSS("title")}>
-                    {this.getPropValue("title")}
+                    {headerTitle}
                   </Base.SectionTitle>
                 )}
                 {descriptionExist && (
                   <Base.SectionDescription
                     className={this.decorateCSS("description")}
                   >
-                    {this.getPropValue("description")}
+                    {headerDescription}
                   </Base.SectionDescription>
                 )}
                 {hasValidButtons && (
@@ -810,29 +822,47 @@ class PricingTable1 extends BasePricingTable {
             >
               {this.castToObject<Pricing[]>("pricingTableItem").map(
                 (table: Pricing, index: number) => {
+                  // Normalize new + legacy per-card keys into local values.
+                  const legacy = table as any;
+                  const cardSubtitleVal = table.subtitle ?? legacy.cardsubtitle;
+                  const cardTitleVal = table.title ?? legacy.cardTitle;
+                  const cardDescriptionVal = table.description ?? legacy.cardDescription;
+                  const cardPriceVal = table.price ?? legacy.cardPrice;
+                  const cardDurationVal = table.duration ?? legacy.cardDuration;
+                  const cardDuration1Val = table.duration1 ?? legacy.cardDuration1;
+                  const cardNoteVal = table.note ?? legacy.pricingTableTitle;
+                  const cardListVal: ListItem[] = Array.isArray(table.list)
+                    ? table.list
+                    : Array.isArray(legacy.cardList)
+                      ? legacy.cardList
+                      : [];
+                  // Legacy list items use `cardListItem` instead of `text`.
+                  const getListText = (listItem: ListItem) =>
+                    listItem.text ?? (listItem as any).cardListItem;
+
                   const popularText = this.castToString(
                     table.popular_settings.text
                   );
                   const popularBoxExist = popularText && table.popular_settings.is_popular;
 
                   const cardSubtitleExist = this.castToString(
-                    table.subtitle
+                    cardSubtitleVal
                   );
-                  const cardTitleExist = this.castToString(table.title);
-                  const cardDescriptionExist = this.castToString(table.description);
+                  const cardTitleExist = this.castToString(cardTitleVal);
+                  const cardDescriptionExist = this.castToString(cardDescriptionVal);
 
-                  const cardPriceExist = this.castToString(table.price);
-                  const durationExist = this.castToString(table.duration);
-                  const duration1Exist = this.castToString(table.duration1);
+                  const cardPriceExist = this.castToString(cardPriceVal);
+                  const durationExist = this.castToString(cardDurationVal);
+                  const duration1Exist = this.castToString(cardDuration1Val);
 
                   const cardpricingTableTitleExist = this.castToString(
-                    table.note
+                    cardNoteVal
                   );
 
                   const buttons = this.getButtonsFromItem(table);
 
-                  const hasCardList = table.list && table.list.some((listItem: ListItem) => {
-                    const cardListItemExist = this.castToString(listItem.text);
+                  const hasCardList = cardListVal.length > 0 && cardListVal.some((listItem: ListItem) => {
+                    const cardListItemExist = this.castToString(getListText(listItem));
                     const buttonIconExist = listItem.buttonIcon && (listItem.buttonIcon.type === "icon" ? listItem.buttonIcon.name : listItem.buttonIcon.url);
                     return cardListItemExist || buttonIconExist;
                   });
@@ -869,7 +899,7 @@ class PricingTable1 extends BasePricingTable {
                             {cardSubtitleExist && (
                               <div className={`${this.decorateCSS("cardsubtitle-wrapper")} ${this.decorateCSS("center")}`}>
                                 <Base.SectionDescription className={this.decorateCSS("cardsubtitle")}>
-                                  {table.subtitle}
+                                  {cardSubtitleVal}
                                 </Base.SectionDescription>
                               </div>
                             )}
@@ -877,12 +907,12 @@ class PricingTable1 extends BasePricingTable {
                               <Base.VerticalContent className={this.decorateCSS("card-text-area")}>
                                 {cardTitleExist && (
                                   <Base.H3 className={`${this.decorateCSS("card-title")} ${this.decorateCSS("center")}`}>
-                                    {table.title}
+                                    {cardTitleVal}
                                   </Base.H3>
                                 )}
                                 {cardDescriptionExist && (
                                   <Base.P className={this.decorateCSS("card-description")}>
-                                    {table.description}
+                                    {cardDescriptionVal}
                                   </Base.P>
                                 )}
                               </Base.VerticalContent>
@@ -891,8 +921,9 @@ class PricingTable1 extends BasePricingTable {
                         )}
                         {hasCardList && (
                           <div className={this.decorateCSS("card-list")}>
-                            {table.list.map((listItem: ListItem, listIdx: number) => {
-                              const cardListItemExist = this.castToString(listItem.text);
+                            {cardListVal.map((listItem: ListItem, listIdx: number) => {
+                              const listText = getListText(listItem);
+                              const cardListItemExist = this.castToString(listText);
                               const buttonIconExist = listItem.buttonIcon && (listItem.buttonIcon.type === "icon" ? listItem.buttonIcon.name : listItem.buttonIcon.url);
                               if (!buttonIconExist && !cardListItemExist) return null;
                               return (
@@ -909,7 +940,7 @@ class PricingTable1 extends BasePricingTable {
                                   )}
                                   {cardListItemExist && (
                                     <Base.P className={this.decorateCSS("list-item")}>
-                                      {listItem.text}
+                                      {listText}
                                     </Base.P>
                                   )}
                                 </Base.Row>
@@ -929,7 +960,7 @@ class PricingTable1 extends BasePricingTable {
                                 >
                                   {cardPriceExist && (
                                     <Base.P className={this.decorateCSS("price")}>
-                                      {table.price}
+                                      {cardPriceVal}
                                     </Base.P>
                                   )}
                                   {(durationExist || duration1Exist) && (
@@ -938,12 +969,12 @@ class PricingTable1 extends BasePricingTable {
                                     >
                                       {durationExist && (
                                         <Base.P className={this.decorateCSS("duration")}>
-                                          {table.duration}
+                                          {cardDurationVal}
                                         </Base.P>
                                       )}
                                       {duration1Exist && (
                                         <Base.P className={this.decorateCSS("duration1")}>
-                                          {table.duration1}
+                                          {cardDuration1Val}
                                         </Base.P>
                                       )}
                                     </div>
@@ -993,7 +1024,7 @@ class PricingTable1 extends BasePricingTable {
                               )}
                               {cardpricingTableTitleExist && (
                                 <Base.P className={this.decorateCSS("pricingTitle")}>
-                                  {table.note}
+                                  {cardNoteVal}
                                 </Base.P>
                               )}
                             </Base.VerticalContent>
