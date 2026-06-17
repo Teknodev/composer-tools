@@ -1118,7 +1118,7 @@ class Social2 extends BaseSocial {
                                         return (
                                             <div key={index} className={this.decorateCSS("slider-item")}>
                                                 {item.media?.url && (
-                                                    <Base.Media value={item.media} className={this.decorateCSS("video")} />
+                                                    <Base.Media value={{ ...item.media, settings: { ...(item.media.settings || {}), controls: false } }} className={this.decorateCSS("video")} />
                                                 )}
                                                 {item.overlay && (
                                                     <div className={this.decorateCSS("overlay-item")} />

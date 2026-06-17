@@ -171,6 +171,7 @@
               .social {
                 display: flex;
                 gap: var(--composer-gap-sm);
+                align-items: center;
                 color: var(--composer-font-color-primary);
                 font-size: 1rem;
 
