@@ -42,6 +42,30 @@
         }
       }
 
+      &.no-media.alignment-center {
+        justify-content: center;
+
+        .left-container {
+          align-items: center;
+          width: 100%;
+
+          .subtitle {
+            text-align: center !important;
+            margin-left: auto !important;
+            margin-right: auto !important;
+          }
+
+          .title,
+          .description {
+            text-align: center;
+          }
+
+          .button-container {
+            justify-content: center;
+          }
+        }
+      }
+
       .right-container {
         width: 100%;
         max-width: 50%;

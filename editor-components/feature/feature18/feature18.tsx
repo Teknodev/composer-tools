@@ -1,4 +1,4 @@
-﻿import * as React from "react";
+import * as React from "react";
 import { BaseFeature, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./feature18.module.scss";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
@@ -430,9 +430,9 @@ class Feature18 extends BaseFeature {
                       </Base.Row>
                     )}
                     {this.castToString(tab.title) && (
-                      <Base.SectionTitle className={this.decorateCSS("title")}>
+                      <Base.H3 className={this.decorateCSS("title")}>
                         {tab.title}
-                      </Base.SectionTitle>
+                      </Base.H3>
                     )}
                     {this.castToString(tab.description) && (
                       <Base.SectionDescription

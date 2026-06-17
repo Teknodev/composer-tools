@@ -349,7 +349,7 @@ class Feature24 extends BaseFeature {
                       </div>
                     )}
                     <Base.VerticalContent className={this.decorateCSS("card-content")}>
-                      {titleExist && (<Base.H4 className={this.decorateCSS("card-title")}>{card.title}</Base.H4>)}
+                      {titleExist && (<Base.H5 className={this.decorateCSS("card-title")}>{card.title}</Base.H5>)}
                     </Base.VerticalContent>
                   </div>
                 );

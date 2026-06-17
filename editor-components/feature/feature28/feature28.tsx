@@ -10,6 +10,7 @@ type Feature29CardSide = {
   overlay?: boolean;
   media?: TypeMediaInputValue;
   title: React.JSX.Element;
+  subtitle: React.JSX.Element;
   description: React.JSX.Element;
   button?: TypeUsableComponentProps[];
 };
@@ -76,6 +77,12 @@ class Feature28 extends BaseFeature {
         },
         {
           type: "string",
+          key: "subtitle",
+          displayer: "Subtitle",
+          value: "aaaa",
+        },
+        {
+          type: "string",
           key: "description",
           displayer: "Description",
           value:
@@ -119,6 +126,12 @@ class Feature28 extends BaseFeature {
           key: "title",
           displayer: "Title",
           value: "Seamless setup, faster payments",
+        },
+        {
+          type: "string",
+          key: "subtitle",
+          displayer: "Subtitle",
+          value: "",
         },
         {
           type: "string",
@@ -168,6 +181,12 @@ class Feature28 extends BaseFeature {
         },
         {
           type: "string",
+          key: "subtitle",
+          displayer: "Subtitle",
+          value: "",
+        },
+        {
+          type: "string",
           key: "description",
           displayer: "Description",
           value: "",
@@ -209,6 +228,12 @@ class Feature28 extends BaseFeature {
           type: "string",
           key: "title",
           displayer: "Title",
+          value: "",
+        },
+        {
+          type: "string",
+          key: "subtitle",
+          displayer: "Subtitle",
           value: "",
         },
         {
@@ -258,6 +283,12 @@ class Feature28 extends BaseFeature {
         },
         {
           type: "string",
+          key: "subtitle",
+          displayer: "Subtitle",
+          value: "",
+        },
+        {
+          type: "string",
           key: "description",
           displayer: "Description",
           value:
@@ -301,6 +332,12 @@ class Feature28 extends BaseFeature {
           key: "title",
           displayer: "Title",
           value: "Reliable payouts engine, total dependability",
+        },
+        {
+          type: "string",
+          key: "subtitle",
+          displayer: "Subtitle",
+          value: "",
         },
         {
           type: "string",
@@ -375,23 +412,26 @@ class Feature28 extends BaseFeature {
       media: TypeMediaInputValue | undefined,
       overlay: boolean,
       title: React.JSX.Element,
+      subtitle: React.JSX.Element,
       description: React.JSX.Element,
       button?: TypeUsableComponentProps[],
       additionalClass?: string
     ) => {
       const mediaUrl = media && media.type !== "icon" && media.url;
       const titleExist = !!this.castToString(title);
+      const subtitleExist = !!this.castToString(subtitle);
       const descriptionExist = this.castToString(description);
 
       return (
         <div
-        className={[this.decorateCSS("card"), additionalClass, mediaUrl && this.decorateCSS("with-bg")]}
+          className={[this.decorateCSS("card"), additionalClass, mediaUrl && this.decorateCSS("with-bg")]}
           data-animation={hoverAnimation}
         >
           {mediaUrl && <Base.Media className={this.decorateCSS("card-media")} value={media} />}
           {overlay && <div className={this.decorateCSS("overlay-layer")} />}
           <Base.VerticalContent className={this.decorateCSS("card-text-container")}>
-            {titleExist && <Base.H3 className={this.decorateCSS("card-title")}>{title}</Base.H3>}
+            {subtitleExist && <Base.H6 className={this.decorateCSS("card-subtitle")}>{subtitle}</Base.H6>}
+            {titleExist && <Base.H5 className={this.decorateCSS("card-title")}>{title}</Base.H5>}
             {descriptionExist && <Base.SectionDescription className={this.decorateCSS("card-description")}>{description}</Base.SectionDescription>}
             {button && renderButton(button)}
           </Base.VerticalContent>
@@ -425,6 +465,7 @@ class Feature28 extends BaseFeature {
                       topLeftSide.media,
                       !!topLeftSide.overlay,
                       topLeftSide.title,
+                      topLeftSide.subtitle,
                       topLeftSide.description,
                       topLeftSide.button
                     )}
@@ -435,7 +476,7 @@ class Feature28 extends BaseFeature {
                   <div className={this.decorateCSS("left-bottom-cards")}>
                     {bottomLeftCards.map((card, index) => (
                       <React.Fragment key={`left-card-${index}`}>
-                        {renderCard(card.media, !!card.overlay, card.title, card.description, card.button)}
+                        {renderCard(card.media, !!card.overlay, card.title, card.subtitle, card.description, card.button)}
                       </React.Fragment>
                     ))}
                   </div>
@@ -449,6 +490,7 @@ class Feature28 extends BaseFeature {
                   middleSide.media,
                   !!middleSide.overlay,
                   middleSide.title,
+                  middleSide.subtitle,
                   middleSide.description,
                   middleSide.button
                 )}
@@ -463,6 +505,7 @@ class Feature28 extends BaseFeature {
                       card.data.media,
                       !!card.data.overlay,
                       card.data.title,
+                      card.data.subtitle,
                       card.data.description,
                       card.data.button,
                       this.decorateCSS("right-card")

@@ -242,8 +242,12 @@
       .content {
         gap: var(--composer-gap-sm);
 
-        .card-item-count {
+        .card-item-count,
+        .card-item-count-no-bg {
           .vertical {
+            padding: var(--composer-gap-md);
+          }
+          .overlay-content {
             padding: var(--composer-gap-md);
           }
         }

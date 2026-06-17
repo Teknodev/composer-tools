@@ -17,6 +17,11 @@ interface ListItem {
   text: string;
   icon: TypeMediaInputValue;
 }
+
+type MediaCard = {
+  media: TypeMediaInputValue;
+  overlay: boolean;
+};
 class Feature19 extends BaseFeature {
   constructor(props?: any) {
     super(props, styles);
@@ -40,23 +45,29 @@ class Feature19 extends BaseFeature {
       value: "A better way to get your home, rental, or office clean.",
     });
     this.addProp({
-      type: "media",
-      key: "media",
+      type: "object",
+      key: "mediaCard",
       displayer: "Media",
-      additionalParams: {
-        availableTypes: ["image","video"],
-      },
-      value: {
-        type: "image",
-        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661bad1bd2970002c628768?alt=media&timestamp=1719564173697",
-      },
-    });
-    
-    this.addProp({
-      type: "boolean",
-      key: "overlay",
-      displayer: "Overlay",
-      value: true,
+      value: [
+        {
+          type: "media",
+          key: "media",
+          displayer: "Media",
+          additionalParams: {
+            availableTypes: ["image", "video"],
+          },
+          value: {
+            type: "image",
+            url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661bad1bd2970002c628768?alt=media&timestamp=1719564173697",
+          },
+        },
+        {
+          type: "boolean",
+          key: "overlay",
+          displayer: "Overlay",
+          value: true,
+        },
+      ],
     });
     this.addProp({
       type: "array",
@@ -155,7 +166,10 @@ class Feature19 extends BaseFeature {
 
   render() {
     const subTitle = this.getPropValue("subtitle");
-    const overlay = this.getPropValue("overlay") as boolean;
+    const mediaCard = this.castToObject<MediaCard>("mediaCard");
+    const media = mediaCard.media;
+    const overlay = !!mediaCard.overlay;
+    const mediaExist = !!(media && media.url);
     const title = this.getPropValue("title");
     const description = this.getPropValue("description");
     const buttons = this.castToObject<Button[]>("buttons");
@@ -250,16 +264,13 @@ class Feature19 extends BaseFeature {
               )}
             </Base.VerticalContent>
           )}
-          {this.getPropValue("media") && (
-            <div 
+          {mediaExist && (
+            <div
               className={`${this.decorateCSS("right-image")} ${!isAnyContentExists ? this.decorateCSS("no-content") : ""}`}
               data-animation={this.getPropValue("hoverAnimation").join(" ")}
               style={{ position: "relative" }}
             >
-              <Base.Media
-                value={this.getPropValue("media")}
-                className={this.decorateCSS("img")}
-              />
+              <Base.Media value={media} className={this.decorateCSS("img")} />
               {overlay && <div className={this.decorateCSS("overlay")} />}
             </div>
           )}

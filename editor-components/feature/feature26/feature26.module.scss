@@ -107,6 +107,37 @@
       &:has(> .image-container:only-child) {
         justify-content: center;
       }
+
+      .content.no-media.alignment-center {
+        align-items: center;
+        text-align: center !important;
+
+        .subtitle {
+          text-align: center !important;
+          align-self: center;
+          margin-left: auto !important;
+          margin-right: auto !important;
+        }
+
+        .title,
+        .description {
+          text-align: center !important;
+          align-self: center;
+        }
+
+        .quote-container {
+          justify-content: center;
+
+          .quote-text {
+            text-align: center !important;
+            align-self: center;
+          }
+        }
+
+        .buttons-container {
+          justify-content: center;
+        }
+      }
     }
   }
 }
@@ -151,7 +182,7 @@
           aspect-ratio: 1 / 1;
         }
         .content {
-          &[data-alignment="center"] {
+          &.alignment-center {
             align-items: center;
             text-align: center !important;
             .subtitle {

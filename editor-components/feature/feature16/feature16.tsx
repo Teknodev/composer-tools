@@ -372,9 +372,9 @@ class Feature16 extends BaseFeature {
                 {hasTextContent && (
                     <div className={this.decorateCSS("card-text-container")}>
                         {hasTitle && (
-                            <Base.H4 className={this.decorateCSS("card-title")}>
+                            <Base.H5 className={this.decorateCSS("card-title")}>
                                 {cardData[`${prefix}Title`]}
-                            </Base.H4>
+                            </Base.H5>
                         )}
                         {hasDescription && (
                             <Base.P className={this.decorateCSS("card-description")}>
@@ -518,9 +518,9 @@ class Feature16 extends BaseFeature {
                                             {(this.castToString(bottomLeftSide.bottomLeftSideTitle) || this.castToString(bottomLeftSide.bottomLeftSideDescription)) && (
                                                 <div className={this.decorateCSS("bottom-left-side-card-text-container")}>
                                                     {this.castToString(bottomLeftSide.bottomLeftSideTitle) && (
-                                                        <Base.H4 className={this.decorateCSS("bottom-left-side-card-title")}>
+                                                        <Base.H5 className={this.decorateCSS("bottom-left-side-card-title")}>
                                                             {bottomLeftSide.bottomLeftSideTitle}
-                                                        </Base.H4>
+                                                        </Base.H5>
                                                     )}
                                                     {this.castToString(bottomLeftSide.bottomLeftSideDescription) && (
                                                         <Base.P className={this.decorateCSS("bottom-left-side-card-description")}>

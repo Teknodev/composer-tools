@@ -132,7 +132,7 @@
                     .list-item-content{
                         .item-content-top{
                             display: flex;
-                            gap: var(--composer-gap-md);
+                            gap: var(--composer-gap-sm);
                             align-items: center;
                             justify-content: flex-start;
                             width: 100%;
@@ -193,8 +193,11 @@
                     gap: var(--composer-gap-md);
                     .list-item-content {
                         .item-content-top {
+                            align-items: center;
+
                             .icon {
                                 font-size: 1rem;
+                                flex-shrink: 0;
                             }
                         }
                     }

@@ -104,6 +104,7 @@
 
             .card-text-container {
               .card-title,
+              .card-subtitle,
               .card-description,
               .button-text,
               .button-icon {
@@ -169,6 +170,7 @@
 
           .card-text-container {
             .card-title,
+            .card-subtitle,
             .card-description,
             .button-text,
             .button-icon {
@@ -210,6 +212,7 @@
           padding: var(--composer-gap-lg);
 
           .card-title,
+          .card-subtitle,
           .card-description {
             text-align: left;
           }
