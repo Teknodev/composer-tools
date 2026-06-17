@@ -57,12 +57,6 @@ class Feature13 extends BaseFeature {
       value: true,
     });
     this.addProp({
-      type: "boolean",
-      key: "showLines",
-      displayer: "Lines",
-      value: true,
-    });
-    this.addProp({
       type: "string",
       key: "description",
       displayer: "Description",
@@ -190,6 +184,13 @@ class Feature13 extends BaseFeature {
       "slider-images",
       this.castToObject<SliderImage[]>("slider-images")
     );
+
+    this.addProp({
+      type: "boolean",
+      key: "showLines",
+      displayer: "Dividers",
+      value: true,
+    });
 
     this.addProp({
       type: "array",

@@ -117,13 +117,10 @@
         .message {
           color: var(--composer-font-color-primary);
           width: 100%;
-          display: flex;
-          flex-direction: column;
           justify-content: center;
           align-items: center;
           height: 100%;
           overflow: hidden;
-          gap: var(--composer-gap-md);
 
           .icon-container{
             .icon {
@@ -177,18 +174,31 @@
         > *:first-child {
           border-radius: var(--composer-border-radius-md) var(--composer-border-radius-md) 0 0 !important;
         }
-        
+
         > *:last-child {
           border-radius: 0 0 var(--composer-border-radius-md) var(--composer-border-radius-md) !important;
         }
-        
+
         > *:not(:first-child):not(:last-child) {
           border-radius: 0 !important;
         }
-        
+
         .card-item-first:last-child,
         .card-item-count:last-child {
           border-radius: 0 0 var(--composer-border-radius-md) var(--composer-border-radius-md) !important;
+        }
+
+        .card-item-first {
+          align-items: center;
+          align-content: center;
+
+          .first-card-title {
+            text-align: center;
+          }
+
+          .buttons-container {
+            justify-content: center;
+          }
         }
       }
     }

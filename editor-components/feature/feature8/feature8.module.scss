@@ -41,7 +41,6 @@
                 transition: transform 1s ease, margin 1s ease;
                 display: flex;
                 flex-direction: column;
-                gap: var(--composer-gap-md);
                 justify-content: center;
                 align-items: center;
                 border-radius: var(--composer-border-radius-sm);
@@ -59,6 +58,7 @@
                     width: var(--composer-gap-xl);
                     height: var(--composer-gap-xl);
                     color: var(--composer-primary-color);
+                    align-self: center;
                 }
 
                 .card-subtitle,

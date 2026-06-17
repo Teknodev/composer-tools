@@ -450,18 +450,18 @@ class Feature10 extends BaseFeature {
                             <Base.Media value={item.media} className={`${this.decorateCSS("image")} ${!(titleExist || descExist) && this.decorateCSS("border-radius")}`} />
                           )}
                           {(titleExist || descExist) && (
-                            <div className={this.decorateCSS("bottom")}>
+                            <Base.VerticalContent className={this.decorateCSS("bottom")}>
                               {titleExist && (
-                                <Base.H5 className={this.decorateCSS("title")}>
+                                <Base.H6 className={this.decorateCSS("title")}>
                                   {item.title}
-                                </Base.H5>
+                                </Base.H6>
                               )}
                               {descExist && (
                                 <Base.P className={this.decorateCSS("description")}>
                                   {item.description}
                                 </Base.P>
                               )}
-                            </div>
+                            </Base.VerticalContent>
                           )}
                         </div>
                       </ComposerLink>

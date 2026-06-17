@@ -31,7 +31,6 @@
       gap: var(--composer-gap-md);
 
       .card {
-        justify-content: space-between;
         background-color: color-mix(
           in srgb,
           var(--composer-html-background),
@@ -84,9 +83,6 @@
           border-radius: var(--composer-border-radius-sm);
           border: 1px solid transparent;
           box-sizing: border-box;
-          .card {
-            gap: var(--composer-gap-xl);
-          }
           &[data-animation~="animate1"] {
             &:hover {
               border: 1px solid var(--composer-primary-color);

@@ -151,11 +151,22 @@
   .container{
     .max-content{
       .wrapper{
+        flex-direction: column;
+        gap: var(--composer-gap-md);
+        .header {
+          position: static;
+          width: 100%;
+        }
         .title-container {
           padding: var(--composer-gap-sm);
         }
         .cards-container{
+          flex: 1;
+          height: 0;
+          overflow: auto;
           .card{
+            height: auto;
+            min-height: unset;
             padding: var(--composer-gap-md);
             .card-inner {
               .description-container {

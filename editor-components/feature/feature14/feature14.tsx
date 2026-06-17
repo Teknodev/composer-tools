@@ -12,7 +12,7 @@ type CardItem = {
   title: React.JSX.Element;
   description: React.JSX.Element;
   iconBackground: boolean;
-  button: Button;
+  buttons: Button[];
 };
 
 type Button = {
@@ -99,7 +99,14 @@ class Feature14 extends BaseFeature {
               displayer: "Card Description",
               value: "Lorem ipsum odor amet, consectetuer adipiscing elit. Vivamus vivamus semper vulputate venenatis vitae egestas commodo porta.",
             },
-            INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+            {
+              type: "array",
+              key: "buttons",
+              displayer: "Buttons",
+              value: [
+                INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+              ],
+            },
             {
               type: "boolean",
               key: "iconBackground",
@@ -143,7 +150,14 @@ class Feature14 extends BaseFeature {
               displayer: "Card Description",
               value: "Lorem ipsum odor amet, consectetuer adipiscing elit. Vivamus vivamus semper vulputate venenatis vitae egestas commodo porta.",
             },
-            INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+            {
+              type: "array",
+              key: "buttons",
+              displayer: "Buttons",
+              value: [
+                INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+              ],
+            },
             {
               type: "boolean",
               key: "iconBackground",
@@ -187,7 +201,14 @@ class Feature14 extends BaseFeature {
               displayer: "Card Description",
               value: "Lorem ipsum odor amet, consectetuer adipiscing elit. Vivamus vivamus semper vulputate venenatis vitae egestas commodo porta.",
             },
-            INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+            {
+              type: "array",
+              key: "buttons",
+              displayer: "Buttons",
+              value: [
+                INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+              ],
+            },
             {
               type: "boolean",
               key: "iconBackground",
@@ -231,7 +252,14 @@ class Feature14 extends BaseFeature {
               displayer: "Card Description",
               value: "Lorem ipsum odor amet, consectetuer adipiscing elit. Vivamus vivamus semper vulputate venenatis vitae egestas commodo porta.",
             },
-            INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+            {
+              type: "array",
+              key: "buttons",
+              displayer: "Buttons",
+              value: [
+                INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+              ],
+            },
             {
               type: "boolean",
               key: "iconBackground",
@@ -343,15 +371,17 @@ class Feature14 extends BaseFeature {
             <Base.ListGrid className={this.decorateCSS("cards")} gridCount={{ pc: this.getPropValue("itemCount"), tablet: 4 }}>
               {cardItems.map((item: CardItem, index: number) => {
                 const subtitleExist = !!this.castToString(item.subtitle);
-                const btnText = item.button ? this.castToString(item.button.text) : "";
-                const btnIconExist = item.button?.icon && (item.button.icon.type === "icon" ? item.button.icon.name : item.button.icon.url);
-                const hasCardButton = !!(btnText || btnIconExist);
+                const cardButtons = item.buttons || [];
+                const hasValidCardButtons = cardButtons.some((btn: Button) => {
+                  const btnText = this.castToString(btn.text);
+                  const btnIconExist = btn.icon && (btn.icon.type === "icon" ? btn.icon.name : btn.icon.url);
+                  return btnText || btnIconExist;
+                });
                 return (
                   <Base.VerticalContent key={index} className={this.decorateCSS("card")}>
                     {item.icon && (
                       <div
-                        className={this.decorateCSS("icon-box")}
-                        {...(!item.iconBackground && { style: { backgroundColor: "transparent" } })}
+                        className={`${this.decorateCSS("icon-box")} ${!item.iconBackground ? this.decorateCSS("no-background") : ""}`}
                       >
                         <Base.Media value={item.icon} className={this.decorateCSS("icon")} />
                       </div>
@@ -367,13 +397,22 @@ class Feature14 extends BaseFeature {
                       {this.castToString(item.description) && (
                         <Base.P className={this.decorateCSS("card-description")}>{item.description}</Base.P>
                       )}
-                      {hasCardButton && (
-                        <ComposerLink path={item.button.url}>
-                          <Base.Button buttonType={item.button.type} className={this.decorateCSS("card-button")}>
-                            {btnText && <Base.P className={this.decorateCSS("card-button-text")}>{item.button.text}</Base.P>}
-                            {btnIconExist && <Base.Media className={this.decorateCSS("card-button-icon")} value={item.button.icon!} />}
-                          </Base.Button>
-                        </ComposerLink>
+                      {hasValidCardButtons && (
+                        <div className={this.decorateCSS("card-button-container")}>
+                          {cardButtons.map((btn: Button, btnIndex: number) => {
+                            const btnText = this.castToString(btn.text);
+                            const btnIconExist = btn.icon && (btn.icon.type === "icon" ? btn.icon.name : btn.icon.url);
+                            if (!btnText && !btnIconExist) return null;
+                            return (
+                              <ComposerLink key={btnIndex} path={btn.url}>
+                                <Base.Button buttonType={btn.type} className={this.decorateCSS("card-button")}>
+                                  {btnText && <Base.P className={this.decorateCSS("card-button-text")}>{btn.text}</Base.P>}
+                                  {btnIconExist && <Base.Media className={this.decorateCSS("card-button-icon")} value={btn.icon!} />}
+                                </Base.Button>
+                              </ComposerLink>
+                            );
+                          })}
+                        </div>
                       )}
                     </div>
                   </Base.VerticalContent>

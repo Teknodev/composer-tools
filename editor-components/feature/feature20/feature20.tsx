@@ -18,7 +18,7 @@ interface Item {
   subtitle: React.JSX.Element;
   sectionHeading: React.JSX.Element;
   description: React.JSX.Element;
-  button: Button;
+  buttons: Button[];
 }
 
 class Feature20 extends BaseFeature {
@@ -116,7 +116,14 @@ class Feature20 extends BaseFeature {
               value:
                 "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco, consectetur adipisicing elit, sed do eiusmod.",
             },
-            INPUTS.BUTTON("button","Button","READ MORE","",null,null,"Tertiary"),
+            {
+              type: "array",
+              key: "buttons",
+              displayer: "Buttons",
+              value: [
+                INPUTS.BUTTON("button","Button","READ MORE","",null,null,"Tertiary"),
+              ],
+            },
           ],
         },
         {
@@ -162,7 +169,14 @@ class Feature20 extends BaseFeature {
               value:
                 "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco, consectetur adipisicing elit, sed do eiusmod.",
             },
-            INPUTS.BUTTON("button","Button","READ MORE","",null,null,"Tertiary"),
+            {
+              type: "array",
+              key: "buttons",
+              displayer: "Buttons",
+              value: [
+                INPUTS.BUTTON("button","Button","READ MORE","",null,null,"Tertiary"),
+              ],
+            },
           ],
         },
         {
@@ -208,7 +222,14 @@ class Feature20 extends BaseFeature {
               value:
                 "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco, consectetur adipisicing elit, sed do eiusmod.",
             },
-            INPUTS.BUTTON("button","Button","READ MORE","",null,null,"Tertiary"),
+            {
+              type: "array",
+              key: "buttons",
+              displayer: "Buttons",
+              value: [
+                INPUTS.BUTTON("button","Button","READ MORE","",null,null,"Tertiary"),
+              ],
+            },
           ],
         },
       ],
@@ -271,9 +292,13 @@ class Feature20 extends BaseFeature {
             </div>}
 
             {items.map((item: Item, i: number) => {
-              const btnText = this.castToString(item.button.text);
-              const btnIconExist = item.button.icon && (item.button.icon.type === "icon" ? item.button.icon.name : item.button.icon.url);
-              const hasTextContent = this.castToString(item.subtitle) || this.castToString(item.sectionHeading) || this.castToString(item.description) || btnText || btnIconExist;
+              const itemButtons = item.buttons || [];
+              const hasValidItemButtons = itemButtons.some((btn: Button) => {
+                const btnText = this.castToString(btn.text);
+                const btnIconExist = btn.icon && (btn.icon.type === "icon" ? btn.icon.name : btn.icon.url);
+                return btnText || btnIconExist;
+              });
+              const hasTextContent = this.castToString(item.subtitle) || this.castToString(item.sectionHeading) || this.castToString(item.description) || hasValidItemButtons;
               return (hasTextContent || item.media) && (
               <React.Fragment key={i}>
                 <div
@@ -294,13 +319,22 @@ class Feature20 extends BaseFeature {
                     {this.castToString(item.subtitle) && <Base.H5 className={this.decorateCSS("item-subtitle")}>{item.subtitle}</Base.H5>}
                     {this.castToString(item.sectionHeading) && <Base.H4 className={this.decorateCSS("section-heading")}>{item.sectionHeading}</Base.H4>}
                     {this.castToString(item.description) && <Base.P className={this.decorateCSS("desc")}>{item.description}</Base.P>}
-                    {(btnText || btnIconExist) && (
-                      <ComposerLink path={item.button.url || '#'}>
-                        <Base.Button buttonType={item.button.type} className={this.decorateCSS("button")}>
-                          {btnText && <Base.P className={this.decorateCSS("button-text")}>{item.button.text}</Base.P>}
-                          {btnIconExist && <Base.Media className={this.decorateCSS("button-icon")} value={item.button.icon} />}
-                        </Base.Button>
-                      </ComposerLink>
+                    {hasValidItemButtons && (
+                      <div className={this.decorateCSS("button-container")}>
+                        {itemButtons.map((button: Button, buttonIndex: number) => {
+                          const btnText = this.castToString(button.text);
+                          const btnIconExist = button.icon && (button.icon.type === "icon" ? button.icon.name : button.icon.url);
+                          if (!btnText && !btnIconExist) return null;
+                          return (
+                            <ComposerLink key={buttonIndex} path={button.url || '#'}>
+                              <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
+                                {btnText && <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>}
+                                {btnIconExist && <Base.Media className={this.decorateCSS("button-icon")} value={button.icon} />}
+                              </Base.Button>
+                            </ComposerLink>
+                          );
+                        })}
+                      </div>
                     )}
                   </Base.VerticalContent>}
                 </div>

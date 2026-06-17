@@ -240,17 +240,17 @@
                 gap: 0;
                 align-items: center;
                 .cards{
-                    padding: var(--composer-gap-md);
+                    padding: 30px 0;
                     margin-bottom: 0px;
                     .card{
-                        padding: var(--composer-gap-md);
+                        padding: 0;
                     }
                 }
                 .video-container{
                     height: 370px;
                     min-width: 70%;
                     margin: var(--composer-gap-md) 0px 0px;
-                    width: 85%;
+                    width: 100%;
                 }
             }
         }

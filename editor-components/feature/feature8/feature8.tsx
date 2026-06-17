@@ -453,39 +453,41 @@ class Feature8 extends BaseFeature {
 
                 return cardExist && (
                   <div key={index} className={this.decorateCSS("card")}>
-                    {card.icon && (
-                      <Base.Media
-                        value={card.icon}
-                        className={this.decorateCSS("icon")}
-                      />
-                    )}
-                    {subtitleExist && (
-                      <Base.H4 className={this.decorateCSS("card-subtitle")}>
-                        {card.subtitle}
-                      </Base.H4>
-                    )}
-                    {titleExist && (
-                      <Base.H3 className={this.decorateCSS("title")}>
-                        {card.title}
-                      </Base.H3>
-                    )}
-                    {descExist && (
-                      <Base.P className={this.decorateCSS("description")}>
-                        {card.description}
-                      </Base.P>
-                    )}
-                    {hasCardButton && (
-                      <ComposerLink path={card.button.url}>
-                        <Base.Button buttonType={card.button.type} className={this.decorateCSS("card-button")}>
-                          {btnText && (
-                            <Base.P className={this.decorateCSS("card-button-text")}>{card.button.text}</Base.P>
-                          )}
-                          {btnIconExist && (
-                            <Base.Media className={this.decorateCSS("card-button-icon")} value={card.button.icon!} />
-                          )}
-                        </Base.Button>
-                      </ComposerLink>
-                    )}
+                    <Base.VerticalContent className={this.decorateCSS("card-content")}>
+                      {card.icon && (
+                        <Base.Media
+                          value={card.icon}
+                          className={this.decorateCSS("icon")}
+                        />
+                      )}
+                      {subtitleExist && (
+                        <Base.H4 className={this.decorateCSS("card-subtitle")}>
+                          {card.subtitle}
+                        </Base.H4>
+                      )}
+                      {titleExist && (
+                        <Base.H3 className={this.decorateCSS("title")}>
+                          {card.title}
+                        </Base.H3>
+                      )}
+                      {descExist && (
+                        <Base.P className={this.decorateCSS("description")}>
+                          {card.description}
+                        </Base.P>
+                      )}
+                      {hasCardButton && (
+                        <ComposerLink path={card.button.url}>
+                          <Base.Button buttonType={card.button.type} className={this.decorateCSS("card-button")}>
+                            {btnText && (
+                              <Base.P className={this.decorateCSS("card-button-text")}>{card.button.text}</Base.P>
+                            )}
+                            {btnIconExist && (
+                              <Base.Media className={this.decorateCSS("card-button-icon")} value={card.button.icon!} />
+                            )}
+                          </Base.Button>
+                        </ComposerLink>
+                      )}
+                    </Base.VerticalContent>
                   </div>
                 );
               })}

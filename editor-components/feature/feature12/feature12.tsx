@@ -332,9 +332,9 @@ class Feature12 extends BaseFeature {
                   </div>
                 )}
                 {firstCardTitleExist && (
-                  <Base.H3 className={this.decorateCSS("first-card-title")}>
+                  <Base.H5 className={this.decorateCSS("first-card-title")}>
                     {firstItem.title}
-                  </Base.H3>
+                  </Base.H5>
                 )}
                 {firstItemHasValidButtons && (
                   <div className={this.decorateCSS("buttons-container")}>
@@ -389,7 +389,7 @@ class Feature12 extends BaseFeature {
                       key={index}
                     >
                       {(iconExist || subtitleExist || titleExist || descExist || hasCardButton) && (
-                        <div className={this.decorateCSS("message")}>
+                        <Base.VerticalContent className={this.decorateCSS("message")}>
                           {iconExist && (
                             <div className={this.decorateCSS("icon-container")}>
                               <Base.Media
@@ -425,7 +425,7 @@ class Feature12 extends BaseFeature {
                               </Base.Button>
                             </ComposerLink>
                           )}
-                        </div>
+                        </Base.VerticalContent>
                       )}
                     </div>
                   );

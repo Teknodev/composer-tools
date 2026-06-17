@@ -81,7 +81,7 @@
                             height: fit-content;
                         }
                         .image{
-                            height: 300px;
+                            height: 250px;
                             width: 100%;
                             border-radius: var(--composer-border-radius-sm) var(--composer-border-radius-sm) 0 0;
                             object-fit: cover;
@@ -90,12 +90,9 @@
                             }
                         }
                         .bottom{
-                            padding: var(--composer-gap-lg);
-                            display: flex;
-                            flex-direction: column;
+                            padding: var(--composer-gap-md);
                             align-items: baseline;
                             justify-content: baseline;
-                            gap: var(--composer-gap-md);
                             .title, .description {
                                 text-align: left;
                                 color: var(--composer-font-color-primary);
