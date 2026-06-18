@@ -54,13 +54,9 @@
             flex-shrink: 0;
             text-align: left;
           }
-
-          .card-subtitle {
-            color: var(--composer-font-color-primary);
-            text-align: left;
-          }
         }
 
+        .card-subtitle,
         .card-title {
           color: var(--composer-font-color-primary);
           text-align: left;
