@@ -43,6 +43,13 @@ class Footer6Page extends BaseFooter {
     });
 
     this.addProp({
+      type: "string",
+      key: "description",
+      displayer: "Description",
+      value: "",
+    });
+
+    this.addProp({
       type: "array",
       key: "footer",
       displayer: "Footer",
@@ -50,7 +57,7 @@ class Footer6Page extends BaseFooter {
         {
           type: "object",
           key: "footer-title",
-          displayer: "Footer Column",
+          displayer: "Footer",
           value: [
             {
               type: "string",
@@ -127,7 +134,7 @@ class Footer6Page extends BaseFooter {
         {
           type: "object",
           key: "footer-title",
-          displayer: "Footer Column",
+          displayer: "Footer",
           value: [
             {
               type: "string",
@@ -204,7 +211,7 @@ class Footer6Page extends BaseFooter {
         {
           type: "object",
           key: "footer-title",
-          displayer: "Footer Column",
+          displayer: "Footer",
           value: [
             {
               type: "string",
@@ -309,6 +316,7 @@ class Footer6Page extends BaseFooter {
 
     const subtitleExist = this.castToString(subtitle);
     const titleExist = this.castToString(title);
+    const descriptionExist = this.castToString(this.getPropValue("description"));
 
     const footer = this.castToObject<any[]>("footer");
 
@@ -321,10 +329,11 @@ class Footer6Page extends BaseFooter {
       <Base.Container className={`${this.decorateCSS("container")} ${position === "Absolute" ? this.decorateCSS("absolute") : ""}`}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <Base.VerticalContent className={this.decorateCSS("footer-page")}>
-            {(subtitleExist || titleExist) && (
+            {(subtitleExist || titleExist || descriptionExist) && (
               <Base.VerticalContent className={this.decorateCSS("header")}>
                 {subtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{subtitle}</Base.SectionSubTitle>}
                 {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>}
+                {descriptionExist && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
               </Base.VerticalContent>
             )}
 

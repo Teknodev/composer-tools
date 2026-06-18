@@ -25,8 +25,15 @@
 
       .logo {
         width: 200px;
-        height: var(--composer-gap-lg);
+        height: 40px;
         object-fit: cover;
+
+        &.is-icon {
+          font-size: 2rem;
+          width: unset;
+          height: unset;
+          color: var(--composer-font-color-primary);
+        }
       }
 
       .content {
@@ -47,9 +54,15 @@
           }
         }
 
-        .button {
-          .button-text {
-            content: "";
+        .buttons {
+          gap: var(--composer-gap-sm);
+          flex-wrap: wrap;
+          justify-content: center;
+
+          .button {
+            .button-text {
+              content: "";
+            }
           }
         }
       }
@@ -181,7 +194,15 @@
         }
 
         .icon {
-          font-size: 1rem;
+          width: 20px;
+          height: 20px;
+          object-fit: cover;
+
+          &.is-icon {
+            font-size: 1rem;
+            width: unset;
+            height: unset;
+          }
         }
 
         &[data-animation~="animate1"] {

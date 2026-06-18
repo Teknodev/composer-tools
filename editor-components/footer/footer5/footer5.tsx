@@ -43,7 +43,21 @@ class Footer5Page extends BaseFooter {
       value: "Would you like more information or do you have a question?",
     });
 
-    this.addProp(INPUTS.BUTTON("button", "Button", "CONTACT US", "", null, null, "Primary"));
+    this.addProp({
+      type: "string",
+      key: "description",
+      displayer: "Description",
+      value: "",
+    });
+
+    this.addProp({
+      type: "array",
+      key: "buttons",
+      displayer: "Buttons",
+      value: [
+        INPUTS.BUTTON("button", "Button", "CONTACT US", "", null, null, "Primary"),
+      ],
+    });
 
     this.addProp({
       type: "array",
@@ -53,7 +67,7 @@ class Footer5Page extends BaseFooter {
         {
           type: "object",
           key: "footer-title",
-          displayer: "Footer Column",
+          displayer: "Footer",
           value: [
             {
               type: "string",
@@ -130,7 +144,7 @@ class Footer5Page extends BaseFooter {
         {
           type: "object",
           key: "footer-title",
-          displayer: "Footer Column",
+          displayer: "Footer",
           value: [
             {
               type: "string",
@@ -207,7 +221,7 @@ class Footer5Page extends BaseFooter {
         {
           type: "object",
           key: "footer-title",
-          displayer: "Footer Column",
+          displayer: "Footer",
           value: [
             {
               type: "string",
@@ -365,13 +379,15 @@ class Footer5Page extends BaseFooter {
     const title = this.getPropValue("title");
     const footerDescription = this.getPropValue("footerDescription");
 
-    const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
+    const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
 
     const subtitleExist = this.castToString(subtitle);
     const titleExist = this.castToString(title);
+    const descriptionExist = this.castToString(this.getPropValue("description"));
     const footerDescriptionExist = this.castToString(footerDescription);
 
-    const headerExist = subtitleExist || titleExist || this.castToString(button.text);
+    const buttonsExist = buttons.some((b) => this.castToString(b.text));
+    const headerExist = subtitleExist || titleExist || descriptionExist || buttonsExist;
 
     const links = this.castToObject<any[]>("links");
 
@@ -379,7 +395,8 @@ class Footer5Page extends BaseFooter {
 
     const alignmentValue = Base.getContentAlignment();
 
-    const textsExist = subtitleExist || titleExist;
+    const textsExist = subtitleExist || titleExist || descriptionExist;
+
 
     const bottomExist = links.length > 0 || footerDescriptionExist;
 
@@ -397,18 +414,23 @@ class Footer5Page extends BaseFooter {
                 <div className={`${this.decorateCSS("header")} ${alignmentValue === "center" && this.decorateCSS("center")}`}>
                   {textsExist && (
                     <Base.VerticalContent
-                      className={`${this.decorateCSS("left")} ${!this.castToString(button.text) && this.decorateCSS("left-full")}`}>
+                      className={`${this.decorateCSS("left")} ${!buttonsExist && this.decorateCSS("left-full")}`}>
                       {subtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
                       {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
+                      {descriptionExist && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
                     </Base.VerticalContent>
                   )}
-                  {this.castToString(button.text) && (
+                  {buttonsExist && (
                     <div className={this.decorateCSS("right")}>
-                      <ComposerLink path={button.url}>
-                        <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
-                          <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
-                        </Base.Button>
-                      </ComposerLink>
+                      {buttons.map((button: INPUTS.CastedButton, index: number) => (
+                        this.castToString(button.text) && (
+                          <ComposerLink key={index} path={button.url}>
+                            <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
+                              <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
+                            </Base.Button>
+                          </ComposerLink>
+                        )
+                      ))}
                     </div>
                   )}
                 </div>

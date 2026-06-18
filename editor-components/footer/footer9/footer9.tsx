@@ -47,7 +47,7 @@ class Footer9Page extends BaseFooter {
           key: "logo",
           displayer: "Logo",
           additionalParams: {
-            availableTypes: ["image"],
+            availableTypes: ["image", "icon"],
           },
           value: {
             type: "image",
@@ -83,7 +83,14 @@ class Footer9Page extends BaseFooter {
       value: "During this phase to design is developed to meet the reuired technical standards",
     });
 
-    this.addProp(INPUTS.BUTTON("button", "Button", "Subscribe", "", null, null, "Primary"));
+    this.addProp({
+      type: "array",
+      key: "buttons",
+      displayer: "Buttons",
+      value: [
+        INPUTS.BUTTON("button", "Button", "Subscribe", "", null, null, "Primary"),
+      ],
+    });
 
     this.addProp({
       type: "array",
@@ -93,7 +100,7 @@ class Footer9Page extends BaseFooter {
         {
           type: "object",
           key: "footer-title",
-          displayer: "Footer Column",
+          displayer: "Footer",
           value: [
             {
               type: "string",
@@ -268,7 +275,7 @@ class Footer9Page extends BaseFooter {
     this.addProp({
       type: "array",
       key: "icons",
-      displayer: "Icons",
+      displayer: "Social Media Items",
       value: [
         {
           type: "object",
@@ -292,7 +299,7 @@ class Footer9Page extends BaseFooter {
               key: "icon",
               displayer: "Icon",
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon", "image"],
               },
               value: {
                 type: "icon",
@@ -323,7 +330,7 @@ class Footer9Page extends BaseFooter {
               key: "icon",
               displayer: "Icon",
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon", "image"],
               },
               value: {
                 type: "icon",
@@ -354,7 +361,7 @@ class Footer9Page extends BaseFooter {
               key: "icon",
               displayer: "Icon",
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon", "image"],
               },
               value: {
                 type: "icon",
@@ -434,7 +441,7 @@ class Footer9Page extends BaseFooter {
   }
 
   render() {
-    const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
+    const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
 
     const logoObject = this.castToObject<any>("logo");
     const logo = logoObject?.logo;
@@ -442,7 +449,7 @@ class Footer9Page extends BaseFooter {
     const subtitleExist = this.castToString(this.getPropValue("subtitle"));
     const titleExist = this.castToString(this.getPropValue("title"));
     const descriptionExist = this.castToString(this.getPropValue("description"));
-    const buttonTextExist = this.castToString(button.text);
+    const buttonTextExist = buttons.some((b) => this.castToString(b.text));
     const footerTextExist = this.castToString(this.getPropValue("footerText"));
 
     const footer = this.castToObject<any[]>("footer");
@@ -455,7 +462,7 @@ class Footer9Page extends BaseFooter {
       <Base.Container className={`${this.decorateCSS("container")} ${position === "Absolute" ? this.decorateCSS("absolute") : ""}`}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("header")}>
-            {logo?.url && 
+            {(logo?.url || logo?.name) &&
             <ComposerLink path={logoUrl}>
               <Base.Media value={logo} className={this.decorateCSS("logo")} />
             </ComposerLink>
@@ -465,11 +472,17 @@ class Footer9Page extends BaseFooter {
               {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
               {descriptionExist && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
               {buttonTextExist && (
-                <ComposerLink path={button.url}>
-                  <Base.Button className={this.decorateCSS("button")} buttonType={button.type}>
-                    <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
-                  </Base.Button>
-                </ComposerLink>
+                <Base.Row className={this.decorateCSS("buttons")}>
+                  {buttons.map((button: INPUTS.CastedButton, index: number) => (
+                    this.castToString(button.text) && (
+                      <ComposerLink key={index} path={button.url}>
+                        <Base.Button className={this.decorateCSS("button")} buttonType={button.type}>
+                          <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
+                        </Base.Button>
+                      </ComposerLink>
+                    )
+                  ))}
+                </Base.Row>
               )}
             </Base.VerticalContent>
           </div>

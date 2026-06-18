@@ -34,6 +34,13 @@
             width: 200px;
             height: var(--composer-gap-lg);
             object-fit: cover;
+
+            &.is-icon {
+              font-size: 2rem;
+              width: unset;
+              height: unset;
+              color: var(--composer-font-color-primary);
+            }
           }
         }
 
@@ -227,11 +234,15 @@
               top: 50%;
               left: 50%;
               transform: translate(-50%, -50%);
-              font-size: 1.5rem;
-              width: var(--composer-gap-md);
-              height: var(--composer-gap-md);
-              color: var(--composer-font-color-primary);
+              width: 20px;
+              height: 20px;
               transition: all 0.3s ease;
+              object-fit: cover;
+
+              &.is-icon {
+                font-size: 1.5rem;
+                color: var(--composer-font-color-primary);
+              }
             }
 
             &[data-animation~="animate1"] {

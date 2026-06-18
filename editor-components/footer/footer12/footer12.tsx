@@ -37,7 +37,7 @@ class Footer12Page extends BaseFooter {
           key: "logo",
           displayer: "Logo",
           additionalParams: {
-            availableTypes: ["image"],
+            availableTypes: ["image", "icon"],
           },
           value: {
             type: "image",
@@ -68,7 +68,7 @@ class Footer12Page extends BaseFooter {
         {
           type: "object",
           key: "footer-title",
-          displayer: "Footer Column",
+          displayer: "Footer",
           value: [
             {
               type: "string",
@@ -164,7 +164,7 @@ class Footer12Page extends BaseFooter {
         {
           type: "object",
           key: "footer-title",
-          displayer: "Footer Column",
+          displayer: "Footer",
           value: [
             {
               type: "string",
@@ -260,7 +260,7 @@ class Footer12Page extends BaseFooter {
         {
           type: "object",
           key: "footer-title",
-          displayer: "Footer Column",
+          displayer: "Footer",
           value: [
             {
               type: "string",
@@ -372,8 +372,8 @@ class Footer12Page extends BaseFooter {
 
     this.addProp({
       type: "array",
-      key: "images",
-      displayer: "Images",
+      key: "media",
+      displayer: "Media",
       value: [
         {
           type: "object",
@@ -382,10 +382,10 @@ class Footer12Page extends BaseFooter {
           value: [
             {
               type: "media",
-              key: "image",
-              displayer: "Image",
+              key: "media",
+              displayer: "Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "icon"],
               },
               value: {
                 type: "image",
@@ -401,10 +401,10 @@ class Footer12Page extends BaseFooter {
           value: [
             {
               type: "media",
-              key: "image",
-              displayer: "Image",
+              key: "media",
+              displayer: "Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "icon"],
               },
               value: {
                 type: "image",
@@ -426,10 +426,10 @@ class Footer12Page extends BaseFooter {
           value: [
             {
               type: "media",
-              key: "image",
-              displayer: "Image",
+              key: "media",
+              displayer: "Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "icon"],
               },
               value: {
                 type: "image",
@@ -464,7 +464,7 @@ class Footer12Page extends BaseFooter {
 
   render() {
     const footer = this.castToObject<any[]>("footer");
-    const images = this.castToObject<any[]>("images");
+    const media = this.castToObject<any[]>("media");
     const logoObject = this.castToObject<any>("logo");
 
     const logo = logoObject?.logo;
@@ -473,9 +473,9 @@ class Footer12Page extends BaseFooter {
     const descriptionExist = this.castToString(this.getPropValue("description"));
     const footerText = this.getPropValue("footerText");
     const footerTextExist = this.castToString(footerText);
-    const imagesExist = images.length > 0;
+    const imagesExist = media.length > 0;
     const bottomExist = footerTextExist || imagesExist;
-    const headerExist = logo?.url || descriptionExist;
+    const headerExist = (logo?.url || logo?.name) || descriptionExist;
     const upperExist = headerExist || footer.length > 0;
     const position = this.getPropValue("position");
 
@@ -488,7 +488,7 @@ class Footer12Page extends BaseFooter {
             <Base.MaxContent className={this.decorateCSS("first-max-content")}>
               {headerExist && (
                 <Base.VerticalContent className={this.decorateCSS("left")}>
-                  {logo?.url && (
+                  {(logo?.url || logo?.name) && (
                     <ComposerLink path={logoUrl}>
                       <div className={this.decorateCSS("logo")}>
                         <Base.Media value={logo} className={this.decorateCSS("image")} />
@@ -543,12 +543,12 @@ class Footer12Page extends BaseFooter {
                   </Base.P>}
                 {imagesExist && (
                   <div className={`${this.decorateCSS("image-container")} ${!footerTextExist && this.decorateCSS("full-width")}`}>
-                    {images.map((item: any, index: number) => {
+                    {media.map((item: any, index: number) => {
                       return (
-                        item.image && (
+                        item.media && (
                           <div className={this.decorateCSS("image-element")}>
                             <ComposerLink key={index} path={item.url}>
-                              <Base.Media value={item.image} className={this.decorateCSS("image")} />
+                              <Base.Media value={item.media} className={this.decorateCSS("image")} />
                             </ComposerLink>
                           </div>
                         )

@@ -22,8 +22,15 @@
 
         .image {
            width: 200px;
-           height: var(--composer-gap-lg);
+           height: 40px;
            object-fit: cover;
+
+           &.is-icon {
+             font-size: 2rem;
+             width: unset;
+             height: unset;
+             color: var(--composer-font-color-primary);
+           }
         }
       }
 

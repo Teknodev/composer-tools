@@ -62,12 +62,12 @@ class Footer2Page extends BaseFooter {
     this.addProp({
       type: "array",
       key: "columns",
-      displayer: "Footer Columns",
+      displayer: "Footer",
       value: [
         {
           type: "object",
           key: "footer-column",
-          displayer: "Footer Column",
+          displayer: "Footer",
           value: [
             {
               type: "string",
@@ -114,7 +114,7 @@ class Footer2Page extends BaseFooter {
         {
           type: "object",
           key: "footer-column",
-          displayer: "Footer Column",
+          displayer: "Footer",
           value: [
             {
               type: "string",
@@ -161,7 +161,7 @@ class Footer2Page extends BaseFooter {
         {
           type: "object",
           key: "footer-column",
-          displayer: "Footer Column",
+          displayer: "Footer",
           value: [
             {
               type: "string",

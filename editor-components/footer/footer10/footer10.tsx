@@ -44,7 +44,7 @@ class Footer10Page extends BaseFooter {
           key: "logo",
           displayer: "Logo",
           additionalParams: {
-            availableTypes: ["image"],
+            availableTypes: ["image", "icon"],
           },
           value: {
             type: "image",
@@ -69,7 +69,7 @@ class Footer10Page extends BaseFooter {
         {
           type: "object",
           key: "footer-title",
-          displayer: "Footer Column",
+          displayer: "Footer",
           value: [
             {
               type: "string",
@@ -116,7 +116,7 @@ class Footer10Page extends BaseFooter {
         {
           type: "object",
           key: "footer-title",
-          displayer: "Footer Column",
+          displayer: "Footer",
           value: [
             {
               type: "string",
@@ -163,7 +163,7 @@ class Footer10Page extends BaseFooter {
         {
           type: "object",
           key: "footer-title",
-          displayer: "Footer Column",
+          displayer: "Footer",
           value: [
             {
               type: "string",
@@ -311,7 +311,7 @@ class Footer10Page extends BaseFooter {
     this.addProp({
       type: "array",
       key: "icons",
-      displayer: "Icons",
+      displayer: "Social Media Items",
       value: [
         {
           type: "object",
@@ -323,7 +323,7 @@ class Footer10Page extends BaseFooter {
               key: "icon",
               displayer: "Icon",
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon", "image"],
               },
               value: {
                 type: "icon",
@@ -348,7 +348,7 @@ class Footer10Page extends BaseFooter {
               key: "icon",
               displayer: "Icon",
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon", "image"],
               },
               value: {
                 type: "icon",
@@ -373,7 +373,7 @@ class Footer10Page extends BaseFooter {
               key: "icon",
               displayer: "Icon",
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon", "image"],
               },
               value: {
                 type: "icon",
@@ -398,7 +398,7 @@ class Footer10Page extends BaseFooter {
               key: "icon",
               displayer: "Icon",
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon", "image"],
               },
               value: {
                 type: "icon",
@@ -439,7 +439,7 @@ class Footer10Page extends BaseFooter {
 
     const icons = this.castToObject<icon[]>("icons");
 
-    const logoExist = !!logo?.url;
+    const logoExist = !!(logo?.url || logo?.name);
     const linksPropExist = links.some((item: any) => this.castToString(item.text));
     const footerColumnsExist = footer.some((item: FooterValues) => {
       const footerTitleExist = this.castToString(item.footerTitle);
@@ -557,7 +557,7 @@ class Footer10Page extends BaseFooter {
                               data-animation={item.page ? this.getPropValue("hoverAnimation").join(" ") : ""}
                             >
                               <ComposerLink path={item.page}>
-                                <Base.Media value={item.icon} className={this.decorateCSS("icon")} />
+                                <Base.Media value={item.icon} className={`${this.decorateCSS("icon")} ${item.icon.type === "icon" ? this.decorateCSS("is-icon") : ""}`} />
                               </ComposerLink>
                             </div>
                           )

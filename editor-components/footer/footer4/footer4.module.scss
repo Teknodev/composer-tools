@@ -63,8 +63,15 @@
                   gap: var(--composer-gap-md);
 
                   .image {
-                    width: var(--composer-gap-xl);
-                    height: var(--composer-gap-xl);
+                    width: 50px;
+                    height: 50px;
+
+                    &.is-icon {
+                      font-size: 2rem;
+                      width: unset;
+                      height: unset;
+                      color: var(--composer-font-color-primary);
+                    }
                   }
                 }
               }

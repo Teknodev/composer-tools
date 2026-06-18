@@ -33,7 +33,7 @@
         gap: var(--composer-gap-md);
 
         .left {
-          .title,.subtitle{
+          .title, .subtitle, .description {
             content: "";
           }
           &.left-full {
@@ -44,7 +44,9 @@
         .right {
           min-width: 20%;
           display: flex;
+          flex-wrap: wrap;
           justify-content: end;
+          gap: var(--composer-gap-sm);
 
           .button{
             .button-text{

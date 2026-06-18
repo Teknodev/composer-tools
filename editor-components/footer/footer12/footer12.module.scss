@@ -44,6 +44,13 @@
              width: 200px;
              height: var(--composer-gap-lg);
              object-fit: cover;
+
+             &.is-icon {
+               font-size: 2rem;
+               width: unset;
+               height: unset;
+               color: var(--composer-font-color-primary);
+             }
           }
         }
 
@@ -205,10 +212,17 @@
 
           .image-element {
             .image {
-              width: var(--composer-gap-xl);
+              width: 50px;
               height: 30px;
               object-fit: cover;
               border-radius: var(--composer-border-radius-sm);
+
+              &.is-icon {
+                font-size: 1.5rem;
+                width: unset;
+                height: unset;
+                color: var(--composer-font-color-primary);
+              }
             }
           }
 

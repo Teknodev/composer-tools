@@ -41,8 +41,19 @@
 
           .image {
             width: 200px;
-            height: var(--composer-gap-lg);
+            height: 40px;
             object-fit: cover;
+
+            &.is-icon {
+              font-size: 2rem;
+              width: unset;
+              height: unset;
+              color: var(--composer-font-color-primary);
+            }
+          }
+
+          .description {
+            text-align: left !important;
           }
         }
 
@@ -240,8 +251,16 @@
             }
 
             .icon{
-              font-size: 1rem;
+              width: 20px;
+              height: 20px;
+              object-fit: cover;
               line-height: 0.5px;
+
+              &.is-icon {
+                font-size: 1rem;
+                width: unset;
+                height: unset;
+              }
             }
 
             &[data-animation~="animate1"] {

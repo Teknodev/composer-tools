@@ -53,11 +53,24 @@
               align-items: flex-start !important;
               gap: var(--composer-gap-md);
 
+              .subtitle,
+              .title {
+                text-align: left !important;
+                margin-left: 0 !important;
+              }
+
               .logo {
                 .image {
                   width: 200px;
-                  height: var(--composer-gap-lg);
+                  height: 40px;
                   object-fit: cover;
+
+                  &.is-icon {
+                    font-size: 2rem;
+                    width: unset;
+                    height: unset;
+                    color: var(--composer-font-color-primary);
+                  }
                 }
               }
 

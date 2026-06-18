@@ -44,6 +44,20 @@ class Footer3Page extends BaseFooter {
     });
 
     this.addProp({
+      type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "asdasd",
+    });
+
+    this.addProp({
+      type: "string",
+      key: "title",
+      displayer: "Title",
+      value: "asdas",
+    });
+
+    this.addProp({
       type: "object",
       key: "logo",
       displayer: "Logo",
@@ -53,7 +67,7 @@ class Footer3Page extends BaseFooter {
           key: "logo",
           displayer: "Logo",
           additionalParams: {
-            availableTypes: ["image"],
+            availableTypes: ["image", "icon"],
           },
           value: {
             type: "image",
@@ -167,7 +181,7 @@ class Footer3Page extends BaseFooter {
         {
           type: "object",
           key: "footerColumn",
-          displayer: "Footer Column",
+          displayer: "Footer",
           value: [
             {
               type: "string",
@@ -311,7 +325,7 @@ class Footer3Page extends BaseFooter {
         {
           type: "object",
           key: "footerColumn",
-          displayer: "Footer Column",
+          displayer: "Footer",
           value: [
             {
               type: "string",
@@ -486,7 +500,7 @@ class Footer3Page extends BaseFooter {
         {
           type: "object",
           key: "footerColumn",
-          displayer: "Footer Column",
+          displayer: "Footer",
           value: [
             {
               type: "string",
@@ -748,8 +762,10 @@ class Footer3Page extends BaseFooter {
 
     const bottomTextExist = this.castToString(this.getPropValue("bottomText"));
     const descriptionExist = this.castToString(this.getPropValue("description"));
+    const subtitleExist = this.castToString(this.getPropValue("subtitle"));
+    const titleExist = this.castToString(this.getPropValue("title"));
 
-    const headerExist = logo || descriptionExist || socials.length > 0;
+    const headerExist = subtitleExist || titleExist || logo || descriptionExist || socials.length > 0;
 
     const alignment = Base.getContentAlignment();
 
@@ -768,13 +784,15 @@ class Footer3Page extends BaseFooter {
                   <div className={`${this.decorateCSS("items")} ${alignment === "center" ? this.decorateCSS("center-alignment") : ""}`} data-alignment={alignment}>
                     {headerExist && (
                       <Base.VerticalContent className={this.decorateCSS("header")}>
-                        {logo?.url && (
+                        {(logo?.url || logo?.name) && (
                           <ComposerLink path={logoUrl}>
                             <div className={this.decorateCSS("logo")}>
                               <Base.Media value={logo} className={this.decorateCSS("image")} />
                             </div>
                           </ComposerLink>
                         )}
+                        {subtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
+                        {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
                         {descriptionExist && <Base.P className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.P>}
                         {socials.length > 0 && (
                           <div className={this.decorateCSS("socials-container")}>

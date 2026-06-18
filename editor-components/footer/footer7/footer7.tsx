@@ -38,7 +38,7 @@ class Footer7Page extends BaseFooter {
           key: "logo",
           displayer: "Logo",
           additionalParams: {
-            availableTypes: ["image"],
+            availableTypes: ["image", "icon"],
           },
           value: {
             type: "image",
@@ -62,7 +62,7 @@ class Footer7Page extends BaseFooter {
         {
           type: "object",
           key: "footer-title",
-          displayer: "Footer Column",
+          displayer: "Footer",
           value: [
             {
               type: "string",
@@ -139,7 +139,7 @@ class Footer7Page extends BaseFooter {
         {
           type: "object",
           key: "footer-title",
-          displayer: "Footer Column",
+          displayer: "Footer",
           value: [
             {
               type: "string",
@@ -216,7 +216,7 @@ class Footer7Page extends BaseFooter {
         {
           type: "object",
           key: "footer-title",
-          displayer: "Footer Column",
+          displayer: "Footer",
           value: [
             {
               type: "string",
@@ -389,7 +389,7 @@ class Footer7Page extends BaseFooter {
 
     const footerTextExist = this.castToString(this.getPropValue("footerText"));
 
-    const logoExist = !!logo?.url;
+    const logoExist = !!(logo?.url || logo?.name);
     const columnsExist = footer.some((item: FooterValues) => {
       const footerTitleExist = this.castToString(item.footerTitle);
       const hasItems = item.footerText?.some((v: FooterTextValues) => this.castToString(v.navTitle));

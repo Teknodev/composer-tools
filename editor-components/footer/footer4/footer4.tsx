@@ -41,8 +41,8 @@ class Footer4Page extends BaseFooter {
 
     this.addProp({
       type: "array",
-      key: "images",
-      displayer: "Images",
+      key: "media",
+      displayer: "Media",
       value: [
         {
           type: "object",
@@ -51,10 +51,10 @@ class Footer4Page extends BaseFooter {
           value: [
             {
               type: "media",
-              key: "image",
-              displayer: "Image",
+              key: "media",
+              displayer: "Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "icon"],
               },
               value: {
                 type: "image",
@@ -76,10 +76,10 @@ class Footer4Page extends BaseFooter {
           value: [
             {
               type: "media",
-              key: "image",
-              displayer: "Image",
+              key: "media",
+              displayer: "Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "icon"],
               },
               value: {
                 type: "image",
@@ -105,7 +105,7 @@ class Footer4Page extends BaseFooter {
         {
           type: "object",
           key: "footer-title",
-          displayer: "Footer Column",
+          displayer: "Footer",
           value: [
             {
               type: "string",
@@ -220,7 +220,7 @@ class Footer4Page extends BaseFooter {
         {
           type: "object",
           key: "footer-title",
-          displayer: "Footer Column",
+          displayer: "Footer",
           value: [
             {
               type: "string",
@@ -525,13 +525,13 @@ class Footer4Page extends BaseFooter {
   }
 
   render() {
-    const images = this.castToObject<any[]>("images");
+    const media = this.castToObject<any[]>("media");
 
     const textExist = this.castToString(this.getPropValue("text"));
 
     const submitText = this.castToString(this.getPropValue("submitText"));
 
-    const leftExist = textExist || images.length > 0;
+    const leftExist = textExist || media.length > 0;
 
     const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
 
@@ -565,14 +565,14 @@ class Footer4Page extends BaseFooter {
                     <Base.VerticalContent className={this.decorateCSS("left")}>
                       {textExist && <Base.P className={this.decorateCSS("left-title")}>{this.getPropValue("text")}</Base.P>}
                       <div className={this.decorateCSS("images")}>
-                        {images.length > 0 && (
+                        {media.length > 0 && (
                           <Base.Row className={this.decorateCSS("image-container")}>
-                            {images.map((item: any, index: number) => {
+                            {media.map((item: any, index: number) => {
                               return (
-                                item.image && (
+                                item.media && (
                                   <div className={this.decorateCSS("image-element")}>
                                     <ComposerLink key={index} path={item.url}>
-                                      <Base.Media value={item.image} className={this.decorateCSS("image")} />
+                                      <Base.Media value={item.media} className={this.decorateCSS("image")} />
                                     </ComposerLink>
                                   </div>
                                 )

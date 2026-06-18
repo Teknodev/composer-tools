@@ -40,7 +40,7 @@ class Footer8Page extends BaseFooter {
           key: "logo",
           displayer: "Logo",
           additionalParams: {
-            availableTypes: ["image"],
+            availableTypes: ["image", "icon"],
           },
           value: {
             type: "image",
@@ -71,7 +71,7 @@ class Footer8Page extends BaseFooter {
         {
           type: "object",
           key: "footer-title",
-          displayer: "Footer Column",
+          displayer: "Footer",
           value: [
             {
               type: "string",
@@ -171,7 +171,7 @@ class Footer8Page extends BaseFooter {
         {
           type: "object",
           key: "footer-title",
-          displayer: "Footer Column",
+          displayer: "Footer",
           value: [
             {
               type: "string",
@@ -271,7 +271,7 @@ class Footer8Page extends BaseFooter {
         {
           type: "object",
           key: "footer-title",
-          displayer: "Footer Column",
+          displayer: "Footer",
           value: [
             {
               type: "string",
@@ -348,7 +348,7 @@ class Footer8Page extends BaseFooter {
         {
           type: "object",
           key: "footer-title",
-          displayer: "Footer Column",
+          displayer: "Footer",
           value: [
             {
               type: "string",
@@ -481,7 +481,7 @@ class Footer8Page extends BaseFooter {
     this.addProp({
       type: "array",
       key: "socials",
-      displayer: "Social Items",
+      displayer: "Social Media Items",
       value: [
         {
           type: "object",
@@ -493,7 +493,7 @@ class Footer8Page extends BaseFooter {
               key: "icon",
               displayer: "Icon",
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon", "image"],
               },
               value: {
                 type: "icon",
@@ -524,7 +524,7 @@ class Footer8Page extends BaseFooter {
               key: "icon",
               displayer: "Icon",
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon", "image"],
               },
               value: {
                 type: "icon",
@@ -555,7 +555,7 @@ class Footer8Page extends BaseFooter {
               key: "icon",
               displayer: "Icon",
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon", "image"],
               },
               value: {
                 type: "icon",
@@ -604,6 +604,7 @@ class Footer8Page extends BaseFooter {
     const logoUrl = logoObject?.logoUrl;
 
     const bottomTextExist = this.castToString(this.getPropValue("bottomText"));
+    const descriptionExist = this.castToString(this.getPropValue("description"));
 
     const position = this.getPropValue("position");
 
@@ -613,11 +614,14 @@ class Footer8Page extends BaseFooter {
           <div className={this.decorateCSS("footer-page")}>
             {
               <div className={this.decorateCSS("items")}>
-                {logo?.url && (
+                {(logo?.url || logo?.name || descriptionExist) && (
                   <div className={this.decorateCSS("header")}>
-                    <ComposerLink path={logoUrl}>
-                      <Base.Media value={logo} className={this.decorateCSS("image")} />
-                    </ComposerLink>
+                    {(logo?.url || logo?.name) && (
+                      <ComposerLink path={logoUrl}>
+                        <Base.Media value={logo} className={this.decorateCSS("image")} />
+                      </ComposerLink>
+                    )}
+                    {descriptionExist && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
                   </div>
                 )}
 

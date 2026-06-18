@@ -41,7 +41,7 @@ class Footer11Page extends BaseFooter {
         {
           type: "object",
           key: "footer-title",
-          displayer: "Footer Column",
+          displayer: "Footer",
           value: [
             {
               type: "string",
@@ -88,7 +88,7 @@ class Footer11Page extends BaseFooter {
         {
           type: "object",
           key: "footer-title",
-          displayer: "Footer Column",
+          displayer: "Footer",
           value: [
             {
               type: "string",
@@ -135,7 +135,7 @@ class Footer11Page extends BaseFooter {
         {
           type: "object",
           key: "footer-title",
-          displayer: "Footer Column",
+          displayer: "Footer",
           value: [
             {
               type: "string",
@@ -192,7 +192,7 @@ class Footer11Page extends BaseFooter {
     this.addProp({
       type: "array",
       key: "socials",
-      displayer: "Social Items",
+      displayer: "Social Media Items",
       value: [
         {
           type: "object",
