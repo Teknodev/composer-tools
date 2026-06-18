@@ -195,7 +195,7 @@
 
         .left-page {
           gap: var(--composer-gap-md);
-          max-width: 100%;
+          max-width: 100% !important;
         }
 
         .right-page {
