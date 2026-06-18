@@ -7,17 +7,24 @@
     gap: var(--composer-gap-lg);
 
     .upper-container {
+      text-align: left !important;
+      align-items: flex-start !important;
 
       .title,
       .subtitle,
       .description {
-        content: "";
+        text-align: left !important;
+      }
+
+      .subtitle{
+        margin-left: 0;
       }
 
       .button-container {
         display: flex;
         gap: var(--composer-gap-sm);
         flex-wrap: wrap;
+        justify-content: flex-start !important;
 
         .button-wrapper {
           .button {
@@ -74,11 +81,13 @@
           display: flex;
           flex-direction: column;
           gap: var(--composer-gap-xs);
+          align-items: flex-start !important;
 
           .user-name {
             height: 100%;
             color: var(--composer-font-color-primary);
             font-size: 2rem;
+            text-align: left !important;
           }
 
           .date-container {
@@ -90,6 +99,7 @@
             .date {
               font-size: 1rem;
               color: var(--composer-tertiary-color);
+              text-align: left !important;
             }
 
             .date-icon {
@@ -111,12 +121,14 @@
       .post-title {
         font-size: 1.5rem;
         color: var(--composer-font-color-primary);
+        text-align: left !important;
       }
 
       .post-description {
         font-size: 1rem;
         color: var(--composer-font-color-primary);
         opacity: 0.5;
+        text-align: left !important;
       }
 
       .post-image-container {
@@ -177,6 +189,7 @@
 
                 .social-text {
                   position: relative;
+                  text-align: left !important;
 
                   &::after {
                     content: "";
@@ -240,6 +253,7 @@
 
           .text {
             font-size: 1rem;
+            text-align: left !important;
           }
         }
       }
