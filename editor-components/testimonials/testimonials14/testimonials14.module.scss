@@ -117,7 +117,7 @@
 
               .author-subtitle {
                 font-size: 1rem;
-                color: var(--composer-font-color-secondary);
+                color: var(--composer-font-color-primary);
                 margin: 0 !important;
                 text-align: left !important;
               }
@@ -299,7 +299,7 @@
             }
 
             .comment {
-              text-align: center;
+              text-align: center !important;
               margin: 0 !important;
             }
           }

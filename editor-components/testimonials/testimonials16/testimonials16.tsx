@@ -131,7 +131,7 @@ class Testimonials16 extends Testimonials {
             {
               type: "string",
               key: "text",
-              displayer: "Quote",
+              displayer: "Text",
               value: "If I can give my clients value—even if they don't have the budget—I will. Blinkpage's AI tools make that possible.",
             },
             {
@@ -168,7 +168,7 @@ class Testimonials16 extends Testimonials {
             {
               type: "string",
               key: "text",
-              displayer: "Quote",
+              displayer: "Text",
               value: "Blinkpage's AI Assistant should save us 3 to 6 hours on most websites.",
             },
             {
@@ -205,7 +205,7 @@ class Testimonials16 extends Testimonials {
             {
               type: "string",
               key: "text",
-              displayer: "Quote",
+              displayer: "Text",
               value: "Blinkpage is a great option for agencies looking to leverage AI in their website building.",
             },
             {

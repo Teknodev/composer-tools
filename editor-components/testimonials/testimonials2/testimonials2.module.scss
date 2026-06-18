@@ -1,8 +1,12 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 .container {
   background: var(--composer-html-background);
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+
   .max-content {
     margin-bottom: var(--composer-gap-lg);
+    padding: 0 60px;
 
     .section-header {
       display: flex;
@@ -179,6 +183,8 @@
 @container (max-width: #{$composer-tablet-width}) {
   .container {
     .max-content {
+      padding: 0 50px;
+
       .section-header {
         gap: var(--composer-gap-sm);
 
@@ -207,6 +213,8 @@
 @container (max-width: #{$composer-phone-width}) {
   .container {
     .max-content {
+      padding: 0 30px;
+
       .section-header {
         .arrows-wrap {
           width: 100%;

@@ -121,7 +121,7 @@ class Testimonials14 extends Testimonials {
             {
               type: "string",
               key: "text",
-              displayer: "Comment",
+              displayer: "Text",
               value: "Can you imagine if my grandma could send me crypto? It's that easy!",
             },
           ],
@@ -177,7 +177,7 @@ class Testimonials14 extends Testimonials {
             {
               type: "string",
               key: "text",
-              displayer: "Comment",
+              displayer: "Text",
               value: "My dog can't use a phone, but even he could send me crypto with this app.",
             },
           ],
@@ -233,7 +233,7 @@ class Testimonials14 extends Testimonials {
             {
               type: "string",
               key: "text",
-              displayer: "Comment",
+              displayer: "Text",
               value: "Grandpa just sent me Bitcoin between bingo rounds. It's really that simple.",
             },
           ],
@@ -289,7 +289,7 @@ class Testimonials14 extends Testimonials {
             {
               type: "string",
               key: "text",
-              displayer: "Comment",
+              displayer: "Text",
               value: "No tech skills? No problem. If you can text, you can send crypto.",
             },
           ],
