@@ -74,6 +74,9 @@
                         background-color: var(--composer-primary-color);
                         border-radius: var(--composer-border-radius-sm);
                         .icon {
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
                                 font-size: 2rem;
                                 width: 32px;
                                 height: 32px;
@@ -158,6 +161,8 @@
                         .icon-box {
                             .icon {
                                 font-size: 1.5rem;
+                                width: 24px;
+                                height: 24px;
                             }
                         }
                     }

@@ -400,9 +400,9 @@ class Feature18 extends BaseFeature {
                       className={this.decorateCSS("tab-icon")}
                     />
                     <div className={this.decorateCSS("square")}></div>
-                    <Base.H5 className={this.decorateCSS("tab-text")}>
+                    <Base.H6 className={this.decorateCSS("tab-text")}>
                       {tab.tabText}
-                    </Base.H5>
+                    </Base.H6>
                   </div>
                 )
               )}
@@ -430,9 +430,9 @@ class Feature18 extends BaseFeature {
                       </Base.Row>
                     )}
                     {this.castToString(tab.title) && (
-                      <Base.H3 className={this.decorateCSS("title")}>
+                      <Base.H4 className={this.decorateCSS("title")}>
                         {tab.title}
-                      </Base.H3>
+                      </Base.H4>
                     )}
                     {this.castToString(tab.description) && (
                       <Base.SectionDescription
