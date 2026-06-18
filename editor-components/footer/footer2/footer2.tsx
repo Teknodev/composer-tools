@@ -272,23 +272,28 @@ class Footer2Page extends BaseFooter {
                   if (!categoryTitleExist && !hasItems) return null;
                   return (
                     <div key={colIndex} className={this.decorateCSS("list")}>
-                      {categoryTitleExist && <Base.H3 className={this.decorateCSS("title")}>{column.categoryTitle}</Base.H3>}
-                      {menuItems.map((item: MenuItem, itemIndex: number) => {
-                        const textExist = this.castToString(item.text);
-                        return (
-                          textExist && (
-                            <ComposerLink key={itemIndex} path={item.pageLink}>
-                              <Base.P
-                                className={this.decorateCSS("text")}
-                                data-animation={item.pageLink ? this.getPropValue("hoverAnimation").join(" ") : ""}
-                                data-has-link={Boolean(item.pageLink)}
-                              >
-                                {item.text}
-                              </Base.P>
-                            </ComposerLink>
-                          )
-                        );
-                      })}
+                      {categoryTitleExist && <Base.H5 className={this.decorateCSS("title")}>{column.categoryTitle}</Base.H5>}
+                      {menuItems.length > 0 && (
+                        <Base.VerticalContent className={this.decorateCSS("text-items")}>
+                          {menuItems.map((item: MenuItem, itemIndex: number) => {
+                            const textExist = this.castToString(item.text);
+                            const isLast = itemIndex === menuItems.length - 1;
+                            return (
+                              textExist && (
+                                <ComposerLink key={itemIndex} path={item.pageLink}>
+                                  <Base.P
+                                    className={`${this.decorateCSS("text")} ${isLast ? this.decorateCSS("text-last") : ""}`}
+                                    data-animation={item.pageLink ? this.getPropValue("hoverAnimation").join(" ") : ""}
+                                    data-has-link={Boolean(item.pageLink)}
+                                  >
+                                    {item.text}
+                                  </Base.P>
+                                </ComposerLink>
+                              )
+                            );
+                          })}
+                        </Base.VerticalContent>
+                      )}
                     </div>
                   );
                 })}

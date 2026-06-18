@@ -393,20 +393,25 @@ class Footer4Page extends BaseFooter {
     });
 
     this.addProp({
-      type: "string",
-      key: "subscriptionPlaceholder",
-      displayer: "Placeholder",
-      value: "Type your e-mail",
+      type: "object",
+      key: "form",
+      displayer: "Form",
+      value: [
+        {
+          type: "string",
+          key: "subscriptionPlaceholder",
+          displayer: "Placeholder",
+          value: "Type your e-mail",
+        },
+        {
+          type: "string",
+          key: "submitText",
+          displayer: "Submit Text",
+          value: "Form successfully submitted!",
+        },
+        INPUTS.BUTTON("button", "Button", "Subscribe", null, null, null, "Black"),
+      ],
     });
-
-    this.addProp({
-      type: "string",
-      key: "submitText",
-      displayer: "Submit Text",
-      value: "Form successfully submitted!",
-    });
-
-    this.addProp(INPUTS.BUTTON("button", "Button", "Subscribe", null, null, null, "Primary"));
 
     this.addProp({
       type: "string",
@@ -511,7 +516,7 @@ class Footer4Page extends BaseFooter {
       }
     });
 
-    this.setComponentState("placeholderText", this.castToString(this.getPropValue("subscriptionPlaceholder")));
+    this.setComponentState("placeholderText", "Type your e-mail");
   }
 
   validationSchema = Yup.object().shape({
@@ -529,16 +534,16 @@ class Footer4Page extends BaseFooter {
 
     const textExist = this.castToString(this.getPropValue("text"));
 
-    const submitText = this.castToString(this.getPropValue("submitText"));
+    const formProps = this.castToObject<any>("form");
+    const button: INPUTS.CastedButton = formProps?.button;
+    const submitText = this.castToString(formProps?.submitText);
 
     const leftExist = textExist || media.length > 0;
 
-    const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
-
     const rightTitleExist = this.castToString(this.getPropValue("rightTitle"));
     const rightDescExist = this.castToString(this.getPropValue("rightDescription"));
-    const buttonTextExist = this.castToString(button.text);
-    const placeHolderExist = this.castToString(this.getPropValue("subscriptionPlaceholder"));
+    const buttonTextExist = this.castToString(button?.text);
+    const placeHolderExist = this.castToString(formProps?.subscriptionPlaceholder);
 
     const rightExist = rightTitleExist || rightDescExist || (placeHolderExist && buttonTextExist);
 
@@ -591,7 +596,7 @@ class Footer4Page extends BaseFooter {
                       return (
                         footerExist && (
                           <div key={indexFooter} className={this.decorateCSS("list-group")}>
-                            {footerTitleExist && <Base.H3 className={this.decorateCSS("title")}>{item.footerTitle}</Base.H3>}
+                            {footerTitleExist && <Base.H5 className={this.decorateCSS("title")}>{item.footerTitle}</Base.H5>}
                             {item.footerText.map((v: FooterTextValues, indexFooterText: number) => {
                               const footerTextExist = this.castToString(v.navTitle);
                               return (
@@ -615,7 +620,7 @@ class Footer4Page extends BaseFooter {
 
                   {rightExist && (
                     <div className={this.decorateCSS("right")}>
-                      {rightTitleExist && <Base.H3 className={this.decorateCSS("title")}>{this.getPropValue("rightTitle")}</Base.H3>}
+                      {rightTitleExist && <Base.H5 className={this.decorateCSS("title")}>{this.getPropValue("rightTitle")}</Base.H5>}
                       <Formik
                         initialValues={{ email: "" }}
                         validationSchema={this.validationSchema}
@@ -623,7 +628,8 @@ class Footer4Page extends BaseFooter {
                           this.setComponentState("placeholderText", submitText);
 
                           setTimeout(() => {
-                            const defaultPlaceholder = this.castToString(this.getPropValue("subscriptionPlaceholder"));
+                            const form = this.castToObject<any>("form");
+                            const defaultPlaceholder = this.castToString(form?.subscriptionPlaceholder);
                             this.setComponentState("placeholderText", defaultPlaceholder);
                           }, 2000);
 
@@ -639,7 +645,7 @@ class Footer4Page extends BaseFooter {
                                   <input
                                     className={this.decorateCSS("input")}
                                     type="text"
-                                    placeholder={this.getComponentState("placeholderText") || String(this.castToString(this.getPropValue("subscriptionPlaceholder")))}
+                                    placeholder={this.getComponentState("placeholderText") || String(this.castToString(formProps?.subscriptionPlaceholder))}
                                     name="email"
                                     value={values.email}
                                     onChange={handleChange}
@@ -671,7 +677,7 @@ class Footer4Page extends BaseFooter {
 
           <Base.Container className={this.decorateCSS("second-container")}>
             <Base.MaxContent className={this.decorateCSS("second-max-content")}>
-              <Base.VerticalContent className={this.decorateCSS("bottom")}>
+              <div className={this.decorateCSS("bottom")}>
                 {footerDescriptionExist && <Base.P className={this.decorateCSS("footer-text")}>{this.getPropValue("footerDescription")}</Base.P>}
 
                 {links.length > 0 && (
@@ -683,7 +689,7 @@ class Footer4Page extends BaseFooter {
                         textExist && (
                           <div className={this.decorateCSS("link-element")}>
                             <ComposerLink key={index} path={item.url}>
-                              <Base.P 
+                              <Base.P
                                 className={this.decorateCSS("link-text")}
                                 data-animation={item.url ? this.getPropValue("hoverAnimation").join(" ") : ""}
                                 data-has-link={Boolean(item.url)}
@@ -697,7 +703,7 @@ class Footer4Page extends BaseFooter {
                     })}
                   </Base.Row>
                 )}
-              </Base.VerticalContent>
+              </div>
             </Base.MaxContent>
           </Base.Container>
         </div>

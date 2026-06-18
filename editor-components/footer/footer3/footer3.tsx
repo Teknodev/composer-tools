@@ -47,14 +47,14 @@ class Footer3Page extends BaseFooter {
       type: "string",
       key: "subtitle",
       displayer: "Subtitle",
-      value: "asdasd",
+      value: "",
     });
 
     this.addProp({
       type: "string",
       key: "title",
       displayer: "Title",
-      value: "asdas",
+      value: "",
     });
 
     this.addProp({
@@ -828,7 +828,7 @@ class Footer3Page extends BaseFooter {
                         return (
                           listExist && (
                             <div key={indexColumn} className={`${this.decorateCSS("list-group")} ${alignment === "center" ? this.decorateCSS("center-alignment") : ""}`}>
-                              {categoryTitleExist && <Base.H3 className={this.decorateCSS("title")}>{item.categoryTitle}</Base.H3>}
+                              {categoryTitleExist && <Base.H5 className={this.decorateCSS("title")}>{item.categoryTitle}</Base.H5>}
                               {menuItems.length > 0 && (
                                 <Base.VerticalContent className={this.decorateCSS("text-container")}>
                                   {menuItems.map((v: MenuItem, indexMenuItem: number) => {

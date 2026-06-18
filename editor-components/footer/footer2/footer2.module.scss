@@ -47,6 +47,14 @@
             color: var(--composer-font-color-primary);
           }
 
+          .text-items {
+            gap: var(--composer-gap-sm);
+
+            .text-last {
+              margin-top: var(--composer-gap-md);
+            }
+          }
+
           .text {
             color: var(--composer-font-color-primary);
             transition: all 0.3s ease;

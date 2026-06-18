@@ -58,20 +58,26 @@ class Footer1Page extends BaseFooter {
     });
 
     this.addProp({
-      type: "string",
-      key: "subscriptionPlaceholder",
-      displayer: "Placeholder",
-      value: "Type your e-mail",
+      type: "object",
+      key: "form",
+      displayer: "Form",
+      value: [
+        {
+          type: "string",
+          key: "subscriptionPlaceholder",
+          displayer: "Placeholder",
+          value: "Type your e-mail",
+        },
+        {
+          type: "string",
+          key: "submitText",
+          displayer: "Submit Text",
+          value: "Form successfully submitted!",
+        },
+      ],
     });
 
-    this.addProp({
-      type: "string",
-      key: "submitText",
-      displayer: "Submit Text",
-      value: "Form successfully submitted!",
-    });
-
-    this.addProp(INPUTS.BUTTON("button", "Button", "Subscribe", null, null, null, "Primary"));
+    this.addProp(INPUTS.BUTTON("button", "Button", "Subscribe", null, null, null, "Link"));
 
     this.addProp({
       type: "boolean",
@@ -234,7 +240,7 @@ class Footer1Page extends BaseFooter {
               type: "string",
               key: "categoryTitle",
               displayer: "Footer Title",
-              value: "",
+              value: "About us",
             },
             {
               type: "array",
@@ -290,7 +296,7 @@ class Footer1Page extends BaseFooter {
               type: "string",
               key: "categoryTitle",
               displayer: "Footer Title",
-              value: "",
+              value: "Blog",
             },
             {
               type: "array",
@@ -346,7 +352,63 @@ class Footer1Page extends BaseFooter {
               type: "string",
               key: "categoryTitle",
               displayer: "Footer Title",
-              value: "",
+              value: "FAQs",
+            },
+            {
+              type: "array",
+              key: "menuItems",
+              displayer: "Footer Text",
+              value: [
+                {
+                  type: "object",
+                  key: "menu-item",
+                  displayer: "Item",
+                  value: [
+                    { type: "string", key: "text", displayer: "Text", value: "" },
+                    { type: "page", key: "pageLink", displayer: "Navigate To", value: "" },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "menu-item",
+                  displayer: "Item",
+                  value: [
+                    { type: "string", key: "text", displayer: "Text", value: "" },
+                    { type: "page", key: "pageLink", displayer: "Navigate To", value: "" },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "menu-item",
+                  displayer: "Item",
+                  value: [
+                    { type: "string", key: "text", displayer: "Text", value: "" },
+                    { type: "page", key: "pageLink", displayer: "Navigate To", value: "" },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "menu-item",
+                  displayer: "Item",
+                  value: [
+                    { type: "string", key: "text", displayer: "Text", value: "" },
+                    { type: "page", key: "pageLink", displayer: "Navigate To", value: "" },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "footer-column",
+          displayer: "Footer",
+          value: [
+            {
+              type: "string",
+              key: "categoryTitle",
+              displayer: "Footer Title",
+              value: "Contact",
             },
             {
               type: "array",
@@ -406,7 +468,7 @@ class Footer1Page extends BaseFooter {
       }
     });
 
-    this.setComponentState("placeholderText", this.castToString(this.getPropValue("subscriptionPlaceholder")));
+    this.setComponentState("placeholderText", "Type your e-mail");
   }
 
   validationSchema = Yup.object().shape({
@@ -428,11 +490,12 @@ class Footer1Page extends BaseFooter {
     const titleExist = this.castToString(title);
     const descriptionExist = this.castToString(description);
 
-    const placeholderExist = this.castToString(this.getPropValue("subscriptionPlaceholder"));
-    const submitText = this.castToString(this.getPropValue("submitText"));
+    const formProps = this.castToObject<any>("form");
     const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
+    const submitText = this.castToString(formProps?.submitText);
+    const placeholderExist = this.castToString(formProps?.subscriptionPlaceholder);
 
-    const upperExist = titleExist || descriptionExist || subtitleExist || (placeholderExist && this.castToString(button.text));
+    const upperExist = titleExist || descriptionExist || subtitleExist || placeholderExist;
 
     const line = this.getPropValue("line");
     const alignmentValue = Base.getContentAlignment();
@@ -448,7 +511,7 @@ class Footer1Page extends BaseFooter {
       const hasItems = menuItems.some((item: MenuItem) => this.castToString(item.text));
       return !!(categoryTitleExist || hasItems);
     });
-    const footerBottomExist = social.length > 0 || copyrightExist;
+    const footerBottomExist = social.length > 0 || copyrightExist || columnsExist;
     const position = this.getPropValue("position");
 
     return (
@@ -464,7 +527,7 @@ class Footer1Page extends BaseFooter {
                     {descriptionExist && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
                   </Base.VerticalContent>
                 )}
-                {placeholderExist && this.castToString(button.text) && (
+                {placeholderExist && (
                   <div className={this.decorateCSS("subscribe")}>
                     <Formik
                       initialValues={{ email: "" }}
@@ -473,7 +536,8 @@ class Footer1Page extends BaseFooter {
                         this.setComponentState("placeholderText", submitText);
 
                         setTimeout(() => {
-                          const defaultPlaceholder = this.castToString(this.getPropValue("subscriptionPlaceholder"));
+                          const form = this.castToObject<any>("form");
+                          const defaultPlaceholder = this.castToString(form?.subscriptionPlaceholder);
                           this.setComponentState("placeholderText", defaultPlaceholder);
                         }, 2000);
 
@@ -483,12 +547,12 @@ class Footer1Page extends BaseFooter {
                     >
                       {({ handleSubmit, handleChange, values, errors, touched }) => (
                         <Form className={this.decorateCSS("form")} onSubmit={handleSubmit}>
-                          {this.castToString(this.getPropValue("subscriptionPlaceholder")) && (
+                          {placeholderExist && (
                             <div className={this.decorateCSS("input-element")}>
                               <input
                                 className={this.decorateCSS("input")}
                                 type="text"
-                                placeholder={this.getComponentState("placeholderText") || this.castToString(this.getPropValue("subscriptionPlaceholder")) || ""}
+                                placeholder={this.getComponentState("placeholderText") || placeholderExist || ""}
                                 name="email"
                                 value={values.email}
                                 onChange={handleChange}
@@ -496,7 +560,7 @@ class Footer1Page extends BaseFooter {
                               {errors.email && touched.email && <div className={this.decorateCSS("error")}>{errors.email}</div>}
                             </div>
                           )}
-                          {this.castToString(button.text) && (
+                          {this.castToString(button?.text) && (
                             <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
                               <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
                             </Base.Button>
@@ -509,40 +573,6 @@ class Footer1Page extends BaseFooter {
               </div>
             )}
             {line && <div className={this.decorateCSS("line")} />}
-            {columnsExist && (
-              <div className={this.decorateCSS("columns-section")}>
-                {columns.map((column: Column, colIndex: number) => {
-                  const menuItems: MenuItem[] = column.menuItems || [];
-                  const categoryTitleExist = this.castToString(column.categoryTitle);
-                  const hasItems = menuItems.some((item: MenuItem) => this.castToString(item.text));
-                  if (!categoryTitleExist && !hasItems) return null;
-                  return (
-                    <div key={colIndex} className={this.decorateCSS("column")}>
-                      {categoryTitleExist && (
-                        <Base.P className={this.decorateCSS("column-title")}>{column.categoryTitle}</Base.P>
-                      )}
-                      {menuItems.length > 0 && (
-                        <div className={this.decorateCSS("column-items")}>
-                          {menuItems.map((item: MenuItem, itemIndex: number) => {
-                            const textExist = this.castToString(item.text);
-                            return textExist ? (
-                              <ComposerLink key={itemIndex} path={item.pageLink}>
-                                <Base.P
-                                  className={this.decorateCSS("text")}
-                                  data-animation={item.pageLink ? this.getPropValue("hoverAnimation").join(" ") : ""}
-                                >
-                                  {item.text}
-                                </Base.P>
-                              </ComposerLink>
-                            ) : null;
-                          })}
-                        </div>
-                      )}
-                    </div>
-                  );
-                })}
-              </div>
-            )}
             {footerBottomExist && (
               <div className={`${this.decorateCSS("footer-bottom")} ${alignmentValue === "center" ? this.decorateCSS("center-alignment") : ""}`}>
                 {copyrightExist && (
@@ -568,6 +598,40 @@ class Footer1Page extends BaseFooter {
                           </ComposerLink>
                         )
                     )}
+                  </div>
+                )}
+                {columnsExist && (
+                  <div className={this.decorateCSS("columns-section")}>
+                    {columns.map((column: Column, colIndex: number) => {
+                      const menuItems: MenuItem[] = column.menuItems || [];
+                      const categoryTitleExist = this.castToString(column.categoryTitle);
+                      const hasItems = menuItems.some((item: MenuItem) => this.castToString(item.text));
+                      if (!categoryTitleExist && !hasItems) return null;
+                      return (
+                        <div key={colIndex} className={this.decorateCSS("column")}>
+                          {categoryTitleExist && (
+                            <Base.P className={this.decorateCSS("column-title")}>{column.categoryTitle}</Base.P>
+                          )}
+                          {hasItems && (
+                            <div className={this.decorateCSS("column-items")}>
+                              {menuItems.map((item: MenuItem, itemIndex: number) => {
+                                const textExist = this.castToString(item.text);
+                                return textExist ? (
+                                  <ComposerLink key={itemIndex} path={item.pageLink}>
+                                    <Base.P
+                                      className={this.decorateCSS("text")}
+                                      data-animation={item.pageLink ? this.getPropValue("hoverAnimation").join(" ") : ""}
+                                    >
+                                      {item.text}
+                                    </Base.P>
+                                  </ComposerLink>
+                                ) : null;
+                              })}
+                            </div>
+                          )}
+                        </div>
+                      );
+                    })}
                   </div>
                 )}
               </div>

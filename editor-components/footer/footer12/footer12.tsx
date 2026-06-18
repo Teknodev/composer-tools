@@ -506,7 +506,7 @@ class Footer12Page extends BaseFooter {
                   return (
                     footerExist && (
                       <div key={indexFooter} className={this.decorateCSS("list-group")}>
-                        {footerTitleExist && <Base.H4 className={this.decorateCSS("title")}>{item.footerTitle}</Base.H4>}
+                        {footerTitleExist && <Base.H5 className={this.decorateCSS("title")}>{item.footerTitle}</Base.H5>}
                         {item.footerText.map((item: FooterTextValues, indexFooterText: number) => {
                           const footerTextExist = this.castToString(item.navTitle);
                           return (

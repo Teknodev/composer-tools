@@ -618,7 +618,7 @@ class Footer8Page extends BaseFooter {
                   <div className={this.decorateCSS("header")}>
                     {(logo?.url || logo?.name) && (
                       <ComposerLink path={logoUrl}>
-                        <Base.Media value={logo} className={this.decorateCSS("image")} />
+                        <Base.Media value={logo} className={`${this.decorateCSS("image")} ${logo?.type === "icon" ? this.decorateCSS("is-icon") : ""}`} />
                       </ComposerLink>
                     )}
                     {descriptionExist && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
@@ -697,7 +697,7 @@ class Footer8Page extends BaseFooter {
                                 className={`${this.decorateCSS("socials-element")} ${this.decorateCSS("socials-element")}`}
                                 data-animation={item.url ? this.getPropValue("hoverAnimation").join(" ") : ""}
                               >
-                                <Base.Media value={item.icon} className={this.decorateCSS("icon")} />
+                                <Base.Media value={item.icon} className={`${this.decorateCSS("icon")} ${item.icon?.type === "icon" ? this.decorateCSS("is-icon") : ""}`} />
                                 <Base.P className={this.decorateCSS("socials-text")}>{item.text}</Base.P>
                               </div>
                             </ComposerLink>
