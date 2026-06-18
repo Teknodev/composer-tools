@@ -172,17 +172,49 @@
 @container (max-width: #{$composer-phone-width}) {
   .container {
     .max-content {
+      .header {
+        align-items: var(--composer-content-alignment);
+
+        .title,
+        .description,
+        .subtitle {
+          text-align: var(--composer-content-alignment);
+        }
+      }
+
       .form {
+        justify-content: var(--composer-content-alignment);
+
         .newsletter {
+          flex-direction: column;
+          gap: var(--composer-gap-md);
           width: 100%;
-          min-width: 100%;
+          min-width: unset;
 
           .inputs {
+            width: 100%;
+
             .input {
-              padding: var(--composer-gap-sm) var(--composer-gap-sm);
+              width: 100%;
+              min-width: unset;
+              padding: var(--composer-gap-sm) var(--composer-gap-md);
+              border-radius: var(--composer-border-radius-sm);
+            }
+          }
+
+          .button-container {
+            width: 100%;
+
+            .submit-button {
+              width: 100%;
+              border-radius: var(--composer-border-radius-sm);
             }
           }
         }
+      }
+
+      .button-container {
+        justify-content: var(--composer-content-alignment);
       }
     }
   }

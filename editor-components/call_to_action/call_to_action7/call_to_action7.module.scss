@@ -333,18 +333,32 @@
             .input-button-wrapper {
               .input-div {
                 flex-direction: column !important;
+                gap: var(--composer-gap-md);
+                align-items: var(--composer-content-alignment);
 
                 .input {
+                  min-width: unset;
+                  width: 100%;
                   background-color: var(--composer-html-background);
-                  border-radius: var(--composer-border-radius-sm) var(--composer-border-radius-sm) 0 0;
+                  border-radius: var(--composer-border-radius-sm) !important;
 
                   &::placeholder {
                     color: var(--composer-font-color-primary);
                   }
                 }
 
-                .button {
-                  border-radius: 0 0 var(--composer-border-radius-sm) var(--composer-border-radius-sm);
+                .button-container {
+                  width: 100%;
+                  justify-content: var(--composer-content-alignment);
+
+                  a {
+                    width: 100%;
+                  }
+
+                  .button {
+                    width: 100%;
+                    border-radius: var(--composer-border-radius-sm) !important;
+                  }
                 }
               }
             }

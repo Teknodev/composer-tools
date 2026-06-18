@@ -127,10 +127,10 @@
 
         &.no-image {
           background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
-          color: var(--color-black);
+          color: var(--composer-font-color-primary);
 
           &::placeholder {
-            color: var(--color-black);
+            color: var(--composer-tertiary-color);
           }
         }
 
