@@ -368,7 +368,11 @@
             }
           }
           .left-content {
+            max-width: 100%;
+            flex-basis: auto;
+            width: 100%;
             .top-content {
+              width: 100%;
               .button-container {
                 > div {
                   width: 100% !important;

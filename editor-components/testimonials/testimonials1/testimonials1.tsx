@@ -21,9 +21,35 @@ type Button = {
   type: string;
 };
 
+type MediaWithOverlay = {
+  media: TypeMediaInputValue;
+  overlay: boolean;
+};
+
 class Testimonials1Page extends Testimonials {
   constructor(props?: any) {
     super(props, styles);
+
+    this.addProp({
+      type: "object",
+      key: "background",
+      displayer: "Background",
+      value: [
+        {
+          type: "media",
+          key: "media",
+          displayer: "Media",
+          additionalParams: { availableTypes: ["image", "video"] },
+          value: { type: "image", url: "" },
+        },
+        {
+          type: "boolean",
+          key: "overlay",
+          displayer: "Overlay",
+          value: false,
+        },
+      ],
+    });
 
     this.addProp({
       type: "string",
@@ -72,25 +98,51 @@ class Testimonials1Page extends Testimonials {
     });
 
     this.addProp({
-      type: "media",
+      type: "object",
       key: "leftImage",
       displayer: "Left Image",
-      additionalParams: { availableTypes: ["image"] },
-      value: {
-        type: "image",
-        url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a33c793ca8c4044f3e81980/6a33c7a802aa63fd0a48a293/library/demo-restaurant-home-07.jpg",
-      },
+      value: [
+        {
+          type: "media",
+          key: "media",
+          displayer: "Media",
+          additionalParams: { availableTypes: ["image", "video"] },
+          value: {
+            type: "image",
+            url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a33c793ca8c4044f3e81980/6a33c7a802aa63fd0a48a293/library/demo-restaurant-home-07.jpg",
+          },
+        },
+        {
+          type: "boolean",
+          key: "overlay",
+          displayer: "Overlay",
+          value: false,
+        },
+      ],
     });
 
     this.addProp({
-      type: "media",
+      type: "object",
       key: "rightImage",
       displayer: "Right Image",
-      additionalParams: { availableTypes: ["image"] },
-      value: {
-        type: "image",
-        url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a33c793ca8c4044f3e81980/6a33c7a802aa63fd0a48a293/library/demo-restaurant-home-08.jpg",
-      },
+      value: [
+        {
+          type: "media",
+          key: "media",
+          displayer: "Media",
+          additionalParams: { availableTypes: ["image", "video"] },
+          value: {
+            type: "image",
+            url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a33c793ca8c4044f3e81980/6a33c7a802aa63fd0a48a293/library/demo-restaurant-home-08.jpg",
+          },
+        },
+        {
+          type: "boolean",
+          key: "overlay",
+          displayer: "Overlay",
+          value: false,
+        },
+      ],
     });
 
     this.addProp({
@@ -304,13 +356,29 @@ class Testimonials1Page extends Testimonials {
     const sliderRef = this.getComponentState("slider-ref");
     const showArrows = !!sliderSettings.arrows && this.castToObject<Item[]>("items").length > 1;
 
-    const leftImage = this.getPropValue("leftImage") as TypeMediaInputValue;
-    const rightImage = this.getPropValue("rightImage") as TypeMediaInputValue;
-    const leftImageExist = leftImage && leftImage.url;
-    const rightImageExist = rightImage && rightImage.url;
+    const bgData = this.castToObject<MediaWithOverlay>("background");
+    const bgMedia = bgData?.media;
+    const bgMediaExist = bgMedia && (bgMedia.type === "icon" ? bgMedia.name : bgMedia.url);
+    const bgOverlay = bgData?.overlay;
+
+    const leftData = this.castToObject<MediaWithOverlay>("leftImage");
+    const leftMedia = leftData?.media;
+    const leftMediaExist = leftMedia && (leftMedia.type === "icon" ? leftMedia.name : leftMedia.url);
+    const leftOverlay = leftData?.overlay;
+
+    const rightData = this.castToObject<MediaWithOverlay>("rightImage");
+    const rightMedia = rightData?.media;
+    const rightMediaExist = rightMedia && (rightMedia.type === "icon" ? rightMedia.name : rightMedia.url);
+    const rightOverlay = rightData?.overlay;
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
+        {bgMediaExist && (
+          <Base.Media value={bgMedia} className={this.decorateCSS("background-media")} />
+        )}
+        {bgMediaExist && bgOverlay && (
+          <div className={this.decorateCSS("background-overlay")} />
+        )}
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("wrapper")}>
             <div className={this.decorateCSS("content-wrapper")}>
@@ -354,8 +422,11 @@ class Testimonials1Page extends Testimonials {
               )}
               <div className={this.decorateCSS("slider-row")}>
                 <div className={this.decorateCSS("side-image-left")}>
-                  {leftImageExist && (
-                    <Base.Media value={leftImage} className={this.decorateCSS("side-img")} />
+                  {leftMediaExist && (
+                    <div className={this.decorateCSS("media-container")}>
+                      <Base.Media value={leftMedia} className={this.decorateCSS("side-img")} />
+                      {leftOverlay && <div className={this.decorateCSS("media-overlay")} />}
+                    </div>
                   )}
                 </div>
                 <div className={this.decorateCSS("content")}>
@@ -381,10 +452,10 @@ class Testimonials1Page extends Testimonials {
                               />
                             )}
                             {this.castToString(item.description) && (
-                              <div className={this.decorateCSS("description")}>{item.description}</div>
+                              <Base.P className={this.decorateCSS("description")}>{item.description}</Base.P>
                             )}
                             {this.castToString(item.name) && (
-                              <div className={this.decorateCSS("name")}>{item.name}</div>
+                              <Base.P className={this.decorateCSS("name")}>{item.name}</Base.P>
                             )}
                           </div>
                         );
@@ -438,8 +509,11 @@ class Testimonials1Page extends Testimonials {
                   )}
                 </div>
                 <div className={this.decorateCSS("side-image-right")}>
-                  {rightImageExist && (
-                    <Base.Media value={rightImage} className={this.decorateCSS("side-img")} />
+                  {rightMediaExist && (
+                    <div className={this.decorateCSS("media-container")}>
+                      <Base.Media value={rightMedia} className={this.decorateCSS("side-img")} />
+                      {rightOverlay && <div className={this.decorateCSS("media-overlay")} />}
+                    </div>
                   )}
                 </div>
               </div>

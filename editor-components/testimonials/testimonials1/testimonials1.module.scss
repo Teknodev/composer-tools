@@ -3,6 +3,23 @@
   position: relative;
   width: 100%;
   background-color: #f9f6f3;
+
+  .background-media {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+  }
+
+  .background-overlay {
+    position: absolute;
+    inset: 0;
+    background: var(--composer-overlay-color);
+    z-index: 1;
+  }
+
   .max-content {
     display: flex;
     gap: var(--composer-gap-xl);
@@ -67,11 +84,25 @@
             justify-content: center;
             min-width: 0;
 
-            .side-img {
+            .media-container {
+              position: relative;
               width: 85%;
-              height: auto;
-              object-fit: contain;
-              display: block;
+              overflow: hidden;
+              border-radius: var(--composer-border-radius-sm);
+
+              .side-img {
+                width: 100%;
+                height: auto;
+                object-fit: contain;
+                display: block;
+              }
+
+              .media-overlay {
+                position: absolute;
+                inset: 0;
+                background: var(--composer-overlay-color);
+                pointer-events: none;
+              }
             }
           }
 
