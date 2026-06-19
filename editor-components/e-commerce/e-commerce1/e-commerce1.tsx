@@ -722,10 +722,10 @@ class ECommerce1 extends BaseECommerce {
                       )}
                       {(reviewItem.reviewCount || this.castToString(reviewItem.reviewText)) && (
                         <div className={this.decorateCSS("review")}>
-                          <span className={this.decorateCSS("brackets")}>(</span>
+                          <Base.P className={this.decorateCSS("brackets")}>(</Base.P>
                           {reviewItem.reviewCount && (<Base.P className={this.decorateCSS("review-count")}>{reviewItem.reviewCount}</Base.P>)}
                           {this.castToString(reviewItem.reviewText) && (<Base.P className={this.decorateCSS("review-text")}>{reviewItem.reviewText}</Base.P>)}
-                          <span className={this.decorateCSS("brackets")}>)</span>
+                          <Base.P className={this.decorateCSS("brackets")}>)</Base.P>
                         </div>
                       )}
                     </div>
@@ -779,7 +779,7 @@ class ECommerce1 extends BaseECommerce {
                   <ComposerLink path={quantitySection.wishlist.wishlistUrl}>
                     <div className={this.decorateCSS("wishlist")}>
                       <Base.Media value={quantitySection.wishlist.wishlistIcon} className={this.decorateCSS("heart-icon")} />
-                      {this.castToString(quantitySection.wishlist.wishlistText) && (<span className={this.decorateCSS("cart-title")}>{quantitySection.wishlist.wishlistText}</span>)}
+                      {this.castToString(quantitySection.wishlist.wishlistText) && (<Base.P className={this.decorateCSS("cart-title")}>{quantitySection.wishlist.wishlistText}</Base.P>)}
                     </div>
                   </ComposerLink>
                 </div>

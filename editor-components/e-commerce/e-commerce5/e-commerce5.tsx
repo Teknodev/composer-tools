@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Base } from "../../../composer-base-components/base/base";
 import styles from "./e-commerce5.module.scss";
-import { BaseECommerce } from "../../EditorComponent";
+import { BaseECommerce, TypeMediaInputValue } from "../../EditorComponent";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 
 interface ImageGallery {
@@ -11,7 +11,7 @@ interface ImageGallery {
 
 interface Contents {
   collection: React.JSX.Element;
-  sectionImage: { type: "image"; url: string };
+  sectionImage: TypeMediaInputValue;
   overlay: boolean;
 }
 
