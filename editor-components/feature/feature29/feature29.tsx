@@ -267,9 +267,9 @@ class Feature29 extends BaseFeature {
                         className={this.decorateCSS("content")}
                       >
                         {titleExist && (
-                          <Base.H3 className={this.decorateCSS("title")}>
+                          <Base.H5 className={this.decorateCSS("title")}>
                             {feature.title}
-                          </Base.H3>
+                          </Base.H5>
                         )}
                         {descriptionExist && (
                           <Base.P className={this.decorateCSS("description")}>

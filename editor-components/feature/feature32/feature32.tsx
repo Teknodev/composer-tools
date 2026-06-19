@@ -306,7 +306,7 @@ class Feature32 extends BaseFeature {
                       {(cardSubtitleExist || titleExist || descExist || hasCardButton) &&
                         <Base.VerticalContent className={this.decorateCSS("card-content")}>
                           {cardSubtitleExist && <Base.H6 className={this.decorateCSS("card-subtitle")}>{card.subtitle}</Base.H6>}
-                          {titleExist && <Base.H3 className={this.decorateCSS("card-title")}>{card.title}</Base.H3>}
+                          {titleExist && <Base.H5 className={this.decorateCSS("card-title")}>{card.title}</Base.H5>}
                           {descExist && <Base.P className={this.decorateCSS("card-description")}>{card.description}</Base.P>}
                           {hasCardButton && (
                             <ComposerLink path={card.button.url}>

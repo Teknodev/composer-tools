@@ -32,8 +32,9 @@
     }
 
     .description {
+      margin: 0 auto !important;
       margin-top: var(--composer-gap-md) !important;
-      text-align: center;
+      text-align: center !important;
       width: 70%;
     }
 

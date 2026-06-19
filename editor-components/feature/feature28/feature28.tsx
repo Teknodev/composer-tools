@@ -79,7 +79,7 @@ class Feature28 extends BaseFeature {
           type: "string",
           key: "subtitle",
           displayer: "Subtitle",
-          value: "aaaa",
+          value: "",
         },
         {
           type: "string",
