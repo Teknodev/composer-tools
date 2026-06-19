@@ -271,19 +271,25 @@
           overflow: hidden;
           position: relative;
 
-          .video {
+          .media-container {
+            position: relative;
             width: 100%;
             height: 100%;
-            object-fit: cover;
             border-radius: var(--composer-border-radius-sm);
-          }
+            overflow: hidden;
 
-          .overlay-item {
-            position: absolute;
-            inset: 0;
-            background-color: var(--composer-overlay-color);
-            border-radius: inherit;
-            pointer-events: none;
+            .video {
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+            }
+
+            .overlay-item {
+              position: absolute;
+              inset: 0;
+              background-color: var(--composer-overlay-color);
+              pointer-events: none;
+            }
           }
 
           .icon-container {
@@ -382,69 +388,50 @@
 
 .overlay,
 .base-overlay {
-  position: fixed;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 999;
-  background-color: rgba(0, 0, 0, 0.9);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  .video-container {
+    @include overlayBaseStyles;
+  }
 
-  .modal-wrapper {
-    position: relative;
+  .modal-prev,
+  .modal-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    z-index: 1001;
+    padding: 20px;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 100%;
-    height: 100vh;
+    transition: opacity 0.3s ease;
 
-    .video-container {
-      @include overlayBaseStyles;
+    &:hover {
+      opacity: 0.7;
     }
 
-    .modal-prev,
-    .modal-next {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      cursor: pointer;
-      z-index: 1001;
-      padding: 20px;
+    .modal-arrow-icon {
+      width: 40px;
+      height: 40px;
+      object-fit: contain;
       display: flex;
       align-items: center;
       justify-content: center;
-      transition: opacity 0.3s ease;
 
-      &:hover {
-        opacity: 0.7;
-      }
-
-      .modal-arrow-icon {
-        width: 40px;
-        height: 40px;
-        object-fit: contain;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-
-        &.is-icon {
-          width: auto;
-          height: auto;
-          font-size: 40px;
-          color: #fff;
-        }
+      &.is-icon {
+        width: auto;
+        height: auto;
+        font-size: 40px;
+        color: #fff;
       }
     }
+  }
 
-    .modal-prev {
-      left: 50px;
-    }
+  .modal-prev {
+    left: 50px;
+  }
 
-    .modal-next {
-      right: 50px;
-    }
+  .modal-next {
+    right: 50px;
   }
 }
 

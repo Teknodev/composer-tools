@@ -1117,12 +1117,14 @@ class Social2 extends BaseSocial {
                                     {sliderItems.map((item, index: number) => {
                                         return (
                                             <div key={index} className={this.decorateCSS("slider-item")}>
-                                                {item.media?.url && (
-                                                    <Base.Media value={{ ...item.media, settings: { ...(item.media.settings || {}), controls: false } }} className={this.decorateCSS("video")} />
-                                                )}
-                                                {item.overlay && (
-                                                    <div className={this.decorateCSS("overlay-item")} />
-                                                )}
+                                                <div className={this.decorateCSS("media-container")}>
+                                                    {item.media?.url && (
+                                                        <Base.Media value={{ ...item.media, settings: { ...(item.media.settings || {}), controls: false } }} className={this.decorateCSS("video")} />
+                                                    )}
+                                                    {item.overlay && (
+                                                        <div className={this.decorateCSS("overlay-item")} />
+                                                    )}
+                                                </div>
                                                 {player.playIcon && (
                                                     <div className={this.decorateCSS("icon-container")} onClick={() => { this.handleVideoPlay(index) }}>
                                                         <Base.Media value={player.playIcon} className={`${this.decorateCSS("icon")} ${player.playIcon.type === "icon" ? this.decorateCSS("is-icon") : ""}`} />
@@ -1137,8 +1139,7 @@ class Social2 extends BaseSocial {
                     </Base.MaxContent>
                     {this.getComponentState("videoActive") && sliderItems[selectedIndex] && (
                         <Base.Overlay isVisible={true} className={this.decorateCSS("overlay")} onClick={() => this.handleVideoClose()}>
-                            <div className={this.decorateCSS("modal-wrapper")} onClick={(e) => e.stopPropagation()}>
-                                <div className={this.decorateCSS("video-container")}>
+                                <div className={this.decorateCSS("video-container")} onClick={(e) => e.stopPropagation()}>
                                     {sliderItems[selectedIndex].media?.url && (
                                         <Base.Media value={sliderItems[selectedIndex].media} className={this.decorateCSS("selected-video")} />
                                     )}
@@ -1193,16 +1194,15 @@ class Social2 extends BaseSocial {
                                     )}
                                 </div>
                                 {player.prevArrow && (
-                                    <div className={this.decorateCSS("modal-prev")} onClick={() => this.setComponentState("selectedVideo", (selectedIndex - 1 + sliderItems.length) % sliderItems.length)}>
+                                    <div className={this.decorateCSS("modal-prev")} onClick={(e) => { e.stopPropagation(); this.setComponentState("selectedVideo", (selectedIndex - 1 + sliderItems.length) % sliderItems.length); }}>
                                         <Base.Media value={player.prevArrow} className={`${this.decorateCSS("modal-arrow-icon")} ${player.prevArrow.type === "icon" ? this.decorateCSS("is-icon") : ""}`} />
                                     </div>
                                 )}
                                 {player.nextArrow && (
-                                    <div className={this.decorateCSS("modal-next")} onClick={() => this.setComponentState("selectedVideo", (selectedIndex + 1) % sliderItems.length)}>
+                                    <div className={this.decorateCSS("modal-next")} onClick={(e) => { e.stopPropagation(); this.setComponentState("selectedVideo", (selectedIndex + 1) % sliderItems.length); }}>
                                         <Base.Media value={player.nextArrow} className={`${this.decorateCSS("modal-arrow-icon")} ${player.nextArrow.type === "icon" ? this.decorateCSS("is-icon") : ""}`} />
                                     </div>
                                 )}
-                            </div>
                         </Base.Overlay>
                     )}
                 </Base.Container>

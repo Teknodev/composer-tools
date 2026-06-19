@@ -1935,7 +1935,7 @@ class Social4 extends BaseSocial {
                             <div className={this.decorateCSS("button-wrapper")}>
                                 <ComposerLink path={this.getComponentState("imageCount") < cardItems.length ? "" : button.url}>
                                     <Base.Button className={this.decorateCSS("button")} buttonType={button.type} onClick={this.handleButtonClick} >
-                                        {button.text && (
+                                        {this.castToString(button.text) && (
                                             <Base.P className={this.decorateCSS("button-text")}>
                                                 {button.text}
                                             </Base.P>

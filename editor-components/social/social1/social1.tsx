@@ -346,7 +346,7 @@ class Social1 extends BaseSocial {
                                 )}
                             </div>
                         )}
-                        {item.text && (
+                        {this.castToString(item.text) && (
                             <Base.P className={this.decorateCSS("comment")}>{item.text}</Base.P>
                         )}
                     </div>
