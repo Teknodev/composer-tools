@@ -88,11 +88,11 @@
                             }
                         }
 
-                        .overlay {
+                        .media-overlay {
                             position: absolute;
                             inset: 0;
                             border-radius: inherit;
-                            background-color: var(--composer-overlay-color);
+                            background: var(--composer-overlay-color);
                         }
                     }
                 }
@@ -142,13 +142,13 @@
                 .carousel {
                     height: 100%;
 
-                    >div {
+                    :global(.slick-list) {
                         height: 100%;
 
-                        >div {
+                        :global(.slick-track) {
                             height: 100%;
 
-                            >div {
+                            :global(.slick-slide) {
                                 >div {
                                     height: 100%;
                                 }
@@ -175,11 +175,11 @@
                             object-fit: cover;
                         }
 
-                        .overlay {
+                        .media-overlay {
                             position: absolute;
                             inset: 0;
                             border-radius: inherit;
-                            background-color: var(--composer-overlay-color);
+                            background: var(--composer-overlay-color);
                         }
                     }
                 }
@@ -403,17 +403,7 @@
 }
 
 .image-popup {
-    position: fixed;
-    inset: 0;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
     z-index: 9999;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: var(--composer-overlay-color);
 
     .popup-content {
         width: min(40%, calc(90vh - 80px));
@@ -510,16 +500,6 @@
 
 @container (max-width: #{$composer-tablet-width}) {
     .image-popup {
-        position: fixed;
-        inset: 0;
-        top: 0;
-        left: 0;
-        width: 100vw;
-        height: 100vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-
         .popup-content {
             width: 90%;
             max-width: 500px;
@@ -546,16 +526,6 @@
 
 @container (max-width: #{$composer-phone-width}) {
     .image-popup {
-        position: fixed;
-        inset: 0;
-        top: 0;
-        left: 0;
-        width: 100vw;
-        height: 100vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-
         .popup-content {
             width: 92%;
             max-width: 340px;
@@ -595,7 +565,7 @@
                 }
 
                 .pages {
-                    font-size: 0.875rem !important;
+                    font-size: 0.75rem !important;
                 }
 
                 .close {

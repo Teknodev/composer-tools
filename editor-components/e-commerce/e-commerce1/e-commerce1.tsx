@@ -668,7 +668,7 @@ class ECommerce1 extends BaseECommerce {
                             onClick={() => handleImageClick(index)}
                           />
                         )}
-                        {item.overlay && <div className={this.decorateCSS("overlay")}></div>}
+                        {item.overlay && <div className={this.decorateCSS("media-overlay")}></div>}
                       </div>
                     </div>
                   )
@@ -685,7 +685,7 @@ class ECommerce1 extends BaseECommerce {
                         <div className={this.decorateCSS("card")}>
                           <div className={this.decorateCSS("image-wrapper")}>
                             <Base.Media value={item.media} className={this.decorateCSS("product-img")} onClick={() => handleImageClick(index)} />
-                            {item.overlay && <div className={this.decorateCSS("overlay")}></div>}
+                            {item.overlay && <div className={this.decorateCSS("media-overlay")}></div>}
                           </div>
                         </div>
                       )

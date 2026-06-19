@@ -1058,7 +1058,7 @@ class ECommerce7 extends BaseECommerce {
                               className={this.decorateCSS("big-image")}
                             />
                           </div>
-                          {item.overlay && <div className={this.decorateCSS("overlay")} />}
+                          {item.overlay && <div className={this.decorateCSS("media-overlay")} />}
                         </div>
                       </div>
                     );

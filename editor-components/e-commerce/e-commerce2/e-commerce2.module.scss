@@ -185,11 +185,11 @@
           object-fit: cover;
         }
 
-        .overlay {
+        .media-overlay {
           position: absolute;
           inset: 0;
           border-radius: inherit;
-          background-color: var(--composer-overlay-color);
+          background: var(--composer-overlay-color);
         }
       }
 
@@ -236,16 +236,6 @@
 }
 
 .popup-overlay {
-  position: fixed;
-  inset: 0;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: var(--composer-overlay-color);
-  display: flex;
-  justify-content: center;
-  align-items: center;
   z-index: 1000;
 
   .popup-content-wrapper {
@@ -351,16 +341,6 @@
 
 @container (max-width: #{$composer-tablet-width}) {
   .popup-overlay {
-    position: fixed;
-    inset: 0;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
     .popup-content-wrapper {
       flex-direction: column;
     }
@@ -404,16 +384,6 @@
   }
 
   .popup-overlay {
-    position: fixed;
-    inset: 0;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
     .popup-content-wrapper {
       flex-direction: column;
     }

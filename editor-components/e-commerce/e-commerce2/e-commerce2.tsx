@@ -3366,7 +3366,7 @@ class ECommerce2 extends BaseECommerce {
                             </Base.P>
                         )}
                         {imageGallery.map((item, index) => {
-                            if (!item.sectionTitle) return null;
+                            if (!this.castToString(item.sectionTitle)) return null;
                             return (
                                 <>
                                     {this.castToString(item.sectionTitle) && (
@@ -3434,7 +3434,7 @@ class ECommerce2 extends BaseECommerce {
                                                         className={this.decorateCSS("image")}
                                                     />
                                                 )}
-                                                {image.overlay && <div className={this.decorateCSS("overlay")}></div>}
+                                                {image.overlay && <div className={this.decorateCSS("media-overlay")}></div>}
                                             </div>
                                         </ComposerLink>
                                         <Base.VerticalContent className={this.decorateCSS("text-container")}>
