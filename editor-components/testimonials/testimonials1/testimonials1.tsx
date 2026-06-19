@@ -26,32 +26,6 @@ class Testimonials1Page extends Testimonials {
     super(props, styles);
 
     this.addProp({
-      type: "object",
-      key: "background",
-      displayer: "Background Media",
-      value: [
-        {
-          type: "media",
-          key: "componentBackground",
-          displayer: "Background Media",
-          additionalParams: {
-            availableTypes: ["image", "video"],
-          },
-          value: {
-            type: "image",
-            url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6729d54e7acba6002c5e6e52?alt=media&timestamp=1730794845964",
-          },
-        },
-        {
-          type: "boolean",
-          key: "overlayActive",
-          displayer: "Overlay",
-          value: false,
-        },
-      ],
-    });
-
-    this.addProp({
       type: "string",
       key: "subtitle",
       displayer: "Subtitle",
@@ -95,6 +69,28 @@ class Testimonials1Page extends Testimonials {
       displayer: "Next Icon",
       additionalParams: { availableTypes: ["icon", "image"] },
       value: { type: "icon", name: "FaArrowRight" },
+    });
+
+    this.addProp({
+      type: "media",
+      key: "leftImage",
+      displayer: "Left Image",
+      additionalParams: { availableTypes: ["image"] },
+      value: {
+        type: "image",
+        url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a33c793ca8c4044f3e81980/6a33c7a802aa63fd0a48a293/library/demo-restaurant-home-07.jpg",
+      },
+    });
+
+    this.addProp({
+      type: "media",
+      key: "rightImage",
+      displayer: "Right Image",
+      additionalParams: { availableTypes: ["image"] },
+      value: {
+        type: "image",
+        url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a33c793ca8c4044f3e81980/6a33c7a802aa63fd0a48a293/library/demo-restaurant-home-08.jpg",
+      },
     });
 
     this.addProp({
@@ -301,11 +297,6 @@ class Testimonials1Page extends Testimonials {
       },
     };
 
-    const background = this.castToObject<{ componentBackground: TypeMediaInputValue; overlayActive: boolean }>("background");
-    const bgMedia = background.componentBackground as TypeMediaInputValue;
-    const imageExist = bgMedia && bgMedia.url;
-    const overlayActive = background.overlayActive;
-
     const prevIcon = this.getPropValue("prevIcon") as TypeMediaInputValue;
     const prevIconExist = prevIcon && (prevIcon.type === "icon" ? prevIcon.name : prevIcon.url);
     const nextIcon = this.getPropValue("nextIcon") as TypeMediaInputValue;
@@ -313,15 +304,13 @@ class Testimonials1Page extends Testimonials {
     const sliderRef = this.getComponentState("slider-ref");
     const showArrows = !!sliderSettings.arrows && this.castToObject<Item[]>("items").length > 1;
 
+    const leftImage = this.getPropValue("leftImage") as TypeMediaInputValue;
+    const rightImage = this.getPropValue("rightImage") as TypeMediaInputValue;
+    const leftImageExist = leftImage && leftImage.url;
+    const rightImageExist = rightImage && rightImage.url;
+
     return (
-      <Base.Container className={`${this.decorateCSS("container")} ${imageExist ? this.decorateCSS("with-background") : ""}`}>
-        {imageExist && (
-          <Base.Media
-            value={bgMedia}
-            className={this.decorateCSS("component-background")}
-          />
-        )}
-        {overlayActive && imageExist && <div className={this.decorateCSS("overlay")} />}
+      <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("wrapper")}>
             <div className={this.decorateCSS("content-wrapper")}>
@@ -363,84 +352,96 @@ class Testimonials1Page extends Testimonials {
                   )}
                 </Base.VerticalContent>
               )}
-              <div className={this.decorateCSS("content")}>
-                <div className={this.decorateCSS("slider-container")}>
-                  {showArrows && prevIconExist && (
-                    <button
-                      className={this.decorateCSS("prev-arrow-btn")}
-                      onClick={() => sliderRef.current?.slickPrev()}
-                    >
-                      <Base.Media value={prevIcon} className={this.decorateCSS("arrow-icon")} />
-                    </button>
+              <div className={this.decorateCSS("slider-row")}>
+                <div className={this.decorateCSS("side-image-left")}>
+                  {leftImageExist && (
+                    <Base.Media value={leftImage} className={this.decorateCSS("side-img")} />
                   )}
+                </div>
+                <div className={this.decorateCSS("content")}>
+                  <div className={this.decorateCSS("slider-container")}>
+                    {showArrows && prevIconExist && (
+                      <button
+                        className={this.decorateCSS("prev-arrow-btn")}
+                        onClick={() => sliderRef.current?.slickPrev()}
+                      >
+                        <Base.Media value={prevIcon} className={this.decorateCSS("arrow-icon")} />
+                      </button>
+                    )}
 
-                  <ComposerSlider {...settings} ref={sliderRef} className={this.decorateCSS("slider")}>
-                    {this.castToObject<Item[]>("items").map((item: Item, index: number) => {
-                      const iconExist = item.icon && (item.icon.type === "icon" ? item.icon.name : item.icon.url);
+                    <ComposerSlider {...settings} ref={sliderRef} className={this.decorateCSS("slider")}>
+                      {this.castToObject<Item[]>("items").map((item: Item, index: number) => {
+                        const iconExist = item.icon && (item.icon.type === "icon" ? item.icon.name : item.icon.url);
+                        return (
+                          <div key={index} className={this.decorateCSS("items")}>
+                            {iconExist && (
+                              <Base.Media
+                                value={item.icon}
+                                className={`${this.decorateCSS("icon")} ${item.icon.type === "icon" ? this.decorateCSS("is-icon") : this.decorateCSS("is-image")} ${item.iconBackground ? this.decorateCSS("icon-bg") : ""}`}
+                              />
+                            )}
+                            {this.castToString(item.description) && (
+                              <div className={this.decorateCSS("description")}>{item.description}</div>
+                            )}
+                            {this.castToString(item.name) && (
+                              <div className={this.decorateCSS("name")}>{item.name}</div>
+                            )}
+                          </div>
+                        );
+                      })}
+                    </ComposerSlider>
+
+                    {showArrows && nextIconExist && (
+                      <button
+                        className={this.decorateCSS("next-arrow-btn")}
+                        onClick={() => sliderRef.current?.slickNext()}
+                      >
+                        <Base.Media value={nextIcon} className={this.decorateCSS("arrow-icon")} />
+                      </button>
+                    )}
+                  </div>
+                  <div className={this.decorateCSS("images")}>
+                    {this.castToObject<Item[]>("items").map((item: Item, itemIndex: number) => {
+                      const isActive = this.getComponentState("active_index") === itemIndex;
                       return (
-                        <div key={index} className={this.decorateCSS("items")}>
-                          {iconExist && (
+                        <div
+                          key={itemIndex}
+                          className={this.decorateCSS("image-container")}
+                          onClick={() => this.onImageClick(itemIndex)}
+                        >
+                          {item.profileImage && (
                             <Base.Media
-                              value={item.icon}
-                              className={`${this.decorateCSS("icon")} ${item.icon.type === "icon" ? this.decorateCSS("is-icon") : this.decorateCSS("is-image")} ${item.iconBackground ? this.decorateCSS("icon-bg") : ""}`}
+                              value={item.profileImage}
+                              className={`${this.decorateCSS("image")} ${isActive ? this.decorateCSS("active") : ""}`}
                             />
-                          )}
-                          {this.castToString(item.description) && (
-                            <div className={this.decorateCSS("description")}>{item.description}</div>
-                          )}
-                          {this.castToString(item.name) && (
-                            <div className={this.decorateCSS("name")}>{item.name}</div>
                           )}
                         </div>
                       );
                     })}
-                  </ComposerSlider>
+                  </div>
 
-                  {showArrows && nextIconExist && (
-                    <button
-                      className={this.decorateCSS("next-arrow-btn")}
-                      onClick={() => sliderRef.current?.slickNext()}
-                    >
-                      <Base.Media value={nextIcon} className={this.decorateCSS("arrow-icon")} />
-                    </button>
+                  {sliderSettings.dots && this.castToObject<Item[]>("items").length > 1 && (
+                    <div className={this.decorateCSS("navigation-dots")}>
+                      {this.castToObject<Item[]>("items").map((_: Item, index: number) => {
+                        const isActive = this.getComponentState("active_index") === index;
+                        return (
+                          <div
+                            key={index}
+                            className={`${this.decorateCSS("navigation-dot")} ${isActive ? this.decorateCSS("active") : ""}`}
+                            onClick={() => {
+                              sliderRef.current?.slickGoTo(index);
+                            }}
+                          />
+                        );
+                      })}
+                    </div>
                   )}
                 </div>
-                <div className={this.decorateCSS("images")}>
-                  {this.castToObject<Item[]>("items").map((item: Item, itemIndex: number) => {
-                    const isActive = this.getComponentState("active_index") === itemIndex;
-                    return (
-                      <div
-                        key={itemIndex}
-                        className={this.decorateCSS("image-container")}
-                        onClick={() => this.onImageClick(itemIndex)}
-                      >
-                        {item.profileImage && (
-                          <Base.Media
-                            value={item.profileImage}
-                            className={`${this.decorateCSS("image")} ${isActive ? this.decorateCSS("active") : ""}`}
-                          />
-                        )}
-                      </div>
-                    );
-                  })}
+                <div className={this.decorateCSS("side-image-right")}>
+                  {rightImageExist && (
+                    <Base.Media value={rightImage} className={this.decorateCSS("side-img")} />
+                  )}
                 </div>
-
-                {sliderSettings.dots && this.castToObject<Item[]>("items").length > 1 && (
-                  <div className={this.decorateCSS("navigation-dots")}>
-                    {this.castToObject<Item[]>("items").map((_: Item, index: number) => {
-                      const isActive = this.getComponentState("active_index") === index;
-                      return (
-                        <div
-                          key={index}
-                          className={`${this.decorateCSS("navigation-dot")} ${isActive ? this.decorateCSS("active") : ""}`}
-                          onClick={() => {
-                            sliderRef.current?.slickGoTo(index);
-                          }}
-                        />
-                      );
-                    })}
-                  </div>
-                )}
               </div>
             </div>
           </div>
