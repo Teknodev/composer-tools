@@ -1,4 +1,4 @@
-﻿import * as React from "react";
+import * as React from "react";
 import { BaseFeature } from "../../EditorComponent";
 import styles from "./feature38.module.scss";
 import { Base, TypeButton } from "../../../composer-base-components/base/base";
@@ -344,7 +344,7 @@ class Feature38 extends BaseFeature {
                             </div>
                         )}
                                         {card.sections.length > 0 && (
-                                            <div className={this.decorateCSS("sectionsWrapper")}>
+                                            <Base.VerticalContent className={this.decorateCSS("sectionsWrapper")}>
                                                 {card.sections.map((section: Section, sectionIndex: number) => {
                                                     const sectionTitle = section.title;
                                                     const sectionText = section.text;
@@ -359,7 +359,7 @@ class Feature38 extends BaseFeature {
                                                         </Base.P>
                                                     );
                                                 })}
-                                            </div>
+                                            </Base.VerticalContent>
                                         )}
                                         {(() => {
                                             const validButtons = card.buttons?.filter((btn) => this.castToString(btn.text)) || [];

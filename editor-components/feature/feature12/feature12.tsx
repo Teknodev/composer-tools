@@ -331,32 +331,34 @@ class Feature12 extends BaseFeature {
                     {firstItemOverlay && <div className={this.decorateCSS("background-overlay")} />}
                   </div>
                 )}
-                {firstCardTitleExist && (
-                  <Base.H5 className={this.decorateCSS("first-card-title")}>
-                    {firstItem.title}
-                  </Base.H5>
-                )}
-                {firstItemHasValidButtons && (
-                  <div className={this.decorateCSS("buttons-container")}>
-                    {firstItemButtons.map((item: Button, index: number) => {
-                      const buttonText = this.castToString(item.text);
-                      const iconExist = item.icon && (item.icon.type === "icon" ? item.icon.name : item.icon.url);
-                      if (!buttonText && !iconExist) return null;
-                      return (
-                        <ComposerLink key={index} path={item.url}>
-                          <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
-                            {buttonText && (
-                              <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>
-                            )}
-                            {iconExist && (
-                              <Base.Media className={this.decorateCSS("button-icon")} value={item.icon!} />
-                            )}
-                          </Base.Button>
-                        </ComposerLink>
-                      );
-                    })}
-                  </div>
-                )}
+                <Base.VerticalContent className={this.decorateCSS("card-first-content")}>
+                  {firstCardTitleExist && (
+                    <Base.H5 className={this.decorateCSS("first-card-title")}>
+                      {firstItem.title}
+                    </Base.H5>
+                  )}
+                  {firstItemHasValidButtons && (
+                    <div className={this.decorateCSS("buttons-container")}>
+                      {firstItemButtons.map((item: Button, index: number) => {
+                        const buttonText = this.castToString(item.text);
+                        const iconExist = item.icon && (item.icon.type === "icon" ? item.icon.name : item.icon.url);
+                        if (!buttonText && !iconExist) return null;
+                        return (
+                          <ComposerLink key={index} path={item.url}>
+                            <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
+                              {buttonText && (
+                                <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>
+                              )}
+                              {iconExist && (
+                                <Base.Media className={this.decorateCSS("button-icon")} value={item.icon!} />
+                              )}
+                            </Base.Button>
+                          </ComposerLink>
+                        );
+                      })}
+                    </div>
+                  )}
+                </Base.VerticalContent>
               </div>
             )}
 

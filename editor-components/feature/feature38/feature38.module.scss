@@ -1,4 +1,4 @@
-﻿@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
     .max-content {
@@ -145,10 +145,6 @@
             }
 
             .sectionsWrapper {
-                display: flex;
-                flex-direction: column;
-                gap: var(--composer-gap-sm);
-
                 .section {
                     text-align: left;
 

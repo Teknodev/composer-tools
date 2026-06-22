@@ -276,7 +276,7 @@ class Feature6 extends BaseFeature {
                             ${overlay && card.media ? this.decorateCSS("overlay") : ""}
                           `}
                         >
-                          <div className={this.decorateCSS("card-text-content")}>
+                          <Base.VerticalContent className={this.decorateCSS("card-text-content")}>
                             {subtitleExist && (
                               <Base.SectionSubTitle className={this.decorateCSS("card-subtitle")}>
                                 {card.subtitle}
@@ -301,7 +301,7 @@ class Feature6 extends BaseFeature {
                                 </ComposerLink>
                               </div>
                             )}
-                          </div>
+                          </Base.VerticalContent>
                         </div>
                       </div>
                     </div>

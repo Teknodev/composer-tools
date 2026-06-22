@@ -322,7 +322,7 @@ class Feature42 extends BaseFeature {
                     </div>
                   )}
                   {(cardTitleExist || text1Exist || text2Exist) && (
-                    <div className={`${this.decorateCSS("sectionsWrapper")} ${!item.media && this.decorateCSS("no-image")}`}>
+                    <Base.VerticalContent className={`${this.decorateCSS("sectionsWrapper")} ${!item.media && this.decorateCSS("no-image")}`}>
                       {cardSubTitleExist && (<Base.H4 className={this.decorateCSS("cardSubTitle")}>{item.cardSubTitle}</Base.H4>)}
                       {cardTitleExist && (<Base.H3 className={this.decorateCSS("cardTitle")}>{item.cardTitle}</Base.H3>)}
                       {text1Exist && (<Base.P className={this.decorateCSS("sectionText1")}>{item.text1}</Base.P>)}
@@ -334,7 +334,7 @@ class Feature42 extends BaseFeature {
                           </Base.Button>
                         </ComposerLink>
                       )}
-                    </div>
+                    </Base.VerticalContent>
                   )}
                   {enableLine && <div className={`${this.decorateCSS("line")} ${this.decorateCSS("line-bottom")}`}></div>}
                 </div>

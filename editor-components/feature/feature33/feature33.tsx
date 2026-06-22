@@ -1,4 +1,4 @@
-﻿import * as React from "react";
+import * as React from "react";
 import { BaseFeature, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./feature33.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
@@ -180,7 +180,7 @@ class Feature33 extends BaseFeature {
                                     className={this.decorateCSS("features-grid")}
                                 >
                                     {features.map((feature, index) => (
-                                        <div key={index} className={this.decorateCSS("feature-item")}>
+                                        <Base.VerticalContent key={index} className={this.decorateCSS("feature-item")}>
                                             {this.castToString(feature.title) && (
                                                 <Base.H5 className={this.decorateCSS("feature-title")}>
                                                     {feature.title}
@@ -191,7 +191,7 @@ class Feature33 extends BaseFeature {
                                                     {feature.text}
                                                 </Base.P>
                                             )}
-                                        </div>
+                                        </Base.VerticalContent>
                                     ))}
                                 </Base.ListGrid>
                             )}

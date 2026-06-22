@@ -387,34 +387,32 @@ class Feature14 extends BaseFeature {
                       </div>
                     )}
 
-                    <div className={this.decorateCSS("card-content")}>
-                      {subtitleExist && (
-                        <Base.H6 className={this.decorateCSS("card-subtitle")}>{item.subtitle}</Base.H6>
-                      )}
-                      {this.castToString(item.title) && (
-                        <Base.H5 className={this.decorateCSS("card-title")}>{item.title}</Base.H5>
-                      )}
-                      {this.castToString(item.description) && (
-                        <Base.P className={this.decorateCSS("card-description")}>{item.description}</Base.P>
-                      )}
-                      {hasValidCardButtons && (
-                        <div className={this.decorateCSS("card-button-container")}>
-                          {cardButtons.map((btn: Button, btnIndex: number) => {
-                            const btnText = this.castToString(btn.text);
-                            const btnIconExist = btn.icon && (btn.icon.type === "icon" ? btn.icon.name : btn.icon.url);
-                            if (!btnText && !btnIconExist) return null;
-                            return (
-                              <ComposerLink key={btnIndex} path={btn.url}>
-                                <Base.Button buttonType={btn.type} className={this.decorateCSS("card-button")}>
-                                  {btnText && <Base.P className={this.decorateCSS("card-button-text")}>{btn.text}</Base.P>}
-                                  {btnIconExist && <Base.Media className={this.decorateCSS("card-button-icon")} value={btn.icon!} />}
-                                </Base.Button>
-                              </ComposerLink>
-                            );
-                          })}
-                        </div>
-                      )}
-                    </div>
+                    {subtitleExist && (
+                      <Base.H6 className={this.decorateCSS("card-subtitle")}>{item.subtitle}</Base.H6>
+                    )}
+                    {this.castToString(item.title) && (
+                      <Base.H5 className={this.decorateCSS("card-title")}>{item.title}</Base.H5>
+                    )}
+                    {this.castToString(item.description) && (
+                      <Base.P className={this.decorateCSS("card-description")}>{item.description}</Base.P>
+                    )}
+                    {hasValidCardButtons && (
+                      <div className={this.decorateCSS("card-button-container")}>
+                        {cardButtons.map((btn: Button, btnIndex: number) => {
+                          const btnText = this.castToString(btn.text);
+                          const btnIconExist = btn.icon && (btn.icon.type === "icon" ? btn.icon.name : btn.icon.url);
+                          if (!btnText && !btnIconExist) return null;
+                          return (
+                            <ComposerLink key={btnIndex} path={btn.url}>
+                              <Base.Button buttonType={btn.type} className={this.decorateCSS("card-button")}>
+                                {btnText && <Base.P className={this.decorateCSS("card-button-text")}>{btn.text}</Base.P>}
+                                {btnIconExist && <Base.Media className={this.decorateCSS("card-button-icon")} value={btn.icon!} />}
+                              </Base.Button>
+                            </ComposerLink>
+                          );
+                        })}
+                      </div>
+                    )}
                   </Base.VerticalContent>
                 );
               })}

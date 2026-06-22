@@ -65,6 +65,8 @@
                     border: solid 1px rgba(var(--composer-font-color-primary-rgb), 0.2);
                     border-radius: var(--composer-border-radius-md);
                     padding: var(--composer-gap-lg);
+                    align-items: flex-start;
+
                     .icon-box {
                         width: fit-content;
                         display: flex;
@@ -97,33 +99,31 @@
                         box-shadow: var(--box-shadow-active);
                     }
 
-                    .card-content {
+                    .card-subtitle,
+                    .card-title {
+                        color: var(--composer-font-color-primary);
+                        text-align: left;
+                    }
+
+                    .card-description {
+                        color: var(--composer-tertiary-color);
+                        text-align: left;
+                    }
+
+                    .card-button-container {
                         display: flex;
-                        flex-direction: column;
+                        flex-wrap: wrap;
                         gap: var(--composer-gap-sm);
-                        .card-subtitle,
-                        .card-title {
-                            color: var(--composer-font-color-primary);
-                        }
+                        justify-content: flex-start;
 
-                        .card-description {
-                            color: var(--composer-tertiary-color);
-                        }
-
-                        .card-button-container {
+                        .card-button {
                             display: flex;
-                            flex-wrap: wrap;
                             gap: var(--composer-gap-sm);
+                            flex-wrap: wrap;
 
-                            .card-button {
-                                display: flex;
-                                gap: var(--composer-gap-sm);
-                                flex-wrap: wrap;
-
-                                .card-button-text,
-                                .card-button-icon {
-                                    content: "";
-                                }
+                            .card-button-text,
+                            .card-button-icon {
+                                content: "";
                             }
                         }
                     }

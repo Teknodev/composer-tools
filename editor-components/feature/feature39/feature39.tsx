@@ -436,18 +436,16 @@ class Feature39 extends BaseFeature {
 
                                 return (!cardSubtitleExist && !titleExist && !descExist && !card.icon) || (
                                     <div key={index} className={this.decorateCSS("card-wrapper")}>
-                                        {card.icon &&
-                                            <div className={`${this.decorateCSS("icon-box")} ${!enableIconBackground && this.decorateCSS("no-bg")}`}>
-                                                <Base.Media value={card.icon} className={`${this.decorateCSS("card-icon")} ${isImage && this.decorateCSS("is-image")}`} />
-                                            </div>
-                                        }
-                                        {(cardSubtitleExist || titleExist || descExist) &&
-                                            <Base.VerticalContent className={this.decorateCSS("card-content")}>
-                                                {cardSubtitleExist && <Base.H6 className={this.decorateCSS("card-subtitle")}>{card.subtitle}</Base.H6>}
-                                                {titleExist && <Base.H4 className={this.decorateCSS("card-title")}>{card.title}</Base.H4>}
-                                                {descExist && <Base.P className={this.decorateCSS("card-description")}>{card.description}</Base.P>}
-                                            </Base.VerticalContent>
-                                        }
+                                        <Base.VerticalContent className={this.decorateCSS("card-content")}>
+                                            {card.icon &&
+                                                <div className={`${this.decorateCSS("icon-box")} ${!enableIconBackground && this.decorateCSS("no-bg")}`}>
+                                                    <Base.Media value={card.icon} className={`${this.decorateCSS("card-icon")} ${isImage && this.decorateCSS("is-image")}`} />
+                                                </div>
+                                            }
+                                            {cardSubtitleExist && <Base.H6 className={this.decorateCSS("card-subtitle")}>{card.subtitle}</Base.H6>}
+                                            {titleExist && <Base.H4 className={this.decorateCSS("card-title")}>{card.title}</Base.H4>}
+                                            {descExist && <Base.P className={this.decorateCSS("card-description")}>{card.description}</Base.P>}
+                                        </Base.VerticalContent>
                                     </div>
                                 );
                             })}

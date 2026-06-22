@@ -253,31 +253,27 @@ class Feature29 extends BaseFeature {
                       "feature-card"
                     )} ${this.decorateCSS(alignment)}`}
                   >
-                    {media && (
-                      <div className={this.decorateCSS("icon-container")}>
-                        <Base.Media
-                          value={media}
-                          className={this.decorateCSS("icon")}
-                        />
-                      </div>
-                    )}
+                    <Base.VerticalContent className={this.decorateCSS("content")}>
+                      {media && (
+                        <div className={this.decorateCSS("icon-container")}>
+                          <Base.Media
+                            value={media}
+                            className={this.decorateCSS("icon")}
+                          />
+                        </div>
+                      )}
 
-                    {(titleExist || descriptionExist) && (
-                      <Base.VerticalContent
-                        className={this.decorateCSS("content")}
-                      >
-                        {titleExist && (
-                          <Base.H5 className={this.decorateCSS("title")}>
-                            {feature.title}
-                          </Base.H5>
-                        )}
-                        {descriptionExist && (
-                          <Base.P className={this.decorateCSS("description")}>
-                            {feature.description}
-                          </Base.P>
-                        )}
-                      </Base.VerticalContent>
-                    )}
+                      {titleExist && (
+                        <Base.H5 className={this.decorateCSS("title")}>
+                          {feature.title}
+                        </Base.H5>
+                      )}
+                      {descriptionExist && (
+                        <Base.P className={this.decorateCSS("description")}>
+                          {feature.description}
+                        </Base.P>
+                      )}
+                    </Base.VerticalContent>
                   </div>
                 );
               })}

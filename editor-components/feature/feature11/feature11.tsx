@@ -384,8 +384,8 @@ class Feature11 extends BaseFeature {
                       key={index}
                       className={this.decorateCSS("card-container")}
                     >
-                      {iconExist && <Base.Media value={card.icon} className={this.decorateCSS("card-icon")} />}
                       <Base.VerticalContent className={this.decorateCSS("card-content")}>
+                        {iconExist && <Base.Media value={card.icon} className={this.decorateCSS("card-icon")} />}
                         {subtitleExist && (
                           <Base.H6 className={this.decorateCSS("card-subtitle")}>
                             {card.subtitle}

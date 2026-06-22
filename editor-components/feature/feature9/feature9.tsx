@@ -1,4 +1,4 @@
-﻿import React from "react";
+import React from "react";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 import { BaseFeature, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./feature9.module.scss";
@@ -354,39 +354,35 @@ class Feature9 extends BaseFeature {
                       key={index}
                       className={this.decorateCSS("card")}
                     >
-                      <div className={this.decorateCSS("card-inner")}>
-                        {(card.icon || titleExist) &&
-                          <div className={this.decorateCSS("card-header")}>
-                            {card.icon &&
-                              <div className={this.decorateCSS("icon-container")}>
-                                <Base.Media
-                                  value={card.icon}
-                                  className={this.decorateCSS("icon")}
-                                />
-                              </div>
-                            }
-                            <div className={this.decorateCSS("card-title-container")}>
-                              {numExist &&
-                                <Base.H3 className={this.decorateCSS("card-number")}>
-                                  {card.num}
-                                </Base.H3>
-                              }
-                              {titleExist &&
-                                <Base.H3 className={this.decorateCSS("card-title")}>
-                                  {card.title}
-                                </Base.H3>
-                              }
-                            </div>
+                      <Base.VerticalContent className={this.decorateCSS("card-inner")}>
+                        {card.icon && (
+                          <div className={this.decorateCSS("icon-container")}>
+                            <Base.Media
+                              value={card.icon}
+                              className={this.decorateCSS("icon")}
+                            />
                           </div>
-                        }
-                        {descExist &&
-                          <div className={this.decorateCSS("description-container")}>
-                            <Base.H6 className={this.decorateCSS("description")}>
-                              {card.description}
-                            </Base.H6>
+                        )}
+                        {(numExist || titleExist) && (
+                          <div className={this.decorateCSS("card-title-container")}>
+                            {numExist && (
+                              <Base.H3 className={this.decorateCSS("card-number")}>
+                                {card.num}
+                              </Base.H3>
+                            )}
+                            {titleExist && (
+                              <Base.H3 className={this.decorateCSS("card-title")}>
+                                {card.title}
+                              </Base.H3>
+                            )}
                           </div>
-                        }
-                      </div>
+                        )}
+                        {descExist && (
+                          <Base.H6 className={this.decorateCSS("description")}>
+                            {card.description}
+                          </Base.H6>
+                        )}
+                      </Base.VerticalContent>
                     </div>
                   );
                 })}

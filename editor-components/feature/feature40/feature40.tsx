@@ -1,4 +1,4 @@
-﻿import * as React from "react";
+import * as React from "react";
 import { BaseFeature, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./feature40.module.scss";
 import { Base, TypeButton } from "../../../composer-base-components/base/base";
@@ -229,25 +229,23 @@ class Feature40 extends BaseFeature {
                                             key={index}
                                             className={`${this.decorateCSS("card-wrapper")} ${isLastInRow && this.decorateCSS("last-in-row")}`}
                                         >
-                                            {card.icon &&
-                                                <Base.Media value={card.icon} className={`${this.decorateCSS("card-icon")} ${isImage && this.decorateCSS("is-image")}`} />
-                                            }
-                                            {(cardSubtitleExist || titleExist || descExist) &&
-                                                <Base.VerticalContent className={this.decorateCSS("card-content")}>
-                                                    {cardSubtitleExist && <Base.H6 className={this.decorateCSS("card-subtitle")}>{card.subtitle}</Base.H6>}
-                                                    {titleExist && <Base.H4 className={this.decorateCSS("card-title")}>{card.title}</Base.H4>}
-                                                    {descExist && <Base.P className={this.decorateCSS("card-description")}>{card.description}</Base.P>}
-                                                    {buttonExist && (
-                                                            <ComposerLink path={card.button?.url || ""}>
-                                                                <Base.Button buttonType={card.button?.type || "Primary"} className={this.decorateCSS("card-button")}>
-                                                                    {buttonTitleExist && <Base.P className={this.decorateCSS("card-button-text")}>{card.button.text}</Base.P>}
-                                                                    {iconExist && <Base.Media value={card.button.icon} className={this.decorateCSS("card-button-icon")} />}
-                                                                </Base.Button>
-                                                            </ComposerLink>
-                                                        )
-                                                    }
-                                                </Base.VerticalContent>
-                                            }
+                                            <Base.VerticalContent className={this.decorateCSS("card-content")}>
+                                                {card.icon &&
+                                                    <Base.Media value={card.icon} className={`${this.decorateCSS("card-icon")} ${isImage && this.decorateCSS("is-image")}`} />
+                                                }
+                                                {cardSubtitleExist && <Base.H6 className={this.decorateCSS("card-subtitle")}>{card.subtitle}</Base.H6>}
+                                                {titleExist && <Base.H4 className={this.decorateCSS("card-title")}>{card.title}</Base.H4>}
+                                                {descExist && <Base.P className={this.decorateCSS("card-description")}>{card.description}</Base.P>}
+                                                {buttonExist && (
+                                                        <ComposerLink path={card.button?.url || ""}>
+                                                            <Base.Button buttonType={card.button?.type || "Primary"} className={this.decorateCSS("card-button")}>
+                                                                {buttonTitleExist && <Base.P className={this.decorateCSS("card-button-text")}>{card.button.text}</Base.P>}
+                                                                {iconExist && <Base.Media value={card.button.icon} className={this.decorateCSS("card-button-icon")} />}
+                                                            </Base.Button>
+                                                        </ComposerLink>
+                                                    )
+                                                }
+                                            </Base.VerticalContent>
                                         </div>
                                     );
                                 })}
