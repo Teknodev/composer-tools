@@ -130,8 +130,6 @@ class IntroSection8 extends BaseIntroSection {
                 })}
               </div>
             )}
-
-            <div className={this.decorateCSS("spacer")}></div>
           </div>
         </Base.MaxContent>
       </Base.Container>
