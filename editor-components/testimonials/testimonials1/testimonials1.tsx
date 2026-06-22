@@ -32,8 +32,8 @@ class Testimonials1Page extends Testimonials {
 
     this.addProp({
       type: "object",
-      key: "background",
-      displayer: "Background",
+      key: "backgroundMedia",
+      displayer: "Background Media",
       value: [
         {
           type: "media",
@@ -99,8 +99,8 @@ class Testimonials1Page extends Testimonials {
 
     this.addProp({
       type: "object",
-      key: "leftImage",
-      displayer: "Left Image",
+      key: "leftMedia",
+      displayer: "Left Media",
       value: [
         {
           type: "media",
@@ -123,8 +123,8 @@ class Testimonials1Page extends Testimonials {
 
     this.addProp({
       type: "object",
-      key: "rightImage",
-      displayer: "Right Image",
+      key: "rightMedia",
+      displayer: "Right Media",
       value: [
         {
           type: "media",
@@ -356,17 +356,17 @@ class Testimonials1Page extends Testimonials {
     const sliderRef = this.getComponentState("slider-ref");
     const showArrows = !!sliderSettings.arrows && this.castToObject<Item[]>("items").length > 1;
 
-    const bgData = this.castToObject<MediaWithOverlay>("background");
+    const bgData = this.castToObject<MediaWithOverlay>("backgroundMedia");
     const bgMedia = bgData?.media;
     const bgMediaExist = bgMedia && (bgMedia.type === "icon" ? bgMedia.name : bgMedia.url);
     const bgOverlay = bgData?.overlay;
 
-    const leftData = this.castToObject<MediaWithOverlay>("leftImage");
+    const leftData = this.castToObject<MediaWithOverlay>("leftMedia");
     const leftMedia = leftData?.media;
     const leftMediaExist = leftMedia && (leftMedia.type === "icon" ? leftMedia.name : leftMedia.url);
     const leftOverlay = leftData?.overlay;
 
-    const rightData = this.castToObject<MediaWithOverlay>("rightImage");
+    const rightData = this.castToObject<MediaWithOverlay>("rightMedia");
     const rightMedia = rightData?.media;
     const rightMediaExist = rightMedia && (rightMedia.type === "icon" ? rightMedia.name : rightMedia.url);
     const rightOverlay = rightData?.overlay;

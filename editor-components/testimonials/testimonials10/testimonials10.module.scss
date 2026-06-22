@@ -267,7 +267,7 @@
     color: var(--composer-font-color-secondary);
     position: absolute;
     z-index: 10;
-    right: calc(10px - max(70px, (100vw - var(--composer-content-width)) / 2));
+    right: calc(40px - max(70px, (100vw - var(--composer-content-width)) / 2));
     bottom: 0;
     line-height: 0.8;
     pointer-events: none;
