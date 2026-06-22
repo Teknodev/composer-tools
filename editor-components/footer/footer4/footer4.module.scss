@@ -24,6 +24,7 @@
   .max-content {
     .first-container {
       padding: 120px 60px 20px 60px !important;
+
       .first-max-content {
         .footer-page {
           display: flex;
@@ -94,7 +95,7 @@
                 margin: 0;
                 color: var(--composer-font-color-primary);
                 transition: all 0.3s ease;
-                
+
                 &[data-has-link="true"] {
                   cursor: pointer;
 
@@ -123,20 +124,7 @@
 
               .form {
                 display: flex;
-                flex-direction: column;
-                gap: var(--composer-gap-sm);
-                justify-content: flex-end;
-
-                .form-row {
-                  display: flex;
-                }
-
-                .error {
-                  color: var(--composer-danger-color);
-                  width: fit-content;
-                  text-align: left;
-                  margin: 0;
-                }
+                align-items: center;
 
                 .input-element {
                   position: relative;
@@ -170,19 +158,42 @@
                     opacity: 0.5;
                   }
 
+                  .error {
+                    position: absolute;
+                    bottom: calc(var(--composer-gap-sm) * -2.5);
+                    left: 0;
+                    color: var(--composer-danger-color);
+                    width: fit-content;
+                    text-align: left;
+                    margin: 0;
+                    font-size: 1rem;
+                  }
                 }
 
-                .button{
-                  margin-top: 0 !important;
-                  border-top-left-radius: 0;
-                  border-bottom-left-radius: 0;
-                  .button-text{
-                    content: "";
+                .buttons {
+                  display: flex;
+                  flex-wrap: wrap;
+
+                  .button-link {
+                    display: flex;
+                    align-items: stretch;
+                  }
+
+                  .button {
+                    margin-top: 0 !important;
+                    border-top-left-radius: 0;
+                    border-bottom-left-radius: 0;
+                    height: var(--composer-gap-xl);
+
+                    .button-text {
+                      content: "";
+                    }
                   }
                 }
               }
 
-              .title, .description {
+              .title,
+              .description {
                 text-align: left;
                 margin: 0;
                 color: var(--composer-font-color-primary);
@@ -238,7 +249,7 @@
           .link-element {
             .link-text {
               transition: all 0.3s ease;
-              
+
               &[data-has-link="true"] {
                 cursor: pointer;
 
@@ -261,7 +272,7 @@
         }
       }
     }
-    
+
     .line {
       height: 1px;
       width: 100%;
@@ -321,7 +332,7 @@
           .link-element {
             .link-text {
               transition: all 0.3s ease;
-              
+
               &[data-has-link="true"] {
                 cursor: pointer;
 
@@ -353,8 +364,17 @@
       .first-container {
         padding: 100px 50px 20px 50px !important;
       }
+
       .second-container {
         padding: 20px 50px 20px 50px !important;
+
+        .second-max-content {
+          .bottom {
+            .links {
+              flex-wrap: nowrap;
+            }
+          }
+        }
       }
     }
   }
@@ -365,22 +385,28 @@
     .max-content {
       .first-container {
         padding: 50px 30px 20px 30px !important;
+
         .first-max-content {
           .footer-page {
             .items {
               gap: var(--composer-gap-lg);
 
-              &.center{
+              &.center {
                 align-items: center !important;
 
-                .left, .list-group, .right{
+                .left,
+                .list-group,
+                .right {
                   align-items: center !important;
-                  .left-title, .title, .description{
+
+                  .left-title,
+                  .title,
+                  .description {
                     text-align: center !important;
                   }
                 }
               }
-              
+
 
               .left,
               .list-group,
@@ -397,12 +423,12 @@
 
         .second-max-content {
           .bottom {
-            .links {
-              justify-content: center;
+            flex-direction: column;
+            align-items: center;
 
-              &.center {
-                justify-content: center;
-              }
+            .links {
+              flex-wrap: wrap;
+              justify-content: center;
             }
           }
         }

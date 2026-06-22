@@ -469,7 +469,7 @@ class Footer10Page extends BaseFooter {
                   {logoExist && (
                     <ComposerLink path={logoUrl}>
                       <div className={this.decorateCSS("logo")}>
-                        <Base.Media value={logo} className={this.decorateCSS("image")} />
+                        <Base.Media value={logo} className={`${this.decorateCSS("image")} ${logo?.type === "icon" ? this.decorateCSS("is-icon") : ""}`} />
                       </div>
                     </ComposerLink>
                   )}

@@ -405,11 +405,9 @@ class Footer7Page extends BaseFooter {
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("footer-page")}>
             {logoExist && (
-             <ComposerLink path={logoUrl}>
-               <div className={this.decorateCSS("left")}>
-                <Base.Media value={logo} className={this.decorateCSS("image")} />
-              </div>
-             </ComposerLink>
+              <ComposerLink path={logoUrl} className={this.decorateCSS("left")}>
+                <Base.Media value={logo} className={`${this.decorateCSS("image")} ${logo?.type === "icon" ? this.decorateCSS("is-icon") : ""}`} />
+              </ComposerLink>
             )}
 
             {columnsExist && (

@@ -409,8 +409,14 @@ class Footer4Page extends BaseFooter {
           displayer: "Submit Text",
           value: "Form successfully submitted!",
         },
-        INPUTS.BUTTON("button", "Button", "Subscribe", null, null, null, "Black"),
       ],
+    });
+
+    this.addProp({
+      type: "array",
+      key: "buttons",
+      displayer: "Buttons",
+      value: [INPUTS.BUTTON("button", "Button", "Subscribe", "", null, null, "Black")],
     });
 
     this.addProp({
@@ -535,15 +541,15 @@ class Footer4Page extends BaseFooter {
     const textExist = this.castToString(this.getPropValue("text"));
 
     const formProps = this.castToObject<any>("form");
-    const button: INPUTS.CastedButton = formProps?.button;
+    const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
     const submitText = this.castToString(formProps?.submitText);
+    const placeHolderExist = this.castToString(formProps?.subscriptionPlaceholder);
 
     const leftExist = textExist || media.length > 0;
 
     const rightTitleExist = this.castToString(this.getPropValue("rightTitle"));
     const rightDescExist = this.castToString(this.getPropValue("rightDescription"));
-    const buttonTextExist = this.castToString(button?.text);
-    const placeHolderExist = this.castToString(formProps?.subscriptionPlaceholder);
+    const buttonTextExist = buttons.some((btn) => this.castToString(btn?.text));
 
     const rightExist = rightTitleExist || rightDescExist || (placeHolderExist && buttonTextExist);
 
@@ -596,7 +602,7 @@ class Footer4Page extends BaseFooter {
                       return (
                         footerExist && (
                           <div key={indexFooter} className={this.decorateCSS("list-group")}>
-                            {footerTitleExist && <Base.H5 className={this.decorateCSS("title")}>{item.footerTitle}</Base.H5>}
+                            {footerTitleExist && <Base.H6 className={this.decorateCSS("title")}>{item.footerTitle}</Base.H6>}
                             {item.footerText.map((v: FooterTextValues, indexFooterText: number) => {
                               const footerTextExist = this.castToString(v.navTitle);
                               return (
@@ -620,7 +626,7 @@ class Footer4Page extends BaseFooter {
 
                   {rightExist && (
                     <div className={this.decorateCSS("right")}>
-                      {rightTitleExist && <Base.H5 className={this.decorateCSS("title")}>{this.getPropValue("rightTitle")}</Base.H5>}
+                      {rightTitleExist && <Base.H6 className={this.decorateCSS("title")}>{this.getPropValue("rightTitle")}</Base.H6>}
                       <Formik
                         initialValues={{ email: "" }}
                         validationSchema={this.validationSchema}
@@ -639,29 +645,33 @@ class Footer4Page extends BaseFooter {
                       >
                         {({ handleSubmit, handleChange, values, errors, touched }) => (
                           <Form className={this.decorateCSS("form")} onSubmit={handleSubmit}>
-                            <div className={this.decorateCSS("form-row")}>
-                              {this.castToString(this.getPropValue("subscriptionPlaceholder")) && (
-                                <div className={this.decorateCSS("input-element")}>
-                                  <input
-                                    className={this.decorateCSS("input")}
-                                    type="text"
-                                    placeholder={this.getComponentState("placeholderText") || String(this.castToString(formProps?.subscriptionPlaceholder))}
-                                    name="email"
-                                    value={values.email}
-                                    onChange={handleChange}
-                                  />
-                                </div>
-                              )}
+                            {placeHolderExist && (
+                              <div className={this.decorateCSS("input-element")}>
+                                <input
+                                  className={this.decorateCSS("input")}
+                                  type="text"
+                                  placeholder={this.getComponentState("placeholderText") || placeHolderExist || ""}
+                                  name="email"
+                                  value={values.email}
+                                  onChange={handleChange}
+                                />
+                                {errors.email && touched.email && <div className={this.decorateCSS("error")}>{errors.email}</div>}
+                              </div>
+                            )}
 
-                              {placeHolderExist && buttonTextExist && (
-                                <Base.Button buttonType={button.type}
-                                  className={this.decorateCSS("button")}>
-                                  <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
-                                </Base.Button>
-                              )}
-                            </div>
-                            
-                            {errors.email && touched.email && <span className={this.decorateCSS("error")}>{errors.email}</span>}
+                            {placeHolderExist && buttonTextExist && (
+                              <div className={this.decorateCSS("buttons")}>
+                                {buttons.map((btn: INPUTS.CastedButton, btnIndex: number) =>
+                                  this.castToString(btn?.text) ? (
+                                    <ComposerLink key={btnIndex} path={btn.url} className={this.decorateCSS("button-link")}>
+                                      <Base.Button buttonType={btn.type} className={this.decorateCSS("button")}>
+                                        <Base.P className={this.decorateCSS("button-text")}>{btn.text}</Base.P>
+                                      </Base.Button>
+                                    </ComposerLink>
+                                  ) : null
+                                )}
+                              </div>
+                            )}
                           </Form>
                         )}
                       </Formik>

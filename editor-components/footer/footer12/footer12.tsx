@@ -491,7 +491,7 @@ class Footer12Page extends BaseFooter {
                   {(logo?.url || logo?.name) && (
                     <ComposerLink path={logoUrl}>
                       <div className={this.decorateCSS("logo")}>
-                        <Base.Media value={logo} className={this.decorateCSS("image")} />
+                        <Base.Media value={logo} className={`${this.decorateCSS("image")} ${logo?.type === "icon" ? this.decorateCSS("is-icon") : ""}`} />
                       </div>
                     </ComposerLink>
                   )}
@@ -506,7 +506,7 @@ class Footer12Page extends BaseFooter {
                   return (
                     footerExist && (
                       <div key={indexFooter} className={this.decorateCSS("list-group")}>
-                        {footerTitleExist && <Base.H5 className={this.decorateCSS("title")}>{item.footerTitle}</Base.H5>}
+                        {footerTitleExist && <Base.H6 className={this.decorateCSS("title")}>{item.footerTitle}</Base.H6>}
                         {item.footerText.map((item: FooterTextValues, indexFooterText: number) => {
                           const footerTextExist = this.castToString(item.navTitle);
                           return (
@@ -548,7 +548,7 @@ class Footer12Page extends BaseFooter {
                         item.media && (
                           <div className={this.decorateCSS("image-element")}>
                             <ComposerLink key={index} path={item.url}>
-                              <Base.Media value={item.media} className={this.decorateCSS("image")} />
+                              <Base.Media value={item.media} className={`${this.decorateCSS("image")} ${item.media?.type === "icon" ? this.decorateCSS("is-icon") : ""}`} />
                             </ComposerLink>
                           </div>
                         )

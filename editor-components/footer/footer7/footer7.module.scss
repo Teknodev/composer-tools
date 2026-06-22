@@ -18,7 +18,7 @@
       gap: var(--composer-gap-lg);
 
       .left {
-        flex: 0 0 200px;
+        flex: 1;
 
         .image {
            width: 200px;
@@ -26,9 +26,9 @@
            object-fit: cover;
 
            &.is-icon {
-             font-size: 2rem;
-             width: unset;
-             height: unset;
+             font-size: 40px;
+             width: 40px;
+             height: 40px;
              color: var(--composer-font-color-primary);
            }
         }
@@ -76,7 +76,7 @@
       .right {
         display: flex;
         flex-direction: column;
-        flex: 0 0 300px;
+        flex: 1;
         gap: var(--composer-gap-xs);
         align-items: flex-end;
 
@@ -150,6 +150,7 @@
           .text {
             text-align: end;
             color: var(--composer-tertiary-color);
+            white-space: nowrap;
 
             &.left {
               text-align: left;
@@ -185,7 +186,7 @@
         gap: var(--composer-gap-md);
 
         .left {
-          flex: 0 0 150px;
+          flex: 1;
           .image {
             width: 150px;
           }
@@ -196,7 +197,13 @@
         }
 
         .right {
-          flex: 0 0 250px;
+          flex: 1;
+
+          .bottom {
+            .text {
+              white-space: nowrap;
+            }
+          }
         }
       }
     }
@@ -259,10 +266,21 @@
 
             .text {
               text-align: left;
+              white-space: normal;
             }
           }
         }
       }
     }
+  }
+}
+
+.text {
+  white-space: nowrap !important;
+}
+
+@container (max-width: #{$composer-phone-width}) {
+  .text {
+    white-space: normal !important;
   }
 }

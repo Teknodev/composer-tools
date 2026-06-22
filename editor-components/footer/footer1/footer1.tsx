@@ -40,7 +40,7 @@ class Footer1Page extends BaseFooter {
       type: "string",
       key: "subtitle",
       displayer: "Subtitle",
-      value: "Subscribe to our newsletter",
+      value: "",
     });
 
     this.addProp({
@@ -77,7 +77,14 @@ class Footer1Page extends BaseFooter {
       ],
     });
 
-    this.addProp(INPUTS.BUTTON("button", "Button", "Subscribe", null, null, null, "Link"));
+    this.addProp({
+      type: "array",
+      key: "buttons",
+      displayer: "Buttons",
+      value: [
+        INPUTS.BUTTON("button", "Button", "Subscribe", "", null, null, "Link"),
+      ],
+    });
 
     this.addProp({
       type: "boolean",
@@ -458,15 +465,7 @@ class Footer1Page extends BaseFooter {
       ],
     });
 
-    this.addProp({
-      type: "multiSelect",
-      key: "hoverAnimation",
-      displayer: "Hover Animation Style",
-      value: ["animate1"],
-      additionalParams: {
-        selectItems: ["animate1", "animate2", "animate3", "animate4", "animate5"]
-      }
-    });
+
 
     this.setComponentState("placeholderText", "Type your e-mail");
   }
@@ -491,7 +490,7 @@ class Footer1Page extends BaseFooter {
     const descriptionExist = this.castToString(description);
 
     const formProps = this.castToObject<any>("form");
-    const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
+    const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
     const submitText = this.castToString(formProps?.submitText);
     const placeholderExist = this.castToString(formProps?.subscriptionPlaceholder);
 
@@ -560,10 +559,18 @@ class Footer1Page extends BaseFooter {
                               {errors.email && touched.email && <div className={this.decorateCSS("error")}>{errors.email}</div>}
                             </div>
                           )}
-                          {this.castToString(button?.text) && (
-                            <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
-                              <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
-                            </Base.Button>
+                          {buttons.some((btn) => this.castToString(btn?.text)) && (
+                            <div className={this.decorateCSS("buttons")}>
+                              {buttons.map((btn: INPUTS.CastedButton, btnIndex: number) =>
+                                this.castToString(btn?.text) ? (
+                                  <ComposerLink key={btnIndex} path={btn.url}>
+                                    <Base.Button buttonType={btn.type} className={this.decorateCSS("button")}>
+                                      <Base.P className={this.decorateCSS("button-text")}>{btn.text}</Base.P>
+                                    </Base.Button>
+                                  </ComposerLink>
+                                ) : null
+                              )}
+                            </div>
                           )}
                         </Form>
                       )}
@@ -586,10 +593,7 @@ class Footer1Page extends BaseFooter {
                       (item: IconsValues, indexSocial: number) =>
                         item.socialIcon && (
                           <ComposerLink key={indexSocial} path={item.socialLink}>
-                            <div
-                              className={this.decorateCSS("icon-wrapper")}
-                              data-animation={item.socialLink ? this.getPropValue("hoverAnimation").join(" ") : ""}
-                            >
+                            <div className={this.decorateCSS("icon-wrapper")}>
                               <Base.Media
                                 value={item.socialIcon}
                                 className={this.decorateCSS("icon")}
@@ -618,10 +622,7 @@ class Footer1Page extends BaseFooter {
                                 const textExist = this.castToString(item.text);
                                 return textExist ? (
                                   <ComposerLink key={itemIndex} path={item.pageLink}>
-                                    <Base.P
-                                      className={this.decorateCSS("text")}
-                                      data-animation={item.pageLink ? this.getPropValue("hoverAnimation").join(" ") : ""}
-                                    >
+                                    <Base.P className={this.decorateCSS("text")}>
                                       {item.text}
                                     </Base.P>
                                   </ComposerLink>

@@ -80,11 +80,17 @@
               }
             }
 
-            .button {
-              margin-top: 0;
+            .buttons {
+              display: flex;
+              flex-wrap: wrap;
+              gap: var(--composer-gap-sm);
 
-              .button-text {
-                content: "";
+              .button {
+                margin-top: 0;
+
+                .button-text {
+                  content: "";
+                }
               }
             }
           }
@@ -122,88 +128,13 @@
           .icon-wrapper {
             position: relative;
             transition: all 0.3s ease;
-            padding: var(--composer-gap-xs);
             border-radius: var(--composer-border-radius-sm);
-
-            &[data-animation~="animate1"] {
-              &:hover {
-                background-color: rgba(var(--composer-primary-color-rgb), 0.1);
-                transform: translateY(calc(var(--composer-gap-xs) * -1));
-
-                .icon {
-                  color: var(--composer-primary-color);
-                  transform: rotate(15deg);
-                }
-              }
-            }
-
-            &[data-animation~="animate2"] {
-              &:hover {
-                animation: bounce 0.5s ease infinite;
-
-                .icon {
-                  color: var(--composer-primary-color);
-                }
-              }
-            }
-
-            &[data-animation~="animate3"] {
-              overflow: hidden;
-
-              &::after {
-                content: '';
-                position: absolute;
-                top: -50%;
-                left: -50%;
-                width: 200%;
-                height: 200%;
-                background: linear-gradient(
-                  transparent,
-                  rgba(var(--composer-primary-color-rgb), 0.3),
-                  transparent
-                );
-                transform: rotate(45deg);
-                transition: all 0.3s ease;
-                opacity: 0;
-              }
-
-              &:hover {
-                .icon {
-                  color: var(--composer-primary-color);
-                }
-
-                &::after {
-                  opacity: 1;
-                  transform: rotate(45deg) translateY(100%);
-                }
-              }
-            }
-
-            &[data-animation~="animate4"] {
-              &:hover {
-                transform: scale(1.2);
-
-                .icon {
-                  color: var(--composer-primary-color);
-                  filter: drop-shadow(0 0 var(--composer-gap-xs) var(--composer-primary-color));
-                }
-              }
-            }
-
-            &[data-animation~="animate5"] {
-              &:hover {
-                animation: shake 0.5s ease;
-
-                .icon {
-                  color: var(--composer-primary-color);
-                }
-              }
-            }
           }
 
           .icon {
-            width: var(--composer-gap-md);
-            height: var(--composer-gap-md);
+            width: 20px;
+            height: 20px;
+            font-size: 20px;
             color: var(--composer-tertiary-color);
             transition: all 0.3s ease;
           }
@@ -296,28 +227,3 @@
   }
 }
 
-@keyframes bounce {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-
-  50% {
-    transform: translateY(calc(var(--composer-gap-xs) * -1));
-  }
-}
-
-@keyframes shake {
-  0%,
-  100% {
-    transform: rotate(0deg);
-  }
-
-  25% {
-    transform: rotate(-10deg);
-  }
-
-  75% {
-    transform: rotate(10deg);
-  }
-}

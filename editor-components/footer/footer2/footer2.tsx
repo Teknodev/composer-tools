@@ -237,6 +237,7 @@ class Footer2Page extends BaseFooter {
 
     const columns = this.castToObject<Column[]>("columns");
     const footerDescExist = this.castToString(this.getPropValue("footerDescription"));
+    const alignmentValue = Base.getContentAlignment();
 
     const position = this.getPropValue("position");
 
@@ -271,8 +272,8 @@ class Footer2Page extends BaseFooter {
                   const hasItems = menuItems.some((item: MenuItem) => this.castToString(item.text));
                   if (!categoryTitleExist && !hasItems) return null;
                   return (
-                    <div key={colIndex} className={this.decorateCSS("list")}>
-                      {categoryTitleExist && <Base.H5 className={this.decorateCSS("title")}>{column.categoryTitle}</Base.H5>}
+                    <div key={colIndex} className={`${this.decorateCSS("list")} ${alignmentValue === "center" ? this.decorateCSS("center-alignment") : ""}`}>
+                      {categoryTitleExist && <Base.H6 className={this.decorateCSS("title")}>{column.categoryTitle}</Base.H6>}
                       {menuItems.length > 0 && (
                         <Base.VerticalContent className={this.decorateCSS("text-items")}>
                           {menuItems.map((item: MenuItem, itemIndex: number) => {

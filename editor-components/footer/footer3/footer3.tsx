@@ -787,7 +787,10 @@ class Footer3Page extends BaseFooter {
                         {(logo?.url || logo?.name) && (
                           <ComposerLink path={logoUrl}>
                             <div className={this.decorateCSS("logo")}>
-                              <Base.Media value={logo} className={this.decorateCSS("image")} />
+                              <Base.Media
+                                value={logo}
+                                className={`${this.decorateCSS("image")} ${logo?.type === "icon" ? this.decorateCSS("is-icon") : ""}`}
+                              />
                             </div>
                           </ComposerLink>
                         )}
@@ -828,7 +831,7 @@ class Footer3Page extends BaseFooter {
                         return (
                           listExist && (
                             <div key={indexColumn} className={`${this.decorateCSS("list-group")} ${alignment === "center" ? this.decorateCSS("center-alignment") : ""}`}>
-                              {categoryTitleExist && <Base.H5 className={this.decorateCSS("title")}>{item.categoryTitle}</Base.H5>}
+                              {categoryTitleExist && <Base.H6 className={this.decorateCSS("title")}>{item.categoryTitle}</Base.H6>}
                               {menuItems.length > 0 && (
                                 <Base.VerticalContent className={this.decorateCSS("text-container")}>
                                   {menuItems.map((v: MenuItem, indexMenuItem: number) => {

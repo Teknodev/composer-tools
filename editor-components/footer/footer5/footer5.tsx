@@ -436,42 +436,49 @@ class Footer5Page extends BaseFooter {
                 </div>
               )}
 
-              {footer.length > 0 && (
-                <div className={this.decorateCSS("footer-columns")}>
-                  {footer.map((item: FooterValues, indexFooter: number) => {
-                    const footerTitleExist = this.castToString(item.footerTitle);
-                    const footerTextExist = item.footerText.length > 0;
-                    const listExist = footerTitleExist || footerTextExist;
-                    return (
-                      listExist && (
-                        <div key={indexFooter} className={this.decorateCSS("list-group")}>
-                          {footerTitleExist && <Base.P className={this.decorateCSS("column-title")}>{item.footerTitle}</Base.P>}
-                          {item.footerText.length > 0 && (
-                            <Base.VerticalContent className={this.decorateCSS("text-container")}>
-                              {item.footerText.map((v: FooterTextValues, indexFooterText: number) => {
-                                const textExist = this.castToString(v.navTitle);
-                                return (
-                                  textExist && (
-                                    <ComposerLink key={indexFooterText} path={v.navNavigateTo}>
-                                      <Base.P
-                                        className={this.decorateCSS("footer-text")}
-                                        data-animation={v.navNavigateTo ? this.getPropValue("hoverAnimation").join(" ") : ""}
-                                        data-has-link={Boolean(v.navNavigateTo)}
-                                      >
-                                        {v.navTitle}
-                                      </Base.P>
-                                    </ComposerLink>
-                                  )
-                                );
-                              })}
-                            </Base.VerticalContent>
-                          )}
-                        </div>
-                      )
-                    );
-                  })}
-                </div>
-              )}
+              {(() => {
+                const columnsExist = footer.some((item: FooterValues) => {
+                  const footerTitleExist = this.castToString(item.footerTitle);
+                  const footerTextExist = item.footerText.some((v: FooterTextValues) => this.castToString(v.navTitle));
+                  return !!(footerTitleExist || footerTextExist);
+                });
+                return columnsExist && (
+                  <div className={this.decorateCSS("footer-columns")}>
+                    {footer.map((item: FooterValues, indexFooter: number) => {
+                      const footerTitleExist = this.castToString(item.footerTitle);
+                      const footerTextExist = item.footerText.some((v: FooterTextValues) => this.castToString(v.navTitle));
+                      const listExist = footerTitleExist || footerTextExist;
+                      return (
+                        listExist && (
+                          <div key={indexFooter} className={this.decorateCSS("list-group")}>
+                            {footerTitleExist && <Base.P className={this.decorateCSS("column-title")}>{item.footerTitle}</Base.P>}
+                            {footerTextExist && (
+                              <Base.VerticalContent className={this.decorateCSS("text-container")}>
+                                {item.footerText.map((v: FooterTextValues, indexFooterText: number) => {
+                                  const textExist = this.castToString(v.navTitle);
+                                  return (
+                                    textExist && (
+                                      <ComposerLink key={indexFooterText} path={v.navNavigateTo}>
+                                        <Base.P
+                                          className={this.decorateCSS("footer-text")}
+                                          data-animation={v.navNavigateTo ? this.getPropValue("hoverAnimation").join(" ") : ""}
+                                          data-has-link={Boolean(v.navNavigateTo)}
+                                        >
+                                          {v.navTitle}
+                                        </Base.P>
+                                      </ComposerLink>
+                                    )
+                                  );
+                                })}
+                              </Base.VerticalContent>
+                            )}
+                          </div>
+                        )
+                      );
+                    })}
+                  </div>
+                );
+              })()}
             </Base.MaxContent>
           </Base.Container>
         )}

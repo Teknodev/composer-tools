@@ -45,10 +45,10 @@
 
           .title {
             color: var(--composer-font-color-primary);
+            text-align: left !important; 
           }
 
           .text-items {
-            gap: var(--composer-gap-sm);
 
             .text-last {
               margin-top: var(--composer-gap-md);
@@ -59,6 +59,7 @@
             color: var(--composer-font-color-primary);
             transition: all 0.3s ease;
             width: fit-content;
+            text-align: left !important;
 
             &[data-has-link="true"] {
               cursor: pointer;
@@ -77,6 +78,18 @@
                 text-decoration: underline;
                 color: var(--composer-primary-color);
               }
+            }
+          }
+
+          &.center-alignment {
+            align-items: center !important;
+
+            .title {
+              text-align: center !important;
+            }
+
+            .text {
+              text-align: center !important;
             }
           }
         }

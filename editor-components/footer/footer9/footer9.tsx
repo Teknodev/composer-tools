@@ -464,7 +464,7 @@ class Footer9Page extends BaseFooter {
           <div className={this.decorateCSS("header")}>
             {(logo?.url || logo?.name) &&
             <ComposerLink path={logoUrl}>
-              <Base.Media value={logo} className={this.decorateCSS("logo")} />
+              <Base.Media value={logo} className={`${this.decorateCSS("logo")} ${logo?.type === "icon" ? this.decorateCSS("is-icon") : ""}`} />
             </ComposerLink>
             }
             <Base.VerticalContent className={this.decorateCSS("content")}>
@@ -532,7 +532,10 @@ class Footer9Page extends BaseFooter {
                       className={this.decorateCSS("icon-element")}
                       data-animation={item.page ? this.getPropValue("hoverAnimation").join(" ") : ""}
                     >
-                      <Base.Media value={item.icon} className={this.decorateCSS("icon")} />
+                      <Base.Media
+                        value={item.icon}
+                        className={`${this.decorateCSS("icon")} ${item.icon?.type === "icon" ? this.decorateCSS("is-icon") : ""}`}
+                      />
                       <Base.P className={this.decorateCSS("icon-text")}>{item.title}</Base.P>
                     </div>
                   </ComposerLink>

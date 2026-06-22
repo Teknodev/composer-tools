@@ -46,9 +46,9 @@
              object-fit: cover;
 
              &.is-icon {
-               font-size: 2rem;
-               width: unset;
-               height: unset;
+               font-size: 40px;
+               width: 40px;
+               height: 40px;
                color: var(--composer-font-color-primary);
              }
           }
@@ -218,9 +218,9 @@
               border-radius: var(--composer-border-radius-sm);
 
               &.is-icon {
-                font-size: 1.5rem;
-                width: unset;
-                height: unset;
+                font-size: 30px;
+                width: 30px;
+                height: 30px;
                 color: var(--composer-font-color-primary);
               }
             }

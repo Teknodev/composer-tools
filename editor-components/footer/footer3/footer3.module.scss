@@ -66,9 +66,9 @@
                   object-fit: cover;
 
                   &.is-icon {
-                    font-size: 2rem;
-                    width: unset;
-                    height: unset;
+                    font-size: 40px;
+                    width: 40px;
+                    height: 40px;
                     color: var(--composer-font-color-primary);
                   }
                 }
