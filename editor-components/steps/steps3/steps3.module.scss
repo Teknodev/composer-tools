@@ -14,7 +14,42 @@
 
       &.has-background {
         padding: var(--composer-gap-xl) var(--composer-gap-xl);
-        background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+        background-color: var(--composer-primary-color);
+
+        .header {
+          .subtitle {
+            width: fit-content;
+            transform: none;
+            padding: 0;
+            background: transparent;
+
+            &::before {
+              display: none;
+            }
+          }
+
+          .title,
+          .description {
+            color: var(--composer-font-color-secondary);
+          }
+        }
+
+        .cards-container {
+          .card {
+            .step-number-watermark {
+              color: var(--composer-font-color-secondary);
+            }
+
+            .card-content {
+
+              .card-subtitle,
+              .card-title,
+              .card-description {
+                color: var(--composer-font-color-secondary);
+              }
+            }
+          }
+        }
       }
 
       .header {
@@ -77,6 +112,7 @@
               justify-content: flex-start;
               gap: var(--composer-gap-sm);
               flex-wrap: wrap;
+
               .card-button {
                 .card-button-text {
                   content: "";
@@ -109,8 +145,8 @@
         .cards-container {
           .card {
             .step-number-watermark {
-              font-size: 10rem;
-              top: -0.5rem;
+              font-size: 7.5rem;
+              top: -1rem;
             }
           }
         }
@@ -125,7 +161,7 @@
       .steps-box {
         padding: var(--composer-gap-lg) var(--composer-gap-md);
         gap: var(--composer-gap-lg);
-       
+
 
         .cards-container {
           gap: var(--composer-gap-lg);
@@ -136,12 +172,15 @@
             .step-number-watermark {
               position: absolute;
               left: 0;
+              right: 0;
               top: -1rem;
-              font-size: 8rem;
+              font-size: 7rem;
               line-height: 0.8;
+              text-align: var(--composer-content-alignment);
             }
 
             .card-content {
+
               .card-title,
               .card-description {
                 text-align: var(--composer-content-alignment);

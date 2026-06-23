@@ -21,7 +21,7 @@ class Steps3 extends BaseSteps {
       type: "boolean",
       key: "enable_card",
       displayer: "Colored Background",
-      value: false,
+      value: true,
     });
 
     this.addProp({
@@ -263,14 +263,14 @@ class Steps3 extends BaseSteps {
                       )}
                       <Base.VerticalContent className={this.decorateCSS("card-content")}>
                         {cardSubtitleExist && (
-                          <Base.H4 className={this.decorateCSS("card-subtitle")}>
+                          <Base.H6 className={this.decorateCSS("card-subtitle")}>
                             {card.subtitle}
-                          </Base.H4>
+                          </Base.H6>
                         )}
                         {cardTitleExist && (
-                          <Base.H3 className={this.decorateCSS("card-title")}>
+                          <Base.H5 className={this.decorateCSS("card-title")}>
                             {card.title}
-                          </Base.H3>
+                          </Base.H5>
                         )}
                         {cardDescriptionExist && (
                           <Base.P className={this.decorateCSS("card-description")}>
