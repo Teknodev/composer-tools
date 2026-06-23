@@ -1,0 +1,186 @@
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+
+.container {
+    .max-content {
+        display: flex;
+        flex-direction: column;
+        gap: var(--composer-gap-lg);
+
+        .top-card {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            background: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+            border-radius: var(--composer-border-radius-md);
+            padding: var(--composer-gap-lg);
+            gap: var(--composer-gap-lg);
+
+            .top-card-left {
+                flex: 1;
+
+                .subtitle {
+                    text-align: left;
+                    margin-left: 0;
+                }
+
+                .title {
+                    text-align: left;
+                }
+
+                .description {
+                    text-align: left;
+                }
+            }
+
+            .top-card-right {
+                display: flex;
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: var(--composer-gap-sm);
+                flex: 0 0 30%;
+                min-width: 220px;
+                margin: 0 auto;
+
+                .button {
+                    .button-text {
+                        content: "";
+                    }
+                }
+            }
+        }
+
+        .bottom-card {
+            display: flex;
+            flex-direction: row;
+            gap: var(--composer-gap-lg);
+
+            .bottom-card-header {
+                flex: 0 0 auto;
+                max-width: 400px;
+
+                &.full-width {
+                    max-width: 100%;
+                    flex: 1;
+                }
+
+                .card-subtitle {
+                    text-align: left;
+                    color: var(--composer-primary-color);
+                }
+
+                .card-title {
+                    text-align: left;
+                    color: var(--composer-font-color-primary);
+                }
+
+                .card-description {
+                    text-align: left;
+                    color: var(--composer-tertiary-color);
+                }
+            }
+
+            .features-section {
+                flex: 1;
+
+                .features-grid {
+                    width: 100%;
+                    column-gap: var(--composer-gap-xl);
+                    row-gap: 0;
+
+                    .feature-item {
+                        display: flex;
+                        align-items: center;
+                        gap: var(--composer-gap-sm);
+                        padding: var(--composer-gap-md);
+
+                        .feature-icon {
+                            color: var(--composer-primary-color);
+                            width: var(--composer-gap-md);
+                            height: var(--composer-gap-md);
+                            font-size: 1.25rem;
+                            object-fit: cover;
+                            flex-shrink: 0;
+                        }
+
+                        .feature-text {
+                            margin: 0;
+                            color: var(--composer-font-color-primary);
+                            text-align: left;
+                        }
+                    }
+
+                    .feature-item-line {
+                        border-bottom: 1px solid color-mix(in srgb, var(--composer-font-color-primary) 10%, transparent);
+                    }
+                }
+            }
+        }
+    }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+    .container {
+        .max-content {
+            .top-card {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 30px;
+
+                .top-card-left {
+                    .subtitle {
+                        text-align: var(--composer-content-alignment);
+                        margin-left: 0;
+                        margin-right: 0;
+                    }
+
+                    .title {
+                        text-align: var(--composer-content-alignment);
+                    }
+
+                    .description {
+                        text-align: var(--composer-content-alignment);
+                    }
+                }
+
+                .top-card-right {
+                    justify-content: var(--composer-content-alignment);
+                    width: 100%;
+
+                    .button {
+                        width: 100%;
+                    }
+                }
+            }
+
+            .bottom-card {
+                flex-direction: column;
+
+                .bottom-card-header {
+                    max-width: 100%;
+
+                    .card-subtitle {
+                        text-align: var(--composer-content-alignment);
+                    }
+
+                    .card-title {
+                        text-align: var(--composer-content-alignment);
+                    }
+
+                    .card-description {
+                        text-align: var(--composer-content-alignment);
+                    }
+                }
+
+                .features-section {
+                    .features-grid {
+                        .feature-item {
+                            padding: var(--composer-gap-md) 0;
+                        }
+
+                    }
+                }
+            }
+        }
+    }
+}
