@@ -9,20 +9,11 @@
     .header {
       display: flex;
       flex-direction: column;
-      align-items: center;
 
-      .subtitle {
-        text-align: center;
-        transform: none;
-
-        &::before {
-          display: none;
-        }
-      }
-
+      .subtitle,
       .title,
       .description {
-        text-align: center;
+        content: "";
       }
     }
 
