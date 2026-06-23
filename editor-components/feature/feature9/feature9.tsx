@@ -366,14 +366,14 @@ class Feature9 extends BaseFeature {
                         {(numExist || titleExist) && (
                           <div className={this.decorateCSS("card-title-container")}>
                             {numExist && (
-                              <Base.H3 className={this.decorateCSS("card-number")}>
+                              <Base.H5 className={this.decorateCSS("card-number")}>
                                 {card.num}
-                              </Base.H3>
+                              </Base.H5>
                             )}
                             {titleExist && (
-                              <Base.H3 className={this.decorateCSS("card-title")}>
+                              <Base.H5 className={this.decorateCSS("card-title")}>
                                 {card.title}
-                              </Base.H3>
+                              </Base.H5>
                             )}
                           </div>
                         )}

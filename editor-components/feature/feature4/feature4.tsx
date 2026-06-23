@@ -515,9 +515,9 @@ class Feature4 extends BaseFeature {
                       )}
                       {
                         titleExist && (
-                          <Base.H4 className={`${this.decorateCSS("title")} ${hasBg && this.decorateCSS("title-with-bg")}`}>
+                          <Base.H5 className={`${this.decorateCSS("title")} ${hasBg && this.decorateCSS("title-with-bg")}`}>
                             {card.title}
-                          </Base.H4>
+                          </Base.H5>
                         )
                       }
                       {

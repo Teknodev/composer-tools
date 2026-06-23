@@ -681,7 +681,7 @@ class Feature13 extends BaseFeature {
                                 key={index}
                                 className={this.decorateCSS("tabs-list-item")}
                               >
-                                <Base.H5
+                                <Base.H6
                                   onClick={() => {
                                     this.switchTab(index);
                                   }}
@@ -691,7 +691,7 @@ class Feature13 extends BaseFeature {
                                     }`}
                                 >
                                   {item.title}
-                                </Base.H5>
+                                </Base.H6>
                               </div>
                             );
                           })}
