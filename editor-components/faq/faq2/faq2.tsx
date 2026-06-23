@@ -14,7 +14,7 @@ type Card = {
 type BottomItem = {
   title: React.JSX.Element;
   description: React.JSX.Element;
-  buttons: any[];
+  buttons: INPUTS.CastedButton[];
 }
 
 class Faq2 extends BaseFAQ {
@@ -343,15 +343,6 @@ class Faq2 extends BaseFAQ {
     const description = this.castToString(this.getPropValue("description"))
     const hasContent = subtitle || title || description
     const downContainer = this.castToObject<BottomItem>("downContainer");
-
-    const downContainerButtons = (downContainer.buttons || []).map((button: any) => {
-      const isRawProp = Array.isArray(button.value);
-      return {
-        text: isRawProp ? this.getPropValue("text", { parent_object: button.value }) : button.text,
-        type: isRawProp ? this.getPropValue("type", { parent_object: button.value }) : button.type,
-        url: isRawProp ? this.getPropValue("url", { parent_object: button.value }) : button.url
-      }
-    });
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
@@ -416,7 +407,7 @@ class Faq2 extends BaseFAQ {
               )}
             </Base.ListGrid>
           )}
-          {(this.castToString(downContainer.title) || this.castToString(downContainer.description) || downContainerButtons.length > 0) && (
+          {(this.castToString(downContainer.title) || this.castToString(downContainer.description) || downContainer.buttons?.length > 0) && (
             <div className={this.decorateCSS("down-container")}>
               {(this.castToString(downContainer.title) || this.castToString(downContainer.description)) && (
                 <Base.VerticalContent className={this.decorateCSS("content")}>
@@ -432,9 +423,9 @@ class Faq2 extends BaseFAQ {
                   )}
                 </Base.VerticalContent>
               )}
-              {downContainerButtons.length > 0 && (
+              {downContainer.buttons?.length > 0 && (
                 <div className={this.decorateCSS("button-container")}>
-                  {downContainerButtons.map((button: any, index: number) => (
+                  {downContainer.buttons.map((button: INPUTS.CastedButton, index: number) => (
                     this.castToString(button.text) && (
                       <ComposerLink key={index} path={button.url}>
                         <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>

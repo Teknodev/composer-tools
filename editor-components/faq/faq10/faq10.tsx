@@ -423,20 +423,20 @@ class Faq10 extends BaseFAQ {
                             isOpen ? this.decorateCSS("iconOpen") : "",
                           ].join(" ")}
                         >
-                          {iconExist &&
-                            <Base.Icon
-                              name={
-                                isOpen
+                          {iconExist && (
+                            <Base.Media
+                              value={{
+                                type: "icon",
+                                name: isOpen
                                   ? this.getPropValue("icon")
                                   : this.getPropValue("iconPlus")
-                              }
-                              propsIcon={{
-                                className: [
-                                  this.decorateCSS("icon"),
-                                  isOpen ? this.decorateCSS("iconOpen") : "",
-                                ].join(" "),
                               }}
-                            />}
+                              className={[
+                                this.decorateCSS("icon"),
+                                isOpen ? this.decorateCSS("iconOpen") : "",
+                              ].join(" ")}
+                            />
+                          )}
                         </span>
                       </div>
                       {hasText && (

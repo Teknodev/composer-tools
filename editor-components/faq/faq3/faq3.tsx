@@ -311,19 +311,19 @@ class Faq3 extends BaseFAQ {
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           {hasContent && (
             <Base.VerticalContent className={this.decorateCSS("header")}>
-              {subtitle && (
+              {this.getPropValue("subtitle") && (
                 <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
-                  {subtitle}
+                  {this.getPropValue("subtitle")}
                 </Base.SectionSubTitle>
               )}
-              {title && (
+              {this.getPropValue("title") && (
                 <Base.SectionTitle className={this.decorateCSS("title")}>
-                  {title}
+                  {this.getPropValue("title")}
                 </Base.SectionTitle>
               )}
-              {description && (
+              {this.getPropValue("description") && (
                 <Base.SectionDescription className={this.decorateCSS("description")}>
-                  {description}
+                  {this.getPropValue("description")}
                 </Base.SectionDescription>
               )}
               {buttons.length > 0 && (
