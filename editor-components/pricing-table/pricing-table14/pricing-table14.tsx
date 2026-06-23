@@ -466,9 +466,9 @@ class PricingTable14 extends BasePricingTable {
                         {(cardSubtitleExist || cardTitleExist || cardDescriptionExist) && (
                           <Base.VerticalContent className={this.decorateCSS("card-header")}>
                             {cardSubtitleExist && (
-                              <Base.H5 className={this.decorateCSS("card-subtitle")}>
+                              <Base.H6 className={this.decorateCSS("card-subtitle")}>
                                 {card.cardSubtitle}
-                              </Base.H5>
+                              </Base.H6>
                             )}
                             {cardTitleExist && (
                               <Base.H4 className={this.decorateCSS("card-title")}>
