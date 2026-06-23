@@ -95,14 +95,14 @@ class Footer1Page extends BaseFooter {
 
     this.addProp({
       type: "string",
-      key: "copyright",
-      displayer: "Copyright",
+      key: "footerText",
+      displayer: "Footer Text",
       value: "Copyright © Blinkpage. All rights reserved.",
     });
 
     this.addProp({
       type: "array",
-      key: "social",
+      key: "socials",
       displayer: "Social Media Items",
       value: [
         {
@@ -235,7 +235,7 @@ class Footer1Page extends BaseFooter {
 
     this.addProp({
       type: "array",
-      key: "columns",
+      key: "footer",
       displayer: "Footer",
       value: [
         {
@@ -499,18 +499,18 @@ class Footer1Page extends BaseFooter {
     const line = this.getPropValue("line");
     const alignmentValue = Base.getContentAlignment();
 
-    const columns = this.castToObject<Column[]>("columns");
-    const social = this.castToObject<IconsValues[]>("social");
-    const copyright = this.getPropValue("copyright");
-    const copyrightExist = this.castToString(copyright);
+    const footerData = this.castToObject<Column[]>("footer");
+    const socials = this.castToObject<IconsValues[]>("socials");
+    const footerText = this.getPropValue("footerText");
+    const footerTextExist = this.castToString(footerText);
 
-    const columnsExist = columns.some((column: Column) => {
+    const columnsExist = footerData.some((column: Column) => {
       const menuItems: MenuItem[] = column.menuItems || [];
       const categoryTitleExist = this.castToString(column.categoryTitle);
       const hasItems = menuItems.some((item: MenuItem) => this.castToString(item.text));
       return !!(categoryTitleExist || hasItems);
     });
-    const footerBottomExist = social.length > 0 || copyrightExist || columnsExist;
+    const footerBottomExist = socials.length > 0 || footerTextExist || columnsExist;
     const position = this.getPropValue("position");
 
     return (
@@ -582,14 +582,14 @@ class Footer1Page extends BaseFooter {
             {line && <div className={this.decorateCSS("line")} />}
             {footerBottomExist && (
               <div className={`${this.decorateCSS("footer-bottom")} ${alignmentValue === "center" ? this.decorateCSS("center-alignment") : ""}`}>
-                {copyrightExist && (
+                {footerTextExist && (
                   <div className={this.decorateCSS("copyright-container")}>
-                    <Base.P className={this.decorateCSS("copyright-text")}>{this.getPropValue("copyright")}</Base.P>
+                    <Base.P className={this.decorateCSS("copyright-text")}>{this.getPropValue("footerText")}</Base.P>
                   </div>
                 )}
-                {social.length > 0 && (
+                {socials.length > 0 && (
                   <div className={this.decorateCSS("social")}>
-                    {social.map(
+                    {socials.map(
                       (item: IconsValues, indexSocial: number) =>
                         item.socialIcon && (
                           <ComposerLink key={indexSocial} path={item.socialLink}>
@@ -606,7 +606,7 @@ class Footer1Page extends BaseFooter {
                 )}
                 {columnsExist && (
                   <div className={this.decorateCSS("columns-section")}>
-                    {columns.map((column: Column, colIndex: number) => {
+                    {footerData.map((column: Column, colIndex: number) => {
                       const menuItems: MenuItem[] = column.menuItems || [];
                       const categoryTitleExist = this.castToString(column.categoryTitle);
                       const hasItems = menuItems.some((item: MenuItem) => this.castToString(item.text));

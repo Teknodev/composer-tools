@@ -60,7 +60,7 @@ class Footer8Page extends BaseFooter {
       type: "string",
       key: "description",
       displayer: "Description",
-      value: "Imperdiet parturient eleifend scelerisque natoque parturient rutrum mus eros dis ullamcorper a ullamcorper.",
+      value: "Build websites faster with an Blinkpage",
     });
 
     this.addProp({
@@ -427,8 +427,8 @@ class Footer8Page extends BaseFooter {
 
     this.addProp({
       type: "string",
-      key: "bottomText",
-      displayer: "Bottom Text",
+      key: "footerText",
+      displayer: "Footer Text",
       value: "Composer by Blinkpage. All rights reserved.",
     });
 
@@ -603,15 +603,16 @@ class Footer8Page extends BaseFooter {
     const logo = logoObject?.logo;
     const logoUrl = logoObject?.logoUrl;
 
-    const bottomTextExist = this.castToString(this.getPropValue("bottomText"));
+    const footerTextExist = this.castToString(this.getPropValue("footerText"));
     const descriptionExist = this.castToString(this.getPropValue("description"));
 
     const position = this.getPropValue("position");
+    const alignment = Base.getContentAlignment();
 
     return (
       <Base.Container className={`${this.decorateCSS("container")} ${position === "Absolute" ? this.decorateCSS("absolute") : ""}`}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("footer-page")}>
+          <div className={`${this.decorateCSS("footer-page")} ${alignment === "left" ? this.decorateCSS("left-alignment") : ""}`}>
             {
               <div className={this.decorateCSS("items")}>
                 {(logo?.url || logo?.name || descriptionExist) && (
@@ -661,9 +662,9 @@ class Footer8Page extends BaseFooter {
               </div>
             }
 
-            {(bottomTextExist || links.length > 0 || socials.length > 0) && (
+            {(footerTextExist || links.length > 0 || socials.length > 0) && (
               <div className={this.decorateCSS("footer-bottom")}>
-                {bottomTextExist && <Base.P className={this.decorateCSS("bottom-text")}>{this.getPropValue("bottomText")}</Base.P>}
+                {footerTextExist && <Base.P className={this.decorateCSS("bottom-text")}>{this.getPropValue("footerText")}</Base.P>}
 
                 <div className={this.decorateCSS("right-wrapper")}>
                   {links.length > 0 && (

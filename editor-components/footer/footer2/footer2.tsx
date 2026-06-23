@@ -61,7 +61,7 @@ class Footer2Page extends BaseFooter {
 
     this.addProp({
       type: "array",
-      key: "columns",
+      key: "footer",
       displayer: "Footer",
       value: [
         {
@@ -210,7 +210,7 @@ class Footer2Page extends BaseFooter {
 
     this.addProp({
       type: "string",
-      key: "footerDescription",
+      key: "footerText",
       displayer: "Footer Text",
       value: "©2023 Blinkpage Inc. - SF",
     });
@@ -235,8 +235,8 @@ class Footer2Page extends BaseFooter {
     const image = backgroundMedia.media;
     const overlay = backgroundMedia.overlay;
 
-    const columns = this.castToObject<Column[]>("columns");
-    const footerDescExist = this.castToString(this.getPropValue("footerDescription"));
+    const footerData = this.castToObject<Column[]>("footer");
+    const footerTextExist = this.castToString(this.getPropValue("footerText"));
     const alignmentValue = Base.getContentAlignment();
 
     const position = this.getPropValue("position");
@@ -254,7 +254,7 @@ class Footer2Page extends BaseFooter {
     } : image;
 
     return (
-      <Base.Container className={`${this.decorateCSS("container")} ${position === "Absolute" ? this.decorateCSS("absolute") : ""}`}>
+      <Base.Container className={`${this.decorateCSS("container")} ${position === "Absolute" ? this.decorateCSS("absolute") : ""} ${imageExist ? this.decorateCSS("has-image") : ""}`}>
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("footer-page")}>
             {imageExist && (
@@ -263,16 +263,16 @@ class Footer2Page extends BaseFooter {
                 className={this.decorateCSS("background-media")}
               />
             )}
-            {(columns.length > 0 || imageExist) && (
+            {(footerData.length > 0 || imageExist) && (
               <Base.MaxContent
                 className={`${this.decorateCSS("items")} ${!imageExist ? this.decorateCSS("no-image") : ""}`}>
-                {columns.map((column: Column, colIndex: number) => {
+                {footerData.map((column: Column, colIndex: number) => {
                   const menuItems: MenuItem[] = column.menuItems || [];
                   const categoryTitleExist = this.castToString(column.categoryTitle);
                   const hasItems = menuItems.some((item: MenuItem) => this.castToString(item.text));
                   if (!categoryTitleExist && !hasItems) return null;
                   return (
-                    <div key={colIndex} className={`${this.decorateCSS("list")} ${alignmentValue === "center" ? this.decorateCSS("center-alignment") : ""}`}>
+                    <div key={colIndex} className={this.decorateCSS("list")}>
                       {categoryTitleExist && <Base.H6 className={this.decorateCSS("title")}>{column.categoryTitle}</Base.H6>}
                       {menuItems.length > 0 && (
                         <Base.VerticalContent className={this.decorateCSS("text-items")}>
@@ -303,9 +303,9 @@ class Footer2Page extends BaseFooter {
             {overlay && imageExist && <div className={this.decorateCSS("background-overlay")}></div>}
           </div>
           <Base.MaxContent>
-            {footerDescExist && (
+            {footerTextExist && (
               <div className={this.decorateCSS("footer-bottom")}>
-                <Base.P className={this.decorateCSS("footer-text")}>{this.getPropValue("footerDescription")}</Base.P>
+                <Base.P className={this.decorateCSS("footer-text")}>{this.getPropValue("footerText")}</Base.P>
               </div>
             )}
           </Base.MaxContent>

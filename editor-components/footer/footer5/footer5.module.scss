@@ -19,7 +19,7 @@
   }
 
   .footer-wrapper {
-    padding: 120px 60px 20px 60px !important;
+    padding: 120px 60px 70px 60px !important;
     .max-content {
       display: flex;
       flex-direction: column;
@@ -185,7 +185,7 @@
 @container (max-width: #{$composer-tablet-width}) {
   .container {
     .footer-wrapper {
-      padding: 100px 50px 20px 50px !important;
+      padding: 100px 50px 60px 50px !important;
     }
 
     .second-container {

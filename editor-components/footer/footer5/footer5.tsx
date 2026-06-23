@@ -353,7 +353,7 @@ class Footer5Page extends BaseFooter {
 
     this.addProp({
       type: "string",
-      key: "footerDescription",
+      key: "footerText",
       displayer: "Footer Text",
       value: "2024 © Made with by Blinkpage.",
     });
@@ -377,14 +377,14 @@ class Footer5Page extends BaseFooter {
     const footer = this.castToObject<any[]>("footer");
     const subtitle = this.getPropValue("subtitle");
     const title = this.getPropValue("title");
-    const footerDescription = this.getPropValue("footerDescription");
+    const footerText = this.getPropValue("footerText");
 
     const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
 
     const subtitleExist = this.castToString(subtitle);
     const titleExist = this.castToString(title);
     const descriptionExist = this.castToString(this.getPropValue("description"));
-    const footerDescriptionExist = this.castToString(footerDescription);
+    const footerTextExist = this.castToString(footerText);
 
     const buttonsExist = buttons.some((b) => this.castToString(b.text));
     const headerExist = subtitleExist || titleExist || descriptionExist || buttonsExist;
@@ -398,7 +398,7 @@ class Footer5Page extends BaseFooter {
     const textsExist = subtitleExist || titleExist || descriptionExist;
 
 
-    const bottomExist = links.length > 0 || footerDescriptionExist;
+    const bottomExist = links.length > 0 || footerTextExist;
 
 
     const alignment = Base.getContentAlignment();
@@ -513,7 +513,7 @@ class Footer5Page extends BaseFooter {
                   </div>
                 )}
 
-                {footerDescriptionExist && <Base.P className={this.decorateCSS("footer-text")}>{this.getPropValue("footerDescription")}</Base.P>}
+                {footerTextExist && <Base.P className={this.decorateCSS("footer-text")}>{this.getPropValue("footerText")}</Base.P>}
               </div>
             </Base.MaxContent>
           </Base.Container>

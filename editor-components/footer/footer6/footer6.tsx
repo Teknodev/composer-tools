@@ -298,7 +298,7 @@ class Footer6Page extends BaseFooter {
 
     this.addProp({
       type: "string",
-      key: "footerDescription",
+      key: "footerText",
       displayer: "Footer Text",
       value: "2024 © Made with by Blinkpage.",
     });
@@ -332,8 +332,8 @@ class Footer6Page extends BaseFooter {
 
     const footer = this.castToObject<any[]>("footer");
 
-    const footerDescription = this.getPropValue("footerDescription");
-    const footerDescriptionExist = this.castToString(footerDescription);
+    const footerText = this.getPropValue("footerText");
+    const footerTextExist = this.castToString(footerText);
 
     const position = this.getPropValue("position");
 
@@ -398,8 +398,8 @@ class Footer6Page extends BaseFooter {
                 })}
             </div>
 
-            {footerDescriptionExist && (
-              <Base.P className={this.decorateCSS("bottom-text")}>{footerDescription}</Base.P>
+            {footerTextExist && (
+              <Base.P className={this.decorateCSS("bottom-text")}>{footerText}</Base.P>
             )}
           </Base.VerticalContent>
         </Base.MaxContent>

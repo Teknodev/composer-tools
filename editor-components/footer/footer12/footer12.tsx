@@ -63,7 +63,7 @@ class Footer12Page extends BaseFooter {
     this.addProp({
       type: "array",
       key: "footer",
-      displayer: "Footer Card",
+      displayer: "Footer",
       value: [
         {
           type: "object",

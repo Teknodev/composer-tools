@@ -310,7 +310,7 @@ class Footer10Page extends BaseFooter {
 
     this.addProp({
       type: "array",
-      key: "icons",
+      key: "socials",
       displayer: "Social Media Items",
       value: [
         {
@@ -437,7 +437,7 @@ class Footer10Page extends BaseFooter {
     const links = this.castToObject<any[]>("links");
     const line = this.getPropValue("line");
 
-    const icons = this.castToObject<icon[]>("icons");
+    const socials = this.castToObject<icon[]>("socials");
 
     const logoExist = !!(logo?.url || logo?.name);
     const linksPropExist = links.some((item: any) => this.castToString(item.text));
@@ -452,8 +452,8 @@ class Footer10Page extends BaseFooter {
 
     const footerTextExist = this.castToString(this.getPropValue("footerText"));
 
-    const iconsExist = icons.length > 0;
-    const bottomExist = footerTextExist || iconsExist;
+    const socialsExist = socials.length > 0;
+    const bottomExist = footerTextExist || socialsExist;
 
     const alignment = Base.getContentAlignment();
 
@@ -542,14 +542,14 @@ class Footer10Page extends BaseFooter {
             <Base.MaxContent className={this.decorateCSS("second-max-content")}>
               <div className={`${this.decorateCSS("bottom")} ${alignment === "center" && this.decorateCSS("center")}`}>
                 {footerTextExist && (
-                  <div className={iconsExist ? this.decorateCSS("left") : this.decorateCSS("left-full")}>
+                  <div className={socialsExist ? this.decorateCSS("left") : this.decorateCSS("left-full")}>
                     <Base.P className={this.decorateCSS("text")}>{this.getPropValue("footerText")}</Base.P>
                   </div>
                 )}
-                {icons.length > 0 && (
+                {socials.length > 0 && (
                   <div className={this.decorateCSS("icons")}>
-                    {icons.length > 0 &&
-                      icons.map((item: icon, index: number) => {
+                    {socials.length > 0 &&
+                      socials.map((item: icon, index: number) => {
                         return (
                           item.icon && (
                             <div 

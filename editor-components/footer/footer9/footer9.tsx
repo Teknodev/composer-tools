@@ -274,7 +274,7 @@ class Footer9Page extends BaseFooter {
 
     this.addProp({
       type: "array",
-      key: "icons",
+      key: "socials",
       displayer: "Social Media Items",
       value: [
         {
@@ -382,8 +382,8 @@ class Footer9Page extends BaseFooter {
 
     this.addProp({
       type: "array",
-      key: "pages",
-      displayer: "Policies",
+      key: "links",
+      displayer: "Footer Links",
       value: [
         {
           type: "object",
@@ -453,8 +453,8 @@ class Footer9Page extends BaseFooter {
     const footerTextExist = this.castToString(this.getPropValue("footerText"));
 
     const footer = this.castToObject<any[]>("footer");
-    const icons = this.castToObject<icon[]>("icons");
-    const pages = this.castToObject<page[]>("pages");
+    const socials = this.castToObject<icon[]>("socials");
+    const links = this.castToObject<page[]>("links");
 
     const position = this.getPropValue("position");
 
@@ -523,9 +523,9 @@ class Footer9Page extends BaseFooter {
             </div>
           )}
 
-          {icons.length > 0 && (
+          {socials.length > 0 && (
             <div className={this.decorateCSS("icon-container")}>
-              {icons.map((item: icon) => {
+              {socials.map((item: icon) => {
                 return (
                   <ComposerLink path={item.page}>
                     <div 
@@ -545,9 +545,9 @@ class Footer9Page extends BaseFooter {
           )}
           <div className={this.decorateCSS("bottom")}>
             {footerTextExist && <Base.P className={this.decorateCSS("bottom-text")}>{this.getPropValue("footerText")}</Base.P>}
-            {pages.length > 0 && (
+            {links.length > 0 && (
               <Base.Row className={this.decorateCSS("list")}>
-                {pages.map((item: page,) => {
+                {links.map((item: page,) => {
                   return (
                     <ComposerLink path={item.page}>
                       <Base.P 

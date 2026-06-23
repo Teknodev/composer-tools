@@ -399,6 +399,18 @@ class Footer4Page extends BaseFooter {
       value: [
         {
           type: "string",
+          key: "rightTitle",
+          displayer: "Form Title",
+          value: "Let's stay in touch",
+        },
+        {
+          type: "string",
+          key: "rightDescription",
+          displayer: "Form Description",
+          value: "Keep up to date with our latest news and special offers.",
+        },
+        {
+          type: "string",
           key: "subscriptionPlaceholder",
           displayer: "Placeholder",
           value: "Type your e-mail",
@@ -420,20 +432,6 @@ class Footer4Page extends BaseFooter {
     });
 
     this.addProp({
-      type: "string",
-      key: "rightTitle",
-      displayer: "Form Title",
-      value: "Let's stay in touch",
-    });
-
-    this.addProp({
-      type: "string",
-      key: "rightDescription",
-      displayer: "Form Description",
-      value: "Keep up to date with our latest news and special offers.",
-    });
-
-    this.addProp({
       type: "boolean",
       key: "line",
       displayer: "Line",
@@ -442,7 +440,7 @@ class Footer4Page extends BaseFooter {
 
     this.addProp({
       type: "string",
-      key: "footerDescription",
+      key: "footerText",
       displayer: "Footer Text",
       value: "2024 © Made with by Blinkpage.",
     });
@@ -474,7 +472,7 @@ class Footer4Page extends BaseFooter {
         {
           type: "object",
           key: "content",
-          displayer: "",
+          displayer: "Content Elements",
           value: [
             {
               type: "string",
@@ -493,7 +491,7 @@ class Footer4Page extends BaseFooter {
         {
           type: "object",
           key: "content",
-          displayer: "",
+          displayer: "Content Elements",
           value: [
             {
               type: "string",
@@ -547,8 +545,8 @@ class Footer4Page extends BaseFooter {
 
     const leftExist = textExist || media.length > 0;
 
-    const rightTitleExist = this.castToString(this.getPropValue("rightTitle"));
-    const rightDescExist = this.castToString(this.getPropValue("rightDescription"));
+    const rightTitleExist = this.castToString(formProps?.rightTitle);
+    const rightDescExist = this.castToString(formProps?.rightDescription);
     const buttonTextExist = buttons.some((btn) => this.castToString(btn?.text));
 
     const rightExist = rightTitleExist || rightDescExist || (placeHolderExist && buttonTextExist);
@@ -557,8 +555,8 @@ class Footer4Page extends BaseFooter {
 
     const links = this.castToObject<any[]>("links");
 
-    const footerDescription = this.getPropValue("footerDescription");
-    const footerDescriptionExist = this.castToString(footerDescription);
+    const footerText = this.getPropValue("footerText");
+    const footerTextExist = this.castToString(footerText);
 
 
     const alignment = Base.getContentAlignment();
@@ -583,7 +581,7 @@ class Footer4Page extends BaseFooter {
                                 item.media && (
                                   <div className={this.decorateCSS("image-element")}>
                                     <ComposerLink key={index} path={item.url}>
-                                      <Base.Media value={item.media} className={this.decorateCSS("image")} />
+                                      <Base.Media value={item.media} className={`${this.decorateCSS("image")} ${item.media?.type === "icon" ? this.decorateCSS("is-icon") : ""}`} />
                                     </ComposerLink>
                                   </div>
                                 )
@@ -626,7 +624,7 @@ class Footer4Page extends BaseFooter {
 
                   {rightExist && (
                     <div className={this.decorateCSS("right")}>
-                      {rightTitleExist && <Base.H6 className={this.decorateCSS("title")}>{this.getPropValue("rightTitle")}</Base.H6>}
+                      {rightTitleExist && <Base.H6 className={this.decorateCSS("title")}>{formProps?.rightTitle}</Base.H6>}
                       <Formik
                         initialValues={{ email: "" }}
                         validationSchema={this.validationSchema}
@@ -675,7 +673,7 @@ class Footer4Page extends BaseFooter {
                           </Form>
                         )}
                       </Formik>
-                      {rightDescExist && <Base.P className={this.decorateCSS("description")}>{this.getPropValue("rightDescription")}</Base.P>}
+                      {rightDescExist && <Base.P className={this.decorateCSS("description")}>{formProps?.rightDescription}</Base.P>}
                     </div>
                   )}
                 </div>
@@ -688,7 +686,7 @@ class Footer4Page extends BaseFooter {
           <Base.Container className={this.decorateCSS("second-container")}>
             <Base.MaxContent className={this.decorateCSS("second-max-content")}>
               <div className={this.decorateCSS("bottom")}>
-                {footerDescriptionExist && <Base.P className={this.decorateCSS("footer-text")}>{this.getPropValue("footerDescription")}</Base.P>}
+                {footerTextExist && <Base.P className={this.decorateCSS("footer-text")}>{this.getPropValue("footerText")}</Base.P>}
 
                 {links.length > 0 && (
                   <Base.Row className={`${this.decorateCSS("links")}

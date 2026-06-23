@@ -68,7 +68,7 @@
                     height: 50px;
 
                     &.is-icon {
-                      font-size: 2rem;
+                      font-size: 3rem;
                       width: unset;
                       height: unset;
                       color: var(--composer-font-color-primary);
@@ -82,7 +82,7 @@
               display: flex;
               flex-direction: column;
               gap: var(--composer-gap-md);
-              align-items: baseline;
+              align-items: flex-start;
 
               .title {
                 text-align: left;
@@ -363,6 +363,18 @@
     .max-content {
       .first-container {
         padding: 100px 50px 20px 50px !important;
+
+        .first-max-content {
+          .footer-page {
+            .items {
+              .list-group {
+                .text {
+                  white-space: nowrap;
+                }
+              }
+            }
+          }
+        }
       }
 
       .second-container {

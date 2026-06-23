@@ -175,7 +175,7 @@ class Footer3Page extends BaseFooter {
 
     this.addProp({
       type: "array",
-      key: "columns",
+      key: "footer",
       displayer: "Footer",
       value: [
         {
@@ -684,8 +684,8 @@ class Footer3Page extends BaseFooter {
 
     this.addProp({
       type: "string",
-      key: "bottomText",
-      displayer: "Bottom Text",
+      key: "footerText",
+      displayer: "Footer Text",
       value: "Composer by Blinkpage. All rights reserved.",
     });
 
@@ -753,14 +753,14 @@ class Footer3Page extends BaseFooter {
   render() {
     const socials = this.castToObject<SocialItem[]>("socials");
     const links = this.castToObject<LinkItem[]>("links");
-    const columns = this.castToObject<Column[]>("columns");
+    const footerData = this.castToObject<Column[]>("footer");
 
     const logoObject = this.castToObject<LogoObject>("logo");
     const logo = logoObject?.logo;
     const logoUrl = logoObject?.logoUrl;
     const line = this.getPropValue("line");
 
-    const bottomTextExist = this.castToString(this.getPropValue("bottomText"));
+    const footerTextExist = this.castToString(this.getPropValue("footerText"));
     const descriptionExist = this.castToString(this.getPropValue("description"));
     const subtitleExist = this.castToString(this.getPropValue("subtitle"));
     const titleExist = this.castToString(this.getPropValue("title"));
@@ -771,8 +771,8 @@ class Footer3Page extends BaseFooter {
 
     const position = this.getPropValue("position");
 
-    const firstContainerExist = headerExist || columns.length > 0;
-    const secondContainerExist = links.length > 0 || bottomTextExist;
+    const firstContainerExist = headerExist || footerData.length > 0;
+    const secondContainerExist = links.length > 0 || footerTextExist;
 
     return (
       <div className={`${this.decorateCSS("container")} ${position === "Absolute" ? this.decorateCSS("absolute") : ""}`}>
@@ -822,8 +822,8 @@ class Footer3Page extends BaseFooter {
                       </Base.VerticalContent>
                     )}
 
-                    {columns.length > 0 &&
-                      columns.map((item: Column, indexColumn: number) => {
+                    {footerData.length > 0 &&
+                      footerData.map((item: Column, indexColumn: number) => {
                         const categoryTitleExist = this.castToString(item.categoryTitle);
                         const menuItems: MenuItem[] = item.menuItems || [];
                         const hasItems = menuItems.some((v: MenuItem) => this.castToString(v.text) || v.icon);
@@ -876,10 +876,10 @@ class Footer3Page extends BaseFooter {
 
             {secondContainerExist && <Base.Container className={this.decorateCSS("second-container")}>
               <Base.MaxContent className={this.decorateCSS("second-max-content")}>
-                {(bottomTextExist || links.length > 0) && (
+                {(footerTextExist || links.length > 0) && (
                   <div className={`${this.decorateCSS("footer-bottom")}
                   ${alignment === "center" && this.decorateCSS("center")}`}>
-                    {bottomTextExist && <Base.P className={this.decorateCSS("bottom-text")}>{this.getPropValue("bottomText")}</Base.P>}
+                    {footerTextExist && <Base.P className={this.decorateCSS("bottom-text")}>{this.getPropValue("footerText")}</Base.P>}
                     {links.length > 0 && (
                       <Base.Row className={this.decorateCSS("links")}>
                         {links.map((item: LinkItem, index: number) => {
