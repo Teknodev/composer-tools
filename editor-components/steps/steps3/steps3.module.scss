@@ -1,0 +1,159 @@
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+
+.container {
+  .max-content {
+    display: flex;
+    flex-direction: column;
+
+    .steps-box {
+      border-radius: var(--composer-border-radius-md);
+      display: flex;
+      flex-direction: column;
+      gap: var(--composer-gap-lg);
+      box-sizing: border-box;
+
+      &.has-background {
+        padding: var(--composer-gap-xl) var(--composer-gap-xl);
+        background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+      }
+
+      .header {
+        display: flex;
+        flex-direction: column;
+
+        .subtitle,
+        .title,
+        .description {
+          content: "";
+        }
+      }
+
+      .cards-container {
+        column-gap: var(--composer-gap-xl);
+        row-gap: var(--composer-gap-xl);
+        width: 100%;
+
+        .card {
+          position: relative;
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          min-height: 180px;
+
+          .step-number-watermark {
+            position: absolute;
+            left: -0.5rem;
+            top: -1.5rem;
+            font-size: 11rem;
+            color: var(--composer-font-color-primary);
+            user-select: none;
+            z-index: 1;
+          }
+
+          .card-content {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+
+            .card-subtitle,
+            .card-title {
+              color: var(--composer-font-color-primary);
+              text-align: left;
+            }
+
+
+            .card-description {
+              color: var(--composer-tertiary-color);
+              text-align: left;
+            }
+
+            .card-buttons {
+              display: flex;
+              justify-content: flex-start;
+              gap: var(--composer-gap-sm);
+              flex-wrap: wrap;
+              .card-button {
+                .card-button-text {
+                  content: "";
+                }
+              }
+            }
+          }
+        }
+      }
+
+      .button-container {
+        display: flex;
+        gap: var(--composer-gap-sm);
+        flex-wrap: wrap;
+
+        .button {
+          .button-text {
+            content: "";
+          }
+        }
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-tablet-width}) {
+  .container {
+    .max-content {
+      .steps-box {
+        .cards-container {
+          .card {
+            .step-number-watermark {
+              font-size: 9rem;
+              top: -1.25rem;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+  .container {
+    .max-content {
+      .steps-box {
+        padding: var(--composer-gap-lg) var(--composer-gap-md);
+        gap: var(--composer-gap-lg);
+       
+
+        .cards-container {
+          gap: var(--composer-gap-lg);
+
+          .card {
+            min-height: auto;
+
+            .step-number-watermark {
+              position: absolute;
+              left: 0;
+              top: -1rem;
+              font-size: 8rem;
+            }
+
+            .card-content {
+              .card-title,
+              .card-description {
+                text-align: var(--composer-content-alignment);
+              }
+
+              .card-buttons {
+                justify-content: var(--composer-content-alignment);
+              }
+            }
+          }
+        }
+
+        .button-container {
+          justify-content: var(--composer-content-alignment);
+        }
+      }
+    }
+  }
+}
