@@ -21,7 +21,7 @@ class Steps3 extends BaseSteps {
       type: "boolean",
       key: "enable_card",
       displayer: "Colored Background",
-      value: true,
+      value: false,
     });
 
     this.addProp({
@@ -94,7 +94,7 @@ class Steps3 extends BaseSteps {
               key: "buttons",
               displayer: "Buttons",
               value: [
-                INPUTS.BUTTON("button", "Button", "Lorem", "", null, null, "Primary"),
+                INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
               ],
             },
           ],

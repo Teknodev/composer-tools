@@ -44,9 +44,12 @@
             position: absolute;
             left: -0.5rem;
             top: -1.5rem;
-            font-size: 11rem;
+            font-size: 10rem;
+            line-height: 0.8;
             color: var(--composer-font-color-primary);
+            opacity: 0.08;
             user-select: none;
+            pointer-events: none;
             z-index: 1;
           }
 
@@ -106,8 +109,8 @@
         .cards-container {
           .card {
             .step-number-watermark {
-              font-size: 9rem;
-              top: -1.25rem;
+              font-size: 10rem;
+              top: -0.5rem;
             }
           }
         }
@@ -135,6 +138,7 @@
               left: 0;
               top: -1rem;
               font-size: 8rem;
+              line-height: 0.8;
             }
 
             .card-content {
