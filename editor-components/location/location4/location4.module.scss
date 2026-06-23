@@ -69,7 +69,11 @@
             color: white !important;
           }
 
-          .title,
+          .title {
+            color: white;
+            text-align: center;
+          }
+
           .subtitle,
           .description {
             color: white;
@@ -176,14 +180,28 @@
           }
         }
 
-        .title-no-image,
+        .title-no-image {
+          text-align: center;
+          margin-left: auto;
+          margin-right: auto;
+          width: auto !important;
+          display: inline-flex !important;
+          align-items: center;
+          justify-content: center;
+
+          p, span {
+            text-align: inherit !important;
+            display: inline !important;
+            width: auto !important;
+          }
+        }
+
         .subtitle-no-image,
         .description-no-image {
           text-align: center;
           margin-left: auto;
           margin-right: auto;
           width: fit-content;
-
         }
 
         .header-texts {
@@ -191,7 +209,6 @@
           flex-direction: column;
           align-items: center;
           width: 100%;
-          gap: var(--composer-gap-sm);
         }
 
         .subtitle-no-image {
