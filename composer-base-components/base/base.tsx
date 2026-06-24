@@ -32,7 +32,7 @@ export type TypeButton =
   | "Tertiary"
   | "Link"
   | "White"
-  | "Black"
+  | "Black" 
   | "Bare";
 
 export namespace Base {
@@ -268,7 +268,7 @@ export namespace Base {
     return <div className={`${styles.row} ${className}`} data-element-category={ELEMENT_CATEGORY.ROW} {...props}></div>;
   }
 
-  export function Overlay({ className, isVisible, isModal = false, ...props }: any) {
+  export function Overlay({ className, isVisible, isModal=false, ...props}: any) {
 
     const [width, setWidth] = useState(0);
     const [height, setHeight] = useState(0);
@@ -283,16 +283,16 @@ export namespace Base {
         setHeight(playgroundEl.offsetHeight);
       };
 
-      let resizeObserver = new ResizeObserver(updateSize);
+      let resizeObserver = new ResizeObserver(updateSize); 
       resizeObserver.observe(playgroundEl);
-
+      
       window.addEventListener('resize', updateSize);
 
       if (isVisible) {
         setCurrentOpacity(1);
       }
 
-      if (!isVisible) {
+      if(!isVisible){
         resizeObserver.disconnect();
         window.removeEventListener('resize', updateSize);
         setCurrentOpacity(0);
@@ -304,7 +304,7 @@ export namespace Base {
         window.removeEventListener('resize', updateSize);
       };
     }, [isVisible, width]);
-    if (isVisible) {
+    if(isVisible) {
       return (
         <div
           style={{ width, height, opacity: currentOpacity, ...(isModal && { zIndex: 102 }) }}
@@ -385,7 +385,7 @@ export namespace Base {
             } else if (hamburgerNavActive) {
               Base.Navigator.changeScrollBehaviour("hidden");
               setIsBigScreen && setIsBigScreen(false);
-            } else if (!matchedMedia) {
+            }else if (!matchedMedia){
               setIsBigScreen && setIsBigScreen(false);
             }
           });
@@ -438,7 +438,7 @@ export namespace Base {
     }
 
     export function getWrapperContainer() {
-      if (typeof window === 'undefined') return;
+      if(typeof window === 'undefined') return;
       const playground = document.getElementById("playground") as HTMLElement;
       const isPlayground = !!playground;
       return {
@@ -535,25 +535,25 @@ export namespace Base {
     } = useComposerToolsData();
 
     const handleLanguageChange = async (lang: { code: string; name: string }) => {
-      if (!isProcessable) return;
+      if(!isProcessable) return;
       setComposerToolsCurrentLanguage(lang);
-
+    
       let currentPath = window.location.pathname;
       const normalizedPath = currentPath.replace(/\/$/, "");
       const pathParts = normalizedPath.split("/");
-
+    
       const isLanguageSlugMissing = pathParts.length < 2;
       const isFirstSegmentNotALanguageCode = !pathParts[1]?.match(/^[a-z]{2}$/i);
-
+    
       if (isLanguageSlugMissing || isFirstSegmentNotALanguageCode) {
         pathParts.splice(1, 0, lang.code);
       } else {
         pathParts[1] = lang.code;
       }
-
+    
       let newUrl = pathParts.join("/") + window.location.search + window.location.hash;
       const isUrlChanged = newUrl !== window.location.pathname + window.location.search + window.location.hash;
-
+    
       if (isUrlChanged) {
         window.history.pushState(null, "", newUrl);
         window.dispatchEvent(new Event("popstate"));
@@ -639,10 +639,10 @@ export namespace Base {
     }
   }
 
-  export function Card({
-    className,
-    children,
-    ...props
+  export function Card({ 
+    className, 
+    children, 
+    ...props 
   }: React.HTMLAttributes<HTMLDivElement>) {
     return (
       <div className={`${styles.baseCard} ${className}`} data-element-category={ELEMENT_CATEGORY.CARD} {...props}>
