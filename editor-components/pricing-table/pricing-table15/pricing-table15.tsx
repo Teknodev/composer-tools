@@ -75,7 +75,7 @@ class PricingTable15 extends BasePricingTable {
       type: "array",
       key: "buttons",
       displayer: "Buttons",
-      value: [INPUTS.BUTTON("button", "Button", "", "", null, null, "White")],
+      value: [INPUTS.BUTTON("button", "Button", "", "", null, null, "Black")],
     });
 
     this.addProp({
@@ -455,8 +455,8 @@ class PricingTable15 extends BasePricingTable {
           key: "rightButtons",
           displayer: "Buttons",
           value: [
-            INPUTS.BUTTON("button", "Button 1", "GET STARTED TODAY", "", null, null, "White"),
-            INPUTS.BUTTON("button", "Button 2", "TRY IMPREZA NOW", "", null, null, "White"),
+            INPUTS.BUTTON("button", "Button 1", "GET STARTED TODAY", "", null, null, "Black"),
+            INPUTS.BUTTON("button", "Button 2", "TRY IMPREZA NOW", "", null, null, "Black"),
           ],
         },
       ],
@@ -622,9 +622,9 @@ class PricingTable15 extends BasePricingTable {
                                 </Base.P>
                               )}
                               {featureTitleExist && (
-                                <Base.H5 className={this.decorateCSS("feature-title")}>
+                                <Base.H6 className={this.decorateCSS("feature-title")}>
                                   {feature.featureTitle}
-                                </Base.H5>
+                                </Base.H6>
                               )}
                               {featureDescExist && (
                                 <Base.P className={this.decorateCSS("feature-description")}>
