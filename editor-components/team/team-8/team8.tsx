@@ -32,7 +32,7 @@ class Team8 extends Team {
           key: "backgroundMedia",
           displayer: "Background Media",
           additionalParams: {
-            availableTypes: ["image"],
+            availableTypes: ["image", "video"],
           },
           value: {
             type: "image",
@@ -418,7 +418,10 @@ class Team8 extends Team {
     const imageExist = backgroundMedia?.backgroundMedia;
 
     return (
-      <Base.Container isFull={true} className={this.decorateCSS("container")} style={{ backgroundImage: imageExist?.type === "image" ? `url(${imageExist.url})` : undefined, }}>
+      <Base.Container isFull={true} className={this.decorateCSS("container")}>
+        {imageExist && (
+          <Base.Media value={imageExist} className={this.decorateCSS("background-media")} />
+        )}
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           {hasContent &&
             <Base.VerticalContent className={`${this.decorateCSS("vertical-content")} ${imageExist && this.decorateCSS("has-image")}`}>
