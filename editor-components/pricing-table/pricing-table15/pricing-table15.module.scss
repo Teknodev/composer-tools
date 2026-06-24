@@ -280,6 +280,10 @@
         .description {
           text-align: var(--composer-content-alignment);
         }
+
+        .button-container {
+          justify-content: var(--composer-content-alignment);
+        }
       }
 
       .right-column {
