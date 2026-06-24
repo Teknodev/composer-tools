@@ -324,12 +324,14 @@ class Social1 extends BaseSocial {
         };
 
         const renderCardItem = (item: ItemType, index: number) => {
-            const hasAnyContent = item.url || (item.icon as any) || item.name || item.media || item.text;
+            const nameExist = this.castToString(item.name);
+            const textExist = this.castToString(item.text);
+            const hasAnyContent = item.url || (item.icon as any) || nameExist || item.media || textExist;
             if (!hasAnyContent) return null;
             return (
                 <ComposerLink key={index} path={item.url}>
                     <div className={this.decorateCSS("card-container")}>
-                        {(item.icon || item.media || item.name) && (
+                        {(item.icon || item.media || nameExist) && (
                             <div className={this.decorateCSS("card-upper")}>
                                 {(item.icon || item.media) && (
                                     <div className={this.decorateCSS("image-icon-container")}>
@@ -341,12 +343,12 @@ class Social1 extends BaseSocial {
                                         )}
                                     </div>
                                 )}
-                                {item.name && (
+                                {nameExist && (
                                     <Base.P className={this.decorateCSS("name")}>{item.name}</Base.P>
                                 )}
                             </div>
                         )}
-                        {this.castToString(item.text) && (
+                        {textExist && (
                             <Base.P className={this.decorateCSS("comment")}>{item.text}</Base.P>
                         )}
                     </div>
