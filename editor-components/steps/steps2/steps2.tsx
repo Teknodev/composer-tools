@@ -323,6 +323,7 @@ class Steps2 extends BaseSteps {
     const itemCountInRow = this.getPropValue("itemCountInRow");
     const showLine = this.getPropValue("line");
     const hasValidButtons = buttons.some((btn) => this.castToString(btn.text));
+    const contentAlignment = Base.getContentAlignment();
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
@@ -359,7 +360,7 @@ class Steps2 extends BaseSteps {
                 const cardButtonsExist = card.buttons?.some((btn) => this.castToString(btn.text));
 
                 return (cardStepNumberExist || cardSubtitleExist || cardTitleExist || cardDescriptionExist || cardButtonsExist) && (
-                  <Base.VerticalContent key={index} className={`${this.decorateCSS("card")} ${showLine && this.decorateCSS("with-line")}`}>
+                  <Base.VerticalContent key={index} className={`${this.decorateCSS("card")} ${showLine && this.decorateCSS("with-line")} ${contentAlignment === "center" && this.decorateCSS("center-align")}`}>
                     {cardStepNumberExist && (
                       <div className={this.decorateCSS("card-header")}>
                         <Base.H4 className={this.decorateCSS("step-number")}>

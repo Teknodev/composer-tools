@@ -123,6 +123,28 @@
               width: var(--composer-gap-lg);
             }
           }
+
+          &.center-align {
+            align-items: center;
+            text-align: center;
+
+            .card-header {
+              justify-content: center;
+              .step-number {
+                text-align: center;
+              }
+            }
+
+            .card-subtitle,
+            .card-title,
+            .card-description {
+              text-align: center;
+            }
+
+            .card-buttons {
+              justify-content: center;
+            }
+          }
         }
       }
 
