@@ -11,9 +11,9 @@ type socials = {
 };
 
 type Card = {
-  name: string;
-  position: string;
-  cardDescription: string;
+  name: React.JSX.Element;
+  position: React.JSX.Element;
+  cardDescription: React.JSX.Element;
   profileImage: TypeMediaInputValue;
   socials: socials[];
 };
@@ -953,30 +953,37 @@ class Team2 extends Team {
           )}
           <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount"), tablet: 3, phone: 1 }} className={this.decorateCSS("team-members")}>
             {this.castToObject<Card[]>("cards").map((card: Card, indexCards: number) => {
+              const cardNameExist = this.castToString(card.name);
+              const cardPositionExist = this.castToString(card.position);
+              const cardDescriptionExist = this.castToString(card.cardDescription);
+              const hasCard = cardNameExist || cardPositionExist || cardDescriptionExist || card.profileImage || (card.socials && card.socials.length > 0);
+
               return (
-                <Base.VerticalContent className={this.decorateCSS("team")} key={indexCards} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
-                  {card.profileImage &&
-                    <div className={this.decorateCSS("image-container")}>
-                      <Base.Media value={card.profileImage} className={`${this.decorateCSS("image")} ${card.profileImage?.type === "icon" && this.decorateCSS("has-icon")}`} data-animation={this.getPropValue("hoverAnimation").join(" ")} />
-                      {this.getPropValue("overlay") && <div className={this.decorateCSS("overlay")} />}
+                hasCard && (
+                  <Base.VerticalContent className={this.decorateCSS("team")} key={indexCards} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
+                    {card.profileImage &&
+                      <div className={this.decorateCSS("image-container")}>
+                        <Base.Media value={card.profileImage} className={`${this.decorateCSS("image")} ${card.profileImage?.type === "icon" && this.decorateCSS("has-icon")}`} data-animation={this.getPropValue("hoverAnimation").join(" ")} />
+                        {this.getPropValue("overlay") && <div className={this.decorateCSS("overlay")} />}
+                      </div>
+                    }
+                    {cardNameExist && <Base.H6 className={this.decorateCSS("card-title")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>{card.name}</Base.H6>}
+                    {cardPositionExist && <Base.H6 className={this.decorateCSS("card-position")}>{card.position}</Base.H6>}
+                    {cardDescriptionExist && <Base.P className={this.decorateCSS("card-description")}>{card.cardDescription}</Base.P>}
+                    <div className={this.decorateCSS("icon-group")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
+                      {card.socials?.map((item: socials, indexSocials: number) => {
+                        return (
+                          <ComposerLink key={indexSocials} path={item.url}>
+                            <Base.Media
+                              value={item.icon}
+                              className={`${this.decorateCSS("icon")} ${item.icon?.type === "image" && this.decorateCSS("has-image")}`}
+                            />
+                          </ComposerLink>
+                        );
+                      })}
                     </div>
-                  }
-                  {card.name && <Base.H6 className={this.decorateCSS("card-title")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>{card.name}</Base.H6>}
-                  {card.position && <Base.H6 className={this.decorateCSS("card-position")}>{card.position}</Base.H6>}
-                  {card.cardDescription && <Base.P className={this.decorateCSS("card-description")}>{card.cardDescription}</Base.P>}
-                  <div className={this.decorateCSS("icon-group")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
-                    {card.socials?.map((item: socials, indexSocials: number) => {
-                      return (
-                        <ComposerLink key={indexSocials} path={item.url}>
-                          <Base.Media
-                            value={item.icon}
-                            className={`${this.decorateCSS("icon")} ${item.icon?.type === "image" && this.decorateCSS("has-image")}`}
-                          />
-                        </ComposerLink>
-                      );
-                    })}
-                  </div>
-                </Base.VerticalContent>
+                  </Base.VerticalContent>
+                )
               );
             })}
           </Base.ListGrid>

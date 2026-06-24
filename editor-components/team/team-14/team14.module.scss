@@ -16,7 +16,7 @@
     }
 
     .down-page {
-      gap: 30px;
+      gap: calc(var(--composer-gap-xl) / 2);
 
       .card {
         display: flex;
@@ -94,7 +94,7 @@
             background-color: color-mix(in srgb,
                 var(--composer-html-background),
                 var(--composer-font-color-primary) 10%);
-            padding: 15px;
+            padding: calc(var(--composer-gap-sm) + var(--composer-gap-xs));
             border-radius: var(--composer-border-radius-sm);
             z-index: 2;
 

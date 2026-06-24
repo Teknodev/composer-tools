@@ -1121,24 +1121,28 @@ class Team11 extends Team {
                 <div className={cards.length > 3 ? this.decorateCSS("nav-buttons") : this.decorateCSS("visible-navs")}>
                   {hasPrevIcon && (
                     <div
-                      className={`${this.decorateCSS("prev_icon")}
-                    ${prevIcon?.type === "image" && this.decorateCSS("prev-icon-has-image")}`}
+                      className={this.decorateCSS("prev_icon")}
                       onClick={() => {
                         this.getComponentState("slider-ref")?.current?.slickPrev?.();
                       }}
                     >
-                      <Base.Media value={prevIcon} />
+                      <Base.Media
+                        value={prevIcon}
+                        className={`${this.decorateCSS("icon")} ${prevIcon?.type === "image" && this.decorateCSS("has-image")}`}
+                      />
                     </div>
                   )}
                   {hasNextIcon && (
                     <div
-                      className={`${this.decorateCSS("next_icon")}
-                    ${nextIcon?.type === "image" && this.decorateCSS("next-icon-has-image")}`}
+                      className={this.decorateCSS("next_icon")}
                       onClick={() => {
                         this.getComponentState("slider-ref")?.current?.slickNext?.();
                       }}
                     >
-                      <Base.Media value={nextIcon} />
+                      <Base.Media
+                        value={nextIcon}
+                        className={`${this.decorateCSS("icon")} ${nextIcon?.type === "image" && this.decorateCSS("has-image")}`}
+                      />
                     </div>
                   )}
                 </div>

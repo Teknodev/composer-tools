@@ -761,7 +761,7 @@ class Team6 extends Team {
                               {card.features.map((feature: Feature, idx: number) => (
                                 <div key={idx} className={this.decorateCSS("feature")}>
                                   {feature.icon && <Base.Media value={feature?.icon} className={`${this.decorateCSS("icon")} ${feature?.icon?.type === "image" && this.decorateCSS("has-image")}`} />}
-                                  {feature.feature && <Base.P className={this.decorateCSS("feature-element")}>{feature.feature}</Base.P>}
+                                  {this.castToString(feature.feature) && <Base.P className={this.decorateCSS("feature-element")}>{feature.feature}</Base.P>}
                                 </div>
                               ))}
                             </Base.VerticalContent>

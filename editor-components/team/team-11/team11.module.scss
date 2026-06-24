@@ -228,8 +228,8 @@
           transition: 0.5s;
           line-height: 0;
 
-          &.prev-icon-has-image {
-            img {
+          .icon {
+            &.has-image {
               width: var(--composer-gap-lg);
               height: var(--composer-gap-lg);
               object-fit: cover;
@@ -249,8 +249,8 @@
           transition: 0.5s;
           line-height: 0;
 
-          &.next-icon-has-image {
-            img {
+          .icon {
+            &.has-image {
               width: var(--composer-gap-lg);
               height: var(--composer-gap-lg);
               object-fit: cover;
@@ -267,7 +267,7 @@
       .dots {
         display: flex;
         justify-content: center;
-        gap: 10px;
+        gap: var(--composer-gap-sm);
         margin-top: var(--composer-gap-lg);
 
         .dot {
@@ -305,8 +305,8 @@
         transition: 0.5s;
         line-height: 0;
 
-        &.prev-icon-has-image {
-          img {
+        .icon {
+          &.has-image {
             width: var(--composer-gap-lg);
             height: var(--composer-gap-lg);
             object-fit: cover;
@@ -326,8 +326,8 @@
         transition: 0.5s;
         line-height: 0;
 
-        &.next-icon-has-image {
-          img {
+        .icon {
+          &.has-image {
             width: var(--composer-gap-lg);
             height: var(--composer-gap-lg);
             object-fit: cover;
@@ -361,7 +361,7 @@
 
             .icons-bar {
               .icon {
-                font-size: 1.2rem;
+                font-size: 1.25rem;
               }
             }
           }
@@ -379,7 +379,7 @@
         }
 
         .dots {
-          gap: 8px;
+          gap: var(--composer-gap-sm);
 
           .dot {
             width: 10px;
@@ -418,12 +418,12 @@
         .nav-buttons {
           .prev_icon,
           .next_icon {
-            font-size: 1.8rem;
+            font-size: 1.75rem;
           }
         }
 
         .dots {
-          gap: 6px;
+          gap: var(--composer-gap-xs);
 
           .dot {
             width: 8px;

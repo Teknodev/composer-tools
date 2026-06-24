@@ -680,7 +680,7 @@ class Team7 extends Team {
                   {subtitle && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
                   {title && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
                 </div>
-                {description && <Base.SectionDescription className={`${this.decorateCSS("description")} ${title ? this.decorateCSS("middle") : this.decorateCSS("left")}`}>{this.getPropValue("description")}</Base.SectionDescription>}
+                {description && <Base.SectionDescription className={`${this.decorateCSS("description")} ${title && this.decorateCSS("middle")}`}>{this.getPropValue("description")}</Base.SectionDescription>}
               </div>
             </Base.VerticalContent>
           ) : contentAlignment === "center" ? (

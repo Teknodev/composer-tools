@@ -12,9 +12,9 @@ type Socials = {
 
 interface Card {
   profileImage: TypeMediaInputValue;
-  name: string;
-  position: string;
-  cardDescription: string;
+  name: React.JSX.Element;
+  position: React.JSX.Element;
+  cardDescription: React.JSX.Element;
   socials: Socials[];
 }
 
@@ -692,9 +692,9 @@ class Team4 extends Team {
                     </div>
                   }
                   <Base.VerticalContent className={this.decorateCSS("box-text")}>
-                    {card.name && <Base.H5 className={this.decorateCSS("card-name")}>{card.name}</Base.H5>}
-                    {card.position && <Base.H6 className={this.decorateCSS("card-position")}>{card.position}</Base.H6>}
-                    {card.cardDescription && <Base.P className={this.decorateCSS("card-description")}>{card.cardDescription}</Base.P>}
+                    {this.castToString(card.name) && <Base.H5 className={this.decorateCSS("card-name")}>{card.name}</Base.H5>}
+                    {this.castToString(card.position) && <Base.H6 className={this.decorateCSS("card-position")}>{card.position}</Base.H6>}
+                    {this.castToString(card.cardDescription) && <Base.P className={this.decorateCSS("card-description")}>{card.cardDescription}</Base.P>}
                     <div className={this.decorateCSS("icon-group")}>
                       {card.socials?.map((item: Socials, indexSocials: number) => (
                         <ComposerLink key={indexSocials} path={item.url}>

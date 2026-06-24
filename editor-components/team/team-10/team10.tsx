@@ -16,17 +16,17 @@ type Socials = {
 };
 
 type Feature = {
-  subtitle: string;
-  title: string;
-  featureDescription: string;
+  subtitle: React.JSX.Element;
+  title: React.JSX.Element;
+  featureDescription: React.JSX.Element;
 };
 
 type Card = {
   profileImage: TypeMediaInputValue;
-  subtitle: string;
-  title: string;
+  subtitle: React.JSX.Element;
+  title: React.JSX.Element;
   features: Feature[];
-  cardDescription: string;
+  cardDescription: React.JSX.Element;
   socials: Socials[];
 };
 
@@ -1067,9 +1067,15 @@ class Team10 extends Team {
           {(this.castToObject<Card[]>("team") || []).map((teamMember: Card, index: number) => {
             const imageValue = teamMember.profileImage;
             const socials = teamMember.socials || [];
+            const subtitleExists = this.castToString(teamMember.subtitle);
+            const titleExists = this.castToString(teamMember.title);
+            const cardDescriptionExists = this.castToString(teamMember.cardDescription);
+            const hasFeatures = teamMember.features && teamMember.features.length > 0;
+            const hasInfo = subtitleExists || titleExists || hasFeatures || cardDescriptionExists || socials.length > 0;
+
             return (
               <Base.VerticalContent key={index} className={this.decorateCSS("team-member")}>
-                {(teamMember.title || teamMember.subtitle || teamMember.features?.length > 0 || teamMember.cardDescription || socials.length > 0) && (
+                {hasInfo && (
                   <div className={this.decorateCSS("info")}>
                     <div className={this.decorateCSS("icon-group")}>
                       {socials.map((socialObj: Socials, indexIcons: number) => {
@@ -1084,30 +1090,38 @@ class Team10 extends Team {
                         );
                       })}
                     </div>
-                    {(teamMember.subtitle || teamMember.title) && (
+                    {(subtitleExists || titleExists) && (
                       <Base.VerticalContent className={this.decorateCSS("title-group")}>
-                        {teamMember.subtitle && <Base.P className={this.decorateCSS("member-subtitle")}>{teamMember.subtitle}</Base.P>}
-                        {teamMember.title && <Base.H5 className={this.decorateCSS("member-title")} data-animation={hoverAnimation.join(" ")}>{teamMember.title}</Base.H5>}
+                        {subtitleExists && <Base.P className={this.decorateCSS("member-subtitle")}>{teamMember.subtitle}</Base.P>}
+                        {titleExists && <Base.H5 className={this.decorateCSS("member-title")} data-animation={hoverAnimation.join(" ")}>{teamMember.title}</Base.H5>}
                       </Base.VerticalContent>
                     )}
-                    {teamMember.features?.length > 0 && (
+                    {hasFeatures && (
                       <div className={this.decorateCSS("features-wrapper")}>
-                        {teamMember.features?.map((feature: Feature, indexFeatures: number) => (
-                          <Base.VerticalContent key={indexFeatures} className={this.decorateCSS("features")}>
-                            {feature.subtitle && (
-                              <Base.P className={this.decorateCSS("feature-subtitle")}>{feature.subtitle}</Base.P>
-                            )}
-                            {feature.title && (
-                              <Base.P className={this.decorateCSS("feature-title")}>{feature.title}</Base.P>
-                            )}
-                            {feature.featureDescription && (
-                              <Base.P className={this.decorateCSS("feature-description")}>{feature.featureDescription}</Base.P>
-                            )}
-                          </Base.VerticalContent>
-                        ))}
+                        {teamMember.features?.map((feature: Feature, indexFeatures: number) => {
+                          const featureSubtitleExist = this.castToString(feature.subtitle);
+                          const featureTitleExist = this.castToString(feature.title);
+                          const featureDescExist = this.castToString(feature.featureDescription);
+                          const hasFeature = featureSubtitleExist || featureTitleExist || featureDescExist;
+
+                          return hasFeature && (
+                            <Base.VerticalContent key={indexFeatures} className={this.decorateCSS("features")}>
+                              {featureSubtitleExist && (
+                                <Base.P className={this.decorateCSS("feature-subtitle")}>{feature.subtitle}</Base.P>
+                              )}
+                              {featureTitleExist && (
+                                <Base.P className={this.decorateCSS("feature-title")}>{feature.title}</Base.P>
+                              )}
+                              {featureDescExist && (
+                                <Base.P className={this.decorateCSS("feature-description")}>{feature.featureDescription}</Base.P>
+                              )}
+                            </Base.VerticalContent>
+                          );
+                        })}
                       </div>
                     )}
-                    {teamMember.cardDescription && (<Base.P className={this.decorateCSS("card-description")}>{teamMember.cardDescription}</Base.P>
+                    {cardDescriptionExists && (
+                      <Base.P className={this.decorateCSS("card-description")}>{teamMember.cardDescription}</Base.P>
                     )}
                   </div>
                 )}

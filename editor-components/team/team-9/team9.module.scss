@@ -242,10 +242,10 @@
 
           .text-group {
             .icons-bar {
-              gap: 8px;
+              gap: var(--composer-gap-sm);
 
               .icon {
-                font-size: 1.2rem;
+                font-size: 1.25rem;
                 padding: 8px;
 
                 &.has-image {
@@ -259,7 +259,7 @@
           &[data-animation~="animate2"] {
             .icons-bar {
               .icon {
-                font-size: 1.8rem;
+                font-size: 1.75rem;
                 padding: 8px;
               }
             }
@@ -290,7 +290,7 @@
 
         .card {
           display: flex !important;
-          gap: 20px !important;
+          gap: var(--composer-gap-md) !important;
 
           .image-container {
             .person-image {
@@ -308,7 +308,7 @@
             }
 
             .item-name {
-              font-size: 1.2rem;
+              font-size: 1.25rem;
             }
           }
 

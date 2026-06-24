@@ -12,9 +12,9 @@ type socials = {
 
 interface Card {
   profileImage: TypeMediaInputValue;
-  name: string;
-  position: string;
-  cardDescription: string;
+  name: React.JSX.Element;
+  position: React.JSX.Element;
+  cardDescription: React.JSX.Element;
   socials: socials[];
 }
 
@@ -962,41 +962,48 @@ class Team3 extends Team {
           )}
           <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount"), tablet: 2, phone: 1 }} className={this.decorateCSS("down-page")}>
             {this.castToObject<Card[]>("cards").map((card: Card, indexCards: number) => {
+              const cardNameExist = this.castToString(card.name);
+              const cardPositionExist = this.castToString(card.position);
+              const cardDescriptionExist = this.castToString(card.cardDescription);
+              const hasCard = cardNameExist || cardPositionExist || cardDescriptionExist || card.profileImage || (card.socials && card.socials.length > 0);
+
               return (
-                <div key={indexCards} className={this.decorateCSS("all-card")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
-                  <div
-                    className={`${this.decorateCSS("card")} ${card.profileImage && this.decorateCSS("card-image")}`}
-                    data-animation={this.getPropValue("hoverAnimation").join(" ")}
-                    data-show-lines={showLines}
-                  >
-                    <div className={this.decorateCSS("card-items")}>
-                      <div className={this.decorateCSS("card-content")}>
-                        {card.profileImage && (
-                          <div className={this.decorateCSS("image-container")}>
-                            <Base.Media value={card.profileImage} className={`${this.decorateCSS("image")} ${card.profileImage?.type === "icon" && this.decorateCSS("has-icon")}`} data-animation={this.getPropValue("hoverAnimation").join(" ")} />
-                            {this.getPropValue("overlay") && <div className={this.decorateCSS("overlay")} />}
-                          </div>
-                        )}
-                        <Base.VerticalContent className={card.profileImage ? this.decorateCSS("box-text") : this.decorateCSS("no-image-box-text")}>
-                          <Base.H5 className={this.decorateCSS("card-name")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>{card.name}</Base.H5>
-                          <Base.H6 className={this.decorateCSS("card-position")}>{card.position}</Base.H6>
-                          <Base.P className={this.decorateCSS("card-description")}>{card.cardDescription}</Base.P>
-                          <div className={this.decorateCSS("icon-group")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
-                            {card.socials?.map((item: socials, indexSocials: number) => (
-                              <ComposerLink key={indexSocials} path={item.url}>
-                                <Base.Media
-                                  value={item.icon}
-                                  className={`${this.decorateCSS("icon")} ${item.icon?.type === "image" && this.decorateCSS("has-image")}`}
-                                  style={{ "--icon-index": indexSocials } as React.CSSProperties}
-                                />
-                              </ComposerLink>
-                            ))}
-                          </div>
-                        </Base.VerticalContent>
+                hasCard && (
+                  <div key={indexCards} className={this.decorateCSS("all-card")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
+                    <div
+                      className={`${this.decorateCSS("card")} ${card.profileImage && this.decorateCSS("card-image")}`}
+                      data-animation={this.getPropValue("hoverAnimation").join(" ")}
+                      data-show-lines={showLines}
+                    >
+                      <div className={this.decorateCSS("card-items")}>
+                        <div className={this.decorateCSS("card-content")}>
+                          {card.profileImage && (
+                            <div className={this.decorateCSS("image-container")}>
+                              <Base.Media value={card.profileImage} className={`${this.decorateCSS("image")} ${card.profileImage?.type === "icon" && this.decorateCSS("has-icon")}`} data-animation={this.getPropValue("hoverAnimation").join(" ")} />
+                              {this.getPropValue("overlay") && <div className={this.decorateCSS("overlay")} />}
+                            </div>
+                          )}
+                          <Base.VerticalContent className={card.profileImage ? this.decorateCSS("box-text") : this.decorateCSS("no-image-box-text")}>
+                            {cardNameExist && <Base.H5 className={this.decorateCSS("card-name")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>{card.name}</Base.H5>}
+                            {cardPositionExist && <Base.H6 className={this.decorateCSS("card-position")}>{card.position}</Base.H6>}
+                            {cardDescriptionExist && <Base.P className={this.decorateCSS("card-description")}>{card.cardDescription}</Base.P>}
+                            <div className={this.decorateCSS("icon-group")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
+                              {card.socials?.map((item: socials, indexSocials: number) => (
+                                <ComposerLink key={indexSocials} path={item.url}>
+                                  <Base.Media
+                                    value={item.icon}
+                                    className={`${this.decorateCSS("icon")} ${item.icon?.type === "image" && this.decorateCSS("has-image")}`}
+                                    style={{ "--icon-index": indexSocials } as React.CSSProperties}
+                                  />
+                                </ComposerLink>
+                              ))}
+                            </div>
+                          </Base.VerticalContent>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
+                )
               );
             })}
           </Base.ListGrid>
