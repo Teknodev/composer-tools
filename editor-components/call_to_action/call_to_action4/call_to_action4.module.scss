@@ -15,25 +15,20 @@
         flex: 1;
         max-width: 100%;
         overflow: hidden;
-        align-items: var(--composer-content-alignment, flex-start);
 
         &.no-list {
           gap: 20px;
         }
 
         .header {
-          align-items: var(--composer-content-alignment, flex-start);
 
           .subtitle {
-            text-align: var(--composer-content-alignment, left);
-            justify-content: var(--composer-content-alignment, flex-start);
             margin-left: 0;
             width: 100%;
           }
 
           .title,
           .description {
-            text-align: var(--composer-content-alignment, left);
             margin-left: 0;
             width: 100%;
           }
@@ -43,12 +38,14 @@
           margin: 0px;
           min-width: 0;
           overflow: hidden;
+          justify-items: var(--composer-content-alignment);
 
           .list {
             display: flex;
             gap: var(--composer-gap-md);
             align-items: flex-start;
             min-width: 0;
+            justify-content: var(--composer-content-alignment);
 
             .description {
               display: flex;
@@ -71,7 +68,7 @@
 
               &.no-bg {
                 background-color: transparent;
-
+ 
                 .icon {
                   color: var(--composer-primary-color);
                 }
@@ -93,11 +90,7 @@
           flex-wrap: wrap;
           width: 100%;
           gap: var(--composer-gap-sm);
-          justify-content: var(--composer-content-alignment, flex-start);
-
-          a {
-            max-width: 100%;
-          }
+          justify-content: var(--composer-content-alignment);
 
           .button {
             max-width: 100%;
@@ -113,6 +106,33 @@
       &.has-image {
         .left-page {
           max-width: 50%;
+          align-items: flex-start;
+
+          .header {
+            align-items: flex-start;
+
+            .subtitle {
+              text-align: left;
+              justify-content: flex-start;
+            }
+
+            .title,
+            .description {
+              text-align: left;
+            }
+          }
+
+          .list-container {
+            justify-items: flex-start;
+
+            .list {
+              justify-content: flex-start;
+            }
+          }
+
+          .buttons {
+            justify-content: flex-start;
+          }
         }
       }
 
