@@ -6,7 +6,7 @@
     flex-direction: column;
 
     .steps-box {
-      border-radius: var(--composer-border-radius-md);
+      border-radius: var(--composer-border-radius-sm);
       display: flex;
       flex-direction: column;
       gap: var(--composer-gap-lg);
@@ -28,6 +28,7 @@
             }
           }
 
+          .subtitle,
           .title,
           .description {
             color: var(--composer-font-color-secondary);
