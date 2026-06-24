@@ -8,7 +8,7 @@ import { INPUTS } from "../../../custom-hooks/input-templates";
 type Faq = {
   question: React.JSX.Element;
   answer: React.JSX.Element;
-  index?: number;
+  index?: React.JSX.Element;
 };
 
 type InfoArrayItem = {
@@ -311,17 +311,17 @@ class Faq3 extends BaseFAQ {
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           {hasContent && (
             <Base.VerticalContent className={this.decorateCSS("header")}>
-              {this.getPropValue("subtitle") && (
+              {subtitle && (
                 <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
                   {this.getPropValue("subtitle")}
                 </Base.SectionSubTitle>
               )}
-              {this.getPropValue("title") && (
+              {title && (
                 <Base.SectionTitle className={this.decorateCSS("title")}>
                   {this.getPropValue("title")}
                 </Base.SectionTitle>
               )}
-              {this.getPropValue("description") && (
+              {description && (
                 <Base.SectionDescription className={this.decorateCSS("description")}>
                   {this.getPropValue("description")}
                 </Base.SectionDescription>
@@ -350,18 +350,19 @@ class Faq3 extends BaseFAQ {
                       this.getComponentState("active_index") == index;
                     const titleExist = this.castToString(item.question);
                     const descExist = this.castToString(item.answer);
+                    const indexExist = this.castToString(item.index);
 
-                    if (titleExist || descExist)
+                    if (titleExist || descExist || indexExist)
                       return (
                         <div
                           key={index}
                           className={`${this.decorateCSS("card")}${!lineEnabled ? ` ${this.decorateCSS("no-line")}` : ""}`}
                           onClick={() => this.onItemClick(index)}
                         >
-                          {(titleExist || descExist || item.index) && (
+                          {(titleExist || descExist || indexExist) && (
                             <div className={this.decorateCSS("top-card")}>
                               <div className={this.decorateCSS("card-left")}>
-                                {item.index && (
+                                {indexExist && (
                                   <Base.H6 className={this.decorateCSS("question-index")}>
                                     {item.index}
                                   </Base.H6>
