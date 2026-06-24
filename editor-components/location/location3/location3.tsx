@@ -32,6 +32,32 @@ type MarkerObject = {
   };
 };
 
+function getMarkerIconUrl(markerImage: any, width: number, height: number): string | undefined {
+  if (!markerImage) return undefined;
+  if (typeof markerImage === "string") return markerImage;
+  if (typeof markerImage !== "object") return undefined;
+
+  if (markerImage.type === "image") {
+    return markerImage.url;
+  }
+
+  if (markerImage.type === "icon") {
+    try {
+      const iconName = markerImage.name;
+      const lib = iconLibraries.find((l) => iconName in l);
+      const ElementIcon = lib ? lib[iconName] : null;
+      if (ElementIcon) {
+        const svgString = renderToStaticMarkup(<ElementIcon size={Math.max(width, height)} />);
+        return `data:image/svg+xml;utf8,${encodeURIComponent(svgString)}`;
+      }
+    } catch (e) {
+      return undefined;
+    }
+  }
+
+  return undefined;
+}
+
 class Location3 extends Location {
   constructor(props?: any) {
     super(props, styles);
@@ -303,30 +329,7 @@ class Location3 extends Location {
         const width = address.getPropValue("marker-width") || 32;
         const height = address.getPropValue("marker-height") || 32;
 
-        let iconUrl: string | undefined =
-          markerImage && typeof markerImage === "object" && markerImage.type === "image"
-            ? markerImage.url
-            : markerImage;
-
-        if (markerImage && typeof markerImage === "object" && markerImage.type === "icon") {
-          const iconName = (markerImage as any).name;
-          let ElementIcon: any = null;
-          for (const lib of iconLibraries) {
-            if (ElementIcon) break;
-            for (const [name, Comp] of Object.entries(lib)) {
-              if (name === iconName) {
-                ElementIcon = Comp;
-                break;
-              }
-            }
-          }
-
-          if (ElementIcon) {
-            const svgString = renderToStaticMarkup(<ElementIcon size={Math.max(width, height)} />);
-            iconUrl = `data:image/svg+xml;utf8,${encodeURIComponent(svgString)}`;
-          }
-
-        }
+        const iconUrl = getMarkerIconUrl(markerImage, width, height);
 
         if (lat !== undefined && lng !== undefined) {
           const finalIconUrl = iconUrl || defaultMarkerIcon;

@@ -131,17 +131,17 @@
               overflow: hidden;
               text-overflow: ellipsis;
               white-space: nowrap;
-              font-size: var(--composer-font-size-sm) !important;
+              font-size: 1rem !important;
 
               .info {
-                font-size: var(--composer-font-size-xs);
+                font-size: 0.75rem;
                 color: var(--composer-tertiary-color);
               }
 
               .separator-icon {
                 width: 12px;
                 height: 12px;
-                font-size: 12px;
+                font-size: 0.75rem;
                 color: var(--composer-font-color-primary);
                 opacity: 0.5;
                 display: flex;
@@ -247,11 +247,11 @@
               .tab-element {
                 .tab-text {
                   .text {
-                    font-size: var(--composer-font-size-sm);
+                    font-size: 1rem;
                   }
 
                   .info {
-                    font-size: var(--composer-font-size-xs) !important;
+                    font-size: 0.75rem;
                   }
                 }
 
@@ -371,14 +371,14 @@
 
             .tab-element {
               .tab-text {
-                font-size: var(--composer-font-size-sm) !important;
+                font-size: 1rem !important;
 
                 .text {
-                  font-size: var(--composer-font-size-sm);
+                  font-size: 1rem;
                 }
 
                 .info {
-                  font-size: var(--composer-font-size-xs) !important;
+                  font-size: 0.75rem !important;
                 }
               }
 

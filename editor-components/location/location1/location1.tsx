@@ -1,5 +1,4 @@
-import React from "react";
-import { Location } from "../../EditorComponent";
+import { Location, TypeMediaInputValue, TypeUsableComponentProps } from "../../EditorComponent";
 import styles from "./location1.module.scss";
 import ComposerMap from "../../../composer-base-components/map/map";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
@@ -9,12 +8,13 @@ type Address = {
   type: string;
   key: string;
   value: Array<Marker>;
+  getPropValue: (key: string) => unknown;
 };
 
 type Marker = {
   type: string;
   key: string;
-  value: any;
+  value: unknown;
 };
 
 type MarkerObject = {
@@ -43,24 +43,6 @@ type ButtomType = {
 class Location1 extends Location {
   constructor(props?: any) {
     super(props, styles);
-
-    this.removeProp("theme");
-    this.addProp({
-      type: "select",
-      key: "theme",
-      displayer: "Map Theme",
-      value: "",
-      additionalParams: {
-        selectItems: [
-          "Theme-0",
-          "Theme-1",
-          "Theme-2",
-          "Theme-3",
-          "Theme-4",
-          "Theme-5",
-        ],
-      },
-    });
 
     this.addProp({
       type: "string",
@@ -385,11 +367,11 @@ class Location1 extends Location {
 
     const mapStyle = this.selectTheme(selectedTheme);
 
-    const markers = addresses.reduce((acc: MarkerObject[], address: any) => {
+    const markers = addresses.reduce((acc: MarkerObject[], address: Address) => {
       if (address.type === "object" && Array.isArray(address.value)) {
-        const markerData = address.value.find((addr: any) => addr.type === "location");
-        const lat = markerData?.value.lat;
-        const lng = markerData?.value.lng;
+        const markerData = address.value.find((addr: Marker) => addr.type === "location");
+        const lat = (markerData?.value as { lat?: number })?.lat;
+        const lng = (markerData?.value as { lng?: number })?.lng;
         const description = this.castToString(address.getPropValue("description"));
         const popupTitle = this.castToString(address.getPropValue("popupTitle"));
 
@@ -399,10 +381,10 @@ class Location1 extends Location {
 
         const popupButtonUrl = address.getPropValue("navigateTo");
 
-        const markerMedia = address.getPropValue("markerImage");
+        const markerMedia = address.getPropValue("markerImage") as string | TypeMediaInputValue | undefined;
 
-        const width = address.getPropValue("markerWidth") || 32;
-        const height = address.getPropValue("markerHeight") || 32;
+        const width = (address.getPropValue("markerWidth") as number) || 32;
+        const height = (address.getPropValue("markerHeight") as number) || 32;
 
         let iconUrl: string | undefined =
           markerMedia && typeof markerMedia === "object" && markerMedia.type === "image"
@@ -479,10 +461,13 @@ class Location1 extends Location {
               {line && <div className={this.decorateCSS("divider")} />}
               {icons && icons.length > 0 && (
                 <div className={this.decorateCSS("icon-container")}>
-                  {icons.map((icon: any, index: number) => {
-                    const iconValue = icon.getPropValue ? icon.getPropValue("icon") : icon.icon;
-                    const iconPath = icon.getPropValue ? icon.getPropValue("path") : icon.path;
-                    const iconExist = iconValue && (iconValue.name || iconValue.url);
+                  {icons.map((icon: TypeUsableComponentProps, index: number) => {
+                    const iconValue = icon.getPropValue ? (icon.getPropValue("icon") as TypeMediaInputValue | undefined) : (icon as { icon?: TypeMediaInputValue }).icon;
+                    const iconPath = icon.getPropValue ? (icon.getPropValue("path") as string | undefined) : (icon as { path?: string }).path;
+                    const iconExist = iconValue && (
+                      (iconValue.type === "image" && iconValue.url) ||
+                      (iconValue.type === "icon" && iconValue.name)
+                    );
                     const hoverAnimation = this.getPropValue("hoverAnimation");
 
                     return iconExist && (

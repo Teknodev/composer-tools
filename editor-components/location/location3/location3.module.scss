@@ -80,13 +80,13 @@
             .continent-name {
               color: var(--composer-primary-color);
               text-align: justify !important;
-              font-size: 10px;
+              font-size: 0.75rem;
             }
 
             .continent-count {
               color: var(--composer-font-color-primary);
               text-align: justify !important;
-              font-size: 10px;
+              font-size: 0.75rem;
             }
           }
         }
@@ -119,12 +119,12 @@
             padding: var(--composer-gap-md);
 
             .continent-name {
-              font-size: var(--composer-font-size-sm) !important;
+              font-size: 1rem !important;
             }
 
 
             .continent-count {
-              font-size: var(--composer-font-size-sm) !important;
+              font-size: 1rem !important;
             }
           }
         }
@@ -159,11 +159,11 @@
               gap: var(--composer-gap-xs);
 
               .continent-name {
-                font-size: var(--composer-font-size-xs) !important;
+                font-size: 0.75rem !important;
               }
 
               .continent-count {
-                font-size: var(--composer-font-size-xs) !important;
+                font-size: 0.75rem !important;
               }
             }
           }

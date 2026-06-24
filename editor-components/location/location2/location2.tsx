@@ -1,5 +1,4 @@
-import React from "react";
-import { Location } from "../../EditorComponent";
+import { Location, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./location2.module.scss";
 import ComposerMap from "../../../composer-base-components/map/map";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
@@ -12,12 +11,13 @@ type Address = {
   type: string;
   key: string;
   value: Array<Marker>;
+  getPropValue: (key: string) => unknown;
 };
 
 type Marker = {
   type: string;
   key: string;
-  value: any;
+  value: unknown;
 };
 
 type MarkerObject = {
@@ -33,7 +33,7 @@ type MarkerObject = {
 };
 
 type ContentItemType = {
-  contentIcon: any;
+  contentIcon: string | TypeMediaInputValue | undefined;
   contentTitle: React.JSX.Element;
   contentDescriptionArray: {
     text: React.JSX.Element;
@@ -46,8 +46,38 @@ type mapSettings = {
 };
 
 type SocialMediaItemType = {
-  icon: any;
+  icon: string | TypeMediaInputValue | undefined;
 };
+
+function getMarkerIconUrl(
+  markerImage: string | TypeMediaInputValue | null | undefined,
+  width: number,
+  height: number
+): string | undefined {
+  if (!markerImage) return undefined;
+  if (typeof markerImage === "string") return markerImage;
+  if (typeof markerImage !== "object") return undefined;
+
+  if (markerImage.type === "image") {
+    return markerImage.url;
+  }
+
+  if (markerImage.type === "icon") {
+    try {
+      const iconName = markerImage.name;
+      const lib = iconLibraries.find((l) => iconName in l);
+      const ElementIcon = lib ? lib[iconName] : null;
+      if (ElementIcon) {
+        const svgString = renderToStaticMarkup(<ElementIcon size={Math.max(width, height)} />);
+        return `data:image/svg+xml;utf8,${encodeURIComponent(svgString)}`;
+      }
+    } catch (e) {
+      return undefined;
+    }
+  }
+
+  return undefined;
+}
 
 class Location2 extends Location {
   constructor(props?: any) {
@@ -518,42 +548,16 @@ class Location2 extends Location {
 
     const alignmentValue = Base.getContentAlignment();
 
-    const markers = addresses.reduce((acc: MarkerObject[], address: any) => {
+    const markers = addresses.reduce((acc: MarkerObject[], address: Address) => {
       if (address.type === "object" && Array.isArray(address.value)) {
-        const markerData = address.getPropValue("coordinate");
+        const markerData = address.getPropValue("coordinate") as { lat?: number; lng?: number } | undefined;
         const lat = markerData?.lat;
         const lng = markerData?.lng;
-        const markerImage = address.getPropValue("marker-image");
-        const width = address.getPropValue("marker-width") || 32;
-        const height = address.getPropValue("marker-height") || 32;
+        const markerImage = address.getPropValue("marker-image") as string | TypeMediaInputValue | undefined;
+        const width = (address.getPropValue("marker-width") as number) || 32;
+        const height = (address.getPropValue("marker-height") as number) || 32;
 
-        let iconUrl: string | undefined =
-          markerImage && typeof markerImage === "object" && markerImage.type === "image"
-            ? markerImage.url
-            : markerImage;
-
-        if (markerImage && typeof markerImage === "object" && markerImage.type === "icon") {
-          try {
-            const iconName = (markerImage as any).name;
-            let ElementIcon: any = null;
-            for (const lib of iconLibraries) {
-              if (ElementIcon) break;
-              for (const [name, Comp] of Object.entries(lib)) {
-                if (name === iconName) {
-                  ElementIcon = Comp;
-                  break;
-                }
-              }
-            }
-
-            if (ElementIcon) {
-              const svgString = renderToStaticMarkup(<ElementIcon size={Math.max(width, height)} />);
-              iconUrl = `data:image/svg+xml;utf8,${encodeURIComponent(svgString)}`;
-            }
-          } catch (e) {
-            iconUrl = undefined;
-          }
-        }
+        const iconUrl = getMarkerIconUrl(markerImage, width, height);
 
         if (lat !== undefined && lng !== undefined) {
           const content = <></>;
@@ -583,7 +587,7 @@ class Location2 extends Location {
     const headerExist = isTitleExist || isDescriptionExist || socials.length > 0 || hasSubtitle || visibleButtons.length > 0;
     const socialNodes = socials.length > 0 ? (
       <div className={this.decorateCSS("socials")}>
-        {socials.map((item: any, idx: number) => {
+        {socials.map((item: SocialMediaItemType, idx: number) => {
           return (
             item.getPropValue("icon") && (
               <Base.VerticalContent key={idx} className={this.decorateCSS("socials-container")}>
@@ -667,7 +671,7 @@ class Location2 extends Location {
                       )}
                       {isDesExist && (
                         <div className={this.decorateCSS("description-wrapper")}>
-                          {item.contentDescriptionArray.map((descItem: any, descIdx: number) => {
+                          {item.contentDescriptionArray.map((descItem: { text: React.JSX.Element }, descIdx: number) => {
                             const hasText = this.castToString(descItem.text);
                             return hasText && (
                               <div key={descIdx} className={this.decorateCSS("description-item")}>

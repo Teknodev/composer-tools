@@ -390,7 +390,9 @@ class Location4 extends Location {
                               <Base.Media value={titleLeftIcon} className={this.decorateCSS("title-icon-img")} />
                             </div>
                           )}
-                          <Base.SectionTitle className={this.decorateCSS("title-no-image")}>{this.getPropValue("title")}</Base.SectionTitle>
+                          <Base.SectionTitle className={this.decorateCSS("title-no-image")}>
+                            <span className={this.decorateCSS("title-text")}>{this.getPropValue("title")}</span>
+                          </Base.SectionTitle>
                           {titleRightIconExist && (
                             <div className={this.decorateCSS("title-icon")}>
                               <Base.Media value={titleRightIcon} className={this.decorateCSS("title-icon-img")} />

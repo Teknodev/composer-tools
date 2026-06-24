@@ -1,5 +1,5 @@
 import React from "react";
-import { Location } from "../../EditorComponent";
+import { Location, TypeMediaInputValue, TypeUsableComponentProps, TypeLocation } from "../../EditorComponent";
 import styles from "./location6.module.scss";
 import ComposerMap from "../../../composer-base-components/map/map";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
@@ -10,18 +10,15 @@ import { renderToStaticMarkup } from "react-dom/server";
 type Address = {
   type: string;
   key: string;
-  value: Array<Marker>;
-};
-
-type Marker = {
-  type: string;
-  key: string;
-  value: any;
+  value: Array<TypeUsableComponentProps>;
+  getPropValue: (key: string) => string | number | boolean | TypeMediaInputValue | TypeLocation | undefined;
 };
 
 type Buttons = {
   info?: string;
   text?: string;
+  icon?: TypeMediaInputValue | string;
+  "separator-icon"?: TypeMediaInputValue | string;
 };
 
 type MarkerObject = {
@@ -41,8 +38,34 @@ type mapSettings = {
   markerZoom: number;
 }
 
+function getMarkerIconUrl(markerImage: TypeMediaInputValue | string | null | undefined, width: number, height: number): string | undefined {
+  if (!markerImage) return undefined;
+  if (typeof markerImage === "string") return markerImage;
+  if (typeof markerImage !== "object") return undefined;
+
+  if (markerImage.type === "image") {
+    return markerImage.url;
+  }
+
+  if (markerImage.type === "icon") {
+    try {
+      const iconName = markerImage.name;
+      const lib = iconLibraries.find((l) => iconName in l);
+      const ElementIcon = lib ? lib[iconName] : null;
+      if (ElementIcon) {
+        const svgString = renderToStaticMarkup(<ElementIcon size={Math.max(width, height)} />);
+        return `data:image/svg+xml;utf8,${encodeURIComponent(svgString)}`;
+      }
+    } catch (e) {
+      return undefined;
+    }
+  }
+
+  return undefined;
+}
+
 class Location6 extends Location {
-  constructor(props?: Buttons) {
+  constructor(props?: any) {
     super(props, styles);
 
     this.addProp({
@@ -528,45 +551,19 @@ class Location6 extends Location {
 
     const defaultMarkerIcon = "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/675c1b5c0655f8002ca6cccb?alt=media";
 
-    const markers = addresses.reduce((acc: MarkerObject[], address: any) => {
+    const markers = addresses.reduce((acc: MarkerObject[], address: Address) => {
       if (address.type === "object" && Array.isArray(address.value)) {
-        const markerData = address.getPropValue("coordinate");
+        const markerData = address.getPropValue("coordinate") as TypeLocation | undefined;
         const lat = markerData?.lat;
         const lng = markerData?.lng;
 
-        const markerImage = address.getPropValue("marker-image");
-        const width = address.getPropValue("marker-width") || 32;
-        const height = address.getPropValue("marker-height") || 32;
+        const markerImage = address.getPropValue("marker-image") as TypeMediaInputValue | undefined;
+        const width = (address.getPropValue("marker-width") as number) || 32;
+        const height = (address.getPropValue("marker-height") as number) || 32;
 
-        let iconUrl: string | undefined =
-          markerImage && typeof markerImage === "object" && markerImage.type === "image"
-            ? markerImage.url
-            : markerImage;
+        const iconUrl = getMarkerIconUrl(markerImage, width, height);
 
-        if (markerImage && typeof markerImage === "object" && markerImage.type === "icon") {
-          try {
-            const iconName = (markerImage as any).name;
-            let ElementIcon: any = null;
-            for (const lib of iconLibraries) {
-              if (ElementIcon) break;
-              for (const [name, Comp] of Object.entries(lib)) {
-                if (name === iconName) {
-                  ElementIcon = Comp;
-                  break;
-                }
-              }
-            }
-
-            if (ElementIcon) {
-              const svgString = renderToStaticMarkup(<ElementIcon size={Math.max(width, height)} />);
-              iconUrl = `data:image/svg+xml;utf8,${encodeURIComponent(svgString)}`;
-            }
-          } catch (e) {
-            iconUrl = undefined;
-          }
-        }
-
-        const description = address.getPropValue("description");
+        const description = address.getPropValue("description") as string | undefined;
         const hasDescription = this.castToString(description);
 
         if (lat !== undefined && lng !== undefined) {
@@ -626,18 +623,19 @@ class Location6 extends Location {
               </Base.VerticalContent>
               {hasButtons ? (
                 <Base.VerticalContent className={this.decorateCSS("tab-container")}>
-                  {buttons.map((button: any, index: number) => {
+                   {buttons.map((button: Buttons, index: number) => {
                     const buttonTextExist = this.castToString(button?.text);
                     const buttonInfoExist = this.castToString(button?.info);
                     const rawIcon = button?.icon;
-                    const normalizedIcon: any = typeof rawIcon === "string" ? { type: "icon", name: rawIcon } : rawIcon;
+                    const normalizedIcon = typeof rawIcon === "string" ? ({ type: "icon", name: rawIcon } as TypeMediaInputValue) : (rawIcon as TypeMediaInputValue | undefined);
 
                     const rawSeparatorIcon = button?.["separator-icon"];
-                    const normalizedSeparatorIcon: any = typeof rawSeparatorIcon === "string" ? { type: "icon", name: rawSeparatorIcon } : rawSeparatorIcon;
+                    const normalizedSeparatorIcon = typeof rawSeparatorIcon === "string" ? ({ type: "icon", name: rawSeparatorIcon } as TypeMediaInputValue) : (rawSeparatorIcon as TypeMediaInputValue | undefined);
                     const separatorIconExist = Boolean(
-                      normalizedSeparatorIcon?.url ||
-                      normalizedSeparatorIcon?.name ||
-                      normalizedSeparatorIcon?.icon
+                      normalizedSeparatorIcon && (
+                        (normalizedSeparatorIcon.type === "image" && normalizedSeparatorIcon.url) ||
+                        (normalizedSeparatorIcon.type === "icon" && normalizedSeparatorIcon.name)
+                      )
                     );
 
                     const buttonExist = buttonTextExist || buttonInfoExist || normalizedIcon;

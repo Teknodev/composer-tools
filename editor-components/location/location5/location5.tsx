@@ -13,6 +13,32 @@ type mapSettings = {
   markerZoom: number;
 }
 
+function getMarkerIconUrl(markerImage: any, width: number, height: number): string | undefined {
+  if (!markerImage) return undefined;
+  if (typeof markerImage === "string") return markerImage;
+  if (typeof markerImage !== "object") return undefined;
+
+  if (markerImage.type === "image") {
+    return markerImage.url;
+  }
+
+  if (markerImage.type === "icon") {
+    try {
+      const iconName = markerImage.name;
+      const lib = iconLibraries.find((l) => iconName in l);
+      const ElementIcon = lib ? lib[iconName] : null;
+      if (ElementIcon) {
+        const svgString = renderToStaticMarkup(<ElementIcon size={Math.max(width, height)} />);
+        return `data:image/svg+xml;utf8,${encodeURIComponent(svgString)}`;
+      }
+    } catch (e) {
+      return undefined;
+    }
+  }
+
+  return undefined;
+}
+
 class Location5 extends Location {
   constructor(props?: any) {
     super(props, styles);
@@ -65,6 +91,7 @@ class Location5 extends Location {
       value: [
         {
           type: "object",
+          key: "locationAddress",
           displayer: "First Location",
           value: [
             {
@@ -98,6 +125,7 @@ class Location5 extends Location {
               value: [
                 {
                   type: "object",
+                  key: "marker",
                   displayer: "Location",
                   value: [
                     {
@@ -147,12 +175,13 @@ class Location5 extends Location {
                     },
                   ],
                 },
-              ] as any,
+              ],
             },
           ],
         },
         {
           type: "object",
+          key: "locationAddress",
           displayer: "Second Location",
           value: [
             {
@@ -186,6 +215,7 @@ class Location5 extends Location {
               value: [
                 {
                   type: "object",
+                  key: "marker",
                   displayer: "Location",
                   value: [
                     {
@@ -235,11 +265,11 @@ class Location5 extends Location {
                     },
                   ],
                 },
-              ] as any,
+              ],
             },
           ],
         },
-      ] as any,
+      ],
     });
 
     this.addProp({
@@ -287,9 +317,9 @@ class Location5 extends Location {
 
   render() {
     const locationAddresses = this.getPropValue("locationAddresses") || [];
-    const Subtitle = this.castToString(this.getPropValue("subtitle"));
-    const Title = this.castToString(this.getPropValue("title"));
-    const Description = this.castToString(this.getPropValue("description"));
+    const subtitle = this.castToString(this.getPropValue("subtitle"));
+    const title = this.castToString(this.getPropValue("title"));
+    const description = this.castToString(this.getPropValue("description"));
     const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons") || [];
     const visibleButtons = buttons.filter(btn => this.castToString(btn.text));
     const mapSettings = this.castToObject<mapSettings>("mapSettings");
@@ -325,35 +355,7 @@ class Location5 extends Location {
           const width = 32;
           const height = 32;
 
-          let iconUrl: string | undefined =
-            markerImage && typeof markerImage === "object" && markerImage.type === "image"
-              ? markerImage.url
-              : markerImage;
-
-          if (markerImage && typeof markerImage === "object" && markerImage.type === "icon") {
-            try {
-              const iconName = (markerImage as any).name;
-              if (iconName) {
-                let ElementIcon: any = null;
-                for (const lib of iconLibraries) {
-                  if (ElementIcon) break;
-                  for (const [name, Comp] of Object.entries(lib)) {
-                    if (name === iconName) {
-                      ElementIcon = Comp;
-                      break;
-                    }
-                  }
-                }
-
-                if (ElementIcon) {
-                  const svgString = renderToStaticMarkup(<ElementIcon size={Math.max(width, height)} />);
-                  iconUrl = `data:image/svg+xml;utf8,${encodeURIComponent(svgString)}`;
-                }
-              }
-            } catch (e) {
-              iconUrl = undefined;
-            }
-          }
+          const iconUrl = getMarkerIconUrl(markerImage, width, height);
 
           if (lat !== undefined && lng !== undefined) {
             const finalIconUrl = iconUrl || defaultMarkerIcon;
@@ -407,9 +409,9 @@ class Location5 extends Location {
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <Base.VerticalContent className={this.decorateCSS("vertical-content")}>
             {logoExist && (<Base.Media value={logo} className={`${this.decorateCSS("location-logo")} ${logo?.type === "image" && this.decorateCSS("location-logo-img")}`} />)}
-            {Subtitle && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
-            {Title && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
-            {Description && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
+            {subtitle && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
+            {title && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
+            {description && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
             {visibleButtons.length > 0 && (
               <div className={this.decorateCSS("button-container")}>
                 {visibleButtons.map((item: INPUTS.CastedButton, index: number) => {

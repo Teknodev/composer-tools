@@ -19,7 +19,7 @@ type Address = {
 type Marker = {
   type: string;
   key: string;
-  value: any;
+  value: string | boolean | React.JSX.Element | { value: React.JSX.Element }[];
 };
 
 type MarkerObject = {
@@ -27,7 +27,7 @@ type MarkerObject = {
   leftPercent: string;
   topPercent: string;
   popupTitle: string;
-  description: any[];
+  description: React.JSX.Element[];
   markerImage: string;
 };
 
@@ -457,14 +457,17 @@ class Location7 extends Location {
     const logoExist = (logo?.type === "icon" && !!logo?.name) || (logo?.type === "image" && !!logo?.url);
 
 
-    const markers = addresses.reduce((acc: MarkerObject[], address: any) => {
+    const markers = addresses.reduce((acc: MarkerObject[], address: Address) => {
       if (address.type === "object" && Array.isArray(address.value)) {
         const markerProps = address.value;
-        const leftPercent = markerProps.find((p: any) => p.key === "leftPercent")?.value;
-        const topPercent = markerProps.find((p: any) => p.key === "topPercent")?.value;
-        const popupTitle = markerProps.find((p: any) => p.key === "popupTitle")?.value;
-        const descriptionProp = markerProps.find((p: any) => p.key === "description");
-        const description = (descriptionProp?.value || []).map((item: any) => item?.value || item);
+        const leftPercent = (markerProps.find((p: Marker) => p.key === "leftPercent")?.value || "") as string;
+        const topPercent = (markerProps.find((p: Marker) => p.key === "topPercent")?.value || "") as string;
+        const popupTitle = (markerProps.find((p: Marker) => p.key === "popupTitle")?.value || "") as string;
+        const descriptionProp = markerProps.find((p: Marker) => p.key === "description");
+        const descriptionVal = Array.isArray(descriptionProp?.value) ? descriptionProp.value : [];
+        const description = descriptionVal.map((item: { value?: React.JSX.Element } | React.JSX.Element) => {
+          return item && typeof item === "object" && "value" in item ? item.value : item;
+        }) as React.JSX.Element[];
 
         acc.push({
           leftPercent,
@@ -550,7 +553,7 @@ class Location7 extends Location {
                           {showTooltipLine && <div className={this.decorateCSS("tooltip-divider")}></div>}
                           {description && description.length > 0 && (
                             <div className={this.decorateCSS("tooltip-content")}>
-                              {description.map((text: any, i: number) => {
+                              {description.map((text: React.JSX.Element, i: number) => {
                                 return <div key={i}>{this.castToString(text)}</div>;
                               })}
                             </div>
