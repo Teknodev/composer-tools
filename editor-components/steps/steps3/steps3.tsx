@@ -50,7 +50,7 @@ class Steps3 extends BaseSteps {
       key: "buttons",
       displayer: "Buttons",
       value: [
-        INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+        INPUTS.BUTTON("button", "Button", "", "", null, null, "White"),
       ],
     });
 
@@ -94,7 +94,7 @@ class Steps3 extends BaseSteps {
               key: "buttons",
               displayer: "Buttons",
               value: [
-                INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+                INPUTS.BUTTON("button", "Button", "", "", null, null, "White"),
               ],
             },
           ],
@@ -134,7 +134,7 @@ class Steps3 extends BaseSteps {
               key: "buttons",
               displayer: "Buttons",
               value: [
-                INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+                INPUTS.BUTTON("button", "Button", "", "", null, null, "White"),
               ],
             },
           ],
@@ -174,7 +174,7 @@ class Steps3 extends BaseSteps {
               key: "buttons",
               displayer: "Buttons",
               value: [
-                INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+                INPUTS.BUTTON("button", "Button", "", "", null, null, "White"),
               ],
             },
           ],

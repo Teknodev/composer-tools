@@ -19,13 +19,13 @@
         .header {
           .subtitle {
             width: fit-content;
-            transform: none;
+            // transform: none;
             padding: 0;
             background: transparent;
 
-            &::before {
-              display: none;
-            }
+            // &::before {
+            //   display: none;
+            // }
           }
 
           .subtitle,
@@ -113,6 +113,7 @@
               justify-content: flex-start;
               gap: var(--composer-gap-sm);
               flex-wrap: wrap;
+              width: 100%;
 
               .card-button {
                 .card-button-text {
@@ -182,6 +183,7 @@
 
             .card-content {
 
+              .card-subtitle,
               .card-title,
               .card-description {
                 text-align: var(--composer-content-alignment);
