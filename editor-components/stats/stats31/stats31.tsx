@@ -7,8 +7,10 @@ import ComposerLink from "../../../composer-base-components/Link/ComposerLinkPro
 
 type StatItem = {
     prefix: string;
+    prefixElement: JSX.Element;
     number: string;
     suffix: string;
+    suffixElement: JSX.Element;
     title: string;
     titleElement: JSX.Element;
     subtitle: string;
@@ -173,12 +175,12 @@ class Stats31 extends BaseStats {
         };
 
         const formattedNumber = statsAnimation ? formatNumber(animatedNumber) : formatNumber(targetNumber);
-        const titleExist = stat.title && stat.title !== "";
-        const subtitleExist = stat.subtitle && stat.subtitle !== "";
-        const descriptionExist = stat.description && stat.description !== "";
-        const valueExist = originalString && originalString !== "";
-        const prefixExist = this.castToString(stat.prefix);
-        const suffixExist = this.castToString(stat.suffix);
+        const titleExist = !!stat.title;
+        const subtitleExist = !!stat.subtitle;
+        const descriptionExist = !!stat.description;
+        const valueExist = !!originalString;
+        const prefixExist = !!stat.prefix;
+        const suffixExist = !!stat.suffix;
 
         if (!valueExist && !prefixExist && !suffixExist && !titleExist && !subtitleExist && !descriptionExist) return null;
 
@@ -188,7 +190,7 @@ class Stats31 extends BaseStats {
                     <span className={this.decorateCSS("stat-value")}>
                         {prefixExist && (
                             <span className={this.decorateCSS("stat-prefix")}>
-                                {stat.prefix}
+                                {stat.prefixElement}
                             </span>
                         )}
                         {valueExist && (
@@ -198,7 +200,7 @@ class Stats31 extends BaseStats {
                         )}
                         {suffixExist && (
                             <span className={this.decorateCSS("stat-suffix")}>
-                                {stat.suffix}
+                                {stat.suffixElement}
                             </span>
                         )}
                     </span>
@@ -237,7 +239,19 @@ class Stats31 extends BaseStats {
             const title = this.castToString(item.title) || "";
             const subtitle = this.castToString(item.subtitle) || "";
             const description = this.castToString(item.description) || "";
-            return { prefix, number, suffix, title, titleElement: item.title, subtitle, subtitleElement: item.subtitle, description, descriptionElement: item.description };
+            return {
+                prefix,
+                prefixElement: item.prefix,
+                number,
+                suffix,
+                suffixElement: item.suffix,
+                title,
+                titleElement: item.title,
+                subtitle,
+                subtitleElement: item.subtitle,
+                description,
+                descriptionElement: item.description
+            };
         });
 
         const visibleButtons = buttons.filter((btn) => this.castToString(btn.text));
@@ -245,6 +259,8 @@ class Stats31 extends BaseStats {
         const visibleStats = stats.filter(
             (stat) =>
                 (stat.number && stat.number !== "") ||
+                (stat.prefix && stat.prefix !== "") ||
+                (stat.suffix && stat.suffix !== "") ||
                 (stat.title && stat.title !== "") ||
                 (stat.subtitle && stat.subtitle !== "") ||
                 (stat.description && stat.description !== "")
