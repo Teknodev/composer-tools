@@ -23,14 +23,12 @@
         .header {
 
           .subtitle {
-            margin-left: 0;
-            width: 100%;
+            margin-left: auto;
           }
 
           .title,
           .description {
-            margin-left: 0;
-            width: 100%;
+            content: "";
           }
         }
 
@@ -38,14 +36,14 @@
           margin: 0px;
           min-width: 0;
           overflow: hidden;
-          justify-items: var(--composer-content-alignment);
+          justify-items: flex-start;
 
           .list {
             display: flex;
             gap: var(--composer-gap-md);
             align-items: flex-start;
             min-width: 0;
-            justify-content: var(--composer-content-alignment);
+            justify-content: flex-start;
 
             .description {
               display: flex;
@@ -114,6 +112,7 @@
             .subtitle {
               text-align: left;
               justify-content: flex-start;
+              margin-left: 0;
             }
 
             .title,
