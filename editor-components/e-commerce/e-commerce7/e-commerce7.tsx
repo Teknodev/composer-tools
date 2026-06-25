@@ -1090,17 +1090,17 @@ class ECommerce7 extends BaseECommerce {
                         socials.length > 0) && (
                           <div className={this.decorateCSS("header")}>
                             {isSubtitle && (
-                              <Base.H4 className={this.decorateCSS("subtitle")}>
+                              <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
                                 {subtitle}
-                              </Base.H4>
+                              </Base.SectionSubTitle>
                             )}
                             <div className={this.decorateCSS("title-share-row")}>
                               {isTitle && (
-                                <Base.H3
+                                <Base.SectionTitle
                                   className={this.decorateCSS("title")}
                                 >
                                   {this.getPropValue("title")}
-                                </Base.H3>
+                                </Base.SectionTitle>
                               )}
                               {(isShareIcon ||
                                 isSahreTitle ||

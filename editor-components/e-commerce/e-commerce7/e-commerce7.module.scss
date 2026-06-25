@@ -228,12 +228,9 @@
 
                 .subtitle {
                     text-align: left;
-                    color: var(--composer-font-color-primary);
-                    transform: translateX(0);
+                    margin-left: 0;
 
-                    &::before {
-                        display: none;
-                    }
+                 
                 }
 
                 .header {
@@ -253,7 +250,6 @@
                         flex: 1;
                         text-align: left;
                         margin: 0;
-                        color: var(--composer-font-color-primary);
                     }
 
                     .share-container {
