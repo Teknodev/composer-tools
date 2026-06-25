@@ -960,7 +960,6 @@ class ECommerce7 extends BaseECommerce {
       slidesToScroll: 1,
     };
     return (
-      <div className={this.decorateCSS("e-commerce7-root")}>
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           {media.length > 0 && (
@@ -1420,7 +1419,6 @@ class ECommerce7 extends BaseECommerce {
             </Base.VerticalContent>
           )}
         </Base.MaxContent>
-      </Base.Container>
       <Base.Overlay
         isVisible={this.getComponentState("zoomImage")}
         className={this.decorateCSS("zoom-image")}
@@ -1492,7 +1490,7 @@ class ECommerce7 extends BaseECommerce {
           </div>
         )}
       </Base.Overlay>
-      </div>
+      </Base.Container>
     );
   }
 }

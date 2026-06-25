@@ -431,10 +431,12 @@ class ECommerce6 extends BaseECommerce {
                                   >
                                     {tab.image_container.box2_text}
                                   </Base.H3>
-                                  <Base.Media
-                                    value={tab.image_container.box2_icon}
-                                    className={this.decorateCSS("box2-icon")}
-                                  />
+                                  <div className={this.decorateCSS("box2-icon")}>
+                                    <Base.Media
+                                      value={tab.image_container.box2_icon}
+                                      className={this.decorateCSS("icon")}
+                                    />
+                                  </div>
                                 </div>
                               </ComposerLink>
                             )}

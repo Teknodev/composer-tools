@@ -3317,7 +3317,6 @@ class ECommerce2 extends BaseECommerce {
             : imageGallery[selectedIndex]?.images?.slice(0, currentImageCount) || [];
 
         return (
-            <div className={this.decorateCSS("e-commerce2-root")}>
             <Base.Container
                 className={`${this.decorateCSS("container")} ${this.decorateCSS("with-overlay")}`}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
@@ -3476,7 +3475,6 @@ class ECommerce2 extends BaseECommerce {
                         );
                     })()}
                 </Base.MaxContent>
-            </Base.Container>
             {activePopup &&
                 activePopup.popupImages &&
                 activePopup.popupImages.length > 0 && (
@@ -3537,7 +3535,7 @@ class ECommerce2 extends BaseECommerce {
                         </div>
                     </Base.Overlay>
                 )}
-            </div>
+            </Base.Container>
         );
     }
 }

@@ -651,7 +651,6 @@ class ECommerce1 extends BaseECommerce {
       descriptionExist || this.castToString(quantitySection.quantityText) || quantitySection.leftArrow || quantitySection.rightArrow || this.castToString(buttonText) || this.castToString(quantitySection.wishlist.wishlistText) || quantitySection.wishlist.wishlistIcon ||
       (categoriesAndTags.length > 0)
     return (
-      <div className={this.decorateCSS("e-commerce1-root")}>
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           {(images.length > 0) && (
@@ -805,7 +804,6 @@ class ECommerce1 extends BaseECommerce {
             </Base.VerticalContent>
           )}
         </Base.MaxContent>
-      </Base.Container>
       {isActive && (
         <Base.Overlay isVisible={true} className={this.decorateCSS("image-popup")}>
           <div className={this.decorateCSS("popup-content")}>
@@ -841,7 +839,7 @@ class ECommerce1 extends BaseECommerce {
           </div>
         </Base.Overlay>
       )}
-      </div>
+      </Base.Container>
     )
   }
 }

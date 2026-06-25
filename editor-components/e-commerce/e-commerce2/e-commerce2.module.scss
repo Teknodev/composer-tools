@@ -1,8 +1,5 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
-.e-commerce2-root {
-  display: contents;
-}
 
 .container {
   background-color: var(--composer-html-background);
@@ -95,7 +92,7 @@
         background: color-mix(in srgb,
             var(--composer-html-background),
             var(--composer-font-color-primary) 5%);
-        aspect-ratio: 600 / 728;
+        aspect-ratio: 3 / 4;
 
         &:hover {
           .image-bottom {

@@ -1,8 +1,5 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
-.e-commerce1-root {
-    display: contents;
-}
 
 @keyframes fadeOutIn {
     0% {
@@ -309,12 +306,6 @@
                         color: var(--composer-tertiary-color);
                         outline: none;
                         font-size: 1rem !important;
-
-                        &::-webkit-outer-spin-button,
-                        &::-webkit-inner-spin-button {
-                            -webkit-appearance: none;
-                            margin: 0;
-                        }
                     }
                 }
 
@@ -528,7 +519,7 @@
 @container (max-width: #{$composer-phone-width}) {
     .image-popup {
         .popup-content {
-            width: 92%;
+            width: 100%;
             max-width: 340px;
             height: auto;
             max-height: 90vh;
