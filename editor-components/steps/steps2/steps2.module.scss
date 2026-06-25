@@ -94,24 +94,6 @@
     .max-content {
       gap: var(--composer-gap-md);
 
-      .header {
-        align-items: var(--composer-content-alignment);
-
-        .subtitle {
-          text-align: var(--composer-content-alignment);
-          transform: revert;
-
-          &::before {
-            display: revert;
-          }
-        }
-
-        .title,
-        .description {
-          text-align: var(--composer-content-alignment);
-        }
-      }
-
       .cards-container {
         gap: var(--composer-gap-lg);
 
@@ -148,9 +130,9 @@
         }
       }
 
-      .button-container {
-        justify-content: var(--composer-content-alignment);
-      }
+      // .button-container {
+      //   justify-content: var(--composer-content-alignment);
+      // }
     }
   }
 }
