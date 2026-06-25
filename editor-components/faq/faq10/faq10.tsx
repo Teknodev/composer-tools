@@ -38,17 +38,29 @@ class Faq10 extends BaseFAQ {
     });
 
     this.addProp({
-      type: "icon",
+      type: "media",
       key: "icon",
       displayer: "Active Icon",
-      value: "IoIosRemove",
+      additionalParams: {
+        availableTypes: ["icon", "image"],
+      },
+      value: {
+        type: "icon",
+        name: "IoIosRemove",
+      },
     });
 
     this.addProp({
-      type: "icon",
+      type: "media",
       key: "iconPlus",
       displayer: "Inactive Icon",
-      value: "IoIosAdd",
+      additionalParams: {
+        availableTypes: ["icon", "image"],
+      },
+      value: {
+        type: "icon",
+        name: "IoIosAdd",
+      },
     });
 
     this.addProp({
@@ -402,7 +414,9 @@ class Faq10 extends BaseFAQ {
 
                   const cardSubtitleExist = this.castToString(card.subtitle);
                   const cardTextExist = this.castToString(card.text);
-                  const iconExist = this.getPropValue("icon") || this.getPropValue("iconPlus");
+                  const iconPlus = this.getPropValue("iconPlus");
+                  const icon = this.getPropValue("icon");
+                  const iconExist = icon || iconPlus;
                   return (
                     <div
                       className={this.decorateCSS("card")}
@@ -425,12 +439,7 @@ class Faq10 extends BaseFAQ {
                         >
                           {iconExist && (
                             <Base.Media
-                              value={{
-                                type: "icon",
-                                name: isOpen
-                                  ? this.getPropValue("icon")
-                                  : this.getPropValue("iconPlus")
-                              }}
+                              value={isOpen ? icon : iconPlus}
                               className={[
                                 this.decorateCSS("icon"),
                                 isOpen ? this.decorateCSS("iconOpen") : "",
