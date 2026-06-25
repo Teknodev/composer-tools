@@ -33,28 +33,16 @@ class Faq10 extends BaseFAQ {
       value: "Looking for something else? Let’s talk",
     });
     this.addProp({
-      type: "media",
+      type: "icon",
       key: "iconPlus",
       displayer: "Collapsed Icon",
-      additionalParams: {
-        availableTypes: ["icon", "image"],
-      },
-      value: {
-        type: "icon",
-        name: "IoIosAdd",
-      },
+      value: "IoIosAdd",
     });
     this.addProp({
-      type: "media",
+      type: "icon",
       key: "icon",
       displayer: "Expanded Icon",
-      additionalParams: {
-        availableTypes: ["icon", "image"],
-      },
-      value: {
-        type: "icon",
-        name: "IoIosRemove",
-      },
+      value: "IoIosRemove",
     });
     this.addProp({
       type: "array",
@@ -398,9 +386,7 @@ class Faq10 extends BaseFAQ {
 
                     const cardSubtitleExist = this.castToString(card.subtitle);
                     const cardTextExist = this.castToString(card.text);
-                    const iconPlus = this.getPropValue("iconPlus");
-                    const icon = this.getPropValue("icon");
-                    const iconExist = icon || iconPlus;
+                    const iconExist = this.getPropValue("icon") || this.getPropValue("iconPlus");
                     return (
                       <div
                         className={this.decorateCSS("card")}
@@ -422,12 +408,18 @@ class Faq10 extends BaseFAQ {
                             ].join(" ")}
                           >
                             {iconExist && 
-                              <Base.Media
-                                value={isOpen ? icon : iconPlus}
-                                className={[
-                                  this.decorateCSS("icon"),
-                                  isOpen ? this.decorateCSS("iconOpen") : "",
-                                ].join(" ")}
+                              <Base.Icon
+                                name={
+                                  isOpen
+                                    ? this.getPropValue("icon")
+                                    : this.getPropValue("iconPlus")
+                                }
+                                propsIcon={{
+                                  className: [
+                                    this.decorateCSS("icon"),
+                                    isOpen ? this.decorateCSS("iconOpen") : "",
+                                  ].join(" "),
+                                }}
                               />}
                           </span>
                         </div>
