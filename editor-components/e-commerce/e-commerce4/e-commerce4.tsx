@@ -280,7 +280,7 @@ class ECommerce4 extends BaseECommerce {
                                             },
                                             value: {
                                                 type: "image",
-                                                url: "https://vineta-html.vercel.app/images/products/fashion/product-19.jpg",
+                                                url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a3ce5a263ea434e3f7d993e/6a3ce6e842060041a82666d9/library/product-19.jpg",
                                             },
                                         },
                                         {
@@ -292,7 +292,7 @@ class ECommerce4 extends BaseECommerce {
                                             },
                                             value: {
                                                 type: "image",
-                                                url: "https://vineta-html.vercel.app/images/products/fashion/women-grey-2.jpg",
+                                                url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a3ce5a263ea434e3f7d993e/6a3ce6e842060041a82666d9/library/women-grey-2.jpg",
                                             },
                                         },
                                         {
@@ -411,7 +411,7 @@ class ECommerce4 extends BaseECommerce {
                                             },
                                             value: {
                                                 type: "image",
-                                                url: "https://vineta-html.vercel.app/images/products/fashion/product-2.jpg",
+                                                url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a3ce5a263ea434e3f7d993e/6a3ce6e842060041a82666d9/library/product-2.jpg",
                                             },
                                         },
                                         {
@@ -423,7 +423,7 @@ class ECommerce4 extends BaseECommerce {
                                             },
                                             value: {
                                                 type: "image",
-                                                url: "https://vineta-html.vercel.app/images/products/fashion/women-grey-2.jpg",
+                                                url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a3ce5a263ea434e3f7d993e/6a3ce6e842060041a82666d9/library/women-grey-2.jpg",
                                             },
                                         },
                                         {
@@ -542,7 +542,7 @@ class ECommerce4 extends BaseECommerce {
                                             },
                                             value: {
                                                 type: "image",
-                                                url: "https://vineta-html.vercel.app/images/products/fashion/product-5.jpg",
+                                                url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a3ce5a263ea434e3f7d993e/6a3ce6e842060041a82666d9/library/product-5.jpg",
                                             },
                                         },
                                         {
@@ -554,7 +554,7 @@ class ECommerce4 extends BaseECommerce {
                                             },
                                             value: {
                                                 type: "image",
-                                                url: "https://vineta-html.vercel.app/images/products/fashion/women-grey-2.jpg",
+                                                url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a3ce5a263ea434e3f7d993e/6a3ce6e842060041a82666d9/library/women-grey-2.jpg",
                                             },
                                         },
                                         {
@@ -836,7 +836,7 @@ class ECommerce4 extends BaseECommerce {
                                             },
                                             value: {
                                                 type: "image",
-                                                url: "https://vineta-html.vercel.app/images/products/fashion/product-2.jpg",
+                                                url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a3ce5a263ea434e3f7d993e/6a3ce6e842060041a82666d9/library/product-2.jpg",
                                             },
                                         },
                                         {
@@ -848,7 +848,7 @@ class ECommerce4 extends BaseECommerce {
                                             },
                                             value: {
                                                 type: "image",
-                                                url: "https://vineta-html.vercel.app/images/products/fashion/women-grey-2.jpg",
+                                                url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a3ce5a263ea434e3f7d993e/6a3ce6e842060041a82666d9/library/women-grey-2.jpg",
                                             },
                                         },
                                         {
@@ -1105,7 +1105,7 @@ class ECommerce4 extends BaseECommerce {
                                             },
                                             value: {
                                                 type: "image",
-                                                url: "https://vineta-html.vercel.app/images/products/fashion/product-6.jpg",
+                                                url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a3ce5a263ea434e3f7d993e/6a3ce6e842060041a82666d9/library/product-6.jpg",
                                             },
                                         },
                                         {
@@ -1117,7 +1117,7 @@ class ECommerce4 extends BaseECommerce {
                                             },
                                             value: {
                                                 type: "image",
-                                                url: "https://vineta-html.vercel.app/images/products/fashion/product-4.jpg",
+                                                url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a3ce5a263ea434e3f7d993e/6a3ce6e842060041a82666d9/library/product-4.jpg",
                                             },
                                         },
                                         {
@@ -1211,7 +1211,7 @@ class ECommerce4 extends BaseECommerce {
                                             },
                                             value: {
                                                 type: "image",
-                                                url: "https://vineta-html.vercel.app/images/products/fashion/product-3.jpg",
+                                                url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a3ce5a263ea434e3f7d993e/6a3ce6e842060041a82666d9/library/product-3.jpg",
                                             },
                                         },
                                         {
@@ -1223,7 +1223,7 @@ class ECommerce4 extends BaseECommerce {
                                             },
                                             value: {
                                                 type: "image",
-                                                url: "https://vineta-html.vercel.app/images/products/fashion/product-4.jpg",
+                                                url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a3ce5a263ea434e3f7d993e/6a3ce6e842060041a82666d9/library/product-4.jpg",
                                             },
                                         },
                                         {
@@ -1511,7 +1511,7 @@ class ECommerce4 extends BaseECommerce {
                                             },
                                             value: {
                                                 type: "image",
-                                                url: "https://vineta-html.vercel.app/images/products/fashion/product-17.jpg",
+                                                url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a3ce5a263ea434e3f7d993e/6a3ce6e842060041a82666d9/library/product-17.jpg",
                                             },
                                         },
                                         {
@@ -1523,7 +1523,7 @@ class ECommerce4 extends BaseECommerce {
                                             },
                                             value: {
                                                 type: "image",
-                                                url: "https://vineta-html.vercel.app/images/products/fashion/product-1.jpg",
+                                                url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a3ce5a263ea434e3f7d993e/6a3ce6e842060041a82666d9/library/product-1.jpg",
                                             },
                                         },
                                         {
@@ -1617,7 +1617,7 @@ class ECommerce4 extends BaseECommerce {
                                             },
                                             value: {
                                                 type: "image",
-                                                url: "https://vineta-html.vercel.app/images/products/fashion/product-8.jpg",
+                                                url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a3ce5a263ea434e3f7d993e/6a3ce6e842060041a82666d9/library/product-8.jpg",
                                             },
                                         },
                                         {
@@ -1629,7 +1629,7 @@ class ECommerce4 extends BaseECommerce {
                                             },
                                             value: {
                                                 type: "image",
-                                                url: "https://vineta-html.vercel.app/images/products/fashion/product-1.jpg",
+                                                url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a3ce5a263ea434e3f7d993e/6a3ce6e842060041a82666d9/library/product-1.jpg",
                                             },
                                         },
                                         {
@@ -1917,7 +1917,7 @@ class ECommerce4 extends BaseECommerce {
                                             },
                                             value: {
                                                 type: "image",
-                                                url: "https://vineta-html.vercel.app/images/products/fashion/product-25.jpg",
+                                                url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a3ce5a263ea434e3f7d993e/6a3ce6e842060041a82666d9/library/product-25.jpg",
                                             },
                                         },
                                         {
@@ -1929,7 +1929,7 @@ class ECommerce4 extends BaseECommerce {
                                             },
                                             value: {
                                                 type: "image",
-                                                url: "https://vineta-html.vercel.app/images/products/fashion/product-24.jpg",
+                                                url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a3ce5a263ea434e3f7d993e/6a3ce6e842060041a82666d9/library/product-24.jpg",
                                             },
                                         },
                                         {
@@ -2029,7 +2029,7 @@ class ECommerce4 extends BaseECommerce {
                                             },
                                             value: {
                                                 type: "image",
-                                                url: "https://vineta-html.vercel.app/images/products/fashion/product-22.jpg",
+                                                url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a3ce5a263ea434e3f7d993e/6a3ce6e842060041a82666d9/library/product-22.jpg",
                                             },
                                         },
                                         {
@@ -2041,7 +2041,7 @@ class ECommerce4 extends BaseECommerce {
                                             },
                                             value: {
                                                 type: "image",
-                                                url: "https://vineta-html.vercel.app/images/products/fashion/product-24.jpg",
+                                                url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a3ce5a263ea434e3f7d993e/6a3ce6e842060041a82666d9/library/product-24.jpg",
                                             },
                                         },
                                         {

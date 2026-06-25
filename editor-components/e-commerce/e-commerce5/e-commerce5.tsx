@@ -74,7 +74,7 @@ class ECommerce5 extends BaseECommerce {
                       },
                       value: {
                         type: "image",
-                        url: "https://vineta-html.vercel.app/images/cls-categories/fashion/circle-dress.jpg",
+                        url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a3ce5a263ea434e3f7d993e/6a3ce6e842060041a82666d9/library/circle-dress.jpg",
                       },
                     },
                     {
@@ -105,7 +105,7 @@ class ECommerce5 extends BaseECommerce {
                       },
                       value: {
                         type: "image",
-                        url: "https://vineta-html.vercel.app/images/cls-categories/fashion/circle-partywear.jpg",
+                        url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a3ce5a263ea434e3f7d993e/6a3ce6e842060041a82666d9/library/circle-partywear.jpg",
                       },
                     },
                     {
@@ -136,7 +136,7 @@ class ECommerce5 extends BaseECommerce {
                       },
                       value: {
                         type: "image",
-                        url: "https://vineta-html.vercel.app/images/cls-categories/fashion/circle-jewelry.jpg",
+                        url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a3ce5a263ea434e3f7d993e/6a3ce6e842060041a82666d9/library/circle-jewelry.jpg",
                       },
                     },
                     {
@@ -167,7 +167,7 @@ class ECommerce5 extends BaseECommerce {
                       },
                       value: {
                         type: "image",
-                        url: "https://vineta-html.vercel.app/images/cls-categories/fashion/circle-tops.jpg",
+                        url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a3ce5a263ea434e3f7d993e/6a3ce6e842060041a82666d9/library/circle-tops.jpg",
                       },
                     },
                     {
@@ -198,7 +198,7 @@ class ECommerce5 extends BaseECommerce {
                       },
                       value: {
                         type: "image",
-                        url: "https://vineta-html.vercel.app/images/cls-categories/fashion/circle-bottoms.jpg",
+                        url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a3ce5a263ea434e3f7d993e/6a3ce6e842060041a82666d9/library/circle-bottoms.jpg",
                       },
                     },
                     {
@@ -229,7 +229,7 @@ class ECommerce5 extends BaseECommerce {
                       },
                       value: {
                         type: "image",
-                        url: "https://vineta-html.vercel.app/images/cls-categories/fashion/circle-sportwear.jpg",
+                        url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a3ce5a263ea434e3f7d993e/6a3ce6e842060041a82666d9/library/circle-sportwear.jpg",
                       },
                     },
                     {
@@ -280,7 +280,7 @@ class ECommerce5 extends BaseECommerce {
                       },
                       value: {
                         type: "image",
-                        url: "https://vineta-html.vercel.app/images/cls-categories/fashion/circle-sportwear.jpg",
+                        url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a3ce5a263ea434e3f7d993e/6a3ce6e842060041a82666d9/library/circle-sportwear.jpg",
                       },
                     },
                     {
@@ -311,7 +311,7 @@ class ECommerce5 extends BaseECommerce {
                       },
                       value: {
                         type: "image",
-                        url: "https://vineta-html.vercel.app/images/cls-categories/fashion/circle-dress.jpg",
+                        url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a3ce5a263ea434e3f7d993e/6a3ce6e842060041a82666d9/library/circle-dress.jpg",
                       },
                     },
                     {
@@ -342,7 +342,7 @@ class ECommerce5 extends BaseECommerce {
                       },
                       value: {
                         type: "image",
-                        url: "https://vineta-html.vercel.app/images/cls-categories/fashion/circle-partywear.jpg",
+                        url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a3ce5a263ea434e3f7d993e/6a3ce6e842060041a82666d9/library/circle-partywear.jpg",
                       },
                     },
                     {
@@ -373,7 +373,7 @@ class ECommerce5 extends BaseECommerce {
                       },
                       value: {
                         type: "image",
-                        url: "https://vineta-html.vercel.app/images/cls-categories/fashion/circle-jewelry.jpg",
+                        url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a3ce5a263ea434e3f7d993e/6a3ce6e842060041a82666d9/library/circle-jewelry.jpg",
                       },
                     },
                     {
@@ -404,7 +404,7 @@ class ECommerce5 extends BaseECommerce {
                       },
                       value: {
                         type: "image",
-                        url: "https://vineta-html.vercel.app/images/cls-categories/fashion/circle-bottoms.jpg",
+                        url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a3ce5a263ea434e3f7d993e/6a3ce6e842060041a82666d9/library/circle-bottoms.jpg",
                       },
                     },
                     {
@@ -435,7 +435,7 @@ class ECommerce5 extends BaseECommerce {
                       },
                       value: {
                         type: "image",
-                        url: "https://vineta-html.vercel.app/images/cls-categories/fashion/circle-tops.jpg",
+                        url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a3ce5a263ea434e3f7d993e/6a3ce6e842060041a82666d9/library/circle-tops.jpg",
                       },
                     },
                     {
