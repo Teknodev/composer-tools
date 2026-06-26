@@ -2,6 +2,8 @@ import * as React from "react";
 import styles from "./faq10.module.scss";
 import { BaseFAQ } from "../../EditorComponent";
 import { Base } from "../../../composer-base-components/base/base";
+import { INPUTS } from "../../../custom-hooks/input-templates";
+import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 
 interface FAQ {
   subtitle: React.ReactNode;
@@ -20,30 +22,47 @@ class Faq10 extends BaseFAQ {
       displayer: "Subtitle",
       value: "FAQ",
     });
+
     this.addProp({
       type: "string",
       key: "title",
       displayer: "Title",
       value: "Pricing FAQs",
     });
+
     this.addProp({
       type: "string",
       key: "description",
       displayer: "Description",
       value: "Looking for something else? Let’s talk",
     });
+
     this.addProp({
-      type: "icon",
-      key: "iconPlus",
-      displayer: "Collapsed Icon",
-      value: "IoIosAdd",
-    });
-    this.addProp({
-      type: "icon",
+      type: "media",
       key: "icon",
-      displayer: "Expanded Icon",
-      value: "IoIosRemove",
+      displayer: "Active Icon",
+      additionalParams: {
+        availableTypes: ["icon", "image"],
+      },
+      value: {
+        type: "icon",
+        name: "IoIosRemove",
+      },
     });
+
+    this.addProp({
+      type: "media",
+      key: "iconPlus",
+      displayer: "Inactive Icon",
+      additionalParams: {
+        availableTypes: ["icon", "image"],
+      },
+      value: {
+        type: "icon",
+        name: "IoIosAdd",
+      },
+    });
+
     this.addProp({
       type: "array",
       key: "card",
@@ -233,6 +252,15 @@ class Faq10 extends BaseFAQ {
       ],
     });
 
+    this.addProp({
+      type: "array",
+      key: "buttons",
+      displayer: "Buttons",
+      value: [
+        INPUTS.BUTTON("button", "Button", "Learn More", "", null, null, "Primary"),
+      ],
+    });
+
     this.setComponentState("activeIndices", [0, 0, 0]);
     this.setComponentState("isMobile", false);
   }
@@ -298,10 +326,10 @@ class Faq10 extends BaseFAQ {
     const phonePxInt = parseInt(phonePx, 10) || 0;
 
     const isMobile = width <= phonePxInt;
-     
+
     const wasMobile = this.getComponentState("isMobile");
     this.setComponentState("isMobile", isMobile);
-     
+
     if (isMobile && !wasMobile) {
       this.setComponentState("activeIndices", [0, -1, -1]);
     } else if (!isMobile && wasMobile) {
@@ -321,7 +349,7 @@ class Faq10 extends BaseFAQ {
     }
 
     const updatedIndices = [...activeIndices];
-    
+
     if (isMobile) {
       updatedIndices.fill(-1);
       updatedIndices[columnIndex] = cardIndexInColumn;
@@ -353,7 +381,7 @@ class Faq10 extends BaseFAQ {
     return (
       <Base.Container className={this.decorateCSS("container")} ref={this.containerRef}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-            {headerExist && 
+          {headerExist &&
             <Base.VerticalContent className={this.decorateCSS("header")}>
               {subtitleExist && (
                 <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
@@ -372,78 +400,94 @@ class Faq10 extends BaseFAQ {
               )}
             </Base.VerticalContent>}
 
-            <div className={this.decorateCSS("faq-grid")}>
-              {columns.map((colCards, colIdx) => (
-                <div className={this.decorateCSS("faq-col")} key={colIdx}>
-                  {colCards.map((card, idxInCol) => {
-                    const globalIdx =
-                      columns
-                        .slice(0, colIdx)
-                        .reduce((s, arr) => s + arr.length, 0) + idxInCol;
-                    const isOpen = active[colIdx] === idxInCol;
+          <div className={this.decorateCSS("faq-grid")}>
+            {columns.map((colCards, colIdx) => (
+              <div className={this.decorateCSS("faq-col")} key={colIdx}>
+                {colCards.map((card, idxInCol) => {
+                  const globalIdx =
+                    columns
+                      .slice(0, colIdx)
+                      .reduce((s, arr) => s + arr.length, 0) + idxInCol;
+                  const isOpen = active[colIdx] === idxInCol;
 
-                    const hasText = Boolean(card.text);
+                  const hasText = Boolean(card.text);
 
-                    const cardSubtitleExist = this.castToString(card.subtitle);
-                    const cardTextExist = this.castToString(card.text);
-                    const iconExist = this.getPropValue("icon") || this.getPropValue("iconPlus");
-                    return (
-                      <div
-                        className={this.decorateCSS("card")}
-                        key={globalIdx}
-                        onClick={() =>
-                          hasText && this.cardClicked(colIdx, idxInCol)
-                        }
-                      >
-                        <div className={this.decorateCSS("card-header")}>
-                          {cardSubtitleExist && (
-                            <Base.H4 className={this.decorateCSS("card-title")}>
-                              {card.subtitle}
-                            </Base.H4>
+                  const cardSubtitleExist = this.castToString(card.subtitle);
+                  const cardTextExist = this.castToString(card.text);
+                  const iconPlus = this.getPropValue("iconPlus");
+                  const icon = this.getPropValue("icon");
+                  const iconExist = icon || iconPlus;
+                  return (
+                    <div
+                      className={this.decorateCSS("card")}
+                      key={globalIdx}
+                      onClick={() =>
+                        hasText && this.cardClicked(colIdx, idxInCol)
+                      }
+                    >
+                      <div className={this.decorateCSS("card-header")}>
+                        {cardSubtitleExist && (
+                          <Base.H6 className={this.decorateCSS("card-title")}>
+                            {card.subtitle}
+                          </Base.H6>
+                        )}
+                        <span
+                          className={[
+                            this.decorateCSS("icon-wrapper"),
+                            isOpen ? this.decorateCSS("iconOpen") : "",
+                          ].join(" ")}
+                        >
+                          {iconExist && (
+                            <Base.Media
+                              value={isOpen ? icon : iconPlus}
+                              className={[
+                                this.decorateCSS("icon"),
+                                isOpen ? this.decorateCSS("iconOpen") : "",
+                              ].join(" ")}
+                            />
                           )}
-                          <span
-                            className={[
-                              this.decorateCSS("icon-wrapper"),
-                              isOpen ? this.decorateCSS("iconOpen") : "",
-                            ].join(" ")}
-                          >
-                            {iconExist && 
-                              <Base.Icon
-                                name={
-                                  isOpen
-                                    ? this.getPropValue("icon")
-                                    : this.getPropValue("iconPlus")
-                                }
-                                propsIcon={{
-                                  className: [
-                                    this.decorateCSS("icon"),
-                                    isOpen ? this.decorateCSS("iconOpen") : "",
-                                  ].join(" "),
-                                }}
-                              />}
-                          </span>
-                        </div>
-                        {hasText && (
-                          <div
-                            ref={(el) => (this.bodyRefs[globalIdx] = el!)}
-                            className={[
-                              this.decorateCSS("card-body"),
-                              isOpen ? this.decorateCSS("open") : "",
-                            ].join(" ")}
-                          >
-                            {cardTextExist &&
+                        </span>
+                      </div>
+                      {hasText && (
+                        <div
+                          ref={(el) => (this.bodyRefs[globalIdx] = el!)}
+                          className={[
+                            this.decorateCSS("card-body"),
+                            isOpen ? this.decorateCSS("open") : "",
+                          ].join(" ")}
+                        >
+                          {cardTextExist &&
                             <Base.P className={this.decorateCSS("card-text")}>
                               {card.text}
                             </Base.P>}
-                          </div>
-                        )}
-                      </div>
-                    );
-                  })}
-                </div>
-              ))}
+                        </div>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+            ))}
+          </div>
+          {this.getPropValue("buttons").length > 0 && (
+            <div className={this.decorateCSS("buttons-wrapper")}>
+              {this.castToObject<INPUTS.CastedButton[]>("buttons").map(
+                (button: INPUTS.CastedButton) =>
+                  this.castToString(button.text) && (
+                    <ComposerLink path={button.url}>
+                      <Base.Button
+                        buttonType={button.type}
+                        className={this.decorateCSS("button")}
+                      >
+                        <Base.P className={this.decorateCSS("button-text")}>
+                          {button.text}
+                        </Base.P>
+                      </Base.Button>
+                    </ComposerLink>
+                  )
+              )}
             </div>
-          </Base.MaxContent>
+          )}
+        </Base.MaxContent>
       </Base.Container>
     );
   }
