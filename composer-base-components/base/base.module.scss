@@ -727,4 +727,47 @@
     border-radius: var(--composer-border-radius-xs);
 }
 
+// Text-only (AI without image generation): cover placeholder images with a
+// theme-gradient layer. The wrapper occupies the image's original layout slot
+// (inherits the component's image className) and the image fills it.
+.themeCover {
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+    line-height: 0;
+}
+
+.themeCoverImage {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.themeCoverLayer {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    border-radius: inherit;
+    // Themed "no image" placeholder, matching the reference: a background-toned
+    // panel with subtle, wide, low-contrast diagonal stripes running
+    // bottom-left to top-right, a faint inner border, and a soft corner
+    // vignette. The two stripe tones are the page background and the same
+    // background nudged 5% toward the primary font color, so the texture stays
+    // understated and adapts to both light and dark themes.
+    background-color: var(--composer-html-background);
+    background-image: repeating-linear-gradient(
+        45deg,
+        var(--composer-html-background) 0,
+        var(--composer-html-background) 24px,
+        color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%) 24px,
+        color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%) 48px
+    );
+    // Faint inner border + gentle corner vignette for the paneled look.
+    box-shadow:
+        inset 0 0 0 1px color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 12%),
+        inset 0 0 70px color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 8%);
+}
+
 
