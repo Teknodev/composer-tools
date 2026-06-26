@@ -2,17 +2,19 @@ import * as React from "react";
 import styles from "./team6.module.scss";
 import { Team, TypeMediaInputValue } from "../../EditorComponent";
 import { Base } from "../../../composer-base-components/base/base";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
+import ComposerLink from "composer-tools/composer-base-components/Link/ComposerLinkProvider";
 
 type Feature = {
   feature: React.JSX.Element;
-  icon: string;
+  icon: TypeMediaInputValue;
 };
 
 type Card = {
   profileImage: TypeMediaInputValue;
   name: React.JSX.Element;
   position: React.JSX.Element;
-  description: React.JSX.Element;
+  cardDescription: React.JSX.Element;
   features: Feature[];
 };
 
@@ -22,29 +24,58 @@ class Team6 extends Team {
 
     this.addProp({
       type: "string",
-      key: "title1",
+      key: "subtitle",
       displayer: "Subtitle",
       value: "TEAM",
     });
 
     this.addProp({
       type: "string",
-      key: "description",
+      key: "title",
       displayer: "Title",
       value: "Building the future together.",
     });
+
     this.addProp({
-      type: "icon",
-      key: "openingIcon",
-      displayer: "Opening Icon",
-      value: "IoAddCircleOutline",
+      type: "string",
+      key: "description",
+      displayer: "Description",
+      value: "",
     });
+
     this.addProp({
-      type: "icon",
-      key: "closingIcon",
-      displayer: "Closing Icon",
-      value: "IoRemoveCircleOutline",
+      type: "media",
+      key: "activeIcon",
+      displayer: "Active icon",
+      additionalParams: {
+        availableTypes: ["icon", "image"],
+      },
+      value: {
+        type: "icon",
+        name: "IoAddCircleOutline",
+      },
     });
+
+    this.addProp({
+      type: "media",
+      key: "inactiveIcon",
+      displayer: "Inactive icon",
+      additionalParams: {
+        availableTypes: ["icon", "image"],
+      },
+      value: {
+        type: "icon",
+        name: "IoRemoveCircleOutline",
+      },
+    });
+
+    this.addProp({
+      type: "boolean",
+      key: "overlay",
+      displayer: "Overlay",
+      value: false,
+    });
+
     this.addProp({
       type: "array",
       key: "items",
@@ -58,9 +89,9 @@ class Team6 extends Team {
             {
               type: "media",
               key: "profileImage",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
@@ -80,6 +111,12 @@ class Team6 extends Team {
               value: "Marketing Manager",
             },
             {
+              type: "string",
+              key: "cardDescription",
+              displayer: "Description",
+              value: "",
+            },
+            {
               type: "array",
               key: "features",
               displayer: "Features",
@@ -93,7 +130,10 @@ class Team6 extends Team {
                       type: "icon",
                       key: "icon",
                       displayer: "Icon",
-                      value: "CiCircleCheck",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: "GoDotFill",
                     },
                     {
                       type: "string",
@@ -109,10 +149,16 @@ class Team6 extends Team {
                   displayer: "Custom Fields",
                   value: [
                     {
-                      type: "icon",
+                      type: "media",
                       key: "icon",
                       displayer: "Icon",
-                      value: "CiCircleCheck",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "GoDotFill"
+                      },
                     },
                     {
                       type: "string",
@@ -128,10 +174,16 @@ class Team6 extends Team {
                   displayer: "Custom Fields",
                   value: [
                     {
-                      type: "icon",
+                      type: "media",
                       key: "icon",
                       displayer: "Icon",
-                      value: "CiCircleCheck",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "GoDotFill"
+                      },
                     },
                     {
                       type: "string",
@@ -147,10 +199,16 @@ class Team6 extends Team {
                   displayer: "Custom Fields",
                   value: [
                     {
-                      type: "icon",
+                      type: "media",
                       key: "icon",
                       displayer: "Icon",
-                      value: "CiCircleCheck",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "GoDotFill"
+                      },
                     },
                     {
                       type: "string",
@@ -172,9 +230,9 @@ class Team6 extends Team {
             {
               type: "media",
               key: "profileImage",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
@@ -194,6 +252,12 @@ class Team6 extends Team {
               value: "Software Engineer",
             },
             {
+              type: "string",
+              key: "cardDescription",
+              displayer: "Description",
+              value: "",
+            },
+            {
               type: "array",
               key: "features",
               displayer: "Features",
@@ -204,10 +268,16 @@ class Team6 extends Team {
                   displayer: "Custom Fields",
                   value: [
                     {
-                      type: "icon",
+                      type: "media",
                       key: "icon",
                       displayer: "Icon",
-                      value: "CiCircleCheck",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "GoDotFill"
+                      },
                     },
                     {
                       type: "string",
@@ -223,10 +293,16 @@ class Team6 extends Team {
                   displayer: "Custom Fields",
                   value: [
                     {
-                      type: "icon",
+                      type: "media",
                       key: "icon",
                       displayer: "Icon",
-                      value: "CiCircleCheck",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "GoDotFill"
+                      },
                     },
                     {
                       type: "string",
@@ -242,10 +318,16 @@ class Team6 extends Team {
                   displayer: "Custom Fields",
                   value: [
                     {
-                      type: "icon",
+                      type: "media",
                       key: "icon",
                       displayer: "Icon",
-                      value: "CiCircleCheck",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "GoDotFill"
+                      },
                     },
                     {
                       type: "string",
@@ -261,10 +343,16 @@ class Team6 extends Team {
                   displayer: "Custom Fields",
                   value: [
                     {
-                      type: "icon",
+                      type: "media",
                       key: "icon",
                       displayer: "Icon",
-                      value: "CiCircleCheck",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "GoDotFill"
+                      },
                     },
                     {
                       type: "string",
@@ -286,9 +374,9 @@ class Team6 extends Team {
             {
               type: "media",
               key: "profileImage",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
@@ -308,6 +396,12 @@ class Team6 extends Team {
               value: "Graphic Designer",
             },
             {
+              type: "string",
+              key: "cardDescription",
+              displayer: "Description",
+              value: "",
+            },
+            {
               type: "array",
               key: "features",
               displayer: "Features",
@@ -318,10 +412,16 @@ class Team6 extends Team {
                   displayer: "Custom Fields",
                   value: [
                     {
-                      type: "icon",
+                      type: "media",
                       key: "icon",
                       displayer: "Icon",
-                      value: "CiCircleCheck",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "GoDotFill"
+                      },
                     },
                     {
                       type: "string",
@@ -337,10 +437,16 @@ class Team6 extends Team {
                   displayer: "Custom Fields",
                   value: [
                     {
-                      type: "icon",
+                      type: "media",
                       key: "icon",
                       displayer: "Icon",
-                      value: "CiCircleCheck",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "GoDotFill"
+                      },
                     },
                     {
                       type: "string",
@@ -356,10 +462,16 @@ class Team6 extends Team {
                   displayer: "Custom Fields",
                   value: [
                     {
-                      type: "icon",
+                      type: "media",
                       key: "icon",
                       displayer: "Icon",
-                      value: "CiCircleCheck",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "GoDotFill"
+                      },
                     },
                     {
                       type: "string",
@@ -375,10 +487,16 @@ class Team6 extends Team {
                   displayer: "Custom Fields",
                   value: [
                     {
-                      type: "icon",
+                      type: "media",
                       key: "icon",
                       displayer: "Icon",
-                      value: "CiCircleCheck",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "GoDotFill"
+                      },
                     },
                     {
                       type: "string",
@@ -400,9 +518,9 @@ class Team6 extends Team {
             {
               type: "media",
               key: "profileImage",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
@@ -422,6 +540,12 @@ class Team6 extends Team {
               value: "Financial Analyst",
             },
             {
+              type: "string",
+              key: "cardDescription",
+              displayer: "Description",
+              value: "",
+            },
+            {
               type: "array",
               key: "features",
               displayer: "Features",
@@ -432,10 +556,16 @@ class Team6 extends Team {
                   displayer: "Custom Fields",
                   value: [
                     {
-                      type: "icon",
+                      type: "media",
                       key: "icon",
                       displayer: "Icon",
-                      value: "CiCircleCheck",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "GoDotFill"
+                      },
                     },
                     {
                       type: "string",
@@ -451,10 +581,16 @@ class Team6 extends Team {
                   displayer: "Custom Fields",
                   value: [
                     {
-                      type: "icon",
+                      type: "media",
                       key: "icon",
                       displayer: "Icon",
-                      value: "CiCircleCheck",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "GoDotFill"
+                      },
                     },
                     {
                       type: "string",
@@ -470,10 +606,16 @@ class Team6 extends Team {
                   displayer: "Custom Fields",
                   value: [
                     {
-                      type: "icon",
+                      type: "media",
                       key: "icon",
                       displayer: "Icon",
-                      value: "CiCircleCheck",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "GoDotFill"
+                      },
                     },
                     {
                       type: "string",
@@ -489,10 +631,16 @@ class Team6 extends Team {
                   displayer: "Custom Fields",
                   value: [
                     {
-                      type: "icon",
+                      type: "media",
                       key: "icon",
                       displayer: "Icon",
-                      value: "CiCircleCheck",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "GoDotFill"
+                      },
                     },
                     {
                       type: "string",
@@ -510,12 +658,19 @@ class Team6 extends Team {
     });
 
     this.addProp({
+      type: "array",
+      key: "buttons",
+      displayer: "Buttons",
+      value: [INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary")],
+    });
+
+    this.addProp({
       type: "number",
       key: "itemCount",
-      displayer: "Item count in a row",
+      displayer: "Item Count In a Row",
       value: 4,
-      max: 5,
     });
+
     this.addProp({
       type: "multiSelect",
       key: "hoverAnimation",
@@ -541,99 +696,97 @@ class Team6 extends Team {
       }
     };
 
-    const title1Exist = this.getPropValue("title1", { as_string: true });
-    const descriptionExist = this.getPropValue("description", { as_string: true });
+    const subtitle = this.castToString(this.getPropValue("subtitle"));
+    const title = this.castToString(this.getPropValue("title"));
+    const description = this.castToString(this.getPropValue("description"));
+    const hasContent = subtitle || title || description;
+    const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons") || [];
+    const visibleButtons = buttons.filter(btn => this.castToString(btn.text));
+
+    const activeIcon = this.getPropValue("activeIcon");
+    const inactiveIcon = this.getPropValue("inactiveIcon");
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <Base.VerticalContent className={this.decorateCSS("page")}>
-            {(title1Exist || descriptionExist) && (
-              <div className={this.decorateCSS("up-page")}>
-                <Base.VerticalContent className={this.decorateCSS("text-group")}>
-                  {title1Exist && <Base.SectionSubTitle className={this.decorateCSS("title1")}>{this.getPropValue("title1")}</Base.SectionSubTitle>}
-                  {descriptionExist && <Base.SectionTitle className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionTitle>}
-                </Base.VerticalContent>
-              </div>
-            )}
+          {(hasContent) && (
+            <Base.VerticalContent className={this.decorateCSS("vertical-content")}>
+              {subtitle && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
+              {title && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
+              {description && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
+            </Base.VerticalContent>
+          )}
+          <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount"), tablet: 4, phone: 1 }} className={this.decorateCSS("down-page")}>
+            {this.castToObject<Card[]>("items").map((card: Card, indexItems: number) => {
+              const cardNameExist = this.castToString(card.name);
+              const cardPositionExist = this.castToString(card.position);
+              const cardDescriptionExist = this.castToString(card.cardDescription);
+              const hasCard = cardNameExist || cardPositionExist || cardDescriptionExist || card.profileImage || card.features.length > 0;
 
-            <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount"), tablet: 2, phone: 1 }} className={this.decorateCSS("down-page")}>
-              {this.castToObject<Card[]>("items").map((card: Card, indexItems: number) => {
-                const cardNameExist = this.castToString(card.name);
-                const cardPositionExist = this.castToString(card.position);
-                const hasCard = cardNameExist || cardPositionExist || card.profileImage || card.features.length > 0;
-
-                return (
-                  hasCard && (
-                    <div key={indexItems} className={this.decorateCSS("all-card")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
-                      <div className={this.decorateCSS("top")}>
-                        <div className={this.decorateCSS("image-wrapper")}>
-                          {card.profileImage ? (
-                            <div onClick={() => handleButton(indexItems)} className={this.decorateCSS("image-button")}>
-                              {card.features.length > 0 &&
-                                (this.getComponentState("activeIndex") === indexItems ? (
-                                  <Base.Icon name={this.getPropValue("closingIcon")} propsIcon={{ className: this.decorateCSS("image-icon") }} />
-                                ) : (
-                                  <Base.Icon name={this.getPropValue("openingIcon")} propsIcon={{ className: this.decorateCSS("image-icon") }} />
-                                ))}
-                              <div className={this.decorateCSS("image-container")}>
-                                <Base.Media
-                                  value={card.profileImage}
-                                  className={`${this.decorateCSS("image")} ${this.getComponentState("activeIndex") === indexItems && card.features.length > 0 ? this.decorateCSS("shrink") : ""}`}
-                                  data-animation={this.getPropValue("hoverAnimation").join(" ")}
-                                />
-                              </div>
-                              <div className={this.decorateCSS("card-info")}>
-                                {cardNameExist && <Base.H2 className={this.decorateCSS("card-name")}>{card.name}</Base.H2>}
-                                {cardPositionExist && <Base.H4 className={this.decorateCSS("position")}>{card.position}</Base.H4>}
-                                
-                                {this.getComponentState("activeIndex") === indexItems && card.features.length > 0 && (
-                                  <Base.VerticalContent className={this.decorateCSS("features")}>
-                                    {card.features.map((feature: Feature, idx: number) => (
-                                      <div key={idx} className={this.decorateCSS("feature")}>
-                                        <Base.Icon
-                                          name={feature.icon}
-                                          propsIcon={{
-                                            className: this.decorateCSS("icon"),
-                                          }}
-                                        />
-                                        <Base.P className={this.decorateCSS("feature-element")}>{feature.feature}</Base.P>
-                                      </div>
-                                    ))}
-                                  </Base.VerticalContent>
-                                )}
-                              </div>
-                            </div>
+              return (
+                hasCard && (
+                  <div key={indexItems} className={this.decorateCSS("all-card")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
+                    <div className={this.decorateCSS("image-wrapper")}>
+                      <div onClick={() => handleButton(indexItems)} className={this.decorateCSS("image-button")}>
+                        {card.features.length > 0 &&
+                          (this.getComponentState("activeIndex") === indexItems ? (
+                            inactiveIcon && (
+                              <Base.Media
+                                value={inactiveIcon}
+                                className={`${this.decorateCSS("inactive-icon")} ${card.profileImage && this.decorateCSS("has-image-inactive")}`}
+                              />
+                            )
                           ) : (
-                            <Base.VerticalContent className={`${this.decorateCSS("overlay-bar")} ${this.decorateCSS("overlay-visible")}`}>
-                              {cardNameExist && <Base.H2 className={this.decorateCSS("card-name")}>{card.name}</Base.H2>}
-                              {cardPositionExist && <Base.H5 className={this.decorateCSS("position")}>{card.position}</Base.H5>}
-
-                              {card.features.length > 0 && (
-                                <Base.VerticalContent className={this.decorateCSS("features")}>
-                                  {card.features.map((feature: Feature, idx: number) => (
-                                    <div key={idx} className={this.decorateCSS("feature")}>
-                                      <Base.Icon
-                                        name={feature.icon}
-                                        propsIcon={{
-                                          className: this.decorateCSS("icon"),
-                                        }}
-                                      />
-                                      <Base.P className={this.decorateCSS("feature-element")}>{feature.feature}</Base.P>
-                                    </div>
-                                  ))}
-                                </Base.VerticalContent>
-                              )}
+                            activeIcon && (
+                              <Base.Media
+                                value={activeIcon}
+                                className={`${this.decorateCSS("active-icon")} ${card.profileImage && this.decorateCSS("has-image-active")}`}
+                              />
+                            )
+                          ))}
+                        <div className={this.decorateCSS("image-container")}>
+                          <Base.Media
+                            value={card.profileImage}
+                            className={`${this.decorateCSS("image")} ${this.getComponentState("activeIndex") === indexItems && card.features.length > 0 ? this.decorateCSS("shrink") : ""}`}
+                            data-animation={this.getPropValue("hoverAnimation").join(" ")}
+                          />
+                          {this.getPropValue("overlay") && <div className={this.decorateCSS("overlay")} />}
+                        </div>
+                        <Base.VerticalContent className={this.decorateCSS("card-info")}>
+                          {cardNameExist && <Base.H5 className={this.decorateCSS("card-name")}>{card.name}</Base.H5>}
+                          {cardPositionExist && <Base.P className={this.decorateCSS("card-position")}>{card.position}</Base.P>}
+                          {cardDescriptionExist && <Base.P className={this.decorateCSS("card-description")}>{card.cardDescription}</Base.P>}
+                          {this.getComponentState("activeIndex") === indexItems && card.features.length > 0 && (
+                            <Base.VerticalContent className={this.decorateCSS("features")}>
+                              {card.features.map((feature: Feature, idx: number) => (
+                                <div key={idx} className={this.decorateCSS("feature")}>
+                                  {feature.icon && <Base.Media value={feature?.icon} className={`${this.decorateCSS("icon")} ${feature?.icon?.type === "image" && this.decorateCSS("has-image")}`} />}
+                                  {this.castToString(feature.feature) && <Base.P className={this.decorateCSS("feature-element")}>{feature.feature}</Base.P>}
+                                </div>
+                              ))}
                             </Base.VerticalContent>
                           )}
-                        </div>
+                        </Base.VerticalContent>
                       </div>
                     </div>
-                  )
+                  </div>
+                )
+              );
+            })}
+          </Base.ListGrid>
+          {visibleButtons.length > 0 && (
+            <Base.Row className={this.decorateCSS("button-container")}>
+              {visibleButtons.map((item: INPUTS.CastedButton, index: number) => {
+                return this.castToString(item.text) && (
+                  <ComposerLink key={`button-${index}`} path={item.url}>
+                    <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
+                      <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>
+                    </Base.Button>
+                  </ComposerLink>
                 );
               })}
-            </Base.ListGrid>
-          </Base.VerticalContent>
+            </Base.Row>
+          )}
         </Base.MaxContent>
       </Base.Container>
     );

@@ -1,88 +1,64 @@
 import * as React from "react";
 import styles from "./team10.module.scss";
-import { Team, TypeMediaInputValue, TypeUsableComponentProps } from "../../EditorComponent";
+import { Team, TypeMediaInputValue } from "../../EditorComponent";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
-
 import { Base } from "../../../composer-base-components/base/base";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
-interface TTeam {
-  image: TypeMediaInputValue;
-  subtitle: string;
-  title: string;
-  description: string;
-  value1title: string;
-  value2title: string;
-  value3title: string;
-  value1description: string;
-  value2description: string;
-  value3description: string;
-
-  icons: { icon: string; url: string }[];
+type Background = {
+  componentBackground: TypeMediaInputValue;
+  overlay: boolean;
 }
+
+type Socials = {
+  icon: TypeMediaInputValue;
+  url: string;
+};
+
+type Feature = {
+  subtitle: React.JSX.Element;
+  title: React.JSX.Element;
+  featureDescription: React.JSX.Element;
+};
+
+type Card = {
+  profileImage: TypeMediaInputValue;
+  subtitle: React.JSX.Element;
+  title: React.JSX.Element;
+  features: Feature[];
+  cardDescription: React.JSX.Element;
+  socials: Socials[];
+};
 
 class Team10 extends Team {
   constructor(props?: any) {
     super(props, styles);
 
-    let twitter: TypeUsableComponentProps = {
+    this.addProp({
       type: "object",
-      key: "twitter",
-      displayer: "Twitter",
+      key: "background",
+      displayer: "Background Media",
       value: [
         {
-          type: "icon",
-          key: "icon",
-          displayer: "Platform Icon",
-          value: "FaTwitter",
+          type: "media",
+          key: "componentBackground",
+          displayer: "Background Media",
+          additionalParams: {
+            availableTypes: ["image", "video"],
+          },
+          value: {
+            type: "image",
+            url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b520bd2970002c628226?alt=media&timestamp=1719558632841",
+          },
         },
         {
-          type: "page",
-          key: "url",
-          displayer: "Url",
-          value: "",
+          type: "boolean",
+          key: "overlay",
+          displayer: "Overlay",
+          value: false,
         },
-      ],
-    };
-
-    let facebook: TypeUsableComponentProps = {
-      type: "object",
-      key: "facebook",
-      displayer: "Platform",
-      value: [
-        {
-          type: "icon",
-          key: "icon",
-          displayer: "Platform Icon",
-          value: "FaFacebook",
-        },
-        {
-          type: "page",
-          key: "url",
-          displayer: "Url",
-          value: "",
-        },
-      ],
-    };
-
-    let instagram: TypeUsableComponentProps = {
-      type: "object",
-      key: "instagram",
-      displayer: "Platform",
-      value: [
-        {
-          type: "icon",
-          key: "icon",
-          displayer: "Platform Icon",
-          value: "FaInstagram",
-        },
-        {
-          type: "page",
-          key: "url",
-          displayer: "Url",
-          value: "",
-        },
-      ],
-    };
+      ]
+    })
 
     this.addProp({
       type: "string",
@@ -95,44 +71,46 @@ class Team10 extends Team {
       type: "string",
       key: "title",
       displayer: "Title",
-      value: "MANAGEMENT&STAFF",
+      value: "MANAGEMENT & STAFF",
     });
+
     this.addProp({
-      type: "media",
-      key: "componentBackground",
-      displayer: "Background Image",
-      additionalParams: {
-          availableTypes: ["image"],
-        },
-        value: {
-        type: "image",
-        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b520bd2970002c628226?alt=media&timestamp=1719558632841",
-      },
+      type: "string",
+      key: "description",
+      displayer: "Description",
+      value: "",
+    });
+
+    this.addProp({
+      type: "array",
+      key: "buttons",
+      displayer: "Buttons",
+      value: [INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary")],
     });
 
     this.addProp({
       type: "boolean",
-      key: "overlay",
+      key: "cardOverlay",
       displayer: "Overlay",
-      value: true,
+      value: false,
     });
 
     this.addProp({
       type: "array",
       key: "team",
-      displayer: "Team",
+      displayer: "Cards",
       value: [
         {
           type: "object",
           key: "member",
-          displayer: "Team Member",
+          displayer: "Card",
           value: [
             {
               type: "media",
               key: "profileImage",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
@@ -148,70 +126,218 @@ class Team10 extends Team {
             {
               type: "string",
               key: "title",
-              displayer: "Title",
-              value: "MARINA GONZALES",
+              displayer: "Person Name",
+              value:
+                '<p dir="ltr"><span style="white-space: pre-wrap;">MARINA </span></p><p dir="ltr"><span style="white-space: pre-wrap;">GONZALES</span></p>',
+            },
+            {
+              type: "array",
+              key: "features",
+              displayer: "Features",
+              value: [
+                {
+                  type: "object",
+                  key: "feature",
+                  displayer: "Feature",
+                  value: [
+                    {
+                      type: "string",
+                      key: "subtitle",
+                      displayer: "Subtitle",
+                      value: "",
+                    },
+                    {
+                      type: "string",
+                      key: "title",
+                      displayer: "Title",
+                      value: "AGE",
+                    },
+                    {
+                      type: "string",
+                      key: "featureDescription",
+                      displayer: "Description",
+                      value: "22 YEARS",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "feature",
+                  displayer: "Feature",
+                  value: [
+                    {
+                      type: "string",
+                      key: "subtitle",
+                      displayer: "Subtitle",
+                      value: "",
+                    },
+                    {
+                      type: "string",
+                      key: "title",
+                      displayer: "Title",
+                      value: "JOINED",
+                    },
+                    {
+                      type: "string",
+                      key: "featureDescription",
+                      displayer: "Description",
+                      value: "2016",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "feature",
+                  displayer: "Feature",
+                  value: [
+                    {
+                      type: "string",
+                      key: "subtitle",
+                      displayer: "Subtitle",
+                      value: "",
+                    },
+                    {
+                      type: "string",
+                      key: "title",
+                      displayer: "Title",
+                      value: "COUNTRY",
+                    },
+                    {
+                      type: "string",
+                      key: "featureDescription",
+                      displayer: "Description",
+                      value: "COSTA RİCA",
+                    },
+                  ],
+                },
+              ],
             },
             {
               type: "string",
-              key: "value1-title",
-              displayer: "Value 1 Title",
-              value: "AGE",
-            },
-            {
-              type: "string",
-              key: "value2-title",
-              displayer: "Value 2 Title",
-              value: "JOINED",
-            },
-            {
-              type: "string",
-              key: "value3-title",
-              displayer: "Value 3 Title",
-              value: "COUNTRY",
-            },
-            {
-              type: "string",
-              key: "value1-description",
-              displayer: "Value 1 Description",
-              value: "22 YEARS",
-            },
-            {
-              type: "string",
-              key: "value2-description",
-              displayer: "Value 2 Description",
-              value: "2016",
-            },
-            {
-              type: "string",
-              key: "value3-description",
-              displayer: "Value 3 Description",
-              value: "COSTA RİCA",
-            },
-            {
-              type: "string",
-              key: "description",
+              key: "cardDescription",
               displayer: "Description",
               value: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
             },
             {
               type: "array",
-              key: "icons",
-              displayer: "Icons",
-              value: [JSON.parse(JSON.stringify(twitter)), JSON.parse(JSON.stringify(facebook)), JSON.parse(JSON.stringify(instagram))],
+              key: "socials",
+              displayer: "Social Media",
+              value: [
+                {
+                  type: "object",
+                  key: "social",
+                  displayer: "Social",
+                  value: [
+                    {
+                      type: "media",
+                      key: "icon",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "FaFacebookSquare"
+                      },
+                      displayer: "Icon",
+                    },
+                    {
+                      type: "page",
+                      key: "url",
+                      displayer: "Navigate To",
+                      value: "",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "social",
+                  displayer: "Social",
+                  value: [
+                    {
+                      type: "media",
+                      key: "icon",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "FaTwitterSquare"
+                      },
+                      displayer: "Icon",
+                    },
+                    {
+                      type: "page",
+                      key: "url",
+                      displayer: "Navigate To",
+                      value: "",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "social",
+                  displayer: "Social",
+                  value: [
+                    {
+                      type: "media",
+                      key: "icon",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "FaInstagram"
+                      },
+                      displayer: "Icon",
+                    },
+                    {
+                      type: "page",
+                      key: "url",
+                      displayer: "Navigate To",
+                      value: "",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "social",
+                  displayer: "Social",
+                  value: [
+                    {
+                      type: "media",
+                      key: "icon",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "FaLinkedin"
+                      },
+                      displayer: "Icon",
+                    },
+                    {
+                      type: "page",
+                      key: "url",
+                      displayer: "Navigate To",
+                      value: "",
+                    },
+                  ],
+                },
+              ],
             },
           ],
         },
         {
           type: "object",
           key: "member",
-          displayer: "Team Member",
+          displayer: "Card",
           value: [
             {
               type: "media",
               key: "profileImage",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
@@ -227,70 +353,218 @@ class Team10 extends Team {
             {
               type: "string",
               key: "title",
-              displayer: "Title",
-              value: "MARINA GONZALES",
+              displayer: "Person Name",
+              value:
+                '<p dir="ltr"><span style="white-space: pre-wrap;">MARINA </span></p><p dir="ltr"><span style="white-space: pre-wrap;">GONZALES</span></p>',
+            },
+            {
+              type: "array",
+              key: "features",
+              displayer: "Features",
+              value: [
+                {
+                  type: "object",
+                  key: "feature",
+                  displayer: "Feature",
+                  value: [
+                    {
+                      type: "string",
+                      key: "subtitle",
+                      displayer: "Subtitle",
+                      value: "",
+                    },
+                    {
+                      type: "string",
+                      key: "title",
+                      displayer: "Title",
+                      value: "AGE",
+                    },
+                    {
+                      type: "string",
+                      key: "featureDescription",
+                      displayer: "Description",
+                      value: "22 YEARS",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "feature",
+                  displayer: "Feature",
+                  value: [
+                    {
+                      type: "string",
+                      key: "subtitle",
+                      displayer: "Subtitle",
+                      value: "",
+                    },
+                    {
+                      type: "string",
+                      key: "title",
+                      displayer: "Title",
+                      value: "JOINED",
+                    },
+                    {
+                      type: "string",
+                      key: "featureDescription",
+                      displayer: "Description",
+                      value: "2016",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "feature",
+                  displayer: "Feature",
+                  value: [
+                    {
+                      type: "string",
+                      key: "subtitle",
+                      displayer: "Subtitle",
+                      value: "",
+                    },
+                    {
+                      type: "string",
+                      key: "title",
+                      displayer: "Title",
+                      value: "COUNTRY",
+                    },
+                    {
+                      type: "string",
+                      key: "featureDescription",
+                      displayer: "Description",
+                      value: "COSTA RİCA",
+                    },
+                  ],
+                },
+              ],
             },
             {
               type: "string",
-              key: "value1-title",
-              displayer: "Value 1 Title",
-              value: "AGE",
-            },
-            {
-              type: "string",
-              key: "value2-title",
-              displayer: "Value 2 Title",
-              value: "JOINED",
-            },
-            {
-              type: "string",
-              key: "value3-title",
-              displayer: "Value 3 Title",
-              value: "COUNTRY",
-            },
-            {
-              type: "string",
-              key: "value1-description",
-              displayer: "Value 1 Description",
-              value: "22 YEARS",
-            },
-            {
-              type: "string",
-              key: "value2-description",
-              displayer: "Value 2 Description",
-              value: "2016",
-            },
-            {
-              type: "string",
-              key: "value3-description",
-              displayer: "Value 3 Description",
-              value: "COSTA RİCA",
-            },
-            {
-              type: "string",
-              key: "description",
+              key: "cardDescription",
               displayer: "Description",
               value: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
             },
             {
               type: "array",
-              key: "icons",
-              displayer: "Icons",
-              value: [JSON.parse(JSON.stringify(twitter)), JSON.parse(JSON.stringify(facebook)), JSON.parse(JSON.stringify(instagram))],
+              key: "socials",
+              displayer: "Social Media",
+              value: [
+                {
+                  type: "object",
+                  key: "social",
+                  displayer: "Social",
+                  value: [
+                    {
+                      type: "media",
+                      key: "icon",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "FaFacebookSquare"
+                      },
+                      displayer: "Icon",
+                    },
+                    {
+                      type: "page",
+                      key: "url",
+                      displayer: "Navigate To",
+                      value: "",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "social",
+                  displayer: "Social",
+                  value: [
+                    {
+                      type: "media",
+                      key: "icon",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "FaTwitterSquare"
+                      },
+                      displayer: "Icon",
+                    },
+                    {
+                      type: "page",
+                      key: "url",
+                      displayer: "Navigate To",
+                      value: "",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "social",
+                  displayer: "Social",
+                  value: [
+                    {
+                      type: "media",
+                      key: "icon",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "FaInstagram"
+                      },
+                      displayer: "Icon",
+                    },
+                    {
+                      type: "page",
+                      key: "url",
+                      displayer: "Navigate To",
+                      value: "",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "social",
+                  displayer: "Social",
+                  value: [
+                    {
+                      type: "media",
+                      key: "icon",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "FaLinkedin"
+                      },
+                      displayer: "Icon",
+                    },
+                    {
+                      type: "page",
+                      key: "url",
+                      displayer: "Navigate To",
+                      value: "",
+                    },
+                  ],
+                },
+              ],
             },
           ],
         },
         {
           type: "object",
           key: "member",
-          displayer: "Team Member",
+          displayer: "Card",
           value: [
             {
               type: "media",
               key: "profileImage",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
@@ -306,70 +580,218 @@ class Team10 extends Team {
             {
               type: "string",
               key: "title",
-              displayer: "Title",
-              value: "MARINA GONZALES",
+              displayer: "Person Name",
+              value:
+                '<p dir="ltr"><span style="white-space: pre-wrap;">MARINA </span></p><p dir="ltr"><span style="white-space: pre-wrap;">GONZALES</span></p>',
+            },
+            {
+              type: "array",
+              key: "features",
+              displayer: "Features",
+              value: [
+                {
+                  type: "object",
+                  key: "feature",
+                  displayer: "Feature",
+                  value: [
+                    {
+                      type: "string",
+                      key: "subtitle",
+                      displayer: "Subtitle",
+                      value: "",
+                    },
+                    {
+                      type: "string",
+                      key: "title",
+                      displayer: "Title",
+                      value: "AGE",
+                    },
+                    {
+                      type: "string",
+                      key: "featureDescription",
+                      displayer: "Description",
+                      value: "22 YEARS",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "feature",
+                  displayer: "Feature",
+                  value: [
+                    {
+                      type: "string",
+                      key: "subtitle",
+                      displayer: "Subtitle",
+                      value: "",
+                    },
+                    {
+                      type: "string",
+                      key: "title",
+                      displayer: "Title",
+                      value: "JOINED",
+                    },
+                    {
+                      type: "string",
+                      key: "featureDescription",
+                      displayer: "Description",
+                      value: "2016",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "feature",
+                  displayer: "Feature",
+                  value: [
+                    {
+                      type: "string",
+                      key: "subtitle",
+                      displayer: "Subtitle",
+                      value: "",
+                    },
+                    {
+                      type: "string",
+                      key: "title",
+                      displayer: "Title",
+                      value: "COUNTRY",
+                    },
+                    {
+                      type: "string",
+                      key: "featureDescription",
+                      displayer: "Description",
+                      value: "COSTA RİCA",
+                    },
+                  ],
+                },
+              ],
             },
             {
               type: "string",
-              key: "value1-title",
-              displayer: "Value 1 Title",
-              value: "AGE",
-            },
-            {
-              type: "string",
-              key: "value2-title",
-              displayer: "Value 2 Title",
-              value: "JOINED",
-            },
-            {
-              type: "string",
-              key: "value3-title",
-              displayer: "Value 3 Title",
-              value: "COUNTRY",
-            },
-            {
-              type: "string",
-              key: "value1-description",
-              displayer: "Value 1 Description",
-              value: "22 YEARS",
-            },
-            {
-              type: "string",
-              key: "value2-description",
-              displayer: "Value 2 Description",
-              value: "2016",
-            },
-            {
-              type: "string",
-              key: "value3-description",
-              displayer: "Value 3 Description",
-              value: "COSTA RİCA",
-            },
-            {
-              type: "string",
-              key: "description",
+              key: "cardDescription",
               displayer: "Description",
               value: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
             },
             {
               type: "array",
-              key: "icons",
-              displayer: "Icons",
-              value: [JSON.parse(JSON.stringify(twitter)), JSON.parse(JSON.stringify(facebook)), JSON.parse(JSON.stringify(instagram))],
+              key: "socials",
+              displayer: "Social Media",
+              value: [
+                {
+                  type: "object",
+                  key: "social",
+                  displayer: "Social",
+                  value: [
+                    {
+                      type: "media",
+                      key: "icon",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "FaFacebookSquare"
+                      },
+                      displayer: "Icon",
+                    },
+                    {
+                      type: "page",
+                      key: "url",
+                      displayer: "Navigate To",
+                      value: "",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "social",
+                  displayer: "Social",
+                  value: [
+                    {
+                      type: "media",
+                      key: "icon",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "FaTwitterSquare"
+                      },
+                      displayer: "Icon",
+                    },
+                    {
+                      type: "page",
+                      key: "url",
+                      displayer: "Navigate To",
+                      value: "",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "social",
+                  displayer: "Social",
+                  value: [
+                    {
+                      type: "media",
+                      key: "icon",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "FaInstagram"
+                      },
+                      displayer: "Icon",
+                    },
+                    {
+                      type: "page",
+                      key: "url",
+                      displayer: "Navigate To",
+                      value: "",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "social",
+                  displayer: "Social",
+                  value: [
+                    {
+                      type: "media",
+                      key: "icon",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "FaLinkedin"
+                      },
+                      displayer: "Icon",
+                    },
+                    {
+                      type: "page",
+                      key: "url",
+                      displayer: "Navigate To",
+                      value: "",
+                    },
+                  ],
+                },
+              ],
             },
           ],
         },
         {
           type: "object",
           key: "member",
-          displayer: "Team Member",
+          displayer: "Card",
           value: [
             {
               type: "media",
               key: "profileImage",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
@@ -385,61 +807,210 @@ class Team10 extends Team {
             {
               type: "string",
               key: "title",
-              displayer: "Title",
-              value: "MARINA GONZALES",
+              displayer: "Person Name",
+              value:
+                '<p dir="ltr"><span style="white-space: pre-wrap;">MARINA </span></p><p dir="ltr"><span style="white-space: pre-wrap;">GONZALES</span></p>',
+            },
+            {
+              type: "array",
+              key: "features",
+              displayer: "Features",
+              value: [
+                {
+                  type: "object",
+                  key: "feature",
+                  displayer: "Feature",
+                  value: [
+                    {
+                      type: "string",
+                      key: "subtitle",
+                      displayer: "Subtitle",
+                      value: "",
+                    },
+                    {
+                      type: "string",
+                      key: "title",
+                      displayer: "Title",
+                      value: "AGE",
+                    },
+                    {
+                      type: "string",
+                      key: "featureDescription",
+                      displayer: "Description",
+                      value: "22 YEARS",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "feature",
+                  displayer: "Feature",
+                  value: [
+                    {
+                      type: "string",
+                      key: "subtitle",
+                      displayer: "Subtitle",
+                      value: "",
+                    },
+                    {
+                      type: "string",
+                      key: "title",
+                      displayer: "Title",
+                      value: "JOINED",
+                    },
+                    {
+                      type: "string",
+                      key: "featureDescription",
+                      displayer: "Description",
+                      value: "2016",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "feature",
+                  displayer: "Feature",
+                  value: [
+                    {
+                      type: "string",
+                      key: "subtitle",
+                      displayer: "Subtitle",
+                      value: "",
+                    },
+                    {
+                      type: "string",
+                      key: "title",
+                      displayer: "Title",
+                      value: "COUNTRY",
+                    },
+                    {
+                      type: "string",
+                      key: "featureDescription",
+                      displayer: "Description",
+                      value: "COSTA RİCA",
+                    },
+                  ],
+                },
+              ],
             },
             {
               type: "string",
-              key: "value1-title",
-              displayer: "Value 1 Title",
-              value: "AGE",
-            },
-            {
-              type: "string",
-              key: "value2-title",
-              displayer: "Value 2 Title",
-              value: "JOINED",
-            },
-            {
-              type: "string",
-              key: "value3-title",
-              displayer: "Value 3 Title",
-              value: "COUNTRY",
-            },
-            {
-              type: "string",
-              key: "value1-description",
-              displayer: "Value 1 Description",
-              value: "22 YEARS",
-            },
-            {
-              type: "string",
-              key: "value2-description",
-              displayer: "Value 2 Description",
-              value: "2016",
-            },
-            {
-              type: "string",
-              key: "value3-description",
-              displayer: "Value 3 Description",
-              value: "COSTA RİCA",
-            },
-            {
-              type: "string",
-              key: "description",
+              key: "cardDescription",
               displayer: "Description",
               value: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
             },
             {
               type: "array",
-              key: "icons",
-              displayer: "Icons",
-              value: [JSON.parse(JSON.stringify(twitter)), JSON.parse(JSON.stringify(facebook)), JSON.parse(JSON.stringify(instagram))],
+              key: "socials",
+              displayer: "Social Media",
+              value: [
+                {
+                  type: "object",
+                  key: "social",
+                  displayer: "Social",
+                  value: [
+                    {
+                      type: "media",
+                      key: "icon",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "FaFacebookSquare"
+                      },
+                      displayer: "Icon",
+                    },
+                    {
+                      type: "page",
+                      key: "url",
+                      displayer: "Navigate To",
+                      value: "",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "social",
+                  displayer: "Social",
+                  value: [
+                    {
+                      type: "media",
+                      key: "icon",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "FaTwitterSquare"
+                      },
+                      displayer: "Icon",
+                    },
+                    {
+                      type: "page",
+                      key: "url",
+                      displayer: "Navigate To",
+                      value: "",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "social",
+                  displayer: "Social",
+                  value: [
+                    {
+                      type: "media",
+                      key: "icon",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "FaInstagram"
+                      },
+                      displayer: "Icon",
+                    },
+                    {
+                      type: "page",
+                      key: "url",
+                      displayer: "Navigate To",
+                      value: "",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "social",
+                  displayer: "Social",
+                  value: [
+                    {
+                      type: "media",
+                      key: "icon",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "FaLinkedin"
+                      },
+                      displayer: "Icon",
+                    },
+                    {
+                      type: "page",
+                      key: "url",
+                      displayer: "Navigate To",
+                      value: "",
+                    },
+                  ],
+                },
+              ],
             },
           ],
         },
       ],
     });
+
     this.addProp({
       type: "multiSelect",
       key: "hoverAnimation",
@@ -456,81 +1027,114 @@ class Team10 extends Team {
   }
 
   render() {
-    const backgroundImage = this.getPropValue("componentBackground") as TypeMediaInputValue | undefined;
-    const backgroundImageExist = !!backgroundImage;
-    const subtitle = this.getPropValue("subtitle");
-    const title = this.getPropValue("title");
-    const overlayExist = this.getPropValue("overlay");
-
-    const subtitleExist = this.castToString(subtitle);
-    const titleExist = this.castToString(title);
+    const background = this.castToObject<Background>("background");
+    const backgroundImage = background?.componentBackground;
+    const overlay = background?.overlay;
+    const subtitle = this.castToString(this.getPropValue("subtitle"));
+    const title = this.castToString(this.getPropValue("title"));
+    const description = this.castToString(this.getPropValue("description"));
+    const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons") || [];
+    const visibleButtons = buttons.filter(btn => this.castToString(btn.text));
+    const hasContent = subtitle || title || description || visibleButtons.length > 0;
+    const hoverAnimation = this.getPropValue("hoverAnimation") || [];
+    const backgroundImageExist = backgroundImage?.url;
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
-        <div className={this.decorateCSS("wrapper")}>
-          <div className={this.decorateCSS("left")}>
-            <Base.VerticalContent className={this.decorateCSS("title-wrapper")}>
-              {subtitleExist && <Base.SectionSubTitle className={`${this.decorateCSS("subtitle")} ${backgroundImageExist && this.decorateCSS("image")}`}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
-              {titleExist && <Base.SectionTitle className={`${this.decorateCSS("title")} ${backgroundImageExist && this.decorateCSS("image")}`}>{this.getPropValue("title")}</Base.SectionTitle>}
-            </Base.VerticalContent>
+        <div className={this.decorateCSS("left")}>
+          <Base.VerticalContent className={`${this.decorateCSS("vertical-content")} ${backgroundImageExist && this.decorateCSS("has-image")}`}>
+            {subtitle && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
+            {title && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
+            {description && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
+            {visibleButtons.length > 0 && (
+              <div className={this.decorateCSS("button-container")}>
+                {visibleButtons.map((item: INPUTS.CastedButton, index: number) => {
+                  return this.castToString(item.text) && (
+                    <ComposerLink key={`button-${index}`} path={item.url}>
+                      <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
+                        <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>
+                      </Base.Button>
+                    </ComposerLink>
+                  );
+                })}
+              </div>
+            )}
+          </Base.VerticalContent>
+          {overlay && <div className={this.decorateCSS("overlay")}></div>}
+          {backgroundImageExist && <Base.Media value={backgroundImage} className={this.decorateCSS("background-image")} />}
+        </div>
+        <div className={this.decorateCSS("right")}>
+          {(this.castToObject<Card[]>("team") || []).map((teamMember: Card, index: number) => {
+            const imageValue = teamMember.profileImage;
+            const socials = teamMember.socials || [];
+            const subtitleExists = this.castToString(teamMember.subtitle);
+            const titleExists = this.castToString(teamMember.title);
+            const cardDescriptionExists = this.castToString(teamMember.cardDescription);
+            const hasFeatures = teamMember.features && teamMember.features.length > 0;
+            const hasInfo = subtitleExists || titleExists || hasFeatures || cardDescriptionExists || socials.length > 0;
 
-            {overlayExist && <div className={this.decorateCSS("overlay")}></div>}
-            {backgroundImageExist && <Base.Media value={backgroundImage} className={this.decorateCSS("background-image")} />}
-          </div>
-          <div className={this.decorateCSS("right")}>
-            {this.castToObject<TTeam[]>("team").map((teamMember: any) => {
-              const imageExist = teamMember.getPropValue("profileImage");
-              return (
-                <Base.VerticalContent className={this.decorateCSS("team-member")}>
+            return (
+              <Base.VerticalContent key={index} className={this.decorateCSS("team-member")}>
+                {hasInfo && (
                   <div className={this.decorateCSS("info")}>
                     <div className={this.decorateCSS("icon-group")}>
-                      {teamMember.icons.map((icon: any, indexIcons: number) => {
-                        const iconExist = icon.icon;
-                        return (
-                          iconExist && (
-                            <div key={indexIcons} className={this.decorateCSS("icon-item")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
-                              <ComposerLink path={icon.url}>
-                                <Base.Icon name={icon.icon} propsIcon={{ className: this.decorateCSS("icon") }} />
-                              </ComposerLink>
-                            </div>
-                          )
+                      {socials.map((socialObj: Socials, indexIcons: number) => {
+                        const iconData = socialObj.icon;
+                        const urlData = socialObj.url;
+                        return iconData && (
+                          <div key={indexIcons} className={this.decorateCSS("icon-item")} data-animation={hoverAnimation.join(" ")}>
+                            <ComposerLink path={urlData}>
+                              <Base.Media value={iconData} className={`${this.decorateCSS("icon")} ${iconData?.type === "image" && this.decorateCSS("has-image")}`} />
+                            </ComposerLink>
+                          </div>
                         );
                       })}
                     </div>
-                    <Base.H3 className={this.decorateCSS("subtitle")}>{teamMember.getPropValue("subtitle")}</Base.H3>
-                    <Base.H1 className={this.decorateCSS("title")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>{teamMember.getPropValue("title")}</Base.H1>
-                    <div className={this.decorateCSS("meta-info")}>
-                      <div className={this.decorateCSS("meta")}>
-                        <div className={this.decorateCSS("label")}>
-                          <Base.H5 className={this.decorateCSS("value-title")}>{teamMember.getPropValue("value1-title")}</Base.H5>
-                          <Base.H5 className={this.decorateCSS("value-description")}>{teamMember.getPropValue("value1-description")}</Base.H5>
-                        </div>
+                    {(subtitleExists || titleExists) && (
+                      <Base.VerticalContent className={this.decorateCSS("title-group")}>
+                        {subtitleExists && <Base.P className={this.decorateCSS("member-subtitle")}>{teamMember.subtitle}</Base.P>}
+                        {titleExists && <Base.H5 className={this.decorateCSS("member-title")} data-animation={hoverAnimation.join(" ")}>{teamMember.title}</Base.H5>}
+                      </Base.VerticalContent>
+                    )}
+                    {hasFeatures && (
+                      <div className={this.decorateCSS("features-wrapper")}>
+                        {teamMember.features?.map((feature: Feature, indexFeatures: number) => {
+                          const featureSubtitleExist = this.castToString(feature.subtitle);
+                          const featureTitleExist = this.castToString(feature.title);
+                          const featureDescExist = this.castToString(feature.featureDescription);
+                          const hasFeature = featureSubtitleExist || featureTitleExist || featureDescExist;
+
+                          return hasFeature && (
+                            <Base.VerticalContent key={indexFeatures} className={this.decorateCSS("features")}>
+                              {featureSubtitleExist && (
+                                <Base.P className={this.decorateCSS("feature-subtitle")}>{feature.subtitle}</Base.P>
+                              )}
+                              {featureTitleExist && (
+                                <Base.P className={this.decorateCSS("feature-title")}>{feature.title}</Base.P>
+                              )}
+                              {featureDescExist && (
+                                <Base.P className={this.decorateCSS("feature-description")}>{feature.featureDescription}</Base.P>
+                              )}
+                            </Base.VerticalContent>
+                          );
+                        })}
                       </div>
-                      <div className={this.decorateCSS("meta")}>
-                        <div className={this.decorateCSS("label")}>
-                          <Base.H5 className={this.decorateCSS("value-title")}>{teamMember.getPropValue("value2-title")}</Base.H5>
-                          <Base.H5 className={this.decorateCSS("value-description")}>{teamMember.getPropValue("value2-description")}</Base.H5>
-                        </div>
-                      </div>
-                      <div className={this.decorateCSS("meta")}>
-                        <div className={this.decorateCSS("label")}>
-                          <Base.H5 className={this.decorateCSS("value-title")}>{teamMember.getPropValue("value3-title")}</Base.H5>
-                          <Base.H5 className={this.decorateCSS("value-description")}>{teamMember.getPropValue("value3-description")}</Base.H5>
-                        </div>
-                      </div>
-                    </div>
-                    <Base.SectionDescription className={this.decorateCSS("description")}>{teamMember.getPropValue("description")}</Base.SectionDescription>
+                    )}
+                    {cardDescriptionExists && (
+                      <Base.P className={this.decorateCSS("card-description")}>{teamMember.cardDescription}</Base.P>
+                    )}
                   </div>
-                  {imageExist &&
-                    <div className={this.decorateCSS("image-container")}>{
-                      <Base.Media value={teamMember.getPropValue("profileImage")} className={this.decorateCSS("image")} />}
-                      <div className={this.decorateCSS("image-overlay")} data-animation={this.getPropValue("hoverAnimation").join(" ")}></div>
-                    </div>
-                  }
-                </Base.VerticalContent>
-              );
-            })}
-          </div>
+                )}
+                {imageValue && (
+                  <div className={this.decorateCSS("image-container")}>
+                    <Base.Media value={imageValue} className={this.decorateCSS("image")} />
+                    <div className={this.decorateCSS("image-overlay")} data-animation={hoverAnimation.join(" ")}></div>
+                    {this.getPropValue("cardOverlay") && <div className={this.decorateCSS("cardOverlay")}></div>}
+                  </div>
+                )}
+              </Base.VerticalContent>
+            );
+          })}
         </div>
       </Base.Container>
     );
