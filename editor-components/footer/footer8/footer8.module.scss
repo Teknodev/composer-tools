@@ -2,7 +2,7 @@
 
 .container {
   width: 100%;
-  padding: 120px 60px 20px 60px !important;
+  padding: 120px 60px var(--composer-gap-md) 60px !important;
 
   &.absolute {
     position: absolute;
@@ -37,7 +37,6 @@
         .header {
           display: flex;
           flex-direction: column;
-          gap: var(--composer-gap-xs);
 
           .image {
             width: 200px;
@@ -45,7 +44,7 @@
             object-fit: cover;
 
             &.is-icon {
-              font-size: 40px;
+              font-size: 2.5rem;
               width: 40px;
               height: 40px;
               color: var(--composer-font-color-primary);
@@ -55,8 +54,8 @@
           .subtitle,
           .title {
             text-align: left !important;
-            margin-left: 0;
-            margin-right: auto;
+            margin-left: 0 !important;
+            margin-right: auto !important;
           }
 
           .description {
@@ -279,9 +278,9 @@
               object-fit: cover;
 
               &.is-icon {
-                font-size: 1rem;
-                width: unset;
-                height: unset;
+                font-size: 1.25rem;
+                width: 20px;
+                height: 20px;
               }
             }
 
@@ -345,7 +344,7 @@
 @container (max-width: #{$composer-tablet-width}) {
   .container {
     width: 100%;
-    padding: 100px 50px 20px 50px !important;
+    padding: 100px var(--composer-gap-xl) var(--composer-gap-md) var(--composer-gap-xl) !important;
 
     .max-content {
       .footer-page {
@@ -366,7 +365,7 @@
 @container (max-width: #{$composer-phone-width}) {
   .container {
     width: 100%;
-    padding: 50px 30px 20px 30px !important;
+    padding: var(--composer-gap-xl) 30px var(--composer-gap-md) 30px !important;
 
     .max-content {
       .footer-page {

@@ -119,7 +119,7 @@
   .container {
     .max-content {
       .footer-page {
-        padding: 100px 50px;
+        padding:calc(var(--composer-gap-xl) * 2) var(--composer-gap-xl);
         .items {
           min-height: 170px;
           gap: var(--composer-gap-md);
@@ -143,7 +143,7 @@
   .container {
     .max-content {
       .footer-page {
-        padding: 50px 30px;
+        padding: var(--composer-gap-xl) 30px;
         .items {
           min-height: 300px;
           gap: var(--composer-gap-xl);

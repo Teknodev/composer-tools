@@ -1,7 +1,7 @@
 @use "../../../../composer-tools//composer-base-components//base//utitilities/viewports.module.scss" as *;
 
 .container {
-  padding: 120px 60px 20px 60px !important;
+  padding: 120px 60px var(--composer-gap-md) 60px !important;
 
   &.absolute {
     position: absolute;
@@ -12,6 +12,8 @@
   }
   .max-content {
     .footer-page {
+      display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
       gap: var(--composer-gap-lg);
@@ -59,7 +61,7 @@
           align-items: center;
           display: flex;
           flex-direction: column;
-          gap: var(--composer-gap-md);
+          gap: var(--composer-gap-sm);
 
           .list-title {
             color: var(--composer-font-color-primary);
@@ -73,7 +75,7 @@
           }
 
           .address-link {
-            margin-bottom: 20px !important;
+            margin-bottom: var(--composer-gap-md) !important;
           }
 
           .text {
@@ -131,7 +133,7 @@
 
 @container (max-width: #{$composer-tablet-width}) {
   .container {
-    padding: 100px 50px 20px 50px !important;
+    padding: 100px var(--composer-gap-xl) var(--composer-gap-md) var(--composer-gap-xl) !important;
     .max-content {
       .footer-page {
         gap: var(--composer-gap-md);
@@ -151,7 +153,7 @@
 
 @container (max-width: #{$composer-phone-width}) {
   .container {
-    padding: 50px 30px 20px 30px !important;
+    padding: var(--composer-gap-xl) 30px var(--composer-gap-md) 30px !important;
     .max-content {
       .footer-page {
         justify-content: center;

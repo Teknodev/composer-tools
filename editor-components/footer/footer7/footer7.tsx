@@ -438,11 +438,12 @@ class Footer7Page extends BaseFooter {
     const rightExist = linksExist || footerTextExist;
 
     const position = this.getPropValue("position");
+    const alignment = Base.getContentAlignment();
 
     return (
       <Base.Container className={`${this.decorateCSS("container")} ${position === "Absolute" ? this.decorateCSS("absolute") : ""}`}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("footer-page")}>
+          <div className={`${this.decorateCSS("footer-page")} ${alignment === "left" ? this.decorateCSS("left-alignment") : this.decorateCSS("center-alignment")}`}>
             {logoAreaExist && (
               <div className={this.decorateCSS("left")}>
                 {logoExist && (
@@ -452,7 +453,7 @@ class Footer7Page extends BaseFooter {
                 )}
                 {subtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
                 {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
-                {descriptionExist && <Base.P className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.P>}
+                {descriptionExist && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
                 {hasRenderableButton && (
                   <div className={this.decorateCSS("button-container")}>
                     {buttons.map(

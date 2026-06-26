@@ -450,8 +450,8 @@ class Footer5Page extends BaseFooter {
                       const listExist = footerTitleExist || footerTextExist;
                       return (
                         listExist && (
-                          <div key={indexFooter} className={this.decorateCSS("list-group")}>
-                            {footerTitleExist && <Base.P className={this.decorateCSS("column-title")}>{item.footerTitle}</Base.P>}
+                          <Base.VerticalContent key={indexFooter} className={this.decorateCSS("list-group")}>
+                            {footerTitleExist && <Base.H6 className={this.decorateCSS("column-title")}>{item.footerTitle}</Base.H6>}
                             {footerTextExist && (
                               <Base.VerticalContent className={this.decorateCSS("text-container")}>
                                 {item.footerText.map((v: FooterTextValues, indexFooterText: number) => {
@@ -472,7 +472,7 @@ class Footer5Page extends BaseFooter {
                                 })}
                               </Base.VerticalContent>
                             )}
-                          </div>
+                          </Base.VerticalContent>
                         )
                       );
                     })}

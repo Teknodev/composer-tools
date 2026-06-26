@@ -134,7 +134,7 @@
           .icon {
             width: 20px;
             height: 20px;
-            font-size: 20px;
+            font-size: 1.25rem;
             color: var(--composer-tertiary-color);
             transition: all 0.3s ease;
           }
@@ -151,11 +151,8 @@
             flex: 0 0 auto;
 
             .column-title {
-              font-weight: 600;
               color: var(--composer-font-color-primary);
               text-align: left !important;
-              margin-left: 0 !important;
-              margin-right: 0 !important;
             }
           }
         }

@@ -339,8 +339,7 @@ class Footer6Page extends BaseFooter {
 
     return (
       <Base.Container className={`${this.decorateCSS("container")} ${position === "Absolute" ? this.decorateCSS("absolute") : ""}`}>
-        <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <Base.VerticalContent className={this.decorateCSS("footer-page")}>
+        <Base.MaxContent className={this.decorateCSS("max-content")}>          <div className={this.decorateCSS("footer-page")}>
             {headerExist && (
               <Base.VerticalContent className={this.decorateCSS("header")}>
                 {subtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{subtitle}</Base.SectionSubTitle>}
@@ -361,7 +360,7 @@ class Footer6Page extends BaseFooter {
                 )}
               </Base.VerticalContent>
             )}
-
+ 
             <div className={this.decorateCSS("middle-container")}>
               {footer.length > 0 &&
                 footer.map((item: FooterValues, indexFooter: number) => {
@@ -369,10 +368,10 @@ class Footer6Page extends BaseFooter {
                   const footerExist = footerTitleExist || item.footerText.length > 0;
                   return (
                     footerExist && (
-                      <div key={indexFooter} className={this.decorateCSS("list-group")}>
+                      <Base.VerticalContent key={indexFooter} className={this.decorateCSS("list-group")}>
                         {footerTitleExist && <Base.H6 className={this.decorateCSS("list-title")}>{item.footerTitle}</Base.H6>}
                         {item.footerText.length > 0 && (
-                          <Base.VerticalContent className={this.decorateCSS("text-container")}>
+                          <div className={this.decorateCSS("text-container")}>
                             {item.footerText.map((v: FooterTextValues, indexFooterText: number) => {
                               const footerTextExist = this.castToString(v.navTitle);
                               const titleStr = this.castToString(item.footerTitle).toLowerCase();
@@ -390,18 +389,18 @@ class Footer6Page extends BaseFooter {
                                 )
                               );
                             })}
-                          </Base.VerticalContent>
+                          </div>
                         )}
-                      </div>
+                      </Base.VerticalContent>
                     )
                   );
                 })}
             </div>
-
+ 
             {footerTextExist && (
               <Base.P className={this.decorateCSS("bottom-text")}>{footerText}</Base.P>
             )}
-          </Base.VerticalContent>
+          </div>
         </Base.MaxContent>
       </Base.Container>
     );

@@ -34,7 +34,7 @@
 
         .left {
           .title, .subtitle, .description {
-            content: "";
+            text-align: left !important;
           }
           &.left-full {
             width: 100%;
@@ -83,12 +83,11 @@
           display: flex;
           flex-direction: column;
           align-items: flex-start;
-          gap: var(--composer-gap-md);
+          gap: var(--composer-gap-sm);
           flex: 1;
           min-width: 120px;
 
           .column-title {
-            font-weight: 600;
             color: var(--composer-font-color-primary);
             text-align: left !important;
             margin-left: 0 !important;
@@ -99,7 +98,6 @@
             display: flex;
             flex-direction: column;
             align-items: flex-start;
-            gap: var(--composer-gap-sm);
 
             .footer-text {
               color: var(--composer-tertiary-color);
@@ -131,7 +129,7 @@
   }
 
   .second-container {
-    padding: 20px 60px 20px 60px !important;
+    padding: var(--composer-gap-md) 60px var(--composer-gap-md) 60px !important;
     .second-max-content {
       .bottom {
         display: flex;
@@ -185,11 +183,11 @@
 @container (max-width: #{$composer-tablet-width}) {
   .container {
     .footer-wrapper {
-      padding: 100px 50px 60px 50px !important;
+      padding: 100px var(--composer-gap-xl) 60px var(--composer-gap-xl) !important;
     }
 
     .second-container {
-      padding: 20px 50px 20px 50px !important;
+      padding: var(--composer-gap-md) var(--composer-gap-xl) var(--composer-gap-md) var(--composer-gap-xl) !important;
     }
   }
 }
@@ -197,7 +195,7 @@
 @container (max-width: #{$composer-phone-width}) {
   .container {
     .footer-wrapper {
-      padding: 50px 30px 40px 30px !important;
+      padding: var(--composer-gap-xl) 30px var(--composer-gap-lg) 30px !important;
       .max-content {
         .header {
           flex-direction: column;
@@ -237,7 +235,7 @@
     }
 
     .second-container {
-      padding: 20px 30px 20px 30px !important;
+      padding: var(--composer-gap-md) 30px var(--composer-gap-md) 30px !important;
       .second-max-content {
         .bottom {
           display: flex;
