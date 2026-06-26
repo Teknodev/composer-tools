@@ -76,6 +76,29 @@ function extractTitleIds(itemsProp: TypeUsableComponentProps): string[] {
   });
 }
 
+function buildMediaItemsArrayProp(): TypeUsableComponentProps {
+  return {
+    type: "array",
+    key: "items",
+    displayer: "Items",
+    value: [
+      {
+        type: "object",
+        key: "item",
+        displayer: "Item",
+        value: [
+          {
+            type: "media",
+            key: "image",
+            displayer: "Image",
+            value: { type: "image", url: "https://example.com/image.jpg" },
+          },
+        ] as TypeUsableComponentProps[],
+      } as TypeUsableComponentProps,
+    ] as TypeUsableComponentProps[],
+  } as TypeUsableComponentProps;
+}
+
 describe("attachPropId via constructor — array item ID uniqueness", () => {
   it("assigns unique IDs to all title props across array items", async () => {
     // Dynamically import Component to avoid heavy side-effects at module level
@@ -152,5 +175,37 @@ describe("attachPropId via constructor — array item ID uniqueness", () => {
     // IDs between instances should be different (all 6 distinct)
     const allIds = [...ids1, ...ids2];
     expect(new Set(allIds).size).toBe(6);
+  });
+
+  it("preserves cleared nested media props when serializing props", async () => {
+    const { Component } = await import("../EditorComponent");
+
+    class TestComponent extends Component {
+      static getName() { return "TestComponent"; }
+      getName() { return "TestComponent"; }
+      getInstanceName() { return "TestComponent"; }
+
+      constructor(props: any) {
+        super(props, { main: {} });
+        this.addProp(buildMediaItemsArrayProp());
+      }
+
+      render() {
+        return null as any;
+      }
+    }
+
+    const instance = new (TestComponent as any)({ props: [buildMediaItemsArrayProp()] });
+    const nextItems = JSON.parse(JSON.stringify(instance.getPropValue("items")));
+
+    nextItems[0].value[0].value = null;
+    instance.setProp("items", nextItems);
+
+    const props = instance.getProps() as TypeUsableComponentProps[];
+    const itemsProp = props.find((p: any) => p.key === "items")!;
+    const mediaProp = ((itemsProp.value as TypeUsableComponentProps[])[0].value as TypeUsableComponentProps[])[0];
+
+    expect(mediaProp).toMatchObject({ type: "media", key: "image", value: null });
+    expect(JSON.stringify(props)).toContain('"value":null');
   });
 });
