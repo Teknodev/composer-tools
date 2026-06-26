@@ -48,12 +48,32 @@
             }
 
             .left {
-              gap: var(--composer-gap-xs);
               align-items: baseline;
+
+              .subtitle,
+              .title,
+              .description {
+                text-align: left !important;
+                margin: 0;
+              }
+
 
               .left-title {
                 text-align: left;
                 color: var(--composer-font-color-primary);
+              }
+
+              .button-container {
+                display: flex;
+                flex-wrap: wrap;
+                gap: var(--composer-gap-sm);
+
+                .button {
+
+                  .button-text {
+                    content: "";
+                  }
+                }
               }
 
               .images {
@@ -81,13 +101,15 @@
             .list-group {
               display: flex;
               flex-direction: column;
-              gap: var(--composer-gap-md);
+              gap: var(--composer-gap-sm);
               align-items: flex-start;
 
               .title {
                 text-align: left;
                 margin: 0;
+                margin-bottom: var(--composer-gap-sm);
                 color: var(--composer-font-color-primary);
+                font-size: 1.25rem !important;
               }
 
               .text {
@@ -95,6 +117,7 @@
                 margin: 0;
                 color: var(--composer-font-color-primary);
                 transition: all 0.3s ease;
+                font-size: 0.9rem !important;
 
                 &[data-has-link="true"] {
                   cursor: pointer;
@@ -192,11 +215,18 @@
                 }
               }
 
-              .title,
+              .title {
+                text-align: left;
+                margin: 0;
+                color: var(--composer-font-color-primary);
+                font-size: 1.25rem !important;
+              }
+
               .description {
                 text-align: left;
                 margin: 0;
                 color: var(--composer-font-color-primary);
+                font-size: 0.9rem !important;
               }
             }
           }
@@ -291,7 +321,7 @@
           width: 100%;
 
           .footer-text {
-            content: "";
+            justify-content: flex-start !important;
           }
 
           .links,
@@ -412,9 +442,14 @@
                   align-items: center !important;
 
                   .left-title,
+                  .subtitle,
                   .title,
                   .description {
                     text-align: center !important;
+                  }
+
+                  .button-container {
+                    justify-content: center !important;
                   }
                 }
               }
@@ -437,6 +472,10 @@
           .bottom {
             flex-direction: column;
             align-items: center;
+
+            .footer-text {
+              justify-content: center !important;
+            }
 
             .links {
               flex-wrap: wrap;

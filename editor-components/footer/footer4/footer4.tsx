@@ -34,9 +34,32 @@ class Footer4Page extends BaseFooter {
 
     this.addProp({
       type: "string",
-      key: "text",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "",
+    });
+
+    this.addProp({
+      type: "string",
+      key: "title",
       displayer: "Title",
+      value: "",
+    });
+
+    this.addProp({
+      type: "string",
+      key: "description",
+      displayer: "Description",
       value: "We accept:",
+    });
+
+    this.addProp({
+      type: "array",
+      key: "brandButtons",
+      displayer: "Buttons",
+      value: [
+        INPUTS.BUTTON("button", "Button", "", "", null, null, "Black"),
+      ],
     });
 
     this.addProp({
@@ -536,14 +559,18 @@ class Footer4Page extends BaseFooter {
   render() {
     const media = this.castToObject<any[]>("media");
 
-    const textExist = this.castToString(this.getPropValue("text"));
+    const subtitleExist = this.castToString(this.getPropValue("subtitle"));
+    const titleExist = this.castToString(this.getPropValue("title"));
+    const descriptionExist = this.castToString(this.getPropValue("description"));
+    const brandButtons = this.castToObject<INPUTS.CastedButton[]>("brandButtons") || [];
+    const hasBrandButtons = brandButtons.some((btn) => this.castToString(btn.text));
 
     const formProps = this.castToObject<any>("form");
     const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
     const submitText = this.castToString(formProps?.submitText);
     const placeHolderExist = this.castToString(formProps?.subscriptionPlaceholder);
 
-    const leftExist = textExist || media.length > 0;
+    const leftExist = subtitleExist || titleExist || descriptionExist || hasBrandButtons || media.length > 0;
 
     const rightTitleExist = this.castToString(formProps?.rightTitle);
     const rightDescExist = this.castToString(formProps?.rightDescription);
@@ -572,15 +599,36 @@ class Footer4Page extends BaseFooter {
                 <div className={`${this.decorateCSS("items")} ${alignment === "center" ? this.decorateCSS("center") : ""}`}>
                   {leftExist && (
                     <Base.VerticalContent className={this.decorateCSS("left")}>
-                      {textExist && <Base.P className={this.decorateCSS("left-title")}>{this.getPropValue("text")}</Base.P>}
-                      <div className={this.decorateCSS("images")}>
-                        {media.length > 0 && (
+                      {subtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
+                      {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
+                      {descriptionExist && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
+                      {hasBrandButtons && (
+                        <div className={this.decorateCSS("button-container")}>
+                          {brandButtons.map(
+                            (item: INPUTS.CastedButton, index: number) =>
+                              this.castToString(item.text) && (
+                                <ComposerLink key={index} path={item.url}>
+                                  <Base.Button
+                                    buttonType={item.type}
+                                    className={this.decorateCSS("button")}
+                                  >
+                                    <Base.P className={this.decorateCSS("button-text")}>
+                                      {item.text}
+                                    </Base.P>
+                                  </Base.Button>
+                                </ComposerLink>
+                              )
+                          )}
+                        </div>
+                      )}
+                      {media.length > 0 && (
+                        <div className={this.decorateCSS("images")}>
                           <Base.Row className={this.decorateCSS("image-container")}>
                             {media.map((item: any, index: number) => {
                               return (
                                 item.media && (
-                                  <div className={this.decorateCSS("image-element")}>
-                                    <ComposerLink key={index} path={item.url}>
+                                  <div className={this.decorateCSS("image-element")} key={index}>
+                                    <ComposerLink path={item.url}>
                                       <Base.Media value={item.media} className={`${this.decorateCSS("image")} ${item.media?.type === "icon" ? this.decorateCSS("is-icon") : ""}`} />
                                     </ComposerLink>
                                   </div>
@@ -588,8 +636,8 @@ class Footer4Page extends BaseFooter {
                               );
                             })}
                           </Base.Row>
-                        )}
-                      </div>
+                        </div>
+                      )}
                     </Base.VerticalContent>
                   )}
 

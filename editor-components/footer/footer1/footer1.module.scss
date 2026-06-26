@@ -116,7 +116,7 @@
 
           .copyright-text {
             text-align: start;
-            color: var(--composer-tertiary-color);
+            color: var(--composer-font-color-primary);
           }
         }
 
@@ -217,6 +217,14 @@
           display: flex;
           flex-direction: column;
           align-items: center;
+
+          .copyright-container {
+            justify-content: center;
+
+            .copyright-text {
+              text-align: center;
+            }
+          }
 
           .columns-section {
             justify-content: center;
