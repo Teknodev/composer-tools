@@ -16,18 +16,20 @@
             .description {
                 text-align: left;
             }
-        }
 
-        .button-container {
-            display: flex;
-            flex-direction: row;
-            justify-content: flex-start;
-            flex-wrap: wrap;
-            gap: var(--composer-gap-sm);
+            .button-container {
+                display: flex;
+                flex-direction: row;
+                justify-content: flex-start;
+                flex-wrap: wrap;
+                gap: var(--composer-gap-sm);
+                width: 100%;
 
-            .button {
-                .button-text {
-                    content: "";
+
+                .button {
+                    .button-text {
+                        content: "";
+                    }
                 }
             }
         }

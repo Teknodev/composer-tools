@@ -60,25 +60,25 @@ class CallToAction16 extends BaseCallToAction {
             <Base.Container className={this.decorateCSS("container")}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
                     <div className={this.decorateCSS("content")}>
-                        {hasContent && (
+                        {(hasContent || visibleButtons.length > 0) && (
                             <Base.VerticalContent className={this.decorateCSS("header")}>
                                 {subtitleExist && (<Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>)}
                                 {titleExist && (<Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>)}
                                 {descriptionExist && (<Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>)}
+                                {visibleButtons.length > 0 && (
+                                    <div className={this.decorateCSS("button-container")}>
+                                        {visibleButtons.map((item: INPUTS.CastedButton, index: number) => (
+                                            this.castToString(item.text) && (
+                                                <ComposerLink key={`button-${index}`} path={item.url}>
+                                                    <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
+                                                        <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>
+                                                    </Base.Button>
+                                                </ComposerLink>
+                                            )
+                                        ))}
+                                    </div>
+                                )}
                             </Base.VerticalContent>
-                        )}
-                        {visibleButtons.length > 0 && (
-                            <div className={this.decorateCSS("button-container")}>
-                                {visibleButtons.map((item: INPUTS.CastedButton, index: number) => {
-                                    return this.castToString(item.text) && (
-                                        <ComposerLink key={`button-${index}`} path={item.url}>
-                                            <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
-                                                <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>
-                                            </Base.Button>
-                                        </ComposerLink>
-                                    );
-                                })}
-                            </div>
                         )}
                     </div>
                     {infoTextExist && (

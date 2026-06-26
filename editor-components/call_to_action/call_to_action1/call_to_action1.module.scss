@@ -6,12 +6,15 @@
             align-items: center;
 
             .icon {
-                font-size: 3em;
+                font-size: 3rem;
+                width: 3rem;
+                height: 3rem;
+                object-fit: contain;
                 color: var(--composer-primary-color);
                 display: inline-flex;
                 justify-content: center;
                 align-items: center;
-                
+
                 svg {
                     width: 1em;
                     height: 1em;
@@ -21,6 +24,7 @@
             .subtitle {
                 text-align: center;
                 transform: translateX(0);
+
                 &::before {
                     display: none;
                 }
@@ -36,8 +40,13 @@
 
             .button-container {
                 display: flex;
-                .button{
+                gap: var(--composer-gap-sm);
+                flex-wrap: wrap;
+                justify-content: center;
+
+                .button {
                     content: "";
+
                     .button-text {
                         content: "";
                     }

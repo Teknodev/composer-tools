@@ -1,74 +1,137 @@
 @use '../../../composer-base-components/base/utitilities/viewports.module.scss' as *;
+
 .container {
     .max-content {
         .content {
             align-items: center;
             gap: var(--composer-gap-md);
+
             .header {
-                .title-container{
+                align-items: center;
+
+                .title-container {
                     content: "";
                     position: relative;
-                    padding-bottom: var(--composer-gap-lg);
-                    .title{
-                        width: fit-content;
+                    padding-bottom: var(--composer-gap-xl);
+
+                    &.no-header-icon {
+                        padding-bottom: 0;
+                    }
+
+                    .title {
                         text-align: center;
                     }
-                    .icon {
+
+                    .header-icon-wrapper {
                         position: absolute;
                         bottom: 0rem;
                         right: 0;
                         font-size: 3rem;
-                        color: var(--composer-font-color-primary);
+                        width: 4.5rem;
+                        height: 4.5rem;
+                        border-radius: var(--composer-border-radius-full);
+                        padding: var(--composer-gap-sm);
+                        line-height: 0;
+
+                        .header-icon {
+                            color: var(--composer-primary-color);
+                            width: 100%;
+                            height: 100%;
+                            object-fit: contain;
+                        }
+
+                        &.icon-bg {
+                            background-color: var(--composer-primary-color);
+
+                            .header-icon {
+                                color: var(--composer-font-color-secondary);
+                            }
+                        }
                     }
                 }
-    
-                .subtitle{
+
+                .subtitle {
                     text-align: center;
                     transform: translateX(0);
-                    width: 100%;
+                    width: fit-content;
+
                     &::before {
                         display: none;
                     }
                 }
-    
-                .description{
+
+                .description {
                     text-align: center;
                 }
-            }
 
-
-            .button {
-                content: "";
-                .button-text {
-                    content: "";
-                }
-            }
-            .card-container{
-                width: 100%;
-                .card{
+                .button-container {
                     display: flex;
-                    flex-direction: column;
-                    background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);                    border-radius: var(--composer-border-radius-sm);
-                    padding: var(--composer-gap-lg);
-                    gap: var(--composer-gap-lg);
-                    .icon-wrapper{
-                        background-color: var(--composer-primary-color);
-                        border-radius: 50%;
-                        padding: var(--composer-gap-md);
-                        width: fit-content;
-                        .icon{
-                            color: var(--composer-font-color-secondary);
-                            font-size: 1.5rem;
+                    gap: var(--composer-gap-sm);
+                    flex-wrap: wrap;
+                    justify-content: center;
 
+                    .button {
+                        content: "";
+
+                        .button-text {
+                            content: "";
                         }
                     }
-                    .card-title{
-                        color: var(--composer-font-color-primary);
-                        margin:0px;
+                }
+            }
+
+            .card-container {
+                width: 100%;
+
+                .card {
+                    align-items: flex-start;
+                    background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+                    border-radius: var(--composer-border-radius-sm);
+                    padding: var(--composer-gap-lg);
+
+                    .icon-wrapper {
+                        background-color: var(--composer-primary-color);
+                        border-radius: var(--composer-border-radius-full);
+                        padding: var(--composer-gap-md);
+                        width: fit-content;
+                        line-height: 0;
+
+                        .icon {
+                            color: var(--composer-font-color-secondary);
+                            font-size: 1.5rem;
+                            width: 1.5rem;
+                            height: 1.5rem;
+                            object-fit: contain;
+                        }
+
+                        &.no-bg {
+                            background-color: transparent;
+
+                            .icon {
+                                color: var(--composer-primary-color);
+                            }
+                        }
                     }
-                    .card-description{
-                        margin: 0px;
+
+                    .card-subtitle {
+                        text-align: left;
                         color: var(--composer-font-color-primary);
+                    }
+
+                    .card-title {
+                        color: var(--composer-font-color-primary);
+                        text-align: left;
+                    }
+
+                    .card-description {
+                        color: var(--composer-font-color-primary);
+                        text-align: left;
+                    }
+
+                    .card-button {
+                        .card-button-text {
+                            content: "";
+                        }
                     }
                 }
             }
@@ -76,18 +139,56 @@
         }
     }
 }
-@container (max-width: #{$composer-phone-width}){
-    .container{
-        .max-content{
-            .content{
-                .title-container{
-                    padding-bottom: var(--composer-gap-md);
 
-                    .title{
-                        text-align: center;
+@container (max-width: #{$composer-tablet-width}) {
+    .container {
+        .max-content {
+            .content {
+                .header {
+                    .title-container {
+                        padding-bottom: 30px;
+
+                        .header-icon-wrapper {
+                            font-size: 2rem;
+                            width: 3.5rem;
+                            height: 3.5rem;
+                        }
                     }
-                    .icon {
-                        font-size: 1.5rem;
+                }
+
+                .card-container {
+                    .card {
+                        .icon-wrapper {
+                            padding: 15px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+    .container {
+        .max-content {
+            .content {
+                .header {
+                    .title-container {
+                        padding-bottom: var(--composer-gap-md);
+
+                        .header-icon-wrapper {
+                            font-size: 1.5rem;
+                            width: 3rem;
+                            height: 3rem;
+                        }
+                    }
+                }
+
+                .card-container {
+                    .card {
+                        .icon-wrapper {
+                            padding: var(--composer-gap-sm);
+                        }
                     }
                 }
             }
