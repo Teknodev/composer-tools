@@ -1434,7 +1434,7 @@ class ECommerce7 extends BaseECommerce {
             />
           </div>
         )}
-        {this.decorateCSS("right-icon") && (
+        {icons?.rightArrow && (
           <div
             className={this.decorateCSS("right-icon")}
             onClick={() => this.handleClickNextOverlay()}
