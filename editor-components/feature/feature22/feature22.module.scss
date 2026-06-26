@@ -32,10 +32,23 @@
     }
 
     .description {
-      margin-top: var(--composer-gap-xl) !important;
-      text-align: center;
+      margin: 0 auto !important;
+      margin-top: var(--composer-gap-md) !important;
+      text-align: center !important;
       width: 70%;
-      margin: 0 auto;
+    }
+
+    .button-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: var(--composer-gap-sm);
+      .button {
+        .button-text, 
+        .button-icon {
+          content: "";
+        }
+      }
     }
 
     .box {

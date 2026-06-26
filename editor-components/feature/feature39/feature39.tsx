@@ -13,6 +13,7 @@ type ButtonTypeObj = {
 
 type Card = {
     icon: TypeMediaInputValue;
+    subtitle: React.JSX.Element;
     title: React.JSX.Element;
     description: React.JSX.Element;
 };
@@ -91,6 +92,12 @@ class Feature39 extends BaseFeature {
                         },
                         {
                             type: "string",
+                            key: "subtitle",
+                            displayer: "Card Subtitle",
+                            value: "",
+                        },
+                        {
+                            type: "string",
                             key: "title",
                             displayer: "Title",
                             value: "Modern Design"
@@ -119,6 +126,12 @@ class Feature39 extends BaseFeature {
                                 type: "icon",
                                 name: "AiFillLike"
                             }
+                        },
+                        {
+                            type: "string",
+                            key: "subtitle",
+                            displayer: "Card Subtitle",
+                            value: "",
                         },
                         {
                             type: "string",
@@ -153,6 +166,12 @@ class Feature39 extends BaseFeature {
                         },
                         {
                             type: "string",
+                            key: "subtitle",
+                            displayer: "Card Subtitle",
+                            value: "",
+                        },
+                        {
+                            type: "string",
                             key: "title",
                             displayer: "Title",
                             value: "Ultra Responsive"
@@ -181,6 +200,12 @@ class Feature39 extends BaseFeature {
                                 type: "icon",
                                 name: "MdOutlineHeadsetMic"
                             }
+                        },
+                        {
+                            type: "string",
+                            key: "subtitle",
+                            displayer: "Card Subtitle",
+                            value: "",
                         },
                         {
                             type: "string",
@@ -215,6 +240,12 @@ class Feature39 extends BaseFeature {
                         },
                         {
                             type: "string",
+                            key: "subtitle",
+                            displayer: "Card Subtitle",
+                            value: "",
+                        },
+                        {
+                            type: "string",
                             key: "title",
                             displayer: "Title",
                             value: "Visual Page Builder"
@@ -243,6 +274,12 @@ class Feature39 extends BaseFeature {
                                 type: "icon",
                                 name: "IoMdSettings"
                             }
+                        },
+                        {
+                            type: "string",
+                            key: "subtitle",
+                            displayer: "Card Subtitle",
+                            value: "",
                         },
                         {
                             type: "string",
@@ -277,6 +314,12 @@ class Feature39 extends BaseFeature {
                         },
                         {
                             type: "string",
+                            key: "subtitle",
+                            displayer: "Card Subtitle",
+                            value: "",
+                        },
+                        {
+                            type: "string",
                             key: "title",
                             displayer: "Title",
                             value: "Premium Addons"
@@ -305,6 +348,12 @@ class Feature39 extends BaseFeature {
                                 type: "icon",
                                 name: "FaEarthAmericas"
                             }
+                        },
+                        {
+                            type: "string",
+                            key: "subtitle",
+                            displayer: "Card Subtitle",
+                            value: "",
                         },
                         {
                             type: "string",
@@ -377,26 +426,26 @@ class Feature39 extends BaseFeature {
                     {cards?.length > 0 && (
                         <Base.ListGrid
                             className={this.decorateCSS("card-container")}
-                            gridCount={{ pc: this.getPropValue("itemCount") || 4, tablet: 2, phone: 1 }}
+                            gridCount={{ pc: this.getPropValue("itemCount") || 4, tablet: 4, phone: 1 }}
                         >
                             {cards.map((card: Card, index: number) => {
+                                const cardSubtitleExist = this.castToString(card.subtitle);
                                 const titleExist = !!this.castToString(card.title);
                                 const descExist = !!this.castToString(card.description);
                                 const isImage = card.icon?.type === "image";
 
-                                return (!titleExist && !descExist && !card.icon) || (
+                                return (!cardSubtitleExist && !titleExist && !descExist && !card.icon) || (
                                     <div key={index} className={this.decorateCSS("card-wrapper")}>
-                                        {card.icon &&
-                                            <div className={`${this.decorateCSS("icon-box")} ${!enableIconBackground && this.decorateCSS("no-bg")}`}>
-                                                <Base.Media value={card.icon} className={`${this.decorateCSS("card-icon")} ${isImage && this.decorateCSS("is-image")}`} />
-                                            </div>
-                                        }
-                                        {(titleExist || descExist) &&
-                                            <Base.VerticalContent className={this.decorateCSS("card-content")}>
-                                                {titleExist && <Base.H4 className={this.decorateCSS("card-title")}>{card.title}</Base.H4>}
-                                                {descExist && <Base.P className={this.decorateCSS("card-description")}>{card.description}</Base.P>}
-                                            </Base.VerticalContent>
-                                        }
+                                        <Base.VerticalContent className={this.decorateCSS("card-content")}>
+                                            {card.icon &&
+                                                <div className={`${this.decorateCSS("icon-box")} ${!enableIconBackground && this.decorateCSS("no-bg")}`}>
+                                                    <Base.Media value={card.icon} className={`${this.decorateCSS("card-icon")} ${isImage && this.decorateCSS("is-image")}`} />
+                                                </div>
+                                            }
+                                            {cardSubtitleExist && <Base.H6 className={this.decorateCSS("card-subtitle")}>{card.subtitle}</Base.H6>}
+                                            {titleExist && <Base.H4 className={this.decorateCSS("card-title")}>{card.title}</Base.H4>}
+                                            {descExist && <Base.P className={this.decorateCSS("card-description")}>{card.description}</Base.P>}
+                                        </Base.VerticalContent>
                                     </div>
                                 );
                             })}

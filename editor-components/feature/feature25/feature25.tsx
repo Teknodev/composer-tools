@@ -9,9 +9,10 @@ type ITabs = {
   tabText: React.JSX.Element;
   title: React.JSX.Element;
   text: React.JSX.Element;
-  image: TypeMediaInputValue;
+  media: TypeMediaInputValue;
+  overlay: boolean;
   description: React.JSX.Element;
-  button: INPUTS.CastedButton;
+  buttons: INPUTS.CastedButton[];
 };
 
 class Feature25 extends BaseFeature {
@@ -43,7 +44,7 @@ class Feature25 extends BaseFeature {
             },
             {
               type: "media",
-              key: "image",
+              key: "media",
               displayer: "Media",
               additionalParams: {
                 availableTypes: ["image","video"],
@@ -52,6 +53,12 @@ class Feature25 extends BaseFeature {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/69046abb2d05c1002bf1d255?alt=media",
               },
+            },
+            {
+              type: "boolean",
+              key: "overlay",
+              displayer: "Overlay",
+              value: false,
             },
             {
               type: "string",
@@ -72,15 +79,22 @@ class Feature25 extends BaseFeature {
               value:
                 "Get your online business ready to accept credit cards. We've worked with countless startups to become established brands, with our flexible, no-fuss setup process.",
             },
-            INPUTS.BUTTON(
-              "button",
-              "Button",
-              "Learn More",
-              "",
-              null,
-              null,
-              "Primary"
-            ),
+            {
+              type: "array",
+              key: "buttons",
+              displayer: "Buttons",
+              value: [
+                INPUTS.BUTTON(
+                  "button",
+                  "Button",
+                  "Learn More",
+                  "",
+                  null,
+                  null,
+                  "Primary"
+                ),
+              ],
+            },
           ],
         },
         {
@@ -96,7 +110,7 @@ class Feature25 extends BaseFeature {
             },
             {
               type: "media",
-              key: "image",
+              key: "media",
               displayer: "Media",
               additionalParams: {
                 availableTypes: ["image","video"],
@@ -105,6 +119,12 @@ class Feature25 extends BaseFeature {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6904685f2d05c1002bf1c98a?alt=media",
               },
+            },
+            {
+              type: "boolean",
+              key: "overlay",
+              displayer: "Overlay",
+              value: false,
             },
             {
               type: "string",
@@ -125,15 +145,31 @@ class Feature25 extends BaseFeature {
               value:
                 "Manage all your payments through a single unified interface. Everything you need in one, organised place.",
             },
-            INPUTS.BUTTON(
-              "button",
-              "Button",
-              "Learn More",
-              "",
-              null,
-              null,
-              "Primary"
-            ),
+            {
+              type: "array",
+              key: "buttons",
+              displayer: "Buttons",
+              value: [
+                INPUTS.BUTTON(
+                  "button",
+                  "Button",
+                  "Learn More",
+                  "",
+                  null,
+                  null,
+                  "Primary"
+                ),
+                 INPUTS.BUTTON(
+                  "button",
+                  "Button",
+                  "Learn More",
+                  "",
+                  null,
+                  null,
+                  "Primary"
+                ),
+              ],
+            },
           ],
         },
         {
@@ -149,7 +185,7 @@ class Feature25 extends BaseFeature {
             },
             {
               type: "media",
-              key: "image",
+              key: "media",
               displayer: "Media",
               additionalParams: {
                 availableTypes: ["image","video"],
@@ -158,6 +194,12 @@ class Feature25 extends BaseFeature {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6904687f2d05c1002bf1ca45?alt=media",
               },
+            },
+            {
+              type: "boolean",
+              key: "overlay",
+              displayer: "Overlay",
+              value: false,
             },
             {
               type: "string",
@@ -178,15 +220,22 @@ class Feature25 extends BaseFeature {
               value:
                 "Reach the target markets you want. We keep your payments straightforward and efficient, no matter the complexity of the region.",
             },
-            INPUTS.BUTTON(
-              "button",
-              "Button",
-              "Learn More",
-              "",
-              null,
-              null,
-              "Primary"
-            ),
+            {
+              type: "array",
+              key: "buttons",
+              displayer: "Buttons",
+              value: [
+                INPUTS.BUTTON(
+                  "button",
+                  "Button",
+                  "Learn More",
+                  "",
+                  null,
+                  null,
+                  "Primary"
+                ),
+              ],
+            },
           ],
         },
       ],
@@ -266,8 +315,11 @@ class Feature25 extends BaseFeature {
                 const hasText = !!this.castToString(tab.text);
                 const hasTitle = !!this.castToString(tab.title);
                 const hasDesc = !!this.castToString(tab.description);
-                const hasButton = !!this.castToString(tab.button?.text);
-                const hasImage = !!tab.image;
+                const buttons = tab.buttons || [];
+                const hasButton = buttons.some((btn: INPUTS.CastedButton) =>
+                  this.castToString(btn.text)
+                );
+                const hasImage = !!tab.media;
                 if (
                   !hasText &&
                   !hasTitle &&
@@ -304,8 +356,11 @@ class Feature25 extends BaseFeature {
                   const hasText = !!this.castToString(tab.text);
                   const hasTitle = !!this.castToString(tab.title);
                   const hasDesc = !!this.castToString(tab.description);
-                  const hasButton = !!this.castToString(tab.button?.text);
-                  const hasImage = !!tab.image;
+                  const buttons = tab.buttons || [];
+                  const hasButton = buttons.some((btn: INPUTS.CastedButton) =>
+                    this.castToString(btn.text)
+                  );
+                  const hasImage = !!tab.media;
 
                   const isTextEmpty =
                     !hasText && !hasTitle && !hasDesc && !hasButton;
@@ -327,12 +382,13 @@ class Feature25 extends BaseFeature {
                       }`}
                       ref={this.tabContentRefs[index]}
                     >
-                      {tab.image && (
+                      {tab.media && (
                         <div className={this.decorateCSS("image-wrapper")}>
                           <Base.Media
-                            value={tab.image}
+                            value={tab.media}
                             className={this.decorateCSS("image")}
                           />
+                          {tab.overlay && <div className={this.decorateCSS("overlay")} />}
                         </div>
                       )}
 
@@ -361,26 +417,37 @@ class Feature25 extends BaseFeature {
                               {tab.description}
                             </Base.SectionDescription>
                           )}
-                          <div className={this.decorateCSS("button-wrapper")}>
-                            {hasButton && (
-                              <>
-                                <ComposerLink path={tab.button.url}>
-                                  <Base.Button
-                                    className={this.decorateCSS("button")}
-                                    buttonType={tab.button.type}
-                                  >
-                                    <Base.P
-                                      className={this.decorateCSS(
-                                        "button-text"
-                                      )}
+                          {hasButton && (
+                            <div className={this.decorateCSS("button-container")}>
+                              {buttons.map(
+                                (item: INPUTS.CastedButton, btnIndex: number) => {
+                                  const buttonTextExist = this.castToString(
+                                    item.text
+                                  );
+                                  if (!buttonTextExist) return null;
+                                  return (
+                                    <ComposerLink
+                                      key={btnIndex}
+                                      path={item.url}
                                     >
-                                      {tab.button.text}
-                                    </Base.P>
-                                  </Base.Button>
-                                </ComposerLink>
-                              </>
-                            )}
-                          </div>
+                                      <Base.Button
+                                        className={this.decorateCSS("button")}
+                                        buttonType={item.type}
+                                      >
+                                        <Base.P
+                                          className={this.decorateCSS(
+                                            "button-text"
+                                          )}
+                                        >
+                                          {item.text}
+                                        </Base.P>
+                                      </Base.Button>
+                                    </ComposerLink>
+                                  );
+                                }
+                              )}
+                            </div>
+                          )}
                         </Base.VerticalContent>
                       )}
                     </div>

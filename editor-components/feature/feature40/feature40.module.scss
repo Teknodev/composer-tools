@@ -27,9 +27,6 @@
                 gap: 0;
 
                 .card-wrapper {
-                    display: flex;
-                    gap: var(--composer-gap-md);
-                    flex-direction: column;
                     padding: var(--composer-gap-lg);
                     border-right: 1px solid var(--composer-html-background);
                     height: 100%;
@@ -39,19 +36,21 @@
                         border-right: none;
                     }
 
-                    .card-icon {
-                        font-size: 3.5rem;
-                        color: var(--composer-primary-color);
-                        display: flex;
-
-                        &.is-image {
-                            width: var(--composer-gap-lg);
-                            height: var(--composer-gap-lg);
-                        }
-                    }
-
                     .card-content {
                         align-items: baseline;
+
+                        .card-icon {
+                            font-size: 3.5rem;
+                            color: var(--composer-primary-color);
+                            display: flex;
+
+                            &.is-image {
+                                width: var(--composer-gap-lg);
+                                height: var(--composer-gap-lg);
+                            }
+                        }
+
+                        .card-subtitle,
                         .card-title {
                             color: var(--composer-font-color-primary);
                             text-align: left;

@@ -11,7 +11,7 @@ type ITabs = {
   subtitle?: React.JSX.Element;
   description: React.JSX.Element;
   buttons: INPUTS.CastedButton[];
-  image: TypeMediaInputValue;
+  media: TypeMediaInputValue;
 };
 
 class Feature17 extends BaseFeature {
@@ -95,7 +95,7 @@ class Feature17 extends BaseFeature {
             },
             {
               type: "media",
-              key: "image",
+              key: "media",
               displayer: "Media",
               additionalParams: {
                 availableTypes: ["image", "video"],
@@ -159,7 +159,7 @@ class Feature17 extends BaseFeature {
 
             {
               type: "media",
-              key: "image",
+              key: "media",
               displayer: "Media",
               additionalParams: {
                 availableTypes: ["image", "video"],
@@ -222,7 +222,7 @@ class Feature17 extends BaseFeature {
 
             {
               type: "media",
-              key: "image",
+              key: "media",
               displayer: "Media",
               additionalParams: {
                 availableTypes: ["image", "video"],
@@ -286,7 +286,7 @@ class Feature17 extends BaseFeature {
 
             {
               type: "media",
-              key: "image",
+              key: "media",
               displayer: "Media",
               additionalParams: {
                 availableTypes: ["image", "video"],
@@ -344,7 +344,7 @@ class Feature17 extends BaseFeature {
         (btn) => this.castToString(btn.text) || (btn.icon as any)?.name
       );
 
-      const hasImage = !!(tab.image && (tab.image as any).url);
+      const hasImage = !!(tab.media && (tab.media as any).url);
 
       return (
         tabTextExist ||
@@ -415,7 +415,7 @@ class Feature17 extends BaseFeature {
                 tabDescriptionExist ||
                 hasAnyButton;
 
-              const hasImage = !!(tab.image && (tab.image as any).url);
+              const hasImage = !!(tab.media && (tab.media as any).url);
 
               return (
                 <Base.ContainerGrid
@@ -424,10 +424,10 @@ class Feature17 extends BaseFeature {
                     activeTab === index ? this.decorateCSS("active") : ""
                   }`}
                 >
-                  {tab.image && (
+                  {tab.media && (
                     <div className={this.decorateCSS("image-container")}>
                       <Base.Media
-                        value={tab.image}
+                        value={tab.media}
                         className={this.decorateCSS("image")}
                       />
                       {overlay && (
@@ -456,9 +456,9 @@ class Feature17 extends BaseFeature {
                         </Base.H4>
                       )}
                       {tabTitleExist && (
-                        <Base.H2 className={this.decorateCSS("content-title")}>
+                        <Base.H4 className={this.decorateCSS("content-title")}>
                           {tab.title}
-                        </Base.H2>
+                        </Base.H4>
                       )}
 
                       {tabDescriptionExist && (

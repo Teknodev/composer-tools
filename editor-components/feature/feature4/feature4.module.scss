@@ -5,8 +5,30 @@
   background-color: var(--composer-html-background);
   background-size: cover;
   background-position: center;
+  position: relative;
+  overflow: hidden;
+
+  .background-media {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    object-fit: cover;
+  }
+
+  .background-overlay {
+    position: absolute;
+    inset: 0;
+    background-color: var(--composer-overlay-color);
+    z-index: 1;
+    pointer-events: none;
+  }
 
   .max-content {
+    position: relative;
+    z-index: 2;
+
     .content {
       .featured-card {
         display: flex;
@@ -45,6 +67,10 @@
           text-align: left;
         }
         .card-link-container {
+          display: flex;
+          flex-wrap: wrap;
+          gap: var(--composer-gap-sm);
+
           .featured-card-link {
             content: "";
           }
@@ -57,6 +83,7 @@
       }
 
       .card-item-count,
+      .card-item-count-no-bg,
       .vertical,
       .overlay,
       .overlay-content {
@@ -133,12 +160,7 @@
         }
 
         .vertical {
-          min-height: 250px;
-          height: 100%;
-          padding: var(--composer-gap-lg) var(--composer-gap-xl);
-          transition: opacity 0.6s ease;
-          gap: var(--composer-gap-lg);
-          justify-content: center;
+          padding: var(--composer-gap-lg);
 
           .icon-container,
           .icon-container-no-bg {
@@ -154,16 +176,36 @@
               margin: 0;
               width: 30px;
               height: 30px;
+              font-size: 2rem;
               color: var(--composer-font-color-secondary);
+              display: flex;
+              justify-content: center;
+              align-items: center;
+            }
+
+            &.no-background {
+              background-color: transparent !important;
             }
           }
 
           .icon-container {
             background-color: #f4e9d5;
+
+            &.no-background {
+              .icon {
+                color: #f4e9d5 !important;
+              }
+            }
           }
 
           .icon-container-no-bg {
             background-color: var(--composer-primary-color);
+
+            &.no-background {
+              .icon {
+                color: var(--composer-primary-color) !important;
+              }
+            }
           }
 
           .title {
@@ -201,8 +243,12 @@
       .content {
         gap: var(--composer-gap-sm);
 
-        .card-item-count {
+        .card-item-count,
+        .card-item-count-no-bg {
           .vertical {
+            padding: var(--composer-gap-md);
+          }
+          .overlay-content {
             padding: var(--composer-gap-md);
           }
         }

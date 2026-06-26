@@ -1,4 +1,4 @@
-import { BaseFeature } from "../../EditorComponent";
+﻿import { BaseFeature } from "../../EditorComponent";
 import styles from "./feature45.module.scss";
 import {
   Base,

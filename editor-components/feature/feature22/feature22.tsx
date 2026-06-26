@@ -2,6 +2,15 @@ import * as React from "react";
 import { BaseFeature, TypeMediaInputValue, TypeUsableComponentProps } from "../../EditorComponent";
 import styles from "./feature22.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
+import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
+import { INPUTS } from "../../../custom-hooks/input-templates";
+
+type Button = {
+    text: React.JSX.Element;
+    url: string;
+    icon: TypeMediaInputValue;
+    type: string;
+};
 
 type Tabs={
     tabText: React.JSX.Element;
@@ -99,7 +108,16 @@ class Feature22 extends BaseFeature{
             displayer: "Description",
             value: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
         });
-        
+
+        this.addProp({
+            type: "array",
+            key: "buttons",
+            displayer: "Buttons",
+            value: [
+                INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+            ],
+        });
+
         this.setComponentState("activeTab", 0);
         this.setComponentState("startedIndex", 0);
         this.setComponentState("isTransitioning", false);
@@ -160,6 +178,12 @@ class Feature22 extends BaseFeature{
         const subtitleExist = this.castToString(this.getPropValue("subtitle"));
         const titleExist = this.castToString(this.getPropValue("title"));
         const alignmentValue = Base.getContentAlignment();
+        const buttons = this.castToObject<Button[]>("buttons");
+        const hasValidButtons = buttons && buttons.some((btn: Button) => {
+            const buttonText = this.castToString(btn.text);
+            const iconExist = btn.icon && (btn.icon.type === "icon" ? btn.icon.name : btn.icon.url);
+            return buttonText || iconExist;
+        });
         return(
             <Base.Container className={this.decorateCSS("container")}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
@@ -179,7 +203,7 @@ class Feature22 extends BaseFeature{
                                 {this.getPropValue("description")}
                             </Base.SectionDescription>
                         )}
-                        
+
                        {tabs.length > 0 && <Base.VerticalContent className={this.decorateCSS("box")}>
                             <div className={this.decorateCSS("tab-buttons")}>
                                 {tabs.map(
@@ -257,6 +281,27 @@ class Feature22 extends BaseFeature{
                             </div>
                         </Base.VerticalContent>}
                     </div>
+                    {hasValidButtons && (
+                        <div className={this.decorateCSS("button-container")}>
+                            {buttons.map((item: Button, index: number) => {
+                                const buttonText = this.castToString(item.text);
+                                const iconExist = item.icon && (item.icon.type === "icon" ? item.icon.name : item.icon.url);
+                                if (!buttonText && !iconExist) return null;
+                                return (
+                                    <ComposerLink key={index} path={item.url}>
+                                        <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
+                                            {buttonText && (
+                                                <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>
+                                            )}
+                                            {iconExist && (
+                                                <Base.Media className={this.decorateCSS("button-icon")} value={item.icon!} />
+                                            )}
+                                        </Base.Button>
+                                    </ComposerLink>
+                                );
+                            })}
+                        </div>
+                    )}
                 </Base.MaxContent>
             </Base.Container>
         )

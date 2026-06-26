@@ -13,9 +13,16 @@
                 .section-subtitle {
                     margin-left: 0;
                 }
-                .button { 
-                    .button-text {
-                        content: "";
+                .buttons-container {
+                    display: flex;
+                    flex-wrap: wrap;
+                    gap: var(--composer-gap-sm);
+                    width: 100%;
+                    justify-content: flex-start;
+                    .button { 
+                        .button-text {
+                            content: "";
+                        }
                     }
                 }
             }
@@ -24,28 +31,40 @@
                 flex: 1.5;
                 gap: var(--composer-gap-lg);
                 .card-container {
-                    display: flex;
-                    gap: var(--composer-gap-md);
-                    .card-icon {
-                        font-size: 2rem;
-                        color: var(--composer-primary-color);
-                    }
-
                     .card-content {
-                        flex: 1;
-                        align-items: baseline;
-                        .card-title {
+                        align-items: flex-start !important;
+                        .card-icon {
+                            font-size: 2rem;
+                            width: 32px;
+                            height: 32px;
+                            object-fit: contain;
+                            color: var(--composer-primary-color);
+                        }
+
+                        .card-title,
+                        .card-subtitle  {
                             color: var(--composer-font-color-primary);
                             width: fit-content;
                             margin: 0;
-                            text-align: left;
+                            text-align: left !important;
                         }
 
                         .card-description {
                             color: var(--composer-tertiary-color);
                             width: fit-content;
                             margin: 0;
-                            text-align: left;
+                            text-align: left !important;
+                        }
+
+                        .card-button {
+                            display: flex;
+                            gap: var(--composer-gap-sm);
+                            flex-wrap: wrap;
+
+                            .card-button-text,
+                            .card-button-icon {
+                                content: "";
+                            }
                         }
                     }
                 }
@@ -58,18 +77,6 @@
     .container{
         .max-content{
             .wrapper{
-                flex-direction: column;
-                .left {
-                    &[data-alignment="center"] {
-                        align-items: center;
-                        .section-subtitle, .section-title, .section-description {
-                            text-align: center;
-                        }
-                        .section-subtitle {
-                            margin-left: auto;
-                        }
-                    }
-                }
                 .right {
                     .card-container {
                         .card-icon {
@@ -86,6 +93,21 @@
     .container{
         .max-content{
             .wrapper{
+                flex-direction: column;
+                .left {
+                    &[data-alignment="center"] {
+                        align-items: center;
+                        .section-subtitle, .section-title, .section-description {
+                            text-align: center;
+                        }
+                        .section-subtitle {
+                            margin-left: auto;
+                        }
+                        .buttons-container {
+                            justify-content: center;
+                        }
+                    }
+                }
                 .right {
                     .card-container {
                         .card-icon {

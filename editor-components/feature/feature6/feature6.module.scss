@@ -81,40 +81,69 @@
         left: 0;
         right: 0;
         bottom: 0;
-        height: 60%;
+        height: 100%;
         width: 100%;
         display: flex;
         align-items: flex-end;
         padding: var(--composer-gap-md);
-        padding-top: 0;
+        box-sizing: border-box;
+
+        .card-text-content {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          width: 100%;
+          z-index: 2;
+
+          .card-subtitle {
+            color: var(--composer-font-color-secondary) !important;
+            text-align: left;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            font-weight: 600;
+
+            &::before {
+              background-color: var(--composer-font-color-secondary) !important;
+            }
+          }
+
+          .title {
+            text-align: left;
+            color: white;
+          }
+
+          .card-description {
+            color: color-mix(in srgb, white 85%, transparent);
+            text-align: left;
+            font-size: 0.95rem;
+          }
+
+          .card-button-container {
+            margin-top: var(--composer-gap-xs);
+            .card-button {
+              color: var(--composer-font-color-secondary) !important;
+              border-bottom: 1px solid var(--composer-font-color-secondary) !important;
+            }
+          }
+        }
       }
 
       &:not(:has(.image)) {
         .image-shadow.overlay {
           background: transparent;
-
-          .title {
-            text-align: left;
-            color: black;
+        }
+        .image-shadow {
+          .card-text-content {
+            .title,
+            .card-description {
+              color: var(--composer-font-color-secondary);
+            }
           }
         }
       }
 
       .image-shadow.overlay {
-        background: linear-gradient(to bottom, transparent, black 100%);
-
-        .title {
-          text-align: left;
-          color: white;
-        }
-      }
-
-      >div .title,
-      >a .title {
-        margin: var(--composer-gap-sm);
-        margin-top: 0;
-        text-align: left;
-        color: var(--composer-font-color-primary);
+        background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.8) 100%);
       }
     }
   }

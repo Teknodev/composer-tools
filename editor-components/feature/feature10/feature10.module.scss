@@ -15,18 +15,30 @@
                 justify-content: end;
                 gap: var(--composer-gap-md);
                 .arrow-right, .arrow-left{
-                    border: none;
-                    padding: var(--composer-gap-xs);
+                    border: 1px solid var(--composer-font-color-primary);
+                    border-radius: 50%;
+                    width: 44px;
+                    height: 44px;
                     display: flex;
                     align-items: center;
                     justify-content: center;
                     cursor: pointer;
                     background-color: transparent;
+                    transition: border-color 0.3s ease, background-color 0.3s ease;
+
+                    &:hover {
+                        background-color: color-mix(in srgb, var(--composer-font-color-primary) 10%, transparent);
+                    }
+
                     .icon{
                         background-color: transparent;
-                        font-size: 3rem;
+                        width: 24px;
+                        height: 24px;
+                        object-fit: contain;
                         color: var(--composer-font-color-primary);
-                        padding: var(--composer-gap-xs);
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
                     }
                 }
             }
@@ -69,7 +81,7 @@
                             height: fit-content;
                         }
                         .image{
-                            height: 300px;
+                            height: 250px;
                             width: 100%;
                             border-radius: var(--composer-border-radius-sm) var(--composer-border-radius-sm) 0 0;
                             object-fit: cover;
@@ -78,12 +90,9 @@
                             }
                         }
                         .bottom{
-                            padding: var(--composer-gap-lg);
-                            display: flex;
-                            flex-direction: column;
+                            padding: var(--composer-gap-md);
                             align-items: baseline;
                             justify-content: baseline;
-                            gap: var(--composer-gap-md);
                             .title, .description {
                                 text-align: left;
                                 color: var(--composer-font-color-primary);
@@ -101,13 +110,17 @@
                 display: flex;
                 flex-wrap: wrap;
                 justify-content: center;
+                gap: var(--composer-gap-sm);
                 .button {
+                    display: flex;
+                    align-items: center;
                     .button-text {
                         content: "";
                     }
-                    .icon{
+                    .button-icon{
                         height: 15px;
                         width: 15px;
+                        flex-shrink: 0;
                     }
                 }
             }
@@ -121,8 +134,11 @@
             .wrapper {
                 .arrow-container{
                     .arrow-right, .arrow-left{
+                        width: 36px;
+                        height: 36px;
                         .icon{
-                            font-size: 1.5rem;
+                            width: 20px;
+                            height: 20px;
                         }
                     }
                 }

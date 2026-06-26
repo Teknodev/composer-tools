@@ -6,11 +6,18 @@ import ComposerLink from "../../../composer-base-components/Link/ComposerLinkPro
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "../../../custom-hooks/input-templates";
 
+type Button = {
+  text: React.JSX.Element;
+  url: string;
+  icon: TypeMediaInputValue;
+  type: string;
+};
+
 type ITabs = {
   tabText: React.JSX.Element;
   title: React.JSX.Element;
   description: React.JSX.Element;
-  button: INPUTS.CastedButton;
+  buttons: Button[];
   icon: TypeMediaInputValue;
 };
 
@@ -39,7 +46,7 @@ class Feature18 extends BaseFeature {
               key: "icon",
               displayer: "Icon",
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon", "image"],
               },
               value: {
                 type: "icon",
@@ -59,7 +66,14 @@ class Feature18 extends BaseFeature {
               value:
                 "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nesciunt voluptate, quibusdam sunt iste dolores consequatur <br><br> Inventore fugit error iure nisi reiciendis fugiat illo pariatur quam sequi quod iusto facilis officiis nobis sit quis molestias asperiores rem, blanditiis! Commodi exercitationem vitae deserunt qui nihil ea, tempore et quam natus quaerat doloremque.",
             },
-            INPUTS.BUTTON("button", "Button", "Learn More", "", null, null, "Primary")
+            {
+              type: "array",
+              key: "buttons",
+              displayer: "Buttons",
+              value: [
+                INPUTS.BUTTON("button", "Button", "Learn More", "", null, null, "Primary"),
+              ],
+            }
           ],
         },
         {
@@ -78,7 +92,7 @@ class Feature18 extends BaseFeature {
               key: "icon",
               displayer: "Icon",
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon", "image"],
               },
               value: {
                 type: "icon",
@@ -98,7 +112,14 @@ class Feature18 extends BaseFeature {
               value:
                 "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nesciunt voluptate, quibusdam sunt iste dolores consequatur <br><br> Inventore fugit error iure nisi reiciendis fugiat illo pariatur quam sequi quod iusto facilis officiis nobis sit quis molestias asperiores rem, blanditiis! Commodi exercitationem vitae deserunt qui nihil ea, tempore et quam natus quaerat doloremque.",
             },
-            INPUTS.BUTTON("button", "Button", "Learn More", "", null, null, "Primary")
+            {
+              type: "array",
+              key: "buttons",
+              displayer: "Buttons",
+              value: [
+                INPUTS.BUTTON("button", "Button", "Learn More", "", null, null, "Primary"),
+              ],
+            }
           ],
         },
         {
@@ -117,7 +138,7 @@ class Feature18 extends BaseFeature {
               key: "icon",
               displayer: "Icon",
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon", "image"],
               },
               value: {
                 type: "icon",
@@ -137,7 +158,14 @@ class Feature18 extends BaseFeature {
               value:
                 "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nesciunt voluptate, quibusdam sunt iste dolores consequatur <br><br> Inventore fugit error iure nisi reiciendis fugiat illo pariatur quam sequi quod iusto facilis officiis nobis sit quis molestias asperiores rem, blanditiis! Commodi exercitationem vitae deserunt qui nihil ea, tempore et quam natus quaerat doloremque.",
             },
-            INPUTS.BUTTON("button", "Button", "Learn More", "",null,null, "Primary")
+            {
+              type: "array",
+              key: "buttons",
+              displayer: "Buttons",
+              value: [
+                INPUTS.BUTTON("button", "Button", "Learn More", "", null, null, "Primary"),
+              ],
+            }
           ],
         },
         {
@@ -156,7 +184,7 @@ class Feature18 extends BaseFeature {
               key: "icon",
               displayer: "Icon",
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon", "image"],
               },
               value: {
                 type: "icon",
@@ -176,7 +204,14 @@ class Feature18 extends BaseFeature {
               value:
                 "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nesciunt voluptate, quibusdam sunt iste dolores consequatur <br><br> Inventore fugit error iure nisi reiciendis fugiat illo pariatur quam sequi quod iusto facilis officiis nobis sit quis molestias asperiores rem, blanditiis! Commodi exercitationem vitae deserunt qui nihil ea, tempore et quam natus quaerat doloremque.",
             },
-            INPUTS.BUTTON("button", "Button", "Learn More", "", null, null, "Primary")
+            {
+              type: "array",
+              key: "buttons",
+              displayer: "Buttons",
+              value: [
+                INPUTS.BUTTON("button", "Button", "Learn More", "", null, null, "Primary"),
+              ],
+            }
           ],
         },
         {
@@ -195,7 +230,7 @@ class Feature18 extends BaseFeature {
               key: "icon",
               displayer: "Icon",
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon", "image"],
               },
               value: {
                 type: "icon",
@@ -215,7 +250,14 @@ class Feature18 extends BaseFeature {
               value:
                 "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nesciunt voluptate, quibusdam sunt iste dolores consequatur <br><br> Inventore fugit error iure nisi reiciendis fugiat illo pariatur quam sequi quod iusto facilis officiis nobis sit quis molestias asperiores rem, blanditiis! Commodi exercitationem vitae deserunt qui nihil ea, tempore et quam natus quaerat doloremque.",
             },
-            INPUTS.BUTTON("button", "Button", "Learn More", "", null, null, "Primary")
+            {
+              type: "array",
+              key: "buttons",
+              displayer: "Buttons",
+              value: [
+                INPUTS.BUTTON("button", "Button", "Learn More", "", null, null, "Primary"),
+              ],
+            }
           ],
         },
         {
@@ -234,7 +276,7 @@ class Feature18 extends BaseFeature {
               key: "icon",
               displayer: "Icon",
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon", "image"],
               },
               value: {
                 type: "icon",
@@ -254,7 +296,14 @@ class Feature18 extends BaseFeature {
               value:
                 "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nesciunt voluptate, quibusdam sunt iste dolores consequatur <br><br> Inventore fugit error iure nisi reiciendis fugiat illo pariatur quam sequi quod iusto facilis officiis nobis sit quis molestias asperiores rem, blanditiis! Commodi exercitationem vitae deserunt qui nihil ea, tempore et quam natus quaerat doloremque.",
             },
-            INPUTS.BUTTON("button", "Button", "Learn More", "", null, null, "Primary")
+            {
+              type: "array",
+              key: "buttons",
+              displayer: "Buttons",
+              value: [
+                INPUTS.BUTTON("button", "Button", "Learn More", "", null, null, "Primary"),
+              ],
+            }
           ],
         },
         {
@@ -273,7 +322,7 @@ class Feature18 extends BaseFeature {
               key: "icon",
               displayer: "Icon",
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon", "image"],
               },
               value: {
                 type: "icon",
@@ -293,7 +342,14 @@ class Feature18 extends BaseFeature {
               value:
                 "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nesciunt voluptate, quibusdam sunt iste dolores consequatur <br><br> Inventore fugit error iure nisi reiciendis fugiat illo pariatur quam sequi quod iusto facilis officiis nobis sit quis molestias asperiores rem, blanditiis! Commodi exercitationem vitae deserunt qui nihil ea, tempore et quam natus quaerat doloremque.",
             },
-            INPUTS.BUTTON("button", "Button", "Learn More", "", null, null, "Primary")
+            {
+              type: "array",
+              key: "buttons",
+              displayer: "Buttons",
+              value: [
+                INPUTS.BUTTON("button", "Button", "Learn More", "", null, null, "Primary"), 
+              ],
+            }
           ],
         },
       ],
@@ -344,9 +400,9 @@ class Feature18 extends BaseFeature {
                       className={this.decorateCSS("tab-icon")}
                     />
                     <div className={this.decorateCSS("square")}></div>
-                    <Base.H5 className={this.decorateCSS("tab-text")}>
+                    <Base.H6 className={this.decorateCSS("tab-text")}>
                       {tab.tabText}
-                    </Base.H5>
+                    </Base.H6>
                   </div>
                 )
               )}
@@ -374,9 +430,9 @@ class Feature18 extends BaseFeature {
                       </Base.Row>
                     )}
                     {this.castToString(tab.title) && (
-                      <Base.SectionTitle className={this.decorateCSS("title")}>
+                      <Base.H4 className={this.decorateCSS("title")}>
                         {tab.title}
-                      </Base.SectionTitle>
+                      </Base.H4>
                     )}
                     {this.castToString(tab.description) && (
                       <Base.SectionDescription
@@ -385,12 +441,30 @@ class Feature18 extends BaseFeature {
                         {tab.description}
                       </Base.SectionDescription>
                     )}
-                    {this.castToString(tab.button.text) && (
-                      <ComposerLink path={tab.button.url}>
-                        <Base.Button buttonType={tab.button.type} className={this.decorateCSS("button")}>
-                          <Base.P className={this.decorateCSS("button-text")}>{tab.button.text}</Base.P>
-                        </Base.Button>
-                      </ComposerLink>
+                    {tab.buttons && tab.buttons.some((btn: Button) => {
+                      const buttonText = this.castToString(btn.text);
+                      const iconExist = btn.icon && (btn.icon.type === "icon" ? btn.icon.name : btn.icon.url);
+                      return buttonText || iconExist;
+                    }) && (
+                      <div className={this.decorateCSS("button-container")}>
+                        {tab.buttons.map((item: Button, btnIndex: number) => {
+                          const buttonText = this.castToString(item.text);
+                          const iconExist = item.icon && (item.icon.type === "icon" ? item.icon.name : item.icon.url);
+                          if (!buttonText && !iconExist) return null;
+                          return (
+                            <ComposerLink key={btnIndex} path={item.url}>
+                              <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
+                                {buttonText && (
+                                  <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>
+                                )}
+                                {iconExist && (
+                                  <Base.Media className={this.decorateCSS("button-icon")} value={item.icon} />
+                                )}
+                              </Base.Button>
+                            </ComposerLink>
+                          );
+                        })}
+                      </div>
                     )}
                   </Base.VerticalContent>
                 </div>

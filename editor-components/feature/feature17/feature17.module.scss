@@ -97,16 +97,12 @@
 
         .content {
           flex: 1;
-          display: flex;
-          flex-direction: column;
           justify-content: center;
           align-items: baseline;
-          gap: var(--composer-gap-md);
 
           .content-title,
           .content-subtitle,
           .content-description {
-            margin: 0;
             text-align: left;
           }
 
@@ -156,7 +152,7 @@
       gap: var(--composer-gap-md);
       .tabs {
         .tab {
-          flex-direction: row;
+          flex-direction: row !important;
 
           .image-container {
             .image {
@@ -172,13 +168,17 @@
 @container (max-width: #{$composer-phone-width}) {
   .container {
     .max-content {
+      gap: var(--composer-gap-md);
       .tabs {
         .tab {
           gap: var(--composer-gap-md);
-          flex-direction: column;
+          flex-direction: column !important;
 
           .image-container {
             order: -1;
+            .image {
+              aspect-ratio: 1;
+            }
           }
         }
       }

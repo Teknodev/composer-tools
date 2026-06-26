@@ -7,6 +7,13 @@ $circlepaddingbottom: calc(300px + var(--composer-gap-xl));
 
 .container {
     min-height: auto;
+
+    &.center {
+        .upper {
+            text-align: center;
+        }
+    }
+
     .max-content {
         .wrapper {
             .upper {
@@ -16,6 +23,22 @@ $circlepaddingbottom: calc(300px + var(--composer-gap-xl));
                 &.circle-exist:has(.cards-container) {
                     &.no-logos {
                         padding-bottom: calc($logosmargintop / 2);
+                    }
+                }
+
+                .subtitle {
+                    margin-top: 0;
+                    margin-bottom: var(--composer-gap-md);
+
+                    &.circle-exist {
+                        text-align: left;
+                        color: var(--composer-font-color-secondary) !important;
+                        padding: 0 !important;
+                        background: transparent !important;
+
+                        &::before {
+                            background: var(--composer-font-color-secondary) !important;
+                        }
                     }
                 }
 
@@ -87,8 +110,9 @@ $circlepaddingbottom: calc(300px + var(--composer-gap-xl));
                         .card-content {
                             height: 100%;
                             justify-content: center;
+                            align-items: flex-start;
+                            text-align: left;
                             padding: var(--composer-gap-lg);
-                            gap: var(--composer-gap-md);
                             background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
                             border-radius: var(--composer-border-radius-sm);
                             z-index: 1;
@@ -105,11 +129,26 @@ $circlepaddingbottom: calc(300px + var(--composer-gap-xl));
                                 width: 75px;
                                 height: 75px;
                                 font-size: 5rem;
+                                object-fit: contain;
                                 transition: opacity var(--composer-transition-duration-slow) ease, transform var(--composer-transition-duration-slow) ease;
                             }
 
-                            .card-title {
+                            .card-title,
+                            .card-subtitle,
+                            .card-description, {
                                 color: var(--composer-font-color-primary);
+                                text-align: left;
+                            }
+
+                            .card-button {
+                                display: flex;
+                                gap: var(--composer-gap-sm);
+                                flex-wrap: wrap;
+
+                                .card-button-text,
+                                .card-button-icon {
+                                    content: "";
+                                }
                             }
                         }
                     }
@@ -154,6 +193,10 @@ $circlepaddingbottom: calc(300px + var(--composer-gap-xl));
                             position: absolute;
                             top: 0;
                             left: 5%;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            font-size: 5rem;
                             transition: opacity var(--composer-transition-duration-slow) ease, transform var(--composer-transition-duration-slow) ease;
                             filter: grayscale(100%);
 
@@ -168,77 +211,8 @@ $circlepaddingbottom: calc(300px + var(--composer-gap-xl));
 }
 
 @container (max-width: #{$composer-tablet-width}) {
-    $space : 5%;
-    $cardsmargintop : -150px;
-    $logosmargintop : calc(-1 * $cardsmargintop / 3);
-
     .container {
-        .max-content {
-            .wrapper {
-                .upper {
-                    &.circle-exist:has(.cards-container) {
-                        &.no-logos {
-                            padding-bottom: 0;
-                        }
-                    }
-
-                    .circle {
-                        padding: calc($space + var(--composer-gap-md));
-                        aspect-ratio: 1 / 1;
-                        padding-bottom: -$cardsmargintop;
-                        overflow: hidden;
-                        word-wrap: break-word;
-                        overflow-wrap: break-word;
-                    }
-
-                    .title {
-                        &.circle-exist {
-                            margin-top: var(--composer-gap-lg);
-                        }
-                    }
-
-                    .description {
-                        &.circle-exist {
-                            top: calc($space + var(--composer-gap-md));
-
-                            line-clamp: 8;
-                            -webkit-line-clamp: 8;
-                        }
-                    }
-
-                    .cards-container {
-                        gap: var(--composer-gap-md);
-                        margin-top: var(--composer-gap-md);
-
-                        &.circle-exist {
-                            padding-left: calc($space + var(--composer-gap-md));
-                            margin-top: $cardsmargintop;
-                        }
-
-                        .card {
-                            min-height: auto;
-
-                            .card-content {
-                                padding: var(--composer-gap-md);
-                                gap: var(--composer-gap-sm);
-
-                                .card-icon {
-                                    font-size: 3rem;
-                                    width: var(--composer-gap-xl);
-                                    height: var(--composer-gap-xl);
-                                }
-                            }
-                        }
-                    }
-                }
-
-                .logos-container {
-                    &.circle-exist {
-                        margin-top: $logosmargintop;
-                    }
-                }
-            }
-        }
+        min-height: auto;
     }
 }
 
@@ -253,29 +227,39 @@ $circlepaddingbottom: calc(300px + var(--composer-gap-xl));
                     gap: var(--composer-gap-md);
 
                     .circle {
-                        padding: calc(2 * var(--composer-gap-xl)) var(--composer-gap-md);
+                        padding: var(--composer-gap-xl) var(--composer-gap-md);
                         width: 100%;
+                        aspect-ratio: 1 / 1;
                         overflow: hidden;
                         word-wrap: break-word;
                         overflow-wrap: break-word;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        flex-direction: column;
+
+                        .subtitle {
+                            text-align: center;
+                        }
 
                         .title {
                             text-align: center;
+                            margin-bottom: var(--composer-gap-md);
                         }
 
                         .description {
                             text-align: center;
                         }
+                    }
 
-                        &:has(.title + .description) {
-                            padding: calc(1.5 * var(--composer-gap-xl)) var(--composer-gap-md);
-                            display: flex;
-                            justify-content: center;
-                            align-items: center;
-                            flex-direction: column;
+                    .subtitle {
+                        &.circle-exist {
+                            text-align: center;
+                            transform: none !important;
 
-                            .title {
-                                margin-bottom: var(--composer-gap-md);
+                            &::before {
+                                display: none !important;
+                                content: none !important;
                             }
                         }
                     }

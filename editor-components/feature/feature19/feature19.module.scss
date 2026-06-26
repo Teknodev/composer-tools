@@ -132,13 +132,16 @@
                     .list-item-content{
                         .item-content-top{
                             display: flex;
-                            gap: var(--composer-gap-md);
-                            align-items: baseline;
+                            gap: var(--composer-gap-sm);
+                            align-items: center;
                             justify-content: flex-start;
                             width: 100%;
                             .icon{
-                                font-size: 2.5rem;
-                                color: var(--composer-primary-color);
+                            font-size: 1.5rem;
+                            width: 20px;
+                            height: 20px;
+                            object-fit: contain;
+                            color: var(--composer-primary-color);
                             }
                             .list-item-title{
                                 margin-top: 0px;
@@ -157,35 +160,14 @@
                     }
                 
             }
-            .button {
-                .button-text {
-                    content: "";
-                }
-            }
-        }
-    }
-}
-@container (max-width: #{$composer-tablet-width}) {
-    .container{
-        .max-content{
-            flex-direction: column;
-            
-            .right-image {
-                width: 100%;
-                
-                .img {
-                    height: 700px;
-                }
-            }
-            
-            .content {
-                .item-block {
-                    .list-item-content {
-                        .item-content-top {
-                            .icon {
-                                font-size: 2rem;
-                            }
-                        }
+            .button-container {
+                display: flex;
+                flex-wrap: wrap;
+                gap: var(--composer-gap-sm);
+                .button {
+                    .button-text,
+                    .button-icon {
+                        content: "";
                     }
                 }
             }
@@ -196,7 +178,11 @@
 @container (max-width: #{$composer-phone-width}) {
     .container{
         .max-content{
+            flex-direction: column;
+            
             .right-image {
+                width: 100%;
+                
                 .img {
                     height: 300px;
                 }
@@ -205,6 +191,16 @@
                 gap: var(--composer-gap-md);
                 .item-block {
                     gap: var(--composer-gap-md);
+                    .list-item-content {
+                        .item-content-top {
+                            align-items: center;
+
+                            .icon {
+                                font-size: 1rem;
+                                flex-shrink: 0;
+                            }
+                        }
+                    }
                 }
             }
         }

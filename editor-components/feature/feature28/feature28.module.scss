@@ -104,6 +104,7 @@
 
             .card-text-container {
               .card-title,
+              .card-subtitle,
               .card-description,
               .button-text,
               .button-icon {
@@ -169,6 +170,7 @@
 
           .card-text-container {
             .card-title,
+            .card-subtitle,
             .card-description,
             .button-text,
             .button-icon {
@@ -210,6 +212,7 @@
           padding: var(--composer-gap-lg);
 
           .card-title,
+          .card-subtitle,
           .card-description {
             text-align: left;
           }
@@ -228,27 +231,6 @@
   }
 }
 
-@container (max-width: #{$composer-tablet-width}) {
-  .container .max-content {
-    .side-container {
-      flex-direction: column;
-    }
-
-    .card {
-      min-height: 200px !important;
-    }
-
-    .left-bottom-cards {
-      .card {
-        min-height: 290px !important;    
-      }
-    }
-
-    .middle-side {
-      max-height: 250px;
-    }
-  }
-}
 
 @container (max-width: #{$composer-phone-width}) {
   .container .max-content {
@@ -262,6 +244,10 @@
       }
     }
 
+    .side-container {
+      flex-direction: column;
+    }
+
     .card {
       min-height: 250px !important;
 
@@ -270,16 +256,17 @@
       }
     }
 
-    .middle-side {
-      max-height: 250px;
-    }
-
     .left-bottom-cards {
       flex-direction: column-reverse !important;
 
       .card {
         height: auto;
+        min-height: 290px !important;
       }
+    }
+
+    .middle-side {
+      max-height: 250px;
     }
   }
 }
