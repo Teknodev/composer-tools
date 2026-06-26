@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import ComponentsRegistery from "./editor-components/ComponentRegistery";
+import ComponentsRegistery, { CustomComponentLoadFailure } from "./editor-components/ComponentRegistery";
 import { CATEGORIES, Component } from "./editor-components/EditorComponent";
 import * as _EditorComponents from "./editor-components/EditorComponent";
 import * as _BaseModule from "./composer-base-components/base/base";
@@ -42,6 +42,63 @@ function execScript(code: string, label: string): void {
   }
   // eslint-disable-next-line no-eval
   (0, eval)(code);
+}
+
+/**
+ * Host-side contract gate for custom component bundles.
+ *
+ * Refuses to register a class that doesn't meet the editor's runtime
+ * interface. Throws on violation — the caller's try/catch logs the
+ * error and skips the component, leaving the editor stable instead of
+ * exploding when a malformed component is dropped into the playground.
+ *
+ * Two checks:
+ *   1. Class must extend `Component` from @blinkpage/composer-tools.
+ *      Detected via `Class.prototype instanceof window.ComposerTools.Component`.
+ *      A class that extends React.Component (or nothing) lacks `getProps`,
+ *      `getPropValue`, `decorateCSS`, etc. — the picker, playground, and
+ *      every editor panel call these on instances.
+ *   2. Class must register at least one editable prop via `this.addProp(...)`.
+ *      Verified by probe-instantiating the class with empty props and
+ *      counting `state.componentProps.props`. A component with zero props
+ *      has an empty Content tab and is functionally unusable.
+ */
+function validateCustomComponentContract(BaseClass: unknown, name: string): void {
+  const ComposerToolsComponent =
+    (window as any).ComposerTools?.Component as { new (...args: any[]): any } | undefined;
+  if (typeof ComposerToolsComponent !== "function") {
+    throw new Error(
+      `window.ComposerTools.Component is not available — host-side validation cannot run.`,
+    );
+  }
+
+  const klass = BaseClass as { prototype?: unknown; new (...args: any[]): any } | undefined;
+  if (typeof klass !== "function" || !klass.prototype) {
+    throw new Error(`Bundle for "${name}" did not export a class.`);
+  }
+
+  if (!(klass.prototype instanceof ComposerToolsComponent)) {
+    throw new Error(
+      `"${name}" does not extend Component from @blinkpage/composer-tools. ` +
+        `Re-upload after fixing the TSX: extend Component (not React.Component) and call super(props, styles).`,
+    );
+  }
+
+  let probe: any;
+  try {
+    probe = new klass({});
+  } catch (probeErr) {
+    const message = probeErr instanceof Error ? probeErr.message : String(probeErr);
+    throw new Error(`"${name}" threw during probe construction: ${message}`);
+  }
+
+  const props = probe?.state?.componentProps?.props;
+  const propCount = Array.isArray(props) ? props.length : 0;
+  if (propCount === 0) {
+    throw new Error(
+      `"${name}" has no editable props. The component's constructor must call this.addProp({...}) at least once.`,
+    );
+  }
 }
 
 export function scopeToPlayground(css: string): string {
@@ -86,8 +143,13 @@ function injectStylesheet(css: string, key: string): void {
 export async function loadCustomComponentsFromMeta(
   components: CustomComponentMeta[],
   registry: ComponentsRegistery
-): Promise<void> {
-  if (!components || components.length === 0) return;
+): Promise<CustomComponentLoadFailure[]> {
+  // Shared by reference with the registry so pushes below are reflected;
+  // reset up-front so a clean reload never shows stale failures.
+  const failures: CustomComponentLoadFailure[] = [];
+  registry.setCustomLoadFailures(failures);
+
+  if (!components || components.length === 0) return failures;
 
   const activeComponents = components.filter((c) => c.status === "active" && c.bundle_content);
 
@@ -96,7 +158,7 @@ export async function loadCustomComponentsFromMeta(
       `[CustomComponents] ${components.length} component(s) from API but none have active status with bundle_content.`,
       components.map((c) => ({ name: c.name, status: c.status, hasContent: !!c.bundle_content, content: c.bundle_content }))
     );
-    return;
+    return failures;
   }
 
   const componentsToRegister: (typeof Component)[] = [];
@@ -133,9 +195,17 @@ export async function loadCustomComponentsFromMeta(
             `[CustomComponents] "${comp.name}" (key: "${windowKey}") not found on window.__CUSTOM_COMPONENTS__. Available keys:`,
             loadedKeys
           );
+          failures.push({
+            name: comp.name,
+            version: comp.version,
+            customComponentId: comp._id,
+            reason: "Bundle did not register a component. Re-upload it from the latest CLI / Component Studio build.",
+          });
           continue;
         }
       }
+
+      validateCustomComponentContract(BaseClass, comp.name);
 
       const displayName = comp.name;
       const displayVersion = comp.version;
@@ -147,7 +217,13 @@ export async function loadCustomComponentsFromMeta(
       (VersionedClass as any).customComponentVersion = comp.version;
       componentsToRegister.push(VersionedClass as unknown as typeof Component);
     } catch (err) {
-      console.warn(`[CustomComponents] Failed to load "${comp.name}" v${comp.version}:`, err);
+      console.error(`[CustomComponents] Failed to load "${comp.name}" v${comp.version}:`, err);
+      failures.push({
+        name: comp.name,
+        version: comp.version,
+        customComponentId: comp._id,
+        reason: err instanceof Error ? err.message : String(err),
+      });
     }
   }
 
@@ -158,6 +234,9 @@ export async function loadCustomComponentsFromMeta(
       `[CustomComponents] No components registered. ${activeComponents.length} active component(s) loaded but none matched.`
     );
   }
+
+  registry.setCustomLoadFailures(failures);
+  return failures;
 }
 
 export function getCustomComponentsFromPage(pageJson: string): string[] {
