@@ -1,0 +1,138 @@
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+
+.container {
+  .max-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--composer-gap-xl);
+
+    .header {
+      display: flex;
+      flex-direction: column;
+
+      .subtitle,
+      .title,
+      .description {
+        content: "";
+      }
+    }
+
+    .cards-container {
+      column-gap: var(--composer-gap-xl);
+      row-gap: var(--composer-gap-xl);
+
+      .card {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        padding-top: var(--composer-gap-lg);
+        word-break: break-word;
+        overflow-wrap: break-word;
+
+        &.with-line {
+          border-top: 1px solid var(--composer-tertiary-color);
+        }
+
+        .card-header {
+          display: flex;
+          flex-direction: row;
+          align-items: flex-start;
+          gap: var(--composer-gap-sm);
+
+          .step-number {
+            color: var(--composer-tertiary-color);
+            width: var(--composer-gap-xl);
+            flex-shrink: 0;
+            text-align: left;
+          }
+        }
+
+        .card-subtitle,
+        .card-title {
+          color: var(--composer-font-color-primary);
+          text-align: left;
+        }
+
+        .card-description {
+          color: var(--composer-tertiary-color);
+          text-align: left;
+        }
+
+        .card-buttons {
+          display: flex;
+          justify-content: flex-start;
+          gap: var(--composer-gap-sm);
+          flex-wrap: wrap;
+          width: 100%;
+
+          .card-button {
+            .card-button-text {
+              content: "";
+            }
+          }
+        }
+      }
+    }
+
+    .button-container {
+      display: flex;
+      justify-content: center;
+      gap: var(--composer-gap-sm);
+      flex-wrap: wrap;
+
+      .button {
+        .button-text {
+          content: "";
+        }
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+  .container {
+    .max-content {
+      gap: var(--composer-gap-md);
+
+      .cards-container {
+        gap: var(--composer-gap-lg);
+
+        .card {
+          padding-top: var(--composer-gap-md);
+
+          .card-header {
+            .step-number {
+              width: var(--composer-gap-lg);
+            }
+          }
+
+          &.center-align {
+            align-items: center;
+            text-align: center;
+
+            .card-header {
+              justify-content: center;
+              .step-number {
+                text-align: center;
+              }
+            }
+
+            .card-subtitle,
+            .card-title,
+            .card-description {
+              text-align: center;
+            }
+
+            .card-buttons {
+              justify-content: center;
+            }
+          }
+        }
+      }
+
+      // .button-container {
+      //   justify-content: var(--composer-content-alignment);
+      // }
+    }
+  }
+}
