@@ -20,7 +20,7 @@
     .max-content {
       display: flex;
       flex-direction: column;
-      gap: 30px;
+      gap: calc(var(--composer-gap-md) + var(--composer-gap-sm));
 
       .footer-upper {
         display: flex;
