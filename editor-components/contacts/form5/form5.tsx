@@ -380,6 +380,24 @@ class Form5 extends BaseContacts {
       return `input_${indexOfInput}`;
     }
 
+    // Resolve a select option's string value. `getPropValue` on a string prop
+    // returns a React element (InlineEditor), so we must request the raw string
+    // via `as_string`; otherwise the <option value> becomes "[object Object]"
+    // and that gets submitted.
+    function getOptionValue(option: any): string {
+      if (option?.getPropValue) {
+        const raw = option.getPropValue("value", { as_string: true });
+        return typeof raw === "string" ? raw : "";
+      }
+      const raw = option?.value;
+      if (typeof raw === "string") return raw;
+      if (Array.isArray(raw)) {
+        const valueProp = raw.find((p: any) => p?.key === "value");
+        return typeof valueProp?.value === "string" ? valueProp.value : "";
+      }
+      return "";
+    }
+
     function getInitialValue(inputs: any[]) {
       let value: any = {};
       inputs.map((input: TypeUsableComponentProps, indexOfInput: number) => {
@@ -469,9 +487,7 @@ class Form5 extends BaseContacts {
                                     {input.getPropValue("placeholder")}
                                   </option>
                                   {input.getPropValue("options").map((option: any, idx: number) => {
-                                    const optVal = option?.getPropValue
-                                      ? (option.getPropValue("value") || option.getPropValue("option"))
-                                      : option?.value;
+                                    const optVal = getOptionValue(option);
                                     return (
                                       <option key={idx} value={optVal}>
                                         {optVal}
@@ -507,9 +523,7 @@ class Form5 extends BaseContacts {
                                     {input.getPropValue("placeholder")}
                                   </option>
                                   {input.getPropValue("options").map((option: any, idx: number) => {
-                                    const optVal = option?.getPropValue
-                                      ? (option.getPropValue("value") || option.getPropValue("option"))
-                                      : option?.value;
+                                    const optVal = getOptionValue(option);
                                     return (
                                       <option key={idx} value={optVal}>
                                         {optVal}
