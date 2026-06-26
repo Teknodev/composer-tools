@@ -52,6 +52,13 @@ class Footer6Page extends BaseFooter {
 
     this.addProp({
       type: "array",
+      key: "buttons",
+      displayer: "Buttons",
+      value: [INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary")],
+    });
+
+    this.addProp({
+      type: "array",
       key: "footer",
       displayer: "Footer",
       value: [
@@ -287,13 +294,6 @@ class Footer6Page extends BaseFooter {
           ],
         },
       ],
-    });
-
-    this.addProp({
-      type: "array",
-      key: "buttons",
-      displayer: "Buttons",
-      value: [INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary")],
     });
 
     this.addProp({

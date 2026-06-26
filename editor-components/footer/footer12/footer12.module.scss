@@ -36,7 +36,6 @@
       .left {
         display: flex;
         flex-direction: column;
-        gap: var(--composer-gap-xs);
         align-items: baseline;
 
         .logo {
@@ -54,9 +53,29 @@
           }
         }
 
+        .subtitle,
+        .title {
+          text-align: left !important;
+          margin-left: 0;
+          margin-right: auto;
+        }
+
         .description {
           text-align: left;
           color: var(--composer-font-color-primary);
+        }
+
+        .button-container {
+          display: flex;
+          flex-wrap: wrap;
+          gap: var(--composer-gap-sm);
+          align-items: flex-start;
+
+          .button {
+            .button-text {
+              content: "";
+            }
+          }
         }
       }
 
@@ -272,8 +291,24 @@
         .first-max-content {
           .left {
             align-items: center !important;
+
+            .subtitle {
+              text-align: center !important;
+              margin-left: auto !important;
+              margin-right: auto !important;
+              transform: none !important;
+              &::before {
+                display: none !important;
+              }
+            }
+
+            .title,
             .description {
-              text-align: center;
+              text-align: center !important;
+            }
+
+            .button-container {
+              justify-content: center !important;
             }
           }
           .list-group {

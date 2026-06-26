@@ -51,12 +51,12 @@
               display: flex;
               flex-direction: column;
               align-items: flex-start !important;
-              gap: var(--composer-gap-md);
 
               .subtitle,
               .title {
                 text-align: left !important;
-                margin-left: 0 !important;
+                margin-left:  0;
+                margin-right: auto;
               }
 
               .logo {
@@ -76,9 +76,20 @@
 
               .description {
                 text-align: left !important;
-                margin-left: 0 !important;
-                margin-right: 0 !important;
                 color: var(--composer-font-color-primary);
+              }
+
+              .button-container {
+                display: flex;
+                flex-wrap: wrap;
+                gap: var(--composer-gap-sm);
+                align-items: flex-start;
+
+                .button {
+                  .button-text {
+                    content: "";
+                  }
+                }
               }
 
               .socials-container {
@@ -137,8 +148,6 @@
               .title {
                 color: var(--composer-font-color-primary);
                 text-align: left !important;
-                margin-left: 0 !important;
-                margin-right: 0 !important;
               }
 
               .text-container {
@@ -298,8 +307,32 @@
                 max-width: unset;
                 width: 100%;
                 align-items: center;
-                .description{
-                  text-align: center;
+              }
+
+              .header {
+                align-items: center !important;
+
+                .subtitle {
+                  text-align: center !important;
+                  margin-left: auto !important;
+                  margin-right: auto !important;
+                  transform: none !important;
+                  &::before {
+                    display: none !important;
+                  }
+                }
+
+                .title,
+                .description {
+                  text-align: center !important;
+                }
+
+                .button-container {
+                  justify-content: center;
+                }
+
+                .socials-container {
+                  justify-content: center;
                 }
               }
 

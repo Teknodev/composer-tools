@@ -3,6 +3,7 @@ import ComposerLink from "../../../composer-base-components/Link/ComposerLinkPro
 import { BaseFooter, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./footer3.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
+import { INPUTS } from "../../../custom-hooks/input-templates";
 
 type SocialItem = {
   icon: TypeMediaInputValue;
@@ -44,20 +45,6 @@ class Footer3Page extends BaseFooter {
     });
 
     this.addProp({
-      type: "string",
-      key: "subtitle",
-      displayer: "Subtitle",
-      value: "",
-    });
-
-    this.addProp({
-      type: "string",
-      key: "title",
-      displayer: "Title",
-      value: "",
-    });
-
-    this.addProp({
       type: "object",
       key: "logo",
       displayer: "Logo",
@@ -85,9 +72,32 @@ class Footer3Page extends BaseFooter {
 
     this.addProp({
       type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "",
+    });
+
+    this.addProp({
+      type: "string",
+      key: "title",
+      displayer: "Title",
+      value: "",
+    });
+
+    this.addProp({
+      type: "string",
       key: "description",
       displayer: "Description",
       value: "Imperdiet parturient eleifend scelerisque natoque parturient rutrum mus eros dis ullamcorper a ullamcorper.",
+    });
+
+    this.addProp({
+      type: "array",
+      key: "buttons",
+      displayer: "Buttons",
+      value: [
+        INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+      ],
     });
 
     this.addProp({
@@ -765,7 +775,10 @@ class Footer3Page extends BaseFooter {
     const subtitleExist = this.castToString(this.getPropValue("subtitle"));
     const titleExist = this.castToString(this.getPropValue("title"));
 
-    const headerExist = subtitleExist || titleExist || logo || descriptionExist || socials.length > 0;
+    const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons") || [];
+    const hasRenderableButton = buttons.some((btn) => this.castToString(btn.text));
+
+    const headerExist = subtitleExist || titleExist || logo || descriptionExist || hasRenderableButton || socials.length > 0;
 
     const alignment = Base.getContentAlignment();
 
@@ -797,6 +810,25 @@ class Footer3Page extends BaseFooter {
                         {subtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
                         {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
                         {descriptionExist && <Base.P className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.P>}
+                        {hasRenderableButton && (
+                          <div className={this.decorateCSS("button-container")}>
+                            {buttons.map(
+                              (item: INPUTS.CastedButton, index: number) =>
+                                this.castToString(item.text) && (
+                                  <ComposerLink key={index} path={item.url}>
+                                    <Base.Button
+                                      buttonType={item.type}
+                                      className={this.decorateCSS("button")}
+                                    >
+                                      <Base.P className={this.decorateCSS("button-text")}>
+                                        {item.text}
+                                      </Base.P>
+                                    </Base.Button>
+                                  </ComposerLink>
+                                )
+                            )}
+                          </div>
+                        )}
                         {socials.length > 0 && (
                           <div className={this.decorateCSS("socials-container")}>
                             {socials.map((item: SocialItem, index: number) => {

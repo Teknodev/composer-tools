@@ -3,6 +3,7 @@ import ComposerLink from "../../../composer-base-components/Link/ComposerLinkPro
 import { BaseFooter, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./footer8.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
+import { INPUTS } from "../../../custom-hooks/input-templates";
 
 
 type FooterValues = {
@@ -58,9 +59,32 @@ class Footer8Page extends BaseFooter {
 
     this.addProp({
       type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "",
+    });
+
+    this.addProp({
+      type: "string",
+      key: "title",
+      displayer: "Title",
+      value: "",
+    });
+
+    this.addProp({
+      type: "string",
       key: "description",
       displayer: "Description",
       value: "Build websites faster with an Blinkpage",
+    });
+
+    this.addProp({
+      type: "array",
+      key: "buttons",
+      displayer: "Buttons",
+      value: [
+        INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+      ],
     });
 
     this.addProp({
@@ -603,8 +627,15 @@ class Footer8Page extends BaseFooter {
     const logo = logoObject?.logo;
     const logoUrl = logoObject?.logoUrl;
 
+    const subtitleExist = this.castToString(this.getPropValue("subtitle"));
+    const titleExist = this.castToString(this.getPropValue("title"));
+    const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons") || [];
+    const hasRenderableButton = buttons.some((btn) => this.castToString(btn.text));
+
     const footerTextExist = this.castToString(this.getPropValue("footerText"));
     const descriptionExist = this.castToString(this.getPropValue("description"));
+
+    const headerExist = (logo?.url || logo?.name) || subtitleExist || titleExist || descriptionExist || hasRenderableButton;
 
     const position = this.getPropValue("position");
     const alignment = Base.getContentAlignment();
@@ -615,15 +646,36 @@ class Footer8Page extends BaseFooter {
           <div className={`${this.decorateCSS("footer-page")} ${alignment === "left" ? this.decorateCSS("left-alignment") : ""}`}>
             {
               <div className={this.decorateCSS("items")}>
-                {(logo?.url || logo?.name || descriptionExist) && (
-                  <div className={this.decorateCSS("header")}>
+                {headerExist && (
+                  <Base.VerticalContent className={this.decorateCSS("header")}>
                     {(logo?.url || logo?.name) && (
                       <ComposerLink path={logoUrl}>
                         <Base.Media value={logo} className={`${this.decorateCSS("image")} ${logo?.type === "icon" ? this.decorateCSS("is-icon") : ""}`} />
                       </ComposerLink>
                     )}
+                    {subtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
+                    {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
                     {descriptionExist && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
-                  </div>
+                    {hasRenderableButton && (
+                      <div className={this.decorateCSS("button-container")}>
+                        {buttons.map(
+                          (item: INPUTS.CastedButton, index: number) =>
+                            this.castToString(item.text) && (
+                              <ComposerLink key={index} path={item.url}>
+                                <Base.Button
+                                  buttonType={item.type}
+                                  className={this.decorateCSS("button")}
+                                >
+                                  <Base.P className={this.decorateCSS("button-text")}>
+                                    {item.text}
+                                  </Base.P>
+                                </Base.Button>
+                              </ComposerLink>
+                            )
+                        )}
+                      </div>
+                    )}
+                  </Base.VerticalContent>
                 )}
 
                 {footer.length > 0 &&
@@ -634,7 +686,7 @@ class Footer8Page extends BaseFooter {
                     return (
                       listExist && (
                         <div key={indexFooter} className={this.decorateCSS("list-group")}>
-                          {footerTitleExist && <Base.P className={this.decorateCSS("column-title")}>{item.footerTitle}</Base.P>}
+                          {footerTitleExist && <Base.H6 className={this.decorateCSS("column-title")}>{item.footerTitle}</Base.H6>}
                           {item.footerText.length > 0 && (
                             <Base.VerticalContent className={this.decorateCSS("text-container")}>
                               {item.footerText.map((v: FooterTextValues, indexFooterText: number) => {

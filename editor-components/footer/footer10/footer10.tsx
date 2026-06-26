@@ -3,6 +3,7 @@ import ComposerLink from "../../../composer-base-components/Link/ComposerLinkPro
 import { BaseFooter, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./footer10.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
+import { INPUTS } from "../../../custom-hooks/input-templates";
 
 
 type icon = {
@@ -60,6 +61,35 @@ class Footer10Page extends BaseFooter {
       ],
     });
 
+    this.addProp({
+      type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "",
+    });
+
+    this.addProp({
+      type: "string",
+      key: "title",
+      displayer: "Title",
+      value: "",
+    });
+
+    this.addProp({
+      type: "string",
+      key: "description",
+      displayer: "Description",
+      value: "",
+    });
+
+    this.addProp({
+      type: "array",
+      key: "buttons",
+      displayer: "Buttons",
+      value: [
+        INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+      ],
+    });
 
     this.addProp({
       type: "array",
@@ -439,7 +469,14 @@ class Footer10Page extends BaseFooter {
 
     const socials = this.castToObject<icon[]>("socials");
 
+    const subtitleExist = this.castToString(this.getPropValue("subtitle"));
+    const titleExist = this.castToString(this.getPropValue("title"));
+    const descriptionExist = this.castToString(this.getPropValue("description"));
+    const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons") || [];
+    const hasRenderableButton = buttons.some((btn) => this.castToString(btn.text));
+
     const logoExist = !!(logo?.url || logo?.name);
+    const logoAreaExist = logoExist || subtitleExist || titleExist || descriptionExist || hasRenderableButton;
     const linksPropExist = links.some((item: any) => this.castToString(item.text));
     const footerColumnsExist = footer.some((item: FooterValues) => {
       const footerTitleExist = this.castToString(item.footerTitle);
@@ -447,7 +484,7 @@ class Footer10Page extends BaseFooter {
       return footerTitleExist || hasItems;
     });
 
-    const upperExist = logoExist || linksPropExist;
+    const upperExist = logoAreaExist || linksPropExist;
     const middleExist = footerColumnsExist;
 
     const footerTextExist = this.castToString(this.getPropValue("footerText"));
@@ -466,15 +503,41 @@ class Footer10Page extends BaseFooter {
             <Base.MaxContent className={this.decorateCSS("max-content")}>
               {upperExist && (
                 <div className={`${this.decorateCSS("upper")} ${alignment === "center" && this.decorateCSS("center")}`}>
-                  {logoExist && (
-                    <ComposerLink path={logoUrl}>
-                      <div className={this.decorateCSS("logo")}>
-                        <Base.Media value={logo} className={`${this.decorateCSS("image")} ${logo?.type === "icon" ? this.decorateCSS("is-icon") : ""}`} />
-                      </div>
-                    </ComposerLink>
+                  {logoAreaExist && (
+                    <Base.VerticalContent className={this.decorateCSS("logo-area")}>
+                      {logoExist && (
+                        <ComposerLink path={logoUrl}>
+                          <div className={this.decorateCSS("logo")}>
+                            <Base.Media value={logo} className={`${this.decorateCSS("image")} ${logo?.type === "icon" ? this.decorateCSS("is-icon") : ""}`} />
+                          </div>
+                        </ComposerLink>
+                      )}
+                      {subtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
+                      {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
+                      {descriptionExist && <Base.P className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.P>}
+                      {hasRenderableButton && (
+                        <div className={this.decorateCSS("button-container")}>
+                          {buttons.map(
+                            (item: INPUTS.CastedButton, index: number) =>
+                              this.castToString(item.text) && (
+                                <ComposerLink key={index} path={item.url}>
+                                  <Base.Button
+                                    buttonType={item.type}
+                                    className={this.decorateCSS("button")}
+                                  >
+                                    <Base.P className={this.decorateCSS("button-text")}>
+                                      {item.text}
+                                    </Base.P>
+                                  </Base.Button>
+                                </ComposerLink>
+                              )
+                          )}
+                        </div>
+                      )}
+                    </Base.VerticalContent>
                   )}
                   {linksPropExist && (
-                    <div className={`${this.decorateCSS("links")} ${logoExist && this.decorateCSS("full-width")}`}>
+                    <div className={`${this.decorateCSS("links")} ${logoAreaExist && this.decorateCSS("full-width")}`}>
                       {links.map((item: any, index: number) => {
                         const textExist = this.castToString(item.text);
                         return (

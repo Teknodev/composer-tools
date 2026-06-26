@@ -3,6 +3,7 @@ import ComposerLink from "../../../composer-base-components/Link/ComposerLinkPro
 import { BaseFooter } from "../../EditorComponent";
 import styles from "./footer12.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
+import { INPUTS } from "../../../custom-hooks/input-templates";
 
 type FooterValues = {
   footerTitle: React.JSX.Element;
@@ -55,9 +56,32 @@ class Footer12Page extends BaseFooter {
 
     this.addProp({
       type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "",
+    });
+
+    this.addProp({
+      type: "string",
+      key: "title",
+      displayer: "Title",
+      value: "",
+    });
+
+    this.addProp({
+      type: "string",
       key: "description",
       displayer: "Description",
       value: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam dictum aliquet accumsan porta lectus ridiculus in mattis.",
+    });
+
+    this.addProp({
+      type: "array",
+      key: "buttons",
+      displayer: "Buttons",
+      value: [
+        INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+      ],
     });
 
     this.addProp({
@@ -470,12 +494,17 @@ class Footer12Page extends BaseFooter {
     const logo = logoObject?.logo;
     const logoUrl = logoObject?.logoUrl;
     const line = this.getPropValue("line");
+    const subtitleExist = this.castToString(this.getPropValue("subtitle"));
+    const titleExist = this.castToString(this.getPropValue("title"));
+    const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons") || [];
+    const hasRenderableButton = buttons.some((btn) => this.castToString(btn.text));
+
     const descriptionExist = this.castToString(this.getPropValue("description"));
     const footerText = this.getPropValue("footerText");
     const footerTextExist = this.castToString(footerText);
     const imagesExist = media.length > 0;
     const bottomExist = footerTextExist || imagesExist;
-    const headerExist = (logo?.url || logo?.name) || descriptionExist;
+    const headerExist = (logo?.url || logo?.name) || subtitleExist || titleExist || descriptionExist || hasRenderableButton;
     const upperExist = headerExist || footer.length > 0;
     const position = this.getPropValue("position");
 
@@ -495,7 +524,28 @@ class Footer12Page extends BaseFooter {
                       </div>
                     </ComposerLink>
                   )}
+                  {subtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
+                  {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
                   {descriptionExist && <Base.P className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.P>}
+                  {hasRenderableButton && (
+                    <div className={this.decorateCSS("button-container")}>
+                      {buttons.map(
+                        (item: INPUTS.CastedButton, index: number) =>
+                          this.castToString(item.text) && (
+                            <ComposerLink key={index} path={item.url}>
+                              <Base.Button
+                                buttonType={item.type}
+                                className={this.decorateCSS("button")}
+                              >
+                                <Base.P className={this.decorateCSS("button-text")}>
+                                  {item.text}
+                                </Base.P>
+                              </Base.Button>
+                            </ComposerLink>
+                          )
+                      )}
+                    </div>
+                  )}
                 </Base.VerticalContent>
               )}
 
