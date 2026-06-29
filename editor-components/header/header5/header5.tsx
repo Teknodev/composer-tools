@@ -85,9 +85,12 @@ class Header5 extends BaseHeader {
     const backgroundSettings = this.castToObject<BackgroundSettings>("backgroundSettings");
     const coverImage = backgroundSettings?.componentBackground;
     const buttonItem = this.castToObject<ButtonData[]>("buttons");
-    const subtitle = this.castToString(this.getPropValue("subtitle"));
-    const title = this.castToString(this.getPropValue("title"));
-    const description = this.castToString(this.getPropValue("description"))
+    const rawSubtitle = this.getPropValue("subtitle");
+    const rawTitle = this.getPropValue("title");
+    const rawDescription = this.getPropValue("description");
+    const subtitle = this.castToString(rawSubtitle);
+    const title = this.castToString(rawTitle);
+    const description = this.castToString(rawDescription);
     const hasMedia = !!coverImage?.url;
     const enableOverlay = hasMedia && backgroundSettings?.overlay;
     const hasContent = subtitle || title || description || buttonItem.length > 0;
@@ -103,9 +106,9 @@ class Header5 extends BaseHeader {
         {hasContent && (
           <Base.MaxContent className={this.decorateCSS("content")}>
             <Base.VerticalContent className={this.decorateCSS("vertical-content")}>
-              {subtitle && (<Base.SectionSubTitle className={this.decorateCSS("subtitle")}> {this.getPropValue("subtitle")}</Base.SectionSubTitle>)}
-              {title && (<Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>)}
-              {description && (<Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>)}
+              {subtitle && (<Base.SectionSubTitle className={this.decorateCSS("subtitle")}> {rawSubtitle}</Base.SectionSubTitle>)}
+              {title && (<Base.SectionTitle className={this.decorateCSS("title")}>{rawTitle}</Base.SectionTitle>)}
+              {description && (<Base.SectionDescription className={this.decorateCSS("description")}>{rawDescription}</Base.SectionDescription>)}
               {buttonItem.length > 0 && (
                 <Base.Row className={this.decorateCSS("button-container")}>
                   {buttonItem.map(

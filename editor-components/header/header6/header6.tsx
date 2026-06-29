@@ -80,10 +80,12 @@ class Header6 extends BaseHeader {
   }
 
   render() {
-    const subtitle = this.castToString(this.getPropValue("subtitle")) || "";
-    const title = this.castToString(this.getPropValue("title")) || "";
-    const description =
-      this.castToString(this.getPropValue("description")) || "";
+    const rawSubtitle = this.getPropValue("subtitle");
+    const rawTitle = this.getPropValue("title");
+    const rawDescription = this.getPropValue("description");
+    const subtitle = this.castToString(rawSubtitle);
+    const title = this.castToString(rawTitle);
+    const description = this.castToString(rawDescription);
     const backgroundSettings = this.castToObject<BackgroundSettings>("backgroundSettings");
     const coverImage = backgroundSettings?.componentBackground;
     const enableOverlay = backgroundSettings?.overlay;
@@ -110,17 +112,8 @@ class Header6 extends BaseHeader {
           <Base.VerticalContent
             className={this.decorateCSS("vertical-content")}
           >
-            {subtitle && (
-              <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
-                {this.getPropValue("subtitle")}
-              </Base.SectionSubTitle>
-            )}
-
-            {title && (
-              <Base.SectionTitle className={this.decorateCSS("title")}>
-                {this.getPropValue("title")}
-              </Base.SectionTitle>
-            )}
+            {subtitle && (<Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{rawSubtitle}</Base.SectionSubTitle>)}
+            {title && (<Base.SectionTitle className={this.decorateCSS("title")}>{rawTitle}</Base.SectionTitle>)}
 
             <div
               className={`${this.decorateCSS("description-wrapper")} ${
@@ -146,7 +139,7 @@ class Header6 extends BaseHeader {
                 <Base.SectionDescription
                   className={this.decorateCSS("description")}
                 >
-                  {this.getPropValue("description")}
+                  {rawDescription}
                 </Base.SectionDescription>
               )}
             </div>
