@@ -183,7 +183,7 @@
 
           .text {
             text-align: end;
-            color: var(--composer-tertiary-color);
+            color: var(--composer-font-color-primary) !important;
             white-space: nowrap;
 
             &.left {
@@ -323,6 +323,9 @@
             align-items: flex-start !important;
             .column-title, .footer-text {
               text-align: left !important;
+            }
+            .column-title {
+              font-size: 1.25rem !important;
             }
           }
         }

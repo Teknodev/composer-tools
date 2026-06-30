@@ -193,6 +193,13 @@
           color: var(--composer-font-color-primary);
         }
 
+        .icon-text {
+          text-align: left !important;
+          margin-left: 0 !important;
+          margin-right: 0 !important;
+          justify-content: flex-start !important;
+        }
+
         .icon {
           width: 20px;
           height: 20px;
@@ -283,7 +290,7 @@
 
       .bottom-text {
         max-width: 50%;
-        color: var(--composer-tertiary-color);
+        color: var(--composer-font-color-primary) !important;
         margin-left: 0;
         width: fit-content;
         text-align: left;
@@ -297,7 +304,7 @@
 
         .item {
           position: relative;
-          color: var(--composer-tertiary-color);
+          color: var(--composer-font-color-primary) !important;
           transition: all 0.3s ease;
 
           &[data-animation~="animate1"] {
@@ -414,6 +421,12 @@
 
         .list-group {
           width: 100%;
+          align-items: center !important;
+
+          .column-title {
+            text-align: center !important;
+            font-size: 1.25rem !important;
+          }
         }
       }
 

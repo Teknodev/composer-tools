@@ -371,7 +371,7 @@ class Footer6Page extends BaseFooter {
                       <Base.VerticalContent key={indexFooter} className={this.decorateCSS("list-group")}>
                         {footerTitleExist && <Base.H6 className={this.decorateCSS("list-title")}>{item.footerTitle}</Base.H6>}
                         {item.footerText.length > 0 && (
-                          <div className={this.decorateCSS("text-container")}>
+                          <Base.VerticalContent className={this.decorateCSS("text-container")}>
                             {item.footerText.map((v: FooterTextValues, indexFooterText: number) => {
                               const footerTextExist = this.castToString(v.navTitle);
                               const titleStr = this.castToString(item.footerTitle).toLowerCase();
@@ -389,7 +389,7 @@ class Footer6Page extends BaseFooter {
                                 )
                               );
                             })}
-                          </div>
+                          </Base.VerticalContent>
                         )}
                       </Base.VerticalContent>
                     )

@@ -555,24 +555,28 @@ class Footer12Page extends BaseFooter {
                   const footerExist = footerTitleExist || item.footerText.length > 0;
                   return (
                     footerExist && (
-                      <div key={indexFooter} className={this.decorateCSS("list-group")}>
+                      <Base.VerticalContent key={indexFooter} className={this.decorateCSS("list-group")}>
                         {footerTitleExist && <Base.H6 className={this.decorateCSS("title")}>{item.footerTitle}</Base.H6>}
-                        {item.footerText.map((item: FooterTextValues, indexFooterText: number) => {
-                          const footerTextExist = this.castToString(item.navTitle);
-                          return (
-                            footerTextExist && (
-                              <ComposerLink key={indexFooterText} path={item.navNavigateTo}>
-                                <Base.P
-                                  className={this.decorateCSS("text")}
-                                  data-animation={item.navNavigateTo ? this.getPropValue("hoverAnimation").join(" ") : ""}
-                                >
-                                  {item.navTitle}
-                                </Base.P>
-                              </ComposerLink>
-                            )
-                          );
-                        })}
-                      </div>
+                        {item.footerText.length > 0 && (
+                          <Base.VerticalContent className={this.decorateCSS("text-container")}>
+                            {item.footerText.map((item: FooterTextValues, indexFooterText: number) => {
+                              const footerTextExist = this.castToString(item.navTitle);
+                              return (
+                                footerTextExist && (
+                                  <ComposerLink key={indexFooterText} path={item.navNavigateTo}>
+                                    <Base.P
+                                      className={this.decorateCSS("text")}
+                                      data-animation={item.navNavigateTo ? this.getPropValue("hoverAnimation").join(" ") : ""}
+                                    >
+                                      {item.navTitle}
+                                    </Base.P>
+                                  </ComposerLink>
+                                )
+                              );
+                            })}
+                          </Base.VerticalContent>
+                        )}
+                      </Base.VerticalContent>
                     )
                   );
                 })}

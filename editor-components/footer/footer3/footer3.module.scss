@@ -161,7 +161,7 @@
                   transition: all 0.3s ease;
 
                   .text {
-                    color: var(--composer-font-color-primary);
+                    color: var(--composer-tertiary-color);
                     text-align: left;
                   }
 
@@ -306,15 +306,15 @@
                 min-width: unset;
                 max-width: unset;
                 width: 100%;
-                align-items: center;
+                align-items: flex-start;
               }
 
               .header {
-                align-items: center !important;
+                align-items: flex-start !important;
 
                 .subtitle {
-                  text-align: center !important;
-                  margin-left: auto !important;
+                  text-align: left !important;
+                  margin-left: 0 !important;
                   margin-right: auto !important;
                   transform: none !important;
                   &::before {
@@ -324,15 +324,15 @@
 
                 .title,
                 .description {
-                  text-align: center !important;
+                  text-align: left !important;
                 }
 
                 .button-container {
-                  justify-content: center;
+                  justify-content: flex-start;
                 }
 
                 .socials-container {
-                  justify-content: center;
+                  justify-content: flex-start;
                 }
               }
 
@@ -344,15 +344,15 @@
                 }
               }
                .list-group{
-                align-items: center !important;
+                align-items: flex-start !important;
                 .title{
-                  text-align: center !important;
+                  text-align: left !important;
                 }
                 .text-container{
-                  align-items: center !important;
+                  align-items: flex-start !important;
                   .element{
                     .text{
-                      text-align: center !important;
+                      text-align: left !important;
                     }
                   }
                 }

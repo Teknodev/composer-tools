@@ -14,27 +14,17 @@
     .footer-page {
       display: flex;
       flex-direction: column;
-      justify-content: center;
-      align-items: center;
       gap: var(--composer-gap-lg);
       .header {
-        text-align: center;
-        align-items: center;
 
-        .subtitle, .title, .description {
-          text-align: center;
-        }
-
-        .subtitle{
-          transform: translateX(0);
-          &::before{
-            display: none;
-          }
+        .subtitle, 
+        .title, 
+        .description {
+          content: "";
         }
 
         .buttons {
           display: flex;
-          justify-content: center;
           flex-wrap: wrap;
           gap: var(--composer-gap-sm);
 
@@ -57,21 +47,17 @@
         .list-group {
           flex: 1 1 290px;
           max-width: 290px;
-          text-align: center;
-          align-items: center;
           display: flex;
           flex-direction: column;
           gap: var(--composer-gap-sm);
 
           .list-title {
             color: var(--composer-font-color-primary);
-            text-align: center;
           }
 
           .text-container {
             display: flex;
             flex-direction: column;
-            align-items: center;
           }
 
           .address-link {
@@ -79,11 +65,10 @@
           }
 
           .text {
-            color: var(--composer-font-color-primary);
+            color: var(--composer-tertiary-color);
             position: relative;
             transition: all 0.3s ease;
             width: fit-content;
-            text-align: center;
             
             &[data-animation~="animate1"] {
               &::after {
@@ -156,26 +141,20 @@
     padding: var(--composer-gap-xl) 30px var(--composer-gap-md) 30px !important;
     .max-content {
       .footer-page {
-        justify-content: center;
-        align-items: center;
         gap: var(--composer-gap-sm);
 
         .middle-container {
           display: flex;
           flex-direction: column;
           gap: var(--composer-gap-lg);
+          width: 100%;
 
           .list-group {
             flex: 1;
             width: 100%;
-            align-items: center;
             max-width: 100%;
             display: flex;
             flex-direction: column;
-            justify-content: center;
-            .text, .list-title{
-              text-align: center;
-            }
             .list-title {
               font-size: 1.25rem !important;
             }

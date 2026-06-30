@@ -209,11 +209,14 @@
             align-items: center;
             flex-direction: column;
             .left {
-              .title, .subtitle {
-                text-align: center;
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              .title, .subtitle, .description {
+                text-align: center !important;
               }
               .subtitle{
-                margin: auto;
+                margin: auto !important;
               }
             }
             .right {
@@ -230,6 +233,12 @@
 
         .footer-columns {
           flex-direction: column;
+
+          .list-group {
+            .column-title {
+              font-size: 1.25rem !important;
+            }
+          }
         }
       }
     }

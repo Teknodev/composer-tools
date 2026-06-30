@@ -614,7 +614,7 @@ class Footer1Page extends BaseFooter {
                       return (
                         <div key={colIndex} className={this.decorateCSS("column")}>
                           {categoryTitleExist && (
-                            <Base.P className={this.decorateCSS("column-title")}>{column.categoryTitle}</Base.P>
+                            <Base.H6 className={this.decorateCSS("column-title")}>{column.categoryTitle}</Base.H6>
                           )}
                           {hasItems && (
                             <div className={this.decorateCSS("column-items")}>

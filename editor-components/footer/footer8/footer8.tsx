@@ -649,9 +649,11 @@ class Footer8Page extends BaseFooter {
                 {headerExist && (
                   <Base.VerticalContent className={this.decorateCSS("header")}>
                     {(logo?.url || logo?.name) && (
-                      <ComposerLink path={logoUrl}>
-                        <Base.Media value={logo} className={`${this.decorateCSS("image")} ${logo?.type === "icon" ? this.decorateCSS("is-icon") : ""}`} />
-                      </ComposerLink>
+                      <div className={this.decorateCSS("logo-container")}>
+                        <ComposerLink path={logoUrl}>
+                          <Base.Media value={logo} className={`${this.decorateCSS("image")} ${logo?.type === "icon" ? this.decorateCSS("is-icon") : ""}`} />
+                        </ComposerLink>
+                      </div>
                     )}
                     {subtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
                     {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
@@ -685,7 +687,7 @@ class Footer8Page extends BaseFooter {
                     const listExist = footerTitleExist || footerTextExist;
                     return (
                       listExist && (
-                        <div key={indexFooter} className={this.decorateCSS("list-group")}>
+                        <Base.VerticalContent key={indexFooter} className={this.decorateCSS("list-group")}>
                           {footerTitleExist && <Base.H6 className={this.decorateCSS("column-title")}>{item.footerTitle}</Base.H6>}
                           {item.footerText.length > 0 && (
                             <Base.VerticalContent className={this.decorateCSS("text-container")}>
@@ -707,7 +709,7 @@ class Footer8Page extends BaseFooter {
                               })}
                             </Base.VerticalContent>
                           )}
-                        </div>
+                        </Base.VerticalContent>
                       )
                     );
                   })}

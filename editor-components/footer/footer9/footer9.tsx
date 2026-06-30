@@ -462,12 +462,12 @@ class Footer9Page extends BaseFooter {
       <Base.Container className={`${this.decorateCSS("container")} ${position === "Absolute" ? this.decorateCSS("absolute") : ""}`}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("header")}>
-            {(logo?.url || logo?.name) &&
-            <ComposerLink path={logoUrl}>
-              <Base.Media value={logo} className={`${this.decorateCSS("logo")} ${logo?.type === "icon" ? this.decorateCSS("is-icon") : ""}`} />
-            </ComposerLink>
-            }
             <Base.VerticalContent className={this.decorateCSS("content")}>
+              {(logo?.url || logo?.name) && (
+                <ComposerLink path={logoUrl}>
+                  <Base.Media value={logo} className={`${this.decorateCSS("logo")} ${logo?.type === "icon" ? this.decorateCSS("is-icon") : ""}`} />
+                </ComposerLink>
+              )}
               {subtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
               {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
               {descriptionExist && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
@@ -496,7 +496,7 @@ class Footer9Page extends BaseFooter {
                 return (
                   listExist && (
                     <div key={indexFooter} className={this.decorateCSS("list-group")}>
-                      {footerTitleExist && <Base.P className={this.decorateCSS("column-title")}>{item.footerTitle}</Base.P>}
+                      {footerTitleExist && <Base.H6 className={this.decorateCSS("column-title")}>{item.footerTitle}</Base.H6>}
                       {footerTextExist && (
                         <div className={this.decorateCSS("text-container")}>
                           {item.footerText.map((v: any, indexFooterText: number) => {

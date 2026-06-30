@@ -2,6 +2,9 @@
 
 .container {
   padding: 120px 60px var(--composer-gap-md) 60px !important;
+  text-align: left;
+  align-items: flex-start;
+  justify-content: flex-start;
 
   &.absolute {
     position: absolute;
@@ -14,40 +17,32 @@
   .max-content {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
     gap: var(--composer-gap-lg);
 
     .footer-columns {
       display: flex;
       flex-wrap: wrap;
-      justify-content: center;
       gap: var(--composer-gap-lg);
       width: 100%;
 
       .list-group {
         display: flex;
         flex-direction: column;
-        align-items: center;
-        gap: var(--composer-gap-md);
         flex: 1;
         min-width: 150px;
+        gap: var(--composer-gap-sm) !important;
 
         .column-title {
           color: var(--composer-font-color-primary);
-          text-align: center;
         }
 
         .text-container {
           display: flex;
           flex-direction: column;
-          align-items: center;
-          gap: var(--composer-gap-sm);
 
           .footer-text {
             color: var(--composer-tertiary-color);
             transition: all 0.3s ease;
-            text-align: center;
 
             &:hover {
               color: var(--composer-primary-color);
@@ -57,81 +52,97 @@
       }
     }
 
-    .socials-container {
+    .footer-bottom {
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: var(--composer-gap-md);
+      gap: var(--composer-gap-sm);
+      width: 100%;
+      margin-top: var(--composer-gap-md);
 
-      .socials-element {
+      .socials-container {
         display: flex;
         align-items: center;
-        gap: var(--composer-gap-sm);
-        position: relative;
+        justify-content: center;
+        gap: var(--composer-gap-md);
 
-        .icon {
-          font-size: 1.5rem;
-          color: var(--composer-font-color-primary);
-          transition: all 0.3s ease;
-        }
-
-        &[data-animation~="animate1"] {
-          &:hover {
-            .icon {
-              color: var(--composer-primary-color);
-              transform: scale(1.2);
-            }
-          }
-        }
-
-        &[data-animation~="animate2"] {
-          perspective: 1000px;
+        .socials-element {
+          display: flex;
+          align-items: center;
+          gap: var(--composer-gap-sm);
+          position: relative;
 
           .icon {
-            transform-style: preserve-3d;
-          }
+            font-size: 1.5rem;
+            color: var(--composer-font-color-primary);
+            transition: all 0.3s ease;
 
-          &:hover {
-            .icon {
-              color: var(--composer-primary-color);
-              transform: rotateY(180deg);
+            &.is-image {
+              width: 24px;
+              height: 24px;
+              object-fit: contain;
             }
           }
-        }
 
-        &[data-animation~="animate3"] {
-          &:hover {
-            .icon {
-              color: var(--composer-primary-color);
-              animation: bounce 0.5s cubic-bezier(0.36, 0, 0.66, -0.56) alternate infinite;
+          &[data-animation~="animate1"] {
+            &:hover {
+              .icon {
+                color: var(--composer-primary-color);
+                transform: scale(1.2);
+              }
             }
           }
-        }
 
-        &[data-animation~="animate4"] {
-          &:hover {
+          &[data-animation~="animate2"] {
+            perspective: 1000px;
+
             .icon {
-              color: var(--composer-primary-color);
-              filter: drop-shadow(0 0 8px var(--composer-primary-color));
-              transform: scale(1.1);
+              transform-style: preserve-3d;
+            }
+
+            &:hover {
+              .icon {
+                color: var(--composer-primary-color);
+                transform: rotateY(180deg);
+              }
             }
           }
-        }
 
-        &[data-animation~="animate5"] {
-          &:hover {
-            .icon {
-              color: var(--composer-primary-color);
-              animation: shake 0.5s ease infinite;
+          &[data-animation~="animate3"] {
+            &:hover {
+              .icon {
+                color: var(--composer-primary-color);
+                animation: bounce 0.5s cubic-bezier(0.36, 0, 0.66, -0.56) alternate infinite;
+              }
+            }
+          }
+
+          &[data-animation~="animate4"] {
+            &:hover {
+              .icon {
+                color: var(--composer-primary-color);
+                filter: drop-shadow(0 0 8px var(--composer-primary-color));
+                transform: scale(1.1);
+              }
+            }
+          }
+
+          &[data-animation~="animate5"] {
+            &:hover {
+              .icon {
+                color: var(--composer-primary-color);
+                animation: shake 0.5s ease infinite;
+              }
             }
           }
         }
       }
-    }
 
-    .text {
-      text-align: center;
-      color: var(--composer-tertiary-color);
+      .text {
+        text-align: center;
+        color: var(--composer-font-color-primary) !important;
+      }
     }
   }
 }

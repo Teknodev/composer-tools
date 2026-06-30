@@ -236,7 +236,7 @@
           max-width: 50%;
 
           .text {
-            color: var(--composer-tertiary-color);
+            color: var(--composer-font-color-primary) !important;
           }
         }
 
@@ -481,6 +481,9 @@
             .column-title,
             .footer-text {
               text-align: center !important;
+            }
+            .column-title {
+              font-size: 1.25rem !important;
             }
 
             .text-container {

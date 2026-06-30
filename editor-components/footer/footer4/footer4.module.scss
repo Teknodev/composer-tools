@@ -120,7 +120,7 @@
               .text {
                 text-align: left;
                 margin: 0;
-                color: var(--composer-font-color-primary);
+                color: var(--composer-tertiary-color);
                 transition: all 0.3s ease;
                 font-size: 1rem !important;
 
@@ -263,8 +263,9 @@
           }
 
           .link-element {
-            display: flex;
-            align-items: center;
+            display: flex !important;
+            justify-content: flex-start !important;
+            align-items: center !important;
             position: relative;
           }
 
@@ -284,6 +285,10 @@
           .link-element {
             .link-text {
               transition: all 0.3s ease;
+              text-align: left !important;
+              margin-left: 0 !important;
+              margin-right: 0 !important;
+              justify-content: flex-start !important;
 
               &[data-has-link="true"] {
                 cursor: pointer;
@@ -365,8 +370,16 @@
           }
 
           .link-element {
+            display: flex !important;
+            justify-content: flex-start !important;
+            align-items: center !important;
+
             .link-text {
               transition: all 0.3s ease;
+              text-align: left !important;
+              margin-left: 0 !important;
+              margin-right: 0 !important;
+              justify-content: flex-start !important;
 
               &[data-has-link="true"] {
                 cursor: pointer;
@@ -419,6 +432,7 @@
           .bottom {
             .links {
               flex-wrap: nowrap;
+              justify-content: flex-start !important;
             }
           }
         }
@@ -494,7 +508,22 @@
 
             .links {
               flex-wrap: wrap;
-              justify-content: center;
+              justify-content: center !important;
+
+              .link-element {
+                justify-content: center !important;
+
+                &::after {
+                  content: none !important;
+                }
+
+                .link-text {
+                  text-align: center !important;
+                  margin-left: auto !important;
+                  margin-right: auto !important;
+                  justify-content: center !important;
+                }
+              }
             }
           }
         }

@@ -485,7 +485,7 @@ class Footer7Page extends BaseFooter {
                   return (
                     listExist && (
                       <div key={indexFooter} className={this.decorateCSS("list-group")}>
-                        {footerTitleExist && <Base.P className={this.decorateCSS("column-title")}>{item.footerTitle}</Base.P>}
+                        {footerTitleExist && <Base.H6 className={this.decorateCSS("column-title")}>{item.footerTitle}</Base.H6>}
                         {hasItems && (
                           <Base.VerticalContent className={this.decorateCSS("text-container")}>
                             {item.footerText.map((v: FooterTextValues, indexFooterText: number) => {

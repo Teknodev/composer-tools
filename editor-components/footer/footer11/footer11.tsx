@@ -204,7 +204,7 @@ class Footer11Page extends BaseFooter {
               key: "icon",
               displayer: "Icon",
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon", "image"],
               },
               value: {
                 type: "icon",
@@ -230,7 +230,7 @@ class Footer11Page extends BaseFooter {
               key: "icon",
               displayer: "Icon",
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon", "image"],
               },
               value: {
                 type: "icon",
@@ -257,7 +257,7 @@ class Footer11Page extends BaseFooter {
               key: "icon",
               displayer: "Icon",
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon", "image"],
               },
               value: {
                 type: "icon",
@@ -283,7 +283,7 @@ class Footer11Page extends BaseFooter {
               key: "icon",
               displayer: "Icon",
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon", "image"],
               },
               value: {
                 type: "icon",
@@ -332,9 +332,10 @@ class Footer11Page extends BaseFooter {
     const socialsExist = socials.length > 0 && socials.some((item: any) => item.icon);
 
     const position = this.getPropValue("position");
+    const alignment = Base.getContentAlignment();
 
     return (
-      <Base.Container className={`${this.decorateCSS("container")} ${position === "Absolute" ? this.decorateCSS("absolute") : ""}`}>
+      <Base.Container className={`${this.decorateCSS("container")} ${position === "Absolute" ? this.decorateCSS("absolute") : ""} ${alignment === "left" ? this.decorateCSS("left-alignment") : this.decorateCSS("center-alignment")}`}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           {columnsExist && (
             <div className={this.decorateCSS("footer-columns")}>
@@ -344,8 +345,8 @@ class Footer11Page extends BaseFooter {
                 const listExist = footerTitleExist || hasItems;
                 return (
                   listExist && (
-                    <div key={indexFooter} className={this.decorateCSS("list-group")}>
-                      {footerTitleExist && <Base.P className={this.decorateCSS("column-title")}>{item.footerTitle}</Base.P>}
+                    <Base.VerticalContent key={indexFooter} className={this.decorateCSS("list-group")}>
+                      {footerTitleExist && <Base.H6 className={this.decorateCSS("column-title")}>{item.footerTitle}</Base.H6>}
                       {hasItems && (
                         <Base.VerticalContent className={this.decorateCSS("text-container")}>
                           {item.footerText.map((v: FooterTextValues, indexFooterText: number) => {
@@ -366,33 +367,36 @@ class Footer11Page extends BaseFooter {
                           })}
                         </Base.VerticalContent>
                       )}
-                    </div>
+                    </Base.VerticalContent>
                   )
                 );
               })}
             </div>
           )}
 
-          {socialsExist && (
-            <div className={this.decorateCSS("socials-container")}>
-              {socials.map((item: any, index: number) => {
-                return (
-                  item.icon && (
-                    <ComposerLink key={index} path={item.url}>
-                      <div 
-                        className={this.decorateCSS("socials-element")}
-                        data-animation={item.url ? this.getPropValue("hoverAnimation").join(" ") : ""}
-                      >
-                        <Base.Media value={item.icon} className={this.decorateCSS("icon")} />
-                      </div>
-                    </ComposerLink>
-                  )
-                );
-              })}
+          {(socialsExist || footerTextExist) && (
+            <div className={this.decorateCSS("footer-bottom")}>
+              {socialsExist && (
+                <div className={this.decorateCSS("socials-container")}>
+                  {socials.map((item: any, index: number) => {
+                    return (
+                      item.icon && (
+                        <ComposerLink key={index} path={item.url}>
+                          <div 
+                            className={this.decorateCSS("socials-element")}
+                            data-animation={item.url ? this.getPropValue("hoverAnimation").join(" ") : ""}
+                          >
+                            <Base.Media value={item.icon} className={`${this.decorateCSS("icon")} ${item.icon?.type === "image" ? this.decorateCSS("is-image") : ""}`} />
+                          </div>
+                        </ComposerLink>
+                      )
+                    );
+                  })}
+                </div>
+              )}
+              {footerTextExist && <Base.P className={this.decorateCSS("text")}>{this.getPropValue("footerText")}</Base.P>}
             </div>
           )}
-
-          {footerTextExist && <Base.P className={this.decorateCSS("text")}>{this.getPropValue("footerText")}</Base.P>}
         </Base.MaxContent>
       </Base.Container>
     );
