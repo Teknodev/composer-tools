@@ -275,6 +275,15 @@ class Feature51 extends BaseFeature {
         window.removeEventListener("resize", this.handleResize);
     }
 
+    onComponentDidUpdate() {
+        const isMobile = this.getComponentState("isMobile") as boolean;
+        const counts = this.getColumnCounts(isMobile);
+        const activeIndices = this.getComponentState("activeIndices") as number[];
+        if (!activeIndices || activeIndices.length !== counts.length) {
+            this.setComponentState("activeIndices", this.initializeActiveIndices(isMobile));
+        }
+    }
+
     private handleResize = () => {
         const el = this.containerRef.current;
         if (!el) return;
@@ -327,8 +336,8 @@ class Feature51 extends BaseFeature {
 
     private hasValidMedia(media: TypeMediaInputValue | undefined): boolean {
         if (!media) return false;
-        if (media.type === "icon") return !!media.name && media.name !== "";
-        if (media.type === "image") return !!media.url && media.url !== "";
+        if (media.type === "icon") return !!media.name;
+        if (media.type === "image") return !!media.url;
         return false;
     }
 
@@ -364,13 +373,7 @@ class Feature51 extends BaseFeature {
         const activeIndices = this.getComponentState("activeIndices") as number[];
 
         const updatedIndices = [...activeIndices];
-
-        if (activeIndices[columnIndex] === itemIndexInColumn) {
-            updatedIndices[columnIndex] = -1;
-        } else {
-            updatedIndices[columnIndex] = itemIndexInColumn;
-        }
-
+        updatedIndices[columnIndex] = activeIndices[columnIndex] === itemIndexInColumn ? -1 : itemIndexInColumn;
         this.setComponentState("activeIndices", updatedIndices);
     };
 
@@ -388,26 +391,22 @@ class Feature51 extends BaseFeature {
 
         const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
         const buttonsExist = buttons.some(
-            (button) => !!this.castToString(button.text),
+            (button) => !!this.castToString(button.text) || !!button.icon,
         );
 
-        let activeIndices = this.getComponentState("activeIndices") as number[];
         const counts = this.getColumnCounts(isMobile);
-
-        if (!activeIndices || activeIndices.length !== counts.length) {
-            activeIndices = this.initializeActiveIndices(isMobile);
-            this.setComponentState("activeIndices", activeIndices);
-        }
+        const storedIndices = this.getComponentState("activeIndices") as number[];
+        const activeIndices = storedIndices?.length === counts.length
+            ? storedIndices
+            : this.initializeActiveIndices(isMobile);
 
         const columns: Item[][] = [];
-        if (isMobile) {
-            columns.push(items);
-        } else {
-            let offset = 0;
-            for (const count of counts) {
-                columns.push(items.slice(offset, offset + count));
-                offset += count;
-            }
+        const columnOffsets: number[] = [];
+        let runningOffset = 0;
+        for (const count of counts) {
+            columnOffsets.push(runningOffset);
+            columns.push(items.slice(runningOffset, runningOffset + count));
+            runningOffset += count;
         }
 
         const pcGridCount = columns.length;
@@ -440,7 +439,7 @@ class Feature51 extends BaseFeature {
                             {columns.map((columnItems, colIdx) => (
                                 <div key={colIdx} className={this.decorateCSS("column")}>
                                     {columnItems.map((item, idxInCol) => {
-                                        const globalIndex = columns.slice(0, colIdx).reduce((sum, col) => sum + col.length, 0) + idxInCol;
+                                        const globalIndex = columnOffsets[colIdx] + idxInCol;
                                         const isActive = activeIndices[colIdx] === idxInCol;
                                         const itemTitle = this.castToString(item.itemTitle);
                                         const itemDescription = this.castToString(item.itemDescription);
