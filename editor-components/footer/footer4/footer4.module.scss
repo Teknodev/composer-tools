@@ -4,13 +4,19 @@
   width: 100%;
 
   &.absolute {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: transparent;
+    position: relative;
+    height: 0;
+    overflow: visible;
+    z-index: 10;
 
-    .max-content {
+    > .max-content {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      width: 100%;
+      background: transparent;
+
       .first-container {
         background: transparent;
       }

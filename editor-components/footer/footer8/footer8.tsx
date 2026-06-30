@@ -643,7 +643,7 @@ class Footer8Page extends BaseFooter {
     return (
       <Base.Container className={`${this.decorateCSS("container")} ${position === "Absolute" ? this.decorateCSS("absolute") : ""}`}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <div className={`${this.decorateCSS("footer-page")} ${alignment === "left" ? this.decorateCSS("left-alignment") : ""}`}>
+          <div className={`${this.decorateCSS("footer-page")} ${alignment === "left" ? this.decorateCSS("left-alignment") : ""} ${alignment === "center" ? this.decorateCSS("center-alignment") : ""}`}>
             {
               <div className={this.decorateCSS("items")}>
                 {headerExist && (

@@ -514,7 +514,7 @@ class Footer1Page extends BaseFooter {
     const position = this.getPropValue("position");
 
     return (
-      <div className={`${this.decorateCSS("container")} ${position === "Absolute" ? this.decorateCSS("absolute") : ""}`}>
+      <div className={`${this.decorateCSS("container")} ${position === "Absolute" ? this.decorateCSS("absolute") : ""} ${alignmentValue === "center" ? this.decorateCSS("center-alignment") : ""}`}>
         <Base.Container className={this.decorateCSS("footer-wrapper")}>
           <Base.MaxContent className={this.decorateCSS("max-content")}>
             {upperExist && (

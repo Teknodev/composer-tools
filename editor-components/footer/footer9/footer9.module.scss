@@ -4,11 +4,21 @@
   padding: 120px 60px var(--composer-gap-md) 60px !important;
 
   &.absolute {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: transparent;
+    position: relative;
+    height: 0;
+    overflow: visible;
+    z-index: 10;
+    padding: 0 !important;
+
+    > .max-content {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      width: 100%;
+      background: transparent;
+      padding: 120px 60px var(--composer-gap-md) 60px !important;
+    }
   }
 
   .max-content {

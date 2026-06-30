@@ -788,7 +788,7 @@ class Footer3Page extends BaseFooter {
     const secondContainerExist = links.length > 0 || footerTextExist;
 
     return (
-      <div className={`${this.decorateCSS("container")} ${position === "Absolute" ? this.decorateCSS("absolute") : ""}`}>
+      <div className={`${this.decorateCSS("container")} ${position === "Absolute" ? this.decorateCSS("absolute") : ""} ${alignment === "center" ? this.decorateCSS("center-alignment") : ""}`}>
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("footer-page")}>
            {firstContainerExist && <Base.Container className={this.decorateCSS("first-container")}>

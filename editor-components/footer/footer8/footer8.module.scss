@@ -5,11 +5,21 @@
   padding: 120px 60px var(--composer-gap-md) 60px !important;
 
   &.absolute {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: transparent;
+    position: relative;
+    height: 0;
+    overflow: visible;
+    z-index: 10;
+    padding: 0 !important;
+
+    > .max-content {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      width: 100%;
+      background: transparent;
+      padding: 120px 60px var(--composer-gap-md) 60px !important;
+    }
   }
 
   .max-content {
@@ -74,6 +84,7 @@
             flex-wrap: wrap;
             gap: var(--composer-gap-sm);
             align-items: flex-start;
+            justify-content: flex-start !important;
 
             .button {
               .button-text {
@@ -391,6 +402,17 @@
       .footer-page {
         flex-direction: column;
         gap: var(--composer-gap-lg);
+
+        &.center-alignment {
+          .items {
+            .header {
+              .logo-container {
+                align-self: center !important;
+                justify-content: center !important;
+              }
+            }
+          }
+        }
 
         .items {
           flex-direction: column;

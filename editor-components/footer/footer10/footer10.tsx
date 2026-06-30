@@ -498,6 +498,7 @@ class Footer10Page extends BaseFooter {
 
     return (
       <div className={`${this.decorateCSS("container")} ${position === "Absolute" ? this.decorateCSS("absolute") : ""}`}>
+        <div className={this.decorateCSS("footer-inner")}>
         {(upperExist || middleExist) && (
           <Base.Container className={this.decorateCSS("footer-wrapper")}>
             <Base.MaxContent className={this.decorateCSS("max-content")}>
@@ -632,6 +633,7 @@ class Footer10Page extends BaseFooter {
             </Base.MaxContent>
           </Base.Container>
         )}
+        </div>
       </div>
     );
   }

@@ -5,13 +5,17 @@
   background-color: var(--composer-html-background);
 
   &.absolute {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: transparent;
+    position: relative;
+    height: 0;
+    overflow: visible;
+    z-index: 10;
 
-    .footer-wrapper {
+    > .footer-wrapper {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      width: 100%;
       background: transparent;
     }
   }
@@ -193,6 +197,28 @@
 
 @container (max-width: #{$composer-phone-width}) {
   .container {
+    &.center-alignment {
+      .footer-wrapper {
+        .max-content {
+          .footer-upper {
+            align-items: center !important;
+
+            .header {
+              align-items: center !important;
+
+              .subtitle,
+              .title,
+              .description {
+                text-align: center !important;
+                margin-left: auto !important;
+                margin-right: auto !important;
+              }
+            }
+          }
+        }
+      }
+    }
+
     .footer-wrapper {
       .max-content {
         gap: var(--composer-gap-md);
@@ -209,14 +235,11 @@
           .header {
             flex: 1;
             width: 100%;
-            align-items: flex-start;
 
             .subtitle,
             .title,
             .description {
-              text-align: left !important;
-              margin-left: 0 !important;
-              margin-right: 0 !important;
+              content: "";
             }
           }
         }

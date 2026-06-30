@@ -4,13 +4,19 @@
   width: 100%;
 
   &.absolute {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: transparent;
+    position: relative;
+    height: 0;
+    overflow: visible;
+    z-index: 10;
 
-    .max-content {
+    > .max-content {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      width: 100%;
+      background: transparent;
+
       .footer-page {
         .first-container {
           background: transparent;
@@ -292,6 +298,65 @@
 
 @container (max-width: #{$composer-phone-width}) {
   .container {
+    &.center-alignment {
+      .max-content {
+        .footer-page {
+          .first-container {
+            .first-max-content {
+              .items {
+                .header,
+                .list-group {
+                  align-items: center !important;
+                }
+
+                .header {
+                  .logo {
+                    margin-left: auto !important;
+                    margin-right: auto !important;
+                  }
+
+                  .subtitle {
+                    text-align: center !important;
+                    margin-left: auto !important;
+                    margin-right: auto !important;
+                  }
+
+                  .title,
+                  .description {
+                    text-align: center !important;
+                  }
+
+                  .button-container {
+                    justify-content: center !important;
+                  }
+
+                  .socials-container {
+                    justify-content: center !important;
+                  }
+                }
+
+                .list-group {
+                  .title {
+                    text-align: center !important;
+                  }
+
+                  .text-container {
+                    align-items: center !important;
+
+                    .element {
+                      .text {
+                        text-align: center !important;
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
     .max-content {
       .footer-page {
         .first-container {
