@@ -60,3 +60,21 @@
         }
     }
 }
+
+@container (max-width: #{$composer-phone-width}) {
+    .container {
+        .max-content {
+            .stats-grid {
+                .stat-item {
+                    .stat-value-row {
+                        .stat-info {
+                            .stat-title {
+                                font-size: 1.25rem !important;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
