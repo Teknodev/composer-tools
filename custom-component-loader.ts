@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import ComponentsRegistery from "./editor-components/ComponentRegistery";
+import ComponentsRegistery, { CustomComponentLoadFailure } from "./editor-components/ComponentRegistery";
 import { CATEGORIES, Component } from "./editor-components/EditorComponent";
 import * as _EditorComponents from "./editor-components/EditorComponent";
 import * as _BaseModule from "./composer-base-components/base/base";
@@ -143,8 +143,13 @@ function injectStylesheet(css: string, key: string): void {
 export async function loadCustomComponentsFromMeta(
   components: CustomComponentMeta[],
   registry: ComponentsRegistery
-): Promise<void> {
-  if (!components || components.length === 0) return;
+): Promise<CustomComponentLoadFailure[]> {
+  // Shared by reference with the registry so pushes below are reflected;
+  // reset up-front so a clean reload never shows stale failures.
+  const failures: CustomComponentLoadFailure[] = [];
+  registry.setCustomLoadFailures(failures);
+
+  if (!components || components.length === 0) return failures;
 
   const activeComponents = components.filter((c) => c.status === "active" && c.bundle_content);
 
@@ -153,7 +158,7 @@ export async function loadCustomComponentsFromMeta(
       `[CustomComponents] ${components.length} component(s) from API but none have active status with bundle_content.`,
       components.map((c) => ({ name: c.name, status: c.status, hasContent: !!c.bundle_content, content: c.bundle_content }))
     );
-    return;
+    return failures;
   }
 
   const componentsToRegister: (typeof Component)[] = [];
@@ -190,6 +195,12 @@ export async function loadCustomComponentsFromMeta(
             `[CustomComponents] "${comp.name}" (key: "${windowKey}") not found on window.__CUSTOM_COMPONENTS__. Available keys:`,
             loadedKeys
           );
+          failures.push({
+            name: comp.name,
+            version: comp.version,
+            customComponentId: comp._id,
+            reason: "Bundle did not register a component. Re-upload it from the latest CLI / Component Studio build.",
+          });
           continue;
         }
       }
@@ -207,6 +218,12 @@ export async function loadCustomComponentsFromMeta(
       componentsToRegister.push(VersionedClass as unknown as typeof Component);
     } catch (err) {
       console.error(`[CustomComponents] Failed to load "${comp.name}" v${comp.version}:`, err);
+      failures.push({
+        name: comp.name,
+        version: comp.version,
+        customComponentId: comp._id,
+        reason: err instanceof Error ? err.message : String(err),
+      });
     }
   }
 
@@ -217,6 +234,9 @@ export async function loadCustomComponentsFromMeta(
       `[CustomComponents] No components registered. ${activeComponents.length} active component(s) loaded but none matched.`
     );
   }
+
+  registry.setCustomLoadFailures(failures);
+  return failures;
 }
 
 export function getCustomComponentsFromPage(pageJson: string): string[] {
