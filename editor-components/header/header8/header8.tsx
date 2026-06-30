@@ -26,7 +26,7 @@ class Header8 extends BaseHeader {
     this.addProp({
       type: "object",
       key: "background",
-      displayer: "Media",
+      displayer: "Background Media",
       value: [
         {
           type: "media",

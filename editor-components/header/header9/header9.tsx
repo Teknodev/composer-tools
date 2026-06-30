@@ -31,7 +31,7 @@ class Header9 extends BaseHeader {
     this.addProp({
       type: "object",
       key: "backgroundSettings",
-      displayer: "Media",
+      displayer: "Background Media",
       value: [
         {
           type: "media",
@@ -234,15 +234,15 @@ class Header9 extends BaseHeader {
     const titleText = this.castToString(title);
     const descriptionText = this.castToString(description);
     const hasHeader = titleText || descriptionText || buttons.some(button => this.castToString(button?.text));
-    const withBackground = !!background;
+    const withBackground = !!background?.url;
     const subtitleClasses = `${this.decorateCSS("subtitle")} ${withBackground && this.decorateCSS("with-bg")}`;
 
 
-    const containerStyle = { backgroundImage: `url('${background?.url || background || ""}')` } as React.CSSProperties;
+    const containerStyle = { backgroundImage: `url('${background?.url || ""}')` } as React.CSSProperties;
     const animationDuration = animationSettings?.animationDuration || 2000;
 
     return (
-      <Base.Container className={`${this.decorateCSS("container")} ${background ? this.decorateCSS("image-active") : ""} ${overlay && background ? this.decorateCSS("overlay-active") : ""}`} style={containerStyle}>
+      <Base.Container className={`${this.decorateCSS("container")} ${withBackground ? this.decorateCSS("image-active") : ""} ${overlay && withBackground ? this.decorateCSS("overlay-active") : ""}`} style={withBackground ? containerStyle : undefined}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={`${this.decorateCSS("wrapper")} ${alignment === "left" ? this.decorateCSS("alignment-left") : this.decorateCSS("alignment-center")}`}>
 
@@ -299,7 +299,7 @@ class Header9 extends BaseHeader {
                         item={item}
                         animationDuration={animationDuration}
                         statsAnimation={statsAnimation}
-                        background={background}
+                        background={withBackground}
                       />
                     );
                   })}

@@ -17,7 +17,7 @@ class Header6 extends BaseHeader {
     this.addProp({
       type: "object",
       key: "backgroundSettings",
-      displayer: "Media",
+      displayer: "Background Media",
       value: [
         {
           type: "media",
@@ -88,6 +88,7 @@ class Header6 extends BaseHeader {
     const description = this.castToString(rawDescription);
     const backgroundSettings = this.castToObject<BackgroundSettings>("backgroundSettings");
     const coverImage = backgroundSettings?.componentBackground;
+    const hasMedia = !!coverImage?.url;
     const enableOverlay = backgroundSettings?.overlay;
     const button = this.castToObject<any>("button");
     const hasButton = !!(button && this.castToString(button.text));
@@ -96,14 +97,14 @@ class Header6 extends BaseHeader {
     return (
       <Base.Container
         className={`${this.decorateCSS("container")} ${
-          coverImage && this.decorateCSS("hasBackground")
+          hasMedia && this.decorateCSS("hasBackground")
         } ${
-          coverImage && enableOverlay
+          hasMedia && enableOverlay
             ? this.decorateCSS("overlay")
             : ""
         }`}
       >
-        {coverImage && (
+        {hasMedia && (
           <div className={this.decorateCSS("background-media")}>
             <Base.Media value={coverImage} className={this.decorateCSS("background-media-element")} />
           </div>

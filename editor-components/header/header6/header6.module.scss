@@ -34,11 +34,16 @@
     }
   }
 
+  &.hasBackground {
+    .max-content {
+      min-height: 70vh;
+    }
+  }
+
   .max-content {
     position: relative;
     z-index: 2;
     display: flex;
-    min-height: 70vh;
 
     .vertical-content {
       justify-content: center;

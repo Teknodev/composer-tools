@@ -6,6 +6,12 @@
     background-position: center;
     background-repeat: no-repeat;
     min-height: 800px;
+
+    .max-content {
+      .wrapper {
+        height: 600px;
+      }
+    }
   }
 
   &.overlay-active {
@@ -30,7 +36,6 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      height: 600px;
 
       .content {
         display: flex;
