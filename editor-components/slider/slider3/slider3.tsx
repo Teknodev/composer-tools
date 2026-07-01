@@ -241,6 +241,13 @@ class Slider3 extends BaseSlider {
       value: false,
     });
 
+    this.addProp({
+      type: "boolean",
+      key: "fullWidth",
+      displayer: "Full Width Layout",
+      value: true,
+    });
+
     this.addProp(INPUTS.SLIDER_SETTINGS("settings", "Slider Settings", {
       dots: true,
       arrows: true,
@@ -321,12 +328,12 @@ class Slider3 extends BaseSlider {
     const description = this.castToString(this.getPropValue("description"));
     const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons") || [];
     const visibleButtons = buttons.filter(btn => this.castToString(btn.text));
-    const isFull = Base.getContentWidth() === "100%";
+    const fullWidth = this.getPropValue("fullWidth");
     const hasContent = subtitle || title || description || visibleButtons.length > 0;
 
     return (
       <Base.Container
-        className={`${this.decorateCSS("container")} ${!isFull && this.decorateCSS("full")} ${!hasContent && this.decorateCSS("no-header")}`.trim()}>
+        className={`${this.decorateCSS("container")} ${fullWidth ? this.decorateCSS("full-width") : ""} ${fullWidth ? this.decorateCSS("full") : ""} ${!hasContent && this.decorateCSS("no-header")}`.trim()}>
         {hasContent && (
           <Base.MaxContent className={this.decorateCSS("max-content")}>
             <Base.VerticalContent className={this.decorateCSS("vertical-content")}>
