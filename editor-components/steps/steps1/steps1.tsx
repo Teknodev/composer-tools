@@ -196,8 +196,10 @@ class Steps1 extends BaseSteps {
     const itemCountInRow = this.getPropValue("itemCountInRow");
     const hasValidButtons = buttons.some((btn) => this.castToString(btn.text));
 
+    const alignment = Base.getContentAlignment();
+
     return (
-      <Base.Container className={this.decorateCSS("container")}>
+      <Base.Container className={`${this.decorateCSS("container")} ${alignment === "left" ? this.decorateCSS("mobile-left-alignment") : ""}`}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           {(subtitle || title || description) && (
             <div className={this.decorateCSS("header")}>

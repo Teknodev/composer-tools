@@ -13,6 +13,7 @@
 
       .subtitle {
         text-align: center;
+        width: fit-content;
         transform: none;
 
         &::before {
@@ -101,24 +102,46 @@
 
 @container (max-width: #{$composer-phone-width}) {
   .container {
+    &.mobile-left-alignment {
+      .max-content {
+        .header {
+          align-items: flex-start !important;
+
+          .subtitle {
+            text-align: left !important;
+            transform: translateX(3rem) !important;
+
+            &::before {
+              display: block !important;
+            }
+          }
+
+          .title,
+          .description {
+            text-align: left !important;
+          }
+        }
+      }
+    }
+
     .max-content {
       gap: var(--composer-gap-md);
 
       .header {
-        align-items: var(--composer-content-alignment);
+        align-items: center;
 
         .subtitle {
-          text-align: var(--composer-content-alignment);
-          transform: revert;
+          text-align: center;
+          transform: none !important;
 
           &::before {
-            display: revert;
+            display: none !important;
           }
         }
 
         .title,
         .description {
-          text-align: var(--composer-content-alignment);
+          text-align: center;
         }
       }
 
