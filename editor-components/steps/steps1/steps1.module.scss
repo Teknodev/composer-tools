@@ -146,6 +146,8 @@
       }
 
       .cards-container {
+        gap: var(--composer-gap-lg) !important;
+
         .card {
           .step-number {
             width: var(--composer-gap-lg);
