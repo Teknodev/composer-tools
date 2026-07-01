@@ -351,7 +351,7 @@ class Slider3 extends BaseSlider {
             <div className={`${this.decorateCSS("slider-parent")} ${hideBottomPadding ? this.decorateCSS("no-bottom-padding") : ""}`}>
               <ComposerSlider {...settings} className={this.decorateCSS("carousel")}>
                 {sliderItems.map((item: SliderItem, index: number) => {
-                  const imageElement = document.getElementById(`slider6Image${index}`);
+                  const imageElement = typeof document !== "undefined" ? document.getElementById(`slider6Image${index}`) : null;
                   const imageHeight = imageElement?.clientHeight || "auto";
                   return (
                     <div
