@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./Cookie.module.scss";
 import { FaCookieBite } from "react-icons/fa";
+import { Base } from "../../../composer-base-components/base/base";
 
 interface CookieProps {
   text?: string;
@@ -57,9 +58,9 @@ const Cookie: React.FC<CookieProps> = ({
         <p className={styles.text}>{text}<a href={learnMoreLink} className={styles.learnMore}> Learn More</a></p>
       </div>
       <div className={styles.buttonGroup}>
-        <button className={styles.button} onClick={onAccept}>{acceptButtonText}</button>
+        <Base.Button className={styles.button} onClick={onAccept}>{acceptButtonText}</Base.Button>
         {declineButtonText && (
-          <button className={styles.button} onClick={onDecline}>{declineButtonText}</button>
+          <Base.Button buttonType="Tertiary" className={styles.button} onClick={onDecline}>{declineButtonText}</Base.Button>
         )}
       </div>
     </div>

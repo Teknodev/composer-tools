@@ -129,14 +129,8 @@ export class LegacyModalActionHandler {
   }
 
   private findModal(modalName: string): Modal | undefined {
-    const allModals = editor.getModals();
-    const lower = modalName.toLowerCase();
-    return allModals.find(
-      (m) =>
-        m.name === modalName ||
-        m.signature?.getName() === modalName ||
-        m.name.toLowerCase().includes(lower) ||
-        m.signature?.getName().toLowerCase().includes(lower)
-    );
+    // Delegates to the shared resolver so a legacy interaction can reference a
+    // modal by id / component-json id as well as by name/signature.
+    return editor.findModalByKey(modalName);
   }
 }
