@@ -83,7 +83,8 @@
             display: flex;
             flex-wrap: wrap;
             gap: var(--composer-gap-sm);
-            align-items: flex-start;
+            align-self: flex-start;
+            width: 100%;
             justify-content: flex-start !important;
 
             .button {
@@ -406,9 +407,50 @@
         &.center-alignment {
           .items {
             .header {
+              align-items: center !important;
+
               .logo-container {
                 align-self: center !important;
                 justify-content: center !important;
+              }
+
+              .subtitle {
+                text-align: center !important;
+                margin-left: auto !important;
+                margin-right: auto !important;
+                transform: none !important;
+                &::before {
+                  display: none !important;
+                }
+              }
+
+              .title,
+              .description {
+                text-align: center !important;
+              }
+
+              .button-container {
+                align-self: center !important;
+                justify-content: center !important;
+              }
+            }
+
+            .list-group {
+              align-items: center !important;
+
+              .column-title {
+                width: auto;
+                text-align: center !important;
+                font-size: 1.25rem !important;
+              }
+
+              .text-container {
+                align-items: center !important;
+                .element {
+                  .text {
+                    text-align: center !important;
+                  }
+                }
               }
             }
           }
@@ -418,87 +460,14 @@
           flex-direction: column;
 
           .header {
-            align-items: center !important;
             min-width: unset;
             max-width: unset;
-
-            .subtitle {
-              text-align: center !important;
-              margin-left: auto !important;
-              margin-right: auto !important;
-              transform: none !important;
-              &::before {
-                display: none !important;
-              }
-            }
-
-            .title,
-            .description {
-              text-align: center !important;
-            }
-
-            .button-container {
-              justify-content: center !important;
-            }
           }
 
           .list-group {
-            align-items: center !important;
             min-width: unset;
             max-width: unset;
             gap: var(--composer-gap-sm);
-
-            .column-title {
-              width: auto;
-              text-align: center !important;
-              font-size: 1.25rem !important;
-            }
-
-            .text-container {
-              align-items: center !important;
-              .element{
-                .text{
-                  text-align: center !important;
-                }
-              }
-            }
-          }
-        }
-
-        &.left-alignment {
-          .items {
-            .header {
-              align-items: flex-start !important;
-
-              .subtitle,
-              .title {
-                text-align: left !important;
-                margin-left: 0 !important;
-                margin-right: auto !important;
-              }
-
-              .description {
-                text-align: left !important;
-              }
-
-              .button-container {
-                justify-content: flex-start !important;
-              }
-            }
-            .list-group {
-              align-items: flex-start !important;
-              .column-title {
-                text-align: left !important;
-              }
-              .text-container {
-                align-items: flex-start !important;
-                .element {
-                  .text {
-                    text-align: left !important;
-                  }
-                }
-              }
-            }
           }
         }
 
