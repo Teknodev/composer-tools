@@ -393,7 +393,7 @@ class PricingTable17 extends BasePricingTable {
                       {cardDescriptionExist && <Base.P className={this.decorateCSS("card-description")}>{item.cardDescription}</Base.P>}
 
                       {filteredFeatures.length > 0 && (
-                        <div className={this.decorateCSS("card-features")}>
+                        <Base.VerticalContent className={this.decorateCSS("card-features")}>
                           {filteredFeatures.map((feature, featureIndex) => {
                             const textExist = this.castToString(feature.text);
                             const iconExist = feature.icon && (typeof feature.icon === "object" ? feature.icon.name || feature.icon.url : true);
@@ -407,11 +407,8 @@ class PricingTable17 extends BasePricingTable {
                               </div>
                             );
                           })}
-                        </div>
+                        </Base.VerticalContent>
                       )}
-                    </Base.VerticalContent>
-
-                    <Base.VerticalContent className={this.decorateCSS("card-bottom")}>
                       {buttonExist && (
                         <div className={this.decorateCSS("card-buttons-container")}>
                           {visibleCardButtons.map((btn, btnIndex) => (

@@ -98,8 +98,6 @@
                     .card-features {
                         display: flex;
                         flex-direction: column;
-                        gap: var(--composer-gap-sm);
-                        margin-top: var(--composer-gap-md);
 
                         .feature-item {
                             display: flex;
@@ -123,18 +121,8 @@
                             .feature-text {
                                 color: var(--composer-color-secondary);
                                 text-align: left;
-                            }
+                             }
                         }
-                    }
-                }
-
-                .card-bottom {
-                    display: flex;
-                    flex-direction: column;
-
-                    .card-info {
-                        color: var(--composer-color-secondary);
-                        text-align: left;
                     }
 
                     .card-buttons-container {
@@ -143,6 +131,7 @@
                         justify-content: flex-start;
                         gap: var(--composer-gap-sm);
                         width: 100%;
+                        margin-top: auto !important;
 
                         .card-button {
                             justify-content: flex-start;
