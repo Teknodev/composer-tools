@@ -12,23 +12,26 @@ vi.mock('../composer-base-components/modal/modal.service', () => ({
 
 vi.mock('../../classes/Editor', () => ({
   editor: {
-    getModals: vi.fn()
+    getModals: vi.fn(() => []),
+    findModalByKey: vi.fn(),
   }
 }));
 
 describe('ModalActionHandler', () => {
   beforeEach(() => {
     vi.clearAllMocks();
+    (editor.getModals as any).mockReturnValue([]);
   });
 
-  it('should emit open event with full modal object if modal is found', () => {
+  it('should emit open event with the modal resolved by editor.findModalByKey', () => {
     const mockModal = { name: 'TestModal', signature: { getName: () => 'TestModal' } };
-    (editor.getModals as any).mockReturnValue([mockModal]);
+    (editor.findModalByKey as any).mockReturnValue(mockModal);
 
     const config = { type: 'open-modal' as const, modalId: 'TestModal', closeOnOutsideClick: true, closeOnEsc: true };
-    
+
     ModalActionHandler.execute(config);
 
+    expect(editor.findModalByKey).toHaveBeenCalledWith('TestModal');
     expect(ModalService.emit).toHaveBeenCalledWith('open', {
       modal: mockModal,
       modalId: 'TestModal',
@@ -38,31 +41,36 @@ describe('ModalActionHandler', () => {
     });
   });
 
-  it('should not emit if modalId is missing', () => {
+  it('should not emit (or resolve) if modalId is missing', () => {
     ModalActionHandler.execute({ type: 'open-modal', modalId: '', closeOnOutsideClick: true, closeOnEsc: true });
+    expect(editor.findModalByKey).not.toHaveBeenCalled();
     expect(ModalService.emit).not.toHaveBeenCalled();
   });
 
-  it('should not emit if modal is not found', () => {
-    (editor.getModals as any).mockReturnValue([]);
+  it('should not emit if the resolver finds no modal', () => {
+    (editor.findModalByKey as any).mockReturnValue(undefined);
     ModalActionHandler.execute({ type: 'open-modal', modalId: 'NonExistentModal', closeOnOutsideClick: true, closeOnEsc: true });
     expect(ModalService.emit).not.toHaveBeenCalled();
   });
 
-  it('should emit open event when matched by literal _id', () => {
-    const mockModal = { id: '69c4d6468324fe002ceb0ef1', name: 'DifferentName', signature: { getName: () => 'DifferentName' } };
-    (editor.getModals as any).mockReturnValue([mockModal]);
+  it('passes the openAnimation through when the modal is resolved', () => {
+    const mockModal = { name: 'Animated', signature: { getName: () => 'Animated' } };
+    (editor.findModalByKey as any).mockReturnValue(mockModal);
 
-    const config = { type: 'open-modal' as const, modalId: '69c4d6468324fe002ceb0ef1', closeOnOutsideClick: true, closeOnEsc: true };
-    
-    ModalActionHandler.execute(config);
+    ModalActionHandler.execute({
+      type: 'open-modal',
+      modalId: '805f7a35-8819-478d-887c-0ac36dcf722c',
+      openAnimation: 'fadeIn',
+      closeOnOutsideClick: false,
+      closeOnEsc: false,
+    });
 
     expect(ModalService.emit).toHaveBeenCalledWith('open', {
       modal: mockModal,
-      modalId: '69c4d6468324fe002ceb0ef1',
-      openAnimation: undefined,
-      closeOnOutsideClick: true,
-      closeOnEsc: true
+      modalId: '805f7a35-8819-478d-887c-0ac36dcf722c',
+      openAnimation: 'fadeIn',
+      closeOnOutsideClick: false,
+      closeOnEsc: false,
     });
   });
 });
