@@ -340,7 +340,7 @@ class PricingTable13 extends BasePricingTable {
                                             </Base.P>
                                         )}
                                         {cardFeatures.length > 0 && (
-                                            <div className={this.decorateCSS("card-features")}>
+                                            <Base.VerticalContent className={this.decorateCSS("card-features")}>
                                                 {cardFeatures.map((feature: FeatureItem, fIdx: number) => {
                                                     const featureText = this.castToString(feature?.text);
                                                     if (!featureText) return null;
@@ -356,7 +356,7 @@ class PricingTable13 extends BasePricingTable {
                                                         </Base.P>
                                                     );
                                                 })}
-                                            </div>
+                                            </Base.VerticalContent>
                                         )}
                                     </Base.VerticalContent>
                                     {hasValidCardButton && (

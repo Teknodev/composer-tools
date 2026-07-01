@@ -1,4 +1,4 @@
-@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+ @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
     background: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
@@ -94,8 +94,7 @@
             .card-features {
                 display: flex;
                 flex-direction: column;
-                gap: var(--composer-gap-sm);
-                padding-left: 20px;
+                padding-left: var(--composer-gap-md);
                 width: 100%;
 
                 .feature-item {
