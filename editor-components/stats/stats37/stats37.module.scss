@@ -38,7 +38,8 @@
                         .stat-prefix,
                         .stat-number,
                         .stat-suffix {
-                            content: "";
+                            font-size: 4.5rem !important;
+                            line-height: 1.1;
                         }
                     }
 
@@ -67,6 +68,14 @@
             .stats-grid {
                 .stat-item {
                     .stat-value-row {
+                        .stat-value {
+                            .stat-prefix,
+                            .stat-number,
+                            .stat-suffix {
+                                font-size: 4rem !important;
+                            }
+                        }
+
                         .stat-info {
                             .stat-title {
                                 font-size: 1.25rem !important;
