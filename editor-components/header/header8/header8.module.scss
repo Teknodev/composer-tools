@@ -105,13 +105,15 @@
       gap: var(--composer-gap-sm);
 
       .button {
-        .button-icon {
-          font-size: 5rem;
-          line-height: 0;
-        }
+        &.bare, &.link {
+          .button-icon {
+            font-size: 5rem;
+            line-height: 0;
+          }
 
-        .button-text {
-          font-size: 4rem !important;
+          .button-text {
+            font-size: 4rem !important;
+          }
         }
       }
 

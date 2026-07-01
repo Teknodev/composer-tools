@@ -62,17 +62,14 @@ class Header6 extends BaseHeader {
         "Nanotechnology immersion along the information highway will close the loop on focusing solely",
     });
 
-    this.addProp(
-      INPUTS.BUTTON(
-        "button",
-        "Button",
-        "START FREE TRIAL",
-        "",
-        null,
-        null,
-        "Primary"
-      )
-    );
+    this.addProp({
+      type: "array",
+      key: "buttons",
+      displayer: "Buttons",
+      value: [
+        INPUTS.BUTTON("button", "Button", "START FREE TRIAL", "", null, null, "Primary"),
+      ],
+    });
   }
 
   static getName(): string {
@@ -90,8 +87,7 @@ class Header6 extends BaseHeader {
     const coverImage = backgroundSettings?.componentBackground;
     const hasMedia = !!coverImage?.url;
     const enableOverlay = backgroundSettings?.overlay;
-    const button = this.castToObject<any>("button");
-    const hasButton = !!(button && this.castToString(button.text));
+    const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons") || [];
     const alignemnt = Base.getContentAlignment();
 
     return (
@@ -121,20 +117,34 @@ class Header6 extends BaseHeader {
                 alignemnt === "center" ? this.decorateCSS("centered") : ""
               }`}
             >
-              {hasButton && (
-                <div className={this.decorateCSS("button-wrapper")}>
-                  <ComposerLink path={button.url}>
-                    <Base.Button
-                      buttonType={button.type || "Primary"}
-                      className={this.decorateCSS("button")}
-                    >
-                      <Base.P className={this.decorateCSS("button-text")}>
-                        {button.text}
-                      </Base.P>
-                    </Base.Button>
-                  </ComposerLink>
-                </div>
-              )}
+              {buttons.length > 0 && (() => {
+                const validButtons = buttons.filter((item) => {
+                  const buttonText = this.castToString(item.text || "");
+                  const iconName = (item.icon as { name?: string })?.name;
+                  const hasValidIcon = iconName && iconName !== "";
+                  return buttonText || hasValidIcon;
+                });
+                return validButtons.length > 0 ? (
+                  <div className={this.decorateCSS("button-wrapper")}>
+                    {validButtons.map((item, index) => {
+                      const buttonText = this.castToString(item.text || "");
+                      const buttonUrl = item.url || "#";
+                      const iconName = (item.icon as { name?: string })?.name;
+                      const hasValidIcon = iconName && iconName !== "";
+                      return (
+                        <ComposerLink key={`btn-${index}`} path={buttonUrl}>
+                          <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
+                            {hasValidIcon && (
+                              <Base.Media className={this.decorateCSS("icon")} value={{ type: "icon", name: iconName }} />
+                            )}
+                            {buttonText && <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>}
+                          </Base.Button>
+                        </ComposerLink>
+                      );
+                    })}
+                  </div>
+                ) : null;
+              })()}
 
               {description && (
                 <Base.SectionDescription

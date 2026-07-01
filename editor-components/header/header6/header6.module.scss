@@ -62,13 +62,21 @@
         &.centered {
           flex-direction: column-reverse;
           gap: 0;
+
+          .button-wrapper {
+            justify-content: center !important;
+          }
         }
 
         .button-wrapper {
           display: flex;
           justify-content: var(--composer-content-alignment, flex-start);
-          .button-text {
-            content: "";
+          gap: var(--composer-gap-sm);
+
+          .button {
+            .button-text {
+              content: "";
+            }
           }
         }
 

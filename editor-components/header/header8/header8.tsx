@@ -73,7 +73,7 @@ class Header8 extends BaseHeader {
       key: "buttons",
       displayer: "Buttons",
       value: [
-        INPUTS.BUTTON("button", "Button", "", "", "FaChevronDown", null, "Bare")
+        INPUTS.BUTTON("button", "Button", "", "", "FaChevronDown", null, "Black")
       ],
     });
 
@@ -129,7 +129,7 @@ class Header8 extends BaseHeader {
                 const hasText = this.castToString(btn.text);
                 return (hasIcon || hasText) && (
                   <ComposerLink path={btn.url || ""} key={`btn-${i}`}>
-                    <Base.Button buttonType={btn.type} className={this.decorateCSS("button")}>
+                    <Base.Button buttonType={btn.type} className={`${this.decorateCSS("button")} ${this.decorateCSS(btn.type.toLowerCase())}`}>
                       {hasText && <Base.P className={this.decorateCSS("button-text")}>{btn.text}</Base.P>}
                       {hasIcon && <Base.Media value={btn.icon} className={this.decorateCSS("button-icon")} />}
                     </Base.Button>
