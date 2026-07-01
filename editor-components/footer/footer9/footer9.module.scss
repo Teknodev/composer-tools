@@ -1,16 +1,26 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
-  padding: 80px var(--composer-gap-xl) var(--composer-gap-md) var(--composer-gap-xl) !important;
+  padding: 120px 60px var(--composer-gap-md) 60px !important;
 
   &.absolute {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: transparent;
+    position: relative;
+    height: 0;
+    overflow: visible;
+    z-index: 10;
+    padding: 0 !important;
 
+    > .max-content {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      width: 100%;
+      background: transparent;
+      padding: 120px 60px var(--composer-gap-md) 60px !important;
+    }
   }
+
   .max-content {
     display: flex;
     flex-direction: column;
@@ -24,107 +34,149 @@
       gap: var(--composer-gap-md);
 
       .logo {
-         width: 200px;
-         height: var(--composer-gap-lg);
-              object-fit: cover;
+        width: 200px;
+        height: 40px;
+        object-fit: cover;
+
+        &.is-icon {
+          font-size: 2.5rem;
+          width: 40px;
+          height: 40px;
+          color: var(--composer-font-color-primary);
+        }
       }
 
       .content {
         justify-content: center;
         align-items: center;
-        .title, .subtitle, .description {
+
+        .title,
+        .subtitle,
+        .description {
           text-align: center;
         }
 
-        .subtitle{
+        .subtitle {
           transform: translateX(0);
+
           &::before {
             display: none;
           }
         }
 
-        .button{
-          .button-text {
-            content: "";
+        .buttons {
+          gap: var(--composer-gap-sm);
+          flex-wrap: wrap;
+          justify-content: center;
+
+          .button {
+            .button-text {
+              content: "";
+            }
           }
         }
       }
     }
 
-    .list-group {
+    .footer-columns {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      align-items: center;
-      gap: var(--composer-gap-md);
-      .text {
-        position: relative;
-        color: var(--composer-font-color-primary);
-        transition: all 0.3s ease;
-        
-        &[data-animation~="animate1"] {
-          &:hover {
-            color: var(--composer-primary-color);
-            transform: scale(1.1);
-          }
+      gap: var(--composer-gap-lg);
+      width: 100%;
+
+      .list-group {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: var(--composer-gap-md);
+        flex: 1;
+        min-width: 150px;
+
+        .column-title {
+          color: var(--composer-font-color-primary);
+          text-align: center;
         }
 
-        &[data-animation~="animate2"] {
-          &::after {
-            content: '';
-            position: absolute;
-            left: 50%;
-            bottom: -2px;
-            width: 0;
-            height: 2px;
-            background-color: var(--composer-primary-color);
+        .text-container {
+          display: flex;
+          flex-direction: row;
+          flex-wrap: wrap;
+          justify-content: center;
+          align-items: center;
+          gap: var(--composer-gap-md);
+
+          .text {
+            position: relative;
+            color: var(--composer-tertiary-color);
             transition: all 0.3s ease;
-            transform: translateX(-50%);
-          }
-          
-          &:hover {
-            color: var(--composer-primary-color);
-            
-            &::after {
-              width: 100%;
+            text-align: center;
+
+            &[data-animation~="animate1"] {
+              &:hover {
+                color: var(--composer-primary-color);
+                transform: scale(1.1);
+              }
             }
-          }
-        }
 
-        &[data-animation~="animate3"] {
-          border-radius: var(--composer-border-radius-sm);
-          
-          &:hover {
-            padding: 0 var(--composer-gap-sm);
-            color: var(--composer-primary-color);
-            background-color: rgba(var(--composer-primary-color-rgb), 0.1);
-          }
-        }
+            &[data-animation~="animate2"] {
+              &::after {
+                content: '';
+                position: absolute;
+                left: 50%;
+                bottom: -2px;
+                width: 0;
+                height: 2px;
+                background-color: var(--composer-primary-color);
+                transition: all 0.3s ease;
+                transform: translateX(-50%);
+              }
 
-        &[data-animation~="animate4"] {
-          &:hover {
-            color: var(--composer-primary-color);
-            transform: translateY(calc(var(--composer-gap-xs) * -1));
-          }
-        }
+              &:hover {
+                color: var(--composer-primary-color);
 
-        &[data-animation~="animate5"] {
-          &::before {
-            content: '→';
-            position: absolute;
-            left: -20px;
-            opacity: 0;
-            transition: all 0.3s ease;
-            color: var(--composer-primary-color);
-          }
-          
-          &:hover {
-            color: var(--composer-primary-color);
-            padding-left: 20px;
-            
-            &::before {
-              opacity: 1;
-              left: 0;
+                &::after {
+                  width: 100%;
+                }
+              }
+            }
+
+            &[data-animation~="animate3"] {
+              border-radius: var(--composer-border-radius-sm);
+
+              &:hover {
+                padding: 0 var(--composer-gap-sm);
+                color: var(--composer-primary-color);
+                background-color: rgba(var(--composer-primary-color-rgb), 0.1);
+              }
+            }
+
+            &[data-animation~="animate4"] {
+              &:hover {
+                color: var(--composer-primary-color);
+                transform: translateY(calc(var(--composer-gap-xs) * -1));
+              }
+            }
+
+            &[data-animation~="animate5"] {
+              &::before {
+                content: '→';
+                position: absolute;
+                left: -20px;
+                opacity: 0;
+                transition: all 0.3s ease;
+                color: var(--composer-primary-color);
+              }
+
+              &:hover {
+                color: var(--composer-primary-color);
+                padding-left: 20px;
+
+                &::before {
+                  opacity: 1;
+                  left: 0;
+                }
+              }
             }
           }
         }
@@ -137,23 +189,42 @@
       justify-content: center;
       align-items: center;
       gap: var(--composer-gap-lg);
+
       .icon-element {
         display: flex;
         align-items: center;
         gap: var(--composer-gap-sm);
         position: relative;
         transition: all 0.3s ease;
-        
+
         .icon-text,
         .icon {
           transition: all 0.3s ease;
           color: var(--composer-font-color-primary);
         }
 
-        .icon{
-          font-size: 1rem;
+        .icon-text {
+          text-align: left !important;
+          margin-left: 0 !important;
+          margin-right: 0 !important;
+          justify-content: flex-start !important;
         }
-        
+
+        .icon {
+          width: 20px;
+          height: 20px;
+          object-fit: cover;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          &.is-icon {
+            font-size: 1.25rem;
+            width: 20px;
+            height: 20px;
+          }
+        }
+
         &[data-animation~="animate1"] {
           &:hover {
             .icon, .icon-text {
@@ -169,6 +240,7 @@
               transform: rotate(15deg);
               color: var(--composer-primary-color);
             }
+
             .icon-text {
               color: var(--composer-primary-color);
             }
@@ -186,10 +258,11 @@
 
         &[data-animation~="animate4"] {
           border-radius: var(--composer-border-radius-sm);
-          
+
           &:hover {
             padding: 0 var(--composer-gap-sm);
             background-color: rgba(var(--composer-primary-color-rgb), 0.1);
+
             .icon, .icon-text {
               color: var(--composer-primary-color);
             }
@@ -207,12 +280,12 @@
             background-color: var(--composer-primary-color);
             transition: width 0.3s ease;
           }
-          
+
           &:hover {
             .icon, .icon-text {
               color: var(--composer-primary-color);
             }
-            
+
             &::after {
               width: 100%;
             }
@@ -224,9 +297,10 @@
     .bottom {
       display: flex;
       justify-content: space-between;
+
       .bottom-text {
         max-width: 50%;
-        color: var(--composer-tertiary-color);
+        color: var(--composer-font-color-primary) !important;
         margin-left: 0;
         width: fit-content;
         text-align: left;
@@ -237,11 +311,12 @@
         display: flex;
         align-items: center;
         gap: var(--composer-gap-md);
+
         .item {
           position: relative;
-          color: var(--composer-tertiary-color);
+          color: var(--composer-font-color-primary) !important;
           transition: all 0.3s ease;
-          
+
           &[data-animation~="animate1"] {
             &:hover {
               color: var(--composer-primary-color);
@@ -261,10 +336,10 @@
               transition: all 0.3s ease;
               transform: translateX(-50%);
             }
-            
+
             &:hover {
               color: var(--composer-primary-color);
-              
+
               &::after {
                 width: 100%;
               }
@@ -273,7 +348,7 @@
 
           &[data-animation~="animate3"] {
             border-radius: var(--composer-border-radius-sm);
-            
+
             &:hover {
               padding: 0 var(--composer-gap-sm);
               color: var(--composer-primary-color);
@@ -297,11 +372,11 @@
               transition: all 0.3s ease;
               color: var(--composer-primary-color);
             }
-            
+
             &:hover {
               color: var(--composer-primary-color);
-              padding-left: 20px;
-              
+              padding-left: var(--composer-gap-md);
+
               &::before {
                 opacity: 1;
                 left: 0;
@@ -316,13 +391,14 @@
 
 @container (max-width: #{$composer-tablet-width}) {
   .container {
-    padding: 80px var(--composer-gap-lg) var(--composer-gap-md) var(--composer-gap-lg) !important;
+    padding: 100px var(--composer-gap-xl) var(--composer-gap-md) var(--composer-gap-xl) !important;
   }
 }
 
 @container (max-width: #{$composer-phone-width}) {
   .container {
-    padding: 80px var(--composer-gap-md) var(--composer-gap-md) var(--composer-gap-md) !important;
+    padding: var(--composer-gap-xl) 30px var(--composer-gap-md) 30px !important;
+
     .max-content {
       display: flex;
       flex-direction: column;
@@ -341,19 +417,32 @@
         }
 
         .content {
-          .title, .subtitle {
+          .title,
+          .subtitle {
             text-align: center;
           }
         }
       }
 
-      .list-group {
-        row-gap: var(--composer-gap-sm);
-        column-gap: var(--composer-gap-sm);
+      .footer-columns {
+        flex-direction: column;
+        align-items: center;
+        gap: var(--composer-gap-md);
+
+        .list-group {
+          width: 100%;
+          align-items: center !important;
+
+          .column-title {
+            text-align: center !important;
+            font-size: 1.25rem !important;
+          }
+        }
       }
 
       .icon-container {
         gap: var(--composer-gap-sm);
+
         .icon-element {
           display: flex;
           align-items: center;
@@ -367,6 +456,7 @@
         justify-content: space-between;
         align-items: center;
         gap: var(--composer-gap-sm);
+
         .bottom-text {
           max-width: 100%;
           color: var(--composer-font-color-primary);

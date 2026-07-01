@@ -3,6 +3,7 @@ import ComposerLink from "../../../composer-base-components/Link/ComposerLinkPro
 import { BaseFooter } from "../../EditorComponent";
 import styles from "./footer12.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
+import { INPUTS } from "../../../custom-hooks/input-templates";
 
 type FooterValues = {
   footerTitle: React.JSX.Element;
@@ -10,8 +11,8 @@ type FooterValues = {
 };
 
 type FooterTextValues = {
-  footerText: React.JSX.Element;
-  path: string;
+  navTitle: React.JSX.Element;
+  navNavigateTo: string;
 };
 
 class Footer12Page extends BaseFooter {
@@ -37,7 +38,7 @@ class Footer12Page extends BaseFooter {
           key: "logo",
           displayer: "Logo",
           additionalParams: {
-            availableTypes: ["image"],
+            availableTypes: ["image", "icon"],
           },
           value: {
             type: "image",
@@ -55,6 +56,20 @@ class Footer12Page extends BaseFooter {
 
     this.addProp({
       type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "",
+    });
+
+    this.addProp({
+      type: "string",
+      key: "title",
+      displayer: "Title",
+      value: "",
+    });
+
+    this.addProp({
+      type: "string",
       key: "description",
       displayer: "Description",
       value: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam dictum aliquet accumsan porta lectus ridiculus in mattis.",
@@ -62,13 +77,22 @@ class Footer12Page extends BaseFooter {
 
     this.addProp({
       type: "array",
+      key: "buttons",
+      displayer: "Buttons",
+      value: [
+        INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+      ],
+    });
+
+    this.addProp({
+      type: "array",
       key: "footer",
-      displayer: "Footer Card",
+      displayer: "Footer",
       value: [
         {
           type: "object",
           key: "footer-title",
-          displayer: "Footer Column",
+          displayer: "Footer",
           value: [
             {
               type: "string",
@@ -88,14 +112,14 @@ class Footer12Page extends BaseFooter {
                   value: [
                     {
                       type: "string",
-                      key: "footerText",
+                      key: "navTitle",
                       displayer: "Text",
                       value: "About",
                     },
                     {
                       type: "page",
                       displayer: "Navigate To",
-                      key: "path",
+                      key: "navNavigateTo",
                       value: "",
                     },
                   ],
@@ -107,13 +131,13 @@ class Footer12Page extends BaseFooter {
                   value: [
                     {
                       type: "string",
-                      key: "footerText",
+                      key: "navTitle",
                       displayer: "Text",
                       value: "Support",
                     },
                     {
                       type: "page",
-                      key: "path",
+                      key: "navNavigateTo",
                       displayer: "Navigate To",
                       value: "",
                     },
@@ -126,13 +150,13 @@ class Footer12Page extends BaseFooter {
                   value: [
                     {
                       type: "string",
-                      key: "footerText",
+                      key: "navTitle",
                       displayer: "Text",
                       value: "Products",
                     },
                     {
                       type: "page",
-                      key: "path",
+                      key: "navNavigateTo",
                       displayer: "Navigate To",
                       value: "",
                     },
@@ -145,13 +169,13 @@ class Footer12Page extends BaseFooter {
                   value: [
                     {
                       type: "string",
-                      key: "footerText",
+                      key: "navTitle",
                       displayer: "Text",
                       value: "Career",
                     },
                     {
                       type: "page",
-                      key: "path",
+                      key: "navNavigateTo",
                       displayer: "Navigate To",
                       value: "",
                     },
@@ -164,7 +188,7 @@ class Footer12Page extends BaseFooter {
         {
           type: "object",
           key: "footer-title",
-          displayer: "Footer Column",
+          displayer: "Footer",
           value: [
             {
               type: "string",
@@ -184,14 +208,14 @@ class Footer12Page extends BaseFooter {
                   value: [
                     {
                       type: "string",
-                      key: "footerText",
+                      key: "navTitle",
                       displayer: "Text",
                       value: "Customer Support",
                     },
                     {
                       type: "page",
                       displayer: "Navigate To",
-                      key: "path",
+                      key: "navNavigateTo",
                       value: "",
                     },
                   ],
@@ -203,13 +227,13 @@ class Footer12Page extends BaseFooter {
                   value: [
                     {
                       type: "string",
-                      key: "footerText",
+                      key: "navTitle",
                       displayer: "Text",
                       value: "Track Delivery",
                     },
                     {
                       type: "page",
-                      key: "path",
+                      key: "navNavigateTo",
                       displayer: "Navigate To",
                       value: "",
                     },
@@ -222,13 +246,13 @@ class Footer12Page extends BaseFooter {
                   value: [
                     {
                       type: "string",
-                      key: "footerText",
+                      key: "navTitle",
                       displayer: "Text",
                       value: "Terms & Conditions",
                     },
                     {
                       type: "page",
-                      key: "path",
+                      key: "navNavigateTo",
                       displayer: "Navigate To",
                       value: "",
                     },
@@ -241,13 +265,13 @@ class Footer12Page extends BaseFooter {
                   value: [
                     {
                       type: "string",
-                      key: "footerText",
+                      key: "navTitle",
                       displayer: "Text",
                       value: "Privacy Policy",
                     },
                     {
                       type: "page",
-                      key: "path",
+                      key: "navNavigateTo",
                       displayer: "Navigate To",
                       value: "",
                     },
@@ -260,7 +284,7 @@ class Footer12Page extends BaseFooter {
         {
           type: "object",
           key: "footer-title",
-          displayer: "Footer Column",
+          displayer: "Footer",
           value: [
             {
               type: "string",
@@ -280,14 +304,14 @@ class Footer12Page extends BaseFooter {
                   value: [
                     {
                       type: "string",
-                      key: "footerText",
+                      key: "navTitle",
                       displayer: "Text",
                       value: "Free Brochures",
                     },
                     {
                       type: "page",
                       displayer: "Navigate To",
-                      key: "path",
+                      key: "navNavigateTo",
                       value: "",
                     },
                   ],
@@ -299,13 +323,13 @@ class Footer12Page extends BaseFooter {
                   value: [
                     {
                       type: "string",
-                      key: "footerText",
+                      key: "navTitle",
                       displayer: "Text",
                       value: "Development Tutorial",
                     },
                     {
                       type: "page",
-                      key: "path",
+                      key: "navNavigateTo",
                       displayer: "Navigate To",
                       value: "",
                     },
@@ -318,13 +342,13 @@ class Footer12Page extends BaseFooter {
                   value: [
                     {
                       type: "string",
-                      key: "footerText",
+                      key: "navTitle",
                       displayer: "Text",
                       value: "How to - Blog",
                     },
                     {
                       type: "page",
-                      key: "path",
+                      key: "navNavigateTo",
                       displayer: "Navigate To",
                       value: "",
                     },
@@ -337,13 +361,13 @@ class Footer12Page extends BaseFooter {
                   value: [
                     {
                       type: "string",
-                      key: "footerText",
+                      key: "navTitle",
                       displayer: "Text",
                       value: "Youtube Playlist",
                     },
                     {
                       type: "page",
-                      key: "path",
+                      key: "navNavigateTo",
                       displayer: "Navigate To",
                       value: "",
                     },
@@ -372,8 +396,8 @@ class Footer12Page extends BaseFooter {
 
     this.addProp({
       type: "array",
-      key: "images",
-      displayer: "Images",
+      key: "media",
+      displayer: "Media",
       value: [
         {
           type: "object",
@@ -382,10 +406,10 @@ class Footer12Page extends BaseFooter {
           value: [
             {
               type: "media",
-              key: "image",
-              displayer: "Image",
+              key: "media",
+              displayer: "Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "icon"],
               },
               value: {
                 type: "image",
@@ -401,10 +425,10 @@ class Footer12Page extends BaseFooter {
           value: [
             {
               type: "media",
-              key: "image",
-              displayer: "Image",
+              key: "media",
+              displayer: "Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "icon"],
               },
               value: {
                 type: "image",
@@ -426,10 +450,10 @@ class Footer12Page extends BaseFooter {
           value: [
             {
               type: "media",
-              key: "image",
-              displayer: "Image",
+              key: "media",
+              displayer: "Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "icon"],
               },
               value: {
                 type: "image",
@@ -464,18 +488,23 @@ class Footer12Page extends BaseFooter {
 
   render() {
     const footer = this.castToObject<any[]>("footer");
-    const images = this.castToObject<any[]>("images");
+    const media = this.castToObject<any[]>("media");
     const logoObject = this.castToObject<any>("logo");
 
     const logo = logoObject?.logo;
     const logoUrl = logoObject?.logoUrl;
     const line = this.getPropValue("line");
+    const subtitleExist = this.castToString(this.getPropValue("subtitle"));
+    const titleExist = this.castToString(this.getPropValue("title"));
+    const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons") || [];
+    const hasRenderableButton = buttons.some((btn) => this.castToString(btn.text));
+
     const descriptionExist = this.castToString(this.getPropValue("description"));
     const footerText = this.getPropValue("footerText");
     const footerTextExist = this.castToString(footerText);
-    const imagesExist = images.length > 0;
+    const imagesExist = media.length > 0;
     const bottomExist = footerTextExist || imagesExist;
-    const headerExist = logo?.url || descriptionExist;
+    const headerExist = (logo?.url || logo?.name) || subtitleExist || titleExist || descriptionExist || hasRenderableButton;
     const upperExist = headerExist || footer.length > 0;
     const position = this.getPropValue("position");
 
@@ -483,19 +512,41 @@ class Footer12Page extends BaseFooter {
 
     return (
       <div className={`${this.decorateCSS("container")} ${position === "Absolute" ? this.decorateCSS("absolute") : ""} ${alignment === "center" ? this.decorateCSS("center-alignment") : ""}`}>
+        <div className={this.decorateCSS("footer-inner")}>
         {upperExist && (
           <Base.Container className={this.decorateCSS("first-container")}>
             <Base.MaxContent className={this.decorateCSS("first-max-content")}>
               {headerExist && (
                 <Base.VerticalContent className={this.decorateCSS("left")}>
-                  {logo?.url && (
+                  {(logo?.url || logo?.name) && (
                     <ComposerLink path={logoUrl}>
                       <div className={this.decorateCSS("logo")}>
-                        <Base.Media value={logo} className={this.decorateCSS("image")} />
+                        <Base.Media value={logo} className={`${this.decorateCSS("image")} ${logo?.type === "icon" ? this.decorateCSS("is-icon") : ""}`} />
                       </div>
                     </ComposerLink>
                   )}
+                  {subtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
+                  {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
                   {descriptionExist && <Base.P className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.P>}
+                  {hasRenderableButton && (
+                    <div className={this.decorateCSS("button-container")}>
+                      {buttons.map(
+                        (item: INPUTS.CastedButton, index: number) =>
+                          this.castToString(item.text) && (
+                            <ComposerLink key={index} path={item.url}>
+                              <Base.Button
+                                buttonType={item.type}
+                                className={this.decorateCSS("button")}
+                              >
+                                <Base.P className={this.decorateCSS("button-text")}>
+                                  {item.text}
+                                </Base.P>
+                              </Base.Button>
+                            </ComposerLink>
+                          )
+                      )}
+                    </div>
+                  )}
                 </Base.VerticalContent>
               )}
 
@@ -505,24 +556,28 @@ class Footer12Page extends BaseFooter {
                   const footerExist = footerTitleExist || item.footerText.length > 0;
                   return (
                     footerExist && (
-                      <div key={indexFooter} className={this.decorateCSS("list-group")}>
-                        {footerTitleExist && <Base.H4 className={this.decorateCSS("title")}>{item.footerTitle}</Base.H4>}
-                        {item.footerText.map((item: FooterTextValues, indexFooterText: number) => {
-                          const footerTextExist = this.castToString(item.footerText);
-                          return (
-                            footerTextExist && (
-                              <ComposerLink key={indexFooterText} path={item.path}>
-                                <Base.P 
-                                  className={this.decorateCSS("text")}
-                                  data-animation={item.path ? this.getPropValue("hoverAnimation").join(" ") : ""}
-                                >
-                                  {item.footerText}
-                                </Base.P>
-                              </ComposerLink>
-                            )
-                          );
-                        })}
-                      </div>
+                      <Base.VerticalContent key={indexFooter} className={this.decorateCSS("list-group")}>
+                        {footerTitleExist && <Base.H6 className={this.decorateCSS("title")}>{item.footerTitle}</Base.H6>}
+                        {item.footerText.length > 0 && (
+                          <Base.VerticalContent className={this.decorateCSS("text-container")}>
+                            {item.footerText.map((item: FooterTextValues, indexFooterText: number) => {
+                              const footerTextExist = this.castToString(item.navTitle);
+                              return (
+                                footerTextExist && (
+                                  <ComposerLink key={indexFooterText} path={item.navNavigateTo}>
+                                    <Base.P
+                                      className={this.decorateCSS("text")}
+                                      data-animation={item.navNavigateTo ? this.getPropValue("hoverAnimation").join(" ") : ""}
+                                    >
+                                      {item.navTitle}
+                                    </Base.P>
+                                  </ComposerLink>
+                                )
+                              );
+                            })}
+                          </Base.VerticalContent>
+                        )}
+                      </Base.VerticalContent>
                     )
                   );
                 })}
@@ -543,12 +598,12 @@ class Footer12Page extends BaseFooter {
                   </Base.P>}
                 {imagesExist && (
                   <div className={`${this.decorateCSS("image-container")} ${!footerTextExist && this.decorateCSS("full-width")}`}>
-                    {images.map((item: any, index: number) => {
+                    {media.map((item: any, index: number) => {
                       return (
-                        item.image && (
+                        item.media && (
                           <div className={this.decorateCSS("image-element")}>
                             <ComposerLink key={index} path={item.url}>
-                              <Base.Media value={item.image} className={this.decorateCSS("image")} />
+                              <Base.Media value={item.media} className={`${this.decorateCSS("image")} ${item.media?.type === "icon" ? this.decorateCSS("is-icon") : ""}`} />
                             </ComposerLink>
                           </div>
                         )
@@ -560,6 +615,7 @@ class Footer12Page extends BaseFooter {
             </Base.MaxContent>
           </Base.Container>
         )}
+        </div>
       </div>
     );
   }

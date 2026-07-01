@@ -3,6 +3,7 @@ import ComposerLink from "../../../composer-base-components/Link/ComposerLinkPro
 import { BaseFooter, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./footer8.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
+import { INPUTS } from "../../../custom-hooks/input-templates";
 
 
 type FooterValues = {
@@ -13,8 +14,8 @@ type FooterValues = {
 
 type FooterTextValues = {
   footerIcon: string;
-  nav_title: React.JSX.Element;
-  nav_navigate_to: string;
+  navTitle: React.JSX.Element;
+  navNavigateTo: string;
 };
 
 class Footer8Page extends BaseFooter {
@@ -40,7 +41,7 @@ class Footer8Page extends BaseFooter {
           key: "logo",
           displayer: "Logo",
           additionalParams: {
-            availableTypes: ["image"],
+            availableTypes: ["image", "icon"],
           },
           value: {
             type: "image",
@@ -58,9 +59,32 @@ class Footer8Page extends BaseFooter {
 
     this.addProp({
       type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "",
+    });
+
+    this.addProp({
+      type: "string",
+      key: "title",
+      displayer: "Title",
+      value: "",
+    });
+
+    this.addProp({
+      type: "string",
       key: "description",
       displayer: "Description",
-      value: "Imperdiet parturient eleifend scelerisque natoque parturient rutrum mus eros dis ullamcorper a ullamcorper.",
+      value: "Build websites faster with an Blinkpage",
+    });
+
+    this.addProp({
+      type: "array",
+      key: "buttons",
+      displayer: "Buttons",
+      value: [
+        INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+      ],
     });
 
     this.addProp({
@@ -71,7 +95,7 @@ class Footer8Page extends BaseFooter {
         {
           type: "object",
           key: "footer-title",
-          displayer: "Footer Column",
+          displayer: "Footer",
           value: [
             {
               type: "string",
@@ -91,14 +115,14 @@ class Footer8Page extends BaseFooter {
                   value: [
                     {
                       type: "string",
-                      key: "nav_title",
+                      key: "navTitle",
                       displayer: "Text",
                       value: "Contact",
                     },
                     {
                       type: "page",
                       displayer: "Navigate To",
-                      key: "nav_navigate_to",
+                      key: "navNavigateTo",
                       value: "",
                     },
                   ],
@@ -111,14 +135,14 @@ class Footer8Page extends BaseFooter {
                   value: [
                     {
                       type: "string",
-                      key: "nav_title",
+                      key: "navTitle",
                       displayer: "Text",
                       value: "Blog",
                     },
 
                     {
                       type: "page",
-                      key: "nav_navigate_to",
+                      key: "navNavigateTo",
                       displayer: "Navigate To",
                       value: "",
                     },
@@ -131,14 +155,14 @@ class Footer8Page extends BaseFooter {
                   value: [
                     {
                       type: "string",
-                      key: "nav_title",
+                      key: "navTitle",
                       displayer: "Text",
                       value: "Our Story",
                     },
 
                     {
                       type: "page",
-                      key: "nav_navigate_to",
+                      key: "navNavigateTo",
                       displayer: "Navigate To",
                       value: "",
                     },
@@ -151,14 +175,14 @@ class Footer8Page extends BaseFooter {
                   value: [
                     {
                       type: "string",
-                      key: "nav_title",
+                      key: "navTitle",
                       displayer: "Text",
                       value: "Careers",
                     },
 
                     {
                       type: "page",
-                      key: "nav_navigate_to",
+                      key: "navNavigateTo",
                       displayer: "Navigate To",
                       value: "",
                     },
@@ -171,7 +195,7 @@ class Footer8Page extends BaseFooter {
         {
           type: "object",
           key: "footer-title",
-          displayer: "Footer Column",
+          displayer: "Footer",
           value: [
             {
               type: "string",
@@ -191,14 +215,14 @@ class Footer8Page extends BaseFooter {
                   value: [
                     {
                       type: "string",
-                      key: "nav_title",
+                      key: "navTitle",
                       displayer: "Text",
                       value: "Press",
                     },
                     {
                       type: "page",
                       displayer: "Navigate To",
-                      key: "nav_navigate_to",
+                      key: "navNavigateTo",
                       value: "",
                     },
                   ],
@@ -211,14 +235,14 @@ class Footer8Page extends BaseFooter {
                   value: [
                     {
                       type: "string",
-                      key: "nav_title",
+                      key: "navTitle",
                       displayer: "Text",
                       value: "Brand Assets",
                     },
 
                     {
                       type: "page",
-                      key: "nav_navigate_to",
+                      key: "navNavigateTo",
                       displayer: "Navigate To",
                       value: "",
                     },
@@ -231,14 +255,14 @@ class Footer8Page extends BaseFooter {
                   value: [
                     {
                       type: "string",
-                      key: "nav_title",
+                      key: "navTitle",
                       displayer: "Text",
                       value: "Changelog",
                     },
 
                     {
                       type: "page",
-                      key: "nav_navigate_to",
+                      key: "navNavigateTo",
                       displayer: "Navigate To",
                       value: "",
                     },
@@ -251,14 +275,14 @@ class Footer8Page extends BaseFooter {
                   value: [
                     {
                       type: "string",
-                      key: "nav_title",
+                      key: "navTitle",
                       displayer: "Text",
                       value: "Help centre",
                     },
 
                     {
                       type: "page",
-                      key: "nav_navigate_to",
+                      key: "navNavigateTo",
                       displayer: "Navigate To",
                       value: "",
                     },
@@ -271,7 +295,7 @@ class Footer8Page extends BaseFooter {
         {
           type: "object",
           key: "footer-title",
-          displayer: "Footer Column",
+          displayer: "Footer",
           value: [
             {
               type: "string",
@@ -291,14 +315,14 @@ class Footer8Page extends BaseFooter {
                   value: [
                     {
                       type: "string",
-                      key: "nav_title",
+                      key: "navTitle",
                       displayer: "Text",
                       value: "Documentation",
                     },
                     {
                       type: "page",
                       displayer: "Navigate To",
-                      key: "nav_navigate_to",
+                      key: "navNavigateTo",
                       value: "",
                     },
                   ],
@@ -310,13 +334,13 @@ class Footer8Page extends BaseFooter {
                   value: [
                     {
                       type: "string",
-                      key: "nav_title",
+                      key: "navTitle",
                       displayer: "Text",
                       value: "Tutorials",
                     },
                     {
                       type: "page",
-                      key: "nav_navigate_to",
+                      key: "navNavigateTo",
                       displayer: "Navigate To",
                       value: "",
                     },
@@ -329,13 +353,13 @@ class Footer8Page extends BaseFooter {
                   value: [
                     {
                       type: "string",
-                      key: "nav_title",
+                      key: "navTitle",
                       displayer: "Text",
                       value: "API Reference",
                     },
                     {
                       type: "page",
-                      key: "nav_navigate_to",
+                      key: "navNavigateTo",
                       displayer: "Navigate To",
                       value: "",
                     },
@@ -348,7 +372,7 @@ class Footer8Page extends BaseFooter {
         {
           type: "object",
           key: "footer-title",
-          displayer: "Footer Column",
+          displayer: "Footer",
           value: [
             {
               type: "string",
@@ -368,15 +392,15 @@ class Footer8Page extends BaseFooter {
                   value: [
                     {
                       type: "string",
-                      key: "nav_title",
+                      key: "navTitle",
                       displayer: "Text",
                       value: "Support",
                     },
                     {
                       type: "page",
                       displayer: "Navigate To",
-                      key: "nav_navigate_to",
-                      value: "",
+                      key: "navNavigateTo",
+                      value: "asdasd",
                     },
                   ],
                 },
@@ -387,13 +411,13 @@ class Footer8Page extends BaseFooter {
                   value: [
                     {
                       type: "string",
-                      key: "nav_title",
+                      key: "navTitle",
                       displayer: "Text",
                       value: "Feedback",
                     },
                     {
                       type: "page",
-                      key: "nav_navigate_to",
+                      key: "navNavigateTo",
                       displayer: "Navigate To",
                       value: "",
                     },
@@ -406,13 +430,13 @@ class Footer8Page extends BaseFooter {
                   value: [
                     {
                       type: "string",
-                      key: "nav_title",
+                      key: "navTitle",
                       displayer: "Text",
                       value: "Live Chat",
                     },
                     {
                       type: "page",
-                      key: "nav_navigate_to",
+                      key: "navNavigateTo",
                       displayer: "Navigate To",
                       value: "",
                     },
@@ -427,8 +451,8 @@ class Footer8Page extends BaseFooter {
 
     this.addProp({
       type: "string",
-      key: "bottomText",
-      displayer: "Bottom Text",
+      key: "footerText",
+      displayer: "Footer Text",
       value: "Composer by Blinkpage. All rights reserved.",
     });
 
@@ -481,7 +505,7 @@ class Footer8Page extends BaseFooter {
     this.addProp({
       type: "array",
       key: "socials",
-      displayer: "Social Items",
+      displayer: "Social Media Items",
       value: [
         {
           type: "object",
@@ -493,7 +517,7 @@ class Footer8Page extends BaseFooter {
               key: "icon",
               displayer: "Icon",
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon", "image"],
               },
               value: {
                 type: "icon",
@@ -524,7 +548,7 @@ class Footer8Page extends BaseFooter {
               key: "icon",
               displayer: "Icon",
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon", "image"],
               },
               value: {
                 type: "icon",
@@ -555,7 +579,7 @@ class Footer8Page extends BaseFooter {
               key: "icon",
               displayer: "Icon",
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon", "image"],
               },
               value: {
                 type: "icon",
@@ -603,22 +627,57 @@ class Footer8Page extends BaseFooter {
     const logo = logoObject?.logo;
     const logoUrl = logoObject?.logoUrl;
 
-    const bottomTextExist = this.castToString(this.getPropValue("bottomText"));
+    const subtitleExist = this.castToString(this.getPropValue("subtitle"));
+    const titleExist = this.castToString(this.getPropValue("title"));
+    const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons") || [];
+    const hasRenderableButton = buttons.some((btn) => this.castToString(btn.text));
+
+    const footerTextExist = this.castToString(this.getPropValue("footerText"));
+    const descriptionExist = this.castToString(this.getPropValue("description"));
+
+    const headerExist = (logo?.url || logo?.name) || subtitleExist || titleExist || descriptionExist || hasRenderableButton;
 
     const position = this.getPropValue("position");
+    const alignment = Base.getContentAlignment();
 
     return (
       <Base.Container className={`${this.decorateCSS("container")} ${position === "Absolute" ? this.decorateCSS("absolute") : ""}`}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("footer-page")}>
+          <div className={`${this.decorateCSS("footer-page")} ${alignment === "left" ? this.decorateCSS("left-alignment") : ""} ${alignment === "center" ? this.decorateCSS("center-alignment") : ""}`}>
             {
               <div className={this.decorateCSS("items")}>
-                {logo?.url && (
-                  <div className={this.decorateCSS("header")}>
-                    <ComposerLink path={logoUrl}>
-                      <Base.Media value={logo} className={this.decorateCSS("image")} />
-                    </ComposerLink>
-                  </div>
+                {headerExist && (
+                  <Base.VerticalContent className={this.decorateCSS("header")}>
+                    {(logo?.url || logo?.name) && (
+                      <div className={this.decorateCSS("logo-container")}>
+                        <ComposerLink path={logoUrl}>
+                          <Base.Media value={logo} className={`${this.decorateCSS("image")} ${logo?.type === "icon" ? this.decorateCSS("is-icon") : ""}`} />
+                        </ComposerLink>
+                      </div>
+                    )}
+                    {subtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
+                    {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
+                    {descriptionExist && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
+                    {hasRenderableButton && (
+                      <div className={this.decorateCSS("button-container")}>
+                        {buttons.map(
+                          (item: INPUTS.CastedButton, index: number) =>
+                            this.castToString(item.text) && (
+                              <ComposerLink key={index} path={item.url}>
+                                <Base.Button
+                                  buttonType={item.type}
+                                  className={this.decorateCSS("button")}
+                                >
+                                  <Base.P className={this.decorateCSS("button-text")}>
+                                    {item.text}
+                                  </Base.P>
+                                </Base.Button>
+                              </ComposerLink>
+                            )
+                        )}
+                      </div>
+                    )}
+                  </Base.VerticalContent>
                 )}
 
                 {footer.length > 0 &&
@@ -628,21 +687,21 @@ class Footer8Page extends BaseFooter {
                     const listExist = footerTitleExist || footerTextExist;
                     return (
                       listExist && (
-                        <div key={indexFooter} className={this.decorateCSS("list-group")}>
-                          {footerTitleExist && <Base.H3 className={this.decorateCSS("title")}>{item.footerTitle}</Base.H3>}
+                        <Base.VerticalContent key={indexFooter} className={this.decorateCSS("list-group")}>
+                          {footerTitleExist && <Base.H6 className={this.decorateCSS("column-title")}>{item.footerTitle}</Base.H6>}
                           {item.footerText.length > 0 && (
                             <Base.VerticalContent className={this.decorateCSS("text-container")}>
                               {item.footerText.map((v: FooterTextValues, indexFooterText: number) => {
-                                const footerTextExist = this.castToString(v.nav_title);
+                                const footerTextExist = this.castToString(v.navTitle);
                                 const elementExist = footerTextExist;
                                 return (
                                   elementExist && (
-                                    <ComposerLink key={indexFooterText} path={v.nav_navigate_to}>
-                                      <div 
-                                        className={`${this.decorateCSS("element")} ${v.nav_navigate_to && this.decorateCSS("has-path")}`}
-                                        data-animation={v.nav_navigate_to ? this.getPropValue("hoverAnimation").join(" ") : ""}
+                                    <ComposerLink key={indexFooterText} path={v.navNavigateTo}>
+                                      <div
+                                        className={`${this.decorateCSS("element")} ${v.navNavigateTo && this.decorateCSS("has-path")}`}
+                                        data-animation={v.navNavigateTo ? this.getPropValue("hoverAnimation").join(" ") : ""}
                                       >
-                                        {footerTextExist && <Base.P className={this.decorateCSS("text")}>{v.nav_title}</Base.P>}
+                                        {footerTextExist && <Base.P className={this.decorateCSS("text")}>{v.navTitle}</Base.P>}
                                       </div>
                                     </ComposerLink>
                                   )
@@ -650,16 +709,16 @@ class Footer8Page extends BaseFooter {
                               })}
                             </Base.VerticalContent>
                           )}
-                        </div>
+                        </Base.VerticalContent>
                       )
                     );
                   })}
               </div>
             }
 
-            {(bottomTextExist || links.length > 0 || socials.length > 0) && (
+            {(footerTextExist || links.length > 0 || socials.length > 0) && (
               <div className={this.decorateCSS("footer-bottom")}>
-                {bottomTextExist && <Base.P className={this.decorateCSS("bottom-text")}>{this.getPropValue("bottomText")}</Base.P>}
+                {footerTextExist && <Base.P className={this.decorateCSS("bottom-text")}>{this.getPropValue("footerText")}</Base.P>}
 
                 <div className={this.decorateCSS("right-wrapper")}>
                   {links.length > 0 && (
@@ -693,7 +752,7 @@ class Footer8Page extends BaseFooter {
                                 className={`${this.decorateCSS("socials-element")} ${this.decorateCSS("socials-element")}`}
                                 data-animation={item.url ? this.getPropValue("hoverAnimation").join(" ") : ""}
                               >
-                                <Base.Media value={item.icon} className={this.decorateCSS("icon")} />
+                                <Base.Media value={item.icon} className={`${this.decorateCSS("icon")} ${item.icon?.type === "icon" ? this.decorateCSS("is-icon") : ""}`} />
                                 <Base.P className={this.decorateCSS("socials-text")}>{item.text}</Base.P>
                               </div>
                             </ComposerLink>

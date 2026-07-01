@@ -3,6 +3,7 @@ import ComposerLink from "../../../composer-base-components/Link/ComposerLinkPro
 import { BaseFooter } from "../../EditorComponent";
 import styles from "./footer6.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
+import { INPUTS } from "../../../custom-hooks/input-templates";
 
 type FooterValues = {
   footerTitle: React.JSX.Element;
@@ -10,8 +11,8 @@ type FooterValues = {
 };
 
 type FooterTextValues = {
-  footerText: React.JSX.Element;
-  path: string;
+  navTitle: React.JSX.Element;
+  navNavigateTo: string;
 };
 
 class Footer6Page extends BaseFooter {
@@ -43,6 +44,20 @@ class Footer6Page extends BaseFooter {
     });
 
     this.addProp({
+      type: "string",
+      key: "description",
+      displayer: "Description",
+      value: "",
+    });
+
+    this.addProp({
+      type: "array",
+      key: "buttons",
+      displayer: "Buttons",
+      value: [INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary")],
+    });
+
+    this.addProp({
       type: "array",
       key: "footer",
       displayer: "Footer",
@@ -50,7 +65,7 @@ class Footer6Page extends BaseFooter {
         {
           type: "object",
           key: "footer-title",
-          displayer: "Footer Column",
+          displayer: "Footer",
           value: [
             {
               type: "string",
@@ -70,14 +85,14 @@ class Footer6Page extends BaseFooter {
                   value: [
                     {
                       type: "string",
-                      key: "footerText",
+                      key: "navTitle",
                       displayer: "Text",
                       value: "About",
                     },
                     {
                       type: "page",
                       displayer: "Navigate To",
-                      key: "path",
+                      key: "navNavigateTo",
                       value: "",
                     },
                   ],
@@ -89,14 +104,14 @@ class Footer6Page extends BaseFooter {
                   value: [
                     {
                       type: "string",
-                      key: "footerText",
+                      key: "navTitle",
                       displayer: "Text",
                       value: "News",
                     },
                     {
                       type: "page",
                       displayer: "Navigate To",
-                      key: "path",
+                      key: "navNavigateTo",
                       value: "",
                     },
                   ],
@@ -108,14 +123,14 @@ class Footer6Page extends BaseFooter {
                   value: [
                     {
                       type: "string",
-                      key: "footerText",
+                      key: "navTitle",
                       displayer: "Text",
                       value: "Contact",
                     },
                     {
                       type: "page",
                       displayer: "Navigate To",
-                      key: "path",
+                      key: "navNavigateTo",
                       value: "",
                     },
                   ],
@@ -127,7 +142,7 @@ class Footer6Page extends BaseFooter {
         {
           type: "object",
           key: "footer-title",
-          displayer: "Footer Column",
+          displayer: "Footer",
           value: [
             {
               type: "string",
@@ -147,14 +162,14 @@ class Footer6Page extends BaseFooter {
                   value: [
                     {
                       type: "string",
-                      key: "footerText",
+                      key: "navTitle",
                       displayer: "Text",
                       value: "Care+ Family Parham Bridges Canton Jackson, MS 39211",
                     },
                     {
                       type: "page",
                       displayer: "Navigate To",
-                      key: "path",
+                      key: "navNavigateTo",
                       value: "",
                     },
                   ],
@@ -166,14 +181,14 @@ class Footer6Page extends BaseFooter {
                   value: [
                     {
                       type: "string",
-                      key: "footerText",
+                      key: "navTitle",
                       displayer: "Text",
                       value: "+1 601 978 2212",
                     },
                     {
                       type: "page",
                       displayer: "Navigate To",
-                      key: "path",
+                      key: "navNavigateTo",
                       value: "",
                     },
                   ],
@@ -185,14 +200,14 @@ class Footer6Page extends BaseFooter {
                   value: [
                     {
                       type: "string",
-                      key: "footerText",
+                      key: "navTitle",
                       displayer: "Text",
                       value: "hello@ozark.com",
                     },
                     {
                       type: "page",
                       displayer: "Navigate To",
-                      key: "path",
+                      key: "navNavigateTo",
                       value: "",
                     },
                   ],
@@ -204,7 +219,7 @@ class Footer6Page extends BaseFooter {
         {
           type: "object",
           key: "footer-title",
-          displayer: "Footer Column",
+          displayer: "Footer",
           value: [
             {
               type: "string",
@@ -224,14 +239,14 @@ class Footer6Page extends BaseFooter {
                   value: [
                     {
                       type: "string",
-                      key: "footerText",
+                      key: "navTitle",
                       displayer: "Text",
                       value: "Facebook",
                     },
                     {
                       type: "page",
                       displayer: "Navigate To",
-                      key: "path",
+                      key: "navNavigateTo",
                       value: "",
                     },
                   ],
@@ -243,14 +258,14 @@ class Footer6Page extends BaseFooter {
                   value: [
                     {
                       type: "string",
-                      key: "footerText",
+                      key: "navTitle",
                       displayer: "Text",
                       value: "Twitter",
                     },
                     {
                       type: "page",
                       displayer: "Navigate To",
-                      key: "path",
+                      key: "navNavigateTo",
                       value: "",
                     },
                   ],
@@ -262,14 +277,14 @@ class Footer6Page extends BaseFooter {
                   value: [
                     {
                       type: "string",
-                      key: "footerText",
+                      key: "navTitle",
                       displayer: "Text",
                       value: "Instagram",
                     },
                     {
                       type: "page",
                       displayer: "Navigate To",
-                      key: "path",
+                      key: "navNavigateTo",
                       value: "",
                     },
                   ],
@@ -283,7 +298,7 @@ class Footer6Page extends BaseFooter {
 
     this.addProp({
       type: "string",
-      key: "footerDescription",
+      key: "footerText",
       displayer: "Footer Text",
       value: "2024 © Made with by Blinkpage.",
     });
@@ -309,25 +324,43 @@ class Footer6Page extends BaseFooter {
 
     const subtitleExist = this.castToString(subtitle);
     const titleExist = this.castToString(title);
+    const descriptionExist = this.castToString(this.getPropValue("description"));
+
+    const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
+    const buttonsExist = buttons.some((btn) => this.castToString(btn?.text));
+    const headerExist = subtitleExist || titleExist || descriptionExist || buttonsExist;
 
     const footer = this.castToObject<any[]>("footer");
 
-    const footerDescription = this.getPropValue("footerDescription");
-    const footerDescriptionExist = this.castToString(footerDescription);
+    const footerText = this.getPropValue("footerText");
+    const footerTextExist = this.castToString(footerText);
 
     const position = this.getPropValue("position");
 
     return (
       <Base.Container className={`${this.decorateCSS("container")} ${position === "Absolute" ? this.decorateCSS("absolute") : ""}`}>
-        <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <Base.VerticalContent className={this.decorateCSS("footer-page")}>
-            {(subtitleExist || titleExist) && (
+        <Base.MaxContent className={this.decorateCSS("max-content")}>          <div className={this.decorateCSS("footer-page")}>
+            {headerExist && (
               <Base.VerticalContent className={this.decorateCSS("header")}>
                 {subtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{subtitle}</Base.SectionSubTitle>}
                 {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>}
+                {descriptionExist && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
+                {buttonsExist && (
+                  <div className={this.decorateCSS("buttons")}>
+                    {buttons.map((btn: INPUTS.CastedButton, btnIndex: number) =>
+                      this.castToString(btn?.text) ? (
+                        <ComposerLink key={btnIndex} path={btn.url} className={this.decorateCSS("button-link")}>
+                          <Base.Button buttonType={btn.type} className={this.decorateCSS("button")}>
+                            <Base.P className={this.decorateCSS("button-text")}>{btn.text}</Base.P>
+                          </Base.Button>
+                        </ComposerLink>
+                      ) : null
+                    )}
+                  </div>
+                )}
               </Base.VerticalContent>
             )}
-
+ 
             <div className={this.decorateCSS("middle-container")}>
               {footer.length > 0 &&
                 footer.map((item: FooterValues, indexFooter: number) => {
@@ -335,34 +368,39 @@ class Footer6Page extends BaseFooter {
                   const footerExist = footerTitleExist || item.footerText.length > 0;
                   return (
                     footerExist && (
-                      <div key={indexFooter} className={this.decorateCSS("list-group")}>
-                        {footerTitleExist && <Base.H3 className={this.decorateCSS("list-title")}>{item.footerTitle}</Base.H3>}
-                        {item.footerText.length > 0 &&
-                          item.footerText.map((item: FooterTextValues, indexFooterText: number) => {
-                            const footerTextExist = this.castToString(item.footerText);
-                            return (
-                              footerTextExist && (
-                                <ComposerLink key={indexFooterText} path={item.path}>
-                                  <Base.P 
-                                    className={this.decorateCSS("text")}
-                                    data-animation={item.path ? this.getPropValue("hoverAnimation").join(" ") : ""}
-                                  >
-                                    {item.footerText}
-                                  </Base.P>
-                                </ComposerLink>
-                              )
-                            );
-                          })}
-                      </div>
+                      <Base.VerticalContent key={indexFooter} className={this.decorateCSS("list-group")}>
+                        {footerTitleExist && <Base.H6 className={this.decorateCSS("list-title")}>{item.footerTitle}</Base.H6>}
+                        {item.footerText.length > 0 && (
+                          <Base.VerticalContent className={this.decorateCSS("text-container")}>
+                            {item.footerText.map((v: FooterTextValues, indexFooterText: number) => {
+                              const footerTextExist = this.castToString(v.navTitle);
+                              const titleStr = this.castToString(item.footerTitle).toLowerCase();
+                              const isAddressColumn = titleStr.includes("address") || titleStr.includes("adres") || titleStr.includes("office") || titleStr.includes("ofis");
+                              return (
+                                footerTextExist && (
+                                  <ComposerLink key={indexFooterText} path={v.navNavigateTo} className={isAddressColumn && indexFooterText === 0 ? this.decorateCSS("address-link") : ""}>
+                                    <Base.P
+                                      className={this.decorateCSS("text")}
+                                      data-animation={v.navNavigateTo ? this.getPropValue("hoverAnimation").join(" ") : ""}
+                                    >
+                                      {v.navTitle}
+                                    </Base.P>
+                                  </ComposerLink>
+                                )
+                              );
+                            })}
+                          </Base.VerticalContent>
+                        )}
+                      </Base.VerticalContent>
                     )
                   );
                 })}
             </div>
-
-            {footerDescriptionExist && (
-              <Base.P className={this.decorateCSS("bottom-text")}>{footerDescription}</Base.P>
+ 
+            {footerTextExist && (
+              <Base.P className={this.decorateCSS("bottom-text")}>{footerText}</Base.P>
             )}
-          </Base.VerticalContent>
+          </div>
         </Base.MaxContent>
       </Base.Container>
     );

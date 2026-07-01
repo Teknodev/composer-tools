@@ -1,16 +1,22 @@
-@use "../../../../composer-tools//composer-base-components//base//utitilities/viewports.module.scss" as *;
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
   width: 100%;
 
   &.absolute {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: transparent;
+    position: relative;
+    height: 0;
+    overflow: visible;
+    z-index: 10;
 
-    .max-content {
+    > .max-content {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      width: 100%;
+      background: transparent;
+
       .footer-page {
         .first-container {
           background: transparent;
@@ -30,7 +36,7 @@
       flex-direction: column;
 
       .first-container {
-        padding: 80px var(--composer-gap-xl) var(--composer-gap-md) var(--composer-gap-xl) !important;
+        padding: 120px 60px 20px 60px !important;
         .first-max-content {
             .items {
               display: flex;
@@ -39,18 +45,7 @@
               width: 100%;
               gap: var(--composer-gap-lg);
 
-              &.center-alignment {
-                justify-content: center;
-                text-align: center;
-
-                .header {
-                  align-items: center;
-
-                  .description {
-                    text-align: center;
-                  }
-                }
-              }            .header,
+            .header,
             .list-group {
               flex: 1;
               min-width: 200px;
@@ -61,20 +56,46 @@
             .header {
               display: flex;
               flex-direction: column;
-              align-items: baseline;
-              gap: var(--composer-gap-md);
+              align-items: flex-start !important;
+
+              .subtitle,
+              .title {
+                text-align: left !important;
+                margin-left:  0;
+                margin-right: auto;
+              }
 
               .logo {
                 .image {
                   width: 200px;
-                  height: var(--composer-gap-lg);
+                  height: 40px;
                   object-fit: cover;
+
+                  &.is-icon {
+                    font-size: 2.5rem;
+                    width: 40px;
+                    height: 40px;
+                    color: var(--composer-font-color-primary);
+                  }
                 }
               }
 
               .description {
-                text-align: left;
+                text-align: left !important;
                 color: var(--composer-font-color-primary);
+              }
+
+              .button-container {
+                display: flex;
+                flex-wrap: wrap;
+                gap: var(--composer-gap-sm);
+                align-items: flex-start;
+
+                .button {
+                  .button-text {
+                    content: "";
+                  }
+                }
               }
 
               .socials-container {
@@ -127,36 +148,17 @@
               display: flex;
               flex-direction: column;
               justify-content: flex-start;
-              align-items: flex-start;
+              align-items: flex-start !important;
               gap: var(--composer-gap-md);
-
-              &.center-alignment {
-                align-items: center;
-
-                .title {
-                  text-align: center;
-                }
-
-                .text-container {
-                  align-items: center;
-
-                  .element {
-                    justify-content: center;
-
-                    .text {
-                      text-align: center;
-                    }
-                  }
-                }
-              }
 
               .title {
                 color: var(--composer-font-color-primary);
+                text-align: left !important;
               }
 
               .text-container {
-                gap: var(--composer-gap-xs);
                 width: 100%;
+                align-items: flex-start !important;
 
                 .element {
                   display: flex;
@@ -165,7 +167,7 @@
                   transition: all 0.3s ease;
 
                   .text {
-                    color: var(--composer-font-color-primary);
+                    color: var(--composer-tertiary-color);
                     text-align: left;
                   }
 
@@ -208,13 +210,13 @@
       }
 
       .line {
-        border-top: 1px solid rgb(var(--composer-font-color-primary-rgb), 0.5);
+        border-top: 1px solid color-mix(in srgb, var(--composer-font-color-primary) 50%, transparent);
         width: 100%;
         height: 1px;
       }
 
       .second-container {
-        padding: var(--composer-gap-md) var(--composer-gap-xl) !important;
+        padding: var(--composer-gap-md) 60px var(--composer-gap-md) 60px !important;
 
         .second-max-content {
           .footer-bottom {
@@ -283,63 +285,11 @@
   .container {
     .max-content {
       .footer-page {
-        flex-direction: column;
-
         .first-container {
-          .first-max-content {
-            .items {
-              .header,
-              .list-group {
-                flex: 1;
-                min-width: 300px;
-                max-width: 310px;
-                width: 100%;
-              }
-
-              .list-group {
-                display: flex;
-                flex-direction: column;
-                justify-content: flex-start;
-                align-items: flex-start;
-
-                .title {
-                  text-align: left;
-                }
-
-                .text-container {
-                  align-items: baseline;
-                  .element {
-                    display: flex;
-                    align-items: baseline;
-                    gap: var(--composer-gap-sm);
-                  }
-                }
-              }
-            }
-          }
+          padding: 100px var(--composer-gap-xl) var(--composer-gap-md) var(--composer-gap-xl) !important;
         }
-
         .second-container {
-          padding: var(--composer-gap-md) var(--composer-gap-lg) !important;
-
-          .second-max-content {
-            .footer-bottom {
-              flex-direction: column;
-              align-items: center;
-
-              .bottom-text {
-                width: fit-content;
-              }
-
-              &.center {
-                align-items: center;
-              }
-
-              .links {
-                content: "";
-              }
-            }
-          }
+          padding: var(--composer-gap-md) var(--composer-gap-xl) var(--composer-gap-md) var(--composer-gap-xl) !important;
         }
       }
     }
@@ -348,9 +298,69 @@
 
 @container (max-width: #{$composer-phone-width}) {
   .container {
+    &.center-alignment {
+      .max-content {
+        .footer-page {
+          .first-container {
+            .first-max-content {
+              .items {
+                .header,
+                .list-group {
+                  align-items: center !important;
+                }
+
+                .header {
+                  .logo {
+                    margin-left: auto !important;
+                    margin-right: auto !important;
+                  }
+
+                  .subtitle {
+                    text-align: center !important;
+                    margin-left: auto !important;
+                    margin-right: auto !important;
+                  }
+
+                  .title,
+                  .description {
+                    text-align: center !important;
+                  }
+
+                  .button-container {
+                    justify-content: center !important;
+                  }
+
+                  .socials-container {
+                    justify-content: center !important;
+                  }
+                }
+
+                .list-group {
+                  .title {
+                    text-align: center !important;
+                  }
+
+                  .text-container {
+                    align-items: center !important;
+
+                    .element {
+                      .text {
+                        text-align: center !important;
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
     .max-content {
       .footer-page {
         .first-container {
+          padding: var(--composer-gap-xl) 30px var(--composer-gap-md) 30px !important;
           .first-max-content {
             .items {
               flex-direction: column;
@@ -361,9 +371,33 @@
                 min-width: unset;
                 max-width: unset;
                 width: 100%;
-                align-items: center;
-                .description{
-                  text-align: center;
+                align-items: flex-start;
+              }
+
+              .header {
+                align-items: flex-start !important;
+
+                .subtitle {
+                  text-align: left !important;
+                  margin-left: 0 !important;
+                  margin-right: auto !important;
+                  transform: none !important;
+                  &::before {
+                    display: none !important;
+                  }
+                }
+
+                .title,
+                .description {
+                  text-align: left !important;
+                }
+
+                .button-container {
+                  justify-content: flex-start;
+                }
+
+                .socials-container {
+                  justify-content: flex-start;
                 }
               }
 
@@ -374,15 +408,16 @@
                   }
                 }
               }
-              .list-group{
+               .list-group{
+                align-items: flex-start !important;
                 .title{
-                  text-align: center;
+                  text-align: left !important;
                 }
                 .text-container{
-                  align-items: center;
+                  align-items: flex-start !important;
                   .element{
                     .text{
-                      text-align: center;
+                      text-align: left !important;
                     }
                   }
                 }
@@ -392,21 +427,26 @@
         }
 
         .second-container {
-          padding: var(--composer-gap-md) !important;
+          padding: 20px 30px 20px 30px !important;
 
           .second-max-content {
             .footer-bottom {
+              flex-direction: column;
               gap: var(--composer-gap-md);
               align-items: center;
+              justify-content: center;
+
               .bottom-text{
                 text-align: center;
               }
               .text {
                 margin: 0;
-                
               }
 
               .links {
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
                 .link-text {
                   margin: 0;
                 }

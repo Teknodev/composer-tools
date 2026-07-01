@@ -1,32 +1,48 @@
 @use "../../../../composer-tools//composer-base-components//base//utitilities/viewports.module.scss" as *;
 
 .container {
-  padding: 80px var(--composer-gap-xl) var(--composer-gap-md) var(--composer-gap-xl) !important;
+  padding: 120px 60px var(--composer-gap-md) 60px !important;
 
   &.absolute {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: transparent;
+    position: relative;
+    height: 0;
+    overflow: visible;
+    z-index: 10;
+    padding: 0 !important;
+
+    > .max-content {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      width: 100%;
+      background: transparent;
+      padding: 120px 60px var(--composer-gap-md) 60px !important;
+    }
   }
   .max-content {
     .footer-page {
-      justify-content: center;
-      align-items: center;
-      gap: var(--composer-gap-lg);
+      display: flex;
+      flex-direction: column;
+      gap: var(--composer-gap-xl);
       .header {
-        text-align: center;
-        align-items: center;
 
-        .subtitle, .title{
-          text-align: center;
+        .subtitle, 
+        .title, 
+        .description {
+          content: "";
         }
 
-        .subtitle{
-          transform: translateX(0);
-          &::before{
-            display: none;
+        .buttons {
+          display: flex;
+          flex-wrap: wrap;
+          gap: var(--composer-gap-sm);
+
+          .button {
+
+            .button-text {
+              content: "";
+            }
           }
         }
       }
@@ -41,17 +57,25 @@
         .list-group {
           flex: 1 1 290px;
           max-width: 290px;
-          text-align: center;
           display: flex;
           flex-direction: column;
-          gap: var(--composer-gap-sm);
+          gap: var(--composer-gap-md) !important;
 
           .list-title {
             color: var(--composer-font-color-primary);
           }
 
+          .text-container {
+            display: flex;
+            flex-direction: column;
+          }
+
+          .address-link {
+            margin-bottom: var(--composer-gap-md) !important;
+          }
+
           .text {
-            color: var(--composer-font-color-primary);
+            color: var(--composer-tertiary-color);
             position: relative;
             transition: all 0.3s ease;
             width: fit-content;
@@ -104,10 +128,10 @@
 
 @container (max-width: #{$composer-tablet-width}) {
   .container {
-    padding: 80px var(--composer-gap-lg) var(--composer-gap-md) var(--composer-gap-lg) !important;
+    padding: 100px var(--composer-gap-xl) var(--composer-gap-md) var(--composer-gap-xl) !important;
     .max-content {
       .footer-page {
-        gap: var(--composer-gap-md);
+        gap: var(--composer-gap-lg) !important;
 
         .middle-container {
           gap: var(--composer-gap-md);
@@ -124,28 +148,25 @@
 
 @container (max-width: #{$composer-phone-width}) {
   .container {
-    padding: 80px var(--composer-gap-md) var(--composer-gap-md) var(--composer-gap-md) !important;
+    padding: var(--composer-gap-xl) 30px var(--composer-gap-md) 30px !important;
     .max-content {
       .footer-page {
-        justify-content: center;
-        align-items: center;
-        gap: var(--composer-gap-sm);
+        gap: var(--composer-gap-md) !important;
 
         .middle-container {
           display: flex;
           flex-direction: column;
-          gap: var(--composer-gap-md);
+          gap: var(--composer-gap-lg);
+          width: 100%;
 
           .list-group {
             flex: 1;
             width: 100%;
-            align-items: center;
             max-width: 100%;
             display: flex;
             flex-direction: column;
-            justify-content: center;
-            .text, .list-title{
-              text-align: center;
+            .list-title {
+              font-size: 1.25rem !important;
             }
           }
         }
