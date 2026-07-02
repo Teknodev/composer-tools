@@ -85,7 +85,7 @@
 
         .slider-item {
           width: 100%;
-          min-height: 50vh;
+          min-height: 80vh;
           height: stretch;
           display: flex;
           justify-content: center;
@@ -175,7 +175,7 @@
 
     .slider-footer {
       border-top-left-radius: var(--composer-border-radius-md);
-      background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+      background-color: var(--composer-html-background);
       display: flex;
       justify-content: center;
       align-items: stretch;
