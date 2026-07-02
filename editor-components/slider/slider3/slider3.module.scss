@@ -14,20 +14,14 @@
   }
 
   &.full {
-    .max-content {
-      .vertical-content {
-        padding: 0 !important;
-      }
-    }
-
     .slider-parent {
       .carousel {
         :global(.slick-prev) {
-          left: max(0px, 50% - var(--composer-content-width) / 2);
+          left: max(var(--composer-gap-xl), 50% - var(--composer-content-width) / 2);
         }
 
         :global(.slick-next) {
-          right: max(0px, 50% - var(--composer-content-width) / 2);
+          right: max(var(--composer-gap-xl), 50% - var(--composer-content-width) / 2);
         }
       }
     }
