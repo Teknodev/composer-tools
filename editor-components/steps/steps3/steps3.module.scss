@@ -39,6 +39,7 @@
           .card {
             .step-number-watermark {
               color: var(--composer-font-color-secondary);
+              font-weight: 800;
             }
 
             .card-content {
@@ -100,6 +101,10 @@
             .card-title {
               color: var(--composer-font-color-primary);
               text-align: left;
+            }
+
+            .card-title {
+              font-weight: 600;
             }
 
 
