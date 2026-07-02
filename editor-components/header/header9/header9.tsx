@@ -1,19 +1,48 @@
 import * as React from "react";
-import { BaseHeader } from "../../EditorComponent";
+import { BaseHeader, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./header9.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 import { INPUTS } from "../../../custom-hooks/input-templates";
 
 type StatItem = {
-  number: number;
-  suffix?: string;
-  label: string;
+  subtitle: React.ReactNode;
+  title: React.ReactNode;
+  description: React.ReactNode;
+  number: string;
+  prefix: string;
+  suffix: string;
 };
+
+interface BackgroundSettings {
+  componentBackground: TypeMediaInputValue;
+  overlay: boolean;
+}
+
+interface AnimationSettings {
+  statsAnimation: boolean;
+  animationDuration: number;
+}
 
 class Header9 extends BaseHeader {
   constructor(props?: any) {
     super(props, styles);
+
+    this.addProp({
+      type: "object",
+      key: "backgroundSettings",
+      displayer: "Background Media",
+      value: [
+        {
+          type: "media",
+          key: "componentBackground",
+          displayer: "Background Media",
+          additionalParams: { availableTypes: ["image"] },
+          value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/690cad863596a1002b203b24?alt=media" }
+        },
+        { type: "boolean", key: "overlay", displayer: "Overlay", value: true }
+      ]
+    });
 
     this.addProp({ type: "string", key: "subtitle", displayer: "Subtitle", value: "" });
     this.addProp({ type: "string", key: "title", displayer: "Title", value: "Instant access to trade,anytime and anywhere" });
@@ -26,16 +55,22 @@ class Header9 extends BaseHeader {
       value: [
         {
           type: "object", key: "stat", displayer: "Stat", value: [
-            { type: "string", key: "number", displayer: "Number", value: "10" },
+            { type: "string", key: "prefix", displayer: "Prefix", value: "" },
+            { type: "string", key: "number", displayer: "Value", value: "10" },
             { type: "string", key: "suffix", displayer: "Suffix", value: "k+" },
-            { type: "string", key: "label", displayer: "Label", value: "Active Users" },
+            { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
+            { type: "string", key: "title", displayer: "Title", value: "Active Users" },
+            { type: "string", key: "description", displayer: "Description", value: "" },
           ]
         },
         {
           type: "object", key: "stat", displayer: "Stat", value: [
-            { type: "string", key: "number", displayer: "Number", value: "0.9" },
+            { type: "string", key: "prefix", displayer: "Prefix", value: "" },
+            { type: "string", key: "number", displayer: "Value", value: "0.9" },
             { type: "string", key: "suffix", displayer: "Suffix", value: "%" },
-            { type: "string", key: "label", displayer: "Label", value: "Commission Fee" },
+            { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
+            { type: "string", key: "title", displayer: "Title", value: "Commission Fee" },
+            { type: "string", key: "description", displayer: "Description", value: "" },
           ]
         },
       ],
@@ -50,27 +85,43 @@ class Header9 extends BaseHeader {
       ],
     });
 
-    this.addProp({ type: "media", key: "componentBackground", displayer: "Background Image", additionalParams: { availableTypes: ["image"] }, value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/690cad863596a1002b203b24?alt=media" } });
-    this.addProp({ type: "boolean", key: "overlay", displayer: "Overlay", value: true });
-    this.addProp({ type: "boolean", key: "statsAnimation", displayer: "Stats Animation", value: true });
-    this.addProp({ type: "number", key: "animationDuration", displayer: "Number Animation Duration (ms)", value: 2000 });
+
+    this.addProp({
+      type: "object",
+      key: "animation",
+      displayer: "Animation",
+      value: [
+        { type: "boolean", key: "statsAnimation", displayer: "Stats Animation", value: true },
+        { type: "number", key: "animationDuration", displayer: "Animation Duration", value: 2000 }
+      ]
+    });
   }
 
   static getName(): string { return "Header 9"; }
 
   private AnimatedStat = ({ stat, item, animationDuration = 2000, statsAnimation, background }: { stat: StatItem; item: any; animationDuration?: number; statsAnimation: boolean; background: any }) => {
+    const cleanNumber = (stat.number || "").replace(/[^\d.]/g, "");
+    const targetNumber = parseFloat(cleanNumber);
+    const isEmptyNumber = cleanNumber === "" || isNaN(targetNumber);
+
     const formatNumber = (num: number, originalString: string): string => {
       const decimals = originalString.includes(".") ? (originalString.split(".")[1]?.length || 0) : 0;
       return decimals > 0 ? num.toFixed(decimals) : Math.floor(num).toString();
     };
 
-    const originalNumberString = String(this.castToString(item.getPropValue("number") || "0"));
-    const [animatedNumber, setAnimatedNumber] = React.useState<string>(statsAnimation ? "0" : formatNumber(stat.number, originalNumberString));
+    const originalNumberString = String(stat.number || "0");
+    const [animatedNumber, setAnimatedNumber] = React.useState<string>(
+      isEmptyNumber ? "" : statsAnimation ? "0" : formatNumber(targetNumber, originalNumberString)
+    );
     const intervalRef = React.useRef<NodeJS.Timeout | null>(null);
 
     React.useEffect(() => {
+      if (isEmptyNumber) {
+        setAnimatedNumber("");
+        return;
+      }
       if (!statsAnimation) {
-        setAnimatedNumber(formatNumber(stat.number, originalNumberString));
+        setAnimatedNumber(formatNumber(targetNumber, originalNumberString));
         return;
       }
 
@@ -81,14 +132,13 @@ class Header9 extends BaseHeader {
           clearInterval(intervalRef.current);
         }
       };
-    }, [stat.number, statsAnimation, animationDuration, originalNumberString]);
+    }, [targetNumber, statsAnimation, animationDuration, originalNumberString, isEmptyNumber]);
 
     const animateNumber = () => {
       if (intervalRef.current) {
         clearInterval(intervalRef.current);
       }
-
-      const targetNumber = stat.number;
+      if (isEmptyNumber || isNaN(targetNumber)) return;
 
       const steps = animationDuration / 30;
       let currentNumber = 0;
@@ -107,29 +157,52 @@ class Header9 extends BaseHeader {
       }, 30);
     };
 
-    const suffixExist = stat.suffix && stat.suffix !== "";
-    const numberExist = stat.number != null && !isNaN(stat.number) && (stat.number !== 0 || suffixExist);
-    const labelExist = stat.label && stat.label !== "";
-    const displayNumber = statsAnimation ? animatedNumber : (numberExist ? formatNumber(stat.number, originalNumberString) : "0");
+    const hasSubtitle = stat.subtitle && this.castToString(stat.subtitle);
+    const hasTitle = stat.title && this.castToString(stat.title);
+    const hasDescription = stat.description && this.castToString(stat.description);
+    const hasPrefix = stat.prefix && stat.prefix.trim() !== "";
+    const hasSuffix = stat.suffix && stat.suffix.trim() !== "";
+    const hasNumber = (stat.number && stat.number.trim() !== "") || hasPrefix || hasSuffix;
 
-    if (!numberExist && !suffixExist && !labelExist) return null;
+    if (!hasNumber && !hasTitle) return null;
 
     return (
       <div className={this.decorateCSS("stat")}>
-        {numberExist && (
+        {hasNumber && (
           <Base.H3 className={`${this.decorateCSS("stat-value")} ${background ? this.decorateCSS("with-bg") : ""}`}>
-            {displayNumber}
-            {stat.suffix && (
+            {hasPrefix && (
+              <span className={this.decorateCSS("stat-prefix")}>
+                {stat.prefix}
+              </span>
+            )}
+            <span className={this.decorateCSS("stat-number")}>
+              {animatedNumber}
+            </span>
+            {hasSuffix && (
               <span className={this.decorateCSS("stat-suffix")}>
                 {stat.suffix.replace(/<[^>]*>/g, '')}
               </span>
             )}
           </Base.H3>
         )}
-        {labelExist && (
-          <Base.P className={`${this.decorateCSS("stat-label")} ${background ? this.decorateCSS("with-bg") : ""}`}>
-            {item.getPropValue("label")}
-          </Base.P>
+        {(hasSubtitle || hasTitle || hasDescription) && (
+          <Base.VerticalContent className={this.decorateCSS("stat-vertical-content")}>
+            {hasSubtitle && (
+              <Base.H6 className={`${this.decorateCSS("stat-subtitle")} ${background ? this.decorateCSS("with-bg") : ""}`}>
+                {item.getPropValue("subtitle")}
+              </Base.H6>
+            )}
+            {hasTitle && (
+              <Base.P className={`${this.decorateCSS("stat-label")} ${background ? this.decorateCSS("with-bg") : ""}`}>
+                {item.getPropValue("title")}
+              </Base.P>
+            )}
+            {hasDescription && (
+              <Base.P className={`${this.decorateCSS("stat-description")} ${background ? this.decorateCSS("with-bg") : ""}`}>
+                {item.getPropValue("description")}
+              </Base.P>
+            )}
+          </Base.VerticalContent>
         )}
       </div>
     );
@@ -140,16 +213,20 @@ class Header9 extends BaseHeader {
     const description = this.getPropValue("description");
     const statsProp = this.getPropValue("stats");
     const stats = statsProp.map((item: any) => {
-      const numberString = String(this.castToString(item.getPropValue("number") || "0"));
-      const number = parseFloat(numberString.replace(/[^\d.]/g, '')) || 0;
-      const suffix = String(this.castToString(item.getPropValue("suffix")) || "");
-      const label = String(this.castToString(item.getPropValue("label")) || "");
-      return { number, suffix, label };
+      const subtitle = item.getPropValue("subtitle");
+      const itemTitle = item.getPropValue("title");
+      const itemDescription = item.getPropValue("description");
+      const number = this.castToString(item.getPropValue("number")) || "";
+      const prefix = this.castToString(item.getPropValue("prefix")) || "";
+      const suffix = this.castToString(item.getPropValue("suffix")) || "";
+      return { subtitle, title: itemTitle, description: itemDescription, number, prefix, suffix };
     });
     const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
-    const background = this.getPropValue("componentBackground");
-    const overlay = !!this.getPropValue("overlay");
-    const statsAnimation = !!this.getPropValue("statsAnimation");
+    const backgroundSettings = this.castToObject<BackgroundSettings>("backgroundSettings");
+    const background = backgroundSettings?.componentBackground;
+    const overlay = !!backgroundSettings?.overlay;
+    const animationSettings = this.castToObject<AnimationSettings>("animation") || { statsAnimation: true, animationDuration: 2000 };
+    const statsAnimation = !!animationSettings.statsAnimation;
     const alignment = Base.getContentAlignment();
     const subtitle = this.getPropValue("subtitle");
     const subtitleText = this.castToString(subtitle);
@@ -157,15 +234,15 @@ class Header9 extends BaseHeader {
     const titleText = this.castToString(title);
     const descriptionText = this.castToString(description);
     const hasHeader = titleText || descriptionText || buttons.some(button => this.castToString(button?.text));
-    const withBackground = !!background;
+    const withBackground = !!background?.url;
     const subtitleClasses = `${this.decorateCSS("subtitle")} ${withBackground && this.decorateCSS("with-bg")}`;
 
 
-    const containerStyle = { backgroundImage: `url('${background?.url || background || ""}')` } as React.CSSProperties;
-    const animationDuration = this.getPropValue("animationDuration") || 2000;
+    const containerStyle = { backgroundImage: `url('${background?.url || ""}')` } as React.CSSProperties;
+    const animationDuration = animationSettings?.animationDuration || 2000;
 
     return (
-      <Base.Container className={`${this.decorateCSS("container")} ${background ? this.decorateCSS("image-active") : ""} ${overlay && background ? this.decorateCSS("overlay-active") : ""}`} style={containerStyle}>
+      <Base.Container className={`${this.decorateCSS("container")} ${withBackground ? this.decorateCSS("image-active") : ""} ${overlay && withBackground ? this.decorateCSS("overlay-active") : ""}`} style={withBackground ? containerStyle : undefined}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={`${this.decorateCSS("wrapper")} ${alignment === "left" ? this.decorateCSS("alignment-left") : this.decorateCSS("alignment-center")}`}>
 
@@ -222,7 +299,7 @@ class Header9 extends BaseHeader {
                         item={item}
                         animationDuration={animationDuration}
                         statsAnimation={statsAnimation}
-                        background={background}
+                        background={withBackground}
                       />
                     );
                   })}

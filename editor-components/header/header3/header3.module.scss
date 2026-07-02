@@ -28,8 +28,13 @@
   position: relative;
   padding: 0 !important;
 
-  .max-content {
+  &.container.container {
+    padding: 0 !important;
+  }
+
+  .slider-parent-wrapper {
     position: relative;
+    width: 100%;
 
     .slider-parent {
       width: 100%;
@@ -60,16 +65,18 @@
           .overlay,
           .image-overlay {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            inset: 0;
             background-color: var(--composer-overlay-color);
             z-index: 1;
             pointer-events: none;
           }
 
-          .content {
+          .max-content {
+            position: relative;
+            width: 100%;
+            height: 100%;
+
+            .content {
             height: 70vh;
             width: 100%;
             position: relative;
@@ -85,8 +92,6 @@
             }
 
             .content-div {
-              max-width: var(--composer-content-width);
-              margin: 0 auto;
               display: flex;
               flex-direction: column;
               justify-content: center;
@@ -192,8 +197,8 @@
                   }
 
                   .nav-icon {
-                    width: 3rem;
-                    height: 3rem;
+                    width: 48px;
+                    height: 48px;
                     display: flex;
                     align-items: center;
                     justify-content: center;
@@ -271,20 +276,27 @@
               z-index: 1;
             }
           }
+          }
         }
       }
     }
 
-    .dots {
+    .dots-max-content {
       position: absolute;
-      display: flex !important;
-      flex-direction: column;
-      transform: translateY(-50%);
-      margin-right: var(--composer-gap-xl);
-      gap: var(--composer-gap-md) !important;
-      z-index: 5;
       right: 0;
+      left: 0;
       top: 30%;
+      transform: translateY(-50%);
+      pointer-events: none;
+      z-index: 5;
+
+      .dots {
+        position: absolute;
+        display: flex !important;
+        flex-direction: column;
+        gap: var(--composer-gap-md) !important;
+        right: var(--composer-gap-xl);
+        pointer-events: auto;
 
       .dot-item {
         margin: 0 !important;
@@ -322,7 +334,7 @@
       }
     }
 
-    &.has-background .dots {
+    &.has-background .dots-max-content .dots {
       .dot-item .dot-button {
         background: rgba(255, 255, 255, 0.5);
       }
@@ -421,4 +433,5 @@
       }
     }
   }
+}
 }

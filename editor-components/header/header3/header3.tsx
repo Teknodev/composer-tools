@@ -438,76 +438,79 @@ class Header3 extends BaseHeader {
     };
 
     return (
-      <Base.Container className={this.decorateCSS("container")}>
-        <Base.MaxContent className={`${this.decorateCSS("max-content")} ${anyImagesExist && this.decorateCSS("has-background")}`}>
+      <Base.Container className={this.decorateCSS("container")} isFull={true}>
+        <div className={`${this.decorateCSS("slider-parent-wrapper")} ${anyImagesExist && this.decorateCSS("has-background")}`}>
           <div className={this.decorateCSS("slider-parent")}>
             {cards?.length && cards?.length > 0 && (
               <ComposerSlider {...settings} className={this.decorateCSS("carousel")} ref={this.getComponentState("slider-ref")}>
                 {cards.map((item: Card, index: number) => {
                   return (this.castToString(item.subtitle) || this.castToString(item.title) || this.castToString(item.description) || this.castToString(item.button?.text) || item.media) && (
                     <div className={`${this.decorateCSS("slider-inner-div")} ${anyImagesExist && this.decorateCSS("has-background")}`} key={`sld-8-${index}`}>
-                      <div className={`${this.decorateCSS("content")} ${!anyImagesExist && this.decorateCSS("no-image")}`}>
-                        {item.componentBackground && (<Base.Media value={item.componentBackground} className={this.decorateCSS("bg-image")} />)}
-                        {shouldDisplayOverlay(index) === true && <div className={this.decorateCSS("overlay")}></div>}
-                        <div className={`${this.decorateCSS("content-div")} ${this.getComponentState("activeSlide") === index ? this.decorateCSS("fix-location") : ""}`}>
-                          {linesContainer && (
-                            <div className={this.decorateCSS("lines-container")}>
-                              <div className={this.decorateCSS("line-1")}></div>
-                              <div className={this.decorateCSS("line-2")}></div>
-                            </div>
-                          )}
-                          {this.castToString(item.subtitle) && (
-                            <div className={this.decorateCSS("subtitle-wrapper")}>
-                              <Base.SectionSubTitle className={`${this.decorateCSS("subtitle")} ${animation && this.getComponentState("activeSlide") === index ? this.decorateCSS("imageSubtitleAnimation") : ""}`}>
-                                {item.subtitle}
-                              </Base.SectionSubTitle>
-                            </div>
-                          )}
-                          {this.castToString(item.title) && (
-                            <div className={this.decorateCSS("title-wrapper")}>
-                              <Base.SectionTitle className={`${this.decorateCSS("title")} ${animation && this.getComponentState("activeSlide") === index ? this.decorateCSS("imageTitleAnimation") : ""}`}>
-                                {item.title}
-                              </Base.SectionTitle>
-                            </div>
-                          )}
-                          {this.castToString(item.description) && (
-                            <div className={this.decorateCSS("description-wrapper")}>
-                              <Base.SectionDescription className={`${this.decorateCSS("description")} ${animation && this.getComponentState("activeSlide") === index ? this.decorateCSS("imageDescriptionAnimation") : ""}`}>
-                                {item.description}
-                              </Base.SectionDescription>
-                            </div>
-                          )}
-                          {this.castToString(item.button?.text) && (
-                            <div className={`${this.decorateCSS("buttons")} ${animation && this.getComponentState("activeSlide") === index ? this.decorateCSS("animateButtons") : ""}`}>
-                              <ComposerLink path={item.button.url}>
-                                <Base.Button buttonType={item.button.type} className={`${this.decorateCSS("button")} ${animation && this.getComponentState("activeSlide") === index ? this.decorateCSS("animateButtons") : ""}`} >
-                                  <Base.P className={this.decorateCSS("button-text")}>{item.button.text}</Base.P>
-                                  {item.button.icon && (item.button.icon)?.name && (<Base.Media value={item.button.icon} className={this.decorateCSS("button-icon")} />)}
-                                </Base.Button>
-                              </ComposerLink>
-                            </div>
-                          )}
-                          {(leftNavButton || rightNavButton) && sliderSettings.arrows && (
-                            <div className={this.decorateCSS("nav-buttons")}>
-                              {leftNavButton && cards.length > 1 && (
-                                <Base.Button type="Bare" className={this.decorateCSS("nav-button")} onClick={() => { this.getComponentState("slider-ref").current.slickPrev(); }}>
-                                  <Base.Media value={leftNavButton} className={`${this.decorateCSS("nav-icon")} ${leftNavButton.type === "image" && this.decorateCSS("has-image")}`} />
-                                </Base.Button>
-                              )}
-                              {rightNavButton && cards.length > 1 && (
-                                <Base.Button type="Bare" className={this.decorateCSS("nav-button")} onClick={() => { this.getComponentState("slider-ref").current.slickNext(); }}>
-                                  <Base.Media value={rightNavButton} className={`${this.decorateCSS("nav-icon")} ${rightNavButton.type === "image" && this.decorateCSS("has-image")}`} />
-                                </Base.Button>
-                              )}
-                            </div>
-                          )}
+                      {item.componentBackground && (<Base.Media value={item.componentBackground} className={this.decorateCSS("bg-image")} />)}
+                      {shouldDisplayOverlay(index) === true && <div className={this.decorateCSS("overlay")}></div>}
+                      
+                      <Base.MaxContent className={this.decorateCSS("max-content")}>
+                        <div className={`${this.decorateCSS("content")} ${!anyImagesExist && this.decorateCSS("no-image")}`}>
+                          <div className={`${this.decorateCSS("content-div")} ${this.getComponentState("activeSlide") === index ? this.decorateCSS("fix-location") : ""}`}>
+                            {linesContainer && (
+                              <div className={this.decorateCSS("lines-container")}>
+                                <div className={this.decorateCSS("line-1")}></div>
+                                <div className={this.decorateCSS("line-2")}></div>
+                              </div>
+                            )}
+                            {this.castToString(item.subtitle) && (
+                              <div className={this.decorateCSS("subtitle-wrapper")}>
+                                <Base.SectionSubTitle className={`${this.decorateCSS("subtitle")} ${animation && this.getComponentState("activeSlide") === index ? this.decorateCSS("imageSubtitleAnimation") : ""}`}>
+                                  {item.subtitle}
+                                </Base.SectionSubTitle>
+                              </div>
+                            )}
+                            {this.castToString(item.title) && (
+                              <div className={this.decorateCSS("title-wrapper")}>
+                                <Base.SectionTitle className={`${this.decorateCSS("title")} ${animation && this.getComponentState("activeSlide") === index ? this.decorateCSS("imageTitleAnimation") : ""}`}>
+                                  {item.title}
+                                </Base.SectionTitle>
+                              </div>
+                            )}
+                            {this.castToString(item.description) && (
+                              <div className={this.decorateCSS("description-wrapper")}>
+                                <Base.SectionDescription className={`${this.decorateCSS("description")} ${animation && this.getComponentState("activeSlide") === index ? this.decorateCSS("imageDescriptionAnimation") : ""}`}>
+                                  {item.description}
+                                </Base.SectionDescription>
+                              </div>
+                            )}
+                            {this.castToString(item.button?.text) && (
+                              <div className={`${this.decorateCSS("buttons")} ${animation && this.getComponentState("activeSlide") === index ? this.decorateCSS("animateButtons") : ""}`}>
+                                <ComposerLink path={item.button.url}>
+                                  <Base.Button buttonType={item.button.type} className={`${this.decorateCSS("button")} ${animation && this.getComponentState("activeSlide") === index ? this.decorateCSS("animateButtons") : ""}`} >
+                                    <Base.P className={this.decorateCSS("button-text")}>{item.button.text}</Base.P>
+                                    {item.button.icon && (item.button.icon)?.name && (<Base.Media value={item.button.icon} className={this.decorateCSS("button-icon")} />)}
+                                  </Base.Button>
+                                </ComposerLink>
+                              </div>
+                            )}
+                            {(leftNavButton || rightNavButton) && sliderSettings.arrows && (
+                              <div className={this.decorateCSS("nav-buttons")}>
+                                {leftNavButton && cards.length > 1 && (
+                                  <Base.Button type="Bare" className={this.decorateCSS("nav-button")} onClick={() => { this.getComponentState("slider-ref").current.slickPrev(); }}>
+                                    <Base.Media value={leftNavButton} className={`${this.decorateCSS("nav-icon")} ${leftNavButton.type === "image" && this.decorateCSS("has-image")}`} />
+                                  </Base.Button>
+                                )}
+                                {rightNavButton && cards.length > 1 && (
+                                  <Base.Button type="Bare" className={this.decorateCSS("nav-button")} onClick={() => { this.getComponentState("slider-ref").current.slickNext(); }}>
+                                    <Base.Media value={rightNavButton} className={`${this.decorateCSS("nav-icon")} ${rightNavButton.type === "image" && this.decorateCSS("has-image")}`} />
+                                  </Base.Button>
+                                )}
+                              </div>
+                            )}
+                          </div>
                         </div>
-                      </div>
 
-                      <div className={this.decorateCSS("image")}>
-                        {item.media && (<Base.Media value={item.media} className={this.decorateCSS("bg-image")} />)}
-                        {shouldDisplayForegroundOverlay(index) === true && <div className={this.decorateCSS("image-overlay")}></div>}
-                      </div>
+                        <div className={this.decorateCSS("image")}>
+                          {item.media && (<Base.Media value={item.media} className={this.decorateCSS("bg-image")} />)}
+                          {shouldDisplayForegroundOverlay(index) === true && <div className={this.decorateCSS("image-overlay")}></div>}
+                        </div>
+                      </Base.MaxContent>
                     </div>
                   );
                 })}
@@ -515,15 +518,17 @@ class Header3 extends BaseHeader {
             )}
           </div>
           {cards.length > 1 && sliderSettings.dots && (
-            <div className={this.decorateCSS("dots")}>
-              {cards.map((_, index) => (
-                <div key={`dot-${index}`} className={`${this.decorateCSS("dot-item")} ${this.getComponentState("activeSlide") === index && this.decorateCSS("slick-active")}`} onClick={() => this.getComponentState("slider-ref").current.slickGoTo(index)}>
-                  <button className={this.decorateCSS("dot-button")} />
-                </div>
-              ))}
-            </div>
+            <Base.MaxContent className={this.decorateCSS("dots-max-content")}>
+              <div className={this.decorateCSS("dots")}>
+                {cards.map((_, index) => (
+                  <div key={`dot-${index}`} className={`${this.decorateCSS("dot-item")} ${this.getComponentState("activeSlide") === index && this.decorateCSS("slick-active")}`} onClick={() => this.getComponentState("slider-ref").current.slickGoTo(index)}>
+                    <button className={this.decorateCSS("dot-button")} />
+                  </div>
+                ))}
+              </div>
+            </Base.MaxContent>
           )}
-        </Base.MaxContent>
+        </div>
       </Base.Container>
     );
   }

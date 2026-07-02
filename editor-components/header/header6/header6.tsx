@@ -5,9 +5,40 @@ import { INPUTS } from "../../../custom-hooks/input-templates";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 import { TypeMediaInputValue } from "../../EditorComponent";
 
+interface BackgroundSettings {
+  componentBackground: TypeMediaInputValue;
+  overlay: boolean;
+}
+
 class Header6 extends BaseHeader {
   constructor(props?: any) {
     super(props, styles);
+
+    this.addProp({
+      type: "object",
+      key: "backgroundSettings",
+      displayer: "Background Media",
+      value: [
+        {
+          type: "media",
+          key: "componentBackground",
+          displayer: "Background Media",
+          additionalParams: {
+            availableTypes: ["image", "video"],
+          },
+          value: {
+            type: "image",
+            url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/690cc9f93596a1002b205a5f?alt=media",
+          },
+        },
+        {
+          type: "boolean",
+          key: "overlay",
+          displayer: "Overlay",
+          value: true,
+        }
+      ]
+    });
 
     this.addProp({
       type: "string",
@@ -32,36 +63,13 @@ class Header6 extends BaseHeader {
     });
 
     this.addProp({
-      type: "media",
-      key: "componentBackground",
-      displayer: "Media",
-      additionalParams: {
-        availableTypes: ["image", "video"],
-      },
-      value: {
-        type: "image",
-        url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/690cc9f93596a1002b205a5f?alt=media",
-      },
+      type: "array",
+      key: "buttons",
+      displayer: "Buttons",
+      value: [
+        INPUTS.BUTTON("button", "Button", "START FREE TRIAL", "", null, null, "Primary"),
+      ],
     });
-
-    this.addProp({
-      type: "boolean",
-      key: "overlay",
-      displayer: "Overlay",
-      value: true,
-    });
-
-    this.addProp(
-      INPUTS.BUTTON(
-        "button",
-        "Button",
-        "START FREE TRIAL",
-        "",
-        null,
-        null,
-        "Primary"
-      )
-    );
   }
 
   static getName(): string {
@@ -69,26 +77,30 @@ class Header6 extends BaseHeader {
   }
 
   render() {
-    const subtitle = this.castToString(this.getPropValue("subtitle")) || "";
-    const title = this.castToString(this.getPropValue("title")) || "";
-    const description =
-      this.castToString(this.getPropValue("description")) || "";
-    const coverImage = this.getPropValue("componentBackground");
-    const button = this.castToObject<any>("button");
-    const hasButton = !!(button && this.castToString(button.text));
+    const rawSubtitle = this.getPropValue("subtitle");
+    const rawTitle = this.getPropValue("title");
+    const rawDescription = this.getPropValue("description");
+    const subtitle = this.castToString(rawSubtitle);
+    const title = this.castToString(rawTitle);
+    const description = this.castToString(rawDescription);
+    const backgroundSettings = this.castToObject<BackgroundSettings>("backgroundSettings");
+    const coverImage = backgroundSettings?.componentBackground;
+    const hasMedia = !!coverImage?.url;
+    const enableOverlay = backgroundSettings?.overlay;
+    const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons") || [];
     const alignemnt = Base.getContentAlignment();
 
     return (
       <Base.Container
         className={`${this.decorateCSS("container")} ${
-          coverImage && this.decorateCSS("hasBackground")
+          hasMedia && this.decorateCSS("hasBackground")
         } ${
-          coverImage && this.getPropValue("overlay")
+          hasMedia && enableOverlay
             ? this.decorateCSS("overlay")
             : ""
         }`}
       >
-        {coverImage && (
+        {hasMedia && (
           <div className={this.decorateCSS("background-media")}>
             <Base.Media value={coverImage} className={this.decorateCSS("background-media-element")} />
           </div>
@@ -97,43 +109,48 @@ class Header6 extends BaseHeader {
           <Base.VerticalContent
             className={this.decorateCSS("vertical-content")}
           >
-            {subtitle && (
-              <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
-                {this.getPropValue("subtitle")}
-              </Base.SectionSubTitle>
-            )}
-
-            {title && (
-              <Base.SectionTitle className={this.decorateCSS("title")}>
-                {this.getPropValue("title")}
-              </Base.SectionTitle>
-            )}
+            {subtitle && (<Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{rawSubtitle}</Base.SectionSubTitle>)}
+            {title && (<Base.SectionTitle className={this.decorateCSS("title")}>{rawTitle}</Base.SectionTitle>)}
 
             <div
               className={`${this.decorateCSS("description-wrapper")} ${
                 alignemnt === "center" ? this.decorateCSS("centered") : ""
               }`}
             >
-              {hasButton && (
-                <div className={this.decorateCSS("button-wrapper")}>
-                  <ComposerLink path={button.url}>
-                    <Base.Button
-                      buttonType={button.type || "Primary"}
-                      className={this.decorateCSS("button")}
-                    >
-                      <Base.P className={this.decorateCSS("button-text")}>
-                        {button.text}
-                      </Base.P>
-                    </Base.Button>
-                  </ComposerLink>
-                </div>
-              )}
+              {buttons.length > 0 && (() => {
+                const validButtons = buttons.filter((item) => {
+                  const buttonText = this.castToString(item.text || "");
+                  const iconName = (item.icon as { name?: string })?.name;
+                  const hasValidIcon = iconName && iconName !== "";
+                  return buttonText || hasValidIcon;
+                });
+                return validButtons.length > 0 ? (
+                  <div className={this.decorateCSS("button-wrapper")}>
+                    {validButtons.map((item, index) => {
+                      const buttonText = this.castToString(item.text || "");
+                      const buttonUrl = item.url || "#";
+                      const iconName = (item.icon as { name?: string })?.name;
+                      const hasValidIcon = iconName && iconName !== "";
+                      return (
+                        <ComposerLink key={`btn-${index}`} path={buttonUrl}>
+                          <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
+                            {hasValidIcon && (
+                              <Base.Media className={this.decorateCSS("icon")} value={{ type: "icon", name: iconName }} />
+                            )}
+                            {buttonText && <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>}
+                          </Base.Button>
+                        </ComposerLink>
+                      );
+                    })}
+                  </div>
+                ) : null;
+              })()}
 
               {description && (
                 <Base.SectionDescription
                   className={this.decorateCSS("description")}
                 >
-                  {this.getPropValue("description")}
+                  {rawDescription}
                 </Base.SectionDescription>
               )}
             </div>

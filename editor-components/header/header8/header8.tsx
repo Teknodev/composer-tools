@@ -14,6 +14,11 @@ interface ButtonItem {
   type: TypeButton;
 }
 
+interface BackgroundSettings {
+  componentBackground: TypeMediaInputValue;
+  overlay: boolean;
+}
+
 class Header8 extends BaseHeader {
   constructor(props?: any) {
     super(props, styles);
@@ -21,12 +26,12 @@ class Header8 extends BaseHeader {
     this.addProp({
       type: "object",
       key: "background",
-      displayer: "Background",
+      displayer: "Background Media",
       value: [
         {
           type: "media",
           key: "componentBackground",
-          displayer: "Media",
+          displayer: "Background Media",
           value: {
             url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/691db9e13596a1002b2b69de?alt=media",
             type: "image",
@@ -85,7 +90,7 @@ class Header8 extends BaseHeader {
   }
 
   render() {
-    const background = this.castToObject<{ componentBackground: TypeMediaInputValue; overlay: boolean }>("background");
+    const background = this.castToObject<BackgroundSettings>("background");
     const coverImage = background?.componentBackground;
     const buttons = this.castToObject<ButtonItem[]>("buttons");
     const visibleButtons = buttons.filter(btn => {
