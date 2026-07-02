@@ -235,7 +235,7 @@ class PricingTable16 extends BasePricingTable {
                         { type: "string", key: "bottomSubtitle", displayer: "Subtitle", value: "" },
                         { type: "string", key: "bottomTitle", displayer: "Title", value: "Receive up to $5,000 in Tax Credit with our company" },
                         { type: "string", key: "bottomDescription", displayer: "Description", value: "Nanotechnology immersion along the information highway will close the loop." },
-                        INPUTS.BUTTON("button", "Button", "LEARN MORE", "", null, null, "Bare"),
+                        INPUTS.BUTTON("button", "Button", "LEARN MORE", "", null, null, "Link"),
                     ],
                 },
                 {
@@ -247,7 +247,7 @@ class PricingTable16 extends BasePricingTable {
                         { type: "string", key: "bottomSubtitle", displayer: "Subtitle", value: "" },
                         { type: "string", key: "bottomTitle", displayer: "Title", value: "Our partners get all premium addons for all plans!" },
                         { type: "string", key: "bottomDescription", displayer: "Description", value: "Bring to the table win-win survival strategies to ensure proactive domination." },
-                        INPUTS.BUTTON("button", "Button", "LEARN MORE", "", null, null, "Bare"),
+                        INPUTS.BUTTON("button", "Button", "LEARN MORE", "", null, null, "Link"),
                     ],
                 },
             ],
@@ -457,7 +457,7 @@ class PricingTable16 extends BasePricingTable {
                                                                 </div>
                                                             </div>
                                                         ) : (
-                                                            <Base.Button buttonType={card.button?.type} className={this.decorateCSS("bottom-button")}>
+                                                            <Base.Button buttonType={card.button?.type === "Bare" || !card.button?.type ? "Link" : card.button.type} className={this.decorateCSS("bottom-button")}>
                                                                 {card.button?.icon && card.button?.icon?.name && (<Base.Media value={card.button?.icon} className={this.decorateCSS("button-icon")} />)}
                                                                 {this.castToString(card.button?.text) && <Base.P className={this.decorateCSS("button-text")}>{card.button?.text}</Base.P>}
                                                             </Base.Button>
