@@ -189,19 +189,19 @@ class Stats31 extends BaseStats {
                 {(prefixExist || valueExist || suffixExist) && (
                     <span className={this.decorateCSS("stat-value")}>
                         {prefixExist && (
-                            <span className={this.decorateCSS("stat-prefix")}>
+                            <Base.H2 className={this.decorateCSS("stat-prefix")}>
                                 {stat.prefixElement}
-                            </span>
+                            </Base.H2>
                         )}
                         {valueExist && (
-                            <span className={this.decorateCSS("stat-number")}>
+                            <Base.H2 className={this.decorateCSS("stat-number")}>
                                 {formattedNumber}
-                            </span>
+                            </Base.H2>
                         )}
                         {suffixExist && (
-                            <span className={this.decorateCSS("stat-suffix")}>
+                            <Base.H2 className={this.decorateCSS("stat-suffix")}>
                                 {stat.suffixElement}
-                            </span>
+                            </Base.H2>
                         )}
                     </span>
                 )}
