@@ -455,8 +455,8 @@ class PricingTable15 extends BasePricingTable {
           key: "rightButtons",
           displayer: "Buttons",
           value: [
-            INPUTS.BUTTON("button", "Button 1", "GET STARTED TODAY", "", null, null, "Black"),
-            INPUTS.BUTTON("button", "Button 2", "TRY IMPREZA NOW", "", null, null, "Black"),
+            INPUTS.BUTTON("button", "Button", "GET STARTED TODAY", "", null, null, "Black"),
+            INPUTS.BUTTON("button", "Button", "TRY IMPREZA NOW", "", null, null, "Black"),
           ],
         },
       ],
@@ -729,7 +729,7 @@ class PricingTable15 extends BasePricingTable {
                     >
                       {rightCheckmarkFeatures.map((item: CheckmarkFeature, idx: number) => {
                         const itemLabelExist = this.castToString(item.label);
-                        return itemLabelExist && (
+                        return (itemLabelExist || item.icon) && (
                           <div key={idx} className={this.decorateCSS("checkmark-item")}>
                             {item.icon && (
                               <Base.Media
@@ -737,9 +737,11 @@ class PricingTable15 extends BasePricingTable {
                                 className={`${this.decorateCSS("checkmark-icon")} ${item.icon.type === "image" && this.decorateCSS("checkmark-has-image")}`}
                               />
                             )}
-                            <Base.P className={this.decorateCSS("checkmark-text")}>
-                              {item.label}
-                            </Base.P>
+                            {itemLabelExist && (
+                              <Base.P className={this.decorateCSS("checkmark-text")}>
+                                {item.label}
+                              </Base.P>
+                            )}
                           </div>
                         );
                       })}
