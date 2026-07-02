@@ -6,6 +6,7 @@ import ComposerLink from "../../../composer-base-components/Link/ComposerLinkPro
 import { Base } from "../../../composer-base-components/base/base";
 import { iconLibraries } from "../../../composer-base-components/base/utitilities/iconList";
 import { renderToStaticMarkup } from "react-dom/server";
+import { INPUTS } from "../../../custom-hooks/input-templates";
 
 type Address = {
   type: string;
@@ -87,6 +88,15 @@ class Location6 extends Location {
       key: "description",
       displayer: "Description",
       value: "",
+    });
+
+    this.addProp({
+      type: "array",
+      key: "actionButtons",
+      displayer: "Action Buttons",
+      value: [
+        INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+      ],
     });
 
     this.addProp({
@@ -520,6 +530,8 @@ class Location6 extends Location {
   render() {
     const addresses: Address[] = this.getPropValue("addresses");
     const buttons = this.castToObject<Buttons[]>("buttons");
+    const actionButtons = this.castToObject<INPUTS.CastedButton[]>("actionButtons") || [];
+    const visibleActionButtons = actionButtons.filter(btn => this.castToString(btn.text));
 
     const mapSettings = this.castToObject<mapSettings>("mapSettings");
     const markerZoom = mapSettings?.markerZoom;
@@ -602,6 +614,19 @@ class Location6 extends Location {
                 {hasSubtitle && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{subtitle}</Base.SectionSubTitle>}
                 {hasTitle && <Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>}
                 {hasDescription && <Base.SectionDescription className={this.decorateCSS("description")}>{description}</Base.SectionDescription>}
+                {visibleActionButtons.length > 0 && (
+                  <div className={this.decorateCSS("button-container")}>
+                    {visibleActionButtons.map((item: INPUTS.CastedButton, index: number) => {
+                      return this.castToString(item.text) && (
+                        <ComposerLink key={`button-${index}`} path={item.url}>
+                          <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
+                            <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>
+                          </Base.Button>
+                        </ComposerLink>
+                      );
+                    })}
+                  </div>
+                )}
               </Base.VerticalContent>
               {hasButtons ? (
                 <Base.VerticalContent className={this.decorateCSS("tab-container")}>

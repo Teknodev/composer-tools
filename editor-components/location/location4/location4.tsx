@@ -3,6 +3,8 @@ import { Location, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./location4.module.scss";
 import ComposerMap from "../../../composer-base-components/map/map";
 import { Base } from "../../../composer-base-components/base/base";
+import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
+import { INPUTS } from "../../../custom-hooks/input-templates";
 
 type Background = {
   media: TypeMediaInputValue;
@@ -105,6 +107,15 @@ class Location4 extends Location {
       key: "description",
       displayer: "Description",
       value: "",
+    });
+
+    this.addProp({
+      type: "array",
+      key: "buttons",
+      displayer: "Buttons",
+      value: [
+        INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+      ],
     });
 
     this.addProp({
@@ -308,8 +319,11 @@ class Location4 extends Location {
     const titleLeftIconExist = (titleLeftIcon?.type === "icon" && !!titleLeftIcon?.name) || (titleLeftIcon?.type === "image" && !!titleLeftIcon?.url);
     const titleRightIconExist = (titleRightIcon?.type === "icon" && !!titleRightIcon?.name) || (titleRightIcon?.type === "image" && !!titleRightIcon?.url);
 
+    const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons") || [];
+    const visibleButtons = buttons.filter(btn => this.castToString(btn.text));
+
     const hasMedia = (media?.type === "image" && !!media?.url) || (media?.type === "video" && !!media?.url);
-    const hasContent = !!(subtitleExist || titleExist || descriptionExist || logoExist);
+    const hasContent = !!(subtitleExist || titleExist || descriptionExist || logoExist || visibleButtons.length > 0);
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("page")}>
@@ -347,6 +361,19 @@ class Location4 extends Location {
                           </div>
                         )}
                         {descriptionExist && <Base.SectionDescription className={this.decorateCSS("description")}>{description}</Base.SectionDescription>}
+                        {visibleButtons.length > 0 && (
+                          <div className={this.decorateCSS("button-container")}>
+                            {visibleButtons.map((item: INPUTS.CastedButton, index: number) => {
+                              return this.castToString(item.text) && (
+                                <ComposerLink key={`button-${index}`} path={item.url}>
+                                  <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
+                                    <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>
+                                  </Base.Button>
+                                </ComposerLink>
+                              );
+                            })}
+                          </div>
+                        )}
                       </div>
                     </Base.MaxContent>
                   </Base.VerticalContent>
@@ -383,6 +410,19 @@ class Location4 extends Location {
                         </div>
                       )}
                       {descriptionExist && <Base.SectionDescription className={this.decorateCSS("description-no-image")}>{description}</Base.SectionDescription>}
+                      {visibleButtons.length > 0 && (
+                        <div className={this.decorateCSS("button-container")}>
+                          {visibleButtons.map((item: INPUTS.CastedButton, index: number) => {
+                            return this.castToString(item.text) && (
+                              <ComposerLink key={`button-${index}`} path={item.url}>
+                                <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
+                                  <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>
+                                </Base.Button>
+                              </ComposerLink>
+                            );
+                          })}
+                        </div>
+                      )}
                     </div>
                   </Base.MaxContent>
                 </Base.VerticalContent>
