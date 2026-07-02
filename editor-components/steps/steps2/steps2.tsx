@@ -362,7 +362,7 @@ class Steps2 extends BaseSteps {
                 return (cardStepNumberExist || cardSubtitleExist || cardTitleExist || cardDescriptionExist || cardButtonsExist) && (
                   <Base.VerticalContent key={index} className={`${this.decorateCSS("card")} ${showLine && this.decorateCSS("with-line")} ${contentAlignment === "center" && this.decorateCSS("center-align")}`}>
                     {cardSubtitleExist && (
-                      <Base.H6 className={this.decorateCSS("card-subtitle")}>
+                      <Base.H6 className={`${this.decorateCSS("card-subtitle")} ${cardStepNumberExist ? this.decorateCSS("has-number") : ""}`}>
                         {card.subtitle}
                       </Base.H6>
                     )}

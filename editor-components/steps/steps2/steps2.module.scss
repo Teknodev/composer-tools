@@ -56,6 +56,10 @@
         .card-subtitle {
           color: var(--composer-font-color-primary);
           text-align: left;
+
+          &.has-number {
+            margin-left: calc(var(--composer-gap-xl) + var(--composer-gap-sm));
+          }
         }
 
         .card-description {
@@ -111,9 +115,21 @@
             }
           }
 
+          .card-subtitle {
+            &.has-number {
+              margin-left: var(--composer-gap-xl);
+            }
+          }
+
           &.center-align {
             align-items: center;
             text-align: center;
+
+            .card-subtitle {
+              &.has-number {
+                margin-left: 0 !important;
+              }
+            }
 
             .card-header {
               justify-content: center;
@@ -134,10 +150,6 @@
           }
         }
       }
-
-      // .button-container {
-      //   justify-content: var(--composer-content-alignment);
-      // }
     }
   }
 }
