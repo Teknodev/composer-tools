@@ -60,7 +60,6 @@
 
         .feature-item {
           display: flex;
-          align-items: center;
           gap: var(--composer-gap-md);
 
           .feature-icon-wrapper {
@@ -101,6 +100,10 @@
             .feature-description {
               color: var(--composer-font-color-primary);
               text-align: left;
+            }
+
+            .feature-title {
+              font-weight: 500;
             }
           }
         }
