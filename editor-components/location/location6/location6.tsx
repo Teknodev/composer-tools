@@ -511,24 +511,6 @@ class Location6 extends Location {
         },
       ]
     })
-
-    this.removeProp("theme");
-    this.addProp({
-      type: "select",
-      key: "theme",
-      displayer: "Map Theme",
-      value: "",
-      additionalParams: {
-        selectItems: [
-          "Theme-0",
-          "Theme-1",
-          "Theme-2",
-          "Theme-3",
-          "Theme-4",
-          "Theme-5",
-        ],
-      },
-    });
   }
 
   static getName(): string {
