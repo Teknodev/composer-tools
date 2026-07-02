@@ -66,10 +66,6 @@
                     color: var(--composer-tertiary-color);
                     cursor: pointer;
 
-                    * {
-                        white-space: nowrap !important;
-                    }
-
                     &.active {
                         background-color: var(--composer-font-color-secondary);
                         color: var(--composer-primary-color);

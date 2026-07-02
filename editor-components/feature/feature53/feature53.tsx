@@ -452,7 +452,7 @@ class Feature53 extends BaseFeature {
                                             {(cardLabelExist || mobileIconExist) && (
                                                 <Base.H5 className={`${this.decorateCSS("tab-header")} ${activeCard === index ? this.decorateCSS("active") : ""}`} onClick={() => this.setActiveCard(index)} >
                                                     {cardLabelExist && (
-                                                        <span className={this.decorateCSS("tab-header-title")}>{card.cardLabel}</span>
+                                                        <Base.P className={this.decorateCSS("tab-header-title")}>{card.cardLabel}</Base.P>
                                                     )}
                                                     {mobileIconExist && (
                                                         <Base.Media
