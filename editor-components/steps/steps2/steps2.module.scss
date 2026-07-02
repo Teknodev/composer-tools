@@ -36,7 +36,7 @@
         .card-header {
           display: flex;
           flex-direction: row;
-          align-items: flex-start;
+          align-items: center;
           gap: var(--composer-gap-sm);
 
           .step-number {
@@ -45,10 +45,15 @@
             flex-shrink: 0;
             text-align: left;
           }
+
+          .card-title {
+            color: var(--composer-font-color-primary);
+            text-align: left;
+            font-weight: 700;
+          }
         }
 
-        .card-subtitle,
-        .card-title {
+        .card-subtitle {
           color: var(--composer-font-color-primary);
           text-align: left;
         }
