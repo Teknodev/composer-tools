@@ -19,13 +19,8 @@
         .header {
           .subtitle {
             width: fit-content;
-            // transform: none;
             padding: 0;
             background: transparent;
-
-            // &::before {
-            //   display: none;
-            // }
           }
 
           .subtitle,
@@ -80,9 +75,8 @@
           .step-number-watermark {
             position: absolute;
             left: -0.5rem;
-            top: -1.5rem;
-            font-size: 10rem;
-            line-height: 0.8;
+            top: -3rem;
+            font-size: 9rem;
             color: var(--composer-font-color-primary);
             opacity: 0.08;
             user-select: none;
@@ -152,8 +146,8 @@
         .cards-container {
           .card {
             .step-number-watermark {
-              font-size: 7.5rem;
-              top: -1rem;
+              font-size: 7.5rem !important;
+              top: -2.5rem;
             }
           }
         }
@@ -180,9 +174,8 @@
               position: absolute;
               left: 0;
               right: 0;
-              top: -1rem;
+              top: -3rem;
               font-size: 7rem;
-              line-height: 0.8;
               text-align: var(--composer-content-alignment);
             }
 

@@ -257,9 +257,9 @@ class Steps3 extends BaseSteps {
                   return (cardStepNumberExist || cardSubtitleExist || cardTitleExist || cardDescriptionExist || cardButtonsExist) && (
                     <Base.VerticalContent key={index} className={this.decorateCSS("card")}>
                       {cardStepNumberExist && (
-                        <div className={this.decorateCSS("step-number-watermark")}>
+                        <Base.H1 className={this.decorateCSS("step-number-watermark")}>
                           {card.stepNumber}
-                        </div>
+                        </Base.H1>
                       )}
                       <Base.VerticalContent className={this.decorateCSS("card-content")}>
                         {cardSubtitleExist && (
