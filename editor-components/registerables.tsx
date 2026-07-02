@@ -160,6 +160,7 @@ import FeatureComponent45 from "./feature/feature45/feature45";
 import FeatureComponent46 from "./feature/feature46/feature46";
 import FeatureComponent47 from "./feature/feature47/feature47";
 import FeatureComponent50 from "./feature/feature50/feature50";
+import FeatureComponent51 from "./feature/feature51/feature51";
 import FeatureComponent52 from "./feature/feature52/feature52";
 import CallToAction1 from "./call_to_action/call_to_action1/call_to_action1";
 import CallToAction2 from "./call_to_action/call_to_action2/call_to_action2";
@@ -254,6 +255,7 @@ import StatsComponent34 from "./stats/stats34/stats34";
 import StatsComponent35 from "./stats/stats35/stats35";
 import StatsComponent36 from "./stats/stats36/stats36";
 import StatsComponent38 from "./stats/stats38/stats38";
+import Steps1 from "./steps/steps1/steps1";
 import Steps3 from "./steps/steps3/steps3";
 import Form1 from "./contacts/form1/form1";
 import Form2 from "./contacts/form2/form2";
@@ -572,6 +574,7 @@ function Registerables(composer: ComponentsRegistery) {
     FeatureComponent46,
     FeatureComponent47,
     FeatureComponent50,
+    FeatureComponent51,
     FeatureComponent52,
     CallToAction1,
     CallToAction2,
@@ -666,6 +669,7 @@ function Registerables(composer: ComponentsRegistery) {
     StatsComponent35,
     StatsComponent36,
     StatsComponent38,
+    Steps1,
     Steps3,
     Form1,
     Form2,
