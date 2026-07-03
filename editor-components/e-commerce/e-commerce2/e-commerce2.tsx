@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Base } from "../../../composer-base-components/base/base";
 import styles from "./e-commerce2.module.scss";
-import { BaseECommerce } from "../../EditorComponent";
+import { BaseECommerce, TypeMediaInputValue } from "../../EditorComponent";
 import { INPUTS } from "../../../custom-hooks/input-templates";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 import { getCurrencyInfo } from "../../../utils/currency";
@@ -12,24 +12,27 @@ interface ImageGallery {
 }
 
 interface PopupImage {
-    popupImg: { type: "image"; url: string };
+    popupImg: TypeMediaInputValue;
 }
 
-interface ArrowItem {
-    nextArrow: { type: "icon"; name: string };
-    prevArrow: { type: "icon"; name: string };
+interface PopupSettings {
+    nextArrow: TypeMediaInputValue;
+    prevArrow: TypeMediaInputValue;
+    closeIcon: TypeMediaInputValue;
+    mediaPageNumber: boolean;
 }
 
 interface Image {
     title: React.JSX.Element;
-    cardImage: { type: "image"; url: string };
-    price: {value: string, currency: string};
+    cardImage: TypeMediaInputValue;
+    price: { value: string, currency: string };
     leftText: React.JSX.Element;
     rightText: React.JSX.Element;
     bottomText: React.JSX.Element;
-    bottomIcon: { type: "icon"; name: string };
+    bottomIcon: TypeMediaInputValue;
     subTitle: React.JSX.Element;
     navigateTo: string;
+    overlay: boolean;
     popupImages: PopupImage[];
 }
 
@@ -37,16 +40,49 @@ class ECommerce2 extends BaseECommerce {
     constructor(props?: any) {
         super(props, styles);
         this.addProp({
-            type: "boolean",
-            key: "showAll",
-            displayer: "Show All Category",
-            value: true,
+            type: "string",
+            key: "subtitle",
+            displayer: "Subtitle",
+            value: "",
         });
         this.addProp({
             type: "string",
-            key: "allText",
-            displayer: "All Text",
-            value: "ALL",
+            key: "title",
+            displayer: "Title",
+            value: "",
+        });
+        this.addProp({
+            type: "string",
+            key: "description",
+            displayer: "Description",
+            value: "",
+        });
+        this.addProp({
+            type: "array",
+            key: "headerButtons",
+            displayer: "Buttons",
+            value: [
+                INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+            ],
+        });
+        this.addProp({
+            type: "object",
+            key: "showAllSettings",
+            displayer: "Show All Settings",
+            value: [
+                {
+                    type: "boolean",
+                    key: "showAll",
+                    displayer: "Show All Category",
+                    value: true,
+                },
+                {
+                    type: "string",
+                    key: "allText",
+                    displayer: "All Text",
+                    value: "ALL",
+                },
+            ],
         });
         this.addProp({
             type: "array",
@@ -67,23 +103,23 @@ class ECommerce2 extends BaseECommerce {
                         {
                             type: "array",
                             key: "images",
-                            displayer: "Image Gallery",
+                            displayer: "Media Gallery",
                             value: [
                                 {
                                     type: "object",
-                                    key: "image",
-                                    displayer: "Image",
+                                    key: "media",
+                                    displayer: "Media",
                                     value: [
                                         {
                                             type: "media",
                                             key: "cardImage",
                                             displayer: "Card Media",
                                             additionalParams: {
-                                                availableTypes: ["image","video"],
+                                                availableTypes: ["image", "video"],
                                             },
                                             value: {
                                                 type: "image",
-                                                url: "https://depot.qodeinteractive.com/wp-content/uploads/2017/01/h1-product-8-600x728.jpg",
+                                                url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a3118185be2d637b17ae7ff/6a31183a97284db368787942/library/h1-product-8-600x728.jpg",
                                             },
                                         },
                                         {
@@ -96,7 +132,7 @@ class ECommerce2 extends BaseECommerce {
                                             type: "currency",
                                             key: "price",
                                             displayer: "Price",
-                                            value:{value:"160"  , currency:"USD"},
+                                            value: { value: "160", currency: "USD" },
                                         },
                                         {
                                             type: "string",
@@ -121,7 +157,7 @@ class ECommerce2 extends BaseECommerce {
                                             key: "bottomIcon",
                                             displayer: "Icon",
                                             additionalParams: {
-                                                availableTypes: ["icon"],
+                                                availableTypes: ["icon", "image"],
                                             },
                                             value: {
                                                 type: "icon",
@@ -141,6 +177,12 @@ class ECommerce2 extends BaseECommerce {
                                             value: "",
                                         },
                                         {
+                                            type: "boolean",
+                                            key: "overlay",
+                                            displayer: "Overlay",
+                                            value: false,
+                                        },
+                                        {
                                             type: "array",
                                             key: "popupImages",
                                             displayer: "Popup Medias",
@@ -155,11 +197,11 @@ class ECommerce2 extends BaseECommerce {
                                                             key: "popupImg",
                                                             displayer: "Popup Media ",
                                                             additionalParams: {
-                                                                availableTypes: ["image","video"],
+                                                                availableTypes: ["image", "video"],
                                                             },
                                                             value: {
                                                                 type: "image",
-                                                                url: "https://depot.qodeinteractive.com/wp-content/uploads/2017/01/h1-product-8-600x728.jpg",
+                                                                url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a3118185be2d637b17ae7ff/6a31183a97284db368787942/library/h1-product-8-600x728.jpg",
                                                             },
                                                         },
                                                     ],
@@ -173,12 +215,12 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "media",
                                                             key: "popupImg",
                                                             additionalParams: {
-                                                                availableTypes: ["image","video"],
+                                                                availableTypes: ["image", "video"],
                                                             },
                                                             displayer: "Popup Media ",
                                                             value: {
                                                                 type: "image",
-                                                                url: "https://depot.qodeinteractive.com/wp-content/uploads/2017/01/product-8-gallery-1-505x505.jpg",
+                                                                url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a3118185be2d637b17ae7ff/6a31183a97284db368787942/library/product-8-gallery-1-505x505.jpg",
                                                             },
                                                         },
                                                     ],
@@ -192,12 +234,12 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "media",
                                                             key: "popupImg",
                                                             additionalParams: {
-                                                                availableTypes: ["image","video"],
+                                                                availableTypes: ["image", "video"],
                                                             },
                                                             displayer: "Popup Media",
                                                             value: {
                                                                 type: "image",
-                                                                url: "https://depot.qodeinteractive.com/wp-content/uploads/2017/01/product-8-gallery-2-505x505.jpg",
+                                                                url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a3118185be2d637b17ae7ff/6a31183a97284db368787942/library/product-8-gallery-2-505x505.jpg",
                                                             },
                                                         },
                                                     ],
@@ -211,12 +253,12 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "media",
                                                             key: "popupImg",
                                                             additionalParams: {
-                                                                availableTypes: ["image","video"],
+                                                                availableTypes: ["image", "video"],
                                                             },
                                                             displayer: "Popup Media",
                                                             value: {
                                                                 type: "image",
-                                                                url: "https://depot.qodeinteractive.com/wp-content/uploads/2017/01/product-8-gallery-3-505x505.jpg",
+                                                                url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a3118185be2d637b17ae7ff/6a31183a97284db368787942/library/product-8-gallery-3-505x505.jpg",
                                                             },
                                                         },
                                                     ],
@@ -230,12 +272,12 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "media",
                                                             key: "popupImg",
                                                             additionalParams: {
-                                                                availableTypes: ["image","video"],
+                                                                availableTypes: ["image", "video"],
                                                             },
                                                             displayer: "Popup Media",
                                                             value: {
                                                                 type: "image",
-                                                                url: "https://depot.qodeinteractive.com/wp-content/uploads/2017/01/product-8-gallery-4-505x505.jpg",
+                                                                url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a3118185be2d637b17ae7ff/6a31183a97284db368787942/library/product-8-gallery-4-505x505.jpg",
                                                             },
                                                         },
                                                     ],
@@ -246,19 +288,19 @@ class ECommerce2 extends BaseECommerce {
                                 },
                                 {
                                     type: "object",
-                                    key: "image",
-                                    displayer: "Image",
+                                    key: "media",
+                                    displayer: "Media",
                                     value: [
                                         {
                                             type: "media",
                                             key: "cardImage",
                                             displayer: "Card Media",
                                             additionalParams: {
-                                                availableTypes: ["image","video"],
+                                                availableTypes: ["image", "video"],
                                             },
                                             value: {
                                                 type: "image",
-                                                url: "https://depot.qodeinteractive.com/wp-content/uploads/2017/01/h1-product-6-600x728.jpg",
+                                                url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a3118185be2d637b17ae7ff/6a31183a97284db368787942/library/h1-product-6-600x728.jpg",
                                             },
                                         },
                                         {
@@ -271,7 +313,7 @@ class ECommerce2 extends BaseECommerce {
                                             type: "currency",
                                             key: "price",
                                             displayer: "Price",
-                                            value:{value:"160"  , currency:"USD"},
+                                            value: { value: "160", currency: "USD" },
                                         },
                                         {
                                             type: "string",
@@ -296,7 +338,7 @@ class ECommerce2 extends BaseECommerce {
                                             key: "bottomIcon",
                                             displayer: "Icon",
                                             additionalParams: {
-                                                availableTypes: ["icon"],
+                                                availableTypes: ["icon", "image"],
                                             },
                                             value: {
                                                 type: "icon",
@@ -316,6 +358,12 @@ class ECommerce2 extends BaseECommerce {
                                             value: "",
                                         },
                                         {
+                                            type: "boolean",
+                                            key: "overlay",
+                                            displayer: "Overlay",
+                                            value: false,
+                                        },
+                                        {
                                             type: "array",
                                             key: "popupImages",
                                             displayer: "Popup Medias",
@@ -329,12 +377,12 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "media",
                                                             key: "popupImg",
                                                             additionalParams: {
-                                                                availableTypes: ["image","video"],
+                                                                availableTypes: ["image", "video"],
                                                             },
                                                             displayer: "Popup Media ",
                                                             value: {
                                                                 type: "image",
-                                                                url: "https://depot.qodeinteractive.com/wp-content/uploads/2017/01/h1-product-6-600x728.jpg",
+                                                                url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a3118185be2d637b17ae7ff/6a31183a97284db368787942/library/h1-product-6-600x728.jpg",
                                                             },
                                                         },
                                                     ],
@@ -348,12 +396,12 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "media",
                                                             key: "popupImg",
                                                             additionalParams: {
-                                                                availableTypes: ["image","video"],
+                                                                availableTypes: ["image", "video"],
                                                             },
                                                             displayer: "Popup Media ",
                                                             value: {
                                                                 type: "image",
-                                                                url: "https://depot.qodeinteractive.com/wp-content/uploads/2017/01/product-6-gallery-1-505x505.jpg",
+                                                                url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a3118185be2d637b17ae7ff/6a31183a97284db368787942/library/product-6-gallery-1-505x505.jpg",
                                                             },
                                                         },
                                                     ],
@@ -367,12 +415,12 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "media",
                                                             key: "popupImg",
                                                             additionalParams: {
-                                                                availableTypes: ["image","video"],
+                                                                availableTypes: ["image", "video"],
                                                             },
                                                             displayer: "Popup Media 2",
                                                             value: {
                                                                 type: "image",
-                                                                url: "https://depot.qodeinteractive.com/wp-content/uploads/2017/01/product-6-gallery-2-505x505.jpg",
+                                                                url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a3118185be2d637b17ae7ff/6a31183a97284db368787942/library/product-6-gallery-2-505x505.jpg",
                                                             },
                                                         },
                                                     ],
@@ -386,12 +434,12 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "media",
                                                             key: "popupImg",
                                                             additionalParams: {
-                                                                availableTypes: ["image","video"],
+                                                                availableTypes: ["image", "video"],
                                                             },
                                                             displayer: "Popup Media",
                                                             value: {
                                                                 type: "image",
-                                                                url: "https://depot.qodeinteractive.com/wp-content/uploads/2017/01/product-6-gallery-3-505x505.jpg",
+                                                                url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a3118185be2d637b17ae7ff/6a31183a97284db368787942/library/product-6-gallery-3-505x505.jpg",
                                                             },
                                                         },
                                                     ],
@@ -405,12 +453,12 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "media",
                                                             key: "popupImg",
                                                             additionalParams: {
-                                                                availableTypes: ["image","video"],
+                                                                availableTypes: ["image", "video"],
                                                             },
                                                             displayer: "Popup Media",
                                                             value: {
                                                                 type: "image",
-                                                                url: "https://depot.qodeinteractive.com/wp-content/uploads/2017/01/product-6-gallery-4-505x505.jpg",
+                                                                url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a3118185be2d637b17ae7ff/6a31183a97284db368787942/library/product-6-gallery-4-505x505.jpg",
                                                             },
                                                         },
                                                     ],
@@ -421,19 +469,19 @@ class ECommerce2 extends BaseECommerce {
                                 },
                                 {
                                     type: "object",
-                                    key: "image",
-                                    displayer: "Image",
+                                    key: "media",
+                                    displayer: "Media",
                                     value: [
                                         {
                                             type: "media",
                                             key: "cardImage",
                                             displayer: "Card Media",
                                             additionalParams: {
-                                                availableTypes: ["image","video"],
+                                                availableTypes: ["image", "video"],
                                             },
                                             value: {
                                                 type: "image",
-                                                url: "https://depot.qodeinteractive.com/wp-content/uploads/2017/01/h1-product-7-600x728.jpg",
+                                                url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a3118185be2d637b17ae7ff/6a31183a97284db368787942/library/h1-product-7-600x728.jpg",
                                             },
                                         },
                                         {
@@ -446,7 +494,7 @@ class ECommerce2 extends BaseECommerce {
                                             type: "currency",
                                             key: "price",
                                             displayer: "Price",
-                                            value:{value:"160"  , currency:"USD"},
+                                            value: { value: "160", currency: "USD" },
                                         },
                                         {
                                             type: "string",
@@ -471,7 +519,7 @@ class ECommerce2 extends BaseECommerce {
                                             key: "bottomIcon",
                                             displayer: "Icon",
                                             additionalParams: {
-                                                availableTypes: ["icon"],
+                                                availableTypes: ["icon", "image"],
                                             },
                                             value: {
                                                 type: "icon",
@@ -491,6 +539,12 @@ class ECommerce2 extends BaseECommerce {
                                             value: "",
                                         },
                                         {
+                                            type: "boolean",
+                                            key: "overlay",
+                                            displayer: "Overlay",
+                                            value: false,
+                                        },
+                                        {
                                             type: "array",
                                             key: "popupImages",
                                             displayer: "Popup Medias",
@@ -504,12 +558,12 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "media",
                                                             key: "popupImg",
                                                             additionalParams: {
-                                                                availableTypes: ["image","video"],
+                                                                availableTypes: ["image", "video"],
                                                             },
                                                             displayer: "Popup Media ",
                                                             value: {
                                                                 type: "image",
-                                                                url: "https://depot.qodeinteractive.com/wp-content/uploads/2017/01/h1-product-7-600x728.jpg",
+                                                                url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a3118185be2d637b17ae7ff/6a31183a97284db368787942/library/h1-product-7-600x728.jpg",
                                                             },
                                                         },
                                                     ],
@@ -523,12 +577,12 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "media",
                                                             key: "popupImg",
                                                             additionalParams: {
-                                                                availableTypes: ["image","video"],
+                                                                availableTypes: ["image", "video"],
                                                             },
                                                             displayer: "Popup Media ",
                                                             value: {
                                                                 type: "image",
-                                                                url: "https://depot.qodeinteractive.com/wp-content/uploads/2017/01/product-7-gallery-1-505x505.jpg",
+                                                                url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a3118185be2d637b17ae7ff/6a31183a97284db368787942/library/product-7-gallery-1-505x505.jpg",
                                                             },
                                                         },
                                                     ],
@@ -542,12 +596,12 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "media",
                                                             key: "popupImg",
                                                             additionalParams: {
-                                                                availableTypes: ["image","video"],
+                                                                availableTypes: ["image", "video"],
                                                             },
                                                             displayer: "Popup Media",
                                                             value: {
                                                                 type: "image",
-                                                                url: "https://depot.qodeinteractive.com/wp-content/uploads/2017/01/product-7-gallery-2-505x505.jpg",
+                                                                url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a3118185be2d637b17ae7ff/6a31183a97284db368787942/library/product-7-gallery-2-505x505.jpg",
                                                             },
                                                         },
                                                     ],
@@ -561,12 +615,12 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "media",
                                                             key: "popupImg",
                                                             additionalParams: {
-                                                                availableTypes: ["image","video"],
+                                                                availableTypes: ["image", "video"],
                                                             },
                                                             displayer: "Popup Media",
                                                             value: {
                                                                 type: "image",
-                                                                url: "https://depot.qodeinteractive.com/wp-content/uploads/2017/01/product-7-gallery-3-505x505.jpg",
+                                                                url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a3118185be2d637b17ae7ff/6a31183a97284db368787942/library/product-7-gallery-3-505x505.jpg",
                                                             },
                                                         },
                                                     ],
@@ -580,12 +634,12 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "media",
                                                             key: "popupImg",
                                                             additionalParams: {
-                                                                availableTypes: ["image","video"],
+                                                                availableTypes: ["image", "video"],
                                                             },
                                                             displayer: "Popup Media",
                                                             value: {
                                                                 type: "image",
-                                                                url: "https://depot.qodeinteractive.com/wp-content/uploads/2017/01/product-7-gallery-4-505x505.jpg",
+                                                                url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a3118185be2d637b17ae7ff/6a31183a97284db368787942/library/product-7-gallery-4-505x505.jpg",
                                                             },
                                                         },
                                                     ],
@@ -596,19 +650,19 @@ class ECommerce2 extends BaseECommerce {
                                 },
                                 {
                                     type: "object",
-                                    key: "image",
-                                    displayer: "Image",
+                                    key: "media",
+                                    displayer: "Media",
                                     value: [
                                         {
                                             type: "media",
                                             key: "cardImage",
                                             displayer: "Card Media",
                                             additionalParams: {
-                                                availableTypes: ["image","video"],
+                                                availableTypes: ["image", "video"],
                                             },
                                             value: {
                                                 type: "image",
-                                                url: "https://depot.qodeinteractive.com/wp-content/uploads/2017/01/h1-product-5-600x728.jpg",
+                                                url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a3118185be2d637b17ae7ff/6a31183a97284db368787942/library/h1-product-5-600x728.jpg",
                                             },
                                         },
                                         {
@@ -621,7 +675,7 @@ class ECommerce2 extends BaseECommerce {
                                             type: "currency",
                                             key: "price",
                                             displayer: "Price",
-                                            value:{value:"160"  , currency:"USD"},
+                                            value: { value: "160", currency: "USD" },
                                         },
                                         {
                                             type: "string",
@@ -646,7 +700,7 @@ class ECommerce2 extends BaseECommerce {
                                             key: "bottomIcon",
                                             displayer: "Icon",
                                             additionalParams: {
-                                                availableTypes: ["icon"],
+                                                availableTypes: ["icon", "image"],
                                             },
                                             value: {
                                                 type: "icon",
@@ -666,6 +720,12 @@ class ECommerce2 extends BaseECommerce {
                                             value: "",
                                         },
                                         {
+                                            type: "boolean",
+                                            key: "overlay",
+                                            displayer: "Overlay",
+                                            value: false,
+                                        },
+                                        {
                                             type: "array",
                                             key: "popupImages",
                                             displayer: "Popup Medias",
@@ -679,12 +739,12 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "media",
                                                             key: "popupImg",
                                                             additionalParams: {
-                                                                availableTypes: ["image","video"],
+                                                                availableTypes: ["image", "video"],
                                                             },
                                                             displayer: "Popup Media ",
                                                             value: {
                                                                 type: "image",
-                                                                url: "https://depot.qodeinteractive.com/wp-content/uploads/2017/01/h1-product-5-600x728.jpg",
+                                                                url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a3118185be2d637b17ae7ff/6a31183a97284db368787942/library/h1-product-5-600x728.jpg",
                                                             },
                                                         },
                                                     ],
@@ -698,12 +758,12 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "media",
                                                             key: "popupImg",
                                                             additionalParams: {
-                                                                availableTypes: ["image","video"],
+                                                                availableTypes: ["image", "video"],
                                                             },
                                                             displayer: "Popup Media ",
                                                             value: {
                                                                 type: "image",
-                                                                url: "https://depot.qodeinteractive.com/wp-content/uploads/2017/01/product-5-gallery-1-505x505.jpg",
+                                                                url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a3118185be2d637b17ae7ff/6a31183a97284db368787942/library/product-5-gallery-1-505x505.jpg",
                                                             },
                                                         },
                                                     ],
@@ -717,12 +777,12 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "media",
                                                             key: "popupImg",
                                                             additionalParams: {
-                                                                availableTypes: ["image","video"],
+                                                                availableTypes: ["image", "video"],
                                                             },
                                                             displayer: "Popup Media",
                                                             value: {
                                                                 type: "image",
-                                                                url: "https://depot.qodeinteractive.com/wp-content/uploads/2017/01/product-5-gallery-2-505x505.jpg",
+                                                                url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a3118185be2d637b17ae7ff/6a31183a97284db368787942/library/product-5-gallery-2-505x505.jpg",
                                                             },
                                                         },
                                                     ],
@@ -736,12 +796,12 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "media",
                                                             key: "popupImg",
                                                             additionalParams: {
-                                                                availableTypes: ["image","video"],
+                                                                availableTypes: ["image", "video"],
                                                             },
                                                             displayer: "Popup Media",
                                                             value: {
                                                                 type: "image",
-                                                                url: "https://depot.qodeinteractive.com/wp-content/uploads/2017/01/product-5-gallery-3-505x505.jpg",
+                                                                url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a3118185be2d637b17ae7ff/6a31183a97284db368787942/library/product-5-gallery-3-505x505.jpg",
                                                             },
                                                         },
                                                     ],
@@ -755,12 +815,12 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "media",
                                                             key: "popupImg",
                                                             additionalParams: {
-                                                                availableTypes: ["image","video"],
+                                                                availableTypes: ["image", "video"],
                                                             },
                                                             displayer: "Popup Media",
                                                             value: {
                                                                 type: "image",
-                                                                url: "https://depot.qodeinteractive.com/wp-content/uploads/2017/01/product-5-gallery-4-505x505.jpg",
+                                                                url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a3118185be2d637b17ae7ff/6a31183a97284db368787942/library/product-5-gallery-4-505x505.jpg",
                                                             },
                                                         },
                                                     ],
@@ -771,19 +831,19 @@ class ECommerce2 extends BaseECommerce {
                                 },
                                 {
                                     type: "object",
-                                    key: "image",
-                                    displayer: "Image",
+                                    key: "media",
+                                    displayer: "Media",
                                     value: [
                                         {
                                             type: "media",
                                             key: "cardImage",
                                             displayer: "Card Media",
                                             additionalParams: {
-                                                availableTypes: ["image","video"],
+                                                availableTypes: ["image", "video"],
                                             },
                                             value: {
                                                 type: "image",
-                                                url: "https://depot.qodeinteractive.com/wp-content/uploads/2017/01/h1-product-4-600x728.jpg",
+                                                url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a3118185be2d637b17ae7ff/6a31183a97284db368787942/library/h1-product-4-600x728.jpg",
                                             },
                                         },
                                         {
@@ -796,7 +856,7 @@ class ECommerce2 extends BaseECommerce {
                                             type: "currency",
                                             key: "price",
                                             displayer: "Price",
-                                            value:{value:"160"  , currency:"USD"},
+                                            value: { value: "160", currency: "USD" },
                                         },
                                         {
                                             type: "string",
@@ -821,7 +881,7 @@ class ECommerce2 extends BaseECommerce {
                                             key: "bottomIcon",
                                             displayer: "Icon",
                                             additionalParams: {
-                                                availableTypes: ["icon"],
+                                                availableTypes: ["icon", "image"],
                                             },
                                             value: {
                                                 type: "icon",
@@ -841,6 +901,12 @@ class ECommerce2 extends BaseECommerce {
                                             value: "",
                                         },
                                         {
+                                            type: "boolean",
+                                            key: "overlay",
+                                            displayer: "Overlay",
+                                            value: false,
+                                        },
+                                        {
                                             type: "array",
                                             key: "popupImages",
                                             displayer: "Popup Medias",
@@ -854,12 +920,12 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "media",
                                                             key: "popupImg",
                                                             additionalParams: {
-                                                                availableTypes: ["image","video"],
+                                                                availableTypes: ["image", "video"],
                                                             },
                                                             displayer: "Popup Media ",
                                                             value: {
                                                                 type: "image",
-                                                                url: "https://depot.qodeinteractive.com/wp-content/uploads/2017/01/h1-product-4-600x728.jpg",
+                                                                url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a3118185be2d637b17ae7ff/6a31183a97284db368787942/library/h1-product-4-600x728.jpg",
                                                             },
                                                         },
                                                     ],
@@ -873,12 +939,12 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "media",
                                                             key: "popupImg",
                                                             additionalParams: {
-                                                                availableTypes: ["image","video"],
+                                                                availableTypes: ["image", "video"],
                                                             },
                                                             displayer: "Popup Media ",
                                                             value: {
                                                                 type: "image",
-                                                                url: "https://depot.qodeinteractive.com/wp-content/uploads/2017/01/product-4-gallery-1-505x505.jpg",
+                                                                url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a3118185be2d637b17ae7ff/6a31183a97284db368787942/library/product-4-gallery-1-505x505.jpg",
                                                             },
                                                         },
                                                     ],
@@ -892,12 +958,12 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "media",
                                                             key: "popupImg",
                                                             additionalParams: {
-                                                                availableTypes: ["image","video"],
+                                                                availableTypes: ["image", "video"],
                                                             },
                                                             displayer: "Popup Media",
                                                             value: {
                                                                 type: "image",
-                                                                url: "https://depot.qodeinteractive.com/wp-content/uploads/2017/01/product-4-gallery-2-505x505.jpg",
+                                                                url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a3118185be2d637b17ae7ff/6a31183a97284db368787942/library/product-4-gallery-2-505x505.jpg",
                                                             },
                                                         },
                                                     ],
@@ -911,12 +977,12 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "media",
                                                             key: "popupImg",
                                                             additionalParams: {
-                                                                availableTypes: ["image","video"],
+                                                                availableTypes: ["image", "video"],
                                                             },
                                                             displayer: "Popup Media",
                                                             value: {
                                                                 type: "image",
-                                                                url: "https://depot.qodeinteractive.com/wp-content/uploads/2017/01/product-4-gallery-3-505x505.jpg",
+                                                                url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a3118185be2d637b17ae7ff/6a31183a97284db368787942/library/product-4-gallery-3-505x505.jpg",
                                                             },
                                                         },
                                                     ],
@@ -930,12 +996,12 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "media",
                                                             key: "popupImg",
                                                             additionalParams: {
-                                                                availableTypes: ["image","video"],
+                                                                availableTypes: ["image", "video"],
                                                             },
                                                             displayer: "Popup Media",
                                                             value: {
                                                                 type: "image",
-                                                                url: "https://depot.qodeinteractive.com/wp-content/uploads/2017/01/product-4-gallery-4-505x505.jpg",
+                                                                url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a3118185be2d637b17ae7ff/6a31183a97284db368787942/library/product-4-gallery-4-505x505.jpg",
                                                             },
                                                         },
                                                     ],
@@ -946,19 +1012,19 @@ class ECommerce2 extends BaseECommerce {
                                 },
                                 {
                                     type: "object",
-                                    key: "image",
-                                    displayer: "Image",
+                                    key: "media",
+                                    displayer: "Media",
                                     value: [
                                         {
                                             type: "media",
                                             key: "cardImage",
                                             displayer: "Card Media",
                                             additionalParams: {
-                                                availableTypes: ["image","video"],
+                                                availableTypes: ["image", "video"],
                                             },
                                             value: {
                                                 type: "image",
-                                                url: "https://depot.qodeinteractive.com/wp-content/uploads/2017/01/h1-product-2-600x728.jpg",
+                                                url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a3118185be2d637b17ae7ff/6a31183a97284db368787942/library/h1-product-2-600x728.jpg",
                                             },
                                         },
                                         {
@@ -971,7 +1037,7 @@ class ECommerce2 extends BaseECommerce {
                                             type: "currency",
                                             key: "price",
                                             displayer: "Price",
-                                            value:{value:"160"  , currency:"USD"},
+                                            value: { value: "160", currency: "USD" },
                                         },
                                         {
                                             type: "string",
@@ -996,7 +1062,7 @@ class ECommerce2 extends BaseECommerce {
                                             key: "bottomIcon",
                                             displayer: "Icon",
                                             additionalParams: {
-                                                availableTypes: ["icon"],
+                                                availableTypes: ["icon", "image"],
                                             },
                                             value: {
                                                 type: "icon",
@@ -1016,6 +1082,12 @@ class ECommerce2 extends BaseECommerce {
                                             value: "",
                                         },
                                         {
+                                            type: "boolean",
+                                            key: "overlay",
+                                            displayer: "Overlay",
+                                            value: false,
+                                        },
+                                        {
                                             type: "array",
                                             key: "popupImages",
                                             displayer: "Popup Medias",
@@ -1029,12 +1101,12 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "media",
                                                             key: "popupImg",
                                                             additionalParams: {
-                                                                availableTypes: ["image","video"],
+                                                                availableTypes: ["image", "video"],
                                                             },
                                                             displayer: "Popup Media ",
                                                             value: {
                                                                 type: "image",
-                                                                url: "https://depot.qodeinteractive.com/wp-content/uploads/2017/01/h1-product-2-600x728.jpg",
+                                                                url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a3118185be2d637b17ae7ff/6a31183a97284db368787942/library/h1-product-2-600x728.jpg",
                                                             },
                                                         },
                                                     ],
@@ -1048,12 +1120,12 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "media",
                                                             key: "popupImg",
                                                             additionalParams: {
-                                                                availableTypes: ["image","video"],
+                                                                availableTypes: ["image", "video"],
                                                             },
                                                             displayer: "Popup Media ",
                                                             value: {
                                                                 type: "image",
-                                                                url: "https://depot.qodeinteractive.com/wp-content/uploads/2017/01/product-2-gallery-1-505x505.jpg",
+                                                                url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a3118185be2d637b17ae7ff/6a31183a97284db368787942/library/product-2-gallery-1-505x505.jpg",
                                                             },
                                                         },
                                                     ],
@@ -1067,12 +1139,12 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "media",
                                                             key: "popupImg",
                                                             additionalParams: {
-                                                                availableTypes: ["image","video"],
+                                                                availableTypes: ["image", "video"],
                                                             },
                                                             displayer: "Popup Media",
                                                             value: {
                                                                 type: "image",
-                                                                url: "https://depot.qodeinteractive.com/wp-content/uploads/2017/01/product-2-gallery-2-505x505.jpg",
+                                                                url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a3118185be2d637b17ae7ff/6a31183a97284db368787942/library/product-2-gallery-2-505x505.jpg",
                                                             },
                                                         },
                                                     ],
@@ -1086,12 +1158,12 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "media",
                                                             key: "popupImg",
                                                             additionalParams: {
-                                                                availableTypes: ["image","video"],
+                                                                availableTypes: ["image", "video"],
                                                             },
                                                             displayer: "Popup Media",
                                                             value: {
                                                                 type: "image",
-                                                                url: "https://depot.qodeinteractive.com/wp-content/uploads/2017/01/product-2-gallery-3-505x505.jpg",
+                                                                url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a3118185be2d637b17ae7ff/6a31183a97284db368787942/library/product-2-gallery-3-505x505.jpg",
                                                             },
                                                         },
                                                     ],
@@ -1105,12 +1177,12 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "media",
                                                             key: "popupImg",
                                                             additionalParams: {
-                                                                availableTypes: ["image","video"],
+                                                                availableTypes: ["image", "video"],
                                                             },
                                                             displayer: "Popup Media",
                                                             value: {
                                                                 type: "image",
-                                                                url: "https://depot.qodeinteractive.com/wp-content/uploads/2017/01/product-2-gallery-4-505x505.jpg",
+                                                                url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a3118185be2d637b17ae7ff/6a31183a97284db368787942/library/product-2-gallery-4-505x505.jpg",
                                                             },
                                                         },
                                                     ],
@@ -1121,19 +1193,19 @@ class ECommerce2 extends BaseECommerce {
                                 },
                                 {
                                     type: "object",
-                                    key: "image",
-                                    displayer: "Image",
+                                    key: "media",
+                                    displayer: "Media",
                                     value: [
                                         {
                                             type: "media",
                                             key: "cardImage",
                                             displayer: "Card Media",
                                             additionalParams: {
-                                                availableTypes: ["image","video"],
+                                                availableTypes: ["image", "video"],
                                             },
                                             value: {
                                                 type: "image",
-                                                url: "https://depot.qodeinteractive.com/wp-content/uploads/2017/01/h1-product-3-1-600x728.jpg",
+                                                url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a3118185be2d637b17ae7ff/6a31183a97284db368787942/library/h1-product-3-1-600x728.jpg",
                                             },
                                         },
                                         {
@@ -1146,7 +1218,7 @@ class ECommerce2 extends BaseECommerce {
                                             type: "currency",
                                             key: "price",
                                             displayer: "Price",
-                                            value:{value:"160"  , currency:"USD"},
+                                            value: { value: "160", currency: "USD" },
                                         },
                                         {
                                             type: "string",
@@ -1171,7 +1243,7 @@ class ECommerce2 extends BaseECommerce {
                                             key: "bottomIcon",
                                             displayer: "Icon",
                                             additionalParams: {
-                                                availableTypes: ["icon"],
+                                                availableTypes: ["icon", "image"],
                                             },
                                             value: {
                                                 type: "icon",
@@ -1191,6 +1263,12 @@ class ECommerce2 extends BaseECommerce {
                                             value: "",
                                         },
                                         {
+                                            type: "boolean",
+                                            key: "overlay",
+                                            displayer: "Overlay",
+                                            value: false,
+                                        },
+                                        {
                                             type: "array",
                                             key: "popupImages",
                                             displayer: "Popup Medias",
@@ -1204,12 +1282,12 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "media",
                                                             key: "popupImg",
                                                             additionalParams: {
-                                                                availableTypes: ["image","video"],
+                                                                availableTypes: ["image", "video"],
                                                             },
                                                             displayer: "Popup Media ",
                                                             value: {
                                                                 type: "image",
-                                                                url: "https://depot.qodeinteractive.com/wp-content/uploads/2017/01/h1-product-3-1-600x728.jpg",
+                                                                url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a3118185be2d637b17ae7ff/6a31183a97284db368787942/library/h1-product-3-1-600x728.jpg",
                                                             },
                                                         },
                                                     ],
@@ -1223,12 +1301,12 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "media",
                                                             key: "popupImg",
                                                             additionalParams: {
-                                                                availableTypes: ["image","video"],
+                                                                availableTypes: ["image", "video"],
                                                             },
                                                             displayer: "Popup Media ",
                                                             value: {
                                                                 type: "image",
-                                                                url: "https://depot.qodeinteractive.com/wp-content/uploads/2017/01/product-18-gallery-1-505x505.jpg",
+                                                                url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a3118185be2d637b17ae7ff/6a31183a97284db368787942/library/product-18-gallery-1-505x505.jpg",
                                                             },
                                                         },
                                                     ],
@@ -1242,12 +1320,12 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "media",
                                                             key: "popupImg",
                                                             additionalParams: {
-                                                                availableTypes: ["image","video"],
+                                                                availableTypes: ["image", "video"],
                                                             },
                                                             displayer: "Popup Media",
                                                             value: {
                                                                 type: "image",
-                                                                url: "https://depot.qodeinteractive.com/wp-content/uploads/2017/01/product-18-gallery-2-505x505.jpg",
+                                                                url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a3118185be2d637b17ae7ff/6a31183a97284db368787942/library/product-18-gallery-2-505x505.jpg",
                                                             },
                                                         },
                                                     ],
@@ -1261,12 +1339,12 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "media",
                                                             key: "popupImg",
                                                             additionalParams: {
-                                                                availableTypes: ["image","video"],
+                                                                availableTypes: ["image", "video"],
                                                             },
                                                             displayer: "Popup Media",
                                                             value: {
                                                                 type: "image",
-                                                                url: "https://depot.qodeinteractive.com/wp-content/uploads/2017/01/product-18-gallery-3-505x505.jpg",
+                                                                url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a3118185be2d637b17ae7ff/6a31183a97284db368787942/library/product-18-gallery-3-505x505.jpg",
                                                             },
                                                         },
                                                     ],
@@ -1280,12 +1358,12 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "media",
                                                             key: "popupImg",
                                                             additionalParams: {
-                                                                availableTypes: ["image","video"],
+                                                                availableTypes: ["image", "video"],
                                                             },
                                                             displayer: "Popup Media",
                                                             value: {
                                                                 type: "image",
-                                                                url: "https://depot.qodeinteractive.com/wp-content/uploads/2017/01/product-18-gallery-4-505x505.jpg",
+                                                                url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a3118185be2d637b17ae7ff/6a31183a97284db368787942/library/product-18-gallery-4-505x505.jpg",
                                                             },
                                                         },
                                                     ],
@@ -1296,19 +1374,19 @@ class ECommerce2 extends BaseECommerce {
                                 },
                                 {
                                     type: "object",
-                                    key: "image",
-                                    displayer: "Image",
+                                    key: "media",
+                                    displayer: "Media",
                                     value: [
                                         {
                                             type: "media",
                                             key: "cardImage",
                                             displayer: "Card Media",
                                             additionalParams: {
-                                                availableTypes: ["image","video"],
+                                                availableTypes: ["image", "video"],
                                             },
                                             value: {
                                                 type: "image",
-                                                url: "https://depot.qodeinteractive.com/wp-content/uploads/2017/01/h1-product-1-600x728.jpg",
+                                                url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a3118185be2d637b17ae7ff/6a31183a97284db368787942/library/h1-product-1-600x728.jpg",
                                             },
                                         },
                                         {
@@ -1321,7 +1399,7 @@ class ECommerce2 extends BaseECommerce {
                                             type: "currency",
                                             key: "price",
                                             displayer: "Price",
-                                            value:{value:"160"  , currency:"USD"},
+                                            value: { value: "160", currency: "USD" },
                                         },
                                         {
                                             type: "string",
@@ -1346,7 +1424,7 @@ class ECommerce2 extends BaseECommerce {
                                             key: "bottomIcon",
                                             displayer: "Icon",
                                             additionalParams: {
-                                                availableTypes: ["icon"],
+                                                availableTypes: ["icon", "image"],
                                             },
                                             value: {
                                                 type: "icon",
@@ -1366,6 +1444,12 @@ class ECommerce2 extends BaseECommerce {
                                             value: "",
                                         },
                                         {
+                                            type: "boolean",
+                                            key: "overlay",
+                                            displayer: "Overlay",
+                                            value: false,
+                                        },
+                                        {
                                             type: "array",
                                             key: "popupImages",
                                             displayer: "Popup Medias",
@@ -1379,12 +1463,12 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "media",
                                                             key: "popupImg",
                                                             additionalParams: {
-                                                                availableTypes: ["image","video"],
+                                                                availableTypes: ["image", "video"],
                                                             },
                                                             displayer: "Popup Media ",
                                                             value: {
                                                                 type: "image",
-                                                                url: "https://depot.qodeinteractive.com/wp-content/uploads/2017/01/h1-product-1-600x728.jpg",
+                                                                url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a3118185be2d637b17ae7ff/6a31183a97284db368787942/library/h1-product-1-600x728.jpg",
                                                             },
                                                         },
                                                     ],
@@ -1398,12 +1482,12 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "media",
                                                             key: "popupImg",
                                                             additionalParams: {
-                                                                availableTypes: ["image","video"],
+                                                                availableTypes: ["image", "video"],
                                                             },
                                                             displayer: "Popup Media ",
                                                             value: {
                                                                 type: "image",
-                                                                url: "https://depot.qodeinteractive.com/wp-content/uploads/2017/01/product-1-gallery-4-505x505.jpg",
+                                                                url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a3118185be2d637b17ae7ff/6a31183a97284db368787942/library/product-1-gallery-4-505x505.jpg",
                                                             },
                                                         },
                                                     ],
@@ -1417,12 +1501,12 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "media",
                                                             key: "popupImg",
                                                             additionalParams: {
-                                                                availableTypes: ["image","video"],
+                                                                availableTypes: ["image", "video"],
                                                             },
                                                             displayer: "Popup Media",
                                                             value: {
                                                                 type: "image",
-                                                                url: "https://depot.qodeinteractive.com/wp-content/uploads/2017/01/product-1-gallery-3-505x505.jpg",
+                                                                url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a3118185be2d637b17ae7ff/6a31183a97284db368787942/library/product-1-gallery-3-505x505.jpg",
                                                             },
                                                         },
                                                     ],
@@ -1436,12 +1520,12 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "media",
                                                             key: "popupImg",
                                                             additionalParams: {
-                                                                availableTypes: ["image","video"],
+                                                                availableTypes: ["image", "video"],
                                                             },
                                                             displayer: "Popup Media",
                                                             value: {
                                                                 type: "image",
-                                                                url: "https://depot.qodeinteractive.com/wp-content/uploads/2017/01/product-1-gallery-2-505x505.jpg",
+                                                                url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a3118185be2d637b17ae7ff/6a31183a97284db368787942/library/product-1-gallery-2-505x505.jpg",
                                                             },
                                                         },
                                                     ],
@@ -1455,12 +1539,12 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "media",
                                                             key: "popupImg",
                                                             additionalParams: {
-                                                                availableTypes: ["image","video"],
+                                                                availableTypes: ["image", "video"],
                                                             },
                                                             displayer: "Popup Media",
                                                             value: {
                                                                 type: "image",
-                                                                url: "https://depot.qodeinteractive.com/wp-content/uploads/2017/01/product-1-gallery-1-505x505.jpg",
+                                                                url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a3118185be2d637b17ae7ff/6a31183a97284db368787942/library/product-1-gallery-1-505x505.jpg",
                                                             },
                                                         },
                                                     ],
@@ -1487,23 +1571,23 @@ class ECommerce2 extends BaseECommerce {
                         {
                             type: "array",
                             key: "images",
-                            displayer: "Image Gallery",
+                            displayer: "Media Gallery",
                             value: [
                                 {
                                     type: "object",
-                                    key: "image",
-                                    displayer: "Image",
+                                    key: "media",
+                                    displayer: "Media",
                                     value: [
                                         {
                                             type: "media",
                                             key: "cardImage",
                                             displayer: "Card Media",
                                             additionalParams: {
-                                                availableTypes: ["image","video"],
+                                                availableTypes: ["image", "video"],
                                             },
                                             value: {
                                                 type: "image",
-                                                url: "https://depot.qodeinteractive.com/wp-content/uploads/2017/01/h1-product-1-600x728.jpg",
+                                                url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a3118185be2d637b17ae7ff/6a31183a97284db368787942/library/h1-product-1-600x728.jpg",
                                             },
                                         },
                                         {
@@ -1516,7 +1600,7 @@ class ECommerce2 extends BaseECommerce {
                                             type: "currency",
                                             key: "price",
                                             displayer: "Price",
-                                            value:{value:"160"  , currency:"USD"},
+                                            value: { value: "160", currency: "USD" },
                                         },
                                         {
                                             type: "string",
@@ -1541,7 +1625,7 @@ class ECommerce2 extends BaseECommerce {
                                             key: "bottomIcon",
                                             displayer: "Icon",
                                             additionalParams: {
-                                                availableTypes: ["icon"],
+                                                availableTypes: ["icon", "image"],
                                             },
                                             value: {
                                                 type: "icon",
@@ -1561,6 +1645,12 @@ class ECommerce2 extends BaseECommerce {
                                             value: "",
                                         },
                                         {
+                                            type: "boolean",
+                                            key: "overlay",
+                                            displayer: "Overlay",
+                                            value: false,
+                                        },
+                                        {
                                             type: "array",
                                             key: "popupImages",
                                             displayer: "Popup Medias",
@@ -1574,12 +1664,12 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "media",
                                                             key: "popupImg",
                                                             additionalParams: {
-                                                                availableTypes: ["image","video"],
+                                                                availableTypes: ["image", "video"],
                                                             },
                                                             displayer: "Popup Media ",
                                                             value: {
                                                                 type: "image",
-                                                                url: "https://depot.qodeinteractive.com/wp-content/uploads/2017/01/h1-product-1-600x728.jpg",
+                                                                url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a3118185be2d637b17ae7ff/6a31183a97284db368787942/library/h1-product-1-600x728.jpg",
                                                             },
                                                         },
                                                     ],
@@ -1593,12 +1683,12 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "media",
                                                             key: "popupImg",
                                                             additionalParams: {
-                                                                availableTypes: ["image","video"],
+                                                                availableTypes: ["image", "video"],
                                                             },
                                                             displayer: "Popup Media ",
                                                             value: {
                                                                 type: "image",
-                                                                url: "https://depot.qodeinteractive.com/wp-content/uploads/2017/01/product-1-gallery-4-505x505.jpg",
+                                                                url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a3118185be2d637b17ae7ff/6a31183a97284db368787942/library/product-1-gallery-4-505x505.jpg",
                                                             },
                                                         },
                                                     ],
@@ -1612,12 +1702,12 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "media",
                                                             key: "popupImg",
                                                             additionalParams: {
-                                                                availableTypes: ["image","video"],
+                                                                availableTypes: ["image", "video"],
                                                             },
                                                             displayer: "Popup Media",
                                                             value: {
                                                                 type: "image",
-                                                                url: "https://depot.qodeinteractive.com/wp-content/uploads/2017/01/product-1-gallery-3-505x505.jpg",
+                                                                url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a3118185be2d637b17ae7ff/6a31183a97284db368787942/library/product-1-gallery-3-505x505.jpg",
                                                             },
                                                         },
                                                     ],
@@ -1631,12 +1721,12 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "media",
                                                             key: "popupImg",
                                                             additionalParams: {
-                                                                availableTypes: ["image","video"],
+                                                                availableTypes: ["image", "video"],
                                                             },
                                                             displayer: "Popup Media",
                                                             value: {
                                                                 type: "image",
-                                                                url: "https://depot.qodeinteractive.com/wp-content/uploads/2017/01/product-1-gallery-2-505x505.jpg",
+                                                                url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a3118185be2d637b17ae7ff/6a31183a97284db368787942/library/product-1-gallery-2-505x505.jpg",
                                                             },
                                                         },
                                                     ],
@@ -1650,12 +1740,12 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "media",
                                                             key: "popupImg",
                                                             additionalParams: {
-                                                                availableTypes: ["image","video"],
+                                                                availableTypes: ["image", "video"],
                                                             },
                                                             displayer: "Popup Media",
                                                             value: {
                                                                 type: "image",
-                                                                url: "https://depot.qodeinteractive.com/wp-content/uploads/2017/01/product-1-gallery-1-505x505.jpg",
+                                                                url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a3118185be2d637b17ae7ff/6a31183a97284db368787942/library/product-1-gallery-1-505x505.jpg",
                                                             },
                                                         },
                                                     ],
@@ -1682,23 +1772,23 @@ class ECommerce2 extends BaseECommerce {
                         {
                             type: "array",
                             key: "images",
-                            displayer: "Image Gallery",
+                            displayer: "Media Gallery",
                             value: [
                                 {
                                     type: "object",
-                                    key: "image",
-                                    displayer: "Image",
+                                    key: "media",
+                                    displayer: "Media",
                                     value: [
                                         {
                                             type: "media",
                                             key: "cardImage",
                                             displayer: "Card Media",
                                             additionalParams: {
-                                                availableTypes: ["image","video"],
+                                                availableTypes: ["image", "video"],
                                             },
                                             value: {
                                                 type: "image",
-                                                url: "https://depot.qodeinteractive.com/wp-content/uploads/2017/01/h1-product-8-600x728.jpg",
+                                                url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a3118185be2d637b17ae7ff/6a31183a97284db368787942/library/h1-product-8-600x728.jpg",
                                             },
                                         },
                                         {
@@ -1711,7 +1801,7 @@ class ECommerce2 extends BaseECommerce {
                                             type: "currency",
                                             key: "price",
                                             displayer: "Price",
-                                            value:{value:"160"  , currency:"USD"},
+                                            value: { value: "160", currency: "USD" },
                                         },
                                         {
                                             type: "string",
@@ -1736,7 +1826,7 @@ class ECommerce2 extends BaseECommerce {
                                             key: "bottomIcon",
                                             displayer: "Icon",
                                             additionalParams: {
-                                                availableTypes: ["icon"],
+                                                availableTypes: ["icon", "image"],
                                             },
                                             value: {
                                                 type: "icon",
@@ -1756,6 +1846,12 @@ class ECommerce2 extends BaseECommerce {
                                             value: "",
                                         },
                                         {
+                                            type: "boolean",
+                                            key: "overlay",
+                                            displayer: "Overlay",
+                                            value: false,
+                                        },
+                                        {
                                             type: "array",
                                             key: "popupImages",
                                             displayer: "Popup Medias",
@@ -1770,11 +1866,11 @@ class ECommerce2 extends BaseECommerce {
                                                             key: "popupImg",
                                                             displayer: "Popup Media ",
                                                             additionalParams: {
-                                                                availableTypes: ["image","video"],
+                                                                availableTypes: ["image", "video"],
                                                             },
                                                             value: {
                                                                 type: "image",
-                                                                url: "https://depot.qodeinteractive.com/wp-content/uploads/2017/01/h1-product-8-600x728.jpg",
+                                                                url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a3118185be2d637b17ae7ff/6a31183a97284db368787942/library/h1-product-8-600x728.jpg",
                                                             },
                                                         },
                                                     ],
@@ -1788,12 +1884,12 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "media",
                                                             key: "popupImg",
                                                             additionalParams: {
-                                                                availableTypes: ["image","video"],
+                                                                availableTypes: ["image", "video"],
                                                             },
                                                             displayer: "Popup Media ",
                                                             value: {
                                                                 type: "image",
-                                                                url: "https://depot.qodeinteractive.com/wp-content/uploads/2017/01/product-8-gallery-1-505x505.jpg",
+                                                                url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a3118185be2d637b17ae7ff/6a31183a97284db368787942/library/product-8-gallery-1-505x505.jpg",
                                                             },
                                                         },
                                                     ],
@@ -1807,12 +1903,12 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "media",
                                                             key: "popupImg",
                                                             additionalParams: {
-                                                                availableTypes: ["image","video"],
+                                                                availableTypes: ["image", "video"],
                                                             },
                                                             displayer: "Popup Media",
                                                             value: {
                                                                 type: "image",
-                                                                url: "https://depot.qodeinteractive.com/wp-content/uploads/2017/01/product-8-gallery-2-505x505.jpg",
+                                                                url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a3118185be2d637b17ae7ff/6a31183a97284db368787942/library/product-8-gallery-2-505x505.jpg",
                                                             },
                                                         },
                                                     ],
@@ -1826,12 +1922,12 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "media",
                                                             key: "popupImg",
                                                             additionalParams: {
-                                                                availableTypes: ["image","video"],
+                                                                availableTypes: ["image", "video"],
                                                             },
                                                             displayer: "Popup Media",
                                                             value: {
                                                                 type: "image",
-                                                                url: "https://depot.qodeinteractive.com/wp-content/uploads/2017/01/product-8-gallery-3-505x505.jpg",
+                                                                url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a3118185be2d637b17ae7ff/6a31183a97284db368787942/library/product-8-gallery-3-505x505.jpg",
                                                             },
                                                         },
                                                     ],
@@ -1845,12 +1941,12 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "media",
                                                             key: "popupImg",
                                                             additionalParams: {
-                                                                availableTypes: ["image","video"],
+                                                                availableTypes: ["image", "video"],
                                                             },
                                                             displayer: "Popup Media",
                                                             value: {
                                                                 type: "image",
-                                                                url: "https://depot.qodeinteractive.com/wp-content/uploads/2017/01/product-8-gallery-4-505x505.jpg",
+                                                                url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a3118185be2d637b17ae7ff/6a31183a97284db368787942/library/product-8-gallery-4-505x505.jpg",
                                                             },
                                                         },
                                                     ],
@@ -1861,19 +1957,19 @@ class ECommerce2 extends BaseECommerce {
                                 },
                                 {
                                     type: "object",
-                                    key: "image",
-                                    displayer: "Image",
+                                    key: "media",
+                                    displayer: "Media",
                                     value: [
                                         {
                                             type: "media",
                                             key: "cardImage",
                                             displayer: "Card Media",
                                             additionalParams: {
-                                                availableTypes: ["image","video"],
+                                                availableTypes: ["image", "video"],
                                             },
                                             value: {
                                                 type: "image",
-                                                url: "https://depot.qodeinteractive.com/wp-content/uploads/2017/01/h1-product-3-1-600x728.jpg",
+                                                url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a3118185be2d637b17ae7ff/6a31183a97284db368787942/library/h1-product-3-1-600x728.jpg",
                                             },
                                         },
                                         {
@@ -1886,7 +1982,7 @@ class ECommerce2 extends BaseECommerce {
                                             type: "currency",
                                             key: "price",
                                             displayer: "Price",
-                                            value:{value:"160"  , currency:"USD"},
+                                            value: { value: "160", currency: "USD" },
                                         },
                                         {
                                             type: "string",
@@ -1911,7 +2007,7 @@ class ECommerce2 extends BaseECommerce {
                                             key: "bottomIcon",
                                             displayer: "Icon",
                                             additionalParams: {
-                                                availableTypes: ["icon"],
+                                                availableTypes: ["icon", "image"],
                                             },
                                             value: {
                                                 type: "icon",
@@ -1931,6 +2027,12 @@ class ECommerce2 extends BaseECommerce {
                                             value: "",
                                         },
                                         {
+                                            type: "boolean",
+                                            key: "overlay",
+                                            displayer: "Overlay",
+                                            value: false,
+                                        },
+                                        {
                                             type: "array",
                                             key: "popupImages",
                                             displayer: "Popup Medias",
@@ -1944,12 +2046,12 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "media",
                                                             key: "popupImg",
                                                             additionalParams: {
-                                                                availableTypes: ["image","video"],
+                                                                availableTypes: ["image", "video"],
                                                             },
                                                             displayer: "Popup Media ",
                                                             value: {
                                                                 type: "image",
-                                                                url: "https://depot.qodeinteractive.com/wp-content/uploads/2017/01/h1-product-3-1-600x728.jpg",
+                                                                url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a3118185be2d637b17ae7ff/6a31183a97284db368787942/library/h1-product-3-1-600x728.jpg",
                                                             },
                                                         },
                                                     ],
@@ -1963,12 +2065,12 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "media",
                                                             key: "popupImg",
                                                             additionalParams: {
-                                                                availableTypes: ["image","video"],
+                                                                availableTypes: ["image", "video"],
                                                             },
                                                             displayer: "Popup Media ",
                                                             value: {
                                                                 type: "image",
-                                                                url: "https://depot.qodeinteractive.com/wp-content/uploads/2017/01/product-18-gallery-1-505x505.jpg",
+                                                                url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a3118185be2d637b17ae7ff/6a31183a97284db368787942/library/product-18-gallery-1-505x505.jpg",
                                                             },
                                                         },
                                                     ],
@@ -1982,12 +2084,12 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "media",
                                                             key: "popupImg",
                                                             additionalParams: {
-                                                                availableTypes: ["image","video"],
+                                                                availableTypes: ["image", "video"],
                                                             },
                                                             displayer: "Popup Media",
                                                             value: {
                                                                 type: "image",
-                                                                url: "https://depot.qodeinteractive.com/wp-content/uploads/2017/01/product-18-gallery-2-505x505.jpg",
+                                                                url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a3118185be2d637b17ae7ff/6a31183a97284db368787942/library/product-18-gallery-2-505x505.jpg",
                                                             },
                                                         },
                                                     ],
@@ -2001,12 +2103,12 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "media",
                                                             key: "popupImg",
                                                             additionalParams: {
-                                                                availableTypes: ["image","video"],
+                                                                availableTypes: ["image", "video"],
                                                             },
                                                             displayer: "Popup Media",
                                                             value: {
                                                                 type: "image",
-                                                                url: "https://depot.qodeinteractive.com/wp-content/uploads/2017/01/product-18-gallery-3-505x505.jpg",
+                                                                url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a3118185be2d637b17ae7ff/6a31183a97284db368787942/library/product-18-gallery-3-505x505.jpg",
                                                             },
                                                         },
                                                     ],
@@ -2020,12 +2122,12 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "media",
                                                             key: "popupImg",
                                                             additionalParams: {
-                                                                availableTypes: ["image","video"],
+                                                                availableTypes: ["image", "video"],
                                                             },
                                                             displayer: "Popup Media",
                                                             value: {
                                                                 type: "image",
-                                                                url: "https://depot.qodeinteractive.com/wp-content/uploads/2017/01/product-18-gallery-4-505x505.jpg",
+                                                                url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a3118185be2d637b17ae7ff/6a31183a97284db368787942/library/product-18-gallery-4-505x505.jpg",
                                                             },
                                                         },
                                                     ],
@@ -2052,23 +2154,23 @@ class ECommerce2 extends BaseECommerce {
                         {
                             type: "array",
                             key: "images",
-                            displayer: "Image Gallery",
+                            displayer: "Media Gallery",
                             value: [
                                 {
                                     type: "object",
-                                    key: "image",
-                                    displayer: "Image",
+                                    key: "media",
+                                    displayer: "Media",
                                     value: [
                                         {
                                             type: "media",
                                             key: "cardImage",
                                             displayer: "Card Media",
                                             additionalParams: {
-                                                availableTypes: ["image","video"],
+                                                availableTypes: ["image", "video"],
                                             },
                                             value: {
                                                 type: "image",
-                                                url: "https://depot.qodeinteractive.com/wp-content/uploads/2017/01/h1-product-2-600x728.jpg",
+                                                url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a3118185be2d637b17ae7ff/6a31183a97284db368787942/library/h1-product-2-600x728.jpg",
                                             },
                                         },
                                         {
@@ -2081,7 +2183,7 @@ class ECommerce2 extends BaseECommerce {
                                             type: "currency",
                                             key: "price",
                                             displayer: "Price",
-                                            value:{value:"160"  , currency:"USD"},
+                                            value: { value: "160", currency: "USD" },
                                         },
                                         {
                                             type: "string",
@@ -2106,7 +2208,7 @@ class ECommerce2 extends BaseECommerce {
                                             key: "bottomIcon",
                                             displayer: "Icon",
                                             additionalParams: {
-                                                availableTypes: ["icon"],
+                                                availableTypes: ["icon", "image"],
                                             },
                                             value: {
                                                 type: "icon",
@@ -2126,6 +2228,12 @@ class ECommerce2 extends BaseECommerce {
                                             value: "",
                                         },
                                         {
+                                            type: "boolean",
+                                            key: "overlay",
+                                            displayer: "Overlay",
+                                            value: false,
+                                        },
+                                        {
                                             type: "array",
                                             key: "popupImages",
                                             displayer: "Popup Medias",
@@ -2139,12 +2247,12 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "media",
                                                             key: "popupImg",
                                                             additionalParams: {
-                                                                availableTypes: ["image","video"],
+                                                                availableTypes: ["image", "video"],
                                                             },
                                                             displayer: "Popup Media ",
                                                             value: {
                                                                 type: "image",
-                                                                url: "https://depot.qodeinteractive.com/wp-content/uploads/2017/01/h1-product-2-600x728.jpg",
+                                                                url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a3118185be2d637b17ae7ff/6a31183a97284db368787942/library/h1-product-2-600x728.jpg",
                                                             },
                                                         },
                                                     ],
@@ -2158,12 +2266,12 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "media",
                                                             key: "popupImg",
                                                             additionalParams: {
-                                                                availableTypes: ["image","video"],
+                                                                availableTypes: ["image", "video"],
                                                             },
                                                             displayer: "Popup Media ",
                                                             value: {
                                                                 type: "image",
-                                                                url: "https://depot.qodeinteractive.com/wp-content/uploads/2017/01/product-2-gallery-1-505x505.jpg",
+                                                                url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a3118185be2d637b17ae7ff/6a31183a97284db368787942/library/product-2-gallery-1-505x505.jpg",
                                                             },
                                                         },
                                                     ],
@@ -2177,12 +2285,12 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "media",
                                                             key: "popupImg",
                                                             additionalParams: {
-                                                                availableTypes: ["image","video"],
+                                                                availableTypes: ["image", "video"],
                                                             },
                                                             displayer: "Popup Media",
                                                             value: {
                                                                 type: "image",
-                                                                url: "https://depot.qodeinteractive.com/wp-content/uploads/2017/01/product-2-gallery-2-505x505.jpg",
+                                                                url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a3118185be2d637b17ae7ff/6a31183a97284db368787942/library/product-2-gallery-2-505x505.jpg",
                                                             },
                                                         },
                                                     ],
@@ -2196,12 +2304,12 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "media",
                                                             key: "popupImg",
                                                             additionalParams: {
-                                                                availableTypes: ["image","video"],
+                                                                availableTypes: ["image", "video"],
                                                             },
                                                             displayer: "Popup Media",
                                                             value: {
                                                                 type: "image",
-                                                                url: "https://depot.qodeinteractive.com/wp-content/uploads/2017/01/product-2-gallery-3-505x505.jpg",
+                                                                url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a3118185be2d637b17ae7ff/6a31183a97284db368787942/library/product-2-gallery-3-505x505.jpg",
                                                             },
                                                         },
                                                     ],
@@ -2215,12 +2323,12 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "media",
                                                             key: "popupImg",
                                                             additionalParams: {
-                                                                availableTypes: ["image","video"],
+                                                                availableTypes: ["image", "video"],
                                                             },
                                                             displayer: "Popup Media",
                                                             value: {
                                                                 type: "image",
-                                                                url: "https://depot.qodeinteractive.com/wp-content/uploads/2017/01/product-2-gallery-4-505x505.jpg",
+                                                                url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a3118185be2d637b17ae7ff/6a31183a97284db368787942/library/product-2-gallery-4-505x505.jpg",
                                                             },
                                                         },
                                                     ],
@@ -2231,19 +2339,19 @@ class ECommerce2 extends BaseECommerce {
                                 },
                                 {
                                     type: "object",
-                                    key: "image",
-                                    displayer: "Image",
+                                    key: "media",
+                                    displayer: "Media",
                                     value: [
                                         {
                                             type: "media",
                                             key: "cardImage",
                                             displayer: "Card Media",
                                             additionalParams: {
-                                                availableTypes: ["image","video"],
+                                                availableTypes: ["image", "video"],
                                             },
                                             value: {
                                                 type: "image",
-                                                url: "https://depot.qodeinteractive.com/wp-content/uploads/2017/01/h1-product-7-600x728.jpg",
+                                                url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a3118185be2d637b17ae7ff/6a31183a97284db368787942/library/h1-product-7-600x728.jpg",
                                             },
                                         },
                                         {
@@ -2256,7 +2364,7 @@ class ECommerce2 extends BaseECommerce {
                                             type: "currency",
                                             key: "price",
                                             displayer: "Price",
-                                            value:{value:"160"  , currency:"USD"},
+                                            value: { value: "160", currency: "USD" },
                                         },
                                         {
                                             type: "string",
@@ -2281,7 +2389,7 @@ class ECommerce2 extends BaseECommerce {
                                             key: "bottomIcon",
                                             displayer: "Icon",
                                             additionalParams: {
-                                                availableTypes: ["icon"],
+                                                availableTypes: ["icon", "image"],
                                             },
                                             value: {
                                                 type: "icon",
@@ -2301,6 +2409,12 @@ class ECommerce2 extends BaseECommerce {
                                             value: "",
                                         },
                                         {
+                                            type: "boolean",
+                                            key: "overlay",
+                                            displayer: "Overlay",
+                                            value: false,
+                                        },
+                                        {
                                             type: "array",
                                             key: "popupImages",
                                             displayer: "Popup Medias",
@@ -2314,12 +2428,12 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "media",
                                                             key: "popupImg",
                                                             additionalParams: {
-                                                                availableTypes: ["image","video"],
+                                                                availableTypes: ["image", "video"],
                                                             },
                                                             displayer: "Popup Media ",
                                                             value: {
                                                                 type: "image",
-                                                                url: "https://depot.qodeinteractive.com/wp-content/uploads/2017/01/h1-product-7-600x728.jpg",
+                                                                url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a3118185be2d637b17ae7ff/6a31183a97284db368787942/library/h1-product-7-600x728.jpg",
                                                             },
                                                         },
                                                     ],
@@ -2333,12 +2447,12 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "media",
                                                             key: "popupImg",
                                                             additionalParams: {
-                                                                availableTypes: ["image","video"],
+                                                                availableTypes: ["image", "video"],
                                                             },
                                                             displayer: "Popup Media ",
                                                             value: {
                                                                 type: "image",
-                                                                url: "https://depot.qodeinteractive.com/wp-content/uploads/2017/01/product-7-gallery-1-505x505.jpg",
+                                                                url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a3118185be2d637b17ae7ff/6a31183a97284db368787942/library/product-7-gallery-1-505x505.jpg",
                                                             },
                                                         },
                                                     ],
@@ -2352,12 +2466,12 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "media",
                                                             key: "popupImg",
                                                             additionalParams: {
-                                                                availableTypes: ["image","video"],
+                                                                availableTypes: ["image", "video"],
                                                             },
                                                             displayer: "Popup Media",
                                                             value: {
                                                                 type: "image",
-                                                                url: "https://depot.qodeinteractive.com/wp-content/uploads/2017/01/product-7-gallery-2-505x505.jpg",
+                                                                url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a3118185be2d637b17ae7ff/6a31183a97284db368787942/library/product-7-gallery-2-505x505.jpg",
                                                             },
                                                         },
                                                     ],
@@ -2371,12 +2485,12 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "media",
                                                             key: "popupImg",
                                                             additionalParams: {
-                                                                availableTypes: ["image","video"],
+                                                                availableTypes: ["image", "video"],
                                                             },
                                                             displayer: "Popup Media",
                                                             value: {
                                                                 type: "image",
-                                                                url: "https://depot.qodeinteractive.com/wp-content/uploads/2017/01/product-7-gallery-3-505x505.jpg",
+                                                                url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a3118185be2d637b17ae7ff/6a31183a97284db368787942/library/product-7-gallery-3-505x505.jpg",
                                                             },
                                                         },
                                                     ],
@@ -2390,12 +2504,12 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "media",
                                                             key: "popupImg",
                                                             additionalParams: {
-                                                                availableTypes: ["image","video"],
+                                                                availableTypes: ["image", "video"],
                                                             },
                                                             displayer: "Popup Media",
                                                             value: {
                                                                 type: "image",
-                                                                url: "https://depot.qodeinteractive.com/wp-content/uploads/2017/01/product-7-gallery-4-505x505.jpg",
+                                                                url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a3118185be2d637b17ae7ff/6a31183a97284db368787942/library/product-7-gallery-4-505x505.jpg",
                                                             },
                                                         },
                                                     ],
@@ -2422,23 +2536,23 @@ class ECommerce2 extends BaseECommerce {
                         {
                             type: "array",
                             key: "images",
-                            displayer: "Image Gallery",
+                            displayer: "Media Gallery",
                             value: [
                                 {
                                     type: "object",
-                                    key: "image",
-                                    displayer: "Image",
+                                    key: "media",
+                                    displayer: "Media",
                                     value: [
                                         {
                                             type: "media",
                                             key: "cardImage",
                                             displayer: "Card Media",
                                             additionalParams: {
-                                                availableTypes: ["image","video"],
+                                                availableTypes: ["image", "video"],
                                             },
                                             value: {
                                                 type: "image",
-                                                url: "https://depot.qodeinteractive.com/wp-content/uploads/2017/01/h1-product-6-600x728.jpg",
+                                                url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a3118185be2d637b17ae7ff/6a31183a97284db368787942/library/h1-product-6-600x728.jpg",
                                             },
                                         },
                                         {
@@ -2451,7 +2565,7 @@ class ECommerce2 extends BaseECommerce {
                                             type: "currency",
                                             key: "price",
                                             displayer: "Price",
-                                            value:{value:"160"  , currency:"USD"},
+                                            value: { value: "160", currency: "USD" },
                                         },
                                         {
                                             type: "string",
@@ -2476,7 +2590,7 @@ class ECommerce2 extends BaseECommerce {
                                             key: "bottomIcon",
                                             displayer: "Icon",
                                             additionalParams: {
-                                                availableTypes: ["icon"],
+                                                availableTypes: ["icon", "image"],
                                             },
                                             value: {
                                                 type: "icon",
@@ -2496,6 +2610,12 @@ class ECommerce2 extends BaseECommerce {
                                             value: "",
                                         },
                                         {
+                                            type: "boolean",
+                                            key: "overlay",
+                                            displayer: "Overlay",
+                                            value: false,
+                                        },
+                                        {
                                             type: "array",
                                             key: "popupImages",
                                             displayer: "Popup Medias",
@@ -2509,12 +2629,12 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "media",
                                                             key: "popupImg",
                                                             additionalParams: {
-                                                                availableTypes: ["image","video"],
+                                                                availableTypes: ["image", "video"],
                                                             },
                                                             displayer: "Popup Media ",
                                                             value: {
                                                                 type: "image",
-                                                                url: "https://depot.qodeinteractive.com/wp-content/uploads/2017/01/h1-product-6-600x728.jpg",
+                                                                url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a3118185be2d637b17ae7ff/6a31183a97284db368787942/library/h1-product-6-600x728.jpg",
                                                             },
                                                         },
                                                     ],
@@ -2528,12 +2648,12 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "media",
                                                             key: "popupImg",
                                                             additionalParams: {
-                                                                availableTypes: ["image","video"],
+                                                                availableTypes: ["image", "video"],
                                                             },
                                                             displayer: "Popup Media ",
                                                             value: {
                                                                 type: "image",
-                                                                url: "https://depot.qodeinteractive.com/wp-content/uploads/2017/01/product-6-gallery-1-505x505.jpg",
+                                                                url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a3118185be2d637b17ae7ff/6a31183a97284db368787942/library/product-6-gallery-1-505x505.jpg",
                                                             },
                                                         },
                                                     ],
@@ -2547,12 +2667,12 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "media",
                                                             key: "popupImg",
                                                             additionalParams: {
-                                                                availableTypes: ["image","video"],
+                                                                availableTypes: ["image", "video"],
                                                             },
                                                             displayer: "Popup Media 2",
                                                             value: {
                                                                 type: "image",
-                                                                url: "https://depot.qodeinteractive.com/wp-content/uploads/2017/01/product-6-gallery-2-505x505.jpg",
+                                                                url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a3118185be2d637b17ae7ff/6a31183a97284db368787942/library/product-6-gallery-2-505x505.jpg",
                                                             },
                                                         },
                                                     ],
@@ -2566,12 +2686,12 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "media",
                                                             key: "popupImg",
                                                             additionalParams: {
-                                                                availableTypes: ["image","video"],
+                                                                availableTypes: ["image", "video"],
                                                             },
                                                             displayer: "Popup Media",
                                                             value: {
                                                                 type: "image",
-                                                                url: "https://depot.qodeinteractive.com/wp-content/uploads/2017/01/product-6-gallery-3-505x505.jpg",
+                                                                url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a3118185be2d637b17ae7ff/6a31183a97284db368787942/library/product-6-gallery-3-505x505.jpg",
                                                             },
                                                         },
                                                     ],
@@ -2585,12 +2705,12 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "media",
                                                             key: "popupImg",
                                                             additionalParams: {
-                                                                availableTypes: ["image","video"],
+                                                                availableTypes: ["image", "video"],
                                                             },
                                                             displayer: "Popup Media",
                                                             value: {
                                                                 type: "image",
-                                                                url: "https://depot.qodeinteractive.com/wp-content/uploads/2017/01/product-6-gallery-4-505x505.jpg",
+                                                                url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a3118185be2d637b17ae7ff/6a31183a97284db368787942/library/product-6-gallery-4-505x505.jpg",
                                                             },
                                                         },
                                                     ],
@@ -2601,19 +2721,19 @@ class ECommerce2 extends BaseECommerce {
                                 },
                                 {
                                     type: "object",
-                                    key: "image",
-                                    displayer: "Image",
+                                    key: "media",
+                                    displayer: "Media",
                                     value: [
                                         {
                                             type: "media",
                                             key: "cardImage",
                                             displayer: "Card Media",
                                             additionalParams: {
-                                                availableTypes: ["image","video"],
+                                                availableTypes: ["image", "video"],
                                             },
                                             value: {
                                                 type: "image",
-                                                url: "https://depot.qodeinteractive.com/wp-content/uploads/2017/01/h1-product-5-600x728.jpg",
+                                                url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a3118185be2d637b17ae7ff/6a31183a97284db368787942/library/h1-product-5-600x728.jpg",
                                             },
                                         },
                                         {
@@ -2626,7 +2746,7 @@ class ECommerce2 extends BaseECommerce {
                                             type: "currency",
                                             key: "price",
                                             displayer: "Price",
-                                            value:{value:"160"  , currency:"USD"},
+                                            value: { value: "160", currency: "USD" },
                                         },
                                         {
                                             type: "string",
@@ -2651,7 +2771,7 @@ class ECommerce2 extends BaseECommerce {
                                             key: "bottomIcon",
                                             displayer: "Icon",
                                             additionalParams: {
-                                                availableTypes: ["icon"],
+                                                availableTypes: ["icon", "image"],
                                             },
                                             value: {
                                                 type: "icon",
@@ -2671,6 +2791,12 @@ class ECommerce2 extends BaseECommerce {
                                             value: "",
                                         },
                                         {
+                                            type: "boolean",
+                                            key: "overlay",
+                                            displayer: "Overlay",
+                                            value: false,
+                                        },
+                                        {
                                             type: "array",
                                             key: "popupImages",
                                             displayer: "Popup Medias",
@@ -2684,12 +2810,12 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "media",
                                                             key: "popupImg",
                                                             additionalParams: {
-                                                                availableTypes: ["image","video"],
+                                                                availableTypes: ["image", "video"],
                                                             },
                                                             displayer: "Popup Media ",
                                                             value: {
                                                                 type: "image",
-                                                                url: "https://depot.qodeinteractive.com/wp-content/uploads/2017/01/h1-product-5-600x728.jpg",
+                                                                url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a3118185be2d637b17ae7ff/6a31183a97284db368787942/library/h1-product-5-600x728.jpg",
                                                             },
                                                         },
                                                     ],
@@ -2703,12 +2829,12 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "media",
                                                             key: "popupImg",
                                                             additionalParams: {
-                                                                availableTypes: ["image","video"],
+                                                                availableTypes: ["image", "video"],
                                                             },
                                                             displayer: "Popup Media ",
                                                             value: {
                                                                 type: "image",
-                                                                url: "https://depot.qodeinteractive.com/wp-content/uploads/2017/01/product-5-gallery-1-505x505.jpg",
+                                                                url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a3118185be2d637b17ae7ff/6a31183a97284db368787942/library/product-5-gallery-1-505x505.jpg",
                                                             },
                                                         },
                                                     ],
@@ -2722,12 +2848,12 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "media",
                                                             key: "popupImg",
                                                             additionalParams: {
-                                                                availableTypes: ["image","video"],
+                                                                availableTypes: ["image", "video"],
                                                             },
                                                             displayer: "Popup Media",
                                                             value: {
                                                                 type: "image",
-                                                                url: "https://depot.qodeinteractive.com/wp-content/uploads/2017/01/product-5-gallery-2-505x505.jpg",
+                                                                url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a3118185be2d637b17ae7ff/6a31183a97284db368787942/library/product-5-gallery-2-505x505.jpg",
                                                             },
                                                         },
                                                     ],
@@ -2741,12 +2867,12 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "media",
                                                             key: "popupImg",
                                                             additionalParams: {
-                                                                availableTypes: ["image","video"],
+                                                                availableTypes: ["image", "video"],
                                                             },
                                                             displayer: "Popup Media",
                                                             value: {
                                                                 type: "image",
-                                                                url: "https://depot.qodeinteractive.com/wp-content/uploads/2017/01/product-5-gallery-3-505x505.jpg",
+                                                                url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a3118185be2d637b17ae7ff/6a31183a97284db368787942/library/product-5-gallery-3-505x505.jpg",
                                                             },
                                                         },
                                                     ],
@@ -2760,12 +2886,12 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "media",
                                                             key: "popupImg",
                                                             additionalParams: {
-                                                                availableTypes: ["image","video"],
+                                                                availableTypes: ["image", "video"],
                                                             },
                                                             displayer: "Popup Media",
                                                             value: {
                                                                 type: "image",
-                                                                url: "https://depot.qodeinteractive.com/wp-content/uploads/2017/01/product-5-gallery-4-505x505.jpg",
+                                                                url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a3118185be2d637b17ae7ff/6a31183a97284db368787942/library/product-5-gallery-4-505x505.jpg",
                                                             },
                                                         },
                                                     ],
@@ -2776,19 +2902,19 @@ class ECommerce2 extends BaseECommerce {
                                 },
                                 {
                                     type: "object",
-                                    key: "image",
-                                    displayer: "Image",
+                                    key: "media",
+                                    displayer: "Media",
                                     value: [
                                         {
                                             type: "media",
                                             key: "cardImage",
                                             displayer: "Card Media",
                                             additionalParams: {
-                                                availableTypes: ["image","video"],
+                                                availableTypes: ["image", "video"],
                                             },
                                             value: {
                                                 type: "image",
-                                                url: "https://depot.qodeinteractive.com/wp-content/uploads/2017/01/h1-product-4-600x728.jpg",
+                                                url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a3118185be2d637b17ae7ff/6a31183a97284db368787942/library/h1-product-4-600x728.jpg",
                                             },
                                         },
                                         {
@@ -2801,7 +2927,7 @@ class ECommerce2 extends BaseECommerce {
                                             type: "currency",
                                             key: "price",
                                             displayer: "Price",
-                                            value:{value:"160"  , currency:"USD"},
+                                            value: { value: "160", currency: "USD" },
                                         },
                                         {
                                             type: "string",
@@ -2826,7 +2952,7 @@ class ECommerce2 extends BaseECommerce {
                                             key: "bottomIcon",
                                             displayer: "Icon",
                                             additionalParams: {
-                                                availableTypes: ["icon"],
+                                                availableTypes: ["icon", "image"],
                                             },
                                             value: {
                                                 type: "icon",
@@ -2846,6 +2972,12 @@ class ECommerce2 extends BaseECommerce {
                                             value: "",
                                         },
                                         {
+                                            type: "boolean",
+                                            key: "overlay",
+                                            displayer: "Overlay",
+                                            value: false,
+                                        },
+                                        {
                                             type: "array",
                                             key: "popupImages",
                                             displayer: "Popup Medias",
@@ -2859,12 +2991,12 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "media",
                                                             key: "popupImg",
                                                             additionalParams: {
-                                                                availableTypes: ["image","video"],
+                                                                availableTypes: ["image", "video"],
                                                             },
                                                             displayer: "Popup Media ",
                                                             value: {
                                                                 type: "image",
-                                                                url: "https://depot.qodeinteractive.com/wp-content/uploads/2017/01/h1-product-4-600x728.jpg",
+                                                                url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a3118185be2d637b17ae7ff/6a31183a97284db368787942/library/h1-product-4-600x728.jpg",
                                                             },
                                                         },
                                                     ],
@@ -2878,12 +3010,12 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "media",
                                                             key: "popupImg",
                                                             additionalParams: {
-                                                                availableTypes: ["image","video"],
+                                                                availableTypes: ["image", "video"],
                                                             },
                                                             displayer: "Popup Media ",
                                                             value: {
                                                                 type: "image",
-                                                                url: "https://depot.qodeinteractive.com/wp-content/uploads/2017/01/product-4-gallery-1-505x505.jpg",
+                                                                url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a3118185be2d637b17ae7ff/6a31183a97284db368787942/library/product-4-gallery-1-505x505.jpg",
                                                             },
                                                         },
                                                     ],
@@ -2897,12 +3029,12 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "media",
                                                             key: "popupImg",
                                                             additionalParams: {
-                                                                availableTypes: ["image","video"],
+                                                                availableTypes: ["image", "video"],
                                                             },
                                                             displayer: "Popup Media",
                                                             value: {
                                                                 type: "image",
-                                                                url: "https://depot.qodeinteractive.com/wp-content/uploads/2017/01/product-4-gallery-2-505x505.jpg",
+                                                                url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a3118185be2d637b17ae7ff/6a31183a97284db368787942/library/product-4-gallery-2-505x505.jpg",
                                                             },
                                                         },
                                                     ],
@@ -2916,12 +3048,12 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "media",
                                                             key: "popupImg",
                                                             additionalParams: {
-                                                                availableTypes: ["image","video"],
+                                                                availableTypes: ["image", "video"],
                                                             },
                                                             displayer: "Popup Media",
                                                             value: {
                                                                 type: "image",
-                                                                url: "https://depot.qodeinteractive.com/wp-content/uploads/2017/01/product-4-gallery-3-505x505.jpg",
+                                                                url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a3118185be2d637b17ae7ff/6a31183a97284db368787942/library/product-4-gallery-3-505x505.jpg",
                                                             },
                                                         },
                                                     ],
@@ -2935,12 +3067,12 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "media",
                                                             key: "popupImg",
                                                             additionalParams: {
-                                                                availableTypes: ["image","video"],
+                                                                availableTypes: ["image", "video"],
                                                             },
                                                             displayer: "Popup Media",
                                                             value: {
                                                                 type: "image",
-                                                                url: "https://depot.qodeinteractive.com/wp-content/uploads/2017/01/product-4-gallery-4-505x505.jpg",
+                                                                url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a3118185be2d637b17ae7ff/6a31183a97284db368787942/library/product-4-gallery-4-505x505.jpg",
                                                             },
                                                         },
                                                     ],
@@ -2956,34 +3088,41 @@ class ECommerce2 extends BaseECommerce {
             ],
         });
         this.addProp({
-            type: "number",
-            key: "imageCountInitial",
-            displayer: "Image Count Initial",
-            value: 4,
-        });
-        this.addProp({
-            type: "number",
-            key: "imageCount",
-            displayer: "More Image Count",
-            value: 4,
-        });
-        this.addProp({
-            type: "number",
-            key: "itemCount",
-            displayer: "Item Count in a Row",
-            value: 4,
+            type: "object",
+            key: "countSettings",
+            displayer: "Count Settings",
+            value: [
+                {
+                    type: "number",
+                    key: "imageCountInitial",
+                    displayer: "Image Count Initial",
+                    value: 4,
+                },
+                {
+                    type: "number",
+                    key: "imageCount",
+                    displayer: "More Image Count",
+                    value: 4,
+                },
+                {
+                    type: "number",
+                    key: "itemCount",
+                    displayer: "Item Count in a Row",
+                    value: 4,
+                },
+            ],
         });
         this.addProp({
             type: "object",
-            key: "arrows",
-            displayer: "Arrows",
+            key: "popupSettings",
+            displayer: "Popup Settings",
             value: [
                 {
                     type: "media",
                     key: "prevArrow",
                     displayer: "Prev Icon",
                     additionalParams: {
-                        availableTypes: ["icon"],
+                        availableTypes: ["icon", "image"],
                     },
                     value: {
                         type: "icon",
@@ -2995,35 +3134,35 @@ class ECommerce2 extends BaseECommerce {
                     key: "nextArrow",
                     displayer: "Next Icon",
                     additionalParams: {
-                        availableTypes: ["icon"],
+                        availableTypes: ["icon", "image"],
                     },
                     value: {
                         type: "icon",
                         name: "GrLinkNext",
                     },
                 },
+                {
+                    type: "media",
+                    key: "closeIcon",
+                    displayer: "Close Icon",
+                    additionalParams: {
+                        availableTypes: ["icon", "image"],
+                    },
+                    value: {
+                        type: "icon",
+                        name: "IoIosClose",
+                    },
+                },
+                {
+                    type: "boolean",
+                    key: "mediaPageNumber",
+                    displayer: "Media Page Number",
+                    value: true,
+                },
             ],
         });
-        this.addProp({
-            type: "media",
-            key: "closeIcon",
-            displayer: "Close Icon",
-            additionalParams: {
-                availableTypes: ["icon"],
-            },
-            value: {
-                type: "icon",
-                name: "IoIosClose",
-            },
-        });
-        this.addProp({
-            type: "boolean",
-            key: "imgCounter",
-            displayer: "Image Page Number",
-            value: true,
-        });
 
-        this.addProp(INPUTS.BUTTON("button", "Button", "Load More", null, null, null, "Primary"));
+        this.addProp(INPUTS.BUTTON("button", "Button", "Load More", "", null, null, "Primary"));
 
         this.setComponentState("selectedIndex", 0);
         this.setComponentState("moreImages", 0);
@@ -3031,7 +3170,7 @@ class ECommerce2 extends BaseECommerce {
         this.setComponentState("popupImageIndex", 0);
         this.setComponentState(
             "imageCount",
-            this.getPropValue("imageCountInitial")
+            this.castToObject<{ imageCountInitial: number }>("countSettings").imageCountInitial
         );
     }
 
@@ -3058,25 +3197,24 @@ class ECommerce2 extends BaseECommerce {
     handleSectionClick(sectionTitle: React.ReactNode, index: number): void {
         this.setComponentState("selectedSection", String(sectionTitle));
         this.setComponentState("selectedIndex", index);
-        this.setComponentState("imageCount", this.getPropValue("imageCount"));
+        const countSettings = this.castToObject<{ imageCountInitial: number; imageCount: number; itemCount: number }>("countSettings");
+        this.setComponentState("imageCount", countSettings.imageCount);
         this.setComponentState("moreImages", 0);
     }
 
     handleSectionClickAll(): void {
-        this.setComponentState(
-            "selectedSection",
-            this.castToString(this.getPropValue("allText"))
-        );
+        const showAllSettings = this.castToObject<{ showAll: boolean; allText: React.JSX.Element }>("showAllSettings");
+        const countSettings = this.castToObject<{ imageCountInitial: number; imageCount: number; itemCount: number }>("countSettings");
+        this.setComponentState("selectedSection", this.castToString(showAllSettings.allText));
         this.setComponentState("selectedIndex", -1);
         this.setComponentState("moreImages", 0);
-        const initialImageCount = this.getPropValue("imageCountInitial");
-        this.setComponentState("imageCount", initialImageCount);
+        this.setComponentState("imageCount", countSettings.imageCountInitial);
     }
 
     handleButtonClick = (): void => {
         const currentMoreImages = this.getComponentState("moreImages");
-        const imageCountToAdd = this.getPropValue("imageCount");
-        this.setComponentState("moreImages", currentMoreImages + imageCountToAdd);
+        const countSettings = this.castToObject<{ imageCountInitial: number; imageCount: number; itemCount: number }>("countSettings");
+        this.setComponentState("moreImages", currentMoreImages + countSettings.imageCount);
     };
 
     handleQuickLookClick = (image: Image, event: React.MouseEvent): void => {
@@ -3138,14 +3276,24 @@ class ECommerce2 extends BaseECommerce {
         }
 
         const currentImageCount = this.getComponentState("imageCount");
-        const initialImageCount = this.getPropValue("imageCountInitial");
+        const countSettings = this.castToObject<{ imageCountInitial: number; imageCount: number; itemCount: number }>("countSettings");
+        const initialImageCount = countSettings.imageCountInitial;
+        const itemCount = countSettings.itemCount;
+        const showAllSettings = this.castToObject<{ showAll: boolean; allText: React.JSX.Element }>("showAllSettings");
+        const allText = this.castToString(showAllSettings.allText);
+        const showAll = showAllSettings.showAll;
         const moreImages = this.getComponentState("moreImages");
         const selectedIndex = this.getComponentState("selectedIndex");
-        const allText = this.castToString(this.getPropValue("allText"));
-        const arrows = this.castToObject<ArrowItem>("arrows");
-        const showAll = this.getPropValue("showAll");
+        const popupSettings = this.castToObject<PopupSettings>("popupSettings");
         const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
-        const imgCounter = this.getPropValue("imgCounter");
+        const headerButtons = this.castToObject<INPUTS.CastedButton[]>("headerButtons") || [];
+        const imgCounter = popupSettings.mediaPageNumber;
+        const subtitle = this.getPropValue("subtitle");
+        const subtitleStr = this.castToString(subtitle);
+        const title = this.getPropValue("title");
+        const titleStr = this.castToString(title);
+        const description = this.getPropValue("description");
+        const descriptionStr = this.castToString(description);
         const activePopup = this.getComponentState("activePopup");
         const imgCount = activePopup ? `${this.getComponentState("popupImageIndex") + 1} of ${activePopup?.popupImages?.length || 0}` : "";
 
@@ -3155,17 +3303,16 @@ class ECommerce2 extends BaseECommerce {
 
         const allImages = imageGallery.reduce((acc: Image[], gallery) => {
             gallery.images.forEach((image) => {
-                if (!acc.some((img) => img.cardImage?.url === image.cardImage?.url)) {
+                if (!acc.some((img) => (img.cardImage as { url?: string })?.url === (image.cardImage as { url?: string })?.url)) {
                     acc.push(image);
                 }
             });
             return acc;
         }, []);
 
-        const selectedImages =
-            selectedIndex === -1 ? allImages : imageGallery[selectedIndex].images;
+        const totalImages = selectedIndex === -1 ? allImages.length : (imageGallery[selectedIndex]?.images?.length || 0);
 
-        const filteredImages = selectedIndex === -1 
+        const filteredImages = selectedIndex === -1
             ? allImages.slice(0, currentImageCount)
             : imageGallery[selectedIndex]?.images?.slice(0, currentImageCount) || [];
 
@@ -3173,17 +3320,52 @@ class ECommerce2 extends BaseECommerce {
             <Base.Container
                 className={`${this.decorateCSS("container")} ${this.decorateCSS("with-overlay")}`}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
+                    {(subtitleStr || titleStr || descriptionStr || headerButtons.some(b => this.castToString(b.text))) && (
+                        <Base.VerticalContent className={this.decorateCSS("header")}>
+                            {subtitleStr && (
+                                <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                                    {subtitle}
+                                </Base.SectionSubTitle>
+                            )}
+                            {titleStr && (
+                                <Base.SectionTitle className={this.decorateCSS("title")}>
+                                    {title}
+                                </Base.SectionTitle>
+                            )}
+                            {descriptionStr && (
+                                <Base.SectionDescription className={this.decorateCSS("description")}>
+                                    {description}
+                                </Base.SectionDescription>
+                            )}
+                            {headerButtons.length > 0 && headerButtons.some(b => this.castToString(b.text)) && (
+                                <div className={this.decorateCSS("action-buttons")}>
+                                    {headerButtons.map((btn: any, index: number) => {
+                                        if (!this.castToString(btn.text)) return null;
+                                        return (
+                                            <ComposerLink key={index} path={btn.url}>
+                                                <Base.Button
+                                                    buttonType={btn.type}
+                                                    className={this.decorateCSS("button")}>
+                                                    <Base.P className={this.decorateCSS("button-text")}>{btn.text}</Base.P>
+                                                </Base.Button>
+                                            </ComposerLink>
+                                        );
+                                    })}
+                                </div>
+                            )}
+                        </Base.VerticalContent>
+                    )}
                     <Base.Row className={this.decorateCSS("tab-container")}>
                         {showAll && allText && (
                             <Base.P
                                 className={`${this.decorateCSS("tab")} 
                                 ${selectedIndex === -1 ? this.decorateCSS("active-tab") : ""}`}
                                 onClick={() => this.handleSectionClickAll()}>
-                                {this.getPropValue("allText")}
+                                {showAllSettings.allText}
                             </Base.P>
                         )}
                         {imageGallery.map((item, index) => {
-                            if (!item.sectionTitle) return null;
+                            if (!this.castToString(item.sectionTitle)) return null;
                             return (
                                 <>
                                     {this.castToString(item.sectionTitle) && (
@@ -3199,13 +3381,13 @@ class ECommerce2 extends BaseECommerce {
                             );
                         })}
                     </Base.Row>
-                    <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount") }} className={this.decorateCSS("grid")}>
+                    <Base.ListGrid gridCount={{ pc: itemCount, tablet: 4}} className={this.decorateCSS("grid")}>
                         {filteredImages.map((image, imgIndex) => {
                             const shouldRenderCard =
                                 this.castToString(image.title) ||
                                 image.price?.value ||
                                 this.castToString(image.subTitle) ||
-                                image.cardImage?.url ||
+                                (image.cardImage as { url?: string })?.url ||
                                 this.castToString(image.bottomText) ||
                                 image.bottomIcon ||
                                 this.castToString(image.leftText) ||
@@ -3213,7 +3395,7 @@ class ECommerce2 extends BaseECommerce {
 
                             return (
                                 shouldRenderCard && (
-                                    <div key={imgIndex} className={this.decorateCSS("card-container")}>
+                                    <Base.VerticalContent key={imgIndex} className={this.decorateCSS("card-container")}>
                                         <ComposerLink path={image.navigateTo}>
                                             <div className={this.decorateCSS("image-container")}>
                                                 <div className={`${this.decorateCSS("image-bottom")} animate__animated animate__fadeInUp`}>
@@ -3223,7 +3405,7 @@ class ECommerce2 extends BaseECommerce {
                                                             onClick={(e: React.MouseEvent<HTMLParagraphElement>) =>
                                                                 this.handleQuickLookClick(image, e)
                                                             }>
-                                                                
+
                                                             {image.bottomText}
                                                         </Base.P>
                                                     )}
@@ -3245,24 +3427,25 @@ class ECommerce2 extends BaseECommerce {
                                                         </Base.P>
                                                     )}
                                                 </div>
-                                                {image.cardImage?.url && (
+                                                {(image.cardImage as { url?: string })?.url && (
                                                     <Base.Media
                                                         value={image.cardImage}
                                                         className={this.decorateCSS("image")}
                                                     />
                                                 )}
+                                                {image.overlay && <div className={this.decorateCSS("media-overlay")}></div>}
                                             </div>
                                         </ComposerLink>
-                                        <div className={this.decorateCSS("text-container")}>
+                                        <Base.VerticalContent className={this.decorateCSS("text-container")}>
                                             {this.castToString(image.title) && (
-                                                <Base.H5 className={this.decorateCSS("title")}>
+                                                <Base.P className={this.decorateCSS("title")}>
                                                     {image.title}
-                                                </Base.H5>
+                                                </Base.P>
                                             )}
                                             {image.price?.value && (
-                                                <Base.H5 className={this.decorateCSS("price")}>
+                                                <Base.P className={this.decorateCSS("price")}>
                                                     {image.price.value} {getCurrencyInfo(image.price.currency)?.symbol}
-                                                </Base.H5>
+                                                </Base.P>
                                             )}
                                             {this.castToString(image.subTitle) && (
                                                 <Base.P
@@ -3270,89 +3453,88 @@ class ECommerce2 extends BaseECommerce {
                                                     {image.subTitle}
                                                 </Base.P>
                                             )}
-                                        </div>
-                                    </div>
+                                        </Base.VerticalContent>
+                                    </Base.VerticalContent>
                                 )
                             );
                         })}
                     </Base.ListGrid>
-                    {currentImageCount < selectedImages.length &&
-                        this.castToString(button.text) && (
+                    {this.castToString(button.text) && (() => {
+                        const hasMoreItems = currentImageCount < totalImages;
+                        return (
                             <div className={this.decorateCSS("button-wrapper")}>
-                                <Base.Button
-                                    buttonType={button.type}
-                                    className={this.decorateCSS("button")}
-                                    onClick={this.handleButtonClick}>
-                                    <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
-                                </Base.Button>
+                                <ComposerLink path={hasMoreItems ? "" : button.url}>
+                                    <Base.Button
+                                        buttonType={button.type}
+                                        className={this.decorateCSS("button")}
+                                        onClick={hasMoreItems ? this.handleButtonClick : undefined}>
+                                        <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
+                                    </Base.Button>
+                                </ComposerLink>
                             </div>
-                        )}
-                    {activePopup &&
-                        activePopup.popupImages &&
-                        activePopup.popupImages.length > 0 && (
-                            <Base.Overlay
-                                className={this.decorateCSS("popup-overlay")}
-                                onClick={this.closePopup}
-                                isVisible={true}>
-                                <div
-                                    className={this.decorateCSS("popup-content-wrapper")}
-                                    onClick={this.closePopup}
-                                    >
-                                    <div className={this.decorateCSS("popup-image-container")}
-                                    onClick={(e) => e.stopPropagation()}>
-                                        <Base.Media
-                                            value={activePopup.popupImages[this.getComponentState("popupImageIndex")]?.popupImg}
-                                            className={this.decorateCSS("popup-image")}
-                                        />
-                                        {activePopup.popupImages.length > 1 && (
-                                            <>
-                                                {arrows.prevArrow && (
-                                                    <button
-                                                        className={this.decorateCSS("prevArrow")}
-                                                        onClick={this.handlePrevImage}>
-                                                        <Base.Media
-                                                            value={arrows.prevArrow}
-                                                            className={this.decorateCSS("arrow")}
-                                                        />
-                                                    </button>
-                                                )}
-                                                {arrows.nextArrow && (
-                                                    <button
-                                                        className={this.decorateCSS("nextArrow")}
-                                                        onClick={this.handleNextImage}>
-                                                        <Base.Media
-                                                            value={arrows.nextArrow}
-                                                            className={this.decorateCSS("arrow")}
-                                                        />
-                                                    </button>
-                                                )}
-                                            </>
-                                        )}
-                                        {this.getPropValue("closeIcon") && (
-                                            <button
-                                                className={this.decorateCSS("popup-close")}
-                                                onClick={this.closePopup}>
-                                                <Base.Media
-                                                    value={this.getPropValue("closeIcon")}
-                                                    className={this.decorateCSS("arrow")}
-                                                />
-                                            </button>
-                                        )}
-                                    </div>
-                                    <div className={this.decorateCSS("image-info")}>
-                                        <Base.P className={this.decorateCSS("image-title")}>
-                                            {activePopup.title}
-                                        </Base.P>
-                                        {imgCounter && (
-                                            <Base.P className={this.decorateCSS("image-count")}>
-                                                {imgCount}
-                                            </Base.P>
-                                        )}
-                                    </div>
-                                </div>
-                            </Base.Overlay>
-                        )}
+                        );
+                    })()}
                 </Base.MaxContent>
+            {activePopup &&
+                activePopup.popupImages &&
+                activePopup.popupImages.length > 0 && (
+                    <Base.Overlay
+                        className={this.decorateCSS("popup-overlay")}
+                        onClick={this.closePopup}
+                        isVisible={true}>
+                        <div className={this.decorateCSS("popup-image-container")}
+                            onClick={(e) => e.stopPropagation()}>
+                            <Base.Media
+                                value={activePopup.popupImages[this.getComponentState("popupImageIndex")]?.popupImg}
+                                className={this.decorateCSS("popup-image")}
+                            />
+                            {activePopup.popupImages.length > 1 && (
+                                <>
+                                    {popupSettings.prevArrow && (
+                                        <button
+                                            className={this.decorateCSS("prevArrow")}
+                                            onClick={this.handlePrevImage}>
+                                            <Base.Media
+                                                value={popupSettings.prevArrow}
+                                                className={this.decorateCSS("arrow")}
+                                            />
+                                        </button>
+                                    )}
+                                    {popupSettings.nextArrow && (
+                                        <button
+                                            className={this.decorateCSS("nextArrow")}
+                                            onClick={this.handleNextImage}>
+                                            <Base.Media
+                                                value={popupSettings.nextArrow}
+                                                className={this.decorateCSS("arrow")}
+                                            />
+                                        </button>
+                                    )}
+                                </>
+                            )}
+                            {popupSettings.closeIcon && (
+                                <button
+                                    className={this.decorateCSS("popup-close")}
+                                    onClick={this.closePopup}>
+                                    <Base.Media
+                                        value={popupSettings.closeIcon}
+                                        className={this.decorateCSS("arrow")}
+                                    />
+                                </button>
+                            )}
+                        </div>
+                        <div className={this.decorateCSS("image-info")} onClick={(e) => e.stopPropagation()}>
+                            <Base.P className={this.decorateCSS("image-title")}>
+                                {activePopup.title}
+                            </Base.P>
+                            {imgCounter && (
+                                <Base.P className={this.decorateCSS("image-count")}>
+                                    {imgCount}
+                                </Base.P>
+                            )}
+                        </div>
+                    </Base.Overlay>
+                )}
             </Base.Container>
         );
     }

@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Base } from "../../../composer-base-components/base/base";
 import styles from "./e-commerce4.module.scss";
-import { BaseECommerce } from "../../EditorComponent";
+import { BaseECommerce, TypeMediaInputValue } from "../../EditorComponent";
 import { INPUTS } from "../../../custom-hooks/input-templates";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 import { CurrencyCode, getCurrencyInfo } from "../../../utils/currency";
@@ -14,15 +14,16 @@ interface SizeOption {
 
 interface ColorOption {
     sectionColor: string;
-    cardImage: { type: "image"; url: string };
-    hoverImage: { type: "image"; url: string };
-    sizeOptions: SizeOption[];
+    cardImage: TypeMediaInputValue;
+    hoverImage: TypeMediaInputValue;
     isSoldOut: boolean;
+    overlay: boolean;
+    sizeOptions: SizeOption[];
 }
 
 interface RightTextItems {
     cardRightText: React.JSX.Element;
-    cardRightTextIcon: { type: "icon"; name: string };
+    cardRightTextIcon: TypeMediaInputValue;
     cardRightTextNavigate: string;
 }
 
@@ -39,22 +40,55 @@ class ECommerce4 extends BaseECommerce {
     constructor(props?: any) {
         super(props, styles);
         this.addProp({
-            type: "number",
-            key: "imageCountInitial",
-            displayer: "Image Count Initial",
-            value: 4,
+            type: "string",
+            key: "subtitle",
+            displayer: "Subtitle",
+            value: "",
         });
         this.addProp({
-            type: "number",
-            key: "imageCount",
-            displayer: "More Image Count",
-            value: 2,
+            type: "string",
+            key: "title",
+            displayer: "Title",
+            value: "",
         });
         this.addProp({
-            type: "number",
-            key: "itemCount",
-            displayer: "Item Count in a Row",
-            value: 4,
+            type: "string",
+            key: "description",
+            displayer: "Description",
+            value: "",
+        });
+        this.addProp({
+            type: "array",
+            key: "headerButtons",
+            displayer: "Buttons",
+            value: [
+                INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+            ],
+        });
+        this.addProp({
+            type: "object",
+            key: "countSettings",
+            displayer: "Count Settings",
+            value: [
+                {
+                    type: "number",
+                    key: "imageCountInitial",
+                    displayer: "Image Count Initial",
+                    value: 4,
+                },
+                {
+                    type: "number",
+                    key: "imageCount",
+                    displayer: "More Image Count",
+                    value: 2,
+                },
+                {
+                    type: "number",
+                    key: "itemCount",
+                    displayer: "Item Count in a Row",
+                    value: 4,
+                },
+            ],
         });
         this.addProp({
             type: "array",
@@ -111,7 +145,7 @@ class ECommerce4 extends BaseECommerce {
                                             key: "cardRightTextIcon",
                                             displayer: "Icon",
                                             additionalParams: {
-                                                availableTypes: ["icon"],
+                                                availableTypes: ["icon", "image"],
                                             },
                                             value: {
                                                 type: "icon",
@@ -142,7 +176,7 @@ class ECommerce4 extends BaseECommerce {
                                             key: "cardRightTextIcon",
                                             displayer: "Icon",
                                             additionalParams: {
-                                                availableTypes: ["icon"],
+                                                availableTypes: ["icon", "image"],
                                             },
                                             value: {
                                                 type: "icon",
@@ -173,7 +207,7 @@ class ECommerce4 extends BaseECommerce {
                                             key: "cardRightTextIcon",
                                             displayer: "Icon",
                                             additionalParams: {
-                                                availableTypes: ["icon"],
+                                                availableTypes: ["icon", "image"],
                                             },
                                             value: {
                                                 type: "icon",
@@ -204,7 +238,7 @@ class ECommerce4 extends BaseECommerce {
                                             key: "cardRightTextIcon",
                                             displayer: "Icon",
                                             additionalParams: {
-                                                availableTypes: ["icon"],
+                                                availableTypes: ["icon", "image"],
                                             },
                                             value: {
                                                 type: "icon",
@@ -246,7 +280,7 @@ class ECommerce4 extends BaseECommerce {
                                             },
                                             value: {
                                                 type: "image",
-                                                url: "https://vineta-html.vercel.app/images/products/fashion/product-19.jpg",
+                                                url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a3ce5a263ea434e3f7d993e/6a3ce6e842060041a82666d9/library/product-19.jpg",
                                             },
                                         },
                                         {
@@ -258,13 +292,19 @@ class ECommerce4 extends BaseECommerce {
                                             },
                                             value: {
                                                 type: "image",
-                                                url: "https://vineta-html.vercel.app/images/products/fashion/women-grey-2.jpg",
+                                                url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a3ce5a263ea434e3f7d993e/6a3ce6e842060041a82666d9/library/women-grey-2.jpg",
                                             },
                                         },
                                         {
                                             type: "boolean",
                                             key: "isSoldOut",
                                             displayer: "Show Sold Out",
+                                            value: false,
+                                        },
+                                        {
+                                            type: "boolean",
+                                            key: "overlay",
+                                            displayer: "Overlay",
                                             value: false,
                                         },
                                         {
@@ -371,7 +411,7 @@ class ECommerce4 extends BaseECommerce {
                                             },
                                             value: {
                                                 type: "image",
-                                                url: "https://vineta-html.vercel.app/images/products/fashion/product-2.jpg",
+                                                url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a3ce5a263ea434e3f7d993e/6a3ce6e842060041a82666d9/library/product-2.jpg",
                                             },
                                         },
                                         {
@@ -383,13 +423,19 @@ class ECommerce4 extends BaseECommerce {
                                             },
                                             value: {
                                                 type: "image",
-                                                url: "https://vineta-html.vercel.app/images/products/fashion/women-grey-2.jpg",
+                                                url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a3ce5a263ea434e3f7d993e/6a3ce6e842060041a82666d9/library/women-grey-2.jpg",
                                             },
                                         },
                                         {
                                             type: "boolean",
                                             key: "isSoldOut",
                                             displayer: "Show Sold Out",
+                                            value: false,
+                                        },
+                                        {
+                                            type: "boolean",
+                                            key: "overlay",
+                                            displayer: "Overlay",
                                             value: false,
                                         },
                                         {
@@ -496,7 +542,7 @@ class ECommerce4 extends BaseECommerce {
                                             },
                                             value: {
                                                 type: "image",
-                                                url: "https://vineta-html.vercel.app/images/products/fashion/product-5.jpg",
+                                                url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a3ce5a263ea434e3f7d993e/6a3ce6e842060041a82666d9/library/product-5.jpg",
                                             },
                                         },
                                         {
@@ -508,7 +554,7 @@ class ECommerce4 extends BaseECommerce {
                                             },
                                             value: {
                                                 type: "image",
-                                                url: "https://vineta-html.vercel.app/images/products/fashion/women-grey-2.jpg",
+                                                url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a3ce5a263ea434e3f7d993e/6a3ce6e842060041a82666d9/library/women-grey-2.jpg",
                                             },
                                         },
                                         {
@@ -655,7 +701,7 @@ class ECommerce4 extends BaseECommerce {
                                             key: "cardRightTextIcon",
                                             displayer: "Icon",
                                             additionalParams: {
-                                                availableTypes: ["icon"],
+                                                availableTypes: ["icon", "image"],
                                             },
                                             value: {
                                                 type: "icon",
@@ -686,7 +732,7 @@ class ECommerce4 extends BaseECommerce {
                                             key: "cardRightTextIcon",
                                             displayer: "Icon",
                                             additionalParams: {
-                                                availableTypes: ["icon"],
+                                                availableTypes: ["icon", "image"],
                                             },
                                             value: {
                                                 type: "icon",
@@ -717,7 +763,7 @@ class ECommerce4 extends BaseECommerce {
                                             key: "cardRightTextIcon",
                                             displayer: "Icon",
                                             additionalParams: {
-                                                availableTypes: ["icon"],
+                                                availableTypes: ["icon", "image"],
                                             },
                                             value: {
                                                 type: "icon",
@@ -748,7 +794,7 @@ class ECommerce4 extends BaseECommerce {
                                             key: "cardRightTextIcon",
                                             displayer: "Icon",
                                             additionalParams: {
-                                                availableTypes: ["icon"],
+                                                availableTypes: ["icon", "image"],
                                             },
                                             value: {
                                                 type: "icon",
@@ -790,7 +836,7 @@ class ECommerce4 extends BaseECommerce {
                                             },
                                             value: {
                                                 type: "image",
-                                                url: "https://vineta-html.vercel.app/images/products/fashion/product-2.jpg",
+                                                url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a3ce5a263ea434e3f7d993e/6a3ce6e842060041a82666d9/library/product-2.jpg",
                                             },
                                         },
                                         {
@@ -802,7 +848,7 @@ class ECommerce4 extends BaseECommerce {
                                             },
                                             value: {
                                                 type: "image",
-                                                url: "https://vineta-html.vercel.app/images/products/fashion/women-grey-2.jpg",
+                                                url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a3ce5a263ea434e3f7d993e/6a3ce6e842060041a82666d9/library/women-grey-2.jpg",
                                             },
                                         },
                                         {
@@ -924,7 +970,7 @@ class ECommerce4 extends BaseECommerce {
                                             key: "cardRightTextIcon",
                                             displayer: "Icon",
                                             additionalParams: {
-                                                availableTypes: ["icon"],
+                                                availableTypes: ["icon", "image"],
                                             },
                                             value: {
                                                 type: "icon",
@@ -955,7 +1001,7 @@ class ECommerce4 extends BaseECommerce {
                                             key: "cardRightTextIcon",
                                             displayer: "Icon",
                                             additionalParams: {
-                                                availableTypes: ["icon"],
+                                                availableTypes: ["icon", "image"],
                                             },
                                             value: {
                                                 type: "icon",
@@ -986,7 +1032,7 @@ class ECommerce4 extends BaseECommerce {
                                             key: "cardRightTextIcon",
                                             displayer: "Icon",
                                             additionalParams: {
-                                                availableTypes: ["icon"],
+                                                availableTypes: ["icon", "image"],
                                             },
                                             value: {
                                                 type: "icon",
@@ -1017,7 +1063,7 @@ class ECommerce4 extends BaseECommerce {
                                             key: "cardRightTextIcon",
                                             displayer: "Icon",
                                             additionalParams: {
-                                                availableTypes: ["icon"],
+                                                availableTypes: ["icon", "image"],
                                             },
                                             value: {
                                                 type: "icon",
@@ -1059,7 +1105,7 @@ class ECommerce4 extends BaseECommerce {
                                             },
                                             value: {
                                                 type: "image",
-                                                url: "https://vineta-html.vercel.app/images/products/fashion/product-6.jpg",
+                                                url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a3ce5a263ea434e3f7d993e/6a3ce6e842060041a82666d9/library/product-6.jpg",
                                             },
                                         },
                                         {
@@ -1071,13 +1117,19 @@ class ECommerce4 extends BaseECommerce {
                                             },
                                             value: {
                                                 type: "image",
-                                                url: "https://vineta-html.vercel.app/images/products/fashion/product-4.jpg",
+                                                url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a3ce5a263ea434e3f7d993e/6a3ce6e842060041a82666d9/library/product-4.jpg",
                                             },
                                         },
                                         {
                                             type: "boolean",
                                             key: "isSoldOut",
                                             displayer: "Show Sold Out",
+                                            value: false,
+                                        },
+                                        {
+                                            type: "boolean",
+                                            key: "overlay",
+                                            displayer: "Overlay",
                                             value: false,
                                         },
                                         {
@@ -1159,7 +1211,7 @@ class ECommerce4 extends BaseECommerce {
                                             },
                                             value: {
                                                 type: "image",
-                                                url: "https://vineta-html.vercel.app/images/products/fashion/product-3.jpg",
+                                                url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a3ce5a263ea434e3f7d993e/6a3ce6e842060041a82666d9/library/product-3.jpg",
                                             },
                                         },
                                         {
@@ -1171,13 +1223,19 @@ class ECommerce4 extends BaseECommerce {
                                             },
                                             value: {
                                                 type: "image",
-                                                url: "https://vineta-html.vercel.app/images/products/fashion/product-4.jpg",
+                                                url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a3ce5a263ea434e3f7d993e/6a3ce6e842060041a82666d9/library/product-4.jpg",
                                             },
                                         },
                                         {
                                             type: "boolean",
                                             key: "isSoldOut",
                                             displayer: "Show Sold Out",
+                                            value: false,
+                                        },
+                                        {
+                                            type: "boolean",
+                                            key: "overlay",
+                                            displayer: "Overlay",
                                             value: false,
                                         },
                                         {
@@ -1318,7 +1376,7 @@ class ECommerce4 extends BaseECommerce {
                                             key: "cardRightTextIcon",
                                             displayer: "Icon",
                                             additionalParams: {
-                                                availableTypes: ["icon"],
+                                                availableTypes: ["icon", "image"],
                                             },
                                             value: {
                                                 type: "icon",
@@ -1349,7 +1407,7 @@ class ECommerce4 extends BaseECommerce {
                                             key: "cardRightTextIcon",
                                             displayer: "Icon",
                                             additionalParams: {
-                                                availableTypes: ["icon"],
+                                                availableTypes: ["icon", "image"],
                                             },
                                             value: {
                                                 type: "icon",
@@ -1380,7 +1438,7 @@ class ECommerce4 extends BaseECommerce {
                                             key: "cardRightTextIcon",
                                             displayer: "Icon",
                                             additionalParams: {
-                                                availableTypes: ["icon"],
+                                                availableTypes: ["icon", "image"],
                                             },
                                             value: {
                                                 type: "icon",
@@ -1411,7 +1469,7 @@ class ECommerce4 extends BaseECommerce {
                                             key: "cardRightTextIcon",
                                             displayer: "Icon",
                                             additionalParams: {
-                                                availableTypes: ["icon"],
+                                                availableTypes: ["icon", "image"],
                                             },
                                             value: {
                                                 type: "icon",
@@ -1453,7 +1511,7 @@ class ECommerce4 extends BaseECommerce {
                                             },
                                             value: {
                                                 type: "image",
-                                                url: "https://vineta-html.vercel.app/images/products/fashion/product-17.jpg",
+                                                url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a3ce5a263ea434e3f7d993e/6a3ce6e842060041a82666d9/library/product-17.jpg",
                                             },
                                         },
                                         {
@@ -1465,13 +1523,19 @@ class ECommerce4 extends BaseECommerce {
                                             },
                                             value: {
                                                 type: "image",
-                                                url: "https://vineta-html.vercel.app/images/products/fashion/product-1.jpg",
+                                                url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a3ce5a263ea434e3f7d993e/6a3ce6e842060041a82666d9/library/product-1.jpg",
                                             },
                                         },
                                         {
                                             type: "boolean",
                                             key: "isSoldOut",
                                             displayer: "Show Sold Out",
+                                            value: false,
+                                        },
+                                        {
+                                            type: "boolean",
+                                            key: "overlay",
+                                            displayer: "Overlay",
                                             value: false,
                                         },
                                         {
@@ -1553,7 +1617,7 @@ class ECommerce4 extends BaseECommerce {
                                             },
                                             value: {
                                                 type: "image",
-                                                url: "https://vineta-html.vercel.app/images/products/fashion/product-8.jpg",
+                                                url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a3ce5a263ea434e3f7d993e/6a3ce6e842060041a82666d9/library/product-8.jpg",
                                             },
                                         },
                                         {
@@ -1565,13 +1629,19 @@ class ECommerce4 extends BaseECommerce {
                                             },
                                             value: {
                                                 type: "image",
-                                                url: "https://vineta-html.vercel.app/images/products/fashion/product-1.jpg",
+                                                url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a3ce5a263ea434e3f7d993e/6a3ce6e842060041a82666d9/library/product-1.jpg",
                                             },
                                         },
                                         {
                                             type: "boolean",
                                             key: "isSoldOut",
                                             displayer: "Show Sold Out",
+                                            value: false,
+                                        },
+                                        {
+                                            type: "boolean",
+                                            key: "overlay",
+                                            displayer: "Overlay",
                                             value: false,
                                         },
                                         {
@@ -1712,7 +1782,7 @@ class ECommerce4 extends BaseECommerce {
                                             key: "cardRightTextIcon",
                                             displayer: "Icon",
                                             additionalParams: {
-                                                availableTypes: ["icon"],
+                                                availableTypes: ["icon", "image"],
                                             },
                                             value: {
                                                 type: "icon",
@@ -1743,7 +1813,7 @@ class ECommerce4 extends BaseECommerce {
                                             key: "cardRightTextIcon",
                                             displayer: "Icon",
                                             additionalParams: {
-                                                availableTypes: ["icon"],
+                                                availableTypes: ["icon", "image"],
                                             },
                                             value: {
                                                 type: "icon",
@@ -1774,7 +1844,7 @@ class ECommerce4 extends BaseECommerce {
                                             key: "cardRightTextIcon",
                                             displayer: "Icon",
                                             additionalParams: {
-                                                availableTypes: ["icon"],
+                                                availableTypes: ["icon", "image"],
                                             },
                                             value: {
                                                 type: "icon",
@@ -1805,7 +1875,7 @@ class ECommerce4 extends BaseECommerce {
                                             key: "cardRightTextIcon",
                                             displayer: "Icon",
                                             additionalParams: {
-                                                availableTypes: ["icon"],
+                                                availableTypes: ["icon", "image"],
                                             },
                                             value: {
                                                 type: "icon",
@@ -1847,7 +1917,7 @@ class ECommerce4 extends BaseECommerce {
                                             },
                                             value: {
                                                 type: "image",
-                                                url: "https://vineta-html.vercel.app/images/products/fashion/product-25.jpg",
+                                                url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a3ce5a263ea434e3f7d993e/6a3ce6e842060041a82666d9/library/product-25.jpg",
                                             },
                                         },
                                         {
@@ -1859,13 +1929,19 @@ class ECommerce4 extends BaseECommerce {
                                             },
                                             value: {
                                                 type: "image",
-                                                url: "https://vineta-html.vercel.app/images/products/fashion/product-24.jpg",
+                                                url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a3ce5a263ea434e3f7d993e/6a3ce6e842060041a82666d9/library/product-24.jpg",
                                             },
                                         },
                                         {
                                             type: "boolean",
                                             key: "isSoldOut",
                                             displayer: "Show Sold Out",
+                                            value: false,
+                                        },
+                                        {
+                                            type: "boolean",
+                                            key: "overlay",
+                                            displayer: "Overlay",
                                             value: false,
                                         },
                                         {
@@ -1953,7 +2029,7 @@ class ECommerce4 extends BaseECommerce {
                                             },
                                             value: {
                                                 type: "image",
-                                                url: "https://vineta-html.vercel.app/images/products/fashion/product-22.jpg",
+                                                url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a3ce5a263ea434e3f7d993e/6a3ce6e842060041a82666d9/library/product-22.jpg",
                                             },
                                         },
                                         {
@@ -1965,13 +2041,19 @@ class ECommerce4 extends BaseECommerce {
                                             },
                                             value: {
                                                 type: "image",
-                                                url: "https://vineta-html.vercel.app/images/products/fashion/product-24.jpg",
+                                                url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a3ce5a263ea434e3f7d993e/6a3ce6e842060041a82666d9/library/product-24.jpg",
                                             },
                                         },
                                         {
                                             type: "boolean",
                                             key: "isSoldOut",
                                             displayer: "Show Sold Out",
+                                            value: false,
+                                        },
+                                        {
+                                            type: "boolean",
+                                            key: "overlay",
+                                            displayer: "Overlay",
                                             value: false,
                                         },
                                         {
@@ -2045,7 +2127,7 @@ class ECommerce4 extends BaseECommerce {
                 },
             ]
         });
-        this.addProp(INPUTS.BUTTON("button", "Button", "Load More", null, null, null, "Primary"));
+        this.addProp(INPUTS.BUTTON("button", "Button", "Load More", "", null, null, "Primary"));
         this.setComponentState("moreImages", 0);
 
         this.setComponentState("selectedStates",
@@ -2086,20 +2168,64 @@ class ECommerce4 extends BaseECommerce {
     }
 
     handleButtonClick = () => {
-        this.setComponentState("moreImages", this.getComponentState("moreImages") + this.getPropValue("imageCount"))
+        const countSettings = this.castToObject<{ imageCountInitial: number; imageCount: number; itemCount: number }>("countSettings");
+        this.setComponentState("moreImages", this.getComponentState("moreImages") + countSettings.imageCount);
     };
 
     render() {
         const productCards = this.castToObject<ProductCard[]>("productCards") || [];
         const selectedStates = this.getComponentState("selectedStates") || [];
-        const itemCount = this.getPropValue("itemCount");
-        if (this.getComponentState("imageCount") !== this.getPropValue("imageCountInitial") + this.getComponentState("moreImages"))
-            this.setComponentState("imageCount", this.getPropValue("imageCountInitial") + this.getComponentState("moreImages"));
+        const countSettings = this.castToObject<{ imageCountInitial: number; imageCount: number; itemCount: number }>("countSettings");
+        const itemCount = countSettings.itemCount;
+        if (this.getComponentState("imageCount") !== countSettings.imageCountInitial + this.getComponentState("moreImages"))
+            this.setComponentState("imageCount", countSettings.imageCountInitial + this.getComponentState("moreImages"));
         const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
+        const headerButtons = this.castToObject<INPUTS.CastedButton[]>("headerButtons") || [];
+        const subtitle = this.getPropValue("subtitle");
+        const subtitleStr = this.castToString(subtitle);
+        const title = this.getPropValue("title");
+        const titleStr = this.castToString(title);
+        const description = this.getPropValue("description");
+        const descriptionStr = this.castToString(description);
 
         return (
             <Base.Container className={this.decorateCSS("container")}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
+                    {(subtitleStr || titleStr || descriptionStr || headerButtons.some(b => this.castToString(b.text))) && (
+                        <Base.VerticalContent className={this.decorateCSS("header")}>
+                            {subtitleStr && (
+                                <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                                    {subtitle}
+                                </Base.SectionSubTitle>
+                            )}
+                            {titleStr && (
+                                <Base.SectionTitle className={this.decorateCSS("title")}>
+                                    {title}
+                                </Base.SectionTitle>
+                            )}
+                            {descriptionStr && (
+                                <Base.SectionDescription className={this.decorateCSS("description")}>
+                                    {description}
+                                </Base.SectionDescription>
+                            )}
+                            {headerButtons.length > 0 && headerButtons.some(b => this.castToString(b.text)) && (
+                                <div className={this.decorateCSS("action-buttons")}>
+                                    {headerButtons.map((btn: any, index: number) => {
+                                        if (!this.castToString(btn.text)) return null;
+                                        return (
+                                            <ComposerLink key={index} path={btn.url}>
+                                                <Base.Button
+                                                    buttonType={btn.type}
+                                                    className={this.decorateCSS("button")}>
+                                                    <Base.P className={this.decorateCSS("button-text")}>{btn.text}</Base.P>
+                                                </Base.Button>
+                                            </ComposerLink>
+                                        );
+                                    })}
+                                </div>
+                            )}
+                        </Base.VerticalContent>
+                    )}
                     <Base.ListGrid gridCount={{ pc: Math.min(itemCount, 4), tablet: 3, phone: 1 }} className={this.decorateCSS("grid")}>
                         {productCards.slice(0, this.getComponentState("imageCount")).map((productCard: ProductCard, cardIndex: number) => {
                             const selectedState = selectedStates[cardIndex] || { selectedColor: "", selectedColorIndex: 0, selectedSize: "", selectedSizeIndex: 0 };
@@ -2109,12 +2235,12 @@ class ECommerce4 extends BaseECommerce {
                             ) || selectedColorOption?.sizeOptions?.[0];
 
                             return (
-                                <div key={cardIndex} className={this.decorateCSS("card-container")}>
+                                <Base.VerticalContent key={cardIndex} className={this.decorateCSS("card-container")}>
                                     <ComposerLink path={productCard.navigateTo} isFullWidth={true}>
                                         <div className={this.decorateCSS("image-container")}>
                                             <div
                                                 className={`${this.decorateCSS("image-1-container")} ${selectedColorOption?.isSoldOut ? this.decorateCSS("image-sold-out") : ""}`}>
-                                                {selectedColorOption?.cardImage?.url && (
+                                                {(selectedColorOption?.cardImage as { url?: string })?.url && (
                                                     <Base.Media
                                                         value={selectedColorOption.cardImage}
                                                         className={this.decorateCSS("image")}
@@ -2123,13 +2249,14 @@ class ECommerce4 extends BaseECommerce {
                                             </div>
                                             <div
                                                 className={`${this.decorateCSS("image-2-container")} ${selectedColorOption?.isSoldOut ? this.decorateCSS("image-sold-out") : ""}`}>
-                                                {selectedColorOption?.hoverImage?.url && (
+                                                {(selectedColorOption?.hoverImage as { url?: string })?.url && (
                                                     <Base.Media
                                                         value={selectedColorOption?.isSoldOut ? selectedColorOption?.cardImage : selectedColorOption?.hoverImage}
                                                         className={this.decorateCSS("image")}
                                                     />
                                                 )}
                                             </div>
+                                            {selectedColorOption?.overlay && <div className={this.decorateCSS("overlay")} />}
                                             {selectedColorOption?.isSoldOut && (
                                                 <Base.P className={this.decorateCSS("sold-out")}>
                                                     {selectedSizeOption.soldOutText}
@@ -2174,28 +2301,28 @@ class ECommerce4 extends BaseECommerce {
                                                         <Base.P className={this.decorateCSS("card-right-text-container")}>
                                                             {this.castToString(item.cardRightText) && (
                                                                 <Base.P className={this.decorateCSS("card-right-text")}>{item.cardRightText}</Base.P>
-                                                            )}s
+                                                            )}
                                                         </Base.P>
                                                     </div>
                                                 ))}
                                             </div>
                                         </div>
                                     </ComposerLink>
-                                    <div className={`${this.decorateCSS("text-container")} ${selectedColorOption?.isSoldOut ? this.decorateCSS("text-sold-out") : ""}`}>
+                                    <Base.VerticalContent className={`${this.decorateCSS("text-container")} ${selectedColorOption?.isSoldOut ? this.decorateCSS("text-sold-out") : ""}`}>
                                         {this.castToString(productCard.cardTitle) && (
-                                            <Base.H5 className={this.decorateCSS("title")}>{productCard.cardTitle}</Base.H5>
+                                            <Base.H6 className={this.decorateCSS("title")}>{productCard.cardTitle}</Base.H6>
                                         )}
                                         {productCard.cost.value && (
                                             <div className={this.decorateCSS("price")}>
-                                                <Base.H4 className={this.decorateCSS("value")}>
+                                                <Base.P className={this.decorateCSS("value")}>
                                                     {productCard.cost?.value}
-                                                </Base.H4>
-                                                <Base.H4 className={this.decorateCSS("currency-code")}>
+                                                </Base.P>
+                                                <Base.P className={this.decorateCSS("currency-code")}>
                                                     {getCurrencyInfo(productCard.cost.currency)?.symbol}
-                                                </Base.H4>
+                                                </Base.P>
                                             </div>
                                         )}
-                                    </div>
+                                    </Base.VerticalContent>
                                     <div className={this.decorateCSS("section-color-container")}>
                                         {productCard.colorOptions?.map((colorOption: ColorOption, colorIndex: number) => (
                                             <button
@@ -2212,19 +2339,22 @@ class ECommerce4 extends BaseECommerce {
                                             </button>
                                         ))}
                                     </div>
-                                </div>
+                                </Base.VerticalContent>
                             );
                         })}
                     </Base.ListGrid>
-                    {
-                        (productCards.length > this.getComponentState("imageCount")) && (this.castToString(button.text)) && (
+                    {this.castToString(button.text) && (() => {
+                        const hasMoreItems = productCards.length > this.getComponentState("imageCount");
+                        return (
                             <div className={this.decorateCSS("button-wrapper")}>
-                                <Base.Button className={this.decorateCSS("button")} buttonType={button.type} onClick={this.handleButtonClick} >
-                                    <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
-                                </Base.Button>
+                                <ComposerLink path={hasMoreItems ? "" : button.url}>
+                                    <Base.Button className={this.decorateCSS("button")} buttonType={button.type} onClick={hasMoreItems ? this.handleButtonClick : undefined}>
+                                        <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
+                                    </Base.Button>
+                                </ComposerLink>
                             </div>
-                        )
-                    }
+                        );
+                    })()}
                 </Base.MaxContent >
             </Base.Container >
         );
