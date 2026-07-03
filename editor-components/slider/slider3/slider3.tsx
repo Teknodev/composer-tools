@@ -388,7 +388,7 @@ class Slider3 extends BaseSlider {
                       {(this.castToString(item.Slidersubtitle) || this.castToString(item.Slidertitle) || this.castToString(item.Sliderdescription) || this.castToString(item.button.text)) && (
                         <Base.VerticalContent className={this.decorateCSS("right-part")} id={"slider6Image" + index}>
                           {this.castToString(item.Slidersubtitle) && <Base.P className={this.decorateCSS("card-subtitle")}>{item.Slidersubtitle}</Base.P>}
-                          {this.castToString(item.Slidertitle) && <Base.H5 className={this.decorateCSS("card-title")}>{item.Slidertitle}</Base.H5>}
+                          {this.castToString(item.Slidertitle) && <Base.H6 className={this.decorateCSS("card-title")}>{item.Slidertitle}</Base.H6>}
                           {this.castToString(item.Sliderdescription) && <Base.P className={this.decorateCSS("card-description")}>{item.Sliderdescription}</Base.P>}
                           {this.castToString(item.button.text) && (
                             <ComposerLink key={index} path={item.button.url}>
