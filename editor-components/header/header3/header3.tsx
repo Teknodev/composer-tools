@@ -446,7 +446,11 @@ class Header3 extends BaseHeader {
                 {cards.map((item: Card, index: number) => {
                   return (this.castToString(item.subtitle) || this.castToString(item.title) || this.castToString(item.description) || this.castToString(item.button?.text) || item.media) && (
                     <div className={`${this.decorateCSS("slider-inner-div")} ${anyImagesExist && this.decorateCSS("has-background")}`} key={`sld-8-${index}`}>
-                      {item.componentBackground && (<Base.Media value={item.componentBackground} className={this.decorateCSS("bg-image")} />)}
+                      {item.componentBackground && (
+                        <div className={this.decorateCSS("bg-image-wrapper")}>
+                          <Base.Media value={item.componentBackground} className={this.decorateCSS("bg-image")} />
+                        </div>
+                      )}
                       {shouldDisplayOverlay(index) === true && <div className={this.decorateCSS("overlay")}></div>}
                       
                       <Base.MaxContent className={this.decorateCSS("max-content")}>
