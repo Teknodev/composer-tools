@@ -36,7 +36,6 @@
     .vertical-content {
       align-items: center !important;
       text-align: center !important;
-
       .subtitle {
         transform: none;
         text-align: center !important;
@@ -336,10 +335,27 @@
 
         .subtitle {
           text-align: var(--composer-content-alignment) !important;
-          transform: unset !important;
+        }
 
-          &::before {
-            display: inline-block !important;
+        &.left {
+          .subtitle {
+            &.line {
+              transform: translateX(3rem) !important;
+            }
+            &::before {
+              display: block !important;
+            }
+          }
+        }
+
+        &.center {
+          .subtitle {
+            &.line {
+              transform: none !important;
+            }
+            &::before {
+              display: none !important;
+            }
           }
         }
 

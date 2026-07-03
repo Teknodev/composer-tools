@@ -330,14 +330,16 @@ class Slider3 extends BaseSlider {
     const visibleButtons = buttons.filter(btn => this.castToString(btn.text));
     const fullWidth = this.getPropValue("fullWidth");
     const hasContent = subtitle || title || description || visibleButtons.length > 0;
+    const subtitleType = Base.getSectionSubTitleType();
+    const alignment = Base.getContentAlignment();
 
     return (
       <Base.Container
         className={`${this.decorateCSS("container")} ${fullWidth ? this.decorateCSS("full-width") : ""} ${fullWidth ? this.decorateCSS("full") : ""} ${!hasContent && this.decorateCSS("no-header")}`.trim()}>
         {hasContent && (
           <Base.MaxContent className={this.decorateCSS("max-content")}>
-            <Base.VerticalContent className={this.decorateCSS("vertical-content")}>
-              {subtitle && (<Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>)}
+            <Base.VerticalContent className={`${this.decorateCSS("vertical-content")} ${this.decorateCSS(alignment)}`}>
+              {subtitle && (<Base.SectionSubTitle className={`${this.decorateCSS("subtitle")} ${subtitleType === "line" ? this.decorateCSS("line") : ""}`}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>)}
               {title && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
               {description && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
               {visibleButtons.length > 0 && (
