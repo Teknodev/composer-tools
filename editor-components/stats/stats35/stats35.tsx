@@ -297,7 +297,7 @@ class Stats35 extends BaseStats {
                             value={backgroundImage}
                             className={this.decorateCSS("background-image")}
                         />
-                        {showOverlay && <div className={this.decorateCSS("overlay")} />}
+                        {showOverlay && <div className={this.decorateCSS("media-overlay")} />}
                     </div>
                 )}
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
@@ -307,7 +307,7 @@ class Stats35 extends BaseStats {
                                 value={backgroundImage}
                                 className={this.decorateCSS("background-image")}
                             />
-                            {showOverlay && <div className={this.decorateCSS("overlay")} />}
+                            {showOverlay && <div className={this.decorateCSS("media-overlay")} />}
                         </div>
                     ) : (
                         <div className={`${this.decorateCSS("content-wrapper")} ${hasRightSection ? this.decorateCSS("has-right") : ""}`}>
@@ -354,7 +354,7 @@ class Stats35 extends BaseStats {
                                                 value={backgroundImage}
                                                 className={this.decorateCSS("background-image")}
                                             />
-                                            {showOverlay && <div className={this.decorateCSS("overlay")} />}
+                                            {showOverlay && <div className={this.decorateCSS("media-overlay")} />}
                                         </div>
                                     )}
                                     {hasVisibleStats && (

@@ -6,8 +6,8 @@ import ComposerLink from "../../../composer-base-components/Link/ComposerLinkPro
 import { INPUTS } from "../../../custom-hooks/input-templates";
 
 type CardData = {
-  cardValue: React.JSX.Element;
-  cardLabel: React.JSX.Element;
+  number: React.JSX.Element;
+  description: React.JSX.Element;
 };
 
 class Stats1Page extends BaseStats {
@@ -39,65 +39,65 @@ class Stats1Page extends BaseStats {
 
     this.addProp({
       type: "array",
-      key: "card-list",
+      key: "stats",
       additionalParams: {
         maxElementCount: 5,
       },
-      displayer: "Card Content",
+      displayer: "Stats",
       value: [
         {
           type: "object",
-          key: "card",
-          displayer: "Card",
+          key: "stat",
+          displayer: "Stat",
           value: [
             {
               type: "string",
-              key: "cardValue",
-              displayer: "Counter Value",
+              key: "number",
+              displayer: "Value",
               value: "1002",
             },
             {
               type: "string",
-              key: "cardLabel",
-              displayer: "Counter Label",
+              key: "description",
+              displayer: "Description",
               value: "Active Users",
             },
           ],
         },
         {
           type: "object",
-          key: "card",
-          displayer: "Card",
+          key: "stat",
+          displayer: "Stat",
           value: [
             {
               type: "string",
-              key: "cardValue",
-              displayer: "Counter Value",
+              key: "number",
+              displayer: "Value",
               value: "2999",
             },
             {
               type: "string",
-              key: "cardLabel",
-              displayer: "Counter Label",
+              key: "description",
+              displayer: "Description",
               value: "Articles",
             },
           ],
         },
         {
           type: "object",
-          key: "card",
-          displayer: "Card",
+          key: "stat",
+          displayer: "Stat",
           value: [
             {
               type: "string",
-              key: "cardValue",
-              displayer: "Counter Value",
+              key: "number",
+              displayer: "Value",
               value: "97",
             },
             {
               type: "string",
-              key: "cardLabel",
-              displayer: "Counter Label",
+              key: "description",
+              displayer: "Description",
               value: "Authors",
             },
           ],
@@ -122,7 +122,7 @@ class Stats1Page extends BaseStats {
   }
 
   init() {
-    this.castToObject<CardData[]>("card-list").map((_, index) => {
+    this.castToObject<CardData[]>("stats").map((_, index) => {
       this.setComponentState(`number-${index}`, "");
       this.setComponentState(`numberForControl-${index}`, "");
     });
@@ -136,13 +136,13 @@ class Stats1Page extends BaseStats {
   }
 
   getStats() {
-    const statItems = this.castToObject<CardData[]>("card-list");
-    const stats = statItems.map((statsData: any) => (statsData.cardValue === "" ? "" : this.castToString(statsData.cardValue)));
+    const statItems = this.castToObject<CardData[]>("stats");
+    const stats = statItems.map((statsData: any) => (statsData.number === "" ? "" : this.castToString(statsData.number)));
     return stats;
   }
 
   getNumbers() {
-    const statItems = this.castToObject<CardData[]>("card-list");
+    const statItems = this.castToObject<CardData[]>("stats");
     const numbers = statItems.map((_, index) => {
       const number = this.getComponentState(`numberForControl-${index}`);
       return number !== undefined ? number : "";
@@ -168,14 +168,14 @@ class Stats1Page extends BaseStats {
         this.interval = null;
       }
 
-      this.castToObject<CardData[]>("card-list").map((statData: CardData, index: number) => {
+      this.castToObject<CardData[]>("stats").map((statData: CardData, index: number) => {
         let currentNumberState = this.getComponentState(`number-${index}`);
         const currentString = typeof currentNumberState === "string" ? currentNumberState : "";
         const currentNonNumericPrefix = currentString.match(/^\D+/)?.[0] || "";
         const currentNonNumericSuffix = currentString.match(/\D+$/)?.[0] || "";
         const currentNumber = parseInt(currentString.replace(/\D+/g, ""), 10) || 0;
 
-        const counterString = this.castToString(statData.cardValue);
+        const counterString = this.castToString(statData.number);
         const newNonNumericPrefix = counterString.match(/^\D+/)?.[0] || "";
         const newNonNumericSuffix = counterString.match(/\D+$/)?.[0] || "";
         const numericPart = parseInt(counterString.replace(/[^\d]/g, ""), 10) || 0;
@@ -207,7 +207,7 @@ class Stats1Page extends BaseStats {
     const isSubtitleExist = this.castToString(subtitle);
     const description = this.getPropValue("description");
     const isDescExist = this.castToString(description);
-    const cardList = this.castToObject<CardData[]>("card-list");
+    const cardList = this.castToObject<CardData[]>("stats");
 
     const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
     const buttonText = button.text;
@@ -247,7 +247,7 @@ class Stats1Page extends BaseStats {
 
                   {cardList.map((cardData: CardData, indexCard: number) => {
                     const angle = (indexCard / cardList.length) * 360;
-                    const isCardLabelExist = this.castToString(cardData.cardLabel);
+                    const isCardLabelExist = this.castToString(cardData.description);
 
                     if (this.getComponentState(`number-${indexCard}`) !== "0" || isCardLabelExist)
                       return (
@@ -262,7 +262,7 @@ class Stats1Page extends BaseStats {
                               {this.getComponentState(`number-${indexCard}`)}
                             </Base.H5>
                           )}
-                          {isCardLabelExist && <Base.P className={this.decorateCSS("counter-label")}>{cardData.cardLabel}</Base.P>}
+                          {isCardLabelExist && <Base.P className={this.decorateCSS("counter-label")}>{cardData.description}</Base.P>}
                         </div>
                       );
                   })}

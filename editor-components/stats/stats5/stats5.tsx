@@ -4,8 +4,8 @@ import styles from "./stats5.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 
 type Card = {
-  stat: React.JSX.Element;
-  title: React.JSX.Element;
+  number: React.JSX.Element;
+  description: React.JSX.Element;
 };
 
 class Stats5Page extends BaseStats {
@@ -14,82 +14,103 @@ class Stats5Page extends BaseStats {
   constructor(props?: any) {
     super(props, styles);
     this.addProp({
+      type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "",
+    });
+
+    this.addProp({
+      type: "string",
+      key: "title",
+      displayer: "Title",
+      value: "",
+    });
+
+    this.addProp({
+      type: "string",
+      key: "description",
+      displayer: "Description",
+      value: "",
+    });
+
+    this.addProp({
       type: "array",
-      key: "cards",
-      displayer: "Cards",
+      key: "stats",
+      displayer: "Stats",
       value: [
         {
           type: "object",
-          key: "card",
-          displayer: "Card",
+          key: "stat",
+          displayer: "Stat",
           value: [
             {
-              type: "number",
-              key: "stat",
-              displayer: "Stat",
-              value: 98,
+              type: "string",
+              key: "number",
+              displayer: "Value",
+              value: "98",
             },
             {
               type: "string",
-              key: "title",
-              displayer: "Title",
+              key: "description",
+              displayer: "Description",
               value: "Services",
             },
           ],
         },
         {
           type: "object",
-          key: "card",
-          displayer: "Card",
+          key: "stat",
+          displayer: "Stat",
           value: [
             {
-              type: "number",
-              key: "stat",
-              displayer: "Stat",
-              value: 65,
+              type: "string",
+              key: "number",
+              displayer: "Value",
+              value: "65",
             },
             {
               type: "string",
-              key: "title",
-              displayer: "Title",
+              key: "description",
+              displayer: "Description",
               value: "Technicians",
             },
           ],
         },
         {
           type: "object",
-          key: "card",
-          displayer: "Card",
+          key: "stat",
+          displayer: "Stat",
           value: [
             {
-              type: "number",
-              key: "stat",
-              displayer: "Stat",
-              value: 7,
+              type: "string",
+              key: "number",
+              displayer: "Value",
+              value: "7",
             },
             {
               type: "string",
-              key: "title",
-              displayer: "Title",
+              key: "description",
+              displayer: "Description",
               value: "Days a Week",
             },
           ],
         },
         {
           type: "object",
-          key: "card",
-          displayer: "Card",
+          key: "stat",
+          displayer: "Stat",
           value: [
             {
-              type: "number",
-              key: "stat",
-              displayer: "Stat",
-              value: 10,
+              type: "string",
+              key: "number",
+              displayer: "Value",
+              value: "10",
             },
             {
               type: "string",
-              key: "title",
-              displayer: "Title",
+              key: "description",
+              displayer: "Description",
               value: "Offices",
             },
           ],
@@ -152,13 +173,13 @@ class Stats5Page extends BaseStats {
   }
 
   getStats() {
-    const cards = this.castToObject<Card[]>("cards");
-    const stats = cards.map((card: any) => (card.stat === "" ? null : card.stat));
+    const cards = this.castToObject<Card[]>("stats");
+    const stats = cards.map((card: any) => (card.number === "" ? null : card.number));
     return stats;
   }
 
   getNumbers() {
-    const cards = this.castToObject<Card[]>("cards");
+    const cards = this.castToObject<Card[]>("stats");
     const numbers = cards.map((_, index) => {
       const number = this.getComponentState(`numberForControl-${index}`);
       return number !== undefined ? number : "";
@@ -179,7 +200,7 @@ class Stats5Page extends BaseStats {
     const incrementValue = this.getPropValue("incrementValue");
 
     this.interval = setInterval(() => {
-      const cards = this.castToObject<Card[]>("cards");
+      const cards = this.castToObject<Card[]>("stats");
 
       if (this.isEqual(this.getStats(), this.getNumbers())) {
         clearInterval(this.interval);
@@ -193,22 +214,21 @@ class Stats5Page extends BaseStats {
           currentNumber = parseInt(currentNumber.replace(/\D+/g, ""), 10) || 0;
         }
 
-        if (typeof item.stat === "number") {
-          if (currentNumber !== item.stat) {
-            let nextValue = Math.min(item.stat, currentNumber + Math.ceil(item.stat / Math.round(incrementValue / 30)));
+        const targetStat = parseInt(item.number?.toString().replace(/\D+/g, "") || "0", 10) || 0;
+        if (currentNumber !== targetStat) {
+          let nextValue = Math.min(targetStat, currentNumber + Math.ceil(targetStat / Math.round(incrementValue / 30)));
 
-            const formattedNextValue = this.formatNumberWithDots(nextValue);
+          const formattedNextValue = this.formatNumberWithDots(nextValue);
 
-            this.setComponentState(`number-${index}`, formattedNextValue);
-            this.setComponentState(`numberForControl-${index}`, nextValue);
-          }
+          this.setComponentState(`number-${index}`, formattedNextValue);
+          this.setComponentState(`numberForControl-${index}`, nextValue);
         }
       });
     }, animationDuration);
   }
 
   getCardClasses(index: number, itemCountInRow: number) {
-    const totalCards = this.castToObject<Card[]>("cards").length;
+    const totalCards = this.castToObject<Card[]>("stats").length;
     const isLastInRow = (index + 1) % itemCountInRow === 0 || index === totalCards - 1;
 
     return !isLastInRow && this.getPropValue("lines") ? this.decorateCSS("stick") : "";
@@ -216,7 +236,15 @@ class Stats5Page extends BaseStats {
 
   render() {
     const itemCountInRow = this.getPropValue("itemCountInRow");
-    const cards = this.castToObject<Card[]>("cards");
+    const cards = this.castToObject<Card[]>("stats");
+
+    const subtitle = this.getPropValue("subtitle");
+    const title = this.getPropValue("title");
+    const description = this.getPropValue("description");
+
+    const isSubtitleExist = this.castToString(subtitle);
+    const isTitleExist = this.castToString(title);
+    const isDescriptionExist = this.castToString(description);
 
     if (!this.interval && !this.isEqual(this.getStats(), this.getNumbers())) {
       this.animate();
@@ -225,13 +253,20 @@ class Stats5Page extends BaseStats {
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
+          {(isSubtitleExist || isTitleExist || isDescriptionExist) && (
+            <Base.VerticalContent className={this.decorateCSS("header-wrapper")}>
+              {isSubtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{subtitle}</Base.SectionSubTitle>}
+              {isTitleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>}
+              {isDescriptionExist && <Base.SectionDescription className={this.decorateCSS("description")}>{description}</Base.SectionDescription>}
+            </Base.VerticalContent>
+          )}
           {cards?.length > 0 && (
             <Base.ListGrid gridCount={{ pc: itemCountInRow, tablet: 2, phone: 1 }} className={this.decorateCSS("bottom-child")}>
               {cards.map((item: Card, index: number) => {
-                const titleExist = this.castToString(item.title);
-                const statValue = item.stat === this.getComponentState(`number-${index}`) ? item.stat : this.getComponentState(`number-${index}`);
+                const titleExist = this.castToString(item.description);
+                const statValue = item.number === this.getComponentState(`number-${index}`) ? item.number : this.getComponentState(`number-${index}`);
 
-                if (titleExist || item.stat)
+                if (titleExist || item.number)
                   return (
                     <div
                       key={index}
@@ -240,8 +275,8 @@ class Stats5Page extends BaseStats {
                           ${this.getCardClasses(index, itemCountInRow)}
                         `}
                     >
-                      {item.stat && <Base.SectionTitle className={this.decorateCSS("card-data-title")}>{statValue}</Base.SectionTitle>}
-                      {titleExist && <Base.SectionDescription className={this.decorateCSS("card-data-description")}>{item.title}</Base.SectionDescription>}
+                      {item.number && <Base.SectionTitle className={this.decorateCSS("card-data-title")}>{statValue}</Base.SectionTitle>}
+                      {titleExist && <Base.SectionDescription className={this.decorateCSS("card-data-description")}>{item.description}</Base.SectionDescription>}
                     </div>
                   );
                 return null;

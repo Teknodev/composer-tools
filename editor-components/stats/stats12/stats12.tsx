@@ -16,16 +16,36 @@ class Stats12 extends BaseStats {
 
   constructor(props?: any) {
     super(props, styles);
+    this.addProp({
+      type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "",
+    });
+
+    this.addProp({
+      type: "string",
+      key: "title",
+      displayer: "Title",
+      value: "",
+    });
+
+    this.addProp({
+      type: "string",
+      key: "description",
+      displayer: "Description",
+      value: "",
+    });
 
     this.addProp({
       type: "array",
-      key: "features",
-      displayer: "Features",
+      key: "stats",
+      displayer: "Stats",
       value: [
         {
           type: "object",
-          key: "feature",
-          displayer: "Feature",
+          key: "stat",
+          displayer: "Stat",
           value: [
             { type: "icon", key: "icon", displayer: "Icon", value: "FiClock" },
             { type: "string", key: "title", displayer: "Title", value: "90 Days Return" },
@@ -34,8 +54,8 @@ class Stats12 extends BaseStats {
         },
         {
           type: "object",
-          key: "feature",
-          displayer: "Feature",
+          key: "stat",
+          displayer: "Stat",
           value: [
             { type: "icon", key: "icon", displayer: "Icon", value: "BsBookmarkDash" },
             { type: "string", key: "title", displayer: "Title", value: "Free Delivery" },
@@ -44,8 +64,8 @@ class Stats12 extends BaseStats {
         },
         {
           type: "object",
-          key: "feature",
-          displayer: "Feature",
+          key: "stat",
+          displayer: "Stat",
           value: [
             { type: "icon", key: "icon", displayer: "Icon", value: "FiCreditCard" },
             { type: "string", key: "title", displayer: "Title", value: "Secure Payment" },
@@ -91,13 +111,30 @@ class Stats12 extends BaseStats {
   };
 
   render() {
-    const features = this.castToObject<FeatureItem[]>("features");
+    const features = this.castToObject<FeatureItem[]>("stats");
     const itemsPerRow = this.getPropValue("itemsPerRow") ?? 3;
     const prevIcon = this.getPropValue("prev-button-icon");
     const nextIcon = this.getPropValue("next-button-icon");
 
+    const subtitle = this.getPropValue("subtitle");
+    const title = this.getPropValue("title");
+    const description = this.getPropValue("description");
+
+    const isSubtitleExist = this.castToString(subtitle);
+    const isTitleExist = this.castToString(title);
+    const isDescriptionExist = this.castToString(description);
+
     return (
       <Base.Container className={this.decorateCSS("container")}>
+        {(isSubtitleExist || isTitleExist || isDescriptionExist) && (
+          <Base.MaxContent className={this.decorateCSS("header-max-content")}>
+            <Base.VerticalContent className={this.decorateCSS("header-wrapper")}>
+              {isSubtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{subtitle}</Base.SectionSubTitle>}
+              {isTitleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>}
+              {isDescriptionExist && <Base.SectionDescription className={this.decorateCSS("description")}>{description}</Base.SectionDescription>}
+            </Base.VerticalContent>
+          </Base.MaxContent>
+        )}
         <Base.MaxContent
           className={`${this.decorateCSS("max-content")} ${this.decorateCSS(`cols-${itemsPerRow}`)} ${this.decorateCSS("desktop-wrapper")}`}
           ref={this.containerRef}

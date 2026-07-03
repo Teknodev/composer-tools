@@ -7,8 +7,8 @@ import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "../../../custom-hooks/input-templates";
 
 type Card = {
-  amount: number;
-  text: React.JSX.Element;
+  number: string;
+  description: React.JSX.Element;
   icon?: string;
   secondIcon?: string;
 };
@@ -22,6 +22,13 @@ class Stats2Page extends BaseStats {
       key: "animation-duration",
       displayer: "Number Animation Duration (ms)",
       value: 2000,
+    });
+
+    this.addProp({
+      type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "",
     });
 
     this.addProp({
@@ -42,26 +49,26 @@ class Stats2Page extends BaseStats {
 
     this.addProp({
       type: "array",
-      key: "cards",
-      displayer: "cards",
+      key: "stats",
+      displayer: "Stats",
       additionalParams: { maxElementCount: 10 },
       value: [
         {
           type: "object",
-          key: "card",
-          displayer: "card",
+          key: "stat",
+          displayer: "Stat",
           value: [
             {
               type: "string",
-              key: "text",
-              displayer: "Title",
+              key: "description",
+              displayer: "Description",
               value: "Users on marketplaces we've created in 2023.",
             },
             {
-              type: "number",
-              key: "amount",
-              displayer: "Amount",
-              value: 8500,
+              type: "string",
+              key: "number",
+              displayer: "Value",
+              value: "8500",
             },
             {
               type: "icon",
@@ -79,20 +86,20 @@ class Stats2Page extends BaseStats {
         },
         {
           type: "object",
-          key: "card",
-          displayer: "card",
+          key: "stat",
+          displayer: "Stat",
           value: [
             {
               type: "string",
-              key: "text",
-              displayer: "Title",
+              key: "description",
+              displayer: "Description",
               value: "Successfully finished projects with creativity.",
             },
             {
-              type: "number",
-              key: "amount",
-              displayer: "Amount",
-              value: 660,
+              type: "string",
+              key: "number",
+              displayer: "Value",
+              value: "660",
             },
             {
               type: "icon",
@@ -110,20 +117,20 @@ class Stats2Page extends BaseStats {
         },
         {
           type: "object",
-          key: "card",
-          displayer: "card",
+          key: "stat",
+          displayer: "Stat",
           value: [
             {
               type: "string",
-              key: "text",
-              displayer: "Title",
+              key: "description",
+              displayer: "Description",
               value: "Monthly visitors on our e-Commerce platform.",
             },
             {
-              type: "number",
-              key: "amount",
-              displayer: "Amount",
-              value: 6834,
+              type: "string",
+              key: "number",
+              displayer: "Value",
+              value: "6834",
             },
             {
               type: "icon",
@@ -141,20 +148,20 @@ class Stats2Page extends BaseStats {
         },
         {
           type: "object",
-          key: "card",
-          displayer: "card",
+          key: "stat",
+          displayer: "Stat",
           value: [
             {
               type: "string",
-              key: "text",
-              displayer: "Title",
+              key: "description",
+              displayer: "Description",
               value: "Onboarding conversions growth increased.",
             },
             {
-              type: "number",
-              key: "amount",
-              displayer: "Amount",
-              value: 300,
+              type: "string",
+              key: "number",
+              displayer: "Value",
+              value: "300",
             },
             {
               type: "icon",
@@ -186,13 +193,16 @@ class Stats2Page extends BaseStats {
   }
 
   render() {
-    const cards = this.castToObject<Card[]>("cards");
+    const cards = this.castToObject<Card[]>("stats");
     const cardLength = cards.length;
     const animationDuration = this.getPropValue("animation-duration") as number;
 
     const itemCount = this.getPropValue("itemCount");
 
     const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
+    
+    const subtitle = this.getPropValue("subtitle");
+    const isSubtitleExist = this.castToString(subtitle);
 
     const totalRows = Math.ceil(cards.length / itemCount);
 
@@ -227,14 +237,14 @@ class Stats2Page extends BaseStats {
             clearInterval(intervalRef.current);
           }
         };
-      }, [card.amount]);
+      }, [card.number]);
 
       const animateDigits = () => {
         if (intervalRef.current) {
           clearInterval(intervalRef.current);
         }
 
-        const finalAmount = card.amount?.toString();
+        const finalAmount = card.number?.toString();
         if (finalAmount === null || finalAmount === undefined) {
           setAmount(null);
           return;
@@ -267,7 +277,7 @@ class Stats2Page extends BaseStats {
       return (
         (isTextExist || amount !== null || card.icon || card.secondIcon) && (
           <div ref={ref} className={classes}>
-            {isTextExist && <Base.P className={this.decorateCSS("card-text")}>{card.text}</Base.P>}
+            {isTextExist && <Base.P className={this.decorateCSS("card-text")}>{card.description}</Base.P>}
             {(amount !== null || card.icon || card.secondIcon) && (
               <div className={this.decorateCSS("card-amount-container")}>
                 {card.icon && <Base.Icon propsIcon={{ className: this.decorateCSS("card-icon") }} name={card.icon} />}
@@ -288,9 +298,12 @@ class Stats2Page extends BaseStats {
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          {this.castToString(this.getPropValue("header")) && (
+          {(isSubtitleExist || this.castToString(this.getPropValue("header"))) && (
             <Base.VerticalContent className={`${this.decorateCSS("header-wrapper")} ${cardLength <= 0 ? this.decorateCSS("full-width") : ""}`}>
-              <Base.SectionTitle className={this.decorateCSS("header")}>{this.getPropValue("header")}</Base.SectionTitle>
+              {isSubtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{subtitle}</Base.SectionSubTitle>}
+              {this.castToString(this.getPropValue("header")) && (
+                <Base.SectionTitle className={this.decorateCSS("header")}>{this.getPropValue("header")}</Base.SectionTitle>
+              )}
             </Base.VerticalContent>
           )}
 

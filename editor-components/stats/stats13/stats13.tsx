@@ -20,21 +20,27 @@ class Stats13 extends BaseStats {
     constructor(props?: any) {
         super(props, styles);
         this.addProp({
-            type: "media",
-            key: "image",
+            type: "object",
+            key: "imageCard",
             displayer: "Media",
-            value: {
-                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/69367e0a496aa1002ca9b081?alt=media",
-                type: "image",
-            },
-            additionalParams: { availableTypes: ["image", "video"] }
-        });
-
-        this.addProp({
-            type: "boolean",
-            key: "enableOverlay",
-            displayer: "Overlay",
-            value: false,
+            value: [
+                {
+                    type: "media",
+                    key: "image",
+                    displayer: "Media",
+                    value: {
+                        url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/69367e0a496aa1002ca9b081?alt=media",
+                        type: "image",
+                    },
+                    additionalParams: { availableTypes: ["image", "video"] },
+                },
+                {
+                    type: "boolean",
+                    key: "enableOverlay",
+                    displayer: "Overlay",
+                    value: false,
+                },
+            ],
         });
 
 
@@ -195,8 +201,8 @@ class Stats13 extends BaseStats {
 
         this.addProp({
             type: "array",
-            key: "statsItems",
-            displayer: "Stats Items",
+            key: "stats",
+            displayer: "Stats",
             value: [
                 {
                     type: "object",
@@ -318,7 +324,8 @@ class Stats13 extends BaseStats {
     };
 
     render() {
-        const image = this.getPropValue("image");
+        const imageCard = this.castToObject<any>("imageCard");
+        const image = imageCard?.image;
         const isImageExist = !!image?.url;
         const ratingItems = this.castToObject<RatingItemType[]>("rating");
         const subtitleExist = this.castToString(this.getPropValue("subtitle"));
@@ -327,9 +334,9 @@ class Stats13 extends BaseStats {
         const descriptionExist = this.castToString(this.getPropValue("description"));
         const enableTextAnimation = this.getPropValue("enableTextAnimation");
         const enableStatAnimation = this.getPropValue("enableStatAnimation");
-        const statsItems = this.castToObject<StatItemType[]>("statsItems");
+        const statsItems = this.castToObject<StatItemType[]>("stats");
         const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
-        const enableOverlay = this.getPropValue("enableOverlay");
+        const enableOverlay = !!imageCard?.enableOverlay;
         const hasContent = ratingItems.length > 0 || !!titleExist || buttons.length > 0 || statsItems.length > 0 || subtitleExist || descriptionExist;
 
         return (
@@ -417,7 +424,7 @@ class Stats13 extends BaseStats {
                                         className={this.decorateCSS("image")}
                                     />
                                     {enableOverlay && (
-                                        <div className={this.decorateCSS("overlay")}></div>
+                                        <div className={this.decorateCSS("media-overlay")}></div>
                                     )}
                                 </div>
                             </div>

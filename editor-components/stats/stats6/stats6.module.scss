@@ -6,6 +6,10 @@
     .banner {
       margin-bottom: calc(2 * var(--composer-gap-lg));
 
+      .subtitle {
+        margin-bottom: var(--composer-gap-sm);
+      }
+
       .description {
         color: var(--composer-tertiary-color);
       }

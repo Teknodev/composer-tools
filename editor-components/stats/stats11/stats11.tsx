@@ -5,8 +5,8 @@ import { Base } from "../../../composer-base-components/base/base";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 import { INPUTS } from "../../../custom-hooks/input-templates";
 interface StatItem {
-  value: React.JSX.Element;
-  label: React.JSX.Element;
+  number: React.JSX.Element;
+  description: React.JSX.Element;
 }
 
 class Stats11 extends BaseStats {
@@ -15,47 +15,47 @@ class Stats11 extends BaseStats {
 
     this.addProp({
       type: "array",
-      key: "statItems",
-      displayer: "Stat Items",
+      key: "stats",
+      displayer: "Stats",
       value: [
         {
           type: "object",
-          key: "statItem",
-          displayer: "Stat Item",
+          key: "stat",
+          displayer: "Stat",
           value: [
-            { type: "string", key: "value", displayer: "Value", value: "12" },
+            { type: "string", key: "number", displayer: "Value", value: "12" },
             {
               type: "string",
-              key: "label",
-              displayer: "Label",
+              key: "description",
+              displayer: "Description",
               value: "Years",
             },
           ],
         },
         {
           type: "object",
-          key: "statItem",
-          displayer: "Stat Item",
+          key: "stat",
+          displayer: "Stat",
           value: [
-            { type: "string", key: "value", displayer: "Value", value: "68" },
+            { type: "string", key: "number", displayer: "Value", value: "68" },
             {
               type: "string",
-              key: "label",
-              displayer: "Label",
+              key: "description",
+              displayer: "Description",
               value: "Projects",
             },
           ],
         },
         {
           type: "object",
-          key: "statItem",
-          displayer: "Stat Item",
+          key: "stat",
+          displayer: "Stat",
           value: [
-            { type: "string", key: "value", displayer: "Value", value: "16" },
+            { type: "string", key: "number", displayer: "Value", value: "16" },
             {
               type: "string",
-              key: "label",
-              displayer: "Label",
+              key: "description",
+              displayer: "Description",
               value: "Award",
             },
           ],
@@ -140,7 +140,7 @@ class Stats11 extends BaseStats {
   }
 
   render() {
-    const statItems = this.castToObject<StatItem[]>("statItems");
+    const statItems = this.castToObject<StatItem[]>("stats");
     const image = this.getPropValue("image");
     const subTitle = this.getPropValue("subTitle");
     const title = this.getPropValue("title");
@@ -162,14 +162,14 @@ class Stats11 extends BaseStats {
               <div className={this.decorateCSS("stats-list")}>
                 {statItems.map((item, idx) => (
                   <div className={this.decorateCSS("stat-item")} key={idx}>
-                    {this.castToString(item.value) && (
+                    {this.castToString(item.number) && (
                       <Base.P className={this.decorateCSS("stat-value")}>
-                        {item.value}
+                        {item.number}
                       </Base.P>
                     )}
-                    {this.castToString(item.label) && (
+                    {this.castToString(item.description) && (
                       <Base.P className={this.decorateCSS("stat-label")}>
-                        {item.label}
+                        {item.description}
                       </Base.P>
                     )}
                   </div>

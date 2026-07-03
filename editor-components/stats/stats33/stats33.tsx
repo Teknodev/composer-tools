@@ -12,7 +12,10 @@ type RawStatItem = {
     subtitle: JSX.Element;
     title: JSX.Element;
     description: JSX.Element;
-    media: TypeMediaInputValue;
+    mediaCard: {
+        media: TypeMediaInputValue;
+        overlay: boolean;
+    };
     buttons: INPUTS.CastedButton[];
     rowReverse: boolean;
 };
@@ -35,6 +38,7 @@ type StatItem = {
     description: string;
     descriptionElement: JSX.Element;
     media: TypeMediaInputValue;
+    overlay: boolean;
     buttons: INPUTS.CastedButton[];
     rowReverse: boolean;
 };
@@ -89,14 +93,27 @@ class Stats33 extends BaseStats {
                         { type: "string", key: "title", displayer: "Title", value: "Years Of Experience" },
                         { type: "string", key: "description", displayer: "Description", value: "Capitalize on low hanging fruit to identify a ballpark value added activity to beta test. Override the digital divide with additional clickthroughs from DevOps" },
                         {
-                            type: "media",
-                            key: "media",
+                            type: "object",
+                            key: "mediaCard",
                             displayer: "Media",
-                            value: {
-                                type: "image",
-                                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/698f381d771c03002cc28774?alt=media",
-                            },
-                            additionalParams: { availableTypes: ["image", "video"] },
+                            value: [
+                                {
+                                    type: "media",
+                                    key: "media",
+                                    displayer: "Media",
+                                    value: {
+                                        type: "image",
+                                        url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/698f381d771c03002cc28774?alt=media",
+                                    },
+                                    additionalParams: { availableTypes: ["image", "video"] },
+                                },
+                                {
+                                    type: "boolean",
+                                    key: "overlay",
+                                    displayer: "Overlay",
+                                    value: false,
+                                },
+                            ],
                         },
                         {
                             type: "array",
@@ -122,14 +139,27 @@ class Stats33 extends BaseStats {
                         { type: "string", key: "title", displayer: "Title", value: "Completed Projects" },
                         { type: "string", key: "description", displayer: "Description", value: "Leverage agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster collaborative" },
                         {
-                            type: "media",
-                            key: "media",
+                            type: "object",
+                            key: "mediaCard",
                             displayer: "Media",
-                            value: {
-                                type: "image",
-                                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/698f381d771c03002cc28774?alt=media",
-                            },
-                            additionalParams: { availableTypes: ["image", "video"] },
+                            value: [
+                                {
+                                    type: "media",
+                                    key: "media",
+                                    displayer: "Media",
+                                    value: {
+                                        type: "image",
+                                        url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/698f381d771c03002cc28774?alt=media",
+                                    },
+                                    additionalParams: { availableTypes: ["image", "video"] },
+                                },
+                                {
+                                    type: "boolean",
+                                    key: "overlay",
+                                    displayer: "Overlay",
+                                    value: false,
+                                },
+                            ],
                         },
                         {
                             type: "array",
@@ -146,12 +176,7 @@ class Stats33 extends BaseStats {
             ],
         });
 
-        this.addProp({
-            type: "boolean",
-            key: "enableOverlay",
-            displayer: "Overlay",
-            value: false,
-        });
+
 
         this.addProp({
             type: "object",
@@ -246,7 +271,8 @@ class Stats33 extends BaseStats {
             titleElement: item.title,
             description: this.castToString(item.description) || "",
             descriptionElement: item.description,
-            media: item.media,
+            media: item.mediaCard?.media,
+            overlay: !!item.mediaCard?.overlay,
             buttons: item.buttons || [],
             rowReverse: !!item.rowReverse,
         }));
@@ -255,7 +281,7 @@ class Stats33 extends BaseStats {
         const statsAnimation = !!animationProps?.statsAnimation;
         const animationDuration = animationProps?.animationDuration || 2000;
 
-        const enableOverlay = !!this.getPropValue("enableOverlay");
+
 
         const subtitle = this.castToString(this.getPropValue("subtitle"));
         const title = this.castToString(this.getPropValue("title"));
@@ -388,9 +414,9 @@ class Stats33 extends BaseStats {
                                         value={stat.media}
                                         className={this.decorateCSS("image")}
                                     />
-                                    {enableOverlay && (
-                                        <div className={this.decorateCSS("overlay")}></div>
-                                    )}
+                                     {stat.overlay && (
+                                         <div className={this.decorateCSS("media-overlay")}></div>
+                                     )}
                                 </Base.GridCell>
                             );
 

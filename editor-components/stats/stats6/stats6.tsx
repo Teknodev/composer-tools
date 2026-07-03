@@ -4,14 +4,21 @@ import styles from "./stats6.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 
 type CardData = {
-  cardValue: React.JSX.Element;
-  cardDescription: React.JSX.Element;
+  number: React.JSX.Element;
+  description: React.JSX.Element;
 };
 
 class Stats6Page extends BaseStats {
   interval: any;
   constructor(props?: any) {
     super(props, styles);
+
+    this.addProp({
+      type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "",
+    });
 
     this.addProp({
       type: "string",
@@ -29,62 +36,62 @@ class Stats6Page extends BaseStats {
 
     this.addProp({
       type: "array",
-      key: "card-list",
-      displayer: "Cards",
+      key: "stats",
+      displayer: "Stats",
       value: [
         {
           type: "object",
-          key: "card-lists",
-          displayer: "Card Content",
+          key: "stat",
+          displayer: "Stat",
           value: [
             {
               type: "string",
-              key: "cardValue",
-              displayer: "Card Value",
+              key: "number",
+              displayer: "Value",
               value: "400",
             },
             {
               type: "string",
-              key: "cardDescription",
-              displayer: "Card Description",
+              key: "description",
+              displayer: "Description",
               value: "Customers are satisfied with our professional support",
             },
           ],
         },
         {
           type: "object",
-          key: "card-lists",
-          displayer: "Card Content",
+          key: "stat",
+          displayer: "Stat",
           value: [
             {
               type: "string",
-              key: "cardValue",
-              displayer: "Card Value",
+              key: "number",
+              displayer: "Value",
               value: "1000",
             },
             {
               type: "string",
-              key: "cardDescription",
-              displayer: "Card Description",
+              key: "description",
+              displayer: "Description",
               value: "Amazing preset options to be mixed an combined",
             },
           ],
         },
         {
           type: "object",
-          key: "card-lists",
-          displayer: "Card Content",
+          key: "stat",
+          displayer: "Stat",
           value: [
             {
               type: "string",
-              key: "cardValue",
-              displayer: "Card Value",
+              key: "number",
+              displayer: "Value",
               value: "8000",
             },
             {
               type: "string",
-              key: "cardDescription",
-              displayer: "Card Description",
+              key: "description",
+              displayer: "Description",
               value: "Average response time on live chat support channel",
             },
           ],
@@ -116,7 +123,7 @@ class Stats6Page extends BaseStats {
   }
 
   init() {
-    this.castToObject<CardData[]>("card-list").map((_, index) => {
+    this.castToObject<CardData[]>("stats").map((_, index) => {
       this.setComponentState(`number-${index}`, "");
       this.setComponentState(`numberForControl-${index}`, "");
     });
@@ -130,13 +137,13 @@ class Stats6Page extends BaseStats {
   }
 
   getStats() {
-    const statItems = this.castToObject<CardData[]>("card-list");
-    const stats = statItems.map((statsData: any) => (statsData.cardValue === "" ? "" : this.castToString(statsData.cardValue)));
+    const statItems = this.castToObject<CardData[]>("stats");
+    const stats = statItems.map((statsData: any) => (statsData.number === "" ? "" : this.castToString(statsData.number)));
     return stats;
   }
 
   getNumbers() {
-    const statItems = this.castToObject<CardData[]>("card-list");
+    const statItems = this.castToObject<CardData[]>("stats");
     const numbers = statItems.map((_, index) => {
       const number = this.getComponentState(`numberForControl-${index}`);
       return number !== undefined ? number : "";
@@ -162,14 +169,14 @@ class Stats6Page extends BaseStats {
         this.interval = null;
       }
 
-      this.castToObject<CardData[]>("card-list").map((statData: CardData, index: number) => {
+      this.castToObject<CardData[]>("stats").map((statData: CardData, index: number) => {
         let currentNumberState = this.getComponentState(`number-${index}`);
         const currentString = typeof currentNumberState === "string" ? currentNumberState : "";
         const currentNonNumericPrefix = currentString.match(/^\D+/)?.[0] || "";
         const currentNonNumericSuffix = currentString.match(/\D+$/)?.[0] || "";
         const currentNumber = parseInt(currentString.replace(/\D+/g, ""), 10) || 0;
 
-        const counterString = this.castToString(statData.cardValue);
+        const counterString = this.castToString(statData.number);
         const newNonNumericPrefix = counterString.match(/^\D+/)?.[0] || "";
         const newNonNumericSuffix = counterString.match(/\D+$/)?.[0] || "";
         const numericPart = parseInt(counterString.replace(/[^\d]/g, ""), 10) || 0;
@@ -198,7 +205,9 @@ class Stats6Page extends BaseStats {
   }
 
   render() {
-    const cardList = this.castToObject<CardData[]>("card-list");
+    const cardList = this.castToObject<CardData[]>("stats");
+    const subtitle = this.getPropValue("subtitle");
+    const subtitleExist = this.castToString(subtitle);
     const header = this.getPropValue("header");
     const headerExist = this.castToString(header);
     const description = this.getPropValue("description");
@@ -212,8 +221,9 @@ class Stats6Page extends BaseStats {
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          {(headerExist || descriptionExist) && (
+          {(headerExist || descriptionExist || subtitleExist) && (
             <Base.VerticalContent className={this.decorateCSS("banner")}>
+              {subtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{subtitle}</Base.SectionSubTitle>}
               {headerExist && <Base.SectionTitle className={this.decorateCSS("title")}>{header}</Base.SectionTitle>}
               {descriptionExist && <Base.SectionDescription className={this.decorateCSS("description")}>{description}</Base.SectionDescription>}
             </Base.VerticalContent>
@@ -222,10 +232,10 @@ class Stats6Page extends BaseStats {
             <Base.ListGrid gridCount={{ pc: itemCount, tablet: 2, phone: 1 }} className={this.decorateCSS("stats6-page")}>
               {cardList.map((data: any, index: number) => {
                 return (
-                  (this.getComponentState(`number-${index}`) !== "0" || this.castToString(data.cardDescription)) && (
+                  (this.getComponentState(`number-${index}`) !== "0" || this.castToString(data.description)) && (
                     <Base.VerticalContent key={index} className={this.decorateCSS("card")}>
                       {this.getComponentState(`number-${index}`) !== "0" && <Base.P className={this.decorateCSS("data-card-title")}>{this.getComponentState(`number-${index}`)}</Base.P>}
-                      {this.castToString(data.cardDescription) && <Base.P className={this.decorateCSS("data-card-description")}>{data.cardDescription}</Base.P>}
+                      {this.castToString(data.description) && <Base.P className={this.decorateCSS("data-card-description")}>{data.description}</Base.P>}
                     </Base.VerticalContent>
                   )
                 );

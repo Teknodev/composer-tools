@@ -15,6 +15,13 @@ class Stats8Page extends BaseStats {
     super(props, styles);
     this.addProp({
       type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "",
+    });
+
+    this.addProp({
+      type: "string",
       key: "headerTitle",
       displayer: "Title",
       value: "Hello We are DSN Grid",
@@ -273,6 +280,8 @@ class Stats8Page extends BaseStats {
     const imageSrc = this.getPropValue("imageSrc");
     const title = this.getPropValue("headerTitle");
     const isTitleExist = this.castToString(title);
+    const subtitle = this.getPropValue("subtitle");
+    const isSubtitleExist = this.castToString(subtitle);
     const description1 = this.getPropValue("description1");
     const isDescription1Exist = this.castToString(description1);
     const description = this.getPropValue("description");
@@ -283,7 +292,7 @@ class Stats8Page extends BaseStats {
     const isAuthorRoleExist = this.castToString(authorRole);
     const overlayDescription = this.castToString(this.getPropValue("overlayDescription"));
     const showBackground = this.getPropValue("showBackground");
-    const isContentPresent = isTitleExist || isDescription1Exist || isDesExist || isAuthorExist || isAuthorRoleExist || statsData.length > 0;
+    const isContentPresent = isSubtitleExist || isTitleExist || isDescription1Exist || isDesExist || isAuthorExist || isAuthorRoleExist || statsData.length > 0;
 
     const statsEqual = this.isEqual(this.getStats(), this.getNumbers());
     const overlayNumberState = this.getComponentState("overlayNumberDisplayForControl");
@@ -300,7 +309,10 @@ class Stats8Page extends BaseStats {
           {isContentPresent && (
             <Base.VerticalContent className={this.decorateCSS("stats8-page")}>
               <div className={this.decorateCSS("content")}>
-                <Base.VerticalContent>{isTitleExist && <Base.SectionTitle className={this.decorateCSS("title") + " " + this.decorateCSS("text-uppercase")}>{title}</Base.SectionTitle>}</Base.VerticalContent>
+                <Base.VerticalContent>
+                  {isSubtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{subtitle}</Base.SectionSubTitle>}
+                  {isTitleExist && <Base.SectionTitle className={this.decorateCSS("title") + " " + this.decorateCSS("text-uppercase")}>{title}</Base.SectionTitle>}
+                </Base.VerticalContent>
                 {isDescription1Exist && <Base.SectionDescription className={this.decorateCSS("description")}>{description1}</Base.SectionDescription>}
 
                 {(isTitleExist || isDescription1Exist) && this.getPropValue("showLine") && <hr className={this.decorateCSS("line")} />}

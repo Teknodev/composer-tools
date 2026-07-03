@@ -63,13 +63,13 @@ class Stats10 extends BaseStats {
     });
     this.addProp({
       type: "array",
-      key: "items",
-      displayer: "Items",
+      key: "stats",
+      displayer: "Stats",
       value: [
         {
           type: "object",
-          key: "item",
-          displayer: "Item",
+          key: "stat",
+          displayer: "Stat",
           value: [
             {
               type: "string",
@@ -92,15 +92,15 @@ class Stats10 extends BaseStats {
             {
               type: "icon",
               key: "icon",
-              displayer: "icon",
+              displayer: "Icon",
               value: "CgPlayButtonO",
             },
           ],
         },
         {
           type: "object",
-          key: "item",
-          displayer: "Item",
+          key: "stat",
+          displayer: "Stat",
           value: [
             {
               type: "string",
@@ -124,15 +124,15 @@ class Stats10 extends BaseStats {
             {
               type: "icon",
               key: "icon",
-              displayer: "icon",
+              displayer: "Icon",
               value: "CgPlayButtonO",
             },
           ],
         },
         {
           type: "object",
-          key: "item",
-          displayer: "Item",
+          key: "stat",
+          displayer: "Stat",
           value: [
             {
               type: "string",
@@ -156,15 +156,15 @@ class Stats10 extends BaseStats {
             {
               type: "icon",
               key: "icon",
-              displayer: "icon",
+              displayer: "Icon",
               value: "CgPlayButtonO",
             },
           ],
         },
         {
           type: "object",
-          key: "item",
-          displayer: "Item",
+          key: "stat",
+          displayer: "Stat",
           value: [
             {
               type: "string",
@@ -188,7 +188,7 @@ class Stats10 extends BaseStats {
             {
               type: "icon",
               key: "icon",
-              displayer: "icon",
+              displayer: "Icon",
               value: "CgPlayButtonO",
             },
           ],
@@ -214,7 +214,7 @@ class Stats10 extends BaseStats {
     const badge = this.castToString(this.getPropValue("badge"));
     const title = this.castToString(this.getPropValue("title"));
     const description = this.castToString(this.getPropValue("description"));
-    const itemsLength = this.getPropValue("items").length;
+    const itemsLength = (this.getPropValue("stats") || []).length;
     const image1 = this.getPropValue("image1");
     const image2 = this.getPropValue("image2");
     const videoLinkExist = this.getPropValue("video");
@@ -298,7 +298,7 @@ class Stats10 extends BaseStats {
 
                 {itemsLength > 0 && (
                   <Base.Row className={this.decorateCSS("progress-container")}>
-                    {this.castToObject<ProgressItem[]>("items").map(
+                    {this.castToObject<ProgressItem[]>("stats").map(
                       (item: ProgressItem, index: number) => (
                         <div 
                           className={this.decorateCSS("item")} 

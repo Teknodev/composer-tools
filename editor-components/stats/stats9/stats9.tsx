@@ -18,6 +18,13 @@ class Stats9 extends BaseStats {
 
         this.addProp({
             type: "string",
+            key: "subtitle",
+            displayer: "Subtitle",
+            value: "",
+        });
+
+        this.addProp({
+            type: "string",
             key: "title",
             displayer: "Title",
             value: "WE ARE THE GAME DEVELOPMENT STUDIO KNOWN FOR CRAFTING DISTINCTIVE AND <span style='color: var(--composer-tertiary-color); font-weight: bold;'>IMMERSE GAMES</span> THAT STAND OUT IN THE MARKET.",
@@ -248,7 +255,10 @@ class Stats9 extends BaseStats {
         
         const animationDuration = this.getPropValue("animationDuration") || 2000;
 
-        const leftContentexist = this.castToString(title) || isDescriptionExist || this.castToString(button.text) || image;
+        const subtitle = this.getPropValue("subtitle");
+        const subtitleExist = this.castToString(subtitle);
+
+        const leftContentexist = subtitleExist || this.castToString(title) || isDescriptionExist || this.castToString(button.text) || image;
         const hasStats = stats && stats.length > 0;
 
         let mainContentClass = this.decorateCSS("main-content");
@@ -263,6 +273,11 @@ class Stats9 extends BaseStats {
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
                     <div className={mainContentClass}>
                         {leftContentexist && <div className={this.decorateCSS("left-content")}>
+                            {subtitleExist && (
+                                <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                                    {subtitle}
+                                </Base.SectionSubTitle>
+                            )}
                             {(this.castToString(title)) && (
                                 <div className={this.decorateCSS("title-section")}>
                                     <Base.SectionTitle className={this.decorateCSS("main-title")}>

@@ -12,7 +12,7 @@ class Stats3Page extends BaseStats {
     this.addProp({
       type: "string",
       key: "subTitle",
-      displayer: "subTitle",
+      displayer: "Subtitle",
       value: "ABOUT PERSONA",
     });
     this.addProp({
@@ -45,21 +45,21 @@ class Stats3Page extends BaseStats {
     });
     this.addProp({
       type: "array",
-      key: "card-content",
-      displayer: "Card Content",
+      key: "stats",
+      displayer: "Stats",
       additionalParams: {
         maxElementCount: 3,
       },
       value: [
         {
           type: "object",
-          key: "cards",
-          displayer: "Cards",
+          key: "stat",
+          displayer: "Stat",
           value: [
             {
               type: "icon",
               key: "icon",
-              displayer: "icon",
+              displayer: "Icon",
               value: "FaMedal",
             },
             {
@@ -70,22 +70,22 @@ class Stats3Page extends BaseStats {
             },
             {
               type: "string",
-              key: "text",
-              displayer: "Text",
+              key: "description",
+              displayer: "Description",
               value: "Years Experience",
             },
           ],
         },
         {
           type: "object",
-          key: "cards",
-          displayer: "Cards",
+          key: "stat",
+          displayer: "Stat",
           value: [
             {
               type: "icon",
               key: "icon",
-              displayer: "icon",
-              value: "GoPeople",
+              displayer: "Icon",
+              value: "FiUser",
             },
             {
               type: "string",
@@ -95,21 +95,21 @@ class Stats3Page extends BaseStats {
             },
             {
               type: "string",
-              key: "text",
-              displayer: "Text",
+              key: "description",
+              displayer: "Description",
               value: "Happy Clients",
             },
           ],
         },
         {
           type: "object",
-          key: "cards",
-          displayer: "Cards",
+          key: "stat",
+          displayer: "Stat",
           value: [
             {
               type: "icon",
               key: "icon",
-              displayer: "icon",
+              displayer: "Icon",
               value: "BsHeartPulse",
             },
             {
@@ -120,8 +120,8 @@ class Stats3Page extends BaseStats {
             },
             {
               type: "string",
-              key: "text",
-              displayer: "Text",
+              key: "description",
+              displayer: "Description",
               value: "Psycologist",
             },
           ],
@@ -131,7 +131,7 @@ class Stats3Page extends BaseStats {
     this.addProp({
       type: "boolean",
       key: "is_box_visible",
-      displayer: "is box visible",
+      displayer: "Is box visible",
       value: true,
     });
   }
@@ -144,7 +144,7 @@ class Stats3Page extends BaseStats {
     const description = this.castToString(this.getPropValue("description"));
     const buttons = this.getPropValue("buttons");
     const image = this.getPropValue("backgroundImage");
-    const cardContent = this.getPropValue("card-content");
+    const cardContent = this.getPropValue("stats") || [];
     const isBoxVisible = this.getPropValue("is_box_visible");
 
     return (
@@ -180,7 +180,7 @@ class Stats3Page extends BaseStats {
                 {isBoxVisible && cardContent.length > 0 && (
                   <div className={`${this.decorateCSS("card-container")} ${!image && this.decorateCSS("card-container-without-image")}`}>
                     <div className={this.decorateCSS("card")}>
-                      {this.castToObject<any>("card-content").map((item: any, index: number) => {
+                      {this.castToObject<any>("stats").map((item: any, index: number) => {
                         return (
                           <div className={this.decorateCSS("content")}>
                             <div className={this.decorateCSS("inner-content")}>
@@ -189,7 +189,7 @@ class Stats3Page extends BaseStats {
                                   <Base.Icon name={item.icon} propsIcon={{ className: this.decorateCSS("icon") }} />
                                   <Base.VerticalContent className={this.decorateCSS("text")}>
                                     {this.castToString(item.number) && <Base.H5 className={this.decorateCSS("number")}>{item.number}</Base.H5>}
-                                    {this.castToString(item.text) && <Base.P className={this.decorateCSS("right-text")}>{item.text}</Base.P>}
+                                    {this.castToString(item.description) && <Base.P className={this.decorateCSS("right-text")}>{item.description}</Base.P>}
                                   </Base.VerticalContent>
                                 </div>
                               </Base.VerticalContent>

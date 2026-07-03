@@ -64,6 +64,10 @@ $font-color-primary: var(--composer-font-color-primary);
         height: 100%;
         gap: var(--composer-gap-md);
 
+        .subtitle {
+          margin-bottom: var(--composer-gap-sm);
+        }
+
         .title {
           margin: 0;
         }

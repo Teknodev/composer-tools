@@ -12,7 +12,7 @@ type Faq = {
 type Stat = {
   title: React.JSX.Element;
   content: React.JSX.Element;
-  stat: React.JSX.Element;
+  number: React.JSX.Element;
 };
 
 class Stats4Page extends BaseStats {
@@ -101,13 +101,13 @@ class Stats4Page extends BaseStats {
 
     this.addProp({
       type: "array",
-      key: "statItems",
-      displayer: "Stat Items",
+      key: "stats",
+      displayer: "Stats",
       value: [
         {
           type: "object",
-          key: "statItem",
-          displayer: "Stat Item",
+          key: "stat",
+          displayer: "Stat",
           value: [
             {
               type: "string",
@@ -122,17 +122,17 @@ class Stats4Page extends BaseStats {
               value: "We have crafted beautiful and engaging web solutions.",
             },
             {
-              type: "number",
-              key: "stat",
+              type: "string",
+              key: "number",
               displayer: "Stat Value",
-              value: 300,
+              value: "300",
             },
           ],
         },
         {
           type: "object",
-          key: "statItem",
-          displayer: "Stat Item",
+          key: "stat",
+          displayer: "Stat",
           value: [
             {
               type: "string",
@@ -147,17 +147,17 @@ class Stats4Page extends BaseStats {
               value: "We have crafted beautiful and engaging web solutions.",
             },
             {
-              type: "number",
-              key: "stat",
+              type: "string",
+              key: "number",
               displayer: "Stat Value",
-              value: 500,
+              value: "500",
             },
           ],
         },
         {
           type: "object",
-          key: "statItem",
-          displayer: "Stat Item",
+          key: "stat",
+          displayer: "Stat",
           value: [
             {
               type: "string",
@@ -172,17 +172,17 @@ class Stats4Page extends BaseStats {
               value: "We have crafted beautiful and engaging web solutions.",
             },
             {
-              type: "number",
-              key: "stat",
+              type: "string",
+              key: "number",
               displayer: "Stat Value",
-              value: 750,
+              value: "750",
             },
           ],
         },
         {
           type: "object",
-          key: "statItem",
-          displayer: "Stat Item",
+          key: "stat",
+          displayer: "Stat",
           value: [
             {
               type: "string",
@@ -197,10 +197,10 @@ class Stats4Page extends BaseStats {
               value: "We have crafted beautiful and engaging web solutions.",
             },
             {
-              type: "number",
-              key: "stat",
+              type: "string",
+              key: "number",
               displayer: "Stat Value",
-              value: 856,
+              value: "856",
             },
           ],
         },
@@ -273,13 +273,16 @@ class Stats4Page extends BaseStats {
   }
 
   getStats() {
-    const statItems = this.castToObject<Stat[]>("statItems");
-    const stats = statItems.map((card: any) => (card.stat === "" ? null : card.stat));
+    const statItems = this.castToObject<Stat[]>("stats");
+    const stats = statItems.map((card: any) => {
+      const val = card.number === "" ? null : card.number;
+      return val !== null ? parseInt(val.toString().replace(/\D+/g, ""), 10) || 0 : null;
+    });
     return stats;
   }
 
   getNumbers() {
-    const statItems = this.castToObject<Stat[]>("statItems");
+    const statItems = this.castToObject<Stat[]>("stats");
     const numbers = statItems.map((_, index) => {
       const number = this.getComponentState(`numberForControl-${index}`);
       return number !== undefined ? number : "";
@@ -300,7 +303,7 @@ class Stats4Page extends BaseStats {
     const incrementValue = this.getPropValue("incrementValue");
 
     this.interval = setInterval(() => {
-      const statItems = this.castToObject<Stat[]>("statItems");
+      const statItems = this.castToObject<Stat[]>("stats");
 
       if (this.isEqual(this.getStats(), this.getNumbers())) {
         clearInterval(this.interval);
@@ -314,15 +317,14 @@ class Stats4Page extends BaseStats {
           currentNumber = parseInt(currentNumber.replace(/\D+/g, ""), 10) || 0;
         }
 
-        if (typeof item.stat === "number") {
-          if (currentNumber !== item.stat) {
-            let nextValue = Math.min(item.stat, currentNumber + Math.ceil(item.stat / Math.round(incrementValue / 30)));
+        const targetStat = parseInt(item.number?.toString().replace(/\D+/g, "") || "0", 10) || 0;
+        if (currentNumber !== targetStat) {
+          let nextValue = Math.min(targetStat, currentNumber + Math.ceil(targetStat / Math.round(incrementValue / 30)));
 
-            const formattedNextValue = this.formatNumberWithDots(nextValue);
+          const formattedNextValue = this.formatNumberWithDots(nextValue);
 
-            this.setComponentState(`number-${index}`, formattedNextValue);
-            this.setComponentState(`numberForControl-${index}`, nextValue);
-          }
+          this.setComponentState(`number-${index}`, formattedNextValue);
+          this.setComponentState(`numberForControl-${index}`, nextValue);
         }
       });
     }, animationDuration);
@@ -346,7 +348,7 @@ class Stats4Page extends BaseStats {
     const mainTitle = this.castToString(this.getPropValue("mainTitle"));
     const mainDescription = this.castToString(this.getPropValue("mainDescription"));
     const faqs = this.castToObject<Faq[]>("faqItems");
-    const statItems = this.castToObject<Stat[]>("statItems");
+    const statItems = this.castToObject<Stat[]>("stats");
     const expandIcon = this.getPropValue("expandIcon");
     const collapseIcon = this.getPropValue("collapseIcon");
     const statIcon = this.getPropValue("statIcon");
@@ -422,9 +424,9 @@ class Stats4Page extends BaseStats {
                   const titleExist = this.castToString(item.title);
                   const contentExist = this.castToString(item.content);
 
-                  const statValue = item.stat === this.getComponentState(`number-${index}`) ? item.stat : this.getComponentState(`number-${index}`);
+                  const statValue = item.number === this.getComponentState(`number-${index}`) ? item.number : this.getComponentState(`number-${index}`);
 
-                  if (titleExist || contentExist || item.stat)
+                  if (titleExist || contentExist || item.number)
                     return (
                       <article className={this.decorateCSS("stat-item")} key={index}>
                         {(titleExist || contentExist) && (
@@ -436,7 +438,7 @@ class Stats4Page extends BaseStats {
                             <div className={this.decorateCSS("stat-line")} />
                           </>
                         )}
-                        {item.stat && (
+                        {item.number && (
                           <Base.P className={this.decorateCSS("stat-item-stat-value")}>
                             {statValue}
                             {statIcon && (
