@@ -93,7 +93,7 @@ class Location6 extends Location {
     this.addProp({
       type: "array",
       key: "actionButtons",
-      displayer: "Action Buttons",
+      displayer: "Buttons",
       value: [
         INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
       ],
@@ -102,7 +102,7 @@ class Location6 extends Location {
     this.addProp({
       type: "array",
       key: "buttons",
-      displayer: "Buttons",
+      displayer: "Feature Items",
       value: [
         {
           type: "object",
