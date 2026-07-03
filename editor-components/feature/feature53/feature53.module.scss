@@ -64,6 +64,7 @@
                     border-radius: var(--composer-gap-xl);
                     background-color: transparent;
                     color: var(--composer-tertiary-color);
+                    font-weight: 600;
                     cursor: pointer;
 
                     &.active {
@@ -136,6 +137,10 @@
                         .card-description {
                             text-align: left;
                             color: var(--composer-html-background);
+                        }
+
+                        .card-title {
+                            font-weight: 700;
                         }
 
                         .card-button-container {
@@ -276,6 +281,7 @@
                                 min-width: 0;
                                 text-align: left;
                                 font-size: 1.25rem !important;
+                                font-weight: 600;
                             }
 
                             .tab-header-icon {
