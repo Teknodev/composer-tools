@@ -175,10 +175,25 @@
                 .subtitle {
                     margin-right: 0 !important;
                     text-align: var(--composer-content-alignment) !important;
-                    transform: translateX(0) !important;
+                }
 
-                    &::before {
-                        background: none !important;
+                &.left {
+                    .subtitle {
+                        &.line {
+                            transform: translateX(3rem) !important;
+                        }
+                    }
+                }
+
+                &.center {
+                    .subtitle {
+                        &.line {
+                            transform: translateX(0) !important;
+                        }
+
+                        &::before {
+                            background: none !important;
+                        }
                     }
                 }
 

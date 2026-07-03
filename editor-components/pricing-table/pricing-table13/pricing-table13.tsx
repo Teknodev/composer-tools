@@ -258,6 +258,8 @@ class PricingTable13 extends BasePricingTable {
         const cards = this.castToObject<CardContent[]>("cards");
         const itemCountInARow = this.getPropValue("itemCountInARow") || 3;
 
+        const subtitleType = Base.getSectionSubTitleType();
+
         const hasLeftSection = subtitleExist || titleExist || descriptionExist || hasValidButtons;
         const alignment = Base.getContentAlignment();
 
@@ -269,9 +271,9 @@ class PricingTable13 extends BasePricingTable {
                         className={this.decorateCSS("cards-grid")}
                     >
                         {hasLeftSection && (
-                            <Base.VerticalContent className={this.decorateCSS("left-column")}>
+                            <Base.VerticalContent className={`${this.decorateCSS("left-column")} ${this.decorateCSS(alignment)}`}>
                                 {subtitleExist && (
-                                    <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                                    <Base.SectionSubTitle className={`${this.decorateCSS("subtitle")} ${subtitleType === "line" ? this.decorateCSS("line") : ""}`}>
                                         {this.getPropValue("subtitle")}
                                     </Base.SectionSubTitle>
                                 )}
