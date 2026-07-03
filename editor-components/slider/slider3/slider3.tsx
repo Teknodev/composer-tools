@@ -375,9 +375,9 @@ class Slider3 extends BaseSlider {
                       {(this.castToString(item.vertText) || item.media) && (
                         <div className={`${this.decorateCSS("left-part")} ${!item.media && this.decorateCSS("no-image")} `}>
                           {this.castToString(item.vertText) && (
-                            <span style={{ maxHeight: imageHeight }} className={this.decorateCSS("vert-text")}>
+                            <Base.P style={{ maxHeight: imageHeight }} className={this.decorateCSS("vert-text")}>
                               {item.vertText}
-                            </span>
+                            </Base.P>
                           )}
                           {item.media && (
                             <div className={this.decorateCSS("image-wrapper")}>
@@ -395,7 +395,7 @@ class Slider3 extends BaseSlider {
                           {this.castToString(item.button.text) && (
                             <ComposerLink key={index} path={item.button.url}>
                               <Base.Button buttonType={item.button.type} key={index} className={this.decorateCSS("card-button")}>
-                                <span className={this.decorateCSS("card-button-text")}>{item.button.text}</span>
+                                <Base.P className={this.decorateCSS("card-button-text")}>{item.button.text}</Base.P>
                                 {item.button.icon && (item.button.icon)?.name && (<Base.Media value={item.button.icon} className={this.decorateCSS("card-icon")} />)}
                               </Base.Button>
                             </ComposerLink>
