@@ -17,6 +17,7 @@
         display: flex;
         flex-wrap: wrap;
         gap: var(--composer-gap-sm);
+        align-self: flex-start;
 
         .button {
           .button-text {
@@ -350,32 +351,18 @@
               margin-right: auto;
             }
 
-            .button-container {
-              justify-content: center;
-            }
-          }
-
-          &.left {
-            align-items: center;
-
-            .subtitle,
-            .title,
-            .description {
-              text-align: center;
-              margin-left: auto;
-              margin-right: auto;
-            }
-
-            .button-container {
-              justify-content: center;
-            }
-
             .subtitle {
               transform: translateX(0);
 
               &::before {
                 display: none;
               }
+            }
+
+            .button-container {
+              width: 100%;
+              justify-content: center;
+              align-self: center;
             }
           }
         }

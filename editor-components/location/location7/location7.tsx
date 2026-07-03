@@ -485,39 +485,43 @@ class Location7 extends Location {
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <Base.VerticalContent className={this.decorateCSS("wrapper")}>
-            {logoExist && (
-              <div className={this.decorateCSS("logo-container")}>
-                <Base.Media
-                  value={logo}
-                  className={`${this.decorateCSS("logo")} ${logo?.type === "image" && this.decorateCSS("logo-img")}`}
-                />
-              </div>
-            )}
-            {subtitleExist && (
-              <div className={this.decorateCSS("subtitle-row")}>
-                <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{subtitle}</Base.SectionSubTitle>
-              </div>
-            )}
-            {titleExist && (
-              <Base.SectionTitle className={this.decorateCSS("title")}>
-                {title}
-              </Base.SectionTitle>
-            )}
-            {descriptionExist && (
-              <Base.SectionDescription className={this.decorateCSS("description")}>{description}</Base.SectionDescription>
-            )}
-            {visibleButtons.length > 0 && (
-              <div className={this.decorateCSS("button-container")}>
-                {visibleButtons.map((item: INPUTS.CastedButton, index: number) => {
-                  return this.castToString(item.text) && (
-                    <ComposerLink key={`button-${index}`} path={item.url}>
-                      <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
-                        <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>
-                      </Base.Button>
-                    </ComposerLink>
-                  );
-                })}
-              </div>
+            {(logoExist || subtitleExist || titleExist || descriptionExist || visibleButtons.length > 0) && (
+              <Base.VerticalContent className={this.decorateCSS("text-wrapper")}>
+                {logoExist && (
+                  <div className={this.decorateCSS("logo-container")}>
+                    <Base.Media
+                      value={logo}
+                      className={`${this.decorateCSS("logo")} ${logo?.type === "image" && this.decorateCSS("logo-img")}`}
+                    />
+                  </div>
+                )}
+                {subtitleExist && (
+                  <div className={this.decorateCSS("subtitle-row")}>
+                    <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{subtitle}</Base.SectionSubTitle>
+                  </div>
+                )}
+                {titleExist && (
+                  <Base.SectionTitle className={this.decorateCSS("title")}>
+                    {title}
+                  </Base.SectionTitle>
+                )}
+                {descriptionExist && (
+                  <Base.SectionDescription className={this.decorateCSS("description")}>{description}</Base.SectionDescription>
+                )}
+                {visibleButtons.length > 0 && (
+                  <div className={this.decorateCSS("button-container")}>
+                    {visibleButtons.map((item: INPUTS.CastedButton, index: number) => {
+                      return this.castToString(item.text) && (
+                        <ComposerLink key={`button-${index}`} path={item.url}>
+                          <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
+                            <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>
+                          </Base.Button>
+                        </ComposerLink>
+                      );
+                    })}
+                  </div>
+                )}
+              </Base.VerticalContent>
             )}
             <section className={this.decorateCSS("map-container")}>
               <div
