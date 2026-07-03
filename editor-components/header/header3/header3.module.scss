@@ -333,6 +333,7 @@
         }
       }
     }
+    }
 
     &.has-background .dots-max-content .dots {
       .dot-item .dot-button {
@@ -388,17 +389,22 @@
     }
 
     @container (max-width: #{$composer-phone-width}) {
-      .dots {
+      .dots-max-content {
         top: auto;
         bottom: 20px;
-        left: 50%;
-        transform: translateX(-50%);
-        flex-direction: row;
-        width: max-content;
+        transform: none;
 
-        .dot-item.slick-active .dot-button::after {
-          width: var(--composer-gap-md);
-          height: var(--composer-gap-md);
+        .dots {
+          position: static;
+          right: auto;
+          margin: 0 auto;
+          flex-direction: row;
+          width: max-content;
+
+          .dot-item.slick-active .dot-button::after {
+            width: var(--composer-gap-md);
+            height: var(--composer-gap-md);
+          }
         }
       }
 
@@ -433,5 +439,4 @@
       }
     }
   }
-}
 }
