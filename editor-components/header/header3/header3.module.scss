@@ -28,6 +28,23 @@
   position: relative;
   padding: 0 !important;
 
+  &.has-background {
+    .title,
+    .description {
+      color: #ffffff !important;
+    }
+
+    .subtitle {
+      color: #ffffff !important;
+      background: none !important;
+      padding: 0 !important;
+
+      &::before {
+        background-color: #ffffff !important;
+      }
+    }
+  }
+
   &.container.container {
     padding: 0 !important;
   }
@@ -78,6 +95,8 @@
             position: relative;
             width: 100%;
             height: 100%;
+            max-width: var(--composer-content-width);
+            margin: 0 auto;
 
             .content {
             height: 70vh;
@@ -394,7 +413,7 @@
     @container (max-width: #{$composer-phone-width}) {
       .dots-max-content {
         top: auto;
-        bottom: 20px;
+        bottom: 50px;
         transform: none;
 
         .dots {
