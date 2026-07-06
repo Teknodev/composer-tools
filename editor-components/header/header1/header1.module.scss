@@ -23,25 +23,25 @@
               .box-parent {
                 .vertical-content {
                   .subtitle {
-                    color: #ffffff;
+                    color: #ffffff !important; 
                     background: transparent;
                     padding: 0;
 
                     &::before {
-                      color: #ffffff;
+                      background: #ffffff !important;
                     }
                   }
 
                   .title,
                   .description {
-                    color: #ffffff;
+                    color: #ffffff !important;
                   }
                 }
               }
 
               .socials {
                 .icon {
-                  color: #ffffff;
+                  color: #ffffff !important;
                 }
               }
             }
@@ -52,7 +52,7 @@
       .dots {
         .dot-item {
           .dot-button {
-            background: #ffffff;
+            background: #ffffff !important;
           }
         }
       }
