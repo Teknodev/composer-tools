@@ -12,7 +12,7 @@ type Card = {
   subtitle: React.JSX.Element;
   title: React.JSX.Element;
   description: React.JSX.Element;
-  button: INPUTS.CastedButton;
+  buttons: INPUTS.CastedButton[];
 };
 
 class Header3 extends BaseHeader {
@@ -71,7 +71,14 @@ class Header3 extends BaseHeader {
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a26d222f8a5b002ce6803f?alt=media",
               },
             },
-            INPUTS.BUTTON("button", "Button", "VIEW PROJECT", "", "MdArrowOutward", null, "White"),
+            {
+              type: "array",
+              key: "buttons",
+              displayer: "Buttons",
+              value: [
+                INPUTS.BUTTON("button", "Button", "VIEW PROJECT", "", "MdArrowOutward", null, "White"),
+              ],
+            },
           ],
         },
         {
@@ -121,7 +128,14 @@ class Header3 extends BaseHeader {
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a26d4f2f8a5b002ce68065?alt=media",
               },
             },
-            INPUTS.BUTTON("button", "Button", "VIEW PROJECT", "", "MdArrowOutward", null, "White"),
+            {
+              type: "array",
+              key: "buttons",
+              displayer: "Buttons",
+              value: [
+                INPUTS.BUTTON("button", "Button", "VIEW PROJECT", "", "MdArrowOutward", null, "White"),
+              ],
+            },
           ],
         },
         {
@@ -171,7 +185,14 @@ class Header3 extends BaseHeader {
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a26d782f8a5b002ce68093?alt=media",
               },
             },
-            INPUTS.BUTTON("button", "Button", "VIEW PROJECT", "", "MdArrowOutward", null, "White"),
+            {
+              type: "array",
+              key: "buttons",
+              displayer: "Buttons",
+              value: [
+                INPUTS.BUTTON("button", "Button", "VIEW PROJECT", "", "MdArrowOutward", null, "White"),
+              ],
+            },
           ],
         },
         {
@@ -221,7 +242,14 @@ class Header3 extends BaseHeader {
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/69a48139771c03002ccb1313?alt=media",
               },
             },
-            INPUTS.BUTTON("button", "Button", "VIEW PROJECT", "", "MdArrowOutward", null, "White"),
+            {
+              type: "array",
+              key: "buttons",
+              displayer: "Buttons",
+              value: [
+                INPUTS.BUTTON("button", "Button", "VIEW PROJECT", "", "MdArrowOutward", null, "White"),
+              ],
+            },
           ],
         },
         {
@@ -271,7 +299,14 @@ class Header3 extends BaseHeader {
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/69a4818b771c03002ccb1337?alt=media",
               },
             },
-            INPUTS.BUTTON("button", "Button", "VIEW PROJECT", "", "MdArrowOutward", null, "White"),
+            {
+              type: "array",
+              key: "buttons",
+              displayer: "Buttons",
+              value: [
+                INPUTS.BUTTON("button", "Button", "VIEW PROJECT", "", "MdArrowOutward", null, "White"),
+              ],
+            },
           ],
         },
         {
@@ -321,7 +356,14 @@ class Header3 extends BaseHeader {
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/69a481b9771c03002ccb13b1?alt=media",
               },
             },
-            INPUTS.BUTTON("button", "Button", "VIEW PROJECT", "", "MdArrowOutward", null, "White"),
+            {
+              type: "array",
+              key: "buttons",
+              displayer: "Buttons",
+              value: [
+                INPUTS.BUTTON("button", "Button", "VIEW PROJECT", "", "MdArrowOutward", null, "White"),
+              ],
+            },
           ],
         },
       ],
@@ -444,8 +486,11 @@ class Header3 extends BaseHeader {
             {cards?.length && cards?.length > 0 && (
               <ComposerSlider {...settings} className={this.decorateCSS("carousel")} ref={this.getComponentState("slider-ref")}>
                 {cards.map((item: Card, index: number) => {
-                  return (this.castToString(item.subtitle) || this.castToString(item.title) || this.castToString(item.description) || this.castToString(item.button?.text) || item.media) && (
-                    <div className={`${this.decorateCSS("slider-inner-div")} ${anyImagesExist && this.decorateCSS("has-background")}`} key={`sld-8-${index}`}>
+                  const cardButtons = item.buttons || ((item as any).button ? [(item as any).button] : []);
+                  const hasButtons = cardButtons.some(btn => this.castToString(btn.text));
+                  const hasBgImage = !!(item.componentBackground && item.componentBackground.url);
+                  return (this.castToString(item.subtitle) || this.castToString(item.title) || this.castToString(item.description) || hasButtons || item.media) && (
+                    <div className={`${this.decorateCSS("slider-inner-div")} ${hasBgImage && this.decorateCSS("has-background")}`} key={`sld-8-${index}`}>
                       {item.componentBackground && (
                         <div className={this.decorateCSS("bg-image-wrapper")}>
                           <Base.Media value={item.componentBackground} className={this.decorateCSS("bg-image")} />
@@ -462,37 +507,46 @@ class Header3 extends BaseHeader {
                                 <div className={this.decorateCSS("line-2")}></div>
                               </div>
                             )}
-                            {this.castToString(item.subtitle) && (
-                              <div className={this.decorateCSS("subtitle-wrapper")}>
-                                <Base.SectionSubTitle className={`${this.decorateCSS("subtitle")} ${animation && this.getComponentState("activeSlide") === index ? this.decorateCSS("imageSubtitleAnimation") : ""}`}>
-                                  {item.subtitle}
-                                </Base.SectionSubTitle>
-                              </div>
-                            )}
-                            {this.castToString(item.title) && (
-                              <div className={this.decorateCSS("title-wrapper")}>
-                                <Base.SectionTitle className={`${this.decorateCSS("title")} ${animation && this.getComponentState("activeSlide") === index ? this.decorateCSS("imageTitleAnimation") : ""}`}>
-                                  {item.title}
-                                </Base.SectionTitle>
-                              </div>
-                            )}
-                            {this.castToString(item.description) && (
-                              <div className={this.decorateCSS("description-wrapper")}>
-                                <Base.SectionDescription className={`${this.decorateCSS("description")} ${animation && this.getComponentState("activeSlide") === index ? this.decorateCSS("imageDescriptionAnimation") : ""}`}>
-                                  {item.description}
-                                </Base.SectionDescription>
-                              </div>
-                            )}
-                            {this.castToString(item.button?.text) && (
-                              <div className={`${this.decorateCSS("buttons")} ${animation && this.getComponentState("activeSlide") === index ? this.decorateCSS("animateButtons") : ""}`}>
-                                <ComposerLink path={item.button.url}>
-                                  <Base.Button buttonType={item.button.type} className={`${this.decorateCSS("button")} ${animation && this.getComponentState("activeSlide") === index ? this.decorateCSS("animateButtons") : ""}`} >
-                                    <Base.P className={this.decorateCSS("button-text")}>{item.button.text}</Base.P>
-                                    {item.button.icon && (item.button.icon)?.name && (<Base.Media value={item.button.icon} className={this.decorateCSS("button-icon")} />)}
-                                  </Base.Button>
-                                </ComposerLink>
-                              </div>
-                            )}
+                            <Base.VerticalContent className={this.decorateCSS("vertical-content")}>
+                              {this.castToString(item.subtitle) && (
+                                <div className={this.decorateCSS("subtitle-wrapper")}>
+                                  <Base.SectionSubTitle className={`${this.decorateCSS("subtitle")} ${animation && this.getComponentState("activeSlide") === index ? this.decorateCSS("imageSubtitleAnimation") : ""}`}>
+                                    {item.subtitle}
+                                  </Base.SectionSubTitle>
+                                </div>
+                              )}
+                              {this.castToString(item.title) && (
+                                <div className={this.decorateCSS("title-wrapper")}>
+                                  <Base.SectionTitle className={`${this.decorateCSS("title")} ${animation && this.getComponentState("activeSlide") === index ? this.decorateCSS("imageTitleAnimation") : ""}`}>
+                                    {item.title}
+                                  </Base.SectionTitle>
+                                </div>
+                              )}
+                              {this.castToString(item.description) && (
+                                <div className={this.decorateCSS("description-wrapper")}>
+                                  <Base.SectionDescription className={`${this.decorateCSS("description")} ${animation && this.getComponentState("activeSlide") === index ? this.decorateCSS("imageDescriptionAnimation") : ""}`}>
+                                    {item.description}
+                                  </Base.SectionDescription>
+                                </div>
+                              )}
+                              {cardButtons && cardButtons.length > 0 && (
+                                <div className={`${this.decorateCSS("buttons")} ${animation && this.getComponentState("activeSlide") === index ? this.decorateCSS("animateButtons") : ""}`}>
+                                  {cardButtons.map((button: INPUTS.CastedButton, btnIndex: number) => {
+                                    if (!this.castToString(button.text) && !(button.icon && (button.icon.type === "icon" ? !!button.icon.name : !!button.icon.url))) {
+                                      return null;
+                                    }
+                                    return (
+                                      <ComposerLink key={`btn-${btnIndex}`} path={button.url}>
+                                        <Base.Button buttonType={button.type} className={`${this.decorateCSS("button")} ${animation && this.getComponentState("activeSlide") === index ? this.decorateCSS("animateButtons") : ""}`} >
+                                          <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
+                                          {button.icon && (button.icon)?.name && (<Base.Media value={button.icon} className={this.decorateCSS("button-icon")} />)}
+                                        </Base.Button>
+                                      </ComposerLink>
+                                    );
+                                  })}
+                                </div>
+                              )}
+                            </Base.VerticalContent>
                             {(leftNavButton || rightNavButton) && sliderSettings.arrows && (
                               <div className={this.decorateCSS("nav-buttons")}>
                                 {leftNavButton && cards.length > 1 && (

@@ -43,6 +43,30 @@
         background-color: #ffffff !important;
       }
     }
+
+    .lines-container {
+      .line-1,
+      .line-2 {
+        background-color: #ffffff !important;
+      }
+    }
+
+    .nav-buttons {
+      .nav-button {
+        border-color: #ffffff !important;
+        color: #ffffff !important;
+
+        &:hover {
+          color: #ffffff !important;
+          background-color: transparent !important;
+          transform: none !important;
+        }
+
+        .nav-icon {
+          color: #ffffff !important;
+        }
+      }
+    }
   }
 
   &.container.container {
@@ -147,51 +171,67 @@
                 }
               }
 
-              .subtitle-wrapper {
-                .imageSubtitleAnimation {
-                  animation: downAnimate 1s ease;
-                }
+              .vertical-content {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start !important;
+                text-align: left !important;
 
-                .subtitle {
-                  text-align: left;
-                  width: 99%;
-                  margin: 0;
-                }
-              }
+                .subtitle-wrapper {
+                  margin-left: 0 !important;
+                  margin-right: auto !important;
+                  text-align: left !important;
 
-              .title-wrapper {
-                .imageTitleAnimation {
-                  animation: downAnimate 1s ease;
-                }
-
-                .title {
-                  text-align: left;
-                }
-              }
-
-
-              .description-wrapper {
-                .imageDescriptionAnimation {
-                  animation: downAnimate 1s ease;
-                }
-
-                .description {
-                  text-align: left;
-                }
-              }
-
-              .buttons {
-                .animateButtons {
-                  animation: fadeOutDown 1.5s ease-in-out;
-                }
-
-                .button {
-                  .button-text {
-                    content: "";
+                  .imageSubtitleAnimation {
+                    animation: downAnimate 1s ease;
                   }
 
-                  .button-icon {
-                    line-height: 0;
+                  .subtitle {
+                    text-align: left !important;
+                    width: 99%;
+                    margin: 0 !important;
+                    margin-left: 0 !important;
+                    margin-right: auto !important;
+                  }
+                }
+
+                .title-wrapper {
+                  .imageTitleAnimation {
+                    animation: downAnimate 1s ease;
+                  }
+
+                  .title {
+                    text-align: left !important;
+                  }
+                }
+
+                .description-wrapper {
+                  .imageDescriptionAnimation {
+                    animation: downAnimate 1s ease;
+                  }
+
+                  .description {
+                    text-align: left !important;
+                  }
+                }
+
+                .buttons {
+                  display: flex;
+                  flex-wrap: wrap;
+                  gap: var(--composer-gap-sm);
+
+                  .animateButtons {
+                    animation: fadeOutDown 1.5s ease-in-out;
+                  }
+
+                  .button {
+                    .button-text {
+                      content: "";
+                    }
+
+                    .button-icon {
+                      line-height: 0;
+                    }
                   }
                 }
               }
@@ -231,45 +271,6 @@
                     height: var(--composer-gap-md);
                     object-fit: contain;
                   }
-                }
-              }
-            }
-          }
-
-          &.has-background .content .content-div {
-
-            .lines-container {
-
-              .line-1,
-              .line-2 {
-                background-color: #ffffff;
-              }
-            }
-
-            .subtitle-wrapper .subtitle {
-              color: #ffffff;
-              padding: 0 !important;
-              background: none !important;
-            }
-
-            .title-wrapper .title {
-              color: #ffffff;
-            }
-
-            .description-wrapper .description {
-              color: #ffffff;
-            }
-
-            .nav-buttons {
-              margin-top: var(--composer-gap-md);
-
-              .nav-button {
-                border-color: #ffffff;
-                color: #ffffff;
-
-                &:hover {
-                  color: black;
-                  background-color: #ffffff;
                 }
               }
             }
