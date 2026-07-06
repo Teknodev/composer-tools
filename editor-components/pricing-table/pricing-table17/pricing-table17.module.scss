@@ -173,10 +173,15 @@
                 flex: 1;
 
                 .bottom-subtitle,
-                .bottom-title,
                 .bottom-description {
                     color: var(--composer-font-color-primary);
                     text-align: left;
+                }
+
+                .bottom-title {
+                    color: var(--composer-font-color-primary);
+                    text-align: left;
+                    font-weight: 800;
                 }
             }
 
