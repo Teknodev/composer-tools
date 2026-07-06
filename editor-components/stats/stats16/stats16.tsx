@@ -11,7 +11,9 @@ type StatItem = {
   description: React.ReactNode;
   number: string;
   prefix: string;
+  prefixElement: JSX.Element;
   suffix: string;
+  suffixElement: JSX.Element;
 };
 
 class Stats16 extends BaseStats {
@@ -205,7 +207,7 @@ class Stats16 extends BaseStats {
           <div className={this.decorateCSS("stat-value")}>
             {hasPrefix && (
               <span className={this.decorateCSS("stat-prefix")}>
-                {stat.prefix}
+                {stat.prefixElement}
               </span>
             )}
             <span className={this.decorateCSS("stat-number")}>
@@ -213,7 +215,7 @@ class Stats16 extends BaseStats {
             </span>
             {hasSuffix && (
               <span className={this.decorateCSS("stat-suffix")}>
-                {stat.suffix}
+                {stat.suffixElement}
               </span>
             )}
           </div>
@@ -253,7 +255,7 @@ class Stats16 extends BaseStats {
       const number = this.castToString(item.getPropValue("number")) || "0";
       const prefix = this.castToString(item.getPropValue("prefix")) || "";
       const suffix = this.castToString(item.getPropValue("suffix")) || "";
-      return { subtitle, title: itemTitle, description: itemDescription, number, prefix, suffix };
+      return { subtitle, title: itemTitle, description: itemDescription, number, prefix, prefixElement: item.getPropValue("prefix"), suffix, suffixElement: item.getPropValue("suffix") };
     });
     const animationProps = this.castToObject<{ enabled: boolean; duration: number }>("numberAnimation");
     const animationEnabled = animationProps?.enabled ?? true;

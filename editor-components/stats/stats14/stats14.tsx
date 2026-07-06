@@ -185,11 +185,10 @@ class Stats14 extends BaseStats {
                   <Base.Row className={this.decorateCSS("button-container")}>
                     {buttons.map((item, index) => {
                       const buttonText = this.castToString(item.text || "");
-                      const buttonUrl = item.url || "#";
                       if (!buttonText && !item.icon) return null;
 
                       return (
-                        <ComposerLink key={`dw-btn-${index}`} path={buttonUrl}>
+                        <ComposerLink key={`dw-btn-${index}`} path={item.url || "#"}>
                           <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
                             {item.icon && (
                               <Base.Media
@@ -214,7 +213,7 @@ class Stats14 extends BaseStats {
                 }`}
               >
                 <Base.Media value={image} className={this.decorateCSS("image-circle")} />
-                {overlay && image?.url && <div className={this.decorateCSS("media-overlay")}></div>}
+                {overlay && image?.url && <div className={this.decorateCSS("media-overlay")} />}
               </div>
             )}
           </div>

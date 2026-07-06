@@ -1,5 +1,5 @@
 import * as React from "react";
-import { BaseStats } from "../../EditorComponent";
+import { BaseStats, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./stats10.module.scss";
 
 import { Base } from "../../../composer-base-components/base/base";
@@ -8,7 +8,7 @@ type ProgressItem = {
   progressTitle: string;
   progress: number;
   progressText: React.JSX.Element;
-  icon: string;
+  icon: string | TypeMediaInputValue;
 };
 
 class Stats10 extends BaseStats {
@@ -90,10 +90,11 @@ class Stats10 extends BaseStats {
               value: "90%",
             },
             {
-              type: "icon",
+              type: "media",
               key: "icon",
               displayer: "Icon",
-              value: "CgPlayButtonO",
+              additionalParams: { availableTypes: ["image", "icon"] },
+              value: { type: "icon", name: "CgPlayButtonO" },
             },
           ],
         },
@@ -122,10 +123,11 @@ class Stats10 extends BaseStats {
               value: "95%",
             },
             {
-              type: "icon",
+              type: "media",
               key: "icon",
               displayer: "Icon",
-              value: "CgPlayButtonO",
+              additionalParams: { availableTypes: ["image", "icon"] },
+              value: { type: "icon", name: "CgPlayButtonO" },
             },
           ],
         },
@@ -154,10 +156,11 @@ class Stats10 extends BaseStats {
               value: "98%",
             },
             {
-              type: "icon",
+              type: "media",
               key: "icon",
               displayer: "Icon",
-              value: "CgPlayButtonO",
+              additionalParams: { availableTypes: ["image", "icon"] },
+              value: { type: "icon", name: "CgPlayButtonO" },
             },
           ],
         },
@@ -186,10 +189,11 @@ class Stats10 extends BaseStats {
               value: "85%",
             },
             {
-              type: "icon",
+              type: "media",
               key: "icon",
               displayer: "Icon",
-              value: "CgPlayButtonO",
+              additionalParams: { availableTypes: ["image", "icon"] },
+              value: { type: "icon", name: "CgPlayButtonO" },
             },
           ],
         },
@@ -312,10 +316,9 @@ class Stats10 extends BaseStats {
                               <div
                                 className={this.decorateCSS("progress-title-icon")}
                               >
-                               <Base.Icon
-                                  name={item.icon}
-                                  propsIcon={{ className: this.decorateCSS("icon") }}
-                                />
+                               {(typeof item.icon === "object" ? (item.icon?.name || item.icon?.url) : item.icon) && (
+                                  <Base.Media value={typeof item.icon === "object" ? item.icon : { type: "icon", name: item.icon }} className={this.decorateCSS("icon")} />
+                                )}
                               </div>
                               <div className={this.decorateCSS("progress-title")}>
                                 {item.progressTitle}

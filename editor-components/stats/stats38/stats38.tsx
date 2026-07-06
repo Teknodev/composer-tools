@@ -373,7 +373,7 @@ class Stats38 extends BaseStats {
 
                         {mediaExist && (
                             <div className={this.decorateCSS("media-container")}>
-                                {overlay && <div className={this.decorateCSS("media-overlay")}></div>}
+                                {overlay && <div className={this.decorateCSS("media-overlay")} />}
                                 <Base.Media value={media} className={this.decorateCSS("media")} />
                             </div>
                         )}

@@ -415,7 +415,7 @@ class Stats33 extends BaseStats {
                                         className={this.decorateCSS("image")}
                                     />
                                      {stat.overlay && (
-                                         <div className={this.decorateCSS("media-overlay")}></div>
+                                         <div className={this.decorateCSS("media-overlay")} />
                                      )}
                                 </Base.GridCell>
                             );

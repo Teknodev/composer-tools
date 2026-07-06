@@ -1,11 +1,11 @@
 import React, { createRef } from "react";
 import styles from "./stats12.module.scss";
-import { BaseStats } from "../../EditorComponent";
+import { BaseStats, TypeMediaInputValue } from "../../EditorComponent";
 import { Base } from "../../../composer-base-components/base/base";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 
 interface FeatureItem {
-  icon?: string;
+  icon?: string | TypeMediaInputValue;
   title: string;
   description: string;
 }
@@ -47,7 +47,7 @@ class Stats12 extends BaseStats {
           key: "stat",
           displayer: "Stat",
           value: [
-            { type: "icon", key: "icon", displayer: "Icon", value: "FiClock" },
+            { type: "media", key: "icon", displayer: "Icon", additionalParams: { availableTypes: ["image", "icon"] }, value: { type: "icon", name: "FiClock" } },
             { type: "string", key: "title", displayer: "Title", value: "90 Days Return" },
             { type: "string", key: "description", displayer: "Description", value: "If goods have problems, consectetur adipiscing elit." },
           ],
@@ -57,7 +57,7 @@ class Stats12 extends BaseStats {
           key: "stat",
           displayer: "Stat",
           value: [
-            { type: "icon", key: "icon", displayer: "Icon", value: "BsBookmarkDash" },
+            { type: "media", key: "icon", displayer: "Icon", additionalParams: { availableTypes: ["image", "icon"] }, value: { type: "icon", name: "BsBookmarkDash" } },
             { type: "string", key: "title", displayer: "Title", value: "Free Delivery" },
             { type: "string", key: "description", displayer: "Description", value: "For all orders over $50, consectetur adipim scing elit." },
           ],
@@ -67,7 +67,7 @@ class Stats12 extends BaseStats {
           key: "stat",
           displayer: "Stat",
           value: [
-            { type: "icon", key: "icon", displayer: "Icon", value: "FiCreditCard" },
+            { type: "media", key: "icon", displayer: "Icon", additionalParams: { availableTypes: ["image", "icon"] }, value: { type: "icon", name: "FiCreditCard" } },
             { type: "string", key: "title", displayer: "Title", value: "Secure Payment" },
             { type: "string", key: "description", displayer: "Description", value: "100% secure payment, consectetur adipim scing elit." },
           ],
@@ -142,11 +142,8 @@ class Stats12 extends BaseStats {
           {features.map((feat, idx) => (
             <div key={idx} className={this.decorateCSS("feature")}>
               <div className={this.decorateCSS("top-row")}>
-                {feat.icon && (
-                  <Base.Icon
-                    name={feat.icon}
-                    propsIcon={{ className: this.decorateCSS("icon") }}
-                  />
+                {(typeof feat.icon === "object" ? (feat.icon?.name || feat.icon?.url) : feat.icon) && (
+                  <Base.Media value={typeof feat.icon === "object" ? feat.icon : { type: "icon", name: feat.icon }} className={this.decorateCSS("icon")} />
                 )}
                 <div className={this.decorateCSS("text-group")}>
                   <Base.SectionTitle className={this.decorateCSS("title")}>
@@ -176,11 +173,8 @@ class Stats12 extends BaseStats {
             {features.map((feat, idx) => (
               <div key={idx} className={this.decorateCSS("feature")}>
                 <div className={this.decorateCSS("top-row")}>
-                  {feat.icon && (
-                    <Base.Icon
-                      name={feat.icon}
-                      propsIcon={{ className: this.decorateCSS("icon") }}
-                    />
+                  {(typeof feat.icon === "object" ? (feat.icon?.name || feat.icon?.url) : feat.icon) && (
+                    <Base.Media value={typeof feat.icon === "object" ? feat.icon : { type: "icon", name: feat.icon }} className={this.decorateCSS("icon")} />
                   )}
                   <div className={this.decorateCSS("text-group")}>
                     <Base.SectionTitle className={this.decorateCSS("title")}>

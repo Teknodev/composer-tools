@@ -8,7 +8,9 @@ import { INPUTS } from "../../../custom-hooks/input-templates";
 interface Stat {
     number: string;
     description: string;
+    descriptionElement: JSX.Element;
     suffix?: string;
+    suffixElement?: JSX.Element;
 }
 
 class Stats9 extends BaseStats {
@@ -217,13 +219,13 @@ class Stats9 extends BaseStats {
                     </span>
                     {stat.suffix && (
                         <span className={this.decorateCSS("stat-suffix")}>
-                            {typeof stat.suffix === 'string' ? stat.suffix.replace(/<[^>]*>/g, '').trim() : stat.suffix}
+                            {stat.suffixElement}
                         </span>
                     )}
                 </div>
                 {stat.description && (
                     <Base.P className={this.decorateCSS("stat-description")}>
-                        {stat.description}
+                        {stat.descriptionElement}
                     </Base.P>
                 )}
             </div>
@@ -236,7 +238,7 @@ class Stats9 extends BaseStats {
             const number = this.castToString(item.getPropValue("number") || "0");
             const suffix = this.castToString(item.getPropValue("suffix")) || "";
             const description = this.castToString(item.getPropValue("description")) || "";
-            return { number, suffix, description };
+            return { number, suffix, suffixElement: item.getPropValue("suffix"), description, descriptionElement: item.getPropValue("description") };
         });
         
         const title = this.getPropValue("title");

@@ -1,5 +1,5 @@
 import * as React from "react";
-import { BaseStats } from "../../EditorComponent";
+import { BaseStats, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./stats3.module.scss";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 
@@ -57,10 +57,11 @@ class Stats3Page extends BaseStats {
           displayer: "Stat",
           value: [
             {
-              type: "icon",
+              type: "media",
               key: "icon",
               displayer: "Icon",
-              value: "FaMedal",
+              additionalParams: { availableTypes: ["image", "icon"] },
+              value: { type: "icon", name: "FaMedal" },
             },
             {
               type: "string",
@@ -82,10 +83,11 @@ class Stats3Page extends BaseStats {
           displayer: "Stat",
           value: [
             {
-              type: "icon",
+              type: "media",
               key: "icon",
               displayer: "Icon",
-              value: "FiUser",
+              additionalParams: { availableTypes: ["image", "icon"] },
+              value: { type: "icon", name: "FiUser" },
             },
             {
               type: "string",
@@ -107,10 +109,11 @@ class Stats3Page extends BaseStats {
           displayer: "Stat",
           value: [
             {
-              type: "icon",
+              type: "media",
               key: "icon",
               displayer: "Icon",
-              value: "BsHeartPulse",
+              additionalParams: { availableTypes: ["image", "icon"] },
+              value: { type: "icon", name: "BsHeartPulse" },
             },
             {
               type: "string",
@@ -186,7 +189,9 @@ class Stats3Page extends BaseStats {
                             <div className={this.decorateCSS("inner-content")}>
                               <Base.VerticalContent className={this.decorateCSS("text-container")}>
                                 <div className={this.decorateCSS("first-container")}>
-                                  <Base.Icon name={item.icon} propsIcon={{ className: this.decorateCSS("icon") }} />
+                                  {(typeof item.icon === "object" ? (item.icon?.name || item.icon?.url) : item.icon) && (
+                                    <Base.Media value={typeof item.icon === "object" ? item.icon : { type: "icon", name: item.icon }} className={this.decorateCSS("icon")} />
+                                  )}
                                   <Base.VerticalContent className={this.decorateCSS("text")}>
                                     {this.castToString(item.number) && <Base.H5 className={this.decorateCSS("number")}>{item.number}</Base.H5>}
                                     {this.castToString(item.description) && <Base.P className={this.decorateCSS("right-text")}>{item.description}</Base.P>}

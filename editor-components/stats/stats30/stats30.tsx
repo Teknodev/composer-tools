@@ -7,8 +7,10 @@ import { INPUTS } from "../../../custom-hooks/input-templates";
 
 type StatItem = {
     prefix: string;
+    prefixElement: JSX.Element;
     statValue: string;
     suffix: string;
+    suffixElement: JSX.Element;
     subtitle: string;
     subtitleElement: JSX.Element;
     title: string;
@@ -210,7 +212,7 @@ export class Stats30 extends BaseStats {
                     <span className={this.decorateCSS("stat-value-container")}>
                         {stat.prefix && (
                             <span className={this.decorateCSS("stat-prefix")}>
-                                {stat.prefix}
+                                {stat.prefixElement}
                             </span>
                         )}
                         {valueExist && (
@@ -220,7 +222,7 @@ export class Stats30 extends BaseStats {
                         )}
                         {suffixExist && (
                             <span className={this.decorateCSS("stat-suffix")}>
-                                {stat.suffix}
+                                {stat.suffixElement}
                             </span>
                         )}
                     </span>
@@ -253,8 +255,10 @@ export class Stats30 extends BaseStats {
             const cardData = item?.card || item || {};
             return {
                 prefix: this.castToString(cardData.prefix) || "",
+                prefixElement: cardData.prefix,
                 statValue: this.castToString(cardData.value) || this.castToString(cardData.number) || "",
                 suffix: this.castToString(cardData.suffix) || "",
+                suffixElement: cardData.suffix,
                 subtitle: this.castToString(cardData.subtitle) || "",
                 subtitleElement: cardData.subtitle,
                 title: this.castToString(cardData.title) || "",

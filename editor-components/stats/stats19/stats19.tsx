@@ -7,8 +7,10 @@ import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type StatItem = {
     prefix: string;
+    prefixElement: JSX.Element;
     number: string;
     suffix: string;
+    suffixElement: JSX.Element;
     title: string;
     titleElement: JSX.Element;
     subtitle: string;
@@ -171,7 +173,7 @@ class Stats19 extends BaseStats {
                     <span className={this.decorateCSS("stat-value")}>
                         {this.castToString(stat.prefix) && (
                             <span className={this.decorateCSS("stat-prefix")}>
-                                {stat.prefix}
+                                {stat.prefixElement}
                             </span>
                         )}
                         <span className={this.decorateCSS("stat-number")}>
@@ -179,7 +181,7 @@ class Stats19 extends BaseStats {
                         </span>
                         {this.castToString(stat.suffix) && (
                             <span className={this.decorateCSS("stat-suffix")}>
-                                {stat.suffix}
+                                {stat.suffixElement}
                             </span>
                         )}
                     </span>
@@ -222,7 +224,7 @@ class Stats19 extends BaseStats {
             const title = this.castToString(item.title) || "";
             const subtitle = this.castToString(item.subtitle) || "";
             const description = this.castToString(item.description) || "";
-            return { prefix, number, suffix, title, titleElement: item.title, subtitle, subtitleElement: item.subtitle, description, descriptionElement: item.description };
+            return { prefix, prefixElement: item.prefix, number, suffix, suffixElement: item.suffix, title, titleElement: item.title, subtitle, subtitleElement: item.subtitle, description, descriptionElement: item.description };
         });
 
         const animationProps = this.castToObject<{ statsAnimation: boolean; animationDuration: number }>("animation");

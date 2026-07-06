@@ -8,8 +8,10 @@ import ComposerLink from "../../../composer-base-components/Link/ComposerLinkPro
 type StatItem = {
     icon: TypeMediaInputValue | string;
     prefix: string;
+    prefixElement: JSX.Element;
     number: string;
     suffix: string;
+    suffixElement: JSX.Element;
     title: string;
     titleElement: JSX.Element;
     subtitle: string;
@@ -213,7 +215,7 @@ class Stats24 extends BaseStats {
                         <span className={this.decorateCSS("stat-value")}>
                             {prefixExist && (
                                 <span className={this.decorateCSS("stat-prefix")}>
-                                    {stat.prefix}
+                                    {stat.prefixElement}
                                 </span>
                             )}
                             {valueExist && (
@@ -223,7 +225,7 @@ class Stats24 extends BaseStats {
                             )}
                             {suffixExist && (
                                 <span className={this.decorateCSS("stat-suffix")}>
-                                    {stat.suffix}
+                                    {stat.suffixElement}
                                 </span>
                             )}
                         </span>
@@ -277,7 +279,7 @@ class Stats24 extends BaseStats {
             const subtitle = this.castToString(item.subtitle) || "";
             const description = this.castToString(item.description) || "";
 
-            return { icon: iconProp, prefix, number, suffix, title, titleElement: item.title, subtitle, subtitleElement: item.subtitle, description, descriptionElement: item.description };
+            return { icon: iconProp, prefix, prefixElement: item.prefix, number, suffix, suffixElement: item.suffix, title, titleElement: item.title, subtitle, subtitleElement: item.subtitle, description, descriptionElement: item.description };
         });
 
         const animationProps = this.castToObject<{ statsAnimation: boolean; animationDuration: number }>("animation");

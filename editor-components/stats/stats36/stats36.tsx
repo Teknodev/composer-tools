@@ -283,7 +283,7 @@ class Stats36 extends BaseStats {
                     <Base.ContainerGrid className={this.decorateCSS("grid-wrapper")}>
                         {!fullWidth && (
                             <Base.GridCell className={`${this.decorateCSS("media-cell")} ${mediaFullWidth ? this.decorateCSS("full-width") : ""}`}>
-                                {showOverlay && <div className={this.decorateCSS("media-overlay")}></div>}
+                                {showOverlay && <div className={this.decorateCSS("media-overlay")} />}
                                 <Base.Media value={media} className={this.decorateCSS("media")} />
                             </Base.GridCell>
                         )}

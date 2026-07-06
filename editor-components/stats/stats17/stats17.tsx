@@ -7,8 +7,10 @@ import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type StatItem = {
     prefix: string;
+    prefixElement: JSX.Element;
     number: string;
     suffix: string;
+    suffixElement: JSX.Element;
     title: string;
     titleElement: JSX.Element;
     subtitle: string;
@@ -177,7 +179,7 @@ class Stats17 extends BaseStats {
                     <span className={this.decorateCSS("stat-value")}>
                         {stat.prefix && (
                             <span className={this.decorateCSS("stat-prefix")}>
-                                {stat.prefix}
+                                {stat.prefixElement}
                             </span>
                         )}
                         <span className={this.decorateCSS("stat-number")}>
@@ -185,7 +187,7 @@ class Stats17 extends BaseStats {
                         </span>
                         {suffixExist && (
                             <span className={this.decorateCSS("stat-suffix")}>
-                                {stat.suffix}
+                                {stat.suffixElement}
                             </span>
                         )}
                     </span>
@@ -229,7 +231,7 @@ class Stats17 extends BaseStats {
             const title = this.castToString(item.title) || "";
             const subtitle = this.castToString(item.subtitle) || "";
             const infoText = this.castToString(item.infoText) || "";
-            return { prefix, number, suffix, title, titleElement: item.title, subtitle, subtitleElement: item.subtitle, infoText, infoTextElement: item.infoText };
+            return { prefix, prefixElement: item.prefix, number, suffix, suffixElement: item.suffix, title, titleElement: item.title, subtitle, subtitleElement: item.subtitle, infoText, infoTextElement: item.infoText };
         });
 
         const animationProps = this.castToObject<{ statsAnimation: boolean; animationDuration: number }>("animation");

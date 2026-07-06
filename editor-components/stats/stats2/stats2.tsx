@@ -1,5 +1,5 @@
 import * as React from "react";
-import { BaseStats } from "../../EditorComponent";
+import { BaseStats, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./stats2.module.scss";
 
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
@@ -9,8 +9,8 @@ import { INPUTS } from "../../../custom-hooks/input-templates";
 type Card = {
   number: string;
   description: React.JSX.Element;
-  icon?: string;
-  secondIcon?: string;
+  icon?: TypeMediaInputValue | string;
+  secondIcon?: TypeMediaInputValue | string;
 };
 
 class Stats2Page extends BaseStats {
@@ -71,16 +71,18 @@ class Stats2Page extends BaseStats {
               value: "8500",
             },
             {
-              type: "icon",
+              type: "media",
               key: "icon",
               displayer: "Icon",
-              value: "IoMdArrowUp",
+              additionalParams: { availableTypes: ["image", "icon"] },
+              value: { type: "icon", name: "IoMdArrowUp" },
             },
             {
-              type: "icon",
+              type: "media",
               key: "secondIcon",
               displayer: "Icon After Amount",
-              value: "FaPlus",
+              additionalParams: { availableTypes: ["image", "icon"] },
+              value: { type: "icon", name: "FaPlus" },
             },
           ],
         },
@@ -102,16 +104,18 @@ class Stats2Page extends BaseStats {
               value: "660",
             },
             {
-              type: "icon",
+              type: "media",
               key: "icon",
               displayer: "Icon",
-              value: "IoMdArrowUp",
+              additionalParams: { availableTypes: ["image", "icon"] },
+              value: { type: "icon", name: "IoMdArrowUp" },
             },
             {
-              type: "icon",
+              type: "media",
               key: "secondIcon",
               displayer: "Icon After Amount",
-              value: "FaPlus",
+              additionalParams: { availableTypes: ["image", "icon"] },
+              value: { type: "icon", name: "FaPlus" },
             },
           ],
         },
@@ -133,16 +137,18 @@ class Stats2Page extends BaseStats {
               value: "6834",
             },
             {
-              type: "icon",
+              type: "media",
               key: "icon",
               displayer: "Icon",
-              value: "IoMdArrowUp",
+              additionalParams: { availableTypes: ["image", "icon"] },
+              value: { type: "icon", name: "IoMdArrowUp" },
             },
             {
-              type: "icon",
+              type: "media",
               key: "secondIcon",
               displayer: "Icon After Amount",
-              value: "FaPlus",
+              additionalParams: { availableTypes: ["image", "icon"] },
+              value: { type: "icon", name: "FaPlus" },
             },
           ],
         },
@@ -164,16 +170,18 @@ class Stats2Page extends BaseStats {
               value: "300",
             },
             {
-              type: "icon",
+              type: "media",
               key: "icon",
               displayer: "Icon",
-              value: "IoMdArrowUp",
+              additionalParams: { availableTypes: ["image", "icon"] },
+              value: { type: "icon", name: "IoMdArrowUp" },
             },
             {
-              type: "icon",
+              type: "media",
               key: "secondIcon",
               displayer: "Icon After Amount",
-              value: "FaPlus",
+              additionalParams: { availableTypes: ["image", "icon"] },
+              value: { type: "icon", name: "FaPlus" },
             },
           ],
         },
@@ -275,19 +283,23 @@ class Stats2Page extends BaseStats {
       const classes = `${this.decorateCSS("listed")} ${conditionalClasses}`.trim();
 
       return (
-        (isTextExist || amount !== null || card.icon || card.secondIcon) && (
+        (isTextExist || amount !== null || (typeof card.icon === "object" ? (card.icon?.name || card.icon?.url) : card.icon) || (typeof card.secondIcon === "object" ? (card.secondIcon?.name || card.secondIcon?.url) : card.secondIcon)) && (
           <div ref={ref} className={classes}>
             {isTextExist && <Base.P className={this.decorateCSS("card-text")}>{card.description}</Base.P>}
-            {(amount !== null || card.icon || card.secondIcon) && (
+            {(amount !== null || (typeof card.icon === "object" ? (card.icon?.name || card.icon?.url) : card.icon) || (typeof card.secondIcon === "object" ? (card.secondIcon?.name || card.secondIcon?.url) : card.secondIcon)) && (
               <div className={this.decorateCSS("card-amount-container")}>
-                {card.icon && <Base.Icon propsIcon={{ className: this.decorateCSS("card-icon") }} name={card.icon} />}
+                {(typeof card.icon === "object" ? (card.icon?.name || card.icon?.url) : card.icon) && (
+                  <Base.Media value={typeof card.icon === "object" ? card.icon : { type: "icon", name: card.icon }} className={this.decorateCSS("card-icon")} />
+                )}
                 {amount !== null && amount !== "NaN" && (
                   <div className={this.decorateCSS("card-amount")}>
                     {integerPart}
                     {showDecimals && decimalPart && <span>.{decimalPart}</span>}
                   </div>
                 )}
-                {card.secondIcon && <Base.Icon propsIcon={{ className: this.decorateCSS("card-icon-after") }} name={card.secondIcon} />}
+                {(typeof card.secondIcon === "object" ? (card.secondIcon?.name || card.secondIcon?.url) : card.secondIcon) && (
+                  <Base.Media value={typeof card.secondIcon === "object" ? card.secondIcon : { type: "icon", name: card.secondIcon }} className={this.decorateCSS("card-icon-after")} />
+                )}
               </div>
             )}
           </div>

@@ -1,5 +1,5 @@
 import * as React from "react";
-import { BaseStats } from "../../EditorComponent";
+import { BaseStats, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./stats4.module.scss";
 
 import { Base } from "../../../composer-base-components/base/base";
@@ -222,10 +222,11 @@ class Stats4Page extends BaseStats {
       value: "FaMinus",
     });
     this.addProp({
-      type: "icon",
+      type: "media",
       key: "statIcon",
       displayer: "Stat Value Icon",
-      value: "FaPlus",
+      additionalParams: { availableTypes: ["image", "icon"] },
+      value: { type: "icon", name: "FaPlus" },
     });
     this.addProp({
       type: "number",
@@ -351,7 +352,7 @@ class Stats4Page extends BaseStats {
     const statItems = this.castToObject<Stat[]>("stats");
     const expandIcon = this.getPropValue("expandIcon");
     const collapseIcon = this.getPropValue("collapseIcon");
-    const statIcon = this.getPropValue("statIcon");
+    const statIcon: TypeMediaInputValue | string = this.getPropValue("statIcon");
     const itemCount = this.getPropValue("itemCount");
 
     if (!this.interval && !this.isEqual(this.getStats(), this.getNumbers())) {
@@ -441,14 +442,9 @@ class Stats4Page extends BaseStats {
                         {item.number && (
                           <Base.P className={this.decorateCSS("stat-item-stat-value")}>
                             {statValue}
-                            {statIcon && (
+                            {(typeof statIcon === "object" ? ("name" in statIcon ? statIcon.name : statIcon.url) : statIcon) && (
                               <span className={this.decorateCSS("stat-value-icon")}>
-                                <Base.Icon
-                                  propsIcon={{
-                                    className: this.decorateCSS("stat-icon"),
-                                  }}
-                                  name={statIcon}
-                                />
+                                <Base.Media value={typeof statIcon === "object" ? statIcon : { type: "icon", name: statIcon }} className={this.decorateCSS("stat-icon")} />
                               </span>
                             )}
                           </Base.P>

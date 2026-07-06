@@ -104,18 +104,7 @@ class Stats11 extends BaseStats {
         "It’s an approach that’s allowed us to create exhilarating sporting venues, bring greener futures to commercial developments, connect communities through more intuitive and efficient transport systems, and deliver cutting edge scientific and industrial facilities.",
     });
 
-    this.addProp({
-      type: "string",
-      key: "buttonText",
-      displayer: "Button Text",
-      value: "Send Request",
-    });
-    this.addProp({
-      type: "page",
-      key: "buttonLink",
-      displayer: "Button Link",
-      value: "",
-    });
+
 
     this.addProp({
       type: "array",
