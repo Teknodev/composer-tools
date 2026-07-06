@@ -45,7 +45,12 @@
         }
       }
 
-      .title,
+      .title {
+        content: "";
+        text-align: center !important;
+        font-weight: 800;
+      }
+
       .description {
         content: "";
         text-align: center !important;
@@ -132,6 +137,10 @@
               text-overflow: ellipsis;
               display: block;
               align-self: center;
+
+              .bold-text {
+                font-weight: 800;
+              }
             }
 
             .image-wrapper {
@@ -181,6 +190,7 @@
             .card-title {
               color: var(--composer-font-color-primary);
               text-align: left;
+              font-weight: 800;
             }
 
             .card-button {
@@ -190,6 +200,7 @@
 
               .card-button-text {
                 content: "";
+                font-weight: 800;
               }
 
               .card-icon {

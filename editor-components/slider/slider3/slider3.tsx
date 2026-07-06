@@ -374,11 +374,22 @@ class Slider3 extends BaseSlider {
                     <Base.ContainerGrid className={this.decorateCSS("content-div")}>
                       {(this.castToString(item.vertText) || item.media) && (
                         <div className={`${this.decorateCSS("left-part")} ${!item.media && this.decorateCSS("no-image")} `}>
-                          {this.castToString(item.vertText) && (
-                            <Base.P style={{ maxHeight: imageHeight }} className={this.decorateCSS("vert-text")}>
-                              {item.vertText}
-                            </Base.P>
-                          )}
+                          {this.castToString(item.vertText) && (() => {
+                            const textStr = this.castToString(item.vertText);
+                            const parts = textStr.split(" - ");
+                            return (
+                              <Base.P style={{ maxHeight: imageHeight }} className={this.decorateCSS("vert-text")}>
+                                {parts.length > 1 ? (
+                                  <>
+                                    <span className={this.decorateCSS("bold-text")}>{parts[0]}</span>
+                                    {" - " + parts.slice(1).join(" - ")}
+                                  </>
+                                ) : (
+                                  textStr
+                                )}
+                              </Base.P>
+                            );
+                          })()}
                           {item.media && (
                             <div className={this.decorateCSS("image-wrapper")}>
                               <Base.Media value={item.media} className={this.decorateCSS("image")} />
