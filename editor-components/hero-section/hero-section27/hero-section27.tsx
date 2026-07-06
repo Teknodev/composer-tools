@@ -466,9 +466,7 @@ class HeroSection27 extends BaseHeroSection {
       },
     };
 
-    const elements = document.getElementsByClassName(
-      this.decorateCSS("carousel")
-    );
+    const elements = typeof document !== "undefined" ? document.getElementsByClassName(this.decorateCSS("carousel")) : ([] as unknown as HTMLCollectionOf<Element>);
 
     const items = [];
 

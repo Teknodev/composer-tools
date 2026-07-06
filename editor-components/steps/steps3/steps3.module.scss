@@ -1,0 +1,203 @@
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+
+.container {
+  .max-content {
+    display: flex;
+    flex-direction: column;
+
+    .steps-box {
+      border-radius: var(--composer-border-radius-sm);
+      display: flex;
+      flex-direction: column;
+      gap: var(--composer-gap-lg);
+      box-sizing: border-box;
+
+      &.has-background {
+        padding: var(--composer-gap-xl) var(--composer-gap-xl);
+        background-color: var(--composer-primary-color);
+
+        .header {
+          .subtitle {
+            width: fit-content;
+            padding: 0;
+            background: transparent;
+          }
+
+          .subtitle,
+          .title,
+          .description {
+            color: var(--composer-font-color-secondary);
+          }
+        }
+
+        .cards-container {
+          .card {
+            .step-number-watermark {
+              color: var(--composer-font-color-secondary);
+              font-weight: 800;
+            }
+
+            .card-content {
+
+              .card-subtitle,
+              .card-title,
+              .card-description {
+                color: var(--composer-font-color-secondary);
+              }
+            }
+          }
+        }
+      }
+
+      .header {
+        display: flex;
+        flex-direction: column;
+
+        .subtitle,
+        .title,
+        .description {
+          content: "";
+        }
+      }
+
+      .cards-container {
+        column-gap: var(--composer-gap-xl);
+        row-gap: var(--composer-gap-xl);
+        width: 100%;
+
+        .card {
+          position: relative;
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          min-height: 180px;
+
+          .step-number-watermark {
+            position: absolute;
+            left: -0.5rem;
+            top: -3rem;
+            font-size: 9rem;
+            color: var(--composer-font-color-primary);
+            opacity: 0.08;
+            user-select: none;
+            pointer-events: none;
+            z-index: 1;
+          }
+
+          .card-content {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+
+            .card-subtitle,
+            .card-title {
+              color: var(--composer-font-color-primary);
+              text-align: left;
+            }
+
+            .card-title {
+              font-weight: 600;
+            }
+
+
+            .card-description {
+              color: var(--composer-tertiary-color);
+              text-align: left;
+            }
+
+            .card-buttons {
+              display: flex;
+              justify-content: flex-start;
+              gap: var(--composer-gap-sm);
+              flex-wrap: wrap;
+              width: 100%;
+
+              .card-button {
+                .card-button-text {
+                  content: "";
+                }
+              }
+            }
+          }
+        }
+      }
+
+      .button-container {
+        display: flex;
+        gap: var(--composer-gap-sm);
+        flex-wrap: wrap;
+
+        .button {
+          .button-text {
+            content: "";
+          }
+        }
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-tablet-width}) {
+  .container {
+    .max-content {
+      .steps-box {
+        .cards-container {
+          .card {
+            .step-number-watermark {
+              font-size: 7.5rem !important;
+              top: -2.5rem;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+  .container {
+    .max-content {
+      .steps-box {
+        padding: var(--composer-gap-lg) var(--composer-gap-md);
+        gap: var(--composer-gap-lg);
+
+
+        .cards-container {
+          gap: var(--composer-gap-lg);
+
+          .card {
+            min-height: auto;
+
+            .step-number-watermark {
+              position: absolute;
+              left: 0;
+              right: 0;
+              top: -3rem;
+              font-size: 7rem;
+              text-align: var(--composer-content-alignment);
+            }
+
+            .card-content {
+
+              .card-subtitle,
+              .card-title,
+              .card-description {
+                text-align: var(--composer-content-alignment);
+              }
+
+              .card-buttons {
+                justify-content: var(--composer-content-alignment);
+              }
+            }
+          }
+        }
+
+        .button-container {
+          justify-content: var(--composer-content-alignment);
+        }
+      }
+    }
+  }
+}
