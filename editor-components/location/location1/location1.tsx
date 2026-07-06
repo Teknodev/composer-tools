@@ -414,10 +414,10 @@ class Location1 extends Location {
                 {popupButtonText && (
                   <div className={this.decorateCSS("popup-link")}>
                     <ComposerLink path={popupButtonUrl}>
-                      <div className={this.decorateCSS("popup-button")}>
+                      <Base.P className={this.decorateCSS("popup-button")}>
                         {popupButtonText && (typeof popupButtonText === "string" ? popupButtonText.charAt(0).toUpperCase() + popupButtonText.slice(1) : popupButtonText)}
                         {popupButtonIconExist && <Base.Media value={popupButtonIcon} className={this.decorateCSS("popup-button-icon")} />}
-                      </div>
+                      </Base.P>
                     </ComposerLink>
                   </div>
                 )}
