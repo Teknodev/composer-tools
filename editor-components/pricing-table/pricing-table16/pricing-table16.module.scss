@@ -1,0 +1,243 @@
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+
+.container {
+    .max-content {
+        display: flex;
+        flex-direction: column;
+        gap: var(--composer-gap-lg);
+
+        .header {
+            display: flex;
+            flex-direction: column;
+
+            .subtitle {
+                transform: translateY(0);
+
+                &::before {
+                    background: transparent;
+                }
+            }
+
+            .title,
+            .description {
+                content: "";
+            }
+
+            .button-container {
+                display: flex;
+                flex-wrap: wrap;
+                gap: var(--composer-gap-sm);
+
+                .button {
+                    .button-text {
+                        content: "";
+                    }
+                }
+            }
+        }
+
+        .cards-row {
+            gap: var(--composer-gap-lg);
+            align-items: stretch;
+            width: 100%;
+
+            .card {
+                display: flex;
+                flex-direction: column;
+                border-radius: var(--composer-border-radius-md);
+                background: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+                box-shadow: var(--box-shadow-active);
+                color: var(--composer-font-color-primary);
+                padding: 30px;
+                gap: var(--composer-gap-lg);
+                overflow: hidden;
+
+                .card-top {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: flex-start;
+                    flex: 1;
+
+                    .card-subtitle,
+                    .card-title {
+                        color: var(--composer-font-color-primary);
+                        text-align: left;
+                        font-weight: 600;
+                    }
+
+
+                    .card-description {
+                        color: var(--composer-color-secondary);
+                        text-align: left;
+                    }
+
+                    .card-price-row {
+                        display: flex;
+                        align-items: baseline;
+                        gap: var(--composer-gap-xs);
+
+                        .card-price {
+                            color: var(--composer-primary-color);
+                        }
+
+                        .card-duration {
+                            color: var(--composer-color-secondary);
+                        }
+                    }
+
+                    .card-features {
+                        display: flex;
+                        flex-direction: column;
+
+                        .feature-item {
+                            display: flex;
+                            align-items: center;
+                            gap: var(--composer-gap-xs);
+
+                            .feature-icon {
+                                color: var(--composer-primary-color);
+                                width: var(--composer-gap-md);
+                                height: var(--composer-gap-md);
+                                line-height: 2;
+                                align-items: center;
+                            }
+
+                            .feature-text {
+                                color: var(--composer-color-secondary);
+                                text-align: left;
+                            }
+                        }
+                    }
+                }
+
+                .card-bottom {
+                    display: flex;
+                    flex-direction: column;
+
+                    .card-info {
+                        color: var(--composer-color-secondary);
+                        text-align: left;
+                    }
+
+                    .card-buttons-container {
+                        display: flex;
+                        justify-content: flex-start;
+                        width: 100%;
+
+                        .card-button {
+
+                            .button-text {
+                                content: "";
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+
+        .bottom-cards-row {
+            gap: var(--composer-gap-lg);
+            width: 100%;
+
+            .bottom-card {
+                display: flex;
+                flex-direction: row;
+                gap: var(--composer-gap-md);
+                border-radius: var(--composer-border-radius-md);
+                padding: 30px;
+                background: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+                box-shadow: var(--box-shadow-active);
+
+                .bottom-card-left {
+                    display: flex;
+                    align-items: flex-start;
+
+                    .bottom-icon {
+                        color: var(--composer-primary-color);
+                        font-size: 5rem;
+                        width: 75px;
+                        height: 75px;
+                    }
+                }
+
+                .bottom-card-right {
+                    display: flex;
+                    flex-direction: column;
+                    flex: 1;
+                    display: flex;
+                    flex-direction: column;
+
+                    .bottom-subtitle,
+                    .bottom-title {
+                        color: var(--composer-font-color-primary);
+                        text-align: left;
+                        font-weight: 600;
+                    }
+
+                    .bottom-description {
+                        color: var(--composer-tertiary-color);
+                        text-align: left;
+                    }
+
+                    .bottom-buttons-container {
+                        display: flex;
+                        justify-content: flex-start;
+                        width: 100%;
+
+                        .bottom-button {
+
+                            .button-text {
+                                content: "";
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+
+@container (max-width: #{$composer-tablet-width}) {
+    .container {
+        .max-content {
+            .bottom-cards-row {
+                .bottom-card {
+                    .bottom-card-left {
+                        .bottom-icon {
+                            font-size: 4rem;
+                            width: 55px;
+                            height: 55px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+    .container {
+        .max-content {
+            gap: var(--composer-gap-md);
+
+            .cards-row {
+                gap: var(--composer-gap-md);
+            }
+
+            .bottom-cards-row {
+                .bottom-card {
+                    .bottom-card-left {
+                        .bottom-icon {
+                            font-size: 3rem;
+                            width: 40px;
+                            height: 40px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

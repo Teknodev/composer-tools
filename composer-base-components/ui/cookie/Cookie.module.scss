@@ -41,6 +41,7 @@
 }
 
 .cookieContainer {
+  box-sizing: border-box;
   border-radius: 20px;
   padding: var(--composer-gap-md) var(--composer-gap-lg) var(--composer-gap-sm) var(--composer-gap-lg);
   max-width: 480px;
@@ -53,6 +54,15 @@
   background: var(--composer-html-background);
   color: var(--composer-font-color-primary);
   box-shadow: 0px var(--composer-gap-sm) var(--composer-gap-md) 0px #00000066;
+
+  // Never exceed the slot the banner is placed in (floating boxes can be narrow);
+  // border-box keeps the padding inside that width instead of overflowing it.
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
   .button {
     border-color: var(--composer-font-color-primary);
   }
@@ -128,52 +138,37 @@
     align-items: center;
     gap: var(--composer-gap-xs);
     width: 100%;
+    min-width: 0;
   }
   .text {
     font-size: 16px;
     text-align: center;
+    min-width: 0;
   }
   .learnMore {
     color: var(--composer-primary-color);
     text-decoration: none;
     font-size: 1rem;
     transition: color 0.2s ease;
-
-    &:hover {
-      color: var(--composer-secondary-color);
-      text-decoration: underline;
-    }
   }
   .buttonGroup {
     display: flex;
     gap: var(--composer-gap-sm);
     width: auto;
+    max-width: 100%;
     justify-content: center;
     flex-direction: row;
     .button {
-      border: 1.5px solid var(--composer-font-color-primary);
-      background: transparent;
-      color: inherit;
-      font-size: 1rem;
-      padding: var(--composer-gap-sm) var(--composer-gap-lg);
-      cursor: pointer;
-      transition: background 0.15s, color 0.15s, border 0.15s;
-      border-radius: var(--composer-border-radius-xl);
-      outline: none;
-      position: relative;
-      min-width: 120px;
+
+      // Was a hard 120px floor, which overflowed narrow floating-box slots.
+      // Allow the buttons to shrink to fit; keep their label on one line.
+      min-width: 0;
+      flex: 0 1 auto;
+      white-space: nowrap;
       text-align: center;
       display: flex;
       align-items: center;
       justify-content: center;
-    }
-    .button:first-child {
-      border-top-right-radius: 0;
-      border-bottom-right-radius: 0;
-    }
-    .button:last-child {
-      border-top-left-radius: 0;
-      border-bottom-left-radius: 0;
     }
   }
 
@@ -185,11 +180,11 @@
       height: 2rem;
     }
     .text {
-      font-size: 1rem;
+      font-size: 14px;
     }
     .buttonGroup .button {
-      font-size: 1rem;
-      padding: var(--composer-gap-sm) var(--composer-gap-lg);
+      font-size: 14px;
+      margin: 0;
     }
   }
   @container (max-width: 640px) {
@@ -210,9 +205,9 @@
       flex-direction: row;
       gap: var(--composer-gap-sm);
       .button {
-        font-size: 1rem;
-        padding: var(--composer-gap-sm) var(--composer-gap-lg);
-        min-width: 90px;
+        font-size: 14px;
+        padding: 8px 16px;
+        min-width: 0;
         width: auto;
         margin: 0;
       }
@@ -245,15 +240,15 @@
       align-items: center;
     }
     .text {
-      font-size: 14px;
+      font-size: 13px;
     }
     .learnMore {
-      font-size: 14px;
+      font-size: 13px;
     }
     .buttonGroup .button {
-      font-size: 14px;
-      padding: var(--composer-gap-xs) var(--composer-gap-sm);
-      min-width: 90px;
+      font-size: 13px;
+      padding: 7px 14px;
+      min-width: 0;
       width: auto;
     }
   }
@@ -310,7 +305,7 @@
     margin-left: 1.5rem;
   }
   @container (max-width: 1024px) {
-    padding: var(--composer-gap-xs);
+    padding: 10px 16px;
     gap: var(--composer-gap-sm);
     border-radius: 0;
     margin: 0;
@@ -321,49 +316,79 @@
       margin-left: 1rem;
     }
   }
+  // Banners stay HORIZONTAL on narrow/mobile widths (icon | text | buttons),
+  // matching the original component — they do not stack vertically.
   @container (max-width: 640px) {
-    padding: var(--composer-gap-xs);
-    margin: var(--composer-gap-xs);
-    gap: var(--composer-gap-xs);
+    flex-direction: row;
+    align-items: center;
+    gap: var(--composer-gap-sm);
     border-radius: 0;
     margin: 0;
     .iconWrapper {
-      margin: 0 0 var(--composer-gap-xs) 0;
+      margin: 0 var(--composer-gap-sm) 0 0;
+      .icon {
+        width: 28px;
+        height: 28px;
+      }
     }
     .textWrapper {
       flex-direction: column;
-      align-items: center;
+      align-items: flex-start;
     }
     .text {
-      text-align: center;
+      text-align: left;
+      font-size: 13px;
+    }
+    .learnMore {
+      font-size: 13px;
     }
     .buttonGroup {
-      gap: var(--composer-gap-xs);
+      margin-left: var(--composer-gap-sm);
+      gap: var(--composer-gap-sm);
+      flex-shrink: 0;
       .button {
-        width: 100%;
+        width: auto;
         min-width: 0;
+        padding: 8px 16px;
+        font-size: 13px;
       }
     }
   }
   @container (max-width: 414px) {
-    flex-direction: column;
-    padding: var(--composer-gap-xs);
-    margin: var(--composer-gap-xs);
-    gap: var(--composer-gap-xs);
+    flex-direction: row;
+    align-items: center;
+    padding: var(--composer-gap-sm);
+    gap: var(--composer-gap-sm);
     border-radius: 0;
     margin: 0;
     .iconWrapper {
-      margin: 0 0 var(--composer-gap-xs) 0;
+      margin: 0 var(--composer-gap-sm) 0 0;
+      .icon {
+        width: 20px;
+        height: 20px;
+      }
     }
     .textWrapper {
       flex-direction: column;
-      align-items: center;
+      align-items: flex-start;
     }
     .text {
-      font-size: 14px;
+      text-align: left;
+      font-size: 12px;
+    }
+    .learnMore {
+      font-size: 12px;
     }
     .buttonGroup {
+      margin-left: var(--composer-gap-sm);
       gap: var(--composer-gap-xs);
+      flex-shrink: 0;
+      .button {
+        width: auto;
+        min-width: 0;
+        padding: 7px 14px;
+        font-size: 12px;
+      }
     }
   }
 }
@@ -410,7 +435,8 @@
     align-items: center;
     padding: var(--composer-gap-sm);
     gap: var(--composer-gap-xs);
-    width: 300px;
+    width: 100%;
+    max-width: 300px;
 
     .iconWrapper {
       margin: 0 0 var(--composer-gap-sm) 0;
@@ -437,7 +463,7 @@
   align-items: center;
   justify-content: center;
   gap: var(--composer-gap-sm);
-  padding: var(--composer-gap-sm);
+  padding: 18px 16px;
   .iconWrapper {
     margin-bottom: var(--composer-gap-xs);
     margin-right: 0;
@@ -446,14 +472,20 @@
     text-align: center;
     margin: var(--composer-gap-xs);
   }
+  // In the compact box layout the two buttons share the full width and shrink
+  // together, so they always fit the box instead of overflowing it.
   .buttonGroup {
     margin-left: 0;
+    width: 100%;
+    .button {
+      flex: 1 1 0;
+      padding: var(--composer-gap-sm) var(--composer-gap-md);
+    }
   }
   @container (max-width: 414px) {
     max-width: 260px;
     min-width: 0;
     width: 100%;
-    padding: var(--composer-gap-sm);
     gap: var(--composer-gap-xs);
     margin: var(--composer-gap-xs);
     border-radius: 20px;
