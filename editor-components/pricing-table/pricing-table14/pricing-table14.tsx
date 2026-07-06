@@ -459,29 +459,29 @@ class PricingTable14 extends BasePricingTable {
                 const cardFeatures = card.features || [];
                 const cardButtons = card.cardButtons || [];
 
-                return (
+                 return (
                   <div key={`card-${index}`} className={this.decorateCSS("card")}>
+                    {(cardSubtitleExist || cardTitleExist || cardDescriptionExist) && (
+                      <Base.VerticalContent className={this.decorateCSS("card-header")}>
+                        {cardSubtitleExist && (
+                          <Base.H6 className={this.decorateCSS("card-subtitle")}>
+                            {card.cardSubtitle}
+                          </Base.H6>
+                        )}
+                        {cardTitleExist && (
+                          <Base.H4 className={this.decorateCSS("card-title")}>
+                            {card.cardTitle}
+                          </Base.H4>
+                        )}
+                        {cardDescriptionExist && (
+                          <Base.P className={this.decorateCSS("card-description")}>
+                            {card.cardDescription}
+                          </Base.P>
+                        )}
+                      </Base.VerticalContent>
+                    )}
                     <div className={this.decorateCSS("card-inner")}>
                       <div className={this.decorateCSS("card-left-section")}>
-                        {(cardSubtitleExist || cardTitleExist || cardDescriptionExist) && (
-                          <Base.VerticalContent className={this.decorateCSS("card-header")}>
-                            {cardSubtitleExist && (
-                              <Base.H6 className={this.decorateCSS("card-subtitle")}>
-                                {card.cardSubtitle}
-                              </Base.H6>
-                            )}
-                            {cardTitleExist && (
-                              <Base.H4 className={this.decorateCSS("card-title")}>
-                                {card.cardTitle}
-                              </Base.H4>
-                            )}
-                            {cardDescriptionExist && (
-                              <Base.P className={this.decorateCSS("card-description")}>
-                                {card.cardDescription}
-                              </Base.P>
-                            )}
-                          </Base.VerticalContent>
-                        )}
                         {cardFeatures.length > 0 && (
                           <div className={this.decorateCSS("features-list")}>
                             {cardFeatures.map((feature: FeatureItem, idx: number) => {
