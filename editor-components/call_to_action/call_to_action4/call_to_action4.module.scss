@@ -17,7 +17,7 @@
         overflow: hidden;
 
         &.no-list {
-          gap: 20px;
+          gap: var(--composer-gap-md);
         }
 
         .header {

@@ -4,7 +4,6 @@ import { BaseCallToAction, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./call_to_action10.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "../../../custom-hooks/input-templates";
-import { head } from "lodash";
 
 type headerIcon = {
   headerIcon: TypeMediaInputValue;

@@ -1,15 +1,15 @@
 import * as React from "react";
 import { BaseCallToAction } from "../../EditorComponent";
 import styles from "./call_to_action12.module.scss";
-import { Base, TypeButton } from "../../../composer-base-components/base/base";
+import { Base } from "../../../composer-base-components/base/base";
 import { Form, Formik } from "formik";
 import * as Yup from "yup";
+import { INPUTS } from "../../../custom-hooks/input-templates";
 
 type InputData = {
   placeholder: string;
   submitText: string;
-  buttonText: React.JSX.Element;
-  buttonType: TypeButton;
+  button: INPUTS.CastedButton;
 };
 
 class CallToAction12Page extends BaseCallToAction {
@@ -52,32 +52,18 @@ class CallToAction12Page extends BaseCallToAction {
           displayer: "Submit Text",
           value: "Form successfully submitted!",
         },
-        {
-          type: "string",
-          key: "buttonText",
-          displayer: "Button Text",
-          value: "SUBSCRIBE",
-        },
-        {
-          type: "select",
-          key: "buttonType",
-          displayer: "Button Type",
-          value: "Black",
-          additionalParams: {
-            selectItems: ["Primary", "Secondary", "Tertiary", "Link", "White", "Black", "Bare"],
-          },
-        },
+        INPUTS.BUTTON("button", "Button", "SUBSCRIBE", "", null, null, "Black"),
       ],
     });
 
     this.setComponentState("isInputFocused", false);
     const inputData = this.castToObject<InputData>("inputData");
-    this.setComponentState("placeholderText", this.castToString(inputData.placeholder));
+    this.setComponentState("placeholderText", this.castToString(inputData?.placeholder));
   }
 
   onComponentDidUpdate() {
     const inputData = this.castToObject<InputData>("inputData");
-    const currentPlaceholder = this.castToString(inputData.placeholder);
+    const currentPlaceholder = this.castToString(inputData?.placeholder);
     const prevPlaceholder = this.getComponentState("placeholderText");
 
     if (currentPlaceholder !== prevPlaceholder) {
@@ -99,10 +85,11 @@ class CallToAction12Page extends BaseCallToAction {
     const subtitleExist = this.castToString(this.getPropValue("subtitle"));
 
     const inputData = this.castToObject<InputData>("inputData");
-    const placeholder = this.castToString(inputData.placeholder);
-    const submitText = this.castToString(inputData.submitText);
-    const buttonText = this.castToString(inputData.buttonText);
-    const buttonType = inputData.buttonType;
+    const placeholder = this.castToString(inputData?.placeholder);
+    const submitText = this.castToString(inputData?.submitText);
+    const button = inputData?.button;
+    const buttonText = this.castToString(button?.text);
+    const buttonType = button?.type;
 
     return (
       <Base.Container className={`${this.decorateCSS("container")}`} >
@@ -123,7 +110,7 @@ class CallToAction12Page extends BaseCallToAction {
                   this.setComponentState("placeholderText", submitText);
                   this.insertForm("CTA12 – NewsletterForm", data);
                   setTimeout(() => {
-                    const defaultPlaceholder = this.castToString(inputData.placeholder);
+                    const defaultPlaceholder = this.castToString(inputData?.placeholder);
                     this.setComponentState("placeholderText", defaultPlaceholder);
                   }, 2000);
                   resetForm();
@@ -148,7 +135,7 @@ class CallToAction12Page extends BaseCallToAction {
                     )}
                     {buttonText && (
                       <Base.Button className={this.decorateCSS("submit-button")} buttonType={buttonType}>
-                        <Base.P className={this.decorateCSS("button-text")}>{inputData.buttonText}</Base.P>
+                        <Base.P className={this.decorateCSS("button-text")}>{button?.text}</Base.P>
                       </Base.Button>
                     )}
                   </Form>

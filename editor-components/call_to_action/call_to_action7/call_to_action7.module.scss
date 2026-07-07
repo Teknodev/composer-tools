@@ -143,10 +143,6 @@
             gap: var(--composer-gap-sm);
             justify-content: flex-start;
             flex-wrap: wrap;
-
-            a {
-              display: flex;
-            }
           }
         }
       }
@@ -350,10 +346,6 @@
                 .button-container {
                   width: 100%;
                   justify-content: var(--composer-content-alignment);
-
-                  a {
-                    width: 100%;
-                  }
 
                   .button {
                     width: 100%;
