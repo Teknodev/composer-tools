@@ -3,6 +3,7 @@
 .container {
   .max-content {
     padding-bottom: 1.5rem;
+
     .stats1-page {
       width: 100%;
       display: flex;
@@ -10,10 +11,28 @@
       align-items: center;
       gap: calc(5 * var(--composer-gap-xl));
       flex: 1 1;
+
       .left-container {
         max-width: 100%;
-        
-        .subtitle,  .description,  .button-text-wrapper, .title {
+        align-items: flex-start !important;
+        text-align: left;
+
+        .subtitle {
+          text-align: left !important;
+          margin-left: 0 !important;
+          margin-right: auto !important;
+          width: fit-content !important;
+        }
+
+        .title,
+        .description {
+          text-align: left;
+        }
+
+        .subtitle,
+        .description,
+        .button-text-wrapper,
+        .title {
           content: "";
         }
       }
@@ -69,11 +88,19 @@
               font-size: 2rem;
               margin: 0;
               word-break: break-all;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              text-align: center;
             }
 
             .counter-label {
               margin: 0;
               color: var(--composer-font-color-primary);
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              text-align: center;
             }
           }
         }
@@ -134,6 +161,7 @@
         .right-container {
           margin-right: 5% !important;
           margin: var(--composer-gap-sm) 0;
+
           .content-div {
             width: 250px !important;
             height: 250px !important;

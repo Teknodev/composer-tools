@@ -320,7 +320,7 @@ class Stats2Page extends BaseStats {
 
           <Base.ContainerGrid className={this.decorateCSS("bottom-content")}>
             {this.castToString(this.getPropValue("subHeader")) && (
-              <div className={`${this.decorateCSS("subHeader")} ${cardLength <= 0 ? this.decorateCSS("full-width") : ""}  ${!this.castToString(this.getPropValue("header")) && this.decorateCSS("no-title")}`}>
+              <Base.VerticalContent className={`${this.decorateCSS("subHeader")} ${cardLength <= 0 ? this.decorateCSS("full-width") : ""}  ${!this.castToString(this.getPropValue("header")) && this.decorateCSS("no-title")}`}>
                 {this.castToString(this.getPropValue("subHeader")) && <Base.SectionDescription className={`${this.decorateCSS("description")} ${cardLength <= 0 ? this.decorateCSS("full-width") : ""}`}>{this.getPropValue("subHeader")}</Base.SectionDescription>}
 
                 {this.castToString(button.text) && (
@@ -332,7 +332,7 @@ class Stats2Page extends BaseStats {
                     </ComposerLink>
                   </div>
                 )}
-              </div>
+              </Base.VerticalContent>
             )}
 
             {cards.length > 0 && (
