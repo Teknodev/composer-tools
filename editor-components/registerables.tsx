@@ -43,6 +43,7 @@ import PricingComponent11 from "./pricing-table/pricing-table11/pricing-table11"
 import PricingComponent13 from "./pricing-table/pricing-table13/pricing-table13";
 import PricingComponent15 from "./pricing-table/pricing-table15/pricing-table15";
 import PricingComponent16 from "./pricing-table/pricing-table16/pricing-table16";
+import PricingComponent17 from "./pricing-table/pricing-table17/pricing-table17";
 import FaqComponent1 from "./faq/faq1/faq1";
 import FaqComponent2 from "./faq/faq2/faq2";
 import FaqComponent3 from "./faq/faq3/faq3";
@@ -442,6 +443,7 @@ function Registerables(composer: ComponentsRegistery) {
     PricingComponent13,
     PricingComponent15,
     PricingComponent16,
+    PricingComponent17,
     FaqComponent1,
     FaqComponent2,
     FaqComponent3,
