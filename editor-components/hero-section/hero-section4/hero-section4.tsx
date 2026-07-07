@@ -197,7 +197,7 @@ const getStyle = (direction: "up" | "down") => {
   }
 
   if (direction === "down") {
-    const containerWidth = this.containerRef.current?.offsetWidth || window.innerWidth;
+    const containerWidth = this.containerRef.current?.offsetWidth || (typeof window !== "undefined" ? window.innerWidth : 1024);
     const isMobile = containerWidth <= 640;
     const multiplier = isMobile ? 100: 400;
     const translateY = 100 - multiplier * progress;
