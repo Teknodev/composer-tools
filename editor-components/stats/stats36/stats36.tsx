@@ -213,12 +213,14 @@ class Stats36 extends BaseStats {
                         </div>
                     )}
                 </div>
-                <div className={this.decorateCSS("progress-bar-container")}>
-                    <div
-                        className={this.decorateCSS("progress-bar-fill")}
-                        style={{ width: `${statsAnimation ? animatedNumber : targetNumber}%` }}
-                    />
-                </div>
+                {valueExist && (
+                    <div className={this.decorateCSS("progress-bar-container")}>
+                        <div
+                            className={this.decorateCSS("progress-bar-fill")}
+                            style={{ width: `${statsAnimation ? animatedNumber : targetNumber}%` }}
+                        />
+                    </div>
+                )}
                 {descriptionExist && (
                     <Base.P className={this.decorateCSS("stat-description")}>
                         {stat.descriptionElement}

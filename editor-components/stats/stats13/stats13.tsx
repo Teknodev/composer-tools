@@ -328,6 +328,7 @@ class Stats13 extends BaseStats {
         const image = imageCard?.image;
         const isImageExist = !!image?.url;
         const ratingItems = this.castToObject<RatingItemType[]>("rating");
+        const ratingNumberExist = this.castToString(this.getPropValue("ratingNumber"));
         const subtitleExist = this.castToString(this.getPropValue("subtitle"));
         const titleProp = this.getPropValue("title");
         const titleExist = this.castToString(titleProp);
@@ -346,9 +347,11 @@ class Stats13 extends BaseStats {
                         {hasContent && (
                             <div className={this.decorateCSS("left-content")}>
                                 <Base.VerticalContent className={this.decorateCSS("vertical-content")}>
-                                    {ratingItems.length > 0 && (
+                                    {(ratingItems.length > 0 || ratingNumberExist) && (
                                         <Base.Row className={this.decorateCSS("rating-container")}>
                                             {ratingItems.map((item: RatingItemType, index: number) => {
+                                                const iconExist = item.icon?.name || item.icon?.url;
+                                                if (!iconExist) return null;
                                                 return (
                                                     <div key={index} className={this.decorateCSS("rating-content")}>
                                                         <Base.Media
@@ -358,7 +361,7 @@ class Stats13 extends BaseStats {
                                                     </div>
                                                 );
                                             })}
-                                            <Base.SectionDescription className={this.decorateCSS("rating-number")}>{this.getPropValue("ratingNumber")}</Base.SectionDescription>
+                                            {ratingNumberExist && <Base.SectionDescription className={this.decorateCSS("rating-number")}>{this.getPropValue("ratingNumber")}</Base.SectionDescription>}
                                         </Base.Row>
                                     )}
                                     {subtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}> {this.getPropValue("subtitle")} </Base.SectionSubTitle>}
@@ -394,18 +397,24 @@ class Stats13 extends BaseStats {
                                                     const parsedNumber = parseFloat(numberAsString as string) || 0;
                                                     const symbol = item.symbol;
                                                     const description = item.description;
+                                                    const symbolExist = this.castToString(symbol);
+                                                    const descriptionExist = this.castToString(description);
+
+                                                    if (!numberAsString && !symbolExist && !descriptionExist) return null;
 
                                                     return (
                                                         <div key={`stat-${index}`} className={this.decorateCSS("stat-item")}>
-                                                            <Base.H2 className={this.decorateCSS("stat-number")}>
-                                                                {enableStatAnimation ? (
-                                                                    <this.AnimatedNumber targetValue={parsedNumber} duration={3000} />
-                                                                ) : (
-                                                                    parsedNumber
-                                                                )}
-                                                                <span className={this.decorateCSS("stat-symbol")}>{symbol}</span>
-                                                            </Base.H2>
-                                                            <Base.SectionDescription className={this.decorateCSS("stat-description")}>{description}</Base.SectionDescription>
+                                                            {(numberAsString || symbolExist) && (
+                                                                <Base.H2 className={this.decorateCSS("stat-number")}>
+                                                                    {numberAsString && (enableStatAnimation ? (
+                                                                        <this.AnimatedNumber targetValue={parsedNumber} duration={3000} />
+                                                                    ) : (
+                                                                        parsedNumber
+                                                                    ))}
+                                                                    {symbolExist && <span className={this.decorateCSS("stat-symbol")}>{symbol}</span>}
+                                                                </Base.H2>
+                                                            )}
+                                                            {descriptionExist && <Base.SectionDescription className={this.decorateCSS("stat-description")}>{description}</Base.SectionDescription>}
                                                         </div>
                                                     );
                                                 })}

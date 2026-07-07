@@ -1,5 +1,5 @@
 import * as React from "react";
-import { BaseStats } from "../../EditorComponent";
+import { BaseStats, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./stats8.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 
@@ -131,10 +131,14 @@ class Stats8Page extends BaseStats {
     });
 
     this.addProp({
-      type: "image",
+      type: "media",
       key: "imageSrc",
       displayer: "Image Source",
-      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a36aa42f8a5b002ce6a087?alt=media",
+      additionalParams: { availableTypes: ["image", "video"] },
+      value: {
+        type: "image",
+        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a36aa42f8a5b002ce6a087?alt=media",
+      },
     });
 
     this.addProp({
@@ -194,7 +198,7 @@ class Stats8Page extends BaseStats {
     if (isNaN(number)) {
       return "";
     }
-    return number.toLocaleString("tr-TR");
+    return number.toString();
   }
 
   animate() {
@@ -277,7 +281,7 @@ class Stats8Page extends BaseStats {
 
   render() {
     const statsData = this.castToObject<CardData[]>("stats");
-    const imageSrc = this.getPropValue("imageSrc");
+    const imageSrc = this.getPropValue("imageSrc") as TypeMediaInputValue;
     const title = this.getPropValue("headerTitle");
     const isTitleExist = this.castToString(title);
     const subtitle = this.getPropValue("subtitle");
@@ -333,10 +337,10 @@ class Stats8Page extends BaseStats {
                   {statsData.map((statData: CardData, indexStat: number) => {
                     return (
                       (this.castToString(statData.counter) || this.castToString(statData.description)) && (
-                        <div className={`${this.decorateCSS("stat-border")} ${!imageSrc && this.decorateCSS("stat-border-full-width")}`}>
+                        <div className={`${this.decorateCSS("stat-border")} ${!imageSrc?.url && this.decorateCSS("stat-border-full-width")}`}>
                           <div key={indexStat} className={`${this.decorateCSS("stat")} ${showBackground ? this.decorateCSS("with-background") : this.decorateCSS("no-background")}`}>
                             {this.getComponentState(`number-${indexStat}`) !== "0" && <span className={this.decorateCSS("stat-counter")}>{this.getComponentState(`number-${indexStat}`)}</span>}
-                            <Base.P className={this.decorateCSS("stat-description")}>{statData.description}</Base.P>
+                            {this.castToString(statData.description) && <Base.P className={this.decorateCSS("stat-description")}>{statData.description}</Base.P>}
                           </div>
                         </div>
                       )
@@ -346,11 +350,11 @@ class Stats8Page extends BaseStats {
               </div>
             </Base.VerticalContent>
           )}
-          {imageSrc && (
+          {imageSrc?.url && (
             <div className={this.decorateCSS("stats8-page")}>
               <div className={this.decorateCSS("image-container")}>
                 <div className={this.decorateCSS("image-container-border")}>
-                  <img src={imageSrc} alt="" />
+                  <Base.Media value={imageSrc} />
                   {(this.getComponentState("overlayNumberDisplay") || overlayDescription) && (
                     <div className={this.decorateCSS("overlay")}>
                       {this.getComponentState("overlayNumberDisplay") && <span className={this.decorateCSS("number")}>{this.getComponentState("overlayNumberDisplay")}</span>}

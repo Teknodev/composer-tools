@@ -51,7 +51,6 @@ class Stats2Page extends BaseStats {
       type: "array",
       key: "stats",
       displayer: "Stats",
-      additionalParams: { maxElementCount: 10 },
       value: [
         {
           type: "object",
@@ -343,7 +342,7 @@ class Stats2Page extends BaseStats {
                   const isFirstRow = currentRow === 1;
                   const isLastRow = currentRow === totalRows;
 
-                  const isTextExist = this.castToString(card.text);
+                  const isTextExist = this.castToString(card.description);
                   return <AnimatedCard key={index} card={card} animationDuration={animationDuration} isTextExist={isTextExist} isFirstRow={isFirstRow} isLastRow={isLastRow} />;
                 })}
               </Base.ListGrid>

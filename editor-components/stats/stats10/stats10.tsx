@@ -16,31 +16,41 @@ class Stats10 extends BaseStats {
     super(props, styles);
 
     this.addProp({
-      type: "image",
+      type: "media",
       key: "image1",
       displayer: "1st Image",
-      value:
-        "https://vzkit.rometheme.pro/persona/wp-content/uploads/sites/15/2024/01/psychologist-therapy-group-support-writing-notes-2023-11-27-05-30-45-utc.jpg",
+      additionalParams: { availableTypes: ["image", "video"] },
+      value: {
+        type: "image",
+        url: "https://vzkit.rometheme.pro/persona/wp-content/uploads/sites/15/2024/01/psychologist-therapy-group-support-writing-notes-2023-11-27-05-30-45-utc.jpg",
+      },
     });
     this.addProp({
-      type: "image",
+      type: "media",
       key: "image2",
       displayer: "2nd Image",
-      value:
-        "https://vzkit.rometheme.pro/persona/wp-content/uploads/sites/15/2024/01/psychology-mental-health-and-support-with-a-woman-2023-11-27-05-29-05-utc.jpg",
+      additionalParams: { availableTypes: ["image", "video"] },
+      value: {
+        type: "image",
+        url: "https://vzkit.rometheme.pro/persona/wp-content/uploads/sites/15/2024/01/psychology-mental-health-and-support-with-a-woman-2023-11-27-05-29-05-utc.jpg",
+      },
     });
     this.addProp({
-      type: "icon",
+      type: "media",
       key: "playIcon",
       displayer: "Play Icon",
-      value: "FaRegPlayCircle"
-
+      additionalParams: { availableTypes: ["image", "icon"] },
+      value: { type: "icon", name: "FaRegPlayCircle" },
     });
     this.addProp({
-      type: "video",
+      type: "media",
       displayer: "Video",
       key: "video",
-      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667e75d50181a1002c334f4f?alt=media&timestamp=1719563750188"
+      additionalParams: { availableTypes: ["video", "icon"] },
+      value: {
+        type: "video",
+        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667e75d50181a1002c334f4f?alt=media&timestamp=1719563750188",
+      },
     });
     this.addProp({
       type: "string",
@@ -219,45 +229,46 @@ class Stats10 extends BaseStats {
     const title = this.castToString(this.getPropValue("title"));
     const description = this.castToString(this.getPropValue("description"));
     const itemsLength = (this.getPropValue("stats") || []).length;
-    const image1 = this.getPropValue("image1");
-    const image2 = this.getPropValue("image2");
-    const videoLinkExist = this.getPropValue("video");
+    const image1 = this.getPropValue("image1") as TypeMediaInputValue;
+    const image2 = this.getPropValue("image2") as TypeMediaInputValue;
+    const video = this.getPropValue("video") as TypeMediaInputValue;
+    const videoLinkExist = video && ("url" in video ? video.url : "name" in video ? video.name : "");
+    const playIcon = this.getPropValue("playIcon") as TypeMediaInputValue;
+    const playIconExist = playIcon && (playIcon?.name || playIcon?.url);
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("page")}>
-            {(image1 || image2) && (
+            {(image1?.url || image2?.url) && (
               <div className={this.decorateCSS("left-page")}>
-                {image1 && (
-                  <div 
-                    className={`${this.decorateCSS("up-image")} ${!image2 && this.decorateCSS("without-image2")}`}
+                {image1?.url && (
+                  <div
+                    className={`${this.decorateCSS("up-image")} ${!image2?.url && this.decorateCSS("without-image2")}`}
                     data-animation={this.getPropValue("hoverAnimation").join(" ")}
                   >
-                    <img
+                    <Base.Media
                       className={this.decorateCSS("image1")}
-                      src={this.getPropValue("image1")}
-                      alt={this.getPropValue("image1")}
+                      value={image1}
                     />
                   </div>
                 )}
-                {image2 && (
-                  <div 
-                    className={`${this.decorateCSS("down-image")} 
-                      ${!image1 && this.decorateCSS("without-image1")}
+                {image2?.url && (
+                  <div
+                    className={`${this.decorateCSS("down-image")}
+                      ${!image1?.url && this.decorateCSS("without-image1")}
                       ${this.getComponentState("is_video_visible") ? this.decorateCSS("video-active") : ""}`
                     }
                     data-animation={this.getPropValue("hoverAnimation").join(" ")}
                   >
-                    <img
+                    <Base.Media
                       className={this.decorateCSS("image2")}
-                      src={this.getPropValue("image2")}
-                      alt={this.getPropValue("image2")}
+                      value={image2}
                     />
                     <div className={this.decorateCSS("player-container")} onClick={() => {
                       this.setComponentState("is_video_visible", true)
                     }}>
-                     {videoLinkExist && <div className={this.decorateCSS("icon-container")}>
-                        <Base.Icon name={this.getPropValue("playIcon")} propsIcon={{ className: this.decorateCSS("play-icon") }} />
+                     {videoLinkExist && playIconExist && <div className={this.decorateCSS("icon-container")}>
+                        <Base.Media value={this.getPropValue("playIcon")} className={this.decorateCSS("play-icon")} />
                       </div>}
                     </div>
                     {this.getComponentState("is_video_visible") && (
@@ -265,13 +276,8 @@ class Stats10 extends BaseStats {
                         className={this.decorateCSS("image")}
                         onClick={() => this.setComponentState("is_video_visible", false)}
                       >
-                        {videoLinkExist && <div className={this.decorateCSS("player")}>
-                          <video
-                            onClick={(event) => event.stopPropagation()}
-                            controls
-                            className={this.decorateCSS("image2")}
-                            src={this.getPropValue("video")}
-                          ></video>
+                        {videoLinkExist && <div className={this.decorateCSS("player")} onClick={(event) => event.stopPropagation()}>
+                          <Base.Media value={video} className={this.decorateCSS("image2")} />
                         </div>}
 
                       </div>
@@ -303,34 +309,47 @@ class Stats10 extends BaseStats {
                 {itemsLength > 0 && (
                   <Base.Row className={this.decorateCSS("progress-container")}>
                     {this.castToObject<ProgressItem[]>("stats").map(
-                      (item: ProgressItem, index: number) => (
-                        <div 
-                          className={this.decorateCSS("item")} 
+                      (item: ProgressItem, index: number) => {
+                        const iconExist = typeof item.icon === "object" ? (item.icon?.name || item.icon?.url) : item.icon;
+                        const titleExist = this.castToString(item.progressTitle);
+                        const textExist = this.castToString(item.progressText);
+                        if (!iconExist && !titleExist && !textExist) return null;
+                        return (
+                        <div
+                          className={this.decorateCSS("item")}
                           key={index}
                           data-animation={this.getPropValue("hoverAnimation").join(" ")}
                         >
+                          {(iconExist || titleExist || textExist) && (
                           <div className={this.decorateCSS("progress-content")}>
+                            {(iconExist || titleExist) && (
                             <div
                               className={this.decorateCSS("progress-title-container")}
                             >
+                              {iconExist && (
                               <div
                                 className={this.decorateCSS("progress-title-icon")}
                               >
-                               {(typeof item.icon === "object" ? (item.icon?.name || item.icon?.url) : item.icon) && (
                                   <Base.Media value={typeof item.icon === "object" ? item.icon : { type: "icon", name: item.icon }} className={this.decorateCSS("icon")} />
-                                )}
                               </div>
+                              )}
+                              {titleExist && (
                               <div className={this.decorateCSS("progress-title")}>
                                 {item.progressTitle}
                               </div>
+                              )}
 
                             </div>
+                            )}
+                            {textExist && (
                             <div className={this.decorateCSS("progress-text-container")}>
                               <div className={this.decorateCSS("progress-text")}>
                                 {item.progressText}
                               </div>
                             </div>
+                            )}
                           </div>
+                          )}
 
 
 
@@ -351,7 +370,8 @@ class Stats10 extends BaseStats {
                             </div>
                           )}
                         </div>
-                      )
+                        );
+                      }
                     )}
                   </Base.Row>
                 )}

@@ -196,12 +196,13 @@ class Stats24 extends BaseStats {
             iconString = stat.icon;
         }
 
-        const iconExist = !!iconObj || !!iconString;
+        const iconExist = iconObj ? !!((iconObj as any).name || (iconObj as any).url) : !!iconString;
 
         if (!valueExist && !suffixExist && !titleExist && !subtitleExist && !descriptionExist && !prefixExist && !iconExist) return null;
 
         return (
             <Base.VerticalContent className={this.decorateCSS("stat-item")}>
+                {(iconExist || valueExist || suffixExist || prefixExist) && (
                 <div className={this.decorateCSS("stat-header")}>
                     {iconExist && (
                         <div className={this.decorateCSS("stat-icon-wrapper")}>
@@ -231,6 +232,7 @@ class Stats24 extends BaseStats {
                         </span>
                     )}
                 </div>
+                )}
                 {subtitleExist && (
                     <Base.H6 className={this.decorateCSS("stat-subtitle")}>
                         {stat.subtitleElement}

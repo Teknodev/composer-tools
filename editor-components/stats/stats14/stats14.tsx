@@ -80,7 +80,7 @@ class Stats14 extends BaseStats {
           type: "media",
           key: "image",
           displayer: "Image",
-          additionalParams: { availableTypes: ["image"] },
+          additionalParams: { availableTypes: ["image", "video"] },
           value: {
             type: "image",
             url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6900d3202d05c1002bf00ca7?alt=media",
@@ -164,20 +164,25 @@ class Stats14 extends BaseStats {
                       alignment === "center" ? this.decorateCSS("alignment-center") : ""
                     }`}
                   >
-                    {FeaturesItem.map((item: any, index: number) => (
-                      <div key={index} className={this.decorateCSS("features-list-item")}>
-                        {this.castToString(item.number) && (
-                          <Base.P className={this.decorateCSS("topText")}>
-                            {item.number}
-                          </Base.P>
-                        )}
-                        {this.castToString(item.description) && (
-                          <Base.P className={this.decorateCSS("bottomText")}>
-                            {item.description}
-                          </Base.P>
-                        )}
-                      </div>
-                    ))}
+                    {FeaturesItem.map((item: any, index: number) => {
+                      const numberExist = this.castToString(item.number);
+                      const descriptionExist = this.castToString(item.description);
+                      if (!numberExist && !descriptionExist) return null;
+                      return (
+                        <div key={index} className={this.decorateCSS("features-list-item")}>
+                          {numberExist && (
+                            <Base.P className={this.decorateCSS("topText")}>
+                              {item.number}
+                            </Base.P>
+                          )}
+                          {descriptionExist && (
+                            <Base.P className={this.decorateCSS("bottomText")}>
+                              {item.description}
+                            </Base.P>
+                          )}
+                        </div>
+                      );
+                    })}
                   </Base.Row>
                 )}
 
@@ -196,7 +201,7 @@ class Stats14 extends BaseStats {
                                 value={{ type: "icon", name: item.icon }}
                               />
                             )}
-                            <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>
+                            {buttonText && <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>}
                           </Base.Button>
                         </ComposerLink>
                       );
@@ -206,8 +211,8 @@ class Stats14 extends BaseStats {
               </Base.VerticalContent>
             )}
 
-            {image && (
-              <div 
+            {image?.url && (
+              <div
                 className={`${this.decorateCSS("right-container")} ${
                   !isLeftContainerExist ? this.decorateCSS("right-container-alone") : ""
                 }`}

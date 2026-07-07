@@ -75,16 +75,18 @@ class Stats12 extends BaseStats {
       ],
     });
     this.addProp({
-      type: "icon",
+      type: "media",
       key: "prev-button-icon",
       displayer: "Previous Slide Button",
-      value: "MdArrowBackIos",
+      additionalParams: { availableTypes: ["image", "icon"] },
+      value: { type: "icon", name: "MdArrowBackIos" },
     });
     this.addProp({
-      type: "icon",
+      type: "media",
       key: "next-button-icon",
       displayer: "Next Slide Button",
-      value: "MdArrowForwardIos",
+      additionalParams: { availableTypes: ["image", "icon"] },
+      value: { type: "icon", name: "MdArrowForwardIos" },
     });
 
     this.addProp({
@@ -115,6 +117,8 @@ class Stats12 extends BaseStats {
     const itemsPerRow = this.getPropValue("itemsPerRow") ?? 3;
     const prevIcon = this.getPropValue("prev-button-icon");
     const nextIcon = this.getPropValue("next-button-icon");
+    const prevIconExist = typeof prevIcon === "object" ? (prevIcon?.name || prevIcon?.url) : prevIcon;
+    const nextIconExist = typeof nextIcon === "object" ? (nextIcon?.name || nextIcon?.url) : nextIcon;
 
     const subtitle = this.getPropValue("subtitle");
     const title = this.getPropValue("title");
@@ -139,23 +143,35 @@ class Stats12 extends BaseStats {
           className={`${this.decorateCSS("max-content")} ${this.decorateCSS(`cols-${itemsPerRow}`)} ${this.decorateCSS("desktop-wrapper")}`}
           ref={this.containerRef}
         >
-          {features.map((feat, idx) => (
-            <div key={idx} className={this.decorateCSS("feature")}>
-              <div className={this.decorateCSS("top-row")}>
-                {(typeof feat.icon === "object" ? (feat.icon?.name || feat.icon?.url) : feat.icon) && (
-                  <Base.Media value={typeof feat.icon === "object" ? feat.icon : { type: "icon", name: feat.icon }} className={this.decorateCSS("icon")} />
-                )}
-                <div className={this.decorateCSS("text-group")}>
-                  <Base.SectionTitle className={this.decorateCSS("title")}>
-                    {feat.title}
-                  </Base.SectionTitle>
-                  <Base.SectionDescription className={this.decorateCSS("description")}>
-                    {feat.description}
-                  </Base.SectionDescription>
+          {features.map((feat, idx) => {
+            const iconExist = typeof feat.icon === "object" ? (feat.icon?.name || feat.icon?.url) : feat.icon;
+            const titleExist = this.castToString(feat.title);
+            const descriptionExist = this.castToString(feat.description);
+            if (!iconExist && !titleExist && !descriptionExist) return null;
+            return (
+              <div key={idx} className={this.decorateCSS("feature")}>
+                <div className={this.decorateCSS("top-row")}>
+                  {iconExist && (
+                    <Base.Media value={typeof feat.icon === "object" ? feat.icon : { type: "icon", name: feat.icon }} className={this.decorateCSS("icon")} />
+                  )}
+                  {(titleExist || descriptionExist) && (
+                    <div className={this.decorateCSS("text-group")}>
+                      {titleExist && (
+                        <Base.SectionTitle className={this.decorateCSS("title")}>
+                          {feat.title}
+                        </Base.SectionTitle>
+                      )}
+                      {descriptionExist && (
+                        <Base.SectionDescription className={this.decorateCSS("description")}>
+                          {feat.description}
+                        </Base.SectionDescription>
+                      )}
+                    </div>
+                  )}
                 </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </Base.MaxContent>
         <div className={this.decorateCSS("mobile-wrapper")}>
           <ComposerSlider
@@ -170,32 +186,50 @@ class Stats12 extends BaseStats {
             arrows={false}
             autoplay={false}
           >
-            {features.map((feat, idx) => (
-              <div key={idx} className={this.decorateCSS("feature")}>
-                <div className={this.decorateCSS("top-row")}>
-                  {(typeof feat.icon === "object" ? (feat.icon?.name || feat.icon?.url) : feat.icon) && (
-                    <Base.Media value={typeof feat.icon === "object" ? feat.icon : { type: "icon", name: feat.icon }} className={this.decorateCSS("icon")} />
-                  )}
-                  <div className={this.decorateCSS("text-group")}>
-                    <Base.SectionTitle className={this.decorateCSS("title")}>
-                      {feat.title}
-                    </Base.SectionTitle>
-                    <Base.SectionDescription className={this.decorateCSS("description")}>
-                      {feat.description}
-                    </Base.SectionDescription>
+            {features.map((feat, idx) => {
+              const iconExist = typeof feat.icon === "object" ? (feat.icon?.name || feat.icon?.url) : feat.icon;
+              const titleExist = this.castToString(feat.title);
+              const descriptionExist = this.castToString(feat.description);
+              if (!iconExist && !titleExist && !descriptionExist) return null;
+              return (
+                <div key={idx} className={this.decorateCSS("feature")}>
+                  <div className={this.decorateCSS("top-row")}>
+                    {iconExist && (
+                      <Base.Media value={typeof feat.icon === "object" ? feat.icon : { type: "icon", name: feat.icon }} className={this.decorateCSS("icon")} />
+                    )}
+                    {(titleExist || descriptionExist) && (
+                      <div className={this.decorateCSS("text-group")}>
+                        {titleExist && (
+                          <Base.SectionTitle className={this.decorateCSS("title")}>
+                            {feat.title}
+                          </Base.SectionTitle>
+                        )}
+                        {descriptionExist && (
+                          <Base.SectionDescription className={this.decorateCSS("description")}>
+                            {feat.description}
+                          </Base.SectionDescription>
+                        )}
+                      </div>
+                    )}
                   </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </ComposerSlider>
-          <div className={this.decorateCSS("slider-buttons")}>
-            <button onClick={this.handlePrev} className={this.decorateCSS("prev-button")}>
-              <Base.Icon name={prevIcon} />
-            </button>
-            <button onClick={this.handleNext} className={this.decorateCSS("next-button")}>
-              <Base.Icon name={nextIcon} />
-            </button>
-          </div>
+          {(prevIconExist || nextIconExist) && (
+            <div className={this.decorateCSS("slider-buttons")}>
+              {prevIconExist && (
+                <button onClick={this.handlePrev} className={this.decorateCSS("prev-button")}>
+                  <Base.Media value={prevIcon} className={this.decorateCSS("prev-icon")} />
+                </button>
+              )}
+              {nextIconExist && (
+                <button onClick={this.handleNext} className={this.decorateCSS("next-button")}>
+                  <Base.Media value={nextIcon} className={this.decorateCSS("next-icon")} />
+                </button>
+              )}
+            </div>
+          )}
         </div>
       </Base.Container>
     );

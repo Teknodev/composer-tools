@@ -345,7 +345,7 @@ class Stats33 extends BaseStats {
                             const statDescriptionExist = !!stat.description;
                             const numberExist = !!stat.number;
                             const hasRenderableButtonContent = (btn: INPUTS.CastedButton) =>
-                                !!this.castToString(btn.text) || !!btn.icon;
+                                !!this.castToString(btn.text) || !!(btn.icon && btn.icon.name);
                             const hasValidButtons = stat.buttons.some(hasRenderableButtonContent);
                             const hasTextContent = statSubtitleExist || statTitleExist || statDescriptionExist || numberExist || hasValidButtons;
 
@@ -379,7 +379,8 @@ class Stats33 extends BaseStats {
                                             <div className={this.decorateCSS("button-container")}>
                                                 {stat.buttons.map((item: INPUTS.CastedButton, btnIndex: number) => {
                                                     const buttonText = this.castToString(item.text);
-                                                    if (!buttonText && !item.icon) return null;
+                                                    const iconExist = item.icon && item.icon.name;
+                                                    if (!buttonText && !iconExist) return null;
 
                                                     return (
                                                         <ComposerLink key={btnIndex} path={item.url}>
@@ -392,7 +393,7 @@ class Stats33 extends BaseStats {
                                                                         {item.text}
                                                                     </Base.P>
                                                                 )}
-                                                                {item.icon && (
+                                                                {iconExist && (
                                                                     <Base.Media
                                                                         className={this.decorateCSS("button-icon")}
                                                                         value={item.icon}

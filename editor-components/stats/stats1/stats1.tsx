@@ -40,9 +40,6 @@ class Stats1Page extends BaseStats {
     this.addProp({
       type: "array",
       key: "stats",
-      additionalParams: {
-        maxElementCount: 5,
-      },
       displayer: "Stats",
       value: [
         {
@@ -155,7 +152,7 @@ class Stats1Page extends BaseStats {
     if (isNaN(number)) {
       return "";
     }
-    return number.toLocaleString("tr-TR");
+    return number.toString();
   }
 
   animate() {

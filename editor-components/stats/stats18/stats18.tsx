@@ -232,6 +232,7 @@ class Stats18Page extends BaseStats {
         const titleExist = this.castToString(this.getPropValue("title"));
         const descriptionExist = this.castToString(this.getPropValue("description"));
         const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
+        const hasValidButtons = buttons.some((btn) => this.castToString(btn.text));
         const showLine = !!this.getPropValue("showLine");
         const itemCount = this.getPropValue("itemCount");
 
@@ -245,7 +246,7 @@ class Stats18Page extends BaseStats {
         const statsAnimation = !!animationProps?.statsAnimation;
         const animationDuration = animationProps?.animationDuration || 2000;
 
-        const hasTopSection = subtitleExist || titleExist || descriptionExist || buttons.length > 0;
+        const hasTopSection = subtitleExist || titleExist || descriptionExist || hasValidButtons;
 
 
         return (
@@ -268,7 +269,7 @@ class Stats18Page extends BaseStats {
                                     {this.getPropValue("description")}
                                 </Base.SectionDescription>
                             )}
-                            {buttons.length > 0 && (
+                            {hasValidButtons && (
                                 <Base.Row className={this.decorateCSS("button-container")}>
                                     {buttons.map((item: INPUTS.CastedButton, index: number) => {
                                         const buttonText = this.castToString(item.text);

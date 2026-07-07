@@ -156,7 +156,7 @@ class Stats6Page extends BaseStats {
     if (isNaN(number)) {
       return "";
     }
-    return number.toLocaleString("tr-TR");
+    return number.toString();
   }
 
   animate() {

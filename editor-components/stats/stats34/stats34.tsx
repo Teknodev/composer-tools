@@ -319,7 +319,7 @@ class Stats34 extends BaseStats {
                             </Base.VerticalContent>
                         )}
 
-                        {media && (
+                        {media && ("url" in media ? media.url : media.name) && (
                             <div className={this.decorateCSS("media-wrapper")}>
                                 <div className={`${this.decorateCSS("media-container")} ${!hasContent && visibleButtons.length === 0 && visibleStats.length === 0 ? this.decorateCSS("no-content") : ""}`}>
                                     <Base.Media

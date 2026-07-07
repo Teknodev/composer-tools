@@ -51,7 +51,6 @@ class Stats22 extends BaseStats {
       type: "array",
       key: "statItems",
       displayer: "Stat Items",
-      additionalParams: { maxElementCount: 6 },
       value: [
         {
           type: "object",

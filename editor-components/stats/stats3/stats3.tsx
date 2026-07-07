@@ -38,18 +38,19 @@ class Stats3Page extends BaseStats {
       value: [INPUTS.BUTTON("button", "Button", "READ MORE", "", null, null, "Primary")],
     });
     this.addProp({
-      type: "image",
+      type: "media",
       key: "backgroundImage",
       displayer: "Card Background Image",
-      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6773f9390655f8002caf5eca?alt=media",
+      additionalParams: { availableTypes: ["image", "video"] },
+      value: {
+        type: "image",
+        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6773f9390655f8002caf5eca?alt=media",
+      },
     });
     this.addProp({
       type: "array",
       key: "stats",
       displayer: "Stats",
-      additionalParams: {
-        maxElementCount: 3,
-      },
       value: [
         {
           type: "object",
@@ -146,7 +147,8 @@ class Stats3Page extends BaseStats {
     const title = this.castToString(this.getPropValue("title"));
     const description = this.castToString(this.getPropValue("description"));
     const buttons = this.getPropValue("buttons");
-    const image = this.getPropValue("backgroundImage");
+    const image = this.getPropValue("backgroundImage") as TypeMediaInputValue;
+    const imageExist = image?.url;
     const cardContent = this.getPropValue("stats") || [];
     const isBoxVisible = this.getPropValue("is_box_visible");
 
@@ -155,7 +157,7 @@ class Stats3Page extends BaseStats {
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <Base.ContainerGrid className={this.decorateCSS("page")}>
             {(subtitle || title || description || buttons.length > 0) && (
-              <Base.VerticalContent className={`${this.decorateCSS("left-page")} ${!image && this.decorateCSS("left-page-without-image")}`}>
+              <Base.VerticalContent className={`${this.decorateCSS("left-page")} ${!imageExist && this.decorateCSS("left-page-without-image")}`}>
                 {subtitle && <Base.SectionSubTitle className={this.decorateCSS("subTitle")}>{this.getPropValue("subTitle")}</Base.SectionSubTitle>}
                 {title && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
                 {description && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
@@ -177,13 +179,17 @@ class Stats3Page extends BaseStats {
                 )}
               </Base.VerticalContent>
             )}
-            {(image || (cardContent.length > 0 && isBoxVisible)) && (
-              <Base.VerticalContent className={`${this.decorateCSS("right-container")} ${!image && this.decorateCSS("right-container-without-image")}`}>
-                {image && <img src={this.getPropValue("backgroundImage")} alt="" className={this.decorateCSS("image")} />}
+            {(imageExist || (cardContent.length > 0 && isBoxVisible)) && (
+              <Base.VerticalContent className={`${this.decorateCSS("right-container")} ${!imageExist && this.decorateCSS("right-container-without-image")}`}>
+                {imageExist && <Base.Media value={image} className={this.decorateCSS("image")} />}
                 {isBoxVisible && cardContent.length > 0 && (
-                  <div className={`${this.decorateCSS("card-container")} ${!image && this.decorateCSS("card-container-without-image")}`}>
+                  <div className={`${this.decorateCSS("card-container")} ${!imageExist && this.decorateCSS("card-container-without-image")}`}>
                     <div className={this.decorateCSS("card")}>
                       {this.castToObject<any>("stats").map((item: any, index: number) => {
+                        const iconExist = typeof item.icon === "object" ? (item.icon?.name || item.icon?.url) : item.icon;
+                        const numberExist = this.castToString(item.number);
+                        const descriptionExist = this.castToString(item.description);
+                        if (!(iconExist || numberExist || descriptionExist)) return null;
                         return (
                           <div className={this.decorateCSS("content")}>
                             <div className={this.decorateCSS("inner-content")}>

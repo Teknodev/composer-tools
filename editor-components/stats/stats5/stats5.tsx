@@ -152,7 +152,7 @@ class Stats5Page extends BaseStats {
   }
 
   init() {
-    this.castToObject<Card[]>("cards").map((_, index) => {
+    this.castToObject<Card[]>("stats").map((_, index) => {
       this.setComponentState(`number-${index}`, 0);
       this.setComponentState(`numberForControl-${index}`, 0);
     });
@@ -174,7 +174,10 @@ class Stats5Page extends BaseStats {
 
   getStats() {
     const cards = this.castToObject<Card[]>("stats");
-    const stats = cards.map((card: any) => (card.number === "" ? null : card.number));
+    const stats = cards.map((card: any) => {
+      const number = this.castToString(card.number);
+      return number === "" ? null : number;
+    });
     return stats;
   }
 
@@ -192,7 +195,7 @@ class Stats5Page extends BaseStats {
     if (isNaN(number)) {
       return "";
     }
-    return number.toLocaleString("en-US");
+    return number.toString();
   }
 
   animate() {
@@ -214,7 +217,7 @@ class Stats5Page extends BaseStats {
           currentNumber = parseInt(currentNumber.replace(/\D+/g, ""), 10) || 0;
         }
 
-        const targetStat = parseInt(item.number?.toString().replace(/\D+/g, "") || "0", 10) || 0;
+        const targetStat = parseInt(this.castToString(item.number).replace(/\D+/g, "") || "0", 10) || 0;
         if (currentNumber !== targetStat) {
           let nextValue = Math.min(targetStat, currentNumber + Math.ceil(targetStat / Math.round(incrementValue / 30)));
 

@@ -42,7 +42,6 @@ class Stats16 extends BaseStats {
       type: "array",
       key: "statItems",
       displayer: "Stat Items",
-      additionalParams: { maxElementCount: 6 },
       value: [
         {
           type: "object",
@@ -262,6 +261,7 @@ class Stats16 extends BaseStats {
     const animationDuration = animationProps?.duration || 2000;
     const itemCount = this.getPropValue("itemCount");
     const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
+    const hasValidButtons = buttons.some((btn) => this.castToString(btn.text));
     const hasHeader = subtitle || title || description;
 
     return (
@@ -311,7 +311,7 @@ class Stats16 extends BaseStats {
                 })}
               </Base.ListGrid>
             )}
-            {buttons.length > 0 && (
+            {hasValidButtons && (
               <div className={this.decorateCSS("button-container")}>
                 {buttons.map((item: INPUTS.CastedButton, index: number) =>
                   this.castToString(item.text) && (

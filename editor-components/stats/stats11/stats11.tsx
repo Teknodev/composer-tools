@@ -1,5 +1,5 @@
 import * as React from "react";
-import { BaseStats } from "../../EditorComponent";
+import { BaseStats, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./stats11.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
@@ -64,11 +64,14 @@ class Stats11 extends BaseStats {
     });
 
     this.addProp({
-      type: "image",
+      type: "media",
       key: "image",
       displayer: "Image",
-      value:
-        "https://woodmart.xtemos.com/wp-content/uploads/2023/03/w-architecture-image.jpg.webp",
+      additionalParams: { availableTypes: ["image", "video"] },
+      value: {
+        type: "image",
+        url: "https://woodmart.xtemos.com/wp-content/uploads/2023/03/w-architecture-image.jpg.webp",
+      },
     });
     this.addProp({
       type: "boolean",
@@ -130,7 +133,7 @@ class Stats11 extends BaseStats {
 
   render() {
     const statItems = this.castToObject<StatItem[]>("stats");
-    const image = this.getPropValue("image");
+    const image = this.getPropValue("image") as TypeMediaInputValue;
     const subTitle = this.getPropValue("subTitle");
     const title = this.getPropValue("title");
     const text1 = this.getPropValue("text1");
@@ -138,6 +141,7 @@ class Stats11 extends BaseStats {
     const alignment = Base.getContentAlignment();
     const faintLine = this.getPropValue("faintLine");
     const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
+    const hasValidButtons = buttons.some((b) => this.castToString(b.text));
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
@@ -148,27 +152,34 @@ class Stats11 extends BaseStats {
                 alignment === "center" && this.decorateCSS("center")
               }`}
             >
-              <div className={this.decorateCSS("stats-list")}>
-                {statItems.map((item, idx) => (
-                  <div className={this.decorateCSS("stat-item")} key={idx}>
-                    {this.castToString(item.number) && (
-                      <Base.P className={this.decorateCSS("stat-value")}>
-                        {item.number}
-                      </Base.P>
-                    )}
-                    {this.castToString(item.description) && (
-                      <Base.P className={this.decorateCSS("stat-label")}>
-                        {item.description}
-                      </Base.P>
-                    )}
-                  </div>
-                ))}
-              </div>
-              {image && (
+              {statItems.length > 0 && (
+                <div className={this.decorateCSS("stats-list")}>
+                  {statItems.map((item, idx) => {
+                    const numberExist = this.castToString(item.number);
+                    const descriptionExist = this.castToString(item.description);
+                    if (!numberExist && !descriptionExist) return null;
+                    return (
+                      <div className={this.decorateCSS("stat-item")} key={idx}>
+                        {numberExist && (
+                          <Base.P className={this.decorateCSS("stat-value")}>
+                            {item.number}
+                          </Base.P>
+                        )}
+                        {descriptionExist && (
+                          <Base.P className={this.decorateCSS("stat-label")}>
+                            {item.description}
+                          </Base.P>
+                        )}
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
+              {image?.url && (
                 <div className={this.decorateCSS("image-box")}>
                   <Base.Media
                     className={this.decorateCSS("image")}
-                    value={{ type: "image", url: image }}
+                    value={image}
                   />
                 </div>
               )}
@@ -189,35 +200,32 @@ class Stats11 extends BaseStats {
                   {title}
                 </Base.SectionTitle>
               )}
-              {text1 && (
+              {this.castToString(text1) && (
                 <Base.SectionDescription className={this.decorateCSS("text")}>
                   {text1}
                 </Base.SectionDescription>
               )}
-              {text2 && (
+              {this.castToString(text2) && (
                 <Base.SectionDescription className={this.decorateCSS("text")}>
                   {text2}
                 </Base.SectionDescription>
               )}
 
-              {buttons.length > 0 && (
+              {hasValidButtons && (
                 <div className={this.decorateCSS("button-container")}>
-                  {buttons.map((item: INPUTS.CastedButton, index: number) => {
-                    return (
-                      <div>
-                        {this.castToString(item.text) && (
-                          <ComposerLink path={item.url}>
-                            <Base.Button
-                              buttonType={item.type}
-                              className={this.decorateCSS("button")}
-                            >
-                              {item.text}
-                            </Base.Button>
-                          </ComposerLink>
-                        )}
-                      </div>
-                    );
-                  })}
+                  {buttons.map(
+                    (item: INPUTS.CastedButton, index: number) =>
+                      this.castToString(item.text) && (
+                        <ComposerLink key={index} path={item.url}>
+                          <Base.Button
+                            buttonType={item.type}
+                            className={this.decorateCSS("button")}
+                          >
+                            {item.text}
+                          </Base.Button>
+                        </ComposerLink>
+                      )
+                  )}
                 </div>
               )}
             </Base.GridCell>

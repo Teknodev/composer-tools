@@ -209,17 +209,19 @@ class Stats4Page extends BaseStats {
     this.state["componentProps"]["selectedFaqIndex"] = null;
 
     this.addProp({
-      type: "icon",
+      type: "media",
       key: "expandIcon",
       displayer: "Icon",
-      value: "FaPlus",
+      additionalParams: { availableTypes: ["image", "icon"] },
+      value: { type: "icon", name: "FaPlus" },
     });
 
     this.addProp({
-      type: "icon",
+      type: "media",
       key: "collapseIcon",
       displayer: "Icon",
-      value: "FaMinus",
+      additionalParams: { availableTypes: ["image", "icon"] },
+      value: { type: "icon", name: "FaMinus" },
     });
     this.addProp({
       type: "media",
@@ -253,7 +255,7 @@ class Stats4Page extends BaseStats {
   }
 
   init() {
-    this.castToObject<Stat[]>("statItems").map((_, index) => {
+    this.castToObject<Stat[]>("stats").map((_, index) => {
       this.setComponentState(`number-${index}`, 0);
       this.setComponentState(`numberForControl-${index}`, 0);
     });
@@ -276,8 +278,8 @@ class Stats4Page extends BaseStats {
   getStats() {
     const statItems = this.castToObject<Stat[]>("stats");
     const stats = statItems.map((card: any) => {
-      const val = card.number === "" ? null : card.number;
-      return val !== null ? parseInt(val.toString().replace(/\D+/g, ""), 10) || 0 : null;
+      const number = this.castToString(card.number);
+      return number === "" ? null : parseInt(number.replace(/\D+/g, ""), 10) || 0;
     });
     return stats;
   }
@@ -296,7 +298,7 @@ class Stats4Page extends BaseStats {
     if (isNaN(number)) {
       return "";
     }
-    return number.toLocaleString("tr-TR");
+    return number.toString();
   }
 
   animate() {
@@ -318,7 +320,7 @@ class Stats4Page extends BaseStats {
           currentNumber = parseInt(currentNumber.replace(/\D+/g, ""), 10) || 0;
         }
 
-        const targetStat = parseInt(item.number?.toString().replace(/\D+/g, "") || "0", 10) || 0;
+        const targetStat = parseInt(this.castToString(item.number).replace(/\D+/g, "") || "0", 10) || 0;
         if (currentNumber !== targetStat) {
           let nextValue = Math.min(targetStat, currentNumber + Math.ceil(targetStat / Math.round(incrementValue / 30)));
 
@@ -375,35 +377,37 @@ class Stats4Page extends BaseStats {
                   {faqs.map((item: any, index: number) => {
                     const titleExist = this.castToString(item.title);
                     const contentExist = this.castToString(item.content);
+                    const expandIconExist = typeof expandIcon === "object" ? (expandIcon?.name || expandIcon?.url) : expandIcon;
+                    const collapseIconExist = typeof collapseIcon === "object" ? (collapseIcon?.name || collapseIcon?.url) : collapseIcon;
+                    const isSelected = this.getComponentState("selectedFaqIndex") === index;
+                    const toggleIconExist = isSelected ? collapseIconExist : expandIconExist;
 
                     if (titleExist || contentExist || item.icon)
                       return (
                         <div className={this.decorateCSS("faq-item")} key={index}>
-                          {(titleExist || item.icon) && (
+                          {(titleExist || toggleIconExist) && (
                             <header className={this.decorateCSS("faq-item-header")}>
                               {titleExist && <Base.H5 className={this.decorateCSS("faq-item-title")}>{item.title}</Base.H5>}
-                              <button
-                                className={this.decorateCSS("faq-item-button")}
-                                onClick={() => {
-                                  this.toggleFaqItem(index);
-                                }}
-                              >
-                                {this.getComponentState("selectedFaqIndex") === index ? (
-                                  <Base.Icon
-                                    propsIcon={{
-                                      className: this.decorateCSS("Icon"),
-                                    }}
-                                    name={collapseIcon}
-                                  />
-                                ) : (
-                                  <Base.Icon
-                                    propsIcon={{
-                                      className: this.decorateCSS("Icon"),
-                                    }}
-                                    name={expandIcon}
-                                  />
-                                )}
-                              </button>
+                              {toggleIconExist && (
+                                <button
+                                  className={this.decorateCSS("faq-item-button")}
+                                  onClick={() => {
+                                    this.toggleFaqItem(index);
+                                  }}
+                                >
+                                  {isSelected ? (
+                                    <Base.Media
+                                      value={collapseIcon}
+                                      className={this.decorateCSS("Icon")}
+                                    />
+                                  ) : (
+                                    <Base.Media
+                                      value={expandIcon}
+                                      className={this.decorateCSS("Icon")}
+                                    />
+                                  )}
+                                </button>
+                              )}
                             </header>
                           )}
                           {contentExist && (
@@ -432,10 +436,8 @@ class Stats4Page extends BaseStats {
                       <article className={this.decorateCSS("stat-item")} key={index}>
                         {(titleExist || contentExist) && (
                           <>
-                            <div className={this.decorateCSS("stat-item-body")}>
-                              {titleExist && <Base.P className={this.decorateCSS("stat-item-title")}>{item.title}</Base.P>}
-                              {contentExist && <Base.P className={this.decorateCSS("stat-item-content")}>{item.content}</Base.P>}
-                            </div>
+                            {titleExist && <Base.P className={this.decorateCSS("stat-item-title")}>{item.title}</Base.P>}
+                            {contentExist && <Base.P className={this.decorateCSS("stat-item-content")}>{item.content}</Base.P>}
                             <div className={this.decorateCSS("stat-line")} />
                           </>
                         )}

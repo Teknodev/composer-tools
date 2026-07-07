@@ -43,6 +43,7 @@ class Stats9 extends BaseStats {
             type: "media",
             key: "image",
             displayer: "Image",
+            additionalParams: { availableTypes: ["image", "video"] },
             value: {
                 type: "image",
                 url: "https://demo2.wpopal.com/gamico/wp-content/uploads/2023/12/h1_img-2.jpg"
@@ -260,7 +261,7 @@ class Stats9 extends BaseStats {
         const subtitle = this.getPropValue("subtitle");
         const subtitleExist = this.castToString(subtitle);
 
-        const leftContentexist = subtitleExist || this.castToString(title) || isDescriptionExist || this.castToString(button.text) || image;
+        const leftContentexist = subtitleExist || this.castToString(title) || isDescriptionExist || this.castToString(button.text) || button.icon || image;
         const hasStats = stats && stats.length > 0;
 
         let mainContentClass = this.decorateCSS("main-content");
@@ -289,7 +290,7 @@ class Stats9 extends BaseStats {
                             )}
 
                             <div className={this.decorateCSS("content-section")}>
-                                {image && image.type === "image" && image.url && (
+                                {image?.url && (
                                     <div className={this.decorateCSS("image-container")}>
                                         <Base.Media
                                             value={image}
@@ -305,18 +306,18 @@ class Stats9 extends BaseStats {
                                         </p>
                                     )}
 
-                                    {this.castToString(button.text) && (
+                                    {(this.castToString(button.text) || button.icon) && (
                                         <div className={this.decorateCSS("button-wrapper")}>
                                             <ComposerLink path={button.url}>
                                                 <Base.Button
                                                     buttonType={button.type}
                                                     className={this.decorateCSS("more-button")}
                                                 >
-                                                    <span className={this.decorateCSS("button-text")}>{button.text}</span>
+                                                    {this.castToString(button.text) && <span className={this.decorateCSS("button-text")}>{button.text}</span>}
                                                     {button.icon && (
-                                                        <Base.Icon
-                                                            name={button.icon}
-                                                            propsIcon={{ className: this.decorateCSS("button-icon") }}
+                                                        <Base.Media
+                                                            value={{ type: "icon", name: button.icon }}
+                                                            className={this.decorateCSS("button-icon")}
                                                         />
                                                     )}
                                                 </Base.Button>
