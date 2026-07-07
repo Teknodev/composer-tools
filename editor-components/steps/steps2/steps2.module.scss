@@ -1,0 +1,127 @@
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+
+.container {
+  .max-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--composer-gap-xl);
+
+    .header {
+      display: flex;
+      flex-direction: column;
+
+      .subtitle,
+      .title,
+      .description {
+        content: "";
+      }
+    }
+
+    .cards-container {
+      column-gap: var(--composer-gap-xl);
+      row-gap: var(--composer-gap-xl);
+
+      .card {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        padding-top: var(--composer-gap-lg);
+        word-break: break-word;
+        overflow-wrap: break-word;
+
+        &.with-line {
+          border-top: 1px solid var(--composer-tertiary-color);
+        }
+
+        .card-header {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          gap: var(--composer-gap-sm);
+
+          .step-number {
+            color: var(--composer-tertiary-color);
+            width: var(--composer-gap-xl);
+            flex-shrink: 0;
+            text-align: left;
+          }
+
+          .card-title {
+            color: var(--composer-font-color-primary);
+            text-align: left;
+            font-weight: 700;
+          }
+        }
+
+        .card-subtitle {
+          color: var(--composer-font-color-primary);
+          text-align: left;
+
+          &.has-number {
+            margin-left: calc(var(--composer-gap-xl) + var(--composer-gap-sm));
+          }
+        }
+
+        .card-description {
+          color: var(--composer-tertiary-color);
+          text-align: left;
+        }
+
+        .card-buttons {
+          display: flex;
+          justify-content: flex-start;
+          gap: var(--composer-gap-sm);
+          flex-wrap: wrap;
+          width: 100%;
+
+          .card-button {
+            .card-button-text {
+              content: "";
+            }
+          }
+        }
+      }
+    }
+
+    .button-container {
+      display: flex;
+      justify-content: center;
+      gap: var(--composer-gap-sm);
+      flex-wrap: wrap;
+
+      .button {
+        .button-text {
+          content: "";
+        }
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+  .container {
+    .max-content {
+      gap: var(--composer-gap-md);
+
+      .cards-container {
+        gap: var(--composer-gap-lg);
+
+        .card {
+          padding-top: var(--composer-gap-md);
+
+          .card-header {
+            .step-number {
+              width: var(--composer-gap-lg);
+            }
+          }
+
+          .card-subtitle {
+            &.has-number {
+              margin-left: var(--composer-gap-xl);
+            }
+          }
+        }
+      }
+    }
+  }
+}

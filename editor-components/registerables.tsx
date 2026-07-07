@@ -262,6 +262,7 @@ import StatsComponent36 from "./stats/stats36/stats36";
 import StatsComponent37 from "./stats/stats37/stats37";
 import StatsComponent38 from "./stats/stats38/stats38";
 import Steps1 from "./steps/steps1/steps1";
+import Steps2 from "./steps/steps2/steps2";
 import Steps3 from "./steps/steps3/steps3";
 import Form1 from "./contacts/form1/form1";
 import Form2 from "./contacts/form2/form2";
@@ -683,6 +684,7 @@ function Registerables(composer: ComponentsRegistery) {
     StatsComponent37,
     StatsComponent38,
     Steps1,
+    Steps2,
     Steps3,
     Form1,
     Form2,
