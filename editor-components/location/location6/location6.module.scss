@@ -86,7 +86,7 @@
         max-width: calc(var(--composer-content-width) / 2 - var(--composer-gap-xl)) !important;
         box-sizing: border-box;
         min-height: 0;
-        gap: var(--composer-gap-md);
+        gap: var(--composer-gap-lg);
         margin: 0;
 
         &.full-width {

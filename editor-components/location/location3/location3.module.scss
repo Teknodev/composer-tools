@@ -66,10 +66,11 @@
           row-gap: var(--composer-gap-md);
           border-bottom: var(--composer-gap-sm) solid var(--composer-primary-color);
           padding-bottom: var(--composer-gap-md);
-          width: 50%;
+          width: max-content;
+          max-width: 100%;
           padding-left: 0;
           padding-right: 0;
-          flex-wrap: wrap;
+          flex-wrap: nowrap;
 
           .continent-item {
             display: flex;
@@ -147,10 +148,12 @@
         .header {
           .continents-wrapper {
             width: 100%;
+            max-width: unset;
             justify-content: center;
             min-width: 0;
             padding-top: 0;
             gap: var(--composer-gap-sm);
+            flex-wrap: wrap;
 
             .continent-item {
               display: flex;
