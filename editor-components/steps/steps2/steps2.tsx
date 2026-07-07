@@ -374,9 +374,9 @@ class Steps2 extends BaseSteps {
                           </Base.H4>
                         )}
                         {cardTitleExist && (
-                          <Base.H5 className={this.decorateCSS("card-title")}>
+                          <Base.H4 className={this.decorateCSS("card-title")}>
                             {card.title}
-                          </Base.H5>
+                          </Base.H4>
                         )}
                       </div>
                     )}
