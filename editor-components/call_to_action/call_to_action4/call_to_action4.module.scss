@@ -211,6 +211,30 @@
         .left-page {
           gap: var(--composer-gap-md);
           max-width: 100% !important;
+
+          &.center {
+            align-items: center;
+
+            .header {
+              align-items: center;
+
+              .subtitle {
+                text-align: center;
+                justify-content: center;
+                margin-left: auto;
+                margin-right: auto;
+              }
+
+              .title,
+              .description {
+                text-align: center;
+              }
+            }
+
+            .buttons {
+              justify-content: center;
+            }
+          }
         }
 
         .right-page {

@@ -92,13 +92,15 @@ class CallToAction30 extends BaseCallToAction {
     const overlay = !!(mediaSection?.overlay ?? this.getPropValue("mediaOverlay"));
 
     const hasTextContent = hasContent || visibleButtons.length > 0;
+    const alignment = Base.getContentAlignment();
+    const isCenter = alignment === "center";
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={`${this.decorateCSS("card")} ${isCardEnabled && this.decorateCSS("card-enabled")} ${!hasTextContent && this.decorateCSS("no-text")}`}>
             {hasTextContent && (
-              <Base.VerticalContent className={this.decorateCSS("header")}>
+              <Base.VerticalContent className={`${this.decorateCSS("header")} ${isCenter ? this.decorateCSS("center") : ""}`}>
                 {subtitleExist && (
                   <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
                     {this.getPropValue("subtitle")}

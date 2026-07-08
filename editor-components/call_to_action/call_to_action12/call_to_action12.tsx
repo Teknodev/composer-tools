@@ -9,7 +9,6 @@ import { INPUTS } from "../../../custom-hooks/input-templates";
 type InputData = {
   placeholder: string;
   submitText: string;
-  button: INPUTS.CastedButton;
 };
 
 class CallToAction12Page extends BaseCallToAction {
@@ -87,9 +86,11 @@ class CallToAction12Page extends BaseCallToAction {
     const inputData = this.castToObject<InputData>("inputData");
     const placeholder = this.castToString(inputData?.placeholder);
     const submitText = this.castToString(inputData?.submitText);
-    const button = inputData?.button;
-    const buttonText = this.castToString(button?.text);
-    const buttonType = button?.type;
+
+    const inputDataProp = this.getProp("inputData");
+    const buttonProp = inputDataProp?.value?.find((item: any) => item.key === "button");
+    const buttonText = buttonProp ? this.castToString(this.getPropValue("text", { parent_object: buttonProp.value })) : "";
+    const buttonType = buttonProp ? this.getPropValue("type", { parent_object: buttonProp.value }) : "Black";
 
     return (
       <Base.Container className={`${this.decorateCSS("container")}`} >
@@ -135,7 +136,7 @@ class CallToAction12Page extends BaseCallToAction {
                     )}
                     {buttonText && (
                       <Base.Button className={this.decorateCSS("submit-button")} buttonType={buttonType}>
-                        <Base.P className={this.decorateCSS("button-text")}>{button?.text}</Base.P>
+                        <Base.P className={this.decorateCSS("button-text")}>{buttonText}</Base.P>
                       </Base.Button>
                     )}
                   </Form>

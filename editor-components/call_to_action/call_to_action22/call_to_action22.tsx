@@ -65,10 +65,12 @@ class CallToAction22 extends BaseCallToAction {
     );
     const hasContent = subtitleExist || titleExist || descriptionExist;
     const isCardEnabled = this.getPropValue("card");
+    const alignment = Base.getContentAlignment();
+    const isLeft = alignment === "left";
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <div className={`${this.decorateCSS("card")} ${isCardEnabled ? this.decorateCSS("card-enabled") : ""}`}>
+          <div className={`${this.decorateCSS("card")} ${isCardEnabled ? this.decorateCSS("card-enabled") : ""} ${isLeft ? this.decorateCSS("left") : ""}`}>
             {(hasContent || visibleButtons.length > 0) && (
               <Base.VerticalContent className={this.decorateCSS("header")}>
                 {subtitleExist && (

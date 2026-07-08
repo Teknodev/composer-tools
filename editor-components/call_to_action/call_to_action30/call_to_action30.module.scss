@@ -137,6 +137,22 @@
         .header {
           width: 100%;
           min-width: 0;
+
+          &.center {
+            align-items: center;
+
+            .subtitle,
+            .title,
+            .description {
+              text-align: center;
+              margin-left: auto;
+              margin-right: auto;
+            }
+
+            .buttons-wrapper {
+              justify-content: center;
+            }
+          }
         }
 
         .media-wrapper {

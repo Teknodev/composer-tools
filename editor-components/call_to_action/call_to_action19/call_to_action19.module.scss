@@ -185,6 +185,40 @@
                 }
             }
 
+            .left-section {
+                &.center {
+                    align-items: center;
+
+                    .header {
+                        align-items: center;
+
+                        .title,
+                        .description {
+                            text-align: center;
+                        }
+
+                        .subtitle {
+                            margin-left: auto;
+                            margin-right: auto;
+                            text-align: center;
+                        }
+
+                        .bottom-row {
+                            justify-content: center;
+
+                            .rating {
+                                align-items: center;
+
+                                .rating-value,
+                                .rating-text {
+                                    text-align: center;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
             .right-section .right-vertical-content {
                 gap: var(--composer-gap-sm);
 

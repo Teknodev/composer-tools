@@ -238,11 +238,13 @@ class CallToAction10Page extends BaseCallToAction {
     const headerIconObject = this.castToObject<headerIcon>("headerIconObject");
     const headerIcon = headerIconObject?.headerIcon;
     const enableIconBackground = headerIconObject?.headerIconBackground;
+    const alignment = Base.getContentAlignment();
+    const isLeft = alignment === "left";
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <Base.VerticalContent className={this.decorateCSS("content")}>
+          <Base.VerticalContent className={`${this.decorateCSS("content")} ${isLeft ? this.decorateCSS("left") : ""}`}>
             <Base.VerticalContent className={this.decorateCSS("header")}>
               {this.castToString(this.getPropValue("subtitle")) && (
                 <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>

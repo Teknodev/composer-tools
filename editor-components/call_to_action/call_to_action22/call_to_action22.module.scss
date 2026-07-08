@@ -76,6 +76,35 @@
         &.card-enabled {
           padding: var(--composer-gap-xl) var(--composer-gap-md);
         }
+
+        &.left {
+          align-items: flex-start;
+
+          .header {
+            align-items: flex-start;
+
+            .subtitle {
+              text-align: left;
+              transform: translateX(3rem) !important;
+
+              &::before {
+                display: block !important;
+              }
+            }
+
+            .title {
+              text-align: left;
+            }
+
+            .description {
+              text-align: left;
+            }
+
+            .buttons-wrapper {
+              justify-content: flex-start;
+            }
+          }
+        }
       }
     }
   }

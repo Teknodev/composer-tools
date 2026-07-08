@@ -38,11 +38,15 @@
       justify-content: center;
       max-width: 550px;
 
-      .subtitle,
+      .subtitle {
+        text-align: left;
+        margin-left: 0;
+        margin-right: auto;
+      }
+
       .title,
       .description {
         text-align: left;
-        margin-left: 0;
       }
     }
   }
@@ -65,24 +69,38 @@
 
 @container (max-width: #{$composer-phone-width}) {
   .container {
-    .button-container {
-      justify-content: center;
-    }
-
     .max-content {
       .content {
         flex-direction: column;
-        align-items: center;
+        align-items: flex-start;
         gap: var(--composer-gap-md);
-        text-align: center;
 
-        .text-container {
+        &.center {
           align-items: center;
+          text-align: center;
 
-          .subtitle,
-          .title,
-          .description {
-            text-align: center;
+          .text-container {
+            align-items: center;
+
+            .subtitle {
+              transform: translateX(0) !important;
+              text-align: center;
+              margin-left: auto !important;
+              margin-right: auto !important;
+
+              &::before {
+                display: none !important;
+              }
+            }
+
+            .title,
+            .description {
+              text-align: center;
+            }
+          }
+
+          .button-container {
+            justify-content: center !important;
           }
         }
       }

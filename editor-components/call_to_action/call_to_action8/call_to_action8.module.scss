@@ -7,6 +7,8 @@
       border-radius: var(--composer-border-radius-md);
 
       .content {
+        gap: 0;
+
         .title-box {
           padding: calc(var(--composer-gap-lg) * 2) var(--composer-gap-xl);
 
@@ -35,12 +37,12 @@
   .max-content {
     .content {
       display: flex;
+      gap: var(--composer-gap-lg);
 
       .title-box {
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        gap: var(--composer-gap-md);
         flex: 3;
 
         .vertical-content {
@@ -155,11 +157,50 @@
 
 @container (max-width : #{$composer-phone-width}) {
   .container {
+    .max-content {
+      .content {
+        flex-direction: column;
+        gap: var(--composer-gap-lg);
+
+        .title-box {
+          &.center {
+            align-items: center;
+
+            .vertical-content {
+              align-items: center;
+
+              .subtitle {
+                margin-left: auto;
+                margin-right: auto;
+                text-align: center;
+              }
+
+              .title,
+              .description {
+                text-align: center;
+              }
+            }
+
+            .button-container {
+              justify-content: center;
+            }
+          }
+        }
+
+        .image-box {
+          .image,
+          .overlay {
+            border-top-right-radius: 0;
+            border-bottom-left-radius: var(--composer-border-radius-sm);
+            border-bottom-right-radius: var(--composer-border-radius-sm);
+          }
+        }
+      }
+    }
+
     &.colored-background {
       .max-content {
         .content {
-          flex-direction: column;
-
           .title-box {
             padding: var(--composer-gap-xl) var(--composer-gap-md) !important;
           }

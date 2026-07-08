@@ -91,13 +91,15 @@ class CallToAction8Page extends BaseCallToAction {
     const description = this.castToString(this.getPropValue("description"));
     const coloredBackground = this.getPropValue("coloredBackground");
     const onlyImage = image && !subtitle && !title && !description && buttons.length === 0;
+    const alignment = Base.getContentAlignment();
+    const isCenter = alignment === "center";
 
     return (
       <Base.Container className={`${this.decorateCSS("container")} ${image && this.decorateCSS("has-image")} ${onlyImage && this.decorateCSS("only-image")} ${coloredBackground && this.decorateCSS("colored-background")}`}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("content")}>
             {(subtitle || title || description || buttons.length > 0) && (
-              <div className={this.decorateCSS("title-box")}>
+              <div className={`${this.decorateCSS("title-box")} ${isCenter ? this.decorateCSS("center") : ""}`}>
                 <Base.VerticalContent className={this.decorateCSS("vertical-content")}>
                   {subtitle && (<Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>)}
                   {title && (<Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>)}

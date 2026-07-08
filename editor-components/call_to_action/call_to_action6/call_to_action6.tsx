@@ -148,12 +148,14 @@ class CallToAction6Page extends BaseCallToAction {
     const commentExist = this.castToString(this.getPropValue("comment"));
     const descriptionExist = this.castToString(this.getPropValue("description"));
     const description = this.getPropValue("description");
+    const alignment = Base.getContentAlignment();
+    const isLeft = alignment === "left";
 
     return (
       <Base.Container className={`${this.decorateCSS("container")} ${overlay && backgroundImage && this.decorateCSS("overlay-active")} ${backgroundImage && this.decorateCSS("has-background")}`}>
         {backgroundImage && (<Base.Media value={backgroundImage} className={this.decorateCSS("background-image")} />)}
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <Base.VerticalContent className={this.decorateCSS("content")}>
+          <Base.VerticalContent className={`${this.decorateCSS("content")} ${isLeft ? this.decorateCSS("left") : ""}`}>
             {subtitleExist && (<Base.SectionSubTitle className={`${this.decorateCSS("subtitle")}`}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>)}
             {titleExist && (<Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>)}
             {descriptionExist && (<Base.SectionDescription className={this.decorateCSS("description")}>{description}</Base.SectionDescription>)}

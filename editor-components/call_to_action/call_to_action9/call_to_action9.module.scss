@@ -87,6 +87,40 @@
     .max-content {
       .content {
         gap: var(--composer-gap-md);
+
+        &.left {
+          align-items: flex-start;
+
+          .header {
+            align-items: flex-start;
+
+            .subtitle {
+              transform: translateX(3rem) !important;
+              text-align: left;
+
+              &::before {
+                display: block !important;
+              }
+            }
+
+            .title,
+            .description {
+              text-align: left;
+            }
+
+            .button-container {
+              justify-content: flex-start;
+            }
+          }
+
+          .item-description {
+            text-align: left;
+          }
+
+          .image-container {
+            justify-content: flex-start;
+          }
+        }
       }
     }
   }

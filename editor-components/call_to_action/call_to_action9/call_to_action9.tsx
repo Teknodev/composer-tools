@@ -184,12 +184,14 @@ class CallToAction9Page extends BaseCallToAction {
   render() {
     const images = this.castToObject<ImageItem[]>("imageItems");
     const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
+    const alignment = Base.getContentAlignment();
+    const isLeft = alignment === "left";
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <Base.VerticalContent
-            className={this.decorateCSS("content")}
+            className={`${this.decorateCSS("content")} ${isLeft ? this.decorateCSS("left") : ""}`}
           >
             <Base.VerticalContent className={this.decorateCSS("header")}>
               {this.castToString(this.getPropValue("subtitle")) && (

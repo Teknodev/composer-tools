@@ -48,11 +48,13 @@ class CallToAction17 extends BaseCallToAction {
         const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons") || [];
         const visibleButtons = buttons.filter(btn => this.castToString(btn.text));
         const hasContent = subtitleExist || titleExist || descriptionExist;
+        const alignment = Base.getContentAlignment();
+        const isCenter = alignment === "center";
         return (
             <Base.Container className={this.decorateCSS("container")}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
                     {(hasContent || visibleButtons.length > 0) && (
-                        <Base.VerticalContent className={this.decorateCSS("header")}>
+                        <Base.VerticalContent className={`${this.decorateCSS("header")} ${isCenter ? this.decorateCSS("center") : ""}`}>
                             {subtitleExist && (<Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>)}
                             {titleExist && (<Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>)}
                             {descriptionExist && (<Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>)}

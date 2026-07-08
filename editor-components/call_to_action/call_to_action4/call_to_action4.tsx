@@ -241,13 +241,15 @@ class CallToAction4Page extends BaseCallToAction {
     const description = this.castToString(this.getPropValue("description"));
     const itemCount = this.getPropValue("itemCount");
     const hasLeftContent = subtitle || title || description || listItems.length > 0 || buttons.length > 0;
+    const alignment = Base.getContentAlignment();
+    const isCenter = alignment === "center";
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={`${this.decorateCSS("content")} ${image && this.decorateCSS("has-image")} ${!hasLeftContent && this.decorateCSS("no-left-content")}`}>
             {hasLeftContent && (
-              <div className={`${this.decorateCSS("left-page")} ${listItems.length === 0 && this.decorateCSS("no-list")}`}>
+              <div className={`${this.decorateCSS("left-page")} ${listItems.length === 0 && this.decorateCSS("no-list")} ${isCenter ? this.decorateCSS("center") : ""}`}>
                 <Base.VerticalContent className={this.decorateCSS("header")}>
                   {subtitle && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
                   {title && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}

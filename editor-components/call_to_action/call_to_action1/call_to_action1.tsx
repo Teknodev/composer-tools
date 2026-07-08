@@ -55,11 +55,13 @@ class CallToAction1Page extends BaseCallToAction {
   }
   render() {
     const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
+    const alignment = Base.getContentAlignment();
+    const isLeft = alignment === "left";
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <Base.VerticalContent className={this.decorateCSS("content")}>
+          <Base.VerticalContent className={`${this.decorateCSS("content")} ${isLeft ? this.decorateCSS("left") : ""}`}>
             <Base.Media value={this.getPropValue("icon")} className={this.decorateCSS("icon")}></Base.Media>
             {this.castToString(this.getPropValue("subtitle")) && (
               <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>

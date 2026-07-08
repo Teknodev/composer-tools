@@ -173,6 +173,42 @@
     .container {
         .max-content {
             .content {
+                &.left {
+                    align-items: flex-start;
+
+                    .header {
+                        align-items: flex-start;
+
+                        .title-container {
+                            .title {
+                                text-align: left;
+                            }
+
+                            .header-icon-wrapper {
+                                right: auto;
+                                left: 0;
+                            }
+                        }
+
+                        .subtitle {
+                            transform: translateX(3rem) !important;
+                            text-align: left;
+
+                            &::before {
+                                display: block !important;
+                            }
+                        }
+
+                        .description {
+                            text-align: left;
+                        }
+
+                        .button-container {
+                            justify-content: flex-start;
+                        }
+                    }
+                }
+
                 .header {
                     .title-container {
                         padding-bottom: var(--composer-gap-md);

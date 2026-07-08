@@ -40,6 +40,27 @@
     .container {
         .max-content {
             gap: var(--composer-gap-sm);
+
+            .header {
+                &.center {
+                    align-items: center;
+
+                    .subtitle {
+                        margin-left: auto;
+                        margin-right: auto;
+                        text-align: center;
+                    }
+
+                    .title,
+                    .description {
+                        text-align: center;
+                    }
+
+                    .button-container {
+                        justify-content: center;
+                    }
+                }
+            }
         }
     }
 }
