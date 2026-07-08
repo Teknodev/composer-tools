@@ -13,13 +13,14 @@
                 display: flex;
                 flex-direction: column;
                 align-items: flex-start;
+                justify-content: center;
                 text-align: left;
 
                 .subtitle {
                     margin-left: 0;
                     margin-right: auto;
                     align-self: flex-start;
-                    width: fit-content;
+                    text-align: left !important;
                 }
 
                 .title,
@@ -45,7 +46,7 @@
                 flex-direction: column;
                 border-radius: var(--composer-border-radius-sm);
                 box-shadow: var(--box-shadow-active);
-                padding: var(--composer-gap-lg);
+                padding: calc(var(--composer-gap-xl) * 2) var(--composer-gap-md);
                 gap: var(--composer-gap-md);
                 overflow: hidden;
                 color: var(--composer-font-color-secondary);
@@ -142,21 +143,27 @@
             gap: var(--composer-gap-md);
 
             .header {
-                align-items: center;
-                text-align: center;
-                
-                .subtitle {
-                    align-self: center;
-                }
-                
-                .title,
-                .description {
+                &.center {
+                    align-items: center;
                     text-align: center;
+                    
+                    .subtitle {
+                        align-self: center;
+                    }
+                    
+                    .title,
+                    .description {
+                        text-align: center;
+                    }
+
+                    .button-container {
+                        justify-content: center;
+                    }
                 }
             }
 
             .card {
-                padding: var(--composer-gap-md);
+                padding: var(--composer-gap-xl) var(--composer-gap-md);
 
                 .card-content {
                     .card-price-row {

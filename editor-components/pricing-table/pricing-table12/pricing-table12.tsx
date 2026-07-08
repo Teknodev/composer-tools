@@ -60,8 +60,8 @@ class PricingTable12 extends BasePricingTable {
           key: "item",
           displayer: "Item",
           value: [
-            { type: "string", key: "cardSubtitle", displayer: "Subtitle", value: "STARTER" },
-            { type: "string", key: "cardTitle", displayer: "Title", value: "" },
+            { type: "string", key: "cardSubtitle", displayer: "Subtitle", value: "" },
+            { type: "string", key: "cardTitle", displayer: "Title", value: "STARTER" },
             { type: "string", key: "cardDescription", displayer: "Description", value: "Change your body and your health in just 12 weeks" },
             { type: "string", key: "cardPrice", displayer: "Price", value: "$2.99" },
             { type: "string", key: "cardDuration", displayer: "Duration", value: "/month" },
@@ -78,8 +78,8 @@ class PricingTable12 extends BasePricingTable {
           key: "item",
           displayer: "Item",
           value: [
-            { type: "string", key: "cardSubtitle", displayer: "Subtitle", value: "BUSINESS" },
-            { type: "string", key: "cardTitle", displayer: "Title", value: "" },
+            { type: "string", key: "cardSubtitle", displayer: "Subtitle", value: "" },
+            { type: "string", key: "cardTitle", displayer: "Title", value: "BUSINESS" },
             { type: "string", key: "cardDescription", displayer: "Description", value: "Change your body and your health in just 6 weeks" },
             { type: "string", key: "cardPrice", displayer: "Price", value: "$7.99" },
             { type: "string", key: "cardDuration", displayer: "Duration", value: "/month" },
@@ -115,6 +115,8 @@ class PricingTable12 extends BasePricingTable {
     const cards = this.castToObject<CardItem[]>("card") || [];
     const itemCountValue = this.getPropValue("itemCount");
     const itemCount = typeof itemCountValue === "number" ? itemCountValue : 2;
+    const alignment = Base.getContentAlignment();
+    const isCenter = alignment === "center";
 
     const showHeader = subtitle || title || description || visibleButtons.length > 0;
     let hasCards = false;
@@ -165,7 +167,7 @@ class PricingTable12 extends BasePricingTable {
             className={this.decorateCSS("cards-row")}
           >
             {showHeader && (
-              <Base.VerticalContent className={this.decorateCSS("header")}>
+              <Base.VerticalContent className={`${this.decorateCSS("header")} ${isCenter ? this.decorateCSS("center") : ""}`}>
                 {subtitle && (
                   <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
                     {this.getPropValue("subtitle")}
