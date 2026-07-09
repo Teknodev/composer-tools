@@ -96,6 +96,10 @@
           transition: letter-spacing 0.4s ease-in-out;
           padding: var(--composer-gap-sm) var(--composer-gap-md) var(--composer-gap-sm);
           text-align: left;
+
+          p:last-child {
+            font-weight: 800 !important;
+          }
         }
 
         .labels {
