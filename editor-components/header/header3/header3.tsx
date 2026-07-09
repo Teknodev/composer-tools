@@ -459,7 +459,6 @@ class Header3 extends BaseHeader {
       ...sliderSettings,
       arrows: false,
       fade: true,
-      duration: 1500,
       infinite: cards.length > 1,
       speed: 3000,
       slidesToShow: 1,
@@ -486,7 +485,8 @@ class Header3 extends BaseHeader {
             {cards?.length && cards?.length > 0 && (
               <ComposerSlider {...settings} className={this.decorateCSS("carousel")} ref={this.getComponentState("slider-ref")}>
                 {cards.map((item: Card, index: number) => {
-                  const cardButtons = item.buttons || ((item as any).button ? [(item as any).button] : []);
+                  const legacyButton = (item as { button?: INPUTS.CastedButton }).button;
+                  const cardButtons = item.buttons || (legacyButton ? [legacyButton] : []);
                   const hasButtons = cardButtons.some(btn => this.castToString(btn.text));
                   const hasBgImage = !!(item.componentBackground && item.componentBackground.url);
                   return (this.castToString(item.subtitle) || this.castToString(item.title) || this.castToString(item.description) || hasButtons || item.media) && (
@@ -532,14 +532,16 @@ class Header3 extends BaseHeader {
                               {cardButtons && cardButtons.length > 0 && (
                                 <div className={`${this.decorateCSS("buttons")} ${animation && this.getComponentState("activeSlide") === index ? this.decorateCSS("animateButtons") : ""}`}>
                                   {cardButtons.map((button: INPUTS.CastedButton, btnIndex: number) => {
-                                    if (!this.castToString(button.text) && !(button.icon && (button.icon.type === "icon" ? !!button.icon.name : !!button.icon.url))) {
+                                    const hasText = this.castToString(button.text);
+                                    const hasIcon = button.icon && (button.icon.type === "icon" ? !!button.icon.name : !!button.icon.url);
+                                    if (!hasText && !hasIcon) {
                                       return null;
                                     }
                                     return (
-                                      <ComposerLink key={`btn-${btnIndex}`} path={button.url}>
+                                      <ComposerLink key={`btn-${btnIndex}`} path={button.url || ""}>
                                         <Base.Button buttonType={button.type} className={`${this.decorateCSS("button")} ${animation && this.getComponentState("activeSlide") === index ? this.decorateCSS("animateButtons") : ""}`} >
-                                          <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
-                                          {button.icon && (button.icon)?.name && (<Base.Media value={button.icon} className={this.decorateCSS("button-icon")} />)}
+                                          {hasText && <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>}
+                                          {hasIcon && <Base.Media value={button.icon} className={this.decorateCSS("button-icon")} />}
                                         </Base.Button>
                                       </ComposerLink>
                                     );
@@ -563,12 +565,14 @@ class Header3 extends BaseHeader {
                             )}
                           </div>
                         </div>
+                      </Base.MaxContent>
 
+                      {item.media && (
                         <div className={this.decorateCSS("image")}>
-                          {item.media && (<Base.Media value={item.media} className={this.decorateCSS("bg-image")} />)}
+                          <Base.Media value={item.media} className={this.decorateCSS("bg-image")} />
                           {shouldDisplayForegroundOverlay(index) === true && <div className={this.decorateCSS("image-overlay")}></div>}
                         </div>
-                      </Base.MaxContent>
+                      )}
                     </div>
                   );
                 })}
