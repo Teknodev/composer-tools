@@ -44,9 +44,10 @@
             .card {
                 display: flex;
                 flex-direction: column;
+                min-height: 440px;
                 border-radius: var(--composer-border-radius-sm);
                 box-shadow: var(--box-shadow-active);
-                padding: calc(var(--composer-gap-xl) * 2) var(--composer-gap-md);
+                padding: var(--composer-gap-lg) var(--composer-gap-md);
                 gap: var(--composer-gap-md);
                 overflow: hidden;
                 color: var(--composer-font-color-secondary);
@@ -68,6 +69,7 @@
                     display: flex;
                     flex-direction: column;
                     align-items: flex-start;
+                    justify-content: center;
                     flex: 1;
 
                     .card-subtitle {
@@ -163,7 +165,8 @@
             }
 
             .card {
-                padding: var(--composer-gap-xl) var(--composer-gap-md);
+                min-height: 360px;
+                padding: var(--composer-gap-md);
 
                 .card-content {
                     .card-price-row {
