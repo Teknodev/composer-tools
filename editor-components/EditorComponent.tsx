@@ -320,7 +320,7 @@ type AvailablePropTypes =
   | { type: "dateTime"; value: string; additionalParams?: { mode?: string, timeInterval?: number, yearRange?: number, yearStart?: number } }
   | { type: "multiSelect"; value: string[] }
   | { type: "file"; value: string }
-  | { type: "media"; value: TypeMediaInputValue }
+  | { type: "media"; value: TypeMediaInputValue | null }
   | { type: "embededLink"; value: string }
 
 export type TypeReactComponent = {
@@ -372,6 +372,7 @@ export enum CATEGORIES {
   MODAL = "modal",
   LOGOCLOUDS = "logoClouds",
   STATS = "stats",
+  STEPS = "steps",
   FEATURE = "feature",
   IMAGEGALLERY = "imageGallery",
   LOCATION = "location",
@@ -416,6 +417,41 @@ export abstract class Component
   // re-scan the DOM and call setElementsTree on every emit; without
   // this guard a slider tick cascades into a full Playground re-render.
   private _lastStructuralEmitHash: string | null = null;
+
+  // --- Protective `state` accessor ----------------------------------------
+  // The framework keeps its editable props in `this.state.componentProps` and
+  // its runtime state in `this.state.states`. A component authored as a plain
+  // React class (the idiomatic pattern) may do `this.state = { ... }` in its
+  // constructor or call `this.setState({ ... })` directly. A raw object
+  // assignment to `this.state` would REPLACE the object and wipe
+  // `componentProps`/`states`, which makes the loader reject the component
+  // ("has no editable props") and crashes `getPropValue`.
+  //
+  // Replacing `state` with a getter/setter lets us preserve the framework keys
+  // across any whole-object assignment (author constructor, React's internal
+  // `instance.state = nextState` during updates) while still letting author
+  // keys live alongside on the same object — so `this.state.x` / `setState`
+  // behave like a normal React component.
+  private _internalState: any = undefined;
+
+  // @ts-ignore — intentionally overrides React's `state` data property with an accessor.
+  get state(): any {
+    return this._internalState;
+  }
+  // @ts-ignore
+  set state(next: any) {
+    const prev = this._internalState;
+    if (prev && prev.componentProps) {
+      this._internalState = {
+        ...prev,
+        ...next,
+        componentProps: next && next.componentProps ? next.componentProps : prev.componentProps,
+        states: next && next.states ? next.states : prev.states,
+      };
+    } else {
+      this._internalState = next;
+    }
+  }
 
   /**
    * Computes a stable structural hash of the inputs that external
@@ -462,11 +498,12 @@ export abstract class Component
     }
   }
 
-  componentDidUpdate(
-    prevProps: Readonly<{}>,
-    prevState: Readonly<{ states: any; componentProps: any; }>,
-    snapshot?: any
-  ): void {
+  // Framework structural emit, factored out of componentDidUpdate so it can
+  // be chained AHEAD of an author-supplied componentDidUpdate (see
+  // _installFrameworkLifecycle). A plain-React component that defines its own
+  // componentDidUpdate would otherwise shadow the base method and silently
+  // disable editor live-sync.
+  private _emitStructuralUpdate(): void {
     // Structural-change guard: external subscribers only need to react when
     // a structural surface (props array, cssClasses, interactions, type,
     // id) actually changed. Internal state changes (slider autoplay tick,
@@ -479,6 +516,16 @@ export abstract class Component
       this._lastStructuralEmitHash = nextHash;
       EventEmitter.emit(EVENTS.COMPONENT_DID_UPDATE, { data: this });
     }
+  }
+
+  componentDidUpdate(
+    prevProps: Readonly<{}>,
+    prevState: Readonly<{ states: any; componentProps: any; }>,
+    snapshot?: any
+  ): void {
+    // NOTE: the structural emit is NOT called here directly. It runs via the
+    // wrapper installed in the constructor (_installFrameworkLifecycle), which
+    // guarantees it fires even when a subclass overrides componentDidUpdate.
     this.onComponentDidUpdate?.(prevProps, prevState, snapshot);
   }
 
@@ -557,11 +604,49 @@ export abstract class Component
       },
     };
 
+    this._installFrameworkLifecycle();
 
     EventEmitter.emit(EVENTS.COMPONENT_ADDED, { data: this });
   }
 
+  // Chains the framework's own lifecycle work (structural emit, prop
+  // reconciliation) AHEAD of whatever componentDidUpdate / componentWillMount
+  // the subclass resolves to. This mirrors the render() wrapping above and
+  // lets a component author override these lifecycle methods like a normal
+  // React class WITHOUT silently disabling editor live-sync or prop sync.
+  //
+  // `this.componentDidUpdate` here resolves through the prototype chain to the
+  // subclass override if one exists, otherwise to the base passthrough (which
+  // calls the onComponent* hook). Either way the framework work runs first and
+  // the resolved method runs after.
+  private _installFrameworkLifecycle(): void {
+    const resolvedDidUpdate = (this.componentDidUpdate as any)?.bind(this);
+    this.componentDidUpdate = (
+      prevProps: Readonly<{}>,
+      prevState: Readonly<{ states: any; componentProps: any }>,
+      snapshot?: any
+    ): void => {
+      this._emitStructuralUpdate();
+      resolvedDidUpdate?.(prevProps, prevState, snapshot);
+    };
+
+    const resolvedWillMount = (this.componentWillMount as any)?.bind(this);
+    this.componentWillMount = (): void => {
+      this._syncShadowProps();
+      resolvedWillMount?.();
+    };
+  }
+
   componentWillMount() {
+    // NOTE: prop reconciliation is NOT done here directly. It runs via the
+    // wrapper installed in the constructor (_installFrameworkLifecycle), which
+    // guarantees it fires even when a subclass overrides componentWillMount.
+    // Override point for authors who use the framework hook style.
+  }
+
+  // Framework prop reconciliation against shadow (default) props. Factored out
+  // of componentWillMount so it can be chained ahead of an author override.
+  private _syncShadowProps() {
     this.getProps().forEach(({ key, value }) => {
       const propIndex = this.state.componentProps.props.findIndex((prop: any) => prop.key === key);
       if (propIndex === -1) return;
@@ -1218,6 +1303,10 @@ export abstract class Location extends Component {
 
 export abstract class BaseStats extends Component {
   static category = CATEGORIES.STATS;
+}
+
+export abstract class BaseSteps extends Component {
+  static category = CATEGORIES.STEPS;
 }
 
 export abstract class BaseContacts extends Component {

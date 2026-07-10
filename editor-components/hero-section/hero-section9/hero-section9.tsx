@@ -419,7 +419,7 @@ class HeroSection9 extends BaseHeroSection {
 
     const currentImage = tabs[activeTabIndex]?.image ?? null;
 
-    const socialHeight = window.document.getElementById("header9-social")?.clientHeight
+    const socialHeight = typeof document !== "undefined" ? document.getElementById("header9-social")?.clientHeight : undefined
     const isCounterActive = this.getPropValue("isCounterActive")
     const noTabs = ((tabs.length < 1 || !isCounterActive) && !textExist);
 

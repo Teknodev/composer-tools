@@ -1,0 +1,111 @@
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+
+.container {
+    .max-content {
+        display: flex;
+        flex-direction: column;
+        gap: var(--composer-gap-lg);
+
+        .header-section {
+            align-items: flex-start;
+
+            .subtitle,
+            .title,
+            .description {
+                content: "";
+            }
+        }
+
+        .stats-grid {
+            gap: var(--composer-gap-xl);
+            width: 100%;
+
+            .stat-item {
+                align-items: flex-start;
+                gap: var(--composer-gap-sm);
+
+                .stat-value-row {
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    gap: var(--composer-gap-md);
+
+                    .stat-value {
+                        display: flex;
+                        align-items: baseline;
+                        color: var(--composer-primary-color);
+
+                        .stat-prefix,
+                        .stat-number,
+                        .stat-suffix {
+                            font-size: 4.5rem !important;
+                            line-height: 1.1;
+                            font-weight: 800;
+                        }
+                    }
+
+                    .stat-info {
+
+                        .stat-subtitle,
+                        .stat-title {
+                            text-align: left;
+                            color: var(--composer-font-color-primary);
+                             font-weight: 800;
+                        }
+                    }
+                }
+
+                .stat-description {
+                    text-align: left;
+                    color: var(--composer-font-color-primary);
+                }
+            }
+        }
+    }
+}
+
+@container (max-width: #{$composer-tablet-width}) {
+    .container {
+        .max-content {
+            .stats-grid {
+                .stat-item {
+                    .stat-value-row {
+                        .stat-value {
+                            .stat-prefix,
+                            .stat-number,
+                            .stat-suffix {
+                                font-size: 4rem !important;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+    .container {
+        .max-content {
+            .stats-grid {
+                .stat-item {
+                    .stat-value-row {
+                        .stat-value {
+                            .stat-prefix,
+                            .stat-number,
+                            .stat-suffix {
+                                font-size: 3.5rem !important;
+                            }
+                        }
+
+                        .stat-info {
+                            .stat-title {
+                                font-size: 1.25rem !important;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
