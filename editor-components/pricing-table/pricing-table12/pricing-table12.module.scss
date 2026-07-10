@@ -146,20 +146,23 @@
 
             .header {
                 &.center {
-                    align-items: center;
-                    text-align: center;
-                    
+                    align-items: center !important;
+                    text-align: center !important;
+
                     .subtitle {
-                        align-self: center;
+                        align-self: center !important;
+                        text-align: center !important;
+                        margin-left: auto !important;
+                        margin-right: auto !important;
                     }
-                    
+
                     .title,
                     .description {
-                        text-align: center;
+                        text-align: center !important;
                     }
 
                     .button-container {
-                        justify-content: center;
+                        justify-content: center !important;
                     }
                 }
             }
