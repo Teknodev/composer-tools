@@ -10,6 +10,10 @@ interface FAQ {
   text: React.ReactNode;
 }
 
+interface ColumnHeader {
+  title: string;
+}
+
 class Faq10 extends BaseFAQ {
   private containerRef = React.createRef<HTMLDivElement>();
   private bodyRefs: HTMLDivElement[] = [];
@@ -254,6 +258,53 @@ class Faq10 extends BaseFAQ {
 
     this.addProp({
       type: "array",
+      key: "columnHeaders",
+      displayer: "Column Headers",
+      value: [
+        {
+          type: "object",
+          key: "header",
+          displayer: "Header",
+          value: [
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value: "My Account",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "header",
+          displayer: "Header",
+          value: [
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value: "Exchanges & Returns",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "header",
+          displayer: "Header",
+          value: [
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value: "General Information",
+            },
+          ],
+        },
+      ],
+    });
+
+    this.addProp({
+      type: "array",
       key: "buttons",
       displayer: "Buttons",
       value: [
@@ -365,6 +416,7 @@ class Faq10 extends BaseFAQ {
     const cards = this.castToObject<FAQ[]>("card");
     const active = this.getComponentState("activeIndices") as number[];
     const counts = this.getColumnCounts();
+    const columnHeaders = this.castToObject<ColumnHeader[]>("columnHeaders") || [];
 
     const columns: FAQ[][] = [];
     let offset = 0;
@@ -401,72 +453,81 @@ class Faq10 extends BaseFAQ {
             </Base.VerticalContent>}
 
           <div className={this.decorateCSS("faq-grid")}>
-            {columns.map((colCards, colIdx) => (
-              <div className={this.decorateCSS("faq-col")} key={colIdx}>
-                {colCards.map((card, idxInCol) => {
-                  const globalIdx =
-                    columns
-                      .slice(0, colIdx)
-                      .reduce((s, arr) => s + arr.length, 0) + idxInCol;
-                  const isOpen = active[colIdx] === idxInCol;
+            {columns.map((colCards, colIdx) => {
+              const header = columnHeaders[colIdx];
+              const headerTitle = header ? this.castToString(header.title) : "";
+              return (
+                <div className={this.decorateCSS("faq-col")} key={colIdx}>
+                  {headerTitle && (
+                    <Base.H4 className={this.decorateCSS("column-title")}>
+                      {headerTitle}
+                    </Base.H4>
+                  )}
+                  {colCards.map((card, idxInCol) => {
+                    const globalIdx =
+                      columns
+                        .slice(0, colIdx)
+                        .reduce((s, arr) => s + arr.length, 0) + idxInCol;
+                    const isOpen = active[colIdx] === idxInCol;
 
-                  const hasText = Boolean(card.text);
+                    const hasText = Boolean(card.text);
 
-                  const cardSubtitleExist = this.castToString(card.subtitle);
-                  const cardTextExist = this.castToString(card.text);
-                  const iconPlus = this.getPropValue("iconPlus");
-                  const icon = this.getPropValue("icon");
-                  const iconExist = icon || iconPlus;
-                  return (
-                    <div
-                      className={this.decorateCSS("card")}
-                      key={globalIdx}
-                      onClick={() =>
-                        hasText && this.cardClicked(colIdx, idxInCol)
-                      }
-                    >
-                      <div className={this.decorateCSS("card-header")}>
-                        {cardSubtitleExist && (
-                          <Base.H6 className={this.decorateCSS("card-title")}>
-                            {card.subtitle}
-                          </Base.H6>
-                        )}
-                        <span
-                          className={[
-                            this.decorateCSS("icon-wrapper"),
-                            isOpen ? this.decorateCSS("iconOpen") : "",
-                          ].join(" ")}
-                        >
-                          {iconExist && (
-                            <Base.Media
-                              value={isOpen ? icon : iconPlus}
-                              className={[
-                                this.decorateCSS("icon"),
-                                isOpen ? this.decorateCSS("iconOpen") : "",
-                              ].join(" ")}
-                            />
+                    const cardSubtitleExist = this.castToString(card.subtitle);
+                    const cardTextExist = this.castToString(card.text);
+                    const iconPlus = this.getPropValue("iconPlus");
+                    const icon = this.getPropValue("icon");
+                    const iconExist = icon || iconPlus;
+                    return (
+                      <div
+                        className={this.decorateCSS("card")}
+                        key={globalIdx}
+                        onClick={() =>
+                          hasText && this.cardClicked(colIdx, idxInCol)
+                        }
+                      >
+                        <div className={this.decorateCSS("card-header")}>
+                          {cardSubtitleExist && (
+                            <Base.H6 className={this.decorateCSS("card-title")}>
+                              {card.subtitle}
+                            </Base.H6>
                           )}
-                        </span>
-                      </div>
-                      {hasText && (
-                        <div
-                          ref={(el) => (this.bodyRefs[globalIdx] = el!)}
-                          className={[
-                            this.decorateCSS("card-body"),
-                            isOpen ? this.decorateCSS("open") : "",
-                          ].join(" ")}
-                        >
-                          {cardTextExist &&
-                            <Base.P className={this.decorateCSS("card-text")}>
-                              {card.text}
-                            </Base.P>}
+                          <span
+                            className={[
+                              this.decorateCSS("icon-wrapper"),
+                              isOpen ? this.decorateCSS("iconOpen") : "",
+                            ].join(" ")}
+                          >
+                            {iconExist && (
+                              <Base.Media
+                                value={isOpen ? icon : iconPlus}
+                                className={[
+                                  this.decorateCSS("icon"),
+                                  isOpen ? this.decorateCSS("iconOpen") : "",
+                                ].join(" ")}
+                              />
+                            )}
+                          </span>
                         </div>
-                      )}
-                    </div>
-                  );
-                })}
-              </div>
-            ))}
+                        {hasText && (
+                          <div
+                            ref={(el) => (this.bodyRefs[globalIdx] = el!)}
+                            className={[
+                              this.decorateCSS("card-body"),
+                              isOpen ? this.decorateCSS("open") : "",
+                            ].join(" ")}
+                          >
+                            {cardTextExist &&
+                              <Base.P className={this.decorateCSS("card-text")}>
+                                {card.text}
+                              </Base.P>}
+                          </div>
+                        )}
+                      </div>
+                    );
+                  })}
+                </div>
+              );
+            })}
           </div>
           {this.getPropValue("buttons").length > 0 && (
             <div className={this.decorateCSS("buttons-wrapper")}>

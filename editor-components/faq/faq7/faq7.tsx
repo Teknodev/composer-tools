@@ -18,20 +18,20 @@ class Faq7 extends BaseFAQ {
       type: "string",
       key: "subtitle",
       displayer: "Subtitle",
-      value: "FAQ",
+      value: "",
     });
 
     this.addProp({
       type: "string",
       key: "title",
       displayer: "Title",
-      value: "Frequently Asked Questions",
+      value: "FAQs",
     });
     this.addProp({
       type: "string",
       key: "description",
       displayer: "Description",
-      value: "Frequently Asked Questions About Dental Treatments in Turkey",
+      value: "",
     });
 
     this.addProp({

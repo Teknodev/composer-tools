@@ -3,7 +3,12 @@
 .container {
     .max-content {
         display: flex;
+        align-items: center;
         gap: var(--composer-gap-lg);
+
+        .title {
+            font-weight: 800;
+        }
 
         .items-wrapper {
             display: flex;
@@ -67,6 +72,7 @@
                             flex: 1;
                             color: var(--composer-font-color-primary);
                             text-align: left;
+                            font-weight: 800;
                         }
 
                         .icon {
@@ -116,6 +122,7 @@
         .image-box {
             flex: 1;
             width: 100%;
+            aspect-ratio: 1 / 1;
             position: relative;
 
             .image {
@@ -130,6 +137,37 @@
                 inset: 0;
                 background: rgba(0, 0, 0, 0.4);
                 border-radius: 50%;
+            }
+
+            .vertical-content {
+                position: absolute;
+                inset: 0;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                z-index: 2;
+                padding: var(--composer-gap-lg);
+                border-radius: 50%;
+
+                .subtitle,
+                .title,
+                .description {
+                    color: var(--composer-font-color-secondary) !important;
+                }
+
+                .subtitle {
+                    transform: none;
+                    background: transparent;
+                    padding: 0;
+                    border-radius: 0;
+                    &::before {
+                        display: none;
+                    }
+                }
+
+                .buttons-wrapper {
+                    justify-content: center;
+                }
             }
         }
     }

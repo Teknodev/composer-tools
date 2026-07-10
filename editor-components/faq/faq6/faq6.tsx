@@ -13,14 +13,14 @@ class Faq6 extends BaseFAQ {
       type: "string",
       key: "subtitle",
       displayer: "Subtitle",
-      value: "FAQ"
+      value: ""
     })
 
     this.addProp({
       type: "string",
       key: "title",
       displayer: "Title",
-      value: "Frequently Asked Questions"
+      value: "FAQ"
     },)
     this.addProp({
       type: "string",
@@ -33,7 +33,7 @@ class Faq6 extends BaseFAQ {
       key: "buttons",
       displayer: "Buttons",
       value: [
-        INPUTS.BUTTON("button", "Button", "Learn More", "", null, null, "Primary"),
+        INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
       ],
     })
     this.addProp({
@@ -210,43 +210,48 @@ class Faq6 extends BaseFAQ {
 
     const alignment = Base.getContentAlignment();
 
+    const renderVerticalContent = () => {
+      if (!hasContent) return null;
+      return (
+        <Base.VerticalContent className={this.decorateCSS("vertical-content")}>
+          {subtitle && (
+            <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+              {this.getPropValue("subtitle")}
+            </Base.SectionSubTitle>
+          )}
+          {title && (
+            <Base.SectionTitle className={this.decorateCSS("title")}>
+              {this.getPropValue("title")}
+            </Base.SectionTitle>
+          )}
+          {description && (
+            <Base.SectionDescription className={this.decorateCSS("description")}>
+              {this.getPropValue("description")}
+            </Base.SectionDescription>
+          )}
+          {this.getPropValue("buttons").length > 0 && (
+            <div className={this.decorateCSS("buttons-wrapper")}>
+              {this.castToObject<INPUTS.CastedButton[]>("buttons").map((button: INPUTS.CastedButton) =>
+                this.castToString(button.text) && (
+                  <ComposerLink path={button.url}>
+                    <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
+                      <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
+                    </Base.Button>
+                  </ComposerLink>
+                )
+              )}
+            </div>
+          )}
+        </Base.VerticalContent>
+      );
+    };
+
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           {(hasContent || (this.getPropValue("list_items").length > 0)) && (
             <div className={this.decorateCSS("items-wrapper")}>
-              {hasContent && (
-                <Base.VerticalContent className={this.decorateCSS("vertical-content")}>
-                  {subtitle && (
-                    <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
-                      {this.getPropValue("subtitle")}
-                    </Base.SectionSubTitle>
-                  )}
-                  {title && (
-                    <Base.SectionTitle className={this.decorateCSS("title")}>
-                      {this.getPropValue("title")}
-                    </Base.SectionTitle>
-                  )}
-                  {description && (
-                    <Base.SectionDescription className={this.decorateCSS("description")}>
-                      {this.getPropValue("description")}
-                    </Base.SectionDescription>
-                  )}
-                  {this.getPropValue("buttons").length > 0 && (
-                    <div className={this.decorateCSS("buttons-wrapper")}>
-                      {this.castToObject<INPUTS.CastedButton[]>("buttons").map((button: INPUTS.CastedButton) =>
-                        this.castToString(button.text) && (
-                          <ComposerLink path={button.url}>
-                            <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
-                              <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
-                            </Base.Button>
-                          </ComposerLink>
-                        )
-                      )}
-                    </div>
-                  )}
-                </Base.VerticalContent>
-              )}
+              {!mediaValue && renderVerticalContent()}
               {(this.getPropValue("list_items").length > 0) && (
                 <div className={`${this.decorateCSS("items")}${!lineEnabled ? ` ${this.decorateCSS("no-line")}` : ""}`}>
                   {this.getPropValue("list_items").map((item: any, index: number) => {
@@ -281,6 +286,7 @@ class Faq6 extends BaseFAQ {
             <div className={this.decorateCSS("image-box")}>
               <Base.Media value={mediaValue} className={this.decorateCSS("image")} />
               {showOverlay && <div className={this.decorateCSS("overlay")} />}
+              {renderVerticalContent()}
             </div>
           )}
         </Base.MaxContent>

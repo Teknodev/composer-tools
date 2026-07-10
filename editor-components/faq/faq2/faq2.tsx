@@ -412,9 +412,9 @@ class Faq2 extends BaseFAQ {
               {(this.castToString(downContainer.title) || this.castToString(downContainer.description)) && (
                 <Base.VerticalContent className={this.decorateCSS("content")}>
                   {this.castToString(downContainer.title) && (
-                    <Base.H5 className={this.decorateCSS("down-title")}>
+                    <Base.H2 className={this.decorateCSS("down-title")}>
                       {downContainer.title}
-                    </Base.H5>
+                    </Base.H2>
                   )}
                   {this.castToString(downContainer.description) && (
                     <Base.P className={this.decorateCSS("down-description")}>

@@ -74,26 +74,38 @@
                 margin: 0;
                 color: var(--composer-font-color-primary);
                 opacity: 0.7;
+                font-weight: 800;
               }
             }
 
             .right {
               background: var(--composer-html-background);
               color: var(--composer-font-color-primary);
-              padding: var(--composer-gap-xs);
               border-radius: 50%;
+              width: 32px;
+              height: 32px;
               display: flex;
               align-items: center;
               justify-content: center;
               transition: background-color, color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+              flex-shrink: 0;
 
               .arrow-right {
                 transform: rotate(-30deg);
                 transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-                width: 24px;
-                height: 24px;
-                font-size: 1.5rem;
+                width: 16px;
+                height: 16px;
+                font-size: 1rem;
+                display: flex;
+                align-items: center;
+                justify-content: center;
                 object-fit: contain;
+
+                svg {
+                  display: block;
+                  width: 100%;
+                  height: 100%;
+                }
               }
             }
 
@@ -107,7 +119,7 @@
 
               .category {
                 .category-name {
-                  font-weight: bold;
+                  font-weight: 800;
                   color: var(--composer-primary-color);
                   opacity: 1;
                 }
@@ -204,6 +216,7 @@
                 color: var(--composer-font-color-primary);
                 flex: 1;
                 text-align: left;
+                font-weight: 800;
 
                 &.active {
                   color: var(--composer-primary-color);

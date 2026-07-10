@@ -54,6 +54,14 @@ as *;
       display: flex;
       flex-direction: column;
       gap: var(--composer-gap-xs);
+
+      .column-title {
+        text-align: left;
+        margin-top: 0;
+        margin-bottom: var(--composer-gap-md);
+        color: var(--composer-font-color-primary);
+        font-weight: 700;
+      }
     }
 
     .card {
@@ -75,6 +83,7 @@ as *;
           margin: 0;
           color: var(--composer-font-color-primary);
           text-align: left;
+          font-weight: 800;
         }
 
         .icon-wrapper {

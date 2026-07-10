@@ -21,7 +21,7 @@ class Faq9 extends BaseFAQ {
       type: "string",
       key: "subtitle",
       displayer: "Subtitle",
-      value: "FAQ",
+      value: "",
     });
 
     this.addProp({
