@@ -7,11 +7,20 @@
     gap: var(--composer-gap-lg);
 
     .vertical-content {
+      align-items: center !important;
 
-      .subtitle,
+      .subtitle {
+        text-align: center !important;
+        transform: none !important;
+
+        &::before {
+            display: none !important;
+        }
+      }
+
       .title,
       .description {
-        content: "";
+        text-align: center !important;
       }
     }
 
@@ -89,23 +98,27 @@
       height: 100%;
       background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
       display: flex;
+      flex-direction: column !important;
       padding: calc(var(--composer-gap-lg) * 2) var(--composer-gap-xl);
       border-radius: var(--composer-border-radius-md);
-      gap: var(--composer-gap-md);
-      align-items: center;
+      gap: var(--composer-gap-md) !important;
+      align-items: center !important;
+      justify-content: center !important;
 
       .content {
-        flex: 1;
-        align-items: start;
+        flex: unset;
+        align-items: center !important;
+        display: flex;
+        flex-direction: column;
 
         .down-title {
           color: var(--composer-font-color-primary);
-          text-align: start;
+          text-align: center !important;
         }
 
         .down-description {
           color: var(--composer-font-color-primary);
-          text-align: start;
+          text-align: center !important;
         }
       }
 
@@ -114,8 +127,8 @@
         align-items: center;
         gap: var(--composer-gap-sm);
         flex-wrap: wrap;
-        max-width: 50%;
-        justify-content: end;
+        max-width: 100% !important;
+        justify-content: center !important;
         height: fit-content;
 
         .button {

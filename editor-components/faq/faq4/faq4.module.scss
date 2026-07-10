@@ -69,6 +69,12 @@
       }
     }
 
+    .faq-content-wrapper {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+    }
+
     .down-page {
       width: 100%;
       display: flex;
@@ -78,12 +84,11 @@
       .card-wrapper {
         display: flex;
         flex-direction: column;
-        gap: var(--composer-gap-md);
 
         .card {
           display: flex;
           flex-direction: column;
-          padding-bottom: var(--composer-gap-md);
+          padding: var(--composer-gap-lg) 0;
           border-bottom: 1px solid var(--composer-tertiary-color);
 
           &.no-line {
@@ -122,9 +127,12 @@
 
                 .icon {
                   color: var(--composer-tertiary-color);
-                  width: 18px;
-                  height: 18px;
-                  font-size: 1.5rem;
+                  width: 16px;
+                  height: 16px;
+                  font-size: 1.25rem;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
                   object-fit: contain;
                   transform: rotate(0deg);
                   transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -156,7 +164,7 @@
 
             &.active {
               overflow: hidden;
-              padding: var(--composer-gap-md) 0px;
+              padding: var(--composer-gap-lg) 0px;
               opacity: 1;
 
               .text {

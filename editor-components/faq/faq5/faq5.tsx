@@ -721,9 +721,9 @@ class Faq5 extends BaseFAQ {
                           <div className={this.decorateCSS("little-container")}>
                             {this.castToString(item.cardIndex) && (
                               <div className={`${this.decorateCSS("card-index")} ${this.getComponentState("activeCard") === index ? this.decorateCSS("active") : ""}`}>
-                                <Base.H6 className={this.decorateCSS("index")}>
+                                <Base.P className={this.decorateCSS("index")}>
                                   {item.cardIndex}
-                                </Base.H6>
+                                </Base.P>
                               </div>
                             )}
                             {this.castToString(item.question) && (

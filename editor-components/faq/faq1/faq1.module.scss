@@ -7,11 +7,50 @@
         gap: var(--composer-gap-lg);
 
         .vertical-content {
+            align-items: center !important;
 
-            .subtitle,
+            .subtitle {
+                text-align: center !important;
+                transform: none !important;
+
+                &::before {
+                    display: none !important;
+                }
+            }
             .title,
             .description {
-                content: "";
+                text-align: center !important;
+            }
+        }
+
+        .bottom-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--composer-gap-sm);
+            flex-wrap: wrap;
+
+            .bottom-text {
+                color: var(--composer-font-color-primary);
+                width: auto !important;
+                margin: 0 !important;
+            }
+
+            .buttons-wrapper {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: var(--composer-gap-sm);
+                flex-wrap: wrap;
+                
+
+                .button {
+                    margin-top: 0 !important;
+                    .button-text {
+
+                        content: "";
+                    }
+                }
             }
         }
 
@@ -33,7 +72,7 @@
             height: 100%;
             display: flex;
             flex-direction: column;
-            gap: var(--composer-gap-md);
+            gap: var(--composer-gap-lg);
 
             .card {
                 width: 100%;
@@ -56,9 +95,9 @@
                     .icon {
                         display: block;
                         transform: rotate(0deg);
-                        height: 32px;
-                        width: 32px;
-                        font-size: 2rem;
+                        height: 24px;
+                        width: 24px;
+                        font-size: 1.5rem;
                         object-fit: contain;
                         transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
                         color: var(--composer-font-color-primary);
@@ -103,6 +142,8 @@
     .container {
         .max-content {
             .page {
+                gap: var(--composer-gap-md);
+
                 .card {
                     .in-box {
                         .icon {

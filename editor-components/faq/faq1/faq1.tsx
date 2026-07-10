@@ -123,15 +123,32 @@ class Faq1 extends BaseFAQ {
     });
 
     this.addProp({
+      type: "string",
+      key: "bottomText",
+      displayer: "Bottom Text",
+      value: "Still have any questions?",
+    });
+
+    this.addProp({
       type: "array",
       key: "buttons",
       displayer: "Buttons",
       value: [
-        INPUTS.BUTTON("button", "Button", "Learn More", "", null, null, "Primary"),
+        INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+      ],
+    });
+
+    this.addProp({
+      type: "array",
+      key: "bottomButtons",
+      displayer: "Buttons",
+      value: [
+        INPUTS.BUTTON("button", "Button", "Contact us", "", null, null, "Link"),
       ],
     });
 
     this.setComponentState("selectCardIndex", null);
+    this.setComponentState("showMore", false);
   }
 
   static getName(): string {
@@ -154,6 +171,15 @@ class Faq1 extends BaseFAQ {
     const title = this.castToString(this.getPropValue("title"))
     const description = this.castToString(this.getPropValue("description"))
     const hasContent = subtitle || title || description
+    const bottomText = this.castToString(this.getPropValue("bottomText"))
+    const bottomButtons = this.castToObject<INPUTS.CastedButton[]>("bottomButtons") || []
+    const visibleBottomButtons = bottomButtons.filter(btn => this.castToString(btn.text))
+    const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons") || []
+    const visibleButtons = buttons.filter(btn => this.castToString(btn.text))
+    const allCards = this.castToObject<FAQ[]>("card") || []
+    const showMore = this.getComponentState("showMore")
+    const hasToggleButton = visibleButtons.length > 0
+    const renderedCards = (allCards.length > 3 && hasToggleButton && !showMore) ? allCards.slice(0, 3) : allCards
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
@@ -176,10 +202,11 @@ class Faq1 extends BaseFAQ {
               )}
             </Base.VerticalContent>
           )}
-          {(this.getPropValue("card").length > 0) && (
+          {renderedCards.length > 0 && (
             <div className={this.decorateCSS("page")}>
-              {this.castToObject<FAQ[]>("card").map((card: FAQ, indexCard: number) => (
+              {renderedCards.map((card: FAQ, indexCard: number) => (
                 <div
+                  key={indexCard}
                   className={this.decorateCSS("card")}
                   onClick={() => {
                     this.cardClicked(indexCard);
@@ -212,16 +239,43 @@ class Faq1 extends BaseFAQ {
             </div>
           )}
 
-          {this.getPropValue("buttons").length > 0 && (
+          {allCards.length > 3 && !showMore && visibleButtons.length > 0 && (
             <div className={this.decorateCSS("buttons-wrapper")}>
-              {this.castToObject<INPUTS.CastedButton[]>("buttons").map((button: INPUTS.CastedButton) =>
-                this.castToString(button.text) && (
-                  <ComposerLink path={button.url}>
-                    <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
-                      <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
-                    </Base.Button>
-                  </ComposerLink>
-                )
+              {visibleButtons.map((button: INPUTS.CastedButton, index: number) => (
+                <Base.Button
+                  key={index}
+                  buttonType={button.type}
+                  className={this.decorateCSS("button")}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    this.setComponentState("showMore", true);
+                  }}
+                >
+                  <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
+                </Base.Button>
+              ))}
+            </div>
+          )}
+
+          {(bottomText || visibleBottomButtons.length > 0) && (
+            <div className={this.decorateCSS("bottom-container")}>
+              {bottomText && (
+                <Base.P className={this.decorateCSS("bottom-text")}>
+                  {this.getPropValue("bottomText")}
+                </Base.P>
+              )}
+              {visibleBottomButtons.length > 0 && (
+                <div className={this.decorateCSS("buttons-wrapper")}>
+                  {visibleBottomButtons.map((button: INPUTS.CastedButton, index: number) => (
+                    this.castToString(button.text) && (
+                      <ComposerLink key={index} path={button.url}>
+                        <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
+                          <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
+                        </Base.Button>
+                      </ComposerLink>
+                    )
+                  ))}
+                </div>
               )}
             </div>
           )}
