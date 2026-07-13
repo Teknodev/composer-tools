@@ -58,7 +58,7 @@ class CallToAction6Page extends BaseCallToAction {
       type: "string",
       key: "title",
       displayer: "Title",
-      value: "Get notified on latest updates and new releases.",
+      value: "Get notified on latest. updates and new releases.",
     });
 
     this.addProp({
@@ -148,16 +148,31 @@ class CallToAction6Page extends BaseCallToAction {
     const commentExist = this.castToString(this.getPropValue("comment"));
     const descriptionExist = this.castToString(this.getPropValue("description"));
     const description = this.getPropValue("description");
-    const alignment = Base.getContentAlignment();
-    const isLeft = alignment === "left";
+
+    const renderTitle = () => {
+      const text = this.castToString(this.getPropValue("title")) || "";
+      const splitWord = "latest.";
+      const index = text.indexOf(splitWord);
+      if (index !== -1) {
+        const part1 = text.slice(0, index + splitWord.length);
+        const part2 = text.slice(index + splitWord.length).trim();
+        return (
+          <>
+            {part1}
+            {part2 && <span className={this.decorateCSS("primary-title")}>{part2}</span>}
+          </>
+        );
+      }
+      return text;
+    };
 
     return (
       <Base.Container className={`${this.decorateCSS("container")} ${overlay && backgroundImage && this.decorateCSS("overlay-active")} ${backgroundImage && this.decorateCSS("has-background")}`}>
         {backgroundImage && (<Base.Media value={backgroundImage} className={this.decorateCSS("background-image")} />)}
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <Base.VerticalContent className={`${this.decorateCSS("content")} ${isLeft ? this.decorateCSS("left") : ""}`}>
+          <Base.VerticalContent className={this.decorateCSS("content")}>
             {subtitleExist && (<Base.SectionSubTitle className={`${this.decorateCSS("subtitle")}`}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>)}
-            {titleExist && (<Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>)}
+            {titleExist && (<Base.SectionTitle className={this.decorateCSS("title")}>{renderTitle()}</Base.SectionTitle>)}
             {descriptionExist && (<Base.SectionDescription className={this.decorateCSS("description")}>{description}</Base.SectionDescription>)}
             {spaceLineExist && (
               <div className={this.decorateCSS("space-container")}>

@@ -11,12 +11,14 @@
     gap: var(--composer-gap-md);
 
     .header {
-      align-items: var(--composer-content-alignment, center);
+      align-items: center !important;
 
       .title,
       .subtitle,
       .description {
-        text-align: var(--composer-content-alignment, center);
+        text-align: center !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
       }
 
       .description {
@@ -34,11 +36,11 @@
 
     .form {
       display: flex;
-      justify-content: var(--composer-content-alignment, center);
+      justify-content: center !important;
 
       .newsletter {
         display: flex;
-        justify-content: var(--composer-content-alignment, center);
+        justify-content: center !important;
         align-items: stretch;
         width: 55%;
         min-width: 500px;
@@ -49,7 +51,7 @@
           display: flex;
           flex-direction: column;
           justify-content: center;
-          align-items: var(--composer-content-alignment, center);
+          align-items: center !important;
           position: relative;
 
           .input {
@@ -102,26 +104,14 @@
 @container (max-width: #{$composer-phone-width}) {
   .container {
     .max-content {
-      .header {
-        align-items: var(--composer-content-alignment);
-
-        .title,
-        .subtitle,
-        .description {
-          text-align: var(--composer-content-alignment);
-        }
-      }
-
       .form {
         flex-direction: column;
         gap: var(--composer-gap-sm);
-        align-items: var(--composer-content-alignment);
 
         .newsletter {
           width: 100%;
           min-width: 100%;
           flex-direction: column;
-          align-items: var(--composer-content-alignment);
 
           .inputs {
             width: 100%;

@@ -96,6 +96,13 @@
         }
       }
 
+      .title {
+        .primary-title {
+          display: block;
+          color: var(--composer-primary-color);
+        }
+      }
+
       .subtitle,
       .title,
       .description {
@@ -106,6 +113,8 @@
         display: flex;
         width: 100%;
         justify-content: center;
+        margin-top: 20px;
+        margin-bottom: 40px;
 
         .space {
           content: "";
@@ -214,43 +223,6 @@
       padding: var(--composer-gap-md);
 
       .content {
-        &.left {
-          align-items: flex-start;
-
-          .subtitle {
-            text-align: left;
-            transform: translateX(3rem) !important;
-
-            &::before {
-              display: block !important;
-            }
-          }
-
-          .title,
-          .description {
-            text-align: left;
-          }
-
-          .space-container {
-            justify-content: flex-start;
-          }
-
-          .form {
-            align-items: flex-start;
-
-            .bottom-container {
-              align-items: flex-start;
-
-              .comment {
-                text-align: left;
-              }
-
-              .button-container {
-                justify-content: flex-start;
-              }
-            }
-          }
-        }
 
         .space-container {
           .space {
@@ -268,19 +240,6 @@
           min-width: auto;
           width: 100%;
           padding: var(--composer-gap-sm) var(--composer-gap-md);
-        }
-      }
-    }
-    &.has-background {
-      .max-content {
-        .content {
-          &.left {
-            .subtitle {
-              &::before {
-                background-color: #ffffff !important;
-              }
-            }
-          }
         }
       }
     }
