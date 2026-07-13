@@ -1,8 +1,6 @@
-import React, { createRef } from "react";
 import styles from "./stats12.module.scss";
 import { BaseStats, TypeMediaInputValue } from "../../EditorComponent";
 import { Base } from "../../../composer-base-components/base/base";
-import ComposerSlider from "../../../composer-base-components/slider/slider";
 
 interface FeatureItem {
   icon?: string | TypeMediaInputValue;
@@ -11,9 +9,6 @@ interface FeatureItem {
 }
 
 class Stats12 extends BaseStats {
-  containerRef = createRef<HTMLDivElement>();
-  sliderRef = createRef<any>();
-
   constructor(props?: any) {
     super(props, styles);
     this.addProp({
@@ -74,20 +69,6 @@ class Stats12 extends BaseStats {
         },
       ],
     });
-    this.addProp({
-      type: "media",
-      key: "prev-button-icon",
-      displayer: "Previous Slide Button",
-      additionalParams: { availableTypes: ["image", "icon"] },
-      value: { type: "icon", name: "MdArrowBackIos" },
-    });
-    this.addProp({
-      type: "media",
-      key: "next-button-icon",
-      displayer: "Next Slide Button",
-      additionalParams: { availableTypes: ["image", "icon"] },
-      value: { type: "icon", name: "MdArrowForwardIos" },
-    });
 
     this.addProp({
       type: "number",
@@ -100,25 +81,10 @@ class Stats12 extends BaseStats {
   static getName(): string {
     return "Stats 12";
   }
-  handlePrev = () => {
-    if (this.sliderRef.current) {
-      this.sliderRef.current.slickPrev();
-    }
-  };
-
-  handleNext = () => {
-    if (this.sliderRef.current) {
-      this.sliderRef.current.slickNext();
-    }
-  };
 
   render() {
     const features = this.castToObject<FeatureItem[]>("stats");
     const itemsPerRow = this.getPropValue("itemsPerRow") ?? 3;
-    const prevIcon = this.getPropValue("prev-button-icon");
-    const nextIcon = this.getPropValue("next-button-icon");
-    const prevIconExist = typeof prevIcon === "object" ? (prevIcon?.name || prevIcon?.url) : prevIcon;
-    const nextIconExist = typeof nextIcon === "object" ? (nextIcon?.name || nextIcon?.url) : nextIcon;
 
     const subtitle = this.getPropValue("subtitle");
     const title = this.getPropValue("title");
@@ -140,8 +106,7 @@ class Stats12 extends BaseStats {
           </Base.MaxContent>
         )}
         <Base.MaxContent
-          className={`${this.decorateCSS("max-content")} ${this.decorateCSS(`cols-${itemsPerRow}`)} ${this.decorateCSS("desktop-wrapper")}`}
-          ref={this.containerRef}
+          className={`${this.decorateCSS("max-content")} ${this.decorateCSS(`cols-${itemsPerRow}`)}`}
         >
           {features.map((feat, idx) => {
             const iconExist = typeof feat.icon === "object" ? (feat.icon?.name || feat.icon?.url) : feat.icon;
@@ -173,64 +138,6 @@ class Stats12 extends BaseStats {
             );
           })}
         </Base.MaxContent>
-        <div className={this.decorateCSS("mobile-wrapper")}>
-          <ComposerSlider
-            ref={this.sliderRef}
-            className={this.decorateCSS("mobile-slider")}
-            infinite={true}
-            dots={false}
-            speed={0}
-            autoplaySpeed={20000}
-            slidesToShow={1}
-            slidesToScroll={1}
-            arrows={false}
-            autoplay={false}
-          >
-            {features.map((feat, idx) => {
-              const iconExist = typeof feat.icon === "object" ? (feat.icon?.name || feat.icon?.url) : feat.icon;
-              const titleExist = this.castToString(feat.title);
-              const descriptionExist = this.castToString(feat.description);
-              if (!iconExist && !titleExist && !descriptionExist) return null;
-              return (
-                <div key={idx} className={this.decorateCSS("feature")}>
-                  <div className={this.decorateCSS("top-row")}>
-                    {iconExist && (
-                      <Base.Media value={typeof feat.icon === "object" ? feat.icon : { type: "icon", name: feat.icon }} className={this.decorateCSS("icon")} />
-                    )}
-                    {(titleExist || descriptionExist) && (
-                      <div className={this.decorateCSS("text-group")}>
-                        {titleExist && (
-                          <Base.SectionTitle className={this.decorateCSS("title")}>
-                            {feat.title}
-                          </Base.SectionTitle>
-                        )}
-                        {descriptionExist && (
-                          <Base.SectionDescription className={this.decorateCSS("description")}>
-                            {feat.description}
-                          </Base.SectionDescription>
-                        )}
-                      </div>
-                    )}
-                  </div>
-                </div>
-              );
-            })}
-          </ComposerSlider>
-          {(prevIconExist || nextIconExist) && (
-            <div className={this.decorateCSS("slider-buttons")}>
-              {prevIconExist && (
-                <button onClick={this.handlePrev} className={this.decorateCSS("prev-button")}>
-                  <Base.Media value={prevIcon} className={this.decorateCSS("prev-icon")} />
-                </button>
-              )}
-              {nextIconExist && (
-                <button onClick={this.handleNext} className={this.decorateCSS("next-button")}>
-                  <Base.Media value={nextIcon} className={this.decorateCSS("next-icon")} />
-                </button>
-              )}
-            </div>
-          )}
-        </div>
       </Base.Container>
     );
   }

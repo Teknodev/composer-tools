@@ -77,6 +77,37 @@
         .stats-grid {
             gap: var(--composer-gap-lg);
 
+            &.alignment-center {
+                .header-item {
+                    align-items: center;
+
+                    .title,
+                    .subtitle,
+                    .description {
+                        text-align: center;
+                    }
+
+                    .subtitle {
+                        margin-left: auto;
+                        margin-right: auto;
+                    }
+
+                    .button-container {
+                        justify-content: center;
+                    }
+                }
+
+                .stat-item {
+                    align-items: center;
+
+                    .stat-title,
+                    .stat-subtitle,
+                    .stat-description {
+                        text-align: center;
+                    }
+                }
+            }
+
             .stat-item .stat-value {
                 font-size: 4rem;
             }

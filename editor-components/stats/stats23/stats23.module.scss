@@ -3,8 +3,15 @@
 .container {
     .max-content {
         .content {
+            display: flex;
+            flex-direction: column;
             align-items: flex-start;
             gap: var(--composer-gap-lg);
+
+            .header-container,
+            .stats-container {
+                width: 100%;
+            }
 
             .header-container {
                 align-items: flex-start;
@@ -53,6 +60,10 @@
                     .button-container {
                         justify-content: center;
                     }
+                }
+
+                .stats-container {
+                    align-items: center;
                 }
             }
 
@@ -110,7 +121,6 @@
 
 @container (max-width: #{$composer-phone-width}) {
     .container .max-content .content {
-        gap: var(--composer-gap-md);
 
         &.alignment-center {
             .stats-grid {

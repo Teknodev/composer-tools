@@ -104,8 +104,6 @@ class Stats14 extends BaseStats {
         INPUTS.BUTTON("button", "Button", "Learn More", null, "", null, "White"),
       ],
     });
-
-
   }
 
   static getName(): string {
@@ -229,7 +227,3 @@ class Stats14 extends BaseStats {
 }
 
 export default Stats14;
- 
-
-
-

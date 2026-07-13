@@ -6,12 +6,19 @@ import ComposerLink from "../../../composer-base-components/Link/ComposerLinkPro
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "../../../custom-hooks/input-templates";
 
+type Stat = {
+  icon?: TypeMediaInputValue | string;
+  number: React.JSX.Element;
+  description: React.JSX.Element;
+};
+
 class Stats3Page extends BaseStats {
   constructor(props?: any) {
     super(props, styles);
+
     this.addProp({
       type: "string",
-      key: "subTitle",
+      key: "subtitle",
       displayer: "Subtitle",
       value: "ABOUT PERSONA",
     });
@@ -28,6 +35,7 @@ class Stats3Page extends BaseStats {
       value:
         "Nullam fermentum ullamcorper, diam sit amet porta. Etiam ac enim velit.Ut ut mi sed turpis accumsan sagittis ac eu magna.Etiam ac nisi tellus.Morbi at velit nisl.Donec ut felis libero. Nullam fermentum ullamcorper diam sit amet porta. Etiam ac enim velit.Ut ut mi sed turpis accumsan sagittis ac eu magna.Etiam ac nisi tellus.Morbi at velit nisl.Donec ut felis libero. Nullam fermentum ullamcorper diam sit amet porta. Etiam ac enim velit.Ut ut mi sed turpis accumsan sagittis ac eu magna.",
     });
+
     this.addProp({
       type: "array",
       key: "buttons",
@@ -37,6 +45,7 @@ class Stats3Page extends BaseStats {
       },
       value: [INPUTS.BUTTON("button", "Button", "READ MORE", "", null, null, "Primary")],
     });
+
     this.addProp({
       type: "media",
       key: "backgroundImage",
@@ -47,6 +56,7 @@ class Stats3Page extends BaseStats {
         url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6773f9390655f8002caf5eca?alt=media",
       },
     });
+
     this.addProp({
       type: "array",
       key: "stats",
@@ -67,7 +77,7 @@ class Stats3Page extends BaseStats {
             {
               type: "string",
               key: "number",
-              displayer: "Number",
+              displayer: "Value",
               value: "12 th",
             },
             {
@@ -93,7 +103,7 @@ class Stats3Page extends BaseStats {
             {
               type: "string",
               key: "number",
-              displayer: "Number",
+              displayer: "Value",
               value: "800 +",
             },
             {
@@ -119,7 +129,7 @@ class Stats3Page extends BaseStats {
             {
               type: "string",
               key: "number",
-              displayer: "Number",
+              displayer: "Value",
               value: "100 +",
             },
             {
@@ -132,33 +142,49 @@ class Stats3Page extends BaseStats {
         },
       ],
     });
+
     this.addProp({
-      type: "boolean",
-      key: "is_box_visible",
-      displayer: "Is box visible",
-      value: true,
+      type: "object",
+      key: "settings",
+      displayer: "Settings",
+      value: [
+        {
+          type: "boolean",
+          key: "isBoxVisible",
+          displayer: "Show Stats Box",
+          value: true,
+        },
+      ],
     });
   }
+
   static getName(): string {
     return "Stats 3";
   }
+
   render() {
-    const subtitle = this.castToString(this.getPropValue("subTitle"));
+    const alignment = Base.getContentAlignment();
+    const subtitle = this.castToString(this.getPropValue("subtitle"));
     const title = this.castToString(this.getPropValue("title"));
     const description = this.castToString(this.getPropValue("description"));
+
     const buttons = this.getPropValue("buttons");
     const image = this.getPropValue("backgroundImage") as TypeMediaInputValue;
     const imageExist = image?.url;
     const cardContent = this.getPropValue("stats") || [];
-    const isBoxVisible = this.getPropValue("is_box_visible");
+
+    const settings = this.castToObject<any>("settings");
+    const isBoxVisible = settings?.isBoxVisible ?? true;
+
+    const mediaExists = (m?: TypeMediaInputValue | string) => (typeof m === "object" ? m?.name || m?.url : m);
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <Base.ContainerGrid className={this.decorateCSS("page")}>
+          <Base.ContainerGrid className={`${this.decorateCSS("page")} ${alignment === "center" ? this.decorateCSS("alignment-center") : ""}`}>
             {(subtitle || title || description || buttons.length > 0) && (
-              <Base.VerticalContent className={`${this.decorateCSS("left-page")} ${!imageExist && this.decorateCSS("left-page-without-image")}`}>
-                {subtitle && <Base.SectionSubTitle className={this.decorateCSS("subTitle")}>{this.getPropValue("subTitle")}</Base.SectionSubTitle>}
+              <Base.VerticalContent className={`${this.decorateCSS("left-page")} ${!imageExist ? this.decorateCSS("left-page-without-image") : ""}`}>
+                {subtitle && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
                 {title && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
                 {description && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
                 {buttons.length > 0 && (
@@ -180,30 +206,26 @@ class Stats3Page extends BaseStats {
               </Base.VerticalContent>
             )}
             {(imageExist || (cardContent.length > 0 && isBoxVisible)) && (
-              <Base.VerticalContent className={`${this.decorateCSS("right-container")} ${!imageExist && this.decorateCSS("right-container-without-image")}`}>
+              <Base.VerticalContent className={`${this.decorateCSS("right-container")} ${!imageExist ? this.decorateCSS("right-container-without-image") : ""}`}>
                 {imageExist && <Base.Media value={image} className={this.decorateCSS("image")} />}
                 {isBoxVisible && cardContent.length > 0 && (
-                  <div className={`${this.decorateCSS("card-container")} ${!imageExist && this.decorateCSS("card-container-without-image")}`}>
+                  <div className={`${this.decorateCSS("card-container")} ${!imageExist ? this.decorateCSS("card-container-without-image") : ""}`}>
                     <div className={this.decorateCSS("card")}>
-                      {this.castToObject<any>("stats").map((item: any, index: number) => {
-                        const iconExist = typeof item.icon === "object" ? (item.icon?.name || item.icon?.url) : item.icon;
+                      {this.castToObject<Stat[]>("stats").map((item: Stat, index: number) => {
+                        const iconExist = mediaExists(item.icon);
                         const numberExist = this.castToString(item.number);
                         const descriptionExist = this.castToString(item.description);
                         if (!(iconExist || numberExist || descriptionExist)) return null;
                         return (
-                          <div className={this.decorateCSS("content")}>
+                          <div key={index} className={this.decorateCSS("content")}>
                             <div className={this.decorateCSS("inner-content")}>
-                              <Base.VerticalContent className={this.decorateCSS("text-container")}>
-                                <div className={this.decorateCSS("first-container")}>
-                                  {(typeof item.icon === "object" ? (item.icon?.name || item.icon?.url) : item.icon) && (
-                                    <Base.Media value={typeof item.icon === "object" ? item.icon : { type: "icon", name: item.icon }} className={this.decorateCSS("icon")} />
-                                  )}
-                                  <Base.VerticalContent className={this.decorateCSS("text")}>
-                                    {this.castToString(item.number) && <Base.H5 className={this.decorateCSS("number")}>{item.number}</Base.H5>}
-                                    {this.castToString(item.description) && <Base.P className={this.decorateCSS("right-text")}>{item.description}</Base.P>}
-                                  </Base.VerticalContent>
-                                </div>
-                              </Base.VerticalContent>
+                              <div className={this.decorateCSS("first-container")}>
+                                {iconExist && <Base.Media value={typeof item.icon === "object" ? item.icon : { type: "icon", name: item.icon }} className={this.decorateCSS("icon")} />}
+                                <Base.VerticalContent className={this.decorateCSS("text")}>
+                                  {numberExist && <Base.H5 className={this.decorateCSS("number")}>{item.number}</Base.H5>}
+                                  {descriptionExist && <Base.P className={this.decorateCSS("right-text")}>{item.description}</Base.P>}
+                                </Base.VerticalContent>
+                              </div>
                             </div>
                           </div>
                         );

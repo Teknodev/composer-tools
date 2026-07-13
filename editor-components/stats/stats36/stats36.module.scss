@@ -48,7 +48,7 @@
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
-                gap: var(--composer-gap-md);
+                gap: var(--composer-gap-lg);
 
                 &:not(.full-width) {
                     width: calc(50% - (var(--composer-gap-xl) / 2));

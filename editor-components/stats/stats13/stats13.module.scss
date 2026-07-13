@@ -5,8 +5,8 @@
         .wrapper {
             display: flex;
             width: 100%;
-            gap: var(--composer-gap-md);
-            padding-left: var(--composer-gap-xl);
+            gap: var(--composer-gap-lg);
+            padding-left: 60px;
 
             .left-content {
                 flex-wrap: wrap;
@@ -256,6 +256,21 @@
 
 @container (max-width: #{$composer-phone-width}) {
     .container {
+        &.alignment-center {
+            .max-content {
+                .wrapper {
+                    .left-content {
+                        .vertical-content {
+                            .subtitle {
+                                margin-left: auto !important;
+                                margin-right: auto !important;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
         .max-content {
             .wrapper {
                 padding-left: 0;

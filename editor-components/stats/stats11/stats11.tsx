@@ -82,7 +82,7 @@ class Stats11 extends BaseStats {
 
     this.addProp({
       type: "string",
-      key: "subTitle",
+      key: "subtitle",
       displayer: "Subtitle",
       value: "Our services",
     });
@@ -134,7 +134,7 @@ class Stats11 extends BaseStats {
   render() {
     const statItems = this.castToObject<StatItem[]>("stats");
     const image = this.getPropValue("image") as TypeMediaInputValue;
-    const subTitle = this.getPropValue("subTitle");
+    const subtitle = this.getPropValue("subtitle");
     const title = this.getPropValue("title");
     const text1 = this.getPropValue("text1");
     const text2 = this.getPropValue("text2");
@@ -190,9 +190,9 @@ class Stats11 extends BaseStats {
                 alignment === "center" && this.decorateCSS("center")
               }`}
             >
-              {this.castToString(subTitle) && (
-                <Base.SectionSubTitle className={this.decorateCSS("subTitle")}>
-                  {subTitle}
+              {this.castToString(subtitle) && (
+                <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                  {subtitle}
                 </Base.SectionSubTitle>
               )}
               {this.castToString(title) && (

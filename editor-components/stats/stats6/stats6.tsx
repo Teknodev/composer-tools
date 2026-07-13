@@ -2,6 +2,8 @@ import * as React from "react";
 import { BaseStats } from "../../EditorComponent";
 import styles from "./stats6.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
+import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
+import { INPUTS } from "../../../custom-hooks/input-templates";
 
 type CardData = {
   number: React.JSX.Element;
@@ -9,7 +11,6 @@ type CardData = {
 };
 
 class Stats6Page extends BaseStats {
-  interval: any;
   constructor(props?: any) {
     super(props, styles);
 
@@ -22,7 +23,7 @@ class Stats6Page extends BaseStats {
 
     this.addProp({
       type: "string",
-      key: "header",
+      key: "title",
       displayer: "Title",
       value: "Our Achievements",
     });
@@ -32,6 +33,15 @@ class Stats6Page extends BaseStats {
       key: "description",
       displayer: "Description",
       value: "Far far away.behind the word mountains, far from the countries Vokalia and Consanantia, there live the blind texts. Seperated they live in",
+    });
+
+    this.addProp({
+      type: "array",
+      key: "buttons",
+      displayer: "",
+      value: [
+        INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+      ],
     });
 
     this.addProp({
@@ -98,106 +108,33 @@ class Stats6Page extends BaseStats {
         },
       ],
     });
+
     this.addProp({
-      type: "number",
-      key: "animationDuration",
-      displayer: "Stat Animation Duration (ms)",
-      value: 30,
+      type: "object",
+      key: "settings",
+      displayer: "Settings",
+      value: [
+        {
+          type: "boolean",
+          key: "shouldAnimate",
+          displayer: "Animate Numbers",
+          value: true,
+        },
+        {
+          type: "number",
+          key: "animationDuration",
+          displayer: "Animation Duration (ms)",
+          value: 2000,
+        },
+        {
+          type: "number",
+          key: "itemCount",
+          displayer: "Item Count in a Row",
+          value: 3,
+          max: 4,
+        },
+      ],
     });
-    this.addProp({
-      type: "number",
-      key: "incrementValue",
-      displayer: "Stat Animation Increment Value",
-      value: 200,
-    });
-    this.addProp({
-      type: "number",
-      key: "itemCount",
-      displayer: "Item Count in a Row",
-      value: 3,
-      max: 4,
-    });
-
-    this.init();
-    this.animate();
-  }
-
-  init() {
-    this.castToObject<CardData[]>("stats").map((_, index) => {
-      this.setComponentState(`number-${index}`, "");
-      this.setComponentState(`numberForControl-${index}`, "");
-    });
-  }
-
-  isEqual(arr1: any[], arr2: any[]) {
-    return arr1.every((value, index) => {
-      const otherValue = arr2[index];
-      return value === otherValue || (value === "" && otherValue === 0) || (value === 0 && otherValue === "");
-    });
-  }
-
-  getStats() {
-    const statItems = this.castToObject<CardData[]>("stats");
-    const stats = statItems.map((statsData: any) => (statsData.number === "" ? "" : this.castToString(statsData.number)));
-    return stats;
-  }
-
-  getNumbers() {
-    const statItems = this.castToObject<CardData[]>("stats");
-    const numbers = statItems.map((_, index) => {
-      const number = this.getComponentState(`numberForControl-${index}`);
-      return number !== undefined ? number : "";
-    });
-    return numbers;
-  }
-
-  formatNumberWithDots(value: any) {
-    const number = Number(value);
-    if (isNaN(number)) {
-      return "";
-    }
-    return number.toString();
-  }
-
-  animate() {
-    const animationDuration = this.getPropValue("animationDuration");
-    const incrementValue = this.getPropValue("incrementValue");
-
-    this.interval = setInterval(() => {
-      if (this.isEqual(this.getStats(), this.getNumbers())) {
-        clearInterval(this.interval);
-        this.interval = null;
-      }
-
-      this.castToObject<CardData[]>("stats").map((statData: CardData, index: number) => {
-        let currentNumberState = this.getComponentState(`number-${index}`);
-        const currentString = typeof currentNumberState === "string" ? currentNumberState : "";
-        const currentNonNumericPrefix = currentString.match(/^\D+/)?.[0] || "";
-        const currentNonNumericSuffix = currentString.match(/\D+$/)?.[0] || "";
-        const currentNumber = parseInt(currentString.replace(/\D+/g, ""), 10) || 0;
-
-        const counterString = this.castToString(statData.number);
-        const newNonNumericPrefix = counterString.match(/^\D+/)?.[0] || "";
-        const newNonNumericSuffix = counterString.match(/\D+$/)?.[0] || "";
-        const numericPart = parseInt(counterString.replace(/[^\d]/g, ""), 10) || 0;
-
-        if (currentNumber !== numericPart || currentNonNumericPrefix !== newNonNumericPrefix || currentNonNumericSuffix !== newNonNumericSuffix) {
-          let nextValue = Math.min(numericPart, currentNumber + Math.ceil(numericPart / Math.round(incrementValue / 30)));
-
-          let formattedNextValue = nextValue ? nextValue.toString() : "";
-
-          const formattedNextValueWithDots = this.formatNumberWithDots(formattedNextValue) === "0" ? "" : this.formatNumberWithDots(formattedNextValue);
-
-          const updatedValue = currentNumber > 0 ? newNonNumericPrefix + formattedNextValueWithDots + newNonNumericSuffix : newNonNumericPrefix + formattedNextValueWithDots;
-
-          const updatedValueForControl = currentNumber > 0 ? newNonNumericPrefix + formattedNextValue + newNonNumericSuffix : newNonNumericPrefix + formattedNextValue;
-
-          this.setComponentState(`number-${index}`, updatedValue);
-
-          this.setComponentState(`numberForControl-${index}`, updatedValueForControl);
-        }
-      });
-    }, animationDuration);
   }
 
   static getName(): string {
@@ -206,39 +143,133 @@ class Stats6Page extends BaseStats {
 
   render() {
     const cardList = this.castToObject<CardData[]>("stats");
+
     const subtitle = this.getPropValue("subtitle");
     const subtitleExist = this.castToString(subtitle);
-    const header = this.getPropValue("header");
-    const headerExist = this.castToString(header);
+    const title = this.getPropValue("title");
+    const titleExist = this.castToString(title);
     const description = this.getPropValue("description");
     const descriptionExist = this.castToString(description);
-    const itemCount = this.getPropValue("itemCount");
 
-    if (!this.interval && !this.isEqual(this.getStats(), this.getNumbers())) {
-      this.animate();
-    }
+    const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons") || [];
+    const visibleButtons = buttons.filter(btn => this.castToString(btn.text));
+
+    const shouldAnimate = this.castToObject<any>("settings")?.shouldAnimate ?? true;
+    const animationDuration = (this.castToObject<any>("settings")?.animationDuration ?? 2000) as number;
+    const itemCount = this.castToObject<any>("settings")?.itemCount ?? 3;
+
+    const AnimatedCard = ({ card }: { card: CardData }) => {
+      const ref = React.useRef<HTMLDivElement>(null);
+      const intervalRef = React.useRef<ReturnType<typeof setInterval> | null>(null);
+
+      const rawNumber = (this.castToString(card.number) as string) || "";
+      const prefix = rawNumber.match(/^[^\d]*/)?.[0] ?? "";
+      const suffix = rawNumber.match(/[^\d]*$/)?.[0] ?? "";
+      const core = rawNumber.slice(prefix.length, rawNumber.length - suffix.length);
+      const isNumeric = /\d/.test(core);
+      const target = isNumeric ? parseFloat(core.replace(/,/g, "")) : NaN;
+      const decimals = core.includes(".") ? core.split(".")[1]?.length ?? 0 : 0;
+      const useGrouping = /,/.test(core);
+      const reduceMotion = typeof window !== "undefined" && !!window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
+      const animatable = shouldAnimate && isNumeric && !reduceMotion;
+
+      const format = (n: number) => prefix + n.toLocaleString("en-US", { minimumFractionDigits: decimals, maximumFractionDigits: decimals, useGrouping }) + suffix;
+
+      const [display, setDisplay] = React.useState<string>(() => (rawNumber ? (animatable ? format(0) : rawNumber) : ""));
+
+      React.useEffect(() => {
+        if (!rawNumber) {
+          setDisplay("");
+          return;
+        }
+        if (!animatable) {
+          setDisplay(rawNumber);
+          return;
+        }
+        const node = ref.current;
+        if (!node || typeof IntersectionObserver === "undefined") {
+          setDisplay(rawNumber);
+          return;
+        }
+        const clear = () => {
+          if (intervalRef.current) {
+            clearInterval(intervalRef.current);
+            intervalRef.current = null;
+          }
+        };
+        const run = () => {
+          clear();
+          setDisplay(format(0));
+          const steps = Math.max(1, Math.round(animationDuration / 30));
+          const increment = target / steps;
+          let current = 0;
+          intervalRef.current = setInterval(() => {
+            current += increment;
+            if (current >= target) {
+              clear();
+              setDisplay(rawNumber);
+              return;
+            }
+            setDisplay(format(current));
+          }, 30);
+        };
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                run();
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.4 }
+        );
+        observer.observe(node);
+        return () => {
+          observer.disconnect();
+          clear();
+        };
+      }, [rawNumber, animatable, animationDuration, target]);
+
+      const isDescExist = this.castToString(card.description);
+
+      if (!display && !isDescExist) return null;
+
+      return (
+        <div ref={ref} className={this.decorateCSS("card")}>
+          <Base.VerticalContent className={this.decorateCSS("card-content")}>
+            {!!display && <Base.P className={this.decorateCSS("data-card-title")}>{display}</Base.P>}
+            {isDescExist && <Base.P className={this.decorateCSS("data-card-description")}>{card.description}</Base.P>}
+          </Base.VerticalContent>
+        </div>
+      );
+    };
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          {(headerExist || descriptionExist || subtitleExist) && (
+          {(titleExist || descriptionExist || subtitleExist || visibleButtons.length > 0) && (
             <Base.VerticalContent className={this.decorateCSS("banner")}>
               {subtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{subtitle}</Base.SectionSubTitle>}
-              {headerExist && <Base.SectionTitle className={this.decorateCSS("title")}>{header}</Base.SectionTitle>}
+              {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>}
               {descriptionExist && <Base.SectionDescription className={this.decorateCSS("description")}>{description}</Base.SectionDescription>}
+              {visibleButtons.length > 0 && (
+                <div className={this.decorateCSS("button-container")}>
+                  {visibleButtons.map((btn, index) => (
+                    <ComposerLink key={index} path={btn.url}>
+                      <Base.Button buttonType={btn.type} className={this.decorateCSS("button-text-wrapper")}>
+                        {btn.text}
+                      </Base.Button>
+                    </ComposerLink>
+                  ))}
+                </div>
+              )}
             </Base.VerticalContent>
           )}
           {cardList.length > 0 && (
             <Base.ListGrid gridCount={{ pc: itemCount, tablet: 2, phone: 1 }} className={this.decorateCSS("stats6-page")}>
-              {cardList.map((data: any, index: number) => {
-                return (
-                  (this.getComponentState(`number-${index}`) !== "0" || this.castToString(data.description)) && (
-                    <Base.VerticalContent key={index} className={this.decorateCSS("card")}>
-                      {this.getComponentState(`number-${index}`) !== "0" && <Base.P className={this.decorateCSS("data-card-title")}>{this.getComponentState(`number-${index}`)}</Base.P>}
-                      {this.castToString(data.description) && <Base.P className={this.decorateCSS("data-card-description")}>{data.description}</Base.P>}
-                    </Base.VerticalContent>
-                  )
-                );
+              {cardList.map((data: CardData, index: number) => {
+                return <AnimatedCard key={index} card={data} />;
               })}
             </Base.ListGrid>
           )}

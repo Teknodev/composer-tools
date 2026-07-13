@@ -7,7 +7,7 @@ import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "../../../custom-hooks/input-templates";
 
 type Card = {
-  number: string;
+  number: React.JSX.Element;
   description: React.JSX.Element;
   icon?: TypeMediaInputValue | string;
   secondIcon?: TypeMediaInputValue | string;
@@ -18,29 +18,20 @@ class Stats2Page extends BaseStats {
     super(props, styles);
 
     this.addProp({
-      type: "number",
-      key: "animation-duration",
-      displayer: "Number Animation Duration (ms)",
-      value: 2000,
-    });
-
-    this.addProp({
       type: "string",
       key: "subtitle",
       displayer: "Subtitle",
       value: "",
     });
-
     this.addProp({
       type: "string",
-      key: "header",
+      key: "title",
       displayer: "Title",
       value: "Intuition and strategy integrate the research methodology that we also apply to traditional media.",
     });
-
     this.addProp({
       type: "string",
-      key: "subHeader",
+      key: "description",
       displayer: "Description",
       value: "We combine human empathy and intelligent data to provide the highest level of satisfaction.",
     });
@@ -186,12 +177,32 @@ class Stats2Page extends BaseStats {
         },
       ],
     });
+
     this.addProp({
-      type: "number",
-      key: "itemCount",
-      displayer: "Item Count in a Row",
-      value: 2,
-      max: 4,
+      type: "object",
+      key: "settings",
+      displayer: "Settings",
+      value: [
+        {
+          type: "boolean",
+          key: "shouldAnimate",
+          displayer: "Animate Numbers",
+          value: true,
+        },
+        {
+          type: "number",
+          key: "animationDuration",
+          displayer: "Animation Duration (ms)",
+          value: 2000,
+        },
+        {
+          type: "number",
+          key: "itemCount",
+          displayer: "Item Count in a Row",
+          value: 2,
+          max: 4,
+        },
+      ],
     });
   }
 
@@ -202,128 +213,139 @@ class Stats2Page extends BaseStats {
   render() {
     const cards = this.castToObject<Card[]>("stats");
     const cardLength = cards.length;
-    const animationDuration = this.getPropValue("animation-duration") as number;
 
-    const itemCount = this.getPropValue("itemCount");
-
-    const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
-    
     const subtitle = this.getPropValue("subtitle");
     const isSubtitleExist = this.castToString(subtitle);
+    const title = this.getPropValue("title");
+    const isTitleExist = this.castToString(title);
+    const description = this.getPropValue("description");
+    const isDescExist = this.castToString(description);
+
+    const settings = this.castToObject<any>("settings");
+    const shouldAnimate = settings?.shouldAnimate ?? true;
+    const animationDuration = (settings?.animationDuration ?? 2000) as number;
+    const itemCount = settings?.itemCount ?? 2;
+
+    const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
+    const isButtonTextExist = this.castToString(button.text);
 
     const totalRows = Math.ceil(cards.length / itemCount);
 
-    const AnimatedCard = ({ card, animationDuration, isTextExist, isFirstRow, isLastRow }: { card: Card; animationDuration: number; isTextExist: string; isFirstRow: boolean; isLastRow: boolean }) => {
-      const [amount, setAmount] = React.useState<string | null>(null);
-      const [showDecimals, setShowDecimals] = React.useState(false);
+    const mediaExists = (m?: TypeMediaInputValue | string) => (typeof m === "object" ? m?.name || m?.url : m);
+
+    const AnimatedCard = ({ card, isFirstRow, isLastRow }: { card: Card; isFirstRow: boolean; isLastRow: boolean }) => {
       const ref = React.useRef<HTMLDivElement>(null);
-      const intervalRef = React.useRef<NodeJS.Timeout | null>(null);
+      const intervalRef = React.useRef<ReturnType<typeof setInterval> | null>(null);
+
+      const rawNumber = (this.castToString(card.number) as string) || "";
+      const prefix = rawNumber.match(/^[^\d]*/)?.[0] ?? "";
+      const suffix = rawNumber.match(/[^\d]*$/)?.[0] ?? "";
+      const core = rawNumber.slice(prefix.length, rawNumber.length - suffix.length);
+      const isNumeric = /\d/.test(core);
+      const target = isNumeric ? parseFloat(core.replace(/,/g, "")) : NaN;
+      const decimals = core.includes(".") ? core.split(".")[1]?.length ?? 0 : 0;
+      const useGrouping = /,/.test(core);
+      const reduceMotion = typeof window !== "undefined" && !!window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
+      const animatable = shouldAnimate && isNumeric && !reduceMotion;
+
+      const format = (n: number) => prefix + n.toLocaleString("en-US", { minimumFractionDigits: decimals, maximumFractionDigits: decimals, useGrouping }) + suffix;
+
+      const [display, setDisplay] = React.useState<string>(() => (rawNumber ? (animatable ? format(0) : rawNumber) : ""));
 
       React.useEffect(() => {
+        if (!rawNumber) {
+          setDisplay("");
+          return;
+        }
+        if (!animatable) {
+          setDisplay(rawNumber);
+          return;
+        }
+        const node = ref.current;
+        if (!node || typeof IntersectionObserver === "undefined") {
+          setDisplay(rawNumber);
+          return;
+        }
+        const clear = () => {
+          if (intervalRef.current) {
+            clearInterval(intervalRef.current);
+            intervalRef.current = null;
+          }
+        };
+        const run = () => {
+          clear();
+          setDisplay(format(0));
+          const steps = Math.max(1, Math.round(animationDuration / 30));
+          const increment = target / steps;
+          let current = 0;
+          intervalRef.current = setInterval(() => {
+            current += increment;
+            if (current >= target) {
+              clear();
+              setDisplay(rawNumber);
+              return;
+            }
+            setDisplay(format(current));
+          }, 30);
+        };
         const observer = new IntersectionObserver(
           (entries) => {
             entries.forEach((entry) => {
               if (entry.isIntersecting) {
-                animateDigits();
+                run();
                 observer.unobserve(entry.target);
               }
             });
           },
-          { threshold: 0.5 }
+          { threshold: 0.4 }
         );
-
-        if (ref.current) {
-          observer.observe(ref.current);
-        }
-
+        observer.observe(node);
         return () => {
-          if (ref.current) {
-            observer.unobserve(ref.current);
-          }
-          if (intervalRef.current) {
-            clearInterval(intervalRef.current);
-          }
+          observer.disconnect();
+          clear();
         };
-      }, [card.number]);
+      }, [rawNumber, animatable, animationDuration, target]);
 
-      const animateDigits = () => {
-        if (intervalRef.current) {
-          clearInterval(intervalRef.current);
-        }
+      const isTextExist = this.castToString(card.description);
+      const iconExist = mediaExists(card.icon);
+      const secondIconExist = mediaExists(card.secondIcon);
+      const hasAmountRow = !!display || !!iconExist || !!secondIconExist;
 
-        const finalAmount = card.number?.toString();
-        if (finalAmount === null || finalAmount === undefined) {
-          setAmount(null);
-          return;
-        }
-
-        const steps = animationDuration / 30;
-        let currentAmount = amount ? parseFloat(amount) : 0;
-        const increment = (parseFloat(finalAmount) - currentAmount) / steps;
-
-        intervalRef.current = setInterval(() => {
-          currentAmount += increment;
-
-          if ((increment > 0 && currentAmount >= parseFloat(finalAmount)) || (increment < 0 && currentAmount <= parseFloat(finalAmount))) {
-            currentAmount = parseFloat(finalAmount);
-            clearInterval(intervalRef.current);
-            setShowDecimals(true);
-          }
-
-          setAmount(currentAmount.toString());
-        }, 30);
-      };
-
-      const integerPart = amount ? Math.floor(parseFloat(amount)) : null;
-      const decimalPart = amount ? amount.split(".")[1] || "" : "";
+      if (!isTextExist && !hasAmountRow) return null;
 
       const conditionalClasses = [isFirstRow ? this.decorateCSS("border-top-none") : "", isLastRow ? this.decorateCSS("border-bottom-none") : ""].filter(Boolean).join(" ");
-
       const classes = `${this.decorateCSS("listed")} ${conditionalClasses}`.trim();
 
       return (
-        (isTextExist || amount !== null || (typeof card.icon === "object" ? (card.icon?.name || card.icon?.url) : card.icon) || (typeof card.secondIcon === "object" ? (card.secondIcon?.name || card.secondIcon?.url) : card.secondIcon)) && (
-          <div ref={ref} className={classes}>
-            {isTextExist && <Base.P className={this.decorateCSS("card-text")}>{card.description}</Base.P>}
-            {(amount !== null || (typeof card.icon === "object" ? (card.icon?.name || card.icon?.url) : card.icon) || (typeof card.secondIcon === "object" ? (card.secondIcon?.name || card.secondIcon?.url) : card.secondIcon)) && (
-              <div className={this.decorateCSS("card-amount-container")}>
-                {(typeof card.icon === "object" ? (card.icon?.name || card.icon?.url) : card.icon) && (
-                  <Base.Media value={typeof card.icon === "object" ? card.icon : { type: "icon", name: card.icon }} className={this.decorateCSS("card-icon")} />
-                )}
-                {amount !== null && amount !== "NaN" && (
-                  <div className={this.decorateCSS("card-amount")}>
-                    {integerPart}
-                    {showDecimals && decimalPart && <span>.{decimalPart}</span>}
-                  </div>
-                )}
-                {(typeof card.secondIcon === "object" ? (card.secondIcon?.name || card.secondIcon?.url) : card.secondIcon) && (
-                  <Base.Media value={typeof card.secondIcon === "object" ? card.secondIcon : { type: "icon", name: card.secondIcon }} className={this.decorateCSS("card-icon-after")} />
-                )}
-              </div>
-            )}
-          </div>
-        )
+        <div ref={ref} className={classes}>
+          {isTextExist && <Base.P className={this.decorateCSS("card-text")}>{card.description}</Base.P>}
+          {hasAmountRow && (
+            <div className={this.decorateCSS("card-amount-container")}>
+              {iconExist && <Base.Media value={typeof card.icon === "object" ? card.icon : { type: "icon", name: card.icon }} className={this.decorateCSS("card-icon")} />}
+              {!!display && <div className={this.decorateCSS("card-amount")}>{display}</div>}
+              {secondIconExist && <Base.Media value={typeof card.secondIcon === "object" ? card.secondIcon : { type: "icon", name: card.secondIcon }} className={this.decorateCSS("card-icon-after")} />}
+            </div>
+          )}
+        </div>
       );
     };
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          {(isSubtitleExist || this.castToString(this.getPropValue("header"))) && (
+          {(isSubtitleExist || isTitleExist) && (
             <Base.VerticalContent className={`${this.decorateCSS("header-wrapper")} ${cardLength <= 0 ? this.decorateCSS("full-width") : ""}`}>
               {isSubtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{subtitle}</Base.SectionSubTitle>}
-              {this.castToString(this.getPropValue("header")) && (
-                <Base.SectionTitle className={this.decorateCSS("header")}>{this.getPropValue("header")}</Base.SectionTitle>
-              )}
+              {isTitleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>}
             </Base.VerticalContent>
           )}
 
           <Base.ContainerGrid className={this.decorateCSS("bottom-content")}>
-            {this.castToString(this.getPropValue("subHeader")) && (
-              <Base.VerticalContent className={`${this.decorateCSS("subHeader")} ${cardLength <= 0 ? this.decorateCSS("full-width") : ""}  ${!this.castToString(this.getPropValue("header")) && this.decorateCSS("no-title")}`}>
-                {this.castToString(this.getPropValue("subHeader")) && <Base.SectionDescription className={`${this.decorateCSS("description")} ${cardLength <= 0 ? this.decorateCSS("full-width") : ""}`}>{this.getPropValue("subHeader")}</Base.SectionDescription>}
+            {(isDescExist || isButtonTextExist) && (
+              <Base.VerticalContent className={`${this.decorateCSS("description-column")} ${cardLength <= 0 ? this.decorateCSS("full-width") : ""} ${!isTitleExist ? this.decorateCSS("no-title") : ""}`}>
+                {isDescExist && <Base.SectionDescription className={`${this.decorateCSS("description")} ${cardLength <= 0 ? this.decorateCSS("full-width") : ""}`}>{description}</Base.SectionDescription>}
 
-                {this.castToString(button.text) && (
+                {isButtonTextExist && (
                   <div className={this.decorateCSS("button-content")}>
                     <ComposerLink path={button.url}>
                       <Base.Button buttonType={button.type} className={`${this.decorateCSS("contact-button")} ${cardLength <= 0 ? this.decorateCSS("button-full-width") : ""}`}>
@@ -335,15 +357,11 @@ class Stats2Page extends BaseStats {
               </Base.VerticalContent>
             )}
 
-            {cards.length > 0 && (
+            {cardLength > 0 && (
               <Base.ListGrid gridCount={{ pc: itemCount, tablet: 2, phone: 1 }} className={this.decorateCSS("cards-container")}>
                 {cards.map((card, index) => {
                   const currentRow = Math.floor(index / itemCount) + 1;
-                  const isFirstRow = currentRow === 1;
-                  const isLastRow = currentRow === totalRows;
-
-                  const isTextExist = this.castToString(card.description);
-                  return <AnimatedCard key={index} card={card} animationDuration={animationDuration} isTextExist={isTextExist} isFirstRow={isFirstRow} isLastRow={isLastRow} />;
+                  return <AnimatedCard key={index} card={card} isFirstRow={currentRow === 1} isLastRow={currentRow === totalRows} />;
                 })}
               </Base.ListGrid>
             )}

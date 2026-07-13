@@ -95,19 +95,13 @@ class Stats22 extends BaseStats {
     });
     this.addProp({
       type: "object",
-      key: "animation",
-      displayer: "Animation",
+      key: "settings",
+      displayer: "Settings",
       value: [
-        { type: "boolean", key: "statsAnimation", displayer: "Stats Animation", value: true },
+        { type: "boolean", key: "shouldAnimate", displayer: "Animate Numbers", value: true },
         { type: "number", key: "animationDuration", displayer: "Animation Duration (ms)", value: 2000 },
+        { type: "number", key: "itemCount", displayer: "Item Count in a Row", value: 3, max: 6 },
       ],
-    });
-    this.addProp({
-      type: "number",
-      key: "itemCountInRow",
-      displayer: "Item Count in a Row",
-      value: 3,
-      max: 6,
     });
   }
 
@@ -115,141 +109,14 @@ class Stats22 extends BaseStats {
     return "Stats 22";
   }
 
-  private AnimatedStat = ({
-    stat,
-    animationDuration = 2000,
-    statsAnimation,
-  }: {
-    stat: StatItem;
-    animationDuration?: number;
-    statsAnimation: boolean;
-  }) => {
-    const cleanNumber = (stat.number || "").replace(/[^\d.]/g, "");
-    const targetNumber = parseFloat(cleanNumber);
-    const isEmptyNumber = cleanNumber === "" || isNaN(targetNumber);
-    const [animatedNumber, setAnimatedNumber] = React.useState<string>(
-      isEmptyNumber ? "" : statsAnimation ? "0" : Math.floor(targetNumber).toString()
-    );
-    const ref = React.useRef<HTMLDivElement>(null);
-    const intervalRef = React.useRef<NodeJS.Timeout | null>(null);
-
-    React.useEffect(() => {
-      if (isEmptyNumber) {
-        setAnimatedNumber("");
-        return;
-      }
-      if (!statsAnimation) {
-        setAnimatedNumber(Math.floor(targetNumber).toString());
-        return;
-      }
-
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              animateValue();
-              observer.unobserve(entry.target);
-            }
-          });
-        },
-        { threshold: 0.5 }
-      );
-
-      if (ref.current) {
-        observer.observe(ref.current);
-      }
-
-      return () => {
-        if (ref.current) {
-          observer.unobserve(ref.current);
-        }
-        if (intervalRef.current) {
-          clearInterval(intervalRef.current);
-        }
-      };
-    }, [targetNumber, animationDuration, statsAnimation, isEmptyNumber]);
-
-    const animateValue = () => {
-      if (intervalRef.current) {
-        clearInterval(intervalRef.current);
-      }
-      if (isEmptyNumber || isNaN(targetNumber)) return;
-
-      const steps = animationDuration / 30;
-      let currentNumber = 0;
-      const increment = targetNumber / steps;
-
-      intervalRef.current = setInterval(() => {
-        currentNumber += increment;
-
-        if (currentNumber >= targetNumber) {
-          currentNumber = targetNumber;
-          if (intervalRef.current) clearInterval(intervalRef.current);
-        }
-
-        setAnimatedNumber(Math.floor(currentNumber).toString());
-      }, 30);
-    };
-
-    const hasSubtitle = stat.subtitle && this.castToString(stat.subtitle);
-    const hasTitle = stat.title && this.castToString(stat.title);
-    const hasDescription = stat.description && this.castToString(stat.description);
-    const hasPrefix = stat.prefix && stat.prefix.trim() !== "";
-    const hasSuffix = stat.suffix && stat.suffix.trim() !== "";
-    const hasNumber = (stat.number && stat.number.trim() !== "") || hasPrefix || hasSuffix;
-
-    if (!hasNumber && !hasTitle) return null;
-
-    return (
-      <div ref={ref} className={this.decorateCSS("card")}>
-        {hasNumber && (
-          <div className={this.decorateCSS("stat-value")}>
-            {hasPrefix && (
-              <span className={this.decorateCSS("stat-prefix")}>
-                {stat.prefixElement}
-              </span>
-            )}
-            <span className={this.decorateCSS("stat-number")}>
-              {animatedNumber}
-            </span>
-            {hasSuffix && (
-              <span className={this.decorateCSS("stat-suffix")}>
-                {stat.suffixElement}
-              </span>
-            )}
-          </div>
-        )}
-        {(hasSubtitle || hasTitle || hasDescription) && (
-          <Base.VerticalContent className={this.decorateCSS("stat-vertical-content")}>
-            {hasSubtitle && (
-              <Base.H6 className={this.decorateCSS("stat-subtitle")}>
-                {stat.subtitle}
-              </Base.H6>
-            )}
-            {hasTitle && (
-              <Base.H5 className={this.decorateCSS("stat-title")}>
-                {stat.title}
-              </Base.H5>
-            )}
-            {hasDescription && (
-              <Base.P className={this.decorateCSS("stat-description")}>
-                {stat.description}
-              </Base.P>
-            )}
-          </Base.VerticalContent>
-        )}
-      </div>
-    );
-  };
-
   render() {
     const subtitle = this.castToString(this.getPropValue("subtitle"));
     const title = this.castToString(this.getPropValue("title"));
     const description = this.castToString(this.getPropValue("description"));
     const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
-    const animationProps = this.castToObject<{ statsAnimation: boolean; animationDuration: number }>("animation");
-    const statsAnimation = !!animationProps?.statsAnimation;
-    const animationDuration = animationProps?.animationDuration || 2000;
+    const settings = this.castToObject<any>("settings");
+    const shouldAnimate = settings?.shouldAnimate ?? true;
+    const animationDuration = (settings?.animationDuration ?? 2000) as number;
     const statItemsProp = this.getPropValue("statItems");
     const statItems: StatItem[] = statItemsProp.map((item: any) => {
       const subtitle = item.getPropValue("subtitle");
@@ -270,10 +137,132 @@ class Stats22 extends BaseStats {
     });
 
     const hasValidButtons = buttons.some((btn) => this.castToString(btn.text));
-    const itemCountInRow = this.getPropValue("itemCountInRow") ?? 3;
+    const itemCountInRow = settings?.itemCount ?? 3;
     const hasLeft = subtitle || title || hasValidButtons;
     const hasRight = description || visibleStatItems.length > 0;
     const alignment = Base.getContentAlignment() || "left";
+
+    const AnimatedStat = ({ stat }: { stat: StatItem }) => {
+      const ref = React.useRef<HTMLDivElement>(null);
+      const intervalRef = React.useRef<ReturnType<typeof setInterval> | null>(null);
+
+      const rawNumber = (this.castToString(stat.number) as string) || "";
+      const core = rawNumber.replace(/[^\d.]/g, "");
+      const isNumeric = /\d/.test(core);
+      const target = isNumeric ? parseFloat(core.replace(/,/g, "")) : NaN;
+      const decimals = core.includes(".") ? core.split(".")[1]?.length ?? 0 : 0;
+      const useGrouping = /,/.test(rawNumber);
+      const reduceMotion = typeof window !== "undefined" && !!window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
+      const animatable = shouldAnimate && isNumeric && !reduceMotion;
+
+      const format = (n: number) => n.toLocaleString("en-US", { minimumFractionDigits: decimals, maximumFractionDigits: decimals, useGrouping });
+
+      const [display, setDisplay] = React.useState<string>(() => (rawNumber ? (animatable ? format(0) : rawNumber) : ""));
+
+      React.useEffect(() => {
+        if (!rawNumber) {
+          setDisplay("");
+          return;
+        }
+        if (!animatable) {
+          setDisplay(rawNumber);
+          return;
+        }
+        const node = ref.current;
+        if (!node || typeof IntersectionObserver === "undefined") {
+          setDisplay(rawNumber);
+          return;
+        }
+        const clear = () => {
+          if (intervalRef.current) {
+            clearInterval(intervalRef.current);
+            intervalRef.current = null;
+          }
+        };
+        const run = () => {
+          clear();
+          setDisplay(format(0));
+          const steps = Math.max(1, Math.round(animationDuration / 30));
+          const increment = target / steps;
+          let current = 0;
+          intervalRef.current = setInterval(() => {
+            current += increment;
+            if (current >= target) {
+              clear();
+              setDisplay(rawNumber);
+              return;
+            }
+            setDisplay(format(current));
+          }, 30);
+        };
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                run();
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.4 }
+        );
+        observer.observe(node);
+        return () => {
+          observer.disconnect();
+          clear();
+        };
+      }, [rawNumber, animatable, animationDuration, target]);
+
+      const hasSubtitle = stat.subtitle && this.castToString(stat.subtitle);
+      const hasTitle = stat.title && this.castToString(stat.title);
+      const hasDescription = stat.description && this.castToString(stat.description);
+      const hasPrefix = stat.prefix && stat.prefix.trim() !== "";
+      const hasSuffix = stat.suffix && stat.suffix.trim() !== "";
+      const hasNumber = (stat.number && stat.number.trim() !== "") || hasPrefix || hasSuffix;
+
+      if (!hasNumber && !hasTitle) return null;
+
+      return (
+        <div ref={ref} className={this.decorateCSS("card")}>
+          {hasNumber && (
+            <div className={this.decorateCSS("stat-value")}>
+              {hasPrefix && (
+                <span className={this.decorateCSS("stat-prefix")}>
+                  {stat.prefixElement}
+                </span>
+              )}
+              <span className={this.decorateCSS("stat-number")}>
+                {display}
+              </span>
+              {hasSuffix && (
+                <span className={this.decorateCSS("stat-suffix")}>
+                  {stat.suffixElement}
+                </span>
+              )}
+            </div>
+          )}
+          {(hasSubtitle || hasTitle || hasDescription) && (
+            <Base.VerticalContent className={this.decorateCSS("stat-vertical-content")}>
+              {hasSubtitle && (
+                <Base.H6 className={this.decorateCSS("stat-subtitle")}>
+                  {stat.subtitle}
+                </Base.H6>
+              )}
+              {hasTitle && (
+                <Base.H5 className={this.decorateCSS("stat-title")}>
+                  {stat.title}
+                </Base.H5>
+              )}
+              {hasDescription && (
+                <Base.P className={this.decorateCSS("stat-description")}>
+                  {stat.description}
+                </Base.P>
+              )}
+            </Base.VerticalContent>
+          )}
+        </div>
+      );
+    };
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
@@ -324,12 +313,7 @@ class Stats22 extends BaseStats {
                     className={this.decorateCSS("stats-grid")}
                   >
                     {visibleStatItems.map((item, index) => (
-                      <this.AnimatedStat
-                        key={index}
-                        stat={item}
-                        animationDuration={animationDuration}
-                        statsAnimation={statsAnimation}
-                      />
+                      <AnimatedStat key={index} stat={item} />
                     ))}
                   </Base.ListGrid>
                 )}

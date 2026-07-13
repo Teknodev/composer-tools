@@ -3,36 +3,53 @@
 .container {
   background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
   .max-content {
-    .banner {
-      margin-bottom: calc(2 * var(--composer-gap-lg));
+    display: flex;
+    flex-direction: column;
+    gap: var(--composer-gap-lg);
 
-      .subtitle {
-        margin-bottom: var(--composer-gap-sm);
-      }
+    .banner {
+ 
 
       .description {
         color: var(--composer-tertiary-color);
+      }
+
+      .button-container {
+        display: flex;
+        gap: var(--composer-gap-sm);
+        flex-wrap: wrap;
+
+        .button {
+          content: "";
+        }
       }
     }
 
     .stats6-page {
       .card {
-        gap: var(--composer-gap-md);
+        display: flex;
+        flex-direction: column;
         width: 100%;
         align-items: center;
 
-        .data-card-title {
-          font-size: 2.5rem;
-          color: var(--composer-primary-color);
-          word-break: break-all;
-          margin: 0;
-        }
+        .card-content {
+          width: 100%;
+          align-items: center;
 
-        .data-card-description {
-          margin: 0;
-          color: var(--composer-tertiary-color);
-          font-size: 1.5rem;
-          text-align: center;
+          .data-card-title {
+            font-size: 2.5rem;
+            color: var(--composer-primary-color);
+            word-break: break-all;
+            margin: 0;
+            text-align: center;
+          }
+
+          .data-card-description {
+            margin: 0;
+            color: var(--composer-tertiary-color);
+            font-size: 1.5rem;
+            text-align: center;
+          }
         }
       }
     }
@@ -43,37 +60,24 @@
   .container {
     .max-content {
       .banner {
-        margin-bottom: calc(2 * var(--composer-gap-md));
         .description {
           width: 100%;
         }
       }
       .stats6-page {
-        gap: var(--composer-gap-xl) !important;
+        gap: var(--composer-gap-lg) !important;
 
         .card {
-          gap: var(--composer-gap-md);
-          .data-card-title {
-            font-size: 2rem;
-          }
+          .card-content {
+            .data-card-title {
+              font-size: 2rem;
+            }
 
-          .data-card-description {
-            font-size: 1rem;
+            .data-card-description {
+              font-size: 1rem;
+            }
           }
         }
-      }
-    }
-  }
-}
-
-@container (max-width: #{$composer-phone-width}) {
-  .container {
-    .max-content {
-      .banner {
-        margin-bottom: calc(2 * var(--composer-gap-sm));
-      }
-      .stats6-page {
-        gap: var(--composer-gap-lg) !important;
       }
     }
   }

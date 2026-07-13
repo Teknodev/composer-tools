@@ -143,11 +143,11 @@ class Stats7Page extends BaseStats {
               {items.map((item: Item, index: number) => {
                 const { title, progress, progressText } = item;
                 let percent = progress;
-                let text = progressText ?? <>`${percent}%`</>;
+                let text = progressText ?? <>{`${percent}%`}</>;
 
                 if (percent === 0) {
                   percent = 1;
-                  text = <>"0%"</>;
+                  text = <>0%</>;
                 } else if (percent >= 100) {
                   percent = 100;
                 }

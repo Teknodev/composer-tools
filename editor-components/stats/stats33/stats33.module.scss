@@ -4,7 +4,7 @@
     .max-content {
         display: flex;
         flex-direction: column;
-        gap: var(--composer-gap-xl);
+        gap: var(--composer-gap-lg);
 
         .header {
 
@@ -25,7 +25,7 @@
         .content {
             display: flex;
             flex-direction: column;
-            gap: var(--composer-gap-xl);
+            gap: var(--composer-gap-lg);
 
             .row {
                 gap: calc(var(--composer-gap-xl) * 2);
