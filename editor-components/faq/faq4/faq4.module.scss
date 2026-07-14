@@ -204,16 +204,11 @@
 @container (max-width: #{$composer-tablet-width}) {
   .container {
     .max-content {
-      .middle-page {
-        border-bottom: none;
-      }
-
       .down-page {
         .card-wrapper {
-          gap: var(--composer-gap-sm);
 
           .card {
-            padding-bottom: var(--composer-gap-md);
+            padding: var(--composer-gap-md) 0;
           }
         }
       }
@@ -226,10 +221,9 @@
     .max-content {
       .down-page {
         .card-wrapper {
-          gap: var(--composer-gap-md);
 
           .card {
-            padding-bottom: var(--composer-gap-md);
+            padding: var(--composer-gap-md) 0;
           }
         }
       }

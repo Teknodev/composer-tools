@@ -205,7 +205,7 @@ class Faq9 extends BaseFAQ {
       key: "buttons",
       displayer: "Buttons",
       value: [
-        INPUTS.BUTTON("button", "Button", "Learn More", "", null, null, "Primary"),
+        INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
       ],
     });
 

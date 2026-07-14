@@ -247,6 +247,8 @@ class Faq4 extends BaseFAQ {
   render() {
     const card = this.castToObject<Card[]>("cards");
     const lineEnabled = this.getPropValue("line");
+    const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons") || [];
+    const visibleButtons = buttons.filter(btn => this.castToString(btn.text));
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
@@ -331,17 +333,15 @@ class Faq4 extends BaseFAQ {
               )}
             </div>
           )}
-          {this.getPropValue("buttons").length > 0 && (
+          {visibleButtons.length > 0 && (
             <div className={this.decorateCSS("buttons-wrapper")}>
-              {this.castToObject<INPUTS.CastedButton[]>("buttons").map((button: INPUTS.CastedButton) =>
-                this.castToString(button.text) && (
-                  <ComposerLink path={button.url}>
-                    <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
-                      <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
-                    </Base.Button>
-                  </ComposerLink>
-                )
-              )}
+              {visibleButtons.map((button: INPUTS.CastedButton, index: number) => (
+                <ComposerLink key={index} path={button.url}>
+                  <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
+                    <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
+                  </Base.Button>
+                </ComposerLink>
+              ))}
             </div>
           )}
         </Base.MaxContent>

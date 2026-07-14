@@ -61,10 +61,13 @@
               gap: var(--composer-gap-sm);
 
               .bullet-icon {
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
                 color: var(--composer-font-color-primary);
-                font-size: 1.5rem;
-                width: 24px;
-                height: 24px;
+                font-size: 0.75rem;
+                width: 16px;
+                height: 16px;
                 object-fit: contain;
                 transition: color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
               }

@@ -14,8 +14,9 @@ type Card = {
 type BottomItem = {
   title: React.JSX.Element;
   description: React.JSX.Element;
+  icon?: TypeMediaInputValue;
   buttons: INPUTS.CastedButton[];
-}
+};
 
 class Faq2 extends BaseFAQ {
   constructor(props?: any) {
@@ -309,6 +310,18 @@ class Faq2 extends BaseFAQ {
       displayer: "Bottom Container",
       value: [
         {
+          type: "media",
+          key: "icon",
+          displayer: "Icon",
+          additionalParams: {
+            availableTypes: ["icon", "image"],
+          },
+          value: {
+            type: "icon",
+            name: "BiQuestionMark",
+          },
+        },
+        {
           type: "string",
           key: "title",
           displayer: "Title",
@@ -326,7 +339,7 @@ class Faq2 extends BaseFAQ {
           key: "buttons",
           displayer: "Buttons",
           value: [
-            INPUTS.BUTTON("button", "Button", "Open Positions", "", null, null, "Primary"),
+            INPUTS.BUTTON("button", "Button", "Get in Touch", "", null, null, "Primary"),
           ],
         },
       ],
@@ -342,7 +355,18 @@ class Faq2 extends BaseFAQ {
     const title = this.castToString(this.getPropValue("title"))
     const description = this.castToString(this.getPropValue("description"))
     const hasContent = subtitle || title || description
-    const downContainer = this.castToObject<BottomItem>("downContainer");
+    
+    const downContainerProp = this.getProp("downContainer");
+    const downContainerValues = downContainerProp ? (downContainerProp.value as any[]) : [];
+    
+    const downTitle = this.getPropValue("title", { parent_object: downContainerValues });
+    const downDescription = this.getPropValue("description", { parent_object: downContainerValues });
+    const downIcon = this.getPropValue("icon", { parent_object: downContainerValues });
+    
+    const downButtonsProp = downContainerValues.find(p => p.key === "buttons");
+    const downButtons: INPUTS.CastedButton[] = downButtonsProp 
+      ? (this as any).castingProcess(downButtonsProp) 
+      : [];
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
@@ -407,25 +431,30 @@ class Faq2 extends BaseFAQ {
               )}
             </Base.ListGrid>
           )}
-          {(this.castToString(downContainer.title) || this.castToString(downContainer.description) || downContainer.buttons?.length > 0) && (
+          {(this.castToString(downTitle) || this.castToString(downDescription) || downButtons.length > 0 || (downIcon && (downIcon.type === "icon" ? downIcon.name : downIcon.url))) && (
             <div className={this.decorateCSS("down-container")}>
-              {(this.castToString(downContainer.title) || this.castToString(downContainer.description)) && (
+              {downIcon && (downIcon.type === "icon" ? downIcon.name : downIcon.url) && (
+                <Base.Row className={`${this.decorateCSS("down-icon-wrapper")}${!this.getPropValue("showIconBackground") ? ` ${this.decorateCSS("no-icon-bg")}` : ""}`}>
+                  <Base.Media value={downIcon} className={this.decorateCSS("down-icon")} />
+                </Base.Row>
+              )}
+              {(this.castToString(downTitle) || this.castToString(downDescription)) && (
                 <Base.VerticalContent className={this.decorateCSS("content")}>
-                  {this.castToString(downContainer.title) && (
+                  {this.castToString(downTitle) && (
                     <Base.H2 className={this.decorateCSS("down-title")}>
-                      {downContainer.title}
+                      {downTitle}
                     </Base.H2>
                   )}
-                  {this.castToString(downContainer.description) && (
+                  {this.castToString(downDescription) && (
                     <Base.P className={this.decorateCSS("down-description")}>
-                      {downContainer.description}
+                      {downDescription}
                     </Base.P>
                   )}
                 </Base.VerticalContent>
               )}
-              {downContainer.buttons?.length > 0 && (
+              {downButtons.length > 0 && (
                 <div className={this.decorateCSS("button-container")}>
-                  {downContainer.buttons.map((button: INPUTS.CastedButton, index: number) => (
+                  {downButtons.map((button: INPUTS.CastedButton, index: number) => (
                     this.castToString(button.text) && (
                       <ComposerLink key={index} path={button.url}>
                         <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
