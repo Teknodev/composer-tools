@@ -83,7 +83,7 @@
                     width: 100%;
                     display: flex;
                     align-items: center;
-                    padding: var(--composer-gap-md);
+                    padding: var(--composer-gap-lg);
 
                     .card-subtitle {
                         flex: 1;
@@ -111,7 +111,7 @@
 
                 .card-inner {
                     overflow: hidden;
-                    padding: 0px var(--composer-gap-md);
+                    padding: 0px var(--composer-gap-lg);
                     display: flex;
                     max-height: 0px;
                     transition: max-height, padding 0.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -125,7 +125,7 @@
 
                     &.cardActive {
                         max-height: 500px;
-                        padding: 0px var(--composer-gap-md) var(--composer-gap-md) var(--composer-gap-md);
+                        padding: 0px var(--composer-gap-lg) var(--composer-gap-lg) var(--composer-gap-lg);
 
                         .card-text {
                             opacity: 1;
@@ -147,10 +147,20 @@
 
                 .card {
                     .in-box {
+                        padding: var(--composer-gap-md);
+
                         .icon {
                             width: var(--composer-gap-md);
                             height: var(--composer-gap-md);
                             font-size: 1.5rem;
+                        }
+                    }
+
+                    .card-inner {
+                        padding: 0px var(--composer-gap-md);
+
+                        &.cardActive {
+                            padding: 0px var(--composer-gap-md) var(--composer-gap-md) var(--composer-gap-md);
                         }
                     }
                 }

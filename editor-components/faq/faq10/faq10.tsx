@@ -24,21 +24,21 @@ class Faq10 extends BaseFAQ {
       type: "string",
       key: "subtitle",
       displayer: "Subtitle",
-      value: "FAQ",
+      value: "",
     });
 
     this.addProp({
       type: "string",
       key: "title",
       displayer: "Title",
-      value: "Pricing FAQs",
+      value: "",
     });
 
     this.addProp({
       type: "string",
       key: "description",
       displayer: "Description",
-      value: "Looking for something else? Let’s talk",
+      value: "",
     });
 
     this.addProp({
@@ -308,7 +308,7 @@ class Faq10 extends BaseFAQ {
       key: "buttons",
       displayer: "Buttons",
       value: [
-        INPUTS.BUTTON("button", "Button", "Learn More", "", null, null, "Primary"),
+        INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
       ],
     });
 
@@ -487,9 +487,9 @@ class Faq10 extends BaseFAQ {
                       >
                         <div className={this.decorateCSS("card-header")}>
                           {cardSubtitleExist && (
-                            <Base.H6 className={this.decorateCSS("card-title")}>
+                            <Base.P className={this.decorateCSS("card-title")}>
                               {card.subtitle}
-                            </Base.H6>
+                            </Base.P>
                           )}
                           <span
                             className={[

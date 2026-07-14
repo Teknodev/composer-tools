@@ -20,7 +20,8 @@ as *;
           text-align: center;
           transform: none !important;
 
-          &::before, &:before {
+          &::before,
+          &:before {
             display: none !important;
           }
         }
@@ -105,12 +106,6 @@ as *;
                 object-fit: contain;
                 transform: rotate(0deg);
                 transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-
-                svg {
-                  display: block;
-                  width: 100%;
-                  height: 100%;
-                }
               }
 
               &.active {

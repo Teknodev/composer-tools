@@ -73,7 +73,7 @@ as *;
         display: flex;
         align-items: center;
         border-radius: var(--composer-border-radius-sm);
-        padding: var(--composer-gap-md);
+        padding: var(--composer-gap-sm);
         background: color-mix(in srgb,
             var(--composer-html-background),
             var(--composer-font-color-primary) 5%);
@@ -149,8 +149,8 @@ as *;
       .card-body {
         max-height: 0;
         overflow: hidden;
-        padding-left: var(--composer-gap-md);
-        padding-right: var(--composer-gap-md);
+        padding-left: var(--composer-gap-sm);
+        padding-right: var(--composer-gap-sm);
         transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         background-color: (--composer-html-background);
 
@@ -178,7 +178,7 @@ as *;
     .max-content {
       .faq-grid {
         grid-template-columns: 1fr;
-        gap: var(--composer-gap-xs);
+        gap: var(--composer-gap-lg);
       }
     }
   }

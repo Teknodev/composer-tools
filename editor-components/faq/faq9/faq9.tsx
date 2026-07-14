@@ -48,7 +48,7 @@ class Faq9 extends BaseFAQ {
       },
       value: {
         type: "icon",
-        name: "SlArrowUp",
+        name: "FaAngleUp",
       },
     });
 
@@ -61,7 +61,7 @@ class Faq9 extends BaseFAQ {
       },
       value: {
         type: "icon",
-        name: "SlArrowDown",
+        name: "FaAngleDown",
       },
     });
 
@@ -352,8 +352,8 @@ class Faq9 extends BaseFAQ {
                             className={`${this.decorateCSS(
                               "child-container"
                             )} ${activeLeft === idx
-                                ? this.decorateCSS("active")
-                                : ""
+                              ? this.decorateCSS("active")
+                              : ""
                               }`}
                           >
                             {questn.qq && (
@@ -366,8 +366,8 @@ class Faq9 extends BaseFAQ {
                                   className={`${this.decorateCSS(
                                     "card-title"
                                   )} ${activeLeft === idx
-                                      ? this.decorateCSS("active")
-                                      : ""
+                                    ? this.decorateCSS("active")
+                                    : ""
                                     }`}
                                 >
                                   {questn.qq}
@@ -379,8 +379,8 @@ class Faq9 extends BaseFAQ {
                                 className={`${this.decorateCSS(
                                   "icon-wrapper"
                                 )} ${activeLeft === idx
-                                    ? this.decorateCSS("active")
-                                    : ""
+                                  ? this.decorateCSS("active")
+                                  : ""
                                   }`}
                               >
                                 <Base.Media
@@ -395,8 +395,8 @@ class Faq9 extends BaseFAQ {
                           <div
                             ref={(el) => (this.answerRefs[idx] = el)}
                             className={`${this.decorateCSS("inner-card")} ${activeLeft === idx
-                                ? this.decorateCSS("active")
-                                : ""
+                              ? this.decorateCSS("active")
+                              : ""
                               }`}
                           >
                             <Base.P className={this.decorateCSS("inner-text")}>
@@ -423,8 +423,8 @@ class Faq9 extends BaseFAQ {
                               className={`${this.decorateCSS(
                                 "child-container"
                               )} ${activeRight === idx
-                                  ? this.decorateCSS("active")
-                                  : ""
+                                ? this.decorateCSS("active")
+                                : ""
                                 }`}
                             >
                               {questn.qq && (
@@ -437,8 +437,8 @@ class Faq9 extends BaseFAQ {
                                     className={`${this.decorateCSS(
                                       "card-title"
                                     )} ${activeRight === idx
-                                        ? this.decorateCSS("active")
-                                        : ""
+                                      ? this.decorateCSS("active")
+                                      : ""
                                       }`}
                                   >
                                     {questn.qq}
@@ -450,8 +450,8 @@ class Faq9 extends BaseFAQ {
                                   className={`${this.decorateCSS(
                                     "icon-wrapper"
                                   )} ${activeRight === idx
-                                      ? this.decorateCSS("active")
-                                      : ""
+                                    ? this.decorateCSS("active")
+                                    : ""
                                     }`}
                                 >
                                   <Base.Media
@@ -466,8 +466,8 @@ class Faq9 extends BaseFAQ {
                             <div
                               ref={(el) => (this.answerRefs[idx] = el)}
                               className={`${this.decorateCSS("inner-card")} ${activeRight === idx
-                                  ? this.decorateCSS("active")
-                                  : ""
+                                ? this.decorateCSS("active")
+                                : ""
                                 }`}
                             >
                               <Base.P className={this.decorateCSS("inner-text")}>

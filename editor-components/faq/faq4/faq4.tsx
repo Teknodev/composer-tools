@@ -217,7 +217,7 @@ class Faq4 extends BaseFAQ {
       key: "buttons",
       displayer: "Buttons",
       value: [
-        INPUTS.BUTTON("button", "Button", "Learn More", "", null, null, "Primary"),
+        INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
       ],
     });
 
@@ -299,9 +299,9 @@ class Faq4 extends BaseFAQ {
                             <div className={this.decorateCSS("child-container")}>
                               {this.castToString(item.title) && (
                                 <div className={this.decorateCSS("card-left")}>
-                                  <Base.H4 className={this.decorateCSS("card-title")}>
+                                  <Base.H5 className={this.decorateCSS("card-title")}>
                                     {item.title}
-                                  </Base.H4>
+                                  </Base.H5>
                                 </div>
                               )}
                               {currentIconExist && (

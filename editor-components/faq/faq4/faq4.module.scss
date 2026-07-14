@@ -4,14 +4,23 @@
   .max-content {
     display: flex;
     flex-direction: column;
-    gap: var(--composer-gap-md);
+    gap: var(--composer-gap-lg);
 
     .up-page {
+      align-items: center !important;
 
-      .subtitle,
+      .subtitle {
+        text-align: center !important;
+        transform: none !important;
+
+        &::before {
+          display: none !important;
+        }
+      }
+
       .title,
       .description {
-        content: "";
+        text-align: center !important;
       }
     }
 
@@ -22,6 +31,7 @@
       gap: var(--composer-gap-xl);
       flex-wrap: wrap;
       justify-content: center;
+      margin-bottom: var(--composer-gap-lg);
 
       &.no-line {
         border-bottom: none;
@@ -48,7 +58,8 @@
           transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 
           &.active {
-            border-bottom: 2px solid var(--composer-font-color-primary);
+            color: var(--composer-secondary-color);
+            border-bottom: 2px solid var(--composer-secondary-color);
             opacity: 1;
             font-weight: bold;
           }
@@ -123,8 +134,9 @@
                 align-items: center;
                 justify-content: center;
                 padding: 0;
-                width: 36px;
-                height: 36px;
+                width: 30px;
+                height: 30px;
+                transition: border-color 0.4s ease, background-color 0.4s ease;
 
                 .icon {
                   color: var(--composer-tertiary-color);
@@ -136,11 +148,7 @@
                   justify-content: center;
                   object-fit: contain;
                   transform: rotate(0deg);
-                  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-
-                  &.active {
-                    transform: rotate(180deg);
-                  }
+                  transition: color 0.4s ease, transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
                 }
               }
             }
@@ -148,6 +156,19 @@
 
           &.active {
             padding-bottom: 0px;
+
+            .child-container {
+              .card-right {
+                .icon-wrapper {
+                  border-color: var(--composer-primary-color);
+                  background-color: transparent;
+
+                  .icon {
+                    color: var(--composer-primary-color);
+                  }
+                }
+              }
+            }
           }
 
           .hide-card {
@@ -225,8 +246,8 @@
             .child-container {
               .card-right {
                 .icon-wrapper {
-                  width: 32px;
-                  height: 32px;
+                  width: 26px;
+                  height: 26px;
 
                   .icon {
                     font-size: 1.25rem;

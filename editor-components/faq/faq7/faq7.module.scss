@@ -27,7 +27,7 @@
                     background-color: color-mix(in srgb,
                             var(--composer-html-background),
                             var(--composer-font-color-primary) 5%);
-                    padding: var(--composer-gap-md);
+                    padding: var(--composer-gap-lg);
                     position: relative;
                     display: flex;
                     align-items: center;
@@ -124,6 +124,8 @@
             .page {
                 .down-page {
                     .card {
+                        padding: var(--composer-gap-md);
+
                         .child-container {
                             .icon-wrapper {
                                 .icon {

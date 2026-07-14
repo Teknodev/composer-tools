@@ -46,7 +46,7 @@ class Faq5 extends BaseFAQ {
       key: "buttons",
       displayer: "Buttons",
       value: [
-        INPUTS.BUTTON("button", "Button", "Learn More", "", null, null, "Primary"),
+        INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
       ],
     });
 
@@ -727,7 +727,7 @@ class Faq5 extends BaseFAQ {
                               </div>
                             )}
                             {this.castToString(item.question) && (
-                              <Base.H6 className={this.decorateCSS("card-title")}>
+                              <Base.H6 className={`${this.decorateCSS("card-title")} ${this.getComponentState("activeCard") === index ? this.decorateCSS("active") : ""}`}>
                                 {item.question}
                               </Base.H6>
                             )}

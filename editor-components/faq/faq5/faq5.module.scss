@@ -57,9 +57,8 @@
           text-align: left !important;
 
           &.active {
-            border-bottom: 1px solid var(--composer-primary-color);
+            border-bottom: 2px solid var(--composer-primary-color);
             opacity: 1;
-            font-weight: bold;
           }
 
         }
@@ -127,7 +126,10 @@
               flex: 1;
               color: var(--composer-font-color-primary);
               text-align: left;
-              font-weight: 800;
+
+              &.active {
+                font-weight: 800;
+              }
             }
 
             .icon-wrapper {
