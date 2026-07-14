@@ -13,10 +13,17 @@ type Button = {
   type: string;
 };
 
+type Stat = {
+  label: React.JSX.Element;
+  value: React.JSX.Element;
+};
+
 type Card = {
   media: TypeMediaInputValue;
+  subtitle?: React.JSX.Element;
   title: React.JSX.Element;
   description: React.JSX.Element;
+  stats?: Stat[];
   url: string;
 };
 
@@ -113,6 +120,12 @@ class Feature10 extends BaseFeature {
             },
             {
               type: "string",
+              key: "subtitle",
+              displayer: "Subtitle",
+              value: "Case study"
+            },
+            {
+              type: "string",
               key: "title",
               displayer: "Title",
               value: "Lets Get Digital Case Study"
@@ -121,7 +134,32 @@ class Feature10 extends BaseFeature {
               type: "string",
               key: "description",
               displayer: "Description",
-              value: "Here's how Acme improved the infrastructure quality for Lets Get Digital without increasing costs."
+              value: "Here's how ElasticScale improved the infrastructure quality for Lets Get Digital without increasing costs."
+            },
+            {
+              type: "array",
+              key: "stats",
+              displayer: "Stats",
+              value: [
+                {
+                  type: "object",
+                  key: "stat",
+                  displayer: "Stat",
+                  value: [
+                    { type: "string", key: "label", displayer: "Label", value: "Reduced costs" },
+                    { type: "string", key: "value", displayer: "Value", value: "60% lower costs" }
+                  ]
+                },
+                {
+                  type: "object",
+                  key: "stat",
+                  displayer: "Stat",
+                  value: [
+                    { type: "string", key: "label", displayer: "Label", value: "Serverless architecture" },
+                    { type: "string", key: "value", displayer: "Value", value: "No patching required" }
+                  ]
+                }
+              ]
             },
             {
               type: "page",
@@ -150,6 +188,12 @@ class Feature10 extends BaseFeature {
             },
             {
               type: "string",
+              key: "subtitle",
+              displayer: "Subtitle",
+              value: "Case study"
+            },
+            {
+              type: "string",
               key: "title",
               displayer: "Title",
               value: "Dataswitcher Case Study"
@@ -158,7 +202,32 @@ class Feature10 extends BaseFeature {
               type: "string",
               key: "description",
               displayer: "Description",
-              value: "Acme implemented ES Foundation at Dataswitcher to improve scalability around peak conversions."
+              value: "ElasticScale implemented ES Foundation at Dataswitcher to improve scalability around peak conversions."
+            },
+            {
+              type: "array",
+              key: "stats",
+              displayer: "Stats",
+              value: [
+                {
+                  type: "object",
+                  key: "stat",
+                  displayer: "Stat",
+                  value: [
+                    { type: "string", key: "label", displayer: "Label", value: "Faster conversions" },
+                    { type: "string", key: "value", displayer: "Value", value: "5x faster" }
+                  ]
+                },
+                {
+                  type: "object",
+                  key: "stat",
+                  displayer: "Stat",
+                  value: [
+                    { type: "string", key: "label", displayer: "Label", value: "Improved performance" },
+                    { type: "string", key: "value", displayer: "Value", value: "40% latency reduction" }
+                  ]
+                }
+              ]
             },
             {
               type: "page",
@@ -187,6 +256,12 @@ class Feature10 extends BaseFeature {
             },
             {
               type: "string",
+              key: "subtitle",
+              displayer: "Subtitle",
+              value: "Case study"
+            },
+            {
+              type: "string",
               key: "title",
               displayer: "Title",
               value: "AI Maid Help Case Study"
@@ -195,7 +270,32 @@ class Feature10 extends BaseFeature {
               type: "string",
               key: "description",
               displayer: "Description",
-              value: "Here's how Acme improved the infrastructure quality for AI Maid Help without increasing costs."
+              value: "Here's how ElasticScale improved the infrastructure quality for AI Maid Help without increasing costs."
+            },
+            {
+              type: "array",
+              key: "stats",
+              displayer: "Stats",
+              value: [
+                {
+                  type: "object",
+                  key: "stat",
+                  displayer: "Stat",
+                  value: [
+                    { type: "string", key: "label", displayer: "Label", value: "Reduced costs" },
+                    { type: "string", key: "value", displayer: "Value", value: "80% cost reduction" }
+                  ]
+                },
+                {
+                  type: "object",
+                  key: "stat",
+                  displayer: "Stat",
+                  value: [
+                    { type: "string", key: "label", displayer: "Label", value: "Faster development" },
+                    { type: "string", key: "value", displayer: "Value", value: "Due to Dockerization" }
+                  ]
+                }
+              ]
             },
             {
               type: "page",
@@ -224,6 +324,12 @@ class Feature10 extends BaseFeature {
             },
             {
               type: "string",
+              key: "subtitle",
+              displayer: "Subtitle",
+              value: "Case study"
+            },
+            {
+              type: "string",
               key: "title",
               displayer: "Title",
               value: "AI Maid Help Case Study"
@@ -232,7 +338,32 @@ class Feature10 extends BaseFeature {
               type: "string",
               key: "description",
               displayer: "Description",
-              value: "Here's how Acme improved the infrastructure quality for AI Maid Help without increasing costs."
+              value: "Here's how ElasticScale improved the infrastructure quality for AI Maid Help without increasing costs."
+            },
+            {
+              type: "array",
+              key: "stats",
+              displayer: "Stats",
+              value: [
+                {
+                  type: "object",
+                  key: "stat",
+                  displayer: "Stat",
+                  value: [
+                    { type: "string", key: "label", displayer: "Label", value: "Reduced costs" },
+                    { type: "string", key: "value", displayer: "Value", value: "80% cost reduction" }
+                  ]
+                },
+                {
+                  type: "object",
+                  key: "stat",
+                  displayer: "Stat",
+                  value: [
+                    { type: "string", key: "label", displayer: "Label", value: "Faster development" },
+                    { type: "string", key: "value", displayer: "Value", value: "Due to Dockerization" }
+                  ]
+                }
+              ]
             },
             {
               type: "page",
@@ -261,40 +392,9 @@ class Feature10 extends BaseFeature {
             },
             {
               type: "string",
-              key: "title",
-              displayer: "Title",
-              value: "AI Maid Help Case Study"
-            },
-            {
-              type: "string",
-              key: "description",
-              displayer: "Description",
-              value: "Here's how Acme improved the infrastructure quality for AI Maid Help without increasing costs."
-            },
-            {
-              type: "page",
-              key: "url",
-              displayer: "Navigate To",
-              value: ""
-            }
-          ]
-        },
-        {
-          type: "object",
-          key: "card",
-          displayer: "Card",
-          value: [
-            {
-              type: "media",
-              key: "media",
-              displayer: "Media",
-              additionalParams: {
-                availableTypes: ["image","video"],
-              },
-              value: {
-                type: "image",
-                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67374467506a40002c2ac5c9?alt=media"
-              }
+              key: "subtitle",
+              displayer: "Subtitle",
+              value: "Case study"
             },
             {
               type: "string",
@@ -306,7 +406,32 @@ class Feature10 extends BaseFeature {
               type: "string",
               key: "description",
               displayer: "Description",
-              value: "Here's how Acme improved the infrastructure quality for AI Maid Help without increasing costs."
+              value: "Here's how ElasticScale improved the infrastructure quality for AI Maid Help without increasing costs."
+            },
+            {
+              type: "array",
+              key: "stats",
+              displayer: "Stats",
+              value: [
+                {
+                  type: "object",
+                  key: "stat",
+                  displayer: "Stat",
+                  value: [
+                    { type: "string", key: "label", displayer: "Label", value: "Reduced costs" },
+                    { type: "string", key: "value", displayer: "Value", value: "80% cost reduction" }
+                  ]
+                },
+                {
+                  type: "object",
+                  key: "stat",
+                  displayer: "Stat",
+                  value: [
+                    { type: "string", key: "label", displayer: "Label", value: "Faster development" },
+                    { type: "string", key: "value", displayer: "Value", value: "Due to Dockerization" }
+                  ]
+                }
+              ]
             },
             {
               type: "page",
@@ -318,6 +443,7 @@ class Feature10 extends BaseFeature {
         }
       ]
     });
+
     this.addProp({
       type: "array",
       key: "buttons",
@@ -435,22 +561,30 @@ class Feature10 extends BaseFeature {
                 >
 
                   {cards.map((item: Card, index: number) => {
+                    const subtitleExist = !!this.castToString(item.subtitle);
                     const titleExist = !!this.castToString(item.title);
                     const descExist = !!this.castToString(item.description);
+                    const stats = item.stats || [];
+                    const hasStats = stats.length > 0;
 
-                    if (!item.media?.url && !titleExist && !descExist) return null;
+                    if (!item.media?.url && !subtitleExist && !titleExist && !descExist) return null;
 
                     return (
                       <ComposerLink path={item.url}>
                         <div
                           key={index}
-                          className={`${this.decorateCSS("card-container")} ${!(titleExist || descExist) && this.decorateCSS("fit-content")}`}
+                          className={`${this.decorateCSS("card-container")} ${!(subtitleExist || titleExist || descExist) && this.decorateCSS("fit-content")}`}
                         >
                           {item.media && (
-                            <Base.Media value={item.media} className={`${this.decorateCSS("image")} ${!(titleExist || descExist) && this.decorateCSS("border-radius")}`} />
+                            <Base.Media value={item.media} className={`${this.decorateCSS("image")} ${!(subtitleExist || titleExist || descExist) && this.decorateCSS("border-radius")}`} />
                           )}
-                          {(titleExist || descExist) && (
+                          {(subtitleExist || titleExist || descExist) && (
                             <Base.VerticalContent className={this.decorateCSS("bottom")}>
+                              {subtitleExist && (
+                                <Base.P className={this.decorateCSS("card-subtitle")}>
+                                  {item.subtitle}
+                                </Base.P>
+                              )}
                               {titleExist && (
                                 <Base.H6 className={this.decorateCSS("title")}>
                                   {item.title}
@@ -461,6 +595,30 @@ class Feature10 extends BaseFeature {
                                   {item.description}
                                 </Base.P>
                               )}
+                              {hasStats && <hr className={this.decorateCSS("card-divider")} />}
+                              {hasStats && (
+                                <div className={this.decorateCSS("card-stats")}>
+                                  {stats.map((stat: Stat, sIndex: number) => {
+                                    const labelExist = !!this.castToString(stat.label);
+                                    const valueExist = !!this.castToString(stat.value);
+                                    if (!labelExist && !valueExist) return null;
+                                     return (
+                                       <Base.VerticalContent key={sIndex} className={this.decorateCSS("card-stat-item")}>
+                                         {labelExist && (
+                                           <Base.H6 className={this.decorateCSS("stat-label")}>
+                                             {stat.label}
+                                           </Base.H6>
+                                         )}
+                                         {valueExist && (
+                                           <Base.P className={this.decorateCSS("stat-value")}>
+                                             {stat.value}
+                                           </Base.P>
+                                         )}
+                                       </Base.VerticalContent>
+                                     );
+                                  })}
+                                </div>
+                              )}
                             </Base.VerticalContent>
                           )}
                         </div>
@@ -470,7 +628,6 @@ class Feature10 extends BaseFeature {
                 </ComposerSlider>
               )}
             </div>
-
 
             {hasValidButtons && (
               <div className={this.decorateCSS("button-wrapper")}>
@@ -501,4 +658,3 @@ class Feature10 extends BaseFeature {
 }
 
 export default Feature10;
-

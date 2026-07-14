@@ -48,7 +48,12 @@
       justify-content: center;
       text-align: left;
 
-      .card-subtitle,
+      .card-subtitle {
+        margin: 0;
+        text-align: left;
+        color: var(--composer-font-color-primary);
+        font-weight: 800;
+      }
       .card-description {
         margin: 0;
         text-align: left;
@@ -103,6 +108,7 @@
           margin: 0;
           color: var(--composer-font-color-primary);
           text-align: left;
+          font-weight: 800;
         }
 
         &.row1-content-only {
@@ -146,6 +152,19 @@
       .second {
         background: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
 
+        &:hover {
+          color: var(--composer-primary-color);
+
+          .text {
+            color: var(--composer-primary-color);
+          }
+
+          .card-subtitle,
+          .card-description {
+            color: var(--composer-primary-color);
+          }
+        }
+
 
         .text {
           height: fit-content;
@@ -154,6 +173,7 @@
           box-sizing: border-box;
           margin: 0;
           text-align: left;
+          font-weight: 800;
         }
       }
 
@@ -196,6 +216,13 @@
         display: flex;
         flex-direction: column;
         height: 100%;
+
+        &:hover {
+          .card-subtitle,
+          .card-description {
+            color: var(--composer-primary-color);
+          }
+        }
 
         .image {
           width: 100%;

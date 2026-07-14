@@ -91,11 +91,57 @@
                         }
                         .bottom{
                             padding: var(--composer-gap-md);
-                            align-items: baseline;
-                            justify-content: baseline;
-                            .title, .description {
+                            align-items: stretch;
+                            justify-content: flex-start;
+                            width: 100%;
+                            
+                            .card-subtitle {
+                                font-size: 0.75rem;
+                                color: var(--composer-tertiary-color);
+                                text-align: left;
+                            }
+                            
+                            .title {
+                                font-weight: 800;
                                 text-align: left;
                                 color: var(--composer-font-color-primary);
+                            }
+
+                            .description {
+                                text-align: left;
+                                color: var(--composer-font-color-primary);
+                            }
+
+                            .card-divider {
+                                width: 100%;
+                                border: none;
+                                border-top: 1px solid color-mix(in srgb, var(--composer-font-color-primary) 15%, transparent);
+                            }
+
+                            .card-stats {
+                                display: flex;
+                                justify-content: space-between;
+                                width: 100%;
+                                gap: var(--composer-gap-sm);
+
+                                .card-stat-item {
+                                    display: flex;
+                                    flex-direction: column;
+                                    align-items: flex-start;
+                                    text-align: left;
+                                    flex: 1;
+
+                                    .stat-label {
+                                        font-size: 0.75rem;
+                                        font-weight: 800;
+                                        color: var(--composer-font-color-primary);
+                                    }
+
+                                    .stat-value {
+                                        font-size: 0.7rem;
+                                        color: var(--composer-tertiary-color);
+                                    }
+                                }
                             }
                         }
     

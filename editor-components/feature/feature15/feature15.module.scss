@@ -63,7 +63,7 @@
 
         .content-wrapper {
             display: flex;
-            gap: var(--composer-gap-lg);
+            gap: var(--composer-gap-sm);
             width: 100%;
 
             .cards {
@@ -82,7 +82,7 @@
                 width: 100%;
                 background: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
                 height: fit-content;
-                padding: var(--composer-gap-xl) var(--composer-gap-xl) var(--composer-gap-xl) 0px;
+                padding: var(--composer-gap-xl) var(--composer-gap-sm) var(--composer-gap-xl) 0px;
                 margin-bottom: var(--composer-gap-lg);
 
                 .card {
@@ -111,7 +111,11 @@
                             text-align: left;
                         }
 
-                        .title, .description {
+                        .title {
+                            text-align: left;
+                            font-weight: 800;
+                        }
+                        .description {
                             text-align: left;
                         }
 
@@ -218,9 +222,9 @@
         .max-content {
             gap: var(--composer-gap-lg);
             .content-wrapper {
-                gap: var(--composer-gap-lg);
+                gap: var(--composer-gap-sm);
                 .cards{
-                    padding: var(--composer-gap-xl) var(--composer-gap-xl) var(--composer-gap-xl) 0px;
+                    padding: var(--composer-gap-xl) var(--composer-gap-sm) var(--composer-gap-xl) 0px;
                     margin-bottom: var(--composer-gap-lg);
                 }
                 .video-container{

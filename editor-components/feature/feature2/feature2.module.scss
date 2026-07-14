@@ -9,11 +9,22 @@
         .top-content {
             display: flex;
             flex-direction: column;
+            align-items: center !important;
+            text-align: center !important;
             width: 100%;
+            .subtitle {
+                text-align: center !important;
+                transform: none !important;
 
-            .subtitle,
+                &::before {
+                    display: none !important;
+                }
+            }
+
             .title,
-            .description,
+            .description {
+                text-align: center !important;
+            }
             .button,
             .button-text,
             .button-icon {
@@ -22,6 +33,7 @@
 
             .button-container {
                 display: flex;
+                justify-content: center !important;
                 gap: var(--composer-gap-sm);
                 flex-wrap: wrap;
 
@@ -69,7 +81,7 @@
                     }
 
                     .icon {
-                        font-size: 3.5rem;
+                        font-size: 4.5rem;
                         width: var(--composer-gap-xl);
                         height: var(--composer-gap-xl);
                         margin: 0;
@@ -81,7 +93,13 @@
                     width: 100%;
                 }
 
-                .item-title,
+                .item-title {
+                    width: 100%;
+                    color: var(--composer-font-color-primary);
+                    text-align: left;
+                    font-weight: 800;
+                }
+
                 .item-subtitle {
                     width: 100%;
                     color: var(--composer-font-color-primary);
@@ -118,12 +136,14 @@
         }
     }
 }
-
-
 @container (max-width: #{$composer-tablet-width}) {
     .container {
         .max-content {
+            gap: var(--composer-gap-lg);
+
             .wrapper {
+                gap: var(--composer-gap-lg);
+
                 .item {
                     gap: var(--composer-gap-sm);
                 }
@@ -132,11 +152,15 @@
     }
 }
 
+
 @container (max-width: #{$composer-phone-width}) {
     .container {
         .max-content {
             .wrapper {
                 .item {
+                    align-items: center;
+                    text-align: center;
+
                     &::after {
                         display: none;
                     }
@@ -158,6 +182,16 @@
                         .icon {
                             font-size: 3rem;
                         }
+                    }
+
+                    .item-content {
+                        align-items: center;
+                    }
+
+                    .item-title,
+                    .item-subtitle,
+                    .item-description {
+                        text-align: center;
                     }
                 }
             }

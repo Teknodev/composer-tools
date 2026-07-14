@@ -85,6 +85,7 @@
           .first-card-title {
             color: var(--composer-font-color-primary);
             text-align: left;
+            font-weight: 800;
           }
 
           .buttons-container {
@@ -133,10 +134,15 @@
 
 
           .card-subtitle,
-          .card-title,
           .card-description {
             color: var(--composer-font-color-primary);
             text-align: center;
+          }
+
+          .card-title {
+            color: var(--composer-font-color-primary);
+            text-align: center;
+            font-weight: 800;
           }
 
           .card-button {

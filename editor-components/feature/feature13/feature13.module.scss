@@ -5,7 +5,7 @@
     .wrapper {
       display: flex;
       flex-direction: column;
-      gap: var(--composer-gap-md);
+      gap: var(--composer-gap-xl);
       .header {
         .subtitle, .title {
           content: "";
@@ -106,25 +106,25 @@
                 padding-left: var(--composer-gap-sm);
                 padding-right: var(--composer-gap-sm);
 
-                color: var(--composer-font-color-primary);
+                color: var(--composer-tertiary-color);
                 background-color: transparent;
                 border: none;
           
                 &:hover {
-                  color: var(--composer-primary-color);
-                  border-bottom: 2.5px solid var(--composer-primary-color);
+                  color: var(--composer-font-color-primary);
+                  border-bottom: 2.5px solid var(--composer-font-color-primary);
                   background-color: transparent;
                 }
           
                 &.active {
-                  color: var(--composer-primary-color);
-                  border-bottom: 2.5px solid var(--composer-primary-color);
+                  color: var(--composer-font-color-primary);
+                  border-bottom: 2.5px solid var(--composer-font-color-primary);
                 }
               }
             }
           }
           .comp-body-content {
-            color: var(--composer-font-color-primary);
+            color: var(--composer-tertiary-color);
             text-align: left;
           }
           .comp-progresses{

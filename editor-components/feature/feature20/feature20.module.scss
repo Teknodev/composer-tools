@@ -121,10 +121,15 @@
         text-align: left !important;
         align-items: baseline;
 
-        .item-subtitle,
+        .item-subtitle {
+          color: var(--composer-font-color-primary) !important;
+          text-align: left;
+        }
+
         .section-heading {
           color: var(--composer-font-color-primary) !important;
           text-align: left;
+          font-weight: 800;
         }
 
         .desc{

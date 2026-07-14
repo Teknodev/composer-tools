@@ -717,9 +717,9 @@ class Feature13 extends BaseFeature {
                         return (
                           <div key={index} className={this.decorateCSS("progress-item")}>
                             <div className={this.decorateCSS("progress-header")}>
-                              <Base.H6 className={this.decorateCSS("progress-title")}>
+                              <Base.P className={this.decorateCSS("progress-title")}>
                                 {item.title}
-                              </Base.H6>
+                              </Base.P>
                               {utility && (<Base.P
                                 className={this.decorateCSS(
                                   "progress-percent"

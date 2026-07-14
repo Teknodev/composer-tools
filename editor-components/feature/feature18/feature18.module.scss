@@ -77,7 +77,7 @@
                         &:hover {
                             .tab-text {
                                 color: var(--composer-font-color-secondary);
-                                font-weight: bold;
+                                font-weight: 800;
                                 transform: scale(1.1);
                             }
 
@@ -89,7 +89,7 @@
 
                     &.active {
                         color: var(--composer-font-color-secondary);
-                        font-weight: bold;
+                        font-weight: 800;
                         .square {
                             opacity: 1;
                         }
@@ -145,6 +145,7 @@
                     .title {
                         text-align: left;
                         color: var(--composer-font-color-primary);
+                        font-weight: 800;
                     }
                     .description {
                         text-align: left;

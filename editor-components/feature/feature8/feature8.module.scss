@@ -62,10 +62,15 @@
                 }
 
                 .card-subtitle,
-                .title,
                 .description {
                     text-align: center;
                     color: var(--composer-font-color-primary);
+                }
+
+                .title {
+                    text-align: center;
+                    color: var(--composer-font-color-primary);
+                    font-weight: 800;
                 }
 
                 .card-button {

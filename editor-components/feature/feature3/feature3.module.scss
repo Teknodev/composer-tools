@@ -1,6 +1,6 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
-$space: 5%;
+$space: 10%;
 $cardsmargintop: max(-15%, -300px);
 $logosmargintop: calc(-1 * $cardsmargintop / 2);
 $circlepaddingbottom: calc(300px + var(--composer-gap-xl));
@@ -45,6 +45,7 @@ $circlepaddingbottom: calc(300px + var(--composer-gap-xl));
                 .title {
                     margin-top: 0;
                     margin-bottom: var(--composer-gap-md);
+                    white-space: pre-wrap;
 
                     &.circle-exist {
                         text-align: left;
@@ -133,11 +134,16 @@ $circlepaddingbottom: calc(300px + var(--composer-gap-xl));
                                 transition: opacity var(--composer-transition-duration-slow) ease, transform var(--composer-transition-duration-slow) ease;
                             }
 
-                            .card-title,
                             .card-subtitle,
-                            .card-description, {
+                            .card-description {
                                 color: var(--composer-font-color-primary);
                                 text-align: left;
+                            }
+
+                            .card-title {
+                                color: var(--composer-font-color-primary);
+                                text-align: left;
+                                font-weight: 800;
                             }
 
                             .card-button {
@@ -166,6 +172,8 @@ $circlepaddingbottom: calc(300px + var(--composer-gap-xl));
 
             .logos-container {
                 gap: var(--composer-gap-md);
+                background-color: #30333100;
+                border-radius: 0px;
 
                 &.circle-exist {
                     margin-top: $logosmargintop;
@@ -176,33 +184,31 @@ $circlepaddingbottom: calc(300px + var(--composer-gap-xl));
                 }
 
                 .logo-container {
-                    padding: var(--composer-gap-sm);
-                    background-color: var(--composer-font-color-primary);
+                    padding: 50px 0px;
+                    background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
                     border-radius: var(--composer-border-radius-sm);
                     display: flex;
                     justify-content: center;
                     align-items: center;
-                        position: relative;
-                        overflow: hidden;
-                        transition: transform var(--composer-transition-duration-slow) ease;
-                        height: 150px;                    
-                        .logo-image {
-                            width: 90%;
-                            height: 100%;
-                            object-fit: contain;
-                            position: absolute;
-                            top: 0;
-                            left: 5%;
-                            display: flex;
-                            justify-content: center;
-                            align-items: center;
-                            font-size: 5rem;
-                            transition: opacity var(--composer-transition-duration-slow) ease, transform var(--composer-transition-duration-slow) ease;
-                            filter: grayscale(100%);
+                    position: relative;
+                    overflow: hidden;
+                    transition: transform var(--composer-transition-duration-slow) ease;
+                    height: 140px;
 
-                            &:hover {
-                                filter: grayscale(0);
-                            }
+                    .logo-image {
+                        width: 90%;
+                        height: 100%;
+                        object-fit: contain;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        font-size: 5rem;
+                        transition: opacity var(--composer-transition-duration-slow) ease, transform var(--composer-transition-duration-slow) ease;
+                        filter: grayscale(100%);
+
+                        &:hover {
+                            filter: grayscale(0);
+                        }
                     }
                 }
             }
@@ -308,9 +314,19 @@ $circlepaddingbottom: calc(300px + var(--composer-gap-xl));
 
                 .logos-container {
                     gap: var(--composer-gap-sm);
+                    border: none;
+                    background-color: transparent;
 
                     &.circle-exist {
                         margin-top: 0;
+                    }
+
+                    .logo-container {
+                        border-right: none;
+                        border-radius: var(--composer-border-radius-sm);
+                        background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+                        padding: var(--composer-gap-sm);
+                        height: 100px;
                     }
                 }
             }

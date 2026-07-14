@@ -210,8 +210,7 @@
 
           .title {
             color: var(--composer-font-color-primary);
-            margin-top: 0;
-            margin-bottom: 0;
+            font-weight: 800;
             &.title-with-bg {
               color: #000000;
             }
@@ -219,8 +218,6 @@
 
           .subtitle {
             color: var(--composer-tertiary-color);
-            margin-top: 0;
-            margin-bottom: 0;
             &.subtitle-with-bg {
               color: #000000;
             }

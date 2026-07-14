@@ -13,6 +13,7 @@ type Card = {
   description: React.JSX.Element;
   media: TypeMediaInputValue;
   buttons: TypeButton[];
+  overlay: boolean;
 };
 
 
@@ -152,6 +153,12 @@ class Feature4 extends BaseFeature {
                 INPUTS.BUTTON("link", "Link Button", "Navigating possibilities", "", null, null, "Link")
               ],
             },
+            {
+              type: "boolean",
+              key: "overlay",
+              displayer: "Overlay",
+              value: true,
+            },
           ],
         },
         {
@@ -212,6 +219,12 @@ class Feature4 extends BaseFeature {
               value: [
                 INPUTS.BUTTON("link", "Link Button", "More Info", "", null, null, "Link")
               ],
+            },
+            {
+              type: "boolean",
+              key: "overlay",
+              displayer: "Overlay",
+              value: true,
             },
           ],
         },
@@ -274,6 +287,12 @@ class Feature4 extends BaseFeature {
                 INPUTS.BUTTON("link", "Link Button", "More Info", "", null, null, "Link")
               ],
             },
+            {
+              type: "boolean",
+              key: "overlay",
+              displayer: "Overlay",
+              value: true,
+            },
           ],
         },
         {
@@ -335,6 +354,12 @@ class Feature4 extends BaseFeature {
                 INPUTS.BUTTON("link", "Link Button", "More Info", "", null, null, "Link")
               ],
             },
+            {
+              type: "boolean",
+              key: "overlay",
+              displayer: "Overlay",
+              value: true,
+            },
           ],
         },
         {
@@ -395,6 +420,12 @@ class Feature4 extends BaseFeature {
               value: [
                 INPUTS.BUTTON("link", "Link Button", "More Info", "", null, null, "Link")
               ],
+            },
+            {
+              type: "boolean",
+              key: "overlay",
+              displayer: "Overlay",
+              value: true,
             },
           ],
         },
@@ -491,6 +522,7 @@ class Feature4 extends BaseFeature {
               const iconExist = !!card.icon?.name;
               const imageExist = !!card.media?.url;
               const buttonsExist = card.buttons?.length > 0;
+              const overlayExist = !!card.overlay;
 
               const shouldRender = (titleExist || subtitleExist || descExist || iconExist || imageExist || buttonsExist);
 
@@ -535,12 +567,12 @@ class Feature4 extends BaseFeature {
                           className={this.decorateCSS("overlay")}
                           style={{ backgroundImage: `url(${card.media?.url})` }}>
                           <Base.VerticalContent className={`${this.decorateCSS("overlay-content")}
-                            ${imageOverlay ? this.decorateCSS("apply-overlay") : ""}`}>
+                            ${overlayExist ? this.decorateCSS("apply-overlay") : ""}`}>
                             {descExist && (
                               <Base.P
                                 className={`
                                 ${this.decorateCSS("long-text")}
-                                ${card.media?.url || imageOverlay ? this.decorateCSS("image-or-overlay-exist") : ""}
+                                ${card.media?.url || overlayExist ? this.decorateCSS("image-or-overlay-exist") : ""}
                               `}
                               >
                                 {card.description}
@@ -558,7 +590,7 @@ class Feature4 extends BaseFeature {
                                           buttonType={item.type}
                                           key={index}
                                           className={`${this.decorateCSS("overlay-button")} 
-                                              ${card.media?.url || imageOverlay ? this.decorateCSS("image-or-overlay-exist") : ""}`}>
+                                              ${card.media?.url || overlayExist ? this.decorateCSS("image-or-overlay-exist") : ""}`}>
                                           <ComposerLink path={item.page}>
                                             {item.text}
                                           </ComposerLink>
