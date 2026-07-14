@@ -33,7 +33,7 @@
           flex: 1;
 
           &.middle {
-            text-align: right;
+            text-align: left;
           }
 
           &.left {
@@ -61,6 +61,14 @@
         position: relative;
         height: auto;
         gap: var(--composer-gap-sm);
+
+        &:hover {
+          .text-group {
+            .card-position {
+              color: var(--composer-primary-color);
+            }
+          }
+        }
 
         .image-container {
           position: relative;
@@ -200,6 +208,7 @@
           .card-position {
             text-align: center;
             color: var(--composer-tertiary-color);
+            transition: color 0.3s ease;
           }
 
           .card-description {

@@ -190,7 +190,7 @@ class Team9 extends Team {
               type: "string",
               key: "personPosition",
               displayer: "Position",
-              value: "Founder",
+              value: "",
             },
             {
               type: "string",
@@ -334,7 +334,7 @@ class Team9 extends Team {
               type: "string",
               key: "personPosition",
               displayer: "Position",
-              value: "Founder",
+              value: "",
             },
             {
               type: "string",
@@ -478,7 +478,7 @@ class Team9 extends Team {
               type: "string",
               key: "personPosition",
               displayer: "Position",
-              value: "Founder",
+              value: "",
             },
             {
               type: "string",
@@ -622,7 +622,7 @@ class Team9 extends Team {
               type: "string",
               key: "personPosition",
               displayer: "Position",
-              value: "Founder",
+              value: "",
             },
             {
               type: "string",
@@ -653,7 +653,7 @@ class Team9 extends Team {
       type: "multiSelect",
       key: "hoverAnimation",
       displayer: "Hover Animation Style",
-      value: ["animate1"],
+      value: ["animate1", "animate2"],
       additionalParams: {
         selectItems: ["animate1", "animate2", "animate3", "animate4"]
       }

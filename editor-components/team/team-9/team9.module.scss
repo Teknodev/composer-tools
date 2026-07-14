@@ -91,6 +91,7 @@
             color: var(--composer-font-color-primary);
             transition: color 0.3s ease;
             text-align: left;
+            font-weight: 800;
           }
 
           .item-position {
@@ -126,24 +127,14 @@
 
         &[data-animation~="animate2"] {
           .icons-bar {
-            display: flex;
-            flex-direction: row;
             opacity: 0;
-            gap: var(--composer-gap-sm);
-            width: 100%;
-            transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
             transform: translateY(10px);
+            transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
 
             .icon {
-              font-size: 2.5rem;
-              color: var(--composer-font-color-primary);
-              border-radius: 50%;
-              border: 1px solid var(--composer-font-color-primary);
-              padding: var(--composer-gap-sm);
               opacity: 0;
-              transform: translateZ(20px);
-              transition: color 500ms, opacity 0.5s ease-in-out,
-                transform 0.5s ease-in-out;
+              transform: translateY(20px);
+              transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out;
             }
           }
 
@@ -154,9 +145,8 @@
               transform: translateY(0);
 
               .icon {
-                opacity: 1;
-                transform: translateZ(0);
-                animation: icon-fade-in 0.8s ease forwards;
+                animation: fadeInUp 0.5s ease forwards;
+                animation-delay: calc(var(--icon-index, 0) * 0.15s);
               }
             }
           }
@@ -256,14 +246,7 @@
             }
           }
 
-          &[data-animation~="animate2"] {
-            .icons-bar {
-              .icon {
-                font-size: 1.75rem;
-                padding: 8px;
-              }
-            }
-          }
+
         }
       }
 
@@ -312,14 +295,7 @@
             }
           }
 
-          &[data-animation~="animate2"] {
-            .icons-bar {
-              .icon {
-                font-size: 1.5rem;
-                padding: 6px;
-              }
-            }
-          }
+
         }
       }
     }
@@ -337,7 +313,6 @@
 }
 
 @keyframes bounce {
-
   0%,
   100% {
     transform: translateY(0);
@@ -349,5 +324,16 @@
 
   60% {
     transform: translateY(4px);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
