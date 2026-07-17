@@ -262,6 +262,7 @@ class HeroSection35 extends BaseHeroSection {
         const customerBoxExist = customerBoxImageExist || customerBoxDescriptionExist || customerBoxNumberExist;
         const rightCardExist = rightCard.image || (customerBoxExist && customerBox.visibility);
         const showCustomerBox = customerBoxExist && customerBox.visibility;
+        const htmlBg = (typeof document !== "undefined" ? getComputedStyle(document.documentElement).getPropertyValue('--composer-html-background') : "") || '#fff';
 
         return(
             <Base.Container ref={this.containerRef} className={this.decorateCSS("container")}>
@@ -380,7 +381,7 @@ class HeroSection35 extends BaseHeroSection {
                                                         <path d="M 0 0 L 42 0 C 0 0 40 25 0 20 Z" fill="black" />
                                                     </mask>
                                                 </defs>
-                                                <rect width="25" height="25" fill={getComputedStyle(document.documentElement).getPropertyValue('--composer-html-background') || '#fff'} mask="url(#cutout-topleft)" />
+                                                <rect width="25" height="25" fill={htmlBg} mask="url(#cutout-topleft)" />
                                             </svg>
                                             <svg className={this.decorateCSS("box-corner-right")}>
                                                 <defs>
@@ -389,7 +390,7 @@ class HeroSection35 extends BaseHeroSection {
                                                         <path d="M 0 0 L 42 0 C 0 0 40 25 0 20 Z" fill="black" />
                                                     </mask>
                                                 </defs>
-                                                <rect width="25" height="25" fill={getComputedStyle(document.documentElement).getPropertyValue('--composer-html-background') || '#fff'} mask="url(#cutout-bottomright)" />
+                                                <rect width="25" height="25" fill={htmlBg} mask="url(#cutout-bottomright)" />
                                             </svg>
                                             <div className={this.decorateCSS("customer-box")}> 
                                                 {customerBoxImageExist && <div className={this.decorateCSS("customer-images")}>
