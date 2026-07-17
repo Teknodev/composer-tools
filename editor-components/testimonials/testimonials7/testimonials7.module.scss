@@ -1,5 +1,10 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
+$ref-box-bg: #181818;
+$ref-text-color: #ffffff;
+$ref-position-color: #3c8599;
+$ref-arrow-color: #ffffff;
+
 .container {
   position: relative;
   min-height: 70vh;
@@ -78,15 +83,48 @@
       max-width: 60%;
       margin-right: auto;
       align-items: flex-start;
-      background: var(--composer-font-color-primary);
+      background: $ref-box-bg;
       box-shadow: var(--composer-box-shadow);
-      color: var(--composer-html-background);
+      color: $ref-text-color;
       padding: 80px;
+      position: relative;
+      overflow: hidden;
+
+      .quote-watermark {
+        position: absolute;
+        bottom: -130px;
+        right: -30px;
+        z-index: 0;
+        pointer-events: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0.06;
+
+        .quote-watermark-media {
+          width: 26rem;
+          height: auto;
+          object-fit: contain;
+
+          &.is-icon {
+            font-size: 26rem;
+            color: $ref-text-color;
+            display: block;
+
+            :global(svg) {
+              fill: none !important;
+              stroke: currentColor !important;
+              stroke-width: 15px !important;
+            }
+          }
+        }
+      }
 
       .slider-wrapper {
         width: 100%;
         height: auto;
         position: relative;
+        z-index: 1;
 
         .button-left,
         .button-right {
@@ -98,11 +136,12 @@
           cursor: pointer;
           padding: 0;
           z-index: 10;
-          color: var(--composer-html-background);
+          color: $ref-arrow-color;
 
           .arrow {
-            width: 25px;
-            height: 25px;
+            width: 40px;
+            height: 40px;
+            font-size: 2.5rem;
           }
         }
 
@@ -149,7 +188,7 @@
 
               .item-description {
                 font-size: 1.5rem;
-                color: var(--composer-html-background);
+                color: $ref-text-color;
                 text-align: left;
               }
 
@@ -163,14 +202,13 @@
                   align-items: flex-start;
 
                   .item-name {
-                    color: var(--composer-html-background);
-                    font-size: 1rem;
+                    color: $ref-text-color;
                     text-align: left;
                   }
 
                   .item-name-id {
-                    font-size: 1rem;
-                    color: var(--composer-primary-color);
+                    text-transform: uppercase;
+                    color: $ref-position-color;
                     text-align: left;
                   }
                 }
@@ -195,6 +233,8 @@
         margin: 0 auto;
         gap: var(--composer-gap-xs);
         padding: var(--composer-gap-md) 0;
+        position: relative;
+        z-index: 1;
 
         .dot {
           width: 8px;
@@ -297,8 +337,8 @@
         min-width: 100%;
         max-width: 100%;
         padding: var(--composer-gap-xl) 0;
-        background: var(--composer-font-color-primary);
-        color: var(--composer-html-background);
+        background: $ref-box-bg;
+        color: $ref-text-color;
 
         .button-left,
         .button-right {
@@ -328,7 +368,7 @@
                 .item-description {
                   font-size: 1.15rem;
                   line-height: 1.6;
-                  color: var(--composer-html-background);
+                  color: $ref-text-color;
                 }
 
                 .profile {

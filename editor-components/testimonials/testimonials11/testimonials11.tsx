@@ -7,11 +7,9 @@ import ComposerLink from "../../../composer-base-components/Link/ComposerLinkPro
 
 type Item = {
   image: TypeMediaInputValue;
+  name: React.JSX.Element;
+  starCount: number;
   text: React.JSX.Element;
-  author: {
-    name: React.JSX.Element;
-    position: React.JSX.Element;
-  };
 };
 
 type Button = {
@@ -48,6 +46,12 @@ class Testimonials11Page extends Testimonials {
           value: false,
         },
       ],
+    });
+    this.addProp({
+      type: "string",
+      key: "backgroundText",
+      displayer: "Background Text",
+      value: "testimonials",
     });
     this.addProp({
       type: "string",
@@ -92,20 +96,13 @@ class Testimonials11Page extends Testimonials {
               additionalParams: { availableTypes: ["image", "icon"] },
               value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617822bd2970002c623daf?alt=media&timestamp=1719483639150" },
             },
+            { type: "string", key: "name", displayer: "Name", value: "Sarah Lewin" },
+            { type: "number", key: "starCount", displayer: "Star Count", value: 5 },
             {
               type: "string",
               key: "text",
               displayer: "Text",
               value: "I think if you do something and it turns out pretty good, then you should go do something else wonderful, not dwell on it for too long.",
-            },
-            {
-              type: "object",
-              key: "author",
-              displayer: "Author",
-              value: [
-                { type: "string", key: "name", displayer: "Name", value: "Sarah Lewin" },
-                { type: "string", key: "position", displayer: "Position", value: "Project manager in Pixels" },
-              ],
             },
           ],
         },
@@ -121,20 +118,13 @@ class Testimonials11Page extends Testimonials {
               additionalParams: { availableTypes: ["image", "icon"] },
               value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617822bd2970002c623db0?alt=media&timestamp=1719483639150" },
             },
+            { type: "string", key: "name", displayer: "Name", value: "Gregory Tabot" },
+            { type: "number", key: "starCount", displayer: "Star Count", value: 5 },
             {
               type: "string",
               key: "text",
               displayer: "Text",
               value: "The principal element of Suprematism in painting, as in architecture, is its liberation from all social or materialist tendencies. Through Suprematism, art comes into its pure and unpolluted form.",
-            },
-            {
-              type: "object",
-              key: "author",
-              displayer: "Author",
-              value: [
-                { type: "string", key: "name", displayer: "Name", value: "Gregory Tabot" },
-                { type: "string", key: "position", displayer: "Position", value: "Photographer" },
-              ],
             },
           ],
         },
@@ -150,20 +140,13 @@ class Testimonials11Page extends Testimonials {
               additionalParams: { availableTypes: ["image", "icon"] },
               value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617822bd2970002c623db1?alt=media&timestamp=1719483639150" },
             },
+            { type: "string", key: "name", displayer: "Name", value: "Jess Simpson" },
+            { type: "number", key: "starCount", displayer: "Star Count", value: 5 },
             {
               type: "string",
               key: "text",
               displayer: "Text",
               value: "I think if you do something and it turns out pretty good, then you should go do something else wonderful, not dwell on it for too long.",
-            },
-            {
-              type: "object",
-              key: "author",
-              displayer: "Author",
-              value: [
-                { type: "string", key: "name", displayer: "Name", value: "Jess Simpson" },
-                { type: "string", key: "position", displayer: "Position", value: "Team lead in TBB" },
-              ],
             },
           ],
         },
@@ -179,20 +162,13 @@ class Testimonials11Page extends Testimonials {
               additionalParams: { availableTypes: ["image", "icon"] },
               value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617822bd2970002c623db1?alt=media&timestamp=1719483639150" },
             },
+            { type: "string", key: "name", displayer: "Name", value: "Jess Simpson" },
+            { type: "number", key: "starCount", displayer: "Star Count", value: 5 },
             {
               type: "string",
               key: "text",
               displayer: "Text",
               value: "I think if you do something and it turns out pretty good, then you should go do something else wonderful, not dwell on it for too long.",
-            },
-            {
-              type: "object",
-              key: "author",
-              displayer: "Author",
-              value: [
-                { type: "string", key: "name", displayer: "Name", value: "Jess Simpson" },
-                { type: "string", key: "position", displayer: "Position", value: "Team lead in TBB" },
-              ],
             },
           ],
         },
@@ -208,20 +184,13 @@ class Testimonials11Page extends Testimonials {
               additionalParams: { availableTypes: ["image", "icon"] },
               value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617822bd2970002c623db1?alt=media&timestamp=1719483639150" },
             },
+            { type: "string", key: "name", displayer: "Name", value: "Jess Simpson" },
+            { type: "number", key: "starCount", displayer: "Star Count", value: 5 },
             {
               type: "string",
               key: "text",
               displayer: "Text",
               value: "I think if you do something and it turns out pretty good, then you should go do something else wonderful, not dwell on it for too long.",
-            },
-            {
-              type: "object",
-              key: "author",
-              displayer: "Author",
-              value: [
-                { type: "string", key: "name", displayer: "Name", value: "Jess Simpson" },
-                { type: "string", key: "position", displayer: "Position", value: "Team lead in TBB" },
-              ],
             },
           ],
         },
@@ -237,24 +206,31 @@ class Testimonials11Page extends Testimonials {
               additionalParams: { availableTypes: ["image", "icon"] },
               value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617822bd2970002c623db1?alt=media&timestamp=1719483639150" },
             },
+            { type: "string", key: "name", displayer: "Name", value: "Jess Simpson" },
+            { type: "number", key: "starCount", displayer: "Star Count", value: 5 },
             {
               type: "string",
               key: "text",
               displayer: "Text",
               value: "I think if you do something and it turns out pretty good, then you should go do something else wonderful, not dwell on it for too long.",
             },
-            {
-              type: "object",
-              key: "author",
-              displayer: "Author",
-              value: [
-                { type: "string", key: "name", displayer: "Name", value: "Jess Simpson" },
-                { type: "string", key: "position", displayer: "Position", value: "Team lead in TBB" },
-              ],
-            },
           ],
         },
       ],
+    });
+    this.addProp({
+      type: "media",
+      key: "starIcon",
+      displayer: "Star Icon",
+      additionalParams: { availableTypes: ["icon", "image"] },
+      value: { type: "icon", name: "FaStar" },
+    });
+    this.addProp({
+      type: "media",
+      key: "quoteIcon",
+      displayer: "Quote Icon",
+      additionalParams: { availableTypes: ["icon", "image"] },
+      value: { type: "icon", name: "FaQuoteRight" },
     });
     this.addProp({
       type: "number",
@@ -280,6 +256,7 @@ class Testimonials11Page extends Testimonials {
     });
     const hasAnyTopContent = subtitleExist || titleExist || descriptionExist || hasValidButtons;
 
+    const backgroundText = this.castToString(this.getPropValue("backgroundText"));
     const backgroundObj = this.castToObject<BackgroundObj>("componentBackground");
     const coverMedia = backgroundObj.media;
     const coverImage = coverMedia && (coverMedia.type === "image" ? coverMedia.url : undefined);
@@ -287,6 +264,55 @@ class Testimonials11Page extends Testimonials {
     const coverMediaExist = coverMedia && coverMedia.url;
     const overlayActive = backgroundObj.overlayActive;
     const cardList = this.castToObject<Item[]>("items");
+    const starIconVal = this.getPropValue("starIcon") as TypeMediaInputValue;
+    const starIconExist = starIconVal && (starIconVal.type === "icon" ? starIconVal.name : starIconVal.url);
+    const quoteIconVal = this.getPropValue("quoteIcon") as TypeMediaInputValue;
+    const quoteIconExist = quoteIconVal && (quoteIconVal.type === "icon" ? quoteIconVal.name : quoteIconVal.url);
+
+    const itemCount = this.getPropValue("itemCount");
+    const gridCount = { phone: 1, tablet: 3, pc: itemCount };
+    const midpoint = Math.ceil(cardList.length / 2);
+    const topCards = cardList.slice(0, midpoint);
+    const bottomCards = cardList.slice(midpoint);
+
+    const renderCard = (item: Item, index: number) => {
+      const nameExist = this.castToString(item.name);
+      const textExist = this.castToString(item.text);
+      const ratingExist = starIconExist && Number(item.starCount) > 0;
+      return (
+        <div key={index} className={`${this.decorateCSS("cards")}${!coverMediaExist ? ` ${this.decorateCSS("cards-no-background")}` : ""}`}>
+          {quoteIconExist && (
+            <div className={this.decorateCSS("card-quote")}>
+              <Base.Media value={quoteIconVal} className={this.decorateCSS("card-quote-icon")} />
+            </div>
+          )}
+          {(item.image || nameExist || ratingExist) && (
+            <div className={this.decorateCSS("card-top")}>
+              {item.image && (
+                <Base.Media value={item.image} className={this.decorateCSS("card-image")} />
+              )}
+              {(nameExist || ratingExist) && (
+                <div className={this.decorateCSS("card-top-right")}>
+                  {nameExist && (
+                    <Base.H6 className={this.decorateCSS("card-title")}>{item.name}</Base.H6>
+                  )}
+                  {ratingExist && (
+                    <div className={this.decorateCSS("card-rating")}>
+                      {[...Array(Number(item.starCount))].map((_: unknown, starIndex: number) => (
+                        <Base.Media key={starIndex} value={starIconVal} className={this.decorateCSS("star-icon")} />
+                      ))}
+                    </div>
+                  )}
+                </div>
+              )}
+            </div>
+          )}
+          {textExist && (
+            <Base.P className={this.decorateCSS("card-description")}>{item.text}</Base.P>
+          )}
+        </div>
+      );
+    };
 
     return (
       <Base.Container
@@ -344,30 +370,37 @@ class Testimonials11Page extends Testimonials {
                 )}
               </Base.VerticalContent>
             )}
-            <Base.ListGrid gridCount={{ phone: 1, tablet: 2, pc: this.getPropValue("itemCount") }} className={this.decorateCSS("content")}>
-              {cardList.map((item: Item, index: number) => (
-                <div key={index} className={`${this.decorateCSS("cards")}${!coverMediaExist ? ` ${this.decorateCSS("cards-no-background")}` : ""}`}>
-                  <div className={this.decorateCSS("card-top")}>
-                    {item.image && (
-                      <Base.Media value={item.image} className={this.decorateCSS("card-image")} />
-                    )}
-                    {item.author && (item.author.name || item.author.position) && (
-                      <div className={this.decorateCSS("card-top-right")}>
-                        {item.author.name && (
-                            <Base.H6 className={this.decorateCSS("card-title")}>{item.author.name}</Base.H6>
-                        )}
-                        {item.author.position && (
-                          <Base.P className={this.decorateCSS("card-subtitle")}>{item.author.position}</Base.P>
-                        )}
-                      </div>
-                    )}
-                  </div>
-                  {item.text && (
-                    <Base.P className={this.decorateCSS("card-description")}>{item.text}</Base.P>
-                  )}
-                </div>
-              ))}
-            </Base.ListGrid>
+            <div className={this.decorateCSS("content")}>
+              <Base.ListGrid gridCount={gridCount} className={this.decorateCSS("grid")}>
+                {topCards.map((item: Item, index: number) => renderCard(item, index))}
+              </Base.ListGrid>
+              {backgroundText && (
+                <svg
+                  className={this.decorateCSS("background-text")}
+                  viewBox="0 0 1000 140"
+                  preserveAspectRatio="xMidYMid meet"
+                  role="img"
+                  aria-label={backgroundText}
+                >
+                  <text
+                    className={this.decorateCSS("background-text-value")}
+                    x="500"
+                    y="70"
+                    textAnchor="middle"
+                    dominantBaseline="central"
+                    textLength="1000"
+                    lengthAdjust="spacingAndGlyphs"
+                  >
+                    {backgroundText}
+                  </text>
+                </svg>
+              )}
+              {bottomCards.length > 0 && (
+                <Base.ListGrid gridCount={gridCount} className={this.decorateCSS("grid")}>
+                  {bottomCards.map((item: Item, index: number) => renderCard(item, midpoint + index))}
+                </Base.ListGrid>
+              )}
+            </div>
           </div>
         </Base.MaxContent>
       </Base.Container>

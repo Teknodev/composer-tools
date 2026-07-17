@@ -338,6 +338,7 @@ class Testimonials2Page extends Testimonials {
     });
     this.addProp(INPUTS.SLIDER_SETTINGS("slider-settings", "Slider Settings", {
       dots: true,
+      arrows: false,
       infinite: true,
       speed: 725,
       autoplay: true,
@@ -375,7 +376,7 @@ class Testimonials2Page extends Testimonials {
     const sliderRef = this.getComponentState("slider-ref");
     const rawSettings = this.getPropValue("slider-settings");
     const sliderSettings = Object.fromEntries((rawSettings as any[]).map((p: any) => [p.key, p.value]));
-    const showArrows = sliderSettings.arrows !== false;
+    const showArrows = !!sliderSettings.arrows;
     const hasNav = showArrows && (prevIconExist || nextIconExist) && cardCount > 1;
 
     const settings = {

@@ -155,6 +155,7 @@
 
                   .first-header {
                     color: var(--composer-font-color-primary);
+                    font-weight: 800;
                     text-align: center !important;
                     justify-content: center !important;
                     margin-left: auto !important;
@@ -245,7 +246,8 @@
                 }
 
                 .middleWriting {
-                  font-size: 4.5rem;
+                  font-size: 4rem;
+                  font-weight: 800;
                   color: var(--composer-font-color-secondary);
                 }
 

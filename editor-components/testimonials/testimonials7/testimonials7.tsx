@@ -91,6 +91,13 @@ class Testimonials7Page extends Testimonials {
       value: { type: "icon", name: "HiArrowRight" },
     });
     this.addProp({
+      type: "media",
+      key: "quoteMark",
+      displayer: "Quote Mark",
+      additionalParams: { availableTypes: ["icon", "image", "video"] },
+      value: { type: "icon", name: "FaQuoteLeft" },
+    });
+    this.addProp({
       type: "array",
       key: "card-items",
       displayer: "Card Items",
@@ -237,6 +244,8 @@ class Testimonials7Page extends Testimonials {
     const prevIconExist = prevIconVal && (prevIconVal.type === "icon" ? prevIconVal.name : prevIconVal.url);
     const nextIconVal = this.getPropValue("nextIcon") as TypeMediaInputValue;
     const nextIconExist = nextIconVal && (nextIconVal.type === "icon" ? nextIconVal.name : nextIconVal.url);
+    const quoteMarkVal = this.getPropValue("quoteMark") as TypeMediaInputValue;
+    const quoteMarkExist = quoteMarkVal && (quoteMarkVal.type === "icon" ? quoteMarkVal.name : quoteMarkVal.url);
 
     const rawSettings = this.getPropValue("slider-settings");
     const sliderSettings = Object.fromEntries((rawSettings as any[]).map((p: any) => [p.key, p.value]));
@@ -302,6 +311,14 @@ class Testimonials7Page extends Testimonials {
             </Base.VerticalContent>
           )}
           <div className={this.decorateCSS("testimonials7")}>
+            {quoteMarkExist && (
+              <div className={this.decorateCSS("quote-watermark")}>
+                <Base.Media
+                  value={quoteMarkVal}
+                  className={`${this.decorateCSS("quote-watermark-media")} ${quoteMarkVal.type === "icon" ? this.decorateCSS("is-icon") : ""}`}
+                />
+              </div>
+            )}
             <div className={this.decorateCSS("slider-wrapper")}>
               {sliderSettings.arrows && prevIconExist && items.length > 1 && (
                 <button
@@ -324,10 +341,10 @@ class Testimonials7Page extends Testimonials {
                             {item.profileImage && <Base.Media value={item.profileImage} className={this.decorateCSS("image")} />}
                             <Base.VerticalContent className={this.decorateCSS("profile-text")}>
                               {this.castToString(item.name) && (
-                                <div className={this.decorateCSS("item-name")}>{item.name}</div>
+                                <Base.H5 className={this.decorateCSS("item-name")}>{item.name}</Base.H5>
                               )}
                               {this.castToString(item.nameId) && (
-                                <div className={this.decorateCSS("item-name-id")}>{item.nameId}</div>
+                                <Base.P className={this.decorateCSS("item-name-id")}>{item.nameId}</Base.P>
                               )}
                             </Base.VerticalContent>
                           </div>

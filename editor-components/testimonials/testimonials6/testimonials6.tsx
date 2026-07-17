@@ -466,30 +466,32 @@ class Testimonials6Page extends Testimonials {
           <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount"), tablet: this.getPropValue("itemCount"), phone: 1 }} className={this.decorateCSS("card-container")}>
             {cards.map((item: Item, index: number) => (
               <div key={index} className={this.decorateCSS("card")}>
-                {(starIconExist || this.castToString(item.star)) && (
-                  <div className={this.decorateCSS("star")}>
-                    {starIconExist && <Base.Media value={starIcon} className={this.decorateCSS("icon")} />}
-                    {this.castToString(item.star) && <Base.P className={this.decorateCSS("rating")}>{item.star}</Base.P>}
-                  </div>
-                )}
                 {this.castToString(item.text) && (
                   <Base.P className={this.decorateCSS("item-text")}>{item.text}</Base.P>
                 )}
                 {item.line && <div className={this.decorateCSS("line")}></div>}
-                {(item.image || (item.author && (this.castToString(item.author.name) || this.castToString(item.author.position)))) && (
+                {(item.image || (item.author && (this.castToString(item.author.name) || this.castToString(item.author.position))) || starIconExist || this.castToString(item.star)) && (
                   <div className={this.decorateCSS("bottom-container")}>
-                    {item.image && (
-                      <Base.Media value={item.image} className={this.decorateCSS("image")} />
-                    )}
-                    {item.author && (this.castToString(item.author.name) || this.castToString(item.author.position)) && (
-                      <Base.VerticalContent className={this.decorateCSS("person")}>
-                        {this.castToString(item.author.name) && (
-                          <Base.P className={this.decorateCSS("item-name")}>{item.author.name}</Base.P>
-                        )}
-                        {this.castToString(item.author.position) && (
-                          <Base.P className={this.decorateCSS("item-subtitle")}>{item.author.position}</Base.P>
-                        )}
-                      </Base.VerticalContent>
+                    <div className={this.decorateCSS("author-info")}>
+                      {item.image && (
+                        <Base.Media value={item.image} className={this.decorateCSS("image")} />
+                      )}
+                      {item.author && (this.castToString(item.author.name) || this.castToString(item.author.position)) && (
+                        <Base.VerticalContent className={this.decorateCSS("person")}>
+                          {this.castToString(item.author.name) && (
+                            <Base.H6 className={this.decorateCSS("item-name")}>{item.author.name}</Base.H6>
+                          )}
+                          {this.castToString(item.author.position) && (
+                            <Base.P className={this.decorateCSS("item-subtitle")}>{item.author.position}</Base.P>
+                          )}
+                        </Base.VerticalContent>
+                      )}
+                    </div>
+                    {(starIconExist || this.castToString(item.star)) && (
+                      <div className={this.decorateCSS("star")}>
+                        {starIconExist && <Base.Media value={starIcon} className={this.decorateCSS("icon")} />}
+                        {this.castToString(item.star) && <Base.P className={this.decorateCSS("rating")}>{item.star}</Base.P>}
+                      </div>
                     )}
                   </div>
                 )}

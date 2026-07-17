@@ -1,4 +1,5 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+
 .container {
   position: relative;
   z-index: 1;
@@ -34,12 +35,15 @@
     .containerGrid {
       display: flex;
       gap: var(--composer-gap-xl);
+
       .leftContainer {
         flex: 0 0 25%;
         min-width: 0;
+
         .leftContainerText {
           text-align: left !important;
           align-items: flex-start !important;
+
           .subtitle,
           .title,
           .top-description {
@@ -49,6 +53,7 @@
             margin-left: 0 !important;
             margin-right: 0 !important;
           }
+
           .button-container {
             display: flex;
             flex-direction: row;
@@ -61,6 +66,7 @@
               content: "";
             }
           }
+
           .arrow {
             display: flex;
             gap: var(--composer-gap-md);
@@ -86,6 +92,7 @@
           }
         }
       }
+
       .slider {
         flex: 1;
         min-width: 0;
@@ -96,15 +103,20 @@
         &.fullSlider {
           flex: 1 1 100%;
         }
-        > div {
+
+        >div {
           width: 100%;
-          > div {
+
+          >div {
             display: flex !important;
-            > div {
+
+            >div {
               height: auto !important;
-              > div {
+
+              >div {
                 height: 100%;
-                > div {
+
+                >div {
                   height: 100%;
                   display: flex !important;
                   gap: var(--composer-gap-lg);
@@ -113,11 +125,12 @@
             }
           }
         }
-      
+
         .rightWrapper {
           display: flex;
           align-items: center;
           gap: var(--composer-gap-md);
+
           .authorContainer {
             display: flex;
             flex-direction: row-reverse;
@@ -126,6 +139,7 @@
             flex-shrink: 0;
             align-self: center;
           }
+
           .sliderTitle {
             writing-mode: vertical-rl;
             transform: rotate(180deg);
@@ -137,7 +151,9 @@
             flex-shrink: 0;
             align-self: center;
             justify-content: flex-start !important;
+            font-weight: 800 !important;
           }
+
           .sliderPosition {
             writing-mode: vertical-rl;
             transform: rotate(180deg);
@@ -158,6 +174,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
+
             .line {
               height: 75%;
               width: 1px;
@@ -165,6 +182,7 @@
               background-color: var(--composer-font-color-primary);
             }
           }
+
           .rightContainer {
             flex: 1;
             display: flex;
@@ -172,6 +190,7 @@
             justify-content: center;
             align-items: flex-start;
             gap: var(--composer-gap-md);
+
             .description {
               color: var(--composer-font-color-primary);
               font-size: 1.5rem;
@@ -196,16 +215,18 @@
         }
       }
 
-      > :global(.slick-slider) > :global(.slick-dots),
+      > :global(.slick-slider)> :global(.slick-dots),
       :global(.slick-dots) {
         position: static;
         margin-top: var(--composer-gap-sm);
-        > li {
-          > button::before {
+
+        >li {
+          >button::before {
             color: var(--composer-font-color-primary);
             opacity: 0.4;
           }
-          &:global(.slick-active) > button::before {
+
+          &:global(.slick-active)>button::before {
             color: var(--composer-primary-color);
             opacity: 1;
           }
@@ -221,39 +242,48 @@
           color: black;
           background: transparent !important;
           padding: 0 !important;
+
           &::before {
             background-color: black !important;
           }
         }
+
         .title,
         .top-description {
           color: black;
         }
+
         .arrow {
+
           .prevArrow,
           .nextArrow {
-            background-color: var(--composer-font-color-primary) !important;
-            color: var(--composer-html-background) !important;
+            background-color: #ffffff !important;
+            color: #000000 !important;
           }
         }
       }
     }
+
     .slider {
       .sliderTitle {
         color: var(--composer-primary-color) !important;
       }
+
       .sliderPosition {
         color: black !important;
       }
+
       .lineContainer {
         .line {
           background-color: black !important;
         }
       }
+
       .rightContainer {
         .description {
           color: black !important;
         }
+
         .stars {
           background-color: var(--composer-primary-color) !important;
           color: white !important;
@@ -270,6 +300,7 @@
       .containerGrid {
         flex-direction: column;
         gap: var(--composer-gap-md);
+
         .leftContainer {
           display: flex;
           flex-direction: column;
@@ -286,16 +317,19 @@
             }
           }
         }
+
         .slider {
           width: 100%;
+
           .image {
             max-width: 100%;
           }
-          > div {
-            > div {
-              > div {
-                > div {
-                  > div {
+
+          >div {
+            >div {
+              >div {
+                >div {
+                  >div {
                     flex-direction: column;
                     gap: var(--composer-gap-md);
                   }
@@ -303,14 +337,17 @@
               }
             }
           }
+
           .rightWrapper {
             flex-direction: column-reverse;
             gap: var(--composer-gap-xs);
+
             .authorContainer {
               flex-direction: column-reverse;
               align-items: flex-start;
               align-self: flex-start;
             }
+
             .sliderTitle,
             .sliderPosition {
               writing-mode: unset;
@@ -319,9 +356,11 @@
               align-self: flex-start;
               margin: 0;
             }
+
             .lineContainer {
               display: none;
             }
+
             .rightContainer {
               align-items: flex-start;
               padding-left: 0;
@@ -330,6 +369,7 @@
         }
       }
     }
+
     &.center {
       .maxContent {
         .containerGrid {
@@ -337,30 +377,36 @@
             .leftContainerText {
               align-items: center !important;
               text-align: center !important;
+
               .subtitle,
               .title,
               .top-description {
                 text-align: center !important;
                 justify-content: center !important;
               }
+
               .button-container {
                 justify-content: center;
               }
             }
           }
+
           .slider {
             .rightWrapper {
               .authorContainer {
                 align-items: center;
                 align-self: center;
               }
+
               .sliderTitle,
               .sliderPosition {
                 text-align: center;
                 align-self: center;
               }
+
               .rightContainer {
                 align-items: center;
+
                 .description {
                   text-align: center !important;
                 }

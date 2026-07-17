@@ -453,6 +453,7 @@
 
   .quote {
     color: var(--composer-font-color-primary) !important;
+    font-weight: 800;
   }
 
   .quote-row {
@@ -479,6 +480,7 @@
     justify-content: flex-start !important;
     align-self: flex-start !important;
     line-height: 1;
+    font-weight: bold;
   }
 
   .author-block {

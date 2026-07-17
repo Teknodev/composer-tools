@@ -160,7 +160,7 @@ class Testimonials1Page extends Testimonials {
               key: "description",
               displayer: "Text",
               value:
-                "I really like the clean and simple aesthetic of flat design. It's great for creating a modern and minimal look, and it also works well for responsive design since it's easy to adapt to different screen sizes. Plus, the lack of textures and gradients makes it easier to focus on the content itself.",
+                "This product has changed my life! It's incredibly useful and packed with creative features. I would highly recommend it to everyone!",
             },
             {
               type: "string",

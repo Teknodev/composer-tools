@@ -402,7 +402,7 @@ class Testimonials8Page extends Testimonials {
                         )}
                         {this.getPropValue("lineActive") && <div className={this.decorateCSS("line")}></div>}
                         {item.starNumber > 0 && this.getPropValue("numberIsActive") && (
-                          <div className={this.decorateCSS("starNumber")}>{item.starNumber}</div>
+                          <div className={this.decorateCSS("starNumber")}>{Number(item.starNumber).toFixed(1)}</div>
                         )}
                       </Base.Row>
                     </Base.VerticalContent>
