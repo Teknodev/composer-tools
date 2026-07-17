@@ -310,7 +310,7 @@ class HeroSection22 extends BaseHeroSection {
         }
       },
     };
-    const elements = document.getElementsByClassName(this.decorateCSS("sliders"));
+    const elements = typeof document !== "undefined" ? document.getElementsByClassName(this.decorateCSS("sliders")) : ([] as unknown as HTMLCollectionOf<Element>);
     const items = [];
 
     for (let index = 0; index < elements.length; index++) {
