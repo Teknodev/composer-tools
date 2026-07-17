@@ -512,7 +512,9 @@ class ImageGallery4 extends BaseImageGallery {
     this.setComponentState("focusedImage", null);
     this.setComponentState("isFocused", false);
     this.setComponentState("moreImages", 0);
-    document.addEventListener("keydown", this.handleKeyDown);
+    if (typeof document !== "undefined") {
+      document.addEventListener("keydown", this.handleKeyDown);
+    }
   }
 
   static getName(): string {

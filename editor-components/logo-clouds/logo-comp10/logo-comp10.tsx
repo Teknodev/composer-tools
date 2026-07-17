@@ -12,6 +12,7 @@ class LogoComp10Page extends LogoClouds {
   containerRef: HTMLDivElement | null = null;
   wheelTimeout: NodeJS.Timeout | null = null;
   resizeObserver: ResizeObserver | null = null;
+  private phoneState: boolean = false;
   constructor(props?: any) {
     super(props, styles);
     this.addProp({
@@ -160,6 +161,7 @@ class LogoComp10Page extends LogoClouds {
     this.handleResize();
   }
   handleResize = () => {
+    this.updatePhoneState();
     this.forceUpdate();
   };
   componentWillUnmount() {
@@ -218,11 +220,13 @@ class LogoComp10Page extends LogoClouds {
   getEffectiveChunkSize = (): number => {
     return this.isPhone() ? Math.min(2, this.getChunkSize()) : this.getChunkSize();
   };
-  isPhone = (): boolean => {
+  isPhone = (): boolean => this.phoneState;
+  private updatePhoneState = (): void => {
+    if (typeof window === "undefined" || typeof document === "undefined") return;
     const width = this.containerRef?.clientWidth
-      ?? document.getElementById('playground')?.clientWidth
+      ?? document.getElementById("playground")?.clientWidth
       ?? window.innerWidth;
-    return width <= 640;
+    this.phoneState = width <= 640;
   };
   chunkLogos = (logos: TImage[], size: number): TImage[][] => {
     const chunkSize = Math.max(1, size);
