@@ -372,6 +372,7 @@ export enum CATEGORIES {
   MODAL = "modal",
   LOGOCLOUDS = "logoClouds",
   STATS = "stats",
+  STEPS = "steps",
   FEATURE = "feature",
   IMAGEGALLERY = "imageGallery",
   LOCATION = "location",
@@ -1302,6 +1303,10 @@ export abstract class Location extends Component {
 
 export abstract class BaseStats extends Component {
   static category = CATEGORIES.STATS;
+}
+
+export abstract class BaseSteps extends Component {
+  static category = CATEGORIES.STEPS;
 }
 
 export abstract class BaseContacts extends Component {

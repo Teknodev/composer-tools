@@ -1,0 +1,193 @@
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+
+.container {
+    .max-content {
+        display: flex;
+        flex-direction: column;
+
+        .cards-row {
+            gap: var(--composer-gap-lg);
+            align-items: stretch;
+
+            .header {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                justify-content: center;
+                text-align: left;
+
+                .subtitle {
+                    margin-left: 0;
+                    margin-right: auto;
+                    align-self: flex-start;
+                    text-align: left !important;
+                }
+
+                .title,
+                .description {
+                    text-align: left;
+                }
+
+                .button-container {
+                    display: flex;
+                    flex-wrap: wrap;
+                    gap: var(--composer-gap-sm);
+
+                    .button {
+                        .button-text {
+                            content: "";
+                        }
+                    }
+                }
+            }
+
+            .card {
+                display: flex;
+                flex-direction: column;
+                min-height: 440px;
+                border-radius: var(--composer-border-radius-md);
+                box-shadow: var(--box-shadow-active);
+                padding: var(--composer-gap-lg) var(--composer-gap-md);
+                gap: var(--composer-gap-md);
+                overflow: hidden;
+                color: var(--composer-font-color-secondary);
+
+                &:hover {
+                    transform: translateY(-5px);
+                    box-shadow: var(--box-shadow-active);
+                }
+
+                &.first-card {
+                    background: var(--composer-secondary-color);
+                }
+
+                &.second-card {
+                    background: var(--composer-primary-color);
+                }
+
+                .card-content {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: flex-start;
+                    justify-content: center;
+                    flex: 1;
+
+                    .card-subtitle {
+                        text-align: left;
+                        align-self: flex-start;
+                    }
+
+                    .card-title {
+                        text-align: left;
+                    }
+
+                    .card-price-row {
+                        display: flex;
+                        align-items: baseline;
+                        gap: var(--composer-gap-xs);
+
+                        .card-price {
+                            font-weight: 800;
+                            font-size: 3rem;
+                            line-height: 1;
+                        }
+                    }
+
+                    .card-description {
+                        text-align: left;
+                    }
+
+                    .card-buttons-container {
+                        display: flex;
+                        flex-wrap: wrap;
+                        gap: var(--composer-gap-sm);
+                        width: 100%;
+
+                        .card-button {
+                            display: flex;
+                            flex-wrap: wrap;
+                            gap: var(--composer-gap-sm);
+
+                            .button-text {
+                                content: "";
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@container (max-width: #{$composer-tablet-width}) {
+    .container {
+        .max-content {
+            .cards-row {
+                gap: var(--composer-gap-md);
+                .card {
+                    .card-content {
+                        .card-price-row {
+                            .card-price {
+                                font-size: 2.25rem;
+                            }
+
+                            .card-duration {
+                                font-size: 1rem;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+    .container {
+        .max-content {
+            .cards-row {
+                gap: var(--composer-gap-md);
+
+                .header {
+                    &.center {
+                        align-items: center !important;
+                        text-align: center !important;
+
+                        .subtitle {
+                            align-self: center !important;
+                            text-align: center !important;
+                            margin-left: auto !important;
+                            margin-right: auto !important;
+                        }
+
+                        .title,
+                        .description {
+                            text-align: center !important;
+                        }
+
+                        .button-container {
+                            justify-content: center !important;
+                        }
+                    }
+                }
+
+                .card {
+                    min-height: 360px;
+                    padding: var(--composer-gap-md);
+
+                    .card-content {
+                        .card-price-row {
+                            .card-price {
+                                font-size: 2rem;
+                            }
+
+                            .card-duration {
+                                font-size: 1rem;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
