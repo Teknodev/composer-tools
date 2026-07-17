@@ -292,11 +292,18 @@ class Feature9 extends BaseFeature {
   render() {
     const cards = this.castToObject<Card[]>("cards");
     const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
+    const cardElements = typeof document !== "undefined" ? document.querySelectorAll("." + this.decorateCSS("card")) : ([] as unknown as NodeListOf<Element>);
     const title = this.getPropValue("title");
     const subtitle = this.getPropValue("subtitle");
     const description = this.getPropValue("description");
 
     const hasValidButtons = buttons && buttons.some((button: INPUTS.CastedButton) => this.castToString(button.text));
+
+    const cardsLengthIsChanged = this.getComponentState("cardLength") != cardElements.length;
+
+    if (cardsLengthIsChanged && typeof document !== "undefined") {
+      this.setupObserver();
+    }
 
     const wrapperExist = this.castToString(title) || this.castToString(subtitle) || this.castToString(description) || hasValidButtons || cards?.length > 0;
 

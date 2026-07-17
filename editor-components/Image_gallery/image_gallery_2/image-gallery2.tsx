@@ -801,7 +801,9 @@ class ImageGallery2 extends BaseImageGallery {
 
         this.addProp(INPUTS.BUTTON("button", "Button", "Load More", null, null, null, "Primary"));
 
-        document.addEventListener("keydown", this.handleKeyDown);
+        if (typeof document !== "undefined") {
+            document.addEventListener("keydown", this.handleKeyDown);
+        }
         this.setComponentState("default", 0);
         this.setComponentState("modalOpen", false);
         this.setComponentState("currentImageIndex", 0);
