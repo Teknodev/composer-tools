@@ -31,7 +31,7 @@ class Faq6 extends BaseFAQ {
     this.addProp({
       type: "string",
       key: "imageText",
-      displayer: "Image Text",
+      displayer: "Media Text",
       value: "FAQ"
     })
     this.addProp({

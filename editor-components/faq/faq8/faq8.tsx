@@ -829,7 +829,7 @@ class Faq8 extends BaseFAQ {
                 </div>
               )}
             </div>
-            {this.getPropValue("buttons").length > 0 && (
+            {this.castToObject<INPUTS.CastedButton[]>("buttons").some((button) => this.castToString(button.text)) && (
               <div className={this.decorateCSS("buttons-wrapper")}>
                 {this.castToObject<INPUTS.CastedButton[]>("buttons").map(
                   (button: INPUTS.CastedButton, index: number) =>

@@ -47,7 +47,7 @@ class Faq2 extends BaseFAQ {
       type: "number",
       key: "itemCount",
       displayer: "Item Count in a Row",
-      value: 3,
+      value: 2,
     });
 
     this.addProp({

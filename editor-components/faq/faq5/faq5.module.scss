@@ -198,6 +198,20 @@
         .section-wrapper {
           border-bottom: none;
         }
+
+        .bottom-wrapper {
+          .card {
+            .little-container {
+              .icon-wrapper {
+                .icon {
+                  width: 22px;
+                  height: 22px;
+                  font-size: 1.75rem;
+                }
+              }
+            }
+          }
+        }
       }
     }
   }
