@@ -71,6 +71,18 @@ export namespace Base {
     setStyleValue("--composer-view-type", viewType);
   }
 
+  // Text-only projects (AI-generated without images) render a theme-colored
+  // layer over every image instead of the placeholder image itself. Stored as
+  // a CSS variable so it is available in both the editor and preview/published
+  // render paths without threading project state through every component.
+  export function getTextOnly() {
+    return getStyleValue("--composer-text-only") === "true";
+  }
+
+  export function setTextOnly(value: boolean) {
+    setStyleValue("--composer-text-only", value ? "true" : "false");
+  }
+
   export function setFontSize(size: string) {
     setStyleValue("--composer-font-size-md", `${size}px`);
   }
@@ -669,6 +681,17 @@ export namespace Base {
           </span>
         );
       case "image":
+        // Text-only projects cover placeholder images with a theme-gradient
+        // layer. The wrapper takes the image's layout slot (gets `className`)
+        // and the image fills it, so sizing/border-radius are preserved.
+        if (getTextOnly()) {
+          return (
+            <span className={`${styles.themeCover} ${className ?? ""}`} {...props}>
+              <img className={styles.themeCoverImage} src={value.url} alt="" />
+              <span className={styles.themeCoverLayer} aria-hidden="true" />
+            </span>
+          );
+        }
         return (
           <img
             className={className}
