@@ -8,6 +8,7 @@ import ComposerLink from "../../../composer-base-components/Link/ComposerLinkPro
 type Item = {
   image: TypeMediaInputValue;
   name: React.JSX.Element;
+  position: React.JSX.Element;
   starCount: number;
   text: React.JSX.Element;
 };
@@ -97,6 +98,7 @@ class Testimonials11Page extends Testimonials {
               value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617822bd2970002c623daf?alt=media&timestamp=1719483639150" },
             },
             { type: "string", key: "name", displayer: "Name", value: "Sarah Lewin" },
+            { type: "string", key: "position", displayer: "Position", value: "" },
             { type: "number", key: "starCount", displayer: "Star Count", value: 5 },
             {
               type: "string",
@@ -119,6 +121,7 @@ class Testimonials11Page extends Testimonials {
               value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617822bd2970002c623db0?alt=media&timestamp=1719483639150" },
             },
             { type: "string", key: "name", displayer: "Name", value: "Gregory Tabot" },
+            { type: "string", key: "position", displayer: "Position", value: "" },
             { type: "number", key: "starCount", displayer: "Star Count", value: 5 },
             {
               type: "string",
@@ -141,6 +144,7 @@ class Testimonials11Page extends Testimonials {
               value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617822bd2970002c623db1?alt=media&timestamp=1719483639150" },
             },
             { type: "string", key: "name", displayer: "Name", value: "Jess Simpson" },
+            { type: "string", key: "position", displayer: "Position", value: "" },
             { type: "number", key: "starCount", displayer: "Star Count", value: 5 },
             {
               type: "string",
@@ -163,6 +167,7 @@ class Testimonials11Page extends Testimonials {
               value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617822bd2970002c623db1?alt=media&timestamp=1719483639150" },
             },
             { type: "string", key: "name", displayer: "Name", value: "Jess Simpson" },
+            { type: "string", key: "position", displayer: "Position", value: "" },
             { type: "number", key: "starCount", displayer: "Star Count", value: 5 },
             {
               type: "string",
@@ -185,6 +190,7 @@ class Testimonials11Page extends Testimonials {
               value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617822bd2970002c623db1?alt=media&timestamp=1719483639150" },
             },
             { type: "string", key: "name", displayer: "Name", value: "Jess Simpson" },
+            { type: "string", key: "position", displayer: "Position", value: "" },
             { type: "number", key: "starCount", displayer: "Star Count", value: 5 },
             {
               type: "string",
@@ -207,6 +213,7 @@ class Testimonials11Page extends Testimonials {
               value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617822bd2970002c623db1?alt=media&timestamp=1719483639150" },
             },
             { type: "string", key: "name", displayer: "Name", value: "Jess Simpson" },
+            { type: "string", key: "position", displayer: "Position", value: "" },
             { type: "number", key: "starCount", displayer: "Star Count", value: 5 },
             {
               type: "string",
@@ -231,6 +238,20 @@ class Testimonials11Page extends Testimonials {
       displayer: "Quote Icon",
       additionalParams: { availableTypes: ["icon", "image"] },
       value: { type: "icon", name: "FaQuoteRight" },
+    });
+    this.addProp({
+      type: "media",
+      key: "bgQuoteStartIcon",
+      displayer: "Background Top Quote Icon",
+      additionalParams: { availableTypes: ["icon", "image"] },
+      value: { type: "icon", name: "RiDoubleQuotesL" },
+    });
+    this.addProp({
+      type: "media",
+      key: "bgQuoteEndIcon",
+      displayer: "Background Bottom Quote Icon",
+      additionalParams: { availableTypes: ["icon", "image"] },
+      value: { type: "icon", name: "RiDoubleQuotesR" },
     });
     this.addProp({
       type: "number",
@@ -268,6 +289,10 @@ class Testimonials11Page extends Testimonials {
     const starIconExist = starIconVal && (starIconVal.type === "icon" ? starIconVal.name : starIconVal.url);
     const quoteIconVal = this.getPropValue("quoteIcon") as TypeMediaInputValue;
     const quoteIconExist = quoteIconVal && (quoteIconVal.type === "icon" ? quoteIconVal.name : quoteIconVal.url);
+    const bgQuoteStartVal = this.getPropValue("bgQuoteStartIcon") as TypeMediaInputValue;
+    const bgQuoteStartExist = bgQuoteStartVal && (bgQuoteStartVal.type === "icon" ? bgQuoteStartVal.name : bgQuoteStartVal.url);
+    const bgQuoteEndVal = this.getPropValue("bgQuoteEndIcon") as TypeMediaInputValue;
+    const bgQuoteEndExist = bgQuoteEndVal && (bgQuoteEndVal.type === "icon" ? bgQuoteEndVal.name : bgQuoteEndVal.url);
 
     const itemCount = this.getPropValue("itemCount");
     const gridCount = { phone: 1, tablet: 3, pc: itemCount };
@@ -277,6 +302,7 @@ class Testimonials11Page extends Testimonials {
 
     const renderCard = (item: Item, index: number) => {
       const nameExist = this.castToString(item.name);
+      const positionExist = this.castToString(item.position);
       const textExist = this.castToString(item.text);
       const ratingExist = starIconExist && Number(item.starCount) > 0;
       return (
@@ -286,15 +312,18 @@ class Testimonials11Page extends Testimonials {
               <Base.Media value={quoteIconVal} className={this.decorateCSS("card-quote-icon")} />
             </div>
           )}
-          {(item.image || nameExist || ratingExist) && (
+          {(item.image || nameExist || positionExist || ratingExist) && (
             <div className={this.decorateCSS("card-top")}>
               {item.image && (
                 <Base.Media value={item.image} className={this.decorateCSS("card-image")} />
               )}
-              {(nameExist || ratingExist) && (
+              {(nameExist || positionExist || ratingExist) && (
                 <div className={this.decorateCSS("card-top-right")}>
                   {nameExist && (
                     <Base.H6 className={this.decorateCSS("card-title")}>{item.name}</Base.H6>
+                  )}
+                  {positionExist && (
+                    <Base.P className={this.decorateCSS("card-subtitle")}>{item.position}</Base.P>
                   )}
                   {ratingExist && (
                     <div className={this.decorateCSS("card-rating")}>
@@ -330,6 +359,12 @@ class Testimonials11Page extends Testimonials {
         {overlayActive && coverMediaExist && <div className={this.decorateCSS("overlay")} />}
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("wrapper")}>
+            {bgQuoteStartExist && (
+              <Base.Media value={bgQuoteStartVal} className={`${this.decorateCSS("bg-quote")} ${this.decorateCSS("bg-quote-start")}${coverMediaExist ? ` ${this.decorateCSS("bg-quote-with-image")}` : ""}`} />
+            )}
+            {bgQuoteEndExist && (
+              <Base.Media value={bgQuoteEndVal} className={`${this.decorateCSS("bg-quote")} ${this.decorateCSS("bg-quote-end")}${coverMediaExist ? ` ${this.decorateCSS("bg-quote-with-image")}` : ""}`} />
+            )}
             {hasAnyTopContent && (
               <Base.VerticalContent className={this.decorateCSS("top-content")}>
                 {subtitleExist && (
@@ -376,7 +411,7 @@ class Testimonials11Page extends Testimonials {
               </Base.ListGrid>
               {backgroundText && (
                 <svg
-                  className={this.decorateCSS("background-text")}
+                  className={`${this.decorateCSS("background-text")}${coverMediaExist ? ` ${this.decorateCSS("background-text-with-image")}` : ""}`}
                   viewBox="0 0 1000 140"
                   preserveAspectRatio="xMidYMid meet"
                   role="img"

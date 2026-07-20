@@ -389,12 +389,14 @@
           .right-content {
             padding-bottom: 0;
             .slider-icons {
-              position: relative;
-              right: auto;
-              top: auto;
-              padding: var(--composer-gap-md) var(--composer-gap-md) 0;
+              position: absolute;
+              left: auto;
+              bottom: auto;
+              top: calc(var(--composer-gap-xl) + var(--composer-gap-sm));
+              right: var(--composer-gap-lg);
+              padding: 0;
               justify-content: flex-end;
-              z-index: 2;
+              z-index: 5;
               .icon-btn {
                 svg {
                   &:hover {
@@ -418,7 +420,7 @@
                       .top-container {
                         display: flex;
                         .img-div {
-                          flex: 1;
+                          flex: 0 0 42%;
                           position: static;
                           width: auto;
                           height: auto;

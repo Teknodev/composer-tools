@@ -90,10 +90,11 @@
         }
 
         .author-container {
+          width: 100%;
           align-items: center;
 
           .author-image {
-            width: 100%;
+            width: 40%;
             aspect-ratio: 3 / 1;
             border-radius: var(--composer-border-radius-sm);
             object-fit: contain;

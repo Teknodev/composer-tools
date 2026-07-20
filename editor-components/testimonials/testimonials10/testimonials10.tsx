@@ -379,7 +379,7 @@ class Testimonials10Page extends Testimonials {
                                         {item.author && (authorNameExist || authorSubtitleExist) && (
                                           <Base.VerticalContent className={this.decorateCSS("bottom-container")}>
                                             {authorNameExist && (
-                                              <Base.P className={this.decorateCSS("item-name")}>{item.author.name}</Base.P>
+                                              <Base.H6 className={this.decorateCSS("item-name")}>{item.author.name}</Base.H6>
                                             )}
                                             {authorSubtitleExist && (
                                               <Base.P className={this.decorateCSS("item-subtitle")}>{item.author.position}</Base.P>
