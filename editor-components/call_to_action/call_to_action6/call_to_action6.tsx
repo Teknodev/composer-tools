@@ -51,7 +51,7 @@ class CallToAction6Page extends BaseCallToAction {
       type: "string",
       key: "subtitle",
       displayer: "Subtitle",
-      value: "Subscribe for now",
+      value: "",
     });
 
     this.addProp({
@@ -135,6 +135,7 @@ class CallToAction6Page extends BaseCallToAction {
     const mediaObject = this.castToObject<MediaObject>("mediaObject");
     const backgroundImage = mediaObject.backgroundImage;
     const overlay = mediaObject.overlay;
+    const viewType = Base.getViewType();
     const spaceLineExist = this.getPropValue("spaceLine");
     const subtitleExist = this.castToString(this.getPropValue("subtitle"));
     const titleExist = this.castToString(this.getPropValue("title"));
@@ -167,7 +168,7 @@ class CallToAction6Page extends BaseCallToAction {
     };
 
     return (
-      <Base.Container className={`${this.decorateCSS("container")} ${overlay && backgroundImage && this.decorateCSS("overlay-active")} ${backgroundImage && this.decorateCSS("has-background")}`}>
+      <Base.Container className={`${this.decorateCSS("container")} ${this.decorateCSS(viewType)} ${overlay && backgroundImage && this.decorateCSS("overlay-active")} ${backgroundImage && this.decorateCSS("has-background")}`}>
         {backgroundImage && (<Base.Media value={backgroundImage} className={this.decorateCSS("background-image")} />)}
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <Base.VerticalContent className={this.decorateCSS("content")}>

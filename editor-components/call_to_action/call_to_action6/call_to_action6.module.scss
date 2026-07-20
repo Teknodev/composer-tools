@@ -38,6 +38,31 @@
     }
   }
 
+  &.monochrome:not(.has-background) {
+    .max-content {
+      .content {
+        .subtitle,
+        .title {
+          color: var(--composer-font-color-primary);
+        }
+      }
+    }
+  }
+
+  &.colorful:not(.has-background) {
+    .max-content {
+      .content {
+        .subtitle {
+          color: var(--composer-primary-color);
+        }
+
+        .title {
+          color: var(--composer-font-color-primary);
+        }
+      }
+    }
+  }
+
   &::before {
     position: absolute;
     top: 0;
@@ -89,7 +114,6 @@
       align-items: center;
 
       .subtitle {
-        color: var(--composer-font-color-primary);
         transform: translateX(0);
 
         &::before {
@@ -98,8 +122,6 @@
       }
 
       .title {
-        color: var(--composer-font-color-primary);
-
         .primary-title {
           display: block;
           color: var(--composer-primary-color);
