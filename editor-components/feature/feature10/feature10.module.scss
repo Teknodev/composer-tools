@@ -114,7 +114,7 @@
                             width: 100%;
                             
                             .card-subtitle {
-                                font-size: 0.75rem;
+                                font-size: 1rem;
                                 color: var(--composer-tertiary-color);
                                 text-align: left;
                             }
@@ -151,11 +151,13 @@
 
                                     .stat-label {
                                         font-weight: 800;
+                                        font-size: 0.75rem;
                                         color: var(--composer-font-color-primary);
                                         text-align: left !important;
                                     }
 
                                     .stat-value {
+                                        font-size: 0.75rem;
                                         color: var(--composer-tertiary-color);
                                         text-align: left !important;
                                     }
@@ -228,7 +230,7 @@
 
                                     .card-stat-item {
                                         .stat-label {
-                                            font-size: 1rem;
+                                            font-size: 0.75rem;
                                         }
                                         .stat-value {
                                             font-size: 0.75rem;
@@ -237,7 +239,7 @@
                                 }
                             }
                         }
-                    
+
                      }
                 }
             }
@@ -280,10 +282,10 @@
 
                                     .card-stat-item {
                                         .stat-label {
-                                            font-size: 1rem;
+                                            font-size: 0.5rem;
                                         }
                                         .stat-value {
-                                            font-size: 0.75rem;
+                                            font-size: 0.5rem;
                                         }
                                     }
                                 }

@@ -83,6 +83,10 @@
           z-index: 2;
 
           .icon-container {
+            display: flex;
+            justify-content: flex-start;
+            align-self: flex-start !important;
+
             .icon {
               color: var(--composer-primary-color);
               font-size: 3rem;
@@ -220,6 +224,13 @@
           align-content: center;
 
           .card-first-content {
+
+            .icon-container {
+              display: flex;
+              justify-content: center;
+              align-self: center !important;
+            }
+
             .first-card-subtitle,
             .first-card-title {
               text-align: center;

@@ -45,7 +45,7 @@ class Feature17 extends BaseFeature {
       key: "buttons",
       displayer: "Button",
       value: [
-        INPUTS.BUTTON("button", "Button", "Get Started", "", null, null, "Primary"),
+        INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
       ],
     });
 

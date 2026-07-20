@@ -54,7 +54,7 @@
                 display: flex;
                 flex-direction: column;
                 align-items: flex-start;
-                gap: var(--composer-gap-md);
+                gap: var(--composer-gap-lg);
                 position: relative;
 
                 .icon-container {
@@ -145,7 +145,7 @@
                 gap: var(--composer-gap-lg);
 
                 .item {
-                    gap: var(--composer-gap-md);
+                    gap: var(--composer-gap-lg);
                 }
             }
         }
@@ -160,6 +160,7 @@
                 .item {
                     align-items: center;
                     text-align: center;
+                    gap: var(--composer-gap-md);
 
                     &::after {
                         display: none;
