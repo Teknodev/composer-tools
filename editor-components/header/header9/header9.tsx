@@ -6,12 +6,18 @@ import ComposerLink from "../../../composer-base-components/Link/ComposerLinkPro
 import { INPUTS } from "../../../custom-hooks/input-templates";
 
 type StatItem = {
-  subtitle: React.ReactNode;
-  title: React.ReactNode;
-  description: React.ReactNode;
+  subtitle: string;
+  subtitleElement: React.ReactNode;
+  title: string;
+  titleElement: React.ReactNode;
+  description: string;
+  descriptionElement: React.ReactNode;
   number: string;
+  numberElement: React.ReactNode;
   prefix: string;
+  prefixElement: React.ReactNode;
   suffix: string;
+  suffixElement: React.ReactNode;
 };
 
 interface BackgroundSettings {
@@ -99,7 +105,7 @@ class Header9 extends BaseHeader {
 
   static getName(): string { return "Header 9"; }
 
-  private AnimatedStat = ({ stat, item, animationDuration = 2000, statsAnimation, background }: { stat: StatItem; item: any; animationDuration?: number; statsAnimation: boolean; background: any }) => {
+  private AnimatedStat = ({ stat, animationDuration = 2000, statsAnimation, background }: { stat: StatItem; animationDuration?: number; statsAnimation: boolean; background: any }) => {
     const cleanNumber = (stat.number || "").replace(/[^\d.]/g, "");
     const targetNumber = parseFloat(cleanNumber);
     const isEmptyNumber = cleanNumber === "" || isNaN(targetNumber);
@@ -157,9 +163,9 @@ class Header9 extends BaseHeader {
       }, 30);
     };
 
-    const hasSubtitle = stat.subtitle && this.castToString(stat.subtitle);
-    const hasTitle = stat.title && this.castToString(stat.title);
-    const hasDescription = stat.description && this.castToString(stat.description);
+    const hasSubtitle = stat.subtitle && stat.subtitle.trim() !== "";
+    const hasTitle = stat.title && stat.title.trim() !== "";
+    const hasDescription = stat.description && stat.description.trim() !== "";
     const hasPrefix = stat.prefix && stat.prefix.trim() !== "";
     const hasSuffix = stat.suffix && stat.suffix.trim() !== "";
     const hasNumber = (stat.number && stat.number.trim() !== "") || hasPrefix || hasSuffix;
@@ -172,15 +178,15 @@ class Header9 extends BaseHeader {
           <Base.H3 className={`${this.decorateCSS("stat-value")} ${background ? this.decorateCSS("with-bg") : ""}`}>
             {hasPrefix && (
               <span className={this.decorateCSS("stat-prefix")}>
-                {stat.prefix}
+                {stat.prefixElement}
               </span>
             )}
             <span className={this.decorateCSS("stat-number")}>
-              {animatedNumber}
+              {statsAnimation ? animatedNumber : stat.numberElement}
             </span>
             {hasSuffix && (
               <span className={this.decorateCSS("stat-suffix")}>
-                {stat.suffix.replace(/<[^>]*>/g, '')}
+                {stat.suffixElement}
               </span>
             )}
           </Base.H3>
@@ -189,17 +195,17 @@ class Header9 extends BaseHeader {
           <Base.VerticalContent className={this.decorateCSS("stat-vertical-content")}>
             {hasSubtitle && (
               <Base.H6 className={`${this.decorateCSS("stat-subtitle")} ${background ? this.decorateCSS("with-bg") : ""}`}>
-                {item.getPropValue("subtitle")}
+                {stat.subtitleElement}
               </Base.H6>
             )}
             {hasTitle && (
               <Base.P className={`${this.decorateCSS("stat-label")} ${background ? this.decorateCSS("with-bg") : ""}`}>
-                {item.getPropValue("title")}
+                {stat.titleElement}
               </Base.P>
             )}
             {hasDescription && (
               <Base.P className={`${this.decorateCSS("stat-description")} ${background ? this.decorateCSS("with-bg") : ""}`}>
-                {item.getPropValue("description")}
+                {stat.descriptionElement}
               </Base.P>
             )}
           </Base.VerticalContent>
@@ -213,13 +219,26 @@ class Header9 extends BaseHeader {
     const description = this.getPropValue("description");
     const statsProp = this.getPropValue("stats");
     const stats = statsProp.map((item: any) => {
-      const subtitle = item.getPropValue("subtitle");
-      const itemTitle = item.getPropValue("title");
-      const itemDescription = item.getPropValue("description");
+      const subtitle = this.castToString(item.getPropValue("subtitle")) || "";
+      const itemTitle = this.castToString(item.getPropValue("title")) || "";
+      const itemDescription = this.castToString(item.getPropValue("description")) || "";
       const number = this.castToString(item.getPropValue("number")) || "";
       const prefix = this.castToString(item.getPropValue("prefix")) || "";
       const suffix = this.castToString(item.getPropValue("suffix")) || "";
-      return { subtitle, title: itemTitle, description: itemDescription, number, prefix, suffix };
+      return {
+        subtitle,
+        subtitleElement: item.getPropValue("subtitle"),
+        title: itemTitle,
+        titleElement: item.getPropValue("title"),
+        description: itemDescription,
+        descriptionElement: item.getPropValue("description"),
+        number,
+        numberElement: item.getPropValue("number"),
+        prefix,
+        prefixElement: item.getPropValue("prefix"),
+        suffix,
+        suffixElement: item.getPropValue("suffix"),
+      };
     });
     const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
     const backgroundSettings = this.castToObject<BackgroundSettings>("backgroundSettings");
@@ -296,7 +315,6 @@ class Header9 extends BaseHeader {
                       <this.AnimatedStat
                         key={`stat15-${index}`}
                         stat={stat}
-                        item={item}
                         animationDuration={animationDuration}
                         statsAnimation={statsAnimation}
                         background={withBackground}
