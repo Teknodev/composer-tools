@@ -20,6 +20,7 @@ type Stat = {
 
 type Card = {
   media: TypeMediaInputValue;
+  overlay?: boolean;
   subtitle?: React.JSX.Element;
   title: React.JSX.Element;
   description: React.JSX.Element;
@@ -60,6 +61,17 @@ class Feature10 extends BaseFeature {
       value: "We've helped plenty of SaaS startups and scaleups develop reliable, secure infrastructure."
     });
 
+    this.addProp(INPUTS.SLIDER_SETTINGS("settings", "Slider Settings", {
+      arrows: true,
+      dots: false,
+      infinite: true,
+      speed: 725,
+      autoplay: true,
+      autoplaySpeed: 2000,
+      slidesToShow: 3,
+      slidesToScroll: 1,
+    }));
+
     this.addProp({
       type: "media",
       key: "rightArrow",
@@ -85,17 +97,6 @@ class Feature10 extends BaseFeature {
       }
     });
 
-    this.addProp(INPUTS.SLIDER_SETTINGS("settings", "Slider Settings", {
-      arrows: true,
-      dots: false,
-      infinite: true,
-      speed: 725,
-      autoplay: true,
-      autoplaySpeed: 2000,
-      slidesToShow: 3,
-      slidesToScroll: 1,
-    }));
-
     this.addProp({
       type: "array",
       key: "cards",
@@ -117,6 +118,12 @@ class Feature10 extends BaseFeature {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67372f90506a40002c2aba0e?alt=media"
               }
+            },
+            {
+              type: "boolean",
+              key: "overlay",
+              displayer: "Overlay",
+              value: false
             },
             {
               type: "string",
@@ -187,6 +194,12 @@ class Feature10 extends BaseFeature {
               }
             },
             {
+              type: "boolean",
+              key: "overlay",
+              displayer: "Overlay",
+              value: false
+            },
+            {
               type: "string",
               key: "subtitle",
               displayer: "Subtitle",
@@ -255,72 +268,10 @@ class Feature10 extends BaseFeature {
               }
             },
             {
-              type: "string",
-              key: "subtitle",
-              displayer: "Subtitle",
-              value: "Case study"
-            },
-            {
-              type: "string",
-              key: "title",
-              displayer: "Title",
-              value: "AI Maid Help Case Study"
-            },
-            {
-              type: "string",
-              key: "description",
-              displayer: "Description",
-              value: "Here's how ElasticScale improved the infrastructure quality for AI Maid Help without increasing costs."
-            },
-            {
-              type: "array",
-              key: "stats",
-              displayer: "Stats",
-              value: [
-                {
-                  type: "object",
-                  key: "stat",
-                  displayer: "Stat",
-                  value: [
-                    { type: "string", key: "label", displayer: "Label", value: "Reduced costs" },
-                    { type: "string", key: "value", displayer: "Value", value: "80% cost reduction" }
-                  ]
-                },
-                {
-                  type: "object",
-                  key: "stat",
-                  displayer: "Stat",
-                  value: [
-                    { type: "string", key: "label", displayer: "Label", value: "Faster development" },
-                    { type: "string", key: "value", displayer: "Value", value: "Due to Dockerization" }
-                  ]
-                }
-              ]
-            },
-            {
-              type: "page",
-              key: "url",
-              displayer: "Navigate To",
-              value: ""
-            }
-          ]
-        },
-        {
-          type: "object",
-          key: "card",
-          displayer: "Card",
-          value: [
-            {
-              type: "media",
-              key: "media",
-              displayer: "Media",
-              additionalParams: {
-                availableTypes: ["image","video"],
-              },
-              value: {
-                type: "image",
-                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67374467506a40002c2ac5c9?alt=media"
-              }
+              type: "boolean",
+              key: "overlay",
+              displayer: "Overlay",
+              value: false
             },
             {
               type: "string",
@@ -389,6 +340,86 @@ class Feature10 extends BaseFeature {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67374467506a40002c2ac5c9?alt=media"
               }
+            },
+            {
+              type: "boolean",
+              key: "overlay",
+              displayer: "Overlay",
+              value: false
+            },
+            {
+              type: "string",
+              key: "subtitle",
+              displayer: "Subtitle",
+              value: "Case study"
+            },
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value: "AI Maid Help Case Study"
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value: "Here's how ElasticScale improved the infrastructure quality for AI Maid Help without increasing costs."
+            },
+            {
+              type: "array",
+              key: "stats",
+              displayer: "Stats",
+              value: [
+                {
+                  type: "object",
+                  key: "stat",
+                  displayer: "Stat",
+                  value: [
+                    { type: "string", key: "label", displayer: "Label", value: "Reduced costs" },
+                    { type: "string", key: "value", displayer: "Value", value: "80% cost reduction" }
+                  ]
+                },
+                {
+                  type: "object",
+                  key: "stat",
+                  displayer: "Stat",
+                  value: [
+                    { type: "string", key: "label", displayer: "Label", value: "Faster development" },
+                    { type: "string", key: "value", displayer: "Value", value: "Due to Dockerization" }
+                  ]
+                }
+              ]
+            },
+            {
+              type: "page",
+              key: "url",
+              displayer: "Navigate To",
+              value: ""
+            }
+          ]
+        },
+        {
+          type: "object",
+          key: "card",
+          displayer: "Card",
+          value: [
+            {
+              type: "media",
+              key: "media",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["image","video"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67374467506a40002c2ac5c9?alt=media"
+              }
+            },
+            {
+              type: "boolean",
+              key: "overlay",
+              displayer: "Overlay",
+              value: false
             },
             {
               type: "string",
@@ -576,7 +607,12 @@ class Feature10 extends BaseFeature {
                           className={`${this.decorateCSS("card-container")} ${!(subtitleExist || titleExist || descExist) && this.decorateCSS("fit-content")}`}
                         >
                           {item.media && (
-                            <Base.Media value={item.media} className={`${this.decorateCSS("image")} ${!(subtitleExist || titleExist || descExist) && this.decorateCSS("border-radius")}`} />
+                            <div className={this.decorateCSS("media-wrapper")}>
+                              <Base.Media value={item.media} className={`${this.decorateCSS("image")} ${!(subtitleExist || titleExist || descExist) && this.decorateCSS("border-radius")}`} />
+                              {item.overlay && (
+                                <div className={`${this.decorateCSS("overlay")} ${!(subtitleExist || titleExist || descExist) && this.decorateCSS("border-radius")}`} />
+                              )}
+                            </div>
                           )}
                           {(subtitleExist || titleExist || descExist) && (
                             <Base.VerticalContent className={this.decorateCSS("bottom")}>
@@ -586,9 +622,9 @@ class Feature10 extends BaseFeature {
                                 </Base.P>
                               )}
                               {titleExist && (
-                                <Base.H6 className={this.decorateCSS("title")}>
+                                <Base.H5 className={this.decorateCSS("title")}>
                                   {item.title}
-                                </Base.H6>
+                                </Base.H5>
                               )}
                               {descExist && (
                                 <Base.P className={this.decorateCSS("description")}>

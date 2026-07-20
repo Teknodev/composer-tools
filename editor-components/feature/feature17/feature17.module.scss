@@ -23,6 +23,20 @@
       .description {
         content: "";
       }
+
+      .heading-buttons {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: var(--composer-gap-sm);
+
+        .button {
+          .button-text,
+          .button-icon {
+            content: "";
+          }
+        }
+      }
     }
 
     .tabs {

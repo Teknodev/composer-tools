@@ -15,6 +15,7 @@ type Button = {
 
 type ITabs = {
   tabText: React.JSX.Element;
+  subtitle: React.JSX.Element;
   title: React.JSX.Element;
   description: React.JSX.Element;
   buttons: Button[];
@@ -52,6 +53,12 @@ class Feature18 extends BaseFeature {
                 type: "icon",
                 name: "FaBox"
               },
+            },
+            {
+              type: "string",
+              key: "subtitle",
+              displayer: "Subtitle",
+              value: "",
             },
             {
               type: "string",
@@ -101,6 +108,12 @@ class Feature18 extends BaseFeature {
             },
             {
               type: "string",
+              key: "subtitle",
+              displayer: "Subtitle",
+              value: "",
+            },
+            {
+              type: "string",
               key: "title",
               displayer: "Title",
               value: "Research",
@@ -144,6 +157,12 @@ class Feature18 extends BaseFeature {
                 type: "icon",
                 name: "GrAnalytics"
               },
+            },
+            {
+              type: "string",
+              key: "subtitle",
+              displayer: "Subtitle",
+              value: "",
             },
             {
               type: "string",
@@ -193,6 +212,12 @@ class Feature18 extends BaseFeature {
             },
             {
               type: "string",
+              key: "subtitle",
+              displayer: "Subtitle",
+              value: "",
+            },
+            {
+              type: "string",
               key: "title",
               displayer: "Title",
               value: "UI Design",
@@ -236,6 +261,12 @@ class Feature18 extends BaseFeature {
                 type: "icon",
                 name: "SiAltiumdesigner"
               },
+            },
+            {
+              type: "string",
+              key: "subtitle",
+              displayer: "Subtitle",
+              value: "",
             },
             {
               type: "string",
@@ -285,6 +316,12 @@ class Feature18 extends BaseFeature {
             },
             {
               type: "string",
+              key: "subtitle",
+              displayer: "Subtitle",
+              value: "",
+            },
+            {
+              type: "string",
               key: "title",
               displayer: "Title",
               value: "Technology",
@@ -328,6 +365,12 @@ class Feature18 extends BaseFeature {
                 type: "icon",
                 name: "FiAperture"
               },
+            },
+            {
+              type: "string",
+              key: "subtitle",
+              displayer: "Subtitle",
+              value: "",
             },
             {
               type: "string",
@@ -428,6 +471,11 @@ class Feature18 extends BaseFeature {
                           className={this.decorateCSS("icon")}
                         />
                       </Base.Row>
+                    )}
+                    {this.castToString(tab.subtitle) && (
+                      <Base.H5 className={this.decorateCSS("subtitle")}>
+                        {tab.subtitle}
+                      </Base.H5>
                     )}
                     {this.castToString(tab.title) && (
                       <Base.H4 className={this.decorateCSS("title")}>

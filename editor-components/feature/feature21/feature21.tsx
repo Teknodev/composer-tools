@@ -16,6 +16,7 @@ interface Card{
     media: TypeMediaInputValue;
     video: TypeMediaInputValue;
     overlay: boolean;
+    subtitle: React.JSX.Element;
     title: React.JSX.Element;
     description: React.JSX.Element;
     buttons: Button[];
@@ -94,6 +95,12 @@ class Feature21 extends BaseFeature{
                         },
                         {
                             type: "string",
+                            key: "subtitle",
+                            displayer: "Subtitle",
+                            value: "",
+                        },
+                        {
+                            type: "string",
                             key: "title",
                             displayer: "Title",
                             value: "Slash your time-to-publish",
@@ -148,6 +155,12 @@ class Feature21 extends BaseFeature{
                             key: "overlay",
                             displayer: "Overlay",
                             value: false,
+                        },
+                        {
+                            type: "string",
+                            key: "subtitle",
+                            displayer: "Subtitle",
+                            value: "",
                         },
                         {
                             type: "string",
@@ -208,6 +221,12 @@ class Feature21 extends BaseFeature{
                         },
                         {
                             type: "string",
+                            key: "subtitle",
+                            displayer: "Subtitle",
+                            value: "",
+                        },
+                        {
+                            type: "string",
                             key: "title",
                             displayer: "Title",
                             value: "Deliver sites that perform",
@@ -262,6 +281,12 @@ class Feature21 extends BaseFeature{
                             key: "overlay",
                             displayer: "Overlay",
                             value: false,
+                        },
+                        {
+                            type: "string",
+                            key: "subtitle",
+                            displayer: "Subtitle",
+                            value: "",
                         },
                         {
                             type: "string",
@@ -397,6 +422,8 @@ class Feature21 extends BaseFeature{
                         {cards.map((card: Card, index: number) => {
                             const cardImage = card?.media;
                             const cardVideo = card?.video;
+                            const cardSubtitle = card?.subtitle;
+                            const cardSubtitleExist = this.castToString(cardSubtitle);
                             const cardTitle = card?.title;
                             const cardTitleExist = this.castToString(cardTitle);
                             const cardDescription = card?.description;
@@ -409,7 +436,7 @@ class Feature21 extends BaseFeature{
                             });
                             const flexClass = this.getCardFlexClass(index);
                             const cardImageExist = (cardImage && cardImage.url) || (cardVideo && cardVideo.url)
-                            const cardExist = cardImageExist || cardTitleExist || cardDescriptionExist || hasValidButtons
+                            const cardExist = cardImageExist || cardSubtitleExist || cardTitleExist || cardDescriptionExist || hasValidButtons
 
                             return cardExist && (
                                 <div 
@@ -444,7 +471,12 @@ class Feature21 extends BaseFeature{
                                         </div>}
                                         { 
                                         <div className={this.decorateCSS("text-content")}>
-                                            {<div className={this.decorateCSS("left-side")}>
+                                            {<Base.VerticalContent className={this.decorateCSS("left-side")}>
+                                                {cardSubtitleExist && (
+                                                    <Base.H6 className={this.decorateCSS("card-subtitle")}>
+                                                        {cardSubtitle}
+                                                    </Base.H6>
+                                                )}
                                                 {cardTitleExist && (
                                                     <Base.H5 className={this.decorateCSS("card-title")}>
                                                         {cardTitle}
@@ -455,7 +487,7 @@ class Feature21 extends BaseFeature{
                                                         {cardDescription}
                                                     </Base.P>
                                                 )}
-                                            </div>}
+                                            </Base.VerticalContent>}
                                             {hasValidButtons && <div className={`${this.decorateCSS("right-side")} ${alignment === "center" ? this.decorateCSS("center-alignment") : ""}`}>
                                                 <div className={this.decorateCSS("button-container")}>
                                                     {buttons.map((btn: Button, btnIndex: number) => {

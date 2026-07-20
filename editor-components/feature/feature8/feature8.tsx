@@ -97,7 +97,7 @@ class Feature8 extends BaseFeature {
               type: "string",
               key: "title",
               displayer: "Title",
-              value: "Non-visual Curation",
+              value: "Non-visual\nCuration",
             },
             {
               type: "string",
@@ -135,7 +135,7 @@ class Feature8 extends BaseFeature {
               type: "string",
               key: "title",
               displayer: "Title",
-              value: "Limited Sorting",
+              value: "Limited\nSorting",
             },
             {
               type: "string",
@@ -173,7 +173,7 @@ class Feature8 extends BaseFeature {
               type: "string",
               key: "title",
               displayer: "Title",
-              value: "Messy Data",
+              value: "Messy\nData",
             },
             {
               type: "string",

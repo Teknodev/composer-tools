@@ -42,6 +42,15 @@ class Feature17 extends BaseFeature {
 
     this.addProp({
       type: "array",
+      key: "buttons",
+      displayer: "Button",
+      value: [
+        INPUTS.BUTTON("button", "Button", "Get Started", "", null, null, "Primary"),
+      ],
+    });
+
+    this.addProp({
+      type: "array",
       key: "tabs",
       displayer: "Tabs",
       value: [
@@ -323,6 +332,11 @@ class Feature17 extends BaseFeature {
     const title = this.getPropValue("title");
     const description = this.getPropValue("description");
 
+    const headingButtons = this.castToObject<INPUTS.CastedButton[]>("buttons") || [];
+    const hasHeadingButton = headingButtons.some(
+      (btn) => this.castToString(btn.text) || (btn.icon as any)?.name
+    );
+
     const tabs = this.castToObject<ITabs[]>("tabs") || [];
     const activeTab = this.getComponentState("activeTab");
     const overlay = this.getPropValue("overlay");
@@ -359,7 +373,7 @@ class Feature17 extends BaseFeature {
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          {(hasTitle || hasDescription || hasSubtitle) && (
+          {(hasTitle || hasDescription || hasSubtitle || hasHeadingButton) && (
             <Base.VerticalContent className={this.decorateCSS("heading")}>
               {hasSubtitle && (
                 <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
@@ -379,6 +393,42 @@ class Feature17 extends BaseFeature {
                 >
                   {description}
                 </Base.SectionDescription>
+              )}
+
+              {hasHeadingButton && (
+                <div className={this.decorateCSS("heading-buttons")}>
+                  {headingButtons.map((button, btnIndex) => {
+                    const buttonTextExist = this.castToString(button.text);
+                    const iconExist = (button.icon as any)?.name;
+                    const buttonExist = buttonTextExist || iconExist;
+
+                    return (
+                      buttonExist && (
+                        <ComposerLink
+                          key={`feature17-heading-button-${btnIndex}`}
+                          path={button.url}
+                        >
+                          <Base.Button
+                            buttonType={button.type}
+                            className={this.decorateCSS("button")}
+                          >
+                            {buttonTextExist && (
+                              <Base.P className={this.decorateCSS("button-text")}>
+                                {button.text}
+                              </Base.P>
+                            )}
+                            {iconExist && (
+                              <Base.Media
+                                value={button.icon as any}
+                                className={this.decorateCSS("button-icon")}
+                              />
+                            )}
+                          </Base.Button>
+                        </ComposerLink>
+                      )
+                    );
+                  })}
+                </div>
               )}
             </Base.VerticalContent>
           )}
@@ -449,11 +499,11 @@ class Feature17 extends BaseFeature {
                       }`}
                     >
                       {tabSubtitleExist && (
-                        <Base.H4
+                        <Base.H5
                           className={this.decorateCSS("content-subtitle")}
                         >
                           {tab.subtitle}
-                        </Base.H4>
+                        </Base.H5>
                       )}
                       {tabTitleExist && (
                         <Base.H4 className={this.decorateCSS("content-title")}>

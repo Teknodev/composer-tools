@@ -150,7 +150,7 @@ class Feature4 extends BaseFeature {
               key: "buttons",
               displayer: "Buttons",
               value: [
-                INPUTS.BUTTON("link", "Link Button", "Navigating possibilities", "", null, null, "Link")
+                INPUTS.BUTTON("link", "Link Button", "Navigating possibilities", "", null, null, "White")
               ],
             },
             {
@@ -217,7 +217,7 @@ class Feature4 extends BaseFeature {
               },
               displayer: "Buttons",
               value: [
-                INPUTS.BUTTON("link", "Link Button", "More Info", "", null, null, "Link")
+                INPUTS.BUTTON("link", "Link Button", "More Info", "", null, null, "White")
               ],
             },
             {
@@ -284,7 +284,7 @@ class Feature4 extends BaseFeature {
               },
               displayer: "Buttons",
               value: [
-                INPUTS.BUTTON("link", "Link Button", "More Info", "", null, null, "Link")
+                INPUTS.BUTTON("link", "Link Button", "More Info", "", null, null, "White")
               ],
             },
             {
@@ -351,7 +351,7 @@ class Feature4 extends BaseFeature {
               },
               displayer: "Buttons",
               value: [
-                INPUTS.BUTTON("link", "Link Button", "More Info", "", null, null, "Link")
+                INPUTS.BUTTON("link", "Link Button", "More Info", "", null, null, "White")
               ],
             },
             {
@@ -418,7 +418,7 @@ class Feature4 extends BaseFeature {
               },
               displayer: "Buttons",
               value: [
-                INPUTS.BUTTON("link", "Link Button", "More Info", "", null, null, "Link")
+                INPUTS.BUTTON("link", "Link Button", "More Info", "", null, null, "White")
               ],
             },
             {
@@ -454,6 +454,7 @@ class Feature4 extends BaseFeature {
     const imageOverlay = hasBg && !!background?.imageOverlay;
 
     const subtitleType = Base.getSectionSubTitleType();
+    const alignment = Base.getContentAlignment();
 
     const descriptionExist = this.castToString(this.getPropValue("description"));
     const description = this.getPropValue("description");
@@ -472,7 +473,7 @@ class Feature4 extends BaseFeature {
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <Base.ListGrid gridCount={{ pc: itemCount, tablet: 3, phone: 1 }} className={this.decorateCSS("content")}>
             {(subtitleExist || titleExist || hasValidButtons) && (
-              <Base.VerticalContent className={this.decorateCSS("featured-card")}>
+              <Base.VerticalContent className={`${this.decorateCSS("featured-card")} ${alignment === "center" ? this.decorateCSS("alignment-center") : ""}`}>
                 {subtitleExist && (
                   <Base.SectionSubTitle className={`
                     ${this.decorateCSS("section-subtitle")}

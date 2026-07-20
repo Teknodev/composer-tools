@@ -71,6 +71,8 @@
                     text-align: center;
                     color: var(--composer-font-color-primary);
                     font-weight: 800;
+                    white-space: pre-wrap;
+                    overflow-wrap: break-word;
                 }
 
                 .card-button {

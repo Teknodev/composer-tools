@@ -80,11 +80,29 @@
                         &.fit-content{
                             height: fit-content;
                         }
+                        .media-wrapper{
+                            position: relative;
+                            width: 100%;
+                            display: flex;
+                        }
                         .image{
                             height: 250px;
                             width: 100%;
                             border-radius: var(--composer-border-radius-sm) var(--composer-border-radius-sm) 0 0;
                             object-fit: cover;
+                            &.border-radius{
+                                border-radius: var(--composer-border-radius-sm);
+                            }
+                        }
+                        .overlay{
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            width: 100%;
+                            height: 100%;
+                            background-color: var(--composer-overlay-color);
+                            pointer-events: none;
+                            border-radius: var(--composer-border-radius-sm) var(--composer-border-radius-sm) 0 0;
                             &.border-radius{
                                 border-radius: var(--composer-border-radius-sm);
                             }
@@ -120,26 +138,26 @@
 
                             .card-stats {
                                 display: flex;
-                                justify-content: space-between;
+                                justify-content: flex-start !important;
                                 width: 100%;
                                 gap: var(--composer-gap-sm);
 
                                 .card-stat-item {
                                     display: flex;
                                     flex-direction: column;
-                                    align-items: flex-start;
-                                    text-align: left;
+                                    align-items: flex-start !important;
+                                    text-align: left !important;
                                     flex: 1;
 
                                     .stat-label {
-                                        font-size: 0.75rem;
                                         font-weight: 800;
                                         color: var(--composer-font-color-primary);
+                                        text-align: left !important;
                                     }
 
                                     .stat-value {
-                                        font-size: 0.7rem;
                                         color: var(--composer-tertiary-color);
+                                        text-align: left !important;
                                     }
                                 }
                             }
@@ -198,12 +216,25 @@
                             }
 
         
-                        .card-container{        
+                        .card-container{
                             .image {
                                 height: 200px;
                             }
                             .bottom{
                                 padding: var(--composer-gap-md);
+
+                                .card-stats {
+                                    gap: var(--composer-gap-xs);
+
+                                    .card-stat-item {
+                                        .stat-label {
+                                            font-size: 1rem;
+                                        }
+                                        .stat-value {
+                                            font-size: 0.75rem;
+                                        }
+                                    }
+                                }
                             }
                         }
                     
@@ -242,6 +273,20 @@
                         .card-container{
                             &:hover{
                                 transform: scale(1)
+                            }
+                            .bottom{
+                                .card-stats {
+                                    gap: var(--composer-gap-xs);
+
+                                    .card-stat-item {
+                                        .stat-label {
+                                            font-size: 1rem;
+                                        }
+                                        .stat-value {
+                                            font-size: 0.75rem;
+                                        }
+                                    }
+                                }
                             }
                         }
                     }

@@ -23,12 +23,19 @@ type Card = {
   subtitle: React.JSX.Element;
   description: React.JSX.Element;
   icon: TypeMediaInputValue;
-  button: Button;
+  buttons: Button[];
 };
 
 class Feature3 extends BaseFeature {
   constructor(props?: any) {
     super(props, styles);
+
+    this.addProp({
+      type: "boolean",
+      key: "circle",
+      displayer: "Colored Background",
+      value: true,
+    });
 
     this.addProp({
       type: "string",
@@ -52,10 +59,12 @@ class Feature3 extends BaseFeature {
     });
 
     this.addProp({
-      type: "boolean",
-      key: "circle",
-      displayer: "Circle",
-      value: true,
+      type: "array",
+      key: "buttons",
+      displayer: "Button",
+      value: [
+        INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+      ],
     });
 
     this.addProp({
@@ -72,7 +81,7 @@ class Feature3 extends BaseFeature {
               type: "string",
               key: "subtitle",
               displayer: "Card Subtitle",
-              value: "SEO",
+              value: "",
             },
             {
               type: "string",
@@ -98,7 +107,14 @@ class Feature3 extends BaseFeature {
               displayer: "Card Description",
               value: "",
             },
-            INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+            {
+              type: "array",
+              key: "buttons",
+              displayer: "Buttons",
+              value: [
+                INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+              ],
+            },
           ]
         },
         {
@@ -110,7 +126,7 @@ class Feature3 extends BaseFeature {
               type: "string",
               key: "subtitle",
               displayer: "Card Subtitle",
-              value: "Marketing",
+              value: "",
             },
             {
               type: "string",
@@ -136,7 +152,14 @@ class Feature3 extends BaseFeature {
               displayer: "Card Description",
               value: "",
             },
-            INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+            {
+              type: "array",
+              key: "buttons",
+              displayer: "Buttons",
+              value: [
+                INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+              ],
+            },
           ]
         },
         {
@@ -148,7 +171,7 @@ class Feature3 extends BaseFeature {
               type: "string",
               key: "subtitle",
               displayer: "Card Subtitle",
-              value: "Analytics",
+              value: "",
             },
             {
               type: "string",
@@ -174,7 +197,14 @@ class Feature3 extends BaseFeature {
               displayer: "Card Description",
               value: "",
             },
-            INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+            {
+              type: "array",
+              key: "buttons",
+              displayer: "Buttons",
+              value: [
+                INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+              ],
+            },
           ]
         },
       ]
@@ -207,7 +237,7 @@ class Feature3 extends BaseFeature {
             {
               type: "media",
               key: "media",
-              displayer: "Logo Image",
+              displayer: "Logo Media",
               additionalParams: {
                 availableTypes: ["image", "icon"],
               },
@@ -232,7 +262,7 @@ class Feature3 extends BaseFeature {
             {
               type: "media",
               key: "media",
-              displayer: "Logo Image",
+              displayer: "Logo Media",
               additionalParams: {
                 availableTypes: ["image", "icon"],
               },
@@ -257,7 +287,7 @@ class Feature3 extends BaseFeature {
             {
               type: "media",
               key: "media",
-              displayer: "Logo Image",
+              displayer: "Logo Media",
               additionalParams: {
                 availableTypes: ["image", "icon"],
               },
@@ -282,7 +312,7 @@ class Feature3 extends BaseFeature {
             {
               type: "media",
               key: "media",
-              displayer: "Logo Image",
+              displayer: "Logo Media",
               additionalParams: {
                 availableTypes: ["image", "icon"],
               },
@@ -307,7 +337,7 @@ class Feature3 extends BaseFeature {
             {
               type: "media",
               key: "media",
-              displayer: "Logo Image",
+              displayer: "Logo Media",
               additionalParams: {
                 availableTypes: ["image", "icon"],
               },
@@ -384,6 +414,35 @@ class Feature3 extends BaseFeature {
       </Base.SectionDescription>
     ) : null;
 
+    const buttons = this.castToObject<Button[]>("buttons");
+    const hasValidButtons = buttons && buttons.some((btn: Button) => {
+      const buttonText = this.castToString(btn.text);
+      const iconExist = btn.icon && (btn.icon.type === "icon" ? btn.icon.name : btn.icon.url);
+      return !!(buttonText || iconExist);
+    });
+
+    const renderButtons = hasValidButtons ? (
+      <div className={this.decorateCSS("button-container")}>
+        {buttons.map((item: Button, index: number) => {
+          const buttonText = this.castToString(item.text);
+          const iconExist = item.icon && (item.icon.type === "icon" ? item.icon.name : item.icon.url);
+          if (!buttonText && !iconExist) return null;
+          return (
+            <ComposerLink key={index} path={item.url}>
+              <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
+                {buttonText && (
+                  <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>
+                )}
+                {iconExist && (
+                  <Base.Media className={this.decorateCSS("button-icon")} value={item.icon} />
+                )}
+              </Base.Button>
+            </ComposerLink>
+          );
+        })}
+      </div>
+    ) : null;
+
     const mobileDevice = this.getComponentState("screenWidth") < 640;
 
     return (
@@ -416,11 +475,12 @@ class Feature3 extends BaseFeature {
                     : circleExist ?
                       <div className={`${this.decorateCSS("circle")} ${this.decorateCSS("absolute")}`}></div>
                       :
-                      <>
+                      <Base.VerticalContent className={this.decorateCSS("upper-content")}>
                         {renderSubtitle}
                         {renderTitle}
                         {renderDescription}
-                      </>
+                        {renderButtons}
+                      </Base.VerticalContent>
                 }
 
                 {cards?.length > 0 && (
@@ -439,9 +499,12 @@ class Feature3 extends BaseFeature {
                       const subtitleExist = !!this.castToString(card.subtitle);
                       const descExist = !!this.castToString(card.description);
                       const iconExist = !!(card.icon && (card.icon.type === "icon" ? card.icon.name : card.icon.url));
-                      const btnText = card.button ? this.castToString(card.button.text) : "";
-                      const btnIconExist = card.button?.icon && (card.button.icon.type === "icon" ? card.button.icon.name : card.button.icon.url);
-                      const hasCardButton = !!(btnText || btnIconExist);
+                      const cardButtons = card.buttons || [];
+                      const hasCardButton = cardButtons.some((btn: Button) => {
+                        const btnText = this.castToString(btn.text);
+                        const btnIconExist = btn.icon && (btn.icon.type === "icon" ? btn.icon.name : btn.icon.url);
+                        return !!(btnText || btnIconExist);
+                      });
 
                       if (!titleExist && !iconExist && !subtitleExist) return null;
 
@@ -470,16 +533,25 @@ class Feature3 extends BaseFeature {
                               </Base.P>
                             )}
                             {hasCardButton && (
-                              <ComposerLink path={card.button.url}>
-                                <Base.Button buttonType={card.button.type} className={this.decorateCSS("card-button")}>
-                                  {btnText && (
-                                    <Base.P className={this.decorateCSS("card-button-text")}>{card.button.text}</Base.P>
-                                  )}
-                                  {btnIconExist && (
-                                    <Base.Media className={this.decorateCSS("card-button-icon")} value={card.button.icon!} />
-                                  )}
-                                </Base.Button>
-                              </ComposerLink>
+                              <div className={this.decorateCSS("card-button-container")}>
+                                {cardButtons.map((btn: Button, btnIndex: number) => {
+                                  const btnText = this.castToString(btn.text);
+                                  const btnIconExist = btn.icon && (btn.icon.type === "icon" ? btn.icon.name : btn.icon.url);
+                                  if (!btnText && !btnIconExist) return null;
+                                  return (
+                                    <ComposerLink key={btnIndex} path={btn.url}>
+                                      <Base.Button buttonType={btn.type} className={this.decorateCSS("card-button")}>
+                                        {btnText && (
+                                          <Base.P className={this.decorateCSS("card-button-text")}>{btn.text}</Base.P>
+                                        )}
+                                        {btnIconExist && (
+                                          <Base.Media className={this.decorateCSS("card-button-icon")} value={btn.icon!} />
+                                        )}
+                                      </Base.Button>
+                                    </ComposerLink>
+                                  );
+                                })}
+                              </div>
                             )}
                           </Base.VerticalContent>
                         </div>

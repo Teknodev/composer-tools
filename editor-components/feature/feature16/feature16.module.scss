@@ -58,16 +58,25 @@
             color: var(--composer-font-color-primary);
           }
         }
-        .card-text-container {
-          display: flex;
-          flex-direction: column;
-          gap: var(--composer-gap-md);
+        .card-subtitle {
           color: var(--composer-font-color-primary);
-          .card-title {
-            color: var(--composer-font-color-primary);
-          }
-          .card-description {
-            color: var(--composer-tertiary-color);
+        }
+        .card-title {
+          color: var(--composer-font-color-primary);
+        }
+        .card-description {
+          color: var(--composer-tertiary-color);
+        }
+        .card-button-container {
+          display: flex;
+          flex-direction: row;
+          flex-wrap: wrap;
+          gap: var(--composer-gap-sm);
+          .button {
+            .button-text,
+            .button-icon {
+              content: "";
+            }
           }
         }
       }
@@ -113,6 +122,9 @@
             }
             .bottom-left-side-card-text-container {
 
+              .bottom-left-side-card-subtitle {
+                color: var(--composer-font-color-secondary);
+              }
               .bottom-left-side-card-title {
                 color: var(--composer-font-color-secondary);
               }
@@ -187,12 +199,6 @@
 
       .side-container {
         flex-direction: column;
-
-        .card {
-          .card-text-container {
-            gap: var(--composer-gap-sm) !important;
-          }
-        }
       }
 
       .right-side {

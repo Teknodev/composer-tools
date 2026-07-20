@@ -76,7 +76,7 @@
                         width: calc(var(--composer-gap-md) + var(--composer-gap-xs));
                         height: calc(var(--composer-gap-md) + var(--composer-gap-xs));
                         top: calc(-1 * (var(--composer-gap-sm) + var(--composer-gap-xs)));
-                        left: calc(50% + var(--composer-gap-xl) / 2 + var(--composer-gap-xs));
+                        left: calc(50% + var(--composer-gap-xl) / 2 + var(--composer-gap-md));
                         transform: translateX(-50%);
                     }
 
@@ -145,7 +145,7 @@
                 gap: var(--composer-gap-lg);
 
                 .item {
-                    gap: var(--composer-gap-sm);
+                    gap: var(--composer-gap-md);
                 }
             }
         }

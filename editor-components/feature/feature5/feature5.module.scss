@@ -156,7 +156,7 @@
           color: var(--composer-primary-color);
 
           .text {
-            color: var(--composer-primary-color);
+            color: var(--composer-secondary-color);
           }
 
           .card-subtitle,
@@ -391,6 +391,7 @@
           .card-content {
             width: 100%;
             height: auto;
+            padding: var(--composer-gap-md);
           }
         }
 

@@ -125,7 +125,6 @@
                     display: flex;
                     flex-direction: column;
                     align-items: baseline;
-                    gap: calc(1.5*(var(--composer-gap-sm)));
                 }
 
                 .right-side {
@@ -139,11 +138,18 @@
                     }
                 }
 
+                .card-subtitle {
+                    color: var(--composer-font-color-primary);
+                    opacity: 1;
+                    transition: all 0.3s ease 0.5s;
+                    text-align: left;
+                }
+
                 .card-title {
-                    margin-top: var(--composer-gap-md);
                     margin-bottom: 0;
                     white-space: nowrap;
                     color: var(--composer-font-color-primary);
+                    font-weight: 800;
                     opacity: 1;
                     transition: all 0.3s ease 0.5s;
                     text-align: left;

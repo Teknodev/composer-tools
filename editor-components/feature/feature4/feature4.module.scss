@@ -80,6 +80,7 @@
             border-bottom-color: black !important;
           }
         }
+
       }
 
       .card-item-count,
@@ -256,8 +257,29 @@
 
 @container (max-width: #{$composer-phone-width}) {
   .featured-card {
+    margin-bottom: var(--composer-gap-xl);
+
+    &.alignment-center {
+      align-items: center !important;
+      text-align: center;
+
+      .section-subtitle,
+      .section-title,
+      .description,
+      .black,
+      .badge-with-bg {
+        text-align: center !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+      }
+
+      .card-link-container {
+        justify-content: center !important;
+      }
+    }
+
     .card-link-container {
-      margin-bottom: 1rem;
+      margin-bottom: 2.5rem;
     }
   }
 }

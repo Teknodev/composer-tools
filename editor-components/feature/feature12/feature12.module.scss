@@ -82,6 +82,21 @@
           position: relative;
           z-index: 2;
 
+          .icon-container {
+            .icon {
+              color: var(--composer-primary-color);
+              font-size: 3rem;
+              width: 48px;
+              height: 48px;
+              object-fit: contain;
+            }
+          }
+
+          .first-card-subtitle {
+            color: var(--composer-font-color-primary);
+            text-align: left;
+          }
+
           .first-card-title {
             color: var(--composer-font-color-primary);
             text-align: left;
@@ -145,6 +160,13 @@
             font-weight: 800;
           }
 
+          .card-buttons-container {
+            display: flex;
+            gap: var(--composer-gap-sm);
+            flex-wrap: wrap;
+            justify-content: center;
+          }
+
           .card-button {
             display: flex;
             gap: var(--composer-gap-sm);
@@ -198,6 +220,7 @@
           align-content: center;
 
           .card-first-content {
+            .first-card-subtitle,
             .first-card-title {
               text-align: center;
             }

@@ -28,9 +28,9 @@ $circlepaddingbottom: calc(300px + var(--composer-gap-xl));
 
                 .subtitle {
                     margin-top: 0;
-                    margin-bottom: var(--composer-gap-md);
 
                     &.circle-exist {
+                        margin-bottom: var(--composer-gap-md);
                         text-align: left;
                         color: var(--composer-font-color-secondary) !important;
                         padding: 0 !important;
@@ -44,7 +44,6 @@ $circlepaddingbottom: calc(300px + var(--composer-gap-xl));
 
                 .title {
                     margin-top: 0;
-                    margin-bottom: var(--composer-gap-md);
                     white-space: pre-wrap;
 
                     &.circle-exist {
@@ -56,7 +55,6 @@ $circlepaddingbottom: calc(300px + var(--composer-gap-xl));
 
                 .description {
                     margin-top: 0;
-                    margin-bottom: var(--composer-gap-md);
                     color: var(--composer-font-color-primary);
 
                     &.circle-exist {
@@ -72,6 +70,23 @@ $circlepaddingbottom: calc(300px + var(--composer-gap-xl));
                         overflow: hidden;
                         text-overflow: ellipsis;
                         -webkit-box-orient: vertical;
+                    }
+                }
+
+                .upper-content {
+                    width: 100%;
+                }
+
+                .button-container {
+                    display: flex;
+                    flex-wrap: wrap;
+                    gap: var(--composer-gap-sm);
+
+                    .button {
+                        .button-text,
+                        .button-icon {
+                            content: "";
+                        }
                     }
                 }
 
@@ -146,14 +161,16 @@ $circlepaddingbottom: calc(300px + var(--composer-gap-xl));
                                 font-weight: 800;
                             }
 
-                            .card-button {
+                            .card-button-container {
                                 display: flex;
-                                gap: var(--composer-gap-sm);
                                 flex-wrap: wrap;
+                                gap: var(--composer-gap-sm);
 
-                                .card-button-text,
-                                .card-button-icon {
-                                    content: "";
+                                .card-button {
+                                    .card-button-text,
+                                    .card-button-icon {
+                                        content: "";
+                                    }
                                 }
                             }
                         }
@@ -219,6 +236,21 @@ $circlepaddingbottom: calc(300px + var(--composer-gap-xl));
 @container (max-width: #{$composer-tablet-width}) {
     .container {
         min-height: auto;
+
+        .max-content {
+            .wrapper {
+                .logos-container {
+                    .logo-container {
+                        .logo-image {
+                            width: 60%;
+                            height: 60%;
+                            margin-left: auto;
+                            margin-right: auto;
+                        }
+                    }
+                }
+            }
+        }
     }
 }
 
@@ -327,6 +359,11 @@ $circlepaddingbottom: calc(300px + var(--composer-gap-xl));
                         background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
                         padding: var(--composer-gap-sm);
                         height: 100px;
+
+                        .logo-image {
+                            width: 75%;
+                            height: 75%;
+                        }
                     }
                 }
             }
