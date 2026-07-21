@@ -3,6 +3,8 @@
 .container {
   .max-content {
     .content {
+      display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
       gap: var(--composer-gap-md);

@@ -1,89 +1,166 @@
-@use '../../../composer-base-components/base/utitilities/viewports.module.scss' as *; 
+@use '../../../composer-base-components/base/utitilities/viewports.module.scss' as *;
+
 .container {
     .max-content {
         display: flex;
         flex-direction: column;
         gap: var(--composer-gap-lg);
-        .title-container{
-            .subtitle, .title, .description {
-                content: "";
+
+        .vertical-content {
+            align-items: center !important;
+
+            .subtitle {
+                text-align: center !important;
+                transform: none !important;
+
+                &::before {
+                    display: none !important;
+                }
+            }
+            .title,
+            .description {
+                text-align: center !important;
             }
         }
+
+        .bottom-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--composer-gap-sm);
+            flex-wrap: wrap;
+
+            .bottom-text {
+                color: var(--composer-font-color-primary);
+                width: auto !important;
+                margin: 0 !important;
+            }
+
+            .buttons-wrapper {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: var(--composer-gap-sm);
+                flex-wrap: wrap;
+                
+
+                .button {
+                    margin-top: 0 !important;
+                    .button-text {
+
+                        content: "";
+                    }
+                }
+            }
+        }
+
+        .buttons-wrapper {
+            display: flex;
+            justify-content: center;
+            gap: var(--composer-gap-sm);
+            flex-wrap: wrap;
+
+            .button {
+                .button-text {
+                    content: "";
+                }
+            }
+        }
+
         .page {
             width: 100%;
             height: 100%;
             display: flex;
             flex-direction: column;
             gap: var(--composer-gap-md);
+
             .card {
                 width: 100%;
                 background: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
-                border-radius: var(--composer-border-radius-sm);    
+                border-radius: var(--composer-border-radius-sm);
+
                 .in-box {
                     width: 100%;
                     display: flex;
                     align-items: center;
-                    padding:var(--composer-gap-md);
+                    padding: var(--composer-gap-lg);
+
                     .card-subtitle {
                         flex: 1;
                         color: var(--composer-font-color-primary);
                         cursor: pointer;
+                        text-align: left;
+                        font-weight: 800;
                     }
+
                     .icon {
                         display: block;
                         transform: rotate(0deg);
-                        height: 30px;
-                        width: 30px;
-                        font-size: 2rem;
+                        height: 24px;
+                        width: 24px;
+                        font-size: 1.5rem;
+                        object-fit: contain;
                         transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
                         color: var(--composer-font-color-primary);
+
                         &.rotate {
                             transform: rotate(180deg);
                         }
                     }
                 }
+
                 .card-inner {
                     overflow: hidden;
-                    padding:0px var(--composer-gap-md);
+                    padding: 0px var(--composer-gap-lg);
                     display: flex;
                     max-height: 0px;
                     transition: max-height, padding 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-                    .card-text{
-                        opacity: 0; 
+
+                    .card-text {
+                        opacity: 0;
                         color: var(--composer-tertiary-color);
                         transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+                        text-align: left;
                     }
+
                     &.cardActive {
-                        max-height: 500px;   
-                        padding: 0px var(--composer-gap-md) var(--composer-gap-md) var(--composer-gap-md);
-                        .card-text{
-                            opacity: 1; 
-                      
-                        }                  
+                        max-height: 500px;
+                        padding: 0px var(--composer-gap-lg) var(--composer-gap-lg) var(--composer-gap-lg);
+
+                        .card-text {
+                            opacity: 1;
+
+                        }
                     }
                 }
-                
+
             }
         }
     }
 }
-@container (max-width: #{$composer-phone-width}){
-    .container{
-        .max-content{
-            .page{
-                .card{
-                    .in-box{
-                        .card-subtitle {
-                            content: "";
-                        }
+
+@container (max-width: #{$composer-phone-width}) {
+    .container {
+        .max-content {
+            .page {
+                gap: var(--composer-gap-md);
+
+                .card {
+                    .in-box {
+                        padding: var(--composer-gap-md);
+
                         .icon {
-                            width: 20px;
-                            height: 20px;
+                            width: var(--composer-gap-md);
+                            height: var(--composer-gap-md);
+                            font-size: 1.5rem;
                         }
                     }
+
                     .card-inner {
-                        .card-text {
-                            content: "";
+                        padding: 0px var(--composer-gap-md);
+
+                        &.cardActive {
+                            padding: 0px var(--composer-gap-md) var(--composer-gap-md) var(--composer-gap-md);
                         }
                     }
                 }
