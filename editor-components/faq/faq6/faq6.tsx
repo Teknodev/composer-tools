@@ -279,8 +279,12 @@ class Faq6 extends BaseFAQ {
                           </div>
                         )}
                         {this.castToString(item.getPropValue("answer")) && (
-                          <div className={`${this.decorateCSS("answer-box")} ${is_active && this.decorateCSS("active")}`}>
-                            <Base.P className={this.decorateCSS("answer-text")}>{item.getPropValue("answer")}</Base.P>
+                          <div
+                            className={`${this.decorateCSS("answer-box")} ${is_active ? this.decorateCSS("active") : ""}`}
+                          >
+                            <div className={this.decorateCSS("answer-inner")}>
+                              <Base.P className={this.decorateCSS("answer-text")}>{item.getPropValue("answer")}</Base.P>
+                            </div>
                           </div>
                         )}
                       </div>

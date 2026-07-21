@@ -15,8 +15,7 @@ interface ColumnHeader {
 }
 
 class Faq10 extends BaseFAQ {
-  private containerRef = React.createRef<HTMLDivElement>();
-  private bodyRefs: HTMLDivElement[] = [];
+  private gridRef = React.createRef<HTMLDivElement>();
 
   constructor(props?: any) {
     super(props, styles);
@@ -313,7 +312,6 @@ class Faq10 extends BaseFAQ {
     });
 
     this.setComponentState("activeIndices", [0, 0, 0]);
-    this.setComponentState("isMobile", false);
   }
 
   static getName(): string {
@@ -321,17 +319,17 @@ class Faq10 extends BaseFAQ {
   }
 
   onComponentDidMount() {
-    this.handleResize();
-    this.updateHeights();
-    window.addEventListener('resize', this.handleResize);
+    if (this.isStacked()) {
+      this.setComponentState("activeIndices", [0, -1, -1]);
+    }
   }
 
-  onComponentDidUpdate() {
-    this.updateHeights();
-  }
+  private isStacked(): boolean {
+    const el = this.gridRef.current;
 
-  onComponentWillUnmount() {
-    window.removeEventListener('resize', this.handleResize);
+    if (!el) return false;
+
+    return getComputedStyle(el).getPropertyValue("--faq-stacked").trim() === "1";
   }
 
   private getColumnCounts() {
@@ -344,53 +342,8 @@ class Faq10 extends BaseFAQ {
     return counts;
   }
 
-  private updateHeights() {
-    const counts = this.getColumnCounts();
-
-    this.bodyRefs.forEach((el, globalIdx) => {
-      if (!el) return;
-
-      let colIdx = 0;
-      let start = 0;
-      for (; colIdx < 3; colIdx++) {
-        const len = counts[colIdx];
-        if (globalIdx < start + len) break;
-        start += len;
-      }
-      const localIdx = globalIdx - start;
-
-      const active = this.getComponentState("activeIndices") as number[];
-      const isOpen = active[colIdx] === localIdx;
-
-      el.style.maxHeight = isOpen ? `${el.scrollHeight}px` : "0px";
-    });
-  }
-
-  private handleResize = () => {
-    const el = this.containerRef.current;
-
-    if (!el) return;
-
-    const width = el.clientWidth;
-
-    const phonePx = "640";
-    const phonePxInt = parseInt(phonePx, 10) || 0;
-
-    const isMobile = width <= phonePxInt;
-
-    const wasMobile = this.getComponentState("isMobile");
-    this.setComponentState("isMobile", isMobile);
-
-    if (isMobile && !wasMobile) {
-      this.setComponentState("activeIndices", [0, -1, -1]);
-    } else if (!isMobile && wasMobile) {
-      this.setComponentState("activeIndices", [0, 0, 0]);
-    }
-    this.updateHeights();
-  };
-
   private cardClicked = (columnIndex: number, cardIndexInColumn: number) => {
-    const isMobile = this.getComponentState("isMobile");
+    const isStacked = this.isStacked();
     const activeIndices = this.getComponentState("activeIndices") as number[];
 
     const currentActiveInColumn = activeIndices[columnIndex];
@@ -401,7 +354,7 @@ class Faq10 extends BaseFAQ {
 
     const updatedIndices = [...activeIndices];
 
-    if (isMobile) {
+    if (isStacked) {
       updatedIndices.fill(-1);
       updatedIndices[columnIndex] = cardIndexInColumn;
     } else {
@@ -409,7 +362,6 @@ class Faq10 extends BaseFAQ {
     }
 
     this.setComponentState("activeIndices", updatedIndices);
-    this.updateHeights();
   };
 
   render() {
@@ -431,7 +383,7 @@ class Faq10 extends BaseFAQ {
     const headerExist = titleExist || descriptionExist || subtitleExist;
 
     return (
-      <Base.Container className={this.decorateCSS("container")} ref={this.containerRef}>
+      <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           {headerExist &&
             <Base.VerticalContent className={this.decorateCSS("header")}>
@@ -452,7 +404,7 @@ class Faq10 extends BaseFAQ {
               )}
             </Base.VerticalContent>}
 
-          <div className={this.decorateCSS("faq-grid")}>
+          <div className={this.decorateCSS("faq-grid")} ref={this.gridRef}>
             {columns.map((colCards, colIdx) => {
               const header = columnHeaders[colIdx];
               const headerTitle = header ? this.castToString(header.title) : "";
@@ -510,16 +462,17 @@ class Faq10 extends BaseFAQ {
                         </div>
                         {hasText && (
                           <div
-                            ref={(el) => (this.bodyRefs[globalIdx] = el!)}
                             className={[
                               this.decorateCSS("card-body"),
                               isOpen ? this.decorateCSS("open") : "",
                             ].join(" ")}
                           >
-                            {cardTextExist &&
-                              <Base.P className={this.decorateCSS("card-text")}>
-                                {card.text}
-                              </Base.P>}
+                            <div className={this.decorateCSS("card-body-inner")}>
+                              {cardTextExist &&
+                                <Base.P className={this.decorateCSS("card-text")}>
+                                  {card.text}
+                                </Base.P>}
+                            </div>
                           </div>
                         )}
                       </div>

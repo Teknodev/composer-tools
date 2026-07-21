@@ -103,29 +103,26 @@
                 }
 
                 .answer-box {
-                    overflow: hidden;
-                    max-height: 0px;
+                    display: grid;
+                    grid-template-rows: 0fr;
                     border-bottom: 0px;
-                    transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+                    transition: grid-template-rows 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
+                    .answer-inner {
+                        overflow: hidden;
+                        min-height: 0;
+                    }
 
                     .answer-text {
-                        overflow: hidden;
                         padding: var(--composer-gap-md);
-                        opacity: 0;
+                        margin: 0;
                         color: var(--composer-font-color-primary);
-                        transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-                        border-bottom: 1px solid var(--composer-tertiary-color);
                         text-align: left;
                     }
 
                     &.active {
-                        max-height: 800px;
+                        grid-template-rows: 1fr;
                         border-bottom: 1px solid var(--composer-tertiary-color);
-
-                        .answer-text {
-                            opacity: 1;
-                            border-bottom: 0px;
-                        }
                     }
                 }
             }

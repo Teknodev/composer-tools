@@ -97,11 +97,9 @@
     .down-container {
       width: 100%;
       height: 100%;
-      background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
       display: flex;
       flex-direction: column !important;
       padding: calc(var(--composer-gap-lg) * 2) var(--composer-gap-xl);
-      border-radius: var(--composer-border-radius-md);
       gap: var(--composer-gap-md) !important;
       align-items: center !important;
       justify-content: center !important;

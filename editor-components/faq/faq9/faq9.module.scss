@@ -75,9 +75,7 @@ as *;
             transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
             z-index: 2;
-            border: 1px solid color-mix(in srgb,
-                var(--composer-tertiary-color) 30%,
-                transparent);
+            border: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.5);
 
             .card-title-wrapper {
               flex: 1;
@@ -142,9 +140,7 @@ as *;
             background-color: var(--composer-html-background);
 
             .inner-text {
-              border: 1px solid color-mix(in srgb,
-                  var(--composer-tertiary-color) 30%,
-                  transparent);
+              border: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.5);
               border-top: 0;
               color: var(--composer-tertiary-color);
               padding: var(--composer-gap-md) var(--composer-gap-md);

@@ -35,6 +35,10 @@ as *;
       grid-template-columns: repeat(3, 1fr);
       width: 100%;
       gap: var(--composer-gap-lg);
+      // The container queries below are the only place the breakpoint lives.
+      // How many cards may stay open at once is behaviour rather than layout, so
+      // the script reads this flag instead of measuring a width of its own.
+      --faq-stacked: 0;
     }
 
     .buttons-wrapper {
@@ -147,12 +151,20 @@ as *;
       }
 
       .card-body {
-        max-height: 0;
-        overflow: hidden;
+        display: grid;
+        grid-template-rows: 0fr;
         padding-left: var(--composer-gap-sm);
-        padding-right: var(--composer-gap-sm);
-        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        background-color: (--composer-html-background);
+        // Reserve the icon column on the right so the answer wraps at exactly the
+        // same width as the question above it.
+        padding-right: calc(var(--composer-gap-sm) * 2 + 2.5rem);
+        // 0fr -> 1fr animates to the content's own height, so nothing has to
+        // measure it; the inner wrapper is what collapses and clips.
+        transition: grid-template-rows 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
+        .card-body-inner {
+          overflow: hidden;
+          min-height: 0;
+        }
 
         .card-text {
           opacity: 0;
@@ -163,11 +175,22 @@ as *;
         }
 
         &.open {
+          grid-template-rows: 1fr;
+
           .card-text {
-            background: transparent;
             opacity: 1;
           }
         }
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-tablet-width}) {
+  .container {
+    .max-content {
+      .faq-grid {
+        gap: var(--composer-gap-md);
       }
     }
   }
@@ -179,6 +202,7 @@ as *;
       .faq-grid {
         grid-template-columns: 1fr;
         gap: var(--composer-gap-lg);
+        --faq-stacked: 1;
       }
     }
   }
