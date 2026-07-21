@@ -1,5 +1,8 @@
 @use "./utitilities/viewports.module.scss" as *;
-@import "./effects.scss";
+// NOTE: effects.scss is NOT imported here. Importing it into a CSS Module would
+// hash its class names (.effect-glass → ._effect-glass_x1y2), so the literal
+// "effect-*" classes that decorateCSS() puts on elements would match nothing.
+// It is loaded globally from src/index.scss instead.
 
 // Wrapped in :where() so AI-managed (.auto-generate-*) and design-tab class rules trivially win the cascade. Spec: design > theme.
 :where(.h1){
