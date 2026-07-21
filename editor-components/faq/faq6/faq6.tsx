@@ -207,7 +207,8 @@ class Faq6 extends BaseFAQ {
     const subtitle = this.castToString(this.getPropValue("subtitle"));
     const title = this.castToString(this.getPropValue("title"));
     const description = this.castToString(this.getPropValue("description"));
-    const hasContent = subtitle || title || description || this.getPropValue("buttons").length > 0;
+    const hasButtons = this.castToObject<INPUTS.CastedButton[]>("buttons").some((button) => this.castToString(button.text));
+    const hasContent = subtitle || title || description || hasButtons;
     const lineEnabled = this.getPropValue("line");
 
     const mediaSection = this.castToObject<{ value?: TypeMediaInputValue; overlay?: boolean }>("media");
@@ -235,7 +236,7 @@ class Faq6 extends BaseFAQ {
               {this.getPropValue("description")}
             </Base.SectionDescription>
           )}
-          {this.getPropValue("buttons").length > 0 && (
+          {hasButtons && (
             <div className={this.decorateCSS("buttons-wrapper")}>
               {this.castToObject<INPUTS.CastedButton[]>("buttons").map((button: INPUTS.CastedButton) =>
                 this.castToString(button.text) && (
