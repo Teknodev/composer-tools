@@ -21,7 +21,7 @@
     top: 0px;
     left: 0px;
     background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
-    height: 80%;
+    height: 70%;
     width: 100%;
   }
 
@@ -160,6 +160,10 @@
             .description {
               margin-left: 0;
               text-align: left;
+            }
+
+            .title {
+              max-width: 9.5em;
             }
           }
         }
@@ -307,6 +311,10 @@
               .title,
               .description {
                 text-align: var(--composer-content-alignment);
+              }
+
+              .title {
+                max-width: unset;
               }
 
               .input-button-wrapper {
