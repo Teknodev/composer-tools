@@ -23,25 +23,25 @@
               .box-parent {
                 .vertical-content {
                   .subtitle {
-                    color: #ffffff;
+                    color: #ffffff !important; 
                     background: transparent;
                     padding: 0;
 
                     &::before {
-                      background-color: #ffffff;
+                      background: #ffffff !important;
                     }
                   }
 
                   .title,
                   .description {
-                    color: #ffffff;
+                    color: #ffffff !important;
                   }
                 }
               }
 
               .socials {
                 .icon {
-                  color: #ffffff;
+                  color: #ffffff !important;
                 }
               }
             }
@@ -52,7 +52,7 @@
       .dots {
         .dot-item {
           .dot-button {
-            background: #ffffff;
+            background: #ffffff !important;
           }
         }
       }
@@ -84,7 +84,7 @@
           height: var(--composer-gap-lg);
 
           &:before {
-            font-size: 40px;
+            font-size: 2.5rem;
             color: var(--composer-font-color-primary);
             opacity: 0.7;
           }
@@ -129,10 +129,7 @@
 
             .overlay {
               position: absolute;
-              top: 0;
-              left: 0;
-              width: 100%;
-              height: 100%;
+              inset: 0;
               background-color: var(--composer-overlay-color);
               z-index: 1;
             }
@@ -262,7 +259,7 @@
             height: var(--composer-gap-md);
 
             &:before {
-              font-size: 30px;
+              font-size: 2rem;
             }
           }
 
@@ -292,6 +289,7 @@
                   &.has-image {
                     width: 20px;
                     height: 20px;
+                    object-fit: cover;
                   }
                 }
               }
@@ -350,7 +348,7 @@
             height: var(--composer-gap-md);
 
             &:before {
-              font-size: 20px;
+              font-size: 1.25rem;
             }
           }
 
