@@ -1093,7 +1093,7 @@ class Team10 extends Team {
                     {(subtitleExists || titleExists) && (
                       <Base.VerticalContent className={this.decorateCSS("title-group")}>
                         {subtitleExists && <Base.P className={this.decorateCSS("member-subtitle")}>{teamMember.subtitle}</Base.P>}
-                        {titleExists && <Base.H5 className={this.decorateCSS("member-title")} data-animation={hoverAnimation.join(" ")}>{teamMember.title}</Base.H5>}
+                        {titleExists && <Base.H2 className={this.decorateCSS("member-title")} data-animation={hoverAnimation.join(" ")}>{teamMember.title}</Base.H2>}
                       </Base.VerticalContent>
                     )}
                     {hasFeatures && (

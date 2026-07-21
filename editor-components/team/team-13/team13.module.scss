@@ -1,308 +1,317 @@
-@use "../../../../composer-tools//composer-base-components//base//utitilities/viewports.module.scss" as *;
+  @use "../../../../composer-tools//composer-base-components//base//utitilities/viewports.module.scss" as *;
 
-.container {
-  .max-content {
-    .content {
-      gap: var(--composer-gap-xl);
-      height: 100%;
-
-      .featured-card {
-        display: flex;
-        flex-direction: column;
-        min-height: 700px;
+  .container {
+    .max-content {
+      .content {
+        gap: var(--composer-gap-xl);
         height: 100%;
-        width: 70%;
-        justify-content: space-between;
-        transition: all 0.3s ease;
 
-        &[data-animation~="animate4"]:hover {
-          .icon-item {
-            animation: pulseScale 2s ease-in-out infinite;
-          }
-        }
+        .featured-card {
+          display: flex;
+          flex-direction: column;
+          min-height: 700px;
+          height: 100%;
+          width: 70%;
+          justify-content: space-between;
+          transition: all 0.3s ease;
 
-        &[data-animation~="animate5"] {
-          .icon-container {
+          &[data-animation~="animate4"]:hover {
             .icon-item {
-              .icon {
-                animation: none;
+              animation: pulseScale 2s ease-in-out infinite;
+            }
+          }
+
+          &[data-animation~="animate5"] {
+            .icon-container {
+              .icon-item {
+                .icon {
+                  animation: none;
+                }
+              }
+            }
+
+            &:hover {
+              .icon-container {
+                .icon-item {
+                  .icon {
+                    animation: bounce 0.6s ease;
+                    animation-fill-mode: both;
+                    animation-delay: calc(var(--icon-index, 0) * 0.2s);
+                  }
+                }
               }
             }
           }
 
-          &:hover {
+          &[data-animation~="animate6"] {
             .icon-container {
               .icon-item {
                 .icon {
-                  animation: bounce 0.6s ease;
-                  animation-fill-mode: both;
-                  animation-delay: calc(var(--icon-index, 0) * 0.2s);
+                  animation: none;
+                  color: var(--composer-font-color-primary);
+                }
+              }
+            }
+
+            &:hover {
+              .icon-container {
+                .icon-item {
+                  .icon {
+                    animation: colorChange 0.6s ease;
+                    animation-fill-mode: both;
+                    animation-delay: calc(var(--icon-index, 0) * 0.2s);
+                  }
+                }
+              }
+            }
+          }
+
+          .info-container {
+            align-items: flex-start;
+
+            .subtitle,
+            .title {
+              text-align: left;
+              margin-left: 0;
+            }
+          }
+
+          .label {
+            align-items: flex-start;
+            gap: var(--composer-gap-xl);
+
+            .description {
+              color: var(--composer-tertiary-color);
+              text-align: left;
+            }
+
+            .button-and-line-container {
+              display: flex;
+              justify-content: space-between;
+              gap: var(--composer-gap-xl);
+              align-items: center;
+              width: 100%;
+
+              .button-container {
+                display: flex;
+                flex-wrap: wrap;
+                gap: var(--composer-gap-sm);
+
+                .button {
+                  .button-text {
+                    content: "";
+                  }
+                }
+              }
+
+              .line {
+                min-width: calc(2 * var(--composer-gap-xl));
+                background: var(--composer-font-color-primary);
+                height: 2px;
+              }
+            }
+          }
+
+          .icon-container {
+            display: flex;
+            color: var(--composer-font-color-primary);
+            gap: var(--composer-gap-sm);
+            font-size: 1.5rem;
+
+            .icon-item {
+              content: "";
+              display: inline-flex;
+              align-items: center;
+              justify-content: center;
+
+              .icon {
+                font-size: 1.5rem;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                &.has-image {
+                  width: var(--composer-gap-md);
+                  height: var(--composer-gap-md);
+                  object-fit: cover;
                 }
               }
             }
           }
         }
 
-        &[data-animation~="animate6"] {
-          .icon-container {
-            .icon-item {
-              .icon {
-                animation: none;
-                color: var(--composer-font-color-primary);
-              }
-            }
-          }
+        .team-card {
+          width: 100%;
+          min-height: 700px;
+          height: 100%;
 
-          &:hover {
-            .icon-container {
-              .icon-item {
-                .icon {
-                  animation: colorChange 0.6s ease;
-                  animation-fill-mode: both;
-                  animation-delay: calc(var(--icon-index, 0) * 0.2s);
+          .img-wrapper {
+            overflow: hidden;
+            border-radius: var(--composer-border-radius-sm);
+            position: relative;
+            width: 100%;
+            flex: 1 1 auto;
+            min-height: 0;
+            margin-bottom: var(--composer-gap-lg);
+
+            .overlay {
+              position: absolute;
+              top: 0;
+              left: 0;
+              width: 100%;
+              height: 100%;
+              background-color: var(--composer-overlay-color);
+              pointer-events: none;
+              z-index: 2;
+            }
+
+            .image {
+              flex: 1;
+              width: 100%;
+              min-height: 600px;
+              height: 100%;
+              object-fit: cover;
+              border-radius: var(--composer-border-radius-sm);
+
+              &[data-animation~="animate1"] {
+                transition: transform 0.7s ease;
+
+                &:hover {
+                  transform: scale(1.2);
+                }
+              }
+
+              &[data-animation~="animate3"] {
+                filter: grayscale(100%);
+                transition: filter 0.3s ease;
+
+                &:hover {
+                  filter: grayscale(0%);
+                  transition: filter 0.3s ease;
                 }
               }
             }
+
+            &[data-animation~="animate2"] {
+              @keyframes pulseShadow {
+
+                0%,
+                100% {
+                  box-shadow: 0 0 0 var(--composer-primary-color);
+                }
+
+                50% {
+                  box-shadow: 0 0 20px 5px var(--composer-primary-color);
+                }
+              }
+
+              transition: box-shadow 0.5s ease-in-out;
+
+              &:hover {
+                animation: pulseShadow 2s ease-in-out infinite;
+                transition: box-shadow 0.5s ease-in-out;
+              }
+            }
           }
-        }
 
-        .info-container {
-          align-items: flex-start;
-
-          .subtitle,
-          .title {
+          .name {
+            color: var(--composer-font-color-primary);
             text-align: left;
-            margin-left: 0;
           }
-        }
 
-        .label {
-          align-items: flex-start;
-          gap: var(--composer-gap-xl);
-
-          .description {
+          .position {
             color: var(--composer-tertiary-color);
             text-align: left;
           }
 
-          .button-and-line-container {
-            display: flex;
-            justify-content: space-between;
-            gap: var(--composer-gap-xl);
-            align-items: center;
-            width: 100%;
-
-            .button-container {
-              display: flex;
-              flex-wrap: wrap;
-              gap: var(--composer-gap-sm);
-
-              .button {
-                .button-text {
-                  content: "";
-                }
-              }
-            }
-
-            .line {
-              min-width: calc(2 * var(--composer-gap-xl));
-              background: var(--composer-font-color-primary);
-              height: 2px;
-            }
+          .card-description {
+            color: var(--composer-tertiary-color);
+            text-align: left;
           }
-        }
-
-        .icon-container {
-          display: flex;
-          color: var(--composer-font-color-primary);
-          gap: var(--composer-gap-sm);
-          font-size: 1.5rem;
-
-          .icon-item {
-            content: "";
-
-            .icon {
-              font-size: 1.5rem;
-
-              &.has-image {
-                width: var(--composer-gap-md);
-                height: var(--composer-gap-md);
-                object-fit: cover;
-              }
-            }
-          }
-        }
-      }
-
-      .team-card {
-        width: 100%;
-        min-height: 700px;
-        height: 100%;
-
-        .img-wrapper {
-          overflow: hidden;
-          border-radius: var(--composer-border-radius-sm);
-          position: relative;
-          width: 100%;
-
-          .overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: var(--composer-overlay-color);
-            pointer-events: none;
-            z-index: 2;
-          }
-
-          .image {
-            flex: 1;
-            width: 100%;
-            min-height: 600px;
-            height: 100%;
-            object-fit: cover;
-            border-radius: var(--composer-border-radius-sm);
-
-            &[data-animation~="animate1"] {
-              transition: transform 0.7s ease;
-
-              &:hover {
-                transform: scale(1.2);
-              }
-            }
-
-            &[data-animation~="animate3"] {
-              filter: grayscale(100%);
-              transition: filter 0.3s ease;
-
-              &:hover {
-                filter: grayscale(0%);
-                transition: filter 0.3s ease;
-              }
-            }
-          }
-
-          &[data-animation~="animate2"] {
-            @keyframes pulseShadow {
-
-              0%,
-              100% {
-                box-shadow: 0 0 0 var(--composer-primary-color);
-              }
-
-              50% {
-                box-shadow: 0 0 20px 5px var(--composer-primary-color);
-              }
-            }
-
-            transition: box-shadow 0.5s ease-in-out;
-
-            &:hover {
-              animation: pulseShadow 2s ease-in-out infinite;
-              transition: box-shadow 0.5s ease-in-out;
-            }
-          }
-        }
-
-        .name {
-          color: var(--composer-font-color-primary);
-          text-align: left;
-        }
-
-        .position {
-          color: var(--composer-tertiary-color);
-          text-align: left;
-        }
-
-        .card-description {
-          color: var(--composer-tertiary-color);
-          text-align: left;
         }
       }
     }
   }
-}
 
-@container (max-width: #{$composer-tablet-width}) {
-  .container {
-    .max-content {
-      .content {
-        .featured-card {
-          width: 100%;
-          height: auto;
-          min-height: auto;
-        }
-
-        .team-card {
-          min-height: 300px;
-
-          .image {
-            min-height: 500px;
+  @container (max-width: #{$composer-tablet-width}) {
+    .container {
+      .max-content {
+        .content {
+          .featured-card {
+            width: 100%;
             height: auto;
+            min-height: auto;
+          }
+
+          .team-card {
+            min-height: 300px;
+
+            .image {
+              min-height: 500px;
+              height: auto;
+            }
           }
         }
       }
     }
   }
-}
 
-@container (max-width: #{$composer-phone-width}) {
-  .container {
-    .max-content {
-      .content {
-        .featured-card {
-          gap: var(--composer-gap-xs);
-        }
+  @container (max-width: #{$composer-phone-width}) {
+    .container {
+      .max-content {
+        .content {
+          .featured-card {
+            gap: var(--composer-gap-xs);
+          }
 
-        .team-card {
-          width: 100%;
-          min-height: 450px;
+          .team-card {
+            width: 100%;
+            min-height: 450px;
 
-          .image {
-            width: 100% !important;
-            height: 400px !important;
+            .image {
+              width: 100% !important;
+              height: 400px !important;
+            }
           }
         }
       }
     }
   }
-}
 
-@keyframes pulseScale {
+  @keyframes pulseScale {
 
-  0%,
-  100% {
-    transform: scale(1.1);
+    0%,
+    100% {
+      transform: scale(1.1);
+    }
+
+    50% {
+      transform: scale(1);
+    }
   }
 
-  50% {
-    transform: scale(1);
-  }
-}
+  @keyframes bounce {
 
-@keyframes bounce {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
 
-  0%,
-  100% {
-    transform: translateY(0);
-  }
+    30% {
+      transform: translateY(-8px);
+    }
 
-  30% {
-    transform: translateY(-8px);
-  }
-
-  60% {
-    transform: translateY(4px);
-  }
-}
-
-@keyframes colorChange {
-  0% {
-    color: var(--composer-font-color-primary);
+    60% {
+      transform: translateY(4px);
+    }
   }
 
-  100% {
-    color: var(--composer-primary-color);
+  @keyframes colorChange {
+    0% {
+      color: var(--composer-font-color-primary);
+    }
+
+    100% {
+      color: var(--composer-primary-color);
+    }
   }
-}

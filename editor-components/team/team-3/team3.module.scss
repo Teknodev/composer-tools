@@ -145,6 +145,8 @@
 
         .card-items {
           height: 100%;
+          display: flex;
+          flex-direction: column;
           padding: var(--composer-gap-md) 0;
           border-radius: var(--composer-border-radius-md);
           background-color: color-mix(in srgb,
@@ -153,18 +155,19 @@
         }
 
         .card-content {
-          margin-left: -55px;
+          margin-left: -12.3%;
           display: flex;
+          align-items: stretch;
+          flex: 1;
+          min-height: 0;
         }
 
         .image-container {
           display: flex;
           justify-content: center;
-          align-items: center;
+          align-items: stretch;
           position: relative;
           flex: 0 0 25%;
-          width: 100%;
-          height: 100%;
           border-radius: var(--composer-border-radius-sm);
           overflow: hidden;
 
@@ -184,7 +187,6 @@
             position: relative;
             width: 100%;
             max-width: 300px;
-            min-height: 200px;
             height: 100%;
             object-fit: cover;
             z-index: 2;

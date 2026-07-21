@@ -54,6 +54,8 @@
           transition: margin-bottom 1s, border-bottom 1s, padding-bottom 1s;
           align-items: flex-start;
           z-index: 2;
+          padding-left: var(--composer-gap-lg);
+          padding-right: var(--composer-gap-lg);
 
           .icons-bar {
             display: flex;
@@ -231,6 +233,9 @@
           }
 
           .text-group {
+            padding-left: var(--composer-gap-md);
+            padding-right: var(--composer-gap-md);
+
             .icons-bar {
               gap: var(--composer-gap-sm);
 
@@ -283,15 +288,14 @@
           }
 
           .text-group {
+            padding-left: var(--composer-gap-md);
+            padding-right: var(--composer-gap-md);
+
             .icons-bar {
               .icon {
                 font-size: 1rem;
                 padding: 6px;
               }
-            }
-
-            .item-name {
-              font-size: 1.25rem;
             }
           }
 

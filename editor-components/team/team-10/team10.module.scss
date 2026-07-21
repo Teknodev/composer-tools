@@ -34,11 +34,26 @@
 
     .vertical-content {
       padding: var(--composer-gap-md) var(--composer-gap-xl);
+      display: flex;
+      flex-direction: column;
+      align-items: center !important;
+      text-align: center !important;
+      margin-left: auto !important;
+      margin-right: auto !important;
+
+      .subtitle {
+        transform: none !important;
+        &::before {
+          display: none !important;
+        }
+      }
 
       .subtitle,
       .title,
       .description {
         z-index: 2;
+        text-align: center !important;
+        justify-content: center !important;
       }
 
       &.has-image {
@@ -60,6 +75,7 @@
         gap: var(--composer-gap-sm);
         position: relative;
         z-index: 2;
+        justify-content: center !important;
 
         .button {
           .button-text {

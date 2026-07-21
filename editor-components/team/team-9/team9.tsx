@@ -748,7 +748,7 @@ class Team9 extends Team {
                             })}
                           </div>
                         )}
-                        {personName && <Base.H5 className={this.decorateCSS("item-name")}>{item.personName}</Base.H5>}
+                        {personName && <Base.H4 className={this.decorateCSS("item-name")}>{item.personName}</Base.H4>}
                         {personPosition && <Base.H6 className={this.decorateCSS("item-position")}>{item.personPosition}</Base.H6>}
                         {personDescription && <Base.P className={this.decorateCSS("item-description")}>{item.personDescription}</Base.P>}
                       </Base.VerticalContent>

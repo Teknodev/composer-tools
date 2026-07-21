@@ -11,7 +11,6 @@ type Social = {
 };
 
 type Card = {
-  background: TypeMediaInputValue;
   picture: TypeMediaInputValue;
   socials: Social[];
   name: string;
@@ -61,18 +60,6 @@ class Team5 extends Team {
           key: "card",
           displayer: "Card",
           value: [
-            {
-              type: "media",
-              key: "background",
-              displayer: "Background",
-              additionalParams: {
-                availableTypes: ["image", "video"],
-              },
-              value: {
-                type: "image",
-                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b0eebd2970002c627c24?alt=media&timestamp=1719502692150",
-              },
-            },
             {
               type: "media",
               key: "picture",
@@ -219,18 +206,6 @@ class Team5 extends Team {
           value: [
             {
               type: "media",
-              key: "background",
-              displayer: "Background",
-              additionalParams: {
-                availableTypes: ["image", "video"],
-              },
-              value: {
-                type: "image",
-                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b0eebd2970002c627c24?alt=media&timestamp=1719502692150",
-              },
-            },
-            {
-              type: "media",
               key: "picture",
               displayer: "Media",
               additionalParams: {
@@ -375,18 +350,6 @@ class Team5 extends Team {
           value: [
             {
               type: "media",
-              key: "background",
-              displayer: "Background",
-              additionalParams: {
-                availableTypes: ["image", "video"],
-              },
-              value: {
-                type: "image",
-                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b0eebd2970002c627c24?alt=media&timestamp=1719502692150",
-              },
-            },
-            {
-              type: "media",
               key: "picture",
               displayer: "Media",
               additionalParams: {
@@ -529,18 +492,6 @@ class Team5 extends Team {
           key: "card",
           displayer: "Card",
           value: [
-            {
-              type: "media",
-              key: "background",
-              displayer: "Background",
-              additionalParams: {
-                availableTypes: ["image", "video"],
-              },
-              value: {
-                type: "image",
-                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b0eebd2970002c627c24?alt=media&timestamp=1719502692150",
-              },
-            },
             {
               type: "media",
               key: "picture",
@@ -740,19 +691,17 @@ class Team5 extends Team {
               const itemName = this.castToString(item?.name);
               const itemPosition = this.castToString(item?.position);
               const itemDescription = this.castToString(item?.cardDescription);
-              const hasItem = itemName || itemPosition || item?.background || item?.picture || (item?.socials && item.socials.length > 0);
+              const hasItem = itemName || itemPosition || item?.picture || (item?.socials && item.socials.length > 0);
 
               return hasItem && (
                 <Base.VerticalContent key={index} className={this.decorateCSS("card-item")} data-animation={(this.getPropValue("hoverAnimation") || []).join(" ")}>
-                  {(item.background || item.picture) && (
+                  {item.picture && (
                     <div className={this.decorateCSS("image-container")} data-animation={(this.getPropValue("hoverAnimation") || []).join(" ")} >
-                      {item.background && <Base.Media value={item.background} className={this.decorateCSS("background-image")} />}
-                      {item.picture && (
-                        <div className={this.decorateCSS("member-image-wrapper")}>
-                          <Base.Media value={item.picture} className={this.decorateCSS("member-image")} />
-                          {this.getPropValue("overlay") && <div className={this.decorateCSS("overlay")} />}
-                        </div>
-                      )}
+                      <div className={this.decorateCSS("background-shape")} />
+                      <div className={this.decorateCSS("member-image-wrapper")}>
+                        <Base.Media value={item.picture} className={this.decorateCSS("member-image")} />
+                        {this.getPropValue("overlay") && <div className={this.decorateCSS("overlay")} />}
+                      </div>
                     </div>
                   )}
                   <Base.VerticalContent className={this.decorateCSS("members-container")}>

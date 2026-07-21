@@ -28,7 +28,7 @@
             var(--composer-font-color-primary) 5%);
         border-radius: var(--composer-border-radius-md);
         padding: var(--composer-gap-md);
-        align-items: flex-start;
+        align-items: center !important;
 
         &[data-animation~="animate1"] {
           transition: background-color 0.3s ease;
@@ -163,25 +163,30 @@
 
         .card-title {
           color: var(--composer-font-color-primary);
-          text-align: left;
+          text-align: center !important;
+          justify-content: center !important;
           font-weight: 800;
         }
 
         .card-position {
           color: var(--composer-primary-color);
-          text-align: left;
+          text-align: center !important;
+          justify-content: center !important;
           font-weight: 800;
         }
 
         .card-description {
           color: var(--composer-font-color-primary);
-          text-align: left;
+          text-align: center !important;
+          justify-content: center !important;
         }
 
         .icon-group {
           display: flex;
           flex-direction: row;
           gap: var(--composer-gap-sm);
+          justify-content: center !important;
+          align-items: center;
 
           .icon {
             font-size: 1.5rem;

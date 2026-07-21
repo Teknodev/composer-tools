@@ -16,11 +16,30 @@
     }
 
     .down-page {
-      gap: calc(var(--composer-gap-xl) / 2);
+      --team14-count: var(--composer-grid-count, 3);
+      --team14-gap: calc(var(--composer-gap-xl) / 2);
+      --team14-basis: calc((100% - (var(--team14-count) - 1) * var(--team14-gap)) / var(--team14-count));
+
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--team14-gap);
+
+      &:has(.card:hover) {
+        .card {
+          flex-basis: calc(var(--team14-basis) * (var(--team14-count) - 1.5) / (var(--team14-count) - 1));
+        }
+
+        .card:hover {
+          flex-basis: calc(var(--team14-basis) * 1.5);
+        }
+      }
 
       .card {
         display: flex;
         justify-content: center;
+        flex: 0 1 var(--team14-basis);
+        min-width: 0;
+        transition: flex-basis 0.4s ease;
 
         .portfolio {
           display: flex;
@@ -34,7 +53,6 @@
           background: linear-gradient(to bottom,
               var(--composer-html-background) 60%,
               color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%) 50%);
-          transition: width 0.4s ease;
 
           .overlay {
             position: absolute;
@@ -180,6 +198,8 @@
       gap: var(--composer-gap-md);
 
       .down-page {
+        --team14-count: var(--composer-grid-count-tablet, 3);
+
         .card {
           .portfolio {
             height: 450px;
@@ -219,6 +239,15 @@
   .container {
     .max-content {
       .down-page {
+        --team14-count: var(--composer-grid-count-phone, 1);
+
+        &:has(.card:hover) {
+          .card,
+          .card:hover {
+            flex-basis: var(--team14-basis);
+          }
+        }
+
         .card {
           .portfolio {
             width: 100%;

@@ -133,9 +133,13 @@
           min-height: 350px;
           width: 100%;
           object-fit: cover;
-          transition: transform 0.3s ease;
+          transition: transform 0.3s ease, border-color 0.3s ease;
           border-radius: var(--composer-border-radius-sm);
-          border-bottom: 3px solid var(--composer-primary-color);
+          border-bottom: 3px solid transparent;
+        }
+
+        .image-container:hover .person-image {
+          border-bottom-color: var(--composer-primary-color);
         }
 
         .gradient-overlay {

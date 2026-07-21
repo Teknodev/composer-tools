@@ -135,11 +135,13 @@
           position: relative;
           aspect-ratio: 10 / 7;
 
-          .background-image {
+          .background-shape {
             transition: transform 0.3s ease;
             width: 70%;
             aspect-ratio: 1;
             position: absolute;
+            background-color: var(--composer-primary-color);
+            border-radius: 58% 42% 52% 48% / 52% 53% 47% 48%;
           }
 
           .member-image-wrapper {
