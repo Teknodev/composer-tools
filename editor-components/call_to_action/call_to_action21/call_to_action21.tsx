@@ -10,6 +10,13 @@ class CallToAction21 extends BaseCallToAction {
         super(props, styles);
 
         this.addProp({
+            type: "boolean",
+            key: "enable_card",
+            displayer: "Colored Background",
+            value: true,
+        });
+
+        this.addProp({
             type: "string",
             key: "subtitle",
             displayer: "Subtitle",
@@ -27,15 +34,7 @@ class CallToAction21 extends BaseCallToAction {
             type: "string",
             key: "description",
             displayer: "Description",
-            value:
-                "Capitalize on low hanging fruit to identify a value added activity to beta test with additional from DevOps.",
-        });
-
-        this.addProp({
-            type: "boolean",
-            key: "enable_card",
-            displayer: "Colored Background",
-            value: true,
+            value: "Capitalize on low hanging fruit to identify a value added activity to beta test with additional from DevOps.",
         });
 
         this.addProp({
@@ -58,6 +57,8 @@ class CallToAction21 extends BaseCallToAction {
         const description = this.castToString(this.getPropValue("description"));
         const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
         const enable_card = this.getPropValue("enable_card");
+        const alignment = Base.getContentAlignment();
+        const isLeft = alignment === "left";
 
         return (
             <Base.Container className={this.decorateCSS("container")}>
@@ -65,7 +66,7 @@ class CallToAction21 extends BaseCallToAction {
                     <div
                         className={`${this.decorateCSS("card")} ${enable_card && this.decorateCSS("has-background")}`}
                     >
-                        <Base.VerticalContent className={this.decorateCSS("card-content")}>
+                        <Base.VerticalContent className={`${this.decorateCSS("card-content")} ${isLeft ? this.decorateCSS("left") : ""}`}>
                             {subtitle && (
                                 <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
                                     {this.getPropValue("subtitle")}

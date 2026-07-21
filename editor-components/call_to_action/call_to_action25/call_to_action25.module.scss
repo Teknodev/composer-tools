@@ -49,3 +49,36 @@
         }
     }
 }
+
+@container (max-width: #{$composer-phone-width}) {
+    .container {
+        .max-content {
+            .content {
+                &.left {
+                    align-items: flex-start;
+
+                    .subtitle {
+                        text-align: left !important;
+                        transform: translateX(3rem) !important;
+                        margin-left: 0 !important;
+                        margin-right: 0 !important;
+
+                        &::before {
+                            display: block !important;
+                            background-color: var(--composer-font-color-secondary) !important;
+                        }
+                    }
+
+                    .title,
+                    .description {
+                        text-align: left;
+                    }
+
+                    .button-container {
+                        justify-content: flex-start;
+                    }
+                }
+            }
+        }
+    }
+}

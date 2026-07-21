@@ -34,7 +34,7 @@ class CallToAction14 extends BaseCallToAction {
       key: "buttons",
       displayer: "Buttons",
       value: [
-        INPUTS.BUTTON("button", "Button", "Button Text", "", null, null,"Primary")
+        INPUTS.BUTTON("button", "Button", "Button Text", "", null, null, "Primary")
       ],
     });
     this.addProp({
@@ -52,13 +52,15 @@ class CallToAction14 extends BaseCallToAction {
   }
   render() {
     const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
+    const alignment = Base.getContentAlignment();
+    const isLeft = alignment === "left";
     return (
       <Base.Container className={this.decorateCSS("container")}>
-        <Base.MaxContent 
+        <Base.MaxContent
           className={this.decorateCSS("max-content")}
           data-animation={this.getPropValue("hoverAnimation").join(" ")}
         >
-          <Base.VerticalContent className={this.decorateCSS("header")}>
+          <Base.VerticalContent className={`${this.decorateCSS("header")} ${isLeft ? this.decorateCSS("left") : ""}`}>
             {this.castToString(this.getPropValue("subtitle")) && (
               <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
                 {this.getPropValue("subtitle")}
@@ -74,22 +76,20 @@ class CallToAction14 extends BaseCallToAction {
                 {this.getPropValue("description")}
               </Base.SectionDescription>
             )}
-          </Base.VerticalContent>
-          {(buttons.length > 0) && (
-            buttons.map((item: INPUTS.CastedButton, index: number) => {
-              return (
-                <div className={this.decorateCSS("button-container")}>
-                  {this.castToString(item.text) && (
-                    <ComposerLink path={item.url}>
+            {buttons.length > 0 && (
+              <div className={this.decorateCSS("button-container")}>
+                {buttons.map((item: INPUTS.CastedButton, index: number) => (
+                  this.castToString(item.text) && (
+                    <ComposerLink key={index} path={item.url}>
                       <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
                         <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>
                       </Base.Button>
                     </ComposerLink>
-                  )}
-                </div>
-              )
-            })
-          )}
+                  )
+                ))}
+              </div>
+            )}
+          </Base.VerticalContent>
         </Base.MaxContent>
       </Base.Container>
     );

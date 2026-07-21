@@ -2,10 +2,24 @@
 
 .container {
   position: relative;
-  padding: calc(var(--composer-gap-xl) * 2) var(--composer-gap-xl);
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
+
+  &.has-background {
+    .max-content {
+      .header {
+
+        .subtitle {
+          background: transparent !important;
+          padding: 0 !important;
+        }
+
+        .subtitle,
+        .title,
+        .description {
+          color: white;
+        }
+      }
+    }
+  }
 
   &.overlay-active {
     &::before {
@@ -38,7 +52,6 @@
     gap: var(--composer-gap-lg);
     z-index: 2;
 
-
     .header {
       align-items: center;
 
@@ -50,19 +63,9 @@
 
       .subtitle {
         transform: translateX(0);
+
         &::before {
           display: none;
-        }
-      }
-
-      &.with-image {
-        .title,
-        .description,
-        .subtitle {
-          color: white;
-          &::before {
-            color: white;
-          }
         }
       }
     }
@@ -75,7 +78,8 @@
         display: flex;
         justify-content: center;
         align-items: stretch;
-        width: 30%;
+        width: fit-content;
+        max-width: 100%;
         min-width: 500px;
 
         .inputs {
@@ -90,13 +94,15 @@
             padding: var(--composer-gap-md) var(--composer-gap-md);
             height: 100%;
             width: 100%;
+            min-width: 400px;
             outline: none;
             border: none;
             border-top-left-radius: var(--composer-border-radius-sm);
             border-bottom-left-radius: var(--composer-border-radius-sm);
 
             &.no-image {
-              background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+              background-color: transparent;
+              border: 1px solid var(--composer-primary-color);
               color: var(--composer-font-color-primary);
 
               &::placeholder {
@@ -113,12 +119,20 @@
           }
         }
 
-        .submit-button {
-          content: "";
-          border-top-left-radius: 0;
-          border-bottom-left-radius: 0;
-          .button-text {
-            content: "";
+        .button-container {
+          display: flex;
+          align-items: stretch;
+          width: auto;
+
+          .submit-button {
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+            margin-top: 0;
+            height: 100%;
+
+            .button-text {
+              content: "";
+            }
           }
         }
       }
@@ -127,6 +141,7 @@
     .button-container {
       width: 100%;
       display: flex;
+      gap: var(--composer-gap-sm);
       justify-content: center;
 
       .button {
@@ -144,8 +159,6 @@
 
 @container (max-width: #{$composer-tablet-width}) {
   .container {
-    padding: calc(var(--composer-gap-xl) * 2) var(--composer-gap-lg);
-
     .max-content {
       .form {
         .newsletter {
@@ -158,27 +171,50 @@
 
 @container (max-width: #{$composer-phone-width}) {
   .container {
-    padding: calc(var(--composer-gap-xl) * 2) var(--composer-gap-md);
-
     .max-content {
+      .header {
+        align-items: var(--composer-content-alignment);
+
+        .title,
+        .description,
+        .subtitle {
+          text-align: var(--composer-content-alignment);
+        }
+      }
+
       .form {
+        justify-content: var(--composer-content-alignment);
+
         .newsletter {
+          flex-direction: column;
+          gap: var(--composer-gap-md);
           width: 100%;
-          min-width: 100%;
+          min-width: unset;
 
           .inputs {
+            width: 100%;
+
             .input {
-              padding: var(--composer-gap-sm) var(--composer-gap-sm);
+              width: 100%;
+              min-width: unset;
+              padding: var(--composer-gap-sm) var(--composer-gap-md);
+              border-radius: var(--composer-border-radius-sm);
             }
           }
 
-          .submit-button {
-            content: "";
-            .button-text {
-              content: "";
+          .button-container {
+            width: 100%;
+
+            .submit-button {
+              width: 100%;
+              border-radius: var(--composer-border-radius-sm);
             }
           }
         }
+      }
+
+      .button-container {
+        justify-content: var(--composer-content-alignment);
       }
     }
   }
