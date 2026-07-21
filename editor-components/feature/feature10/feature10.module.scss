@@ -151,13 +151,13 @@
 
                                     .stat-label {
                                         font-weight: 800;
-                                        font-size: 0.75rem;
+                                        font-size: 1rem !important;
                                         color: var(--composer-font-color-primary);
                                         text-align: left !important;
                                     }
 
                                     .stat-value {
-                                        font-size: 0.75rem;
+                                        font-size: 0.75rem !important;
                                         color: var(--composer-tertiary-color);
                                         text-align: left !important;
                                     }
@@ -227,15 +227,6 @@
 
                                 .card-stats {
                                     gap: var(--composer-gap-xs);
-
-                                    .card-stat-item {
-                                        .stat-label {
-                                            font-size: 0.75rem;
-                                        }
-                                        .stat-value {
-                                            font-size: 0.75rem;
-                                        }
-                                    }
                                 }
                             }
                         }
@@ -279,15 +270,6 @@
                             .bottom{
                                 .card-stats {
                                     gap: var(--composer-gap-xs);
-
-                                    .card-stat-item {
-                                        .stat-label {
-                                            font-size: 0.5rem;
-                                        }
-                                        .stat-value {
-                                            font-size: 0.5rem;
-                                        }
-                                    }
                                 }
                             }
                         }

@@ -12,6 +12,18 @@
       .description {
         content: "";
       }
+
+      .header-button-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--composer-gap-sm);
+
+        .header-button {
+          .header-button-text {
+            content: "";
+          }
+        }
+      }
     }
 
     .side-container {
@@ -179,24 +191,30 @@
           }
         }
 
-        .button {
-          .button-text {
-            content: "";
-            
-          }
+        .card-button-container {
+          display: flex;
+          flex-wrap: wrap;
+          align-items: center;
+          gap: var(--composer-gap-sm);
 
-          .button-icon {
-            width: var(--composer-gap-md);
-            height: var(--composer-gap-md);
-            font-size: 1rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-          }
+          .button {
+            .button-text {
+              content: "";
+            }
 
-          .button-image {
-            content: "";
+            .button-icon {
+              width: var(--composer-gap-md);
+              height: var(--composer-gap-md);
+              font-size: 1rem;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              flex-shrink: 0;
+            }
+
+            .button-image {
+              content: "";
+            }
           }
         }
 

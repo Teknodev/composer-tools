@@ -461,9 +461,9 @@ class Feature8 extends BaseFeature {
                         />
                       )}
                       {subtitleExist && (
-                        <Base.H4 className={this.decorateCSS("card-subtitle")}>
+                        <Base.H5 className={this.decorateCSS("card-subtitle")}>
                           {card.subtitle}
-                        </Base.H4>
+                        </Base.H5>
                       )}
                       {titleExist && (
                         <Base.H4 className={this.decorateCSS("title")}>
