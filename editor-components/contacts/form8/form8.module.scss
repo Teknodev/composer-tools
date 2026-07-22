@@ -35,11 +35,12 @@ $content-background-color: color-mix(in srgb, var(--composer-html-background), v
 
         .contact-texts {
           width: 100%;
-          align-items: baseline;
+          align-items: stretch;
 
           .contact-element {
             display: flex;
-            align-items: center;
+            flex-wrap: nowrap;
+            align-items: baseline;
             justify-content: flex-start;
             text-align: left;
             color: var(--composer-font-color-primary);
@@ -49,16 +50,23 @@ $content-background-color: color-mix(in srgb, var(--composer-html-background), v
             .contact-text {
               text-align: left;
               justify-content: flex-start;
+              margin-left: 0;
+              margin-right: 0;
             }
 
             .contact-title {
               content: "";
               font-size: 16px !important;
+              width: max-content;
+              flex: 0 0 auto;
             }
 
             .contact-text {
               content: "";
               font-size: 16px !important;
+              width: auto;
+              flex: 1 1 auto;
+              min-width: 0;
             }
           }
         }
