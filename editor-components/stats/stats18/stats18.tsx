@@ -109,6 +109,13 @@ class Stats18Page extends BaseStats {
         });
 
         this.addProp({
+            type: "number",
+            key: "itemCount",
+            displayer: "Item Count in a Row",
+            value: 4,
+        });
+
+        this.addProp({
             type: "boolean",
             key: "showLine",
             displayer: "Line",
@@ -132,12 +139,6 @@ class Stats18Page extends BaseStats {
                     displayer: "Animation Duration (ms)",
                     value: 2000,
                 },
-                {
-                    type: "number",
-                    key: "itemCount",
-                    displayer: "Item Count in a Row",
-                    value: 4,
-                },
             ],
         });
     }
@@ -158,7 +159,7 @@ class Stats18Page extends BaseStats {
 
         const shouldAnimate = this.castToObject<any>("settings")?.shouldAnimate ?? true;
         const animationDuration = (this.castToObject<any>("settings")?.animationDuration ?? 2000) as number;
-        const itemCount = this.castToObject<any>("settings")?.itemCount ?? 4;
+        const itemCount = this.getPropValue("itemCount") ?? 4;
 
         const hasTopSection = subtitleExist || titleExist || descriptionExist || hasValidButtons;
 

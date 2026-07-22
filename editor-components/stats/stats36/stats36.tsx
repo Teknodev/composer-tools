@@ -119,6 +119,14 @@ class Stats36 extends BaseStats {
         });
 
         this.addProp({
+            type: "number",
+            key: "itemCount",
+            displayer: "Item Count in a Row",
+            value: 1,
+            max: 4,
+        });
+
+        this.addProp({
             type: "object",
             key: "settings",
             displayer: "Settings",
@@ -141,6 +149,7 @@ class Stats36 extends BaseStats {
         const statsRaw = this.castToObject<{ prefix: React.JSX.Element; number: React.JSX.Element; suffix: React.JSX.Element; title: React.JSX.Element; subtitle: React.JSX.Element; description: React.JSX.Element }[]>("stats");
         const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
         const hasValidButtons = buttons.some((btn) => this.castToString(btn.text) || (btn.icon && btn.icon.name));
+        const itemCount = this.getPropValue("itemCount") ?? 1;
         const alignment = Base.getContentAlignment();
 
         const statsItems: StatItem[] = statsRaw.map((item) => {
@@ -355,7 +364,7 @@ class Stats36 extends BaseStats {
                                 </Base.VerticalContent>
                                 {statsItems.length > 0 && (
                                     <div className={this.decorateCSS("content-stats")}>
-                                        <Base.ListGrid gridCount={{ pc: 1, tablet: 1, phone: 1 }} className={this.decorateCSS("stats-grid")}>
+                                        <Base.ListGrid gridCount={{ pc: itemCount, tablet: 1, phone: 1 }} className={this.decorateCSS("stats-grid")}>
                                             {statsItems.map((item, index) => (
                                                 <AnimatedStat key={index} stat={item} />
                                             ))}

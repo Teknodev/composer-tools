@@ -110,6 +110,14 @@ class Stats6Page extends BaseStats {
     });
 
     this.addProp({
+      type: "number",
+      key: "itemCount",
+      displayer: "Item Count in a Row",
+      value: 3,
+      max: 4,
+    });
+
+    this.addProp({
       type: "object",
       key: "settings",
       displayer: "Settings",
@@ -125,13 +133,6 @@ class Stats6Page extends BaseStats {
           key: "animationDuration",
           displayer: "Animation Duration (ms)",
           value: 2000,
-        },
-        {
-          type: "number",
-          key: "itemCount",
-          displayer: "Item Count in a Row",
-          value: 3,
-          max: 4,
         },
       ],
     });
@@ -156,7 +157,7 @@ class Stats6Page extends BaseStats {
 
     const shouldAnimate = this.castToObject<any>("settings")?.shouldAnimate ?? true;
     const animationDuration = (this.castToObject<any>("settings")?.animationDuration ?? 2000) as number;
-    const itemCount = this.castToObject<any>("settings")?.itemCount ?? 3;
+    const itemCount = this.getPropValue("itemCount") ?? 3;
 
     const AnimatedCard = ({ card }: { card: CardData }) => {
       const ref = React.useRef<HTMLDivElement>(null);

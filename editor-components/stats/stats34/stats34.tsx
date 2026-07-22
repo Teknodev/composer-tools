@@ -140,13 +140,20 @@ class Stats34 extends BaseStats {
         });
 
         this.addProp({
+            type: "number",
+            key: "itemCount",
+            displayer: "Item Count in a Row",
+            value: 1,
+            max: 4,
+        });
+
+        this.addProp({
             type: "object",
             key: "settings",
             displayer: "Settings",
             value: [
                 { type: "boolean", key: "shouldAnimate", displayer: "Animate Numbers", value: true },
                 { type: "number", key: "animationDuration", displayer: "Animation Duration (ms)", value: 2000 },
-                { type: "number", key: "itemCount", displayer: "Item Count in a Row", value: 1, max: 4 },
             ],
         });
     }
@@ -164,7 +171,7 @@ class Stats34 extends BaseStats {
 
         const shouldAnimate = this.castToObject<any>("settings")?.shouldAnimate ?? true;
         const animationDuration = (this.castToObject<any>("settings")?.animationDuration ?? 2000) as number;
-        const itemCount = this.castToObject<any>("settings")?.itemCount ?? 1;
+        const itemCount = this.getPropValue("itemCount") ?? 1;
 
         const statsItems = this.castToObject<{ prefix: JSX.Element; number: JSX.Element; suffix: JSX.Element; title: JSX.Element; subtitle: JSX.Element; description: JSX.Element }[]>("stats");
         const stats: StatItem[] = statsItems.map((item) => {

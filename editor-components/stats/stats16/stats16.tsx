@@ -85,6 +85,13 @@ class Stats16 extends BaseStats {
       ],
     });
     this.addProp({
+      type: "number",
+      key: "itemCount",
+      displayer: "Item Count in a Row",
+      value: 3,
+      max: 6,
+    });
+    this.addProp({
       type: "array",
       key: "buttons",
       displayer: "Buttons",
@@ -108,13 +115,6 @@ class Stats16 extends BaseStats {
           key: "animationDuration",
           displayer: "Animation Duration (ms)",
           value: 2000,
-        },
-        {
-          type: "number",
-          key: "itemCount",
-          displayer: "Item Count in a Row",
-          value: 3,
-          max: 6,
         },
       ],
     });
@@ -142,7 +142,7 @@ class Stats16 extends BaseStats {
     const settings = this.castToObject<any>("settings");
     const shouldAnimate = settings?.shouldAnimate ?? true;
     const animationDuration = (settings?.animationDuration ?? 2000) as number;
-    const itemCount = settings?.itemCount ?? 3;
+    const itemCount = this.getPropValue("itemCount") ?? 3;
 
     const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
     const hasValidButtons = buttons.some((btn) => this.castToString(btn.text));

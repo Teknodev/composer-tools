@@ -204,6 +204,14 @@ class Stats4Page extends BaseStats {
         },
       ],
     });
+    this.addProp({
+      type: "number",
+      key: "itemCount",
+      displayer: "Item Count in a Row",
+      value: 4,
+      max: 4,
+    });
+
     this.state["componentProps"]["selectedFaqIndex"] = null;
 
     this.addProp({
@@ -246,13 +254,6 @@ class Stats4Page extends BaseStats {
           displayer: "Animation Duration (ms)",
           value: 2000,
         },
-        {
-          type: "number",
-          key: "itemCount",
-          displayer: "Item Count in a Row",
-          value: 4,
-          max: 4,
-        },
       ],
     });
   }
@@ -284,7 +285,7 @@ class Stats4Page extends BaseStats {
     const settings = this.castToObject<any>("settings");
     const shouldAnimate = settings?.shouldAnimate ?? true;
     const animationDuration = (settings?.animationDuration ?? 2000) as number;
-    const itemCount = settings?.itemCount ?? 4;
+    const itemCount = this.getPropValue("itemCount") ?? 4;
 
     const mediaExists = (m?: TypeMediaInputValue | string) => (typeof m === "object" ? m?.name || m?.url : m);
     const statIconExist = mediaExists(statIcon);

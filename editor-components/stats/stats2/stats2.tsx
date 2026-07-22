@@ -179,6 +179,14 @@ class Stats2Page extends BaseStats {
     });
 
     this.addProp({
+      type: "number",
+      key: "itemCount",
+      displayer: "Item Count in a Row",
+      value: 2,
+      max: 4,
+    });
+
+    this.addProp({
       type: "object",
       key: "settings",
       displayer: "Settings",
@@ -194,13 +202,6 @@ class Stats2Page extends BaseStats {
           key: "animationDuration",
           displayer: "Animation Duration (ms)",
           value: 2000,
-        },
-        {
-          type: "number",
-          key: "itemCount",
-          displayer: "Item Count in a Row",
-          value: 2,
-          max: 4,
         },
       ],
     });
@@ -224,7 +225,7 @@ class Stats2Page extends BaseStats {
     const settings = this.castToObject<any>("settings");
     const shouldAnimate = settings?.shouldAnimate ?? true;
     const animationDuration = (settings?.animationDuration ?? 2000) as number;
-    const itemCount = settings?.itemCount ?? 2;
+    const itemCount = this.getPropValue("itemCount") ?? 2;
 
     const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
     const isButtonTextExist = this.castToString(button.text);

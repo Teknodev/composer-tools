@@ -125,6 +125,13 @@ class Stats35 extends BaseStats {
         });
 
         this.addProp({
+            type: "number",
+            key: "itemCount",
+            displayer: "Item Count in a Row",
+            value: 1,
+        });
+
+        this.addProp({
             type: "object",
             key: "settings",
             displayer: "Settings",
@@ -140,12 +147,6 @@ class Stats35 extends BaseStats {
                     key: "animationDuration",
                     displayer: "Animation Duration (ms)",
                     value: 2000,
-                },
-                {
-                    type: "number",
-                    key: "itemCount",
-                    displayer: "Item Count in a Row",
-                    value: 1,
                 },
             ],
         });
@@ -193,7 +194,7 @@ class Stats35 extends BaseStats {
         const settings = this.castToObject<any>("settings");
         const shouldAnimate = settings?.shouldAnimate ?? true;
         const animationDuration = (settings?.animationDuration ?? 2000) as number;
-        const itemCount = settings?.itemCount ?? 1;
+        const itemCount = this.getPropValue("itemCount") ?? 1;
 
         const alignment = Base.getContentAlignment();
         const hasLeftSection = subtitleExist || titleExist || descriptionExist || hasValidButtons;
