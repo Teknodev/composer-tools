@@ -287,6 +287,21 @@
       .footer-page {
         .first-container {
           padding: 100px var(--composer-gap-xl) var(--composer-gap-md) var(--composer-gap-xl) !important;
+
+          .first-max-content {
+            .items {
+              gap: var(--composer-gap-md);
+
+              .header {
+                .logo {
+                  .image {
+                    width: 150px;
+                    height: 30px;
+                  }
+                }
+              }
+            }
+          }
         }
         .second-container {
           padding: var(--composer-gap-md) var(--composer-gap-xl) var(--composer-gap-md) var(--composer-gap-xl) !important;

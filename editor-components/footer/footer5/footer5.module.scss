@@ -48,6 +48,7 @@
         .left {
           .title, .subtitle, .description {
             text-align: left !important;
+            white-space: pre-line;
           }
           &.left-full {
             width: 100%;

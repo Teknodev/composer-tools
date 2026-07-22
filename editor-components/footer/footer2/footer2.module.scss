@@ -103,7 +103,7 @@
       .background-overlay {
         position: absolute;
         inset: 0;
-        background-color: var(--composer-overlay-color);
+        background-color: rgb(var(--composer-html-background-rgb), 0.2);
         z-index: 1;
       }
     }

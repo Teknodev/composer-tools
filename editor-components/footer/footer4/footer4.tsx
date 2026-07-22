@@ -90,7 +90,7 @@ class Footer4Page extends BaseFooter {
               },
               value: {
                 type: "image",
-                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66fa9094cf1798002cc71d01?alt=media",
+                url: "https://colabrio.ams3.cdn.digitaloceanspaces.com/stockie/mastercard.svg",
               },
             },
             {
@@ -115,7 +115,82 @@ class Footer4Page extends BaseFooter {
               },
               value: {
                 type: "image",
-                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66fa90c5cf1798002cc71d0e?alt=media",
+                url: "https://colabrio.ams3.cdn.digitaloceanspaces.com/stockie/visa.svg",
+              },
+            },
+            {
+              type: "page",
+              key: "url",
+              displayer: "Navigate To",
+              value: "",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "item",
+          displayer: "Item Elements",
+          value: [
+            {
+              type: "media",
+              key: "media",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["image", "icon"],
+              },
+              value: {
+                type: "image",
+                url: "https://colabrio.ams3.cdn.digitaloceanspaces.com/stockie/paypal.svg",
+              },
+            },
+            {
+              type: "page",
+              key: "url",
+              displayer: "Navigate To",
+              value: "",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "item",
+          displayer: "Item Elements",
+          value: [
+            {
+              type: "media",
+              key: "media",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["image", "icon"],
+              },
+              value: {
+                type: "image",
+                url: "https://colabrio.ams3.cdn.digitaloceanspaces.com/stockie/amazon.svg",
+              },
+            },
+            {
+              type: "page",
+              key: "url",
+              displayer: "Navigate To",
+              value: "",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "item",
+          displayer: "Item Elements",
+          value: [
+            {
+              type: "media",
+              key: "media",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["image", "icon"],
+              },
+              value: {
+                type: "image",
+                url: "https://colabrio.ams3.cdn.digitaloceanspaces.com/stockie/jcb.svg",
               },
             },
             {
@@ -759,6 +834,7 @@ class Footer4Page extends BaseFooter {
 
   render() {
     const media = this.castToObject<any[]>("media");
+    const cardTintId = `footer4-card-tint-${this.id}`;
 
     const subtitleExist = this.castToString(this.getPropValue("subtitle"));
     const titleExist = this.castToString(this.getPropValue("title"));
@@ -823,7 +899,16 @@ class Footer4Page extends BaseFooter {
                         </div>
                       )}
                       {media.length > 0 && (
-                        <div className={this.decorateCSS("images")}>
+                        <div
+                          className={this.decorateCSS("images")}
+                          style={{ "--card-tint": `url(#${cardTintId})` } as React.CSSProperties}
+                        >
+                          <svg className={this.decorateCSS("tint-definition")} aria-hidden="true" focusable="false">
+                            <filter id={cardTintId} colorInterpolationFilters="sRGB">
+                              <feFlood style={{ floodColor: "var(--composer-font-color-primary)" }} />
+                              <feComposite in2="SourceAlpha" operator="in" />
+                            </filter>
+                          </svg>
                           <Base.Row className={this.decorateCSS("image-container")}>
                             {media.map((item: any, index: number) => {
                               return (
@@ -956,12 +1041,11 @@ class Footer4Page extends BaseFooter {
 
           <Base.Container className={this.decorateCSS("second-container")}>
             <Base.MaxContent className={this.decorateCSS("second-max-content")}>
-              <div className={this.decorateCSS("bottom")}>
+              <div className={`${this.decorateCSS("bottom")} ${alignment === "center" ? this.decorateCSS("center") : ""}`}>
                 {footerTextExist && <Base.P className={this.decorateCSS("footer-text")}>{this.getPropValue("footerText")}</Base.P>}
 
                 {links.length > 0 && (
-                  <Base.Row className={`${this.decorateCSS("links")}
-                  ${alignment === "center" && this.decorateCSS("center")}`}>
+                  <Base.Row className={`${this.decorateCSS("links")} ${alignment === "center" ? this.decorateCSS("center") : ""}`}>
                     {links.map((item: any, index: number) => {
                       const textExist = this.castToString(item.text);
                       return (

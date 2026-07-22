@@ -29,7 +29,7 @@
       .footer-upper {
         display: flex;
         justify-content: space-between;
-        align-items: center;
+        align-items: flex-end;
         gap: var(--composer-gap-lg);
 
         .header {
@@ -104,7 +104,7 @@
       .line {
         height: 1px;
         width: 100%;
-        border-top: 1px solid rgb(var(--composer-font-color-primary-rgb), 0.5);
+        border-top: 1px solid var(--composer-tertiary-color);
       }
 
       .footer-bottom {
@@ -227,6 +227,7 @@
           flex-direction: column;
           align-items: flex-start;
           gap: var(--composer-gap-md);
+          margin-bottom: var(--composer-gap-sm);
 
           .subscribe {
             width: 100%;
@@ -254,15 +255,27 @@
 
             .copyright-text {
               text-align: center;
+              font-size: 1rem !important;
+            }
+          }
+
+          .social {
+            gap: var(--composer-gap-md);
+
+            .icon {
+              width: 21px;
+              height: 21px;
+              font-size: 1.5rem;
             }
           }
 
           .columns-section {
             justify-content: center;
+            gap: var(--composer-gap-md);
 
             .column {
               .column-title {
-                font-size: 1.25rem !important;
+                font-size: 1rem !important;
               }
             }
           }

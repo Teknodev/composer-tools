@@ -1,7 +1,7 @@
 @use "../../../../composer-tools//composer-base-components//base//utitilities/viewports.module.scss" as *;
 
 .container {
-  padding: 120px 60px 60px 60px !important;
+  padding: 40px 60px 40px 60px !important;
 
   &.absolute {
     position: relative;
@@ -17,15 +17,25 @@
       right: 0;
       width: 100%;
       background: transparent;
-      padding: 120px 60px 60px 60px !important;
+      padding: 40px 60px 40px 60px !important;
     }
   }
   .max-content {
     .footer-page {
       display: flex;
       justify-content: space-between;
-      align-items: flex-start;
+      align-items: flex-end;
       gap: var(--composer-gap-lg);
+
+      // the reference bottom-aligns the logo with the copyright line; that only
+      // reads well while the left column is just a logo
+      &:has(.footer-columns),
+      &:has(.subtitle),
+      &:has(.title),
+      &:has(.description),
+      &:has(.button-container) {
+        align-items: flex-start;
+      }
 
       .left {
         flex: 1;
@@ -34,9 +44,11 @@
         align-items: flex-start;
 
         .image {
-           width: 200px;
-           height: 40px;
-           object-fit: cover;
+           display: block;
+           width: 220px;
+           height: 60px;
+           object-fit: contain;
+           object-position: left bottom;
 
            &.is-icon {
              font-size: 5rem !important;
@@ -121,30 +133,29 @@
         display: flex;
         flex-direction: column;
         flex: 1;
-        gap: var(--composer-gap-xs);
         align-items: flex-end;
 
         .upper {
           display: flex;
           justify-content: flex-end;
           flex-wrap: wrap;
-          gap: var(--composer-gap-md);
+          gap: 5px 30px;
 
           .link-element {
             .link-text {
               position: relative;
               color: var(--composer-font-color-primary);
+              font-weight: 800 !important;
+              padding: 10px 0;
               transition: all 0.3s ease;
             }
 
             &.has-path[data-animation~="animate1"] {
               .link-text {
-                padding-bottom: 2px;
-                
                 &::after {
                   content: '';
                   position: absolute;
-                  bottom: 0;
+                  bottom: 5px;
                   left: 0;
                   width: 0;
                   height: 2px;
@@ -164,7 +175,7 @@
 
             &.has-path[data-animation~="animate2"] {
               .link-text {
-                padding: 0 var(--composer-gap-xs);
+                padding: var(--composer-gap-sm) var(--composer-gap-xs);
                 border-radius: var(--composer-border-radius-sm);
                 
                 &:hover {
@@ -193,7 +204,7 @@
 
           .text {
             text-align: end;
-            color: var(--composer-font-color-primary) !important;
+            color: var(--composer-tertiary-color) !important;
             white-space: nowrap;
 
             &.left {
@@ -224,16 +235,13 @@
 
 @container (max-width: #{$composer-tablet-width}) {
   .container {
-    padding: 100px var(--composer-gap-xl) 60px var(--composer-gap-xl) !important;
+    padding: var(--composer-gap-lg) var(--composer-gap-xl) var(--composer-gap-lg) var(--composer-gap-xl) !important;
     .max-content {
       .footer-page {
         gap: var(--composer-gap-md);
 
         .left {
           flex: 1;
-          .image {
-            width: 150px;
-          }
         }
 
         .footer-columns {
@@ -256,12 +264,12 @@
 
 @container (max-width: #{$composer-phone-width}) {
   .container {
-    padding: var(--composer-gap-xl) 30px 60px 30px !important;
+    padding: var(--composer-gap-lg) 30px var(--composer-gap-lg) 30px !important;
     .max-content {
       .footer-page {
         flex-direction: column;
         align-items: flex-start;
-        gap: var(--composer-gap-md);
+        gap: var(--composer-gap-sm);
 
         &.center-alignment {
           align-items: center;
@@ -270,6 +278,10 @@
             display: flex;
             flex-direction: column;
             align-items: center !important;
+
+            .image {
+              object-position: center bottom;
+            }
 
             .subtitle,
             .title,
@@ -316,11 +328,6 @@
         .left {
           flex: none;
           max-width: 100%;
-
-          .image {
-            width: 150px;
-            height: var(--composer-gap-xl);
-          }
         }
 
         .footer-columns {

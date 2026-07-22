@@ -24,18 +24,34 @@
     .footer-page {
       display: flex;
       flex-direction: column;
+      align-items: center;
       gap: var(--composer-gap-xl);
       .header {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
 
-        .subtitle, 
-        .title, 
+        .subtitle,
+        .title,
         .description {
-          content: "";
+          text-align: center;
+          margin-left: auto;
+          margin-right: auto;
+        }
+
+        .subtitle {
+          transform: translateX(0);
+
+          &::before {
+            display: none;
+          }
         }
 
         .buttons {
           display: flex;
           flex-wrap: wrap;
+          justify-content: center;
           gap: var(--composer-gap-sm);
 
           .button {
@@ -59,15 +75,22 @@
           max-width: 290px;
           display: flex;
           flex-direction: column;
+          align-items: center;
           gap: var(--composer-gap-md) !important;
 
           .list-title {
             color: var(--composer-font-color-primary);
+            text-align: center;
           }
 
           .text-container {
             display: flex;
             flex-direction: column;
+            align-items: center;
+          }
+
+          .menu-media-wrapper {
+            justify-content: center;
           }
 
           .address-link {
@@ -79,6 +102,7 @@
             position: relative;
             transition: all 0.3s ease;
             width: fit-content;
+            text-align: center;
             
             &[data-animation~="animate1"] {
               &::after {
@@ -120,6 +144,8 @@
 
       .bottom-text {
         text-align: center;
+        margin-left: auto;
+        margin-right: auto;
         color: var(--composer-font-color-primary);
       }
     }

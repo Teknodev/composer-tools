@@ -49,7 +49,7 @@ class Footer5Page extends BaseFooter {
       type: "string",
       key: "title",
       displayer: "Title",
-      value: "Would you like more information or do you have a question?",
+      value: "Would you like more information\nor do you have a question?",
     });
 
     this.addProp({
