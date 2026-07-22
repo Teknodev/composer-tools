@@ -93,11 +93,11 @@
           border-radius: inherit;
         }
 
-        .overlay {
+        .media-overlay {
           position: absolute;
           inset: 0;
           border-radius: inherit;
-          background-color: var(--composer-overlay-color);
+          background: var(--composer-overlay-color);
         }
       }
     }
@@ -124,6 +124,11 @@
           .left-container {
             align-items: center;
             text-align: center;
+
+            .title,
+            .description {
+              text-align: center;
+            }
           }
 
           .subtitle {

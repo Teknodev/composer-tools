@@ -1,5 +1,5 @@
 import * as React from "react";
-import { BaseStats } from "../../EditorComponent";
+import { BaseStats, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./stats10.module.scss";
 
 import { Base } from "../../../composer-base-components/base/base";
@@ -8,7 +8,7 @@ type ProgressItem = {
   progressTitle: string;
   progress: number;
   progressText: React.JSX.Element;
-  icon: string;
+  icon: string | TypeMediaInputValue;
 };
 
 class Stats10 extends BaseStats {
@@ -16,36 +16,59 @@ class Stats10 extends BaseStats {
     super(props, styles);
 
     this.addProp({
-      type: "image",
-      key: "image1",
-      displayer: "1st Image",
-      value:
-        "https://vzkit.rometheme.pro/persona/wp-content/uploads/sites/15/2024/01/psychologist-therapy-group-support-writing-notes-2023-11-27-05-30-45-utc.jpg",
-    });
-    this.addProp({
-      type: "image",
-      key: "image2",
-      displayer: "2nd Image",
-      value:
-        "https://vzkit.rometheme.pro/persona/wp-content/uploads/sites/15/2024/01/psychology-mental-health-and-support-with-a-woman-2023-11-27-05-29-05-utc.jpg",
-    });
-    this.addProp({
-      type: "icon",
-      key: "playIcon",
-      displayer: "Play Icon",
-      value: "FaRegPlayCircle"
-
-    });
-    this.addProp({
-      type: "video",
-      displayer: "Video",
-      key: "video",
-      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667e75d50181a1002c334f4f?alt=media&timestamp=1719563750188"
+      type: "object",
+      key: "media",
+      displayer: "Media",
+      value: [
+        {
+          type: "media",
+          key: "source1",
+          displayer: "Media",
+          additionalParams: { availableTypes: ["image", "video"] },
+          value: {
+            type: "image",
+            url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a5483e5d49b8ff2d93e06fb/6a548fe82754d786daab4f2c/library/psychologist-therapy-group-support-writing-notes-2023-11-27-05-30-45-utc.jpg",
+          },
+        },
+        {
+          type: "media",
+          key: "source2",
+          displayer: "Media",
+          additionalParams: { availableTypes: ["image", "video"] },
+          value: {
+            type: "image",
+            url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a5483e5d49b8ff2d93e06fb/6a548fe82754d786daab4f2c/library/psychology-mental-health-and-support-with-a-woman-2023-11-27-05-29-05-utc.jpg",
+          },
+        },
+        {
+          type: "media",
+          key: "video",
+          displayer: "Video",
+          additionalParams: { availableTypes: ["video", "icon"] },
+          value: {
+            type: "video",
+            url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667e75d50181a1002c334f4f?alt=media&timestamp=1719563750188",
+          },
+        },
+        {
+          type: "media",
+          key: "playIcon",
+          displayer: "Play Icon",
+          additionalParams: { availableTypes: ["image", "icon"] },
+          value: { type: "icon", name: "FaRegPlayCircle" },
+        },
+        {
+          type: "boolean",
+          key: "overlay",
+          displayer: "Overlay",
+          value: false,
+        },
+      ],
     });
     this.addProp({
       type: "string",
-      key: "badge",
-      displayer: "Badge",
+      key: "subtitle",
+      displayer: "Subtitle",
       value: "WHY CHOOSE US",
     });
     this.addProp({
@@ -63,13 +86,13 @@ class Stats10 extends BaseStats {
     });
     this.addProp({
       type: "array",
-      key: "items",
-      displayer: "Items",
+      key: "stats",
+      displayer: "Stats",
       value: [
         {
           type: "object",
-          key: "item",
-          displayer: "Item",
+          key: "stat",
+          displayer: "Stat",
           value: [
             {
               type: "string",
@@ -90,17 +113,18 @@ class Stats10 extends BaseStats {
               value: "90%",
             },
             {
-              type: "icon",
+              type: "media",
               key: "icon",
-              displayer: "icon",
-              value: "CgPlayButtonO",
+              displayer: "Icon",
+              additionalParams: { availableTypes: ["image", "icon"] },
+              value: { type: "icon", name: "CgPlayButtonO" },
             },
           ],
         },
         {
           type: "object",
-          key: "item",
-          displayer: "Item",
+          key: "stat",
+          displayer: "Stat",
           value: [
             {
               type: "string",
@@ -122,17 +146,18 @@ class Stats10 extends BaseStats {
               value: "95%",
             },
             {
-              type: "icon",
+              type: "media",
               key: "icon",
-              displayer: "icon",
-              value: "CgPlayButtonO",
+              displayer: "Icon",
+              additionalParams: { availableTypes: ["image", "icon"] },
+              value: { type: "icon", name: "CgPlayButtonO" },
             },
           ],
         },
         {
           type: "object",
-          key: "item",
-          displayer: "Item",
+          key: "stat",
+          displayer: "Stat",
           value: [
             {
               type: "string",
@@ -154,17 +179,18 @@ class Stats10 extends BaseStats {
               value: "98%",
             },
             {
-              type: "icon",
+              type: "media",
               key: "icon",
-              displayer: "icon",
-              value: "CgPlayButtonO",
+              displayer: "Icon",
+              additionalParams: { availableTypes: ["image", "icon"] },
+              value: { type: "icon", name: "CgPlayButtonO" },
             },
           ],
         },
         {
           type: "object",
-          key: "item",
-          displayer: "Item",
+          key: "stat",
+          displayer: "Stat",
           value: [
             {
               type: "string",
@@ -186,10 +212,11 @@ class Stats10 extends BaseStats {
               value: "85%",
             },
             {
-              type: "icon",
+              type: "media",
               key: "icon",
-              displayer: "icon",
-              value: "CgPlayButtonO",
+              displayer: "Icon",
+              additionalParams: { availableTypes: ["image", "icon"] },
+              value: { type: "icon", name: "CgPlayButtonO" },
             },
           ],
         },
@@ -205,55 +232,213 @@ class Stats10 extends BaseStats {
         selectItems: ["animate1", "animate2"]
       }
     });
+    this.addProp({
+      type: "object",
+      key: "settings",
+      displayer: "Settings",
+      value: [
+        {
+          type: "boolean",
+          key: "shouldAnimate",
+          displayer: "Animate Numbers",
+          value: true,
+        },
+        {
+          type: "number",
+          key: "animationDuration",
+          displayer: "Animation Duration (ms)",
+          value: 2000,
+        },
+      ],
+    });
   }
   static getName(): string {
     return "Stats 10";
   }
 
   render() {
-    const badge = this.castToString(this.getPropValue("badge"));
+    const alignment = Base.getContentAlignment();
+    const subtitle = this.castToString(this.getPropValue("subtitle"));
     const title = this.castToString(this.getPropValue("title"));
     const description = this.castToString(this.getPropValue("description"));
-    const itemsLength = this.getPropValue("items").length;
-    const image1 = this.getPropValue("image1");
-    const image2 = this.getPropValue("image2");
-    const videoLinkExist = this.getPropValue("video");
+    const itemsLength = (this.getPropValue("stats") || []).length;
+    const media = this.castToObject<any>("media");
+    const image1 = media?.source1 as TypeMediaInputValue;
+    const image2 = media?.source2 as TypeMediaInputValue;
+    const showOverlay = media?.overlay;
+    const video = media?.video as TypeMediaInputValue;
+    const videoLinkExist = video && ("url" in video ? video.url : "name" in video ? video.name : "");
+    const playIcon = media?.playIcon as TypeMediaInputValue;
+    const playIconExist = playIcon && (playIcon?.name || playIcon?.url);
+
+    const shouldAnimate = this.castToObject<any>("settings")?.shouldAnimate ?? true;
+    const animationDuration = (this.castToObject<any>("settings")?.animationDuration ?? 2000) as number;
+
+    const hoverAnimation = this.getPropValue("hoverAnimation").join(" ");
+
+    const AnimatedItem = ({ item }: { item: ProgressItem }) => {
+      const ref = React.useRef<HTMLDivElement>(null);
+      const intervalRef = React.useRef<ReturnType<typeof setInterval> | null>(null);
+
+      const rawNumber = (this.castToString(item.progressText) as string) || "";
+      const prefix = rawNumber.match(/^[^\d]*/)?.[0] ?? "";
+      const suffix = rawNumber.match(/[^\d]*$/)?.[0] ?? "";
+      const core = rawNumber.slice(prefix.length, rawNumber.length - suffix.length);
+      const isNumeric = /\d/.test(core);
+      const target = isNumeric ? parseFloat(core.replace(/,/g, "")) : NaN;
+      const decimals = core.includes(".") ? core.split(".")[1]?.length ?? 0 : 0;
+      const useGrouping = /,/.test(core);
+      const reduceMotion = typeof window !== "undefined" && !!window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
+      const animatable = shouldAnimate && isNumeric && !reduceMotion;
+
+      const format = (n: number) => prefix + n.toLocaleString("en-US", { minimumFractionDigits: decimals, maximumFractionDigits: decimals, useGrouping }) + suffix;
+
+      const [display, setDisplay] = React.useState<string>(() => (rawNumber ? (animatable ? format(0) : rawNumber) : ""));
+
+      React.useEffect(() => {
+        if (!rawNumber) {
+          setDisplay("");
+          return;
+        }
+        if (!animatable) {
+          setDisplay(rawNumber);
+          return;
+        }
+        const node = ref.current;
+        if (!node || typeof IntersectionObserver === "undefined") {
+          setDisplay(rawNumber);
+          return;
+        }
+        const clear = () => {
+          if (intervalRef.current) {
+            clearInterval(intervalRef.current);
+            intervalRef.current = null;
+          }
+        };
+        const run = () => {
+          clear();
+          setDisplay(format(0));
+          const steps = Math.max(1, Math.round(animationDuration / 30));
+          const increment = target / steps;
+          let current = 0;
+          intervalRef.current = setInterval(() => {
+            current += increment;
+            if (current >= target) {
+              clear();
+              setDisplay(rawNumber);
+              return;
+            }
+            setDisplay(format(current));
+          }, 30);
+        };
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                run();
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.4 }
+        );
+        observer.observe(node);
+        return () => {
+          observer.disconnect();
+          clear();
+        };
+      }, [rawNumber, animatable, animationDuration, target]);
+
+      const iconExist = typeof item.icon === "object" ? (item.icon?.name || item.icon?.url) : item.icon;
+      const titleExist = this.castToString(item.progressTitle);
+      const textExist = !!rawNumber;
+      if (!iconExist && !titleExist && !textExist) return null;
+
+      return (
+        <div
+          ref={ref}
+          className={this.decorateCSS("item")}
+          data-animation={hoverAnimation}
+        >
+          {(iconExist || titleExist || textExist) && (
+            <div className={this.decorateCSS("progress-content")}>
+              {(iconExist || titleExist) && (
+                <div className={this.decorateCSS("progress-title-container")}>
+                  {iconExist && (
+                    <div className={this.decorateCSS("progress-title-icon")}>
+                      <Base.Media value={typeof item.icon === "object" ? item.icon : { type: "icon", name: item.icon }} className={this.decorateCSS("icon")} />
+                    </div>
+                  )}
+                  {titleExist && (
+                    <div className={this.decorateCSS("progress-title")}>
+                      {item.progressTitle}
+                    </div>
+                  )}
+                </div>
+              )}
+              {textExist && (
+                <div className={this.decorateCSS("progress-text-container")}>
+                  <div className={this.decorateCSS("progress-text")}>
+                    {display}
+                  </div>
+                </div>
+              )}
+            </div>
+          )}
+
+          {textExist && (
+            <div className={this.decorateCSS("progress-bar-container")}>
+              <div className={this.decorateCSS("progress-bar")}>
+                <div
+                  className={this.decorateCSS("progress")}
+                  style={{
+                    width: `${item.progress}%`,
+                    '--progress-width': `${item.progress}%`,
+                  } as React.CSSProperties}
+                />
+              </div>
+            </div>
+          )}
+        </div>
+      );
+    };
+
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("page")}>
-            {(image1 || image2) && (
+            {(image1?.url || image2?.url) && (
               <div className={this.decorateCSS("left-page")}>
-                {image1 && (
-                  <div 
-                    className={`${this.decorateCSS("up-image")} ${!image2 && this.decorateCSS("without-image2")}`}
+                {image1?.url && (
+                  <div
+                    className={`${this.decorateCSS("up-image")} ${!image2?.url && this.decorateCSS("without-image2")}`}
                     data-animation={this.getPropValue("hoverAnimation").join(" ")}
                   >
-                    <img
+                    <Base.Media
                       className={this.decorateCSS("image1")}
-                      src={this.getPropValue("image1")}
-                      alt={this.getPropValue("image1")}
+                      value={image1}
                     />
+                    {showOverlay && <div className={this.decorateCSS("overlay")}></div>}
                   </div>
                 )}
-                {image2 && (
-                  <div 
-                    className={`${this.decorateCSS("down-image")} 
-                      ${!image1 && this.decorateCSS("without-image1")}
+                {image2?.url && (
+                  <div
+                    className={`${this.decorateCSS("down-image")}
+                      ${!image1?.url && this.decorateCSS("without-image1")}
                       ${this.getComponentState("is_video_visible") ? this.decorateCSS("video-active") : ""}`
                     }
                     data-animation={this.getPropValue("hoverAnimation").join(" ")}
                   >
-                    <img
+                    <Base.Media
                       className={this.decorateCSS("image2")}
-                      src={this.getPropValue("image2")}
-                      alt={this.getPropValue("image2")}
+                      value={image2}
                     />
+                    {showOverlay && <div className={this.decorateCSS("overlay")}></div>}
                     <div className={this.decorateCSS("player-container")} onClick={() => {
                       this.setComponentState("is_video_visible", true)
                     }}>
-                     {videoLinkExist && <div className={this.decorateCSS("icon-container")}>
-                        <Base.Icon name={this.getPropValue("playIcon")} propsIcon={{ className: this.decorateCSS("play-icon") }} />
+                     {videoLinkExist && playIconExist && <div className={this.decorateCSS("icon-container")}>
+                        <Base.Media value={playIcon} className={this.decorateCSS("play-icon")} />
                       </div>}
                     </div>
                     {this.getComponentState("is_video_visible") && (
@@ -261,13 +446,8 @@ class Stats10 extends BaseStats {
                         className={this.decorateCSS("image")}
                         onClick={() => this.setComponentState("is_video_visible", false)}
                       >
-                        {videoLinkExist && <div className={this.decorateCSS("player")}>
-                          <video
-                            onClick={(event) => event.stopPropagation()}
-                            controls
-                            className={this.decorateCSS("image2")}
-                            src={this.getPropValue("video")}
-                          ></video>
+                        {videoLinkExist && <div className={this.decorateCSS("player")} onClick={(event) => event.stopPropagation()}>
+                          <Base.Media value={video} className={this.decorateCSS("image2")} />
                         </div>}
 
                       </div>
@@ -278,81 +458,40 @@ class Stats10 extends BaseStats {
               </div>
             )}
 
-            {(badge || title || description || (itemsLength > 0)) && (
-              <Base.VerticalContent className={this.decorateCSS("right-page")}>
-                {badge && (
-                  <Base.SectionSubTitle className={this.decorateCSS("badge")}>
-                    {this.getPropValue("badge")}
-                  </Base.SectionSubTitle>
-                )}
-                {title && (
-                  <Base.SectionTitle className={this.decorateCSS("title")}>
-                    {this.getPropValue("title")}
-                  </Base.SectionTitle>
-                )}
-                {description && (
-                  <Base.SectionDescription className={this.decorateCSS("description")}>
-                    {this.getPropValue("description")}
-                  </Base.SectionDescription>
+            {(subtitle || title || description || (itemsLength > 0)) && (
+              <div className={`${this.decorateCSS("right-page")} ${alignment === "center" ? this.decorateCSS("alignment-center") : ""}`}>
+                {(subtitle || title || description) && (
+                  <Base.VerticalContent className={this.decorateCSS("top-section")}>
+                    {subtitle && (
+                      <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                        {this.getPropValue("subtitle")}
+                      </Base.SectionSubTitle>
+                    )}
+                    {title && (
+                      <Base.SectionTitle className={this.decorateCSS("title")}>
+                        {this.getPropValue("title")}
+                      </Base.SectionTitle>
+                    )}
+                    {description && (
+                      <Base.SectionDescription className={this.decorateCSS("description")}>
+                        {this.getPropValue("description")}
+                      </Base.SectionDescription>
+                    )}
+                  </Base.VerticalContent>
                 )}
 
                 {itemsLength > 0 && (
-                  <Base.Row className={this.decorateCSS("progress-container")}>
-                    {this.castToObject<ProgressItem[]>("items").map(
-                      (item: ProgressItem, index: number) => (
-                        <div 
-                          className={this.decorateCSS("item")} 
-                          key={index}
-                          data-animation={this.getPropValue("hoverAnimation").join(" ")}
-                        >
-                          <div className={this.decorateCSS("progress-content")}>
-                            <div
-                              className={this.decorateCSS("progress-title-container")}
-                            >
-                              <div
-                                className={this.decorateCSS("progress-title-icon")}
-                              >
-                               <Base.Icon
-                                  name={item.icon}
-                                  propsIcon={{ className: this.decorateCSS("icon") }}
-                                />
-                              </div>
-                              <div className={this.decorateCSS("progress-title")}>
-                                {item.progressTitle}
-                              </div>
-
-                            </div>
-                            <div className={this.decorateCSS("progress-text-container")}>
-                              <div className={this.decorateCSS("progress-text")}>
-                                {item.progressText}
-                              </div>
-                            </div>
-                          </div>
-
-
-
-                          {this.castToString(item.progressText) && (
-                            <div
-                              className={this.decorateCSS("progress-bar-container")}
-                            >
-                              <div className={this.decorateCSS("progress-bar")}>
-                                <div
-                                  className={this.decorateCSS("progress")}
-                                  style={{
-                                    width: `${item.progress}%`,
-                                    '--progress-width': `${item.progress}%`,
-                                  } as React.CSSProperties}
-                                />
-                              </div>
-
-                            </div>
-                          )}
-                        </div>
-                      )
-                    )}
-                  </Base.Row>
+                  <Base.VerticalContent className={this.decorateCSS("middle-section")}>
+                    <Base.Row className={this.decorateCSS("progress-container")}>
+                      {this.castToObject<ProgressItem[]>("stats").map(
+                        (item: ProgressItem, index: number) => (
+                          <AnimatedItem key={index} item={item} />
+                        )
+                      )}
+                    </Base.Row>
+                  </Base.VerticalContent>
                 )}
-              </Base.VerticalContent>
+              </div>
             )}
           </div>
         </Base.MaxContent>

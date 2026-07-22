@@ -4,7 +4,13 @@
     .max-content {
         .card {
             .card-content {
+                display: flex;
+                flex-direction: column;
                 gap: var(--composer-gap-lg);
+
+                .stats-container {
+                    width: 100%;
+                }
 
                 &.has-divider {
                     gap: 0;
@@ -172,7 +178,11 @@
 
             .header-container {
                 flex-direction: column;
-                gap: var(--composer-gap-sm);
+                gap: 0;
+
+                &.alignment-center {
+                    gap: 0;
+                }
             }
         }
     }

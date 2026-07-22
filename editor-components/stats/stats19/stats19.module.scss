@@ -41,8 +41,13 @@
                 }
             }
 
-            .stats-grid {
+            .stats-container {
                 flex: 1;
+                width: 100%;
+            }
+
+            .stats-grid {
+                width: 100%;
                 gap: var(--composer-gap-md);
 
                 .stat-item {
@@ -93,7 +98,34 @@
 @container (max-width: #{$composer-phone-width}) {
     .container .max-content .content-wrapper {
         flex-direction: column;
-        gap: var(--composer-gap-sm);
+        gap: var(--composer-gap-lg);
+
+        .left-container,
+        .stats-container {
+            flex: auto;
+            width: 100%;
+        }
+
+        .left-container {
+            &.alignment-center {
+                align-items: center;
+
+                .title,
+                .subtitle,
+                .description {
+                    text-align: center;
+                }
+
+                .subtitle {
+                    margin-left: auto;
+                    margin-right: auto;
+                }
+
+                .button-container {
+                    justify-content: center;
+                }
+            }
+        }
 
         .stats-grid .stat-item {
             padding: var(--composer-gap-md);

@@ -6,13 +6,15 @@ import ComposerLink from "../../../composer-base-components/Link/ComposerLinkPro
 import { INPUTS } from "../../../custom-hooks/input-templates";
 
 type CardData = {
-  cardValue: React.JSX.Element;
-  cardLabel: React.JSX.Element;
+  prefix: React.JSX.Element;
+  number: React.JSX.Element;
+  suffix: React.JSX.Element;
+  subtitle: React.JSX.Element;
+  title: React.JSX.Element;
+  description: React.JSX.Element;
 };
 
 class Stats1Page extends BaseStats {
-  interval: any;
-
   constructor(props?: any) {
     super(props, styles);
 
@@ -35,165 +37,81 @@ class Stats1Page extends BaseStats {
       value: "Health and wellness are important aspects that many of us spend alot of time thinking about. Many people think of health and wellnessand think only of diet and exercise",
     });
 
-    this.addProp(INPUTS.BUTTON("button", "Button", "Register Now", "", null, null, "Primary"));
+    this.addProp({
+      type: "array",
+      key: "buttons",
+      displayer: "Buttons",
+      value: [
+        INPUTS.BUTTON("button", "Button", "Register Now", "", null, null, "Primary"),
+      ],
+    });
 
     this.addProp({
       type: "array",
-      key: "card-list",
-      additionalParams: {
-        maxElementCount: 5,
-      },
-      displayer: "Card Content",
+      key: "stats",
+      displayer: "Stats",
       value: [
         {
           type: "object",
-          key: "card",
-          displayer: "Card",
+          key: "stat",
+          displayer: "Stat",
           value: [
-            {
-              type: "string",
-              key: "cardValue",
-              displayer: "Counter Value",
-              value: "1002",
-            },
-            {
-              type: "string",
-              key: "cardLabel",
-              displayer: "Counter Label",
-              value: "Active Users",
-            },
+            { type: "string", key: "prefix", displayer: "Prefix", value: "" },
+            { type: "string", key: "number", displayer: "Value", value: "1002" },
+            { type: "string", key: "suffix", displayer: "Suffix", value: "" },
+            { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
+            { type: "string", key: "title", displayer: "Title", value: "Active Users" },
+            { type: "string", key: "description", displayer: "Description", value: "" },
           ],
         },
         {
           type: "object",
-          key: "card",
-          displayer: "Card",
+          key: "stat",
+          displayer: "Stat",
           value: [
-            {
-              type: "string",
-              key: "cardValue",
-              displayer: "Counter Value",
-              value: "2999",
-            },
-            {
-              type: "string",
-              key: "cardLabel",
-              displayer: "Counter Label",
-              value: "Articles",
-            },
+            { type: "string", key: "prefix", displayer: "Prefix", value: "" },
+            { type: "string", key: "number", displayer: "Value", value: "2999" },
+            { type: "string", key: "suffix", displayer: "Suffix", value: "" },
+            { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
+            { type: "string", key: "title", displayer: "Title", value: "Articles" },
+            { type: "string", key: "description", displayer: "Description", value: "" },
           ],
         },
         {
           type: "object",
-          key: "card",
-          displayer: "Card",
+          key: "stat",
+          displayer: "Stat",
           value: [
-            {
-              type: "string",
-              key: "cardValue",
-              displayer: "Counter Value",
-              value: "97",
-            },
-            {
-              type: "string",
-              key: "cardLabel",
-              displayer: "Counter Label",
-              value: "Authors",
-            },
+            { type: "string", key: "prefix", displayer: "Prefix", value: "" },
+            { type: "string", key: "number", displayer: "Value", value: "97" },
+            { type: "string", key: "suffix", displayer: "Suffix", value: "" },
+            { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
+            { type: "string", key: "title", displayer: "Title", value: "Authors" },
+            { type: "string", key: "description", displayer: "Description", value: "" },
           ],
         },
       ],
     });
+
     this.addProp({
-      type: "number",
-      key: "animationDuration",
-      displayer: "Stat Animation Duration (ms)",
-      value: 30,
+      type: "object",
+      key: "settings",
+      displayer: "Settings",
+      value: [
+        {
+          type: "boolean",
+          key: "shouldAnimate",
+          displayer: "Animate Numbers",
+          value: true,
+        },
+        {
+          type: "number",
+          key: "animationDuration",
+          displayer: "Animation Duration (ms)",
+          value: 2000,
+        },
+      ],
     });
-    this.addProp({
-      type: "number",
-      key: "incrementValue",
-      displayer: "Stat Animation Increment Value",
-      value: 200,
-    });
-
-    this.init();
-    this.animate();
-  }
-
-  init() {
-    this.castToObject<CardData[]>("card-list").map((_, index) => {
-      this.setComponentState(`number-${index}`, "");
-      this.setComponentState(`numberForControl-${index}`, "");
-    });
-  }
-
-  isEqual(arr1: any[], arr2: any[]) {
-    return arr1.every((value, index) => {
-      const otherValue = arr2[index];
-      return value === otherValue || (value === "" && otherValue === 0) || (value === 0 && otherValue === "");
-    });
-  }
-
-  getStats() {
-    const statItems = this.castToObject<CardData[]>("card-list");
-    const stats = statItems.map((statsData: any) => (statsData.cardValue === "" ? "" : this.castToString(statsData.cardValue)));
-    return stats;
-  }
-
-  getNumbers() {
-    const statItems = this.castToObject<CardData[]>("card-list");
-    const numbers = statItems.map((_, index) => {
-      const number = this.getComponentState(`numberForControl-${index}`);
-      return number !== undefined ? number : "";
-    });
-    return numbers;
-  }
-
-  formatNumberWithDots(value: any) {
-    const number = Number(value);
-    if (isNaN(number)) {
-      return "";
-    }
-    return number.toLocaleString("tr-TR");
-  }
-
-  animate() {
-    const animationDuration = this.getPropValue("animationDuration");
-    const incrementValue = this.getPropValue("incrementValue");
-
-    this.interval = setInterval(() => {
-      if (this.isEqual(this.getStats(), this.getNumbers())) {
-        clearInterval(this.interval);
-        this.interval = null;
-      }
-
-      this.castToObject<CardData[]>("card-list").map((statData: CardData, index: number) => {
-        let currentNumberState = this.getComponentState(`number-${index}`);
-        const currentString = typeof currentNumberState === "string" ? currentNumberState : "";
-        const currentNonNumericPrefix = currentString.match(/^\D+/)?.[0] || "";
-        const currentNonNumericSuffix = currentString.match(/\D+$/)?.[0] || "";
-        const currentNumber = parseInt(currentString.replace(/\D+/g, ""), 10) || 0;
-
-        const counterString = this.castToString(statData.cardValue);
-        const newNonNumericPrefix = counterString.match(/^\D+/)?.[0] || "";
-        const newNonNumericSuffix = counterString.match(/\D+$/)?.[0] || "";
-        const numericPart = parseInt(counterString.replace(/[^\d]/g, ""), 10) || 0;
-
-        if (currentNumber !== numericPart || currentNonNumericPrefix !== newNonNumericPrefix || currentNonNumericSuffix !== newNonNumericSuffix) {
-          let nextValue = Math.min(numericPart, currentNumber + Math.ceil(numericPart / Math.round(incrementValue / 30)));
-
-          let formattedNextValue = nextValue ? nextValue.toString() : "";
-          const formattedNextValueWithDots = this.formatNumberWithDots(formattedNextValue) === "0" ? "" : this.formatNumberWithDots(formattedNextValue);
-          const updatedValue = currentNumber > 0 ? newNonNumericPrefix + formattedNextValueWithDots + newNonNumericSuffix : newNonNumericPrefix + formattedNextValueWithDots;
-          const updatedValueForControl = currentNumber > 0 ? newNonNumericPrefix + formattedNextValue + newNonNumericSuffix : newNonNumericPrefix + formattedNextValue;
-
-          this.setComponentState(`number-${index}`, updatedValue);
-
-          this.setComponentState(`numberForControl-${index}`, updatedValueForControl);
-        }
-      });
-    }, animationDuration);
   }
 
   static getName(): string {
@@ -207,33 +125,112 @@ class Stats1Page extends BaseStats {
     const isSubtitleExist = this.castToString(subtitle);
     const description = this.getPropValue("description");
     const isDescExist = this.castToString(description);
-    const cardList = this.castToObject<CardData[]>("card-list");
+    const cardList = this.castToObject<CardData[]>("stats");
 
-    const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
-    const buttonText = button.text;
-    const isButtonTextExist = this.castToString(buttonText);
+    const settings = this.castToObject<any>("settings");
+    const shouldAnimate = settings?.shouldAnimate ?? true;
+    const animationDuration = (settings?.animationDuration ?? 2000) as number;
+
+    const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons") || [];
+    const visibleButtons = buttons.filter(btn => this.castToString(btn.text));
+    const hasVisibleButtons = visibleButtons.length > 0;
 
     const badgeColors = ["var(--composer-primary-color)", "var(--composer-secondary-color)", "var(--composer-tertiary-color)"];
 
-    if (!this.interval && !this.isEqual(this.getStats(), this.getNumbers())) {
-      this.animate();
-    }
+    const AnimatedNumber = ({ value, className }: { value: string; className: string }) => {
+      const ref = React.useRef<HTMLSpanElement>(null);
+      const intervalRef = React.useRef<ReturnType<typeof setInterval> | null>(null);
+
+      const prefix = value.match(/^[^\d]*/)?.[0] ?? "";
+      const suffix = value.match(/[^\d]*$/)?.[0] ?? "";
+      const core = value.slice(prefix.length, value.length - suffix.length);
+      const isNumeric = /\d/.test(core);
+      const target = isNumeric ? parseFloat(core.replace(/,/g, "")) : NaN;
+      const decimals = core.includes(".") ? core.split(".")[1]?.length ?? 0 : 0;
+      const useGrouping = /,/.test(core);
+      const reduceMotion = typeof window !== "undefined" && !!window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
+      const animatable = shouldAnimate && isNumeric && !reduceMotion;
+
+      const format = (n: number) => prefix + n.toLocaleString("en-US", { minimumFractionDigits: decimals, maximumFractionDigits: decimals, useGrouping }) + suffix;
+
+      const [display, setDisplay] = React.useState<string>(() => (animatable ? format(0) : value));
+
+      React.useEffect(() => {
+        if (!animatable) {
+          setDisplay(value);
+          return;
+        }
+        const node = ref.current;
+        if (!node || typeof IntersectionObserver === "undefined") {
+          setDisplay(value);
+          return;
+        }
+        const clear = () => {
+          if (intervalRef.current) {
+            clearInterval(intervalRef.current);
+            intervalRef.current = null;
+          }
+        };
+        const run = () => {
+          clear();
+          setDisplay(format(0));
+          const steps = Math.max(1, Math.round(animationDuration / 30));
+          const increment = target / steps;
+          let current = 0;
+          intervalRef.current = setInterval(() => {
+            current += increment;
+            if (current >= target) {
+              clear();
+              setDisplay(value);
+              return;
+            }
+            setDisplay(format(current));
+          }, 30);
+        };
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                run();
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.4 }
+        );
+        observer.observe(node);
+        return () => {
+          observer.disconnect();
+          clear();
+        };
+      }, [value, animatable, animationDuration, target]);
+
+      return (
+        <span ref={ref} className={className}>
+          {display}
+        </span>
+      );
+    };
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("stats1-page")}>
-            {(isSubtitleExist || isTitleExist || isDescExist || isButtonTextExist) && (
+            {(isSubtitleExist || isTitleExist || isDescExist || hasVisibleButtons) && (
               <Base.VerticalContent className={this.decorateCSS("left-container")}>
                 {isSubtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{subtitle}</Base.SectionSubTitle>}
                 {isTitleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>}
                 {isDescExist && <Base.SectionDescription className={this.decorateCSS("description")}>{description}</Base.SectionDescription>}
-                {isButtonTextExist && (
-                  <ComposerLink path={button.url}>
-                    <Base.Button buttonType={button.type} className={this.decorateCSS("button-text-wrapper")}>
-                      {buttonText}
-                    </Base.Button>
-                  </ComposerLink>
+                {hasVisibleButtons && (
+                  <div className={this.decorateCSS("button-container")}>
+                    {visibleButtons.map((btn, index) => (
+                      <ComposerLink key={index} path={btn.url}>
+                        <Base.Button buttonType={btn.type} className={this.decorateCSS("button-text-wrapper")}>
+                          {btn.text}
+                        </Base.Button>
+                      </ComposerLink>
+                    ))}
+                  </div>
                 )}
               </Base.VerticalContent>
             )}
@@ -247,24 +244,32 @@ class Stats1Page extends BaseStats {
 
                   {cardList.map((cardData: CardData, indexCard: number) => {
                     const angle = (indexCard / cardList.length) * 360;
-                    const isCardLabelExist = this.castToString(cardData.cardLabel);
+                    const numberStr = (this.castToString(cardData.number) as string) || "";
+                    const isPrefixExist = this.castToString(cardData.prefix);
+                    const isSuffixExist = this.castToString(cardData.suffix);
+                    const isCardSubtitleExist = this.castToString(cardData.subtitle);
+                    const isCardTitleExist = this.castToString(cardData.title);
+                    const isCardDescExist = this.castToString(cardData.description);
+                    const isValueExist = !!numberStr || isPrefixExist || isSuffixExist;
 
-                    if (this.getComponentState(`number-${indexCard}`) !== "0" || isCardLabelExist)
-                      return (
-                        <div key={indexCard} className={this.decorateCSS("card")} style={{ "--angle": `${angle}deg` } as Record<string, any>}>
-                          {this.getComponentState(`number-${indexCard}`) !== "0" && (
-                            <Base.H5
-                              className={this.decorateCSS("counter-value")}
-                              style={{
-                                color: `${indexCard < 3 ? badgeColors[indexCard % badgeColors.length] : badgeColors[(indexCard % badgeColors.length) + 1]}`,
-                              }}
-                            >
-                              {this.getComponentState(`number-${indexCard}`)}
-                            </Base.H5>
-                          )}
-                          {isCardLabelExist && <Base.P className={this.decorateCSS("counter-label")}>{cardData.cardLabel}</Base.P>}
-                        </div>
-                      );
+                    if (!isValueExist && !isCardSubtitleExist && !isCardTitleExist && !isCardDescExist) return null;
+
+                    const color = badgeColors[indexCard % badgeColors.length];
+
+                    return (
+                      <div key={indexCard} className={this.decorateCSS("card")} style={{ "--angle": `${angle}deg` } as Record<string, any>}>
+                        {isValueExist && (
+                          <Base.H5 className={this.decorateCSS("counter-value")} style={{ color }}>
+                            {isPrefixExist && <span className={this.decorateCSS("counter-prefix")}>{cardData.prefix}</span>}
+                            {!!numberStr && <AnimatedNumber value={numberStr} className={this.decorateCSS("counter-value-inner")} />}
+                            {isSuffixExist && <span className={this.decorateCSS("counter-suffix")}>{cardData.suffix}</span>}
+                          </Base.H5>
+                        )}
+                        {isCardSubtitleExist && <Base.P className={this.decorateCSS("counter-subtitle")}>{cardData.subtitle}</Base.P>}
+                        {isCardTitleExist && <Base.P className={this.decorateCSS("counter-title")}>{cardData.title}</Base.P>}
+                        {isCardDescExist && <Base.P className={this.decorateCSS("counter-description")}>{cardData.description}</Base.P>}
+                      </div>
+                    );
                   })}
                 </div>
               </div>

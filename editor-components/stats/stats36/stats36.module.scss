@@ -22,12 +22,11 @@
                     flex: auto;
                 }
 
-                .overlay {
+                .media-overlay {
                     position: absolute;
                     inset: 0;
-                    background-color: var(--composer-overlay-color);
-                                        border-radius: var(--composer-border-radius-sm);
-
+                    background: var(--composer-overlay-color);
+                    border-radius: var(--composer-border-radius-sm);
                     z-index: 1;
                     pointer-events: none;
                 }
@@ -49,7 +48,7 @@
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
-                gap: var(--composer-gap-md);
+                gap: var(--composer-gap-lg);
 
                 &:not(.full-width) {
                     width: calc(50% - (var(--composer-gap-xl) / 2));

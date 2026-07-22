@@ -7,6 +7,7 @@
   .max-content {
     display: flex;
     flex-direction: column;
+    gap: var(--composer-gap-xl);
 
     .header-wrapper {
       width: 60%;
@@ -15,7 +16,12 @@
         min-width: 100%;
       }
 
-      .header {
+      .subtitle {
+        text-align: left;
+        margin-bottom: var(--composer-gap-sm);
+      }
+
+      .title {
         word-break: break-word;
         text-align: left;
       }
@@ -24,7 +30,7 @@
     .bottom-content {
       flex-wrap: unset;
 
-      .subHeader {
+      .description-column {
         flex: 1;
         position: sticky;
         top: calc(var(--composer-gap-lg) * 2);
@@ -135,6 +141,8 @@
 @container (max-width: #{$composer-tablet-width}) {
   .container {
     .max-content {
+      gap: 0 !important;
+
       .header-wrapper {
         width: 100%;
 
@@ -146,7 +154,7 @@
       .bottom-content {
         flex-direction: column;
 
-        .subHeader {
+        .description-column {
           width: 100%;
           margin-right: 0;
           position: static;
@@ -191,10 +199,6 @@
               .card-icon {
                 font-size: 2rem;
               }
-
-              .card-amoun::after {
-                font-size: 1.5rem;
-              }
             }
           }
         }
@@ -207,7 +211,7 @@
   .container {
     .max-content {
       .bottom-content {
-        .subHeader {
+        .description-column {
           .button-content {
             .contact-button {
               &.button-full-width {

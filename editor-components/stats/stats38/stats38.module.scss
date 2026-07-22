@@ -88,10 +88,10 @@
                 overflow: hidden;
                 border-radius: var(--composer-border-radius-sm);
 
-                .overlay {
+                .media-overlay {
                     position: absolute;
                     inset: 0;
-                    background-color: var(--composer-overlay-color);
+                    background: var(--composer-overlay-color);
                     z-index: 1;
                 }
 

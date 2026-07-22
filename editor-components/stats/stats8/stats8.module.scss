@@ -19,11 +19,7 @@
 @mixin threeDotsBlinkPage {
   > blinkpage {
     p {
-      display: -webkit-box;
-      -webkit-line-clamp: 3;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-      text-overflow: ellipsis;
+      @include threeDots;
     }
   }
 }
@@ -37,21 +33,10 @@ $font-color-primary: var(--composer-font-color-primary);
   align-items: center;
   height: 100%;
 
-  .full-width {
-    width: 100%;
-    text-align: center;
-    display: flex;
-  }
-
   .max-content {
     display: flex;
     gap: var(--composer-gap-xl);
     height: 100%;
-
-    &.image-absent {
-      display: inline-block;
-      width: 100%;
-    }
 
     .stats8-page {
       width: 100%;
@@ -64,8 +49,38 @@ $font-color-primary: var(--composer-font-color-primary);
         height: 100%;
         gap: var(--composer-gap-md);
 
-        .title {
-          margin: 0;
+        .header-container,
+        .author-container,
+        .stats-container {
+          width: 100%;
+          align-items: flex-start;
+        }
+
+        .header-container {
+          .subtitle,
+          .title,
+          .description {
+            text-align: left;
+            margin-left: 0;
+            margin-right: auto;
+          }
+        }
+
+        .author-container {
+          .description,
+          .author {
+            text-align: left;
+            margin-left: 0;
+            margin-right: auto;
+          }
+
+          .author-role-container {
+            justify-content: flex-start;
+          }
+        }
+
+        .subtitle {
+          margin-bottom: var(--composer-gap-sm);
         }
 
         .text-uppercase {
@@ -80,14 +95,12 @@ $font-color-primary: var(--composer-font-color-primary);
 
         .description {
           color: $font-color-primary;
-          margin: 0;
         }
 
         .author {
           color: $font-color-primary;
           word-break: break-word;
           text-transform: uppercase;
-          margin: 0;
         }
 
         .author-role-container {
@@ -118,11 +131,8 @@ $font-color-primary: var(--composer-font-color-primary);
           display: flex;
           flex-wrap: wrap;
           gap: var(--composer-gap-sm);
-
-          &.full-width {
-            display: flex;
-            flex-direction: row;
-          }
+          justify-content: flex-start !important;
+          align-items: flex-start !important;
 
           .stat-border {
             border: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.3);
@@ -180,11 +190,8 @@ $font-color-primary: var(--composer-font-color-primary);
           padding: var(--composer-gap-md);
           border: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.3);
 
-          img {
+          .image {
             max-height: 750px;
-            object-fit: cover;
-            filter: brightness(70%);
-            width: 100%;
             width: 100%;
             height: auto;
             object-fit: cover;
@@ -192,8 +199,16 @@ $font-color-primary: var(--composer-font-color-primary);
 
           .overlay {
             position: absolute;
+            inset: var(--composer-gap-md);
+            z-index: 1;
+            background-color: var(--composer-overlay-color);
+          }
+
+          .stat-badge {
+            position: absolute;
             bottom: 0;
             left: 0;
+            z-index: 2;
             border: 1px solid white;
             overflow: hidden;
             white-space: normal;
@@ -232,11 +247,11 @@ $font-color-primary: var(--composer-font-color-primary);
       .stats8-page {
         .image-container {
           .image-container-border {
-            img {
+            .image {
               max-height: 100%;
             }
 
-            .overlay {
+            .stat-badge {
               .number {
                 font-size: 3.5rem;
               }
@@ -282,15 +297,52 @@ $font-color-primary: var(--composer-font-color-primary);
 
       .stats8-page {
         .content {
+          &.alignment-center {
+            .header-container,
+            .author-container,
+            .stats-container {
+              align-items: center;
+            }
+
+            .header-container {
+              .subtitle,
+              .title,
+              .description {
+                text-align: center;
+                margin-left: auto;
+                margin-right: auto;
+              }
+            }
+
+            .author-container {
+              .description,
+              .author {
+                text-align: center;
+                margin-left: auto;
+                margin-right: auto;
+              }
+
+              .author-role-container {
+                justify-content: center;
+              }
+            }
+
+            .stats {
+              justify-content: center !important;
+              align-items: center !important;
+
+              .stat-border {
+                .stat {
+                  justify-content: center;
+                }
+              }
+            }
+          }
+
           .stats {
             max-width: 100% !important;
             flex-direction: column !important;
             gap: var(--composer-gap-md);
-
-            &.full-width {
-              display: grid;
-              grid-template-columns: 1fr;
-            }
 
             .stat-border {
               width: 100% !important;
@@ -306,7 +358,7 @@ $font-color-primary: var(--composer-font-color-primary);
 
         .image-container {
           .image-container-border {
-            .overlay {
+            .stat-badge {
               padding: var(--composer-gap-sm);
 
               .number {
