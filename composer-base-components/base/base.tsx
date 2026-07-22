@@ -544,12 +544,25 @@ export namespace Base {
       composerToolsCurrentLanguage,
       isProcessable,
       setComposerToolsCurrentLanguage,
+      setIsLocalizationChange,
     } = useComposerToolsData();
 
     const handleLanguageChange = async (lang: { code: string; name: string }) => {
-      if(!isProcessable) return;
+      // This layer only publishes the choice into composer-tools state — the app
+      // (editor/preview) owns the actual locale switch, so the published-site
+      // bundle stays free of any editor coupling.
       setComposerToolsCurrentLanguage(lang);
-    
+
+      // Editor.tsx re-applies the locale only when `isProcessable ||
+      // isLocalizationChange`. In the editor `isProcessable` is false, so
+      // without this flag the language change was observed and then ignored.
+      setIsLocalizationChange(true);
+
+      // The URL slug only drives live-site / preview navigation. In the editor
+      // `isProcessable` is false — that used to return early and make the
+      // dropdown a complete no-op; now only the URL rewrite is skipped.
+      if (!isProcessable) return;
+
       let currentPath = window.location.pathname;
       const normalizedPath = currentPath.replace(/\/$/, "");
       const pathParts = normalizedPath.split("/");
