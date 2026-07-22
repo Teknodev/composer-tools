@@ -73,7 +73,7 @@ class Stats12 extends BaseStats {
     this.addProp({
       type: "number",
       key: "itemsPerRow",
-      displayer: "Items Per Row",
+      displayer: "Item Count in a Row",
       value: 3,
     });
   }

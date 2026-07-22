@@ -35,7 +35,7 @@ class Stats7Page extends BaseStats {
     this.addProp({
       type: "array",
       key: "items",
-      displayer: "Items",
+      displayer: "Stats",
       value: [
         {
           type: "object",

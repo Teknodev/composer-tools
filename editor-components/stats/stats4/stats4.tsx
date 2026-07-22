@@ -209,7 +209,7 @@ class Stats4Page extends BaseStats {
     this.addProp({
       type: "media",
       key: "expandIcon",
-      displayer: "Icon",
+      displayer: "Inactive Icon",
       additionalParams: { availableTypes: ["image", "icon"] },
       value: { type: "icon", name: "FaPlus" },
     });
@@ -217,7 +217,7 @@ class Stats4Page extends BaseStats {
     this.addProp({
       type: "media",
       key: "collapseIcon",
-      displayer: "Icon",
+      displayer: "Active Icon",
       additionalParams: { availableTypes: ["image", "icon"] },
       value: { type: "icon", name: "FaMinus" },
     });

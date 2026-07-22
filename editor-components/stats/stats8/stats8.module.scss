@@ -190,11 +190,8 @@ $font-color-primary: var(--composer-font-color-primary);
           padding: var(--composer-gap-md);
           border: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.3);
 
-          img {
+          .image {
             max-height: 750px;
-            object-fit: cover;
-            filter: brightness(70%);
-            width: 100%;
             width: 100%;
             height: auto;
             object-fit: cover;
@@ -202,8 +199,16 @@ $font-color-primary: var(--composer-font-color-primary);
 
           .overlay {
             position: absolute;
+            inset: var(--composer-gap-md);
+            z-index: 1;
+            background-color: var(--composer-overlay-color);
+          }
+
+          .stat-badge {
+            position: absolute;
             bottom: 0;
             left: 0;
+            z-index: 2;
             border: 1px solid white;
             overflow: hidden;
             white-space: normal;
@@ -242,11 +247,11 @@ $font-color-primary: var(--composer-font-color-primary);
       .stats8-page {
         .image-container {
           .image-container-border {
-            img {
+            .image {
               max-height: 100%;
             }
 
-            .overlay {
+            .stat-badge {
               .number {
                 font-size: 3.5rem;
               }
@@ -353,7 +358,7 @@ $font-color-primary: var(--composer-font-color-primary);
 
         .image-container {
           .image-container-border {
-            .overlay {
+            .stat-badge {
               padding: var(--composer-gap-sm);
 
               .number {

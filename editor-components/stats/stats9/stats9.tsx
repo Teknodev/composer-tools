@@ -38,14 +38,27 @@ class Stats9 extends BaseStats {
         });
 
         this.addProp({
-            type: "media",
-            key: "image",
-            displayer: "Image",
-            additionalParams: { availableTypes: ["image", "video"] },
-            value: {
-                type: "image",
-                url: "https://demo2.wpopal.com/gamico/wp-content/uploads/2023/12/h1_img-2.jpg"
-            },
+            type: "object",
+            key: "media",
+            displayer: "Media",
+            value: [
+                {
+                    type: "media",
+                    key: "source",
+                    displayer: "Media",
+                    additionalParams: { availableTypes: ["image", "video"] },
+                    value: {
+                        type: "image",
+                        url: "https://demo2.wpopal.com/gamico/wp-content/uploads/2023/12/h1_img-2.jpg"
+                    },
+                },
+                {
+                    type: "boolean",
+                    key: "overlay",
+                    displayer: "Overlay",
+                    value: false,
+                },
+            ],
         });
 
         this.addProp(
@@ -180,15 +193,9 @@ class Stats9 extends BaseStats {
         const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
         const description = this.getPropValue("description");
         const isDescriptionExist = this.castToString(description);
-        let image: TypeMediaInputValue | null = null;
-        try {
-            image = this.castToObject<TypeMediaInputValue>("image");
-        } catch (error) {
-            const rawImage = this.getPropValue("image");
-            if (rawImage && typeof rawImage === 'object') {
-                image = rawImage as TypeMediaInputValue;
-            }
-        }
+        const media = this.castToObject<any>("media");
+        const image = (media?.source ?? null) as TypeMediaInputValue | null;
+        const showOverlay = media?.overlay;
 
         const shouldAnimate = this.castToObject<any>("settings")?.shouldAnimate ?? true;
         const animationDuration = (this.castToObject<any>("settings")?.animationDuration ?? 2000) as number;
@@ -332,6 +339,7 @@ class Stats9 extends BaseStats {
                                             value={image}
                                             className={this.decorateCSS("content-image")}
                                         />
+                                        {showOverlay && <div className={this.decorateCSS("overlay")}></div>}
                                     </div>
                                 )}
 

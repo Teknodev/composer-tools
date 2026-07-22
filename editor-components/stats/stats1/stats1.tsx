@@ -6,7 +6,11 @@ import ComposerLink from "../../../composer-base-components/Link/ComposerLinkPro
 import { INPUTS } from "../../../custom-hooks/input-templates";
 
 type CardData = {
+  prefix: React.JSX.Element;
   number: React.JSX.Element;
+  suffix: React.JSX.Element;
+  subtitle: React.JSX.Element;
+  title: React.JSX.Element;
   description: React.JSX.Element;
 };
 
@@ -52,18 +56,12 @@ class Stats1Page extends BaseStats {
           key: "stat",
           displayer: "Stat",
           value: [
-            {
-              type: "string",
-              key: "number",
-              displayer: "Value",
-              value: "1002",
-            },
-            {
-              type: "string",
-              key: "description",
-              displayer: "Description",
-              value: "Active Users",
-            },
+            { type: "string", key: "prefix", displayer: "Prefix", value: "" },
+            { type: "string", key: "number", displayer: "Value", value: "1002" },
+            { type: "string", key: "suffix", displayer: "Suffix", value: "" },
+            { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
+            { type: "string", key: "title", displayer: "Title", value: "Active Users" },
+            { type: "string", key: "description", displayer: "Description", value: "" },
           ],
         },
         {
@@ -71,18 +69,12 @@ class Stats1Page extends BaseStats {
           key: "stat",
           displayer: "Stat",
           value: [
-            {
-              type: "string",
-              key: "number",
-              displayer: "Value",
-              value: "2999",
-            },
-            {
-              type: "string",
-              key: "description",
-              displayer: "Description",
-              value: "Articles",
-            },
+            { type: "string", key: "prefix", displayer: "Prefix", value: "" },
+            { type: "string", key: "number", displayer: "Value", value: "2999" },
+            { type: "string", key: "suffix", displayer: "Suffix", value: "" },
+            { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
+            { type: "string", key: "title", displayer: "Title", value: "Articles" },
+            { type: "string", key: "description", displayer: "Description", value: "" },
           ],
         },
         {
@@ -90,18 +82,12 @@ class Stats1Page extends BaseStats {
           key: "stat",
           displayer: "Stat",
           value: [
-            {
-              type: "string",
-              key: "number",
-              displayer: "Value",
-              value: "97",
-            },
-            {
-              type: "string",
-              key: "description",
-              displayer: "Description",
-              value: "Authors",
-            },
+            { type: "string", key: "prefix", displayer: "Prefix", value: "" },
+            { type: "string", key: "number", displayer: "Value", value: "97" },
+            { type: "string", key: "suffix", displayer: "Suffix", value: "" },
+            { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
+            { type: "string", key: "title", displayer: "Title", value: "Authors" },
+            { type: "string", key: "description", displayer: "Description", value: "" },
           ],
         },
       ],
@@ -151,7 +137,7 @@ class Stats1Page extends BaseStats {
 
     const badgeColors = ["var(--composer-primary-color)", "var(--composer-secondary-color)", "var(--composer-tertiary-color)"];
 
-    const AnimatedNumber = ({ value, className, style }: { value: string; className: string; style?: React.CSSProperties }) => {
+    const AnimatedNumber = ({ value, className }: { value: string; className: string }) => {
       const ref = React.useRef<HTMLSpanElement>(null);
       const intervalRef = React.useRef<ReturnType<typeof setInterval> | null>(null);
 
@@ -220,7 +206,7 @@ class Stats1Page extends BaseStats {
       }, [value, animatable, animationDuration, target]);
 
       return (
-        <span ref={ref} className={className} style={style}>
+        <span ref={ref} className={className}>
           {display}
         </span>
       );
@@ -259,20 +245,29 @@ class Stats1Page extends BaseStats {
                   {cardList.map((cardData: CardData, indexCard: number) => {
                     const angle = (indexCard / cardList.length) * 360;
                     const numberStr = (this.castToString(cardData.number) as string) || "";
-                    const isCardLabelExist = this.castToString(cardData.description);
+                    const isPrefixExist = this.castToString(cardData.prefix);
+                    const isSuffixExist = this.castToString(cardData.suffix);
+                    const isCardSubtitleExist = this.castToString(cardData.subtitle);
+                    const isCardTitleExist = this.castToString(cardData.title);
+                    const isCardDescExist = this.castToString(cardData.description);
+                    const isValueExist = !!numberStr || isPrefixExist || isSuffixExist;
 
-                    if (!numberStr && !isCardLabelExist) return null;
+                    if (!isValueExist && !isCardSubtitleExist && !isCardTitleExist && !isCardDescExist) return null;
 
                     const color = badgeColors[indexCard % badgeColors.length];
 
                     return (
                       <div key={indexCard} className={this.decorateCSS("card")} style={{ "--angle": `${angle}deg` } as Record<string, any>}>
-                        {!!numberStr && (
-                          <Base.H5 className={this.decorateCSS("counter-value")}>
-                            <AnimatedNumber value={numberStr} className={this.decorateCSS("counter-value-inner")} style={{ color }} />
+                        {isValueExist && (
+                          <Base.H5 className={this.decorateCSS("counter-value")} style={{ color }}>
+                            {isPrefixExist && <span className={this.decorateCSS("counter-prefix")}>{cardData.prefix}</span>}
+                            {!!numberStr && <AnimatedNumber value={numberStr} className={this.decorateCSS("counter-value-inner")} />}
+                            {isSuffixExist && <span className={this.decorateCSS("counter-suffix")}>{cardData.suffix}</span>}
                           </Base.H5>
                         )}
-                        {isCardLabelExist && <Base.P className={this.decorateCSS("counter-label")}>{cardData.description}</Base.P>}
+                        {isCardSubtitleExist && <Base.P className={this.decorateCSS("counter-subtitle")}>{cardData.subtitle}</Base.P>}
+                        {isCardTitleExist && <Base.P className={this.decorateCSS("counter-title")}>{cardData.title}</Base.P>}
+                        {isCardDescExist && <Base.P className={this.decorateCSS("counter-description")}>{cardData.description}</Base.P>}
                       </div>
                     );
                   })}

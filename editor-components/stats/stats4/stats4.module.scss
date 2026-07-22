@@ -50,6 +50,7 @@
               .faq-item-title {
                 content: "";
                 text-align: left;
+                font-weight: 800;
               }
 
               .faq-item-button {
@@ -103,6 +104,7 @@
             color: var(--composer-font-color-primary);
             overflow-wrap: break-word;
             text-align: left !important;
+            font-weight: 800;
           }
 
           .stat-item-content {
@@ -114,6 +116,7 @@
           .stat-item-stat-value {
             color: var(--composer-font-color-primary);
             font-size: 3rem !important;
+            font-weight: 800;
             text-align: left !important;
 
             .stat-value-icon {

@@ -35,7 +35,7 @@ class Stats8Page extends BaseStats {
     this.addProp({
       type: "boolean",
       key: "showLine",
-      displayer: "Show Line",
+      displayer: "Line",
       value: true,
     });
 
@@ -48,23 +48,29 @@ class Stats8Page extends BaseStats {
     });
 
     this.addProp({
-      type: "string",
-      key: "author",
-      displayer: "Author",
-      value: "Salvador Dali",
-    });
-
-    this.addProp({
-      type: "string",
-      key: "authorRole",
-      displayer: "Author Role",
-      value: "Digital Artist",
+      type: "object",
+      key: "person",
+      displayer: "Person",
+      value: [
+        {
+          type: "string",
+          key: "name",
+          displayer: "Person Name",
+          value: "Salvador Dali",
+        },
+        {
+          type: "string",
+          key: "position",
+          displayer: "Position",
+          value: "Digital Artist",
+        },
+      ],
     });
 
     this.addProp({
       type: "boolean",
       key: "showBackground",
-      displayer: "Show Background",
+      displayer: "Background",
       value: true,
     });
 
@@ -115,28 +121,39 @@ class Stats8Page extends BaseStats {
     });
 
     this.addProp({
-      type: "string",
-      key: "overlayNumber",
-      displayer: "Overlay Number",
-      value: "25",
-    });
-
-    this.addProp({
-      type: "string",
-      key: "overlayDescription",
-      displayer: "Overlay Description",
-      value: "YEARS OF DIGITAL EXPERIENCE",
-    });
-
-    this.addProp({
-      type: "media",
-      key: "imageSrc",
-      displayer: "Image Source",
-      additionalParams: { availableTypes: ["image", "video"] },
-      value: {
-        type: "image",
-        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a36aa42f8a5b002ce6a087?alt=media",
-      },
+      type: "object",
+      key: "media",
+      displayer: "Media",
+      value: [
+        {
+          type: "media",
+          key: "source",
+          displayer: "Media",
+          additionalParams: { availableTypes: ["image", "video"] },
+          value: {
+            type: "image",
+            url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a36aa42f8a5b002ce6a087?alt=media",
+          },
+        },
+        {
+          type: "boolean",
+          key: "overlay",
+          displayer: "Overlay",
+          value: false,
+        },
+        {
+          type: "string",
+          key: "badgeNumber",
+          displayer: "Badge Number",
+          value: "25",
+        },
+        {
+          type: "string",
+          key: "badgeDescription",
+          displayer: "Badge Description",
+          value: "YEARS OF DIGITAL EXPERIENCE",
+        },
+      ],
     });
 
     this.addProp({
@@ -166,7 +183,9 @@ class Stats8Page extends BaseStats {
 
   render() {
     const statsData = this.castToObject<CardData[]>("stats");
-    const imageSrc = this.getPropValue("imageSrc") as TypeMediaInputValue;
+    const media = this.castToObject<any>("media");
+    const imageSrc = media?.source as TypeMediaInputValue;
+    const showOverlay = media?.overlay;
     const title = this.getPropValue("title");
     const isTitleExist = this.castToString(title);
     const subtitle = this.getPropValue("subtitle");
@@ -175,14 +194,15 @@ class Stats8Page extends BaseStats {
     const isDescription1Exist = this.castToString(description1);
     const description = this.getPropValue("description");
     const isDesExist = this.castToString(description);
-    const author = this.getPropValue("author");
-    const isAuthorExist = this.castToString(author);
-    const authorRole = this.getPropValue("authorRole");
-    const isAuthorRoleExist = this.castToString(authorRole);
-    const overlayDescription = this.castToString(this.getPropValue("overlayDescription"));
-    const overlayNumberRaw = (this.castToString(this.getPropValue("overlayNumber")) as string) || "";
+    const person = this.castToObject<any>("person");
+    const personName = person?.name;
+    const isPersonNameExist = this.castToString(personName);
+    const position = person?.position;
+    const isPositionExist = this.castToString(position);
+    const badgeDescription = this.castToString(media?.badgeDescription);
+    const badgeNumberRaw = (this.castToString(media?.badgeNumber) as string) || "";
     const showBackground = this.getPropValue("showBackground");
-    const isContentPresent = isSubtitleExist || isTitleExist || isDescription1Exist || isDesExist || isAuthorExist || isAuthorRoleExist || statsData.length > 0;
+    const isContentPresent = isSubtitleExist || isTitleExist || isDescription1Exist || isDesExist || isPersonNameExist || isPositionExist || statsData.length > 0;
     const alignment = Base.getContentAlignment();
 
     const settings = this.castToObject<any>("settings");
@@ -287,15 +307,15 @@ class Stats8Page extends BaseStats {
 
                 {(isTitleExist || isDescription1Exist) && this.getPropValue("showLine") && <hr className={this.decorateCSS("line")} />}
 
-                {(isDesExist || isAuthorExist || isAuthorRoleExist) && (
+                {(isDesExist || isPersonNameExist || isPositionExist) && (
                   <Base.VerticalContent className={this.decorateCSS("author-container")}>
                     {isDesExist && <Base.SectionDescription className={this.decorateCSS("description")}>{description}</Base.SectionDescription>}
-                    {isAuthorExist && <Base.P className={this.decorateCSS("author")}>{author}</Base.P>}
-                    {isAuthorRoleExist && (
+                    {isPersonNameExist && <Base.P className={this.decorateCSS("author")}>{personName}</Base.P>}
+                    {isPositionExist && (
                       <Base.Row className={this.decorateCSS("author-role-container")}>
                         <Base.P className={this.decorateCSS("author-role")}>
                           {showBackground && <span className={this.decorateCSS("author-role-background")}></span>}
-                          {authorRole}
+                          {position}
                         </Base.P>
                       </Base.Row>
                     )}
@@ -329,11 +349,12 @@ class Stats8Page extends BaseStats {
             <div className={this.decorateCSS("stats8-page")}>
               <div className={this.decorateCSS("image-container")}>
                 <div className={this.decorateCSS("image-container-border")}>
-                  <Base.Media value={imageSrc} />
-                  {(overlayNumberRaw || overlayDescription) && (
-                    <div className={this.decorateCSS("overlay")}>
-                      {overlayNumberRaw && <AnimatedNumber raw={overlayNumberRaw} className={this.decorateCSS("number")} />}
-                      {overlayDescription && <Base.P className={this.decorateCSS("description")}>{this.getPropValue("overlayDescription")}</Base.P>}
+                  <Base.Media value={imageSrc} className={this.decorateCSS("image")} />
+                  {showOverlay && <div className={this.decorateCSS("overlay")}></div>}
+                  {(badgeNumberRaw || badgeDescription) && (
+                    <div className={this.decorateCSS("stat-badge")}>
+                      {badgeNumberRaw && <AnimatedNumber raw={badgeNumberRaw} className={this.decorateCSS("number")} />}
+                      {badgeDescription && <Base.P className={this.decorateCSS("description")}>{media?.badgeDescription}</Base.P>}
                     </div>
                   )}
                 </div>

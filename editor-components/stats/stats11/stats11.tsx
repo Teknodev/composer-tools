@@ -76,7 +76,7 @@ class Stats11 extends BaseStats {
     this.addProp({
       type: "boolean",
       key: "faintLine",
-      displayer: "Faint Line",
+      displayer: "Line",
       value: true,
     });
 

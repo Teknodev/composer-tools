@@ -33,7 +33,7 @@ class Stats2Page extends BaseStats {
       type: "string",
       key: "description",
       displayer: "Description",
-      value: "We combine human empathy and intelligent data to provide the highest level of satisfaction.",
+      value: "We combine human empathy and intelligent data to provide the <span style='font-weight: 800;'>highest level of satisfaction</span>.",
     });
 
     this.addProp(INPUTS.BUTTON("button", "Button", "LET'S TALK NOW", "", null, null, "Primary"));

@@ -16,41 +16,54 @@ class Stats10 extends BaseStats {
     super(props, styles);
 
     this.addProp({
-      type: "media",
-      key: "image1",
-      displayer: "1st Image",
-      additionalParams: { availableTypes: ["image", "video"] },
-      value: {
-        type: "image",
-        url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a5483e5d49b8ff2d93e06fb/6a548fe82754d786daab4f2c/library/psychologist-therapy-group-support-writing-notes-2023-11-27-05-30-45-utc.jpg",
-      },
-    });
-    this.addProp({
-      type: "media",
-      key: "image2",
-      displayer: "2nd Image",
-      additionalParams: { availableTypes: ["image", "video"] },
-      value: {
-        type: "image",
-        url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a5483e5d49b8ff2d93e06fb/6a548fe82754d786daab4f2c/library/psychology-mental-health-and-support-with-a-woman-2023-11-27-05-29-05-utc.jpg",
-      },
-    });
-    this.addProp({
-      type: "media",
-      key: "playIcon",
-      displayer: "Play Icon",
-      additionalParams: { availableTypes: ["image", "icon"] },
-      value: { type: "icon", name: "FaRegPlayCircle" },
-    });
-    this.addProp({
-      type: "media",
-      displayer: "Video",
-      key: "video",
-      additionalParams: { availableTypes: ["video", "icon"] },
-      value: {
-        type: "video",
-        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667e75d50181a1002c334f4f?alt=media&timestamp=1719563750188",
-      },
+      type: "object",
+      key: "media",
+      displayer: "Media",
+      value: [
+        {
+          type: "media",
+          key: "source1",
+          displayer: "Media",
+          additionalParams: { availableTypes: ["image", "video"] },
+          value: {
+            type: "image",
+            url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a5483e5d49b8ff2d93e06fb/6a548fe82754d786daab4f2c/library/psychologist-therapy-group-support-writing-notes-2023-11-27-05-30-45-utc.jpg",
+          },
+        },
+        {
+          type: "media",
+          key: "source2",
+          displayer: "Media",
+          additionalParams: { availableTypes: ["image", "video"] },
+          value: {
+            type: "image",
+            url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a5483e5d49b8ff2d93e06fb/6a548fe82754d786daab4f2c/library/psychology-mental-health-and-support-with-a-woman-2023-11-27-05-29-05-utc.jpg",
+          },
+        },
+        {
+          type: "media",
+          key: "video",
+          displayer: "Video",
+          additionalParams: { availableTypes: ["video", "icon"] },
+          value: {
+            type: "video",
+            url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667e75d50181a1002c334f4f?alt=media&timestamp=1719563750188",
+          },
+        },
+        {
+          type: "media",
+          key: "playIcon",
+          displayer: "Play Icon",
+          additionalParams: { availableTypes: ["image", "icon"] },
+          value: { type: "icon", name: "FaRegPlayCircle" },
+        },
+        {
+          type: "boolean",
+          key: "overlay",
+          displayer: "Overlay",
+          value: false,
+        },
+      ],
     });
     this.addProp({
       type: "string",
@@ -249,11 +262,13 @@ class Stats10 extends BaseStats {
     const title = this.castToString(this.getPropValue("title"));
     const description = this.castToString(this.getPropValue("description"));
     const itemsLength = (this.getPropValue("stats") || []).length;
-    const image1 = this.getPropValue("image1") as TypeMediaInputValue;
-    const image2 = this.getPropValue("image2") as TypeMediaInputValue;
-    const video = this.getPropValue("video") as TypeMediaInputValue;
+    const media = this.castToObject<any>("media");
+    const image1 = media?.source1 as TypeMediaInputValue;
+    const image2 = media?.source2 as TypeMediaInputValue;
+    const showOverlay = media?.overlay;
+    const video = media?.video as TypeMediaInputValue;
     const videoLinkExist = video && ("url" in video ? video.url : "name" in video ? video.name : "");
-    const playIcon = this.getPropValue("playIcon") as TypeMediaInputValue;
+    const playIcon = media?.playIcon as TypeMediaInputValue;
     const playIconExist = playIcon && (playIcon?.name || playIcon?.url);
 
     const shouldAnimate = this.castToObject<any>("settings")?.shouldAnimate ?? true;
@@ -403,6 +418,7 @@ class Stats10 extends BaseStats {
                       className={this.decorateCSS("image1")}
                       value={image1}
                     />
+                    {showOverlay && <div className={this.decorateCSS("overlay")}></div>}
                   </div>
                 )}
                 {image2?.url && (
@@ -417,11 +433,12 @@ class Stats10 extends BaseStats {
                       className={this.decorateCSS("image2")}
                       value={image2}
                     />
+                    {showOverlay && <div className={this.decorateCSS("overlay")}></div>}
                     <div className={this.decorateCSS("player-container")} onClick={() => {
                       this.setComponentState("is_video_visible", true)
                     }}>
                      {videoLinkExist && playIconExist && <div className={this.decorateCSS("icon-container")}>
-                        <Base.Media value={this.getPropValue("playIcon")} className={this.decorateCSS("play-icon")} />
+                        <Base.Media value={playIcon} className={this.decorateCSS("play-icon")} />
                       </div>}
                     </div>
                     {this.getComponentState("is_video_visible") && (

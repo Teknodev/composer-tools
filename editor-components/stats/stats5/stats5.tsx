@@ -120,7 +120,7 @@ class Stats5Page extends BaseStats {
     this.addProp({
       type: "boolean",
       key: "lines",
-      displayer: "Toggle Lines",
+      displayer: "Line",
       value: true,
     });
 
