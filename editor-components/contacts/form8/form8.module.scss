@@ -40,8 +40,16 @@ $content-background-color: color-mix(in srgb, var(--composer-html-background), v
           .contact-element {
             display: flex;
             align-items: center;
+            justify-content: flex-start;
+            text-align: left;
             color: var(--composer-font-color-primary);
             gap: var(--composer-gap-sm);
+
+            .contact-title,
+            .contact-text {
+              text-align: left;
+              justify-content: flex-start;
+            }
 
             .contact-title {
               content: "";
