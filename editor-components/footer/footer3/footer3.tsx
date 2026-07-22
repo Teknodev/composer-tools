@@ -23,12 +23,20 @@ type MenuItem = {
 
 type Column = {
   categoryTitle: React.JSX.Element;
+  categoryTitleLink: string;
+  categoryTitleMedia: TypeMediaInputValue;
   menuItems: MenuItem[];
 };
 
 type LogoObject = {
   logo: TypeMediaInputValue;
   logoUrl: string;
+};
+
+const hasMedia = (media?: TypeMediaInputValue | null): boolean => {
+  if (!media) return false;
+  if (media.type === "icon") return !!media.name;
+  return !!media.url;
 };
 
 class Footer3Page extends BaseFooter {
@@ -196,13 +204,31 @@ class Footer3Page extends BaseFooter {
             {
               type: "string",
               key: "categoryTitle",
-              displayer: "Footer Title",
+              displayer: "Menu Item",
               value: "CONTACT INFO",
+            },
+            {
+              type: "page",
+              key: "categoryTitleLink",
+              displayer: "Navigate To",
+              value: "",
+            },
+            {
+              type: "media",
+              key: "categoryTitleMedia",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["icon", "image"],
+              },
+              value: {
+                type: "icon",
+                name: "",
+              },
             },
             {
               type: "array",
               key: "menuItems",
-              displayer: "Footer Text",
+              displayer: "Menu Subitem",
               value: [
                 {
                   type: "object",
@@ -218,7 +244,7 @@ class Footer3Page extends BaseFooter {
                     {
                       type: "media",
                       key: "icon",
-                      displayer: "Icon",
+                      displayer: "Media",
                       additionalParams: {
                         availableTypes: ["icon", "image"],
                       },
@@ -249,7 +275,7 @@ class Footer3Page extends BaseFooter {
                     {
                       type: "media",
                       key: "icon",
-                      displayer: "Icon",
+                      displayer: "Media",
                       additionalParams: {
                         availableTypes: ["icon", "image"],
                       },
@@ -280,7 +306,7 @@ class Footer3Page extends BaseFooter {
                     {
                       type: "media",
                       key: "icon",
-                      displayer: "Icon",
+                      displayer: "Media",
                       additionalParams: {
                         availableTypes: ["icon", "image"],
                       },
@@ -311,7 +337,7 @@ class Footer3Page extends BaseFooter {
                     {
                       type: "media",
                       key: "icon",
-                      displayer: "Icon",
+                      displayer: "Media",
                       additionalParams: {
                         availableTypes: ["icon", "image"],
                       },
@@ -340,13 +366,31 @@ class Footer3Page extends BaseFooter {
             {
               type: "string",
               key: "categoryTitle",
-              displayer: "Footer Title",
+              displayer: "Menu Item",
               value: "ADDITIONAL LINK",
+            },
+            {
+              type: "page",
+              key: "categoryTitleLink",
+              displayer: "Navigate To",
+              value: "",
+            },
+            {
+              type: "media",
+              key: "categoryTitleMedia",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["icon", "image"],
+              },
+              value: {
+                type: "icon",
+                name: "",
+              },
             },
             {
               type: "array",
               key: "menuItems",
-              displayer: "Footer Text",
+              displayer: "Menu Subitem",
               value: [
                 {
                   type: "object",
@@ -362,7 +406,7 @@ class Footer3Page extends BaseFooter {
                     {
                       type: "media",
                       key: "icon",
-                      displayer: "Icon",
+                      displayer: "Media",
                       additionalParams: {
                         availableTypes: ["icon", "image"],
                       },
@@ -393,7 +437,7 @@ class Footer3Page extends BaseFooter {
                     {
                       type: "media",
                       key: "icon",
-                      displayer: "Icon",
+                      displayer: "Media",
                       additionalParams: {
                         availableTypes: ["icon", "image"],
                       },
@@ -424,7 +468,7 @@ class Footer3Page extends BaseFooter {
                     {
                       type: "media",
                       key: "icon",
-                      displayer: "Icon",
+                      displayer: "Media",
                       additionalParams: {
                         availableTypes: ["icon", "image"],
                       },
@@ -455,7 +499,7 @@ class Footer3Page extends BaseFooter {
                     {
                       type: "media",
                       key: "icon",
-                      displayer: "Icon",
+                      displayer: "Media",
                       additionalParams: {
                         availableTypes: ["icon", "image"],
                       },
@@ -486,7 +530,7 @@ class Footer3Page extends BaseFooter {
                     {
                       type: "media",
                       key: "icon",
-                      displayer: "Icon",
+                      displayer: "Media",
                       additionalParams: {
                         availableTypes: ["icon", "image"],
                       },
@@ -515,13 +559,31 @@ class Footer3Page extends BaseFooter {
             {
               type: "string",
               key: "categoryTitle",
-              displayer: "Footer Title",
+              displayer: "Menu Item",
               value: "LATEST NEWS",
+            },
+            {
+              type: "page",
+              key: "categoryTitleLink",
+              displayer: "Navigate To",
+              value: "",
+            },
+            {
+              type: "media",
+              key: "categoryTitleMedia",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["icon", "image"],
+              },
+              value: {
+                type: "icon",
+                name: "",
+              },
             },
             {
               type: "array",
               key: "menuItems",
-              displayer: "Footer Text",
+              displayer: "Menu Subitem",
               value: [
                 {
                   type: "object",
@@ -537,7 +599,7 @@ class Footer3Page extends BaseFooter {
                     {
                       type: "media",
                       key: "icon",
-                      displayer: "Icon",
+                      displayer: "Media",
                       additionalParams: {
                         availableTypes: ["icon", "image"],
                       },
@@ -568,7 +630,7 @@ class Footer3Page extends BaseFooter {
                     {
                       type: "media",
                       key: "icon",
-                      displayer: "Icon",
+                      displayer: "Media",
                       additionalParams: {
                         availableTypes: ["icon", "image"],
                       },
@@ -599,7 +661,7 @@ class Footer3Page extends BaseFooter {
                     {
                       type: "media",
                       key: "icon",
-                      displayer: "Icon",
+                      displayer: "Media",
                       additionalParams: {
                         availableTypes: ["icon", "image"],
                       },
@@ -630,7 +692,7 @@ class Footer3Page extends BaseFooter {
                     {
                       type: "media",
                       key: "icon",
-                      displayer: "Icon",
+                      displayer: "Media",
                       additionalParams: {
                         availableTypes: ["icon", "image"],
                       },
@@ -661,7 +723,7 @@ class Footer3Page extends BaseFooter {
                     {
                       type: "media",
                       key: "icon",
-                      displayer: "Icon",
+                      displayer: "Media",
                       additionalParams: {
                         availableTypes: ["icon", "image"],
                       },
@@ -857,39 +919,49 @@ class Footer3Page extends BaseFooter {
                     {footerData.length > 0 &&
                       footerData.map((item: Column, indexColumn: number) => {
                         const categoryTitleExist = this.castToString(item.categoryTitle);
+                        const categoryMediaExist = hasMedia(item.categoryTitleMedia);
                         const menuItems: MenuItem[] = item.menuItems || [];
-                        const hasItems = menuItems.some((v: MenuItem) => this.castToString(v.text) || v.icon);
-                        const listExist = categoryTitleExist || hasItems;
+                        const hasItems = menuItems.some((v: MenuItem) => this.castToString(v.text) || hasMedia(v.icon));
+                        const listExist = categoryTitleExist || categoryMediaExist || hasItems;
                         return (
                           listExist && (
                             <div key={indexColumn} className={`${this.decorateCSS("list-group")} ${alignment === "center" ? this.decorateCSS("center-alignment") : ""}`}>
-                              {categoryTitleExist && <Base.H6 className={this.decorateCSS("title")}>{item.categoryTitle}</Base.H6>}
+                              {(categoryTitleExist || categoryMediaExist) && (
+                                <ComposerLink path={item.categoryTitleLink}>
+                                  <div className={this.decorateCSS("menu-media-wrapper")}>
+                                    {categoryMediaExist && (
+                                      <Base.Media value={item.categoryTitleMedia} className={this.decorateCSS("menu-title-media")} />
+                                    )}
+                                    {categoryTitleExist && <Base.H6 className={this.decorateCSS("title")}>{item.categoryTitle}</Base.H6>}
+                                  </div>
+                                </ComposerLink>
+                              )}
                               {menuItems.length > 0 && (
                                 <Base.VerticalContent className={this.decorateCSS("text-container")}>
                                   {menuItems.map((v: MenuItem, indexMenuItem: number) => {
                                     const textExist = this.castToString(v.text);
-                                    const elementExist = textExist || v.icon;
+                                    const mediaExist = hasMedia(v.icon);
+                                    const elementExist = textExist || mediaExist;
                                     return (
                                       elementExist && (
-                                        <div
-                                          key={indexMenuItem}
-                                          className={`${this.decorateCSS("element")} ${v.pageLink && this.decorateCSS("has-path")}`}
-                                          data-animation={v.pageLink ? this.getPropValue("hoverAnimation").join(" ") : ""}
-                                        >
-                                          {v.icon?.name && (
-                                            <Base.Media
-                                              value={v.icon}
-                                              className={this.decorateCSS("element-icon")}
-                                            />
-                                          )}
-                                          {textExist && (
-                                            <ComposerLink path={v.pageLink}>
+                                        <ComposerLink key={indexMenuItem} path={v.pageLink}>
+                                          <div
+                                            className={`${this.decorateCSS("element")} ${v.pageLink && this.decorateCSS("has-path")}`}
+                                            data-animation={v.pageLink ? this.getPropValue("hoverAnimation").join(" ") : ""}
+                                          >
+                                            {mediaExist && (
+                                              <Base.Media
+                                                value={v.icon}
+                                                className={this.decorateCSS("element-icon")}
+                                              />
+                                            )}
+                                            {textExist && (
                                               <Base.P className={this.decorateCSS("text")}>
                                                 {v.text}
                                               </Base.P>
-                                            </ComposerLink>
-                                          )}
-                                        </div>
+                                            )}
+                                          </div>
+                                        </ComposerLink>
                                       )
                                     );
                                   })}

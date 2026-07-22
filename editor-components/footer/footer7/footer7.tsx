@@ -7,12 +7,21 @@ import { INPUTS } from "../../../custom-hooks/input-templates";
 
 type FooterValues = {
   footerTitle: React.JSX.Element;
+  footerTitleLink: string;
+  footerTitleMedia: TypeMediaInputValue;
   footerText: FooterTextValues[];
 };
 
 type FooterTextValues = {
   navTitle: React.JSX.Element;
   navNavigateTo: string;
+  navMedia: TypeMediaInputValue;
+};
+
+const hasMedia = (media?: TypeMediaInputValue | null): boolean => {
+  if (!media) return false;
+  if (media.type === "icon") return !!media.name;
+  return !!media.url;
 };
 
 class Footer7Page extends BaseFooter {
@@ -98,13 +107,31 @@ class Footer7Page extends BaseFooter {
             {
               type: "string",
               key: "footerTitle",
-              displayer: "Footer Title",
+              displayer: "Menu Item",
               value: "",
+            },
+            {
+              type: "page",
+              key: "footerTitleLink",
+              displayer: "Navigate To",
+              value: "",
+            },
+            {
+              type: "media",
+              key: "footerTitleMedia",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["icon", "image"],
+              },
+              value: {
+                type: "icon",
+                name: "",
+              },
             },
             {
               type: "array",
               key: "footerText",
-              displayer: "Footer Text",
+              displayer: "Menu Subitem",
               value: [
                 {
                   type: "object",
@@ -123,24 +150,17 @@ class Footer7Page extends BaseFooter {
                       displayer: "Navigate To",
                       value: "",
                     },
-                  ],
-                },
-                {
-                  type: "object",
-                  key: "footer-text",
-                  displayer: "Text Values",
-                  value: [
                     {
-                      type: "string",
-                      key: "navTitle",
-                      displayer: "Text",
-                      value: "",
-                    },
-                    {
-                      type: "page",
-                      key: "navNavigateTo",
-                      displayer: "Navigate To",
-                      value: "",
+                      type: "media",
+                      key: "navMedia",
+                      displayer: "Media",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "",
+                      },
                     },
                   ],
                 },
@@ -160,6 +180,49 @@ class Footer7Page extends BaseFooter {
                       key: "navNavigateTo",
                       displayer: "Navigate To",
                       value: "",
+                    },
+                    {
+                      type: "media",
+                      key: "navMedia",
+                      displayer: "Media",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "",
+                      },
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "footer-text",
+                  displayer: "Text Values",
+                  value: [
+                    {
+                      type: "string",
+                      key: "navTitle",
+                      displayer: "Text",
+                      value: "",
+                    },
+                    {
+                      type: "page",
+                      key: "navNavigateTo",
+                      displayer: "Navigate To",
+                      value: "",
+                    },
+                    {
+                      type: "media",
+                      key: "navMedia",
+                      displayer: "Media",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "",
+                      },
                     },
                   ],
                 },
@@ -175,13 +238,31 @@ class Footer7Page extends BaseFooter {
             {
               type: "string",
               key: "footerTitle",
-              displayer: "Footer Title",
+              displayer: "Menu Item",
               value: "",
+            },
+            {
+              type: "page",
+              key: "footerTitleLink",
+              displayer: "Navigate To",
+              value: "",
+            },
+            {
+              type: "media",
+              key: "footerTitleMedia",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["icon", "image"],
+              },
+              value: {
+                type: "icon",
+                name: "",
+              },
             },
             {
               type: "array",
               key: "footerText",
-              displayer: "Footer Text",
+              displayer: "Menu Subitem",
               value: [
                 {
                   type: "object",
@@ -200,24 +281,17 @@ class Footer7Page extends BaseFooter {
                       displayer: "Navigate To",
                       value: "",
                     },
-                  ],
-                },
-                {
-                  type: "object",
-                  key: "footer-text",
-                  displayer: "Text Values",
-                  value: [
                     {
-                      type: "string",
-                      key: "navTitle",
-                      displayer: "Text",
-                      value: "",
-                    },
-                    {
-                      type: "page",
-                      key: "navNavigateTo",
-                      displayer: "Navigate To",
-                      value: "",
+                      type: "media",
+                      key: "navMedia",
+                      displayer: "Media",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "",
+                      },
                     },
                   ],
                 },
@@ -237,6 +311,49 @@ class Footer7Page extends BaseFooter {
                       key: "navNavigateTo",
                       displayer: "Navigate To",
                       value: "",
+                    },
+                    {
+                      type: "media",
+                      key: "navMedia",
+                      displayer: "Media",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "",
+                      },
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "footer-text",
+                  displayer: "Text Values",
+                  value: [
+                    {
+                      type: "string",
+                      key: "navTitle",
+                      displayer: "Text",
+                      value: "",
+                    },
+                    {
+                      type: "page",
+                      key: "navNavigateTo",
+                      displayer: "Navigate To",
+                      value: "",
+                    },
+                    {
+                      type: "media",
+                      key: "navMedia",
+                      displayer: "Media",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "",
+                      },
                     },
                   ],
                 },
@@ -252,13 +369,31 @@ class Footer7Page extends BaseFooter {
             {
               type: "string",
               key: "footerTitle",
-              displayer: "Footer Title",
+              displayer: "Menu Item",
               value: "",
+            },
+            {
+              type: "page",
+              key: "footerTitleLink",
+              displayer: "Navigate To",
+              value: "",
+            },
+            {
+              type: "media",
+              key: "footerTitleMedia",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["icon", "image"],
+              },
+              value: {
+                type: "icon",
+                name: "",
+              },
             },
             {
               type: "array",
               key: "footerText",
-              displayer: "Footer Text",
+              displayer: "Menu Subitem",
               value: [
                 {
                   type: "object",
@@ -277,24 +412,17 @@ class Footer7Page extends BaseFooter {
                       displayer: "Navigate To",
                       value: "",
                     },
-                  ],
-                },
-                {
-                  type: "object",
-                  key: "footer-text",
-                  displayer: "Text Values",
-                  value: [
                     {
-                      type: "string",
-                      key: "navTitle",
-                      displayer: "Text",
-                      value: "",
-                    },
-                    {
-                      type: "page",
-                      key: "navNavigateTo",
-                      displayer: "Navigate To",
-                      value: "",
+                      type: "media",
+                      key: "navMedia",
+                      displayer: "Media",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "",
+                      },
                     },
                   ],
                 },
@@ -314,6 +442,49 @@ class Footer7Page extends BaseFooter {
                       key: "navNavigateTo",
                       displayer: "Navigate To",
                       value: "",
+                    },
+                    {
+                      type: "media",
+                      key: "navMedia",
+                      displayer: "Media",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "",
+                      },
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "footer-text",
+                  displayer: "Text Values",
+                  value: [
+                    {
+                      type: "string",
+                      key: "navTitle",
+                      displayer: "Text",
+                      value: "",
+                    },
+                    {
+                      type: "page",
+                      key: "navNavigateTo",
+                      displayer: "Navigate To",
+                      value: "",
+                    },
+                    {
+                      type: "media",
+                      key: "navMedia",
+                      displayer: "Media",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "",
+                      },
                     },
                   ],
                 },
@@ -431,8 +602,9 @@ class Footer7Page extends BaseFooter {
 
     const columnsExist = footer.some((item: FooterValues) => {
       const footerTitleExist = this.castToString(item.footerTitle);
-      const hasItems = item.footerText?.some((v: FooterTextValues) => this.castToString(v.navTitle));
-      return footerTitleExist || hasItems;
+      const footerTitleMediaExist = hasMedia(item.footerTitleMedia);
+      const hasItems = item.footerText?.some((v: FooterTextValues) => this.castToString(v.navTitle) || hasMedia(v.navMedia));
+      return footerTitleExist || footerTitleMediaExist || hasItems;
     });
     const linksExist = links.some((item: any) => this.castToString(item.text));
     const rightExist = linksExist || footerTextExist;
@@ -480,26 +652,44 @@ class Footer7Page extends BaseFooter {
               <div className={this.decorateCSS("footer-columns")}>
                 {footer.map((item: FooterValues, indexFooter: number) => {
                   const footerTitleExist = this.castToString(item.footerTitle);
-                  const hasItems = item.footerText?.some((v: FooterTextValues) => this.castToString(v.navTitle));
-                  const listExist = footerTitleExist || hasItems;
+                  const footerTitleMediaExist = hasMedia(item.footerTitleMedia);
+                  const hasItems = item.footerText?.some((v: FooterTextValues) => this.castToString(v.navTitle) || hasMedia(v.navMedia));
+                  const listExist = footerTitleExist || footerTitleMediaExist || hasItems;
                   return (
                     listExist && (
                       <div key={indexFooter} className={this.decorateCSS("list-group")}>
-                        {footerTitleExist && <Base.H6 className={this.decorateCSS("column-title")}>{item.footerTitle}</Base.H6>}
+                        {(footerTitleExist || footerTitleMediaExist) && (
+                          <ComposerLink path={item.footerTitleLink}>
+                            <div className={this.decorateCSS("menu-media-wrapper")}>
+                              {footerTitleMediaExist && (
+                                <Base.Media value={item.footerTitleMedia} className={this.decorateCSS("menu-title-media")} />
+                              )}
+                              {footerTitleExist && <Base.H6 className={this.decorateCSS("column-title")}>{item.footerTitle}</Base.H6>}
+                            </div>
+                          </ComposerLink>
+                        )}
                         {hasItems && (
                           <Base.VerticalContent className={this.decorateCSS("text-container")}>
                             {item.footerText.map((v: FooterTextValues, indexFooterText: number) => {
                               const textExist = this.castToString(v.navTitle);
+                              const navMediaExist = hasMedia(v.navMedia);
                               return (
-                                textExist && (
+                                (textExist || navMediaExist) && (
                                   <ComposerLink key={indexFooterText} path={v.navNavigateTo}>
-                                    <Base.P
-                                      className={this.decorateCSS("footer-text")}
-                                      data-animation={v.navNavigateTo ? this.getPropValue("hoverAnimation").join(" ") : ""}
-                                      data-has-link={Boolean(v.navNavigateTo)}
-                                    >
-                                      {v.navTitle}
-                                    </Base.P>
+                                    <div className={this.decorateCSS("menu-media-wrapper")}>
+                                      {navMediaExist && (
+                                        <Base.Media value={v.navMedia} className={this.decorateCSS("menu-item-media")} />
+                                      )}
+                                      {textExist && (
+                                        <Base.P
+                                          className={this.decorateCSS("footer-text")}
+                                          data-animation={v.navNavigateTo ? this.getPropValue("hoverAnimation").join(" ") : ""}
+                                          data-has-link={Boolean(v.navNavigateTo)}
+                                        >
+                                          {v.navTitle}
+                                        </Base.P>
+                                      )}
+                                    </div>
                                   </ComposerLink>
                                 )
                               );

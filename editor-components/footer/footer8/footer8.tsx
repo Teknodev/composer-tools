@@ -9,6 +9,8 @@ import { INPUTS } from "../../../custom-hooks/input-templates";
 type FooterValues = {
   icon: string;
   footerTitle: React.JSX.Element;
+  footerTitleLink: string;
+  footerTitleMedia: TypeMediaInputValue;
   footerText: FooterTextValues[];
 };
 
@@ -16,6 +18,13 @@ type FooterTextValues = {
   footerIcon: string;
   navTitle: React.JSX.Element;
   navNavigateTo: string;
+  navMedia: TypeMediaInputValue;
+};
+
+const hasMedia = (media?: TypeMediaInputValue | null): boolean => {
+  if (!media) return false;
+  if (media.type === "icon") return !!media.name;
+  return !!media.url;
 };
 
 class Footer8Page extends BaseFooter {
@@ -100,13 +109,31 @@ class Footer8Page extends BaseFooter {
             {
               type: "string",
               key: "footerTitle",
-              displayer: "Footer Title",
+              displayer: "Menu Item",
               value: "About",
+            },
+            {
+              type: "page",
+              key: "footerTitleLink",
+              displayer: "Navigate To",
+              value: "",
+            },
+            {
+              type: "media",
+              key: "footerTitleMedia",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["icon", "image"],
+              },
+              value: {
+                type: "icon",
+                name: "",
+              },
             },
             {
               type: "array",
               key: "footerText",
-              displayer: "Footer Text",
+              displayer: "Menu Subitem",
               value: [
                 {
                   type: "object",
@@ -124,6 +151,18 @@ class Footer8Page extends BaseFooter {
                       displayer: "Navigate To",
                       key: "navNavigateTo",
                       value: "",
+                    },
+                    {
+                      type: "media",
+                      key: "navMedia",
+                      displayer: "Media",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "",
+                      },
                     },
                   ],
                 },
@@ -146,6 +185,18 @@ class Footer8Page extends BaseFooter {
                       displayer: "Navigate To",
                       value: "",
                     },
+                    {
+                      type: "media",
+                      key: "navMedia",
+                      displayer: "Media",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "",
+                      },
+                    },
                   ],
                 },
                 {
@@ -165,6 +216,18 @@ class Footer8Page extends BaseFooter {
                       key: "navNavigateTo",
                       displayer: "Navigate To",
                       value: "",
+                    },
+                    {
+                      type: "media",
+                      key: "navMedia",
+                      displayer: "Media",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "",
+                      },
                     },
                   ],
                 },
@@ -186,6 +249,18 @@ class Footer8Page extends BaseFooter {
                       displayer: "Navigate To",
                       value: "",
                     },
+                    {
+                      type: "media",
+                      key: "navMedia",
+                      displayer: "Media",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "",
+                      },
+                    },
                   ],
                 },
               ],
@@ -200,13 +275,31 @@ class Footer8Page extends BaseFooter {
             {
               type: "string",
               key: "footerTitle",
-              displayer: "Footer Title",
+              displayer: "Menu Item",
               value: "Company",
+            },
+            {
+              type: "page",
+              key: "footerTitleLink",
+              displayer: "Navigate To",
+              value: "",
+            },
+            {
+              type: "media",
+              key: "footerTitleMedia",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["icon", "image"],
+              },
+              value: {
+                type: "icon",
+                name: "",
+              },
             },
             {
               type: "array",
               key: "footerText",
-              displayer: "Footer Text",
+              displayer: "Menu Subitem",
               value: [
                 {
                   type: "object",
@@ -224,6 +317,18 @@ class Footer8Page extends BaseFooter {
                       displayer: "Navigate To",
                       key: "navNavigateTo",
                       value: "",
+                    },
+                    {
+                      type: "media",
+                      key: "navMedia",
+                      displayer: "Media",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "",
+                      },
                     },
                   ],
                 },
@@ -246,6 +351,18 @@ class Footer8Page extends BaseFooter {
                       displayer: "Navigate To",
                       value: "",
                     },
+                    {
+                      type: "media",
+                      key: "navMedia",
+                      displayer: "Media",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "",
+                      },
+                    },
                   ],
                 },
                 {
@@ -265,6 +382,18 @@ class Footer8Page extends BaseFooter {
                       key: "navNavigateTo",
                       displayer: "Navigate To",
                       value: "",
+                    },
+                    {
+                      type: "media",
+                      key: "navMedia",
+                      displayer: "Media",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "",
+                      },
                     },
                   ],
                 },
@@ -286,6 +415,18 @@ class Footer8Page extends BaseFooter {
                       displayer: "Navigate To",
                       value: "",
                     },
+                    {
+                      type: "media",
+                      key: "navMedia",
+                      displayer: "Media",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "",
+                      },
+                    },
                   ],
                 },
               ],
@@ -300,13 +441,31 @@ class Footer8Page extends BaseFooter {
             {
               type: "string",
               key: "footerTitle",
-              displayer: "Footer Title",
+              displayer: "Menu Item",
               value: "Resources",
+            },
+            {
+              type: "page",
+              key: "footerTitleLink",
+              displayer: "Navigate To",
+              value: "",
+            },
+            {
+              type: "media",
+              key: "footerTitleMedia",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["icon", "image"],
+              },
+              value: {
+                type: "icon",
+                name: "",
+              },
             },
             {
               type: "array",
               key: "footerText",
-              displayer: "Footer Text",
+              displayer: "Menu Subitem",
               value: [
                 {
                   type: "object",
@@ -324,6 +483,18 @@ class Footer8Page extends BaseFooter {
                       displayer: "Navigate To",
                       key: "navNavigateTo",
                       value: "",
+                    },
+                    {
+                      type: "media",
+                      key: "navMedia",
+                      displayer: "Media",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "",
+                      },
                     },
                   ],
                 },
@@ -344,6 +515,18 @@ class Footer8Page extends BaseFooter {
                       displayer: "Navigate To",
                       value: "",
                     },
+                    {
+                      type: "media",
+                      key: "navMedia",
+                      displayer: "Media",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "",
+                      },
+                    },
                   ],
                 },
                 {
@@ -363,6 +546,18 @@ class Footer8Page extends BaseFooter {
                       displayer: "Navigate To",
                       value: "",
                     },
+                    {
+                      type: "media",
+                      key: "navMedia",
+                      displayer: "Media",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "",
+                      },
+                    },
                   ],
                 },
               ],
@@ -377,13 +572,31 @@ class Footer8Page extends BaseFooter {
             {
               type: "string",
               key: "footerTitle",
-              displayer: "Footer Title",
+              displayer: "Menu Item",
               value: "Contact",
+            },
+            {
+              type: "page",
+              key: "footerTitleLink",
+              displayer: "Navigate To",
+              value: "",
+            },
+            {
+              type: "media",
+              key: "footerTitleMedia",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["icon", "image"],
+              },
+              value: {
+                type: "icon",
+                name: "",
+              },
             },
             {
               type: "array",
               key: "footerText",
-              displayer: "Footer Text",
+              displayer: "Menu Subitem",
               value: [
                 {
                   type: "object",
@@ -421,6 +634,18 @@ class Footer8Page extends BaseFooter {
                       displayer: "Navigate To",
                       value: "",
                     },
+                    {
+                      type: "media",
+                      key: "navMedia",
+                      displayer: "Media",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "",
+                      },
+                    },
                   ],
                 },
                 {
@@ -439,6 +664,18 @@ class Footer8Page extends BaseFooter {
                       key: "navNavigateTo",
                       displayer: "Navigate To",
                       value: "",
+                    },
+                    {
+                      type: "media",
+                      key: "navMedia",
+                      displayer: "Media",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "",
+                      },
                     },
                   ],
                 },
@@ -683,17 +920,28 @@ class Footer8Page extends BaseFooter {
                 {footer.length > 0 &&
                   footer.map((item: FooterValues, indexFooter: number) => {
                     const footerTitleExist = this.castToString(item.footerTitle);
+                    const footerTitleMediaExist = hasMedia(item.footerTitleMedia);
                     const footerTextExist = item.footerText.length > 0;
-                    const listExist = footerTitleExist || footerTextExist;
+                    const listExist = footerTitleExist || footerTitleMediaExist || footerTextExist;
                     return (
                       listExist && (
                         <Base.VerticalContent key={indexFooter} className={this.decorateCSS("list-group")}>
-                          {footerTitleExist && <Base.H6 className={this.decorateCSS("column-title")}>{item.footerTitle}</Base.H6>}
+                          {(footerTitleExist || footerTitleMediaExist) && (
+                            <ComposerLink path={item.footerTitleLink}>
+                              <div className={this.decorateCSS("menu-media-wrapper")}>
+                                {footerTitleMediaExist && (
+                                  <Base.Media value={item.footerTitleMedia} className={this.decorateCSS("menu-title-media")} />
+                                )}
+                                {footerTitleExist && <Base.H6 className={this.decorateCSS("column-title")}>{item.footerTitle}</Base.H6>}
+                              </div>
+                            </ComposerLink>
+                          )}
                           {item.footerText.length > 0 && (
                             <Base.VerticalContent className={this.decorateCSS("text-container")}>
                               {item.footerText.map((v: FooterTextValues, indexFooterText: number) => {
                                 const footerTextExist = this.castToString(v.navTitle);
-                                const elementExist = footerTextExist;
+                                const navMediaExist = hasMedia(v.navMedia);
+                                const elementExist = footerTextExist || navMediaExist;
                                 return (
                                   elementExist && (
                                     <ComposerLink key={indexFooterText} path={v.navNavigateTo}>
@@ -701,6 +949,9 @@ class Footer8Page extends BaseFooter {
                                         className={`${this.decorateCSS("element")} ${v.navNavigateTo && this.decorateCSS("has-path")}`}
                                         data-animation={v.navNavigateTo ? this.getPropValue("hoverAnimation").join(" ") : ""}
                                       >
+                                        {navMediaExist && (
+                                          <Base.Media value={v.navMedia} className={this.decorateCSS("menu-item-media")} />
+                                        )}
                                         {footerTextExist && <Base.P className={this.decorateCSS("text")}>{v.navTitle}</Base.P>}
                                       </div>
                                     </ComposerLink>

@@ -272,3 +272,35 @@
   }
 }
 
+
+.menu-media-wrapper {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--composer-gap-sm);
+}
+
+.menu-title-media,
+.menu-item-media {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  object-fit: contain;
+
+  svg {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.menu-title-media {
+  width: 20px;
+  height: 20px;
+  color: var(--composer-font-color-primary);
+}
+
+.menu-item-media {
+  width: 16px;
+  height: 16px;
+  color: var(--composer-tertiary-color);
+}

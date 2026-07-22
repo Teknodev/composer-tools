@@ -1,18 +1,27 @@
 import * as React from "react";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
-import { BaseFooter } from "../../EditorComponent";
+import { BaseFooter, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./footer6.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "../../../custom-hooks/input-templates";
 
 type FooterValues = {
   footerTitle: React.JSX.Element;
+  footerTitleLink: string;
+  footerTitleMedia: TypeMediaInputValue;
   footerText: FooterTextValues[];
 };
 
 type FooterTextValues = {
   navTitle: React.JSX.Element;
   navNavigateTo: string;
+  navMedia: TypeMediaInputValue;
+};
+
+const hasMedia = (media?: TypeMediaInputValue | null): boolean => {
+  if (!media) return false;
+  if (media.type === "icon") return !!media.name;
+  return !!media.url;
 };
 
 class Footer6Page extends BaseFooter {
@@ -70,13 +79,31 @@ class Footer6Page extends BaseFooter {
             {
               type: "string",
               key: "footerTitle",
-              displayer: "Footer Title",
+              displayer: "Menu Item",
               value: "Quick Links",
+            },
+            {
+              type: "page",
+              key: "footerTitleLink",
+              displayer: "Navigate To",
+              value: "",
+            },
+            {
+              type: "media",
+              key: "footerTitleMedia",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["icon", "image"],
+              },
+              value: {
+                type: "icon",
+                name: "",
+              },
             },
             {
               type: "array",
               key: "footerText",
-              displayer: "Footer Text",
+              displayer: "Menu Subitem",
               value: [
                 {
                   type: "object",
@@ -94,6 +121,18 @@ class Footer6Page extends BaseFooter {
                       displayer: "Navigate To",
                       key: "navNavigateTo",
                       value: "",
+                    },
+                    {
+                      type: "media",
+                      key: "navMedia",
+                      displayer: "Media",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "",
+                      },
                     },
                   ],
                 },
@@ -114,6 +153,18 @@ class Footer6Page extends BaseFooter {
                       key: "navNavigateTo",
                       value: "",
                     },
+                    {
+                      type: "media",
+                      key: "navMedia",
+                      displayer: "Media",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "",
+                      },
+                    },
                   ],
                 },
                 {
@@ -133,6 +184,18 @@ class Footer6Page extends BaseFooter {
                       key: "navNavigateTo",
                       value: "",
                     },
+                    {
+                      type: "media",
+                      key: "navMedia",
+                      displayer: "Media",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "",
+                      },
+                    },
                   ],
                 },
               ],
@@ -147,13 +210,31 @@ class Footer6Page extends BaseFooter {
             {
               type: "string",
               key: "footerTitle",
-              displayer: "Footer Title",
+              displayer: "Menu Item",
               value: "Our Address",
+            },
+            {
+              type: "page",
+              key: "footerTitleLink",
+              displayer: "Navigate To",
+              value: "",
+            },
+            {
+              type: "media",
+              key: "footerTitleMedia",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["icon", "image"],
+              },
+              value: {
+                type: "icon",
+                name: "",
+              },
             },
             {
               type: "array",
               key: "footerText",
-              displayer: "Footer Text",
+              displayer: "Menu Subitem",
               value: [
                 {
                   type: "object",
@@ -171,6 +252,18 @@ class Footer6Page extends BaseFooter {
                       displayer: "Navigate To",
                       key: "navNavigateTo",
                       value: "",
+                    },
+                    {
+                      type: "media",
+                      key: "navMedia",
+                      displayer: "Media",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "",
+                      },
                     },
                   ],
                 },
@@ -191,6 +284,18 @@ class Footer6Page extends BaseFooter {
                       key: "navNavigateTo",
                       value: "",
                     },
+                    {
+                      type: "media",
+                      key: "navMedia",
+                      displayer: "Media",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "",
+                      },
+                    },
                   ],
                 },
                 {
@@ -210,6 +315,18 @@ class Footer6Page extends BaseFooter {
                       key: "navNavigateTo",
                       value: "",
                     },
+                    {
+                      type: "media",
+                      key: "navMedia",
+                      displayer: "Media",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "",
+                      },
+                    },
                   ],
                 },
               ],
@@ -224,13 +341,31 @@ class Footer6Page extends BaseFooter {
             {
               type: "string",
               key: "footerTitle",
-              displayer: "Footer Title",
+              displayer: "Menu Item",
               value: "Get In Touch",
+            },
+            {
+              type: "page",
+              key: "footerTitleLink",
+              displayer: "Navigate To",
+              value: "",
+            },
+            {
+              type: "media",
+              key: "footerTitleMedia",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["icon", "image"],
+              },
+              value: {
+                type: "icon",
+                name: "",
+              },
             },
             {
               type: "array",
               key: "footerText",
-              displayer: "Footer Text",
+              displayer: "Menu Subitem",
               value: [
                 {
                   type: "object",
@@ -248,6 +383,18 @@ class Footer6Page extends BaseFooter {
                       displayer: "Navigate To",
                       key: "navNavigateTo",
                       value: "",
+                    },
+                    {
+                      type: "media",
+                      key: "navMedia",
+                      displayer: "Media",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "",
+                      },
                     },
                   ],
                 },
@@ -268,6 +415,18 @@ class Footer6Page extends BaseFooter {
                       key: "navNavigateTo",
                       value: "",
                     },
+                    {
+                      type: "media",
+                      key: "navMedia",
+                      displayer: "Media",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "",
+                      },
+                    },
                   ],
                 },
                 {
@@ -286,6 +445,18 @@ class Footer6Page extends BaseFooter {
                       displayer: "Navigate To",
                       key: "navNavigateTo",
                       value: "",
+                    },
+                    {
+                      type: "media",
+                      key: "navMedia",
+                      displayer: "Media",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "",
+                      },
                     },
                   ],
                 },
@@ -365,26 +536,44 @@ class Footer6Page extends BaseFooter {
               {footer.length > 0 &&
                 footer.map((item: FooterValues, indexFooter: number) => {
                   const footerTitleExist = this.castToString(item.footerTitle);
-                  const footerExist = footerTitleExist || item.footerText.length > 0;
+                  const footerTitleMediaExist = hasMedia(item.footerTitleMedia);
+                  const footerExist = footerTitleExist || footerTitleMediaExist || item.footerText.length > 0;
                   return (
                     footerExist && (
                       <Base.VerticalContent key={indexFooter} className={this.decorateCSS("list-group")}>
-                        {footerTitleExist && <Base.H6 className={this.decorateCSS("list-title")}>{item.footerTitle}</Base.H6>}
+                        {(footerTitleExist || footerTitleMediaExist) && (
+                          <ComposerLink path={item.footerTitleLink}>
+                            <div className={this.decorateCSS("menu-media-wrapper")}>
+                              {footerTitleMediaExist && (
+                                <Base.Media value={item.footerTitleMedia} className={this.decorateCSS("menu-title-media")} />
+                              )}
+                              {footerTitleExist && <Base.H6 className={this.decorateCSS("list-title")}>{item.footerTitle}</Base.H6>}
+                            </div>
+                          </ComposerLink>
+                        )}
                         {item.footerText.length > 0 && (
                           <Base.VerticalContent className={this.decorateCSS("text-container")}>
                             {item.footerText.map((v: FooterTextValues, indexFooterText: number) => {
                               const footerTextExist = this.castToString(v.navTitle);
+                              const navMediaExist = hasMedia(v.navMedia);
                               const titleStr = this.castToString(item.footerTitle).toLowerCase();
                               const isAddressColumn = titleStr.includes("address") || titleStr.includes("adres") || titleStr.includes("office") || titleStr.includes("ofis");
                               return (
-                                footerTextExist && (
+                                (footerTextExist || navMediaExist) && (
                                   <ComposerLink key={indexFooterText} path={v.navNavigateTo} className={isAddressColumn && indexFooterText === 0 ? this.decorateCSS("address-link") : ""}>
-                                    <Base.P
-                                      className={this.decorateCSS("text")}
-                                      data-animation={v.navNavigateTo ? this.getPropValue("hoverAnimation").join(" ") : ""}
-                                    >
-                                      {v.navTitle}
-                                    </Base.P>
+                                    <div className={this.decorateCSS("menu-media-wrapper")}>
+                                      {navMediaExist && (
+                                        <Base.Media value={v.navMedia} className={this.decorateCSS("menu-item-media")} />
+                                      )}
+                                      {footerTextExist && (
+                                        <Base.P
+                                          className={this.decorateCSS("text")}
+                                          data-animation={v.navNavigateTo ? this.getPropValue("hoverAnimation").join(" ") : ""}
+                                        >
+                                          {v.navTitle}
+                                        </Base.P>
+                                      )}
+                                    </div>
                                   </ComposerLink>
                                 )
                               );

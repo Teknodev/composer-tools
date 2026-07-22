@@ -7,16 +7,25 @@ import { Base } from "../../../composer-base-components/base/base";
 type MenuItem = {
   text: React.JSX.Element;
   pageLink: string;
+  media: TypeMediaInputValue;
 };
 
 type Column = {
   categoryTitle: React.JSX.Element;
+  categoryTitleLink: string;
+  categoryTitleMedia: TypeMediaInputValue;
   menuItems: MenuItem[];
 };
 
 type BackgroundMedia = {
   media: TypeMediaInputValue;
   overlay: boolean;
+};
+
+const hasMedia = (media?: TypeMediaInputValue | null): boolean => {
+  if (!media) return false;
+  if (media.type === "icon") return !!media.name;
+  return !!media.url;
 };
 
 class Footer2Page extends BaseFooter {
@@ -72,13 +81,31 @@ class Footer2Page extends BaseFooter {
             {
               type: "string",
               key: "categoryTitle",
-              displayer: "Footer Title",
+              displayer: "Menu Item",
               value: "New York Office",
+            },
+            {
+              type: "page",
+              key: "categoryTitleLink",
+              displayer: "Navigate To",
+              value: "",
+            },
+            {
+              type: "media",
+              key: "categoryTitleMedia",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["icon", "image"],
+              },
+              value: {
+                type: "icon",
+                name: "",
+              },
             },
             {
               type: "array",
               key: "menuItems",
-              displayer: "Footer Text",
+              displayer: "Menu Subitem",
               value: [
                 {
                   type: "object",
@@ -87,6 +114,18 @@ class Footer2Page extends BaseFooter {
                   value: [
                     { type: "string", key: "text", displayer: "Text", value: "555-1234" },
                     { type: "page", key: "pageLink", displayer: "Navigate To", value: "" },
+                    {
+                      type: "media",
+                      key: "media",
+                      displayer: "Media",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "",
+                      },
+                    },
                   ],
                 },
                 {
@@ -96,6 +135,18 @@ class Footer2Page extends BaseFooter {
                   value: [
                     { type: "string", key: "text", displayer: "Text", value: "info@archy.com" },
                     { type: "page", key: "pageLink", displayer: "Navigate To", value: "" },
+                    {
+                      type: "media",
+                      key: "media",
+                      displayer: "Media",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "",
+                      },
+                    },
                   ],
                 },
                 {
@@ -105,6 +156,18 @@ class Footer2Page extends BaseFooter {
                   value: [
                     { type: "string", key: "text", displayer: "Text", value: "123 Main Street, Suite 200 City: Anytown State: StateName" },
                     { type: "page", key: "pageLink", displayer: "Navigate To", value: "" },
+                    {
+                      type: "media",
+                      key: "media",
+                      displayer: "Media",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "",
+                      },
+                    },
                   ],
                 },
               ],
@@ -119,13 +182,31 @@ class Footer2Page extends BaseFooter {
             {
               type: "string",
               key: "categoryTitle",
-              displayer: "Footer Title",
+              displayer: "Menu Item",
               value: "Paris Office",
+            },
+            {
+              type: "page",
+              key: "categoryTitleLink",
+              displayer: "Navigate To",
+              value: "",
+            },
+            {
+              type: "media",
+              key: "categoryTitleMedia",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["icon", "image"],
+              },
+              value: {
+                type: "icon",
+                name: "",
+              },
             },
             {
               type: "array",
               key: "menuItems",
-              displayer: "Footer Text",
+              displayer: "Menu Subitem",
               value: [
                 {
                   type: "object",
@@ -134,6 +215,18 @@ class Footer2Page extends BaseFooter {
                   value: [
                     { type: "string", key: "text", displayer: "Text", value: "+33 1 23 45 67 89" },
                     { type: "page", key: "pageLink", displayer: "Navigate To", value: "" },
+                    {
+                      type: "media",
+                      key: "media",
+                      displayer: "Media",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "",
+                      },
+                    },
                   ],
                 },
                 {
@@ -143,6 +236,18 @@ class Footer2Page extends BaseFooter {
                   value: [
                     { type: "string", key: "text", displayer: "Text", value: "info@archyparis.com" },
                     { type: "page", key: "pageLink", displayer: "Navigate To", value: "" },
+                    {
+                      type: "media",
+                      key: "media",
+                      displayer: "Media",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "",
+                      },
+                    },
                   ],
                 },
                 {
@@ -152,6 +257,18 @@ class Footer2Page extends BaseFooter {
                   value: [
                     { type: "string", key: "text", displayer: "Text", value: "123 Rue de la Paix, 75002 Paris, France" },
                     { type: "page", key: "pageLink", displayer: "Navigate To", value: "" },
+                    {
+                      type: "media",
+                      key: "media",
+                      displayer: "Media",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "",
+                      },
+                    },
                   ],
                 },
               ],
@@ -166,13 +283,31 @@ class Footer2Page extends BaseFooter {
             {
               type: "string",
               key: "categoryTitle",
-              displayer: "Footer Title",
+              displayer: "Menu Item",
               value: "Berlin Office",
+            },
+            {
+              type: "page",
+              key: "categoryTitleLink",
+              displayer: "Navigate To",
+              value: "",
+            },
+            {
+              type: "media",
+              key: "categoryTitleMedia",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["icon", "image"],
+              },
+              value: {
+                type: "icon",
+                name: "",
+              },
             },
             {
               type: "array",
               key: "menuItems",
-              displayer: "Footer Text",
+              displayer: "Menu Subitem",
               value: [
                 {
                   type: "object",
@@ -181,6 +316,18 @@ class Footer2Page extends BaseFooter {
                   value: [
                     { type: "string", key: "text", displayer: "Text", value: "+49 30 12345678" },
                     { type: "page", key: "pageLink", displayer: "Navigate To", value: "" },
+                    {
+                      type: "media",
+                      key: "media",
+                      displayer: "Media",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "",
+                      },
+                    },
                   ],
                 },
                 {
@@ -190,6 +337,18 @@ class Footer2Page extends BaseFooter {
                   value: [
                     { type: "string", key: "text", displayer: "Text", value: "info@archyberlin.com" },
                     { type: "page", key: "pageLink", displayer: "Navigate To", value: "" },
+                    {
+                      type: "media",
+                      key: "media",
+                      displayer: "Media",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "",
+                      },
+                    },
                   ],
                 },
                 {
@@ -199,6 +358,18 @@ class Footer2Page extends BaseFooter {
                   value: [
                     { type: "string", key: "text", displayer: "Text", value: "Mauerstrasse 45, 10117 Berlin, Germany" },
                     { type: "page", key: "pageLink", displayer: "Navigate To", value: "" },
+                    {
+                      type: "media",
+                      key: "media",
+                      displayer: "Media",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "",
+                      },
+                    },
                   ],
                 },
               ],
@@ -269,26 +440,44 @@ class Footer2Page extends BaseFooter {
                 {footerData.map((column: Column, colIndex: number) => {
                   const menuItems: MenuItem[] = column.menuItems || [];
                   const categoryTitleExist = this.castToString(column.categoryTitle);
-                  const hasItems = menuItems.some((item: MenuItem) => this.castToString(item.text));
-                  if (!categoryTitleExist && !hasItems) return null;
+                  const categoryMediaExist = hasMedia(column.categoryTitleMedia);
+                  const hasItems = menuItems.some((item: MenuItem) => this.castToString(item.text) || hasMedia(item.media));
+                  if (!categoryTitleExist && !categoryMediaExist && !hasItems) return null;
                   return (
                     <div key={colIndex} className={this.decorateCSS("list")}>
-                      {categoryTitleExist && <Base.H6 className={this.decorateCSS("title")}>{column.categoryTitle}</Base.H6>}
+                      {(categoryTitleExist || categoryMediaExist) && (
+                        <ComposerLink path={column.categoryTitleLink}>
+                          <div className={this.decorateCSS("menu-media-wrapper")}>
+                            {categoryMediaExist && (
+                              <Base.Media value={column.categoryTitleMedia} className={this.decorateCSS("menu-title-media")} />
+                            )}
+                            {categoryTitleExist && <Base.H6 className={this.decorateCSS("title")}>{column.categoryTitle}</Base.H6>}
+                          </div>
+                        </ComposerLink>
+                      )}
                       {menuItems.length > 0 && (
                         <Base.VerticalContent className={this.decorateCSS("text-items")}>
                           {menuItems.map((item: MenuItem, itemIndex: number) => {
                             const textExist = this.castToString(item.text);
+                            const mediaExist = hasMedia(item.media);
                             const isLast = itemIndex === menuItems.length - 1;
                             return (
-                              textExist && (
+                              (textExist || mediaExist) && (
                                 <ComposerLink key={itemIndex} path={item.pageLink}>
-                                  <Base.P
-                                    className={`${this.decorateCSS("text")} ${isLast ? this.decorateCSS("text-last") : ""}`}
-                                    data-animation={item.pageLink ? this.getPropValue("hoverAnimation").join(" ") : ""}
-                                    data-has-link={Boolean(item.pageLink)}
-                                  >
-                                    {item.text}
-                                  </Base.P>
+                                  <div className={this.decorateCSS("menu-media-wrapper")}>
+                                    {mediaExist && (
+                                      <Base.Media value={item.media} className={this.decorateCSS("menu-item-media")} />
+                                    )}
+                                    {textExist && (
+                                      <Base.P
+                                        className={`${this.decorateCSS("text")} ${isLast ? this.decorateCSS("text-last") : ""}`}
+                                        data-animation={item.pageLink ? this.getPropValue("hoverAnimation").join(" ") : ""}
+                                        data-has-link={Boolean(item.pageLink)}
+                                      >
+                                        {item.text}
+                                      </Base.P>
+                                    )}
+                                  </div>
                                 </ComposerLink>
                               )
                             );
