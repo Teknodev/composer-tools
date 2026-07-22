@@ -1,0 +1,229 @@
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+
+.container {
+    background: linear-gradient(to bottom,
+            var(--composer-font-color-primary) 50%,
+            var(--composer-html-background) 50%);
+
+    &.header-only {
+        background: var(--composer-font-color-primary);
+    }
+
+    .max-content {
+        display: flex;
+        flex-direction: column;
+        gap: var(--composer-gap-lg);
+
+        .header {
+            display: flex;
+            flex-direction: column;
+
+            .subtitle {
+                color: var(--composer-html-background);
+                background: none;
+                padding: 0;
+
+                &::before {
+                    background: var(--composer-html-background);
+                }
+            }
+
+            .title,
+            .description {
+                color: var(--composer-html-background);
+            }
+
+            .button-container {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: var(--composer-gap-sm);
+
+                .button {
+                    .button-text {
+                        content: "";
+                    }
+                }
+            }
+        }
+
+        .cards-row {
+            gap: var(--composer-gap-lg);
+            align-items: stretch;
+            width: 100%;
+
+            .card {
+                display: flex;
+                flex-direction: column;
+                border-radius: var(--composer-border-radius-md);
+                background: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+                box-shadow: var(--box-shadow-active);
+                color: var(--composer-font-color-primary);
+                padding: 30px;
+                gap: var(--composer-gap-lg);
+                overflow: hidden;
+
+                .card-top {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: flex-start;
+                    flex: 1;
+
+                    .card-subtitle {
+                        color: var(--composer-primary-color);
+                        text-align: left;
+                        font-weight: 800;
+                    }
+
+                    .card-title {
+                        color: var(--composer-primary-color);
+                        text-align: left;
+                        font-weight: 800;
+                    }
+
+                    .card-description {
+                        color: var(--composer-font-color-primary);
+                        text-align: left;
+                    }
+
+                    .card-price-row {
+                        display: flex;
+                        align-items: baseline;
+                        gap: var(--composer-gap-xs);
+
+                        .card-price {
+                            color: var(--composer-font-color-primary);
+                            font-weight: 700;
+                        }
+
+                        .card-duration {
+                            color: var(--composer-font-color-primary);
+                        }
+                    }
+
+                    .card-features {
+                        display: flex;
+                        flex-direction: column;
+                        align-items: flex-start !important;
+
+                        .feature-item {
+                            display: flex;
+                            align-items: center;
+                            gap: var(--composer-gap-xs);
+                            text-align: left !important;
+
+                            .feature-icon {
+                                color: var(--composer-primary-color);
+                                width: var(--composer-gap-md);
+                                height: var(--composer-gap-md);
+                                line-height: 2;
+                                align-items: center;
+                            }
+
+                            .feature-image {
+                                width: var(--composer-gap-md);
+                                height: var(--composer-gap-md);
+                                object-fit: cover;
+                            }
+
+                            .feature-text {
+                                color: var(--composer-color-secondary);
+                                text-align: left;
+                             }
+                        }
+                    }
+
+                    .card-buttons-container {
+                        display: flex;
+                        flex-wrap: wrap;
+                        justify-content: flex-start;
+                        gap: var(--composer-gap-sm);
+                        width: 100%;
+                        margin-top: auto !important;
+
+                        .card-button {
+                            justify-content: flex-start;
+
+                            .button-text {
+                                content: "";
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+
+        .bottom-card {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            gap: var(--composer-gap-md);
+            border-radius: var(--composer-border-radius-md);
+            padding: 30px;
+            background: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+            box-shadow: var(--box-shadow-active);
+            width: 100%;
+
+            .bottom-card-left {
+                display: flex;
+                flex-direction: column;
+                gap: var(--composer-gap-xs);
+                flex: 1;
+
+                .bottom-subtitle,
+                .bottom-description {
+                    color: var(--composer-font-color-primary);
+                    text-align: left;
+                }
+
+                .bottom-title {
+                    color: var(--composer-font-color-primary);
+                    text-align: left;
+                    font-weight: 800;
+                }
+            }
+
+            .bottom-card-right {
+                display: flex;
+                flex-wrap: wrap;
+                align-items: center;
+                justify-content: center;
+                gap: var(--composer-gap-sm);
+                min-width: 30%;
+
+                .bottom-button {
+                    .button-text {
+                        content: "";
+                    }
+                }
+            }
+        }
+    }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+    .container {
+        .max-content {
+            gap: var(--composer-gap-md);
+
+            .cards-row {
+                gap: var(--composer-gap-md);
+            }
+
+            .bottom-card {
+                flex-direction: column;
+
+                .bottom-card-left {
+                    gap: 0 !important;
+                }
+
+                .bottom-card-right {
+                    justify-content: left !important;
+                    min-width: 100% !important;
+                }
+            }
+        }
+    }
+}
