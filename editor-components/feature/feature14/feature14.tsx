@@ -286,8 +286,6 @@ class Feature14 extends BaseFeature {
 
     const cardItems = this.castToObject<CardItem[]>("cards");
 
-    const alignment = Base.getContentAlignment();
-
     const buttons = this.castToObject<Button[]>("buttons");
     const hasValidButtons = buttons.some((btn: Button) => {
       const buttonText = this.castToString(btn.text);
@@ -303,7 +301,7 @@ class Feature14 extends BaseFeature {
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           {(this.castToString(this.getPropValue("title")) || hasValidButtons
             || this.castToString(this.getPropValue("firstdescription")) || this.castToString(this.getPropValue("seconddescription"))) && (
-              <div className={`${this.decorateCSS("title-wrapper")} ${alignment == "center" && this.decorateCSS("center")}`}>
+              <div className={this.decorateCSS("title-wrapper")}>
                 {(this.castToString(this.getPropValue("title")) || hasValidButtons) && <Base.VerticalContent className={this.decorateCSS("title-left")}>
                   {subtitleExist && (
                     <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
@@ -315,7 +313,7 @@ class Feature14 extends BaseFeature {
                       {this.getPropValue("title")}
                     </Base.SectionTitle>
                   )}
-                  {(alignment == "left" && hasValidButtons) && (
+                  {hasValidButtons && (
                     <div className={this.decorateCSS("link")}>
                       {buttons.map((item: Button, index: number) => {
                         const buttonText = this.castToString(item.text);
@@ -344,23 +342,6 @@ class Feature14 extends BaseFeature {
                     <Base.SectionDescription className={this.decorateCSS("description-2")}>
                       {this.getPropValue("seconddescription")}
                     </Base.SectionDescription>
-                  )}
-                  {(alignment == "center" && hasValidButtons) && (
-                    <div className={this.decorateCSS("link")}>
-                      {buttons.map((item: Button, index: number) => {
-                        const buttonText = this.castToString(item.text);
-                        const iconExist = item.icon && (item.icon.type === "icon" ? item.icon.name : item.icon.url);
-                        if (!buttonText && !iconExist) return null;
-                        return (
-                          <ComposerLink key={index} path={item.url}>
-                            <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
-                              {buttonText && <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>}
-                              {iconExist && <Base.Media value={item.icon!} className={this.decorateCSS("button-icon")} />}
-                            </Base.Button>
-                          </ComposerLink>
-                        );
-                      })}
-                    </div>
                   )}
                 </Base.VerticalContent>}
               </div>

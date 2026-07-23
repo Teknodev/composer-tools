@@ -385,9 +385,9 @@ class Feature9 extends BaseFeature {
                           </div>
                         )}
                         {descExist && (
-                          <Base.H6 className={this.decorateCSS("description")}>
+                          <Base.P className={this.decorateCSS("description")}>
                             {card.description}
-                          </Base.H6>
+                          </Base.P>
                         )}
                       </Base.VerticalContent>
                     </div>

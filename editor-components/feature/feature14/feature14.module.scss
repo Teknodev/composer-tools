@@ -4,22 +4,25 @@
     .max-content {
         display: flex;
         flex-direction: column;
-        gap: var(--composer-gap-md);
+        gap: var(--composer-gap-xl);
         .title-wrapper{
             display: flex;
             gap: var(--composer-gap-xl);
-            &.center{
-                flex-direction: column;
-                gap: var(--composer-gap-sm);
+            .title-left, .title-right {
+                align-items: flex-start !important;
+                .subtitle, .header, .description-1, .description-2 {
+                    text-align: left !important;
+                    align-self: flex-start;
+                    margin-left: 0 !important;
+                    margin-right: 0 !important;
+                }
             }
             .title-left{
-                flex:1;                
-                .subtitle, .header {
-                    content:"";
-                }
+                flex:1;
                 .link {
                     display: flex;
                     align-items: center;
+                    justify-content: flex-start;
                     flex-wrap: wrap;
                     gap: var(--composer-gap-sm);
                     .button {
@@ -33,28 +36,8 @@
 
             .title-right{
                 flex: 1;
-                .description-1 {
-                    content: "";
-                }
-
                 .description-2 {
                     color: var(--composer-tertiary-color);
-                    content: "";
-                }
-                .link {
-                    display: flex;
-                    align-items: center;
-                    flex-wrap: wrap;
-                    gap: var(--composer-gap-sm);
-                    .button {
-                        .button-text {
-                            content: "";
-                        }
-                        .button-icon {
-                            font-size: 1rem;
-                            color: var(--composer-font-color-secondary);
-                        }
-                    }
                 }
             }
         }
@@ -150,6 +133,7 @@
 @container (max-width: #{$composer-phone-width}) {
     .container{
         .max-content{
+            gap: var(--composer-gap-lg);
             .title-wrapper{
                 flex-direction: column;
                 gap: var(--composer-gap-sm);

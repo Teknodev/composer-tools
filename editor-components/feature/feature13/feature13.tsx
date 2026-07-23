@@ -213,7 +213,7 @@ class Feature13 extends BaseFeature {
               key: "content",
               displayer: "Content",
               value:
-                "Archy was founded in 1936 in Chicago, USA. The company was established by Louis Skidmore and Nathaniel Owings, and later joined by John O. Merrill. SOM has been responsible for the design of many notable buildings worldwide, including the Sears Tower (now known as Willis Tower) in Chicago, which was the world's tallest building from 1973 to 1998. The company has also designed the John Hancock Center, One World Trade Center, and Burj Khalifa, which is currently the tallest building in the world. Throughout its history, SOM has been recognized for its innovative designs and commitment to sustainability.",
+                `<p dir="ltr" style="margin-bottom: var(--composer-gap-sm);"><span style="white-space: pre-wrap;">Archy was founded in 1936 in Chicago, USA. The company was established by Louis Skidmore and Nathaniel Owings, and later joined by John O. Merrill.</span></p><p dir="ltr"><span style="white-space: pre-wrap;">SOM has been responsible for the design of many notable buildings worldwide, including the Sears Tower in Chicago, the John Hancock Center, One World Trade Center, and Burj Khalifa. Throughout its history, SOM has been recognized for its innovative designs and commitment to sustainability.</span></p>`,
             },
             {
               type: "array",
@@ -315,7 +315,7 @@ class Feature13 extends BaseFeature {
               key: "content",
               displayer: "Content",
               value:
-                "We believe that good design should not only be aesthetically pleasing, but also functional and environmentally responsible. Our approach to architecture is rooted in a deep understanding of our clients' needs and the context in which we are designing. We work closely with our clients throughout the entire design process to ensure that their vision is realized and that their space is both beautiful and practical.",
+                `<p dir="ltr" style="margin-bottom: var(--composer-gap-sm);"><span style="white-space: pre-wrap;">We believe that good design should not only be aesthetically pleasing, but also functional and environmentally responsible.</span></p><p dir="ltr"><span style="white-space: pre-wrap;">Our approach to architecture is rooted in a deep understanding of our clients' needs and the context in which we are designing. We work closely with our clients throughout the entire design process to ensure that their vision is realized and that their space is both beautiful and practical.</span></p>`,
             },
             {
               type: "array",
@@ -392,7 +392,7 @@ class Feature13 extends BaseFeature {
               key: "content",
               displayer: "Content",
               value:
-                "Ratings and reviews, A numerical rating system and written reviews from clients can be very persuasive in convincing potential clients to hire an architecture firm. These reviews can be posted directly on the architecture firm's website or on third-party review sites such as Yelp or Google Reviews. It's important to respond to all reviews, whether positive or negative, in a professional and respectful manner. This shows that the architecture firm values feedback and is committed to delivering exceptional service.",
+                `<p dir="ltr" style="margin-bottom: var(--composer-gap-sm);"><span style="white-space: pre-wrap;">A numerical rating system and written reviews from clients can be very persuasive in convincing potential clients to hire an architecture firm. These reviews can be posted directly on the firm's website or on third-party review sites.</span></p><p dir="ltr"><span style="white-space: pre-wrap;">It's important to respond to all reviews, whether positive or negative, in a professional and respectful manner. This shows that the architecture firm values feedback and is committed to delivering exceptional service.</span></p>`,
             },
             {
               type: "array",
@@ -726,18 +726,20 @@ class Feature13 extends BaseFeature {
                                 )}
                               >{utility}</Base.P>)}
                             </div>
-                            {showLines && percentage && (
-                              <div
-                                className={this.decorateCSS("progress-line")}
-                                style={{
-                                  width: `${percentage >= 100
-                                    ? "100%"
-                                    : !percentage || percentage == 0
-                                      ? "1%"
-                                      : `${percentage}%`
-                                    }`,
-                                }}
-                              />)}
+                            {showLines && (
+                              <div className={this.decorateCSS("progress-track")}>
+                                <div
+                                  className={this.decorateCSS("progress-line")}
+                                  style={{
+                                    width: `${percentage >= 100
+                                      ? "100%"
+                                      : !percentage || percentage == 0
+                                        ? "0%"
+                                        : `${percentage}%`
+                                      }`,
+                                  }}
+                                />
+                              </div>)}
                           </div>
                         );
                       })}

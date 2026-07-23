@@ -132,7 +132,7 @@ class Feature15 extends BaseFeature {
                             },
                             value: {
                                 type: "icon",
-                                name: "Bs1CircleFill"
+                                name: "BsBarChartLine"
                             },
                         },
                         {
@@ -171,7 +171,7 @@ class Feature15 extends BaseFeature {
                             },
                             value: {
                                 type: "icon",
-                                name: "Bs2CircleFill"
+                                name: "RxCross2"
                             },
                         },
                         {
@@ -210,7 +210,7 @@ class Feature15 extends BaseFeature {
                             },
                             value: {
                                 type: "icon",
-                                name: "Bs3CircleFill"
+                                name: "FaAppleAlt"
                             },
                         },
                         {
@@ -249,7 +249,7 @@ class Feature15 extends BaseFeature {
                             },
                             value: {
                                 type: "icon",
-                                name: "Bs4CircleFill"
+                                name: "MdDeliveryDining"
                             },
                         },
                         {

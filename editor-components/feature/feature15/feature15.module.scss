@@ -96,10 +96,11 @@
 
                     .icon-box {
                         .icon {
-                            font-size: 2rem;
-                            width: 32px;
-                            height: 32px;
+                            font-size: 3.2rem;
+                            width: 45px;
+                            height: 45px;
                             object-fit: contain;
+                            flex-shrink: 0;
                         }
                     }
 
