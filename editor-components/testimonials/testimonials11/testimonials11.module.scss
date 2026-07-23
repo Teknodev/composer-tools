@@ -137,6 +137,10 @@
           row-gap: var(--composer-gap-xl);
         }
 
+        .background-text-slot {
+          display: contents;
+        }
+
         .background-text {
           position: absolute;
           top: 50%;
@@ -269,10 +273,12 @@
   .container {
     .max-content {
       .wrapper {
-        .background-text {
-          width: calc(100% + 100px);
-          margin-left: 0;
-          margin-right: 0;
+        .content {
+          .background-text {
+            width: calc(100% + 100px);
+            margin-left: 0;
+            margin-right: 0;
+          }
         }
       }
     }
@@ -290,10 +296,38 @@
           row-gap: var(--composer-gap-md);
         }
 
-        .background-text {
-          width: calc(100% + 60px);
-          margin-left: 0;
-          margin-right: 0;
+        .bg-quote {
+          width: 3rem;
+          height: 3rem;
+          font-size: 3rem;
+        }
+
+        .bg-quote-start {
+          transform: translate(-8%, -15%);
+        }
+
+        .bg-quote-end {
+          position: relative;
+          bottom: auto;
+          right: auto;
+          align-self: flex-end;
+          transform: none;
+        }
+
+        .content {
+          .background-text-slot {
+            display: block;
+            position: relative;
+            width: 100%;
+            height: 0;
+            margin-block: calc(var(--composer-gap-xl) / -2);
+          }
+
+          .background-text {
+            width: 100%;
+            margin-left: 0;
+            margin-right: 0;
+          }
         }
       }
     }

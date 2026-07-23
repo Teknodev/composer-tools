@@ -154,7 +154,7 @@
                     border-radius: var(--composer-border-radius-md);
                     width: 100%;
                     background-color: var(--composer-html-background);
-                    padding: calc(var(--composer-gap-xl)) var(--composer-gap-xl) var(--composer-gap-md) var(--composer-gap-xl);
+                    padding: calc(var(--composer-gap-xl)) var(--composer-gap-xl) var(--composer-gap-lg) var(--composer-gap-xl);
                     position: relative;
                     .top-container {
                       .img-div {
@@ -204,7 +204,7 @@
                       position: absolute;
                       font-size: 5rem;
                       color: rgba(var(--composer-primary-color-rgb), 0.5);
-                      top: var(--composer-gap-md);
+                      top: 0;
                       left: var(--composer-gap-xl);
                       .quoteicon {
                         content: "";
@@ -435,6 +435,16 @@
                         .quoteicon {
                           width: 2rem;
                           height: 2rem;
+                        }
+                      }
+                      .card {
+                        .bottom-container {
+                          .item-name {
+                            font-size: 1.5rem !important;
+                          }
+                          .item-subtitle {
+                            font-size: 1rem !important;
+                          }
                         }
                       }
                     }

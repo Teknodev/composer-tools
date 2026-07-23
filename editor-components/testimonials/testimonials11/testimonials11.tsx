@@ -362,9 +362,6 @@ class Testimonials11Page extends Testimonials {
             {bgQuoteStartExist && (
               <Base.Media value={bgQuoteStartVal} className={`${this.decorateCSS("bg-quote")} ${this.decorateCSS("bg-quote-start")}${coverMediaExist ? ` ${this.decorateCSS("bg-quote-with-image")}` : ""}`} />
             )}
-            {bgQuoteEndExist && (
-              <Base.Media value={bgQuoteEndVal} className={`${this.decorateCSS("bg-quote")} ${this.decorateCSS("bg-quote-end")}${coverMediaExist ? ` ${this.decorateCSS("bg-quote-with-image")}` : ""}`} />
-            )}
             {hasAnyTopContent && (
               <Base.VerticalContent className={this.decorateCSS("top-content")}>
                 {subtitleExist && (
@@ -410,25 +407,27 @@ class Testimonials11Page extends Testimonials {
                 {topCards.map((item: Item, index: number) => renderCard(item, index))}
               </Base.ListGrid>
               {backgroundText && (
-                <svg
-                  className={`${this.decorateCSS("background-text")}${coverMediaExist ? ` ${this.decorateCSS("background-text-with-image")}` : ""}`}
-                  viewBox="0 0 1000 140"
-                  preserveAspectRatio="xMidYMid meet"
-                  role="img"
-                  aria-label={backgroundText}
-                >
-                  <text
-                    className={this.decorateCSS("background-text-value")}
-                    x="500"
-                    y="70"
-                    textAnchor="middle"
-                    dominantBaseline="central"
-                    textLength="1000"
-                    lengthAdjust="spacingAndGlyphs"
+                <div className={this.decorateCSS("background-text-slot")}>
+                  <svg
+                    className={`${this.decorateCSS("background-text")}${coverMediaExist ? ` ${this.decorateCSS("background-text-with-image")}` : ""}`}
+                    viewBox="0 0 1000 140"
+                    preserveAspectRatio="xMidYMid meet"
+                    role="img"
+                    aria-label={backgroundText}
                   >
-                    {backgroundText}
-                  </text>
-                </svg>
+                    <text
+                      className={this.decorateCSS("background-text-value")}
+                      x="500"
+                      y="70"
+                      textAnchor="middle"
+                      dominantBaseline="central"
+                      textLength="1000"
+                      lengthAdjust="spacingAndGlyphs"
+                    >
+                      {backgroundText}
+                    </text>
+                  </svg>
+                </div>
               )}
               {bottomCards.length > 0 && (
                 <Base.ListGrid gridCount={gridCount} className={this.decorateCSS("grid")}>
@@ -436,6 +435,9 @@ class Testimonials11Page extends Testimonials {
                 </Base.ListGrid>
               )}
             </div>
+            {bgQuoteEndExist && (
+              <Base.Media value={bgQuoteEndVal} className={`${this.decorateCSS("bg-quote")} ${this.decorateCSS("bg-quote-end")}${coverMediaExist ? ` ${this.decorateCSS("bg-quote-with-image")}` : ""}`} />
+            )}
           </div>
         </Base.MaxContent>
       </Base.Container>
