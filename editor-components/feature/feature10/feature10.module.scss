@@ -5,8 +5,18 @@
     .max-content {
         .wrapper {
             .section-wrapper{
+                align-items: center !important;
+                width: 100%;
                 .subtitle, .section-title, .section-description {
-                    content: "";
+                    text-align: center !important;
+                    margin-left: auto !important;
+                    margin-right: auto !important;
+                }
+                .subtitle {
+                    transform: none !important;
+                    &::before {
+                        display: none !important;
+                    }
                 }
             }
             .arrow-container{
@@ -15,18 +25,30 @@
                 justify-content: end;
                 gap: var(--composer-gap-md);
                 .arrow-right, .arrow-left{
-                    border: none;
-                    padding: var(--composer-gap-xs);
+                    border: 1px solid var(--composer-font-color-primary);
+                    border-radius: 50%;
+                    width: 44px;
+                    height: 44px;
                     display: flex;
                     align-items: center;
                     justify-content: center;
                     cursor: pointer;
                     background-color: transparent;
+                    transition: border-color 0.3s ease, background-color 0.3s ease;
+
+                    &:hover {
+                        background-color: color-mix(in srgb, var(--composer-font-color-primary) 10%, transparent);
+                    }
+
                     .icon{
                         background-color: transparent;
-                        font-size: 3rem;
+                        width: 24px;
+                        height: 24px;
+                        object-fit: contain;
                         color: var(--composer-font-color-primary);
-                        padding: var(--composer-gap-xs);
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
                     }
                 }
             }
@@ -68,8 +90,13 @@
                         &.fit-content{
                             height: fit-content;
                         }
+                        .media-wrapper{
+                            position: relative;
+                            width: 100%;
+                            display: flex;
+                        }
                         .image{
-                            height: 300px;
+                            height: 250px;
                             width: 100%;
                             border-radius: var(--composer-border-radius-sm) var(--composer-border-radius-sm) 0 0;
                             object-fit: cover;
@@ -77,16 +104,74 @@
                                 border-radius: var(--composer-border-radius-sm);
                             }
                         }
+                        .overlay{
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            width: 100%;
+                            height: 100%;
+                            background-color: var(--composer-overlay-color);
+                            pointer-events: none;
+                            border-radius: var(--composer-border-radius-sm) var(--composer-border-radius-sm) 0 0;
+                            &.border-radius{
+                                border-radius: var(--composer-border-radius-sm);
+                            }
+                        }
                         .bottom{
-                            padding: var(--composer-gap-lg);
-                            display: flex;
-                            flex-direction: column;
-                            align-items: baseline;
-                            justify-content: baseline;
-                            gap: var(--composer-gap-md);
-                            .title, .description {
+                            padding: var(--composer-gap-md);
+                            align-items: stretch;
+                            justify-content: flex-start;
+                            width: 100%;
+                            
+                            .card-subtitle {
+                                font-size: 1rem;
+                                color: var(--composer-tertiary-color);
+                                text-align: left;
+                            }
+                            
+                            .title {
+                                font-weight: 800;
                                 text-align: left;
                                 color: var(--composer-font-color-primary);
+                            }
+
+                            .description {
+                                text-align: left;
+                                color: var(--composer-font-color-primary);
+                            }
+
+                            .card-divider {
+                                width: 100%;
+                                border: none;
+                                border-top: 1px solid color-mix(in srgb, var(--composer-font-color-primary) 15%, transparent);
+                            }
+
+                            .card-stats {
+                                display: flex;
+                                justify-content: flex-start !important;
+                                width: 100%;
+                                gap: var(--composer-gap-sm);
+
+                                .card-stat-item {
+                                    display: flex;
+                                    flex-direction: column;
+                                    align-items: flex-start !important;
+                                    text-align: left !important;
+                                    flex: 1;
+
+                                    .stat-label {
+                                        font-weight: 800;
+                                        font-size: 1rem !important;
+                                        color: var(--composer-font-color-primary);
+                                        text-align: left !important;
+                                    }
+
+                                    .stat-value {
+                                        font-size: 0.75rem !important;
+                                        color: var(--composer-tertiary-color);
+                                        text-align: left !important;
+                                    }
+                                }
                             }
                         }
     
@@ -101,13 +186,17 @@
                 display: flex;
                 flex-wrap: wrap;
                 justify-content: center;
+                gap: var(--composer-gap-sm);
                 .button {
+                    display: flex;
+                    align-items: center;
                     .button-text {
                         content: "";
                     }
-                    .icon{
+                    .button-icon{
                         height: 15px;
                         width: 15px;
+                        flex-shrink: 0;
                     }
                 }
             }
@@ -121,8 +210,11 @@
             .wrapper {
                 .arrow-container{
                     .arrow-right, .arrow-left{
+                        width: 36px;
+                        height: 36px;
                         .icon{
-                            font-size: 1.5rem;
+                            width: 20px;
+                            height: 20px;
                         }
                     }
                 }
@@ -136,15 +228,19 @@
                             }
 
         
-                        .card-container{        
+                        .card-container{
                             .image {
                                 height: 200px;
                             }
                             .bottom{
                                 padding: var(--composer-gap-md);
+
+                                .card-stats {
+                                    gap: var(--composer-gap-xs);
+                                }
                             }
                         }
-                    
+
                      }
                 }
             }
@@ -180,6 +276,11 @@
                         .card-container{
                             &:hover{
                                 transform: scale(1)
+                            }
+                            .bottom{
+                                .card-stats {
+                                    gap: var(--composer-gap-xs);
+                                }
                             }
                         }
                     }

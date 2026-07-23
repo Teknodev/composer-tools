@@ -12,6 +12,7 @@ type ButtonTypeObj = {
 }
 
 type Card = {
+    subtitle: React.JSX.Element;
     title: React.JSX.Element;
     description: React.JSX.Element;
     button: ButtonTypeObj;
@@ -54,6 +55,12 @@ class Feature35 extends BaseFeature {
                     value: [
                         {
                             type: "string",
+                            key: "subtitle",
+                            displayer: "Card Subtitle",
+                            value: "",
+                        },
+                        {
+                            type: "string",
                             key: "title",
                             displayer: "Title",
                             value: "Modern Design",
@@ -74,6 +81,12 @@ class Feature35 extends BaseFeature {
                     value: [
                         {
                             type: "string",
+                            key: "subtitle",
+                            displayer: "Card Subtitle",
+                            value: "",
+                        },
+                        {
+                            type: "string",
                             key: "title",
                             displayer: "Title",
                             value: "High Quality",
@@ -92,6 +105,12 @@ class Feature35 extends BaseFeature {
                     key: "card",
                     displayer: "Card",
                     value: [
+                        {
+                            type: "string",
+                            key: "subtitle",
+                            displayer: "Card Subtitle",
+                            value: "",
+                        },
                         {
                             type: "string",
                             key: "title",
@@ -151,18 +170,20 @@ class Feature35 extends BaseFeature {
                                 </Base.VerticalContent>
                             )}
                             {cards?.length > 0 && (
-                                <Base.ListGrid ref={this.cardsRootRef} gridCount={{ pc: this.getPropValue("itemCount") || 3, tablet: 2 }} className={this.decorateCSS("cards-container")}>
+                                <Base.ListGrid ref={this.cardsRootRef} gridCount={{ pc: this.getPropValue("itemCount") || 3, tablet: 3, phone: 1 }} className={this.decorateCSS("cards-container")}>
                                     {cards.map((card: Card) => {
+                                        const cardSubtitleExist = this.castToString(card.subtitle);
                                         const titleExist = this.castToString(card.title);
                                         const descExist = this.castToString(card.description);
                                         const btnTextExist = this.castToString(card.button.text);
-                                        const cardExist = titleExist || descExist || btnTextExist;
+                                        const cardExist = cardSubtitleExist || titleExist || descExist || btnTextExist;
                                         return cardExist && (
-                                            <div className={this.decorateCSS("card")}>
-                                                {titleExist && (<Base.H3 className={this.decorateCSS("card-title")}>{card.title}</Base.H3>)}
+                                            <Base.VerticalContent className={this.decorateCSS("card")}>
+                                                {cardSubtitleExist && (<Base.H6 className={this.decorateCSS("card-subtitle")}>{card.subtitle}</Base.H6>)}
+                                                {titleExist && (<Base.H5 className={this.decorateCSS("card-title")}>{card.title}</Base.H5>)}
                                                 {descExist && (<Base.P className={this.decorateCSS("card-description")}>{card.description}</Base.P>)}
                                                 {btnTextExist && (<ComposerLink path={card.button.url}><Base.Button buttonType={card.button.type} className={this.decorateCSS("card-button")} ><Base.P className={this.decorateCSS("button-text")}> {card.button.text} </Base.P></Base.Button></ComposerLink>)}
-                                            </div>
+                                            </Base.VerticalContent>
                                         );
                                     })}
                                 </Base.ListGrid>

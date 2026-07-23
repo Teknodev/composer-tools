@@ -1,4 +1,4 @@
-import * as React from "react";
+﻿import * as React from "react";
 import { BaseFeature, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./feature30.module.scss";
 import { INPUTS } from "../../../custom-hooks/input-templates";
@@ -20,14 +20,14 @@ class Feature30 extends BaseFeature {
             type: "string",
             key: "subtitle",
             displayer: "Subtitle",
-            value: "Trusted by over 100 developers",
+            value: "",
         });
 
         this.addProp({
             type: "string",
             key: "title",
             displayer: "Title",
-            value: "",
+            value: "Trusted by over 100 developers",
         });
 
         this.addProp({

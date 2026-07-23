@@ -7,9 +7,12 @@ import { INPUTS } from "../../../custom-hooks/input-templates";
 
 type Card = {
   title: React.JSX.Element;
-  image: TypeMediaInputValue;
+  subtitle: React.JSX.Element;
+  description: React.JSX.Element;
+  media: TypeMediaInputValue;
   overlay: boolean;
   link: string;
+  button: INPUTS.CastedButton;
 };
 
 class Feature6 extends BaseFeature {
@@ -56,10 +59,10 @@ class Feature6 extends BaseFeature {
           value: [
             {
               type: "media",
-              key: "image",
+              key: "media",
               displayer: "Media",
               additionalParams: {
-                availableTypes: ["image","video"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
@@ -68,9 +71,21 @@ class Feature6 extends BaseFeature {
             },
             {
               type: "string",
+              key: "subtitle",
+              displayer: "Subtitle",
+              value: "",
+            },
+            {
+              type: "string",
               key: "title",
               displayer: "Title",
               value: "The Lakeside Redesign: a Rustic House for Modern Living",
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value: "",
             },
             {
               type: "page",
@@ -78,6 +93,7 @@ class Feature6 extends BaseFeature {
               displayer: "Navigate To",
               value: "",
             },
+            INPUTS.BUTTON("button", "Button", "", "", null, null, "Link"),
           ],
         },
         {
@@ -87,10 +103,10 @@ class Feature6 extends BaseFeature {
           value: [
             {
               type: "media",
-              key: "image",
+              key: "media",
               displayer: "Media",
               additionalParams: {
-                availableTypes: ["image","video"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
@@ -99,9 +115,21 @@ class Feature6 extends BaseFeature {
             },
             {
               type: "string",
+              key: "subtitle",
+              displayer: "Subtitle",
+              value: "",
+            },
+            {
+              type: "string",
               key: "title",
               displayer: "Title",
               value: "Minimalist Magic: A Contemporary Studio Apartment",
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value: "",
             },
             {
               type: "page",
@@ -109,6 +137,7 @@ class Feature6 extends BaseFeature {
               displayer: "Navigate To",
               value: "",
             },
+            INPUTS.BUTTON("button", "Button", "", "", null, null, "Link"),
           ],
         },
         {
@@ -118,10 +147,10 @@ class Feature6 extends BaseFeature {
           value: [
             {
               type: "media",
-              key: "image",
+              key: "media",
               displayer: "Media",
               additionalParams: {
-                availableTypes: ["image","video"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
@@ -130,9 +159,21 @@ class Feature6 extends BaseFeature {
             },
             {
               type: "string",
+              key: "subtitle",
+              displayer: "Subtitle",
+              value: "",
+            },
+            {
+              type: "string",
               key: "title",
               displayer: "Title",
               value: "The Heritage Home: Restoring Charm in a Victorian House",
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value: "",
             },
             {
               type: "page",
@@ -140,6 +181,7 @@ class Feature6 extends BaseFeature {
               displayer: "Navigate To",
               value: "",
             },
+            INPUTS.BUTTON("button", "Button", "", "", null, null, "Link"),
           ],
         },
       ],
@@ -207,9 +249,12 @@ class Feature6 extends BaseFeature {
               <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount"), tablet: 3 }} className={this.decorateCSS("cards-container")}>
                 {cards.map((card: Card, index: number) => {
                   const titleExist = !!this.castToString(card.title);
-                  const imageExist = !!card.image;
+                  const subtitleExist = !!this.castToString(card.subtitle);
+                  const descriptionExist = !!this.castToString(card.description);
+                  const imageExist = !!card.media;
+                  const buttonTextExist = card.button && !!this.castToString(card.button.text);
 
-                  const shouldRender = (titleExist || imageExist);
+                  const shouldRender = titleExist || subtitleExist || descriptionExist || imageExist || buttonTextExist;
 
                   if (!shouldRender) return null;
 
@@ -219,23 +264,44 @@ class Feature6 extends BaseFeature {
                       className={this.decorateCSS("card-item-count")}
                     >
                       <div className={this.decorateCSS("listed")}>
-                        {!!card.image && (
+                        {imageExist && (
                           <Base.Media
-                            value={card.image}
+                            value={card.media}
                             className={this.decorateCSS("image")}
                           />
                         )}
                         <div
                           className={`
                             ${this.decorateCSS("image-shadow")}
-                            ${overlay && card.image ? this.decorateCSS("overlay") : ""}
+                            ${overlay && card.media ? this.decorateCSS("overlay") : ""}
                           `}
                         >
-                          {titleExist && (
-                            <Base.H5 className={this.decorateCSS("title")}>
-                              {card.title}
-                            </Base.H5>
-                          )}
+                          <Base.VerticalContent className={this.decorateCSS("card-text-content")}>
+                            {subtitleExist && (
+                              <Base.SectionSubTitle className={this.decorateCSS("card-subtitle")}>
+                                {card.subtitle}
+                              </Base.SectionSubTitle>
+                            )}
+                            {titleExist && (
+                              <Base.H5 className={this.decorateCSS("title")}>
+                                {card.title}
+                              </Base.H5>
+                            )}
+                            {descriptionExist && (
+                              <Base.P className={this.decorateCSS("card-description")}>
+                                {card.description}
+                              </Base.P>
+                            )}
+                            {buttonTextExist && (
+                              <div className={this.decorateCSS("card-button-container")}>
+                                <ComposerLink path={card.button.url}>
+                                  <Base.Button buttonType={card.button.type} className={this.decorateCSS("card-button")}>
+                                    {card.button.text}
+                                  </Base.Button>
+                                </ComposerLink>
+                              </div>
+                            )}
+                          </Base.VerticalContent>
                         </div>
                       </div>
                     </div>

@@ -143,9 +143,6 @@
       }
 
       .sectionsWrapper {
-        display: flex;
-        flex-direction: column;
-        gap: var(--composer-gap-md);
         align-items: flex-start;
         flex: 0.5;
 
@@ -192,55 +189,6 @@
   }
 }
 
-@container (max-width: #{$composer-tablet-width}) {
-  .container {
-    gap: var(--composer-gap-lg);
-
-    .wrapper {
-      .max-content {
-        .vertical-content {
-          .subtitle {
-            padding-right: var(--composer-gap-xl);
-          }
-        }
-      }
-    }
-
-    .card-wrapper {
-      .card-content {
-        flex-direction: column;
-
-        .mobile-title-wrapper {
-          display: none;
-        }
-
-        .image-wrapper {
-          order: 2;
-          border-radius: 0;
-          min-height: 350px;
-          margin-left: calc(-1 * var(--composer-gap-lg));
-          width: calc(100% + 2 * var(--composer-gap-lg));
-
-          &.full-width {
-            margin-right: 0;
-          }
-        }
-
-        .sectionsWrapper {
-          order: 1;
-          flex: unset;
-
-          .cardSubTitle,
-          .cardTitle,
-          .sectionText1,
-          .sectionText2 {
-            text-align: var(--composer-content-alignment);
-          }
-        }
-      }
-    }
-  }
-}
 
 @container (max-width: #{$composer-phone-width}) {
   .container {
@@ -249,6 +197,14 @@
     .wrapper {
       &.no-content {
         display: none;
+      }
+
+      .max-content {
+        .vertical-content {
+          .subtitle {
+            padding-right: var(--composer-gap-xl);
+          }
+        }
       }
 
       .items-wrapper {
@@ -272,6 +228,7 @@
 
       .card-content {
         display: flex;
+        flex-direction: column;
         position: relative;
         opacity: 1;
         height: auto;
@@ -343,6 +300,10 @@
           min-height: 240px;
           border-radius: 0;
           display: none;
+
+          &.full-width {
+            margin-right: 0;
+          }
         }
 
         &:last-child {
@@ -354,6 +315,14 @@
         .sectionsWrapper {
           order: 2;
           display: none;
+          flex: unset;
+
+          .cardSubTitle,
+          .cardTitle,
+          .sectionText1,
+          .sectionText2 {
+            text-align: var(--composer-content-alignment);
+          }
         }
 
         &.active-item {

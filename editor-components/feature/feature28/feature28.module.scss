@@ -12,36 +12,37 @@
       .description {
         content: "";
       }
+
+      .header-button-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--composer-gap-sm);
+
+        .header-button {
+          .header-button-text {
+            content: "";
+          }
+        }
+      }
     }
 
     .side-container {
       display: flex;
       align-items: stretch;
       gap: var(--composer-gap-md);
-      min-height: 0;
-
-      .left-side,
-      .middle-side,
-      .right-side {
-        min-height: 0;
-      }
 
       .left-side {
         flex: 2;
         display: flex;
         flex-direction: column;
         gap: var(--composer-gap-md);
-        min-height: 0;
 
         .left-top-card {
           flex: 1;
-          min-height: 300px;
           display: flex;
-          min-height: 0;
 
           .card {
             flex: 1;
-            min-height: 0;
             margin-bottom: 0;
           }
         }
@@ -52,14 +53,10 @@
           flex-direction: row;
           gap: var(--composer-gap-md);
           align-items: stretch;
-          min-height: 300px;
-          min-height: 0;
 
           .card {
             flex: 1;
-            min-height: 0;
             margin-bottom: 0;
-            height: 100%;
           }
         }
       }
@@ -68,11 +65,9 @@
         flex: 1;
         display: flex;
         flex-direction: column;
-        min-height: 0;
 
         .card {
           flex: 1;
-          min-height: 300px;
           margin-bottom: 0;
         }
       }
@@ -82,18 +77,15 @@
         display: flex;
         flex-direction: column;
         gap: var(--composer-gap-md);
-        min-height: 0;
 
         .topRightSide,
         .bottom-right-card {
           flex: 1;
           display: flex;
           flex-direction: column;
-          min-height: 0;
 
           .card {
             flex: 1;
-            min-height: 0;
             margin-bottom: 0;
           }
         }
@@ -104,6 +96,7 @@
 
             .card-text-container {
               .card-title,
+              .card-subtitle,
               .card-description,
               .button-text,
               .button-icon {
@@ -169,6 +162,7 @@
 
           .card-text-container {
             .card-title,
+            .card-subtitle,
             .card-description,
             .button-text,
             .button-icon {
@@ -177,24 +171,30 @@
           }
         }
 
-        .button {
-          .button-text {
-            content: "";
-            
-          }
+        .card-button-container {
+          display: flex;
+          flex-wrap: wrap;
+          align-items: center;
+          gap: var(--composer-gap-sm);
 
-          .button-icon {
-            width: var(--composer-gap-md);
-            height: var(--composer-gap-md);
-            font-size: 1rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-          }
+          .button {
+            .button-text {
+              content: "";
+            }
 
-          .button-image {
-            content: "";
+            .button-icon {
+              width: var(--composer-gap-md);
+              height: var(--composer-gap-md);
+              font-size: 1rem;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              flex-shrink: 0;
+            }
+
+            .button-image {
+              content: "";
+            }
           }
         }
 
@@ -210,6 +210,7 @@
           padding: var(--composer-gap-lg);
 
           .card-title,
+          .card-subtitle,
           .card-description {
             text-align: left;
           }
@@ -228,27 +229,6 @@
   }
 }
 
-@container (max-width: #{$composer-tablet-width}) {
-  .container .max-content {
-    .side-container {
-      flex-direction: column;
-    }
-
-    .card {
-      min-height: 200px !important;
-    }
-
-    .left-bottom-cards {
-      .card {
-        min-height: 290px !important;    
-      }
-    }
-
-    .middle-side {
-      max-height: 250px;
-    }
-  }
-}
 
 @container (max-width: #{$composer-phone-width}) {
   .container .max-content {
@@ -262,6 +242,10 @@
       }
     }
 
+    .side-container {
+      flex-direction: column;
+    }
+
     .card {
       min-height: 250px !important;
 
@@ -270,16 +254,17 @@
       }
     }
 
-    .middle-side {
-      max-height: 250px;
-    }
-
     .left-bottom-cards {
       flex-direction: column-reverse !important;
 
       .card {
         height: auto;
+        min-height: 290px !important;
       }
+    }
+
+    .middle-side {
+      max-height: 250px;
     }
   }
 }

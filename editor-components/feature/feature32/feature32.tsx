@@ -13,8 +13,15 @@ type ButtonTypeObj = {
 
 type Card = {
   icon: TypeMediaInputValue;
+  subtitle: React.JSX.Element;
   title: React.JSX.Element;
   description: React.JSX.Element;
+  button: {
+    text: React.JSX.Element;
+    url: string;
+    icon: TypeMediaInputValue;
+    type: string;
+  };
 };
 
 class Feature32 extends BaseFeature {
@@ -73,6 +80,12 @@ class Feature32 extends BaseFeature {
             },
             {
               type: "string",
+              key: "subtitle",
+              displayer: "Card Subtitle",
+              value: "",
+            },
+            {
+              type: "string",
               key: "title",
               displayer: "Title",
               value: "Competitive rates"
@@ -82,7 +95,8 @@ class Feature32 extends BaseFeature {
               key: "description",
               displayer: "Description",
               value: "Completely iterate covalent strategic theme areas via accurate e-markets."
-            }
+            },
+            INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
           ]
         },
         {
@@ -104,6 +118,12 @@ class Feature32 extends BaseFeature {
             },
             {
               type: "string",
+              key: "subtitle",
+              displayer: "Card Subtitle",
+              value: "",
+            },
+            {
+              type: "string",
               key: "title",
               displayer: "Title",
               value: "No hidden fees"
@@ -113,7 +133,8 @@ class Feature32 extends BaseFeature {
               key: "description",
               displayer: "Description",
               value: "Completely iterate covalent strategic theme areas via accurate e-markets."
-            }
+            },
+            INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
           ]
         },
         {
@@ -135,6 +156,12 @@ class Feature32 extends BaseFeature {
             },
             {
               type: "string",
+              key: "subtitle",
+              displayer: "Card Subtitle",
+              value: "",
+            },
+            {
+              type: "string",
               key: "title",
               displayer: "Title",
               value: "Stable performance"
@@ -144,7 +171,8 @@ class Feature32 extends BaseFeature {
               key: "description",
               displayer: "Description",
               value: "Completely iterate covalent strategic theme areas via accurate e-markets."
-            }
+            },
+            INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
           ]
         },
         {
@@ -166,6 +194,12 @@ class Feature32 extends BaseFeature {
             },
             {
               type: "string",
+              key: "subtitle",
+              displayer: "Card Subtitle",
+              value: "",
+            },
+            {
+              type: "string",
               key: "title",
               displayer: "Title",
               value: "Instant transfers"
@@ -175,7 +209,8 @@ class Feature32 extends BaseFeature {
               key: "description",
               displayer: "Description",
               value: "Completely iterate covalent strategic theme areas via accurate e-markets."
-            }
+            },
+            INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
           ]
         },
       ]
@@ -248,28 +283,39 @@ class Feature32 extends BaseFeature {
                 gridCount={{ pc: this.getPropValue("itemCount") || 3, tablet: 2, phone: 1 }}
               >
                 {cards.map((card: Card, index: number) => {
+                  const cardSubtitleExist = this.castToString(card.subtitle);
                   const titleExist = !!this.castToString(card.title);
                   const descExist = !!this.castToString(card.description);
                   const isImage = card.icon?.type === "image";
+                  const btnText = this.castToString(card.button?.text);
+                  const btnIconExist = card.button?.icon && (card.button.icon.type === "icon" ? card.button.icon.name : card.button.icon.url);
+                  const hasCardButton = btnText || btnIconExist;
 
-                  if (!titleExist && !descExist && !card.icon) return null;
+                  if (!cardSubtitleExist && !titleExist && !descExist && !card.icon && !hasCardButton) return null;
 
                   return (
                     <div
                       key={index}
                       className={this.decorateCSS("card-container")}
                     >
-                      {card.icon &&
-                        <div className={`${this.decorateCSS("icon-box")} ${!enableIconBackground && this.decorateCSS("no-bg")}`}>
-                          <Base.Media value={card.icon} className={`${this.decorateCSS("card-icon")} ${isImage && this.decorateCSS("is-image")}`} />
-                        </div>
-                      }
-                      {(titleExist || descExist) &&
-                        <Base.VerticalContent className={this.decorateCSS("card-content")}>
-                          {titleExist && <Base.H3 className={this.decorateCSS("card-title")}>{card.title}</Base.H3>}
-                          {descExist && <Base.P className={this.decorateCSS("card-description")}>{card.description}</Base.P>}
-                        </Base.VerticalContent>
-                      }
+                      <Base.VerticalContent className={this.decorateCSS("card-content")}>
+                        {card.icon &&
+                          <div className={`${this.decorateCSS("icon-box")} ${!enableIconBackground && this.decorateCSS("no-bg")}`}>
+                            <Base.Media value={card.icon} className={`${this.decorateCSS("card-icon")} ${isImage && this.decorateCSS("is-image")}`} />
+                          </div>
+                        }
+                        {cardSubtitleExist && <Base.H6 className={this.decorateCSS("card-subtitle")}>{card.subtitle}</Base.H6>}
+                        {titleExist && <Base.H5 className={this.decorateCSS("card-title")}>{card.title}</Base.H5>}
+                        {descExist && <Base.P className={this.decorateCSS("card-description")}>{card.description}</Base.P>}
+                        {hasCardButton && (
+                          <ComposerLink path={card.button.url}>
+                            <Base.Button buttonType={card.button.type} className={this.decorateCSS("card-button")}>
+                              {btnText && <Base.P className={this.decorateCSS("card-button-text")}>{card.button.text}</Base.P>}
+                              {btnIconExist && <Base.Media className={this.decorateCSS("card-button-icon")} value={card.button.icon!} />}
+                            </Base.Button>
+                          </ComposerLink>
+                        )}
+                      </Base.VerticalContent>
                     </div>
                   );
                 })}

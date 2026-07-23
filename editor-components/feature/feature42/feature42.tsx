@@ -18,7 +18,7 @@ interface ListItem {
   cardTitle: React.JSX.Element;
   text1: React.JSX.Element;
   text2: React.JSX.Element;
-  image: TypeMediaInputValue;
+  media: TypeMediaInputValue;
   button: ButtonTypeObj;
 }
 
@@ -65,7 +65,7 @@ class Feature42 extends BaseFeature {
             },
             {
               type: "media",
-              key: "image",
+              key: "media",
               displayer: "Media",
               additionalParams: {
                 availableTypes: ["image", "video"],
@@ -112,7 +112,7 @@ class Feature42 extends BaseFeature {
             },
             {
               type: "media",
-              key: "image",
+              key: "media",
               displayer: "Media",
               additionalParams: {
                 availableTypes: ["image", "video"],
@@ -159,7 +159,7 @@ class Feature42 extends BaseFeature {
             },
             {
               type: "media",
-              key: "image",
+              key: "media",
               displayer: "Media",
               additionalParams: {
                 availableTypes: ["image", "video"],
@@ -250,12 +250,12 @@ class Feature42 extends BaseFeature {
     const visibleButtons = buttons.filter(btn => this.castToString(btn.text));
     const hasContent = subtitleExist || titleExist || descriptionExist;
     const hasRightContent = items.some((item: ListItem) =>
-      item.image ||
+      item.media ||
       this.castToString(item.cardTitle) ||
       this.castToString(item.text1) ||
       this.castToString(item.text2)
     );
-    const hasAnyImage = items.some((item: ListItem) => item.image);
+    const hasAnyImage = items.some((item: ListItem) => item.media);
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
@@ -315,14 +315,14 @@ class Feature42 extends BaseFeature {
                       {mobileIcon && (<Base.Media value={mobileIcon} className={`${mobileIcon.type === "image" && this.decorateCSS("is-image")}`} />)}
                     </div>
                   </div>
-                  {item.image && (
+                  {item.media && (
                     <div className={`${this.decorateCSS("image-wrapper")} ${!(cardSubTitleExist || cardTitleExist || text1Exist || text2Exist) && this.decorateCSS("full-width")}`}>
-                      <Base.Media value={item.image} className={this.decorateCSS("itemImage")} />
+                      <Base.Media value={item.media} className={this.decorateCSS("itemImage")} />
                       {enableOverlay && (<div className={this.decorateCSS("overlay")}></div>)}
                     </div>
                   )}
                   {(cardTitleExist || text1Exist || text2Exist) && (
-                    <div className={`${this.decorateCSS("sectionsWrapper")} ${!item.image && this.decorateCSS("no-image")}`}>
+                    <Base.VerticalContent className={`${this.decorateCSS("sectionsWrapper")} ${!item.media && this.decorateCSS("no-image")}`}>
                       {cardSubTitleExist && (<Base.H4 className={this.decorateCSS("cardSubTitle")}>{item.cardSubTitle}</Base.H4>)}
                       {cardTitleExist && (<Base.H3 className={this.decorateCSS("cardTitle")}>{item.cardTitle}</Base.H3>)}
                       {text1Exist && (<Base.P className={this.decorateCSS("sectionText1")}>{item.text1}</Base.P>)}
@@ -334,7 +334,7 @@ class Feature42 extends BaseFeature {
                           </Base.Button>
                         </ComposerLink>
                       )}
-                    </div>
+                    </Base.VerticalContent>
                   )}
                   {enableLine && <div className={`${this.decorateCSS("line")} ${this.decorateCSS("line-bottom")}`}></div>}
                 </div>

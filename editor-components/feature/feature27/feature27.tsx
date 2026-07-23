@@ -1,8 +1,13 @@
-import { BaseFeature } from "../../EditorComponent";
+import { BaseFeature, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./feature27.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 import { INPUTS } from "../../../custom-hooks/input-templates";
+
+type MediaCard = {
+  media: TypeMediaInputValue;
+  overlay: boolean;
+};
 
 class Feature27Component extends BaseFeature {
   constructor(props?: any) {
@@ -31,13 +36,6 @@ class Feature27Component extends BaseFeature {
     });
 
     this.addProp({
-      type: "boolean",
-      key: "overlay",
-      displayer: "Overlay",
-      value: false,
-    });
-
-    this.addProp({
       type: "array",
       key: "buttons",
       displayer: "Buttons",
@@ -48,14 +46,27 @@ class Feature27Component extends BaseFeature {
     });
 
     this.addProp({
-      type: "media",
-      key: "image",
+      type: "object",
+      key: "mediaCard",
       displayer: "Media",
-      additionalParams: { availableTypes: ["image","video"] },
-      value: {
-        type: "image",
-        url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6908b7c52d05c1002bf4d35e?alt=media",
-      },
+      value: [
+        {
+          type: "media",
+          key: "media",
+          displayer: "Media",
+          additionalParams: { availableTypes: ["image", "video"] },
+          value: {
+            type: "image",
+            url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6908b7c52d05c1002bf4d35e?alt=media",
+          },
+        },
+        {
+          type: "boolean",
+          key: "overlay",
+          displayer: "Overlay",
+          value: false,
+        },
+      ],
     });
   }
 
@@ -70,8 +81,10 @@ class Feature27Component extends BaseFeature {
     const subtitleExist = this.castToString(subtitle);
     const description = this.getPropValue("description");
     const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
-    const image = this.getPropValue("image");
-    const overlay = this.getPropValue("overlay");
+    const mediaCard = this.castToObject<MediaCard>("mediaCard");
+    const media = mediaCard.media;
+    const overlay = !!mediaCard.overlay;
+    const mediaExist = media && media.url;
     const alignment = Base.getContentAlignment();
     const isLeftContainerExist = isTitleExist || this.castToString(description) || buttons.length > 0;
 
@@ -83,7 +96,7 @@ class Feature27Component extends BaseFeature {
               alignment === "left"
                 ? this.decorateCSS("alignment-left")
                 : this.decorateCSS("alignment-center")
-            }`}
+            } ${!mediaExist ? this.decorateCSS("no-media") : ""}`}
           >
             {isLeftContainerExist && (
               <Base.VerticalContent className={this.decorateCSS("left-container")}>
@@ -141,14 +154,14 @@ class Feature27Component extends BaseFeature {
               </Base.VerticalContent>
             )}
 
-            {image && (
-              <div 
+            {mediaExist && (
+              <div
                 className={`${this.decorateCSS("right-container")} ${
                   !isLeftContainerExist ? this.decorateCSS("right-container-alone") : ""
                 }`}
               >
-                <Base.Media value={image} className={this.decorateCSS("image-circle")} />
-                {overlay && image?.url && <div className={this.decorateCSS("overlay")}></div>}
+                <Base.Media value={media} className={this.decorateCSS("image-circle")} />
+                {overlay && <div className={this.decorateCSS("overlay")}></div>}
               </div>
             )}
           </div>

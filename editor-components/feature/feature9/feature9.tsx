@@ -35,6 +35,22 @@ class Feature9 extends BaseFeature {
     });
 
     this.addProp({
+      type: "string",
+      key: "description",
+      displayer: "Description",
+      value: "",
+    });
+
+    this.addProp({
+      type: "array",
+      key: "buttons",
+      displayer: "Buttons",
+      value: [
+        INPUTS.BUTTON("button", "Button", "View our services", "", null, null, "Primary")
+      ]
+    });
+
+    this.addProp({
       type: "array",
       key: "cards",
       displayer: "Cards",
@@ -55,7 +71,7 @@ class Feature9 extends BaseFeature {
               key: "icon",
               displayer: "Icon",
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon", "image"],
               },
               value: {
                 type: "icon",
@@ -92,7 +108,7 @@ class Feature9 extends BaseFeature {
               key: "icon",
               displayer: "Icon",
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon", "image"],
               },
               value: {
                 type: "icon",
@@ -129,7 +145,7 @@ class Feature9 extends BaseFeature {
               key: "icon",
               displayer: "Icon",
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon", "image"],
               },
               value: {
                 type: "icon",
@@ -166,7 +182,7 @@ class Feature9 extends BaseFeature {
               key: "icon",
               displayer: "Icon",
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon", "image"],
               },
               value: {
                 type: "icon",
@@ -203,7 +219,7 @@ class Feature9 extends BaseFeature {
               key: "icon",
               displayer: "Icon",
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon", "image"],
               },
               value: {
                 type: "icon",
@@ -226,22 +242,31 @@ class Feature9 extends BaseFeature {
         },
       ]
     });
-
-    this.addProp({
-      type: "array",
-      key: "buttons",
-      displayer: "Buttons",
-      value: [
-        INPUTS.BUTTON("button", "Button", "View our services", "", null, null, "Primary")
-      ]
-    });
   }
 
   static getName(): string {
     return "Feature 9";
   }
 
+  componentDidMount() {
+    this.setupObserver();
+  }
+
+  componentDidUpdate() {
+    const cards = this.castToObject<Card[]>("cards");
+    if (this.getComponentState("cardLength") !== cards.length) {
+      this.setupObserver();
+    }
+  }
+
+  componentWillUnmount() {
+    if (this.observer) {
+      this.observer.disconnect();
+    }
+  }
+
   setupObserver() {
+    if (typeof document === 'undefined') return;
     const cardElements = document.querySelectorAll("." + this.decorateCSS("card"));
 
     const callback = (entries: IntersectionObserverEntry[]) => {
@@ -270,6 +295,9 @@ class Feature9 extends BaseFeature {
     const cardElements = typeof document !== "undefined" ? document.querySelectorAll("." + this.decorateCSS("card")) : ([] as unknown as NodeListOf<Element>);
     const title = this.getPropValue("title");
     const subtitle = this.getPropValue("subtitle");
+    const description = this.getPropValue("description");
+
+    const hasValidButtons = buttons && buttons.some((button: INPUTS.CastedButton) => this.castToString(button.text));
 
     const cardsLengthIsChanged = this.getComponentState("cardLength") != cardElements.length;
 
@@ -277,13 +305,13 @@ class Feature9 extends BaseFeature {
       this.setupObserver();
     }
 
-    const wrapperExist = this.castToString(title) || this.castToString(subtitle) || cards?.length > 0;
+    const wrapperExist = this.castToString(title) || this.castToString(subtitle) || this.castToString(description) || hasValidButtons || cards?.length > 0;
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
         {wrapperExist && <div className={this.decorateCSS("wrapper")}>
-            {(this.castToString(title) || this.castToString(subtitle)) &&
+            {(this.castToString(title) || this.castToString(subtitle) || this.castToString(description) || hasValidButtons) &&
               <Base.VerticalContent className={this.decorateCSS("header")}>
                 {this.castToString(subtitle) &&
                   <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
@@ -295,6 +323,27 @@ class Feature9 extends BaseFeature {
                     {title}
                   </Base.SectionTitle>
                 }
+                {this.castToString(description) &&
+                  <Base.SectionDescription className={this.decorateCSS("description")}>
+                    {description}
+                  </Base.SectionDescription>
+                }
+                {hasValidButtons && (
+                  <div className={this.decorateCSS("buttons-container")}>
+                    {buttons.map((button: INPUTS.CastedButton, index: number) => {
+                      if (this.castToString(button.text)) {
+                        return (
+                          <ComposerLink key={index} path={button.url}>
+                            <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
+                              <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
+                            </Base.Button>
+                          </ComposerLink>
+                        );
+                      }
+                      return null;
+                    })}
+                  </div>
+                )}
               </Base.VerticalContent>
             }
             {cards?.length > 0 &&
@@ -312,62 +361,41 @@ class Feature9 extends BaseFeature {
                       key={index}
                       className={this.decorateCSS("card")}
                     >
-                      <div className={this.decorateCSS("card-inner")}>
-                        {(card.icon || titleExist) &&
-                          <div className={this.decorateCSS("card-header")}>
-                            {card.icon &&
-                              <div className={this.decorateCSS("icon-container")}>
-                                <Base.Media
-                                  value={card.icon}
-                                  className={this.decorateCSS("icon")}
-                                />
-                              </div>
-                            }
-                            <div className={this.decorateCSS("card-title-container")}>
-                              {numExist &&
-                                <Base.H2 className={this.decorateCSS("card-number")}>
-                                  {card.num}
-                                </Base.H2>
-                              }
-                              {titleExist &&
-                                <Base.H2 className={this.decorateCSS("card-title")}>
-                                  {card.title}
-                                </Base.H2>
-                              }
-                            </div>
+                      <Base.VerticalContent className={this.decorateCSS("card-inner")}>
+                        {card.icon && (
+                          <div className={this.decorateCSS("icon-container")}>
+                            <Base.Media
+                              value={card.icon}
+                              className={this.decorateCSS("icon")}
+                            />
                           </div>
-                        }
-                        {descExist &&
-                          <div className={this.decorateCSS("description-container")}>
-                            <Base.H4 className={this.decorateCSS("description")}>
-                              {card.description}
-                            </Base.H4>
+                        )}
+                        {(numExist || titleExist) && (
+                          <div className={this.decorateCSS("card-title-container")}>
+                            {numExist && (
+                              <Base.H5 className={this.decorateCSS("card-number")}>
+                                {card.num}
+                              </Base.H5>
+                            )}
+                            {titleExist && (
+                              <Base.H5 className={this.decorateCSS("card-title")}>
+                                {card.title}
+                              </Base.H5>
+                            )}
                           </div>
-                        }
-                      </div>
+                        )}
+                        {descExist && (
+                          <Base.P className={this.decorateCSS("description")}>
+                            {card.description}
+                          </Base.P>
+                        )}
+                      </Base.VerticalContent>
                     </div>
                   );
                 })}
               </div>
             }
           </div>}
-          {(buttons?.length > 0) && (
-            <div className={this.decorateCSS("buttons-container")}>
-              {buttons.map((button: INPUTS.CastedButton, index: number) => {
-                if (this.castToString(button.text)) {
-                  return (
-                    <ComposerLink key={index} path={button.url}>
-                      <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
-                        <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
-                      </Base.Button>
-                    </ComposerLink>
-                  );
-                }
-                return null;
-              })}
-            </div>
-          )}
-
         </Base.MaxContent>
       </Base.Container>
     );

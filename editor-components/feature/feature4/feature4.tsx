@@ -11,8 +11,9 @@ type Card = {
   subtitle: React.JSX.Element;
   icon: TypeMediaInputValue;
   description: React.JSX.Element;
-  image: TypeMediaInputValue;
+  media: TypeMediaInputValue;
   buttons: TypeButton[];
+  overlay: boolean;
 };
 
 
@@ -20,28 +21,29 @@ class Feature4 extends BaseFeature {
   constructor(props?: any) {
     super(props, styles);
     this.addProp({
-      type: "number",
-      key: "itemCount",
-      displayer: "Item Count in a Row",
-      value: 3,
-    });
-    this.addProp({
-      type: "media",
-      key: "componentBackground",
-      displayer: "Background Image",
-      additionalParams: {
-        availableTypes: ["image"],
-      },
-      value: {
-        type: "image",
-        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6724ecef7acba6002c5dc76a?alt=media",
-      },
-    });
-    this.addProp({
-      type: "boolean",
-      key: "imageOverlay",
-      displayer: "Overlay",
-      value: true,
+      type: "object",
+      key: "background",
+      displayer: "Background Media",
+      value: [
+        {
+          type: "media",
+          key: "backgroundMedia",
+          displayer: "Background Media",
+          additionalParams: {
+            availableTypes: ["image", "video"],
+          },
+          value: {
+            type: "image",
+            url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6724ecef7acba6002c5dc76a?alt=media",
+          },
+        },
+        {
+          type: "boolean",
+          key: "imageOverlay",
+          displayer: "Overlay",
+          value: false,
+        },
+      ],
     });
 
     this.addProp({
@@ -64,7 +66,29 @@ class Feature4 extends BaseFeature {
       value: "",
     });
 
-    this.addProp(INPUTS.BUTTON("link", "Link Button", "Navigating possibilities", "", null, null, "Link"));
+    this.addProp({
+      type: "array",
+      key: "buttons",
+      displayer: "Button",
+      value: [
+        INPUTS.BUTTON("button", "Button", "Navigating possibilities", "", null, null, "Link"),
+      ]
+    });
+
+    this.addProp({
+      type: "number",
+      key: "itemCount",
+      displayer: "Item Count in a Row",
+      value: 3,
+    });
+
+    this.addProp({
+      type: "boolean",
+      key: "iconBackground",
+      displayer: "Icon Background",
+      value: true,
+    });
+
     this.addProp({
       type: "array",
       key: "cards",
@@ -86,7 +110,7 @@ class Feature4 extends BaseFeature {
               key: "icon",
               displayer: "Icon",
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon", "image"],
               },
               value: {
                 type: "icon",
@@ -108,10 +132,10 @@ class Feature4 extends BaseFeature {
             },
             {
               type: "media",
-              key: "image",
-              displayer: "Image",
+              key: "media",
+              displayer: "Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
@@ -126,8 +150,14 @@ class Feature4 extends BaseFeature {
               key: "buttons",
               displayer: "Buttons",
               value: [
-                INPUTS.BUTTON("link", "Link Button", "Navigating possibilities", "", null, null, "Link")
+                INPUTS.BUTTON("link", "Link Button", "Navigating possibilities", "", null, null, "White")
               ],
+            },
+            {
+              type: "boolean",
+              key: "overlay",
+              displayer: "Overlay",
+              value: true,
             },
           ],
         },
@@ -147,7 +177,7 @@ class Feature4 extends BaseFeature {
               key: "icon",
               displayer: "Icon",
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon", "image"],
               },
               value: {
                 type: "icon",
@@ -169,10 +199,10 @@ class Feature4 extends BaseFeature {
             },
             {
               type: "media",
-              key: "image",
-              displayer: "Image",
+              key: "media",
+              displayer: "Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
@@ -187,8 +217,14 @@ class Feature4 extends BaseFeature {
               },
               displayer: "Buttons",
               value: [
-                INPUTS.BUTTON("link", "Link Button", "More Info", "", null, null, "Link")
+                INPUTS.BUTTON("link", "Link Button", "More Info", "", null, null, "White")
               ],
+            },
+            {
+              type: "boolean",
+              key: "overlay",
+              displayer: "Overlay",
+              value: true,
             },
           ],
         },
@@ -208,7 +244,7 @@ class Feature4 extends BaseFeature {
               key: "icon",
               displayer: "Icon",
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon", "image"],
               },
               value: {
                 type: "icon",
@@ -230,10 +266,10 @@ class Feature4 extends BaseFeature {
             },
             {
               type: "media",
-              key: "image",
-              displayer: "Image",
+              key: "media",
+              displayer: "Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
@@ -248,8 +284,14 @@ class Feature4 extends BaseFeature {
               },
               displayer: "Buttons",
               value: [
-                INPUTS.BUTTON("link", "Link Button", "More Info", "", null, null, "Link")
+                INPUTS.BUTTON("link", "Link Button", "More Info", "", null, null, "White")
               ],
+            },
+            {
+              type: "boolean",
+              key: "overlay",
+              displayer: "Overlay",
+              value: true,
             },
           ],
         },
@@ -269,7 +311,7 @@ class Feature4 extends BaseFeature {
               key: "icon",
               displayer: "Icon",
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon", "image"],
               },
               value: {
                 type: "icon",
@@ -291,10 +333,10 @@ class Feature4 extends BaseFeature {
             },
             {
               type: "media",
-              key: "image",
-              displayer: "Image",
+              key: "media",
+              displayer: "Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
@@ -309,8 +351,14 @@ class Feature4 extends BaseFeature {
               },
               displayer: "Buttons",
               value: [
-                INPUTS.BUTTON("link", "Link Button", "More Info", "", null, null, "Link")
+                INPUTS.BUTTON("link", "Link Button", "More Info", "", null, null, "White")
               ],
+            },
+            {
+              type: "boolean",
+              key: "overlay",
+              displayer: "Overlay",
+              value: true,
             },
           ],
         },
@@ -330,7 +378,7 @@ class Feature4 extends BaseFeature {
               key: "icon",
               displayer: "Icon",
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon", "image"],
               },
               value: {
                 type: "icon",
@@ -352,10 +400,10 @@ class Feature4 extends BaseFeature {
             },
             {
               type: "media",
-              key: "image",
-              displayer: "Image",
+              key: "media",
+              displayer: "Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
@@ -370,8 +418,14 @@ class Feature4 extends BaseFeature {
               },
               displayer: "Buttons",
               value: [
-                INPUTS.BUTTON("link", "Link Button", "More Info", "", null, null, "Link")
+                INPUTS.BUTTON("link", "Link Button", "More Info", "", null, null, "White")
               ],
+            },
+            {
+              type: "boolean",
+              key: "overlay",
+              displayer: "Overlay",
+              value: true,
             },
           ],
         },
@@ -387,32 +441,44 @@ class Feature4 extends BaseFeature {
     const cards = this.castToObject<Card[]>("cards");
 
     const itemCount = this.getPropValue("itemCount")
-    const linkButton: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("link");
+    const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons") || [];
+    const iconBackground = !!this.getPropValue("iconBackground");
 
     const subtitleExist = this.castToString(this.getPropValue("subtitle"));
     const titleExist = this.castToString(this.getPropValue("title"));
-    const linkTextExist = this.castToString(linkButton.text);
+    const hasValidButtons = buttons.some((btn) => this.castToString(btn.text));
 
-    const imageOverlay = !!this.getPropValue("imageOverlay");
+    const background = this.castToObject<any>("background");
+    const backgroundMedia = background?.backgroundMedia;
+    const hasBg = !!(backgroundMedia && (backgroundMedia.type === "icon" ? backgroundMedia.name : backgroundMedia.url));
+    const imageOverlay = hasBg && !!background?.imageOverlay;
 
     const subtitleType = Base.getSectionSubTitleType();
+    const alignment = Base.getContentAlignment();
 
     const descriptionExist = this.castToString(this.getPropValue("description"));
     const description = this.getPropValue("description");
 
     return (
-      <Base.Container
-        className={this.decorateCSS("container")}
-        style={{ backgroundImage: `url(${this.getPropValue("componentBackground")?.url})` }}>
+      <Base.Container className={this.decorateCSS("container")}>
+        {hasBg && (
+          <Base.Media
+            value={backgroundMedia}
+            className={this.decorateCSS("background-media")}
+          />
+        )}
+        {imageOverlay && (
+          <div className={this.decorateCSS("background-overlay")} />
+        )}
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <Base.ListGrid gridCount={{ pc: itemCount, tablet: 1 }} className={this.decorateCSS("content")}>
-            {(subtitleExist || titleExist || linkTextExist) && (
-              <Base.VerticalContent className={this.decorateCSS("featured-card")}>
+          <Base.ListGrid gridCount={{ pc: itemCount, tablet: 3, phone: 1 }} className={this.decorateCSS("content")}>
+            {(subtitleExist || titleExist || hasValidButtons) && (
+              <Base.VerticalContent className={`${this.decorateCSS("featured-card")} ${alignment === "center" ? this.decorateCSS("alignment-center") : ""}`}>
                 {subtitleExist && (
                   <Base.SectionSubTitle className={`
                     ${this.decorateCSS("section-subtitle")}
-                    ${this.getPropValue("componentBackground")?.url && (subtitleType !== "badge") ? this.decorateCSS("black") : ""}
-                    ${this.getPropValue("componentBackground")?.url && (subtitleType === "badge") ? this.decorateCSS("badge-with-bg") : ""}
+                    ${hasBg && (subtitleType !== "badge") ? this.decorateCSS("black") : ""}
+                    ${hasBg && (subtitleType === "badge") ? this.decorateCSS("badge-with-bg") : ""}
                   `}>
                     {this.getPropValue("subtitle")}
                   </Base.SectionSubTitle>
@@ -420,23 +486,32 @@ class Feature4 extends BaseFeature {
                 {titleExist && (
                   <Base.SectionTitle className={`
                     ${this.decorateCSS("section-title")}
-                    ${this.getPropValue("componentBackground")?.url ? this.decorateCSS("black") : ""}
+                    ${hasBg ? this.decorateCSS("black") : ""}
                   `}>
                     {this.getPropValue("title")}
                   </Base.SectionTitle>
                 )}
                 {descriptionExist && (
-                  <Base.SectionDescription className={`${this.decorateCSS("description")} ${this.getPropValue("componentBackground")?.url && this.decorateCSS("black")}`}>                    
-                  {description}
+                  <Base.SectionDescription className={`${this.decorateCSS("description")} ${hasBg && this.decorateCSS("black")}`}>
+                    {description}
                   </Base.SectionDescription>
                 )}
-                {linkTextExist && (
-                  <Base.Row className={this.decorateCSS("card-link-container")} >
-                    <ComposerLink path={linkButton.url}>
-                      <Base.Button buttonType={linkButton.type} className={`${this.getPropValue("componentBackground")?.url ? this.decorateCSS("featured-card-link-with-image") : this.decorateCSS("featured-card-link")}`}>
-                        {linkButton.text}
-                      </Base.Button>
-                    </ComposerLink>
+                {hasValidButtons && (
+                  <Base.Row className={this.decorateCSS("card-link-container")}>
+                    {buttons.map((btn: INPUTS.CastedButton, idx: number) => {
+                      const buttonTextExist = this.castToString(btn.text);
+                      if (!buttonTextExist) return null;
+                      return (
+                        <ComposerLink key={idx} path={btn.url}>
+                          <Base.Button
+                            buttonType={btn.type}
+                            className={`${hasBg ? this.decorateCSS("featured-card-link-with-image") : this.decorateCSS("featured-card-link")}`}
+                          >
+                            {btn.text}
+                          </Base.Button>
+                        </ComposerLink>
+                      );
+                    })}
                   </Base.Row>
                 )}
               </Base.VerticalContent>
@@ -446,8 +521,9 @@ class Feature4 extends BaseFeature {
               const subtitleExist = !!this.castToString(card.subtitle);
               const descExist = !!this.castToString(card.description);
               const iconExist = !!card.icon?.name;
-              const imageExist = !!card.image?.url;
+              const imageExist = !!card.media?.url;
               const buttonsExist = card.buttons?.length > 0;
+              const overlayExist = !!card.overlay;
 
               const shouldRender = (titleExist || subtitleExist || descExist || iconExist || imageExist || buttonsExist);
 
@@ -455,30 +531,31 @@ class Feature4 extends BaseFeature {
                 return (
                   <div
                     key={index}
-                    className={`${this.getPropValue("componentBackground")?.url ? this.decorateCSS("card-item-count") : this.decorateCSS("card-item-count-no-bg")}`}>
+                    className={`${hasBg ? this.decorateCSS("card-item-count") : this.decorateCSS("card-item-count-no-bg")}`}>
                     <Base.VerticalContent className={this.decorateCSS("vertical")}>
                       {!!card.icon && (
-
-                        <div className={`${this.getPropValue("componentBackground")?.url ? this.decorateCSS("icon-container") : this.decorateCSS("icon-container-no-bg")}`}>
+                        <div
+                          className={`
+                            ${hasBg ? this.decorateCSS("icon-container") : this.decorateCSS("icon-container-no-bg")}
+                            ${!iconBackground ? this.decorateCSS("no-background") : ""}
+                          `}
+                        >
                           <Base.Media
                             value={card.icon}
                             className={this.decorateCSS("icon")}
                           />
                         </div>
-                      )
-                      }
+                      )}
                       {
                         titleExist && (
-                          <Base.H3 className={`${this.decorateCSS("title")}
-                    ${this.getPropValue("componentBackground")?.url && this.decorateCSS("title-with-bg")} } `}>
+                          <Base.H5 className={`${this.decorateCSS("title")} ${hasBg && this.decorateCSS("title-with-bg")}`}>
                             {card.title}
-                          </Base.H3>
+                          </Base.H5>
                         )
                       }
                       {
                         subtitleExist && (
-                          <Base.P className={`${this.decorateCSS("subtitle")} 
-                        ${this.getPropValue("componentBackground")?.url && this.decorateCSS("subtitle-with-bg")} }`}>
+                          <Base.P className={`${this.decorateCSS("subtitle")} ${hasBg && this.decorateCSS("subtitle-with-bg")}`}>
                             {card.subtitle}
                           </Base.P>
                         )
@@ -489,14 +566,14 @@ class Feature4 extends BaseFeature {
                       (descExist || card?.buttons?.length > 0) && (
                         <div
                           className={this.decorateCSS("overlay")}
-                          style={{ backgroundImage: `url(${card.image?.url})` }}>
+                          style={{ backgroundImage: `url(${card.media?.url})` }}>
                           <Base.VerticalContent className={`${this.decorateCSS("overlay-content")}
-                            ${imageOverlay ? this.decorateCSS("apply-overlay") : ""}`}>
+                            ${overlayExist ? this.decorateCSS("apply-overlay") : ""}`}>
                             {descExist && (
                               <Base.P
                                 className={`
                                 ${this.decorateCSS("long-text")}
-                                ${card.image?.url || imageOverlay ? this.decorateCSS("image-or-overlay-exist") : ""}
+                                ${card.media?.url || overlayExist ? this.decorateCSS("image-or-overlay-exist") : ""}
                               `}
                               >
                                 {card.description}
@@ -514,7 +591,7 @@ class Feature4 extends BaseFeature {
                                           buttonType={item.type}
                                           key={index}
                                           className={`${this.decorateCSS("overlay-button")} 
-                                              ${card.image?.url || imageOverlay ? this.decorateCSS("image-or-overlay-exist") : ""}`}>
+                                              ${card.media?.url || overlayExist ? this.decorateCSS("image-or-overlay-exist") : ""}`}>
                                           <ComposerLink path={item.page}>
                                             {item.text}
                                           </ComposerLink>

@@ -1,7 +1,44 @@
 @use '../../../composer-base-components/base/utitilities/viewports.module.scss' as *;
 
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--composer-overlay-color);
+    pointer-events: none;
+    border-radius: var(--composer-border-radius-md);
+}
+
 .container {
     .max-content{
+        display: flex;
+        flex-direction: column;
+        gap: var(--composer-gap-lg);
+
+        .top-content {
+            width: 100%;
+
+            .subtitle,
+            .title,
+            .description {
+                content: "";
+            }
+
+            .button-container {
+                display: flex;
+                flex-wrap: wrap;
+                gap: var(--composer-gap-sm);
+                .button {
+                    .button-text,
+                    .button-icon {
+                        content: "";
+                    }
+                }
+            }
+        }
+
         .grid-container{
             display: flex;
             .card {
@@ -63,6 +100,8 @@
                     transition: all 0.4s ease;
                     display: flex;
                     flex-direction: row;
+                    flex-wrap: wrap;
+                    align-items: center;
                     gap: var(--composer-gap-md);
                     overflow: hidden;
                     
@@ -86,20 +125,30 @@
                     display: flex;
                     flex-direction: column;
                     align-items: baseline;
-                    gap: calc(1.5*(var(--composer-gap-sm)));
                 }
 
                 .right-side {
                     flex-shrink: 0;
                     display: flex;
-                    align-items: center;
+                    align-items: flex-start;
+                    .button-container {
+                        display: flex;
+                        flex-wrap: wrap;
+                        gap: var(--composer-gap-sm);
+                    }
+                }
+
+                .card-subtitle {
+                    color: var(--composer-font-color-primary);
+                    opacity: 1;
+                    transition: all 0.3s ease 0.5s;
+                    text-align: left;
                 }
 
                 .card-title {
-                    margin-top: var(--composer-gap-md);
-                    margin-bottom: 0;
                     white-space: nowrap;
                     color: var(--composer-font-color-primary);
+                    font-weight: 800;
                     opacity: 1;
                     transition: all 0.3s ease 0.5s;
                     text-align: left;
@@ -109,7 +158,6 @@
                     color: var(--composer-font-color-primary);
                     opacity: 0;
                     transition: all 0.3s ease 0.6s;
-                    margin: 0;
                     text-align: left;
                 }
 
@@ -120,8 +168,13 @@
                     white-space: nowrap;
 
                     .button-text {
+                        content: "";
                         color: var(--composer-font-color-primary);
                         white-space: nowrap;
+                    }
+
+                    .button-icon {
+                        content: "";
                     }
 
                     &:hover {
@@ -144,7 +197,8 @@
     min-width: 300px;
 
     .text-content {
-        height: 150px !important;
+        height: auto !important;
+        min-height: 150px;
         padding: var(--composer-gap-xl) var(--composer-gap-md) var(--composer-gap-md);
         
         &::after {
@@ -228,7 +282,7 @@
 
             .text-content {
                 height: 100% !important;
-                padding: 0 !important;
+                padding: var(--composer-gap-md) 0 0 !important;
             }
 
             .card-description {
@@ -251,8 +305,7 @@
 
             .text-content {
                 height: 100% !important;
-                padding: 0 !important;
-                
+                padding: var(--composer-gap-md) 0 0 !important;
             }
 
             .card-title {

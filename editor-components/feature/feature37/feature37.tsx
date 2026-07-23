@@ -14,8 +14,10 @@ type ButtonTypeObj = {
 type Card = {
     title: React.JSX.Element;
     icon: TypeMediaInputValue;
+    hoverSubtitle: React.JSX.Element;
     hoverTitle: React.JSX.Element;
     hoverDescription: React.JSX.Element;
+    Button: INPUTS.CastedButton;
 };
 
 class Feature37 extends BaseFeature {
@@ -73,6 +75,12 @@ class Feature37 extends BaseFeature {
                         },
                         {
                             type: "string",
+                            key: "hoverSubtitle",
+                            displayer: "Subtitle",
+                            value: "",
+                        },
+                        {
+                            type: "string",
                             key: "hoverTitle",
                             displayer: "Hover Title",
                             value: "Quick Start",
@@ -83,6 +91,7 @@ class Feature37 extends BaseFeature {
                             displayer: "Hover Description",
                             value: "Completely iterate covalent strategic theme areas via accurate e-markets.",
                         },
+                        INPUTS.BUTTON("Button", "Button", "", "", null, null, "Primary"),
                     ]
                 },
                 {
@@ -110,6 +119,12 @@ class Feature37 extends BaseFeature {
                         },
                         {
                             type: "string",
+                            key: "hoverSubtitle",
+                            displayer: "Subtitle",
+                            value: "",
+                        },
+                        {
+                            type: "string",
                             key: "hoverTitle",
                             displayer: "Hover Title",
                             value: "24/7 Support",
@@ -120,6 +135,7 @@ class Feature37 extends BaseFeature {
                             displayer: "Hover Description",
                             value: "Completely iterate covalent strategic theme areas via accurate e-markets.",
                         },
+                        INPUTS.BUTTON("Button", "Button", "", "", null, null, "Primary"),
                     ]
                 },
                 {
@@ -147,6 +163,12 @@ class Feature37 extends BaseFeature {
                         },
                         {
                             type: "string",
+                            key: "hoverSubtitle",
+                            displayer: "Subtitle",
+                            value: "",
+                        },
+                        {
+                            type: "string",
                             key: "hoverTitle",
                             displayer: "Hover Title",
                             value: "Free Guides",
@@ -157,6 +179,7 @@ class Feature37 extends BaseFeature {
                             displayer: "Hover Description",
                             value: "Completely iterate covalent strategic theme areas via accurate e-markets.",
                         },
+                        INPUTS.BUTTON("Button", "Button", "", "", null, null, "Primary"),
                     ]
                 },
                 {
@@ -184,6 +207,12 @@ class Feature37 extends BaseFeature {
                         },
                         {
                             type: "string",
+                            key: "hoverSubtitle",
+                            displayer: "Subtitle",
+                            value: "",
+                        },
+                        {
+                            type: "string",
                             key: "hoverTitle",
                             displayer: "Hover Title",
                             value: "Modern Design",
@@ -194,6 +223,7 @@ class Feature37 extends BaseFeature {
                             displayer: "Hover Description",
                             value: "Completely iterate covalent strategic theme areas via accurate e-markets.",
                         },
+                        INPUTS.BUTTON("Button", "Button", "", "", null, null, "Primary"),
                     ]
                 },
                 {
@@ -221,6 +251,12 @@ class Feature37 extends BaseFeature {
                         },
                         {
                             type: "string",
+                            key: "hoverSubtitle",
+                            displayer: "Subtitle",
+                            value: "",
+                        },
+                        {
+                            type: "string",
                             key: "hoverTitle",
                             displayer: "Hover Title",
                             value: "High Quality",
@@ -231,6 +267,7 @@ class Feature37 extends BaseFeature {
                             displayer: "Hover Description",
                             value: "Completely iterate covalent strategic theme areas via accurate e-markets.",
                         },
+                        INPUTS.BUTTON("Button", "Button", "", "", null, null, "Primary"),
                     ]
                 },
                 {
@@ -258,6 +295,12 @@ class Feature37 extends BaseFeature {
                         },
                         {
                             type: "string",
+                            key: "hoverSubtitle",
+                            displayer: "Subtitle",
+                            value: "",
+                        },
+                        {
+                            type: "string",
                             key: "hoverTitle",
                             displayer: "Hover Title",
                             value: "Premium Addons",
@@ -268,6 +311,7 @@ class Feature37 extends BaseFeature {
                             displayer: "Hover Description",
                             value: "Completely iterate covalent strategic theme areas via accurate e-markets.",
                         },
+                        INPUTS.BUTTON("Button", "Button", "", "", null, null, "Primary"),
                     ]
                 },
             ],
@@ -351,23 +395,34 @@ class Feature37 extends BaseFeature {
                             {cards?.length > 0 && (
                                 <Base.ListGrid ref={this.cardsRootRef} gridCount={{ pc: this.getPropValue("itemCount") || 3, tablet: 3 }} className={this.decorateCSS("cards-container")}>
                                     {cards.map((card: Card, index: number) => {
-                                        const titleExist = this.castToString(card.title);
+                                        const cardTitleExist = this.castToString(card.title);
+                                        const hoverSubtitleExist = this.castToString(card.hoverSubtitle);
                                         const hoverTitleExist = this.castToString(card.hoverTitle);
                                         const hoverDescExist = this.castToString(card.hoverDescription);
                                         const iconExist = card.icon;
                                         const isImage = card.icon?.type === "image";
-                                        const cardHasContent = titleExist || hoverTitleExist || hoverDescExist || iconExist;
+                                        const hoverBtnText = this.castToString(card.Button?.text);
+                                        const hoverBtnExist = !!hoverBtnText;
+                                        const cardHasContent = cardTitleExist || hoverSubtitleExist || hoverTitleExist || hoverDescExist || iconExist || hoverBtnExist;
                                         if (!cardHasContent) return null;
                                         return (
                                             <div key={index} className={this.decorateCSS("card")}>
                                                 <div className={this.decorateCSS("card-inner")}>
                                                     <div className={`${this.decorateCSS("face")} ${this.decorateCSS("front")}`}>
                                                         {iconExist && (<div className={this.decorateCSS("icon-wrapper")}> <Base.Media value={card.icon} className={`${this.decorateCSS("card-icon")} ${isImage && this.decorateCSS("is-image")}`} />  </div>)}
-                                                        {titleExist && (<Base.H3 className={this.decorateCSS("card-title")}>{card.title}</Base.H3>)}
+                                                        {cardTitleExist && (<Base.H3 className={this.decorateCSS("card-title")}>{card.title}</Base.H3>)}
                                                     </div>
                                                     <Base.VerticalContent className={`${this.decorateCSS("face")} ${this.decorateCSS("top")}`}>
+                                                        {hoverSubtitleExist && (<Base.H6 className={this.decorateCSS("card-hover-subtitle")}>{card.hoverSubtitle}</Base.H6>)}
                                                         {hoverTitleExist && (<Base.H3 className={this.decorateCSS("card-hover-title")}>{card.hoverTitle}</Base.H3>)}
                                                         {hoverDescExist && (<Base.P className={this.decorateCSS("card-description")}>{card.hoverDescription}</Base.P>)}
+                                                        {hoverBtnExist && (
+                                                            <ComposerLink path={card.Button?.url || ""}>
+                                                                <Base.Button buttonType={card.Button?.type || "Primary"} className={this.decorateCSS("card-hover-button")}>
+                                                                    <Base.P className={this.decorateCSS("card-hover-button-text")}>{card.Button.text}</Base.P>
+                                                                </Base.Button>
+                                                            </ComposerLink>
+                                                        )}
                                                     </Base.VerticalContent>
                                                 </div>
                                             </div>

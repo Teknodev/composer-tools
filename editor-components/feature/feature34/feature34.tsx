@@ -306,7 +306,7 @@ class Feature34 extends BaseFeature {
     this.addProp({
       type: "number",
       key: "itemCount",
-      displayer: "Item Count In a Row",
+      displayer: "Item Count in a Row",
       value: 4,
     });
   }
@@ -350,7 +350,7 @@ class Feature34 extends BaseFeature {
 
           {showFeatures && (
             <Base.ListGrid
-              gridCount={{ pc: itemCount }}
+              gridCount={{ pc: itemCount, tablet: 4 }}
               className={this.decorateCSS("features-grid")}
             >
               {features.map((feature, index) => {

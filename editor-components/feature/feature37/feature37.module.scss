@@ -94,10 +94,17 @@
                     }
 
                     .card-title,
+                    .card-hover-subtitle,
                     .card-hover-title,
                     .card-description {
                         color: var(--composer-font-color-primary);
                         text-align: left !important;
+                    }
+
+                    .card-hover-button {
+                        .card-hover-button-text {
+                            content: "";
+                        }
                     }
 
                     .icon-wrapper {

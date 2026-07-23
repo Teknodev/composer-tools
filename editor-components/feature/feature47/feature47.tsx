@@ -8,6 +8,7 @@ import { INPUTS } from "../../../custom-hooks/input-templates";
 type Card = {
     title: string;
     icon: TypeMediaInputValue;
+    subtitle: React.JSX.Element;
     description: string;
     button?: ButtonTypeObj
 }
@@ -61,6 +62,12 @@ class Feature47 extends BaseFeature {
                     },
                     {
                         type: "string",
+                        key: "subtitle",
+                        displayer: "Card Subtitle",
+                        value: "",
+                    },
+                    {
+                        type: "string",
                         key: "title",
                         displayer: "Title",
                         value: "Web Development",
@@ -90,6 +97,12 @@ class Feature47 extends BaseFeature {
                             type: "icon",
                             name: "FaBullhorn"
                         }
+                    },
+                    {
+                        type: "string",
+                        key: "subtitle",
+                        displayer: "Card Subtitle",
+                        value: "",
                     },
                     {
                         type: "string",
@@ -125,6 +138,12 @@ class Feature47 extends BaseFeature {
                     },
                     {
                         type: "string",
+                        key: "subtitle",
+                        displayer: "Card Subtitle",
+                        value: "",
+                    },
+                    {
+                        type: "string",
                         key: "title",
                         displayer: "Title",
                         value: "Search Engine Optimization"
@@ -154,6 +173,12 @@ class Feature47 extends BaseFeature {
                             type: "icon",
                             name: "AiFillLike"
                         }
+                    },
+                    {
+                        type: "string",
+                        key: "subtitle",
+                        displayer: "Card Subtitle",
+                        value: "",
                     },
                     {
                         type: "string",
@@ -235,21 +260,27 @@ class Feature47 extends BaseFeature {
                         </Base.VerticalContent>
                     )}
                     {cards?.length > 0 && (
-                        <Base.ListGrid className={this.decorateCSS("cards-container")} gridCount={{ pc: itemCount || 4, tablet: 2, phone: 1 }}>
+                        <Base.ListGrid className={this.decorateCSS("cards-container")} gridCount={{ pc: itemCount || 4, tablet: 4, phone: 1 }}>
                             {cards.map((card: Card, index: number) => {
+                                const cardSubtitleExist = this.castToString(card.subtitle);
                                 const titleExist = !!this.castToString(card.title);
                                 const descExist = !!this.castToString(card.description);
                                 const iconExist = !!card.icon;
                                 const iconBackground = this.getPropValue("iconBackground");
                                 const buttonExist = card.button && this.castToString(card.button.text);
-                                const onlyButton = !iconExist && !titleExist && !descExist && buttonExist;
-                                return (iconExist || titleExist || descExist || buttonExist) && (
+                                const onlyButton = !iconExist && !cardSubtitleExist && !titleExist && !descExist && buttonExist;
+                                return (iconExist || cardSubtitleExist || titleExist || descExist || buttonExist) && (
                                     <Base.VerticalContent key={index} className={`${this.decorateCSS("card")} ${onlyButton ? this.decorateCSS("only-button") : ""}`}>
                                         {iconExist && (
                                             <div className={`${this.decorateCSS("icon-container")} ${iconBackground && this.decorateCSS("with-background")}`}>
                                                 <Base.Media value={card.icon} className={this.decorateCSS("card-icon")} />
                                             </div>
                                         )}
+                                            {cardSubtitleExist && (
+                                                <Base.H6 className={this.decorateCSS("card-subtitle")}>
+                                                    {card.subtitle}
+                                                </Base.H6>
+                                            )}
                                             {titleExist && (
                                                 <Base.H4 className={this.decorateCSS("card-title")}>
                                                     {card.title}
