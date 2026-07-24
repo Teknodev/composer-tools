@@ -3,13 +3,19 @@ import styles from "./team5.module.scss";
 import { Team, TypeMediaInputValue } from "../../EditorComponent";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 import { Base } from "../../../composer-base-components/base/base";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
-type eggs = {
-  background: TypeMediaInputValue;
+type Social = {
+  icon: TypeMediaInputValue;
+  url: string;
+};
+
+type Card = {
   picture: TypeMediaInputValue;
-  socials: Array<{ icon: string; url: string }>;
-  name: React.JSX.Element;
-  occupation: React.JSX.Element;
+  socials: Social[];
+  name: string;
+  position: string;
+  cardDescription: string;
 };
 
 class Team5 extends Team {
@@ -18,44 +24,55 @@ class Team5 extends Team {
 
     this.addProp({
       type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "",
+    });
+
+    this.addProp({
+      type: "string",
       key: "title",
       displayer: "Title",
-      value: "Introduce Our Team Work Members",
+      value: "Introduce Our <span style='color: var(--composer-primary-color)'>Team Work</span> Members",
     });
+
     this.addProp({
       type: "string",
       key: "description",
       displayer: "Description",
       value: "Viverra tempor, turpis egestas lectus enim viverra diam est tincidunt tortor sit pretium pulvinaron maecenas aliquet in cursus egestas ac elit massa ut et in gravida",
     });
+
+    this.addProp({
+      type: "boolean",
+      key: "overlay",
+      displayer: "Overlay",
+      value: false,
+    });
+
+    this.addProp({
+      type: "boolean",
+      key: "imageBackground",
+      displayer: "Image Background",
+      value: true,
+    });
+
     this.addProp({
       type: "array",
-      key: "teamList",
-      displayer: "Team Members",
+      key: "cards",
+      displayer: "Cards",
       value: [
         {
           type: "object",
-          key: "object",
-          displayer: "Team List",
+          key: "card",
+          displayer: "Card",
           value: [
             {
               type: "media",
-              key: "background",
-              displayer: "Background",
-              additionalParams: {
-                availableTypes: ["image"],
-              },
-              value: {
-                type: "image",
-                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b0eebd2970002c627c24?alt=media&timestamp=1719502692150",
-              },
-            },
-            {
-              type: "media",
               key: "picture",
-              displayer: "Picture",
+              displayer: "Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
@@ -65,7 +82,7 @@ class Team5 extends Team {
             {
               type: "array",
               key: "socials",
-              displayer: "Socials",
+              displayer: "Social Media",
               value: [
                 {
                   type: "object",
@@ -73,15 +90,21 @@ class Team5 extends Team {
                   displayer: "Social",
                   value: [
                     {
-                      type: "icon",
+                      type: "media",
                       key: "icon",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "FaFacebookSquare"
+                      },
                       displayer: "Icon",
-                      value: "BiLogoFacebook",
                     },
                     {
                       type: "page",
                       key: "url",
-                      displayer: "Url",
+                      displayer: "Navigate To",
                       value: "",
                     },
                   ],
@@ -92,15 +115,21 @@ class Team5 extends Team {
                   displayer: "Social",
                   value: [
                     {
-                      type: "icon",
+                      type: "media",
                       key: "icon",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "FaTwitterSquare"
+                      },
                       displayer: "Icon",
-                      value: "BiLogoInstagram",
                     },
                     {
                       type: "page",
                       key: "url",
-                      displayer: "Url",
+                      displayer: "Navigate To",
                       value: "",
                     },
                   ],
@@ -111,15 +140,46 @@ class Team5 extends Team {
                   displayer: "Social",
                   value: [
                     {
-                      type: "icon",
+                      type: "media",
                       key: "icon",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "FaInstagram"
+                      },
                       displayer: "Icon",
-                      value: "AiOutlineTwitter",
                     },
                     {
                       type: "page",
                       key: "url",
-                      displayer: "Url",
+                      displayer: "Navigate To",
+                      value: "",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "social",
+                  displayer: "Social",
+                  value: [
+                    {
+                      type: "media",
+                      key: "icon",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "FaLinkedin"
+                      },
+                      displayer: "Icon",
+                    },
+                    {
+                      type: "page",
+                      key: "url",
+                      displayer: "Navigate To",
                       value: "",
                     },
                   ],
@@ -129,40 +189,34 @@ class Team5 extends Team {
             {
               type: "string",
               key: "name",
-              displayer: "Name",
+              displayer: "Person Name",
               value: "Ronald R.",
             },
             {
               type: "string",
-              key: "occupation",
+              key: "position",
               displayer: "Position",
               value: "Office Manager",
+            },
+            {
+              type: "string",
+              key: "cardDescription",
+              displayer: "Description",
+              value: "",
             },
           ],
         },
         {
           type: "object",
-          key: "object",
-          displayer: "Team List",
+          key: "card",
+          displayer: "Card",
           value: [
             {
               type: "media",
-              key: "background",
-              displayer: "Background",
-              additionalParams: {
-                availableTypes: ["image"],
-              },
-              value: {
-                type: "image",
-                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b0eebd2970002c627c24?alt=media&timestamp=1719502692150",
-              },
-            },
-            {
-              type: "media",
               key: "picture",
-              displayer: "Picture",
+              displayer: "Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
@@ -172,7 +226,7 @@ class Team5 extends Team {
             {
               type: "array",
               key: "socials",
-              displayer: "Socials",
+              displayer: "Social Media",
               value: [
                 {
                   type: "object",
@@ -180,15 +234,21 @@ class Team5 extends Team {
                   displayer: "Social",
                   value: [
                     {
-                      type: "icon",
+                      type: "media",
                       key: "icon",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "FaFacebookSquare"
+                      },
                       displayer: "Icon",
-                      value: "BiLogoFacebook",
                     },
                     {
                       type: "page",
                       key: "url",
-                      displayer: "Url",
+                      displayer: "Navigate To",
                       value: "",
                     },
                   ],
@@ -199,15 +259,21 @@ class Team5 extends Team {
                   displayer: "Social",
                   value: [
                     {
-                      type: "icon",
+                      type: "media",
                       key: "icon",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "FaTwitterSquare"
+                      },
                       displayer: "Icon",
-                      value: "BiLogoInstagram",
                     },
                     {
                       type: "page",
                       key: "url",
-                      displayer: "Url",
+                      displayer: "Navigate To",
                       value: "",
                     },
                   ],
@@ -218,15 +284,46 @@ class Team5 extends Team {
                   displayer: "Social",
                   value: [
                     {
-                      type: "icon",
+                      type: "media",
                       key: "icon",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "FaInstagram"
+                      },
                       displayer: "Icon",
-                      value: "AiOutlineTwitter",
                     },
                     {
                       type: "page",
                       key: "url",
-                      displayer: "Url",
+                      displayer: "Navigate To",
+                      value: "",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "social",
+                  displayer: "Social",
+                  value: [
+                    {
+                      type: "media",
+                      key: "icon",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "FaLinkedin"
+                      },
+                      displayer: "Icon",
+                    },
+                    {
+                      type: "page",
+                      key: "url",
+                      displayer: "Navigate To",
                       value: "",
                     },
                   ],
@@ -236,40 +333,34 @@ class Team5 extends Team {
             {
               type: "string",
               key: "name",
-              displayer: "Name",
+              displayer: "Person Name",
               value: "McKinney",
             },
             {
               type: "string",
-              key: "occupation",
-              displayer: "Occupation",
+              key: "position",
+              displayer: "Position",
               value: "Receptionist",
+            },
+            {
+              type: "string",
+              key: "cardDescription",
+              displayer: "Description",
+              value: "",
             },
           ],
         },
         {
           type: "object",
-          key: "object",
-          displayer: "Team List",
+          key: "card",
+          displayer: "Card",
           value: [
             {
               type: "media",
-              key: "background",
-              displayer: "Background",
-              additionalParams: {
-                availableTypes: ["image"],
-              },
-              value: {
-                type: "image",
-                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b0eebd2970002c627c24?alt=media&timestamp=1719502692150",
-              },
-            },
-            {
-              type: "media",
               key: "picture",
-              displayer: "Picture",
+              displayer: "Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
@@ -279,7 +370,7 @@ class Team5 extends Team {
             {
               type: "array",
               key: "socials",
-              displayer: "Socials",
+              displayer: "Social Media",
               value: [
                 {
                   type: "object",
@@ -287,15 +378,21 @@ class Team5 extends Team {
                   displayer: "Social",
                   value: [
                     {
-                      type: "icon",
+                      type: "media",
                       key: "icon",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "FaFacebookSquare"
+                      },
                       displayer: "Icon",
-                      value: "BiLogoFacebook",
                     },
                     {
                       type: "page",
                       key: "url",
-                      displayer: "Url",
+                      displayer: "Navigate To",
                       value: "",
                     },
                   ],
@@ -306,15 +403,21 @@ class Team5 extends Team {
                   displayer: "Social",
                   value: [
                     {
-                      type: "icon",
+                      type: "media",
                       key: "icon",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "FaTwitterSquare"
+                      },
                       displayer: "Icon",
-                      value: "BiLogoInstagram",
                     },
                     {
                       type: "page",
                       key: "url",
-                      displayer: "Url",
+                      displayer: "Navigate To",
                       value: "",
                     },
                   ],
@@ -325,15 +428,46 @@ class Team5 extends Team {
                   displayer: "Social",
                   value: [
                     {
-                      type: "icon",
+                      type: "media",
                       key: "icon",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "FaInstagram"
+                      },
                       displayer: "Icon",
-                      value: "AiOutlineTwitter",
                     },
                     {
                       type: "page",
                       key: "url",
-                      displayer: "Url",
+                      displayer: "Navigate To",
+                      value: "",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "social",
+                  displayer: "Social",
+                  value: [
+                    {
+                      type: "media",
+                      key: "icon",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "FaLinkedin"
+                      },
+                      displayer: "Icon",
+                    },
+                    {
+                      type: "page",
+                      key: "url",
+                      displayer: "Navigate To",
                       value: "",
                     },
                   ],
@@ -343,40 +477,34 @@ class Team5 extends Team {
             {
               type: "string",
               key: "name",
-              displayer: "Name",
+              displayer: "Person Name",
               value: "Olivia Davis",
             },
             {
               type: "string",
-              key: "occupation",
+              key: "position",
               displayer: "Position",
               value: "Accounting",
+            },
+            {
+              type: "string",
+              key: "cardDescription",
+              displayer: "Description",
+              value: "",
             },
           ],
         },
         {
           type: "object",
-          key: "object",
-          displayer: "Team List",
+          key: "card",
+          displayer: "Card",
           value: [
             {
               type: "media",
-              key: "background",
-              displayer: "Background",
-              additionalParams: {
-                availableTypes: ["image"],
-              },
-              value: {
-                type: "image",
-                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b0eebd2970002c627c24?alt=media&timestamp=1719502692150",
-              },
-            },
-            {
-              type: "media",
               key: "picture",
-              displayer: "Picture",
+              displayer: "Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
@@ -386,7 +514,7 @@ class Team5 extends Team {
             {
               type: "array",
               key: "socials",
-              displayer: "Socials",
+              displayer: "Social Media",
               value: [
                 {
                   type: "object",
@@ -394,15 +522,21 @@ class Team5 extends Team {
                   displayer: "Social",
                   value: [
                     {
-                      type: "icon",
+                      type: "media",
                       key: "icon",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "FaFacebookSquare"
+                      },
                       displayer: "Icon",
-                      value: "BiLogoFacebook",
                     },
                     {
                       type: "page",
                       key: "url",
-                      displayer: "Url",
+                      displayer: "Navigate To",
                       value: "",
                     },
                   ],
@@ -413,15 +547,21 @@ class Team5 extends Team {
                   displayer: "Social",
                   value: [
                     {
-                      type: "icon",
+                      type: "media",
                       key: "icon",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "FaTwitterSquare"
+                      },
                       displayer: "Icon",
-                      value: "BiLogoInstagram",
                     },
                     {
                       type: "page",
                       key: "url",
-                      displayer: "Url",
+                      displayer: "Navigate To",
                       value: "",
                     },
                   ],
@@ -432,15 +572,46 @@ class Team5 extends Team {
                   displayer: "Social",
                   value: [
                     {
-                      type: "icon",
+                      type: "media",
                       key: "icon",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "FaInstagram"
+                      },
                       displayer: "Icon",
-                      value: "AiOutlineTwitter",
                     },
                     {
                       type: "page",
                       key: "url",
-                      displayer: "Url",
+                      displayer: "Navigate To",
+                      value: "",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "social",
+                  displayer: "Social",
+                  value: [
+                    {
+                      type: "media",
+                      key: "icon",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "FaLinkedin"
+                      },
+                      displayer: "Icon",
+                    },
+                    {
+                      type: "page",
+                      key: "url",
+                      displayer: "Navigate To",
                       value: "",
                     },
                   ],
@@ -450,26 +621,40 @@ class Team5 extends Team {
             {
               type: "string",
               key: "name",
-              displayer: "Name",
+              displayer: "Person Name",
               value: "Robertson",
             },
             {
               type: "string",
-              key: "occupation",
+              key: "position",
               displayer: "Position",
               value: "Pet Trainer",
+            },
+            {
+              type: "string",
+              key: "cardDescription",
+              displayer: "Description",
+              value: "",
             },
           ],
         },
       ],
     });
+
+    this.addProp({
+      type: "array",
+      key: "buttons",
+      displayer: "Buttons",
+      value: [INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary")],
+    });
+
     this.addProp({
       type: "number",
       key: "itemCount",
-      displayer: "Item count in a row",
+      displayer: "Item Count In a Row",
       value: 4,
-      max: 5,
     });
+
     this.addProp({
       type: "multiSelect",
       key: "hoverAnimation",
@@ -486,51 +671,79 @@ class Team5 extends Team {
   }
 
   render() {
-    const titleExist = this.castToString(this.getPropValue("title"));
-    const descriptionExist = this.castToString(this.getPropValue("description"));
+    const subtitle = this.castToString(this.getPropValue("subtitle"));
+    const title = this.castToString(this.getPropValue("title"));
+    const description = this.castToString(this.getPropValue("description"));
+    const hasContent = title || subtitle || description;
+    const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons") || [];
+    const visibleButtons = buttons.filter(btn => this.castToString(btn.text));
+    const cards = this.castToObject<Card[]>("cards") || [];
+
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("container-top")}>
-            <div className={this.decorateCSS("title-container")}>{titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}</div>
-            <div className={this.decorateCSS("description-container")}>{descriptionExist && <Base.SectionDescription className={this.decorateCSS("description-inner")}>{this.getPropValue("description")}</Base.SectionDescription>}</div>
-          </div>
+          {hasContent && (
+            <Base.VerticalContent className={this.decorateCSS("vertical-content")}>
+              <div className={this.decorateCSS("title-container")}>
+                {subtitle && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
+                {title && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
+              </div>
+              <div className={this.decorateCSS("description-container")}>
+                {description && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
+              </div>
+            </Base.VerticalContent>
+          )}
+          <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount"), tablet: 4, phone: 1 }} className={this.decorateCSS("container-bottom")}>
+            {cards.map((item: Card, index: number) => {
+              const itemName = this.castToString(item?.name);
+              const itemPosition = this.castToString(item?.position);
+              const itemDescription = this.castToString(item?.cardDescription);
+              const hasItem = itemName || itemPosition || item?.picture || (item?.socials && item.socials.length > 0);
 
-          <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount"), tablet: 2, phone: 1 }} className={this.decorateCSS("container-bottom")}>
-            {this.castToObject<eggs[]>("teamList").map((item: eggs, index: number) => {
-              const itemName = this.castToString(item.name);
-              const itemOccupation = this.castToString(item.occupation);
-              const hasItem = itemName || itemOccupation || item.background || item.picture || item.socials.length > 0;
-
-              return (
-                hasItem && (
-                  <Base.VerticalContent key={index} className={this.decorateCSS("egg-item")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
-                    <div className={this.decorateCSS("image-container")} data-animation={this.getPropValue("hoverAnimation").join(" ")} >
-                      {item.background && <Base.Media value={item.background} className={this.decorateCSS("background-image")} />}
-                      {item.picture && <Base.Media value={item.picture} className={this.decorateCSS("member-image")} />}
+              return hasItem && (
+                <Base.VerticalContent key={index} className={this.decorateCSS("card-item")} data-animation={(this.getPropValue("hoverAnimation") || []).join(" ")}>
+                  {item.picture && (
+                    <div className={this.decorateCSS("image-container")} data-animation={(this.getPropValue("hoverAnimation") || []).join(" ")} >
+                      {this.getPropValue("imageBackground") !== false && <div className={this.decorateCSS("background-shape")} />}
+                      <div className={this.decorateCSS("member-image-wrapper")}>
+                        <Base.Media value={item.picture} className={this.decorateCSS("member-image")} />
+                        {this.getPropValue("overlay") && <div className={this.decorateCSS("overlay")} />}
+                      </div>
                     </div>
-                    <Base.Row className={this.decorateCSS("icon-container")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
-                      {item.socials.map((value, i) => (
-                        <ComposerLink key={i} path={value.url}>
-                          <Base.Icon 
-                            name={value.icon} 
-                            propsIcon={{ 
-                              className: this.decorateCSS("icon"),
-                              style: { "--icon-index": i } as React.CSSProperties
-                            }} 
+                  )}
+                  <Base.VerticalContent className={this.decorateCSS("members-container")}>
+                    <Base.Row className={this.decorateCSS("icon-container")} data-animation={(this.getPropValue("hoverAnimation") || []).join(" ")}>
+                      {item.socials?.map((value, i) => (
+                        <ComposerLink key={i} path={value?.url}>
+                          <Base.Media
+                            value={value?.icon}
+                            className={`${this.decorateCSS("icon")} ${value?.icon?.type === "image" && this.decorateCSS("has-image")}`}
+                            style={{ "--icon-index": i } as React.CSSProperties}
                           />
                         </ComposerLink>
                       ))}
                     </Base.Row>
-                    <Base.VerticalContent className={this.decorateCSS("members-container")}>
-                      {itemName && <Base.H4 className={this.decorateCSS("name")}>{item.name}</Base.H4>}
-                      {itemOccupation && <Base.H5 className={this.decorateCSS("occupation")}>{item.occupation}</Base.H5>}
-                    </Base.VerticalContent>
+                    {itemName && <Base.H5 className={this.decorateCSS("card-name")}>{item.name}</Base.H5>}
+                    {itemPosition && <Base.H6 className={this.decorateCSS("card-position")}>{item.position}</Base.H6>}
+                    {itemDescription && <Base.P className={this.decorateCSS("card-description")}>{item.cardDescription}</Base.P>}
                   </Base.VerticalContent>
-                )
+                </Base.VerticalContent>
               );
             })}
           </Base.ListGrid>
+          {visibleButtons.length > 0 && (
+            <Base.Row className={this.decorateCSS("button-container")}>
+              {visibleButtons.map((item: INPUTS.CastedButton, index: number) => {
+                return this.castToString(item.text) && (
+                  <ComposerLink key={`button-${index}`} path={item.url}>
+                    <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
+                      <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>
+                    </Base.Button>
+                  </ComposerLink>
+                );
+              })}
+            </Base.Row>
+          )}
         </Base.MaxContent>
       </Base.Container>
     );

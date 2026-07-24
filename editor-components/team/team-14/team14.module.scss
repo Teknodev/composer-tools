@@ -1,38 +1,69 @@
-@use "../../../../composer-tools//composer-base-components//base//utitilities/viewports.module.scss"
-  as *;
+@use "../../../../composer-tools//composer-base-components//base//utitilities/viewports.module.scss" as *;
 
 .container {
   .max-content {
     display: flex;
     flex-direction: column;
-    gap: var(--composer-gap-md);
+    gap: var(--composer-gap-lg);
 
-    .up-page {
-      .title {
+    .vertical-content {
+
+      .subtitle,
+      .title,
+      .description {
         content: "";
-      }
-
-      .subtitle {
-        color: var(--composer-font-color-primary);
       }
     }
 
     .down-page {
-      gap: var(--composer-gap-md) 0;
+      --team14-count: var(--composer-grid-count, 3);
+      --team14-gap: calc(var(--composer-gap-xl) / 2);
+      --team14-basis: calc((100% - (var(--team14-count) - 1) * var(--team14-gap)) / var(--team14-count));
+
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--team14-gap);
+
+      &:has(.card:hover) {
+        .card {
+          flex-basis: calc(var(--team14-basis) * (var(--team14-count) - 1.5) / (var(--team14-count) - 1));
+        }
+
+        .card:hover {
+          flex-basis: calc(var(--team14-basis) * 1.5);
+        }
+      }
+
       .card {
         display: flex;
         justify-content: center;
+        flex: 0 1 var(--team14-basis);
+        min-width: 0;
+        transition: flex-basis 0.4s ease;
 
         .portfolio {
           display: flex;
           justify-content: center;
           position: relative;
           overflow: hidden;
-          width: 90%;
+          width: 100%;
           max-width: 100%;
           height: 600px;
           border-radius: var(--composer-border-radius-md);
-          transition: width 0.4s ease;
+          background: linear-gradient(to bottom,
+              var(--composer-html-background) 60%,
+              color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%) 50%);
+
+          .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--composer-overlay-color);
+            pointer-events: none;
+            z-index: 2;
+          }
 
           &:hover {
             .info {
@@ -64,7 +95,6 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            border-radius: var(--composer-border-radius-md);
             transition: filter 0.3s ease, border-radius 0.3s ease,
               transform 0.3s ease;
 
@@ -77,15 +107,14 @@
           .info {
             position: absolute;
             bottom: 0;
-            width: 70%;
+            width: 80%;
             max-width: 100%;
-            background-color: color-mix(
-              in srgb,
-              var(--composer-html-background),
-              var(--composer-font-color-primary) 10%
-            );
-            padding: 1rem;
-            border-radius: var(--composer-border-radius-md);
+            background-color: color-mix(in srgb,
+                var(--composer-html-background),
+                var(--composer-font-color-primary) 10%);
+            padding: calc(var(--composer-gap-sm) + var(--composer-gap-xs));
+            border-radius: var(--composer-border-radius-sm);
+            z-index: 2;
 
             &[data-animation~="animate1"] {
               opacity: 0;
@@ -111,10 +140,52 @@
 
             .name,
             .position,
-            .description {
+            .card-description {
               color: var(--composer-font-color-primary);
+              text-align: left !important;
+            }
+
+            .position {
+              font-weight: 800;
             }
           }
+
+          &.no-image {
+            background: color-mix(in srgb,
+                var(--composer-html-background),
+                var(--composer-font-color-primary) 10%) !important;
+
+            .info {
+              position: absolute;
+              left: 0;
+              top: 0;
+              width: 100%;
+              height: 100%;
+              max-height: 100% !important;
+              background-color: transparent !important;
+              padding: 40px;
+              transform: none !important;
+              opacity: 1 !important;
+              border-radius: 0;
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+              overflow: visible !important;
+            }
+          }
+        }
+      }
+    }
+
+    .button-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--composer-gap-sm);
+      justify-content: center;
+
+      .button {
+        .button-text {
+          content: "";
         }
       }
     }
@@ -124,7 +195,11 @@
 @container (max-width: #{$composer-tablet-width}) {
   .container {
     .max-content {
+      gap: var(--composer-gap-md);
+
       .down-page {
+        --team14-count: var(--composer-grid-count-tablet, 3);
+
         .card {
           .portfolio {
             height: 450px;
@@ -163,12 +238,19 @@
 @container (max-width: #{$composer-phone-width}) {
   .container {
     .max-content {
-      gap: var(--composer-gap-sm);
-
       .down-page {
+        --team14-count: var(--composer-grid-count-phone, 1);
+
+        &:has(.card:hover) {
+          .card,
+          .card:hover {
+            flex-basis: var(--team14-basis);
+          }
+        }
+
         .card {
           .portfolio {
-            width: 90%;
+            width: 100%;
             height: 400px;
 
             .info {
