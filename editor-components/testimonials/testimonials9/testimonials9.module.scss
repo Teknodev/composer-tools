@@ -111,7 +111,7 @@
                 margin: 0;
                 text-align: left;
                 justify-content: flex-start;
-                font-size: 1.25rem;
+                font-size: 1.5rem;
               }
 
               .item-subtitle {
@@ -191,6 +191,9 @@
                 height: 60px;
               }
               .bottom-container {
+                .item-name {
+                  font-size: 1.25rem;
+                }
                 .item-subtitle {
                   font-size: 0.75rem !important;
                 }

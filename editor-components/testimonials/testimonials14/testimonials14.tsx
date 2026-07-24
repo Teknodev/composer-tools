@@ -515,30 +515,28 @@ class Testimonials14 extends Testimonials {
             {activeItem && (
               <div className={this.decorateCSS("item-content")}>
                 <Base.VerticalContent key={activeIndex} className={`${this.decorateCSS("items")} ${animationClass}`}>
-                  <div className={this.decorateCSS("icon-and-name")}>
-                    {iconExist ? (
-                      <Base.Media
-                        value={activeItem.icon}
-                        className={this.decorateCSS("icon")}
-                      />
-                    ) : (<span className={this.decorateCSS("span-icon")} />)}
-                    {activeItem.author && (this.castToString(activeItem.author.name) || this.castToString(activeItem.author.position)) && (
-                      <div className={this.decorateCSS("author-details")}>
-                        {this.castToString(activeItem.author.name) && (
-                          <Base.SectionTitle className={this.decorateCSS("author-name")}>
-                            {activeItem.author.name}
-                          </Base.SectionTitle>
-                        )}
-                        {this.castToString(activeItem.author.position) && (
-                          <Base.P className={this.decorateCSS("author-subtitle")}>
-                            {activeItem.author.position}
-                          </Base.P>
-                        )}
-                      </div>
+                  <div className={this.decorateCSS("author-details")}>
+                    <div className={this.decorateCSS("author-name-row")}>
+                      {iconExist && (
+                        <Base.Media
+                          value={activeItem.icon}
+                          className={this.decorateCSS("icon")}
+                        />
+                      )}
+                      {activeItem.author && this.castToString(activeItem.author.name) && (
+                        <Base.SectionTitle className={this.decorateCSS("author-name")}>
+                          {activeItem.author.name}
+                        </Base.SectionTitle>
+                      )}
+                    </div>
+                    {activeItem.author && this.castToString(activeItem.author.position) && (
+                      <Base.P className={this.decorateCSS("author-subtitle")}>
+                        {activeItem.author.position}
+                      </Base.P>
                     )}
                   </div>
                   {this.castToString(activeItem.text) && (
-                    <Base.SectionDescription className={this.decorateCSS("comment")}>
+                    <Base.SectionDescription className={`${this.decorateCSS("comment")} ${iconExist ? this.decorateCSS("has-icon") : ""}`}>
                       {activeItem.text}
                     </Base.SectionDescription>
                   )}

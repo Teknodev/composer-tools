@@ -81,53 +81,58 @@
           transition: opacity 0.5s ease;
           gap: var(--composer-gap-sm);
 
-          .icon-and-name {
+          .author-details {
             display: flex;
-            gap: var(--composer-gap-md);
-            align-items: center;
+            flex-direction: column;
+            gap: 0;
 
-            .span-icon {
-              min-height: 30px;
-              min-width: 30px;
-              font-size: 3rem;
-              color: var(--composer-primary-color);
-              display: block !important;
-            }
-
-            .icon {
-              width: 30px;
-              height: 30px;
-              font-size: 3rem;
-              color: var(--composer-primary-color);
-              display: block !important;
-              object-fit: contain;
-            }
-
-            .author-details {
+            .author-name-row {
               display: flex;
-              flex-direction: column;
-              gap: 0;
+              align-items: center;
+              gap: var(--composer-gap-xs);
+
+              .icon {
+                width: 1.75rem;
+                height: 1.75rem;
+                font-size: 1.75rem;
+                color: var(--composer-primary-color);
+                display: inline-flex !important;
+                align-items: center;
+                justify-content: center;
+                flex-shrink: 0;
+                object-fit: contain;
+
+                svg {
+                  width: 100%;
+                  height: 100%;
+                }
+              }
 
               .author-name {
                 font-weight: bold;
-                font-size: 2rem;
+                font-size: 1.75rem;
                 margin: 0 !important;
                 text-align: left !important;
+                line-height: 1.2;
               }
+            }
 
-              .author-subtitle {
-                font-size: 1rem;
-                color: var(--composer-font-color-primary);
-                margin: 0 !important;
-                text-align: left !important;
-              }
+            .author-subtitle {
+              font-size: 1rem;
+              color: var(--composer-font-color-primary);
+              margin: 0 !important;
+              text-align: left !important;
             }
           }
 
           .comment {
             font-size: 1.5rem;
-            margin: 0 auto 0 45px !important;
+            margin: 0 !important;
             text-align: left !important;
+
+            &.has-icon {
+              margin-left: calc(1.75rem + var(--composer-gap-xs)) !important;
+            }
           }
         }
       }
@@ -144,16 +149,21 @@
           display: inline-flex !important;
           align-items: center;
           justify-content: center;
-          background-color: var(--composer-color-background-secondary);
+          background-color: transparent;
           cursor: pointer;
           border: none;
           border-radius: 50%;
+          padding: 0;
 
           .arrow {
-            width: 20px;
-            height: 20px;
+            width: 36px;
+            height: 36px;
+            font-size: 2.5rem;
             color: var(--composer-font-color-primary);
-            display: block !important;
+            display: inline-flex !important;
+            align-items: center;
+            justify-content: center;
+            object-fit: contain;
           }
         }
       }
@@ -196,17 +206,23 @@
 
         .item-content {
           .items {
-            .icon-and-name {
-
-              .author-details {
+            .author-details {
+              .author-name-row {
                 .author-name {
                   font-size: 1.5rem !important;
                 }
-              }
 
-              .icon {
-                width: 25px !important;
-                height: 25px !important;
+                .icon {
+                  width: 1.5rem !important;
+                  height: 1.5rem !important;
+                  font-size: 1.5rem !important;
+                }
+              }
+            }
+
+            .comment {
+              &.has-icon {
+                margin-left: calc(1.5rem + var(--composer-gap-xs)) !important;
               }
             }
           }
@@ -280,27 +296,37 @@
           .items {
             align-items: center !important;
 
-            .icon-and-name {
-              justify-content: center !important;
-              flex-direction: column;
+            .author-details {
               align-items: center !important;
 
-              .author-details {
+              .author-name-row {
+                justify-content: center !important;
                 align-items: center !important;
 
                 .author-name {
                   text-align: center !important;
+                  font-size: 1.25rem !important;
                 }
 
-                .author-subtitle {
-                  text-align: center !important;
+                .icon {
+                  width: 1.25rem !important;
+                  height: 1.25rem !important;
+                  font-size: 1.25rem !important;
                 }
+              }
+
+              .author-subtitle {
+                text-align: center !important;
               }
             }
 
             .comment {
               text-align: center !important;
               margin: 0 !important;
+
+              &.has-icon {
+                margin-left: 0 !important;
+              }
             }
           }
         }

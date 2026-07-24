@@ -127,7 +127,7 @@
             .below-right-content {
               justify-content: center;
               .item-name {
-                font-size: 1rem;
+                font-size: 1.5rem;
                 color: var(--composer-font-color-primary);
                 margin: 0;
                 text-align: left !important;
@@ -180,7 +180,9 @@
           .card {
             .below-content {
               .below-right-content {
-                .item-name,
+                .item-name {
+                  font-size: 1.25rem !important;
+                }
                 .item-subtitle {
                   font-size: 1rem !important;
                 }
@@ -215,7 +217,9 @@
             }
             .below-content {
               .below-right-content {
-                .item-name,
+                .item-name {
+                  font-size: 1.25rem !important;
+                }
                 .item-subtitle {
                   font-size: 1rem !important;
                 }

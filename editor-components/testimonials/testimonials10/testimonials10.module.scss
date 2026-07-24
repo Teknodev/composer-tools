@@ -58,7 +58,7 @@
           position: relative;
           isolation: isolate;
           background: var(--composer-primary-color);
-          padding-bottom: calc(var(--composer-gap-xl) * 3 + var(--composer-gap-lg));
+          padding-bottom: calc(var(--composer-gap-md) * 5);
 
           .slider-icons {
             position: absolute;

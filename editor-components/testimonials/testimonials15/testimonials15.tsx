@@ -49,7 +49,7 @@ class Testimonials15Page extends Testimonials {
       key: "buttons",
       displayer: "Buttons",
       value: [
-        INPUTS.BUTTON("button","Button","Learn More","","",null,"Link"),
+        INPUTS.BUTTON("button","Button","Learn More","","BsArrowUpRightCircleFill",null,"Link"),
       ],
     });
 
@@ -413,14 +413,14 @@ class Testimonials15Page extends Testimonials {
                               return (
                                 <ComposerLink key={index} path={button.url}>
                                   <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
+                                    {buttonTextExist && (
+                                      <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
+                                    )}
                                     {btnIconExist && (
                                       <Base.Media
                                         value={button.icon!}
                                         className={this.decorateCSS("button-icon")}
                                       />
-                                    )}
-                                    {buttonTextExist && (
-                                      <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
                                     )}
                                   </Base.Button>
                                 </ComposerLink>
