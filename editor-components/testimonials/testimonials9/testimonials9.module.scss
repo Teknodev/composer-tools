@@ -4,18 +4,79 @@
     .wrapper {
       display: flex;
       flex-direction: column;
-      gap: var(--composer-gap-md);
-      .up-page {
+      gap: var(--composer-gap-lg);
+      .top-content {
         width: 100%;
-        .title {
-          margin: 0px;
+
+        .subtitle,
+        .title,
+        .description {
+          content: "";
+        }
+
+        .button-container {
+          display: flex;
+          flex-direction: row;
+          flex-wrap: wrap;
+          gap: var(--composer-gap-sm);
+
+          .button,
+          .button-text,
+          .button-icon {
+            content: "";
+          }
         }
       }
       .down-page {
         .carousel {
           flex: 1;
+
+          .carousel-inner {
+            display: flex;
+            flex-direction: column;
+            gap: var(--composer-gap-sm);
+            align-items: stretch;
+
+            .slider-style {
+              width: 100%;
+              margin-bottom: var(--composer-gap-md);
+              :global(.slick-slide) {
+                width: 100% !important;
+              }
+            }
+
+            .v-dots {
+              display: flex;
+              flex-direction: row;
+              align-items: center;
+              justify-content: center;
+              gap: 6px;
+              padding: var(--composer-gap-xs) 0;
+
+              .v-dot {
+                width: 6px;
+                height: 6px;
+                border-radius: 50%;
+                border: none;
+                cursor: pointer;
+                padding: 0;
+                background: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 20%);
+                transition: all 0.3s ease;
+                flex-shrink: 0;
+
+                &.v-dot-active {
+                  width: 22px;
+                  height: 6px;
+                  border-radius: 3px;
+                  background: var(--composer-primary-color);
+                }
+              }
+            }
+          }
+
           .card-inner {
             display: flex !important;
+            align-items: center;
             margin-bottom: var(--composer-gap-sm);
             padding: var(--composer-gap-md);
             width: 90% !important;
@@ -29,39 +90,52 @@
             }
 
             .img {
-              width: 70px;
-              height: 70px;
+              width: 90px;
+              height: 90px;
               border-radius: 50%;
               object-fit: cover;
+              font-size: 3rem;
+              display: flex;
+              align-items: center;
+              justify-content: center;
             }
 
-            .text {
+            .bottom-container {
               text-align: left;
               align-items: baseline;
               gap: var(--composer-gap-xs);
 
-              .title {
+              .item-name {
                 color: var(--composer-font-color-primary);
+                font-weight: 800;
                 margin: 0;
+                text-align: left;
+                justify-content: flex-start;
+                font-size: 1.5rem;
               }
 
-              .subtitle {
+              .item-subtitle {
                 color: var(--composer-tertiary-color);
+                text-align: left;
+                justify-content: flex-start;
+                font-size: 1rem !important;
               }
             }
 
-            &.active .text .title {
+            &.active .bottom-container .item-name {
               color: var(--composer-font-color-secondary);
             }
 
-            &.active .text .subtitle {
+            &.active .bottom-container .item-subtitle {
               color: var(--composer-font-color-secondary);
             }
           }
-          > div {
+          .carousel-inner {
             > div {
               > div {
-                height: 100% !important;
+                > div {
+                  height: 100% !important;
+                }
               }
             }
           }
@@ -77,8 +151,9 @@
           .right-icon {
             color: var(--composer-primary-color);
             position: absolute;
-            width: 40px;
-            height: 40px;
+            font-size: 3rem;
+            width: calc(var(--composer-gap-lg) + var(--composer-gap-sm));
+            height: calc(var(--composer-gap-lg) + var(--composer-gap-sm));
           }
 
           .left-icon {
@@ -91,7 +166,7 @@
             right: 0;
           }
           .text {
-            .description {
+            .item-text {
               color: var(--composer-tertiary-color);
               text-align: center;
             }
@@ -105,9 +180,38 @@
   .container {
     .max-content {
       .wrapper {
+        .down-page {
+          flex-direction: row !important;
+          .carousel {
+            .card-inner {
+              padding: var(--composer-gap-sm);
+              gap: var(--composer-gap-sm);
+              .img {
+                width: 60px;
+                height: 60px;
+              }
+              .bottom-container {
+                .item-name {
+                  font-size: 1.25rem;
+                }
+                .item-subtitle {
+                  font-size: 0.75rem !important;
+                }
+              }
+              &.active {
+                padding: var(--composer-gap-sm);
+                gap: var(--composer-gap-sm);
+                .img {
+                  width: 70px;
+                  height: 70px;
+                }
+              }
+            }
+          }
+        }
         .right-page {
           .text {
-            .description {
+            .item-text {
               padding: var(--composer-gap-md);
             }
           }
@@ -120,13 +224,29 @@
   .container {
     .max-content {
       .wrapper {
+        gap: var(--composer-gap-md);
         .down-page {
+          flex-direction: column !important;
+          .right-page {
+            padding: var(--composer-gap-sm);
+            .left-icon,
+            .right-icon {
+              font-size: 2rem;
+              width: var(--composer-gap-lg);
+              height: var(--composer-gap-lg);
+            }
+          }
           .carousel {
             .card-inner {
               padding: var(--composer-gap-sm);
               .img {
-                width: 60px;
-                height: 60px;
+                width: calc(var(--composer-gap-xl) + var(--composer-gap-md));
+                height: calc(var(--composer-gap-xl) + var(--composer-gap-md));
+              }
+              .bottom-container {
+                .item-subtitle {
+                  font-size: 0.75rem !important;
+                }
               }
             }
           }
