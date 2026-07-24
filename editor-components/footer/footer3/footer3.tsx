@@ -3,18 +3,40 @@ import ComposerLink from "../../../composer-base-components/Link/ComposerLinkPro
 import { BaseFooter, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./footer3.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
+import { INPUTS } from "../../../custom-hooks/input-templates";
 
-
-type FooterValues = {
-  icon: string;
-  footerTitle: React.JSX.Element;
-  footerText: FooterTextValues[];
+type SocialItem = {
+  icon: TypeMediaInputValue;
+  url: string;
 };
 
-type FooterTextValues = {
-  footerIcon: TypeMediaInputValue;
-  footerText: React.JSX.Element;
-  path: string;
+type LinkItem = {
+  text: React.JSX.Element;
+  url: string;
+};
+
+type MenuItem = {
+  text: React.JSX.Element;
+  icon: TypeMediaInputValue;
+  pageLink: string;
+};
+
+type Column = {
+  categoryTitle: React.JSX.Element;
+  categoryTitleLink: string;
+  categoryTitleMedia: TypeMediaInputValue;
+  menuItems: MenuItem[];
+};
+
+type LogoObject = {
+  logo: TypeMediaInputValue;
+  logoUrl: string;
+};
+
+const hasMedia = (media?: TypeMediaInputValue | null): boolean => {
+  if (!media) return false;
+  if (media.type === "icon") return !!media.name;
+  return !!media.url;
 };
 
 class Footer3Page extends BaseFooter {
@@ -40,7 +62,7 @@ class Footer3Page extends BaseFooter {
           key: "logo",
           displayer: "Logo",
           additionalParams: {
-            availableTypes: ["image"],
+            availableTypes: ["image", "icon"],
           },
           value: {
             type: "image",
@@ -58,9 +80,32 @@ class Footer3Page extends BaseFooter {
 
     this.addProp({
       type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "",
+    });
+
+    this.addProp({
+      type: "string",
+      key: "title",
+      displayer: "Title",
+      value: "",
+    });
+
+    this.addProp({
+      type: "string",
       key: "description",
       displayer: "Description",
       value: "Imperdiet parturient eleifend scelerisque natoque parturient rutrum mus eros dis ullamcorper a ullamcorper.",
+    });
+
+    this.addProp({
+      type: "array",
+      key: "buttons",
+      displayer: "Buttons",
+      value: [
+        INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+      ],
     });
 
     this.addProp({
@@ -70,15 +115,15 @@ class Footer3Page extends BaseFooter {
       value: [
         {
           type: "object",
-          key: "content",
-          displayer: "Content Elements",
+          key: "socialItem",
+          displayer: "Social Item",
           value: [
             {
               type: "media",
               key: "icon",
               displayer: "Icon",
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon", "image"],
               },
               value: {
                 type: "icon",
@@ -95,15 +140,15 @@ class Footer3Page extends BaseFooter {
         },
         {
           type: "object",
-          key: "content",
-          displayer: "Content Elements",
+          key: "socialItem",
+          displayer: "Social Item",
           value: [
             {
               type: "media",
               key: "icon",
               displayer: "Icon",
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon", "image"],
               },
               value: {
                 type: "icon",
@@ -120,15 +165,15 @@ class Footer3Page extends BaseFooter {
         },
         {
           type: "object",
-          key: "content",
-          displayer: "Content Elements",
+          key: "socialItem",
+          displayer: "Social Item",
           value: [
             {
               type: "media",
               key: "icon",
               displayer: "Icon",
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon", "image"],
               },
               value: {
                 type: "icon",
@@ -153,37 +198,55 @@ class Footer3Page extends BaseFooter {
       value: [
         {
           type: "object",
-          key: "footer-title",
-          displayer: "Footer Column",
+          key: "footerColumn",
+          displayer: "Footer",
           value: [
             {
               type: "string",
-              key: "footerTitle",
-              displayer: "Footer Title",
+              key: "categoryTitle",
+              displayer: "Menu Item",
               value: "CONTACT INFO",
             },
             {
+              type: "page",
+              key: "categoryTitleLink",
+              displayer: "Navigate To",
+              value: "",
+            },
+            {
+              type: "media",
+              key: "categoryTitleMedia",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["icon", "image"],
+              },
+              value: {
+                type: "icon",
+                name: "",
+              },
+            },
+            {
               type: "array",
-              key: "footerText",
-              displayer: "Footer Text",
+              key: "menuItems",
+              displayer: "Menu Subitem",
               value: [
                 {
                   type: "object",
-                  key: "footer-text",
-                  displayer: "Text Values",
+                  key: "menuItem",
+                  displayer: "Item",
                   value: [
                     {
                       type: "string",
-                      key: "footerText",
+                      key: "text",
                       displayer: "Text",
                       value: "49 Featherstone Street London, UK",
                     },
                     {
                       type: "media",
-                      key: "footerIcon",
-                      displayer: "Icon",
+                      key: "icon",
+                      displayer: "Media",
                       additionalParams: {
-                        availableTypes: ["icon"],
+                        availableTypes: ["icon", "image"],
                       },
                       value: {
                         type: "icon",
@@ -193,29 +256,28 @@ class Footer3Page extends BaseFooter {
                     {
                       type: "page",
                       displayer: "Navigate To",
-                      key: "path",
+                      key: "pageLink",
                       value: "",
                     },
                   ],
                 },
-
                 {
                   type: "object",
-                  key: "footer-text",
-                  displayer: "Text Values",
+                  key: "menuItem",
+                  displayer: "Item",
                   value: [
                     {
                       type: "string",
-                      key: "footerText",
+                      key: "text",
                       displayer: "Text",
                       value: "Phone: [+44] 450 88 800",
                     },
                     {
                       type: "media",
-                      key: "footerIcon",
-                      displayer: "Icon",
+                      key: "icon",
+                      displayer: "Media",
                       additionalParams: {
-                        availableTypes: ["icon"],
+                        availableTypes: ["icon", "image"],
                       },
                       value: {
                         type: "icon",
@@ -224,7 +286,7 @@ class Footer3Page extends BaseFooter {
                     },
                     {
                       type: "page",
-                      key: "path",
+                      key: "pageLink",
                       displayer: "Navigate To",
                       value: "",
                     },
@@ -232,21 +294,21 @@ class Footer3Page extends BaseFooter {
                 },
                 {
                   type: "object",
-                  key: "footer-text",
-                  displayer: "Text Values",
+                  key: "menuItem",
+                  displayer: "Item",
                   value: [
                     {
                       type: "string",
-                      key: "footerText",
+                      key: "text",
                       displayer: "Text",
                       value: "E-Mail: contact@website.com",
                     },
                     {
                       type: "media",
-                      key: "footerIcon",
-                      displayer: "Icon",
+                      key: "icon",
+                      displayer: "Media",
                       additionalParams: {
-                        availableTypes: ["icon"],
+                        availableTypes: ["icon", "image"],
                       },
                       value: {
                         type: "icon",
@@ -255,7 +317,7 @@ class Footer3Page extends BaseFooter {
                     },
                     {
                       type: "page",
-                      key: "path",
+                      key: "pageLink",
                       displayer: "Navigate To",
                       value: "",
                     },
@@ -263,21 +325,21 @@ class Footer3Page extends BaseFooter {
                 },
                 {
                   type: "object",
-                  key: "footer-text",
-                  displayer: "Text Values",
+                  key: "menuItem",
+                  displayer: "Item",
                   value: [
                     {
                       type: "string",
-                      key: "footerText",
+                      key: "text",
                       displayer: "Text",
                       value: "Web: keydesign-themes.com",
                     },
                     {
                       type: "media",
-                      key: "footerIcon",
-                      displayer: "Icon",
+                      key: "icon",
+                      displayer: "Media",
                       additionalParams: {
-                        availableTypes: ["icon"],
+                        availableTypes: ["icon", "image"],
                       },
                       value: {
                         type: "icon",
@@ -286,7 +348,7 @@ class Footer3Page extends BaseFooter {
                     },
                     {
                       type: "page",
-                      key: "path",
+                      key: "pageLink",
                       displayer: "Navigate To",
                       value: "",
                     },
@@ -298,37 +360,55 @@ class Footer3Page extends BaseFooter {
         },
         {
           type: "object",
-          key: "footer-title",
-          displayer: "Footer Column",
+          key: "footerColumn",
+          displayer: "Footer",
           value: [
             {
               type: "string",
-              key: "footerTitle",
-              displayer: "Footer Title",
+              key: "categoryTitle",
+              displayer: "Menu Item",
               value: "ADDITIONAL LINK",
             },
             {
+              type: "page",
+              key: "categoryTitleLink",
+              displayer: "Navigate To",
+              value: "",
+            },
+            {
+              type: "media",
+              key: "categoryTitleMedia",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["icon", "image"],
+              },
+              value: {
+                type: "icon",
+                name: "",
+              },
+            },
+            {
               type: "array",
-              key: "footerText",
-              displayer: "Footer Text",
+              key: "menuItems",
+              displayer: "Menu Subitem",
               value: [
                 {
                   type: "object",
-                  key: "footer-text",
-                  displayer: "Text Values",
+                  key: "menuItem",
+                  displayer: "Item",
                   value: [
                     {
                       type: "string",
-                      key: "footerText",
+                      key: "text",
                       displayer: "Text",
                       value: "About us",
                     },
                     {
                       type: "media",
-                      key: "footerIcon",
-                      displayer: "Icon",
+                      key: "icon",
+                      displayer: "Media",
                       additionalParams: {
-                        availableTypes: ["icon"],
+                        availableTypes: ["icon", "image"],
                       },
                       value: {
                         type: "icon",
@@ -338,28 +418,28 @@ class Footer3Page extends BaseFooter {
                     {
                       type: "page",
                       displayer: "Navigate To",
-                      key: "path",
+                      key: "pageLink",
                       value: "",
                     },
                   ],
                 },
                 {
                   type: "object",
-                  key: "footer-text",
-                  displayer: "Text Values",
+                  key: "menuItem",
+                  displayer: "Item",
                   value: [
                     {
                       type: "string",
-                      key: "footerText",
+                      key: "text",
                       displayer: "Text",
                       value: "Terms and conditions",
                     },
                     {
                       type: "media",
-                      key: "footerIcon",
-                      displayer: "Icon",
+                      key: "icon",
+                      displayer: "Media",
                       additionalParams: {
-                        availableTypes: ["icon"],
+                        availableTypes: ["icon", "image"],
                       },
                       value: {
                         type: "icon",
@@ -368,7 +448,7 @@ class Footer3Page extends BaseFooter {
                     },
                     {
                       type: "page",
-                      key: "path",
+                      key: "pageLink",
                       displayer: "Navigate To",
                       value: "",
                     },
@@ -376,21 +456,21 @@ class Footer3Page extends BaseFooter {
                 },
                 {
                   type: "object",
-                  key: "footer-text",
-                  displayer: "Text Values",
+                  key: "menuItem",
+                  displayer: "Item",
                   value: [
                     {
                       type: "string",
-                      key: "footerText",
+                      key: "text",
                       displayer: "Text",
                       value: "Privacy Policy",
                     },
                     {
                       type: "media",
-                      key: "footerIcon",
-                      displayer: "Icon",
+                      key: "icon",
+                      displayer: "Media",
                       additionalParams: {
-                        availableTypes: ["icon"],
+                        availableTypes: ["icon", "image"],
                       },
                       value: {
                         type: "icon",
@@ -399,7 +479,7 @@ class Footer3Page extends BaseFooter {
                     },
                     {
                       type: "page",
-                      key: "path",
+                      key: "pageLink",
                       displayer: "Navigate To",
                       value: "",
                     },
@@ -407,21 +487,21 @@ class Footer3Page extends BaseFooter {
                 },
                 {
                   type: "object",
-                  key: "footer-text",
-                  displayer: "Text Values",
+                  key: "menuItem",
+                  displayer: "Item",
                   value: [
                     {
                       type: "string",
-                      key: "footerText",
+                      key: "text",
                       displayer: "Text",
                       value: "News",
                     },
                     {
                       type: "media",
-                      key: "footerIcon",
-                      displayer: "Icon",
+                      key: "icon",
+                      displayer: "Media",
                       additionalParams: {
-                        availableTypes: ["icon"],
+                        availableTypes: ["icon", "image"],
                       },
                       value: {
                         type: "icon",
@@ -430,7 +510,7 @@ class Footer3Page extends BaseFooter {
                     },
                     {
                       type: "page",
-                      key: "path",
+                      key: "pageLink",
                       displayer: "Navigate To",
                       value: "",
                     },
@@ -438,21 +518,21 @@ class Footer3Page extends BaseFooter {
                 },
                 {
                   type: "object",
-                  key: "footer-text",
-                  displayer: "Text Values",
+                  key: "menuItem",
+                  displayer: "Item",
                   value: [
                     {
                       type: "string",
-                      key: "footerText",
+                      key: "text",
                       displayer: "Text",
                       value: "Contact us",
                     },
                     {
                       type: "media",
-                      key: "footerIcon",
-                      displayer: "Icon",
+                      key: "icon",
+                      displayer: "Media",
                       additionalParams: {
-                        availableTypes: ["icon"],
+                        availableTypes: ["icon", "image"],
                       },
                       value: {
                         type: "icon",
@@ -461,7 +541,7 @@ class Footer3Page extends BaseFooter {
                     },
                     {
                       type: "page",
-                      key: "path",
+                      key: "pageLink",
                       displayer: "Navigate To",
                       value: "",
                     },
@@ -473,37 +553,55 @@ class Footer3Page extends BaseFooter {
         },
         {
           type: "object",
-          key: "footer-title",
-          displayer: "Footer Column",
+          key: "footerColumn",
+          displayer: "Footer",
           value: [
             {
               type: "string",
-              key: "footerTitle",
-              displayer: "Footer Title",
+              key: "categoryTitle",
+              displayer: "Menu Item",
               value: "LATEST NEWS",
             },
             {
+              type: "page",
+              key: "categoryTitleLink",
+              displayer: "Navigate To",
+              value: "",
+            },
+            {
+              type: "media",
+              key: "categoryTitleMedia",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["icon", "image"],
+              },
+              value: {
+                type: "icon",
+                name: "",
+              },
+            },
+            {
               type: "array",
-              key: "footerText",
-              displayer: "Footer Text",
+              key: "menuItems",
+              displayer: "Menu Subitem",
               value: [
                 {
                   type: "object",
-                  key: "footer-text",
-                  displayer: "Text Values",
+                  key: "menuItem",
+                  displayer: "Item",
                   value: [
                     {
                       type: "string",
-                      key: "footerText",
+                      key: "text",
                       displayer: "Text",
                       value: "Future design concept - February 3, 2016",
                     },
                     {
                       type: "media",
-                      key: "footerIcon",
-                      displayer: "Icon",
+                      key: "icon",
+                      displayer: "Media",
                       additionalParams: {
-                        availableTypes: ["icon"],
+                        availableTypes: ["icon", "image"],
                       },
                       value: {
                         type: "icon",
@@ -513,28 +611,28 @@ class Footer3Page extends BaseFooter {
                     {
                       type: "page",
                       displayer: "Navigate To",
-                      key: "path",
+                      key: "pageLink",
                       value: "",
                     },
                   ],
                 },
                 {
                   type: "object",
-                  key: "footer-text",
-                  displayer: "Text Values",
+                  key: "menuItem",
+                  displayer: "Item",
                   value: [
                     {
                       type: "string",
-                      key: "footerText",
+                      key: "text",
                       displayer: "Text",
                       value: "Stand out venues - January 25, 2016",
                     },
                     {
                       type: "media",
-                      key: "footerIcon",
-                      displayer: "Icon",
+                      key: "icon",
+                      displayer: "Media",
                       additionalParams: {
-                        availableTypes: ["icon"],
+                        availableTypes: ["icon", "image"],
                       },
                       value: {
                         type: "icon",
@@ -543,7 +641,7 @@ class Footer3Page extends BaseFooter {
                     },
                     {
                       type: "page",
-                      key: "path",
+                      key: "pageLink",
                       displayer: "Navigate To",
                       value: "",
                     },
@@ -551,21 +649,21 @@ class Footer3Page extends BaseFooter {
                 },
                 {
                   type: "object",
-                  key: "footer-text",
-                  displayer: "Text Values",
+                  key: "menuItem",
+                  displayer: "Item",
                   value: [
                     {
                       type: "string",
-                      key: "footerText",
+                      key: "text",
                       displayer: "Text",
                       value: "Technology upgraded - January 25, 2016",
                     },
                     {
                       type: "media",
-                      key: "footerIcon",
-                      displayer: "Icon",
+                      key: "icon",
+                      displayer: "Media",
                       additionalParams: {
-                        availableTypes: ["icon"],
+                        availableTypes: ["icon", "image"],
                       },
                       value: {
                         type: "icon",
@@ -574,7 +672,7 @@ class Footer3Page extends BaseFooter {
                     },
                     {
                       type: "page",
-                      key: "path",
+                      key: "pageLink",
                       displayer: "Navigate To",
                       value: "",
                     },
@@ -582,21 +680,21 @@ class Footer3Page extends BaseFooter {
                 },
                 {
                   type: "object",
-                  key: "footer-text",
-                  displayer: "Text Values",
+                  key: "menuItem",
+                  displayer: "Item",
                   value: [
                     {
                       type: "string",
-                      key: "footerText",
+                      key: "text",
                       displayer: "Text",
                       value: "Deliver fresh news - February 15, 2015",
                     },
                     {
                       type: "media",
-                      key: "footerIcon",
-                      displayer: "Icon",
+                      key: "icon",
+                      displayer: "Media",
                       additionalParams: {
-                        availableTypes: ["icon"],
+                        availableTypes: ["icon", "image"],
                       },
                       value: {
                         type: "icon",
@@ -605,7 +703,7 @@ class Footer3Page extends BaseFooter {
                     },
                     {
                       type: "page",
-                      key: "path",
+                      key: "pageLink",
                       displayer: "Navigate To",
                       value: "",
                     },
@@ -613,21 +711,21 @@ class Footer3Page extends BaseFooter {
                 },
                 {
                   type: "object",
-                  key: "footer-text",
-                  displayer: "Text Values",
+                  key: "menuItem",
+                  displayer: "Item",
                   value: [
                     {
                       type: "string",
-                      key: "footerText",
+                      key: "text",
                       displayer: "Text",
                       value: "Development solutions - January 25, 2015",
                     },
                     {
                       type: "media",
-                      key: "footerIcon",
-                      displayer: "Icon",
+                      key: "icon",
+                      displayer: "Media",
                       additionalParams: {
-                        availableTypes: ["icon"],
+                        availableTypes: ["icon", "image"],
                       },
                       value: {
                         type: "icon",
@@ -636,7 +734,7 @@ class Footer3Page extends BaseFooter {
                     },
                     {
                       type: "page",
-                      key: "path",
+                      key: "pageLink",
                       displayer: "Navigate To",
                       value: "",
                     },
@@ -658,8 +756,8 @@ class Footer3Page extends BaseFooter {
 
     this.addProp({
       type: "string",
-      key: "bottomText",
-      displayer: "Bottom Text",
+      key: "footerText",
+      displayer: "Footer Text",
       value: "Composer by Blinkpage. All rights reserved.",
     });
 
@@ -670,8 +768,8 @@ class Footer3Page extends BaseFooter {
       value: [
         {
           type: "object",
-          key: "content",
-          displayer: "Content Elements",
+          key: "linkItem",
+          displayer: "Link Item",
           value: [
             {
               type: "string",
@@ -689,8 +787,8 @@ class Footer3Page extends BaseFooter {
         },
         {
           type: "object",
-          key: "content",
-          displayer: "Content Elements",
+          key: "linkItem",
+          displayer: "Link Item",
           value: [
             {
               type: "string",
@@ -725,29 +823,34 @@ class Footer3Page extends BaseFooter {
   }
 
   render() {
-    const socials = this.castToObject<any[]>("socials");
-    const links = this.castToObject<any[]>("links");
-    const footer = this.castToObject<any[]>("footer");
+    const socials = this.castToObject<SocialItem[]>("socials");
+    const links = this.castToObject<LinkItem[]>("links");
+    const footerData = this.castToObject<Column[]>("footer");
 
-    const logoObject = this.castToObject<any>("logo");
+    const logoObject = this.castToObject<LogoObject>("logo");
     const logo = logoObject?.logo;
     const logoUrl = logoObject?.logoUrl;
     const line = this.getPropValue("line");
 
-    const bottomTextExist = this.castToString(this.getPropValue("bottomText"));
+    const footerTextExist = this.castToString(this.getPropValue("footerText"));
     const descriptionExist = this.castToString(this.getPropValue("description"));
+    const subtitleExist = this.castToString(this.getPropValue("subtitle"));
+    const titleExist = this.castToString(this.getPropValue("title"));
 
-    const headerExist = logo || descriptionExist || socials.length > 0;
+    const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons") || [];
+    const hasRenderableButton = buttons.some((btn) => this.castToString(btn.text));
+
+    const headerExist = subtitleExist || titleExist || logo || descriptionExist || hasRenderableButton || socials.length > 0;
 
     const alignment = Base.getContentAlignment();
 
     const position = this.getPropValue("position");
 
-    const firstContainerExist = headerExist || footer.length > 0;
-    const secondContainerExist = links.length > 0 || bottomTextExist;
+    const firstContainerExist = headerExist || footerData.length > 0;
+    const secondContainerExist = links.length > 0 || footerTextExist;
 
     return (
-      <div className={`${this.decorateCSS("container")} ${position === "Absolute" ? this.decorateCSS("absolute") : ""}`}>
+      <div className={`${this.decorateCSS("container")} ${position === "Absolute" ? this.decorateCSS("absolute") : ""} ${alignment === "center" ? this.decorateCSS("center-alignment") : ""}`}>
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("footer-page")}>
            {firstContainerExist && <Base.Container className={this.decorateCSS("first-container")}>
@@ -756,28 +859,52 @@ class Footer3Page extends BaseFooter {
                   <div className={`${this.decorateCSS("items")} ${alignment === "center" ? this.decorateCSS("center-alignment") : ""}`} data-alignment={alignment}>
                     {headerExist && (
                       <Base.VerticalContent className={this.decorateCSS("header")}>
-                        {logo?.url && (
+                        {(logo?.url || logo?.name) && (
                           <ComposerLink path={logoUrl}>
                             <div className={this.decorateCSS("logo")}>
-                              <Base.Media value={logo} className={this.decorateCSS("image")} />
+                              <Base.Media
+                                value={logo}
+                                className={`${this.decorateCSS("image")} ${logo?.type === "icon" ? this.decorateCSS("is-icon") : ""}`}
+                              />
                             </div>
                           </ComposerLink>
                         )}
+                        {subtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
+                        {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
                         {descriptionExist && <Base.P className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.P>}
+                        {hasRenderableButton && (
+                          <div className={this.decorateCSS("button-container")}>
+                            {buttons.map(
+                              (item: INPUTS.CastedButton, index: number) =>
+                                this.castToString(item.text) && (
+                                  <ComposerLink key={index} path={item.url}>
+                                    <Base.Button
+                                      buttonType={item.type}
+                                      className={this.decorateCSS("button")}
+                                    >
+                                      <Base.P className={this.decorateCSS("button-text")}>
+                                        {item.text}
+                                      </Base.P>
+                                    </Base.Button>
+                                  </ComposerLink>
+                                )
+                            )}
+                          </div>
+                        )}
                         {socials.length > 0 && (
                           <div className={this.decorateCSS("socials-container")}>
-                            {socials.map((item: any, index: number) => {
+                            {socials.map((item: SocialItem, index: number) => {
                               return (
                                 item.icon && (
                                   <ComposerLink key={index} path={item.url}>
-                                    <div 
+                                    <div
                                       className={this.decorateCSS("socials-element")}
                                       data-animation={item.url ? this.getPropValue("hoverAnimation").join(" ") : ""}
                                       data-has-link={Boolean(item.url)}
                                     >
-                                      <Base.Media 
+                                      <Base.Media
                                         value={item.icon}
-                                        className={this.decorateCSS("icon")} 
+                                        className={this.decorateCSS("icon")}
                                       />
                                     </div>
                                   </ComposerLink>
@@ -789,38 +916,52 @@ class Footer3Page extends BaseFooter {
                       </Base.VerticalContent>
                     )}
 
-                    {footer.length > 0 &&
-                      footer.map((item: FooterValues, indexFooter: number) => {
-                        const footerTitleExist = this.castToString(item.footerTitle);
-                        const footerTextExist = item.footerText.length > 0;
-                        const listExist = footerTitleExist || footerTextExist;
+                    {footerData.length > 0 &&
+                      footerData.map((item: Column, indexColumn: number) => {
+                        const categoryTitleExist = this.castToString(item.categoryTitle);
+                        const categoryMediaExist = hasMedia(item.categoryTitleMedia);
+                        const menuItems: MenuItem[] = item.menuItems || [];
+                        const hasItems = menuItems.some((v: MenuItem) => this.castToString(v.text) || hasMedia(v.icon));
+                        const listExist = categoryTitleExist || categoryMediaExist || hasItems;
                         return (
                           listExist && (
-                            <div key={indexFooter} className={`${this.decorateCSS("list-group")} ${alignment === "center" ? this.decorateCSS("center-alignment") : ""}`}>
-                              {footerTitleExist && <Base.H3 className={this.decorateCSS("title")}>{item.footerTitle}</Base.H3>}
-                              {item.footerText.length > 0 && (
+                            <div key={indexColumn} className={`${this.decorateCSS("list-group")} ${alignment === "center" ? this.decorateCSS("center-alignment") : ""}`}>
+                              {(categoryTitleExist || categoryMediaExist) && (
+                                <ComposerLink path={item.categoryTitleLink}>
+                                  <div className={this.decorateCSS("menu-media-wrapper")}>
+                                    {categoryMediaExist && (
+                                      <Base.Media value={item.categoryTitleMedia} className={this.decorateCSS("menu-title-media")} />
+                                    )}
+                                    {categoryTitleExist && <Base.H6 className={this.decorateCSS("title")}>{item.categoryTitle}</Base.H6>}
+                                  </div>
+                                </ComposerLink>
+                              )}
+                              {menuItems.length > 0 && (
                                 <Base.VerticalContent className={this.decorateCSS("text-container")}>
-                                  {item.footerText.map((v: FooterTextValues, indexFooterText: number) => {
-                                    const footerTextExist = this.castToString(v.footerText);
-                                    const elementExist = footerTextExist || v.footerIcon;
+                                  {menuItems.map((v: MenuItem, indexMenuItem: number) => {
+                                    const textExist = this.castToString(v.text);
+                                    const mediaExist = hasMedia(v.icon);
+                                    const elementExist = textExist || mediaExist;
                                     return (
                                       elementExist && (
-                                        <div 
-                                          className={`${this.decorateCSS("element")} ${v.path && this.decorateCSS("has-path")}`}
-                                          data-animation={v.path ? this.getPropValue("hoverAnimation").join(" ") : ""}
-                                        >
-                                          {v.footerIcon?.name && (
-                                            <Base.Media 
-                                              value={v.footerIcon}
-                                              className={this.decorateCSS("element-icon")}
-                                            />
-                                          )}
-                                          {footerTextExist && (
-                                            <Base.P className={this.decorateCSS("text")}>
-                                              {v.footerText}
-                                            </Base.P>
-                                          )}
-                                        </div>
+                                        <ComposerLink key={indexMenuItem} path={v.pageLink}>
+                                          <div
+                                            className={`${this.decorateCSS("element")} ${v.pageLink && this.decorateCSS("has-path")}`}
+                                            data-animation={v.pageLink ? this.getPropValue("hoverAnimation").join(" ") : ""}
+                                          >
+                                            {mediaExist && (
+                                              <Base.Media
+                                                value={v.icon}
+                                                className={this.decorateCSS("element-icon")}
+                                              />
+                                            )}
+                                            {textExist && (
+                                              <Base.P className={this.decorateCSS("text")}>
+                                                {v.text}
+                                              </Base.P>
+                                            )}
+                                          </div>
+                                        </ComposerLink>
                                       )
                                     );
                                   })}
@@ -839,13 +980,13 @@ class Footer3Page extends BaseFooter {
 
             {secondContainerExist && <Base.Container className={this.decorateCSS("second-container")}>
               <Base.MaxContent className={this.decorateCSS("second-max-content")}>
-                {(bottomTextExist || links.length > 0) && (
-                  <div className={`${this.decorateCSS("footer-bottom")} 
+                {(footerTextExist || links.length > 0) && (
+                  <div className={`${this.decorateCSS("footer-bottom")}
                   ${alignment === "center" && this.decorateCSS("center")}`}>
-                    {bottomTextExist && <Base.P className={this.decorateCSS("bottom-text")}>{this.getPropValue("bottomText")}</Base.P>}
+                    {footerTextExist && <Base.P className={this.decorateCSS("bottom-text")}>{this.getPropValue("footerText")}</Base.P>}
                     {links.length > 0 && (
                       <Base.Row className={this.decorateCSS("links")}>
-                        {links.map((item: any, index: number) => {
+                        {links.map((item: LinkItem, index: number) => {
                           const textExist = this.castToString(item.text);
                           return (
                             textExist && (

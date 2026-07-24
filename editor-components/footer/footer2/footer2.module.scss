@@ -1,25 +1,39 @@
-@use "../../../../composer-tools/composer-base-components//base//utitilities/viewports.module.scss" as *;
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
   padding: 0 !important;
 
   &.absolute {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: transparent;
+    position: relative;
+    height: 0;
+    overflow: visible;
+    z-index: 10;
+
+    > .max-content {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      width: 100%;
+      background: transparent;
+    }
+  }
+
+  &.has-image {
+    .title,
+    .text {
+      color: #ffffff !important;
+    }
   }
   .max-content {
     .footer-page {
       width: 100%;
       position: relative;
-      padding: 80px var(--composer-gap-xl);
+      padding: 120px 60px;
 
-      .media {
+      .background-media {
         position: absolute;
-        top: 0;
-        left: 0;
+        inset: 0;
         width: 100%;
         height: 100%;
         z-index: 0;
@@ -48,8 +62,15 @@
             color: var(--composer-font-color-primary);
           }
 
+          .text-items {
+
+            .text-last {
+              margin-top: var(--composer-gap-md);
+            }
+          }
+
           .text {
-            color: var(--composer-font-color-primary);
+            color: var(--composer-tertiary-color);
             transition: all 0.3s ease;
             width: fit-content;
 
@@ -79,14 +100,11 @@
         }
       }
 
-      .overlay {
+      .background-overlay {
         position: absolute;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
+        inset: 0;
+        background-color: rgb(var(--composer-html-background-rgb), 0.6);
         z-index: 1;
-        background-color: rgb(var(--composer-html-background-rgb), 0.7);
       }
     }
 
@@ -109,7 +127,7 @@
   .container {
     .max-content {
       .footer-page {
-        padding: 80px var(--composer-gap-lg);
+        padding:calc(var(--composer-gap-xl) * 2) var(--composer-gap-xl);
         .items {
           min-height: 170px;
           gap: var(--composer-gap-md);
@@ -133,14 +151,13 @@
   .container {
     .max-content {
       .footer-page {
-        padding: var(--composer-gap-xl) var(--composer-gap-md);
+        padding: var(--composer-gap-xl) 30px;
         .items {
           min-height: 300px;
           gap: var(--composer-gap-xl);
           .list{
-            align-items: center;
-            .title,.text{
-              text-align: center;
+            .title {
+              font-size: 1.25rem !important;
             }
           }
         }
@@ -151,4 +168,36 @@
       }
     }
   }
+}
+
+.menu-media-wrapper {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--composer-gap-sm);
+}
+
+.menu-title-media,
+.menu-item-media {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  object-fit: contain;
+
+  svg {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.menu-title-media {
+  width: 20px;
+  height: 20px;
+  color: var(--composer-font-color-primary);
+}
+
+.menu-item-media {
+  width: 16px;
+  height: 16px;
+  color: var(--composer-tertiary-color);
 }

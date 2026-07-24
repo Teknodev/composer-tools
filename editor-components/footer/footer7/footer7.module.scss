@@ -1,59 +1,161 @@
 @use "../../../../composer-tools//composer-base-components//base//utitilities/viewports.module.scss" as *;
 
 .container {
-  padding: var(--composer-gap-md) var(--composer-gap-xl) !important;
+  padding: 40px 60px 40px 60px !important;
 
   &.absolute {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: transparent;
+    position: relative;
+    height: 0;
+    overflow: visible;
+    z-index: 10;
+    padding: 0 !important;
+
+    > .max-content {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      width: 100%;
+      background: transparent;
+      padding: 40px 60px 40px 60px !important;
+    }
   }
   .max-content {
     .footer-page {
       display: flex;
       justify-content: space-between;
-      align-items: center;
-      gap: var(--composer-gap-md);
+      align-items: flex-end;
+      gap: var(--composer-gap-lg);
+
+      // the reference bottom-aligns the logo with the copyright line; that only
+      // reads well while the left column is just a logo
+      &:has(.footer-columns),
+      &:has(.subtitle),
+      &:has(.title),
+      &:has(.description),
+      &:has(.button-container) {
+        align-items: flex-start;
+      }
 
       .left {
-        max-width: 20%;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
 
         .image {
-           width: 200px;
-           height: var(--composer-gap-lg);
-           object-fit: cover;
+           display: block;
+           width: 220px;
+           height: 60px;
+           object-fit: contain;
+           object-position: left bottom;
+
+           &.is-icon {
+             font-size: 5rem !important;
+             width: 50px !important;
+             height: 50px !important;
+             display: flex;
+             align-items: center;
+             justify-content: flex-start;
+             color: var(--composer-font-color-primary);
+           }
+        }
+
+        .subtitle {
+          text-align: left;
+          text-align: left !important;
+          margin-left: 0 !important;
+          margin-right: auto !important;
+        }
+
+        .title {
+          text-align: left;
+        }
+
+        .description {
+          text-align: left;
+        }
+
+        .button-container {
+          display: flex;
+          flex-wrap: wrap;
+          gap: var(--composer-gap-sm);
+
+          .button {
+
+            .button-text {
+              content: "";
+            }
+          }
+        }
+      }
+
+      .footer-columns {
+        display: flex;
+        flex: 1;
+        justify-content: center;
+        gap: var(--composer-gap-md);
+        flex-wrap: wrap;
+
+        .list-group {
+          display: flex;
+          flex-direction: column;
+          gap: var(--composer-gap-sm);
+          min-width: 120px;
+          align-items: flex-start !important;
+
+          .column-title {
+            color: var(--composer-font-color-primary);
+            text-align: left !important;
+            margin-left: 0 !important;
+            margin-right: 0 !important;
+          }
+
+          .text-container {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start !important;
+
+            .footer-text {
+              color: var(--composer-tertiary-color);
+              transition: all 0.3s ease;
+              text-align: left !important;
+
+              &:hover {
+                color: var(--composer-primary-color);
+              }
+            }
+          }
         }
       }
 
       .right {
         display: flex;
         flex-direction: column;
-        max-width: 70%;
-        gap: var(--composer-gap-xs);
+        flex: 1;
+        align-items: flex-end;
 
         .upper {
           display: flex;
           justify-content: flex-end;
           flex-wrap: wrap;
-          gap: var(--composer-gap-md);
+          gap: 5px 30px;
 
           .link-element {
             .link-text {
               position: relative;
               color: var(--composer-font-color-primary);
+              font-weight: 800 !important;
+              padding: 10px 0;
               transition: all 0.3s ease;
             }
 
             &.has-path[data-animation~="animate1"] {
               .link-text {
-                padding-bottom: 2px;
-                
                 &::after {
                   content: '';
                   position: absolute;
-                  bottom: 0;
+                  bottom: 5px;
                   left: 0;
                   width: 0;
                   height: 2px;
@@ -73,7 +175,7 @@
 
             &.has-path[data-animation~="animate2"] {
               .link-text {
-                padding: 0 var(--composer-gap-xs);
+                padding: var(--composer-gap-sm) var(--composer-gap-xs);
                 border-radius: var(--composer-border-radius-sm);
                 
                 &:hover {
@@ -102,7 +204,8 @@
 
           .text {
             text-align: end;
-            color: var(--composer-tertiary-color);
+            color: var(--composer-tertiary-color) !important;
+            white-space: nowrap;
 
             &.left {
               text-align: left;
@@ -111,8 +214,7 @@
         }
 
         &.full-width {
-          max-width: 100%;
-          width: 100%;
+          flex: 1;
 
           .upper, .bottom {
             justify-content: flex-start;
@@ -133,15 +235,27 @@
 
 @container (max-width: #{$composer-tablet-width}) {
   .container {
-    padding: var(--composer-gap-md) var(--composer-gap-lg) !important;
+    padding: var(--composer-gap-lg) var(--composer-gap-xl) var(--composer-gap-lg) var(--composer-gap-xl) !important;
     .max-content {
       .footer-page {
+        gap: var(--composer-gap-md);
+
         .left {
-          max-width: 30%;
+          flex: 1;
+        }
+
+        .footer-columns {
+          gap: var(--composer-gap-md);
         }
 
         .right {
-          max-width: 70%;
+          flex: 1;
+
+          .bottom {
+            .text {
+              white-space: nowrap;
+            }
+          }
         }
       }
     }
@@ -150,48 +264,159 @@
 
 @container (max-width: #{$composer-phone-width}) {
   .container {
-    padding: var(--composer-gap-md) !important;
+    padding: var(--composer-gap-lg) 30px var(--composer-gap-lg) 30px !important;
     .max-content {
       .footer-page {
         flex-direction: column;
-        align-items: center;
-        gap: var(--composer-gap-xs);
+        align-items: flex-start;
+        gap: var(--composer-gap-sm);
+
+        &.center-alignment {
+          align-items: center;
+
+          .left {
+            display: flex;
+            flex-direction: column;
+            align-items: center !important;
+
+            .image {
+              object-position: center bottom;
+            }
+
+            .subtitle,
+            .title,
+            .description {
+              text-align: center !important;
+              margin-left: auto !important;
+              margin-right: auto !important;
+            }
+
+            .button-container {
+              justify-content: center !important;
+            }
+          }
+
+          .footer-columns {
+            align-items: center;
+            .list-group {
+              align-items: center !important;
+              .column-title, .footer-text {
+                text-align: center !important;
+              }
+            }
+          }
+
+          .right {
+            align-items: center;
+            .upper {
+              justify-content: center;
+              .link-element {
+                .link-text {
+                  text-align: center;
+                }
+              }
+            }
+            .bottom {
+              justify-content: center;
+              .text {
+                text-align: center;
+              }
+            }
+          }
+        }
 
         .left {
+          flex: none;
           max-width: 100%;
+        }
 
-          .image {
-            width: 150px;
-            height: var(--composer-gap-xl);
+        .footer-columns {
+          flex-direction: column;
+          align-items: flex-start;
+          width: 100%;
+          gap: var(--composer-gap-md);
+
+          .list-group {
+            align-items: flex-start !important;
+            .column-title, .footer-text {
+              text-align: left !important;
+            }
+            .column-title {
+              font-size: 1.25rem !important;
+            }
           }
         }
 
         .right {
+          flex: none;
           display: flex;
           flex-direction: column;
           max-width: 100%;
           gap: var(--composer-gap-xs);
           width: 100%;
-          align-items: center;
+          align-items: flex-start;
 
           .upper {
-            justify-content: center;
+            justify-content: flex-start;
             .link-element{
               .link-text{
-                text-align: center;
+                text-align: left;
               }
             }
           }
 
           .bottom {
-            justify-content: center;
+            justify-content: flex-start;
 
             .text {
-              text-align: center;
+              text-align: left;
+              white-space: normal;
             }
           }
         }
       }
     }
   }
+}
+
+.text {
+  white-space: nowrap !important;
+}
+
+@container (max-width: #{$composer-phone-width}) {
+  .text {
+    white-space: normal !important;
+  }
+}
+
+.menu-media-wrapper {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--composer-gap-sm);
+}
+
+.menu-title-media,
+.menu-item-media {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  object-fit: contain;
+
+  svg {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.menu-title-media {
+  width: 20px;
+  height: 20px;
+  color: var(--composer-font-color-primary);
+}
+
+.menu-item-media {
+  width: 16px;
+  height: 16px;
+  color: var(--composer-tertiary-color);
 }
