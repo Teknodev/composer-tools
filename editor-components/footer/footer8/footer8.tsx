@@ -895,6 +895,22 @@ class Footer8Page extends BaseFooter {
                     {subtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
                     {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
                     {descriptionExist && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
+                    {socials.length > 0 && (
+                      <div className={this.decorateCSS("header-socials")}>
+                        {socials.map((item: any, index: number) =>
+                          hasMedia(item.icon) ? (
+                            <ComposerLink key={index} path={item.url}>
+                              <div
+                                className={this.decorateCSS("header-social-element")}
+                                data-animation={item.url ? this.getPropValue("hoverAnimation").join(" ") : ""}
+                              >
+                                <Base.Media value={item.icon} className={`${this.decorateCSS("header-social-icon")} ${item.icon?.type === "icon" ? this.decorateCSS("is-icon") : ""}`} />
+                              </div>
+                            </ComposerLink>
+                          ) : null
+                        )}
+                      </div>
+                    )}
                     {hasRenderableButton && (
                       <div className={this.decorateCSS("button-container")}>
                         {buttons.map(
@@ -967,7 +983,7 @@ class Footer8Page extends BaseFooter {
               </div>
             }
 
-            {(footerTextExist || links.length > 0 || socials.length > 0) && (
+            {(footerTextExist || links.length > 0) && (
               <div className={this.decorateCSS("footer-bottom")}>
                 {footerTextExist && <Base.P className={this.decorateCSS("bottom-text")}>{this.getPropValue("footerText")}</Base.P>}
 
@@ -978,7 +994,7 @@ class Footer8Page extends BaseFooter {
                         const textExist = this.castToString(item.text);
                         return (
                           textExist && (
-                            <div 
+                            <div
                               className={`${this.decorateCSS("link-element")} ${item.url && this.decorateCSS("has-path")}`}
                               data-animation={item.url ? this.getPropValue("hoverAnimation").join(" ") : ""}
                             >
@@ -986,27 +1002,6 @@ class Footer8Page extends BaseFooter {
                                 <Base.P className={this.decorateCSS("link-text")}>{item.text}</Base.P>
                               </ComposerLink>
                             </div>
-                          )
-                        );
-                      })}
-                    </div>
-                  )}
-
-                  {socials.length > 0 && (
-                    <div className={this.decorateCSS("socials-container")}>
-                      {socials.map((item: any, index: number) => {
-                        const textExist = this.castToString(item.text);
-                        return (
-                          (item.icon || textExist) && (
-                            <ComposerLink key={index} path={item.url}>
-                              <div 
-                                className={`${this.decorateCSS("socials-element")} ${this.decorateCSS("socials-element")}`}
-                                data-animation={item.url ? this.getPropValue("hoverAnimation").join(" ") : ""}
-                              >
-                                <Base.Media value={item.icon} className={`${this.decorateCSS("icon")} ${item.icon?.type === "icon" ? this.decorateCSS("is-icon") : ""}`} />
-                                <Base.P className={this.decorateCSS("socials-text")}>{item.text}</Base.P>
-                              </div>
-                            </ComposerLink>
                           )
                         );
                       })}

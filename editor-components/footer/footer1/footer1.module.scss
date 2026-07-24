@@ -105,6 +105,7 @@
         height: 1px;
         width: 100%;
         border-top: 1px solid var(--composer-tertiary-color);
+        margin-top: calc(var(--composer-gap-lg) + var(--composer-gap-md));
       }
 
       .footer-bottom {

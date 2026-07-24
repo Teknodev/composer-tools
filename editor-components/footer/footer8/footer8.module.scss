@@ -2,7 +2,7 @@
 
 .container {
   width: 100%;
-  padding: 120px 60px var(--composer-gap-md) 60px !important;
+  padding: 120px 60px 60px 60px !important;
 
   &.absolute {
     position: relative;
@@ -18,7 +18,7 @@
       right: 0;
       width: 100%;
       background: transparent;
-      padding: 120px 60px var(--composer-gap-md) 60px !important;
+      padding: 120px 60px 60px 60px !important;
     }
   }
 
@@ -91,6 +91,59 @@
             .button {
               .button-text {
                 content: "";
+              }
+            }
+          }
+
+          .header-socials {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: var(--composer-gap-sm);
+            align-self: flex-start;
+            width: 100%;
+            justify-content: flex-start;
+
+            .header-social-element {
+              display: flex;
+              align-items: center;
+              justify-content: center;
+
+              .header-social-icon {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 20px;
+                height: 20px;
+                object-fit: cover;
+                color: var(--composer-tertiary-color);
+                transition: all 0.3s ease;
+
+                &.is-icon {
+                  font-size: 1.25rem;
+                  width: 20px;
+                  height: 20px;
+                }
+              }
+
+              &[data-animation~="animate1"]:hover .header-social-icon {
+                color: var(--composer-primary-color);
+                transform: scale(1.1);
+              }
+
+              &[data-animation~="animate2"]:hover .header-social-icon {
+                color: var(--composer-primary-color);
+                transform: translateX(var(--composer-gap-xs));
+              }
+
+              &[data-animation~="animate3"]:hover .header-social-icon {
+                color: var(--composer-primary-color);
+                transform: translateY(calc(var(--composer-gap-xs) * -1));
+              }
+
+              &[data-animation~="animate4"]:hover .header-social-icon {
+                color: var(--composer-primary-color);
+                transform: rotate(15deg);
               }
             }
           }
@@ -190,8 +243,7 @@
         align-items: center;
 
         .bottom-text,
-        .links,
-        .socials-container {
+        .links {
           flex: 1;
         }
 
@@ -210,7 +262,7 @@
 
         .links {
           display: flex;
-          justify-content: center;
+          justify-content: flex-end;
           gap: var(--composer-gap-md);
 
           .link-element {
@@ -279,95 +331,8 @@
           }
         }
 
-        .socials-container {
-          display: flex;
-          align-items: center;
-          justify-content: flex-end;
-          gap: var(--composer-gap-sm);
-
-          .socials-element {
-            display: flex;
-            align-items: center;
-            gap: var(--composer-gap-xs);
-
-            .icon, .socials-text {
-              transition: all 0.3s ease;
-              color: var(--composer-font-color-primary);
-            }
-
-            .socials-text {
-              text-align: left !important;
-              margin-left: 0 !important;
-              margin-right: 0 !important;
-              justify-content: flex-start !important;
-            }
-
-            .icon{
-              display: flex;
-              align-items: center;
-              justify-content: center;
-              width: 20px;
-              height: 20px;
-              object-fit: cover;
-
-              &.is-icon {
-                font-size: 1.25rem;
-                width: 20px;
-                height: 20px;
-              }
-            }
-
-            &[data-animation~="animate1"] {
-              &:hover {
-                .icon, .socials-text {
-                  color: var(--composer-primary-color);
-                  transform: scale(1.1);
-                }
-              }
-            }
-
-            &[data-animation~="animate2"] {
-              &:hover {
-                .icon, .socials-text {
-                  color: var(--composer-primary-color);
-                  transform: translateX(var(--composer-gap-xs));
-                }
-              }
-            }
-
-            &[data-animation~="animate3"] {
-              &:hover {
-                .icon, .socials-text {
-                  color: var(--composer-primary-color);
-                  transform: translateY(calc(var(--composer-gap-xs) * -1));
-                }
-              }
-            }
-
-            &[data-animation~="animate4"] {
-              &:hover {
-                .icon {
-                  color: var(--composer-primary-color);
-                  transform: rotate(15deg);
-                }
-                .socials-text {
-                  color: var(--composer-primary-color);
-                }
-              }
-            }
-          }
-        }
-
-        &:not(:has(.links)):not(:has(.socials-container)) .bottom-text {
+        &:not(:has(.links)) .bottom-text {
           justify-content: center;
-        }
-
-        &:not(:has(.links)):has(.socials-container) .bottom-text {
-          justify-content: flex-start;
-        }
-
-        &:not(:has(.socials-container)):has(.links) .bottom-text {
-          justify-content: flex-end;
         }
       }
     }
@@ -434,6 +399,11 @@
                 align-self: center !important;
                 justify-content: center !important;
               }
+
+              .header-socials {
+                align-self: center !important;
+                justify-content: center !important;
+              }
             }
 
             .list-group {
@@ -496,21 +466,6 @@
 
             .link-element {
               .link-text {
-                text-align: center !important;
-                margin-left: auto !important;
-                margin-right: auto !important;
-                justify-content: center !important;
-              }
-            }
-          }
-
-          .socials-container {
-            justify-content: center !important;
-
-            .socials-element {
-              justify-content: center !important;
-
-              .socials-text {
                 text-align: center !important;
                 margin-left: auto !important;
                 margin-right: auto !important;

@@ -1,7 +1,7 @@
 @use "../../../../composer-tools//composer-base-components//base//utitilities/viewports.module.scss" as *;
 
 .container {
-  padding: 120px 60px var(--composer-gap-md) 60px !important;
+  padding: 120px 60px 60px 60px !important;
 
   &.absolute {
     position: relative;
@@ -17,7 +17,7 @@
       right: 0;
       width: 100%;
       background: transparent;
-      padding: 120px 60px var(--composer-gap-md) 60px !important;
+      padding: 120px 60px 60px 60px !important;
     }
   }
   .max-content {
@@ -77,6 +77,10 @@
           flex-direction: column;
           align-items: center;
           gap: var(--composer-gap-md) !important;
+
+          > *:not(:last-child) {
+            margin-bottom: 0 !important;
+          }
 
           .list-title {
             color: var(--composer-font-color-primary);

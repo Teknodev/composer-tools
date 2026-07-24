@@ -526,7 +526,7 @@ class Footer5Page extends BaseFooter {
       type: "string",
       key: "footerText",
       displayer: "Footer Text",
-      value: "2024 © Made with by Blinkpage.",
+      value: "2024 © Made with ♥ by Blinkpage.",
     });
 
     this.addProp({

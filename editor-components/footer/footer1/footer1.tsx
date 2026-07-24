@@ -106,7 +106,7 @@ class Footer1Page extends BaseFooter {
       type: "string",
       key: "footerText",
       displayer: "Footer Text",
-      value: "Copyright © Blinkpage. All rights reserved.",
+      value: 'Copyright © <span style="font-weight: 800;">Blinkpage</span>. All rights reserved.',
     });
 
     this.addProp({
@@ -894,7 +894,7 @@ class Footer1Page extends BaseFooter {
                                   <Base.Media value={column.categoryTitleMedia} className={this.decorateCSS("menu-title-media")} />
                                 )}
                                 {categoryTitleExist && (
-                                  <Base.H6 className={this.decorateCSS("column-title")}>{column.categoryTitle}</Base.H6>
+                                  <Base.P className={this.decorateCSS("column-title")}>{column.categoryTitle}</Base.P>
                                 )}
                               </div>
                             </ComposerLink>

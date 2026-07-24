@@ -99,6 +99,7 @@
                   display: flex;
                   flex-wrap: wrap;
                   align-items: center;
+                  justify-content: flex-start !important;
                   gap: var(--composer-gap-sm);
 
                   .image {
@@ -341,6 +342,7 @@
       height: 1px;
       width: 100%;
       border-top: 1px solid rgb(var(--composer-font-color-primary-rgb), 0.5);
+      margin-top: var(--composer-gap-xl);
     }
 
     .second-container {
@@ -356,6 +358,7 @@
 
           .footer-text {
             justify-content: flex-start !important;
+            font-size: 1rem !important;
           }
 
           .links,
@@ -404,6 +407,7 @@
               margin-left: 0 !important;
               margin-right: 0 !important;
               justify-content: flex-start !important;
+              font-size: 1rem !important;
 
               &[data-has-link="true"] {
                 cursor: pointer;
@@ -502,6 +506,12 @@
                   }
 
                   .button-container {
+                    justify-content: center !important;
+                  }
+
+                  // On phone, keep the centered layout for the social icons (the
+                  // desktop/tablet left-alignment above is intentionally not applied here).
+                  .images .image-container {
                     justify-content: center !important;
                   }
                 }
