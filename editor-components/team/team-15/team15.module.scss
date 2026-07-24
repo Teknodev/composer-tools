@@ -332,6 +332,12 @@
         }
       }
 
+      &.has-image[data-bottom-gradient="false"] {
+        &::after {
+          content: none;
+        }
+      }
+
       &.has-image {
         &::after {
           content: "";
@@ -339,7 +345,7 @@
           inset: 0;
           background: linear-gradient(to top,
               var(--composer-html-background) 0%,
-              rgba(var(--composer-html-background-rgb), 0) 100%);
+              rgba(var(--composer-html-background-rgb), 0) 20%);
           pointer-events: none;
           z-index: 1;
         }

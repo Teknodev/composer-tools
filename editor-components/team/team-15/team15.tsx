@@ -12,6 +12,7 @@ type Socials = {
 
 type Card = {
   profileImage: TypeMediaInputValue;
+  overlay: boolean;
   name: React.JSX.Element;
   position: React.JSX.Element;
   cardDescription: React.JSX.Element;
@@ -49,8 +50,8 @@ class Team15 extends Team {
 
     this.addProp({
       type: "boolean",
-      key: "overlay",
-      displayer: "Overlay",
+      key: "bottomGradient",
+      displayer: "Bottom Gradient",
       value: true,
     });
 
@@ -82,6 +83,12 @@ class Team15 extends Team {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b712bd2970002c6284b2?alt=media&timestamp=1719558632841",
               },
+            },
+            {
+              type: "boolean",
+              key: "overlay",
+              displayer: "Overlay",
+              value: true,
             },
             {
               type: "string",
@@ -264,6 +271,12 @@ class Team15 extends Team {
               },
             },
             {
+              type: "boolean",
+              key: "overlay",
+              displayer: "Overlay",
+              value: true,
+            },
+            {
               type: "string",
               key: "name",
               displayer: "Person Name",
@@ -444,6 +457,12 @@ class Team15 extends Team {
               },
             },
             {
+              type: "boolean",
+              key: "overlay",
+              displayer: "Overlay",
+              value: true,
+            },
+            {
               type: "string",
               key: "name",
               displayer: "Person Name",
@@ -622,6 +641,12 @@ class Team15 extends Team {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6727b8527acba6002c5dfa3e?alt=media&timestamp=1730656339472",
               },
+            },
+            {
+              type: "boolean",
+              key: "overlay",
+              displayer: "Overlay",
+              value: true,
             },
             {
               type: "string",
@@ -842,12 +867,13 @@ class Team15 extends Team {
               const nameExists = this.castToString(card.name);
               const positionExists = this.castToString(card.position);
               const cardDescriptionExist = this.castToString(card.cardDescription);
-              const overlay = this.getPropValue("overlay");
+              const overlay = card.overlay !== false;
               const showLines = this.getPropValue("showLines") !== false;
+              const bottomGradient = this.getPropValue("bottomGradient") !== false;
 
               const cardExists = profileImage || nameExists || positionExists || cardDescriptionExist;
               return cardExists && (
-                <div key={index} className={`${this.decorateCSS("card")} ${profileImage && this.decorateCSS("has-image")}`} data-animation={(this.getPropValue("hoverAnimation") || []).join(" ")} data-show-lines={showLines}>
+                <div key={index} className={`${this.decorateCSS("card")} ${profileImage && this.decorateCSS("has-image")}`} data-animation={(this.getPropValue("hoverAnimation") || []).join(" ")} data-show-lines={showLines} data-bottom-gradient={bottomGradient}>
                   {profileImage && <Base.Media value={profileImage} className={this.decorateCSS("image")} />}
                   {overlay && <div className={this.decorateCSS("overlay")}></div>}
                   {overlay && <div className={this.decorateCSS("overlay2")}></div>}

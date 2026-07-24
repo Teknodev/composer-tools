@@ -47,7 +47,10 @@ class Team1 extends Team {
       type: "array",
       key: "buttons",
       displayer: "Buttons",
-      value: [INPUTS.BUTTON("button", "Button", "Job Openings", "", null, null, "Primary")],
+      value: [
+        INPUTS.BUTTON("button", "Button", "About Us", "", null, null, "Secondary"),
+        INPUTS.BUTTON("button", "Button", "Job Openings", "", null, null, "Primary"),
+      ],
     });
 
     this.addProp({

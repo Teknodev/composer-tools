@@ -22,6 +22,11 @@
           text-align: left !important;
           justify-content: flex-start !important;
         }
+
+        .subtitle {
+          margin-left: 0 !important;
+          margin-right: auto !important;
+        }
       }
     }
 
@@ -294,7 +299,7 @@
       .header {
         flex-direction: column;
         align-items: flex-start;
-        gap: var(--composer-gap-md);
+        gap: 0;
 
         .vertical-content {
           flex: 1 1 auto;

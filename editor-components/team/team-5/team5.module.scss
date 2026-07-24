@@ -49,14 +49,6 @@
       .title-container {
         width: 45%;
 
-        .subtitle {
-          transform: translateX(0) !important;
-
-          &::before {
-            background: none !important;
-          }
-        }
-
         .subtitle,
         .title {
           text-align: left;
@@ -264,14 +256,7 @@
           width: 100%;
 
           .subtitle {
-            transform: translateX(0) !important;
-
-            &::before {
-              background: none !important;
-            }
-
             text-align: var(--composer-content-alignment);
-            display: block;
           }
 
           .title {
