@@ -325,82 +325,51 @@ function isGlobalSelector(selector: string): boolean {
 }
 
 /**
- * Extract the *top-level* custom-property declarations (`--name: value`) from a
- * rule body, discarding every other declaration and any natively-nested rule.
+ * Rewrite a selector whose subject targets global scope so it lands ON the
+ * canvas instead of above it.
  *
- * Tokenizer-based for the same reasons as the rest of this file: values may
- * contain `;`/`{`/`}` inside strings (`content: ";"`), comments, or balanced
- * parens (`var(--a, url(x;y))`), so a naive split on `;` corrupts them.
+ * `#playground` IS the page as far as an uploaded component is concerned, so
+ * `body { background: … }` should paint the canvas, not the editor chrome.
+ * Mapping (rather than dropping) keeps the isolation guarantee intact — nothing
+ * can still take effect at or above `#playground` — while letting a component
+ * render as its author designed it:
+ *
+ *   :root / html / body   →  #playground
+ *   *                     →  #playground *
+ *   body > *              →  #playground > *
+ *   body.dark             →  #playground.dark
+ *
+ * Qualifiers on the subject (classes, attributes, pseudos) are preserved.
  */
-function extractCustomProperties(inner: string): string {
-  const out: string[] = [];
-  let buffer = "";
-  let i = 0;
-  const flush = () => {
-    const t = buffer.trim();
-    buffer = "";
-    if (!t.startsWith("--")) return;
-    // A declaration only counts when it actually has a `name: value` split.
-    const colon = t.indexOf(":");
-    if (colon > 0) out.push(t);
-  };
-  while (i < inner.length) {
-    const ch = inner[i];
-    if (ch === "/" && inner[i + 1] === "*") {
-      i = scanComment(inner, i);
-      continue;
-    }
-    if (ch === '"' || ch === "'") {
-      const stop = scanString(inner, i);
-      buffer += inner.slice(i, stop);
-      i = stop;
-      continue;
-    }
-    if (ch === "(") {
-      const close = findMatching(inner, i, "(", ")");
-      buffer += inner.slice(i, close + 1);
-      i = close + 1;
-      continue;
-    }
-    if (ch === "{") {
-      // A natively-nested rule inside a global block. Its selector is relative
-      // to the global subject, so it is discarded wholesale along with the
-      // buffered prelude — only flat custom properties are re-homed.
-      const close = findMatching(inner, i, "{", "}");
-      buffer = "";
-      i = close + 1;
-      continue;
-    }
-    if (ch === ";") {
-      flush();
-      i++;
-      continue;
-    }
-    buffer += ch;
-    i++;
-  }
-  flush();
-  return out.join(";");
+function mapGlobalSelector(selector: string): string {
+  let out = selector
+    .replace(/:root(?![\w-])/gi, PLAYGROUND_SCOPE)
+    .replace(/(^|[\s>+~,(])(?:html|body)(?![\w-])/gi, `$1${PLAYGROUND_SCOPE}`);
+
+  // Nothing matched ⇒ the subject was a bare universal (`*`, `*::before`).
+  if (out === selector) out = `${PLAYGROUND_SCOPE} ${selector}`;
+
+  // `html body` collapses to `#playground #playground` — fold repeats so the
+  // result stays a single canvas-rooted selector.
+  let prev: string;
+  do {
+    prev = out;
+    out = out.replace(
+      new RegExp(`${PLAYGROUND_SCOPE}(\\s*[>+~]?\\s*)${PLAYGROUND_SCOPE}`, "g"),
+      PLAYGROUND_SCOPE,
+    );
+  } while (out !== prev);
+
+  return out;
 }
 
 /**
  * Scope one comma-separated selector list to the playground. Each selector is
- * prefixed individually; selectors that target global scope are dropped and
- * reported back to the caller so their custom properties can be re-homed onto
- * `#playground`. Returns the rebuilt list (`""` when every selector was
- * dropped) plus whether any global selector was seen.
+ * prefixed individually; selectors targeting global scope are re-pointed at the
+ * canvas via {@link mapGlobalSelector} rather than discarded.
  */
-function scopeSelectorList(
-  selectorList: string,
-  violations: CssScopeViolation[],
-  inner: string,
-): { scoped: string; hadGlobal: boolean } {
+function scopeSelectorList(selectorList: string, _violations: CssScopeViolation[]): string {
   const kept: string[] = [];
-  let hadGlobal = false;
-  // Only declarations that CANNOT be re-homed justify a violation — custom
-  // properties are preserved (see transformRule), so a token-only global rule
-  // is now fully honoured and must not fail an upload gate.
-  const blocked = stripCustomProperties(inner);
   for (const raw of splitTopLevel(selectorList, ",")) {
     const sel = raw.trim();
     if (!sel) continue;
@@ -408,31 +377,9 @@ function scopeSelectorList(
       kept.push(sel);
       continue;
     }
-    if (isGlobalSelector(sel)) {
-      hadGlobal = true;
-      if (blocked) {
-        violations.push({
-          selector: sel,
-          reason:
-            "targets global scope (:root/html/body/*); its non-custom-property declarations would escape #playground and were dropped",
-        });
-      }
-      continue;
-    }
-    kept.push(`${PLAYGROUND_SCOPE} ${sel}`);
+    kept.push(isGlobalSelector(sel) ? mapGlobalSelector(sel) : `${PLAYGROUND_SCOPE} ${sel}`);
   }
-  return { scoped: kept.join(", "), hadGlobal };
-}
-
-/** True when a rule body carries anything other than flat custom properties. */
-function stripCustomProperties(inner: string): boolean {
-  const withoutProps = inner.replace(/\/\*[\s\S]*?\*\//g, "");
-  const props = extractCustomProperties(inner);
-  // Compare declaration counts rather than text: if every non-empty statement
-  // was a custom property, nothing is lost by dropping the rest.
-  const statements = splitTopLevel(withoutProps, ";").filter(s => s.trim());
-  const propCount = props ? splitTopLevel(props, ";").filter(s => s.trim()).length : 0;
-  return statements.length > propCount;
+  return kept.join(", ");
 }
 
 /** Transform a single `prelude { inner }` rule. Returns "" when the rule is fully dropped. */
@@ -455,25 +402,15 @@ function transformRule(prelude: string, inner: string, violations: CssScopeViola
   // any natively-nested rules are already confined by the scoped parent.
   const leadingLen = prelude.length - prelude.trimStart().length;
   const leading = prelude.slice(0, leadingLen);
-  const { scoped, hadGlobal } = scopeSelectorList(trimmed, violations, inner);
-
-  // A global rule's design tokens are re-homed onto #playground rather than
-  // discarded. Components conventionally declare their palette in
-  // `:root { --bg: … }` and consume it via `var(--bg)`; dropping the block
-  // stripped the definitions while leaving every reference, which silently
-  // rendered the component unstyled (transparent backgrounds). Custom
-  // properties inherit, so #playground reaches every descendant while still
-  // never applying at or above the canvas — the isolation guarantee holds.
-  const rehomed = hadGlobal ? extractCustomProperties(inner) : "";
-  const tokenRule = rehomed ? `${PLAYGROUND_SCOPE}{${rehomed}}` : "";
-
-  if (!scoped) return tokenRule;
-  return `${tokenRule}${leading}${scoped} {${inner}}`;
+  const scoped = scopeSelectorList(trimmed, violations);
+  if (!scoped) return "";
+  return `${leading}${scoped} {${inner}}`;
 }
 
 /**
  * Walk a rule list (top-level stylesheet or the body of a conditional group
- * at-rule). Selectors are scoped, global-scope rules dropped, and stray
+ * at-rule). Selectors are scoped, global-scope selectors re-pointed at the
+ * canvas, and stray
  * top-level custom-property declarations (which would otherwise leak to
  * document scope) are removed.
  */
@@ -538,15 +475,15 @@ function processCss(css: string): { css: string; violations: CssScopeViolation[]
 
 /**
  * Detect — without modifying the CSS — every declaration that would escape the
- * playground scope and cannot be salvaged: global selectors carrying
- * **non-custom-property** declarations, and custom properties declared outside
- * any selector. Shares its rule set with {@link scopeToPlayground} so an
+ * playground scope. Shares its rule set with {@link scopeToPlayground} so an
  * upload-time gate can reason identically.
  *
- * NOTE: a global rule holding *only* custom properties is no longer a
- * violation — {@link scopeToPlayground} re-homes those onto `#playground`, so
- * the common `:root { --token: … }` palette block is legal and must not be
- * rejected at upload time.
+ * NOTE: global selectors are NO LONGER violations. {@link scopeToPlayground}
+ * re-points `:root`/`html`/`body`/`*` at `#playground`, so a component's
+ * palette block and its `body { background: … }` / `* { box-sizing: … }` base
+ * rules are all honoured on the canvas and must not be rejected at upload time.
+ * The only remaining violation is a custom property declared outside any
+ * selector, which would resolve at document scope.
  */
 export function findCssScopeViolations(css: string): CssScopeViolation[] {
   return processCss(css).violations;
@@ -560,13 +497,12 @@ export function findCssScopeViolations(css: string): CssScopeViolation[] {
  *   - Every selector in a comma list is prefixed with `#playground`
  *     individually, even across newlines.
  *   - Selectors targeting global scope (`:root`/`html`/`body`/`*`, including
- *     `:is()/:where()` wrappers and leading combinators) are dropped so an
- *     uploaded component can never repaint the editor chrome; an emptied rule
- *     is removed entirely. Their **custom properties are re-homed onto
- *     `#playground`** instead of being lost — a component declaring its palette
- *     in `:root { --bg: … }` keeps working, because custom properties inherit
- *     down to every descendant while still never applying above the canvas.
- *     Non-custom declarations on a global selector are still discarded.
+ *     `:is()/:where()` wrappers and leading combinators) are **re-pointed at
+ *     `#playground`** rather than dropped: `body` → `#playground`,
+ *     `*` → `#playground *`, `body > *` → `#playground > *`. The canvas IS the
+ *     page for an uploaded component, so its palette, `body { background }` and
+ *     `* { box-sizing }` base rules all take effect there — while still never
+ *     applying at or above the canvas, so editor chrome stays untouched.
  *   - `@media`/`@supports`/`@layer`/`@container` bodies are recursed into so
  *     their nested selectors are scoped; `@keyframes`/`@font-face` are left
  *     intact; other at-rule statements are preserved.
