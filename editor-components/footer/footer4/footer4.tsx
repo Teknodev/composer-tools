@@ -741,7 +741,7 @@ class Footer4Page extends BaseFooter {
       type: "string",
       key: "footerText",
       displayer: "Footer Text",
-      value: "2024 © Made with by Blinkpage.",
+      value: '2024 © Made with by <span style="font-weight: 800;">Blinkpage</span>.',
     });
 
     this.addProp({

@@ -21,6 +21,8 @@
   }
 
   .footer-wrapper {
+    padding-bottom: 60px !important;
+
     .max-content {
       display: flex;
       flex-direction: column;
@@ -181,6 +183,8 @@
 @container (max-width: #{$composer-tablet-width}) {
   .container {
     .footer-wrapper {
+      padding-bottom: 30px !important;
+
       .max-content {
         .footer-upper {
           .header {
@@ -221,6 +225,8 @@
     }
 
     .footer-wrapper {
+      padding-bottom: 30px !important;
+
       .max-content {
         gap: var(--composer-gap-md);
 
