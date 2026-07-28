@@ -60,9 +60,14 @@
 
           .title {
             color: var(--composer-font-color-primary);
+            margin-left: 0;
+            margin-right: 0;
+            text-align: left;
+            justify-content: flex-start;
           }
 
           .text-items {
+            align-items: flex-start;
 
             .text-last {
               margin-top: var(--composer-gap-md);
@@ -73,6 +78,10 @@
             color: var(--composer-tertiary-color);
             transition: all 0.3s ease;
             width: fit-content;
+            margin-left: 0;
+            margin-right: 0;
+            text-align: left;
+            justify-content: flex-start;
 
             &[data-has-link="true"] {
               cursor: pointer;
