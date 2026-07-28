@@ -4,7 +4,7 @@
     .max-content {
         display: flex;
         flex-direction: column;
-        gap: var(--composer-gap-lg);
+        gap: var(--composer-gap-xl);
 
         .vertical-content {
             align-items: center !important;
@@ -29,7 +29,6 @@
             justify-content: center;
             gap: var(--composer-gap-sm);
             flex-wrap: wrap;
-            padding-top: var(--composer-gap-lg);
 
             .bottom-text {
                 color: var(--composer-font-color-primary);
@@ -143,9 +142,7 @@
 @container (max-width: #{$composer-tablet-width}) {
     .container {
         .max-content {
-            .bottom-container {
-                padding-top: var(--composer-gap-md);
-            }
+            gap: var(--composer-gap-lg);
         }
     }
 }
@@ -153,9 +150,7 @@
 @container (max-width: #{$composer-phone-width}) {
     .container {
         .max-content {
-            .bottom-container {
-                padding-top: 0;
-            }
+            gap: var(--composer-gap-md);
 
             .page {
                 gap: var(--composer-gap-md);

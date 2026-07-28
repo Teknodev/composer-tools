@@ -4,7 +4,7 @@
   .max-content {
     display: flex;
     flex-direction: column;
-    gap: var(--composer-gap-lg);
+    gap: var(--composer-gap-xl);
 
     .vertical-content {
       align-items: center !important;
@@ -99,7 +99,7 @@
       height: 100%;
       display: flex;
       flex-direction: column !important;
-      padding: calc(var(--composer-gap-lg) * 2) var(--composer-gap-xl) 0;
+      padding: 0 var(--composer-gap-xl);
       gap: var(--composer-gap-md) !important;
       align-items: center !important;
       justify-content: center !important;
@@ -178,6 +178,8 @@
 @container (max-width: #{$composer-tablet-width}) {
   .container {
     .max-content {
+      gap: var(--composer-gap-lg);
+
       .card-page {
         .card {
           .card-content {
@@ -194,8 +196,6 @@
         }
       }
       .down-container {
-        padding-top: var(--composer-gap-lg);
-
         .down-icon-wrapper {
           padding: var(--composer-gap-xs);
 
@@ -213,6 +213,8 @@
 @container (max-width: #{$composer-phone-width}) {
   .container {
     .max-content {
+      gap: var(--composer-gap-md);
+
       .card-page {
         .card {
           .card-content {
@@ -230,7 +232,6 @@
       .down-container {
         flex-direction: column;
         gap: var(--composer-gap-sm);
-        padding-top: var(--composer-gap-md);
 
         .down-icon-wrapper {
           .down-icon {
