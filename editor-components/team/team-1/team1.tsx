@@ -48,7 +48,7 @@ class Team1 extends Team {
       key: "buttons",
       displayer: "Buttons",
       value: [
-        INPUTS.BUTTON("button", "Button", "About Us", "", null, null, "Secondary"),
+        INPUTS.BUTTON("button", "Button", "About Us", "", null, null, "White"),
         INPUTS.BUTTON("button", "Button", "Job Openings", "", null, null, "Primary"),
       ],
     });

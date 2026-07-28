@@ -53,7 +53,7 @@ class Team5 extends Team {
     this.addProp({
       type: "boolean",
       key: "imageBackground",
-      displayer: "Image Background",
+      displayer: "Media Background",
       value: true,
     });
 
@@ -704,7 +704,7 @@ class Team5 extends Team {
                 <Base.VerticalContent key={index} className={this.decorateCSS("card-item")} data-animation={(this.getPropValue("hoverAnimation") || []).join(" ")}>
                   {item.picture && (
                     <div className={this.decorateCSS("image-container")} data-animation={(this.getPropValue("hoverAnimation") || []).join(" ")} >
-                      {this.getPropValue("imageBackground") !== false && <div className={this.decorateCSS("background-shape")} />}
+                      {this.getPropValue("imageBackground") !== false && <div className={this.decorateCSS("media-background")} />}
                       <div className={this.decorateCSS("member-image-wrapper")}>
                         <Base.Media value={item.picture} className={this.decorateCSS("member-image")} />
                         {this.getPropValue("overlay") && <div className={this.decorateCSS("overlay")} />}

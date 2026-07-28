@@ -67,7 +67,7 @@
       }
 
       .overlay {
-        background: linear-gradient(to bottom, rgba(var(--composer-html-background-rgb), 0) 30%, var(--composer-overlay-color) 100%);
+        background-color: var(--composer-overlay-color);
         z-index: 1;
         opacity: 1;
       }
@@ -343,9 +343,7 @@
           content: "";
           position: absolute;
           inset: 0;
-          background: linear-gradient(to top,
-              var(--composer-html-background) 0%,
-              rgba(var(--composer-html-background-rgb), 0) 20%);
+          background: linear-gradient(to bottom, transparent 35%, var(--composer-html-background) 100%);
           pointer-events: none;
           z-index: 1;
         }
@@ -361,6 +359,10 @@
               .card-position,
               .card-description {
                 color: #ffffff;
+              }
+
+              .card-position {
+                opacity: 0.9;
               }
             }
 
