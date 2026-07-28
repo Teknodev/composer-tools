@@ -29,6 +29,7 @@
             justify-content: center;
             gap: var(--composer-gap-sm);
             flex-wrap: wrap;
+            padding-top: var(--composer-gap-lg);
 
             .bottom-text {
                 color: var(--composer-font-color-primary);
@@ -139,9 +140,23 @@
     }
 }
 
+@container (max-width: #{$composer-tablet-width}) {
+    .container {
+        .max-content {
+            .bottom-container {
+                padding-top: var(--composer-gap-md);
+            }
+        }
+    }
+}
+
 @container (max-width: #{$composer-phone-width}) {
     .container {
         .max-content {
+            .bottom-container {
+                padding-top: 0;
+            }
+
             .page {
                 gap: var(--composer-gap-md);
 

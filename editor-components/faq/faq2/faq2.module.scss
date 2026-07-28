@@ -194,6 +194,8 @@
         }
       }
       .down-container {
+        padding-top: var(--composer-gap-lg);
+
         .down-icon-wrapper {
           padding: var(--composer-gap-xs);
 
@@ -228,6 +230,7 @@
       .down-container {
         flex-direction: column;
         gap: var(--composer-gap-sm);
+        padding-top: var(--composer-gap-md);
 
         .down-icon-wrapper {
           .down-icon {
