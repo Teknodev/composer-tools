@@ -58,7 +58,7 @@
           position: relative;
           isolation: isolate;
           background: var(--composer-primary-color);
-          padding-bottom: calc(var(--composer-gap-md) * 5);
+          padding-bottom: calc(var(--composer-gap-xl) * 2 + var(--composer-gap-md));
 
           .slider-icons {
             position: absolute;
@@ -441,9 +441,6 @@
                         .bottom-container {
                           .item-name {
                             font-size: 1.5rem !important;
-                          }
-                          .item-subtitle {
-                            font-size: 1rem !important;
                           }
                         }
                       }

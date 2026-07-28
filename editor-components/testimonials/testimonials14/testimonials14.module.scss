@@ -156,9 +156,9 @@
           padding: 0;
 
           .arrow {
-            width: 36px;
-            height: 36px;
-            font-size: 2.5rem;
+            width: 28px;
+            height: 28px;
+            font-size: 2rem;
             color: var(--composer-font-color-primary);
             display: inline-flex !important;
             align-items: center;
@@ -230,6 +230,15 @@
 
         .arrow-container {
           margin-top: 1rem;
+
+          .prevArrow,
+          .nextArrow {
+            .arrow {
+              width: 21px !important;
+              height: 21px !important;
+              font-size: 1.5rem !important;
+            }
+          }
         }
       }
     }
