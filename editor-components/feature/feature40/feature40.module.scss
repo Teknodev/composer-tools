@@ -9,7 +9,7 @@
         .card-container-section {
             display: flex;
             flex-direction: column;
-            gap: var(--composer-gap-md);
+            gap: calc(var(--composer-gap-lg) * 2);
 
             .text-content {
 

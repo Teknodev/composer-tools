@@ -4,7 +4,7 @@
   .max-content {
     display: flex;
     flex-direction: column;
-    gap: var(--composer-gap-md);
+    gap: calc(var(--composer-gap-lg) * 2);
 
     .header {
       align-items: center !important;
@@ -92,7 +92,9 @@
       flex-wrap: wrap;
       justify-content: center !important;
       gap: var(--composer-gap-sm);
-      margin-top: var(--composer-gap-xl);
+      // The stack gap is the header-to-content separation; the buttons sit
+      // inside the content section, so this trims it back to their own spacing.
+      margin-top: calc(var(--composer-gap-xl) - var(--composer-gap-lg));
     }
 
     .action-button {

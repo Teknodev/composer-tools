@@ -182,6 +182,8 @@
           }
           .comp-slider {
             .slider-buttons {
+              gap: var(--composer-gap-xs);
+
               .slider-button {
                 font-size: 1.5rem;
                 .Icon {
@@ -208,6 +210,8 @@
             flex-basis: auto;
             width: 100% !important;
             .slider-buttons {
+              gap: var(--composer-gap-xs);
+
               .slider-button {
                 font-size: 1.25rem;
                 .Icon {
