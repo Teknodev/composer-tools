@@ -206,7 +206,7 @@ class CallToAction7Page extends BaseCallToAction {
                             )}
                             {hasButton && (
                               <div className={this.decorateCSS("button-container")}>
-                                <ComposerLink path={button?.url}>
+                                <ComposerLink path={button?.url} isFullWidth>
                                   <Base.Button buttonType={button?.type} className={this.decorateCSS("button")}>
                                     <Base.P className={this.decorateCSS("button-text")}>{button?.text}</Base.P>
                                   </Base.Button>
