@@ -343,7 +343,7 @@
           content: "";
           position: absolute;
           inset: 0;
-          background: linear-gradient(to bottom, transparent 35%, var(--composer-html-background) 100%);
+          background: linear-gradient(to bottom, transparent 35%, rgba(0, 0, 0, 0.8) 100%);
           pointer-events: none;
           z-index: 1;
         }

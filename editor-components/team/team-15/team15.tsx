@@ -88,7 +88,7 @@ class Team15 extends Team {
               type: "boolean",
               key: "overlay",
               displayer: "Overlay",
-              value: true,
+              value: false,
             },
             {
               type: "string",
@@ -274,7 +274,7 @@ class Team15 extends Team {
               type: "boolean",
               key: "overlay",
               displayer: "Overlay",
-              value: true,
+              value: false,
             },
             {
               type: "string",
@@ -460,7 +460,7 @@ class Team15 extends Team {
               type: "boolean",
               key: "overlay",
               displayer: "Overlay",
-              value: true,
+              value: false,
             },
             {
               type: "string",
@@ -646,7 +646,7 @@ class Team15 extends Team {
               type: "boolean",
               key: "overlay",
               displayer: "Overlay",
-              value: true,
+              value: false,
             },
             {
               type: "string",
@@ -867,7 +867,7 @@ class Team15 extends Team {
               const nameExists = this.castToString(card.name);
               const positionExists = this.castToString(card.position);
               const cardDescriptionExist = this.castToString(card.cardDescription);
-              const overlay = card.overlay !== false;
+              const overlay = !!card.overlay;
               const showLines = this.getPropValue("showLines") !== false;
               const bottomGradient = this.getPropValue("bottomGradient") !== false;
 
