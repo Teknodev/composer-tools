@@ -5,10 +5,14 @@ import styles from "./stats10.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 
 type ProgressItem = {
-  progressTitle: string;
-  progress: number;
-  progressText: React.JSX.Element;
   icon: string | TypeMediaInputValue;
+  prefix: React.JSX.Element;
+  number: React.JSX.Element;
+  suffix: React.JSX.Element;
+  subtitle: React.JSX.Element;
+  title: React.JSX.Element;
+  description: React.JSX.Element;
+  progress: number;
 };
 
 class Stats10 extends BaseStats {
@@ -95,30 +99,24 @@ class Stats10 extends BaseStats {
           displayer: "Stat",
           value: [
             {
-              type: "string",
-              key: "progressTitle",
-              displayer: "Progress Title",
-              value: "Confidentiality",
+              type: "media",
+              key: "icon",
+              displayer: "Icon",
+              additionalParams: { availableTypes: ["image", "icon"] },
+              value: { type: "icon", name: "CgPlayButtonO" },
             },
+            { type: "string", key: "prefix", displayer: "Prefix", value: "" },
+            { type: "string", key: "number", displayer: "Value", value: "90%" },
+            { type: "string", key: "suffix", displayer: "Suffix", value: "" },
+            { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
+            { type: "string", key: "title", displayer: "Title", value: "Confidentiality" },
+            { type: "string", key: "description", displayer: "Description", value: "" },
             {
               type: "number",
               key: "progress",
               displayer: "Progress",
               value: 90,
             },
-            {
-              type: "string",
-              key: "progressText",
-              displayer: "Progress Text",
-              value: "90%",
-            },
-            {
-              type: "media",
-              key: "icon",
-              displayer: "Icon",
-              additionalParams: { availableTypes: ["image", "icon"] },
-              value: { type: "icon", name: "CgPlayButtonO" },
-            },
           ],
         },
         {
@@ -127,31 +125,24 @@ class Stats10 extends BaseStats {
           displayer: "Stat",
           value: [
             {
-              type: "string",
-              key: "progressTitle",
-              displayer: "Progress Title",
-              value: "Consumer Satisfaction",
+              type: "media",
+              key: "icon",
+              displayer: "Icon",
+              additionalParams: { availableTypes: ["image", "icon"] },
+              value: { type: "icon", name: "CgPlayButtonO" },
             },
+            { type: "string", key: "prefix", displayer: "Prefix", value: "" },
+            { type: "string", key: "number", displayer: "Value", value: "95%" },
+            { type: "string", key: "suffix", displayer: "Suffix", value: "" },
+            { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
+            { type: "string", key: "title", displayer: "Title", value: "Consumer Satisfaction" },
+            { type: "string", key: "description", displayer: "Description", value: "" },
             {
               type: "number",
               key: "progress",
               displayer: "Progress",
               value: 95,
             },
-
-            {
-              type: "string",
-              key: "progressText",
-              displayer: "Progress Text",
-              value: "95%",
-            },
-            {
-              type: "media",
-              key: "icon",
-              displayer: "Icon",
-              additionalParams: { availableTypes: ["image", "icon"] },
-              value: { type: "icon", name: "CgPlayButtonO" },
-            },
           ],
         },
         {
@@ -160,31 +151,24 @@ class Stats10 extends BaseStats {
           displayer: "Stat",
           value: [
             {
-              type: "string",
-              key: "progressTitle",
-              displayer: "Progress Title",
-              value: "Therapy",
+              type: "media",
+              key: "icon",
+              displayer: "Icon",
+              additionalParams: { availableTypes: ["image", "icon"] },
+              value: { type: "icon", name: "CgPlayButtonO" },
             },
+            { type: "string", key: "prefix", displayer: "Prefix", value: "" },
+            { type: "string", key: "number", displayer: "Value", value: "98%" },
+            { type: "string", key: "suffix", displayer: "Suffix", value: "" },
+            { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
+            { type: "string", key: "title", displayer: "Title", value: "Therapy" },
+            { type: "string", key: "description", displayer: "Description", value: "" },
             {
               type: "number",
               key: "progress",
               displayer: "Progress",
               value: 98,
             },
-
-            {
-              type: "string",
-              key: "progressText",
-              displayer: "Progress Text",
-              value: "98%",
-            },
-            {
-              type: "media",
-              key: "icon",
-              displayer: "Icon",
-              additionalParams: { availableTypes: ["image", "icon"] },
-              value: { type: "icon", name: "CgPlayButtonO" },
-            },
           ],
         },
         {
@@ -193,30 +177,23 @@ class Stats10 extends BaseStats {
           displayer: "Stat",
           value: [
             {
-              type: "string",
-              key: "progressTitle",
-              displayer: "Progress Title",
-              value: "Counseling",
-            },
-            {
-              type: "number",
-              key: "progress",
-              displayer: "Progress",
-              value: 85,
-            },
-
-            {
-              type: "string",
-              key: "progressText",
-              displayer: "Progress Text",
-              value: "85%",
-            },
-            {
               type: "media",
               key: "icon",
               displayer: "Icon",
               additionalParams: { availableTypes: ["image", "icon"] },
               value: { type: "icon", name: "CgPlayButtonO" },
+            },
+            { type: "string", key: "prefix", displayer: "Prefix", value: "" },
+            { type: "string", key: "number", displayer: "Value", value: "85%" },
+            { type: "string", key: "suffix", displayer: "Suffix", value: "" },
+            { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
+            { type: "string", key: "title", displayer: "Title", value: "Counseling" },
+            { type: "string", key: "description", displayer: "Description", value: "" },
+            {
+              type: "number",
+              key: "progress",
+              displayer: "Progress",
+              value: 85,
             },
           ],
         },
@@ -280,7 +257,7 @@ class Stats10 extends BaseStats {
       const ref = React.useRef<HTMLDivElement>(null);
       const intervalRef = React.useRef<ReturnType<typeof setInterval> | null>(null);
 
-      const rawNumber = (this.castToString(item.progressText) as string) || "";
+      const rawNumber = (this.castToString(item.number) as string) || "";
       const prefix = rawNumber.match(/^[^\d]*/)?.[0] ?? "";
       const suffix = rawNumber.match(/[^\d]*$/)?.[0] ?? "";
       const core = rawNumber.slice(prefix.length, rawNumber.length - suffix.length);
@@ -350,9 +327,13 @@ class Stats10 extends BaseStats {
       }, [rawNumber, animatable, animationDuration, target]);
 
       const iconExist = typeof item.icon === "object" ? (item.icon?.name || item.icon?.url) : item.icon;
-      const titleExist = this.castToString(item.progressTitle);
-      const textExist = !!rawNumber;
-      if (!iconExist && !titleExist && !textExist) return null;
+      const titleExist = this.castToString(item.title);
+      const subtitleExist = this.castToString(item.subtitle);
+      const descriptionExist = this.castToString(item.description);
+      const prefixExist = this.castToString(item.prefix);
+      const suffixExist = this.castToString(item.suffix);
+      const textExist = !!rawNumber || prefixExist || suffixExist;
+      if (!iconExist && !titleExist && !subtitleExist && !descriptionExist && !textExist) return null;
 
       return (
         <div
@@ -360,18 +341,27 @@ class Stats10 extends BaseStats {
           className={this.decorateCSS("item")}
           data-animation={hoverAnimation}
         >
-          {(iconExist || titleExist || textExist) && (
+          {(iconExist || titleExist || subtitleExist || textExist) && (
             <div className={this.decorateCSS("progress-content")}>
-              {(iconExist || titleExist) && (
+              {(iconExist || titleExist || subtitleExist) && (
                 <div className={this.decorateCSS("progress-title-container")}>
                   {iconExist && (
                     <div className={this.decorateCSS("progress-title-icon")}>
                       <Base.Media value={typeof item.icon === "object" ? item.icon : { type: "icon", name: item.icon }} className={this.decorateCSS("icon")} />
                     </div>
                   )}
-                  {titleExist && (
-                    <div className={this.decorateCSS("progress-title")}>
-                      {item.progressTitle}
+                  {(subtitleExist || titleExist) && (
+                    <div className={this.decorateCSS("progress-title-text")}>
+                      {subtitleExist && (
+                        <div className={this.decorateCSS("progress-subtitle")}>
+                          {item.subtitle}
+                        </div>
+                      )}
+                      {titleExist && (
+                        <div className={this.decorateCSS("progress-title")}>
+                          {item.title}
+                        </div>
+                      )}
                     </div>
                   )}
                 </div>
@@ -379,14 +369,16 @@ class Stats10 extends BaseStats {
               {textExist && (
                 <div className={this.decorateCSS("progress-text-container")}>
                   <div className={this.decorateCSS("progress-text")}>
-                    {display}
+                    {prefixExist && <span className={this.decorateCSS("progress-prefix")}>{item.prefix}</span>}
+                    {animatable ? display : item.number}
+                    {suffixExist && <span className={this.decorateCSS("progress-suffix")}>{item.suffix}</span>}
                   </div>
                 </div>
               )}
             </div>
           )}
 
-          {textExist && (
+          {(textExist || !!item.progress) && (
             <div className={this.decorateCSS("progress-bar-container")}>
               <div className={this.decorateCSS("progress-bar")}>
                 <div
@@ -397,6 +389,12 @@ class Stats10 extends BaseStats {
                   } as React.CSSProperties}
                 />
               </div>
+            </div>
+          )}
+
+          {descriptionExist && (
+            <div className={this.decorateCSS("progress-description")}>
+              {item.description}
             </div>
           )}
         </div>

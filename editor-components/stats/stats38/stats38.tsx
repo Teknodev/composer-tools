@@ -275,7 +275,7 @@ class Stats38 extends BaseStats {
                                 <span className={this.decorateCSS("stat-prefix")}>{stat.prefixElement}</span>
                             )}
                             {valueExist && (
-                                <span className={this.decorateCSS("stat-value")}>{display}</span>
+                                <span className={this.decorateCSS("stat-value")}>{animatable ? display : stat.numberElement}</span>
                             )}
                             {suffixExist && (
                                 <span className={this.decorateCSS("stat-suffix")}>{stat.suffixElement}</span>

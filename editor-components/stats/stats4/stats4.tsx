@@ -1,8 +1,10 @@
 import * as React from "react";
-import { BaseStats, TypeMediaInputValue } from "../../EditorComponent";
+import { BaseStats } from "../../EditorComponent";
 import styles from "./stats4.module.scss";
 
 import { Base } from "../../../composer-base-components/base/base";
+import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
+import { INPUTS } from "../../../custom-hooks/input-templates";
 
 type Faq = {
   title: React.JSX.Element;
@@ -10,9 +12,12 @@ type Faq = {
 };
 
 type Stat = {
-  title: React.JSX.Element;
-  content: React.JSX.Element;
+  prefix: React.JSX.Element;
   number: React.JSX.Element;
+  suffix: React.JSX.Element;
+  subtitle: React.JSX.Element;
+  title: React.JSX.Element;
+  description: React.JSX.Element;
 };
 
 class Stats4Page extends BaseStats {
@@ -30,6 +35,19 @@ class Stats4Page extends BaseStats {
       key: "title",
       displayer: "Title",
       value: "We create to brands and businesses to stand out in this digital era.",
+    });
+    this.addProp({
+      type: "string",
+      key: "description",
+      displayer: "Description",
+      value: "We strive to develop real-world web solutions that are ideal for small to large projects across every industry.",
+    });
+
+    this.addProp({
+      type: "array",
+      key: "buttons",
+      displayer: "Buttons",
+      value: [INPUTS.BUTTON("button", "Button", "LEARN MORE", "", null, null, "Primary")],
     });
 
     this.addProp({
@@ -107,24 +125,12 @@ class Stats4Page extends BaseStats {
           key: "stat",
           displayer: "Stat",
           value: [
-            {
-              type: "string",
-              key: "title",
-              displayer: "Title",
-              value: "Days of experience.",
-            },
-            {
-              type: "string",
-              key: "content",
-              displayer: "Content",
-              value: "We have crafted beautiful and engaging web solutions.",
-            },
-            {
-              type: "string",
-              key: "number",
-              displayer: "Stat Value",
-              value: "300",
-            },
+            { type: "string", key: "prefix", displayer: "Prefix", value: "" },
+            { type: "string", key: "number", displayer: "Value", value: "300" },
+            { type: "string", key: "suffix", displayer: "Suffix", value: "+" },
+            { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
+            { type: "string", key: "title", displayer: "Title", value: "Days of experience." },
+            { type: "string", key: "description", displayer: "Description", value: "We have crafted beautiful and engaging web solutions." },
           ],
         },
         {
@@ -132,24 +138,12 @@ class Stats4Page extends BaseStats {
           key: "stat",
           displayer: "Stat",
           value: [
-            {
-              type: "string",
-              key: "title",
-              displayer: "Title",
-              value: "Valuable happy clients.",
-            },
-            {
-              type: "string",
-              key: "content",
-              displayer: "Content",
-              value: "We have crafted beautiful and engaging web solutions.",
-            },
-            {
-              type: "string",
-              key: "number",
-              displayer: "Stat Value",
-              value: "500",
-            },
+            { type: "string", key: "prefix", displayer: "Prefix", value: "" },
+            { type: "string", key: "number", displayer: "Value", value: "500" },
+            { type: "string", key: "suffix", displayer: "Suffix", value: "+" },
+            { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
+            { type: "string", key: "title", displayer: "Title", value: "Valuable happy clients." },
+            { type: "string", key: "description", displayer: "Description", value: "We have crafted beautiful and engaging web solutions." },
           ],
         },
         {
@@ -157,24 +151,12 @@ class Stats4Page extends BaseStats {
           key: "stat",
           displayer: "Stat",
           value: [
-            {
-              type: "string",
-              key: "title",
-              displayer: "Title",
-              value: "Presence in countries.",
-            },
-            {
-              type: "string",
-              key: "content",
-              displayer: "Content",
-              value: "We have crafted beautiful and engaging web solutions.",
-            },
-            {
-              type: "string",
-              key: "number",
-              displayer: "Stat Value",
-              value: "750",
-            },
+            { type: "string", key: "prefix", displayer: "Prefix", value: "" },
+            { type: "string", key: "number", displayer: "Value", value: "750" },
+            { type: "string", key: "suffix", displayer: "Suffix", value: "+" },
+            { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
+            { type: "string", key: "title", displayer: "Title", value: "Presence in countries." },
+            { type: "string", key: "description", displayer: "Description", value: "We have crafted beautiful and engaging web solutions." },
           ],
         },
         {
@@ -182,24 +164,12 @@ class Stats4Page extends BaseStats {
           key: "stat",
           displayer: "Stat",
           value: [
-            {
-              type: "string",
-              key: "title",
-              displayer: "Title",
-              value: "Worldwide projects.",
-            },
-            {
-              type: "string",
-              key: "content",
-              displayer: "Content",
-              value: "We have crafted beautiful and engaging web solutions.",
-            },
-            {
-              type: "string",
-              key: "number",
-              displayer: "Stat Value",
-              value: "856",
-            },
+            { type: "string", key: "prefix", displayer: "Prefix", value: "" },
+            { type: "string", key: "number", displayer: "Value", value: "856" },
+            { type: "string", key: "suffix", displayer: "Suffix", value: "+" },
+            { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
+            { type: "string", key: "title", displayer: "Title", value: "Worldwide projects." },
+            { type: "string", key: "description", displayer: "Description", value: "We have crafted beautiful and engaging web solutions." },
           ],
         },
       ],
@@ -228,13 +198,6 @@ class Stats4Page extends BaseStats {
       displayer: "Active Icon",
       additionalParams: { availableTypes: ["image", "icon"] },
       value: { type: "icon", name: "FaMinus" },
-    });
-    this.addProp({
-      type: "media",
-      key: "statIcon",
-      displayer: "Stat Value Icon",
-      additionalParams: { availableTypes: ["image", "icon"] },
-      value: { type: "icon", name: "FaPlus" },
     });
 
     this.addProp({
@@ -276,19 +239,20 @@ class Stats4Page extends BaseStats {
     const alignment = Base.getContentAlignment();
     const subtitle = this.castToString(this.getPropValue("subtitle"));
     const title = this.castToString(this.getPropValue("title"));
+    const description = this.castToString(this.getPropValue("description"));
     const faqs = this.castToObject<Faq[]>("faqItems");
     const statItems = this.castToObject<Stat[]>("stats");
     const expandIcon = this.getPropValue("expandIcon");
     const collapseIcon = this.getPropValue("collapseIcon");
-    const statIcon: TypeMediaInputValue | string = this.getPropValue("statIcon");
+
+    const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons") || [];
+    const visibleButtons = buttons.filter((btn) => this.castToString(btn.text));
+    const hasVisibleButtons = visibleButtons.length > 0;
 
     const settings = this.castToObject<any>("settings");
     const shouldAnimate = settings?.shouldAnimate ?? true;
     const animationDuration = (settings?.animationDuration ?? 2000) as number;
     const itemCount = this.getPropValue("itemCount") ?? 4;
-
-    const mediaExists = (m?: TypeMediaInputValue | string) => (typeof m === "object" ? m?.name || m?.url : m);
-    const statIconExist = mediaExists(statIcon);
 
     const AnimatedStat = ({ item }: { item: Stat }) => {
       const ref = React.useRef<HTMLElement>(null);
@@ -363,28 +327,32 @@ class Stats4Page extends BaseStats {
         };
       }, [rawNumber, animatable, animationDuration, target]);
 
+      const subtitleExist = this.castToString(item.subtitle);
       const titleExist = this.castToString(item.title);
-      const contentExist = this.castToString(item.content);
+      const descriptionExist = this.castToString(item.description);
+      const prefixExist = this.castToString(item.prefix);
+      const suffixExist = this.castToString(item.suffix);
 
-      if (!titleExist && !contentExist && !display) return null;
+      const hasText = subtitleExist || titleExist || descriptionExist;
+      const hasValue = !!display || prefixExist || suffixExist;
+
+      if (!hasText && !hasValue) return null;
 
       return (
         <article ref={ref} className={this.decorateCSS("stat-item")}>
-          {(titleExist || contentExist) && (
+          {hasText && (
             <>
+              {subtitleExist && <Base.P className={this.decorateCSS("stat-item-subtitle")}>{item.subtitle}</Base.P>}
               {titleExist && <Base.P className={this.decorateCSS("stat-item-title")}>{item.title}</Base.P>}
-              {contentExist && <Base.P className={this.decorateCSS("stat-item-content")}>{item.content}</Base.P>}
+              {descriptionExist && <Base.P className={this.decorateCSS("stat-item-content")}>{item.description}</Base.P>}
               <div className={this.decorateCSS("stat-line")} />
             </>
           )}
-          {!!display && (
+          {hasValue && (
             <Base.P className={this.decorateCSS("stat-item-stat-value")}>
-              {display}
-              {statIconExist && (
-                <span className={this.decorateCSS("stat-value-icon")}>
-                  <Base.Media value={typeof statIcon === "object" ? statIcon : { type: "icon", name: statIcon }} className={this.decorateCSS("stat-icon")} />
-                </span>
-              )}
+              {prefixExist && <span className={this.decorateCSS("stat-value-prefix")}>{item.prefix}</span>}
+              {animatable ? display : item.number}
+              {suffixExist && <span className={this.decorateCSS("stat-value-suffix")}>{item.suffix}</span>}
             </Base.P>
           )}
         </article>
@@ -396,10 +364,22 @@ class Stats4Page extends BaseStats {
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={`${this.decorateCSS("stats-container")} ${alignment === "center" ? this.decorateCSS("alignment-center") : ""}`}>
             <Base.ContainerGrid className={this.decorateCSS("upper-container")}>
-              {(title || subtitle) && (
+              {(title || subtitle || description || hasVisibleButtons) && (
                 <Base.VerticalContent className={this.decorateCSS("upper-container-main")}>
                   {subtitle && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
                   {title && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
+                  {description && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
+                  {hasVisibleButtons && (
+                    <div className={this.decorateCSS("button-container")}>
+                      {visibleButtons.map((btn, index) => (
+                        <ComposerLink key={index} path={btn.url}>
+                          <Base.Button buttonType={btn.type} className={this.decorateCSS("button")}>
+                            <Base.P className={this.decorateCSS("button-text")}>{btn.text}</Base.P>
+                          </Base.Button>
+                        </ComposerLink>
+                      ))}
+                    </div>
+                  )}
                 </Base.VerticalContent>
               )}
               {faqs?.length > 0 && (
@@ -412,7 +392,7 @@ class Stats4Page extends BaseStats {
                     const isSelected = this.getComponentState("selectedFaqIndex") === index;
                     const toggleIconExist = isSelected ? collapseIconExist : expandIconExist;
 
-                    if (titleExist || contentExist || item.icon)
+                    if (titleExist || contentExist)
                       return (
                         <div className={this.decorateCSS("faq-item")} key={index}>
                           {(titleExist || toggleIconExist) && (

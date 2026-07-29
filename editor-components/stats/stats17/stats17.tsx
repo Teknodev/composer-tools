@@ -9,14 +9,15 @@ type StatItem = {
     prefix: string;
     prefixElement: JSX.Element;
     number: string;
+    numberElement: JSX.Element;
     suffix: string;
     suffixElement: JSX.Element;
     title: string;
     titleElement: JSX.Element;
     subtitle: string;
     subtitleElement: JSX.Element;
-    infoText: string;
-    infoTextElement: JSX.Element;
+    description: string;
+    descriptionElement: JSX.Element;
 };
 
 class Stats17 extends BaseStats {
@@ -79,7 +80,7 @@ class Stats17 extends BaseStats {
                         { type: "string", key: "suffix", displayer: "Suffix", value: "+" },
                         { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
                         { type: "string", key: "title", displayer: "Title", value: "Experienced people on the team" },
-                        { type: "string", key: "infoText", displayer: "Info Text", value: "" },
+                        { type: "string", key: "description", displayer: "Description", value: "" },
                     ]
                 },
                 {
@@ -89,7 +90,7 @@ class Stats17 extends BaseStats {
                         { type: "string", key: "suffix", displayer: "Suffix", value: "+" },
                         { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
                         { type: "string", key: "title", displayer: "Title", value: "Cities where employees work" },
-                        { type: "string", key: "infoText", displayer: "Info Text", value: "" },
+                        { type: "string", key: "description", displayer: "Description", value: "" },
                     ]
                 },
                 {
@@ -99,7 +100,7 @@ class Stats17 extends BaseStats {
                         { type: "string", key: "suffix", displayer: "Suffix", value: "+" },
                         { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
                         { type: "string", key: "title", displayer: "Title", value: "Days of product development" },
-                        { type: "string", key: "infoText", displayer: "Info Text", value: "" },
+                        { type: "string", key: "description", displayer: "Description", value: "" },
                     ]
                 },
             ],
@@ -152,15 +153,15 @@ class Stats17 extends BaseStats {
 
         const alignment = Base.getContentAlignment();
 
-        const statsItems = this.castToObject<{ prefix: JSX.Element; number: JSX.Element; suffix: JSX.Element; title: JSX.Element; subtitle: JSX.Element; infoText: JSX.Element }[]>("stats");
+        const statsItems = this.castToObject<{ prefix: JSX.Element; number: JSX.Element; suffix: JSX.Element; title: JSX.Element; subtitle: JSX.Element; description: JSX.Element }[]>("stats");
         const stats: StatItem[] = statsItems.map((item) => {
             const prefix = this.castToString(item.prefix) || "";
-            const number = this.castToString(item.number) || "0";
+            const number = this.castToString(item.number) || "";
             const suffix = this.castToString(item.suffix) || "";
             const title = this.castToString(item.title) || "";
             const subtitle = this.castToString(item.subtitle) || "";
-            const infoText = this.castToString(item.infoText) || "";
-            return { prefix, prefixElement: item.prefix, number, suffix, suffixElement: item.suffix, title, titleElement: item.title, subtitle, subtitleElement: item.subtitle, infoText, infoTextElement: item.infoText };
+            const description = this.castToString(item.description) || "";
+            return { prefix, numberElement: item.number, prefixElement: item.prefix, number, suffix, suffixElement: item.suffix, title, titleElement: item.title, subtitle, subtitleElement: item.subtitle, description, descriptionElement: item.description };
         });
 
         const hasTopSection = subtitle || title || description || hasValidButtons;
@@ -243,9 +244,9 @@ class Stats17 extends BaseStats {
             const numberExist = !!display;
             const titleExist = this.castToString(stat.title);
             const subtitleExist = this.castToString(stat.subtitle);
-            const infoTextExist = this.castToString(stat.infoText);
+            const descriptionExist = this.castToString(stat.description);
 
-            if (!numberExist && !suffixExist && !titleExist && !subtitleExist && !infoTextExist) return null;
+            if (!numberExist && !suffixExist && !titleExist && !subtitleExist && !descriptionExist) return null;
 
             return (
                 <Base.VerticalContent className={this.decorateCSS("stat-item")}>
@@ -257,7 +258,7 @@ class Stats17 extends BaseStats {
                                 </span>
                             )}
                             <span ref={ref} className={this.decorateCSS("stat-number")}>
-                                {display}
+                                {animatable ? display : stat.numberElement}
                             </span>
                             {suffixExist && (
                                 <span className={this.decorateCSS("stat-suffix")}>
@@ -276,9 +277,9 @@ class Stats17 extends BaseStats {
                             {stat.titleElement}
                         </Base.H5>
                     )}
-                    {infoTextExist && (
-                        <Base.P className={this.decorateCSS("stat-info-text")}>
-                            {stat.infoTextElement}
+                    {descriptionExist && (
+                        <Base.P className={this.decorateCSS("stat-description")}>
+                            {stat.descriptionElement}
                         </Base.P>
                     )}
                 </Base.VerticalContent>

@@ -135,6 +135,16 @@
                 stroke:var(--composer-primary-color);
             }
 
+            .stat-prefix {
+              font-size: 8rem;
+              font-weight: 800;
+              color: var(--composer-html-background);
+                -webkit-text-stroke-width: 2px;
+                stroke-width: 2px;
+                -webkit-text-stroke-color: var(--composer-primary-color);
+                stroke:var(--composer-primary-color);
+            }
+
             .stat-suffix {
               font-size: 8rem;
               font-weight: 800;
@@ -146,14 +156,34 @@
             }
           }
 
+          .stat-subtitle,
+          .stat-title,
           .stat-description {
-            font-size: 1.5rem;
             color: var(--composer-font-color-primary);
             margin: 0;
-            margin-top:-1.5rem;
             background-color: var(--composer-html-background);
-            padding-top: var(--composer-gap-sm);
             text-align: left;
+          }
+
+          .stat-number-container + .stat-subtitle,
+          .stat-number-container + .stat-title,
+          .stat-number-container + .stat-description {
+            margin-top: -1.5rem;
+            padding-top: var(--composer-gap-sm);
+          }
+
+          .stat-subtitle {
+            font-size: 1.1rem;
+            color: var(--composer-tertiary-color);
+          }
+
+          .stat-title {
+            font-size: 2rem;
+            font-weight: 800;
+          }
+
+          .stat-description {
+            font-size: 1.5rem;
           }
         }
       }

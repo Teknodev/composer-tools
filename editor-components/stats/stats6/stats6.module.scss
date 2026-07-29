@@ -8,9 +8,23 @@
     gap: var(--composer-gap-lg);
 
     .banner {
- 
+      align-items: center !important;
+      text-align: center;
+
+      .subtitle {
+        text-align: center;
+        transform: none !important;
+        &::before {
+          display: none !important;
+        }
+      }
+
+      .title {
+        text-align: center;
+      }
 
       .description {
+        text-align: center;
         color: var(--composer-tertiary-color);
       }
 
@@ -18,6 +32,7 @@
         display: flex;
         gap: var(--composer-gap-sm);
         flex-wrap: wrap;
+        justify-content: center;
 
         .button {
           content: "";
@@ -37,18 +52,41 @@
           align-items: center;
 
           .data-card-title {
-            font-size: 2.5rem;
+            font-size: 2.5rem !important;
             color: var(--composer-primary-color);
             word-break: break-all;
             margin: 0;
-            text-align: center;
+            text-align: center !important;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: baseline;
+            justify-content: center;
+
+            .data-card-prefix,
+            .data-card-suffix {
+              font-size: 0.6em;
+            }
+          }
+
+          .data-card-subtitle {
+            margin: 0;
+            color: var(--composer-tertiary-color);
+            font-size: 1.2rem !important;
+            text-align: center !important;
+          }
+
+          .data-card-heading {
+            margin: 0;
+            color: var(--composer-font-color-primary);
+            font-size: 1.8rem !important;
+            text-align: center !important;
           }
 
           .data-card-description {
             margin: 0;
             color: var(--composer-tertiary-color);
-            font-size: 1.5rem;
-            text-align: center;
+            font-size: 1.5rem !important;
+            text-align: center !important;
           }
         }
       }
@@ -56,28 +94,11 @@
   }
 }
 
-@container (max-width: #{$composer-tablet-width}) {
+@container (max-width: #{$composer-phone-width}) {
   .container {
     .max-content {
-      .banner {
-        .description {
-          width: 100%;
-        }
-      }
       .stats6-page {
         gap: var(--composer-gap-lg) !important;
-
-        .card {
-          .card-content {
-            .data-card-title {
-              font-size: 2rem;
-            }
-
-            .data-card-description {
-              font-size: 1rem;
-            }
-          }
-        }
       }
     }
   }

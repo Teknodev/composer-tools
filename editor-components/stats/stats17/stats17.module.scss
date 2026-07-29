@@ -43,6 +43,7 @@
                         gap: var(--composer-gap-sm);
 
                         .button {
+                          content: "";
                             .button-text {
                                 content: "";
                             }
@@ -89,7 +90,7 @@
 
                         .stat-title,
                         .stat-subtitle,
-                        .stat-info-text {
+                        .stat-description {
                             color: var(--composer-font-color-primary);
                         }
                     }
@@ -130,7 +131,7 @@
                             .stat-value,
                             .stat-title,
                             .stat-subtitle,
-                            .stat-info-text {
+                            .stat-description {
                                 color: var(--composer-font-color-secondary);
                             }
                         }

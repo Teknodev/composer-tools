@@ -8,7 +8,11 @@ import { INPUTS } from "../../../custom-hooks/input-templates";
 
 type Stat = {
   icon?: TypeMediaInputValue | string;
+  prefix: React.JSX.Element;
   number: React.JSX.Element;
+  suffix: React.JSX.Element;
+  subtitle: React.JSX.Element;
+  title: React.JSX.Element;
   description: React.JSX.Element;
 };
 
@@ -74,18 +78,12 @@ class Stats3Page extends BaseStats {
               additionalParams: { availableTypes: ["image", "icon"] },
               value: { type: "icon", name: "FaMedal" },
             },
-            {
-              type: "string",
-              key: "number",
-              displayer: "Value",
-              value: "12 th",
-            },
-            {
-              type: "string",
-              key: "description",
-              displayer: "Description",
-              value: "Years Experience",
-            },
+            { type: "string", key: "prefix", displayer: "Prefix", value: "" },
+            { type: "string", key: "number", displayer: "Value", value: "12 th" },
+            { type: "string", key: "suffix", displayer: "Suffix", value: "" },
+            { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
+            { type: "string", key: "title", displayer: "Title", value: "" },
+            { type: "string", key: "description", displayer: "Description", value: "Years Experience" },
           ],
         },
         {
@@ -100,18 +98,12 @@ class Stats3Page extends BaseStats {
               additionalParams: { availableTypes: ["image", "icon"] },
               value: { type: "icon", name: "FiUser" },
             },
-            {
-              type: "string",
-              key: "number",
-              displayer: "Value",
-              value: "800 +",
-            },
-            {
-              type: "string",
-              key: "description",
-              displayer: "Description",
-              value: "Happy Clients",
-            },
+            { type: "string", key: "prefix", displayer: "Prefix", value: "" },
+            { type: "string", key: "number", displayer: "Value", value: "800 +" },
+            { type: "string", key: "suffix", displayer: "Suffix", value: "" },
+            { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
+            { type: "string", key: "title", displayer: "Title", value: "" },
+            { type: "string", key: "description", displayer: "Description", value: "Happy Clients" },
           ],
         },
         {
@@ -126,18 +118,12 @@ class Stats3Page extends BaseStats {
               additionalParams: { availableTypes: ["image", "icon"] },
               value: { type: "icon", name: "BsHeartPulse" },
             },
-            {
-              type: "string",
-              key: "number",
-              displayer: "Value",
-              value: "100 +",
-            },
-            {
-              type: "string",
-              key: "description",
-              displayer: "Description",
-              value: "Psycologist",
-            },
+            { type: "string", key: "prefix", displayer: "Prefix", value: "" },
+            { type: "string", key: "number", displayer: "Value", value: "100 +" },
+            { type: "string", key: "suffix", displayer: "Suffix", value: "" },
+            { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
+            { type: "string", key: "title", displayer: "Title", value: "" },
+            { type: "string", key: "description", displayer: "Description", value: "Psycologist" },
           ],
         },
       ],
@@ -213,16 +199,29 @@ class Stats3Page extends BaseStats {
                     <div className={this.decorateCSS("card")}>
                       {this.castToObject<Stat[]>("stats").map((item: Stat, index: number) => {
                         const iconExist = mediaExists(item.icon);
+                        const prefixExist = this.castToString(item.prefix);
                         const numberExist = this.castToString(item.number);
+                        const suffixExist = this.castToString(item.suffix);
+                        const subtitleExist = this.castToString(item.subtitle);
+                        const titleExist = this.castToString(item.title);
                         const descriptionExist = this.castToString(item.description);
-                        if (!(iconExist || numberExist || descriptionExist)) return null;
+                        const hasValue = prefixExist || numberExist || suffixExist;
+                        if (!(iconExist || hasValue || subtitleExist || titleExist || descriptionExist)) return null;
                         return (
                           <div key={index} className={this.decorateCSS("content")}>
                             <div className={this.decorateCSS("inner-content")}>
                               <div className={this.decorateCSS("first-container")}>
                                 {iconExist && <Base.Media value={typeof item.icon === "object" ? item.icon : { type: "icon", name: item.icon }} className={this.decorateCSS("icon")} />}
                                 <Base.VerticalContent className={this.decorateCSS("text")}>
-                                  {numberExist && <Base.H5 className={this.decorateCSS("number")}>{item.number}</Base.H5>}
+                                  {hasValue && (
+                                    <Base.H5 className={this.decorateCSS("number")}>
+                                      {prefixExist && <span className={this.decorateCSS("prefix")}>{item.prefix}</span>}
+                                      {numberExist && <span className={this.decorateCSS("value")}>{item.number}</span>}
+                                      {suffixExist && <span className={this.decorateCSS("suffix")}>{item.suffix}</span>}
+                                    </Base.H5>
+                                  )}
+                                  {subtitleExist && <Base.P className={this.decorateCSS("stat-subtitle")}>{item.subtitle}</Base.P>}
+                                  {titleExist && <Base.H6 className={this.decorateCSS("stat-title")}>{item.title}</Base.H6>}
                                   {descriptionExist && <Base.P className={this.decorateCSS("right-text")}>{item.description}</Base.P>}
                                 </Base.VerticalContent>
                               </div>

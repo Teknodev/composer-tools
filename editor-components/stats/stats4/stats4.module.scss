@@ -24,10 +24,25 @@
           align-items: flex-start !important;
 
           .subtitle,
-          .title {
+          .title,
+          .description {
             text-align: left !important;
             margin-left: 0 !important;
             margin-right: auto !important;
+          }
+
+          .button-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--composer-gap-sm);
+            margin-top: var(--composer-gap-sm);
+
+            .button {
+              content: "";
+              .button-text {
+                content: "";
+              }
+            }
           }
         }
 
@@ -97,7 +112,15 @@
             background-color: rgba(var(--composer-font-color-primary-rgb), 0.2);
             width: 100%;
             height: 1px;
-            margin-bottom: var(--composer-gap-sm);
+            margin-top: var(--composer-gap-md);
+            margin-bottom: var(--composer-gap-md);
+          }
+
+          .stat-item-subtitle {
+            color: var(--composer-tertiary-color);
+            font-size: 1rem;
+            overflow-wrap: break-word;
+            text-align: left !important;
           }
 
           .stat-item-title {
@@ -119,10 +142,11 @@
             font-weight: 800;
             text-align: left !important;
 
-            .stat-value-icon {
-              font-size: 1.5rem !important;
-              vertical-align: middle;
+            .stat-value-prefix,
+            .stat-value-suffix {
+              font-size: 0.6em;
             }
+
           }
         }
       }
@@ -135,7 +159,19 @@
     .max-content {
       .stats-container {
         .upper-container {
-          flex-direction: column;
+          flex-direction: row !important;
+        }
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+  .container {
+    .max-content {
+      .stats-container {
+        .upper-container {
+          flex-direction: column !important;
           gap: 0;
 
           .upper-container-main {
@@ -160,10 +196,15 @@
             align-items: center !important;
 
             .subtitle,
-            .title {
+            .title,
+            .description {
               text-align: center !important;
               margin-left: auto !important;
               margin-right: auto !important;
+            }
+
+            .button-container {
+              justify-content: center !important;
             }
           }
 
@@ -184,6 +225,7 @@
             .stat-item {
               align-items: center !important;
 
+              .stat-item-subtitle,
               .stat-item-title,
               .stat-item-content,
               .stat-item-stat-value {

@@ -94,6 +94,29 @@
         flex: 1;
       }
 
+      .value {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: baseline;
+        font-size: 2.5rem;
+        font-weight: 800;
+        color: var(--composer-font-color-primary);
+        margin: 0;
+        text-align: left;
+
+        .prefix,
+        .suffix {
+          font-size: 0.6em;
+        }
+      }
+
+      .stat-subtitle {
+        font-size: 1rem;
+        color: var(--composer-tertiary-color);
+        margin: 0;
+        text-align: left;
+      }
+
       .title {
         font-size: 1.5rem;
         font-weight: 600;

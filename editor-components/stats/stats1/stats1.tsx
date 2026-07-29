@@ -135,9 +135,11 @@ class Stats1Page extends BaseStats {
     const visibleButtons = buttons.filter(btn => this.castToString(btn.text));
     const hasVisibleButtons = visibleButtons.length > 0;
 
+    const alignment = Base.getContentAlignment();
+
     const badgeColors = ["var(--composer-primary-color)", "var(--composer-secondary-color)", "var(--composer-tertiary-color)"];
 
-    const AnimatedNumber = ({ value, className }: { value: string; className: string }) => {
+    const AnimatedNumber = ({ value, node, className }: { value: string; node?: React.JSX.Element; className: string }) => {
       const ref = React.useRef<HTMLSpanElement>(null);
       const intervalRef = React.useRef<ReturnType<typeof setInterval> | null>(null);
 
@@ -207,7 +209,7 @@ class Stats1Page extends BaseStats {
 
       return (
         <span ref={ref} className={className}>
-          {display}
+          {animatable ? display : node ?? display}
         </span>
       );
     };
@@ -217,7 +219,7 @@ class Stats1Page extends BaseStats {
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("stats1-page")}>
             {(isSubtitleExist || isTitleExist || isDescExist || hasVisibleButtons) && (
-              <Base.VerticalContent className={this.decorateCSS("left-container")}>
+              <Base.VerticalContent className={`${this.decorateCSS("left-container")} ${alignment === "center" ? this.decorateCSS("alignment-center") : ""}`}>
                 {isSubtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{subtitle}</Base.SectionSubTitle>}
                 {isTitleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>}
                 {isDescExist && <Base.SectionDescription className={this.decorateCSS("description")}>{description}</Base.SectionDescription>}
@@ -225,8 +227,8 @@ class Stats1Page extends BaseStats {
                   <div className={this.decorateCSS("button-container")}>
                     {visibleButtons.map((btn, index) => (
                       <ComposerLink key={index} path={btn.url}>
-                        <Base.Button buttonType={btn.type} className={this.decorateCSS("button-text-wrapper")}>
-                          {btn.text}
+                        <Base.Button buttonType={btn.type} className={this.decorateCSS("button")}>
+                          <Base.P className={this.decorateCSS("button-text")}>{btn.text}</Base.P>
                         </Base.Button>
                       </ComposerLink>
                     ))}
@@ -261,7 +263,7 @@ class Stats1Page extends BaseStats {
                         {isValueExist && (
                           <Base.H5 className={this.decorateCSS("counter-value")} style={{ color }}>
                             {isPrefixExist && <span className={this.decorateCSS("counter-prefix")}>{cardData.prefix}</span>}
-                            {!!numberStr && <AnimatedNumber value={numberStr} className={this.decorateCSS("counter-value-inner")} />}
+                            {!!numberStr && <AnimatedNumber value={numberStr} node={cardData.number} className={this.decorateCSS("counter-value-inner")} />}
                             {isSuffixExist && <span className={this.decorateCSS("counter-suffix")}>{cardData.suffix}</span>}
                           </Base.H5>
                         )}

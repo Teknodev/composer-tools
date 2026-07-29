@@ -4,7 +4,11 @@ import styles from "./stats8.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 
 type CardData = {
-  counter: React.JSX.Element;
+  prefix: React.JSX.Element;
+  number: React.JSX.Element;
+  suffix: React.JSX.Element;
+  subtitle: React.JSX.Element;
+  title: React.JSX.Element;
   description: React.JSX.Element;
 };
 
@@ -84,18 +88,12 @@ class Stats8Page extends BaseStats {
           key: "stat",
           displayer: "Stat",
           value: [
-            {
-              type: "string",
-              key: "counter",
-              displayer: "Value",
-              value: "37",
-            },
-            {
-              type: "string",
-              key: "description",
-              displayer: "Description",
-              value: "Business Partner",
-            },
+            { type: "string", key: "prefix", displayer: "Prefix", value: "" },
+            { type: "string", key: "number", displayer: "Value", value: "37" },
+            { type: "string", key: "suffix", displayer: "Suffix", value: "" },
+            { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
+            { type: "string", key: "title", displayer: "Title", value: "" },
+            { type: "string", key: "description", displayer: "Description", value: "Business Partner" },
           ],
         },
         {
@@ -103,18 +101,12 @@ class Stats8Page extends BaseStats {
           key: "stat",
           displayer: "Stat",
           value: [
-            {
-              type: "string",
-              key: "counter",
-              displayer: "Value",
-              value: "19",
-            },
-            {
-              type: "string",
-              key: "description",
-              displayer: "Description",
-              value: "Satisfied Customers",
-            },
+            { type: "string", key: "prefix", displayer: "Prefix", value: "" },
+            { type: "string", key: "number", displayer: "Value", value: "19" },
+            { type: "string", key: "suffix", displayer: "Suffix", value: "" },
+            { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
+            { type: "string", key: "title", displayer: "Title", value: "" },
+            { type: "string", key: "description", displayer: "Description", value: "Satisfied Customers" },
           ],
         },
       ],
@@ -209,7 +201,7 @@ class Stats8Page extends BaseStats {
     const shouldAnimate = settings?.shouldAnimate ?? true;
     const animationDuration = (settings?.animationDuration ?? 2000) as number;
 
-    const AnimatedNumber = ({ raw, className }: { raw: string; className: string }) => {
+    const AnimatedNumber = ({ raw, node, className }: { raw: string; node?: React.JSX.Element; className: string }) => {
       const ref = React.useRef<HTMLSpanElement>(null);
       const intervalRef = React.useRef<ReturnType<typeof setInterval> | null>(null);
 
@@ -286,7 +278,7 @@ class Stats8Page extends BaseStats {
 
       return (
         <span ref={ref} className={className}>
-          {display}
+          {animatable ? display : node ?? display}
         </span>
       );
     };
@@ -326,13 +318,26 @@ class Stats8Page extends BaseStats {
                   <Base.VerticalContent className={this.decorateCSS("stats-container")}>
                     <Base.Row className={this.decorateCSS("stats")}>
                       {statsData.map((statData: CardData, indexStat: number) => {
-                        const counterExist = (this.castToString(statData.counter) as string) || "";
+                        const counterExist = (this.castToString(statData.number) as string) || "";
+                        const prefixExist = this.castToString(statData.prefix);
+                        const suffixExist = this.castToString(statData.suffix);
+                        const subtitleExist = this.castToString(statData.subtitle);
+                        const titleExist = this.castToString(statData.title);
                         const descriptionExist = this.castToString(statData.description);
+                        const hasValue = !!counterExist || prefixExist || suffixExist;
                         return (
-                          (counterExist || descriptionExist) && (
+                          (hasValue || subtitleExist || titleExist || descriptionExist) && (
                             <div key={indexStat} className={`${this.decorateCSS("stat-border")} ${!imageSrc?.url && this.decorateCSS("stat-border-full-width")}`}>
                               <div className={`${this.decorateCSS("stat")} ${showBackground ? this.decorateCSS("with-background") : this.decorateCSS("no-background")}`}>
-                                {counterExist && <AnimatedNumber raw={counterExist} className={this.decorateCSS("stat-counter")} />}
+                                {hasValue && (
+                                  <div className={this.decorateCSS("stat-counter")}>
+                                    {prefixExist && <span className={this.decorateCSS("stat-prefix")}>{statData.prefix}</span>}
+                                    {counterExist && <AnimatedNumber raw={counterExist} node={statData.number} className={this.decorateCSS("stat-number")} />}
+                                    {suffixExist && <span className={this.decorateCSS("stat-suffix")}>{statData.suffix}</span>}
+                                  </div>
+                                )}
+                                {subtitleExist && <Base.P className={this.decorateCSS("stat-subtitle")}>{statData.subtitle}</Base.P>}
+                                {titleExist && <Base.H5 className={this.decorateCSS("stat-title")}>{statData.title}</Base.H5>}
                                 {descriptionExist && <Base.P className={this.decorateCSS("stat-description")}>{statData.description}</Base.P>}
                               </div>
                             </div>
@@ -353,7 +358,7 @@ class Stats8Page extends BaseStats {
                   {showOverlay && <div className={this.decorateCSS("overlay")}></div>}
                   {(badgeNumberRaw || badgeDescription) && (
                     <div className={this.decorateCSS("stat-badge")}>
-                      {badgeNumberRaw && <AnimatedNumber raw={badgeNumberRaw} className={this.decorateCSS("number")} />}
+                      {badgeNumberRaw && <AnimatedNumber raw={badgeNumberRaw} node={media?.badgeNumber} className={this.decorateCSS("number")} />}
                       {badgeDescription && <Base.P className={this.decorateCSS("description")}>{media?.badgeDescription}</Base.P>}
                     </div>
                   )}

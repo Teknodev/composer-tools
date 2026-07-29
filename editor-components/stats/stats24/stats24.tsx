@@ -10,6 +10,7 @@ type StatItem = {
     prefix: string;
     prefixElement: JSX.Element;
     number: string;
+    numberElement: JSX.Element;
     suffix: string;
     suffixElement: JSX.Element;
     title: string;
@@ -265,7 +266,7 @@ class Stats24 extends BaseStats {
                                 )}
                                 {valueExist && (
                                     <span ref={ref} className={this.decorateCSS("stat-number")}>
-                                        {display}
+                                        {animatable ? display : stat.numberElement}
                                     </span>
                                 )}
                                 {suffixExist && (
@@ -316,7 +317,7 @@ class Stats24 extends BaseStats {
             const subtitle = this.castToString(item.subtitle) || "";
             const description = this.castToString(item.description) || "";
 
-            return { icon: iconProp, prefix, prefixElement: item.prefix, number, suffix, suffixElement: item.suffix, title, titleElement: item.title, subtitle, subtitleElement: item.subtitle, description, descriptionElement: item.description };
+            return { icon: iconProp, prefix, numberElement: item.number, prefixElement: item.prefix, number, suffix, suffixElement: item.suffix, title, titleElement: item.title, subtitle, subtitleElement: item.subtitle, description, descriptionElement: item.description };
         });
 
         const hasStats = stats.length > 0;

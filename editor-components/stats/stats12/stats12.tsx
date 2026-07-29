@@ -1,11 +1,16 @@
+import * as React from "react";
 import styles from "./stats12.module.scss";
 import { BaseStats, TypeMediaInputValue } from "../../EditorComponent";
 import { Base } from "../../../composer-base-components/base/base";
 
 interface FeatureItem {
   icon?: string | TypeMediaInputValue;
-  title: string;
-  description: string;
+  prefix: React.JSX.Element;
+  number: React.JSX.Element;
+  suffix: React.JSX.Element;
+  subtitle: React.JSX.Element;
+  title: React.JSX.Element;
+  description: React.JSX.Element;
 }
 
 class Stats12 extends BaseStats {
@@ -43,6 +48,10 @@ class Stats12 extends BaseStats {
           displayer: "Stat",
           value: [
             { type: "media", key: "icon", displayer: "Icon", additionalParams: { availableTypes: ["image", "icon"] }, value: { type: "icon", name: "FiClock" } },
+            { type: "string", key: "prefix", displayer: "Prefix", value: "" },
+            { type: "string", key: "number", displayer: "Value", value: "" },
+            { type: "string", key: "suffix", displayer: "Suffix", value: "" },
+            { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
             { type: "string", key: "title", displayer: "Title", value: "90 Days Return" },
             { type: "string", key: "description", displayer: "Description", value: "If goods have problems, consectetur adipiscing elit." },
           ],
@@ -53,6 +62,10 @@ class Stats12 extends BaseStats {
           displayer: "Stat",
           value: [
             { type: "media", key: "icon", displayer: "Icon", additionalParams: { availableTypes: ["image", "icon"] }, value: { type: "icon", name: "BsBookmarkDash" } },
+            { type: "string", key: "prefix", displayer: "Prefix", value: "" },
+            { type: "string", key: "number", displayer: "Value", value: "" },
+            { type: "string", key: "suffix", displayer: "Suffix", value: "" },
+            { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
             { type: "string", key: "title", displayer: "Title", value: "Free Delivery" },
             { type: "string", key: "description", displayer: "Description", value: "For all orders over $50, consectetur adipim scing elit." },
           ],
@@ -63,6 +76,10 @@ class Stats12 extends BaseStats {
           displayer: "Stat",
           value: [
             { type: "media", key: "icon", displayer: "Icon", additionalParams: { availableTypes: ["image", "icon"] }, value: { type: "icon", name: "FiCreditCard" } },
+            { type: "string", key: "prefix", displayer: "Prefix", value: "" },
+            { type: "string", key: "number", displayer: "Value", value: "" },
+            { type: "string", key: "suffix", displayer: "Suffix", value: "" },
+            { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
             { type: "string", key: "title", displayer: "Title", value: "Secure Payment" },
             { type: "string", key: "description", displayer: "Description", value: "100% secure payment, consectetur adipim scing elit." },
           ],
@@ -110,17 +127,34 @@ class Stats12 extends BaseStats {
         >
           {features.map((feat, idx) => {
             const iconExist = typeof feat.icon === "object" ? (feat.icon?.name || feat.icon?.url) : feat.icon;
+            const prefixExist = this.castToString(feat.prefix);
+            const numberExist = this.castToString(feat.number);
+            const suffixExist = this.castToString(feat.suffix);
+            const subtitleExist = this.castToString(feat.subtitle);
             const titleExist = this.castToString(feat.title);
             const descriptionExist = this.castToString(feat.description);
-            if (!iconExist && !titleExist && !descriptionExist) return null;
+            const hasValue = prefixExist || numberExist || suffixExist;
+            if (!iconExist && !hasValue && !subtitleExist && !titleExist && !descriptionExist) return null;
             return (
               <div key={idx} className={this.decorateCSS("feature")}>
                 <div className={this.decorateCSS("top-row")}>
                   {iconExist && (
                     <Base.Media value={typeof feat.icon === "object" ? feat.icon : { type: "icon", name: feat.icon }} className={this.decorateCSS("icon")} />
                   )}
-                  {(titleExist || descriptionExist) && (
+                  {(hasValue || subtitleExist || titleExist || descriptionExist) && (
                     <div className={this.decorateCSS("text-group")}>
+                      {hasValue && (
+                        <Base.P className={this.decorateCSS("value")}>
+                          {prefixExist && <span className={this.decorateCSS("prefix")}>{feat.prefix}</span>}
+                          {numberExist && <span className={this.decorateCSS("number")}>{feat.number}</span>}
+                          {suffixExist && <span className={this.decorateCSS("suffix")}>{feat.suffix}</span>}
+                        </Base.P>
+                      )}
+                      {subtitleExist && (
+                        <Base.P className={this.decorateCSS("stat-subtitle")}>
+                          {feat.subtitle}
+                        </Base.P>
+                      )}
                       {titleExist && (
                         <Base.SectionTitle className={this.decorateCSS("title")}>
                           {feat.title}

@@ -9,6 +9,7 @@ type StatItem = {
     prefix: string;
     prefixElement: JSX.Element;
     number: string;
+    numberElement: JSX.Element;
     suffix: string;
     suffixElement: JSX.Element;
     subtitle: string;
@@ -176,7 +177,7 @@ class Stats35 extends BaseStats {
 
         const stats: StatItem[] = statsItems.map((item) => ({
             prefix: this.castToString(item.prefix) || "",
-            prefixElement: item.prefix,
+            numberElement: item.number, prefixElement: item.prefix,
             number: this.castToString(item.number) || "",
             suffix: this.castToString(item.suffix) || "",
             suffixElement: item.suffix,
@@ -294,7 +295,7 @@ class Stats35 extends BaseStats {
                             )}
                             {!!display && (
                                 <span className={this.decorateCSS("stat-number")}>
-                                    {display}
+                                    {animatable ? display : stat.numberElement}
                                 </span>
                             )}
                             {stat.suffix && (

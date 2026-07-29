@@ -6,8 +6,11 @@ import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "../../../custom-hooks/input-templates";
 
 interface Stat {
+    prefix: React.JSX.Element;
     number: React.JSX.Element;
     suffix: React.JSX.Element;
+    subtitle: React.JSX.Element;
+    title: React.JSX.Element;
     description: React.JSX.Element;
 }
 
@@ -85,8 +88,14 @@ class Stats9 extends BaseStats {
                     value: [
                         {
                             type: "string",
+                            key: "prefix",
+                            displayer: "Prefix",
+                            value: "",
+                        },
+                        {
+                            type: "string",
                             key: "number",
-                            displayer: "Number",
+                            displayer: "Value",
                             value: "15",
                         },
                         {
@@ -94,6 +103,18 @@ class Stats9 extends BaseStats {
                             key: "suffix",
                             displayer: "Suffix",
                             value: "+",
+                        },
+                        {
+                            type: "string",
+                            key: "subtitle",
+                            displayer: "Subtitle",
+                            value: "",
+                        },
+                        {
+                            type: "string",
+                            key: "title",
+                            displayer: "Title",
+                            value: "",
                         },
                         {
                             type: "string",
@@ -110,8 +131,14 @@ class Stats9 extends BaseStats {
                     value: [
                         {
                             type: "string",
+                            key: "prefix",
+                            displayer: "Prefix",
+                            value: "",
+                        },
+                        {
+                            type: "string",
                             key: "number",
-                            displayer: "Number",
+                            displayer: "Value",
                             value: "30",
                         },
                         {
@@ -119,6 +146,18 @@ class Stats9 extends BaseStats {
                             key: "suffix",
                             displayer: "Suffix",
                             value: "+",
+                        },
+                        {
+                            type: "string",
+                            key: "subtitle",
+                            displayer: "Subtitle",
+                            value: "",
+                        },
+                        {
+                            type: "string",
+                            key: "title",
+                            displayer: "Title",
+                            value: "",
                         },
                         {
                             type: "string",
@@ -135,8 +174,14 @@ class Stats9 extends BaseStats {
                     value: [
                         {
                             type: "string",
+                            key: "prefix",
+                            displayer: "Prefix",
+                            value: "",
+                        },
+                        {
+                            type: "string",
                             key: "number",
-                            displayer: "Number",
+                            displayer: "Value",
                             value: "80",
                         },
                         {
@@ -144,6 +189,18 @@ class Stats9 extends BaseStats {
                             key: "suffix",
                             displayer: "Suffix",
                             value: "M+",
+                        },
+                        {
+                            type: "string",
+                            key: "subtitle",
+                            displayer: "Subtitle",
+                            value: "",
+                        },
+                        {
+                            type: "string",
+                            key: "title",
+                            displayer: "Title",
+                            value: "",
                         },
                         {
                             type: "string",
@@ -191,6 +248,8 @@ class Stats9 extends BaseStats {
 
         const title = this.getPropValue("title");
         const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
+        const buttonIcon = button.icon as unknown as TypeMediaInputValue | undefined;
+        const buttonIconExist = !!buttonIcon && (buttonIcon.type === "icon" ? !!buttonIcon.name : !!buttonIcon.url);
         const description = this.getPropValue("description");
         const isDescriptionExist = this.castToString(description);
         const media = this.castToObject<any>("media");
@@ -273,25 +332,47 @@ class Stats9 extends BaseStats {
                 };
             }, [rawNumber, animatable, animationDuration, target]);
 
+            const prefixExist = this.castToString(stat.prefix);
             const suffixExist = this.castToString(stat.suffix);
+            const subtitleExist = this.castToString(stat.subtitle);
+            const titleExist = this.castToString(stat.title);
             const descExist = this.castToString(stat.description);
 
-            if (!display && !suffixExist && !descExist) return null;
+            const hasValue = !!display || prefixExist || suffixExist;
+
+            if (!hasValue && !subtitleExist && !titleExist && !descExist) return null;
 
             return (
                 <div ref={ref} className={this.decorateCSS("stat-item")}>
-                    <div className={this.decorateCSS("stat-number-container")}>
-                        {!!display && (
-                            <span className={this.decorateCSS("stat-number")}>
-                                {display}
-                            </span>
-                        )}
-                        {suffixExist && (
-                            <span className={this.decorateCSS("stat-suffix")}>
-                                {stat.suffix}
-                            </span>
-                        )}
-                    </div>
+                    {hasValue && (
+                        <div className={this.decorateCSS("stat-number-container")}>
+                            {prefixExist && (
+                                <span className={this.decorateCSS("stat-prefix")}>
+                                    {stat.prefix}
+                                </span>
+                            )}
+                            {!!display && (
+                                <span className={this.decorateCSS("stat-number")}>
+                                    {animatable ? display : stat.number}
+                                </span>
+                            )}
+                            {suffixExist && (
+                                <span className={this.decorateCSS("stat-suffix")}>
+                                    {stat.suffix}
+                                </span>
+                            )}
+                        </div>
+                    )}
+                    {subtitleExist && (
+                        <Base.P className={this.decorateCSS("stat-subtitle")}>
+                            {stat.subtitle}
+                        </Base.P>
+                    )}
+                    {titleExist && (
+                        <Base.H5 className={this.decorateCSS("stat-title")}>
+                            {stat.title}
+                        </Base.H5>
+                    )}
                     {descExist && (
                         <Base.P className={this.decorateCSS("stat-description")}>
                             {stat.description}
@@ -304,7 +385,7 @@ class Stats9 extends BaseStats {
         const subtitle = this.getPropValue("subtitle");
         const subtitleExist = this.castToString(subtitle);
 
-        const leftContentexist = subtitleExist || this.castToString(title) || isDescriptionExist || this.castToString(button.text) || button.icon || image;
+        const leftContentexist = subtitleExist || this.castToString(title) || isDescriptionExist || this.castToString(button.text) || buttonIconExist || image;
         const hasStats = stats && stats.length > 0;
 
         let mainContentClass = this.decorateCSS("main-content");
@@ -350,7 +431,7 @@ class Stats9 extends BaseStats {
                                         </p>
                                     )}
 
-                                    {(this.castToString(button.text) || button.icon) && (
+                                    {(this.castToString(button.text) || buttonIconExist) && (
                                         <div className={this.decorateCSS("button-wrapper")}>
                                             <ComposerLink path={button.url}>
                                                 <Base.Button
@@ -358,9 +439,9 @@ class Stats9 extends BaseStats {
                                                     className={this.decorateCSS("more-button")}
                                                 >
                                                     {this.castToString(button.text) && <span className={this.decorateCSS("button-text")}>{button.text}</span>}
-                                                    {button.icon && (
+                                                    {buttonIconExist && (
                                                         <Base.Media
-                                                            value={{ type: "icon", name: button.icon }}
+                                                            value={buttonIcon}
                                                             className={this.decorateCSS("button-icon")}
                                                         />
                                                     )}

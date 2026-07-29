@@ -6,9 +6,12 @@ import ComposerLink from "../../../composer-base-components/Link/ComposerLinkPro
 import { INPUTS } from "../../../custom-hooks/input-templates";
 
 type featuresItem = {
+  prefix: React.JSX.Element;
   number: React.JSX.Element;
-  description: React.JSX.Element;
+  suffix: React.JSX.Element;
+  subtitle: React.JSX.Element;
   title: React.JSX.Element;
+  description: React.JSX.Element;
 };
 
 class Stats14 extends BaseStats {
@@ -46,7 +49,11 @@ class Stats14 extends BaseStats {
           key: "stat",
           displayer: "Stat",
           value: [
+            { type: "string", key: "prefix", displayer: "Prefix", value: "" },
             { type: "string", key: "number", displayer: "Value", value: "From 20 days" },
+            { type: "string", key: "suffix", displayer: "Suffix", value: "" },
+            { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
+            { type: "string", key: "title", displayer: "Title", value: "" },
             { type: "string", key: "description", displayer: "Description", value: "minimal period" },
           ],
         },
@@ -55,7 +62,11 @@ class Stats14 extends BaseStats {
           key: "stat",
           displayer: "Stat",
           value: [
+            { type: "string", key: "prefix", displayer: "Prefix", value: "" },
             { type: "string", key: "number", displayer: "Value", value: "Up to 7.5%" },
+            { type: "string", key: "suffix", displayer: "Suffix", value: "" },
+            { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
+            { type: "string", key: "title", displayer: "Title", value: "" },
             { type: "string", key: "description", displayer: "Description", value: "yearly income" },
           ],
         },
@@ -64,7 +75,11 @@ class Stats14 extends BaseStats {
           key: "stat",
           displayer: "Stat",
           value: [
+            { type: "string", key: "prefix", displayer: "Prefix", value: "" },
             { type: "string", key: "number", displayer: "Value", value: "From $1,000" },
+            { type: "string", key: "suffix", displayer: "Suffix", value: "" },
+            { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
+            { type: "string", key: "title", displayer: "Title", value: "" },
             { type: "string", key: "description", displayer: "Description", value: "minimal deposit" },
           ],
         },
@@ -162,16 +177,33 @@ class Stats14 extends BaseStats {
                       alignment === "center" ? this.decorateCSS("alignment-center") : ""
                     }`}
                   >
-                    {FeaturesItem.map((item: any, index: number) => {
+                    {FeaturesItem.map((item: featuresItem, index: number) => {
+                      const prefixExist = this.castToString(item.prefix);
                       const numberExist = this.castToString(item.number);
+                      const suffixExist = this.castToString(item.suffix);
+                      const subtitleExist = this.castToString(item.subtitle);
+                      const titleExist = this.castToString(item.title);
                       const descriptionExist = this.castToString(item.description);
-                      if (!numberExist && !descriptionExist) return null;
+                      const hasValue = prefixExist || numberExist || suffixExist;
+                      if (!hasValue && !subtitleExist && !titleExist && !descriptionExist) return null;
                       return (
                         <div key={index} className={this.decorateCSS("features-list-item")}>
-                          {numberExist && (
+                          {hasValue && (
                             <Base.P className={this.decorateCSS("topText")}>
-                              {item.number}
+                              {prefixExist && <span className={this.decorateCSS("prefix")}>{item.prefix}</span>}
+                              {numberExist && <span className={this.decorateCSS("number")}>{item.number}</span>}
+                              {suffixExist && <span className={this.decorateCSS("suffix")}>{item.suffix}</span>}
                             </Base.P>
+                          )}
+                          {subtitleExist && (
+                            <Base.P className={this.decorateCSS("subText")}>
+                              {item.subtitle}
+                            </Base.P>
+                          )}
+                          {titleExist && (
+                            <Base.H5 className={this.decorateCSS("titleText")}>
+                              {item.title}
+                            </Base.H5>
                           )}
                           {descriptionExist && (
                             <Base.P className={this.decorateCSS("bottomText")}>

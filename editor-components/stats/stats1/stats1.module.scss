@@ -9,7 +9,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: calc(5 * var(--composer-gap-xl));
+      gap: var(--composer-gap-xl);
       flex: 1 1;
 
       .left-container {
@@ -36,12 +36,15 @@
 
           .button {
             content: "";
+
+            .button-text {
+              content: "";
+            }
           }
         }
 
         .subtitle,
         .description,
-        .button-text-wrapper,
         .title {
           content: "";
         }
@@ -55,9 +58,10 @@
         align-items: center;
 
         .content-div {
+          --ring-radius: 210px;
           position: relative;
-          width: 500px;
-          height: 500px;
+          width: 420px;
+          height: 420px;
           display: flex;
           justify-content: center;
           align-items: center;
@@ -94,7 +98,7 @@
             align-items: center;
             text-align: center;
             flex-direction: column;
-            transform: rotate(var(--angle)) translate(250px) rotate(calc(-1 * var(--angle)));
+            transform: rotate(var(--angle)) translate(var(--ring-radius)) rotate(calc(-1 * var(--angle)));
 
             .counter-value {
               font-size: 2rem;
@@ -132,35 +136,21 @@
   .container {
     .max-content {
       .stats1-page {
-        flex-direction: column;
         gap: var(--composer-gap-lg);
 
-        .left-container {
-          max-width: 100%;
-        }
-
         .right-container {
-          padding: 0;
-          margin: var(--composer-gap-lg) auto;
-          width: 100%;
-          justify-content: center;
+          padding: var(--composer-gap-md);
 
           .content-div {
-            width: 500px !important;
-            height: 500px !important;
-            max-width: 100%;
+            --ring-radius: 160px;
+            width: 320px;
+            height: 320px;
 
             .card {
-              max-width: 130px;
-              min-width: 100px;
-              max-height: 130px;
-              min-height: 100px;
-              transform: rotate(var(--angle)) translate(250px) rotate(calc(-1 * var(--angle)));
-
-              .counter-value {
-                margin: 0;
-                font-size: 2rem !important;
-              }
+              max-width: 120px;
+              min-width: 80px;
+              max-height: 120px;
+              min-height: 80px;
             }
           }
         }
@@ -173,21 +163,56 @@
   .container {
     .max-content {
       .stats1-page {
+        flex-direction: column;
+        gap: var(--composer-gap-lg);
+
+        .left-container {
+          max-width: 100%;
+
+          &.alignment-center {
+            align-items: center !important;
+            text-align: center;
+
+            .subtitle {
+              text-align: center !important;
+              margin-left: auto !important;
+              margin-right: auto !important;
+            }
+
+            .title,
+            .description {
+              text-align: center;
+              margin-left: auto;
+              margin-right: auto;
+            }
+
+            .button-container {
+              justify-content: center;
+            }
+          }
+        }
+
         .right-container {
+          padding: 0;
           margin: var(--composer-gap-sm) auto;
+          width: 100%;
+          justify-content: center;
 
           .content-div {
-            width: 250px !important;
-            height: 250px !important;
+            --ring-radius: 120px;
+            width: 250px;
+            height: 250px;
+            max-width: 100%;
 
             .card {
               max-width: 100px;
               min-width: 60px;
               max-height: 100px;
               min-height: 60px;
-              transform: rotate(var(--angle)) translate(120px) rotate(calc(-1 * var(--angle)));
+              padding: var(--composer-gap-xs);
 
               .counter-value {
+                margin: 0;
                 font-size: 1rem !important;
               }
             }

@@ -6,7 +6,11 @@ import ComposerLink from "../../../composer-base-components/Link/ComposerLinkPro
 import { INPUTS } from "../../../custom-hooks/input-templates";
 
 type CardData = {
+  prefix: React.JSX.Element;
   number: React.JSX.Element;
+  suffix: React.JSX.Element;
+  subtitle: React.JSX.Element;
+  title: React.JSX.Element;
   description: React.JSX.Element;
 };
 
@@ -54,18 +58,12 @@ class Stats6Page extends BaseStats {
           key: "stat",
           displayer: "Stat",
           value: [
-            {
-              type: "string",
-              key: "number",
-              displayer: "Value",
-              value: "400",
-            },
-            {
-              type: "string",
-              key: "description",
-              displayer: "Description",
-              value: "Customers are satisfied with our professional support",
-            },
+            { type: "string", key: "prefix", displayer: "Prefix", value: "" },
+            { type: "string", key: "number", displayer: "Value", value: "400" },
+            { type: "string", key: "suffix", displayer: "Suffix", value: "" },
+            { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
+            { type: "string", key: "title", displayer: "Title", value: "" },
+            { type: "string", key: "description", displayer: "Description", value: "Customers are satisfied with our professional support" },
           ],
         },
         {
@@ -73,18 +71,12 @@ class Stats6Page extends BaseStats {
           key: "stat",
           displayer: "Stat",
           value: [
-            {
-              type: "string",
-              key: "number",
-              displayer: "Value",
-              value: "1000",
-            },
-            {
-              type: "string",
-              key: "description",
-              displayer: "Description",
-              value: "Amazing preset options to be mixed an combined",
-            },
+            { type: "string", key: "prefix", displayer: "Prefix", value: "" },
+            { type: "string", key: "number", displayer: "Value", value: "1000" },
+            { type: "string", key: "suffix", displayer: "Suffix", value: "" },
+            { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
+            { type: "string", key: "title", displayer: "Title", value: "" },
+            { type: "string", key: "description", displayer: "Description", value: "Amazing preset options to be mixed an combined" },
           ],
         },
         {
@@ -92,18 +84,12 @@ class Stats6Page extends BaseStats {
           key: "stat",
           displayer: "Stat",
           value: [
-            {
-              type: "string",
-              key: "number",
-              displayer: "Value",
-              value: "8000",
-            },
-            {
-              type: "string",
-              key: "description",
-              displayer: "Description",
-              value: "Average response time on live chat support channel",
-            },
+            { type: "string", key: "prefix", displayer: "Prefix", value: "" },
+            { type: "string", key: "number", displayer: "Value", value: "8000" },
+            { type: "string", key: "suffix", displayer: "Suffix", value: "" },
+            { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
+            { type: "string", key: "title", displayer: "Title", value: "" },
+            { type: "string", key: "description", displayer: "Description", value: "Average response time on live chat support channel" },
           ],
         },
       ],
@@ -232,14 +218,28 @@ class Stats6Page extends BaseStats {
         };
       }, [rawNumber, animatable, animationDuration, target]);
 
+      const prefixExist = this.castToString(card.prefix);
+      const suffixExist = this.castToString(card.suffix);
+      const subtitleExist = this.castToString(card.subtitle);
+      const titleExist = this.castToString(card.title);
       const isDescExist = this.castToString(card.description);
 
-      if (!display && !isDescExist) return null;
+      const hasValue = !!display || prefixExist || suffixExist;
+
+      if (!hasValue && !subtitleExist && !titleExist && !isDescExist) return null;
 
       return (
         <div ref={ref} className={this.decorateCSS("card")}>
           <Base.VerticalContent className={this.decorateCSS("card-content")}>
-            {!!display && <Base.P className={this.decorateCSS("data-card-title")}>{display}</Base.P>}
+            {hasValue && (
+              <Base.P className={this.decorateCSS("data-card-title")}>
+                {prefixExist && <span className={this.decorateCSS("data-card-prefix")}>{card.prefix}</span>}
+                {!!display && <span className={this.decorateCSS("data-card-number")}>{animatable ? display : card.number}</span>}
+                {suffixExist && <span className={this.decorateCSS("data-card-suffix")}>{card.suffix}</span>}
+              </Base.P>
+            )}
+            {subtitleExist && <Base.P className={this.decorateCSS("data-card-subtitle")}>{card.subtitle}</Base.P>}
+            {titleExist && <Base.H5 className={this.decorateCSS("data-card-heading")}>{card.title}</Base.H5>}
             {isDescExist && <Base.P className={this.decorateCSS("data-card-description")}>{card.description}</Base.P>}
           </Base.VerticalContent>
         </div>
@@ -268,7 +268,7 @@ class Stats6Page extends BaseStats {
             </Base.VerticalContent>
           )}
           {cardList.length > 0 && (
-            <Base.ListGrid gridCount={{ pc: itemCount, tablet: 2, phone: 1 }} className={this.decorateCSS("stats6-page")}>
+            <Base.ListGrid gridCount={{ pc: itemCount, tablet: itemCount, phone: 1 }} className={this.decorateCSS("stats6-page")}>
               {cardList.map((data: CardData, index: number) => {
                 return <AnimatedCard key={index} card={data} />;
               })}

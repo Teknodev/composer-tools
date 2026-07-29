@@ -258,7 +258,7 @@ class Stats29 extends BaseStats {
               )}
               {valueExist && (
                 <span className={this.decorateCSS("stat-number")}>
-                  {display}
+                  {animatable ? display : stat.numberElement}
                 </span>
               )}
               {suffixExist && (

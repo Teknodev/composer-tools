@@ -5,7 +5,11 @@ import { Base } from "../../../composer-base-components/base/base";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 import { INPUTS } from "../../../custom-hooks/input-templates";
 interface StatItem {
+  prefix: React.JSX.Element;
   number: React.JSX.Element;
+  suffix: React.JSX.Element;
+  subtitle: React.JSX.Element;
+  title: React.JSX.Element;
   description: React.JSX.Element;
 }
 
@@ -23,13 +27,12 @@ class Stats11 extends BaseStats {
           key: "stat",
           displayer: "Stat",
           value: [
+            { type: "string", key: "prefix", displayer: "Prefix", value: "" },
             { type: "string", key: "number", displayer: "Value", value: "12" },
-            {
-              type: "string",
-              key: "description",
-              displayer: "Description",
-              value: "Years",
-            },
+            { type: "string", key: "suffix", displayer: "Suffix", value: "" },
+            { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
+            { type: "string", key: "title", displayer: "Title", value: "" },
+            { type: "string", key: "description", displayer: "Description", value: "Years" },
           ],
         },
         {
@@ -37,13 +40,12 @@ class Stats11 extends BaseStats {
           key: "stat",
           displayer: "Stat",
           value: [
+            { type: "string", key: "prefix", displayer: "Prefix", value: "" },
             { type: "string", key: "number", displayer: "Value", value: "68" },
-            {
-              type: "string",
-              key: "description",
-              displayer: "Description",
-              value: "Projects",
-            },
+            { type: "string", key: "suffix", displayer: "Suffix", value: "" },
+            { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
+            { type: "string", key: "title", displayer: "Title", value: "" },
+            { type: "string", key: "description", displayer: "Description", value: "Projects" },
           ],
         },
         {
@@ -51,13 +53,12 @@ class Stats11 extends BaseStats {
           key: "stat",
           displayer: "Stat",
           value: [
+            { type: "string", key: "prefix", displayer: "Prefix", value: "" },
             { type: "string", key: "number", displayer: "Value", value: "16" },
-            {
-              type: "string",
-              key: "description",
-              displayer: "Description",
-              value: "Award",
-            },
+            { type: "string", key: "suffix", displayer: "Suffix", value: "" },
+            { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
+            { type: "string", key: "title", displayer: "Title", value: "" },
+            { type: "string", key: "description", displayer: "Description", value: "Award" },
           ],
         },
       ],
@@ -155,20 +156,42 @@ class Stats11 extends BaseStats {
               {statItems.length > 0 && (
                 <div className={this.decorateCSS("stats-list")}>
                   {statItems.map((item, idx) => {
+                    const prefixExist = this.castToString(item.prefix);
                     const numberExist = this.castToString(item.number);
+                    const suffixExist = this.castToString(item.suffix);
+                    const subtitleExist = this.castToString(item.subtitle);
+                    const titleExist = this.castToString(item.title);
                     const descriptionExist = this.castToString(item.description);
-                    if (!numberExist && !descriptionExist) return null;
+                    const hasValue = prefixExist || numberExist || suffixExist;
+                    const hasText = subtitleExist || titleExist || descriptionExist;
+                    if (!hasValue && !hasText) return null;
                     return (
                       <div className={this.decorateCSS("stat-item")} key={idx}>
-                        {numberExist && (
+                        {hasValue && (
                           <Base.P className={this.decorateCSS("stat-value")}>
-                            {item.number}
+                            {prefixExist && <span className={this.decorateCSS("stat-prefix")}>{item.prefix}</span>}
+                            {numberExist && <span className={this.decorateCSS("stat-number")}>{item.number}</span>}
+                            {suffixExist && <span className={this.decorateCSS("stat-suffix")}>{item.suffix}</span>}
                           </Base.P>
                         )}
-                        {descriptionExist && (
-                          <Base.P className={this.decorateCSS("stat-label")}>
-                            {item.description}
-                          </Base.P>
+                        {hasText && (
+                          <div className={this.decorateCSS("stat-text")}>
+                            {subtitleExist && (
+                              <Base.P className={this.decorateCSS("stat-subtitle")}>
+                                {item.subtitle}
+                              </Base.P>
+                            )}
+                            {titleExist && (
+                              <Base.H5 className={this.decorateCSS("stat-title")}>
+                                {item.title}
+                              </Base.H5>
+                            )}
+                            {descriptionExist && (
+                              <Base.P className={this.decorateCSS("stat-label")}>
+                                {item.description}
+                              </Base.P>
+                            )}
+                          </div>
                         )}
                       </div>
                     );

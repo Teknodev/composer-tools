@@ -248,7 +248,7 @@ class Stats23 extends BaseStats {
                                 </span>
                             )}
                             <span ref={ref} className={this.decorateCSS("stat-number")}>
-                                {display}
+                                {animatable ? display : stat.number}
                             </span>
                             {suffixExist && (
                                 <span className={this.decorateCSS("stat-suffix")}>

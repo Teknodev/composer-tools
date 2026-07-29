@@ -79,7 +79,6 @@
           right: 0px;
           bottom: 0px;
           overflow: hidden;
-          // Matches .image2's outer radius so the hover zoom is clipped round.
           border-radius: calc(var(--composer-border-radius-md) + 10px);
 
           &[data-animation~="animate1"] {
@@ -154,8 +153,8 @@
             align-items: center;
             justify-content: center;
             .play-icon{
-              width: 50px;
-              height: 50px;
+              width: 65px;
+              height: 65px;
               cursor: pointer;
               color: var(--composer-font-color-secondary);
             }
@@ -163,6 +162,7 @@
         }
       }
 
+      
       .right-page {
         flex:1;
         display: flex;
@@ -252,9 +252,25 @@
                 .progress-title-icon {
                   display: flex;
                   align-items: center;
+
+                  .icon {
+                    width: 1.5rem;
+                    height: 1.5rem;
+                    object-fit: contain;
+                    flex-shrink: 0;
+                  }
+                }
+                .progress-title-text {
+                  display: flex;
+                  flex-direction: column;
+                }
+                .progress-subtitle {
+                  font-size: 0.9rem;
+                  color: var(--composer-tertiary-color);
                 }
                 .progress-title{
-                  font-size:1.5rem;
+                  font-size: 1.25rem;
+                  color: var(--composer-tertiary-color);
                 }
               }
               .progress-text-container {
@@ -263,8 +279,16 @@
                 align-items:flex-end;
                 display: flex;
                 .progress-text{
-                  font-size:1.5rem;
-                  color: var(--composer-font-color-primary);                
+                  font-size: 1.25rem;
+                  color: var(--composer-tertiary-color);
+                  display: flex;
+                  align-items: baseline;
+                  gap: 0.1em;
+
+                  .progress-prefix,
+                  .progress-suffix {
+                    font-size: 0.8em;
+                  }
                 }
               }
             }
@@ -283,6 +307,12 @@
                 }
               }
             }
+
+            .progress-description {
+              font-size: 1rem;
+              color: var(--composer-tertiary-color);
+              margin-top: var(--composer-gap-xs);
+            }
           }
         }
       }
@@ -290,7 +320,7 @@
   }
 }
 
-@container (max-width: #{$composer-tablet-width}) {
+@container (max-width: #{$composer-phone-width}) {
   .container {
     .max-content {
       .page {

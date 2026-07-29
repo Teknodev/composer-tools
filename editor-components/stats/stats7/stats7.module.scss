@@ -39,6 +39,21 @@
       align-items: center;
     }
 
+    .progress-title-text {
+      display: flex;
+      flex-direction: column;
+
+      .progress-subtitle {
+        font-size: 0.9rem;
+        color: var(--composer-tertiary-color);
+      }
+
+      .progress-heading {
+        font-size: 1rem;
+        font-weight: 800;
+      }
+    }
+
     .progress-percent {
       display: flex;
       margin-bottom: var(--composer-gap-xs);
@@ -49,7 +64,21 @@
 
       .progress-text {
         width: max-content;
+        display: flex;
+        align-items: baseline;
+        gap: 0.1em;
+
+        .progress-prefix,
+        .progress-suffix {
+          font-size: 0.85em;
+        }
       }
+    }
+
+    .progress-description {
+      font-size: 0.9rem;
+      color: var(--composer-tertiary-color);
+      margin-top: var(--composer-gap-xs);
     }
   }
 

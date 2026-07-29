@@ -6,7 +6,11 @@ import ComposerLink from "../../../composer-base-components/Link/ComposerLinkPro
 import { INPUTS } from "../../../custom-hooks/input-templates";
 
 type Card = {
+  prefix: React.JSX.Element;
   number: React.JSX.Element;
+  suffix: React.JSX.Element;
+  subtitle: React.JSX.Element;
+  title: React.JSX.Element;
   description: React.JSX.Element;
 };
 
@@ -44,18 +48,12 @@ class Stats5Page extends BaseStats {
           key: "stat",
           displayer: "Stat",
           value: [
-            {
-              type: "string",
-              key: "number",
-              displayer: "Value",
-              value: "98",
-            },
-            {
-              type: "string",
-              key: "description",
-              displayer: "Description",
-              value: "Services",
-            },
+            { type: "string", key: "prefix", displayer: "Prefix", value: "" },
+            { type: "string", key: "number", displayer: "Value", value: "98" },
+            { type: "string", key: "suffix", displayer: "Suffix", value: "" },
+            { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
+            { type: "string", key: "title", displayer: "Title", value: "" },
+            { type: "string", key: "description", displayer: "Description", value: "Services" },
           ],
         },
         {
@@ -63,18 +61,12 @@ class Stats5Page extends BaseStats {
           key: "stat",
           displayer: "Stat",
           value: [
-            {
-              type: "string",
-              key: "number",
-              displayer: "Value",
-              value: "65",
-            },
-            {
-              type: "string",
-              key: "description",
-              displayer: "Description",
-              value: "Technicians",
-            },
+            { type: "string", key: "prefix", displayer: "Prefix", value: "" },
+            { type: "string", key: "number", displayer: "Value", value: "65" },
+            { type: "string", key: "suffix", displayer: "Suffix", value: "" },
+            { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
+            { type: "string", key: "title", displayer: "Title", value: "" },
+            { type: "string", key: "description", displayer: "Description", value: "Technicians" },
           ],
         },
         {
@@ -82,18 +74,12 @@ class Stats5Page extends BaseStats {
           key: "stat",
           displayer: "Stat",
           value: [
-            {
-              type: "string",
-              key: "number",
-              displayer: "Value",
-              value: "7",
-            },
-            {
-              type: "string",
-              key: "description",
-              displayer: "Description",
-              value: "Days a Week",
-            },
+            { type: "string", key: "prefix", displayer: "Prefix", value: "" },
+            { type: "string", key: "number", displayer: "Value", value: "7" },
+            { type: "string", key: "suffix", displayer: "Suffix", value: "" },
+            { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
+            { type: "string", key: "title", displayer: "Title", value: "" },
+            { type: "string", key: "description", displayer: "Description", value: "Days a Week" },
           ],
         },
         {
@@ -101,18 +87,12 @@ class Stats5Page extends BaseStats {
           key: "stat",
           displayer: "Stat",
           value: [
-            {
-              type: "string",
-              key: "number",
-              displayer: "Value",
-              value: "10",
-            },
-            {
-              type: "string",
-              key: "description",
-              displayer: "Description",
-              value: "Offices",
-            },
+            { type: "string", key: "prefix", displayer: "Prefix", value: "" },
+            { type: "string", key: "number", displayer: "Value", value: "10" },
+            { type: "string", key: "suffix", displayer: "Suffix", value: "" },
+            { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
+            { type: "string", key: "title", displayer: "Title", value: "" },
+            { type: "string", key: "description", displayer: "Description", value: "Offices" },
           ],
         },
       ],
@@ -265,14 +245,33 @@ class Stats5Page extends BaseStats {
         };
       }, [rawNumber, animatable, animationDuration, target]);
 
-      const isTextExist = this.castToString(card.description);
+      const prefixExist = this.castToString(card.prefix);
+      const suffixExist = this.castToString(card.suffix);
+      const subtitleExist = this.castToString(card.subtitle);
+      const titleExist = this.castToString(card.title);
+      const descriptionExist = this.castToString(card.description);
 
-      if (!isTextExist && !rawNumber) return null;
+      const hasValue = !!display || prefixExist || suffixExist;
+      const hasText = subtitleExist || titleExist || descriptionExist;
+
+      if (!hasValue && !hasText) return null;
 
       return (
         <div ref={ref} className={className}>
-          {!!display && <Base.SectionTitle className={this.decorateCSS("card-data-title")}>{display}</Base.SectionTitle>}
-          {isTextExist && <Base.SectionDescription className={this.decorateCSS("card-data-description")}>{card.description}</Base.SectionDescription>}
+          {hasValue && (
+            <Base.SectionTitle className={this.decorateCSS("card-data-title")}>
+              {prefixExist && <span className={this.decorateCSS("card-data-prefix")}>{card.prefix}</span>}
+              {!!display && <span className={this.decorateCSS("card-data-number")}>{animatable ? display : card.number}</span>}
+              {suffixExist && <span className={this.decorateCSS("card-data-suffix")}>{card.suffix}</span>}
+            </Base.SectionTitle>
+          )}
+          {hasText && (
+            <div className={`${this.decorateCSS("card-text")} ${hasValue ? this.decorateCSS("card-text-overlay") : ""}`}>
+              {subtitleExist && <Base.P className={this.decorateCSS("card-data-subtitle")}>{card.subtitle}</Base.P>}
+              {titleExist && <Base.H5 className={this.decorateCSS("card-data-heading")}>{card.title}</Base.H5>}
+              {descriptionExist && <Base.SectionDescription className={this.decorateCSS("card-data-description")}>{card.description}</Base.SectionDescription>}
+            </div>
+          )}
         </div>
       );
     };
@@ -299,7 +298,7 @@ class Stats5Page extends BaseStats {
             </Base.VerticalContent>
           )}
           {cards?.length > 0 && (
-            <Base.ListGrid gridCount={{ pc: itemCountInRow, tablet: 2, phone: 1 }} className={this.decorateCSS("bottom-child")}>
+            <Base.ListGrid gridCount={{ pc: itemCountInRow, tablet: itemCountInRow, phone: 1 }} className={this.decorateCSS("bottom-child")}>
               {cards.map((item: Card, index: number) => {
                 const classes = `${this.decorateCSS("card")} ${this.getCardClasses(index, itemCountInRow)}`.trim();
                 return <AnimatedCard key={index} card={item} className={classes} />;

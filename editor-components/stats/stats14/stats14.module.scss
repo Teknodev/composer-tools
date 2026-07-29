@@ -44,6 +44,26 @@
           .topText {
             color: var(--composer-font-color-primary);
             text-align: left;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: baseline;
+
+            .prefix,
+            .suffix {
+              font-size: 0.7em;
+            }
+          }
+
+          .subText {
+            color: var(--composer-tertiary-color);
+            font-size: 1.2rem;
+            text-align: left;
+          }
+
+          .titleText {
+            color: var(--composer-font-color-primary);
+            font-size: 1.8rem;
+            text-align: left;
           }
 
           .bottomText {
@@ -63,10 +83,10 @@
           display: inline-flex;
           align-items: center;
           gap: var(--composer-gap-xs);
-        }
 
-        .button-text {
-          white-space: nowrap;
+          .button-text {
+            white-space: nowrap;
+          }
         }
       }
 
@@ -144,8 +164,11 @@
 
               .topText {
                 text-align: center;
+                justify-content: center;
               }
 
+              .subText,
+              .titleText,
               .bottomText {
                 text-align: center;
               }

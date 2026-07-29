@@ -7,10 +7,13 @@ import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "../../../custom-hooks/input-templates";
 
 type Card = {
-  number: React.JSX.Element;
-  description: React.JSX.Element;
   icon?: TypeMediaInputValue | string;
-  secondIcon?: TypeMediaInputValue | string;
+  prefix: React.JSX.Element;
+  number: React.JSX.Element;
+  suffix: React.JSX.Element;
+  subtitle: React.JSX.Element;
+  title: React.JSX.Element;
+  description: React.JSX.Element;
 };
 
 class Stats2Page extends BaseStats {
@@ -49,31 +52,18 @@ class Stats2Page extends BaseStats {
           displayer: "Stat",
           value: [
             {
-              type: "string",
-              key: "description",
-              displayer: "Description",
-              value: "Users on marketplaces we've created in 2023.",
-            },
-            {
-              type: "string",
-              key: "number",
-              displayer: "Value",
-              value: "8500",
-            },
-            {
               type: "media",
               key: "icon",
               displayer: "Icon",
               additionalParams: { availableTypes: ["image", "icon"] },
               value: { type: "icon", name: "IoMdArrowUp" },
             },
-            {
-              type: "media",
-              key: "secondIcon",
-              displayer: "Icon After Amount",
-              additionalParams: { availableTypes: ["image", "icon"] },
-              value: { type: "icon", name: "FaPlus" },
-            },
+            { type: "string", key: "prefix", displayer: "Prefix", value: "" },
+            { type: "string", key: "number", displayer: "Value", value: "8500" },
+            { type: "string", key: "suffix", displayer: "Suffix", value: "" },
+            { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
+            { type: "string", key: "title", displayer: "Title", value: "" },
+            { type: "string", key: "description", displayer: "Description", value: "Users on marketplaces we've created in 2023." },
           ],
         },
         {
@@ -82,31 +72,18 @@ class Stats2Page extends BaseStats {
           displayer: "Stat",
           value: [
             {
-              type: "string",
-              key: "description",
-              displayer: "Description",
-              value: "Successfully finished projects with creativity.",
-            },
-            {
-              type: "string",
-              key: "number",
-              displayer: "Value",
-              value: "660",
-            },
-            {
               type: "media",
               key: "icon",
               displayer: "Icon",
               additionalParams: { availableTypes: ["image", "icon"] },
               value: { type: "icon", name: "IoMdArrowUp" },
             },
-            {
-              type: "media",
-              key: "secondIcon",
-              displayer: "Icon After Amount",
-              additionalParams: { availableTypes: ["image", "icon"] },
-              value: { type: "icon", name: "FaPlus" },
-            },
+            { type: "string", key: "prefix", displayer: "Prefix", value: "" },
+            { type: "string", key: "number", displayer: "Value", value: "660" },
+            { type: "string", key: "suffix", displayer: "Suffix", value: "" },
+            { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
+            { type: "string", key: "title", displayer: "Title", value: "" },
+            { type: "string", key: "description", displayer: "Description", value: "Successfully finished projects with creativity." },
           ],
         },
         {
@@ -115,31 +92,18 @@ class Stats2Page extends BaseStats {
           displayer: "Stat",
           value: [
             {
-              type: "string",
-              key: "description",
-              displayer: "Description",
-              value: "Monthly visitors on our e-Commerce platform.",
-            },
-            {
-              type: "string",
-              key: "number",
-              displayer: "Value",
-              value: "6834",
-            },
-            {
               type: "media",
               key: "icon",
               displayer: "Icon",
               additionalParams: { availableTypes: ["image", "icon"] },
               value: { type: "icon", name: "IoMdArrowUp" },
             },
-            {
-              type: "media",
-              key: "secondIcon",
-              displayer: "Icon After Amount",
-              additionalParams: { availableTypes: ["image", "icon"] },
-              value: { type: "icon", name: "FaPlus" },
-            },
+            { type: "string", key: "prefix", displayer: "Prefix", value: "" },
+            { type: "string", key: "number", displayer: "Value", value: "6834" },
+            { type: "string", key: "suffix", displayer: "Suffix", value: "" },
+            { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
+            { type: "string", key: "title", displayer: "Title", value: "" },
+            { type: "string", key: "description", displayer: "Description", value: "Monthly visitors on our e-Commerce platform." },
           ],
         },
         {
@@ -148,31 +112,18 @@ class Stats2Page extends BaseStats {
           displayer: "Stat",
           value: [
             {
-              type: "string",
-              key: "description",
-              displayer: "Description",
-              value: "Onboarding conversions growth increased.",
-            },
-            {
-              type: "string",
-              key: "number",
-              displayer: "Value",
-              value: "300",
-            },
-            {
               type: "media",
               key: "icon",
               displayer: "Icon",
               additionalParams: { availableTypes: ["image", "icon"] },
               value: { type: "icon", name: "IoMdArrowUp" },
             },
-            {
-              type: "media",
-              key: "secondIcon",
-              displayer: "Icon After Amount",
-              additionalParams: { availableTypes: ["image", "icon"] },
-              value: { type: "icon", name: "FaPlus" },
-            },
+            { type: "string", key: "prefix", displayer: "Prefix", value: "" },
+            { type: "string", key: "number", displayer: "Value", value: "300" },
+            { type: "string", key: "suffix", displayer: "Suffix", value: "" },
+            { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
+            { type: "string", key: "title", displayer: "Title", value: "" },
+            { type: "string", key: "description", displayer: "Description", value: "Onboarding conversions growth increased." },
           ],
         },
       ],
@@ -308,23 +259,34 @@ class Stats2Page extends BaseStats {
       }, [rawNumber, animatable, animationDuration, target]);
 
       const isTextExist = this.castToString(card.description);
+      const subtitleExist = this.castToString(card.subtitle);
+      const titleExist = this.castToString(card.title);
+      const prefixExist = this.castToString(card.prefix);
+      const suffixExist = this.castToString(card.suffix);
       const iconExist = mediaExists(card.icon);
-      const secondIconExist = mediaExists(card.secondIcon);
-      const hasAmountRow = !!display || !!iconExist || !!secondIconExist;
+      const hasAmountRow = !!display || prefixExist || suffixExist || !!iconExist;
+      const hasText = isTextExist || subtitleExist || titleExist;
 
-      if (!isTextExist && !hasAmountRow) return null;
+      if (!hasText && !hasAmountRow) return null;
 
       const conditionalClasses = [isFirstRow ? this.decorateCSS("border-top-none") : "", isLastRow ? this.decorateCSS("border-bottom-none") : ""].filter(Boolean).join(" ");
       const classes = `${this.decorateCSS("listed")} ${conditionalClasses}`.trim();
 
       return (
         <div ref={ref} className={classes}>
-          {isTextExist && <Base.P className={this.decorateCSS("card-text")}>{card.description}</Base.P>}
+          {hasText && (
+            <div className={this.decorateCSS("card-text-container")}>
+              {subtitleExist && <Base.P className={this.decorateCSS("card-subtitle")}>{card.subtitle}</Base.P>}
+              {titleExist && <Base.H5 className={this.decorateCSS("card-title")}>{card.title}</Base.H5>}
+              {isTextExist && <Base.P className={this.decorateCSS("card-text")}>{card.description}</Base.P>}
+            </div>
+          )}
           {hasAmountRow && (
             <div className={this.decorateCSS("card-amount-container")}>
-              {iconExist && <Base.Media value={typeof card.icon === "object" ? card.icon : { type: "icon", name: card.icon }} className={this.decorateCSS("card-icon")} />}
-              {!!display && <div className={this.decorateCSS("card-amount")}>{display}</div>}
-              {secondIconExist && <Base.Media value={typeof card.secondIcon === "object" ? card.secondIcon : { type: "icon", name: card.secondIcon }} className={this.decorateCSS("card-icon-after")} />}
+              {prefixExist && <div className={this.decorateCSS("card-prefix")}>{card.prefix}</div>}
+              {!!display && <div className={this.decorateCSS("card-amount")}>{animatable ? display : card.number}</div>}
+              {suffixExist && <div className={this.decorateCSS("card-suffix")}>{card.suffix}</div>}
+              {iconExist && <Base.Media value={typeof card.icon === "object" ? card.icon : { type: "icon", name: card.icon }} className={this.decorateCSS("suffix-icon")} />}
             </div>
           )}
         </div>

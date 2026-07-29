@@ -14,6 +14,7 @@ type StatItem = {
     prefix: string;
     prefixElement: React.JSX.Element;
     number: string;
+    numberElement: JSX.Element;
     suffix: string;
     suffixElement: React.JSX.Element;
     title: string;
@@ -162,7 +163,7 @@ class Stats36 extends BaseStats {
 
             return {
                 prefix,
-                prefixElement: item.prefix,
+                numberElement: item.number, prefixElement: item.prefix,
                 number,
                 suffix,
                 suffixElement: item.suffix,
@@ -174,7 +175,7 @@ class Stats36 extends BaseStats {
                 descriptionElement: item.description,
             };
         }).filter(item => {
-            return (item.number !== "" && item.number !== "0") || item.title !== "" || item.subtitle !== "" || item.description !== "";
+            return item.number !== "" || item.title !== "" || item.subtitle !== "" || item.description !== "";
         });
 
         const shouldAnimate = this.castToObject<any>("settings")?.shouldAnimate ?? true;
@@ -251,7 +252,7 @@ class Stats36 extends BaseStats {
                 };
             }, [rawNumber, animatable, animationDuration, target]);
 
-            const valueExist = rawNumber !== "" && rawNumber !== "0";
+            const valueExist = rawNumber !== "";
             const subtitleExist = this.castToString(stat.subtitle);
             const titleExist = this.castToString(stat.title);
             const descriptionExist = this.castToString(stat.description);
@@ -278,7 +279,7 @@ class Stats36 extends BaseStats {
                         {valueExist && (
                             <div className={this.decorateCSS("stat-value-container")}>
                                 {stat.prefix && <span className={this.decorateCSS("stat-prefix")}>{stat.prefixElement}</span>}
-                                <span className={this.decorateCSS("stat-value")}>{display}</span>
+                                <span className={this.decorateCSS("stat-value")}>{animatable ? display : stat.numberElement}</span>
                                 {stat.suffix && <span className={this.decorateCSS("stat-suffix")}>{stat.suffixElement}</span>}
                             </div>
                         )}

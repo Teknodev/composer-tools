@@ -7,7 +7,7 @@ import ComposerLink from "../../../composer-base-components/Link/ComposerLinkPro
 
 type CardData = {
     prefix: React.JSX.Element;
-    value: React.JSX.Element;
+    number: React.JSX.Element;
     suffix: React.JSX.Element;
     subtitle: React.JSX.Element;
     title: React.JSX.Element;
@@ -59,7 +59,7 @@ class Stats18Page extends BaseStats {
                     displayer: "Stats Item",
                     value: [
                         { type: "string", key: "prefix", displayer: "Prefix", value: "$" },
-                        { type: "string", key: "value", displayer: "Value", value: "50" },
+                        { type: "string", key: "number", displayer: "Value", value: "50" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "M+" },
                         { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
                         { type: "string", key: "title", displayer: "Title", value: "Total investment in 2022" },
@@ -72,7 +72,7 @@ class Stats18Page extends BaseStats {
                     displayer: "Stats Item",
                     value: [
                         { type: "string", key: "prefix", displayer: "Prefix", value: "" },
-                        { type: "string", key: "value", displayer: "Value", value: "5000" },
+                        { type: "string", key: "number", displayer: "Value", value: "5000" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "+" },
                         { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
                         { type: "string", key: "title", displayer: "Title", value: "Employees" },
@@ -85,7 +85,7 @@ class Stats18Page extends BaseStats {
                     displayer: "Stats Item",
                     value: [
                         { type: "string", key: "prefix", displayer: "Prefix", value: "" },
-                        { type: "string", key: "value", displayer: "Value", value: "12" },
+                        { type: "string", key: "number", displayer: "Value", value: "12" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "x" },
                         { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
                         { type: "string", key: "title", displayer: "Title", value: "Increased website traffic" },
@@ -98,7 +98,7 @@ class Stats18Page extends BaseStats {
                     displayer: "Stats Item",
                     value: [
                         { type: "string", key: "prefix", displayer: "Prefix", value: "" },
-                        { type: "string", key: "value", displayer: "Value", value: "99" },
+                        { type: "string", key: "number", displayer: "Value", value: "99" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "%" },
                         { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
                         { type: "string", key: "title", displayer: "Title", value: "Client Satisfaction" },
@@ -167,7 +167,7 @@ class Stats18Page extends BaseStats {
             const ref = React.useRef<HTMLDivElement>(null);
             const intervalRef = React.useRef<ReturnType<typeof setInterval> | null>(null);
 
-            const rawValue = (this.castToString(card.value) as string) || "";
+            const rawValue = (this.castToString(card.number) as string) || "";
             const valPrefix = rawValue.match(/^[^\d]*/)?.[0] ?? "";
             const valSuffix = rawValue.match(/[^\d]*$/)?.[0] ?? "";
             const core = rawValue.slice(valPrefix.length, rawValue.length - valSuffix.length);
@@ -256,7 +256,7 @@ class Stats18Page extends BaseStats {
                             )}
                             {valueExist && (
                                 <span className={this.decorateCSS("display-value")}>
-                                    {display}
+                                    {animatable ? display : card.number}
                                 </span>
                             )}
                             {suffixExist && (

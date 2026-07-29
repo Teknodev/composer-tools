@@ -10,6 +10,7 @@ type StatItem = {
   title: React.ReactNode;
   description: React.ReactNode;
   number: string;
+  numberElement: JSX.Element;
   prefix: string;
   prefixElement: JSX.Element;
   suffix: string;
@@ -131,14 +132,14 @@ class Stats22 extends BaseStats {
       const number = this.castToString(item.getPropValue("number")) || "";
       const prefix = this.castToString(item.getPropValue("prefix")) || "";
       const suffix = this.castToString(item.getPropValue("suffix")) || "";
-      return { subtitle, title: itemTitle, description: itemDescription, number, prefix, prefixElement: item.getPropValue("prefix"), suffix, suffixElement: item.getPropValue("suffix") };
+      return { subtitle, title: itemTitle, description: itemDescription, number, prefix, numberElement: item.getPropValue("number"), prefixElement: item.getPropValue("prefix"), suffix, suffixElement: item.getPropValue("suffix") };
     });
 
     const visibleStatItems = statItems.filter((item) => {
       const hasTitle = this.castToString(item.title);
       const hasPrefix = item.prefix && item.prefix.trim() !== "";
       const hasSuffix = item.suffix && item.suffix.trim() !== "";
-      const hasNumber = (parseFloat(item.number) || 0) !== 0 || hasPrefix || hasSuffix;
+      const hasNumber = (item.number && item.number.trim() !== "") || hasPrefix || hasSuffix;
       return hasNumber || hasTitle;
     });
 
@@ -238,7 +239,7 @@ class Stats22 extends BaseStats {
                 </span>
               )}
               <span className={this.decorateCSS("stat-number")}>
-                {display}
+                {animatable ? display : stat.numberElement}
               </span>
               {hasSuffix && (
                 <span className={this.decorateCSS("stat-suffix")}>

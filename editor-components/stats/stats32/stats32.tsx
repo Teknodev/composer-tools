@@ -9,6 +9,7 @@ type StatItem = {
     prefix: string;
     prefixElement: JSX.Element;
     number: string;
+    numberElement: JSX.Element;
     suffix: string;
     suffixElement: JSX.Element;
     title: string;
@@ -139,7 +140,7 @@ class Stats32 extends BaseStats {
             const title = this.castToString(item.title) || "";
             const subtitle = this.castToString(item.subtitle) || "";
             const description = this.castToString(item.description) || "";
-            return { prefix, prefixElement: item.prefix, number, suffix, suffixElement: item.suffix, title, titleElement: item.title, subtitle, subtitleElement: item.subtitle, description, descriptionElement: item.description };
+            return { prefix, numberElement: item.number, prefixElement: item.prefix, number, suffix, suffixElement: item.suffix, title, titleElement: item.title, subtitle, subtitleElement: item.subtitle, description, descriptionElement: item.description };
         });
 
         const settings = this.castToObject<any>("settings");
@@ -253,7 +254,7 @@ class Stats32 extends BaseStats {
                                 )}
                                 {valueExist && (
                                     <span ref={ref} className={this.decorateCSS("stat-number")}>
-                                        {display}
+                                        {animatable ? display : stat.numberElement}
                                     </span>
                                 )}
                                 {stat.suffix && (

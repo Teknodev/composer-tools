@@ -11,8 +11,11 @@ type RatingItemType = {
 }
 
 type StatItemType = {
+    prefix: React.JSX.Element;
     number: React.JSX.Element;
-    symbol: React.JSX.Element;
+    suffix: React.JSX.Element;
+    subtitle: React.JSX.Element;
+    title: React.JSX.Element;
     description: React.JSX.Element;
 }
 
@@ -202,24 +205,12 @@ class Stats13 extends BaseStats {
                     key: "stat",
                     displayer: "Stat Item",
                     value: [
-                        {
-                            type: "string",
-                            key: "number",
-                            displayer: "Number",
-                            value: "90"
-                        },
-                        {
-                            type: "string",
-                            key: "symbol",
-                            displayer: "Symbol",
-                            value: "k+"
-                        },
-                        {
-                            type: "string",
-                            key: "description",
-                            displayer: "Description",
-                            value: "People Trust Impreza"
-                        }
+                        { type: "string", key: "prefix", displayer: "Prefix", value: "" },
+                        { type: "string", key: "number", displayer: "Value", value: "90" },
+                        { type: "string", key: "suffix", displayer: "Suffix", value: "k+" },
+                        { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
+                        { type: "string", key: "title", displayer: "Title", value: "" },
+                        { type: "string", key: "description", displayer: "Description", value: "People Trust Impreza" }
                     ],
                 },
                 {
@@ -227,24 +218,12 @@ class Stats13 extends BaseStats {
                     key: "stat",
                     displayer: "Stat Item",
                     value: [
-                        {
-                            type: "string",
-                            key: "number",
-                            displayer: "Number",
-                            value: "2.4"
-                        },
-                        {
-                            type: "string",
-                            key: "symbol",
-                            displayer: "Symbol",
-                            value: "k+"
-                        },
-                        {
-                            type: "string",
-                            key: "description",
-                            displayer: "Description",
-                            value: "Average 5-Star Reviews"
-                        }
+                        { type: "string", key: "prefix", displayer: "Prefix", value: "" },
+                        { type: "string", key: "number", displayer: "Value", value: "2.4" },
+                        { type: "string", key: "suffix", displayer: "Suffix", value: "k+" },
+                        { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
+                        { type: "string", key: "title", displayer: "Title", value: "" },
+                        { type: "string", key: "description", displayer: "Description", value: "Average 5-Star Reviews" }
                     ],
                 },
             ],
@@ -403,21 +382,28 @@ class Stats13 extends BaseStats {
                 };
             }, [rawNumber, animatable, animationDuration, target]);
 
-            const symbol = item.symbol;
             const description = item.description;
-            const symbolExist = this.castToString(symbol);
+            const prefixExist = this.castToString(item.prefix);
+            const suffixExist = this.castToString(item.suffix);
+            const subtitleExist = this.castToString(item.subtitle);
+            const titleExist = this.castToString(item.title);
             const descriptionExist = this.castToString(description);
 
-            if (!rawNumber && !symbolExist && !descriptionExist) return null;
+            const hasValue = !!display || prefixExist || suffixExist;
+
+            if (!hasValue && !subtitleExist && !titleExist && !descriptionExist) return null;
 
             return (
                 <div ref={ref} className={this.decorateCSS("stat-item")}>
-                    {(!!display || symbolExist) && (
+                    {hasValue && (
                         <Base.H2 className={this.decorateCSS("stat-number")}>
+                            {prefixExist && <span className={this.decorateCSS("stat-prefix")}>{item.prefix}</span>}
                             {!!display && display}
-                            {symbolExist && <span className={this.decorateCSS("stat-symbol")}>{symbol}</span>}
+                            {suffixExist && <span className={this.decorateCSS("stat-suffix")}>{item.suffix}</span>}
                         </Base.H2>
                     )}
+                    {subtitleExist && <Base.P className={this.decorateCSS("stat-subtitle")}>{item.subtitle}</Base.P>}
+                    {titleExist && <Base.H5 className={this.decorateCSS("stat-title")}>{item.title}</Base.H5>}
                     {descriptionExist && <Base.SectionDescription className={this.decorateCSS("stat-description")}>{description}</Base.SectionDescription>}
                 </div>
             );

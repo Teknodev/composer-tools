@@ -10,6 +10,7 @@ type StatItem = {
   title: React.ReactNode;
   description: React.ReactNode;
   number: string;
+  numberElement: JSX.Element;
   prefix: string;
   prefixElement: JSX.Element;
   suffix: string;
@@ -133,10 +134,10 @@ class Stats16 extends BaseStats {
       const subtitle = item.getPropValue("subtitle");
       const itemTitle = item.getPropValue("title");
       const itemDescription = item.getPropValue("description");
-      const number = this.castToString(item.getPropValue("number")) || "0";
+      const number = this.castToString(item.getPropValue("number")) || "";
       const prefix = this.castToString(item.getPropValue("prefix")) || "";
       const suffix = this.castToString(item.getPropValue("suffix")) || "";
-      return { subtitle, title: itemTitle, description: itemDescription, number, prefix, prefixElement: item.getPropValue("prefix"), suffix, suffixElement: item.getPropValue("suffix") };
+      return { subtitle, title: itemTitle, description: itemDescription, number, prefix, numberElement: item.getPropValue("number"), prefixElement: item.getPropValue("prefix"), suffix, suffixElement: item.getPropValue("suffix") };
     });
 
     const settings = this.castToObject<any>("settings");
@@ -241,7 +242,7 @@ class Stats16 extends BaseStats {
               )}
               {!!display && (
                 <span className={this.decorateCSS("stat-number")}>
-                  {display}
+                  {animatable ? display : stat.numberElement}
                 </span>
               )}
               {hasSuffix && (
