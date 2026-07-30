@@ -229,6 +229,7 @@ export type TypeMediaInputValue =
   | {
     type: "lottie";
     url: string;
+    alt?: string;
     settings?: {
       autoplay?: boolean;
       loop?: boolean;
