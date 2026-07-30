@@ -110,7 +110,7 @@
                     left: var(--composer-gap-md);
                     top: var(--composer-gap-md);
                     z-index: 2;
-                    color: var(--composer-tertiary-color);
+                    color: var(--composer-font-color-primary);
                     text-align: left;
                 }
 
@@ -246,11 +246,20 @@
                             width: fit-content;
                             font-size: 1rem !important;
                         }
+                        .review-text {
+                            color: var(--composer-font-color-primary);
+                        }
+                        .review-count {
+                            color: var(--composer-font-color-primary);
+                        }
+                        .brackets {
+                            color: var(--composer-font-color-primary);
+                        }
                     }
                 }
 
                 .description {
-                    color: var(--composer-tertiary-color);
+                    color: var(--composer-font-color-primary);
                     width: fit-content;
                     text-align: left;
                     margin: 0;
@@ -278,7 +287,7 @@
 
                     .label {
                         text-align: left;
-                        color: var(--composer-tertiary-color);
+                        color: var(--composer-font-color-primary);
                         font-size: 1rem !important;
                     }
 
@@ -377,7 +386,7 @@
                 }
 
                 .text {
-                    color: var(--composer-tertiary-color);
+                    color: var(--composer-font-color-primary);
                     width: fit-content;
                     cursor: pointer;
                     transition: opacity 0.3s ease;

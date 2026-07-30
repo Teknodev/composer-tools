@@ -86,12 +86,23 @@
                         text-align: left;
                         color: var(--composer-font-color-primary);
                     }
+                    .stat-description {
+                        color: var(--composer-font-color-primary);
+                    }
+                    .stat-title {
+                        color: var(--composer-font-color-primary);
+                    }
+                    .stat-subtitle {
+                        color: var(--composer-font-color-primary);
+                    }
 
                     .stat-subtitle {
+                    color: var(--composer-font-color-primary);
                         font-size: 1.5rem;
                     }
 
                     .stat-description {
+                    color: var(--composer-font-color-primary);
                         margin-top: var(--composer-gap-md);
                     }
                 }

@@ -59,8 +59,15 @@
                         display: flex;
                         text-align: inherit;
                     }
+                    .label2 {
+                        color: var(--composer-font-color-primary);
+                    }
+                    .label1 {
+                        color: var(--composer-font-color-primary);
+                    }
 
                     .label1 {
+                    color: var(--composer-font-color-primary);
                         font-weight: 700;
                     }
                 }

@@ -53,6 +53,9 @@
             grid-row: auto;
 
             .input-container {
+            .placeholder {
+              color: var(--composer-font-color-primary);
+            }
               display: flex;
               gap: var(--composer-gap-sm);
               border-bottom: 1px solid var(--composer-tertiary-color);

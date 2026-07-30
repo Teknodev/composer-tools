@@ -92,7 +92,7 @@
             transform: rotate(180deg);
             text-align: center;
             max-height: 300px;
-            color: black;
+            color: var(--composer-font-color-primary);
 
             &.sliderTitlePrimary {
               color: var(--composer-font-color-primary);
@@ -122,7 +122,7 @@
             gap: var(--composer-gap-md);
             padding-left: var(--composer-gap-xl);
             .description {
-              color: black;
+              color: var(--composer-font-color-primary);
               font-size: 1.5rem;
 
               &.descriptionPrimary {

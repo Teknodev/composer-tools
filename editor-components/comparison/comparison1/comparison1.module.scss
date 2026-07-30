@@ -191,12 +191,20 @@
                   padding: 0 var(--composer-gap-md);
                   border-radius: var(--composer-border-radius-sm);
                 }
+                .right-text {
+                  color: var(--composer-font-color-primary);
+                }
+                .left-text {
+                  color: var(--composer-font-color-primary);
+                }
 
                 .left-text {
+                color: var(--composer-font-color-primary);
                   margin-left: var(--composer-gap-xs);
                 }
 
                 .right-text {
+                color: var(--composer-font-color-primary);
                   margin-right: var(--composer-gap-xs);
                 }
               }

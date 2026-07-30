@@ -298,6 +298,12 @@ as *;
             color: var(--composer-secondary-color);
             margin: 0;
           }
+          .currency-code {
+            color: var(--composer-font-color-primary);
+          }
+          .value {
+            color: var(--composer-font-color-primary);
+          }
         }
       }
 

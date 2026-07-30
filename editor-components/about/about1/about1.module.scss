@@ -132,13 +132,22 @@
                     .item-description {
                         text-align: left;
                     }
+                    .item-description {
+                        color: var(--composer-font-color-primary);
+                    }
+                    .title {
+                        color: var(--composer-font-color-primary);
+                    }
+                    .item-subtitle {
+                        color: var(--composer-font-color-primary);
+                    }
 
                     .item-subtitle {
-                        color: var(--composer-primary-color);
+                        color: var(--composer-font-color-primary);
                     }
 
                     .title {
-                        color: var(--composer-primary-color);
+                        color: var(--composer-font-color-primary);
                     }
 
                     .item-description {

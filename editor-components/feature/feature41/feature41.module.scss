@@ -48,6 +48,15 @@
                         text-align: left;
                         color: var(--composer-font-color-primary);
                     }
+                    .card-description {
+                        color: var(--composer-font-color-primary);
+                    }
+                    .card-title {
+                        color: var(--composer-font-color-primary);
+                    }
+                    .card-subtitle {
+                        color: var(--composer-font-color-primary);
+                    }
 
                     &.no-image {
                         flex: 1;

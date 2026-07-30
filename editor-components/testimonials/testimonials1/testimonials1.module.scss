@@ -48,7 +48,7 @@
               display: inline-block;
               padding: var(--composer-gap-sm);
               background-color: #d39121;
-              color: white;
+              color: var(--composer-font-color-primary);
 
               &.icons-no-image {
                 color: var(--composer-font-color-secondary);

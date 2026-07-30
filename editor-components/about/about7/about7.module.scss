@@ -214,6 +214,12 @@
                     text-align: start;
                     margin-left: 0;
                 }
+                .item-title {
+                    color: var(--composer-font-color-primary);
+                }
+                .item-subtitle {
+                    color: var(--composer-font-color-primary);
+                }
 
                 .item-description {
                     color: var(--composer-font-color-primary);
@@ -223,6 +229,7 @@
                 }
 
                 .item-subtitle {
+                color: var(--composer-font-color-primary);
                     transform: translateX(0);
 
                     &::before {

@@ -35,16 +35,31 @@
         .card-description {
           color: var(--composer-font-color-primary);
         }
+        .card-description {
+          color: var(--composer-font-color-primary);
+        }
+        .card-title {
+          color: var(--composer-font-color-primary);
+        }
 
         .card-subtitle,
         .card-title,
         .card-description {
           text-align: left !important;
         }
+        .card-description {
+          color: var(--composer-font-color-primary);
+        }
+        .card-title {
+          color: var(--composer-font-color-primary);
+        }
+        .card-subtitle {
+          color: var(--composer-font-color-primary);
+        }
 
         .card-subtitle {
           width: 100%;
-          color: var(--composer-primary-color);
+          color: var(--composer-font-color-primary);
         }
 
         .card-buttons-wrapper {

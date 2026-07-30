@@ -2,7 +2,6 @@
 
 
 .container {
-  background-color: var(--composer-html-background);
 
   &.with-overlay {
     z-index: 103;
@@ -201,14 +200,14 @@
         }
 
         .price {
-          color: var(--composer-tertiary-color);
+          color: var(--composer-font-color-primary);
           text-align: center;
         }
 
         .subTitle {
           display: none;
           cursor: pointer;
-          color: var(--composer-tertiary-color);
+          color: var(--composer-font-color-primary);
           animation-duration: 0.5s;
           text-align: center;
           width: fit-content;

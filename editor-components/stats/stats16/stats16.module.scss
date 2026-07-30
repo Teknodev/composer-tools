@@ -1,7 +1,6 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
-  background-color: var(--composer-primary-color);
 
   .max-content {
     display: flex;
@@ -62,6 +61,15 @@
             .stat-description {
               text-align: center;
               color: var(--composer-font-color-secondary);
+            }
+            .stat-description {
+              color: var(--composer-font-color-primary);
+            }
+            .stat-title {
+              color: var(--composer-font-color-primary);
+            }
+            .stat-subtitle {
+              color: var(--composer-font-color-primary);
             }
           }
         }

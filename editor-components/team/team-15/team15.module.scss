@@ -112,7 +112,7 @@
               }
 
               .description{
-                color: white;
+                color: var(--composer-font-color-primary);
                 opacity: 0.5;
                 margin: 0;
               }
@@ -131,6 +131,12 @@
                   &:hover {
                     color: var(--composer-primary-color);
                   }
+                }
+                .secondIcon {
+                  color: var(--composer-font-color-primary);
+                }
+                .firstIcon {
+                  color: var(--composer-font-color-primary);
                 }
               }
             }

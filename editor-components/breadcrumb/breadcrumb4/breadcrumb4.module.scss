@@ -3,7 +3,6 @@
 .container {
     width: 100%;
     position: relative;
-    background-color: color-mix(in srgb, var(--composer-primary-color), var(--composer-html-background) 95%);
     min-height: 450px;
     overflow: hidden;
     display: flex;
@@ -207,7 +206,7 @@
                     }
 
                     .text {
-                        color: var(--composer-primary-color) !important;
+                        color: var(--composer-font-color-primary) !important;
                     }
                 }
 

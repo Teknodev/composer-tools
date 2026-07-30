@@ -42,7 +42,7 @@
       .itemTitle {
         cursor: pointer;
         text-align: left;
-        color: var(--composer-tertiary-color);
+        color: var(--composer-font-color-primary);
         transition: color 0.3s ease;
         position: relative;
         padding-bottom: var(--composer-gap-sm);
@@ -166,6 +166,18 @@
         .sectionText1,
         .sectionText2 {
           text-align: left;
+          color: var(--composer-font-color-primary);
+        }
+        .sectionText2 {
+          color: var(--composer-font-color-primary);
+        }
+        .sectionText1 {
+          color: var(--composer-font-color-primary);
+        }
+        .cardTitle {
+          color: var(--composer-font-color-primary);
+        }
+        .cardSubTitle {
           color: var(--composer-font-color-primary);
         }
 

@@ -20,7 +20,7 @@
                     justify-content: center;
                     position: absolute;
                     background-color: var(--composer-font-color-primary);
-                    color: var(--composer-html-background);
+                    color: var(--composer-font-color-primary);
                     border-radius: var(--composer-border-radius-full);
                     width: 25px;
                     height: 25px;
@@ -46,7 +46,7 @@
                 .description {
                     width: 100%;
                     margin: 0;
-                    color: var(--composer-tertiary-color);
+                    color: var(--composer-font-color-primary);
                 }
 
                 &:not(:last-child)::after {

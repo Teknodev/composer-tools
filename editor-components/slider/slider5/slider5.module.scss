@@ -558,7 +558,7 @@
             }
 
             .price {
-              color: var(--composer-primary-color);
+              color: var(--composer-font-color-primary);
               text-align: left;
               font-size: 3rem;
             }
@@ -598,6 +598,12 @@
                   margin: 0;
                   width: fit-content;
                 }
+                .review-text {
+                  color: var(--composer-font-color-primary);
+                }
+                .review-count {
+                  color: var(--composer-font-color-primary);
+                }
               }
             }
 
@@ -630,7 +636,7 @@
 
               .label {
                 text-align: left;
-                color: var(--composer-tertiary-color);
+                color: var(--composer-font-color-primary);
               }
 
               .left-icon,
@@ -736,7 +742,7 @@
             }
 
             .text {
-              color: var(--composer-tertiary-color);
+              color: var(--composer-font-color-primary);
               width: fit-content;
               cursor: pointer;
               transition: opacity 0.3s ease;

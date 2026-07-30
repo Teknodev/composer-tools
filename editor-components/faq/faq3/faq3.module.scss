@@ -71,7 +71,7 @@
               transition: padding 0.4s cubic-bezier(0.4, 0, 0.2, 1);
               .card-text {
                 display: none;
-                color:var(--composer-tertiary-color);
+                color: var(--composer-font-color-primary);
               }
               &.active {
                 padding-bottom: var(--composer-gap-md);
@@ -106,7 +106,7 @@
             }
             .description-info {
               margin: 0px;
-              color:var(--composer-tertiary-color);
+              color: var(--composer-font-color-primary);
             }
             .button-info {
               width: fit-content;

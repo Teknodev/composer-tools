@@ -93,7 +93,7 @@
                 max-height: 0px;
                 opacity: 0;
                 transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-                color: var( --composer-tertiary-color);
+                color: var(--composer-font-color-primary);
               }
               &.active {
                 overflow: hidden;
