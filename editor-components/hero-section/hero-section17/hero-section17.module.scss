@@ -41,6 +41,10 @@
         align-items: center;
         justify-content: center;
         z-index: 2;
+        // Base.Container ships an opaque themed background (--composer-html-background).
+        // This layer sits above .bg-img (z-index 0), so it must stay transparent
+        // or it fully occludes the slide background image.
+        background-color: transparent;
         .sub-content {
           max-width: 100%;
           width: 100%;
