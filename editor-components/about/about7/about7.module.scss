@@ -208,11 +208,14 @@
                 .item-subtitle,
                 .item-description,
                 .item-title {
-                    color: var(--composer-font-color-primary);
 
 
                     text-align: start;
                     margin-left: 0;
+                }
+                .item-subtitle,
+                .item-title {
+                    color: var(--composer-font-color-primary);
                 }
                 .item-title {
                     color: var(--composer-font-color-primary);
@@ -222,7 +225,6 @@
                 }
 
                 .item-description {
-                    color: var(--composer-font-color-primary);
 
                     text-align: start;
                     margin-left: 0;
