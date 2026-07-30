@@ -220,7 +220,7 @@ class Navbar10 extends BaseNavigator {
                       key: "image",
                       displayer: "Image",
                       additionalParams: {
-                        availableTypes: ["image"],
+                        availableTypes: ["image", "icon"],
                       },
                       value: {
                         type: "image",
@@ -555,7 +555,7 @@ class Navbar10 extends BaseNavigator {
                       key: "image",
                       displayer: "Image",
                       additionalParams: {
-                        availableTypes: ["image"],
+                        availableTypes: ["image", "icon"],
                       },
                       value: {
                         type: "image",
@@ -749,7 +749,7 @@ class Navbar10 extends BaseNavigator {
                       key: "image",
                       displayer: "Image",
                       additionalParams: {
-                        availableTypes: ["image"],
+                        availableTypes: ["image", "icon"],
                       },
                       value: {
                         type: "image",
@@ -893,7 +893,7 @@ class Navbar10 extends BaseNavigator {
                       key: "image",
                       displayer: "Image",
                       additionalParams: {
-                        availableTypes: ["image"],
+                        availableTypes: ["image", "icon"],
                       },
                       value: {
                         type: "image",
@@ -1052,7 +1052,7 @@ class Navbar10 extends BaseNavigator {
                       key: "image",
                       displayer: "Image",
                       additionalParams: {
-                        availableTypes: ["image"],
+                        availableTypes: ["image", "icon"],
                       },
                       value: {
                         type: "image",
@@ -1128,7 +1128,7 @@ class Navbar10 extends BaseNavigator {
                       key: "image",
                       displayer: "Image",
                       additionalParams: {
-                        availableTypes: ["image"],
+                        availableTypes: ["image", "icon"],
                       },
                       value: {
                         type: "image",
@@ -1303,7 +1303,7 @@ class Navbar10 extends BaseNavigator {
                       key: "image",
                       displayer: "Image",
                       additionalParams: {
-                        availableTypes: ["image"],
+                        availableTypes: ["image", "icon"],
                       },
                       value: {
                         type: "image",
@@ -1765,7 +1765,7 @@ class Navbar10 extends BaseNavigator {
                       key: "image",
                       displayer: "Image",
                       additionalParams: {
-                        availableTypes: ["image"],
+                        availableTypes: ["image", "icon"],
                       },
                       value: {
                         type: "image",
@@ -1878,7 +1878,7 @@ class Navbar10 extends BaseNavigator {
                       key: "image",
                       displayer: "Image",
                       additionalParams: {
-                        availableTypes: ["image"],
+                        availableTypes: ["image", "icon"],
                       },
                       value: {
                         type: "image",
@@ -2050,7 +2050,7 @@ class Navbar10 extends BaseNavigator {
                       key: "image",
                       displayer: "Image",
                       additionalParams: {
-                        availableTypes: ["image"],
+                        availableTypes: ["image", "icon"],
                       },
                       value: {
                         type: "image",
@@ -2158,7 +2158,7 @@ class Navbar10 extends BaseNavigator {
                       key: "image",
                       displayer: "Image",
                       additionalParams: {
-                        availableTypes: ["image"],
+                        availableTypes: ["image", "icon"],
                       },
                       value: {
                         type: "image",
@@ -2240,7 +2240,7 @@ class Navbar10 extends BaseNavigator {
                       key: "image",
                       displayer: "Image",
                       additionalParams: {
-                        availableTypes: ["image"],
+                        availableTypes: ["image", "icon"],
                       },
                       value: {
                         type: "image",
