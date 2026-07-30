@@ -224,7 +224,7 @@ class Feature46 extends BaseFeature {
                 <Base.Card
                   key={index}
                   className={this.decorateCSS(
-                    hasContent(card) ? "card" : "card card-empty",
+                    hasContent(card) ? "card" : "card-empty",
                   )}
                 >
                   <Base.VerticalContent
