@@ -65,8 +65,11 @@
                 .description,
                 .home,
                 .icon {
-                    color: var(--composer-font-color-secondary) !important;
                 }
+            .home,
+            .icon {
+                color: var(--composer-font-color-secondary) !important;
+            }
 
                 .home:hover,
                 .breadcrumb-link:hover .home,

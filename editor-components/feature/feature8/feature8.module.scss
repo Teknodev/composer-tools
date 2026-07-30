@@ -44,8 +44,10 @@
 
                 .title, .description {
                     text-align: center;
-                    color: var(--composer-font-color-primary);
 
+                }
+                .title {
+                    color: var(--composer-font-color-primary);
                 }
 
 
