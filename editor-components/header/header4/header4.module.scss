@@ -141,6 +141,12 @@
 
             &.has-media {
 
+              .subtitle,
+              .title,
+              .description {
+                color: #ffffff;
+              }
+
               .subtitle {
                 padding: 0;
                 background-color: transparent;

@@ -9,6 +9,12 @@
         .max-content {
             .text-content {
 
+                .subtitle,
+                .title,
+                .description {
+                    color: var(--color-white);
+                }
+
                 .subtitle {
                     background: none;
                     padding: 0;
@@ -25,7 +31,7 @@
 
                         .card-title,
                         .card-description {
-                            color: var(--composer-font-color-primary);
+                            color: var(--color-white);
                         }
                     }
 

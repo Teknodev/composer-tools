@@ -120,21 +120,12 @@
           .stat-label,
           .stat-description {
             margin: 0;
-            color: var(--composer-font-color-primary);
+            color: var(--composer-tertiary-color);
             text-align: center;
 
             &.with-bg {
               color: white;
             }
-          }
-          .stat-description {
-            color: var(--composer-font-color-primary);
-          }
-          .stat-label {
-            color: var(--composer-font-color-primary);
-          }
-          .stat-subtitle {
-            color: var(--composer-font-color-primary);
           }
         }
       }

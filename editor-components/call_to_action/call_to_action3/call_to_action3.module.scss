@@ -40,6 +40,10 @@
       .title,
       .subtitle {
         text-align: center !important;
+
+        &.with-image {
+          color: white;
+        }
       }
 
       .subtitle {
@@ -51,6 +55,10 @@
 
       .description {
         text-align: center !important;
+
+        &.with-image {
+          color: white;
+        }
       }
 
       .buttons {

@@ -29,9 +29,16 @@
       .vertical-content {
 
         .subtitle {
+          color: #ffffff;
           padding: 0;
           background: transparent;
         }
+
+        .title,
+        .description {
+          color: #ffffff;
+        }
+
       }
     }
 

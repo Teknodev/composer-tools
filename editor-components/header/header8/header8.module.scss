@@ -43,6 +43,11 @@
           background: transparent !important;
         }
 
+        .subtitle,
+        .title,
+        .description {
+          color: #fff !important;
+        }
       }
 
       .button-wrapper {
@@ -53,11 +58,8 @@
 
         .button {
 
+          .button-icon,
           .button-text {
-            color: var(--composer-font-color-primary) !important;
-          }
-
-          .button-icon {
             color: #fff !important;
           }
         }

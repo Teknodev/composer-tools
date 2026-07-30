@@ -88,9 +88,15 @@
 
         .left-content {
 
+          .title,
+          .description {
+            color: #ffffff;
+          }
+
           .subtitle {
             padding: 0;
             background: transparent;
+            color: #ffffff;
           }
         }
       }

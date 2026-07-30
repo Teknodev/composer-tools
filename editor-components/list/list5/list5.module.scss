@@ -43,6 +43,7 @@
           }
 
           &.dark {
+            color: white;
             padding: 0 !important;
             background: transparent !important;
 
@@ -54,10 +55,18 @@
 
         .header-title {
           content: "";
+
+          &.dark {
+            color: white;
+          }
         }
 
         .description {
           content: "";
+
+          &.dark {
+            color: white;
+          }
         }
 
         .button-container {

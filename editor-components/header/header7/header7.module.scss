@@ -39,8 +39,11 @@
                     background: transparent !important;
                 }
 
+                .subtitle,
+                .title,
+                .description,
                 .label {
-                    color: var(--composer-font-color-primary) !important;
+                    color: var(--color-white) !important;
                 }
             }
         }

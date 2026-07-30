@@ -56,13 +56,15 @@
     .role,
     .role-company,
     .author-separator {
-      color: var(--composer-font-color-primary) !important;
+      color: var(--composer-tertiary-color) !important;
     }
   }
 
   &.with-background {
     .header {
-      .header-text {
+      .header-text,
+      .title,
+      .subtitle {
         color: white !important;
       }
 
@@ -74,10 +76,7 @@
 
       .links {
         .link-item {
-        .link-text {
-          color: var(--composer-font-color-primary) !important;
-        }
-
+        .link-text,
         .link-icon {
           color: white !important;
         }
@@ -124,19 +123,16 @@
     }
 
     .slider-wrapper {
+      .card-body,
       .quote,
       .author {
-        color: var(--composer-font-color-primary) !important;
-      }
-
-      .card-body {
         color: black !important;
       }
 
       .role-company,
       .role,
       .author-separator {
-        color: var(--composer-font-color-primary) !important;
+        color: gray !important;
         width: fit-content;
       }
 

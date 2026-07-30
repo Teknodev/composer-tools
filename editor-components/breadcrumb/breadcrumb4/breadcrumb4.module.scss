@@ -3,6 +3,7 @@
 .container {
     width: 100%;
     position: relative;
+    background-color: color-mix(in srgb, var(--composer-primary-color), var(--composer-html-background) 95%);
     min-height: 450px;
     overflow: hidden;
     display: flex;
@@ -114,16 +115,22 @@
                 .subtitle {
                     padding: 0;
                     background-color: transparent;
+                    color: var(--composer-font-color-secondary) !important;
 
                     &::before {
                         background: var(--composer-font-color-secondary) !important;
                     }
                 }
 
+                .title,
+                .description {
+                    color: var(--composer-font-color-secondary) !important;
+                }
+
                 .pages {
                     .link {
                         .text {
-                            color: var(--composer-font-color-primary) !important;
+                            color: var(--composer-font-color-secondary) !important;
                         }
 
                         .breadcrumb-link {
@@ -200,7 +207,7 @@
                     }
 
                     .text {
-                        color: var(--composer-font-color-primary) !important;
+                        color: var(--composer-primary-color) !important;
                     }
                 }
 

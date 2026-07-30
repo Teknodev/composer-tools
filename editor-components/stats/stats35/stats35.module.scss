@@ -185,17 +185,8 @@
                 .stat-title,
                 .stat-subtitle,
                 .stat-description {
-                    color: var(--composer-font-color-primary);
+                    color: var(--composer-font-color-secondary);
                     text-align: left;
-                }
-                .stat-description {
-                    color: var(--composer-font-color-primary);
-                }
-                .stat-title {
-                    color: var(--composer-font-color-primary);
-                }
-                .stat-subtitle {
-                    color: var(--composer-font-color-primary);
                 }
             }
         }

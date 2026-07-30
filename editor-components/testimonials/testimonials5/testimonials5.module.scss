@@ -10,14 +10,22 @@
         min-width: 25%;
         max-width: 100%;
         .leftContainerText {
+          .title {
+            &.title-with-image {
+              color: black;
+            }
+          }
+
           .subtitle {
             &.subtitle-with-image {
+              color: black;
               &:before {
                 background: black;
               }
             }
             &.badge-with-image {
               background-color: black;
+              color: white;
             }
           }
         }
@@ -84,7 +92,7 @@
             transform: rotate(180deg);
             text-align: center;
             max-height: 300px;
-            color: var(--composer-font-color-primary);
+            color: black;
 
             &.sliderTitlePrimary {
               color: var(--composer-font-color-primary);
@@ -114,7 +122,7 @@
             gap: var(--composer-gap-md);
             padding-left: var(--composer-gap-xl);
             .description {
-              color: var(--composer-font-color-primary);
+              color: black;
               font-size: 1.5rem;
 
               &.descriptionPrimary {

@@ -8,6 +8,7 @@
   flex-direction: column;
   justify-content: flex-end;
   padding-bottom: 0 !important;
+  background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
 
   .background-image {
     position: absolute;

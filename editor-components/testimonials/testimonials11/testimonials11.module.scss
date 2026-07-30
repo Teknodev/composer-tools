@@ -12,6 +12,9 @@
       gap: var(--composer-gap-xl);
       .title {
         margin: 0px;
+        &.title-with-image {
+          color: white;
+        }
       }
 
       .content {

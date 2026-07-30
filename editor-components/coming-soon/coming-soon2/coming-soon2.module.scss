@@ -5,6 +5,9 @@
   margin: 0;
   color: #4E5B6E;
   text-transform: uppercase;
+    &.without-image{
+      color: var(--composer-font-color-primary);
+  }
 }
 @mixin title-tablet{
   font-size: 7rem;
@@ -71,7 +74,7 @@
                       gap: var(--composer-gap-sm);
                       min-width: 55px;
                       .counter-count{
-                          color: var(--composer-font-color-primary);
+                          color: var(--composer-primary-color);
                           margin: 0px;
                           display: flex;
                           flex-direction: column;

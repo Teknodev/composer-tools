@@ -60,8 +60,14 @@
             }
           }
 
-          &.with-bg {
+          &.with-bg {           
+            .title,
+            .description {
+              color: white !important;
+            }
+
             .subtitle {
+              color: white !important;
               background: transparent !important;
               padding: 0 !important;
 

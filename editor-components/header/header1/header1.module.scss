@@ -23,6 +23,7 @@
               .box-parent {
                 .vertical-content {
                   .subtitle {
+                    color: #ffffff !important; 
                     background: transparent;
                     padding: 0;
 
@@ -31,6 +32,10 @@
                     }
                   }
 
+                  .title,
+                  .description {
+                    color: #ffffff !important;
+                  }
                 }
               }
 

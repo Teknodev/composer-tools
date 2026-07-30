@@ -29,7 +29,13 @@
   padding: 0 !important;
 
   &.has-background {
+    .title,
+    .description {
+      color: #ffffff !important;
+    }
+
     .subtitle {
+      color: #ffffff !important;
       background: none !important;
       padding: 0 !important;
 

@@ -60,10 +60,10 @@
         .section {
             &.with-image {
 
-                .home {
-                    color: var(--composer-font-color-primary) !important;
-                }
-
+                .subtitle,
+                .title,
+                .description,
+                .home,
                 .icon {
                     color: var(--composer-font-color-secondary) !important;
                 }

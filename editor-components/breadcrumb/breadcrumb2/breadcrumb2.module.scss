@@ -91,7 +91,6 @@
 
           .breadcrumb-link {
             .breadcrumb-title {
-              color: var(--composer-font-color-primary);
               content: "";
             }
           }
@@ -173,6 +172,7 @@
         background: transparent !important;
         padding: 0 !important;
         border-radius: 0 !important;
+        color: #ffffff !important;
         text-transform: none !important;
 
         &::before {
@@ -180,12 +180,17 @@
         }
       }
 
+      .title,
+      .description {
+        color: #ffffff !important;
+      }
+
       .crumber-content {
         color: #ffffff !important;
 
         .breadcrumb-link {
           .breadcrumb-title {
-            color: var(--composer-font-color-primary) !important;
+            color: #ffffff !important;
           }
 
           &:hover .breadcrumb-title {
@@ -200,7 +205,7 @@
         }
 
         .breadcrumb-item:last-child .breadcrumb-link .breadcrumb-title {
-          color: var(--composer-font-color-primary) !important;
+          color: #ffffff !important;
         }
       }
     }
