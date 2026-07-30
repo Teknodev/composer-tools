@@ -33,6 +33,8 @@
                     display: flex;
                     gap: var(--composer-gap-md);
                     align-items: flex-start;
+                    border: none;
+                    border-radius: 0;
 
                     .card-icon {
                         display: flex;

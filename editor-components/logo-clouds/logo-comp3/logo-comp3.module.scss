@@ -41,6 +41,8 @@
       .card-shell {
         display: flex;
         flex-direction: column;
+        border: none;
+        border-radius: 0;
         > * { flex: 1 1 auto; }
       }
       &.lines-active{

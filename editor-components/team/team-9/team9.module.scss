@@ -146,6 +146,9 @@
           }
         }
 
+      }
+
+      .down-page {
         .card-shell:nth-child(2n + 1) > .card {
           flex-direction: column;
         }
@@ -153,6 +156,10 @@
 
       .slider {
         display: none;
+
+        :nth-child(2n + 1) {
+          flex-direction: column;
+        }
       }
     }
   }
@@ -235,8 +242,10 @@
             }
           }
 
-          .card-shell:nth-child(2n) > .card {
-            flex-direction: column-reverse;
+          :nth-child(2n) {
+            .card {
+              flex-direction: column-reverse;
+            }
           }
         }
       }

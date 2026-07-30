@@ -174,8 +174,11 @@
   }
 }
 
-.card-shell {
+.container .card-shell {
   display: flex;
   flex-direction: column;
+  height: 100%;
+  border: none;
+  border-radius: 0;
   > * { flex: 1 1 auto; }
 }

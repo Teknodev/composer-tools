@@ -1,8 +1,10 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
-.card-shell {
+.container .card-shell {
   display: flex;
   flex-direction: column;
+  border: none;
+  border-radius: 0;
 
   > * {
     flex: 1 1 auto;

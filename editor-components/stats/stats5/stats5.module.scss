@@ -13,6 +13,8 @@
         width: 100%;
         position: relative;
         padding: var(--composer-gap-md);
+        border: none;
+        border-radius: 0;
 
         &.stick {
           &:not(:last-child)::after {
