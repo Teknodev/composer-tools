@@ -19,6 +19,7 @@ type Item = {
 
 interface Logo {
   image: TypeMediaInputValue;
+  text: React.JSX.Element;
   navigateTo: string;
 }
 
@@ -113,12 +114,18 @@ class Navbar3 extends BaseNavigator {
           key: "image",
           displayer: "Image",
           additionalParams: {
-            availableTypes: ["image"],
+            availableTypes: ["image", "icon"],
           },
           value: {
             type: "image",
             url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67769b510655f8002cafc965?alt=media&timestamp=1735826277716",
           },
+        },
+        {
+          type: "string",
+          key: "text",
+          displayer: "Text",
+          value: "",
         },
         {
           type: "page",
@@ -139,12 +146,18 @@ class Navbar3 extends BaseNavigator {
           key: "image",
           displayer: "Image",
           additionalParams: {
-            availableTypes: ["image"],
+            availableTypes: ["image", "icon"],
           },
           value: {
             type: "image",
             url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67769b510655f8002cafc964?alt=media&timestamp=1735826277716",
           },
+        },
+        {
+          type: "string",
+          key: "text",
+          displayer: "Text",
+          value: "",
         },
         {
           type: "page",
@@ -1375,13 +1388,22 @@ class Navbar3 extends BaseNavigator {
                 : ""
             }`}
           >
-            {currentLogo.image && (
+            {(currentLogo.image || this.castToString(currentLogo.text)) && (
               <div className={this.decorateCSS("logo")}>
                 <ComposerLink path={currentLogo.navigateTo}>
-                  <Base.Media
-                    value={currentLogo.image}
-                    className={this.decorateCSS("logoImage")}
-                  />
+                  <div className={this.decorateCSS("logoContent")}>
+                    {currentLogo.image && (
+                      <Base.Media
+                        value={currentLogo.image}
+                        className={this.decorateCSS("logoImage")}
+                      />
+                    )}
+                    {this.castToString(currentLogo.text) && (
+                      <Base.H4 className={this.decorateCSS("logoText")}>
+                        {currentLogo.text}
+                      </Base.H4>
+                    )}
+                  </div>
                 </ComposerLink>
               </div>
             )}
@@ -1534,13 +1556,22 @@ class Navbar3 extends BaseNavigator {
                 : ""
             }`}
           >
-            {currentLogo.image && (
+            {(currentLogo.image || this.castToString(currentLogo.text)) && (
               <div className={this.decorateCSS("logo")} onClick={() => this.handleCloseMenu()}>
                 <ComposerLink path={currentLogo.navigateTo}>
-                  <Base.Media
-                    value={currentLogo.image}
-                    className={this.decorateCSS("logoImage")}
-                  />
+                  <div className={this.decorateCSS("logoContent")}>
+                    {currentLogo.image && (
+                      <Base.Media
+                        value={currentLogo.image}
+                        className={this.decorateCSS("logoImage")}
+                      />
+                    )}
+                    {this.castToString(currentLogo.text) && (
+                      <Base.H4 className={this.decorateCSS("logoText")}>
+                        {currentLogo.text}
+                      </Base.H4>
+                    )}
+                  </div>
                 </ComposerLink>
               </div>
             )}
@@ -1567,14 +1598,20 @@ class Navbar3 extends BaseNavigator {
               </div>            
             }            
             {hamburgerNavActive ? (
-              <div onClick={() => this.handleCloseMenu()}>
+              <div
+                className={this.decorateCSS("closeIconWrapper")}
+                onClick={() => this.handleCloseMenu()}
+              >
                 <Base.Media
                   value={navigationIcons?.closeIcon}
                   className={this.decorateCSS("closeIcon")}
                 />
               </div>
             ) : (
-              <div onClick={() => this.handleOpenMenu()}>
+              <div
+                className={this.decorateCSS("hamburgerIconWrapper")}
+                onClick={() => this.handleOpenMenu()}
+              >
                 <Base.Media
                   value={navigationIcons?.hamburgerIcon}
                   className={this.decorateCSS("hamburgerIcon")}
@@ -1777,11 +1814,12 @@ class Navbar3 extends BaseNavigator {
           </Base.MaxContent>
         </Base.Navigator.Container>
 
-        <Base.Overlay
-          clasName = {this.decorateCSS("overlay")}
-          isVisible = {isVisible}
-          onClick={() => this.handleCloseMenu()}
-        />
+        {isVisible && (
+          <div
+            className={this.decorateCSS("overlay")}
+            onClick={() => this.handleCloseMenu()}
+          />
+        )}
       </div>
     );
   }

@@ -7,6 +7,7 @@ import { INPUTS } from "../../../custom-hooks/input-templates";
 
 interface Logo {
   image: TypeMediaInputValue;
+  text: React.JSX.Element;
   navigateTo: string;
 }
 
@@ -45,12 +46,18 @@ class Navbar9 extends BaseNavigator {
           key: "image",
           displayer: "Image",
           additionalParams: {
-            availableTypes: ["image"],
+            availableTypes: ["image", "icon"],
           },
           value: {
             type: "image",
             url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67769b510655f8002cafc965?alt=media&timestamp=1735826277716",
           },
+        },
+        {
+          type: "string",
+          key: "text",
+          displayer: "Text",
+          value: "",
         },
         {
           type: "page",
@@ -71,12 +78,18 @@ class Navbar9 extends BaseNavigator {
           key: "image",
           displayer: "Image",
           additionalParams: {
-            availableTypes: ["image"],
+            availableTypes: ["image", "icon"],
           },
           value: {
             type: "image",
             url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67769b510655f8002cafc965?alt=media&timestamp=1735826277716",
           },
+        },
+        {
+          type: "string",
+          key: "text",
+          displayer: "Text",
+          value: "",
         },
         {
           type: "page",
@@ -480,7 +493,7 @@ class Navbar9 extends BaseNavigator {
                       type: "string",
                       key: "title",
                       displayer: "Title",
-                      value: "SUB ITEM1",
+                      value: "Sub item 1",
                     },
                     {
                       type: "page",
@@ -558,7 +571,7 @@ class Navbar9 extends BaseNavigator {
                       type: "string",
                       key: "title",
                       displayer: "Title",
-                      value: "ABOUT US",
+                      value: "About us",
                     },
                     {
                       type: "page",
@@ -603,7 +616,7 @@ class Navbar9 extends BaseNavigator {
                       type: "string",
                       key: "title",
                       displayer: "Title",
-                      value: "LOOKBOOK",
+                      value: "Lookbook",
                     },
                     {
                       type: "page",
@@ -648,7 +661,7 @@ class Navbar9 extends BaseNavigator {
                       type: "string",
                       key: "title",
                       displayer: "Title",
-                      value: "TYPOGRAPHY",
+                      value: "Typography",
                     },
                     {
                       type: "page",
@@ -693,7 +706,7 @@ class Navbar9 extends BaseNavigator {
                       type: "string",
                       key: "title",
                       displayer: "Title",
-                      value: "SHORTCODES",
+                      value: "Shortcodes",
                     },
                     {
                       type: "page",
@@ -738,7 +751,7 @@ class Navbar9 extends BaseNavigator {
                       type: "string",
                       key: "title",
                       displayer: "Title",
-                      value: "COMING SOON",
+                      value: "Coming soon",
                     },
                     {
                       type: "page",
@@ -783,7 +796,7 @@ class Navbar9 extends BaseNavigator {
                       type: "string",
                       key: "title",
                       displayer: "Title",
-                      value: "PAGE 404",
+                      value: "Page 404",
                     },
                     {
                       type: "page",
@@ -861,7 +874,7 @@ class Navbar9 extends BaseNavigator {
                       type: "string",
                       key: "title",
                       displayer: "Title",
-                      value: "BLOG POSTS",
+                      value: "Blog posts",
                     },
                     {
                       type: "page",
@@ -906,7 +919,7 @@ class Navbar9 extends BaseNavigator {
                       type: "string",
                       key: "title",
                       displayer: "Title",
-                      value: "MASONARY",
+                      value: "Masonary",
                     },
                     {
                       type: "page",
@@ -971,7 +984,7 @@ class Navbar9 extends BaseNavigator {
               key: "icon",
               displayer: "Icon",
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon", "image"],
               },
               value: {
                 type: "icon",
@@ -996,7 +1009,7 @@ class Navbar9 extends BaseNavigator {
               key: "icon",
               displayer: "Icon",
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon", "image"],
               },
               value: {
                 type: "icon",
@@ -1021,7 +1034,7 @@ class Navbar9 extends BaseNavigator {
               key: "icon",
               displayer: "Icon",
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon", "image"],
               },
               value: {
                 type: "icon",
@@ -1046,7 +1059,7 @@ class Navbar9 extends BaseNavigator {
               key: "icon",
               displayer: "Icon",
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon", "image"],
               },
               value: {
                 type: "icon",
@@ -1232,14 +1245,24 @@ class Navbar9 extends BaseNavigator {
           setIsScrolled={(value: boolean) => this.setComponentState("isScrolled", value)}
         >
           <Base.MaxContent className={`${this.decorateCSS("maxContent")} ${transparentBackground ? this.decorateCSS("transparentBackground") : ""} ${hamburgerNavActive ? this.decorateCSS("hamburgerActive") : ""}`}>
-            {currentLogo.image && (
+            {(currentLogo.image || this.castToString(currentLogo.text)) && (
               <ComposerLink path={currentLogo.navigateTo}>
                 <div className={this.decorateCSS("logo")}>
-                  <div onClick={()=> this.handleCloseMenu()}>
-                    <Base.Media
-                      value={currentLogo.image}
-                      className={this.decorateCSS("logoImage")}
-                    />
+                  <div
+                    className={this.decorateCSS("logoContent")}
+                    onClick={()=> this.handleCloseMenu()}
+                  >
+                    {currentLogo.image && (
+                      <Base.Media
+                        value={currentLogo.image}
+                        className={this.decorateCSS("logoImage")}
+                      />
+                    )}
+                    {this.castToString(currentLogo.text) && (
+                      <Base.H4 className={this.decorateCSS("logoText")}>
+                        {currentLogo.text}
+                      </Base.H4>
+                    )}
                   </div>
                 </div>
               </ComposerLink>
@@ -1399,14 +1422,20 @@ class Navbar9 extends BaseNavigator {
                 </div>
               )}
             {hamburgerNavActive ? (
-              <div onClick={() => this.handleCloseMenu()}>
+              <div
+                className={this.decorateCSS("closeIconWrapper")}
+                onClick={() => this.handleCloseMenu()}
+              >
                 <Base.Media
                   value={navigationIcons?.closeIcon}
                   className={this.decorateCSS("hamburgerIcon")}
                 />
               </div>
             ) : (
-              <div onClick={() => this.handleOpenMenu()}>
+              <div
+                className={this.decorateCSS("hamburgerIconWrapper")}
+                onClick={() => this.handleOpenMenu()}
+              >
                 <Base.Media
                   value={navigationIcons?.hamburgerIcon}
                   className={`${this.decorateCSS("hamburgerIcon")} ${
@@ -1597,11 +1626,12 @@ class Navbar9 extends BaseNavigator {
             </Base.Container>
           </div>
         </Base.Navigator.Container>
-        <Base.Overlay
-          className={this.decorateCSS("hamburgerOverlay")}
-          onClick={() => this.handleCloseMenu()}
-          isVisible={isVisible}
-        />
+        {isVisible && (
+          <div
+            className={this.decorateCSS("hamburgerOverlay")}
+            onClick={() => this.handleCloseMenu()}
+          />
+        )}
       </div>
     );
   }

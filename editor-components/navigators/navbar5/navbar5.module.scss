@@ -133,9 +133,13 @@
   align-items: center;
 }
 
- .overlay {
-    z-index: 1;
-  }
+.overlay {
+  position: fixed;
+  inset: 0;
+  background-color: var(--composer-overlay-color);
+  z-index: 1;
+  cursor: pointer;
+}
 
 .dropdownMenu {
   height: 0;
@@ -194,6 +198,98 @@
           &.animation1{
             &:hover {
               color: var(--composer-tertiary-color);
+            }
+          }
+        }
+
+        .menuItem {
+          .menuItemHeader {
+            display: flex;
+            align-items: center;
+            gap: var(--composer-gap-xs);
+            cursor: pointer;
+
+            .dropdownIcon {
+              font-size: 2.5rem;
+              color: var(--composer-font-color-primary);
+              transition: transform 0.3s ease;
+              flex-shrink: 0;
+
+              &.active {
+                transform: rotate(180deg);
+              }
+            }
+          }
+
+          .submenu {
+            max-height: 0;
+            overflow: hidden;
+            padding-left: var(--composer-gap-md);
+            transition: max-height 0.3s ease;
+
+            &.active {
+              max-height: 1000px;
+              transition: max-height 1s ease;
+            }
+
+            .submenuItem {
+              .submenuItemHeader {
+                display: flex;
+                align-items: center;
+                gap: var(--composer-gap-xs);
+                padding: var(--composer-gap-xs) 0;
+                cursor: pointer;
+
+                .submenuItemTitle {
+                  margin: 0;
+                  color: var(--composer-font-color-primary);
+                  transition: color 0.3s ease;
+
+                  &.animation1 {
+                    &:hover {
+                      color: var(--composer-tertiary-color);
+                    }
+                  }
+                }
+
+                .rightIcon {
+                  font-size: 1.75rem;
+                  color: var(--composer-font-color-primary);
+                  transition: transform 0.3s ease;
+                  flex-shrink: 0;
+
+                  &.active {
+                    transform: rotate(90deg);
+                  }
+                }
+              }
+
+              .subSubmenu {
+                max-height: 0;
+                overflow: hidden;
+                padding-left: var(--composer-gap-md);
+                transition: max-height 0.3s linear;
+
+                &.active {
+                  max-height: 1000px;
+                }
+
+                .subSubmenuItem {
+                  .subSubmenuItemTitle {
+                    margin: 0;
+                    padding: var(--composer-gap-xs) 0;
+                    color: var(--composer-font-color-primary);
+                    cursor: pointer;
+                    transition: color 0.3s ease;
+
+                    &.animation1 {
+                      &:hover {
+                        color: var(--composer-tertiary-color);
+                      }
+                    }
+                  }
+                }
+              }
             }
           }
         }
@@ -320,6 +416,18 @@
     }
 
     .logo {
+      .logoContent {
+        display: flex;
+        align-items: center;
+        gap: var(--composer-gap-xs);
+      }
+
+      .logoText {
+        margin: 0;
+        color: var(--composer-font-color-primary);
+        white-space: nowrap;
+      }
+
       .logoImage {
         width: 100%;
         max-height: 50px;
@@ -414,6 +522,85 @@
 
     .down {
       display: none;
+    }
+  }
+}
+
+.hamburgerIconWrapper,
+.crossIconWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.crossIconWrapper {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background-color: var(--composer-font-color-primary);
+  transition: opacity 0.3s ease;
+
+  &:hover {
+    opacity: 0.85;
+  }
+
+}
+
+.maxContent .navbar .crossIconWrapper {
+  .hamburgerIcon,
+  .activeHamburgerIcon {
+    color: var(--composer-html-background) !important;
+  }
+}
+
+.up {
+  &.alignCenter {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    min-height: 0;
+    overflow-y: auto;
+
+    .leftPage,
+    .rightPage {
+      width: 100%;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .items {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--composer-gap-sm);
+
+      .menuItem {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .menuItemHeader {
+        justify-content: center;
+      }
+
+      .item-title {
+        text-align: center;
+        text-transform: uppercase;
+      }
+
+      .submenu,
+      .subSubmenu {
+        padding-left: 0;
+        text-align: center;
+      }
+
+      .submenuItemHeader {
+        justify-content: center;
+      }
     }
   }
 }

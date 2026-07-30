@@ -9,6 +9,7 @@ import { INPUTS } from "../../../custom-hooks/input-templates";
 
 interface Logo {
   image: TypeMediaInputValue;
+  text: React.JSX.Element;
   navigateTo: string;
 }
 
@@ -86,12 +87,18 @@ class Navbar4 extends BaseNavigator {
           key: "image",
           displayer: "Image",
           additionalParams: {
-            availableTypes: ["image"],
+            availableTypes: ["image", "icon"],
           },
           value: {
             type: "image",
             url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6847f1f54e31d2002b32b3d7?alt=media",
           },
+        },
+        {
+          type: "string",
+          key: "text",
+          displayer: "Text",
+          value: "",
         },
         {
           type: "page",
@@ -112,12 +119,18 @@ class Navbar4 extends BaseNavigator {
           key: "image",
           displayer: "Image",
           additionalParams: {
-            availableTypes: ["image"],
+            availableTypes: ["image", "icon"],
           },
           value: {
             type: "image",
             url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6847f1914e31d2002b32b378?alt=media",
           },
+        },
+        {
+          type: "string",
+          key: "text",
+          displayer: "Text",
+          value: "",
         },
         {
           type: "page",
@@ -143,7 +156,7 @@ class Navbar4 extends BaseNavigator {
               key: "icon",
               displayer: "Icon",
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon", "image"],
               },
               value: {
                 type: "icon",
@@ -168,7 +181,7 @@ class Navbar4 extends BaseNavigator {
               key: "icon",
               displayer: "Icon",
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon", "image"],
               },
               value: {
                 type: "icon",
@@ -193,7 +206,7 @@ class Navbar4 extends BaseNavigator {
               key: "icon",
               displayer: "Icon",
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon", "image"],
               },
               value: {
                 type: "icon",
@@ -218,7 +231,7 @@ class Navbar4 extends BaseNavigator {
               key: "icon",
               displayer: "Icon",
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon", "image"],
               },
               value: {
                 type: "icon",
@@ -250,7 +263,7 @@ class Navbar4 extends BaseNavigator {
               type: "string",
               key: "title",
               displayer: "Title",
-              value: "HOME",
+              value: "Home",
             },
             {
               type: "page",
@@ -279,7 +292,7 @@ class Navbar4 extends BaseNavigator {
                       type: "string",
                       key: "title",
                       displayer: "Title",
-                      value: "FASHION HOME",
+                      value: "Fashion home",
                     },
                     {
                       type: "page",
@@ -324,7 +337,7 @@ class Navbar4 extends BaseNavigator {
                       type: "string",
                       key: "title",
                       displayer: "Title",
-                      value: "WINERY HOME",
+                      value: "Winery home",
                     },
                     {
                       type: "page",
@@ -369,7 +382,7 @@ class Navbar4 extends BaseNavigator {
                       type: "string",
                       key: "title",
                       displayer: "Title",
-                      value: "NEW ARRIVALS",
+                      value: "New arrivals",
                     },
                     {
                       type: "page",
@@ -414,7 +427,7 @@ class Navbar4 extends BaseNavigator {
                       type: "string",
                       key: "title",
                       displayer: "Title",
-                      value: "MEN & WOMEN",
+                      value: "Men & women",
                     },
                     {
                       type: "page",
@@ -459,7 +472,7 @@ class Navbar4 extends BaseNavigator {
                       type: "string",
                       key: "title",
                       displayer: "Title",
-                      value: "TREND COLLECTION",
+                      value: "Trend collection",
                     },
                     {
                       type: "page",
@@ -504,7 +517,7 @@ class Navbar4 extends BaseNavigator {
                       type: "string",
                       key: "title",
                       displayer: "Title",
-                      value: "CREATIVE",
+                      value: "Creative",
                     },
                     {
                       type: "page",
@@ -553,7 +566,7 @@ class Navbar4 extends BaseNavigator {
               type: "string",
               key: "title",
               displayer: "Title",
-              value: "FEATURES",
+              value: "Features",
             },
             {
               type: "page",
@@ -582,7 +595,7 @@ class Navbar4 extends BaseNavigator {
                       type: "string",
                       key: "title",
                       displayer: "Title",
-                      value: "SUB ITEM1",
+                      value: "Sub item 1",
                     },
                     {
                       type: "page",
@@ -631,7 +644,7 @@ class Navbar4 extends BaseNavigator {
               type: "string",
               key: "title",
               displayer: "Title",
-              value: "POST BLOCKS",
+              value: "Post blocks",
             },
             {
               type: "page",
@@ -660,7 +673,7 @@ class Navbar4 extends BaseNavigator {
                       type: "string",
                       key: "title",
                       displayer: "Title",
-                      value: "ABOUT US",
+                      value: "About us",
                     },
                     {
                       type: "page",
@@ -705,7 +718,7 @@ class Navbar4 extends BaseNavigator {
                       type: "string",
                       key: "title",
                       displayer: "Title",
-                      value: "LOOKBOOK",
+                      value: "Lookbook",
                     },
                     {
                       type: "page",
@@ -750,7 +763,7 @@ class Navbar4 extends BaseNavigator {
                       type: "string",
                       key: "title",
                       displayer: "Title",
-                      value: "TYPOGRAPHY",
+                      value: "Typography",
                     },
                     {
                       type: "page",
@@ -795,7 +808,7 @@ class Navbar4 extends BaseNavigator {
                       type: "string",
                       key: "title",
                       displayer: "Title",
-                      value: "SHORTCODES",
+                      value: "Shortcodes",
                     },
                     {
                       type: "page",
@@ -840,7 +853,7 @@ class Navbar4 extends BaseNavigator {
                       type: "string",
                       key: "title",
                       displayer: "Title",
-                      value: "COMING SOON",
+                      value: "Coming soon",
                     },
                     {
                       type: "page",
@@ -885,7 +898,7 @@ class Navbar4 extends BaseNavigator {
                       type: "string",
                       key: "title",
                       displayer: "Title",
-                      value: "PAGE 404",
+                      value: "Page 404",
                     },
                     {
                       type: "page",
@@ -934,7 +947,7 @@ class Navbar4 extends BaseNavigator {
               type: "string",
               key: "title",
               displayer: "Title",
-              value: "NEWS",
+              value: "News",
             },
             {
               type: "page",
@@ -963,7 +976,7 @@ class Navbar4 extends BaseNavigator {
                       type: "string",
                       key: "title",
                       displayer: "Title",
-                      value: "BLOG POSTS",
+                      value: "Blog posts",
                     },
                     {
                       type: "page",
@@ -1008,7 +1021,7 @@ class Navbar4 extends BaseNavigator {
                       type: "string",
                       key: "title",
                       displayer: "Title",
-                      value: "MASONARY",
+                      value: "Masonary",
                     },
                     {
                       type: "page",
@@ -1064,7 +1077,7 @@ class Navbar4 extends BaseNavigator {
               type: "string",
               key: "title",
               displayer: "Title",
-              value: "CONTACTS",
+              value: "Contacts",
             },
             {
               type: "page",
@@ -1093,7 +1106,7 @@ class Navbar4 extends BaseNavigator {
                       type: "string",
                       key: "title",
                       displayer: "Title",
-                      value: "CONTACTS SUB ITEM",
+                      value: "Contacts sub item",
                     },
                     {
                       type: "page",
@@ -1115,7 +1128,7 @@ class Navbar4 extends BaseNavigator {
                               type: "string",
                               key: "title",
                               displayer: "Title",
-                              value: "CONTACTS SUB SUB ITEM ",
+                              value: "Contacts sub sub item",
                             },
                             {
                               type: "page",
@@ -1142,7 +1155,7 @@ class Navbar4 extends BaseNavigator {
               type: "string",
               key: "title",
               displayer: "Title",
-              value: "BUY THEME",
+              value: "Buy theme",
             },
             {
               type: "page",
@@ -1233,7 +1246,7 @@ class Navbar4 extends BaseNavigator {
           key: "icon",
           displayer: "Icon",
           additionalParams: {
-            availableTypes: ["icon"],
+            availableTypes: ["icon", "image"],
           },
           value: {
             type: "icon",
@@ -1321,7 +1334,7 @@ class Navbar4 extends BaseNavigator {
       type: "string",
       key: "hamburgerMenuTitle",
       displayer: "Hamburger Menu Title",
-      value: "MENU",
+      value: "Menu",
     });
     this.addProp({
       type:"multiSelect",
@@ -1474,12 +1487,19 @@ class Navbar4 extends BaseNavigator {
                 {defaultLogo.image && (
                   <div className={this.decorateCSS("logo")}>
                     <ComposerLink path={defaultLogo.navigateTo}>
-                      {defaultLogo.image && (
-                        <Base.Media
-                          value={defaultLogo.image}
-                          className={this.decorateCSS("image")}
-                        />
-                      )}
+                      <div className={this.decorateCSS("logoContent")}>
+                        {defaultLogo.image && (
+                          <Base.Media
+                            value={defaultLogo.image}
+                            className={this.decorateCSS("image")}
+                          />
+                        )}
+                        {this.castToString(defaultLogo.text) && (
+                          <Base.H4 className={this.decorateCSS("logoText")}>
+                            {defaultLogo.text}
+                          </Base.H4>
+                        )}
+                      </div>
                     </ComposerLink>
                   </div>
                 )}
@@ -1672,14 +1692,20 @@ class Navbar4 extends BaseNavigator {
                   {hamburgerMenuTitle}
                 </Base.P>
                 {isHamburgerActive ? (
-                  <div onClick={this.handleCloseMenu}>
+                  <div
+                className={this.decorateCSS("closeIconWrapper")}
+                onClick={this.handleCloseMenu}
+              >
                     <Base.Media
                       value={navigationIcons?.closeIcon}
                       className={this.decorateCSS("closeIcon")}
                     />
                   </div>
                 ) : (
-                  <div onClick={this.handleOpenMenu}>
+                  <div
+                className={this.decorateCSS("hamburgerIconWrapper")}
+                onClick={this.handleOpenMenu}
+              >
                     <Base.Media
                       value={navigationIcons?.hamburgerIcon}
                       className={this.decorateCSS("hamburgerIcon")}
@@ -1849,13 +1875,14 @@ class Navbar4 extends BaseNavigator {
             </div>
           </Base.MaxContent>
         </Base.Navigator.Container>
-        <Base.Overlay
-          className={`${this.decorateCSS("overlay")} ${
-            isHamburgerActive ? this.decorateCSS("active") : ""
-          }`}
-          onClick={() => this.handleCloseMenu()}
-          isVisible = {isVisible}
-        />
+        {isVisible && (
+          <div
+            className={`${this.decorateCSS("overlay")} ${
+              isHamburgerActive ? this.decorateCSS("active") : ""
+            }`}
+            onClick={() => this.handleCloseMenu()}
+          />
+        )}
       </div>
     );
   }

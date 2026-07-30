@@ -40,6 +40,7 @@ interface MenuItems {
 }
 interface Logo {
   image: TypeMediaInputValue;
+  text: React.JSX.Element;
   urlTo: string;
 }
 
@@ -61,12 +62,18 @@ class Navbar10 extends BaseNavigator {
           key: "image",
           displayer: "Image",
           additionalParams: {
-            availableTypes: ["image"],
+            availableTypes: ["image", "icon"],
           },
           value: {
             type: "image",
             url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67769b510655f8002cafc965?alt=media&timestamp=1735826277716",
           },
+        },
+        {
+          type: "string",
+          key: "text",
+          displayer: "Text",
+          value: "",
         },
         {
           type: "page",
@@ -86,12 +93,18 @@ class Navbar10 extends BaseNavigator {
           key: "image",
           displayer: "Image",
           additionalParams: {
-            availableTypes: ["image"],
+            availableTypes: ["image", "icon"],
           },
           value: {
             type: "image",
             url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67769b510655f8002cafc964?alt=media&timestamp=1735826277716",
           },
+        },
+        {
+          type: "string",
+          key: "text",
+          displayer: "Text",
+          value: "",
         },
         {
           type: "page",
@@ -150,7 +163,7 @@ class Navbar10 extends BaseNavigator {
                       type: "string",
                       key: "title",
                       displayer: "Title",
-                      value: "BUILD HIGH PERFORMING SITES",
+                      value: "Build high performing sites",
                     },
                     {
                       type: "page",
@@ -191,7 +204,7 @@ class Navbar10 extends BaseNavigator {
                               key: "icon",
                               displayer: "Icon",
                               additionalParams: {
-                                availableTypes: ["icon"],
+                                availableTypes: ["icon", "image"],
                               },
                               value: {
                                 type: "icon",
@@ -237,7 +250,7 @@ class Navbar10 extends BaseNavigator {
                       type: "string",
                       key: "title",
                       displayer: "Title",
-                      value: "ACCLERATE YOUR GROWTH",
+                      value: "Accelerate your growth",
                     },
                     {
                       type: "page",
@@ -278,7 +291,7 @@ class Navbar10 extends BaseNavigator {
                               key: "icon",
                               displayer: "Icon",
                               additionalParams: {
-                                availableTypes: ["icon"],
+                                availableTypes: ["icon", "image"],
                               },
                               value: {
                                 type: "icon",
@@ -315,7 +328,7 @@ class Navbar10 extends BaseNavigator {
                               key: "icon",
                               displayer: "Icon",
                               additionalParams: {
-                                availableTypes: ["icon"],
+                                availableTypes: ["icon", "image"],
                               },
                               value: {
                                 type: "icon",
@@ -352,7 +365,7 @@ class Navbar10 extends BaseNavigator {
                               key: "icon",
                               displayer: "Icon",
                               additionalParams: {
-                                availableTypes: ["icon"],
+                                availableTypes: ["icon", "image"],
                               },
                               value: {
                                 type: "icon",
@@ -389,7 +402,7 @@ class Navbar10 extends BaseNavigator {
                               key: "icon",
                               displayer: "Icon",
                               additionalParams: {
-                                availableTypes: ["icon"],
+                                availableTypes: ["icon", "image"],
                               },
                               value: {
                                 type: "icon",
@@ -426,7 +439,7 @@ class Navbar10 extends BaseNavigator {
                               key: "icon",
                               displayer: "Icon",
                               additionalParams: {
-                                availableTypes: ["icon"],
+                                availableTypes: ["icon", "image"],
                               },
                               value: {
                                 type: "icon",
@@ -448,7 +461,7 @@ class Navbar10 extends BaseNavigator {
                       type: "string",
                       key: "title",
                       displayer: "Title",
-                      value: "EXPAND YOUR BUSINESS",
+                      value: "Expand your business",
                     },
                     {
                       type: "page",
@@ -489,7 +502,7 @@ class Navbar10 extends BaseNavigator {
                               key: "icon",
                               displayer: "Icon",
                               additionalParams: {
-                                availableTypes: ["icon"],
+                                availableTypes: ["icon", "image"],
                               },
                               value: {
                                 type: "icon",
@@ -526,7 +539,7 @@ class Navbar10 extends BaseNavigator {
                               key: "icon",
                               displayer: "Icon",
                               additionalParams: {
-                                availableTypes: ["icon"],
+                                availableTypes: ["icon", "image"],
                               },
                               value: {
                                 type: "icon",
@@ -566,7 +579,7 @@ class Navbar10 extends BaseNavigator {
                       type: "string",
                       key: "title",
                       displayer: "Title",
-                      value: "ALL ESSENTIALS INCLUDED",
+                      value: "All essentials included",
                     },
                     {
                       type: "page",
@@ -608,7 +621,7 @@ class Navbar10 extends BaseNavigator {
                               key: "icon",
                               displayer: "Icon",
                               additionalParams: {
-                                availableTypes: ["icon"],
+                                availableTypes: ["icon", "image"],
                               },
                               value: {
                                 type: "icon",
@@ -645,7 +658,7 @@ class Navbar10 extends BaseNavigator {
                               key: "icon",
                               displayer: "Icon",
                               additionalParams: {
-                                availableTypes: ["icon"],
+                                availableTypes: ["icon", "image"],
                               },
                               value: {
                                 type: "icon",
@@ -683,7 +696,7 @@ class Navbar10 extends BaseNavigator {
                               key: "icon",
                               displayer: "Icon",
                               additionalParams: {
-                                availableTypes: ["icon"],
+                                availableTypes: ["icon", "image"],
                               },
                               value: {
                                 type: "icon",
@@ -720,7 +733,7 @@ class Navbar10 extends BaseNavigator {
                               key: "icon",
                               displayer: "Icon",
                               additionalParams: {
-                                availableTypes: ["icon"],
+                                availableTypes: ["icon", "image"],
                               },
                               value: {
                                 type: "icon",
@@ -767,7 +780,7 @@ class Navbar10 extends BaseNavigator {
                       type: "string",
                       key: "title",
                       displayer: "Title",
-                      value: "MORE FROM DUDA",
+                      value: "More from duda",
                     },
                     {
                       type: "page",
@@ -802,7 +815,7 @@ class Navbar10 extends BaseNavigator {
                               key: "icon",
                               displayer: "Icon",
                               additionalParams: {
-                                availableTypes: ["icon"],
+                                availableTypes: ["icon", "image"],
                               },
                               value: {
                                 type: "icon",
@@ -833,7 +846,7 @@ class Navbar10 extends BaseNavigator {
                               key: "icon",
                               displayer: "Icon",
                               additionalParams: {
-                                availableTypes: ["icon"],
+                                availableTypes: ["icon", "image"],
                               },
                               value: {
                                 type: "icon",
@@ -864,7 +877,7 @@ class Navbar10 extends BaseNavigator {
                               key: "icon",
                               displayer: "Icon",
                               additionalParams: {
-                                availableTypes: ["icon"],
+                                availableTypes: ["icon", "image"],
                               },
                               value: {
                                 type: "icon",
@@ -943,7 +956,7 @@ class Navbar10 extends BaseNavigator {
                       type: "string",
                       key: "title",
                       displayer: "Title",
-                      value: "DUDA FOR",
+                      value: "Duda for",
                     },
                     {
                       type: "page",
@@ -985,7 +998,7 @@ class Navbar10 extends BaseNavigator {
                               key: "icon",
                               displayer: "Icon",
                               additionalParams: {
-                                availableTypes: ["icon"],
+                                availableTypes: ["icon", "image"],
                               },
                               value: {
                                 type: "icon",
@@ -1023,7 +1036,7 @@ class Navbar10 extends BaseNavigator {
                               key: "icon",
                               displayer: "Icon",
                               additionalParams: {
-                                availableTypes: ["icon"],
+                                availableTypes: ["icon", "image"],
                               },
                               value: {
                                 type: "icon",
@@ -1099,7 +1112,7 @@ class Navbar10 extends BaseNavigator {
                               key: "icon",
                               displayer: "Icon",
                               additionalParams: {
-                                availableTypes: ["icon"],
+                                availableTypes: ["icon", "image"],
                               },
                               value: {
                                 type: "icon",
@@ -1146,7 +1159,7 @@ class Navbar10 extends BaseNavigator {
                       type: "string",
                       key: "title",
                       displayer: "Title",
-                      value: "INDUSTRY CASE STUDIES",
+                      value: "Industry case studies",
                     },
                     {
                       type: "page",
@@ -1181,7 +1194,7 @@ class Navbar10 extends BaseNavigator {
                               key: "icon",
                               displayer: "Icon",
                               additionalParams: {
-                                availableTypes: ["icon"],
+                                availableTypes: ["icon", "image"],
                               },
                               value: {
                                 type: "icon",
@@ -1212,7 +1225,7 @@ class Navbar10 extends BaseNavigator {
                               key: "icon",
                               displayer: "Icon",
                               additionalParams: {
-                                availableTypes: ["icon"],
+                                availableTypes: ["icon", "image"],
                               },
                               value: {
                                 type: "icon",
@@ -1243,7 +1256,7 @@ class Navbar10 extends BaseNavigator {
                               key: "icon",
                               displayer: "Icon",
                               additionalParams: {
-                                availableTypes: ["icon"],
+                                availableTypes: ["icon", "image"],
                               },
                               value: {
                                 type: "icon",
@@ -1274,7 +1287,7 @@ class Navbar10 extends BaseNavigator {
                               key: "icon",
                               displayer: "Icon",
                               additionalParams: {
-                                availableTypes: ["icon"],
+                                availableTypes: ["icon", "image"],
                               },
                               value: {
                                 type: "icon",
@@ -1347,7 +1360,7 @@ class Navbar10 extends BaseNavigator {
                       type: "string",
                       key: "title",
                       displayer: "Title",
-                      value: "BUILD",
+                      value: "Build",
                     },
                     {
                       type: "page",
@@ -1388,7 +1401,7 @@ class Navbar10 extends BaseNavigator {
                               key: "icon",
                               displayer: "Icon",
                               additionalParams: {
-                                availableTypes: ["icon"],
+                                availableTypes: ["icon", "image"],
                               },
                               value: {
                                 type: "icon",
@@ -1425,7 +1438,7 @@ class Navbar10 extends BaseNavigator {
                               key: "icon",
                               displayer: "Icon",
                               additionalParams: {
-                                availableTypes: ["icon"],
+                                availableTypes: ["icon", "image"],
                               },
                               value: {
                                 type: "icon",
@@ -1462,7 +1475,7 @@ class Navbar10 extends BaseNavigator {
                               key: "icon",
                               displayer: "Icon",
                               additionalParams: {
-                                availableTypes: ["icon"],
+                                availableTypes: ["icon", "image"],
                               },
                               value: {
                                 type: "icon",
@@ -1484,7 +1497,7 @@ class Navbar10 extends BaseNavigator {
                       type: "string",
                       key: "title",
                       displayer: "Title",
-                      value: "CONNECT",
+                      value: "Connect",
                     },
                     {
                       type: "page",
@@ -1525,7 +1538,7 @@ class Navbar10 extends BaseNavigator {
                               key: "icon",
                               displayer: "Icon",
                               additionalParams: {
-                                availableTypes: ["icon"],
+                                availableTypes: ["icon", "image"],
                               },
                               value: {
                                 type: "icon",
@@ -1562,7 +1575,7 @@ class Navbar10 extends BaseNavigator {
                               key: "icon",
                               displayer: "Icon",
                               additionalParams: {
-                                availableTypes: ["icon"],
+                                availableTypes: ["icon", "image"],
                               },
                               value: {
                                 type: "icon",
@@ -1584,7 +1597,7 @@ class Navbar10 extends BaseNavigator {
                       type: "string",
                       key: "title",
                       displayer: "Title",
-                      value: "LEARN",
+                      value: "Learn",
                     },
                     {
                       type: "page",
@@ -1625,7 +1638,7 @@ class Navbar10 extends BaseNavigator {
                               key: "icon",
                               displayer: "Icon",
                               additionalParams: {
-                                availableTypes: ["icon"],
+                                availableTypes: ["icon", "image"],
                               },
                               value: {
                                 type: "icon",
@@ -1662,7 +1675,7 @@ class Navbar10 extends BaseNavigator {
                               key: "icon",
                               displayer: "Icon",
                               additionalParams: {
-                                availableTypes: ["icon"],
+                                availableTypes: ["icon", "image"],
                               },
                               value: {
                                 type: "icon",
@@ -1699,7 +1712,7 @@ class Navbar10 extends BaseNavigator {
                               key: "icon",
                               displayer: "Icon",
                               additionalParams: {
-                                availableTypes: ["icon"],
+                                availableTypes: ["icon", "image"],
                               },
                               value: {
                                 type: "icon",
@@ -1736,7 +1749,7 @@ class Navbar10 extends BaseNavigator {
                               key: "icon",
                               displayer: "Icon",
                               additionalParams: {
-                                availableTypes: ["icon"],
+                                availableTypes: ["icon", "image"],
                               },
                               value: {
                                 type: "icon",
@@ -1783,7 +1796,7 @@ class Navbar10 extends BaseNavigator {
                       type: "string",
                       key: "title",
                       displayer: "Title",
-                      value: "GET HELP",
+                      value: "Get help",
                     },
                     {
                       type: "page",
@@ -1818,7 +1831,7 @@ class Navbar10 extends BaseNavigator {
                               key: "icon",
                               displayer: "Icon",
                               additionalParams: {
-                                availableTypes: ["icon"],
+                                availableTypes: ["icon", "image"],
                               },
                               value: {
                                 type: "icon",
@@ -1849,7 +1862,7 @@ class Navbar10 extends BaseNavigator {
                               key: "icon",
                               displayer: "Icon",
                               additionalParams: {
-                                availableTypes: ["icon"],
+                                availableTypes: ["icon", "image"],
                               },
                               value: {
                                 type: "icon",
@@ -1957,7 +1970,7 @@ class Navbar10 extends BaseNavigator {
                               key: "icon",
                               displayer: "Icon",
                               additionalParams: {
-                                availableTypes: ["icon"],
+                                availableTypes: ["icon", "image"],
                               },
                               value: {
                                 type: "icon",
@@ -2021,7 +2034,7 @@ class Navbar10 extends BaseNavigator {
                               key: "icon",
                               displayer: "Icon",
                               additionalParams: {
-                                availableTypes: ["icon"],
+                                availableTypes: ["icon", "image"],
                               },
                               value: {
                                 type: "icon",
@@ -2129,7 +2142,7 @@ class Navbar10 extends BaseNavigator {
                               key: "icon",
                               displayer: "Icon",
                               additionalParams: {
-                                availableTypes: ["icon"],
+                                availableTypes: ["icon", "image"],
                               },
                               value: {
                                 type: "icon",
@@ -2211,7 +2224,7 @@ class Navbar10 extends BaseNavigator {
                               key: "icon",
                               displayer: "Icon",
                               additionalParams: {
-                                availableTypes: ["icon"],
+                                availableTypes: ["icon", "image"],
                               },
                               value: {
                                 type: "icon",
@@ -2509,16 +2522,25 @@ class Navbar10 extends BaseNavigator {
             }`}
           >
             <div className={this.decorateCSS("leftSection")}>
-              {currentLogo && (
+              {(currentLogo?.image || this.castToString(currentLogo?.text)) && (
                 <div
                   className={this.decorateCSS("logo")}
                   onClick={() => this.handleCloseMenu()}
                 >
                   <ComposerLink path={currentLogo.urlTo}>
-                    <Base.Media
-                      value={currentLogo.image}
-                      className={this.decorateCSS("logoImage")}
-                    />
+                    <div className={this.decorateCSS("logoContent")}>
+                      {currentLogo.image && (
+                        <Base.Media
+                          value={currentLogo.image}
+                          className={this.decorateCSS("logoImage")}
+                        />
+                      )}
+                      {this.castToString(currentLogo.text) && (
+                        <Base.H4 className={this.decorateCSS("logoText")}>
+                          {currentLogo.text}
+                        </Base.H4>
+                      )}
+                    </div>
                   </ComposerLink>
                 </div>
               )}
@@ -2808,6 +2830,7 @@ class Navbar10 extends BaseNavigator {
               {isMobile &&
                 (hamburgerNavActive ? (
                   <div
+                    className={this.decorateCSS("closeIconWrapper")}
                     onClick={(e: any) => {
                       e.preventDefault();
                       e.stopPropagation();
@@ -2821,6 +2844,7 @@ class Navbar10 extends BaseNavigator {
                   </div>
                 ) : (
                   <div
+                    className={this.decorateCSS("hamburgerIconWrapper")}
                     onClick={(e: any) => {
                       e.preventDefault();
                       e.stopPropagation();
@@ -3056,11 +3080,12 @@ class Navbar10 extends BaseNavigator {
           )}
         </Base.Navigator.Container>
 
-        <Base.Overlay
-          className={this.decorateCSS("overlay")}
-          isVisible={isOverlayVisible}
-          onClick={() => this.handleCloseMenu()}
-        />
+        {isOverlayVisible && (
+          <div
+            className={this.decorateCSS("overlay")}
+            onClick={() => this.handleCloseMenu()}
+          />
+        )}
       </div>
     );
   }

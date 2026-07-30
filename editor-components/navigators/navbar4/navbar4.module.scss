@@ -26,10 +26,11 @@
       gap: var(--composer-gap-sm);
 
       .informationImageContainer {
-        width: 65px;
-        height: 65px;
+        width: 100px;
+        height: 100px;
         border-radius: var(--composer-border-radius-xs);
         overflow: hidden;
+        flex-shrink: 0;
 
         .informationImage {
           width: 100%;
@@ -101,6 +102,11 @@
   justify-content: center;
   padding-top: var(--composer-gap-sm);
   padding-bottom: var(--composer-gap-sm);
+  background-color: color-mix(
+    in srgb,
+    var(--composer-html-background),
+    var(--composer-font-color-primary) 5%
+  );
 
   transition: all 0.2s linear;
 }
@@ -496,7 +502,11 @@
 }
 
 .overlay {
-  display:none;
+  position: fixed;
+  inset: 0;
+  background-color: var(--composer-overlay-color);
+  z-index: 98;
+  cursor: pointer;
 }
 
 .smallDevicelogo {
@@ -709,4 +719,28 @@
       display: block;
     }
   }
+}
+.logo {
+  .logoContent {
+    display: flex;
+    align-items: center;
+    gap: var(--composer-gap-xs);
+  }
+
+  .logoText {
+    margin: 0;
+    color: var(--composer-font-color-primary);
+    white-space: nowrap;
+  }
+
+  .image {
+    border-radius: var(--composer-border-radius-md);
+  }
+}
+
+.hamburgerIconWrapper,
+.closeIconWrapper {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
 }

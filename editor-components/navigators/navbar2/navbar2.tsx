@@ -15,6 +15,7 @@ type Item = {
 
 interface Logo {
   image: TypeMediaInputValue;
+  text: React.JSX.Element;
   navigateTo: string;
 }
 
@@ -45,7 +46,7 @@ class Navbar2 extends BaseNavigator {
               type: "string",
               key: "nav_title",
               displayer: "Title",
-              value: "HOME",
+              value: "Home",
             },
             {
               type: "page",
@@ -74,7 +75,7 @@ class Navbar2 extends BaseNavigator {
                       type: "string",
                       key: "nav_title",
                       displayer: "Title",
-                      value: "FASHION HOME",
+                      value: "Fashion home",
                     },
                     {
                       type: "page",
@@ -123,7 +124,7 @@ class Navbar2 extends BaseNavigator {
               type: "string",
               key: "nav_title",
               displayer: "Title",
-              value: "FEATURES",
+              value: "Features",
             },
             {
               type: "page",
@@ -201,7 +202,7 @@ class Navbar2 extends BaseNavigator {
               type: "string",
               key: "nav_title",
               displayer: "Title",
-              value: "POST BLOCKS",
+              value: "Post blocks",
             },
             {
               type: "page",
@@ -279,7 +280,7 @@ class Navbar2 extends BaseNavigator {
               type: "string",
               key: "nav_title",
               displayer: "Title",
-              value: "NEWS",
+              value: "News",
             },
             {
               type: "page",
@@ -357,7 +358,7 @@ class Navbar2 extends BaseNavigator {
               type: "string",
               key: "nav_title",
               displayer: "Title",
-              value: "CONTACTS",
+              value: "Contacts",
             },
             {
               type: "page",
@@ -430,6 +431,16 @@ class Navbar2 extends BaseNavigator {
     });
 
     this.addProp({
+      type: "array",
+      key: "buttons",
+      displayer: "Buttons",
+      value: [
+        INPUTS.BUTTON("button", "Button", "Login", "", null, null, "Link"),
+        INPUTS.BUTTON("button", "Button", "Sign up", "", null, null, "Primary"),
+      ],
+    });
+
+    this.addProp({
       type: "object",
       key: "defaultLogo",
       displayer: "Default Logo",
@@ -439,12 +450,18 @@ class Navbar2 extends BaseNavigator {
           key: "image",
           displayer: "Image",
           additionalParams: {
-            availableTypes: ["image"],
+            availableTypes: ["image", "icon"],
           },
           value: {
             type: "image",
             url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67769b510655f8002cafc965?alt=media&timestamp=1735826277716",
           },
+        },
+        {
+          type: "string",
+          key: "text",
+          displayer: "Text",
+          value: "",
         },
         {
           type: "page",
@@ -465,12 +482,18 @@ class Navbar2 extends BaseNavigator {
           key: "image",
           displayer: "Image",
           additionalParams: {
-            availableTypes: ["image"],
+            availableTypes: ["image", "icon"],
           },
           value: {
             type: "image",
             url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67769b510655f8002cafc964?alt=media&timestamp=1735826277716",
           },
+        },
+        {
+          type: "string",
+          key: "text",
+          displayer: "Text",
+          value: "",
         },
         {
           type: "page",
@@ -654,6 +677,7 @@ class Navbar2 extends BaseNavigator {
       transparentBackground ? absoluteLogo : defaultLogo;
     const menuItems = this.castToObject<Item[]>("nav");
     const divider = this.getPropValue("divider");
+    const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
     const language = this.castToObject<Language>("language");
     const isBigScreen = this.getComponentState("isBigScreen");
     const isVisible = isMobileMenuOpen && !isBigScreen;
@@ -682,13 +706,22 @@ class Navbar2 extends BaseNavigator {
               : ""
           }`}
         >
-          {currentLogo && (
+          {(currentLogo?.image || this.castToString(currentLogo?.text)) && (
             <ComposerLink path={currentLogo.navigateTo}>
               <div className={this.decorateCSS("logo")} onClick={()=> this.toggleMobileMenu()}>
-                <Base.Media
-                  value={currentLogo.image}
-                  className={this.decorateCSS("image")}
-                />
+                <div className={this.decorateCSS("logoContent")}>
+                  {currentLogo.image && (
+                    <Base.Media
+                      value={currentLogo.image}
+                      className={this.decorateCSS("image")}
+                    />
+                  )}
+                  {this.castToString(currentLogo.text) && (
+                    <Base.H4 className={this.decorateCSS("logoText")}>
+                      {currentLogo.text}
+                    </Base.H4>
+                  )}
+                </div>
               </div>
             </ComposerLink>
           )}
@@ -803,6 +836,39 @@ class Navbar2 extends BaseNavigator {
               )}
             </nav>
           )}
+          {buttons.length > 0 && (
+            <div className={this.decorateCSS("rightSide")}>
+              <div className={this.decorateCSS("buttons")}>
+                {buttons.map((button: INPUTS.CastedButton, index: number) => {
+                  const buttonText = this.castToString(button.text);
+                  const iconExist = (button.icon as any)?.name;
+
+                  if (!buttonText && !iconExist) return null;
+
+                  return (
+                    <ComposerLink key={index} path={button.url}>
+                      <Base.Button
+                        buttonType={button.type}
+                        className={this.decorateCSS("button")}
+                      >
+                        {buttonText && (
+                          <Base.P className={this.decorateCSS("button-text")}>
+                            {button.text}
+                          </Base.P>
+                        )}
+                        {iconExist && (
+                          <Base.Media
+                            value={button.icon as any}
+                            className={this.decorateCSS("button-icon")}
+                          />
+                        )}
+                      </Base.Button>
+                    </ComposerLink>
+                  );
+                })}
+              </div>
+            </div>
+          )}
           <div className={this.decorateCSS("mobileRight")}>
             {language.showLanguage && language.showLocalizationAlways && (
               <Base.Language
@@ -823,7 +889,10 @@ class Navbar2 extends BaseNavigator {
                 divider={language.showDivider}
               />
             )}
-            <div onClick={this.toggleMobileMenu}>
+            <div
+              className={this.decorateCSS("menuIconWrapper")}
+              onClick={this.toggleMobileMenu}
+            >
               <Base.Media
                 value={navigationIcons?.hamburgerIcon}
                 className={this.decorateCSS("menuIcon")}
@@ -833,7 +902,10 @@ class Navbar2 extends BaseNavigator {
 
             <div className={`${this.decorateCSS("mobileMenu")} ${isMobileMenuOpen ? this.decorateCSS("open") : ""}
             ${this.getComponentState("navbarOverflowShow") ? this.decorateCSS("overflowShow") : ""}`}>
-              <div onClick={this.toggleMobileMenu}>
+              <div
+                className={this.decorateCSS("closeIconWrapper")}
+                onClick={this.toggleMobileMenu}
+              >
                 <Base.Media
                   value={navigationIcons?.closeIcon}
                   className={this.decorateCSS("closeIcon")}
@@ -996,11 +1068,12 @@ class Navbar2 extends BaseNavigator {
         </Base.MaxContent>
 
       </Base.Navigator.Container>
-      <Base.Overlay
+      {isVisible && (
+        <div
           className={this.decorateCSS("overlay")}
           onClick={() => this.toggleMobileMenu()}
-          isVisible= {isVisible}
         />
+      )}
       </div>
     );
   }

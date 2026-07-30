@@ -87,6 +87,18 @@
     align-items: center;
 
     .logo {
+      .logoContent {
+        display: flex;
+        align-items: center;
+        gap: var(--composer-gap-xs);
+      }
+
+      .logoText {
+        margin: 0;
+        color: var(--composer-font-color-primary);
+        white-space: nowrap;
+      }
+
       .logoImage {
         max-height: 50px;
         width: auto;
@@ -151,11 +163,24 @@
     margin: 0;
   }
 
-  .logo {  
+  .logo {
+    .logoContent {
+      display: flex;
+      align-items: center;
+      gap: var(--composer-gap-xs);
+    }
+
+    .logoText {
+      margin: 0;
+      color: var(--composer-font-color-primary);
+      white-space: nowrap;
+    }
+
     .logoImage {
       width: 100%;
       max-height: 60px;
       object-fit: contain;
+      border-radius: var(--composer-border-radius-md);
     }
   }
 
@@ -409,7 +434,11 @@
 }
 
 .overlay {
-  content: "";
+  position: fixed;
+  inset: 0;
+  background-color: var(--composer-overlay-color);
+  z-index: 98;
+  cursor: pointer;
 }
 
 .hamburgerNav {
@@ -584,4 +613,11 @@
     }
   }
 
+}
+
+.hamburgerIconWrapper,
+.closeIconWrapper {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
 }

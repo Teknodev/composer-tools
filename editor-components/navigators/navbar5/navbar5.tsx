@@ -5,8 +5,16 @@ import ComposerLink from "../../../composer-base-components/Link/ComposerLinkPro
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "../../../custom-hooks/input-templates";
 
+interface MenuItems {
+  itemTitle: React.JSX.Element;
+  itemLink: string;
+  menuType: string;
+  sub_items: MenuItems[];
+}
+
 interface Logo {
   image: TypeMediaInputValue;
+  text: React.JSX.Element;
   navigateTo: string;
 }
 
@@ -141,12 +149,18 @@ class Navbar5 extends BaseNavigator {
           key: "image",
           displayer: "Image",
           additionalParams: {
-            availableTypes: ["image"],
+            availableTypes: ["image", "icon"],
           },
           value: {
             type: "image",
             url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67769b510655f8002cafc965?alt=media&timestamp=1735826277716",
           },
+        },
+        {
+          type: "string",
+          key: "text",
+          displayer: "Text",
+          value: "",
         },
         {
           type: "page",
@@ -167,12 +181,18 @@ class Navbar5 extends BaseNavigator {
           key: "image",
           displayer: "Image",
           additionalParams: {
-            availableTypes: ["image"],
+            availableTypes: ["image", "icon"],
           },
           value: {
             type: "image",
             url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67769b510655f8002cafc964?alt=media&timestamp=1735826277716",
           },
+        },
+        {
+          type: "string",
+          key: "text",
+          displayer: "Text",
+          value: "",
         },
         {
           type: "page",
@@ -254,7 +274,15 @@ class Navbar5 extends BaseNavigator {
       type: "string",
       key: "title",
       displayer: "Title",
-      value: "UK BASED BRANDING AGENCY.",
+      value: "Uk based branding agency.",
+    });
+
+    this.addProp({
+      type: "select",
+      key: "menuAlignment",
+      displayer: "Menu Alignment",
+      value: "Center",
+      additionalParams: { selectItems: ["Left", "Center"] },
     });
 
     this.addProp({
@@ -271,13 +299,26 @@ class Navbar5 extends BaseNavigator {
               type: "string",
               key: "itemTitle",
               displayer: "Title",
-              value: "HOME",
+              value: "Home",
             },
             {
               type: "page",
               key: "itemLink",
               displayer: "Navigate To",
               value: "",
+            },
+            {
+              type: "select",
+              key: "menuType",
+              displayer: "Type",
+              value: "Normal",
+              additionalParams: { selectItems: ["Dropdown", "Normal"] },
+            },
+            {
+              type: "array",
+              key: "sub_items",
+              displayer: "Sub Items",
+              value: [],
             },
           ],
         },
@@ -290,13 +331,26 @@ class Navbar5 extends BaseNavigator {
               type: "string",
               key: "itemTitle",
               displayer: "Title",
-              value: "ABOUT",
+              value: "About",
             },
             {
               type: "page",
               key: "itemLink",
               displayer: "Navigate To",
               value: "",
+            },
+            {
+              type: "select",
+              key: "menuType",
+              displayer: "Type",
+              value: "Normal",
+              additionalParams: { selectItems: ["Dropdown", "Normal"] },
+            },
+            {
+              type: "array",
+              key: "sub_items",
+              displayer: "Sub Items",
+              value: [],
             },
           ],
         },
@@ -309,13 +363,141 @@ class Navbar5 extends BaseNavigator {
               type: "string",
               key: "itemTitle",
               displayer: "Title",
-              value: "SERVICES",
+              value: "Services",
             },
             {
               type: "page",
               key: "itemLink",
               displayer: "Navigate To",
               value: "",
+            },
+            {
+              type: "select",
+              key: "menuType",
+              displayer: "Type",
+              value: "Dropdown",
+              additionalParams: { selectItems: ["Dropdown", "Normal"] },
+            },
+            {
+              type: "array",
+              key: "sub_items",
+              displayer: "Sub Items",
+              value: [
+                {
+                  type: "object",
+                  key: "sub_item",
+                  displayer: "Sub Item",
+                  value: [
+                    {
+                      type: "string",
+                      key: "itemTitle",
+                      displayer: "Title",
+                      value: "Branding",
+                    },
+                    {
+                      type: "page",
+                      key: "itemLink",
+                      displayer: "Navigate To",
+                      value: "",
+                    },
+                    {
+                      type: "array",
+                      key: "sub_items",
+                      displayer: "Sub Items",
+                      value: [
+                        {
+                          type: "object",
+                          key: "sub_item",
+                          displayer: "Sub Item",
+                          value: [
+                            {
+                              type: "string",
+                              key: "itemTitle",
+                              displayer: "Title",
+                              value: "Identity design",
+                            },
+                            {
+                              type: "page",
+                              key: "itemLink",
+                              displayer: "Navigate To",
+                              value: "",
+                            },
+                          ],
+                        },
+                        {
+                          type: "object",
+                          key: "sub_item",
+                          displayer: "Sub Item",
+                          value: [
+                            {
+                              type: "string",
+                              key: "itemTitle",
+                              displayer: "Title",
+                              value: "Art direction",
+                            },
+                            {
+                              type: "page",
+                              key: "itemLink",
+                              displayer: "Navigate To",
+                              value: "",
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "sub_item",
+                  displayer: "Sub Item",
+                  value: [
+                    {
+                      type: "string",
+                      key: "itemTitle",
+                      displayer: "Title",
+                      value: "Strategy",
+                    },
+                    {
+                      type: "page",
+                      key: "itemLink",
+                      displayer: "Navigate To",
+                      value: "",
+                    },
+                    {
+                      type: "array",
+                      key: "sub_items",
+                      displayer: "Sub Items",
+                      value: [],
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "sub_item",
+                  displayer: "Sub Item",
+                  value: [
+                    {
+                      type: "string",
+                      key: "itemTitle",
+                      displayer: "Title",
+                      value: "Digital",
+                    },
+                    {
+                      type: "page",
+                      key: "itemLink",
+                      displayer: "Navigate To",
+                      value: "",
+                    },
+                    {
+                      type: "array",
+                      key: "sub_items",
+                      displayer: "Sub Items",
+                      value: [],
+                    },
+                  ],
+                },
+              ],
             },
           ],
         },
@@ -328,13 +510,26 @@ class Navbar5 extends BaseNavigator {
               type: "string",
               key: "itemTitle",
               displayer: "Title",
-              value: "PROJECTS",
+              value: "Projects",
             },
             {
               type: "page",
               key: "itemLink",
               displayer: "Navigate To",
               value: "",
+            },
+            {
+              type: "select",
+              key: "menuType",
+              displayer: "Type",
+              value: "Normal",
+              additionalParams: { selectItems: ["Dropdown", "Normal"] },
+            },
+            {
+              type: "array",
+              key: "sub_items",
+              displayer: "Sub Items",
+              value: [],
             },
           ],
         },
@@ -347,17 +542,56 @@ class Navbar5 extends BaseNavigator {
               type: "string",
               key: "itemTitle",
               displayer: "Title",
-              value: "CONTACT",
+              value: "Contact",
             },
             {
               type: "page",
               key: "itemLink",
               displayer: "Navigate To",
               value: "",
+            },
+            {
+              type: "select",
+              key: "menuType",
+              displayer: "Type",
+              value: "Normal",
+              additionalParams: { selectItems: ["Dropdown", "Normal"] },
+            },
+            {
+              type: "array",
+              key: "sub_items",
+              displayer: "Sub Items",
+              value: [],
             },
           ],
         },
       ],
+    });
+
+    this.addProp({
+      type: "media",
+      key: "dropdownIcon",
+      displayer: "Dropdown Icon",
+      additionalParams: {
+        availableTypes: ["icon", "image"],
+      },
+      value: {
+        type: "icon",
+        name: "MdArrowDropDown",
+      },
+    });
+
+    this.addProp({
+      type: "media",
+      key: "rightIcon",
+      displayer: "Sub Item Arrow Icon",
+      additionalParams: {
+        availableTypes: ["icon", "image"],
+      },
+      value: {
+        type: "icon",
+        name: "MdKeyboardArrowRight",
+      },
     });
 
     this.addProp({
@@ -402,6 +636,8 @@ class Navbar5 extends BaseNavigator {
     this.setComponentState("isBigScreen", false);
     this.setComponentState("navActive", false);
     this.setComponentState("navbarOverflowShow", false);
+    this.setComponentState("subNavActiveIndex", null);
+    this.setComponentState("subNavActive", null);
     this.setComponentState(
       "dropdownMenuItemAnimationClass",
       "animate__fadeInUp"
@@ -456,6 +692,27 @@ class Navbar5 extends BaseNavigator {
       "animate__slideOutRight"
     );
     this.setComponentState("navActive", false);
+    this.setComponentState("subNavActiveIndex", null);
+    this.setComponentState("subNavActive", null);
+  }
+
+  navClick(index: number) {
+    const isActive = this.getComponentState("subNavActiveIndex") === index;
+    this.setComponentState("subNavActiveIndex", isActive ? null : index);
+    this.setComponentState("subNavActive", null);
+  }
+
+  subNavClick(index: string) {
+    const currentValue = this.getComponentState("subNavActive");
+    if (currentValue === index) {
+      this.setComponentState("subNavActive", null);
+    } else {
+      this.setComponentState("subNavActive", index);
+    }
+  }
+
+  onComponentWillUnmount(): void {
+    this.closeNav();
   }
 
   render() {
@@ -475,7 +732,11 @@ class Navbar5 extends BaseNavigator {
       transparentBackground && !navActive ? absoluteLogo : defaultLogo;
 
     const social = this.castToObject<any[]>("social");
-    const listItems = this.castToObject<any[]>("listItems");
+    const listItems = this.castToObject<MenuItems[]>("listItems");
+
+    const menuAlignment = this.getPropValue("menuAlignment");
+    const dropdownIcon = this.getPropValue("dropdownIcon");
+    const rightIcon = this.getPropValue("rightIcon");
 
     const titleExist = this.castToString(this.getPropValue("title"));
 
@@ -539,14 +800,22 @@ class Navbar5 extends BaseNavigator {
             </div>
           )}
 
-          {currentLogo.image && (
+          {(currentLogo.image || this.castToString(currentLogo.text)) && (
             <div className={this.decorateCSS("logo")}>
               <ComposerLink path={currentLogo.navigateTo}>
-                <Base.Media
-                  value={currentLogo.image}
-                  className={this.decorateCSS("logoImage")}
-                  onClick={()=> this.closeNav()}
-                />
+                <div className={this.decorateCSS("logoContent")} onClick={()=> this.closeNav()}>
+                  {currentLogo.image && (
+                    <Base.Media
+                      value={currentLogo.image}
+                      className={this.decorateCSS("logoImage")}
+                    />
+                  )}
+                  {this.castToString(currentLogo.text) && (
+                    <Base.H4 className={this.decorateCSS("logoText")}>
+                      {currentLogo.text}
+                    </Base.H4>
+                  )}
+                </div>
               </ComposerLink>
             </div>
           )}
@@ -567,14 +836,20 @@ class Navbar5 extends BaseNavigator {
                 />
               )}
               {navActive ? (
-                <div onClick={() => this.closeNav()}>
+                <div
+                  className={this.decorateCSS("crossIconWrapper")}
+                  onClick={() => this.closeNav()}
+                >
                   <Base.Media
                     value={this.getPropValue("cross-icon")}
                     className={`${this.decorateCSS("hamburgerIcon")} ${navActive && this.decorateCSS("activeHamburgerIcon")} `}
                   />
                 </div>
               ) : (
-                <div onClick={() => this.openNav()}>
+                <div
+                  className={this.decorateCSS("hamburgerIconWrapper")}
+                  onClick={() => this.openNav()}
+                >
                   <Base.Media
                     value={this.getPropValue("hamburger-icon")}
                     className={`${this.decorateCSS("hamburgerIcon")} ${navActive && this.decorateCSS("activeHamburgerIcon")} `}
@@ -587,7 +862,7 @@ class Navbar5 extends BaseNavigator {
 
         <div className={`${this.decorateCSS("dropdownMenu")} ${navActive ? this.decorateCSS("active") : ""} ${this.getComponentState("navbarOverflowShow") ? this.decorateCSS("overflowShow") : ""}`}>
           {upExist && (
-            <div className={this.decorateCSS("up")}>
+            <div className={`${this.decorateCSS("up")} ${menuAlignment === "Center" ? this.decorateCSS("alignCenter") : ""}`}>
               {titleExist && (
                 <div className={this.decorateCSS("leftPage")}>
                   <Base.H1 className={`${this.decorateCSS("title")} animate__animated ${this.getComponentState("dropdownMenuItemAnimationClass")}`}>{this.getPropValue("title")}</Base.H1>
@@ -596,18 +871,118 @@ class Navbar5 extends BaseNavigator {
               {listItems.length > 0 && (
                 <div className={this.decorateCSS("rightPage")}>
                   <div className={`${this.decorateCSS("items")} animate__animated ${this.getComponentState("dropdownMenuItemAnimationClass")}`}>
-                    {listItems.map((item: any, indexSocial: number) => {
+                    {listItems.map((item: MenuItems, index: number) => {
                       const itemTitleExist = this.castToString(item.itemTitle);
+                      if (!itemTitleExist) return null;
+
+                      const subItems = item.sub_items || [];
+                      const hasSubItems =
+                        item.menuType === "Dropdown" &&
+                        subItems.some((subItem: MenuItems) =>
+                          this.castToString(subItem.itemTitle)
+                        );
+
                       return (
-                        itemTitleExist && (
-                          <ComposerLink key={indexSocial} path={item.itemLink}>                         
-                            <Base.H3 className={`${this.decorateCSS("item-title")} ${animations}`}
-                            onClick={()=> this.closeNav()}
+                        <div key={index} className={this.decorateCSS("menuItem")}>
+                          <div
+                            className={this.decorateCSS("menuItemHeader")}
+                            onClick={() => hasSubItems && this.navClick(index)}
+                          >
+                            <ComposerLink path={item.itemLink}>
+                              <Base.H3
+                                className={`${this.decorateCSS("item-title")} ${animations}`}
+                                onClick={() => !hasSubItems && this.closeNav()}
+                              >
+                                {item.itemTitle}
+                              </Base.H3>
+                            </ComposerLink>
+                            {hasSubItems && (
+                              <Base.Media
+                                value={dropdownIcon}
+                                className={`${this.decorateCSS("dropdownIcon")} ${this.getComponentState("subNavActiveIndex") === index
+                                    ? this.decorateCSS("active")
+                                    : ""
+                                  }`}
+                              />
+                            )}
+                          </div>
+                          {hasSubItems && (
+                            <div
+                              className={`${this.decorateCSS("submenu")} ${this.getComponentState("subNavActiveIndex") === index
+                                  ? this.decorateCSS("active")
+                                  : ""
+                                }`}
                             >
-                              {item.itemTitle}
-                            </Base.H3>
-                          </ComposerLink>
-                        )
+                              {subItems.map((subItem: MenuItems, subIndex: number) => {
+                                const subTitleExist = this.castToString(subItem.itemTitle);
+                                if (!subTitleExist) return null;
+
+                                const subSubItems = subItem.sub_items || [];
+                                const hasSubSubItems = subSubItems.some(
+                                  (subSubItem: MenuItems) =>
+                                    this.castToString(subSubItem.itemTitle)
+                                );
+
+                                return (
+                                  <div key={subIndex} className={this.decorateCSS("submenuItem")}>
+                                    <div
+                                      className={this.decorateCSS("submenuItemHeader")}
+                                      onClick={() =>
+                                        hasSubSubItems &&
+                                        this.subNavClick(`${index}-${subIndex}`)
+                                      }
+                                    >
+                                      <ComposerLink path={subItem.itemLink}>
+                                        <Base.H5
+                                          className={`${this.decorateCSS("submenuItemTitle")} ${animations}`}
+                                          onClick={() => !hasSubSubItems && this.closeNav()}
+                                        >
+                                          {subItem.itemTitle}
+                                        </Base.H5>
+                                      </ComposerLink>
+                                      {hasSubSubItems && (
+                                        <Base.Media
+                                          value={rightIcon}
+                                          className={`${this.decorateCSS("rightIcon")} ${this.getComponentState("subNavActive") === `${index}-${subIndex}`
+                                              ? this.decorateCSS("active")
+                                              : ""
+                                            }`}
+                                        />
+                                      )}
+                                    </div>
+                                    {hasSubSubItems && (
+                                      <div
+                                        className={`${this.decorateCSS("subSubmenu")} ${this.getComponentState("subNavActive") === `${index}-${subIndex}`
+                                            ? this.decorateCSS("active")
+                                            : ""
+                                          }`}
+                                      >
+                                        {subSubItems.map(
+                                          (subSubItem: MenuItems, subSubIndex: number) =>
+                                            this.castToString(subSubItem.itemTitle) && (
+                                              <div
+                                                key={subSubIndex}
+                                                className={this.decorateCSS("subSubmenuItem")}
+                                              >
+                                                <ComposerLink path={subSubItem.itemLink}>
+                                                  <Base.P
+                                                    className={`${this.decorateCSS("subSubmenuItemTitle")} ${animations}`}
+                                                    onClick={() => this.closeNav()}
+                                                  >
+                                                    {subSubItem.itemTitle}
+                                                  </Base.P>
+                                                </ComposerLink>
+                                              </div>
+                                            )
+                                        )}
+                                      </div>
+                                    )}
+                                  </div>
+                                );
+                              })}
+                            </div>
+                          )}
+                        </div>
                       );
                     })}
                   </div>
@@ -627,10 +1002,12 @@ class Navbar5 extends BaseNavigator {
           )}
         </div>
       </Base.Navigator.Container>
-      <Base.Overlay className={this.decorateCSS("overlay")} 
-        onClick={() => this.closeNav()} 
-        isVisible={isVisible}
-      />
+      {isVisible && (
+        <div
+          className={this.decorateCSS("overlay")}
+          onClick={() => this.closeNav()}
+        />
+      )}
       </div>
     );
   }

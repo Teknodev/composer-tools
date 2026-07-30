@@ -34,6 +34,18 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      .logoContent {
+        display: flex;
+        align-items: center;
+        gap: var(--composer-gap-xs);
+      }
+
+      .logoText {
+        margin: 0;
+        color: var(--composer-font-color-primary);
+        white-space: nowrap;
+      }
+
       .logoImage {
         width: auto;
         height: 100%;
@@ -472,13 +484,11 @@
 }
 
 .overlay {
-  display: none;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  width: 100%;
-  height: 100vh;
-  background: var(--composer-overlay-color);
+  position: fixed;
+  inset: 0;
+  background-color: var(--composer-overlay-color);
+  z-index: 98;
+  cursor: pointer;
 }
 
 .transparentBackground {
@@ -587,4 +597,11 @@
       padding: 0 var(--composer-gap-md);
     }
   }
+}
+
+.hamburgerIconWrapper,
+.closeIconWrapper {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
 }

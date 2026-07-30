@@ -166,7 +166,7 @@
               display: flex;
               justify-content: space-between;
               color: var(--composer-tertiary-color);
-              text-transform: capitalize;
+              text-transform: uppercase;
               margin-bottom: var(--composer-gap-sm);
               margin-top: var(--composer-gap-sm);
               transition: all 0.4s ease;
@@ -631,6 +631,8 @@
       justify-content: flex-end;
       margin: var(--composer-gap-sm) 0;
       .button{
+        margin-top: 0;
+
         .buttonText {
           content: "";
         }
@@ -708,7 +710,11 @@
 }
 
 .overlay {
-  content: "";
+  position: fixed;
+  inset: 0;
+  background-color: var(--composer-overlay-color);
+  z-index: 98;
+  cursor: pointer;
 }
 
 .filledBackground {
@@ -962,4 +968,29 @@
       }
     }
   }
+}
+
+.logo {
+  .logoContent {
+    display: flex;
+    align-items: center;
+    gap: var(--composer-gap-xs);
+  }
+
+  .logoText {
+    margin: 0;
+    color: var(--composer-font-color-primary);
+    white-space: nowrap;
+  }
+
+  .logoImage {
+    border-radius: var(--composer-border-radius-md);
+  }
+}
+
+.hamburgerIconWrapper,
+.closeIconWrapper {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
 }

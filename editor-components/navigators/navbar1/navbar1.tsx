@@ -14,6 +14,7 @@ interface MenuItems {
 
 interface Logo {
   image: TypeMediaInputValue;
+  text: React.JSX.Element;
   navigateTo: string;
 }
 
@@ -42,12 +43,18 @@ class Navbar1 extends BaseNavigator {
           key: "image",
           displayer: "Image",
           additionalParams: {
-            availableTypes: ["image"],
+            availableTypes: ["image", "icon"],
           },
           value: {
             type: "image",
             url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67769b510655f8002cafc965?alt=media&timestamp=1735826277716",
           },
+        },
+        {
+          type: "string",
+          key: "text",
+          displayer: "Text",
+          value: "",
         },
         {
           type: "page",
@@ -68,12 +75,18 @@ class Navbar1 extends BaseNavigator {
           key: "image",
           displayer: "Image",
           additionalParams: {
-            availableTypes: ["image"],
+            availableTypes: ["image", "icon"],
           },
           value: {
             type: "image",
             url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67769b510655f8002cafc964?alt=media&timestamp=1735826277716",
           },
+        },
+        {
+          type: "string",
+          key: "text",
+          displayer: "Text",
+          value: "",
         },
         {
           type: "page",
@@ -98,7 +111,7 @@ class Navbar1 extends BaseNavigator {
               type: "string",
               key: "title",
               displayer: "Title",
-              value: "HOME",
+              value: "Home",
             },
             {
               type: "page",
@@ -127,7 +140,7 @@ class Navbar1 extends BaseNavigator {
                       type: "string",
                       key: "title",
                       displayer: "Title",
-                      value: "FASHION HOME",
+                      value: "Fashion home",
                     },
                     {
                       type: "page",
@@ -172,7 +185,7 @@ class Navbar1 extends BaseNavigator {
                       type: "string",
                       key: "title",
                       displayer: "Title",
-                      value: "WINERY HOME",
+                      value: "Winery home",
                     },
                     {
                       type: "page",
@@ -217,7 +230,7 @@ class Navbar1 extends BaseNavigator {
                       type: "string",
                       key: "title",
                       displayer: "Title",
-                      value: "NEW ARRIVALS",
+                      value: "New arrivals",
                     },
                     {
                       type: "page",
@@ -262,7 +275,7 @@ class Navbar1 extends BaseNavigator {
                       type: "string",
                       key: "title",
                       displayer: "Title",
-                      value: "MEN & WOMEN",
+                      value: "Men & women",
                     },
                     {
                       type: "page",
@@ -307,7 +320,7 @@ class Navbar1 extends BaseNavigator {
                       type: "string",
                       key: "title",
                       displayer: "Title",
-                      value: "TREND COLLECTION",
+                      value: "Trend collection",
                     },
                     {
                       type: "page",
@@ -352,7 +365,7 @@ class Navbar1 extends BaseNavigator {
                       type: "string",
                       key: "title",
                       displayer: "Title",
-                      value: "CREATIVE",
+                      value: "Creative",
                     },
                     {
                       type: "page",
@@ -401,7 +414,7 @@ class Navbar1 extends BaseNavigator {
               type: "string",
               key: "title",
               displayer: "Title",
-              value: "FEATURES",
+              value: "Features",
             },
             {
               type: "page",
@@ -430,7 +443,7 @@ class Navbar1 extends BaseNavigator {
                       type: "string",
                       key: "title",
                       displayer: "Title",
-                      value: "SUB ITEM1",
+                      value: "Sub item 1",
                     },
                     {
                       type: "page",
@@ -479,7 +492,7 @@ class Navbar1 extends BaseNavigator {
               type: "string",
               key: "title",
               displayer: "Title",
-              value: "POST BLOCKS",
+              value: "Post blocks",
             },
             {
               type: "page",
@@ -508,7 +521,7 @@ class Navbar1 extends BaseNavigator {
                       type: "string",
                       key: "title",
                       displayer: "Title",
-                      value: "ABOUT US",
+                      value: "About us",
                     },
                     {
                       type: "page",
@@ -553,7 +566,7 @@ class Navbar1 extends BaseNavigator {
                       type: "string",
                       key: "title",
                       displayer: "Title",
-                      value: "LOOKBOOK",
+                      value: "Lookbook",
                     },
                     {
                       type: "page",
@@ -598,7 +611,7 @@ class Navbar1 extends BaseNavigator {
                       type: "string",
                       key: "title",
                       displayer: "Title",
-                      value: "TYPOGRAPHY",
+                      value: "Typography",
                     },
                     {
                       type: "page",
@@ -643,7 +656,7 @@ class Navbar1 extends BaseNavigator {
                       type: "string",
                       key: "title",
                       displayer: "Title",
-                      value: "SHORTCODES",
+                      value: "Shortcodes",
                     },
                     {
                       type: "page",
@@ -688,7 +701,7 @@ class Navbar1 extends BaseNavigator {
                       type: "string",
                       key: "title",
                       displayer: "Title",
-                      value: "COMING SOON",
+                      value: "Coming soon",
                     },
                     {
                       type: "page",
@@ -733,7 +746,7 @@ class Navbar1 extends BaseNavigator {
                       type: "string",
                       key: "title",
                       displayer: "Title",
-                      value: "PAGE 404",
+                      value: "Page 404",
                     },
                     {
                       type: "page",
@@ -782,7 +795,7 @@ class Navbar1 extends BaseNavigator {
               type: "string",
               key: "title",
               displayer: "Title",
-              value: "NEWS",
+              value: "News",
             },
             {
               type: "page",
@@ -811,7 +824,7 @@ class Navbar1 extends BaseNavigator {
                       type: "string",
                       key: "title",
                       displayer: "Title",
-                      value: "BLOG POSTS",
+                      value: "Blog posts",
                     },
                     {
                       type: "page",
@@ -856,7 +869,7 @@ class Navbar1 extends BaseNavigator {
                       type: "string",
                       key: "title",
                       displayer: "Title",
-                      value: "MASONARY",
+                      value: "Masonary",
                     },
                     {
                       type: "page",
@@ -912,7 +925,7 @@ class Navbar1 extends BaseNavigator {
               type: "string",
               key: "title",
               displayer: "Title",
-              value: "CONTACTS",
+              value: "Contacts",
             },
             {
               type: "page",
@@ -941,7 +954,7 @@ class Navbar1 extends BaseNavigator {
                       type: "string",
                       key: "title",
                       displayer: "Title",
-                      value: "CONTACTS SUB ITEM",
+                      value: "Contacts sub item",
                     },
                     {
                       type: "page",
@@ -963,7 +976,7 @@ class Navbar1 extends BaseNavigator {
                               type: "string",
                               key: "title",
                               displayer: "Title",
-                              value: "CONTACTS SUB SUB ITEM ",
+                              value: "Contacts sub sub item",
                             },
                             {
                               type: "page",
@@ -990,7 +1003,7 @@ class Navbar1 extends BaseNavigator {
               type: "string",
               key: "title",
               displayer: "Title",
-              value: "BUY THEME",
+              value: "Buy theme",
             },
             {
               type: "page",
@@ -1070,7 +1083,7 @@ class Navbar1 extends BaseNavigator {
         INPUTS.BUTTON(
           "button",
           "Button",
-          "Contact Us",
+          "Contact us",
           "",
           null,
           null,
@@ -1304,15 +1317,24 @@ class Navbar1 extends BaseNavigator {
                 : ""
               }`}
           >
-            {currentLogo && (
+            {(currentLogo?.image || this.castToString(currentLogo?.text)) && (
               <div onClick={() => {
                 this.handleCloseMenu()
               }} className={this.decorateCSS("logo")}>
                 <ComposerLink path={currentLogo.navigateTo}>
-                  <Base.Media
-                    value={currentLogo.image}
-                    className={this.decorateCSS("logoImage")}
-                  />
+                  <div className={this.decorateCSS("logoContent")}>
+                    {currentLogo.image && (
+                      <Base.Media
+                        value={currentLogo.image}
+                        className={this.decorateCSS("logoImage")}
+                      />
+                    )}
+                    {this.castToString(currentLogo.text) && (
+                      <Base.H4 className={this.decorateCSS("logoText")}>
+                        {currentLogo.text}
+                      </Base.H4>
+                    )}
+                  </div>
                 </ComposerLink>
               </div>
             )}
@@ -1630,11 +1652,12 @@ class Navbar1 extends BaseNavigator {
           </div>
 
         </Base.Navigator.Container>
-        <Base.Overlay
-          className={this.decorateCSS("overlay")}
-          isVisible={isVisible}
-          onClick={() => this.handleCloseMenu()}
-        />
+        {isVisible && (
+          <div
+            className={this.decorateCSS("overlay")}
+            onClick={() => this.handleCloseMenu()}
+          />
+        )}
       </div>
 
     );
