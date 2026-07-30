@@ -12,20 +12,17 @@
         .leftContainerText {
           .title {
             &.title-with-image {
-              color: black;
             }
           }
 
           .subtitle {
             &.subtitle-with-image {
-              color: black;
               &:before {
                 background: black;
               }
             }
             &.badge-with-image {
               background-color: black;
-              color: white;
             }
           }
         }

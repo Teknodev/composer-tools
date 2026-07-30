@@ -6,7 +6,6 @@
   color: #4E5B6E;
   text-transform: uppercase;
     &.without-image{
-      color: var(--composer-font-color-primary);
   }
 }
 @mixin title-tablet{
