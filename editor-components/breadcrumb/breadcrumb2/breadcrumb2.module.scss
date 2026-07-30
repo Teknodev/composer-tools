@@ -91,7 +91,7 @@
 
           .breadcrumb-link {
             .breadcrumb-title {
-            color: var(--composer-font-color-primary);
+              color: var(--composer-font-color-primary);
               content: "";
             }
           }
@@ -180,16 +180,12 @@
         }
       }
 
-      .title,
-      .description {
-      }
-
       .crumber-content {
         color: #ffffff !important;
 
         .breadcrumb-link {
           .breadcrumb-title {
-            color: #ffffff !important;
+            color: var(--composer-font-color-primary) !important;
           }
 
           &:hover .breadcrumb-title {
@@ -204,7 +200,7 @@
         }
 
         .breadcrumb-item:last-child .breadcrumb-link .breadcrumb-title {
-          color: #ffffff !important;
+          color: var(--composer-font-color-primary) !important;
         }
       }
     }

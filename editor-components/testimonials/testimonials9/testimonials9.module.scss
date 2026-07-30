@@ -41,6 +41,7 @@
               gap: var(--composer-gap-xs);
 
               .title {
+                color: var(--composer-font-color-primary);
                 margin: 0;
               }
 
@@ -74,26 +75,18 @@
 
           .left-icon,
           .right-icon {
-            color: var(--composer-primary-color);
+            color: var(--composer-font-color-primary);
             position: absolute;
             width: 40px;
             height: 40px;
           }
-          .right-icon {
-            color: var(--composer-font-color-primary);
-          }
-          .left-icon {
-            color: var(--composer-font-color-primary);
-          }
 
           .left-icon {
-          color: var(--composer-font-color-primary);
             top: 0;
             left: 0;
           }
 
           .right-icon {
-          color: var(--composer-font-color-primary);
             bottom: 0;
             right: 0;
           }

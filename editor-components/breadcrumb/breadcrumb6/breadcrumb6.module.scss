@@ -60,13 +60,10 @@
         .section {
             &.with-image {
 
-                .subtitle,
-                .title,
-                .description,
-                .home,
-                .icon {
+                .home {
+                    color: var(--composer-font-color-primary) !important;
                 }
-                .home,
+
                 .icon {
                     color: var(--composer-font-color-secondary) !important;
                 }

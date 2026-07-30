@@ -14,8 +14,6 @@
         .subtitle {
           content: "";
         }
-        .title2 {
-        }
       }
     }
     .down-page {
@@ -130,7 +128,7 @@
               }
 
               .icon {
-                color: var(--composer-tertiary-color);
+                color: var(--composer-font-color-primary);
                 font-size: 1.5rem;
                 transform: color 0.3s ease;
                 animation: none;

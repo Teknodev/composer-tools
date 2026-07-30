@@ -132,7 +132,7 @@
                         .card-title,
                         .card-description {
                             text-align: left;
-                            color: var(--composer-html-background);
+                            color: var(--composer-font-color-primary);
                         }
 
                         .card-title {
@@ -183,10 +183,6 @@
     &.monochrome {
         .max-content {
             .heading {
-
-                .subtitle,
-                .title {
-                }
 
                 .subtitle-badge {
                     background: transparent !important;

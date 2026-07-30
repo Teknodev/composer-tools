@@ -125,7 +125,7 @@
                 .secondIcon {
                   width: var(--composer-gap-md);
                   height: var(--composer-gap-md);
-                  color: white;
+                  color: var(--composer-font-color-primary);
 
                   &:hover {
                     color: var(--composer-primary-color);

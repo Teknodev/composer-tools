@@ -73,7 +73,7 @@
                 position: relative;
                 width: 30px;
                 height: 30px;
-                color: var(--composer-font-color-secondary);
+                color: var(--composer-font-color-primary);
                 transform: translateY(var(--composer-gap-xl));
                 opacity: 1;
                 transition: transform 0.5s ease, opacity 0.5s ease, color 0.3s ease;
@@ -98,7 +98,7 @@
                 .icon {
                   animation: none;
                   opacity: 0;
-                  color: var(--composer-font-color-secondary);
+                  color: var(--composer-font-color-primary);
                   transition: color 0.3s ease;
                 }
                 &:hover {
@@ -220,7 +220,7 @@
           margin: 0 auto;
           .prev_icon {
             cursor: pointer;
-            color: var(--composer-tertiary-color);
+            color: var(--composer-font-color-primary);
             transition: 0.5s;
 
             &:hover {
@@ -231,7 +231,7 @@
 
           .next_icon {
             cursor: pointer;
-            color: var(--composer-tertiary-color);
+            color: var(--composer-font-color-primary);
             transition: 0.5s;
             &:hover {
               color: var(--composer-primary-color);

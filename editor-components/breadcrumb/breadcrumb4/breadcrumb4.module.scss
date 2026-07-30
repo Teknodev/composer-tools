@@ -120,14 +120,10 @@
                     }
                 }
 
-                .title,
-                .description {
-                }
-
                 .pages {
                     .link {
                         .text {
-                            color: var(--composer-font-color-secondary) !important;
+                            color: var(--composer-font-color-primary) !important;
                         }
 
                         .breadcrumb-link {

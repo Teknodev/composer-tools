@@ -81,7 +81,7 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
 
         .text,
         .yearlyText {
-          color: var(--composer-tertiary-color);
+          color: var(--composer-font-color-primary);
           width: fit-content;
 
           &.active {
@@ -300,6 +300,7 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
           }
 
           .description {
+            color: var(--composer-tertiary-color);
             text-align: left;
             margin-left: 0;
             margin-right: 0;

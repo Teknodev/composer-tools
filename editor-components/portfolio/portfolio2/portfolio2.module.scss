@@ -176,7 +176,7 @@
 
                     .game-title {
                       margin: 0;
-                      color: white;
+                      color: var(--composer-font-color-primary);
                       cursor: pointer;
                       transition: color 0.3s ease-in-out;
                       flex: 1;

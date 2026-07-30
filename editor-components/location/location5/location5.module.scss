@@ -75,19 +75,6 @@
           .location-description {
             text-align: left !important;
           }
-          .location-description {
-            color: var(--composer-font-color-primary);
-          }
-          .location-address {
-            color: var(--composer-font-color-primary);
-          }
-          .location-city {
-            color: var(--composer-font-color-primary);
-          }
-          .location-index {
-            color: var(--composer-font-color-primary);
-          }
-
           .location-index {
             color: var(--composer-font-color-primary);
             margin-top: var(--composer-gap-md);
@@ -103,12 +90,6 @@
 
           .location-address,
           .location-description {
-            color: var(--composer-font-color-primary);
-          }
-          .location-description {
-            color: var(--composer-font-color-primary);
-          }
-          .location-address {
             color: var(--composer-font-color-primary);
           }
         }
