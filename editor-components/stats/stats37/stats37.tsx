@@ -140,7 +140,8 @@ class Stats37 extends BaseStats {
                                 if (!hasValueSection && !statSubTitleExist && !statTitleExist && !statDescriptionExist) return null;
 
                                 return (
-                                    <Base.VerticalContent key={index} className={this.decorateCSS("stat-item")}>
+                                    <Base.Card key={index} className={this.decorateCSS("card-shell")}>
+                                    <Base.VerticalContent className={this.decorateCSS("stat-item")}>
                                         {hasValueSection && (
                                             <div className={this.decorateCSS("stat-value-row")}>
                                                 <span className={this.decorateCSS("stat-value")}>
@@ -174,6 +175,7 @@ class Stats37 extends BaseStats {
                                             </Base.P>
                                         )}
                                     </Base.VerticalContent>
+                                    </Base.Card>
                                 );
                             })}
                         </Base.ListGrid>

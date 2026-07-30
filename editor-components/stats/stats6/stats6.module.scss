@@ -2,6 +2,15 @@
 
 .container {
   background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+  .card-shell {
+    display: flex;
+    flex-direction: column;
+
+    > * {
+      flex: 1 1 auto;
+    }
+  }
+
   .max-content {
     .banner {
       margin-bottom: calc(2 * var(--composer-gap-lg));

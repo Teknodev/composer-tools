@@ -309,23 +309,25 @@ class Faq2 extends BaseFAQ {
                 {this.castToObject<Card[]>("card").map(
                   (item: Card) => {
                     return (
-                      <Base.VerticalContent className={this.decorateCSS("card")}>
-                        {item.cardIcon && (
-                          <Base.Row className={this.decorateCSS("icon-wrapper")}>
-                            <Base.Media value={item.cardIcon} className={this.decorateCSS("icon")} />
-                          </Base.Row>
-                        )}
-                        {this.castToString(item.cardTitle) && (
-                          <Base.H3 className={this.decorateCSS("card-title")}>
-                            {item.cardTitle}
-                          </Base.H3>
-                        )}
-                        {this.castToString(item.description) && (
-                          <Base.P className={this.decorateCSS("card-description")}>
-                            {item.description}
-                          </Base.P>
-                        )}
-                      </Base.VerticalContent>
+                      <Base.Card className={this.decorateCSS("card-shell")}>
+                        <Base.VerticalContent className={this.decorateCSS("card")}>
+                          {item.cardIcon && (
+                            <Base.Row className={this.decorateCSS("icon-wrapper")}>
+                              <Base.Media value={item.cardIcon} className={this.decorateCSS("icon")} />
+                            </Base.Row>
+                          )}
+                          {this.castToString(item.cardTitle) && (
+                            <Base.H3 className={this.decorateCSS("card-title")}>
+                              {item.cardTitle}
+                            </Base.H3>
+                          )}
+                          {this.castToString(item.description) && (
+                            <Base.P className={this.decorateCSS("card-description")}>
+                              {item.description}
+                            </Base.P>
+                          )}
+                        </Base.VerticalContent>
+                      </Base.Card>
                     );
                   }
                 )}

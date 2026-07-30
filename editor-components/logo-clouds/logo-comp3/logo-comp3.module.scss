@@ -38,6 +38,11 @@
 
     .images-container {
       gap: 0;
+      .card-shell {
+        display: flex;
+        flex-direction: column;
+        > * { flex: 1 1 auto; }
+      }
       &.lines-active{
         .image-item {
           border-right: 1px solid var(--composer-tertiary-color);

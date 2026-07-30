@@ -11,6 +11,11 @@
             }
         }
         .images-container{
+            .card-shell {
+                display: flex;
+                flex-direction: column;
+                > * { flex: 1 1 auto; }
+            }
             .image-item {
                 background: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
                 padding: var(--composer-gap-md);

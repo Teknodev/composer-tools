@@ -24,6 +24,15 @@
       .cards-box {
         align-items: stretch;
 
+        .card-shell {
+          display: flex;
+          flex-direction: column;
+
+          > * {
+            flex: 1 1 auto;
+          }
+        }
+
         .card {
           flex: 1 1 auto;
           display: flex;

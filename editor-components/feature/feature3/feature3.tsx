@@ -367,7 +367,7 @@ class Feature3 extends BaseFeature {
                       if (!titleExist && !iconExist) return null;
 
                       return (
-                        <div key={index} className={this.decorateCSS("card")}>
+                        <Base.Card key={index} className={this.decorateCSS("card")}>
                           <Base.VerticalContent className={this.decorateCSS("card-content")}>
                             {iconExist && (
                               <Base.Media
@@ -381,7 +381,7 @@ class Feature3 extends BaseFeature {
                               </Base.H4>
                             )}
                           </Base.VerticalContent>
-                        </div>
+                        </Base.Card>
                       );
                     })}
                   </Base.ListGrid>
@@ -402,11 +402,11 @@ class Feature3 extends BaseFeature {
                   if (!logo.image?.url) return null;
 
                   return (
-                    <div key={index} className={this.decorateCSS("logo-container")}>
+                    <Base.Card key={index} className={this.decorateCSS("logo-container")}>
                       <ComposerLink path={logo.url}>
                         <Base.Media value={logo.image} className={this.decorateCSS("logo-image")} />
                       </ComposerLink>
-                    </div>
+                    </Base.Card>
                   );
                 })}
               </Base.ListGrid>

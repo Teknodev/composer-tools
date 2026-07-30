@@ -379,7 +379,7 @@ class PricingTable17 extends BasePricingTable {
                 if (!hasContent) return null;
 
                 return (
-                  <div key={`card-${index}`} className={this.decorateCSS("card")}>
+                  <Base.Card key={`card-${index}`} className={this.decorateCSS("card")}>
                     <Base.VerticalContent className={this.decorateCSS("card-top")}>
                       {cardSubtitleExist && <Base.H6 className={this.decorateCSS("card-subtitle")}>{item.cardSubtitle}</Base.H6>}
                       {cardTitleExist && <Base.H5 className={this.decorateCSS("card-title")}>{item.cardTitle}</Base.H5>}
@@ -421,7 +421,7 @@ class PricingTable17 extends BasePricingTable {
                         </div>
                       )}
                     </Base.VerticalContent>
-                  </div>
+                  </Base.Card>
                 );
               })}
             </Base.ListGrid>

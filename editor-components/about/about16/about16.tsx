@@ -217,7 +217,7 @@ class About16 extends BaseAbout {
                                     const hasTextDetails = cardTitle || cardDescription || cardSubtitle;
                                     const hasMedia = !!card.video;
                                     return (
-                                        <div key={index} className={this.decorateCSS("list-item")}>
+                                        <Base.Card key={index} className={this.decorateCSS("list-item")}>
                                             <div className={`${this.decorateCSS("media-container")} ${enableAnimation && this.decorateCSS("animated")} ${!hasMedia && this.decorateCSS("no-media")}`}>
                                                 <ComposerLink path={card.navigateTo} isFullWidth={true}>
                                                     {hasMedia && (
@@ -249,7 +249,7 @@ class About16 extends BaseAbout {
                                                 </ComposerLink>
                                             </div>
 
-                                        </div>
+                                        </Base.Card>
                                     );
                                 })}
                             </Base.ListGrid>

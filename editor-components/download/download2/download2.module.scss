@@ -17,6 +17,15 @@
 
     .cards-container {
       .cards {
+        .card-shell {
+          display: flex;
+          flex-direction: column;
+
+          > * {
+            flex: 1 1 auto;
+          }
+        }
+
         .card {
           align-items: flex-start;
           padding: var(--composer-gap-md);

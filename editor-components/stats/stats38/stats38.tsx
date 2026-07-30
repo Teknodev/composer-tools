@@ -199,10 +199,11 @@ class Stats38 extends BaseStats {
         if (!valueExist && !prefixExist && !suffixExist && !subtitleExist && !titleExist && !descriptionExist) return null;
 
         return (
-            <Base.VerticalContent
-                className={this.decorateCSS("stat-item")}
-                data-alignment="left"
-            >
+            <Base.Card className={this.decorateCSS("card-shell")}>
+                <Base.VerticalContent
+                    className={this.decorateCSS("stat-item")}
+                    data-alignment="left"
+                >
                 {(valueExist || prefixExist || suffixExist) && (
                     <span className={this.decorateCSS("stat-value-container")}>
                         {prefixExist && (
@@ -239,7 +240,8 @@ class Stats38 extends BaseStats {
                         {stat.descriptionElement}
                     </Base.P>
                 )}
-            </Base.VerticalContent>
+                </Base.VerticalContent>
+            </Base.Card>
         );
     };
 

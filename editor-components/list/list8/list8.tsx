@@ -308,7 +308,7 @@ class List8 extends BaseList {
                   const hasItemContent = itemSubtitleExist || itemTitleExist || itemTextExist;
 
                   return (
-                    <div
+                    <Base.Card
                       key={index}
                       className={this.decorateCSS("list-item")}
                       data-animation={hoverAnimation.join(" ")}
@@ -367,7 +367,7 @@ class List8 extends BaseList {
                           </div>
                         )}
                       </Base.VerticalContent>
-                    </div>
+                    </Base.Card>
                   );
                 })}
               </Base.ListGrid>

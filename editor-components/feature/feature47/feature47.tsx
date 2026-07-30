@@ -244,7 +244,8 @@ class Feature47 extends BaseFeature {
                                 const buttonExist = card.button && this.castToString(card.button.text);
                                 const onlyButton = !iconExist && !titleExist && !descExist && buttonExist;
                                 return (iconExist || titleExist || descExist || buttonExist) && (
-                                    <Base.VerticalContent key={index} className={`${this.decorateCSS("card")} ${onlyButton ? this.decorateCSS("only-button") : ""}`}>
+                                    <Base.Card key={index} className={this.decorateCSS("card-shell")}>
+                                    <Base.VerticalContent className={`${this.decorateCSS("card")} ${onlyButton ? this.decorateCSS("only-button") : ""}`}>
                                         {iconExist && (
                                             <div className={`${this.decorateCSS("icon-container")} ${iconBackground && this.decorateCSS("with-background")}`}>
                                                 <Base.Media value={card.icon} className={this.decorateCSS("card-icon")} />
@@ -268,6 +269,7 @@ class Feature47 extends BaseFeature {
                                             </ComposerLink>
                                         )}
                                     </Base.VerticalContent>
+                                    </Base.Card>
                                 );
                             })}
                         </Base.ListGrid>

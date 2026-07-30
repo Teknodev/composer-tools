@@ -200,44 +200,46 @@ class Stats22 extends BaseStats {
     if (!hasNumber && !hasTitle) return null;
 
     return (
-      <div ref={ref} className={this.decorateCSS("card")}>
-        {hasNumber && (
-          <div className={this.decorateCSS("stat-value")}>
-            {hasPrefix && (
-              <span className={this.decorateCSS("stat-prefix")}>
-                {stat.prefix}
+      <Base.Card className={this.decorateCSS("card-shell")}>
+        <div ref={ref} className={this.decorateCSS("card")}>
+          {hasNumber && (
+            <div className={this.decorateCSS("stat-value")}>
+              {hasPrefix && (
+                <span className={this.decorateCSS("stat-prefix")}>
+                  {stat.prefix}
+                </span>
+              )}
+              <span className={this.decorateCSS("stat-number")}>
+                {animatedNumber}
               </span>
-            )}
-            <span className={this.decorateCSS("stat-number")}>
-              {animatedNumber}
-            </span>
-            {hasSuffix && (
-              <span className={this.decorateCSS("stat-suffix")}>
-                {stat.suffix}
-              </span>
-            )}
-          </div>
-        )}
-        {(hasSubtitle || hasTitle || hasDescription) && (
-          <Base.VerticalContent className={this.decorateCSS("stat-vertical-content")}>
-            {hasSubtitle && (
-              <Base.H6 className={this.decorateCSS("stat-subtitle")}>
-                {stat.subtitle}
-              </Base.H6>
-            )}
-            {hasTitle && (
-              <Base.H5 className={this.decorateCSS("stat-title")}>
-                {stat.title}
-              </Base.H5>
-            )}
-            {hasDescription && (
-              <Base.P className={this.decorateCSS("stat-description")}>
-                {stat.description}
-              </Base.P>
-            )}
-          </Base.VerticalContent>
-        )}
-      </div>
+              {hasSuffix && (
+                <span className={this.decorateCSS("stat-suffix")}>
+                  {stat.suffix}
+                </span>
+              )}
+            </div>
+          )}
+          {(hasSubtitle || hasTitle || hasDescription) && (
+            <Base.VerticalContent className={this.decorateCSS("stat-vertical-content")}>
+              {hasSubtitle && (
+                <Base.H6 className={this.decorateCSS("stat-subtitle")}>
+                  {stat.subtitle}
+                </Base.H6>
+              )}
+              {hasTitle && (
+                <Base.H5 className={this.decorateCSS("stat-title")}>
+                  {stat.title}
+                </Base.H5>
+              )}
+              {hasDescription && (
+                <Base.P className={this.decorateCSS("stat-description")}>
+                  {stat.description}
+                </Base.P>
+              )}
+            </Base.VerticalContent>
+          )}
+        </div>
+      </Base.Card>
     );
   };
 

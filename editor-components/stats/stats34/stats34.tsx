@@ -209,40 +209,42 @@ class Stats34 extends BaseStats {
         if (!valueExist && !prefixExist && !suffixExist && !titleExist && !subtitleExist && !descriptionExist) return null;
 
         return (
-            <Base.VerticalContent className={this.decorateCSS("stat-item")}>
-                {(prefixExist || valueExist || suffixExist) && (
-                    <span className={this.decorateCSS("stat-value")}>
-                        {prefixExist && (
-                            <span className={this.decorateCSS("stat-prefix")}>
-                                {stat.prefix}
+            <Base.Card className={this.decorateCSS("card-shell")}>
+                <Base.VerticalContent className={this.decorateCSS("stat-item")}>
+                    {(prefixExist || valueExist || suffixExist) && (
+                        <span className={this.decorateCSS("stat-value")}>
+                            {prefixExist && (
+                                <span className={this.decorateCSS("stat-prefix")}>
+                                    {stat.prefix}
+                                </span>
+                            )}
+                            <span className={this.decorateCSS("stat-number")}>
+                                {displayNumber}
                             </span>
-                        )}
-                        <span className={this.decorateCSS("stat-number")}>
-                            {displayNumber}
+                            {suffixExist && (
+                                <span className={this.decorateCSS("stat-suffix")}>
+                                    {stat.suffix}
+                                </span>
+                            )}
                         </span>
-                        {suffixExist && (
-                            <span className={this.decorateCSS("stat-suffix")}>
-                                {stat.suffix}
-                            </span>
-                        )}
-                    </span>
-                )}
-                {subtitleExist && (
-                    <Base.H5 className={this.decorateCSS("stat-subtitle")}>
-                        {stat.subtitleElement}
-                    </Base.H5>
-                )}
-                {titleExist && (
-                    <Base.H4 className={this.decorateCSS("stat-title")}>
-                        {stat.titleElement}
-                    </Base.H4>
-                )}
-                {descriptionExist && (
-                    <Base.H6 className={this.decorateCSS("stat-description")}>
-                        {stat.descriptionElement}
-                    </Base.H6>
-                )}
-            </Base.VerticalContent>
+                    )}
+                    {subtitleExist && (
+                        <Base.H5 className={this.decorateCSS("stat-subtitle")}>
+                            {stat.subtitleElement}
+                        </Base.H5>
+                    )}
+                    {titleExist && (
+                        <Base.H4 className={this.decorateCSS("stat-title")}>
+                            {stat.titleElement}
+                        </Base.H4>
+                    )}
+                    {descriptionExist && (
+                        <Base.H6 className={this.decorateCSS("stat-description")}>
+                            {stat.descriptionElement}
+                        </Base.H6>
+                    )}
+                </Base.VerticalContent>
+            </Base.Card>
         );
     };
 

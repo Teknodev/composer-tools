@@ -21,6 +21,14 @@
       width: 100%;
       gap: var(--composer-gap-sm);
 
+      .card-shell {
+        display: flex;
+        flex-direction: column;
+        > * {
+          flex: 1 1 auto;
+        }
+      }
+
       .card {
         display: flex;
         flex-direction: row;

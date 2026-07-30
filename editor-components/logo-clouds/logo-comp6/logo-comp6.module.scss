@@ -11,6 +11,11 @@
             }
         }
         .items {
+            .card-shell {
+                display: flex;
+                flex-direction: column;
+                > * { flex: 1 1 auto; }
+            }
             .card {
                 gap: var(--composer-gap-lg);
                 display: flex;

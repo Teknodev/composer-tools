@@ -643,32 +643,34 @@ class ImageGallery10 extends BaseImageGallery {
                                 className={this.decorateCSS("grid")}
                                 gridCount={{ pc: this.getPropValue("itemCount"), tablet: 3 }}>
                                 {cardList.map((cardItem: any, index: number) => (
-                                    <ComposerLink path={cardItem.cardLink} isFullWidth={true}>
-                                        <div className={this.decorateCSS("item-box")} key={index}>
-                                            <div className={this.decorateCSS("item-container")}>
-                                                <div className={this.decorateCSS("background-media")}>
-                                                    <Base.Media value={cardItem.image} className={this.decorateCSS("background-media-element")} />
-                                                </div>
-                                                <div className={`${this.decorateCSS("overlay-content")} ${cardItem.active ? this.decorateCSS("active") : ""}`}>
-                                                    {this.castToString(cardItem.title) && (
-                                                        <Base.H4
-                                                            className={this.decorateCSS("card-title")}>
-                                                            {cardItem.title}
-                                                        </Base.H4>
-                                                    )}
-                                                    {this.castToString(cardItem.text) && (
-                                                        <ComposerLink
-                                                            path={cardItem.link}>
-                                                            <Base.H3
-                                                                className={this.decorateCSS("card-text")}>
-                                                                {cardItem.text}
-                                                            </Base.H3>
-                                                        </ComposerLink>
-                                                    )}
+                                    <Base.Card key={index} className={this.decorateCSS("card-shell")}>
+                                        <ComposerLink path={cardItem.cardLink} isFullWidth={true}>
+                                            <div className={this.decorateCSS("item-box")}>
+                                                <div className={this.decorateCSS("item-container")}>
+                                                    <div className={this.decorateCSS("background-media")}>
+                                                        <Base.Media value={cardItem.image} className={this.decorateCSS("background-media-element")} />
+                                                    </div>
+                                                    <div className={`${this.decorateCSS("overlay-content")} ${cardItem.active ? this.decorateCSS("active") : ""}`}>
+                                                        {this.castToString(cardItem.title) && (
+                                                            <Base.H4
+                                                                className={this.decorateCSS("card-title")}>
+                                                                {cardItem.title}
+                                                            </Base.H4>
+                                                        )}
+                                                        {this.castToString(cardItem.text) && (
+                                                            <ComposerLink
+                                                                path={cardItem.link}>
+                                                                <Base.H3
+                                                                    className={this.decorateCSS("card-text")}>
+                                                                    {cardItem.text}
+                                                                </Base.H3>
+                                                            </ComposerLink>
+                                                        )}
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </ComposerLink>
+                                        </ComposerLink>
+                                    </Base.Card>
                                 ))}
                             </Base.ListGrid>
                         )

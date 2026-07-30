@@ -691,7 +691,7 @@ class ImageGallery4 extends BaseImageGallery {
                 {galleryItems.slice(0, this.getComponentState("imageCount")).map((item: Image, index: number) => {
                   if (!item.image) return null;
                   return (
-                    <div
+                    <Base.Card
                       key={index}
                       className={this.decorateCSS("gallery-item")}
 
@@ -719,7 +719,7 @@ class ImageGallery4 extends BaseImageGallery {
                           />
                         </div>
                       )}
-                    </div>
+                    </Base.Card>
                   );
                 })}
               </Base.ListGrid>

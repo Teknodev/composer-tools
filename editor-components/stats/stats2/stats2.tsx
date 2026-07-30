@@ -319,7 +319,11 @@ class Stats2Page extends BaseStats {
                   const isLastRow = currentRow === totalRows;
 
                   const isTextExist = this.castToString(card.text);
-                  return <AnimatedCard key={index} card={card} animationDuration={animationDuration} isTextExist={isTextExist} isFirstRow={isFirstRow} isLastRow={isLastRow} />;
+                  return (
+                    <Base.Card key={index} className={this.decorateCSS("card-shell")}>
+                      <AnimatedCard card={card} animationDuration={animationDuration} isTextExist={isTextExist} isFirstRow={isFirstRow} isLastRow={isLastRow} />
+                    </Base.Card>
+                  );
                 })}
               </Base.ListGrid>
             )}

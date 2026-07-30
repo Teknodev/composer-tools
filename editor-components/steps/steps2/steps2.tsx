@@ -360,45 +360,47 @@ class Steps2 extends BaseSteps {
                 const cardButtonsExist = card.buttons?.some((btn) => this.castToString(btn.text));
 
                 return (cardStepNumberExist || cardSubtitleExist || cardTitleExist || cardDescriptionExist || cardButtonsExist) && (
-                  <Base.VerticalContent key={index} className={`${this.decorateCSS("card")} ${showLine && this.decorateCSS("with-line")} ${contentAlignment === "center" && this.decorateCSS("center-align")}`}>
-                    {cardSubtitleExist && (
-                      <Base.H6 className={`${this.decorateCSS("card-subtitle")} ${cardStepNumberExist ? this.decorateCSS("has-number") : ""}`}>
-                        {card.subtitle}
-                      </Base.H6>
-                    )}
-                    {(cardStepNumberExist || cardTitleExist) && (
-                      <div className={this.decorateCSS("card-header")}>
-                        {cardStepNumberExist && (
-                          <Base.H4 className={this.decorateCSS("step-number")}>
-                            {card.stepNumber}
-                          </Base.H4>
-                        )}
-                        {cardTitleExist && (
-                          <Base.H4 className={this.decorateCSS("card-title")}>
-                            {card.title}
-                          </Base.H4>
-                        )}
-                      </div>
-                    )}
-                    {cardDescriptionExist && (
-                      <Base.P className={this.decorateCSS("card-description")}>
-                        {card.description}
-                      </Base.P>
-                    )}
-                    {cardButtonsExist && (
-                      <div className={this.decorateCSS("card-buttons")}>
-                        {card.buttons.map((button: INPUTS.CastedButton, btnIndex: number) =>
-                          this.castToString(button.text) && (
-                            <ComposerLink key={`card-${index}-btn-${btnIndex}`} path={button.url}>
-                              <Base.Button buttonType={button.type} className={this.decorateCSS("card-button")}>
-                                <Base.P className={this.decorateCSS("card-button-text")}>{button.text}</Base.P>
-                              </Base.Button>
-                            </ComposerLink>
-                          )
-                        )}
-                      </div>
-                    )}
-                  </Base.VerticalContent>
+                  <Base.Card key={index} className={this.decorateCSS("card-shell")}>
+                    <Base.VerticalContent className={`${this.decorateCSS("card")} ${showLine && this.decorateCSS("with-line")} ${contentAlignment === "center" && this.decorateCSS("center-align")}`}>
+                      {cardSubtitleExist && (
+                        <Base.H6 className={`${this.decorateCSS("card-subtitle")} ${cardStepNumberExist ? this.decorateCSS("has-number") : ""}`}>
+                          {card.subtitle}
+                        </Base.H6>
+                      )}
+                      {(cardStepNumberExist || cardTitleExist) && (
+                        <div className={this.decorateCSS("card-header")}>
+                          {cardStepNumberExist && (
+                            <Base.H4 className={this.decorateCSS("step-number")}>
+                              {card.stepNumber}
+                            </Base.H4>
+                          )}
+                          {cardTitleExist && (
+                            <Base.H4 className={this.decorateCSS("card-title")}>
+                              {card.title}
+                            </Base.H4>
+                          )}
+                        </div>
+                      )}
+                      {cardDescriptionExist && (
+                        <Base.P className={this.decorateCSS("card-description")}>
+                          {card.description}
+                        </Base.P>
+                      )}
+                      {cardButtonsExist && (
+                        <div className={this.decorateCSS("card-buttons")}>
+                          {card.buttons.map((button: INPUTS.CastedButton, btnIndex: number) =>
+                            this.castToString(button.text) && (
+                              <ComposerLink key={`card-${index}-btn-${btnIndex}`} path={button.url}>
+                                <Base.Button buttonType={button.type} className={this.decorateCSS("card-button")}>
+                                  <Base.P className={this.decorateCSS("card-button-text")}>{button.text}</Base.P>
+                                </Base.Button>
+                              </ComposerLink>
+                            )
+                          )}
+                        </div>
+                      )}
+                    </Base.VerticalContent>
+                  </Base.Card>
                 );
               })}
             </Base.ListGrid>

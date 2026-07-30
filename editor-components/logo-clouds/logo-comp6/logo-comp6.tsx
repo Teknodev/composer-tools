@@ -220,19 +220,21 @@ class LogoComp6Page extends LogoClouds {
           >
             {this.castToObject<TImage[]>("list-items").map(
               (listItem: TImage, index: number) => (
-                <ComposerLink path={listItem.imageLink}>
-                  <div key={index} className={`${this.decorateCSS("card")} ${alignment === "center" && this.decorateCSS("center")}`}>
-                    {listItem.image && <Base.Media
-                      value={listItem.image}
-                      className={this.decorateCSS("image")}
-                    />}
-                    {this.castToString(listItem.itemText) && 
-                      <Base.P className={this.decorateCSS("text")}>
-                        {listItem.itemText}
-                      </Base.P>
-                    }
-                  </div>
-                </ComposerLink>
+                <Base.Card key={index} className={this.decorateCSS("card-shell")}>
+                  <ComposerLink path={listItem.imageLink}>
+                    <div className={`${this.decorateCSS("card")} ${alignment === "center" && this.decorateCSS("center")}`}>
+                      {listItem.image && <Base.Media
+                        value={listItem.image}
+                        className={this.decorateCSS("image")}
+                      />}
+                      {this.castToString(listItem.itemText) &&
+                        <Base.P className={this.decorateCSS("text")}>
+                          {listItem.itemText}
+                        </Base.P>
+                      }
+                    </div>
+                  </ComposerLink>
+                </Base.Card>
               )
             )}
           </Base.ListGrid>

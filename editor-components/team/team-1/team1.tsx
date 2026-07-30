@@ -345,7 +345,7 @@ class Team1 extends Team {
           <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount"), tablet: 2, phone: 1 }} className={this.decorateCSS("down-page")}>
             {this.castToObject<Card[]>("items").map((card: any, indexItems: number) => {
               return (
-                <div key={indexItems} className={`${this.decorateCSS("all-card")} ${Base.getContentAlignment() === "left" && this.decorateCSS("left")}`} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
+                <Base.Card key={indexItems} className={`${this.decorateCSS("all-card")} ${Base.getContentAlignment() === "left" && this.decorateCSS("left")}`} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
                   <Base.VerticalContent className={this.decorateCSS("card")}>
                     <div className={this.decorateCSS("top")}>
                       {card.profileImage && <Base.Media value={card.profileImage} className={this.decorateCSS("image")} data-animation={this.getPropValue("hoverAnimation").join(" ")} />}
@@ -369,7 +369,7 @@ class Team1 extends Team {
                       })}
                     </Base.Row>
                   </Base.VerticalContent>
-                </div>
+                </Base.Card>
               );
             })}
           </Base.ListGrid>

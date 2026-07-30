@@ -426,32 +426,34 @@ class Stats4Page extends BaseStats {
 
                   if (titleExist || contentExist || item.stat)
                     return (
-                      <article className={this.decorateCSS("stat-item")} key={index}>
-                        {(titleExist || contentExist) && (
-                          <>
-                            <div className={this.decorateCSS("stat-item-body")}>
-                              {titleExist && <Base.P className={this.decorateCSS("stat-item-title")}>{item.title}</Base.P>}
-                              {contentExist && <Base.P className={this.decorateCSS("stat-item-content")}>{item.content}</Base.P>}
-                            </div>
-                            <div className={this.decorateCSS("stat-line")} />
-                          </>
-                        )}
-                        {item.stat && (
-                          <Base.P className={this.decorateCSS("stat-item-stat-value")}>
-                            {statValue}
-                            {statIcon && (
-                              <span className={this.decorateCSS("stat-value-icon")}>
-                                <Base.Icon
-                                  propsIcon={{
-                                    className: this.decorateCSS("stat-icon"),
-                                  }}
-                                  name={statIcon}
-                                />
-                              </span>
-                            )}
-                          </Base.P>
-                        )}
-                      </article>
+                      <Base.Card key={index} className={this.decorateCSS("card-shell")}>
+                        <article className={this.decorateCSS("stat-item")}>
+                          {(titleExist || contentExist) && (
+                            <>
+                              <div className={this.decorateCSS("stat-item-body")}>
+                                {titleExist && <Base.P className={this.decorateCSS("stat-item-title")}>{item.title}</Base.P>}
+                                {contentExist && <Base.P className={this.decorateCSS("stat-item-content")}>{item.content}</Base.P>}
+                              </div>
+                              <div className={this.decorateCSS("stat-line")} />
+                            </>
+                          )}
+                          {item.stat && (
+                            <Base.P className={this.decorateCSS("stat-item-stat-value")}>
+                              {statValue}
+                              {statIcon && (
+                                <span className={this.decorateCSS("stat-value-icon")}>
+                                  <Base.Icon
+                                    propsIcon={{
+                                      className: this.decorateCSS("stat-icon"),
+                                    }}
+                                    name={statIcon}
+                                  />
+                                </span>
+                              )}
+                            </Base.P>
+                          )}
+                        </article>
+                      </Base.Card>
                     );
                   return null;
                 })}

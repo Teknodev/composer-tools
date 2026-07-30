@@ -332,14 +332,14 @@ class ImageGallery5 extends BaseImageGallery {
           >
             {galleries.slice(0, this.getComponentState("imageCount")).map((galleryItem: any, index: number) => {
               return (
-                <div className={this.decorateCSS("image-container")} onClick={() => this.handleImageClick(index)}>
+                <Base.Card className={this.decorateCSS("image-container")} onClick={() => this.handleImageClick(index)}>
                   {galleryItem.image && (
                     <Base.Media
                       value={galleryItem.image}
                       className={this.decorateCSS("image")}
                     />
                   )}
-                </div>
+                </Base.Card>
               );
             })}
           </Base.ListGrid>

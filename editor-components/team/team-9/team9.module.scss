@@ -146,7 +146,7 @@
           }
         }
 
-        :nth-child(2n + 1) {
+        .card-shell:nth-child(2n + 1) > .card {
           flex-direction: column;
         }
       }
@@ -235,10 +235,8 @@
             }
           }
 
-          :nth-child(2n) {
-            .card {
-              flex-direction: column-reverse;
-            }
+          .card-shell:nth-child(2n) > .card {
+            flex-direction: column-reverse;
           }
         }
       }
@@ -304,4 +302,12 @@
   0%, 100% { transform: translateY(0); }
   30% { transform: translateY(-8px); }
   60% { transform: translateY(4px); }
+}
+
+.card-shell {
+  display: flex;
+  flex-direction: column;
+  > * {
+    flex: 1 1 auto;
+  }
 }

@@ -126,11 +126,13 @@ class LogoComp3Page extends LogoClouds {
             >
               {items.map((item: TImage, index: number) => {
                 return item.image && (
-                  <ComposerLink path={item.imageLink}>
-                    <div className={getItemClassName(index)} key={index}>
-                      <Base.Media value={item.image} className={this.decorateCSS("image")} />
-                    </div>
-                  </ComposerLink>
+                  <Base.Card key={index} className={this.decorateCSS("card-shell")}>
+                    <ComposerLink path={item.imageLink}>
+                      <div className={getItemClassName(index)}>
+                        <Base.Media value={item.image} className={this.decorateCSS("image")} />
+                      </div>
+                    </ComposerLink>
+                  </Base.Card>
                 );
               })}
             </Base.ListGrid>

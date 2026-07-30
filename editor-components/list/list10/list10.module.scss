@@ -88,6 +88,15 @@
         grid-auto-rows: 1fr;
         align-items: stretch;
 
+        .card-shell {
+          display: flex;
+          flex-direction: column;
+
+          > * {
+            flex: 1 1 auto;
+          }
+        }
+
         .card {
           display: flex;
           flex-direction: column;

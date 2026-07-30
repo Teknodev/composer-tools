@@ -237,14 +237,14 @@ class CallToAction9Page extends BaseCallToAction {
                 className={this.decorateCSS("image-container")}
               >
                 {images.map((item: ImageItem, index: number) => (
-                  <div className={this.decorateCSS("image-wrapper")}>
+                  <Base.Card className={this.decorateCSS("image-wrapper")}>
                     {item.image && (
                       <Base.Media
                         value={item.image}
                         className={this.decorateCSS("image")}
                       />
                     )}
-                  </div>
+                  </Base.Card>
                 ))}
               </Base.ListGrid>
             )}

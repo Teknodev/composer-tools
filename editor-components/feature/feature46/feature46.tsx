@@ -221,7 +221,7 @@ class Feature46 extends BaseFeature {
               gridCount={{ pc: itemsPerRow, tablet: 3, phone: 1 }}
             >
               {cards.map((card: Card, index: number) => (
-                <div
+                <Base.Card
                   key={index}
                   className={this.decorateCSS(
                     hasContent(card) ? "card" : "card card-empty",
@@ -267,7 +267,7 @@ class Feature46 extends BaseFeature {
                       </div>
                     )}
                   </Base.VerticalContent>
-                </div>
+                </Base.Card>
               ))}
             </Base.ListGrid>
           )}

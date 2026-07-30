@@ -187,43 +187,45 @@ class Stats18Page extends BaseStats {
         if (!valueExist && !prefixExist && !suffixExist && !titleExist && !subtitleExist && !descriptionExist) return null;
 
         return (
-            <Base.VerticalContent className={this.decorateCSS("card")}>
-                {(valueExist || prefixExist || suffixExist) && (
-                    <div className={`${this.decorateCSS("card-value")}${!showLine ? ` ${this.decorateCSS("no-line")}` : ""}`}>
-                        {prefixExist && (
-                            <span className={this.decorateCSS("stat-prefix")}>
-                                {card.prefix}
-                            </span>
-                        )}
-                        {valueExist && (
-                            <span className={this.decorateCSS("display-value")}>
-                                {statsAnimation ? formatNumber(animatedNumber) : formatNumber(targetNumber)}
-                            </span>
-                        )}
-                        {suffixExist && (
-                            <span className={this.decorateCSS("stat-suffix")}>
-                                {card.suffix}
-                            </span>
-                        )}
-                    </div>
-                )}
-                {showLine && <div className={this.decorateCSS("line")}></div>}
-                {subtitleExist && (
-                    <Base.H6 className={this.decorateCSS("card-subtitle")}>
-                        {card.subtitle}
-                    </Base.H6>
-                )}
-                {titleExist && (
-                    <Base.H5 className={this.decorateCSS("card-title")}>
-                        {card.title}
-                    </Base.H5>
-                )}
-                {descriptionExist && (
-                    <Base.P className={this.decorateCSS("card-description")}>
-                        {card.description}
-                    </Base.P>
-                )}
-            </Base.VerticalContent>
+            <Base.Card className={this.decorateCSS("card-shell")}>
+                <Base.VerticalContent className={this.decorateCSS("card")}>
+                    {(valueExist || prefixExist || suffixExist) && (
+                        <div className={`${this.decorateCSS("card-value")}${!showLine ? ` ${this.decorateCSS("no-line")}` : ""}`}>
+                            {prefixExist && (
+                                <span className={this.decorateCSS("stat-prefix")}>
+                                    {card.prefix}
+                                </span>
+                            )}
+                            {valueExist && (
+                                <span className={this.decorateCSS("display-value")}>
+                                    {statsAnimation ? formatNumber(animatedNumber) : formatNumber(targetNumber)}
+                                </span>
+                            )}
+                            {suffixExist && (
+                                <span className={this.decorateCSS("stat-suffix")}>
+                                    {card.suffix}
+                                </span>
+                            )}
+                        </div>
+                    )}
+                    {showLine && <div className={this.decorateCSS("line")}></div>}
+                    {subtitleExist && (
+                        <Base.H6 className={this.decorateCSS("card-subtitle")}>
+                            {card.subtitle}
+                        </Base.H6>
+                    )}
+                    {titleExist && (
+                        <Base.H5 className={this.decorateCSS("card-title")}>
+                            {card.title}
+                        </Base.H5>
+                    )}
+                    {descriptionExist && (
+                        <Base.P className={this.decorateCSS("card-description")}>
+                            {card.description}
+                        </Base.P>
+                    )}
+                </Base.VerticalContent>
+            </Base.Card>
         );
     };
 

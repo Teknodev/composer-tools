@@ -630,9 +630,9 @@ class Blog3 extends BaseBlog {
 
     const Block = ({ children }: { children: React.JSX.Element; }) => {
       return (
-        <div className={this.decorateCSS("block")}>
+        <Base.Card className={this.decorateCSS("block")}>
           {children}
-        </div>
+        </Base.Card>
       );
     };
 

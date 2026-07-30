@@ -172,40 +172,42 @@ class Stats17 extends BaseStats {
         if (!numberExist && !suffixExist && !titleExist && !subtitleExist && !infoTextExist) return null;
 
         return (
-            <Base.VerticalContent className={this.decorateCSS("stat-item")}>
-                {(numberExist || suffixExist) && (
-                    <span className={this.decorateCSS("stat-value")}>
-                        {stat.prefix && (
-                            <span className={this.decorateCSS("stat-prefix")}>
-                                {stat.prefix}
+            <Base.Card className={this.decorateCSS("card-shell")}>
+                <Base.VerticalContent className={this.decorateCSS("stat-item")}>
+                    {(numberExist || suffixExist) && (
+                        <span className={this.decorateCSS("stat-value")}>
+                            {stat.prefix && (
+                                <span className={this.decorateCSS("stat-prefix")}>
+                                    {stat.prefix}
+                                </span>
+                            )}
+                            <span className={this.decorateCSS("stat-number")}>
+                                {displayNumber}
                             </span>
-                        )}
-                        <span className={this.decorateCSS("stat-number")}>
-                            {displayNumber}
+                            {suffixExist && (
+                                <span className={this.decorateCSS("stat-suffix")}>
+                                    {stat.suffix}
+                                </span>
+                            )}
                         </span>
-                        {suffixExist && (
-                            <span className={this.decorateCSS("stat-suffix")}>
-                                {stat.suffix}
-                            </span>
-                        )}
-                    </span>
-                )}
-                {subtitleExist && (
-                    <Base.H6 className={this.decorateCSS("stat-subtitle")}>
-                        {stat.subtitleElement}
-                    </Base.H6>
-                )}
-                {titleExist && (
-                    <Base.H5 className={this.decorateCSS("stat-title")}>
-                        {stat.titleElement}
-                    </Base.H5>
-                )}
-                {infoTextExist && (
-                    <Base.P className={this.decorateCSS("stat-info-text")}>
-                        {stat.infoTextElement}
-                    </Base.P>
-                )}
-            </Base.VerticalContent>
+                    )}
+                    {subtitleExist && (
+                        <Base.H6 className={this.decorateCSS("stat-subtitle")}>
+                            {stat.subtitleElement}
+                        </Base.H6>
+                    )}
+                    {titleExist && (
+                        <Base.H5 className={this.decorateCSS("stat-title")}>
+                            {stat.titleElement}
+                        </Base.H5>
+                    )}
+                    {infoTextExist && (
+                        <Base.P className={this.decorateCSS("stat-info-text")}>
+                            {stat.infoTextElement}
+                        </Base.P>
+                    )}
+                </Base.VerticalContent>
+            </Base.Card>
         );
     };
 
