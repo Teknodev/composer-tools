@@ -222,7 +222,9 @@ export type TypeLocation = {
 };
 
 export type TypeMediaInputValue =
-  | { type: "image"; url: string }
+  // `alt` carries the ALT description entered in the Insert Media picker. It is
+  // optional so media values persisted before it existed keep working unchanged.
+  | { type: "image"; url: string; alt?: string }
   | { type: "icon"; name: string }
   | {
     type: "lottie";
@@ -235,6 +237,7 @@ export type TypeMediaInputValue =
   | {
     type: "video";
     url: string;
+    alt?: string;
     settings?: {
       autoplay?: boolean;
       controls?: boolean;
