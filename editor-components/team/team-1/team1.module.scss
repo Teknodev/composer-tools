@@ -115,7 +115,7 @@
             margin-top: var(--composer-gap-md);
 
             .icon {
-              color: var(--composer-font-color-primary);
+              color: var(--composer-tertiary-color);
               font-size: 1.5rem;
               transform: color 0.3s ease;
             }
@@ -128,7 +128,7 @@
               }
 
               .icon {
-                color: var(--composer-font-color-primary);
+                color: var(--composer-tertiary-color);
                 font-size: 1.5rem;
                 transform: color 0.3s ease;
                 animation: none;

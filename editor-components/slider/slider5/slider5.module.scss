@@ -602,6 +602,7 @@
             }
 
             .description {
+              color: var(--composer-tertiary-color);
               width: fit-content;
               text-align: left;
               margin: 0;
@@ -629,7 +630,7 @@
 
               .label {
                 text-align: left;
-                color: var(--composer-font-color-primary);
+                color: var(--composer-tertiary-color);
               }
 
               .left-icon,
@@ -735,7 +736,7 @@
             }
 
             .text {
-              color: var(--composer-font-color-primary);
+              color: var(--composer-tertiary-color);
               width: fit-content;
               cursor: pointer;
               transition: opacity 0.3s ease;

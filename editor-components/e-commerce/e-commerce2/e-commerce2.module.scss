@@ -199,14 +199,14 @@
         }
 
         .price {
-          color: var(--composer-font-color-primary);
+          color: var(--composer-tertiary-color);
           text-align: center;
         }
 
         .subTitle {
           display: none;
           cursor: pointer;
-          color: var(--composer-font-color-primary);
+          color: var(--composer-tertiary-color);
           animation-duration: 0.5s;
           text-align: center;
           width: fit-content;

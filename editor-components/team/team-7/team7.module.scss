@@ -25,6 +25,7 @@
             margin: 0;
           }
           .description{
+            color: var(--composer-tertiary-color);
             flex: 1;
             &.middle{
               margin: 0;
@@ -48,6 +49,7 @@
           margin: 0;
         }
         .description {
+          color: var(--composer-tertiary-color);
           margin: 0;
         }
       }
@@ -179,7 +181,7 @@
             .item-position {
               text-align: center;
               width: 100%;
-              color: var(--composer-font-color-primary);
+              color: var(--composer-tertiary-color);
             }
           }
         }

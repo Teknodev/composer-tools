@@ -74,7 +74,7 @@
           width: 70%;
           gap: var(--composer-gap-xl);
           .description {
-            color: var(--composer-font-color-primary);
+            color: var(--composer-tertiary-color);
             width: 100%;
           }
 
@@ -168,7 +168,7 @@
           color: var(--composer-font-color-primary);
         }
         .job {
-          color: var(--composer-font-color-primary);
+          color: var(--composer-tertiary-color);
         }
       }
     }

@@ -43,6 +43,10 @@
         justify-content: center;
         padding: var(--composer-gap-lg);
 
+        .description {
+          color: var(--composer-tertiary-color);
+        }
+
         .form {
           display: flex;
           flex-direction: column;

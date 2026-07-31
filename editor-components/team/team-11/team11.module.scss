@@ -120,10 +120,10 @@
               align-items: center;
               gap: var(--composer-gap-sm);
               .item-position {
-                color: var(--composer-font-color-primary);
+                color: var(--composer-tertiary-color);
               }
               .item-name {
-                color: var(--composer-font-color-primary);
+                color: var(--composer-tertiary-color);
                 &:hover {
                   color: var(--composer-primary-color);
                 }
@@ -160,7 +160,7 @@
         margin: 0 auto;
         .prev_icon {
           cursor: pointer;
-          color: var(--composer-font-color-primary);
+          color: var(--composer-tertiary-color);
           transition: 0.5s;
 
           &:hover {
@@ -171,7 +171,7 @@
 
         .next_icon {
           cursor: pointer;
-          color: var(--composer-font-color-primary);
+          color: var(--composer-tertiary-color);
           transition: 0.5s;
           &:hover {
             color: var(--composer-primary-color);
@@ -220,7 +220,7 @@
           margin: 0 auto;
           .prev_icon {
             cursor: pointer;
-            color: var(--composer-font-color-primary);
+            color: var(--composer-tertiary-color);
             transition: 0.5s;
 
             &:hover {
@@ -231,7 +231,7 @@
 
           .next_icon {
             cursor: pointer;
-            color: var(--composer-font-color-primary);
+            color: var(--composer-tertiary-color);
             transition: 0.5s;
             &:hover {
               color: var(--composer-primary-color);

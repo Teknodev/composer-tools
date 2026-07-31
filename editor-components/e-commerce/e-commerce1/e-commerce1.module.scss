@@ -110,7 +110,7 @@
                     left: var(--composer-gap-md);
                     top: var(--composer-gap-md);
                     z-index: 2;
-                    color: var(--composer-font-color-primary);
+                    color: var(--composer-tertiary-color);
                     text-align: left;
                 }
 
@@ -250,7 +250,7 @@
                 }
 
                 .description {
-                    color: var(--composer-font-color-primary);
+                    color: var(--composer-tertiary-color);
                     width: fit-content;
                     text-align: left;
                     margin: 0;
@@ -278,7 +278,7 @@
 
                     .label {
                         text-align: left;
-                        color: var(--composer-font-color-primary);
+                        color: var(--composer-tertiary-color);
                         font-size: 1rem !important;
                     }
 
@@ -377,7 +377,7 @@
                 }
 
                 .text {
-                    color: var(--composer-font-color-primary);
+                    color: var(--composer-tertiary-color);
                     width: fit-content;
                     cursor: pointer;
                     transition: opacity 0.3s ease;

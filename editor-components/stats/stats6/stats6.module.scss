@@ -4,6 +4,10 @@
   .max-content {
     .banner {
       margin-bottom: calc(2 * var(--composer-gap-lg));
+
+      .description {
+        color: var(--composer-tertiary-color);
+      }
     }
 
     .stats6-page {
@@ -21,7 +25,7 @@
 
         .data-card-description {
           margin: 0;
-          color: var(--composer-font-color-primary);
+          color: var(--composer-tertiary-color);
           font-size: 1.5rem;
           text-align: center;
         }
