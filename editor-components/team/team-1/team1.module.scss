@@ -14,9 +14,6 @@
         .subtitle {
           content: "";
         }
-        .title2 {
-          color: var(--composer-font-color-primary);
-        }
       }
     }
     .down-page {
@@ -90,7 +87,7 @@
             flex-direction: column;
             align-items: var(--composer-content-alignment);
             .position {
-              color: var(--composer-primary-color);
+              color: var(--composer-font-color-primary);
               word-break: break-all;
               transition: transform 0.3s ease;
             }

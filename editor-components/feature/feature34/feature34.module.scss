@@ -38,6 +38,12 @@
       .feature-description {
         text-align: left;
       }
+      .feature-description {
+        color: var(--composer-font-color-primary);
+      }
+      .feature-title {
+        color: var(--composer-font-color-primary);
+      }
       
       &.align-left {
         .feature-item {

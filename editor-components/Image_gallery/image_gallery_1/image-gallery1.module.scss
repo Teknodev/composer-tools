@@ -16,7 +16,7 @@
         margin: 0;
         cursor: pointer;
         transition: opacity 0.3s ease, border-bottom 0.1s ease;
-        color:var(--composer-font-color-primary);
+        color: var(--composer-font-color-primary);
         &.active-tab{
           font-weight: bold;
           border-bottom: 2px solid var(--composer-font-color-primary);
@@ -61,7 +61,7 @@
         align-items: center;
         justify-content: center;
         .title{
-          color :var(--composer-font-color-primary);
+          color: var(--composer-font-color-primary);
           max-width: 40%;
           width: fit-content;
           margin: 0;

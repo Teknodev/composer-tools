@@ -69,6 +69,7 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
         }
 
         .plan-title {
+          color: var(--composer-font-color-primary);
           padding: var(--composer-gap-sm) var(--composer-gap-md);
           margin: 0;
           cursor: pointer;
@@ -285,7 +286,6 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
                 .subtitle {
                   background-color: var(--composer-primary-color);
                   border-color: var(--composer-primary-color);
-                  color: var(--composer-font-color-secondary);
                 }
               }
             }
@@ -315,7 +315,6 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
 
                 .subtitle {
                   border: 1px solid var(--composer-tertiary-color);
-                  color: var(--composer-font-color-primary);
                   padding: var(--composer-gap-sm);
                   border-radius: var(--composer-border-radius-sm);
                   display: flex;
