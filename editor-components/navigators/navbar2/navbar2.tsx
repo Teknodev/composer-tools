@@ -563,7 +563,7 @@ class Navbar2 extends BaseNavigator {
     this.addProp({
       type: "boolean",
       key: "divider",
-      displayer: "Divider",
+      displayer: "Line",
       value: true,
     });
 
@@ -603,7 +603,7 @@ class Navbar2 extends BaseNavigator {
           type: "boolean",
           key: "showLanguage",
           displayer: "Show Language",
-          value: true,
+          value: false,
         },
         {
           type: "boolean",
