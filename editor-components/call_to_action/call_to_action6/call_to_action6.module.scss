@@ -247,6 +247,13 @@
     .max-content {
       padding: var(--composer-gap-md);
 
+      &.content-background::before {
+        left: 50%;
+        transform: translateX(-50%);
+        width: calc(100cqw + 60px);
+        border-radius: 0;
+      }
+
       .content {
 
         .space-container {
