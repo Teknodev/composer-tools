@@ -61,13 +61,11 @@
                 .title,
                 .subtitle {
                     transform: scale(1.05);
-                    color: var(--composer-primary-color);
                     transition-delay: 0s;
                 }
 
                 .description {
                     transform: scale(1.02);
-                    color: color-mix(in srgb, var(--composer-primary-color) 70%, var(--composer-font-color-primary));
                     transition-delay: 0.1s;
                 }
 
@@ -95,7 +93,6 @@
                 .title,
                 .subtitle {
                     animation: bounceAndGlow 1s ease-in-out;
-                    color: var(--composer-primary-color);
                 }
 
                 .description {

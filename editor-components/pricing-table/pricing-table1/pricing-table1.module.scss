@@ -237,7 +237,7 @@
                   width: fit-content;
                   margin-left: 0;
                   margin-right: 0;
-                  color: var(--composer-primary-color);
+                  color: var(--composer-font-color-primary);
                 }
 
                 .card-duration {
@@ -304,6 +304,7 @@
         }
 
         .text {
+          color: var(--composer-font-color-primary);
           content: "";
         }
       }

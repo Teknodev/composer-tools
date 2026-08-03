@@ -160,7 +160,7 @@
                             .item-description {
                                 padding: 0;
                                 opacity: 0;
-                                color: color-mix(in srgb, var(--composer-font-color-primary), var(--composer-html-background) 25%);
+                                color: var(--composer-font-color-primary);
                                 text-align: left;
                                 transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
                             }

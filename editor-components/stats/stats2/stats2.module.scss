@@ -75,6 +75,7 @@
           gap: var(--composer-gap-xl);
 
           .card-text {
+            color: var(--composer-font-color-primary);
             position: relative;
             flex: 1;
             width: 85%;
@@ -112,6 +113,7 @@
             }
 
             .card-icon-after {
+              color: var(--composer-font-color-primary);
               font-size: 2rem;
               margin-top: auto;
               margin-bottom: auto;
