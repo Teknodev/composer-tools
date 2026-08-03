@@ -63,12 +63,16 @@
               align-items: center;
 
               .faq-item-title {
+                color: var(--composer-font-color-primary);
                 content: "";
                 text-align: left;
                 font-weight: 800;
               }
 
               .faq-item-button {
+              .Icon {
+                color: var(--composer-font-color-primary);
+              }
                 border: none;
                 font-size: 1rem;
                 background: none;
@@ -91,6 +95,7 @@
               }
 
               .faq-text {
+                color: var(--composer-font-color-primary);
                 text-align: left;
               }
             }
@@ -145,6 +150,7 @@
             .stat-value-prefix,
             .stat-value-suffix {
               font-size: 0.6em;
+            }
             }
 
           }

@@ -156,7 +156,7 @@
               width: 65px;
               height: 65px;
               cursor: pointer;
-              color: var(--composer-font-color-secondary);
+              color: var(--composer-font-color-primary);
             }
           }
         }
@@ -271,6 +271,9 @@
                 .progress-title{
                   font-size: 1.25rem;
                   color: var(--composer-tertiary-color);
+                }
+                .icon {
+                  color: var(--composer-font-color-primary);
                 }
               }
               .progress-text-container {

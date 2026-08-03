@@ -1,7 +1,6 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
-  background-color: var(--composer-html-background);
 
     .max-content {
     display: flex;
@@ -97,7 +96,7 @@
 
                 .button-icon {
                   font-size: 1.5rem;
-                  color: var(--composer-primary-color);
+                  color: var(--composer-font-color-primary);
                 }
 
                 &:hover {

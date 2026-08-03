@@ -67,10 +67,15 @@
             .stat-description {
               text-align: left;
             }
-
             .stat-subtitle,
             .stat-title {
-              color: var(--composer-primary-color);
+              color: var(--composer-font-color-primary);
+            }
+            .stat-title {
+              color: var(--composer-font-color-primary);
+            }
+            .stat-subtitle {
+              color: var(--composer-font-color-primary);
             }
 
             .stat-description {
@@ -85,7 +90,13 @@
 
             .stat-subtitle,
             .stat-title {
-              color: var(--composer-secondary-color);
+              color: var(--composer-font-color-primary);
+            }
+            .stat-title {
+              color: var(--composer-font-color-primary);
+            }
+            .stat-subtitle {
+              color: var(--composer-font-color-primary);
             }
           }
         }

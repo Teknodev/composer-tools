@@ -56,11 +56,21 @@
                             .stat-prefix,
                             .stat-number,
                             .stat-suffix {
-                                color: inherit;
+                                color: var(--composer-font-color-primary);
+                            }
+                            .stat-suffix {
+                                color: var(--composer-font-color-primary);
+                            }
+                            .stat-number {
+                                color: var(--composer-font-color-primary);
+                            }
+                            .stat-prefix {
+                                color: var(--composer-font-color-primary);
                             }
                         }
 
                         .stat-subtitle {
+                            color: var(--composer-font-color-primary);
                             overflow: hidden;
                             text-overflow: ellipsis;
                             text-align: center;
@@ -70,7 +80,7 @@
 
                         .stat-title {
                             text-align: center;
-                            color: inherit;
+                            color: var(--composer-font-color-primary);
                             font-size: 1.25rem;
                             overflow: hidden;
                             text-overflow: ellipsis;
@@ -80,7 +90,7 @@
 
                         .stat-description {
                             text-align: center;
-                            color: inherit;
+                            color: var(--composer-font-color-primary);
                             font-size: 0.75rem;
                             overflow: hidden;
                             display: -webkit-box;

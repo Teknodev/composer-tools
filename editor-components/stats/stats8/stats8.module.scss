@@ -94,11 +94,12 @@ $font-color-primary: var(--composer-font-color-primary);
         }
 
         .description {
+          margin: 0;
           color: $font-color-primary;
         }
 
         .author {
-          color: $font-color-primary;
+          color: var(--composer-font-color-primary);
           word-break: break-word;
           text-transform: uppercase;
         }
@@ -107,7 +108,7 @@ $font-color-primary: var(--composer-font-color-primary);
           .author-role {
             position: relative;
             z-index: 1;
-            color: $font-color-primary;
+            color: var(--composer-font-color-primary);
             word-break: break-word;
             letter-spacing: 1.5px;
             margin: 0;

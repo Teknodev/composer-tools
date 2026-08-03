@@ -1,7 +1,6 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
-    background-color: var(--composer-primary-color);
     padding: calc(var(--composer-gap-lg)*2) var(--composer-gap-xl);
 
     .max-content {
@@ -18,7 +17,6 @@
                 .title,
                 .subtitle,
                 .description {
-                    color: var(--composer-font-color-secondary);
                     text-align: left;
                 }
 
@@ -78,7 +76,16 @@
                             .stat-subtitle,
                             .stat-description {
                                 text-align: left;
-                                color: var(--composer-font-color-secondary);
+                                color: var(--composer-font-color-primary);
+                            }
+                            .stat-description {
+                                color: var(--composer-font-color-primary);
+                            }
+                            .stat-title {
+                                color: var(--composer-font-color-primary);
+                            }
+                            .stat-subtitle {
+                                color: var(--composer-font-color-primary);
                             }
                         }
 
