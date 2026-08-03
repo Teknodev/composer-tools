@@ -485,7 +485,7 @@ class Form8 extends BaseContacts {
                   <Form className={this.decorateCSS("form")}>
                     {inputItems.map((inputItem: any, inputItemIndex: number) =>
                       inputItem.getPropValue("inputs").map((inputObj: any, inputIndex: number) => (
-                        <div className={this.decorateCSS("input-box")}>
+                        <div key={`${inputItemIndex}-${inputIndex}`} className={this.decorateCSS("input-box")}>
                           {inputObj.getPropValue("type") == "Text Area" ? (
                             <textarea
                               value={values[getInputName(inputItemIndex, inputIndex)]}

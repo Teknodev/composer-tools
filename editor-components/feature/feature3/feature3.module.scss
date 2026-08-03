@@ -33,7 +33,6 @@ $circlepaddingbottom: calc(300px + var(--composer-gap-xl));
                 .description {
                     margin-top: 0;
                     margin-bottom: var(--composer-gap-md);
-                    color: var(--composer-font-color-primary);
 
                     &.circle-exist {
                         text-align: left;

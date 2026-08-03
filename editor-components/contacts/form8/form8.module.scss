@@ -35,22 +35,35 @@ $content-background-color: color-mix(in srgb, var(--composer-html-background), v
 
         .contact-texts {
           width: 100%;
-          align-items: baseline;
+          align-items: stretch;
 
           .contact-element {
-            display: flex;
-            align-items: center;
+            display: block;
+            text-align: left;
             color: var(--composer-font-color-primary);
-            gap: var(--composer-gap-sm);
+
+            .contact-title,
+            .contact-text {
+              display: inline;
+              text-align: left;
+              width: auto;
+              margin-left: 0;
+            }
 
             .contact-title {
               content: "";
               font-size: 16px !important;
+              margin-right: var(--composer-gap-sm);
+
+              &::after {
+                content: "\200B";
+              }
             }
 
             .contact-text {
               content: "";
               font-size: 16px !important;
+              margin-right: 0;
             }
           }
         }
@@ -135,7 +148,6 @@ $content-background-color: color-mix(in srgb, var(--composer-html-background), v
         .text-content {
           .contact-texts {
             .contact-element {
-              gap: var(--composer-gap-sm);
               margin: 0;
             }
           }

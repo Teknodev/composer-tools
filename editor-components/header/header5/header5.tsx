@@ -12,26 +12,37 @@ type ButtonData = {
   icon: TypeMediaInputValue;
 };
 
+interface BackgroundSettings {
+  componentBackground: TypeMediaInputValue;
+  overlay: boolean;
+}
+
 class Header5 extends BaseHeader {
   constructor(props?: any) {
     super(props, styles);
 
     this.addProp({
-      type: "media",
-      key: "componentBackground",
-      displayer: "Media",
-      value: {
-        url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/691b29523596a1002b29410a?alt=media",
-        type: "image",
-      },
-      additionalParams: { availableTypes: ["image", "video"] }
-    })
-
-    this.addProp({
-      type: "boolean",
-      key: "overlay",
-      displayer: "Overlay",
-      value: true,
+      type: "object",
+      key: "backgroundSettings",
+      displayer: "Background Media",
+      value: [
+        {
+          type: "media",
+          key: "componentBackground",
+          displayer: "Background Media",
+          value: {
+            url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/691b29523596a1002b29410a?alt=media",
+            type: "image",
+          },
+          additionalParams: { availableTypes: ["image", "video"] }
+        },
+        {
+          type: "boolean",
+          key: "overlay",
+          displayer: "Overlay",
+          value: true,
+        }
+      ]
     });
 
     this.addProp({
@@ -71,13 +82,17 @@ class Header5 extends BaseHeader {
   }
 
   render() {
-    const coverImage = this.getPropValue("componentBackground");
+    const backgroundSettings = this.castToObject<BackgroundSettings>("backgroundSettings");
+    const coverImage = backgroundSettings?.componentBackground;
     const buttonItem = this.castToObject<ButtonData[]>("buttons");
-    const subtitle = this.castToString(this.getPropValue("subtitle"));
-    const title = this.castToString(this.getPropValue("title"));
-    const description = this.castToString(this.getPropValue("description"))
+    const rawSubtitle = this.getPropValue("subtitle");
+    const rawTitle = this.getPropValue("title");
+    const rawDescription = this.getPropValue("description");
+    const subtitle = this.castToString(rawSubtitle);
+    const title = this.castToString(rawTitle);
+    const description = this.castToString(rawDescription);
     const hasMedia = !!coverImage?.url;
-    const enableOverlay = hasMedia && this.getPropValue("overlay");
+    const enableOverlay = hasMedia && backgroundSettings?.overlay;
     const hasContent = subtitle || title || description || buttonItem.length > 0;
 
     return (
@@ -91,9 +106,9 @@ class Header5 extends BaseHeader {
         {hasContent && (
           <Base.MaxContent className={this.decorateCSS("content")}>
             <Base.VerticalContent className={this.decorateCSS("vertical-content")}>
-              {subtitle && (<Base.SectionSubTitle className={this.decorateCSS("subtitle")}> {this.getPropValue("subtitle")}</Base.SectionSubTitle>)}
-              {title && (<Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>)}
-              {description && (<Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>)}
+              {subtitle && (<Base.SectionSubTitle className={this.decorateCSS("subtitle")}> {rawSubtitle}</Base.SectionSubTitle>)}
+              {title && (<Base.SectionTitle className={this.decorateCSS("title")}>{rawTitle}</Base.SectionTitle>)}
+              {description && (<Base.SectionDescription className={this.decorateCSS("description")}>{rawDescription}</Base.SectionDescription>)}
               {buttonItem.length > 0 && (
                 <Base.Row className={this.decorateCSS("button-container")}>
                   {buttonItem.map(

@@ -123,10 +123,23 @@ class Header2 extends BaseHeader {
       slidesToScroll: 1,
       vertical: true,
       verticalSwiping: true,
+      swipeToSlide: true,
+      touchThreshold: 10,
+      responsive: [
+        {
+          breakpoint: 1024,
+          settings: {
+            vertical: false,
+            verticalSwiping: false,
+            slidesToShow: 1,
+            slidesToScroll: 1,
+          },
+        },
+      ],
     };
 
     return (
-      <Base.Container className={this.decorateCSS("container")}>
+      <Base.Container className={this.decorateCSS("container")} isFull={true}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={`${this.decorateCSS("carousel-wrapper")} ${hasMedia && this.decorateCSS("has-media")}`}>
             <ComposerSlider {...settings} className={this.decorateCSS("carousel")}>
