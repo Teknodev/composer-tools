@@ -42,6 +42,15 @@
                             line-height: 1.1;
                             font-weight: 800;
                         }
+                        .stat-suffix {
+                            color: var(--composer-font-color-primary);
+                        }
+                        .stat-number {
+                            color: var(--composer-font-color-primary);
+                        }
+                        .stat-prefix {
+                            color: var(--composer-font-color-primary);
+                        }
                     }
 
                     .stat-info {

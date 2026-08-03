@@ -378,6 +378,12 @@
                     .currency-code {
                         font-size: 2rem !important;
                     }
+                    .currency-code {
+                        color: var(--composer-font-color-primary);
+                    }
+                    .value {
+                        color: var(--composer-font-color-primary);
+                    }
                 }
             }
 
@@ -417,6 +423,12 @@
                         .size,
                         .type {
                             content: '';
+                        }
+                        .type {
+                            color: var(--composer-font-color-primary);
+                        }
+                        .size {
+                            color: var(--composer-font-color-primary);
                         }
 
                         &.active {
@@ -580,6 +592,7 @@
                                 gap: var(--composer-gap-sm);
 
                                 .section-title {
+                                    color: var(--composer-font-color-primary);
                                     flex: 1;
                                     text-align: left;
                                 }
@@ -599,6 +612,7 @@
                                 transition: all 0.8s ease;
 
                                 .text {
+                                    color: var(--composer-font-color-primary);
                                     margin-top: var(--composer-gap-sm);
                                     text-align: left;
                                 }

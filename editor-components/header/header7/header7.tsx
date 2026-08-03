@@ -1,30 +1,41 @@
 import * as React from "react";
-import { BaseHeader } from "../../EditorComponent";
+import { BaseHeader, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./header7.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "../../../custom-hooks/input-templates";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
+
+interface BackgroundSettings {
+    componentBackground: TypeMediaInputValue;
+    overlay: boolean;
+}
 
 class Header7 extends BaseHeader {
     constructor(props?: any) {
         super(props, styles);
 
         this.addProp({
-            type: "media",
-            key: "componentBackground",
-            displayer: "Image",
-            value: {
-                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/69367c26496aa1002ca9a73c?alt=media",
-                type: "image",
-            },
-            additionalParams: { availableTypes: ["image", "video"] }
-        })
-
-        this.addProp({
-            type: "boolean",
-            key: "overlay",
-            displayer: "Overlay",
-            value: true,
+            type: "object",
+            key: "backgroundSettings",
+            displayer: "Background Media",
+            value: [
+                {
+                    type: "media",
+                    key: "componentBackground",
+                    displayer: "Background Media",
+                    value: {
+                        url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/69367c26496aa1002ca9a73c?alt=media",
+                        type: "image",
+                    },
+                    additionalParams: { availableTypes: ["image", "video"] }
+                },
+                {
+                    type: "boolean",
+                    key: "overlay",
+                    displayer: "Overlay",
+                    value: true,
+                }
+            ]
         });
 
         this.addProp({
@@ -73,14 +84,15 @@ class Header7 extends BaseHeader {
     }
 
     render() {
-        const coverImage = this.getPropValue("componentBackground");
+        const backgroundSettings = this.castToObject<BackgroundSettings>("backgroundSettings");
+        const coverImage = backgroundSettings?.componentBackground;
         const buttonItem = this.castToObject<INPUTS.CastedButton[]>("buttons");
         const subtitle = this.castToString(this.getPropValue("subtitle")) || "";
         const title = this.castToString(this.getPropValue("title")) || "";
         const description = this.castToString(this.getPropValue("description")) || "";
         const label = this.castToString(this.getPropValue("label")) || "";
         const hasMedia = !!coverImage?.url;
-        const enableOverlay = hasMedia && this.getPropValue("overlay");
+        const enableOverlay = hasMedia && backgroundSettings?.overlay;
         const hasContent = subtitle || title || description || label || buttonItem.length > 0;
 
         return (

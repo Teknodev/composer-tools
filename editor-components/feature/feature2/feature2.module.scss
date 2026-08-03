@@ -2,130 +2,62 @@
 
 .container {
     .max-content {
-        display: flex;
-        flex-direction: column;
-        gap: var(--composer-gap-xl);
-
-        .top-content {
-            display: flex;
-            flex-direction: column;
-            align-items: center !important;
-            text-align: center !important;
-            width: 100%;
-            .subtitle {
-                text-align: center !important;
-                transform: none !important;
-
-                &::before {
-                    display: none !important;
-                }
-            }
-
-            .title,
-            .description {
-                text-align: center !important;
-            }
-            .button,
-            .button-text,
-            .button-icon {
-                content: "";
-            }
-
-            .button-container {
-                display: flex;
-                justify-content: center !important;
-                gap: var(--composer-gap-sm);
-                flex-wrap: wrap;
-
-                .button {
-                    .button-text,
-                    .button-icon {
-                        content: "";
-                    }
-                }
-            }
-        }
-
         .wrapper {
+            margin-top: var(--composer-gap-md);
             gap: var(--composer-gap-xl);
-            padding-top: calc(var(--composer-gap-sm) + var(--composer-gap-xs));
 
             .item {
                 display: flex;
                 flex-direction: column;
-                align-items: flex-start;
-                gap: var(--composer-gap-lg);
+                align-items: center;
+                gap: var(--composer-gap-md);
                 position: relative;
 
-                .icon-container {
+                .item-index {
+                    margin: 0;
                     display: flex;
-                    justify-content: center;
                     align-items: center;
-                    position: relative;
-                    width: 100%;
-
-                    .item-index {
-                        margin: 0;
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
-                        position: absolute;
-                        background-color: var(--composer-font-color-primary);
-                        color: var(--composer-html-background);
-                        border-radius: var(--composer-border-radius-full);
-                        width: calc(var(--composer-gap-md) + var(--composer-gap-xs));
-                        height: calc(var(--composer-gap-md) + var(--composer-gap-xs));
-                        top: calc(-1 * (var(--composer-gap-sm) + var(--composer-gap-xs)));
-                        left: calc(50% + var(--composer-gap-xl) / 2 + var(--composer-gap-md));
-                        transform: translateX(-50%);
-                    }
-
-                    .icon {
-                        font-size: 4.5rem;
-                        width: var(--composer-gap-xl);
-                        height: var(--composer-gap-xl);
-                        margin: 0;
-                        color: var(--composer-font-color-primary);
-                    }
-                }
-
-                .item-content {
-                    width: 100%;
-                }
-
-                .item-title {
-                    width: 100%;
+                    justify-content: center;
+                    position: absolute;
+                    background-color: var(--composer-font-color-primary);
                     color: var(--composer-font-color-primary);
-                    text-align: left;
-                    font-weight: 800;
+                    border-radius: var(--composer-border-radius-full);
+                    width: 25px;
+                    height: 25px;
+                    top: -15px;
+                    left: calc(50% + 30px);
+                    transform: translateX(-50%);
                 }
 
-                .item-subtitle {
-                    width: 100%;
+                .icon {
+                    font-size: 3.5rem;
+                    width: var(--composer-gap-xl);
+                    height: var(--composer-gap-xl);
+                    margin: 0;
                     color: var(--composer-font-color-primary);
-                    text-align: left;
                 }
 
-                .item-description {
+                .title {
                     width: 100%;
+                    margin: 0;
+                    color: var(--composer-font-color-primary);
+                }
+
+                .description {
+                    width: 100%;
+                    margin: 0;
                     color: var(--composer-tertiary-color);
-                    text-align: left;
-                }
-
-                .item-button,
-                .item-button-text,
-                .item-button-icon {
-                    content: "";
                 }
 
                 &:not(:last-child)::after {
                     content: "";
-                    width: calc(100% - var(--composer-gap-sm));
+                    width: 80%;
                     height: 1px;
                     background-color: var(--composer-font-color-primary);
                     position: absolute;
-                    left: calc(50% + var(--composer-gap-xl) / 2 + var(--composer-gap-xs));
+                    left: 100%;
                     top: calc(var(--composer-gap-xl) / 2);
+                    transform: translateX(calc(-50% + var(--composer-gap-sm)));
                     opacity: .2;
                 }
 
@@ -136,63 +68,50 @@
         }
     }
 }
+
 @container (max-width: #{$composer-tablet-width}) {
     .container {
         .max-content {
-            gap: var(--composer-gap-lg);
-
             .wrapper {
-                gap: var(--composer-gap-lg);
+                div:nth-child(2n)::after {
+                    display: none;
+                }
 
                 .item {
-                    gap: var(--composer-gap-lg);
+                    .item-index {
+                        width: 30px;
+                        height: 30px;
+                        top: -20px;
+                        left: calc(50% + 35px);
+                    }
                 }
             }
         }
     }
 }
 
-
 @container (max-width: #{$composer-phone-width}) {
     .container {
         .max-content {
             .wrapper {
                 .item {
-                    align-items: center;
-                    text-align: center;
-                    gap: var(--composer-gap-md);
-
                     &::after {
                         display: none;
                     }
 
-                    .icon-container {
-                        width: 100%;
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
-                        position: relative;
-
-                        .item-index {
-                            width: calc(var(--composer-gap-md) + var(--composer-gap-xs));
-                            height: calc(var(--composer-gap-md) + var(--composer-gap-xs));
-                            top: calc(-1 * (var(--composer-gap-sm) + var(--composer-gap-xs)));
-                            left: calc(50% + var(--composer-gap-xl) / 2 + var(--composer-gap-xs));
-                        }
-
-                        .icon {
-                            font-size: 3rem;
-                        }
+                    .item-index {
+                        width: 25px;
+                        height: 25px;
+                        top: -15px;
+                        left: calc(50% + 30px);
                     }
 
-                    .item-content {
-                        align-items: center;
-                    }
-
-                    .item-title,
-                    .item-subtitle,
-                    .item-description {
+                    .title, .description{
                         text-align: center;
+                    }
+
+                    .icon {
+                        font-size: 3rem;
                     }
                 }
             }

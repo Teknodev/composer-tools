@@ -38,12 +38,16 @@
               align-items: center;
 
               .faq-item-title {
+                color: var(--composer-font-color-primary);
                 content: "";
                 margin-left: 0;
                 text-align: left;
               }
 
               .faq-item-button {
+              .Icon {
+                color: var(--composer-font-color-primary);
+              }
                 border: none;
                 font-size: 1rem;
                 background: none;
@@ -66,6 +70,7 @@
               }
 
               .faq-text {
+                color: var(--composer-font-color-primary);
                 text-align: left;
               }
             }
@@ -103,6 +108,9 @@
             font-size: 3rem;
 
             .stat-value-icon {
+            .stat-icon {
+              color: var(--composer-font-color-primary);
+            }
               font-size: 1.5rem;
               vertical-align: middle;
             }

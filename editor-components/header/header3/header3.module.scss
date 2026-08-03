@@ -28,8 +28,54 @@
   position: relative;
   padding: 0 !important;
 
-  .max-content {
+  &.has-background {
+    .title,
+    .description {
+      color: #ffffff !important;
+    }
+
+    .subtitle {
+      color: #ffffff !important;
+      background: none !important;
+      padding: 0 !important;
+
+      &::before {
+        background-color: #ffffff !important;
+      }
+    }
+
+    .lines-container {
+      .line-1,
+      .line-2 {
+        background-color: #ffffff !important;
+      }
+    }
+
+    .nav-buttons {
+      .nav-button {
+        border-color: #ffffff !important;
+        color: #ffffff !important;
+
+        &:hover {
+          color: #ffffff !important;
+          background-color: transparent !important;
+          transform: none !important;
+        }
+
+        .nav-icon {
+          color: #ffffff !important;
+        }
+      }
+    }
+  }
+
+  &.container.container {
+    padding: 0 !important;
+  }
+
+  .slider-parent-wrapper {
     position: relative;
+    width: 100%;
 
     .slider-parent {
       width: 100%;
@@ -49,27 +95,35 @@
 
           .bg-image {
             position: absolute;
-            top: 0;
-            left: 0;
             width: 100%;
             height: 100%;
             object-fit: cover;
+          }
+
+          .bg-image-wrapper {
+            position: absolute;
+            inset: 0;
             z-index: 0;
           }
 
           .overlay,
           .image-overlay {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            inset: 0;
             background-color: var(--composer-overlay-color);
             z-index: 1;
             pointer-events: none;
           }
 
-          .content {
+          .max-content {
+            position: relative;
+            z-index: 3;
+            width: 100%;
+            height: 100%;
+            max-width: var(--composer-content-width);
+            margin: 0 auto;
+
+            .content {
             height: 70vh;
             width: 100%;
             position: relative;
@@ -85,8 +139,6 @@
             }
 
             .content-div {
-              max-width: var(--composer-content-width);
-              margin: 0 auto;
               display: flex;
               flex-direction: column;
               justify-content: center;
@@ -120,51 +172,67 @@
                 }
               }
 
-              .subtitle-wrapper {
-                .imageSubtitleAnimation {
-                  animation: downAnimate 1s ease;
-                }
+              .vertical-content {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start !important;
+                text-align: left !important;
 
-                .subtitle {
-                  text-align: left;
-                  width: 99%;
-                  margin: 0;
-                }
-              }
+                .subtitle-wrapper {
+                  margin-left: 0 !important;
+                  margin-right: auto !important;
+                  text-align: left !important;
 
-              .title-wrapper {
-                .imageTitleAnimation {
-                  animation: downAnimate 1s ease;
-                }
-
-                .title {
-                  text-align: left;
-                }
-              }
-
-
-              .description-wrapper {
-                .imageDescriptionAnimation {
-                  animation: downAnimate 1s ease;
-                }
-
-                .description {
-                  text-align: left;
-                }
-              }
-
-              .buttons {
-                .animateButtons {
-                  animation: fadeOutDown 1.5s ease-in-out;
-                }
-
-                .button {
-                  .button-text {
-                    content: "";
+                  .imageSubtitleAnimation {
+                    animation: downAnimate 1s ease;
                   }
 
-                  .button-icon {
-                    line-height: 0;
+                  .subtitle {
+                    text-align: left !important;
+                    width: 99%;
+                    margin: 0 !important;
+                    margin-left: 0 !important;
+                    margin-right: auto !important;
+                  }
+                }
+
+                .title-wrapper {
+                  .imageTitleAnimation {
+                    animation: downAnimate 1s ease;
+                  }
+
+                  .title {
+                    text-align: left !important;
+                  }
+                }
+
+                .description-wrapper {
+                  .imageDescriptionAnimation {
+                    animation: downAnimate 1s ease;
+                  }
+
+                  .description {
+                    text-align: left !important;
+                  }
+                }
+
+                .buttons {
+                  display: flex;
+                  flex-wrap: wrap;
+                  gap: var(--composer-gap-sm);
+
+                  .animateButtons {
+                    animation: fadeOutDown 1.5s ease-in-out;
+                  }
+
+                  .button {
+                    .button-text {
+                      content: "";
+                    }
+
+                    .button-icon {
+                      line-height: 0;
+                    }
                   }
                 }
               }
@@ -192,8 +260,8 @@
                   }
 
                   .nav-icon {
-                    width: 3rem;
-                    height: 3rem;
+                    width: 48px;
+                    height: 48px;
                     display: flex;
                     align-items: center;
                     justify-content: center;
@@ -208,44 +276,6 @@
               }
             }
           }
-
-          &.has-background .content .content-div {
-
-            .lines-container {
-
-              .line-1,
-              .line-2 {
-                background-color: #ffffff;
-              }
-            }
-
-            .subtitle-wrapper .subtitle {
-              color: #ffffff;
-              padding: 0 !important;
-              background: none !important;
-            }
-
-            .title-wrapper .title {
-              color: #ffffff;
-            }
-
-            .description-wrapper .description {
-              color: #ffffff;
-            }
-
-            .nav-buttons {
-              margin-top: var(--composer-gap-md);
-
-              .nav-button {
-                border-color: #ffffff;
-                color: #ffffff;
-
-                &:hover {
-                  color: black;
-                  background-color: #ffffff;
-                }
-              }
-            }
           }
 
           .image {
@@ -275,16 +305,22 @@
       }
     }
 
-    .dots {
+    .dots-max-content {
       position: absolute;
-      display: flex !important;
-      flex-direction: column;
-      transform: translateY(-50%);
-      margin-right: var(--composer-gap-xl);
-      gap: var(--composer-gap-md) !important;
-      z-index: 5;
       right: 0;
+      left: 0;
       top: 30%;
+      transform: translateY(-50%);
+      pointer-events: none;
+      z-index: 5;
+
+      .dots {
+        position: absolute;
+        display: flex !important;
+        flex-direction: column;
+        gap: var(--composer-gap-md) !important;
+        right: var(--composer-gap-xl);
+        pointer-events: auto;
 
       .dot-item {
         margin: 0 !important;
@@ -321,8 +357,9 @@
         }
       }
     }
+    }
 
-    &.has-background .dots {
+    &.has-background .dots-max-content .dots {
       .dot-item .dot-button {
         background: rgba(255, 255, 255, 0.5);
       }
@@ -376,17 +413,22 @@
     }
 
     @container (max-width: #{$composer-phone-width}) {
-      .dots {
+      .dots-max-content {
         top: auto;
-        bottom: 20px;
-        left: 50%;
-        transform: translateX(-50%);
-        flex-direction: row;
-        width: max-content;
+        bottom: 50px;
+        transform: none;
 
-        .dot-item.slick-active .dot-button::after {
-          width: var(--composer-gap-md);
-          height: var(--composer-gap-md);
+        .dots {
+          position: static;
+          right: auto;
+          margin: 0 auto;
+          flex-direction: row;
+          width: max-content;
+
+          .dot-item.slick-active .dot-button::after {
+            width: var(--composer-gap-md);
+            height: var(--composer-gap-md);
+          }
         }
       }
 

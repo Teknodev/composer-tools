@@ -69,7 +69,6 @@
               min-width: 100px;
               width: 100%;
               margin: var(--composer-gap-sm) var(--composer-gap-md);
-              color: white;
               font-size: 1.5rem;
               transition: letter-spacing 0.4s ease-in-out;
             }
@@ -112,7 +111,7 @@
               }
 
               .description{
-                color: white;
+                color: var(--composer-font-color-primary);
                 opacity: 0.5;
                 margin: 0;
               }
@@ -126,11 +125,17 @@
                 .secondIcon {
                   width: var(--composer-gap-md);
                   height: var(--composer-gap-md);
-                  color: white;
+                  color: var(--composer-font-color-primary);
 
                   &:hover {
                     color: var(--composer-primary-color);
                   }
+                }
+                .secondIcon {
+                  color: var(--composer-font-color-primary);
+                }
+                .firstIcon {
+                  color: var(--composer-font-color-primary);
                 }
               }
             }
