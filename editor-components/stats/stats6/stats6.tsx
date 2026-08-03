@@ -222,7 +222,7 @@ class Stats6Page extends BaseStats {
             <Base.ListGrid gridCount={{ pc: itemCount, tablet: 2, phone: 1 }} className={this.decorateCSS("stats6-page")}>
               {cardList.map((data: any, index: number) => {
                 return (
-                  (this.getComponentState(`number-${index}`) !== "0" || this.castToString(data.cardDescription)) && (
+                  (this.castToString(data.cardValue) || this.castToString(data.cardDescription)) && (
                     <Base.Card key={index} className={this.decorateCSS("card-shell")}>
                       <Base.VerticalContent className={this.decorateCSS("card")}>
                         {this.getComponentState(`number-${index}`) !== "0" && <Base.P className={this.decorateCSS("data-card-title")}>{this.getComponentState(`number-${index}`)}</Base.P>}

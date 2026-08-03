@@ -134,8 +134,8 @@ class Stats23 extends BaseStats {
         return "Stats 23";
     }
 
-    private hasStatContent(stat: any): boolean {
-        const valueExist = !!this.castToString(stat.number);
+    private hasStatContent(stat: any, rawNumber: any): boolean {
+        const valueExist = !!this.castToString(rawNumber);
         const suffixExist = !!this.castToString(stat.suffix);
         const titleExist = !!this.castToString(stat.title);
         const subtitleExist = !!this.castToString(stat.subtitle);
@@ -143,7 +143,7 @@ class Stats23 extends BaseStats {
         return valueExist || suffixExist || titleExist || subtitleExist || descriptionExist;
     }
 
-    private AnimatedStat = ({ stat, animationDuration = 2000, statsAnimation }: { stat: StatItem; animationDuration?: number; statsAnimation: boolean }) => {
+    private AnimatedStat = ({ stat, rawNumber, animationDuration = 2000, statsAnimation }: { stat: StatItem; rawNumber: any; animationDuration?: number; statsAnimation: boolean }) => {
         const originalNumberString = stat.number;
         const targetNumber = parseFloat(originalNumberString) || 0;
 
@@ -188,7 +188,7 @@ class Stats23 extends BaseStats {
         const suffixExist = this.castToString(stat.suffix);
         const displayNumber = statsAnimation ? animatedNumber : formatNumber(targetNumber);
 
-        if (!this.hasStatContent(stat)) return null;
+        if (!this.hasStatContent(stat, rawNumber)) return null;
 
         return (
             <Base.VerticalContent className={this.decorateCSS("stat-item")}>
@@ -249,6 +249,9 @@ class Stats23 extends BaseStats {
             const description = this.castToString(item.description) || "";
             return { prefix, number, suffix, title, titleElement: item.title, subtitle, subtitleElement: item.subtitle, description, descriptionElement: item.description };
         });
+        // Raw (pre-"|| 0"-fallback) numeric text, kept alongside `stats` so the
+        // Base.Card call-site guard can't be fooled by the display fallback.
+        const rawNumbers = statsItems.map((item) => this.castToString(item.number));
 
         const animationProps = this.castToObject<{ statsAnimation: boolean; animationDuration: number }>("animation");
         const statsAnimation = !!animationProps?.statsAnimation;
@@ -305,10 +308,11 @@ class Stats23 extends BaseStats {
 
                         {hasStats && (
                             <Base.ListGrid gridCount={{ pc: itemCount, tablet: 2, phone: 1 }} className={this.decorateCSS("stats-grid")}>
-                                {stats.map((stat: StatItem, index: number) => this.hasStatContent(stat) && (
+                                {stats.map((stat: StatItem, index: number) => this.hasStatContent(stat, rawNumbers[index]) && (
                                     <Base.Card key={`stat27-${index}`} className={this.decorateCSS("card-shell")}>
                                         <this.AnimatedStat
                                             stat={stat}
+                                            rawNumber={rawNumbers[index]}
                                             animationDuration={animationDuration}
                                             statsAnimation={statsAnimation}
                                         />
