@@ -2,7 +2,6 @@
   as *;
 
 .container {
-  background-color: var(--composer-html-background);
   .max-content {
     display: flex;
     flex-direction: column;
@@ -52,6 +51,12 @@
           width: 100%;
           text-align: justify;
           ;
+        }
+        .text-2 {
+          color: var(--composer-font-color-primary);
+        }
+        .text-1 {
+          color: var(--composer-font-color-primary);
         }
       }
     }

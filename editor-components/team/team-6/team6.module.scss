@@ -109,10 +109,12 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
                   }
 
                   .icon {
+                    color: var(--composer-font-color-primary);
                     font-size: 2rem;
                   }
 
                   .feature-element {
+                    color: var(--composer-font-color-primary);
                     width: 100%;
                     text-align: left;
                     margin: 0;
