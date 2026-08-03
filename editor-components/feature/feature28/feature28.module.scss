@@ -230,8 +230,16 @@
 }
 
 
+@container (max-width: #{$composer-tablet-width}) {
+  .container .max-content {
+    gap: calc(var(--composer-gap-lg) * 1.5);
+  }
+}
+
 @container (max-width: #{$composer-phone-width}) {
   .container .max-content {
+    gap: var(--composer-gap-lg);
+
     .header-container {
       align-items: flex-start;
 

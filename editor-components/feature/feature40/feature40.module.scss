@@ -100,6 +100,8 @@
             flex-direction: column;
 
             .card-container-section {
+                gap: calc(var(--composer-gap-lg) * 1.5);
+
                 .card-container {
                     .card-wrapper {
                         &.last-in-row {
@@ -126,6 +128,8 @@
             gap: var(--composer-gap-md);
 
             .card-container-section {
+                gap: var(--composer-gap-lg);
+
                 .card-container {
                     .card-wrapper {
                         border-right: none;
