@@ -307,44 +307,60 @@ class HeroSection1 extends BaseHeroSection {
 
     this.sliderRef = React.createRef();
     this.setActiveTab(0);
-    this.setComponentState("animation", true);
-    this.setComponentState("animationDuration", 20);
+    this.setComponentState("leavingTab", null);
+    this.setComponentState("hasSlid", false);
   }
 
   static getName(): string {
     return "Hero Section 1";
   }
+
+  hasMedia(value: any): boolean {
+    return !!(value && (value.type === "image" || value.type === "video") && value.url);
+  }
+
   setActiveTab(activeTabIndex: number) {
     this.setComponentState("activeTab", activeTabIndex);
-    setTimeout(() => {
-      this.setComponentState("startedIndex", activeTabIndex);
-    }, 20);
   }
+
+  goToSlide = (index: number) => {
+    if (this.sliderRef.current) {
+      this.sliderRef.current.slickGoTo(index);
+      return;
+    }
+    this.setActiveTab(index);
+  };
 
   handleUpClick = () => {
     const currentIndex = this.getComponentState("activeTab");
-    const sliders = this.castToObject<[]>("sliders");
+    const sliders = this.castToObject<any[]>("sliders");
+    if (!sliders.length) return;
     const newIndex = currentIndex > 0 ? currentIndex - 1 : sliders.length - 1;
 
-    this.setActiveTab(newIndex);
-    if (this.sliderRef.current) {
-      this.sliderRef.current.slickGoTo(newIndex);
-    }
+    this.goToSlide(newIndex);
   };
 
   handleDownClick = () => {
     const currentIndex = this.getComponentState("activeTab");
-    const sliders = this.castToObject<[]>("sliders");
+    const sliders = this.castToObject<any[]>("sliders");
+    if (!sliders.length) return;
     const newIndex = currentIndex < sliders.length - 1 ? currentIndex + 1 : 0;
 
-    this.setActiveTab(newIndex);
-    if (this.sliderRef.current) {
-      this.sliderRef.current.slickGoTo(newIndex);
-    }
+    this.goToSlide(newIndex);
   };
 
   render() {
     const autoplay = this.getPropValue("autoplay");
+    const isLineActive = this.getPropValue("numberLine");
+    const backgroundLayout = this.getPropValue("background-layout");
+    const backgroundOverlay = this.getPropValue("backgroundOverlay");
+    const animationEnabled = this.getPropValue("animation");
+    const hasBackgroundMedia = this.hasMedia(backgroundLayout);
+    const activeTab = this.getComponentState("activeTab");
+    const leavingTab = this.getComponentState("leavingTab");
+    const hasSlid = this.getComponentState("hasSlid");
+    const sliders = this.castToObject<any[]>("sliders");
+
     const settings = {
       dots: true,
       infinite: true,
@@ -357,26 +373,20 @@ class HeroSection1 extends BaseHeroSection {
       vertical: true,
       verticalSwiping: true,
       adaptiveHeight: true,
-      customPaging: (i: any) => (
+      customPaging: (i: number) => (
         <div
-          className={`${this.decorateCSS("dot")} ${this.getComponentState("activeTab") == i &&
-            this.decorateCSS("activeDot")
-          }`}></div>
+          className={`${this.decorateCSS("dot")} ${activeTab === i ? this.decorateCSS("activeDot") : ""}`}></div>
       ),
-      dotsClass: `${this.decorateCSS("dots")} ${!this.getPropValue("background-layout") && this.decorateCSS("dark")}`,
+      dotsClass: `${this.decorateCSS("dots")} ${hasBackgroundMedia ? "" : this.decorateCSS("dark")}`,
       beforeChange: (current: number, next: number) => {
+        this.setComponentState("leavingTab", current);
+        this.setComponentState("hasSlid", true);
         this.setActiveTab(next);
-        this.setComponentState("animation", false);
-        setTimeout(() => {
-          this.setComponentState("animation", true);
-        }, 1000);
+      },
+      afterChange: () => {
+        this.setComponentState("leavingTab", null);
       },
     };
-    const isLineActive = this.getPropValue("numberLine");
-    const backgroundLayout = this.getPropValue("background-layout");
-    const backgroundOverlay = this.getPropValue("backgroundOverlay");
-    const animationEnabled = this.getPropValue("animation");
-    const animation = this.getComponentState("animation");
 
     const backgroundWithSettings = backgroundLayout?.type === "video" ? {
       ...backgroundLayout,
@@ -390,7 +400,7 @@ class HeroSection1 extends BaseHeroSection {
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
-        {backgroundLayout && (backgroundLayout.type === "image" || backgroundLayout.type === "video") && backgroundLayout.url && (
+        {hasBackgroundMedia && (
           <>
             <Base.Media
               value={backgroundWithSettings}
@@ -410,9 +420,13 @@ class HeroSection1 extends BaseHeroSection {
           />
           <div className={this.decorateCSS("wrapper")}>
             <ComposerSlider ref={this.sliderRef} {...settings}>
-              {this.castToObject<[]>("sliders").map((item: any, index: number) => {
-                const isActive = this.getComponentState("activeTab") === index;
+              {sliders.map((item: any, index: number) => {
+                const isEntering = activeTab === index;
+                const isLeaving = !isEntering && leavingTab === index;
+                const isInitial = isEntering && !hasSlid;
+                const hasImage = this.hasMedia(item.image);
                 const titleText = this.castToString(item.title);
+                const isStaggered = !!(animationEnabled && titleText);
                 const imageWithSettings = item.image?.type === "video" ? {
                   ...item.image,
                   settings: {
@@ -424,14 +438,12 @@ class HeroSection1 extends BaseHeroSection {
                 } : item.image;
                 return (
                   <div
-                    className={`${this.decorateCSS("return-container")} ${animation && this.decorateCSS("animation")
-                      }`}
+                    className={`${this.decorateCSS("return-container")} ${isEntering ? this.decorateCSS("is-entering") : ""} ${isLeaving ? this.decorateCSS("is-leaving") : ""} ${isInitial ? this.decorateCSS("is-initial") : ""}`}
                     key={index}
                   >
                     <div className={this.decorateCSS("background-container")}>
                       <div
-                        className={`${this.decorateCSS("background-text")} ${isActive && this.decorateCSS("active-text")
-                          }`}
+                        className={`${this.decorateCSS("background-text")} ${isEntering ? this.decorateCSS("active-text") : ""} ${hasBackgroundMedia ? "" : this.decorateCSS("dark")}`}
                       >
                         {item.backgroundTitle}
                       </div>
@@ -439,29 +451,26 @@ class HeroSection1 extends BaseHeroSection {
 
                     <div className={this.decorateCSS("content-container")}>
                       <div
-                        className={`${this.decorateCSS("image-wrapper")} ${!item.image && this.decorateCSS("without-image")} ${item.overlay ? this.decorateCSS("with-overlay") : ""}`}
+                        className={`${this.decorateCSS("image-wrapper")} ${hasImage ? "" : this.decorateCSS("without-image")} ${item.overlay && hasImage ? this.decorateCSS("with-overlay") : ""}`}
                       >
                         <h1
-                          className={`${this.decorateCSS("subtitle")} ${!backgroundLayout && this.decorateCSS("dark")}`}
+                          className={`${this.decorateCSS("subtitle")} ${hasBackgroundMedia ? "" : this.decorateCSS("dark")}`}
                         >
                           {item.subtitle}
                         </h1>
                         <Base.Media
                           value={imageWithSettings}
-                          className={`${this.decorateCSS("image")} ${isActive && this.decorateCSS("active-image")}`}
+                          className={`${this.decorateCSS("image")} ${isEntering ? this.decorateCSS("active-image") : ""}`}
                         />
                         {item.title && (
                           <h1
-                            className={`${this.decorateCSS("title")}
-                          ${(backgroundLayout && !item.image) && this.decorateCSS("without-image")}
-                          ${(!backgroundLayout && item.image) && this.decorateCSS("dark")}
-                          ${(!backgroundLayout && !item.image) && this.decorateCSS("dark-without-image")}`}
+                            className={`${this.decorateCSS("title")} ${hasBackgroundMedia ? "" : this.decorateCSS("dark")} ${isStaggered ? "" : this.decorateCSS("no-stagger")}`}
                           >
-                            {animationEnabled && titleText ? titleText.split('').map((char: string, charIndex: number) => (
+                            {isStaggered ? titleText.split('').map((char: string, charIndex: number) => (
                               <span
                                 key={charIndex}
                                 className={this.decorateCSS("title-char")}
-                                style={{animationDelay: `${charIndex * 0.05}s`}}
+                                style={{ "--hero-char-index": charIndex } as React.CSSProperties}
                               >
                                 {char}
                               </span>
@@ -471,9 +480,9 @@ class HeroSection1 extends BaseHeroSection {
 
                         <h1 className={this.decorateCSS("sliderNumber")}>
                           {isLineActive && (
-                            <span className={`${this.decorateCSS("line")} ${!backgroundLayout && this.decorateCSS("dark")}`}></span>
+                            <span className={`${this.decorateCSS("line")} ${hasBackgroundMedia ? "" : this.decorateCSS("dark")}`}></span>
                           )}
-                          <span className={`${this.decorateCSS("slider-number")} ${!backgroundLayout && this.decorateCSS("dark")}`}>
+                          <span className={`${this.decorateCSS("slider-number")} ${hasBackgroundMedia ? "" : this.decorateCSS("dark")}`}>
                             {item.sliderNumber}
                           </span>
                         </h1>
