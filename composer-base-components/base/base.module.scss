@@ -282,6 +282,7 @@
         font-size: calc(2.5 * var(--composer-font-size-md));
         line-height: 1.2em;
         font-weight: 700;
+        text-transform: uppercase;
         margin-bottom: 0.5em;
 
         @container (max-width: #{$composer-tablet-width}) {
