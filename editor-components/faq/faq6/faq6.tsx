@@ -299,9 +299,9 @@ class Faq6 extends BaseFAQ {
                   {showOverlay && <div className={this.decorateCSS("overlay")} />}
                   {this.castToString(this.getPropValue("imageText")) && (
                     <div className={this.decorateCSS("image-text-overlay")}>
-                      <h1 className={this.decorateCSS("image-text")}>
+                      <Base.H1 className={this.decorateCSS("image-text")}>
                         {this.getPropValue("imageText")}
-                      </h1>
+                      </Base.H1>
                     </div>
                   )}
                 </div>
