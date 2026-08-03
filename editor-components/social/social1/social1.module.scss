@@ -8,9 +8,6 @@
             var(--composer-font-color-primary) 5%);
 
     .container {
-        background-color: color-mix(in srgb,
-                var(--composer-html-background),
-                var(--composer-font-color-primary) 5%);
 
         &.container-with-cards {
             padding-bottom: var(--composer-gap-xl);

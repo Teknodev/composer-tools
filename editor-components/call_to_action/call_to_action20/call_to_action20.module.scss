@@ -1,7 +1,6 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
-  background-color: var(--composer-primary-color);
 
   .max-content {
     
@@ -14,7 +13,6 @@
       align-items: flex-start;
 
       .subtitle {
-        color: var(--composer-font-color-secondary);
         text-align: left;
         margin-left: 0;
         padding: 0;
@@ -27,7 +25,6 @@
 
       .title,
       .description {
-        color: var(--composer-font-color-secondary);
         text-align: left;
       }
     }

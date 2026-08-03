@@ -71,6 +71,7 @@
                 }
 
                 .item-title {
+                    color: var(--composer-font-color-primary);
                     text-align: left !important;
                 }
 
@@ -84,6 +85,7 @@
                         padding 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 
                     .item-description {
+                        color: var(--composer-font-color-primary);
                         text-align: left !important;
                         opacity: 0;
                         transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);

@@ -17,7 +17,7 @@
         text-transform: uppercase;
         background: linear-gradient(to right, var(--composer-primary-color), var(--composer-secondary-color));
         background-clip: text;
-        color: transparent;
+        color: var(--composer-font-color-primary);
         margin: 0px;
         width: fit-content;
       }

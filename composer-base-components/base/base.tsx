@@ -7,6 +7,7 @@ import { IconBaseProps } from "react-icons/lib";
 import { iconLibraries } from "./utitilities/iconList";
 import { TypeMediaInputValue } from "../../editor-components/EditorComponent";
 import { ELEMENT_CATEGORY } from "../../element-categories";
+import LottiePlayer from "./utitilities/LottiePlayer";
 
 declare global {
   namespace JSX {
@@ -721,16 +722,18 @@ export namespace Base {
           />
         );
       case "lottie":
-        return React.createElement('lottie-player', {
-          className,
-          src: value.url,
-          background: "transparent",
-          speed: "1",
-          loop: !!value.settings?.loop,
-          autoplay: !!value.settings?.autoplay,
-          style: { width: '100%', height: '100%' },
-          ...props
-        });
+        // LottiePlayer loads the <lottie-player> web component on demand; the
+        // raw element would otherwise stay un-upgraded (blank) since the script
+        // is not bundled.
+        return (
+          <LottiePlayer
+            className={className}
+            src={value.url}
+            loop={!!value.settings?.loop}
+            autoplay={!!value.settings?.autoplay}
+            {...props}
+          />
+        );
       default:
         return null;
     }

@@ -295,8 +295,14 @@ as *;
           .value,
           .currency-code {
             width: fit-content;
-            color: var(--composer-secondary-color);
+            color: var(--composer-font-color-primary);
             margin: 0;
+          }
+          .currency-code {
+            color: var(--composer-font-color-primary);
+          }
+          .value {
+            color: var(--composer-font-color-primary);
           }
         }
       }
