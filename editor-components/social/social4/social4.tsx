@@ -1883,7 +1883,7 @@ class Social4 extends BaseSocial {
                                 const isImage = firstMedia?.type === "image" && (firstMedia as any)?.url;
 
                                 return (
-                                    <Base.Card className={this.decorateCSS("gallery-item")} key={index}>
+                                    <div className={this.decorateCSS("gallery-item")} key={index}>
                                         {isImage && (
                                             <div className={this.decorateCSS("image-container")}>
                                                 <Base.Media value={firstMedia} className={this.decorateCSS("gallery-image")} />
@@ -1927,7 +1927,7 @@ class Social4 extends BaseSocial {
                                                 {this.castToString(item.description) && (<Base.P className={this.decorateCSS("description")}>{item.description}</Base.P>)}
                                             </div>
                                         </div>
-                                    </Base.Card>
+                                    </div>
                                 );
                             })}
                         </Base.ListGrid>

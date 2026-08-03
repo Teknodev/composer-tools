@@ -402,11 +402,11 @@ class Feature3 extends BaseFeature {
                   if (!logo.image?.url) return null;
 
                   return (
-                    <Base.Card key={index} className={this.decorateCSS("logo-container")}>
+                    <div key={index} className={this.decorateCSS("logo-container")}>
                       <ComposerLink path={logo.url}>
                         <Base.Media value={logo.image} className={this.decorateCSS("logo-image")} />
                       </ComposerLink>
-                    </Base.Card>
+                    </div>
                   );
                 })}
               </Base.ListGrid>

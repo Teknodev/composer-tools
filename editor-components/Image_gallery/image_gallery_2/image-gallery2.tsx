@@ -931,7 +931,7 @@ class ImageGallery2 extends BaseImageGallery {
                         {currentGallery.slice(0, this.getComponentState("imageCount")).map((section: ImageType, imageIndex: number) => {
                             if (!section.image) return null;
                             return (
-                                <Base.Card
+                                <div
                                     className={this.decorateCSS("gallery-item")}
                                     key={imageIndex}
                                     onClick={() => this.openModal(imageIndex)}
@@ -949,7 +949,7 @@ class ImageGallery2 extends BaseImageGallery {
                                             />
                                         </div>
                                     </div>
-                                </Base.Card>
+                                </div>
                             );
                         })}
                     </Base.ListGrid>

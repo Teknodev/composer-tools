@@ -475,7 +475,7 @@ class ImageGallery7 extends BaseImageGallery {
                             const columnClass = isEven ? "columnEven" : "columnOdd";
                             const style = isEven ? null : { transform: `translateY(-${this.scrollOffset}px)` };
                             return (
-                                <Base.Card className={`${this.decorateCSS("column")} ${this.decorateCSS(columnClass)}`}
+                                <div className={`${this.decorateCSS("column")} ${this.decorateCSS(columnClass)}`}
                                     style={style as React.CSSProperties}>
                                     <div className={this.decorateCSS("wrapper")}>
                                         {(this.castToString(cards.title) || this.castToString(cards.subtitle) || cards.image) &&
@@ -496,7 +496,7 @@ class ImageGallery7 extends BaseImageGallery {
                                             </div>
                                         }
                                     </div>
-                                </Base.Card>
+                                </div>
                             );
                         })}
                     </Base.ListGrid>

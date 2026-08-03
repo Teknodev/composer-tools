@@ -82,6 +82,7 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
           flex-direction: column;
           justify-content: space-between;
           align-items: center;
+          border: 1px solid var(--composer-tertiary-color);
           border-radius: var(--composer-border-radius-md);
           box-shadow: var(--box-shadow-active);
           overflow: hidden;

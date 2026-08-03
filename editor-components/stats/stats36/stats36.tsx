@@ -131,6 +131,15 @@ class Stats36 extends BaseStats {
 
     static getName(): string { return "Stats 36"; }
 
+    private hasStatContent(stat: any): boolean {
+        const numberString = this.castToString(stat.number);
+        const valueExist = !!(numberString && numberString !== "" && numberString !== "0");
+        const subtitleExist = !!this.castToString(stat.subtitle);
+        const titleExist = !!this.castToString(stat.title);
+        const descriptionExist = !!this.castToString(stat.description);
+        return valueExist || titleExist || subtitleExist || descriptionExist;
+    }
+
     private AnimatedStat = ({
         stat,
         animationDuration = 2000,
@@ -186,47 +195,45 @@ class Stats36 extends BaseStats {
         const titleExist = this.castToString(stat.title);
         const descriptionExist = this.castToString(stat.description);
 
-        if (!valueExist && !titleExist && !subtitleExist && !descriptionExist) return null;
+        if (!this.hasStatContent(stat)) return null;
 
         return (
-            <Base.Card className={this.decorateCSS("card-shell")}>
-                <Base.VerticalContent className={this.decorateCSS("stat-item")}>
-                    <div className={this.decorateCSS("stat-header")}>
-                        <div className={this.decorateCSS("stat-info")}>
-                            {subtitleExist && (
-                                <Base.H6 className={this.decorateCSS("stat-subtitle")}>
-                                    {stat.subtitleElement}
-                                </Base.H6>
-                            )}
-                            {titleExist && (
-                                <Base.H5 className={this.decorateCSS("stat-title")}>
-                                    {stat.titleElement}
-                                </Base.H5>
-                            )}
-                        </div>
-                        {valueExist && (
-                            <div className={this.decorateCSS("stat-value-container")}>
-                                {stat.prefix && <span className={this.decorateCSS("stat-prefix")}>{stat.prefixElement}</span>}
-                                <span className={this.decorateCSS("stat-value")}>
-                                    {statsAnimation ? animatedNumber : formatNumber(targetNumber)}
-                                </span>
-                                {stat.suffix && <span className={this.decorateCSS("stat-suffix")}>{stat.suffixElement}</span>}
-                            </div>
+            <Base.VerticalContent className={this.decorateCSS("stat-item")}>
+                <div className={this.decorateCSS("stat-header")}>
+                    <div className={this.decorateCSS("stat-info")}>
+                        {subtitleExist && (
+                            <Base.H6 className={this.decorateCSS("stat-subtitle")}>
+                                {stat.subtitleElement}
+                            </Base.H6>
+                        )}
+                        {titleExist && (
+                            <Base.H5 className={this.decorateCSS("stat-title")}>
+                                {stat.titleElement}
+                            </Base.H5>
                         )}
                     </div>
-                    <div className={this.decorateCSS("progress-bar-container")}>
-                        <div
-                            className={this.decorateCSS("progress-bar-fill")}
-                            style={{ width: `${statsAnimation ? animatedNumber : targetNumber}%` }}
-                        />
-                    </div>
-                    {descriptionExist && (
-                        <Base.P className={this.decorateCSS("stat-description")}>
-                            {stat.descriptionElement}
-                        </Base.P>
+                    {valueExist && (
+                        <div className={this.decorateCSS("stat-value-container")}>
+                            {stat.prefix && <span className={this.decorateCSS("stat-prefix")}>{stat.prefixElement}</span>}
+                            <span className={this.decorateCSS("stat-value")}>
+                                {statsAnimation ? animatedNumber : formatNumber(targetNumber)}
+                            </span>
+                            {stat.suffix && <span className={this.decorateCSS("stat-suffix")}>{stat.suffixElement}</span>}
+                        </div>
                     )}
-                </Base.VerticalContent>
-            </Base.Card>
+                </div>
+                <div className={this.decorateCSS("progress-bar-container")}>
+                    <div
+                        className={this.decorateCSS("progress-bar-fill")}
+                        style={{ width: `${statsAnimation ? animatedNumber : targetNumber}%` }}
+                    />
+                </div>
+                {descriptionExist && (
+                    <Base.P className={this.decorateCSS("stat-description")}>
+                        {stat.descriptionElement}
+                    </Base.P>
+                )}
+            </Base.VerticalContent>
         );
     };
 
@@ -263,9 +270,7 @@ class Stats36 extends BaseStats {
                 description,
                 descriptionElement: item.description,
             };
-        }).filter(item => {
-            return (item.number !== "" && item.number !== "0") || item.title !== "" || item.subtitle !== "" || item.description !== "";
-        });
+        }).filter(item => this.hasStatContent(item));
 
         const animationProps = this.castToObject<{ statsAnimation: boolean; animationDuration: number }>("animation");
         const statsAnimation = !!animationProps?.statsAnimation;
@@ -337,12 +342,13 @@ class Stats36 extends BaseStats {
                                     <div className={this.decorateCSS("content-stats")}>
                                         <Base.ListGrid gridCount={{ pc: 1, tablet: 1, phone: 1 }} className={this.decorateCSS("stats-grid")}>
                                             {statsItems.map((item, index) => (
-                                                <this.AnimatedStat
-                                                    key={index}
-                                                    stat={item}
-                                                    statsAnimation={statsAnimation}
-                                                    animationDuration={animationDuration}
-                                                />
+                                                <Base.Card key={index} className={this.decorateCSS("card-shell")}>
+                                                    <this.AnimatedStat
+                                                        stat={item}
+                                                        statsAnimation={statsAnimation}
+                                                        animationDuration={animationDuration}
+                                                    />
+                                                </Base.Card>
                                             ))}
                                         </Base.ListGrid>
                                     </div>

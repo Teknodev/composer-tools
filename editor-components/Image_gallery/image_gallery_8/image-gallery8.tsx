@@ -415,7 +415,7 @@ class ImageGallery8 extends BaseImageGallery {
                         {this.castToObject<Card[]>("cards").map(
                             (item: Card, indexCards: number) => {
                                 return (
-                                    <Base.Card key={indexCards} className={`${this.decorateCSS("card")} ${item.active ? this.decorateCSS("active") : ""}`}>
+                                    <div key={indexCards} className={`${this.decorateCSS("card")} ${item.active ? this.decorateCSS("active") : ""}`}>
                                         <ComposerLink path={item.url} isFullWidth={true}>
                                             {item.image && (
                                                 <Base.Media value={item.image} className={this.decorateCSS("image")} />
@@ -429,7 +429,7 @@ class ImageGallery8 extends BaseImageGallery {
                                                 </Base.H3>
                                             </div>
                                         </ComposerLink>
-                                    </Base.Card>
+                                    </div>
                                 );
                             }
                         )}

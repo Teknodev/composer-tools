@@ -313,7 +313,7 @@ class LogoComp10Page extends LogoClouds {
                           className={this.decorateCSS("gallery")}
                         >
                           {chunk.map((img: TImage, i: number) => (
-                            <Base.Card key={i} className={this.decorateCSS("cell")}>
+                            <div key={i} className={this.decorateCSS("cell")}>
                               <ComposerLink path={img.imageLink}>
                                 <div className={this.decorateCSS("image-child")}>
                                   <Base.Media
@@ -322,7 +322,7 @@ class LogoComp10Page extends LogoClouds {
                                   />
                                 </div>
                               </ComposerLink>
-                            </Base.Card>
+                            </div>
                           ))}
                         </Base.ListGrid>
                       </div>

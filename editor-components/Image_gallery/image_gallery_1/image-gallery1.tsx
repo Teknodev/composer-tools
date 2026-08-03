@@ -578,7 +578,7 @@ class ImageGallery1 extends BaseImageGallery {
               }, [])
               .slice(0, this.getComponentState("imageCount"))
               .map((image: Image, imgIndex: number) => (image.cardImage || this.castToString(image.title) || this.castToString(image.section)) && (
-                <Base.Card key={imgIndex} className={this.decorateCSS("card-container")}>
+                <div key={imgIndex} className={this.decorateCSS("card-container")}>
                   {image.cardImage && (
                     <div className={this.decorateCSS("image-container")}>
                     <Base.Media
@@ -600,7 +600,7 @@ class ImageGallery1 extends BaseImageGallery {
                       <Base.P className={this.decorateCSS("section")}>{image.section}</Base.P>
                     )}
                   </div>
-                </Base.Card>
+                </div>
               ))}
           </Base.ListGrid>
           {(this.getComponentState("imageCount") < selectedImageGallery.length) && this.castToString(button.text) && (
