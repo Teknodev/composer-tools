@@ -97,7 +97,7 @@
     padding: calc(var(--composer-gap-xl) * 2);
     z-index: 2;
 
-    &::before {
+    &.content-background::before {
       top: 0px;
       left: 0px;
       content: "";

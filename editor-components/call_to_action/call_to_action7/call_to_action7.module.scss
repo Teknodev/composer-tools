@@ -89,6 +89,7 @@
             .input-div {
               display: flex;
               position: relative;
+              gap: var(--composer-gap-md);
 
               .input {
                 flex: 5;
@@ -99,7 +100,7 @@
                 width: 100%;
                 min-width: 400px;
                 padding: var(--composer-gap-md);
-                border-radius: var(--composer-border-radius-sm) 0 0 var(--composer-border-radius-sm);
+                border-radius: var(--composer-border-radius-sm);
                 background-color: var(--composer-html-background);
                 color: var(--composer-font-color-primary);
                 font-size: 1rem;
@@ -126,8 +127,6 @@
                 align-items: stretch;
 
                 .button {
-                  border-top-left-radius: 0;
-                  border-bottom-left-radius: 0;
                   margin-top: 0;
                   height: 100%;
 

@@ -48,6 +48,13 @@ class CallToAction6Page extends BaseCallToAction {
     });
 
     this.addProp({
+      type: "boolean",
+      key: "contentBackground",
+      displayer: "Content Background",
+      value: true,
+    });
+
+    this.addProp({
       type: "string",
       key: "subtitle",
       displayer: "Subtitle",
@@ -136,6 +143,7 @@ class CallToAction6Page extends BaseCallToAction {
     const backgroundImage = mediaObject.backgroundImage;
     const overlay = mediaObject.overlay;
     const viewType = Base.getViewType();
+    const contentBackground = this.getPropValue("contentBackground");
     const spaceLineExist = this.getPropValue("spaceLine");
     const subtitleExist = this.castToString(this.getPropValue("subtitle"));
     const titleExist = this.castToString(this.getPropValue("title"));
@@ -170,7 +178,7 @@ class CallToAction6Page extends BaseCallToAction {
     return (
       <Base.Container className={`${this.decorateCSS("container")} ${this.decorateCSS(viewType)} ${overlay && backgroundImage && this.decorateCSS("overlay-active")} ${backgroundImage && this.decorateCSS("has-background")}`}>
         {backgroundImage && (<Base.Media value={backgroundImage} className={this.decorateCSS("background-image")} />)}
-        <Base.MaxContent className={this.decorateCSS("max-content")}>
+        <Base.MaxContent className={`${this.decorateCSS("max-content")} ${contentBackground ? this.decorateCSS("content-background") : ""}`}>
           <Base.VerticalContent className={this.decorateCSS("content")}>
             {subtitleExist && (<Base.SectionSubTitle className={`${this.decorateCSS("subtitle")}`}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>)}
             {titleExist && (<Base.SectionTitle className={this.decorateCSS("title")}>{renderTitle()}</Base.SectionTitle>)}
