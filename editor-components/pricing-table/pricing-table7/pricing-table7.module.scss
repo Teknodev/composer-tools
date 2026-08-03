@@ -90,6 +90,12 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
             font-weight: bold;
           }
         }
+        .yearlyText {
+          color: var(--composer-font-color-primary);
+        }
+        .text {
+          color: var(--composer-font-color-primary);
+        }
 
         .icon {
           color: var(--composer-primary-color);

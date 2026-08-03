@@ -15,6 +15,10 @@
 .container {
   padding: 0 !important;
 
+  &.container.container {
+    padding: 0 !important;
+  }
+
   .max-content {
     .slider-wrapper {
       height: 100%;
@@ -81,7 +85,7 @@
 
         .slider-item {
           width: 100%;
-          min-height: 50vh;
+          min-height: 80vh;
           height: stretch;
           display: flex;
           justify-content: center;
@@ -151,12 +155,9 @@
           }
 
           .slider-item-overlay {
-            width: 100%;
-            height: 100%;
             background-color: var(--composer-overlay-color);
             position: absolute;
-            top: 0;
-            left: 0;
+            inset: 0;
             z-index: 1;
             pointer-events: none;
           }
@@ -174,7 +175,7 @@
 
     .slider-footer {
       border-top-left-radius: var(--composer-border-radius-md);
-      background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+      background-color: var(--composer-html-background);
       display: flex;
       justify-content: center;
       align-items: stretch;
