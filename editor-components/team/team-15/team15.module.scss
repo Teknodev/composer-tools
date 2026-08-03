@@ -42,7 +42,6 @@
             .card-info {
               padding: 0;
             }
-            }
 
             .icons {
               padding: 0;
@@ -350,11 +349,15 @@
         }
 
         .card-content {
+          color: #ffffff;
+
           .card-name {
             color: #ffffff;
           }
 
           .labels {
+            color: #ffffff;
+
             .card-info {
 
               .card-position,
@@ -368,6 +371,7 @@
             }
 
             .icons {
+              color: #ffffff;
 
               .contactIcon,
               .share-wrapper .shareIcon {
