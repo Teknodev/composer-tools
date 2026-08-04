@@ -1,80 +1,100 @@
+@use '../../../composer-base-components/base/utitilities/viewports.module.scss' as *;
+
 .container {
     .max-content {
         .page {
             display: flex;
             flex-direction: column;
-            gap: var(--composer-gap-md);
+            gap: var(--composer-gap-lg);
+
             .up-page {
-                .title, .description, .subtitle {
+
+                .title,
+                .description,
+                .subtitle {
                     content: "";
                 }
             }
+
             .down-page {
                 display: flex;
                 flex-direction: column;
                 gap: var(--composer-gap-md);
+
                 .card {
                     border-radius: var(--composer-border-radius-sm);
                     width: 100%;
-                    background-color: color-mix(
-                        in srgb,
-                        var(--composer-html-background),
-                        var(--composer-font-color-primary) 5%
-                      );
-                      padding: var(--composer-gap-lg);
-                      position: relative;
-                      display: flex;
-                      align-items: center;
-                      justify-content: center;
-                      flex-direction: column;
-                      cursor: pointer;
-                      .line{
+                    background-color: color-mix(in srgb,
+                            var(--composer-html-background),
+                            var(--composer-font-color-primary) 5%);
+                    padding: var(--composer-gap-lg);
+                    position: relative;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    flex-direction: column;
+                    cursor: pointer;
+
+                    .line {
                         content: "";
                         background-color: var(--composer-primary-color);
                         position: absolute;
                         width: 2px;
                         height: 50%;
                         left: 0px;
-                      }
-  
+                    }
+
                     .child-container {
                         display: flex;
                         width: 100%;
                         gap: var(--composer-gap-xs);
-                        .card-title-wrapper {
-                            flex:1;
-                            .card-title {
+
+                        .question-wrapper {
+                            flex: 1;
+
+                            .question-text {
                                 color: var(--composer-font-color-primary);
+                                font-weight: 800;
                                 transition: color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-                                &.active{
-                                   color: var(--composer-primary-color); 
+                                text-align: left;
+
+                                &.active {
+                                    color: var(--composer-primary-color);
                                 }
                             }
                         }
-                        .icon-wrapper{                        
+
+                        .icon-wrapper {
                             display: flex;
                             align-items: center;
-                            justify-content: center;            
+                            justify-content: center;
+
                             .icon {
                                 color: var(--composer-font-color-primary);
-                                width: 16px;
-                                height: 16px;
-                                font-size: 1rem;
+                                width: 24px;
+                                height: 24px;
+                                font-size: 1.25rem;
+                                object-fit: contain;
                             }
                         }
                     }
-                    .inner-card {
+
+                    .answer-box {
                         overflow: hidden;
                         max-height: 0px;
                         transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
                         &.active {
                             max-height: 150px;
                         }
-                        .inner-text{
-                            color: var( --composer-tertiary-color);
+
+                        .answer-text {
+                            color: var(--composer-tertiary-color);
                             opacity: 0;
                             transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
                             padding: var(--composer-gap-md) var(--composer-gap-md) var(--composer-gap-md) 0px;
+                            text-align: left;
+
                             &.active {
                                 opacity: 1;
                             }
@@ -82,11 +102,13 @@
                     }
                 }
             }
-            .button-wrapper{
+
+            .button-wrapper {
                 width: 100%;
                 display: flex;
                 justify-content: center;
-                .button{
+
+                .button {
                     .button-text {
                         content: "";
                     }
@@ -94,5 +116,27 @@
             }
         }
 
+    }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+    .container {
+        .max-content {
+            .page {
+                .down-page {
+                    .card {
+                        padding: var(--composer-gap-md);
+
+                        .child-container {
+                            .icon-wrapper {
+                                .icon {
+                                    font-size: 1rem;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 }
