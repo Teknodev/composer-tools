@@ -2,15 +2,20 @@ import * as React from "react";
 import styles from "./faq10.module.scss";
 import { BaseFAQ } from "../../EditorComponent";
 import { Base } from "../../../composer-base-components/base/base";
+import { INPUTS } from "../../../custom-hooks/input-templates";
+import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 
 interface FAQ {
   subtitle: React.ReactNode;
   text: React.ReactNode;
 }
 
+interface ColumnHeader {
+  title: string;
+}
+
 class Faq10 extends BaseFAQ {
-  private containerRef = React.createRef<HTMLDivElement>();
-  private bodyRefs: HTMLDivElement[] = [];
+  private gridRef = React.createRef<HTMLDivElement>();
 
   constructor(props?: any) {
     super(props, styles);
@@ -18,32 +23,49 @@ class Faq10 extends BaseFAQ {
       type: "string",
       key: "subtitle",
       displayer: "Subtitle",
-      value: "FAQ",
+      value: "",
     });
+
     this.addProp({
       type: "string",
       key: "title",
       displayer: "Title",
-      value: "Pricing FAQs",
+      value: "",
     });
+
     this.addProp({
       type: "string",
       key: "description",
       displayer: "Description",
-      value: "Looking for something else? Let’s talk",
+      value: "",
     });
+
     this.addProp({
-      type: "icon",
-      key: "iconPlus",
-      displayer: "Collapsed Icon",
-      value: "IoIosAdd",
-    });
-    this.addProp({
-      type: "icon",
+      type: "media",
       key: "icon",
-      displayer: "Expanded Icon",
-      value: "IoIosRemove",
+      displayer: "Active Icon",
+      additionalParams: {
+        availableTypes: ["icon", "image"],
+      },
+      value: {
+        type: "icon",
+        name: "IoIosRemove",
+      },
     });
+
+    this.addProp({
+      type: "media",
+      key: "iconPlus",
+      displayer: "Inactive Icon",
+      additionalParams: {
+        availableTypes: ["icon", "image"],
+      },
+      value: {
+        type: "icon",
+        name: "IoIosAdd",
+      },
+    });
+
     this.addProp({
       type: "array",
       key: "card",
@@ -233,8 +255,63 @@ class Faq10 extends BaseFAQ {
       ],
     });
 
+    this.addProp({
+      type: "array",
+      key: "columnHeaders",
+      displayer: "Column Headers",
+      value: [
+        {
+          type: "object",
+          key: "header",
+          displayer: "Header",
+          value: [
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value: "My Account",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "header",
+          displayer: "Header",
+          value: [
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value: "Exchanges & Returns",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "header",
+          displayer: "Header",
+          value: [
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value: "General Information",
+            },
+          ],
+        },
+      ],
+    });
+
+    this.addProp({
+      type: "array",
+      key: "buttons",
+      displayer: "Buttons",
+      value: [
+        INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+      ],
+    });
+
     this.setComponentState("activeIndices", [0, 0, 0]);
-    this.setComponentState("isMobile", false);
   }
 
   static getName(): string {
@@ -242,17 +319,17 @@ class Faq10 extends BaseFAQ {
   }
 
   onComponentDidMount() {
-    this.handleResize();
-    this.updateHeights();
-    window.addEventListener('resize', this.handleResize);
+    if (this.isStacked()) {
+      this.setComponentState("activeIndices", [0, -1, -1]);
+    }
   }
 
-  onComponentDidUpdate() {
-    this.updateHeights();
-  }
+  private isStacked(): boolean {
+    const el = this.gridRef.current;
 
-  onComponentWillUnmount() {
-    window.removeEventListener('resize', this.handleResize);
+    if (!el) return false;
+
+    return getComputedStyle(el).getPropertyValue("--faq-stacked").trim() === "1";
   }
 
   private getColumnCounts() {
@@ -265,53 +342,8 @@ class Faq10 extends BaseFAQ {
     return counts;
   }
 
-  private updateHeights() {
-    const counts = this.getColumnCounts();
-
-    this.bodyRefs.forEach((el, globalIdx) => {
-      if (!el) return;
-
-      let colIdx = 0;
-      let start = 0;
-      for (; colIdx < 3; colIdx++) {
-        const len = counts[colIdx];
-        if (globalIdx < start + len) break;
-        start += len;
-      }
-      const localIdx = globalIdx - start;
-
-      const active = this.getComponentState("activeIndices") as number[];
-      const isOpen = active[colIdx] === localIdx;
-
-      el.style.maxHeight = isOpen ? `${el.scrollHeight}px` : "0px";
-    });
-  }
-
-  private handleResize = () => {
-    const el = this.containerRef.current;
-
-    if (!el) return;
-
-    const width = el.clientWidth;
-
-    const phonePx = "640";
-    const phonePxInt = parseInt(phonePx, 10) || 0;
-
-    const isMobile = width <= phonePxInt;
-     
-    const wasMobile = this.getComponentState("isMobile");
-    this.setComponentState("isMobile", isMobile);
-     
-    if (isMobile && !wasMobile) {
-      this.setComponentState("activeIndices", [0, -1, -1]);
-    } else if (!isMobile && wasMobile) {
-      this.setComponentState("activeIndices", [0, 0, 0]);
-    }
-    this.updateHeights();
-  };
-
   private cardClicked = (columnIndex: number, cardIndexInColumn: number) => {
-    const isMobile = this.getComponentState("isMobile");
+    const isStacked = this.isStacked();
     const activeIndices = this.getComponentState("activeIndices") as number[];
 
     const currentActiveInColumn = activeIndices[columnIndex];
@@ -321,8 +353,8 @@ class Faq10 extends BaseFAQ {
     }
 
     const updatedIndices = [...activeIndices];
-    
-    if (isMobile) {
+
+    if (isStacked) {
       updatedIndices.fill(-1);
       updatedIndices[columnIndex] = cardIndexInColumn;
     } else {
@@ -330,13 +362,13 @@ class Faq10 extends BaseFAQ {
     }
 
     this.setComponentState("activeIndices", updatedIndices);
-    this.updateHeights();
   };
 
   render() {
     const cards = this.castToObject<FAQ[]>("card");
     const active = this.getComponentState("activeIndices") as number[];
     const counts = this.getColumnCounts();
+    const columnHeaders = this.castToObject<ColumnHeader[]>("columnHeaders") || [];
 
     const columns: FAQ[][] = [];
     let offset = 0;
@@ -351,9 +383,9 @@ class Faq10 extends BaseFAQ {
     const headerExist = titleExist || descriptionExist || subtitleExist;
 
     return (
-      <Base.Container className={this.decorateCSS("container")} ref={this.containerRef}>
+      <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-            {headerExist && 
+          {headerExist &&
             <Base.VerticalContent className={this.decorateCSS("header")}>
               {subtitleExist && (
                 <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
@@ -372,9 +404,17 @@ class Faq10 extends BaseFAQ {
               )}
             </Base.VerticalContent>}
 
-            <div className={this.decorateCSS("faq-grid")}>
-              {columns.map((colCards, colIdx) => (
+          <div className={this.decorateCSS("faq-grid")} ref={this.gridRef}>
+            {columns.map((colCards, colIdx) => {
+              const header = columnHeaders[colIdx];
+              const headerTitle = header ? this.castToString(header.title) : "";
+              return (
                 <div className={this.decorateCSS("faq-col")} key={colIdx}>
+                  {headerTitle && (
+                    <Base.H4 className={this.decorateCSS("column-title")}>
+                      {headerTitle}
+                    </Base.H4>
+                  )}
                   {colCards.map((card, idxInCol) => {
                     const globalIdx =
                       columns
@@ -386,7 +426,9 @@ class Faq10 extends BaseFAQ {
 
                     const cardSubtitleExist = this.castToString(card.subtitle);
                     const cardTextExist = this.castToString(card.text);
-                    const iconExist = this.getPropValue("icon") || this.getPropValue("iconPlus");
+                    const iconPlus = this.getPropValue("iconPlus");
+                    const icon = this.getPropValue("icon");
+                    const iconExist = icon || iconPlus;
                     return (
                       <div
                         className={this.decorateCSS("card")}
@@ -397,9 +439,9 @@ class Faq10 extends BaseFAQ {
                       >
                         <div className={this.decorateCSS("card-header")}>
                           {cardSubtitleExist && (
-                            <Base.H4 className={this.decorateCSS("card-title")}>
+                            <Base.P className={this.decorateCSS("card-title")}>
                               {card.subtitle}
-                            </Base.H4>
+                            </Base.P>
                           )}
                           <span
                             className={[
@@ -407,43 +449,59 @@ class Faq10 extends BaseFAQ {
                               isOpen ? this.decorateCSS("iconOpen") : "",
                             ].join(" ")}
                           >
-                            {iconExist && 
-                              <Base.Icon
-                                name={
-                                  isOpen
-                                    ? this.getPropValue("icon")
-                                    : this.getPropValue("iconPlus")
-                                }
-                                propsIcon={{
-                                  className: [
-                                    this.decorateCSS("icon"),
-                                    isOpen ? this.decorateCSS("iconOpen") : "",
-                                  ].join(" "),
-                                }}
-                              />}
+                            {iconExist && (
+                              <Base.Media
+                                value={isOpen ? icon : iconPlus}
+                                className={[
+                                  this.decorateCSS("icon"),
+                                  isOpen ? this.decorateCSS("iconOpen") : "",
+                                ].join(" ")}
+                              />
+                            )}
                           </span>
                         </div>
                         {hasText && (
                           <div
-                            ref={(el) => (this.bodyRefs[globalIdx] = el!)}
                             className={[
                               this.decorateCSS("card-body"),
                               isOpen ? this.decorateCSS("open") : "",
                             ].join(" ")}
                           >
-                            {cardTextExist &&
-                            <Base.P className={this.decorateCSS("card-text")}>
-                              {card.text}
-                            </Base.P>}
+                            <div className={this.decorateCSS("card-body-inner")}>
+                              {cardTextExist &&
+                                <Base.P className={this.decorateCSS("card-text")}>
+                                  {card.text}
+                                </Base.P>}
+                            </div>
                           </div>
                         )}
                       </div>
                     );
                   })}
                 </div>
-              ))}
+              );
+            })}
+          </div>
+          {this.castToObject<INPUTS.CastedButton[]>("buttons").some((button) => this.castToString(button.text)) && (
+            <div className={this.decorateCSS("buttons-wrapper")}>
+              {this.castToObject<INPUTS.CastedButton[]>("buttons").map(
+                (button: INPUTS.CastedButton) =>
+                  this.castToString(button.text) && (
+                    <ComposerLink path={button.url}>
+                      <Base.Button
+                        buttonType={button.type}
+                        className={this.decorateCSS("button")}
+                      >
+                        <Base.P className={this.decorateCSS("button-text")}>
+                          {button.text}
+                        </Base.P>
+                      </Base.Button>
+                    </ComposerLink>
+                  )
+              )}
             </div>
-          </Base.MaxContent>
+          )}
+        </Base.MaxContent>
       </Base.Container>
     );
   }
