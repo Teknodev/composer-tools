@@ -1,7 +1,6 @@
 @use '../../../composer-base-components/base/utitilities/viewports.module.scss' as *;
 
 .container {
-    background-color: var(--composer-primary-color);
 
     .max-content {
         .content {
@@ -10,7 +9,6 @@
 
             .subtitle {
                 text-align: center !important;
-                color: var(--composer-font-color-secondary) !important;
                 transform: none !important;
                 margin-left: auto !important;
                 margin-right: auto !important;
@@ -26,7 +24,6 @@
             .title,
             .description {
                 text-align: center;
-                color: var(--composer-font-color-secondary);
             }
 
             .button-container {

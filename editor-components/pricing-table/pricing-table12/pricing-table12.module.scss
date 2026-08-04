@@ -73,11 +73,13 @@
                     flex: 1;
 
                     .card-subtitle {
+                        color: var(--composer-font-color-primary);
                         text-align: left;
                         align-self: flex-start;
                     }
 
                     .card-title {
+                        color: var(--composer-font-color-primary);
                         text-align: left;
                     }
 
@@ -87,6 +89,7 @@
                         gap: var(--composer-gap-xs);
 
                         .card-price {
+                            color: var(--composer-font-color-primary);
                             font-weight: 800;
                             font-size: 3rem;
                             line-height: 1;
@@ -94,6 +97,7 @@
                     }
 
                     .card-description {
+                        color: var(--composer-font-color-primary);
                         text-align: left;
                     }
 

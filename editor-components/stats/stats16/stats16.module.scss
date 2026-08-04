@@ -10,7 +10,6 @@
 }
 
 .container {
-  background-color: var(--composer-primary-color);
 
   .max-content {
     display: flex;
@@ -21,7 +20,6 @@
       align-items: center;
 
       .subtitle {
-        color: var(--composer-font-color-secondary);
         transform: none;
         background: transparent;
         padding: 0;
@@ -34,7 +32,6 @@
       .title,
       .description {
         text-align: center;
-        color: var(--composer-font-color-secondary);
       }
     }
 
@@ -70,7 +67,16 @@
             .stat-title,
             .stat-description {
               text-align: center;
-              color: var(--composer-font-color-secondary);
+              color: var(--composer-font-color-primary);
+            }
+            .stat-description {
+              color: var(--composer-font-color-primary);
+            }
+            .stat-title {
+              color: var(--composer-font-color-primary);
+            }
+            .stat-subtitle {
+              color: var(--composer-font-color-primary);
             }
           }
         }
