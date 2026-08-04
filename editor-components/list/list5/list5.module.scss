@@ -108,7 +108,6 @@
             align-items: stretch;
             border-radius: var(--composer-border-radius-sm);
             background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
-            padding: var(--composer-gap-lg);
             transition: all var(--composer-transition-duration-normal) ease;
 
             &[data-animation~="animate1"]:hover,

@@ -39,7 +39,6 @@
         background-color: var(--composer-font-color-primary);
         color: var(--composer-html-background);
         border-radius: var(--composer-border-radius-md);
-        padding: var(--composer-gap-lg);
 
         .card-content {
           align-items: flex-start;
@@ -148,8 +147,6 @@
     .max-content {
       .cards-grid {
         .card {
-          padding: var(--composer-gap-md);
-          
           .media-wrapper {
             .media {
               font-size: 4rem;

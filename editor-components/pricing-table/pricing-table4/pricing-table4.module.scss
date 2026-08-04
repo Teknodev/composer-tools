@@ -90,7 +90,6 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
               var(--composer-html-background),
               var(--composer-font-color-primary) 5%);
           transition: 0.8s;
-          padding: var(--composer-gap-lg);
           gap: var(--composer-gap-md);
           scale: 0.94;
 
@@ -243,9 +242,6 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
 
         .page-down {
           .card {
-            padding-left: var(--composer-gap-md);
-            padding-right: var(--composer-gap-md);
-
             .card-up {
               .card-up-texts {
                 content: "";

@@ -80,7 +80,6 @@
           display: flex;
           flex-direction: column;
           border: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.2);
-          padding: var(--composer-gap-md) var(--composer-gap-lg);
           gap: var(--composer-gap-xl);
 
           .card-text {
@@ -190,7 +189,6 @@
         .cards-container {
           .listed {
             width: 100%;
-            padding: var(--composer-gap-lg) var(--composer-gap-xl);
             max-width: 100%;
 
             .card-amount-container {
@@ -230,8 +228,6 @@
 
         .cards-container {
           .listed {
-            padding: var(--composer-gap-md) var(--composer-gap-lg);
-
             .card-amount-container {
               .card-icon {
                 font-size: 1.5rem;
