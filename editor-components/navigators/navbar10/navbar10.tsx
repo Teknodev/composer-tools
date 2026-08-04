@@ -2681,7 +2681,7 @@ class Navbar10 extends BaseNavigator {
                                           </div>
                                         </ComposerLink>
                                       ))}
-                                      {category.image && (
+                                      {category.image && ((category.image.type === "image" && category.image.url) || (category.image.type === "icon" && category.image.name)) && (
                                         <div className={this.decorateCSS("dropdownCategoryImage")}>
                                           <Base.Media
                                             value={category.image}

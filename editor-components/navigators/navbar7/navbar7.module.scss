@@ -136,19 +136,12 @@
               }
             }
 
-            &::after {
-              content: "";
-              position: absolute;
-              bottom: 0;
-              width: 0;
-              height: 1px;
-              background-color: var(--composer-primary-color);
-              transition: width 0.3s ease;
-            }
-
             &:hover {
-              &::after {
-                width: calc(100% - (var(--composer-gap-md) * 2));
+              .dropdownItem {
+                .dropdownItemContent .dropdownItemTitle,
+                .rightIcon {
+                  color: var(--composer-primary-color);
+                }
               }
 
               .subdropdown {
@@ -194,19 +187,12 @@
                   color: var(--composer-font-color-primary);
                   transition: color 0.3s ease;
                 }
-                &::after {
-                  content: "";
-                  position: absolute;
-                  bottom: 0;
-                  width: 0;
-                  height: 1px;
-                  background-color: var(--composer-primary-color);
-                  transition: width 0.3s ease;
-                }
 
                 &:hover {
-                  &::after {
-                    width: calc(100% - (var(--composer-gap-md) * 2));
+                  color: var(--composer-primary-color);
+
+                  .dropdownItemTitle {
+                    color: var(--composer-primary-color);
                   }
                 }
               }
@@ -314,14 +300,14 @@
   .pcNavbar {
     .menuItemContainer {
       .menuItemTitle, .dropdownIcon {
-        color: white !important;
+        color: var(--composer-font-color-secondary) !important;
       }
     }
 
   }
   .iconsContainer {
     .icon, .localizationLabel, .languageIcon  {
-      color: white;
+      color: var(--composer-font-color-secondary);
     }
     .languageIcon {
       width: 20px;
@@ -332,15 +318,15 @@
 
   .localization {
     .localizationLabel {
-      color: white !important;
+      color: var(--composer-font-color-secondary) !important;
     }
     .languageIcon {
-      color: white !important;
+      color: var(--composer-font-color-secondary) !important;
     }
   }
 
   .mobileMenuButton {
-    color: white !important;
+    color: var(--composer-font-color-secondary) !important;
   }
 }
 

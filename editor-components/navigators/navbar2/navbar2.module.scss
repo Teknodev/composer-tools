@@ -469,34 +469,34 @@
     .pcNavbar {
       .menuItemContainer {
         .menuItemTitle {
-          color: white !important;
+          color: var(--composer-font-color-secondary) !important;
         }
         .dropdownIcon {
-          color: white !important;
+          color: var(--composer-font-color-secondary) !important;
         }
       }
 
       .divider {
-        background-color: white !important;
+        background-color: var(--composer-font-color-secondary) !important;
       }
     }
     
     .localization,
     .localizationMobile {
       .localizationLabel {
-        color: white !important;
+        color: var(--composer-font-color-secondary) !important;
       }
       .languageIcon {
-        color: white !important;
+        color: var(--composer-font-color-secondary) !important;
       }
     }
 
     .menuIcon {
-      color: white !important;
+      color: var(--composer-font-color-secondary) !important;
     }
 
     .languageAccordionItem {
-      color: color;
+      color: var(--composer-font-color-secondary) !important;
     }
   }
 }

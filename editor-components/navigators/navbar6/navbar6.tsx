@@ -8,7 +8,6 @@ import { INPUTS } from "../../../custom-hooks/input-templates";
 
 interface Logo {
   image: TypeMediaInputValue;
-  text: React.JSX.Element;
   navigateTo: string;
 }
 
@@ -48,18 +47,12 @@ class Navbar6 extends BaseNavigator {
           key: "image",
           displayer: "Image",
           additionalParams: {
-            availableTypes: ["image", "icon"],
+            availableTypes: ["image"],
           },
           value: {
             type: "image",
             url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67769b510655f8002cafc965?alt=media&timestamp=1735826277716",
           },
-        },
-        {
-          type: "string",
-          key: "text",
-          displayer: "Text",
-          value: "",
         },
         {
           type: "page",
@@ -80,18 +73,12 @@ class Navbar6 extends BaseNavigator {
           key: "image",
           displayer: "Image",
           additionalParams: {
-            availableTypes: ["image", "icon"],
+            availableTypes: ["image"],
           },
           value: {
             type: "image",
             url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67769b510655f8002cafc964?alt=media&timestamp=1735826277716",
           },
-        },
-        {
-          type: "string",
-          key: "text",
-          displayer: "Text",
-          value: "",
         },
         {
           type: "page",
@@ -448,7 +435,7 @@ class Navbar6 extends BaseNavigator {
                       type: "string",
                       key: "title",
                       displayer: "Title",
-                      value: "Sub item 1",
+                      value: "SUB ITEM1",
                     },
                     {
                       type: "page",
@@ -526,7 +513,7 @@ class Navbar6 extends BaseNavigator {
                       type: "string",
                       key: "title",
                       displayer: "Title",
-                      value: "About us",
+                      value: "ABOUT US",
                     },
                     {
                       type: "page",
@@ -571,7 +558,7 @@ class Navbar6 extends BaseNavigator {
                       type: "string",
                       key: "title",
                       displayer: "Title",
-                      value: "Lookbook",
+                      value: "LOOKBOOK",
                     },
                     {
                       type: "page",
@@ -616,7 +603,7 @@ class Navbar6 extends BaseNavigator {
                       type: "string",
                       key: "title",
                       displayer: "Title",
-                      value: "Typography",
+                      value: "TYPOGRAPHY",
                     },
                     {
                       type: "page",
@@ -661,7 +648,7 @@ class Navbar6 extends BaseNavigator {
                       type: "string",
                       key: "title",
                       displayer: "Title",
-                      value: "Shortcodes",
+                      value: "SHORTCODES",
                     },
                     {
                       type: "page",
@@ -706,7 +693,7 @@ class Navbar6 extends BaseNavigator {
                       type: "string",
                       key: "title",
                       displayer: "Title",
-                      value: "Coming soon",
+                      value: "COMING SOON",
                     },
                     {
                       type: "page",
@@ -751,7 +738,7 @@ class Navbar6 extends BaseNavigator {
                       type: "string",
                       key: "title",
                       displayer: "Title",
-                      value: "Page 404",
+                      value: "PAGE 404",
                     },
                     {
                       type: "page",
@@ -829,7 +816,7 @@ class Navbar6 extends BaseNavigator {
                       type: "string",
                       key: "title",
                       displayer: "Title",
-                      value: "Blog posts",
+                      value: "BLOG POSTS",
                     },
                     {
                       type: "page",
@@ -874,7 +861,7 @@ class Navbar6 extends BaseNavigator {
                       type: "string",
                       key: "title",
                       displayer: "Title",
-                      value: "Masonary",
+                      value: "MASONARY",
                     },
                     {
                       type: "page",
@@ -939,7 +926,7 @@ class Navbar6 extends BaseNavigator {
               key: "icon",
               displayer: "Icon",
               additionalParams: {
-                availableTypes: ["icon", "image"],
+                availableTypes: ["icon"],
               },
               value: {
                 type: "icon",
@@ -964,7 +951,7 @@ class Navbar6 extends BaseNavigator {
               key: "icon",
               displayer: "Icon",
               additionalParams: {
-                availableTypes: ["icon", "image"],
+                availableTypes: ["icon"],
               },
               value: {
                 type: "icon",
@@ -989,7 +976,7 @@ class Navbar6 extends BaseNavigator {
               key: "icon",
               displayer: "Icon",
               additionalParams: {
-                availableTypes: ["icon", "image"],
+                availableTypes: ["icon"],
               },
               value: {
                 type: "icon",
@@ -1014,7 +1001,7 @@ class Navbar6 extends BaseNavigator {
               key: "icon",
               displayer: "Icon",
               additionalParams: {
-                availableTypes: ["icon", "image"],
+                availableTypes: ["icon"],
               },
               value: {
                 type: "icon",
@@ -1051,7 +1038,7 @@ class Navbar6 extends BaseNavigator {
           key: "icon",
           displayer: "Icon",
           additionalParams: {
-            availableTypes: ["icon", "image"],
+            availableTypes: ["icon"],
           },
           value: {
             type: "icon",
@@ -1068,7 +1055,7 @@ class Navbar6 extends BaseNavigator {
           type: "boolean",
           key: "showLanguage",
           displayer: "Show Language",
-          value: false,
+          value: true,
         },
         {
           type: "boolean",
@@ -1252,6 +1239,44 @@ class Navbar6 extends BaseNavigator {
             }`}
           >
             <div className={this.decorateCSS("pcNavbarContainer")}>
+              <div className={this.decorateCSS("mobileRight")}>
+                {hamburgerNavActive ? (
+                  <div onClick={() => this.handleCloseMenu()}>
+                    <Base.Media
+                      value={navigationIcons?.closeIcon}
+                      className={this.decorateCSS("closeIcon")}
+                    />
+                  </div>
+                ) : (
+                  <div onClick={() => this.handleOpenMenu()}>
+                    <Base.Media
+                      value={navigationIcons?.hamburgerIcon}
+                      className={this.decorateCSS("hamburgerIcon")}
+                    />
+                  </div>
+                )}
+                {language.showLanguage && language.showLocalizationAlways && (
+                  <Base.Language
+                    type="dropdown"
+                    title={language.label}
+                    icon={(language.icon?.type === "icon" ? language.icon.name : "GrLanguage") || "GrLanguage"}
+                    dropdownButtonClassName={`${this.decorateCSS(
+                      "localization"
+                    )}`}
+                    dropdownLabelClassName={`${this.decorateCSS(
+                      "localizationLabel"
+                    )}`}
+                    iconClassName={this.decorateCSS("languageIcon")}
+                    dropdownItemClassName={this.decorateCSS(
+                      "localizationItem"
+                    )}
+                    dropdownContentClassName={this.decorateCSS(
+                      "localizationContent"
+                    )}
+                    divider={language.showDivider}
+                  />
+                )}
+              </div>
               {menuItems.length > 0 && (
                 <nav className={this.decorateCSS("pcNavbar")}>
                   {menuItems.map(
@@ -1259,7 +1284,7 @@ class Navbar6 extends BaseNavigator {
                       this.castToString(item.title) && (
                         <div
                           key={index}
-                          className={this.decorateCSS("menuItemContainer")}
+                          className={`${this.decorateCSS("menuItemContainer")} ${animations}`}
                         >
                           <ComposerLink path={item.navigate_to}>
                             <div className={this.decorateCSS("menuItem")}>
@@ -1359,30 +1384,20 @@ class Navbar6 extends BaseNavigator {
                 </nav>
               )}
 
-              {(currentLogo.image || this.castToString(currentLogo.text)) && (
+              {currentLogo.image && (
                 <div className={this.decorateCSS("logo")}>
                   <ComposerLink path={currentLogo.navigateTo}>
-                    <div
-                      className={this.decorateCSS("logoContent")}
-                      onClick={()=> this.handleCloseMenu()}
-                    >
-                      {currentLogo.image && (
-                        <Base.Media
-                          value={currentLogo.image}
-                          className={this.decorateCSS("logoImage")}
-                        />
-                      )}
-                      {this.castToString(currentLogo.text) && (
-                        <Base.H4 className={this.decorateCSS("logoText")}>
-                          {currentLogo.text}
-                        </Base.H4>
-                      )}
+                    <div onClick={()=> this.handleCloseMenu()}>
+                      <Base.Media
+                        value={currentLogo.image}
+                        className={this.decorateCSS("logoImage")}
+                      />
                     </div>
                   </ComposerLink>
                 </div>
               )}
 
-              {menuItems.length > 0 && language.showLanguage && (
+              {(icons?.length > 0 || language.showLanguage) && (
                 <div className={this.decorateCSS("iconsContainer")}>
                   {icons?.length > 0 && (
                     <div className={this.decorateCSS("icons")}>
@@ -1414,50 +1429,6 @@ class Navbar6 extends BaseNavigator {
                   )}
                 </div>
               )}
-            </div>
-            <div className={this.decorateCSS("mobileRight")}>
-                 {(language.showLanguage &&language.showLocalizationAlways) && (
-                    <Base.Language
-                      type="dropdown"
-                      title={language.label}
-                      icon={(language.icon?.type === "icon" ? language.icon.name : "GrLanguage") || "GrLanguage"}
-                      dropdownButtonClassName={`${this.decorateCSS(
-                        "localization"
-                      )}`}
-                      dropdownLabelClassName={`${this.decorateCSS(
-                        "localizationLabel"
-                      )}`}
-                      iconClassName={this.decorateCSS("languageIcon")}
-                      dropdownItemClassName={this.decorateCSS(
-                        "localizationItem"
-                      )}
-                      dropdownContentClassName={this.decorateCSS(
-                        "localizationContent"
-                      )}
-                      divider={language.showDivider}
-                    />
-                  )}
-            {hamburgerNavActive ? (
-              <div
-                className={this.decorateCSS("closeIconWrapper")}
-                onClick={() => this.handleCloseMenu()}
-              >
-                <Base.Media
-                  value={navigationIcons?.closeIcon}
-                  className={this.decorateCSS("closeIcon")}
-                />
-              </div>
-            ) : (
-              <div
-                className={this.decorateCSS("hamburgerIconWrapper")}
-                onClick={() => this.handleOpenMenu()}
-              >
-                <Base.Media
-                  value={navigationIcons?.hamburgerIcon}
-                  className={this.decorateCSS("hamburgerIcon")}
-                />
-              </div>
-            )}
             </div>
               <div
                 className={`${this.decorateCSS("mobileMenu")} ${
@@ -1629,12 +1600,11 @@ class Navbar6 extends BaseNavigator {
 
           </Base.MaxContent>
         </Base.Navigator.Container>
-        {isVisible && (
-          <div
-            className={this.decorateCSS("overlay")}
-            onClick={() => this.handleCloseMenu()}
-          />
-        )}
+        <Base.Overlay
+          className={this.decorateCSS("overlay")}
+          onClick={() => this.handleCloseMenu()}
+          isVisible={isVisible}
+        />
       </div>
     );
   }

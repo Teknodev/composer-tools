@@ -290,7 +290,7 @@
     }
 
     .whiteColor {
-      color: white !important;
+      color: var(--composer-font-color-secondary) !important;
     }
   }
   .mobileRight{
@@ -512,20 +512,20 @@
     .menuItemContainer{
       .menuItem{
         .menuItemTitle{
-          color: white !important;
+          color: var(--composer-font-color-secondary) !important;
         }
         .dropdownIcon{
-          color: white !important;
+          color: var(--composer-font-color-secondary) !important;
         }
       }
     }
   }
   .localizationContainer{
     .localizationLabel{
-      color: white;
+      color: var(--composer-font-color-secondary);
     }
     .languageIcon{
-      color: white;
+      color: var(--composer-font-color-secondary);
       width: 15px;
       height: 15px;
       object-fit: cover;
@@ -534,17 +534,17 @@
 
   .localization {
     .localizationLabel {
-      color: white !important;
+      color: var(--composer-font-color-secondary) !important;
     }
     .languageIcon {
-      color: white !important;
+      color: var(--composer-font-color-secondary) !important;
     }
   }
 
   .icons{
     .icon-container{
       .icon{
-        color: white;
+        color: var(--composer-font-color-secondary);
       }
     }
   }

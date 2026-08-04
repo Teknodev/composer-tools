@@ -529,10 +529,10 @@
     .menuItemContainer {
       .menuItem {
         .menuItemTitle {
-          color: white !important;
+          color: var(--composer-font-color-secondary) !important;
         }
         .dropdownIcon {
-          color: white !important;
+          color: var(--composer-font-color-secondary) !important;
         }
       }
     }
@@ -540,10 +540,10 @@
 
   .rightSide {
     .localizationLabel {
-      color: white !important;
+      color: var(--composer-font-color-secondary) !important;
     }
     .languageIcon {
-      color: white !important;
+      color: var(--composer-font-color-secondary) !important;
     }
     .localizationContent {
       content: "";
@@ -560,7 +560,7 @@
   }
 
   .hamburgerIcon {
-    color: white !important;
+    color: var(--composer-font-color-secondary) !important;
   }
 }
 

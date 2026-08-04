@@ -1490,13 +1490,19 @@ class Navbar3 extends BaseNavigator {
                                                         subSubItem.navigate_to
                                                       }
                                                     >
-                                                      <Base.P
+                                                      <div
                                                         className={this.decorateCSS(
-                                                          "dropdownItemTitle"
+                                                          "dropdownItemContent"
                                                         )}
                                                       >
-                                                        {subSubItem.title}
-                                                      </Base.P>
+                                                        <Base.P
+                                                          className={this.decorateCSS(
+                                                            "dropdownItemTitle"
+                                                          )}
+                                                        >
+                                                          {subSubItem.title}
+                                                        </Base.P>
+                                                      </div>
                                                     </ComposerLink>
                                                   </div>
                                                 )
@@ -1617,7 +1623,25 @@ class Navbar3 extends BaseNavigator {
                   className={this.decorateCSS("hamburgerIcon")}
                 />
               </div>
-            )}            
+            )}
+            {icons?.length > 0 && (
+              <div className={this.decorateCSS("icons")}>
+                {icons?.map((item: any, index: number) => {
+                  return (
+                    item.icon && (
+                      <ComposerLink path={item.page}>
+                        <div className={this.decorateCSS("icon-element")}>
+                          <Base.Media
+                            value={item.icon}
+                            className={this.decorateCSS("icon")}
+                          />
+                        </div>
+                      </ComposerLink>
+                    )
+                  );
+                })}
+              </div>
+            )}
             </div>
 
 

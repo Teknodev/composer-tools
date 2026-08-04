@@ -46,11 +46,13 @@
         .informationTitle {
           color: var(--composer-font-color-primary);
           text-align: left;
+          font-weight: 800;
         }
         .informationDescription {
           max-width: 200px;
           color: var(--composer-font-color-primary);
           text-align: left;
+          font-weight: 800;
         }
       }
     }
@@ -555,13 +557,13 @@
       .menuItemContainer {
         .menuItem {
           .menuItemTitle {
-            color: white;
+            color: var(--composer-font-color-secondary);
           }
           .menuIcon {
-            color: white;
+            color: var(--composer-font-color-secondary);
           }
           .dropdownIcon {
-            color: white;
+            color: var(--composer-font-color-secondary);
           }
         }
       }
@@ -570,10 +572,10 @@
   .localizationContainer {
     .localization {
      .localizationLabel{
-      color: white;
+      color: var(--composer-font-color-secondary);
      }
      .languageIcon{
-      color: white;
+      color: var(--composer-font-color-secondary);
       width: 20px;
       height: 20px;
       object-fit: cover;
@@ -586,10 +588,10 @@
   .hamburgerIconContainer {
     .hamburgerIcon,
     .closeIcon {
-      color: white;
+      color: var(--composer-font-color-secondary);
     }
     .hamburgerMenuTitle {
-      color: white;
+      color: var(--composer-font-color-secondary);
     }
   }
 }

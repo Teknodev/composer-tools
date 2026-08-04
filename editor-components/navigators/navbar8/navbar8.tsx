@@ -502,28 +502,6 @@ class Navbar8 extends BaseNavigator {
 
     this.addProp({
       type: "string",
-      key: "dropdownTitle",
-      value: "Lorem Ipsum",
-      displayer: "Menu Title",
-    });
-
-    this.addProp({
-      type: "string",
-      key: "dropdownDescription",
-      value:
-        "Amidst the ever-shifting landscapes of creativity, I emerge as a dynamic professional, blending boundless energy with an adaptable nature and a profoundly artistic perspective.",
-      displayer: "Menu Description",
-    });
-
-    this.addProp({
-      type: "boolean",
-      key: "divider",
-      displayer: "Dropdown Divider",
-      value: true,
-    });
-
-    this.addProp({
-      type: "string",
       key: "dropdownSocialMediaTitle",
       displayer: "Dropdown Links Title",
       value: "FOLLOW ME",
@@ -746,24 +724,14 @@ class Navbar8 extends BaseNavigator {
     );
     const socialMediaLinks = this.castToObject<Icon[]>("socialMediaLinks");
 
-    const dropdownDescription = this.castToString(
-      this.getPropValue("dropdownDescription")
-    );
-    const dropdownTitle = this.castToString(this.getPropValue("dropdownTitle"));
-
     const titleContainer = title || subtitle;
 
     const isMenuOpen = this.getComponentState("isMenuOpen");
-    const divider = this.getPropValue("divider");
-
-    const rightSide = dropdownTitle || dropdownDescription;
 
     const leftSide =
       itemList.length > 0 ||
       socialMediaLinks.length > 0 ||
       dropdownSocialMediaTitle;
-
-    const dividerCondition = leftSide && rightSide;
 
     const socialMediaLinksCondition =
       socialMediaLinks.length > 0 || dropdownSocialMediaTitle;
@@ -909,24 +877,6 @@ class Navbar8 extends BaseNavigator {
             <Base.MaxContent
               className={this.decorateCSS("dropdownMenuContent")}
             >
-              {rightSide && (
-                <div className={this.decorateCSS("dropdownRightSide")}>
-                  {dropdownTitle && (
-                    <Base.H3 className={this.decorateCSS("dropdownTitle")}>
-                      {this.getPropValue("dropdownTitle")}
-                    </Base.H3>
-                  )}
-                  <div className={this.decorateCSS("line")}></div>
-                  {dropdownDescription && (
-                    <Base.P className={this.decorateCSS("dropdownDescription")}>
-                      {this.getPropValue("dropdownDescription")}
-                    </Base.P>
-                  )}
-                </div>
-              )}
-              {divider && dividerCondition && (
-                <div className={this.decorateCSS("divider")}></div>
-              )}
               {leftSide && (
                 <div className={this.decorateCSS("dropdownItemList")}>
                   <div className={this.decorateCSS("dropdownItemContent")}>
