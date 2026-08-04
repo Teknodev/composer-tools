@@ -48,7 +48,6 @@
                 background: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
                 box-shadow: var(--box-shadow-active);
                 color: var(--composer-font-color-primary);
-                padding: 30px;
                 gap: var(--composer-gap-lg);
                 overflow: hidden;
 
@@ -145,7 +144,6 @@
                 flex-direction: row;
                 gap: var(--composer-gap-md);
                 border-radius: var(--composer-border-radius-md);
-                padding: 30px;
                 background: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
                 box-shadow: var(--box-shadow-active);
 

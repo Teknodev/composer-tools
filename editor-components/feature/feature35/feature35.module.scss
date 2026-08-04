@@ -36,7 +36,6 @@
                     border-radius: var(--composer-border-radius-md);
                     background-color: var(--composer-html-background);
                     box-shadow: var(--box-shadow-active);
-                    padding: var(--composer-gap-lg);
                     box-sizing: border-box;
                     overflow: hidden;
                     text-align: left !important;
@@ -95,10 +94,6 @@
 
                 .cards-container {
                     flex-direction: column;
-
-                    .card {
-                        padding: calc(var(--composer-gap-sm) * 3);
-                    }
                 }
             }
         }
