@@ -10,8 +10,9 @@
         width: 100%;
       }
 
-      .down-page .card,
-      .slider .card-slider {
+      .down-page,
+      .slider {
+        .card {
           flex-direction: column-reverse;
           gap: var(--composer-gap-sm);
           .person-image {
@@ -143,6 +144,7 @@
               }
             }
           }
+        }
 
       }
 
@@ -217,7 +219,7 @@
             background-color: var(--composer-tertiary-color);
           }
 
-          .card-slider {
+          .card {
             width: 100%;
             padding: var(--composer-gap-md);
             display: flex !important;
@@ -241,7 +243,7 @@
           }
 
           :nth-child(2n) {
-            .card-slider {
+            .card {
               flex-direction: column-reverse;
             }
           }
@@ -269,7 +271,7 @@
             width: 100%;
           }
 
-          .card-slider {
+          .card {
             padding: 0;
             gap: var(--composer-gap-sm);
 

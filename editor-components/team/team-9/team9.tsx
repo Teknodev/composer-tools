@@ -344,7 +344,7 @@ class Team9 extends Team {
 
                   if (item.profileImage || nameExist || item.icons.length > 0)
                     return (
-                      <div key={indexCard} className={this.decorateCSS("card-slider")}>
+                      <div key={indexCard} className={this.decorateCSS("card")}>
                         {item.profileImage && <Base.Media value={item.profileImage} className={this.decorateCSS("person-image")} />}
                         {(nameExist || item.icons.length > 0) && (
                           <Base.VerticalContent className={this.decorateCSS("person-info")}>
