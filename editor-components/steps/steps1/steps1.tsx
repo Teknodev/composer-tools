@@ -233,7 +233,7 @@ class Steps1 extends BaseSteps {
                 const cardButtonsExist = card.buttons?.some((btn) => this.castToString(btn.text));
 
                 return (cardStepNumberExist || cardSubtitleExist || cardTitleExist || cardDescriptionExist || cardButtonsExist) && (
-                  <div key={index} className={this.decorateCSS("card")}>
+                  <Base.Card key={index} className={this.decorateCSS("card")}>
                     {cardStepNumberExist && (
                       <div className={this.decorateCSS("step-number")}>
                         <Base.H6 className={this.decorateCSS("step-number-text")}>
@@ -271,7 +271,7 @@ class Steps1 extends BaseSteps {
                         </div>
                       )}
                     </Base.VerticalContent>
-                  </div>
+                  </Base.Card>
                 );
               })}
             </Base.ListGrid>

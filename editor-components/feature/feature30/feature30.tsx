@@ -254,7 +254,7 @@ class Feature30 extends BaseFeature {
                                 const featureDescExist = this.castToString(feature.description);
                                 const media = feature.media;
                                 return (
-                                    <div
+                                    <Base.Card
                                         key={index}
                                         className={`${this.decorateCSS(
                                             "feature-card"
@@ -285,7 +285,7 @@ class Feature30 extends BaseFeature {
                                                 )}
                                             </Base.VerticalContent>
                                         )}
-                                    </div>
+                                    </Base.Card>
                                 );
                             })}
                         </Base.ListGrid>

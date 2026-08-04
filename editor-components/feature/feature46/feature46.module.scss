@@ -34,10 +34,6 @@
         height: 100%;
         text-align: left !important;
 
-        &.card-empty {
-          background-color: transparent;
-        }
-
         .card-content {
           content: "";
 
@@ -81,6 +77,12 @@
             }
           }
         }
+      }
+
+      .card-empty {
+        background-color: transparent;
+        border: none;
+        border-radius: 0;
       }
     }
 

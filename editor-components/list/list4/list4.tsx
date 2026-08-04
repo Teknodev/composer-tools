@@ -310,7 +310,7 @@ class List4 extends BaseList {
 
                   if (!hasTitle && !hasSubtitle && !hasDescription && !hasIcon) return null;
                   return (
-                    <div
+                    <Base.Card
                       key={index}
                       className={this.decorateCSS("service-item")}
                       data-animation={hoverAnimation.join(" ")}
@@ -385,7 +385,7 @@ class List4 extends BaseList {
                           )}
                         </Base.VerticalContent>
                       </div>
-                    </div>
+                    </Base.Card>
                   )
                 }
               )}

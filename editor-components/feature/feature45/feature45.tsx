@@ -273,8 +273,11 @@ class Feature45 extends BaseFeature {
                   ? [card.button]
                   : [];
                 return (
-                  <Base.VerticalContent
+                  <Base.Card
                     key={index}
+                    className={this.decorateCSS("card-shell")}
+                  >
+                  <Base.VerticalContent
                     className={this.decorateCSS("card")}
                   >
                     {card.icon && (
@@ -334,6 +337,7 @@ class Feature45 extends BaseFeature {
                       })}
                     </div>
                   </Base.VerticalContent>
+                  </Base.Card>
                 );
               })}
             </Base.ListGrid>

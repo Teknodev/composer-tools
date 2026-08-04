@@ -204,8 +204,8 @@ class Feature40 extends BaseFeature {
                                     const iconExist = card.button?.icon && (card.button.icon)?.name ;
                                     const buttonExist = buttonTitleExist || iconExist;
 
-                                    return (!titleExist && !descExist && !card.icon) || (   
-                                        <div
+                                    return (!titleExist && !descExist && !card.icon) || (
+                                        <Base.Card
                                             key={index}
                                             className={`${this.decorateCSS("card-wrapper")} ${isLastInRow && this.decorateCSS("last-in-row")}`}
                                         >
@@ -227,7 +227,7 @@ class Feature40 extends BaseFeature {
                                                     }
                                                 </Base.VerticalContent>
                                             }
-                                        </div>
+                                        </Base.Card>
                                     );
                                 })}
                             </Base.ListGrid>

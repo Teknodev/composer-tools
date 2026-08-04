@@ -762,17 +762,17 @@ class PricingTable2 extends BasePricingTable {
                   if (!hasCardContent) return null;
 
                   return (
-                    <Base.VerticalContent
-                      key={index}
-                      className={`${this.decorateCSS("card-item-count")} ${animations &&
-                        animations
-                          .map((animation: string) =>
-                            this.decorateCSS(animation)
-                          )
-                          .join(" ")
-                        }`}
-                    >
-                      <div className={this.decorateCSS("item-card")}>
+                    <Base.Card key={index} className={this.decorateCSS("card-shell")}>
+                      <Base.VerticalContent
+                        className={`${this.decorateCSS("card-item-count")} ${animations &&
+                          animations
+                            .map((animation: string) =>
+                              this.decorateCSS(animation)
+                            )
+                            .join(" ")
+                          }`}
+                      >
+                        <div className={this.decorateCSS("item-card")}>
                         {hasUpperContent && (
                           <Base.VerticalContent
                             className={this.decorateCSS("card-upper")}
@@ -938,7 +938,8 @@ class PricingTable2 extends BasePricingTable {
                           </Base.VerticalContent>
                         )}
                       </div>
-                    </Base.VerticalContent>
+                      </Base.VerticalContent>
+                    </Base.Card>
                   );
                 }
               )}

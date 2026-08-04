@@ -34,6 +34,14 @@
         .cards-container {
             gap: var(--composer-gap-lg);
 
+            .card-shell {
+                display: flex;
+                flex-direction: column;
+                > * {
+                    flex: 1 1 auto;
+                }
+            }
+
             .card {
                 padding: var(--composer-gap-lg);
                 border-radius: var(--composer-border-radius-md);

@@ -160,16 +160,23 @@
 }
 
 @keyframes colorSlideUp {
-  0% { 
+  0% {
     color: var(--composer-font-color-primary);
     transform: translateY(0);
   }
-  50% { 
+  50% {
     color: var(--composer-primary-color);
     transform: translateY(-4px);
   }
-  100% { 
+  100% {
     color: var(--composer-primary-color);
     transform: translateY(-2px);
   }
+}
+
+.container .card-shell {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  > * { flex: 1 1 auto; }
 }

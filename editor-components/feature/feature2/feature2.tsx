@@ -200,7 +200,7 @@ class Feature2 extends BaseFeature {
               if (!shouldRender) return null;
 
               return (
-                <div
+                <Base.Card
                   key={index}
                   className={`
                       ${this.decorateCSS("item")}
@@ -233,7 +233,7 @@ class Feature2 extends BaseFeature {
                       {item.description}
                     </Base.P>
                   )}
-                </div>
+                </Base.Card>
               );
             })}
           </Base.ListGrid>

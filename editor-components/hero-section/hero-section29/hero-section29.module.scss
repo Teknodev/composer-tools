@@ -161,6 +161,15 @@
         }
 
         .service-card-list {
+          .card-shell {
+            display: flex;
+            flex-direction: column;
+
+            > * {
+              flex: 1 1 auto;
+            }
+          }
+
           .service-card {
             gap: var(--composer-gap-sm);
             display: flex;

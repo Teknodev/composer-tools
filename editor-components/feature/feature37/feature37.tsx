@@ -359,7 +359,7 @@ class Feature37 extends BaseFeature {
                                         const cardHasContent = titleExist || hoverTitleExist || hoverDescExist || iconExist;
                                         if (!cardHasContent) return null;
                                         return (
-                                            <div key={index} className={this.decorateCSS("card")}>
+                                            <Base.Card key={index} className={this.decorateCSS("card")}>
                                                 <div className={this.decorateCSS("card-inner")}>
                                                     <div className={`${this.decorateCSS("face")} ${this.decorateCSS("front")}`}>
                                                         {iconExist && (<div className={this.decorateCSS("icon-wrapper")}> <Base.Media value={card.icon} className={`${this.decorateCSS("card-icon")} ${isImage && this.decorateCSS("is-image")}`} />  </div>)}
@@ -370,7 +370,7 @@ class Feature37 extends BaseFeature {
                                                         {hoverDescExist && (<Base.P className={this.decorateCSS("card-description")}>{card.hoverDescription}</Base.P>)}
                                                     </Base.VerticalContent>
                                                 </div>
-                                            </div>
+                                            </Base.Card>
                                         );
                                     })}
                                 </Base.ListGrid>

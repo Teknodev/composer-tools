@@ -357,7 +357,7 @@ class PricingTable16 extends BasePricingTable {
                                 if (!hasContent) return null;
 
                                 return (
-                                    <div key={`card-${index}`} className={this.decorateCSS("card")}>
+                                    <Base.Card key={`card-${index}`} className={this.decorateCSS("card")}>
                                         <Base.VerticalContent className={this.decorateCSS("card-top")}>
                                             {cardSubtitleExist && <Base.H6 className={this.decorateCSS("card-subtitle")}>{item.cardSubtitle}</Base.H6>}
                                             {cardTitleExist && <Base.H5 className={this.decorateCSS("card-title")}>{item.cardTitle}</Base.H5>}
@@ -409,7 +409,7 @@ class PricingTable16 extends BasePricingTable {
                                                 </div>
                                             )}
                                         </Base.VerticalContent>
-                                    </div>
+                                    </Base.Card>
                                 );
                             })}
                         </Base.ListGrid>
@@ -436,7 +436,7 @@ class PricingTable16 extends BasePricingTable {
                                 if (!cardContentExist) return null;
 
                                 return (
-                                    <div key={`bottom-card-${index}`} className={this.decorateCSS("bottom-card")}>
+                                    <Base.Card key={`bottom-card-${index}`} className={this.decorateCSS("bottom-card")}>
                                         {iconExist && (
                                             <div className={this.decorateCSS("bottom-card-left")}>
                                                 <Base.Media value={card.bottomIcon} className={this.decorateCSS("bottom-icon")} />
@@ -466,7 +466,7 @@ class PricingTable16 extends BasePricingTable {
                                                 </div>
                                             )}
                                         </Base.VerticalContent>
-                                    </div>
+                                    </Base.Card>
                                 );
                             })}
                         </Base.ListGrid>

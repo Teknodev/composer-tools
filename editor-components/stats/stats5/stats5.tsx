@@ -233,7 +233,7 @@ class Stats5Page extends BaseStats {
 
                 if (titleExist || item.stat)
                   return (
-                    <div
+                    <Base.Card
                       key={index}
                       className={`
                           ${this.decorateCSS("card")}
@@ -242,7 +242,7 @@ class Stats5Page extends BaseStats {
                     >
                       {item.stat && <Base.SectionTitle className={this.decorateCSS("card-data-title")}>{statValue}</Base.SectionTitle>}
                       {titleExist && <Base.SectionDescription className={this.decorateCSS("card-data-description")}>{item.title}</Base.SectionDescription>}
-                    </div>
+                    </Base.Card>
                   );
                 return null;
               })}

@@ -44,6 +44,15 @@
         .stats-grid {
           gap: var(--composer-gap-lg);
 
+          .card-shell {
+            display: flex;
+            flex-direction: column;
+
+            > * {
+              flex: 1 1 auto;
+            }
+          }
+
           .stat-item {
             align-items: flex-start;
 
@@ -82,7 +91,7 @@
             }
           }
 
-          .stat-item:nth-child(even) {
+          .card-shell:nth-child(even) > .stat-item {
             .stat-value {
               color: var(--composer-secondary-color);
             }

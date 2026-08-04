@@ -442,7 +442,7 @@ class Feature8 extends BaseFeature {
                 const cardExist = titleExist || descExist || card.icon;
 
                 return cardExist && (
-                  <div className={this.decorateCSS("card")}>
+                  <Base.Card className={this.decorateCSS("card")}>
                     {card.icon && (
                       <Base.Media
                         value={card.icon}
@@ -459,7 +459,7 @@ class Feature8 extends BaseFeature {
                         {card.description}
                       </Base.P>
                     )}
-                  </div>
+                  </Base.Card>
                 );
               })}
             </Base.ListGrid>

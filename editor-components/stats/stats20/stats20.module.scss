@@ -69,6 +69,15 @@
                 flex: 1;
                 gap: var(--composer-gap-md);
 
+                .card-shell {
+                    display: flex;
+                    flex-direction: column;
+
+                    > * {
+                        flex: 1 1 auto;
+                    }
+                }
+
                 .stat-item {
                     background: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
                     border-radius: var(--composer-border-radius-sm);

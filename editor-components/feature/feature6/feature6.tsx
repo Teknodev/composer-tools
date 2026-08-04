@@ -214,7 +214,7 @@ class Feature6 extends BaseFeature {
                   if (!shouldRender) return null;
 
                   return (
-                    <div
+                    <Base.Card
                       key={index}
                       className={this.decorateCSS("card-item-count")}
                     >
@@ -238,7 +238,7 @@ class Feature6 extends BaseFeature {
                           )}
                         </div>
                       </div>
-                    </div>
+                    </Base.Card>
                   );
                 })}
               </Base.ListGrid>

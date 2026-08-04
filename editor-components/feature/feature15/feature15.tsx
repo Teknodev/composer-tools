@@ -249,7 +249,7 @@ class Feature15 extends BaseFeature {
                     >
                         {this.castToObject<Card[]>("cards").map(
                             (card: Card, index: number) => (
-                                <div key={index} className={this.decorateCSS("card")}>
+                                <Base.Card key={index} className={this.decorateCSS("card")}>
                                     {card.icon && (
                                         <div className={this.decorateCSS("icon-box")}>
                                             <Base.Media
@@ -275,7 +275,7 @@ class Feature15 extends BaseFeature {
                                             </Base.P>
                                         )}
                                     </Base.VerticalContent>
-                                </div>
+                                </Base.Card>
                             )
                         )}
                     </Base.ListGrid>}

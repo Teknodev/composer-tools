@@ -2235,7 +2235,8 @@ class ECommerce4 extends BaseECommerce {
                             ) || selectedColorOption?.sizeOptions?.[0];
 
                             return (
-                                <Base.VerticalContent key={cardIndex} className={this.decorateCSS("card-container")}>
+                                <Base.Card key={cardIndex} className={this.decorateCSS("card-shell")}>
+                                <Base.VerticalContent className={this.decorateCSS("card-container")}>
                                     <ComposerLink path={productCard.navigateTo} isFullWidth={true}>
                                         <div className={this.decorateCSS("image-container")}>
                                             <div
@@ -2340,6 +2341,7 @@ class ECommerce4 extends BaseECommerce {
                                         ))}
                                     </div>
                                 </Base.VerticalContent>
+                                </Base.Card>
                             );
                         })}
                     </Base.ListGrid>

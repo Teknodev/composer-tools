@@ -129,6 +129,16 @@ export class Stats30 extends BaseStats {
         return this.getPropValue("coloredBackground") ? this.decorateCSS("colored-background") : "";
     }
 
+    private hasCardContent(stat: any): boolean {
+        const titleExist = !!this.castToString(stat.title);
+        const subtitleExist = !!this.castToString(stat.subtitle);
+        const descriptionExist = !!this.castToString(stat.description);
+        const valueExist = !!this.castToString(stat.statValue);
+        const suffixExist = !!this.castToString(stat.suffix);
+        const hasValueGroup = valueExist || suffixExist || !!stat.prefix;
+        return subtitleExist || titleExist || descriptionExist || hasValueGroup;
+    }
+
     private AnimatedCard = ({
         stat,
         coloredBackgroundClass,
@@ -186,8 +196,7 @@ export class Stats30 extends BaseStats {
         const suffixExist = !!this.castToString(stat.suffix);
 
         const hasValueGroup = valueExist || suffixExist || !!stat.prefix;
-        const hasAnyContent = subtitleExist || titleExist || descriptionExist || hasValueGroup;
-        if (!hasAnyContent) return null;
+        if (!this.hasCardContent(stat)) return null;
 
         return (
             <Base.VerticalContent className={`${this.decorateCSS("stat-item")}${coloredBackgroundClass ? ` ${coloredBackgroundClass}` : ""}`}>
@@ -295,14 +304,15 @@ export class Stats30 extends BaseStats {
                                 gridCount={{ pc: itemCount, tablet: 2, phone: 1 }}
                                 className={this.decorateCSS("stats-container")}
                             >
-                                {cards.map((stat: StatItem, index: number) => (
-                                    <this.AnimatedCard
-                                        key={index}
-                                        stat={stat}
-                                        coloredBackgroundClass={this.getColoredBackground()}
-                                        statsAnimation={statsAnimation}
-                                        animationDuration={animationDuration}
-                                    />
+                                {cards.map((stat: StatItem, index: number) => this.hasCardContent(stat) && (
+                                    <Base.Card key={index} className={this.decorateCSS("card-shell")}>
+                                        <this.AnimatedCard
+                                            stat={stat}
+                                            coloredBackgroundClass={this.getColoredBackground()}
+                                            statsAnimation={statsAnimation}
+                                            animationDuration={animationDuration}
+                                        />
+                                    </Base.Card>
                                 ))}
                             </Base.ListGrid>
                         )}

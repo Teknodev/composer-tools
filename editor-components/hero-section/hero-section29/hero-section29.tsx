@@ -299,17 +299,19 @@ class HeroSection29 extends BaseHeroSection {
                 {serviceItems && (
                   <Base.ListGrid className={this.decorateCSS("service-card-list")} gridCount={{ pc: this.getPropValue("itemCount"), tablet: 2, phone: 1 }}>
                     {serviceItems.map((item: any, index: number) => (
-                      <Base.VerticalContent className={this.decorateCSS("service-card")}>
-                        <div className={this.decorateCSS("service-svg")}>
-                          <Base.Media className={this.decorateCSS("icon")} value={item.icon} />
-                        </div>
-                        <Base.H4 className={this.decorateCSS("service-title")}>
-                          {item.title}
-                        </Base.H4>
-                        <Base.P className={this.decorateCSS("service-description")}>
-                          {item.description}
-                        </Base.P>
-                      </Base.VerticalContent>
+                      <Base.Card key={index} className={this.decorateCSS("card-shell")}>
+                        <Base.VerticalContent className={this.decorateCSS("service-card")}>
+                          <div className={this.decorateCSS("service-svg")}>
+                            <Base.Media className={this.decorateCSS("icon")} value={item.icon} />
+                          </div>
+                          <Base.H4 className={this.decorateCSS("service-title")}>
+                            {item.title}
+                          </Base.H4>
+                          <Base.P className={this.decorateCSS("service-description")}>
+                            {item.description}
+                          </Base.P>
+                        </Base.VerticalContent>
+                      </Base.Card>
                     ))}
                   </Base.ListGrid>
                 )}

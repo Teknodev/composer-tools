@@ -367,7 +367,7 @@ class Feature3 extends BaseFeature {
                       if (!titleExist && !iconExist) return null;
 
                       return (
-                        <div key={index} className={this.decorateCSS("card")}>
+                        <Base.Card key={index} className={this.decorateCSS("card")}>
                           <Base.VerticalContent className={this.decorateCSS("card-content")}>
                             {iconExist && (
                               <Base.Media
@@ -381,7 +381,7 @@ class Feature3 extends BaseFeature {
                               </Base.H4>
                             )}
                           </Base.VerticalContent>
-                        </div>
+                        </Base.Card>
                       );
                     })}
                   </Base.ListGrid>

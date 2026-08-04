@@ -38,6 +38,8 @@
         justify-content: center;
         align-items: center;
         transition: transform 0.3s ease;
+        border: 1px solid var(--composer-tertiary-color);
+        border-radius: var(--composer-border-radius-xs);
 
         &[data-animation~="animate1"] {
           &:hover {
@@ -193,6 +195,16 @@
         }
       }
     }
+  }
+}
+
+.container .card-shell {
+  display: flex;
+  flex-direction: column;
+  border: none;
+  border-radius: 0;
+  > * {
+    flex: 1 1 auto;
   }
 }
 

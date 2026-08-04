@@ -322,26 +322,30 @@ class About10 extends BaseAbout {
                   if (!titleExist && !subtitleExist && !descriptionExist) return null;
 
                   return (
-                    <Base.VerticalContent
+                    <Base.Card
                       key={`about10-feature-${index}`}
-                      className={this.decorateCSS("feature-item")}
+                      className={this.decorateCSS("card-shell")}
                     >
-                      {subtitleExist && (
-                        <Base.H6 className={this.decorateCSS("feature-subtitle")}>
-                          {feature.subtitleElement}
-                        </Base.H6>
-                      )}
-                      {titleExist && (
-                        <Base.H5 className={this.decorateCSS("feature-title")}>
-                          {feature.titleElement}
-                        </Base.H5>
-                      )}
-                      {descriptionExist && (
-                        <Base.P className={this.decorateCSS("feature-description")}>
-                          {feature.descriptionElement}
-                        </Base.P>
-                      )}
-                    </Base.VerticalContent>
+                      <Base.VerticalContent
+                        className={this.decorateCSS("feature-item")}
+                      >
+                        {subtitleExist && (
+                          <Base.H6 className={this.decorateCSS("feature-subtitle")}>
+                            {feature.subtitleElement}
+                          </Base.H6>
+                        )}
+                        {titleExist && (
+                          <Base.H5 className={this.decorateCSS("feature-title")}>
+                            {feature.titleElement}
+                          </Base.H5>
+                        )}
+                        {descriptionExist && (
+                          <Base.P className={this.decorateCSS("feature-description")}>
+                            {feature.descriptionElement}
+                          </Base.P>
+                        )}
+                      </Base.VerticalContent>
+                    </Base.Card>
                   );
                 })}
               </Base.ListGrid>

@@ -146,6 +146,14 @@ class Stats35 extends BaseStats {
         return "Stats 35";
     }
 
+    private hasStatContent(stat: any): boolean {
+        const valueExist = !!this.castToString(stat.number);
+        const subtitleExist = !!this.castToString(stat.subtitle);
+        const titleExist = !!this.castToString(stat.title);
+        const descriptionExist = !!this.castToString(stat.description);
+        return valueExist || !!stat.prefix || !!stat.suffix || subtitleExist || titleExist || descriptionExist;
+    }
+
     private AnimatedStat = ({
         stat,
         animationDuration = 2000,
@@ -196,7 +204,7 @@ class Stats35 extends BaseStats {
         const titleExist = this.castToString(stat.title);
         const descriptionExist = this.castToString(stat.description);
 
-        if (!valueExist && !stat.prefix && !stat.suffix && !subtitleExist && !titleExist && !descriptionExist) return null;
+        if (!this.hasStatContent(stat)) return null;
 
         return (
             <div className={this.decorateCSS("stat-item")}>
@@ -284,7 +292,7 @@ class Stats35 extends BaseStats {
         const itemCount = this.getPropValue("itemCount") || 1;
         const alignment = Base.getContentAlignment();
         const hasLeftSection = subtitleExist || titleExist || descriptionExist || hasValidButtons;
-        const hasVisibleStats = stats.some(stat => stat.number || stat.prefix || stat.suffix || stat.subtitle || stat.title || stat.description);
+        const hasVisibleStats = stats.some(stat => this.hasStatContent(stat));
         const hasRightSection = hasVisibleStats || hasMedia;
 
         const mediaOnly = hasMedia && !hasLeftSection && !hasVisibleStats;
@@ -360,13 +368,14 @@ class Stats35 extends BaseStats {
                                     {hasVisibleStats && (
                                         <div className={this.decorateCSS("stats-inner")}>
                                             <Base.ListGrid gridCount={{ pc: itemCount, tablet: 1, phone: 1 }} className={this.decorateCSS("stats-list")}>
-                                                {stats.map((stat, index) => (
-                                                    <this.AnimatedStat
-                                                        key={`stat35-${index}`}
-                                                        stat={stat}
-                                                        animationDuration={animationDuration}
-                                                        statsAnimation={statsAnimation}
-                                                    />
+                                                {stats.map((stat, index) => this.hasStatContent(stat) && (
+                                                    <Base.Card key={`stat35-${index}`} className={this.decorateCSS("card-shell")}>
+                                                        <this.AnimatedStat
+                                                            stat={stat}
+                                                            animationDuration={animationDuration}
+                                                            statsAnimation={statsAnimation}
+                                                        />
+                                                    </Base.Card>
                                                 ))}
                                             </Base.ListGrid>
                                         </div>
