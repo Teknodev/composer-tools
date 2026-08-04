@@ -138,13 +138,18 @@ class Stats31 extends BaseStats {
 
     private AnimatedStat = ({ stat, animationDuration = 2000, statsAnimation }: { stat: StatItem; animationDuration?: number; statsAnimation: boolean }) => {
         const originalString = stat.number;
-        const targetNumber = parseFloat(originalString) || 0;
+        const numberPrefix = originalString.match(/^[^\d]*/)?.[0] ?? "";
+        const numberSuffix = originalString.match(/[^\d]*$/)?.[0] ?? "";
+        const core = originalString.slice(numberPrefix.length, originalString.length - numberSuffix.length);
+        const isNumeric = /\d/.test(core);
+        const targetNumber = isNumeric ? parseFloat(core.replace(/,/g, "")) : NaN;
+        const animatable = statsAnimation && isNumeric;
 
-        const [animatedNumber, setAnimatedNumber] = React.useState<number>(statsAnimation ? 0 : targetNumber);
+        const [animatedNumber, setAnimatedNumber] = React.useState<number>(animatable ? 0 : targetNumber);
         const intervalRef = React.useRef<NodeJS.Timeout | null>(null);
 
         React.useEffect(() => {
-            if (!statsAnimation) {
+            if (!animatable) {
                 setAnimatedNumber(targetNumber);
                 return;
             }
@@ -167,14 +172,18 @@ class Stats31 extends BaseStats {
                     clearInterval(intervalRef.current);
                 }
             };
-        }, [targetNumber, statsAnimation, animationDuration, originalString]);
+        }, [targetNumber, animatable, animationDuration, originalString]);
 
         const formatNumber = (num: number): string => {
-            const decimals = originalString.includes(".") ? (originalString.split(".")[1]?.length || 0) : 0;
-            return decimals > 0 ? num.toFixed(decimals) : Math.floor(num).toString();
+            const decimals = core.includes(".") ? (core.split(".")[1]?.length || 0) : 0;
+            const useGrouping = /,/.test(core);
+            const body = decimals > 0
+                ? num.toLocaleString("en-US", { minimumFractionDigits: decimals, maximumFractionDigits: decimals, useGrouping })
+                : Math.floor(num).toLocaleString("en-US", { useGrouping });
+            return numberPrefix + body + numberSuffix;
         };
 
-        const formattedNumber = statsAnimation ? formatNumber(animatedNumber) : formatNumber(targetNumber);
+        const formattedNumber = isNumeric ? formatNumber(animatedNumber) : originalString;
         const titleExist = !!stat.title;
         const subtitleExist = !!stat.subtitle;
         const descriptionExist = !!stat.description;

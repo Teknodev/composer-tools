@@ -6,9 +6,12 @@ import ComposerLink from "../../../composer-base-components/Link/ComposerLinkPro
 import { INPUTS } from "../../../custom-hooks/input-templates";
 
 type featuresItem = {
-  topText: React.JSX.Element;
-  bottomText: React.JSX.Element;
+  prefix: React.JSX.Element;
+  number: React.JSX.Element;
+  suffix: React.JSX.Element;
+  subtitle: React.JSX.Element;
   title: React.JSX.Element;
+  description: React.JSX.Element;
 };
 
 class Stats14 extends BaseStats {
@@ -38,44 +41,73 @@ class Stats14 extends BaseStats {
 
     this.addProp({
       type: "array",
-      key: "features-item",
-      displayer: "Feature Items",
+      key: "stats",
+      displayer: "Stats",
       value: [
         {
           type: "object",
-          key: "features-item",
-          displayer: "Feature Item",
+          key: "stat",
+          displayer: "Stat",
           value: [
-            { type: "string", key: "topText", displayer: "Top Text", value: "From 20 days" },
-            { type: "string", key: "bottomText", displayer: "Bottom Text", value: "minimal period" },
+            { type: "string", key: "prefix", displayer: "Prefix", value: "" },
+            { type: "string", key: "number", displayer: "Value", value: "From 20 days" },
+            { type: "string", key: "suffix", displayer: "Suffix", value: "" },
+            { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
+            { type: "string", key: "title", displayer: "Title", value: "" },
+            { type: "string", key: "description", displayer: "Description", value: "minimal period" },
           ],
         },
         {
           type: "object",
-          key: "features-item",
-          displayer: "Feature Item",
+          key: "stat",
+          displayer: "Stat",
           value: [
-            { type: "string", key: "topText", displayer: "Top Text", value: "Up to 7.5%" },
-            { type: "string", key: "bottomText", displayer: "Bottom Text", value: "yearly income" },
+            { type: "string", key: "prefix", displayer: "Prefix", value: "" },
+            { type: "string", key: "number", displayer: "Value", value: "Up to 7.5%" },
+            { type: "string", key: "suffix", displayer: "Suffix", value: "" },
+            { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
+            { type: "string", key: "title", displayer: "Title", value: "" },
+            { type: "string", key: "description", displayer: "Description", value: "yearly income" },
           ],
         },
         {
           type: "object",
-          key: "features-item",
-          displayer: "Feature Item",
+          key: "stat",
+          displayer: "Stat",
           value: [
-            { type: "string", key: "topText", displayer: "Top Text", value: "From $1,000" },
-            { type: "string", key: "bottomText", displayer: "Bottom Text", value: "minimal deposit" },
+            { type: "string", key: "prefix", displayer: "Prefix", value: "" },
+            { type: "string", key: "number", displayer: "Value", value: "From $1,000" },
+            { type: "string", key: "suffix", displayer: "Suffix", value: "" },
+            { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
+            { type: "string", key: "title", displayer: "Title", value: "" },
+            { type: "string", key: "description", displayer: "Description", value: "minimal deposit" },
           ],
         },
       ],
     });
 
     this.addProp({
-      type: "boolean",
-      key: "overlay",
-      displayer: "Overlay",
-      value: false,
+      type: "object",
+      key: "imageCard",
+      displayer: "Media",
+      value: [
+        {
+          type: "media",
+          key: "image",
+          displayer: "Image",
+          additionalParams: { availableTypes: ["image", "video"] },
+          value: {
+            type: "image",
+            url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6900d3202d05c1002bf00ca7?alt=media",
+          },
+        },
+        {
+          type: "boolean",
+          key: "overlay",
+          displayer: "Overlay",
+          value: false,
+        },
+      ],
     });
 
     this.addProp({
@@ -86,17 +118,6 @@ class Stats14 extends BaseStats {
         INPUTS.BUTTON("button", "Button", "Download Free Trial", null, "FaRegCheckCircle", null, "Primary"),
         INPUTS.BUTTON("button", "Button", "Learn More", null, "", null, "White"),
       ],
-    });
-
-    this.addProp({
-      type: "media",
-      key: "image",
-      displayer: "Image",
-      additionalParams: { availableTypes: ["image"] },
-      value: {
-        type: "image",
-        url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6900d3202d05c1002bf00ca7?alt=media",
-      },
     });
   }
 
@@ -109,10 +130,11 @@ class Stats14 extends BaseStats {
     const isTitleExist = this.castToString(title);
     const subtitle = this.getPropValue("subtitle");
     const subtitleExist = this.castToString(subtitle);
-    const FeaturesItem = this.castToObject<featuresItem[]>("features-item");
+    const FeaturesItem = this.castToObject<featuresItem[]>("stats");
     const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
-    const image = this.getPropValue("image");
-    const overlay = this.getPropValue("overlay");
+    const imageCard = this.castToObject<any>("imageCard");
+    const image = imageCard?.image;
+    const overlay = !!imageCard?.overlay;
     const alignment = Base.getContentAlignment();
     const isLeftContainerExist = isTitleExist || FeaturesItem.length > 0 || buttons.length > 0;
     const description = this.getPropValue("description");
@@ -155,20 +177,42 @@ class Stats14 extends BaseStats {
                       alignment === "center" ? this.decorateCSS("alignment-center") : ""
                     }`}
                   >
-                    {FeaturesItem.map((item: any, index: number) => (
-                      <div key={index} className={this.decorateCSS("features-list-item")}>
-                        {this.castToString(item.topText) && (
-                          <Base.P className={this.decorateCSS("topText")}>
-                            {item.topText}
-                          </Base.P>
-                        )}
-                        {this.castToString(item.bottomText) && (
-                          <Base.P className={this.decorateCSS("bottomText")}>
-                            {item.bottomText}
-                          </Base.P>
-                        )}
-                      </div>
-                    ))}
+                    {FeaturesItem.map((item: featuresItem, index: number) => {
+                      const prefixExist = this.castToString(item.prefix);
+                      const numberExist = this.castToString(item.number);
+                      const suffixExist = this.castToString(item.suffix);
+                      const subtitleExist = this.castToString(item.subtitle);
+                      const titleExist = this.castToString(item.title);
+                      const descriptionExist = this.castToString(item.description);
+                      const hasValue = prefixExist || numberExist || suffixExist;
+                      if (!hasValue && !subtitleExist && !titleExist && !descriptionExist) return null;
+                      return (
+                        <div key={index} className={this.decorateCSS("features-list-item")}>
+                          {hasValue && (
+                            <Base.P className={this.decorateCSS("topText")}>
+                              {prefixExist && <span className={this.decorateCSS("prefix")}>{item.prefix}</span>}
+                              {numberExist && <span className={this.decorateCSS("number")}>{item.number}</span>}
+                              {suffixExist && <span className={this.decorateCSS("suffix")}>{item.suffix}</span>}
+                            </Base.P>
+                          )}
+                          {subtitleExist && (
+                            <Base.P className={this.decorateCSS("subText")}>
+                              {item.subtitle}
+                            </Base.P>
+                          )}
+                          {titleExist && (
+                            <Base.H5 className={this.decorateCSS("titleText")}>
+                              {item.title}
+                            </Base.H5>
+                          )}
+                          {descriptionExist && (
+                            <Base.P className={this.decorateCSS("bottomText")}>
+                              {item.description}
+                            </Base.P>
+                          )}
+                        </div>
+                      );
+                    })}
                   </Base.Row>
                 )}
 
@@ -176,11 +220,10 @@ class Stats14 extends BaseStats {
                   <Base.Row className={this.decorateCSS("button-container")}>
                     {buttons.map((item, index) => {
                       const buttonText = this.castToString(item.text || "");
-                      const buttonUrl = item.url || "#";
                       if (!buttonText && !item.icon) return null;
 
                       return (
-                        <ComposerLink key={`dw-btn-${index}`} path={buttonUrl}>
+                        <ComposerLink key={`dw-btn-${index}`} path={item.url || "#"}>
                           <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
                             {item.icon && (
                               <Base.Media
@@ -188,7 +231,7 @@ class Stats14 extends BaseStats {
                                 value={{ type: "icon", name: item.icon }}
                               />
                             )}
-                            <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>
+                            {buttonText && <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>}
                           </Base.Button>
                         </ComposerLink>
                       );
@@ -198,14 +241,14 @@ class Stats14 extends BaseStats {
               </Base.VerticalContent>
             )}
 
-            {image && (
-              <div 
+            {image?.url && (
+              <div
                 className={`${this.decorateCSS("right-container")} ${
                   !isLeftContainerExist ? this.decorateCSS("right-container-alone") : ""
                 }`}
               >
                 <Base.Media value={image} className={this.decorateCSS("image-circle")} />
-                {overlay && image?.url && <div className={this.decorateCSS("overlay")}></div>}
+                {overlay && image?.url && <div className={this.decorateCSS("media-overlay")} />}
               </div>
             )}
           </div>
@@ -216,7 +259,3 @@ class Stats14 extends BaseStats {
 }
 
 export default Stats14;
- 
-
-
-

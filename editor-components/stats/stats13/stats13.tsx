@@ -11,8 +11,11 @@ type RatingItemType = {
 }
 
 type StatItemType = {
+    prefix: React.JSX.Element;
     number: React.JSX.Element;
-    symbol: React.JSX.Element;
+    suffix: React.JSX.Element;
+    subtitle: React.JSX.Element;
+    title: React.JSX.Element;
     description: React.JSX.Element;
 }
 
@@ -20,21 +23,27 @@ class Stats13 extends BaseStats {
     constructor(props?: any) {
         super(props, styles);
         this.addProp({
-            type: "media",
-            key: "image",
+            type: "object",
+            key: "imageCard",
             displayer: "Media",
-            value: {
-                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/69367e0a496aa1002ca9b081?alt=media",
-                type: "image",
-            },
-            additionalParams: { availableTypes: ["image", "video"] }
-        });
-
-        this.addProp({
-            type: "boolean",
-            key: "enableOverlay",
-            displayer: "Overlay",
-            value: false,
+            value: [
+                {
+                    type: "media",
+                    key: "image",
+                    displayer: "Media",
+                    value: {
+                        url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/69367e0a496aa1002ca9b081?alt=media",
+                        type: "image",
+                    },
+                    additionalParams: { availableTypes: ["image", "video"] },
+                },
+                {
+                    type: "boolean",
+                    key: "enableOverlay",
+                    displayer: "Overlay",
+                    value: false,
+                },
+            ],
         });
 
 
@@ -70,13 +79,6 @@ class Stats13 extends BaseStats {
             type: "boolean",
             key: "enableTextAnimation",
             displayer: "Text Animation",
-            value: true,
-        });
-
-        this.addProp({
-            type: "boolean",
-            key: "enableStatAnimation",
-            displayer: "Stat Animation",
             value: true,
         });
 
@@ -195,32 +197,20 @@ class Stats13 extends BaseStats {
 
         this.addProp({
             type: "array",
-            key: "statsItems",
-            displayer: "Stats Items",
+            key: "stats",
+            displayer: "Stats",
             value: [
                 {
                     type: "object",
                     key: "stat",
                     displayer: "Stat Item",
                     value: [
-                        {
-                            type: "string",
-                            key: "number",
-                            displayer: "Number",
-                            value: "90"
-                        },
-                        {
-                            type: "string",
-                            key: "symbol",
-                            displayer: "Symbol",
-                            value: "k+"
-                        },
-                        {
-                            type: "string",
-                            key: "description",
-                            displayer: "Description",
-                            value: "People Trust Impreza"
-                        }
+                        { type: "string", key: "prefix", displayer: "Prefix", value: "" },
+                        { type: "string", key: "number", displayer: "Value", value: "90" },
+                        { type: "string", key: "suffix", displayer: "Suffix", value: "k+" },
+                        { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
+                        { type: "string", key: "title", displayer: "Title", value: "" },
+                        { type: "string", key: "description", displayer: "Description", value: "People Trust Impreza" }
                     ],
                 },
                 {
@@ -228,25 +218,33 @@ class Stats13 extends BaseStats {
                     key: "stat",
                     displayer: "Stat Item",
                     value: [
-                        {
-                            type: "string",
-                            key: "number",
-                            displayer: "Number",
-                            value: "2.4"
-                        },
-                        {
-                            type: "string",
-                            key: "symbol",
-                            displayer: "Symbol",
-                            value: "k+"
-                        },
-                        {
-                            type: "string",
-                            key: "description",
-                            displayer: "Description",
-                            value: "Average 5-Star Reviews"
-                        }
+                        { type: "string", key: "prefix", displayer: "Prefix", value: "" },
+                        { type: "string", key: "number", displayer: "Value", value: "2.4" },
+                        { type: "string", key: "suffix", displayer: "Suffix", value: "k+" },
+                        { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
+                        { type: "string", key: "title", displayer: "Title", value: "" },
+                        { type: "string", key: "description", displayer: "Description", value: "Average 5-Star Reviews" }
                     ],
+                },
+            ],
+        });
+
+        this.addProp({
+            type: "object",
+            key: "settings",
+            displayer: "Settings",
+            value: [
+                {
+                    type: "boolean",
+                    key: "shouldAnimate",
+                    displayer: "Animate Numbers",
+                    value: true,
+                },
+                {
+                    type: "number",
+                    key: "animationDuration",
+                    displayer: "Animation Duration (ms)",
+                    value: 2000,
                 },
             ],
         });
@@ -291,57 +289,140 @@ class Stats13 extends BaseStats {
         return <>{displayedText}</>;
     };
 
-    AnimatedNumber = ({ targetValue, duration = 4000 }: { targetValue: number, duration?: number }) => {
-        const [currentValue, setCurrentValue] = useState(0);
-
-        useEffect(() => {
-            const startTime = Date.now();
-            let animationId: number;
-            const easeOutQuart = (t: number): number => 1 - Math.pow(1 - t, 4);
-            const lerp = (start: number, end: number, t: number): number => start + (end - start) * t;
-
-            const animate = () => {
-                const progress = Math.min((Date.now() - startTime) / duration, 1);
-                const easedProgress = easeOutQuart(progress);
-
-                setCurrentValue(lerp(0, targetValue, easedProgress));
-                if (progress < 1) {
-                    animationId = requestAnimationFrame(animate);
-                }
-            };
-            animationId = requestAnimationFrame(animate);
-            return () => cancelAnimationFrame(animationId);
-        }, [targetValue, duration]);
-
-        const decimalPlaces = targetValue % 1 === 0 ? 0 : 1;
-        return <span>{currentValue.toFixed(decimalPlaces)}</span>;
-    };
-
     render() {
-        const image = this.getPropValue("image");
+        const imageCard = this.castToObject<any>("imageCard");
+        const image = imageCard?.image;
         const isImageExist = !!image?.url;
         const ratingItems = this.castToObject<RatingItemType[]>("rating");
+        const ratingNumberExist = this.castToString(this.getPropValue("ratingNumber"));
         const subtitleExist = this.castToString(this.getPropValue("subtitle"));
         const titleProp = this.getPropValue("title");
         const titleExist = this.castToString(titleProp);
         const descriptionExist = this.castToString(this.getPropValue("description"));
         const enableTextAnimation = this.getPropValue("enableTextAnimation");
-        const enableStatAnimation = this.getPropValue("enableStatAnimation");
-        const statsItems = this.castToObject<StatItemType[]>("statsItems");
+        const statsItems = this.castToObject<StatItemType[]>("stats");
         const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
-        const enableOverlay = this.getPropValue("enableOverlay");
+        const enableOverlay = !!imageCard?.enableOverlay;
         const hasContent = ratingItems.length > 0 || !!titleExist || buttons.length > 0 || statsItems.length > 0 || subtitleExist || descriptionExist;
 
+        const settings = this.castToObject<any>("settings");
+        const shouldAnimate = settings?.shouldAnimate ?? true;
+        const animationDuration = (settings?.animationDuration ?? 2000) as number;
+
+        const AnimatedStat = ({ item }: { item: StatItemType }) => {
+            const ref = React.useRef<HTMLDivElement>(null);
+            const intervalRef = React.useRef<ReturnType<typeof setInterval> | null>(null);
+
+            const rawNumber = (this.castToString(item.number) as string) || "";
+            const prefix = rawNumber.match(/^[^\d]*/)?.[0] ?? "";
+            const suffix = rawNumber.match(/[^\d]*$/)?.[0] ?? "";
+            const core = rawNumber.slice(prefix.length, rawNumber.length - suffix.length);
+            const isNumeric = /\d/.test(core);
+            const target = isNumeric ? parseFloat(core.replace(/,/g, "")) : NaN;
+            const decimals = core.includes(".") ? core.split(".")[1]?.length ?? 0 : 0;
+            const useGrouping = /,/.test(core);
+            const reduceMotion = typeof window !== "undefined" && !!window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
+            const animatable = shouldAnimate && isNumeric && !reduceMotion;
+
+            const format = (n: number) => prefix + n.toLocaleString("en-US", { minimumFractionDigits: decimals, maximumFractionDigits: decimals, useGrouping }) + suffix;
+
+            const [display, setDisplay] = React.useState<string>(() => (rawNumber ? (animatable ? format(0) : rawNumber) : ""));
+
+            React.useEffect(() => {
+                if (!rawNumber) {
+                    setDisplay("");
+                    return;
+                }
+                if (!animatable) {
+                    setDisplay(rawNumber);
+                    return;
+                }
+                const node = ref.current;
+                if (!node || typeof IntersectionObserver === "undefined") {
+                    setDisplay(rawNumber);
+                    return;
+                }
+                const clear = () => {
+                    if (intervalRef.current) {
+                        clearInterval(intervalRef.current);
+                        intervalRef.current = null;
+                    }
+                };
+                const run = () => {
+                    clear();
+                    setDisplay(format(0));
+                    const steps = Math.max(1, Math.round(animationDuration / 30));
+                    const increment = target / steps;
+                    let current = 0;
+                    intervalRef.current = setInterval(() => {
+                        current += increment;
+                        if (current >= target) {
+                            clear();
+                            setDisplay(rawNumber);
+                            return;
+                        }
+                        setDisplay(format(current));
+                    }, 30);
+                };
+                const observer = new IntersectionObserver(
+                    (entries) => {
+                        entries.forEach((entry) => {
+                            if (entry.isIntersecting) {
+                                run();
+                                observer.unobserve(entry.target);
+                            }
+                        });
+                    },
+                    { threshold: 0.4 }
+                );
+                observer.observe(node);
+                return () => {
+                    observer.disconnect();
+                    clear();
+                };
+            }, [rawNumber, animatable, animationDuration, target]);
+
+            const description = item.description;
+            const prefixExist = this.castToString(item.prefix);
+            const suffixExist = this.castToString(item.suffix);
+            const subtitleExist = this.castToString(item.subtitle);
+            const titleExist = this.castToString(item.title);
+            const descriptionExist = this.castToString(description);
+
+            const hasValue = !!display || prefixExist || suffixExist;
+
+            if (!hasValue && !subtitleExist && !titleExist && !descriptionExist) return null;
+
+            return (
+                <div ref={ref} className={this.decorateCSS("stat-item")}>
+                    {hasValue && (
+                        <Base.H2 className={this.decorateCSS("stat-number")}>
+                            {prefixExist && <span className={this.decorateCSS("stat-prefix")}>{item.prefix}</span>}
+                            {!!display && display}
+                            {suffixExist && <span className={this.decorateCSS("stat-suffix")}>{item.suffix}</span>}
+                        </Base.H2>
+                    )}
+                    {subtitleExist && <Base.P className={this.decorateCSS("stat-subtitle")}>{item.subtitle}</Base.P>}
+                    {titleExist && <Base.H5 className={this.decorateCSS("stat-title")}>{item.title}</Base.H5>}
+                    {descriptionExist && <Base.SectionDescription className={this.decorateCSS("stat-description")}>{description}</Base.SectionDescription>}
+                </div>
+            );
+        };
+
+        const alignment = Base.getContentAlignment();
+
         return (
-            <Base.Container className={`${this.decorateCSS("container")} ${!isImageExist && this.decorateCSS("content-full-width")} ${!hasContent && this.decorateCSS("image-full-width")}`} isFull={true}>
+            <Base.Container className={`${this.decorateCSS("container")} ${alignment === "center" ? this.decorateCSS("alignment-center") : ""} ${!isImageExist && this.decorateCSS("content-full-width")} ${!hasContent && this.decorateCSS("image-full-width")}`} isFull={true}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
                     <div className={this.decorateCSS("wrapper")}>
                         {hasContent && (
                             <div className={this.decorateCSS("left-content")}>
                                 <Base.VerticalContent className={this.decorateCSS("vertical-content")}>
-                                    {ratingItems.length > 0 && (
+                                    {(ratingItems.length > 0 || ratingNumberExist) && (
                                         <Base.Row className={this.decorateCSS("rating-container")}>
                                             {ratingItems.map((item: RatingItemType, index: number) => {
+                                                const iconExist = item.icon?.name || item.icon?.url;
+                                                if (!iconExist) return null;
                                                 return (
                                                     <div key={index} className={this.decorateCSS("rating-content")}>
                                                         <Base.Media
@@ -351,7 +432,7 @@ class Stats13 extends BaseStats {
                                                     </div>
                                                 );
                                             })}
-                                            <Base.SectionDescription className={this.decorateCSS("rating-number")}>{this.getPropValue("ratingNumber")}</Base.SectionDescription>
+                                            {ratingNumberExist && <Base.SectionDescription className={this.decorateCSS("rating-number")}>{this.getPropValue("ratingNumber")}</Base.SectionDescription>}
                                         </Base.Row>
                                     )}
                                     {subtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}> {this.getPropValue("subtitle")} </Base.SectionSubTitle>}
@@ -362,11 +443,10 @@ class Stats13 extends BaseStats {
                                             <Base.Row className={this.decorateCSS("button-container")}>
                                                 {buttons.map((item, index) => {
                                                     const buttonText = this.castToString(item.text || "");
-                                                    const buttonUrl = item.url || "#";
                                                     if (!buttonText && !item.icon) return null;
 
                                                     return (
-                                                        <ComposerLink key={`dw-btn-${index}`} path={buttonUrl}>
+                                                        <ComposerLink key={`dw-btn-${index}`} path={item.url || "#"}>
                                                             <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
                                                                 {item.icon && (
                                                                     <Base.Media
@@ -383,26 +463,9 @@ class Stats13 extends BaseStats {
                                         )}
                                         {statsItems.length > 0 && (
                                             <Base.Row className={this.decorateCSS("stats-container")}>
-                                                {statsItems.map((item: StatItemType, index: number) => {
-                                                    const numberAsString = this.castToString(item.number);
-                                                    const parsedNumber = parseFloat(numberAsString as string) || 0;
-                                                    const symbol = item.symbol;
-                                                    const description = item.description;
-
-                                                    return (
-                                                        <div key={`stat-${index}`} className={this.decorateCSS("stat-item")}>
-                                                            <Base.H2 className={this.decorateCSS("stat-number")}>
-                                                                {enableStatAnimation ? (
-                                                                    <this.AnimatedNumber targetValue={parsedNumber} duration={3000} />
-                                                                ) : (
-                                                                    parsedNumber
-                                                                )}
-                                                                <span className={this.decorateCSS("stat-symbol")}>{symbol}</span>
-                                                            </Base.H2>
-                                                            <Base.SectionDescription className={this.decorateCSS("stat-description")}>{description}</Base.SectionDescription>
-                                                        </div>
-                                                    );
-                                                })}
+                                                {statsItems.map((item: StatItemType, index: number) => (
+                                                    <AnimatedStat key={`stat-${index}`} item={item} />
+                                                ))}
                                             </Base.Row>
                                         )}
                                     </div>
@@ -417,7 +480,7 @@ class Stats13 extends BaseStats {
                                         className={this.decorateCSS("image")}
                                     />
                                     {enableOverlay && (
-                                        <div className={this.decorateCSS("overlay")}></div>
+                                        <div className={this.decorateCSS("media-overlay")} />
                                     )}
                                 </div>
                             </div>

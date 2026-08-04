@@ -79,9 +79,12 @@
         gap: var(--composer-gap-sm);
         justify-content: center;
 
-        .button,
-        .button-text {
+        .button {
           content: "";
+
+          .button-text {
+            content: "";
+          }
         }
       }
     }

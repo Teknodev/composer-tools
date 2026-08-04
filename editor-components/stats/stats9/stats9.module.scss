@@ -26,6 +26,11 @@
         flex-direction: column;
         gap: var(--composer-gap-xl);
 
+        .subtitle {
+          text-align: left;
+          margin-bottom: var(--composer-gap-sm);
+        }
+
         .title-section {
           .main-title {
             font-size: 3rem;
@@ -41,15 +46,26 @@
           gap: var(--composer-gap-lg);
 
           .image-container {
+            position: relative;
             width: 270px;
             height:350px;
             flex-shrink: 0;
 
             .content-image {
+              width: 100%;
+              height: 100%;
               aspect-ratio: 10/11;
               border-radius: var(--composer-border-radius-lg);
               overflow: hidden;
               object-fit: cover;
+            }
+
+            .overlay {
+              position: absolute;
+              inset: 0;
+              z-index: 1;
+              border-radius: var(--composer-border-radius-lg);
+              background-color: var(--composer-overlay-color);
             }
           }
 
@@ -118,6 +134,16 @@
                 stroke:var(--composer-primary-color);
             }
 
+            .stat-prefix {
+              font-size: 8rem;
+              font-weight: 800;
+              color: var(--composer-html-background);
+                -webkit-text-stroke-width: 2px;
+                stroke-width: 2px;
+                -webkit-text-stroke-color: var(--composer-primary-color);
+                stroke:var(--composer-primary-color);
+            }
+
             .stat-suffix {
               font-size: 8rem;
               font-weight: 800;
@@ -129,14 +155,34 @@
             }
           }
 
+          .stat-subtitle,
+          .stat-title,
           .stat-description {
-            font-size: 1.5rem;
             color: var(--composer-font-color-primary);
             margin: 0;
-            margin-top:-1.5rem;
             background-color: var(--composer-html-background);
-            padding-top: var(--composer-gap-sm);
             text-align: left;
+          }
+
+          .stat-number-container + .stat-subtitle,
+          .stat-number-container + .stat-title,
+          .stat-number-container + .stat-description {
+            margin-top: -1.5rem;
+            padding-top: var(--composer-gap-sm);
+          }
+
+          .stat-subtitle {
+            font-size: 1.1rem;
+            color: var(--composer-tertiary-color);
+          }
+
+          .stat-title {
+            font-size: 2rem;
+            font-weight: 800;
+          }
+
+          .stat-description {
+            font-size: 1.5rem;
           }
         }
       }

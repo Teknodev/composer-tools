@@ -19,11 +19,7 @@
 @mixin threeDotsBlinkPage {
   > blinkpage {
     p {
-      display: -webkit-box;
-      -webkit-line-clamp: 3;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-      text-overflow: ellipsis;
+      @include threeDots;
     }
   }
 }
@@ -37,21 +33,10 @@ $font-color-primary: var(--composer-font-color-primary);
   align-items: center;
   height: 100%;
 
-  .full-width {
-    width: 100%;
-    text-align: center;
-    display: flex;
-  }
-
   .max-content {
     display: flex;
     gap: var(--composer-gap-xl);
     height: 100%;
-
-    &.image-absent {
-      display: inline-block;
-      width: 100%;
-    }
 
     .stats8-page {
       width: 100%;
@@ -64,8 +49,38 @@ $font-color-primary: var(--composer-font-color-primary);
         height: 100%;
         gap: var(--composer-gap-md);
 
-        .title {
-          margin: 0;
+        .header-container,
+        .author-container,
+        .stats-container {
+          width: 100%;
+          align-items: flex-start;
+        }
+
+        .header-container {
+          .subtitle,
+          .title,
+          .description {
+            text-align: left;
+            margin-left: 0;
+            margin-right: auto;
+          }
+        }
+
+        .author-container {
+          .description,
+          .author {
+            text-align: left;
+            margin-left: 0;
+            margin-right: auto;
+          }
+
+          .author-role-container {
+            justify-content: flex-start;
+          }
+        }
+
+        .subtitle {
+          margin-bottom: var(--composer-gap-sm);
         }
 
         .text-uppercase {
@@ -75,18 +90,18 @@ $font-color-primary: var(--composer-font-color-primary);
         .line {
           height: 1px;
           width: 100%;
-          background: rgba(var(--composer-font-color-primary-rgb), 0.3);
+          background: var(--composer-tertiary-color);
         }
 
         .description {
           margin: 0;
+          color: $font-color-primary;
         }
 
         .author {
           color: var(--composer-font-color-primary);
           word-break: break-word;
           text-transform: uppercase;
-          margin: 0;
         }
 
         .author-role-container {
@@ -114,17 +129,14 @@ $font-color-primary: var(--composer-font-color-primary);
         .stats {
           height: fit-content;
           width: 100%;
-          display: flex;
-          flex-wrap: wrap;
-          gap: var(--composer-gap-sm);
-
-          &.full-width {
-            display: flex;
-            flex-direction: row;
-          }
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          gap: var(--composer-gap-md);
+          align-items: start !important;
 
           .stat-border {
-            border: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.3);
+            border: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.15);
+            padding: var(--composer-gap-xs);
             background-color: transparent;
             height: fit-content;
 
@@ -136,22 +148,46 @@ $font-color-primary: var(--composer-font-color-primary);
               opacity: 1;
               display: flex;
               align-items: center;
-              background-color: $color-mix;
-              gap: var(--composer-gap-md);
+              background-color: transparent;
+              gap: var(--composer-gap-sm);
+              padding: var(--composer-gap-xs) 0;
 
               &.with-background {
                 background-color: $color-mix;
-                margin: var(--composer-gap-md);
+                padding: var(--composer-gap-sm);
               }
 
               &.no-background {
                 background-color: transparent;
-                margin: var(--composer-gap-md);
               }
 
               .stat-counter {
-                font-size: 3rem;
+                font-size: 4.5rem;
                 text-align: center;
+                color: $font-color-primary;
+                display: flex;
+                flex-wrap: wrap;
+                align-items: baseline;
+                justify-content: center;
+
+                .stat-prefix,
+                .stat-suffix {
+                  font-size: 0.5em;
+                }
+              }
+
+              .stat-subtitle {
+                @include blinkpageColor;
+                margin: 0;
+                font-size: 1rem;
+                color: $font-color-primary;
+              }
+
+              .stat-title {
+                @include blinkpageColor;
+                margin: 0;
+                font-size: 1.6rem;
+                font-weight: 800;
                 color: $font-color-primary;
               }
 
@@ -179,11 +215,8 @@ $font-color-primary: var(--composer-font-color-primary);
           padding: var(--composer-gap-md);
           border: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.3);
 
-          img {
+          .image {
             max-height: 750px;
-            object-fit: cover;
-            filter: brightness(70%);
-            width: 100%;
             width: 100%;
             height: auto;
             object-fit: cover;
@@ -191,8 +224,16 @@ $font-color-primary: var(--composer-font-color-primary);
 
           .overlay {
             position: absolute;
+            inset: var(--composer-gap-md);
+            z-index: 1;
+            background-color: var(--composer-overlay-color);
+          }
+
+          .stat-badge {
+            position: absolute;
             bottom: 0;
             left: 0;
+            z-index: 2;
             border: 1px solid white;
             overflow: hidden;
             white-space: normal;
@@ -231,11 +272,11 @@ $font-color-primary: var(--composer-font-color-primary);
       .stats8-page {
         .image-container {
           .image-container-border {
-            img {
+            .image {
               max-height: 100%;
             }
 
-            .overlay {
+            .stat-badge {
               .number {
                 font-size: 3.5rem;
               }
@@ -245,14 +286,10 @@ $font-color-primary: var(--composer-font-color-primary);
 
         .content {
           .stats {
-            flex-direction: row !important;
-            justify-content: space-between;
             align-items: unset;
 
             .stat-border {
-              width: 48% !important;
               height: auto;
-              padding: var(--composer-gap-md) !important;
               .with-background {
                 height: 100%;
                 margin: 0 !important;
@@ -281,22 +318,57 @@ $font-color-primary: var(--composer-font-color-primary);
 
       .stats8-page {
         .content {
-          .stats {
-            max-width: 100% !important;
-            flex-direction: column !important;
-            gap: var(--composer-gap-md);
-
-            &.full-width {
-              display: grid;
-              grid-template-columns: 1fr;
+          &.alignment-center {
+            .header-container,
+            .author-container,
+            .stats-container {
+              align-items: center;
             }
 
-            .stat-border {
-              width: 100% !important;
+            .header-container {
+              .subtitle,
+              .title,
+              .description {
+                text-align: center;
+                margin-left: auto;
+                margin-right: auto;
+              }
+            }
 
+            .author-container {
+              .description,
+              .author {
+                text-align: center;
+                margin-left: auto;
+                margin-right: auto;
+              }
+
+              .author-role-container {
+                justify-content: center;
+              }
+            }
+
+            .stats {
+              justify-content: center !important;
+              align-items: center !important;
+
+              .stat-border {
+                .stat {
+                  justify-content: center;
+                }
+              }
+            }
+          }
+
+          .stats {
+            max-width: 100% !important;
+            grid-template-columns: 1fr;
+            gap: var(--composer-gap-md);
+
+            .stat-border {
               .stat {
                 .stat-counter {
-                  font-size: 2.5rem;
+                  font-size: 3.5rem;
                 }
               }
             }
@@ -305,7 +377,7 @@ $font-color-primary: var(--composer-font-color-primary);
 
         .image-container {
           .image-container-border {
-            .overlay {
+            .stat-badge {
               padding: var(--composer-gap-sm);
 
               .number {

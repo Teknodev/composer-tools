@@ -7,6 +7,7 @@
   .max-content {
     display: flex;
     flex-direction: column;
+    gap: var(--composer-gap-xl);
 
     .header-wrapper {
       width: 60%;
@@ -15,7 +16,16 @@
         min-width: 100%;
       }
 
-      .header {
+      .subtitle {
+        text-align: left !important;
+        align-self: flex-start !important;
+        margin-left: 0 !important;
+        margin-right: auto !important;
+        width: fit-content;
+        margin-bottom: var(--composer-gap-sm);
+      }
+
+      .title {
         word-break: break-word;
         text-align: left;
       }
@@ -24,7 +34,7 @@
     .bottom-content {
       flex-wrap: unset;
 
-      .subHeader {
+      .description-column {
         flex: 1;
         position: sticky;
         top: calc(var(--composer-gap-lg) * 2);
@@ -74,6 +84,30 @@
           padding: var(--composer-gap-md) var(--composer-gap-lg);
           gap: var(--composer-gap-xl);
 
+          .card-text-container {
+            display: flex;
+            flex-direction: column;
+            gap: var(--composer-gap-xs);
+            flex: 1;
+          }
+
+          .card-subtitle {
+            width: 85%;
+            text-align: left;
+            font-size: 1.1rem;
+            color: var(--composer-tertiary-color);
+            margin: 0;
+          }
+
+          .card-title {
+            width: 85%;
+            text-align: left;
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--composer-font-color-primary);
+            margin: 0;
+          }
+
           .card-text {
             color: var(--composer-font-color-primary);
             position: relative;
@@ -90,20 +124,15 @@
 
           .card-amount-container {
             display: flex;
-            align-items: flex-start;
-
-            .card-icon {
-              font-size: 2.5rem;
-              color: var(--composer-font-color-primary);
-              flex-shrink: 0;
-            }
+            align-items: center;
+            gap: var(--composer-gap-xs);
 
             .card-amount {
               position: relative;
               flex-shrink: 0;
               text-align: left;
               font-size: 4rem;
-              font-weight: bold;
+              font-weight: 800;
               color: var(--composer-font-color-primary);
               margin: 0;
               max-width: 85%;
@@ -112,11 +141,18 @@
               text-overflow: ellipsis;
             }
 
-            .card-icon-after {
+            .card-prefix,
+            .card-suffix {
+              flex-shrink: 0;
+              font-size: 2.5rem;
+              font-weight: 800;
               color: var(--composer-font-color-primary);
-              font-size: 2rem;
-              margin-top: auto;
-              margin-bottom: auto;
+              margin: 0;
+            }
+
+            .suffix-icon {
+              font-size: 2.5rem;
+              color: var(--composer-font-color-primary);
               flex-shrink: 0;
             }
           }
@@ -137,6 +173,18 @@
 @container (max-width: #{$composer-tablet-width}) {
   .container {
     .max-content {
+      .bottom-content {
+        flex-direction: row !important;
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+  .container {
+    .max-content {
+      gap: 0 !important;
+
       .header-wrapper {
         width: 100%;
 
@@ -146,9 +194,9 @@
       }
 
       .bottom-content {
-        flex-direction: column;
+        flex-direction: column !important;
 
-        .subHeader {
+        .description-column {
           width: 100%;
           margin-right: 0;
           position: static;
@@ -190,12 +238,8 @@
                 font-size: 3.5rem;
               }
 
-              .card-icon {
+              .suffix-icon {
                 font-size: 2rem;
-              }
-
-              .card-amoun::after {
-                font-size: 1.5rem;
               }
             }
           }
@@ -209,7 +253,7 @@
   .container {
     .max-content {
       .bottom-content {
-        .subHeader {
+        .description-column {
           .button-content {
             .contact-button {
               &.button-full-width {
@@ -224,16 +268,12 @@
             padding: var(--composer-gap-md) var(--composer-gap-lg);
 
             .card-amount-container {
-              .card-icon {
-                font-size: 1.5rem;
-              }
-
               .card-amount {
                 font-size: 3rem;
                 max-width: 70%;
               }
 
-              .card-icon-after {
+              .suffix-icon {
                 font-size: 1.5rem;
               }
             }

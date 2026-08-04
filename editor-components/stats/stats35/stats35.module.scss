@@ -44,7 +44,7 @@
             object-fit: cover;
         }
 
-        .overlay {
+        .media-overlay {
             position: absolute;
             inset: 0;
             background: var(--composer-overlay-color);
@@ -70,7 +70,7 @@
             object-fit: cover;
         }
 
-        .overlay {
+        .media-overlay {
             position: absolute;
             inset: 0;
             background: var(--composer-overlay-color);
@@ -112,6 +112,7 @@
             align-items: center;
 
             .button {
+              content: "";
                 .button-text {
                     content: "";
                 }
@@ -297,7 +298,7 @@
                 padding-right: unset;
             }
             .content-wrapper {
-                gap: var(--composer-gap-xl);
+                gap: var(--composer-gap-lg);
             }
             .right-column {
                 min-height: 500px;

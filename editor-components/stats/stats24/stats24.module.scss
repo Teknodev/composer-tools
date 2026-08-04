@@ -28,6 +28,7 @@
                     gap: var(--composer-gap-sm);
 
                     .button {
+                      content: "";
                         .button-text {
                             content: "";
                         }
@@ -104,11 +105,6 @@
                                 .stat-prefix,
                                 .stat-number,
                                 .stat-suffix {
-                                    color: inherit;
-                                }
-
-                                .stat-prefix .prefix-icon {
-                                    font-size: inherit;
                                     color: inherit;
                                 }
                             }

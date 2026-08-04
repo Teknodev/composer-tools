@@ -6,15 +6,25 @@ import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "../../../custom-hooks/input-templates";
 
 interface Stat {
-    number: string;
-    description: string;
-    suffix?: string;
+    prefix: React.JSX.Element;
+    number: React.JSX.Element;
+    suffix: React.JSX.Element;
+    subtitle: React.JSX.Element;
+    title: React.JSX.Element;
+    description: React.JSX.Element;
 }
 
 class Stats9 extends BaseStats {
     constructor(props?: any) {
         super(props, styles);
 
+
+        this.addProp({
+            type: "string",
+            key: "subtitle",
+            displayer: "Subtitle",
+            value: "",
+        });
 
         this.addProp({
             type: "string",
@@ -31,13 +41,27 @@ class Stats9 extends BaseStats {
         });
 
         this.addProp({
-            type: "media",
-            key: "image",
-            displayer: "Image",
-            value: {
-                type: "image",
-                url: "https://demo2.wpopal.com/gamico/wp-content/uploads/2023/12/h1_img-2.jpg"
-            },
+            type: "object",
+            key: "media",
+            displayer: "Media",
+            value: [
+                {
+                    type: "media",
+                    key: "source",
+                    displayer: "Media",
+                    additionalParams: { availableTypes: ["image", "video"] },
+                    value: {
+                        type: "image",
+                        url: "https://demo2.wpopal.com/gamico/wp-content/uploads/2023/12/h1_img-2.jpg"
+                    },
+                },
+                {
+                    type: "boolean",
+                    key: "overlay",
+                    displayer: "Overlay",
+                    value: false,
+                },
+            ],
         });
 
         this.addProp(
@@ -64,8 +88,14 @@ class Stats9 extends BaseStats {
                     value: [
                         {
                             type: "string",
+                            key: "prefix",
+                            displayer: "Prefix",
+                            value: "",
+                        },
+                        {
+                            type: "string",
                             key: "number",
-                            displayer: "Number",
+                            displayer: "Value",
                             value: "15",
                         },
                         {
@@ -73,6 +103,18 @@ class Stats9 extends BaseStats {
                             key: "suffix",
                             displayer: "Suffix",
                             value: "+",
+                        },
+                        {
+                            type: "string",
+                            key: "subtitle",
+                            displayer: "Subtitle",
+                            value: "",
+                        },
+                        {
+                            type: "string",
+                            key: "title",
+                            displayer: "Title",
+                            value: "",
                         },
                         {
                             type: "string",
@@ -89,8 +131,14 @@ class Stats9 extends BaseStats {
                     value: [
                         {
                             type: "string",
+                            key: "prefix",
+                            displayer: "Prefix",
+                            value: "",
+                        },
+                        {
+                            type: "string",
                             key: "number",
-                            displayer: "Number",
+                            displayer: "Value",
                             value: "30",
                         },
                         {
@@ -98,6 +146,18 @@ class Stats9 extends BaseStats {
                             key: "suffix",
                             displayer: "Suffix",
                             value: "+",
+                        },
+                        {
+                            type: "string",
+                            key: "subtitle",
+                            displayer: "Subtitle",
+                            value: "",
+                        },
+                        {
+                            type: "string",
+                            key: "title",
+                            displayer: "Title",
+                            value: "",
                         },
                         {
                             type: "string",
@@ -114,8 +174,14 @@ class Stats9 extends BaseStats {
                     value: [
                         {
                             type: "string",
+                            key: "prefix",
+                            displayer: "Prefix",
+                            value: "",
+                        },
+                        {
+                            type: "string",
                             key: "number",
-                            displayer: "Number",
+                            displayer: "Value",
                             value: "80",
                         },
                         {
@@ -123,6 +189,18 @@ class Stats9 extends BaseStats {
                             key: "suffix",
                             displayer: "Suffix",
                             value: "M+",
+                        },
+                        {
+                            type: "string",
+                            key: "subtitle",
+                            displayer: "Subtitle",
+                            value: "",
+                        },
+                        {
+                            type: "string",
+                            key: "title",
+                            displayer: "Title",
+                            value: "",
                         },
                         {
                             type: "string",
@@ -136,119 +214,178 @@ class Stats9 extends BaseStats {
         });
 
         this.addProp({
-            type: "number",
-            key: "animationDuration",
-            displayer: "Number Animation Duration (ms)",
-            value: 2000,
+            type: "object",
+            key: "settings",
+            displayer: "Settings",
+            value: [
+                {
+                    type: "boolean",
+                    key: "shouldAnimate",
+                    displayer: "Animate Numbers",
+                    value: true,
+                },
+                {
+                    type: "number",
+                    key: "animationDuration",
+                    displayer: "Animation Duration (ms)",
+                    value: 2000,
+                },
+            ],
         });
     }
 
     static getName(): string {
         return "Stats 9";
     }
-    private AnimatedStat = ({ stat, animationDuration = 2000 }: { stat: Stat; animationDuration?: number }) => {
-        const [animatedNumber, setAnimatedNumber] = React.useState<string>("0");
-        const ref = React.useRef<HTMLDivElement>(null);
-        const intervalRef = React.useRef<NodeJS.Timeout | null>(null);
-
-        React.useEffect(() => {
-            const observer = new IntersectionObserver(
-                (entries) => {
-                    entries.forEach((entry) => {
-                        if (entry.isIntersecting) {
-                            animateNumber();
-                            observer.unobserve(entry.target);
-                        }
-                    });
-                },
-                { threshold: 0.5 }
-            );
-
-            if (ref.current) {
-                observer.observe(ref.current);
-            }
-
-            return () => {
-                if (ref.current) {
-                    observer.unobserve(ref.current);
-                }
-                if (intervalRef.current) {
-                    clearInterval(intervalRef.current);
-                }
-            };
-        }, [stat.number]);
-
-        const animateNumber = () => {
-            if (intervalRef.current) {
-                clearInterval(intervalRef.current);
-            }
-
-            const cleanNumber = stat.number.replace(/[^\d.]/g, '');
-            const targetNumber = parseFloat(cleanNumber) || 0;
-            
-            const steps = animationDuration / 30;
-            let currentNumber = 0;
-            const increment = targetNumber / steps;
-
-            intervalRef.current = setInterval(() => {
-                currentNumber += increment;
-
-                if (currentNumber >= targetNumber) {
-                    currentNumber = targetNumber;
-                    clearInterval(intervalRef.current!);
-                }
-                const formattedNumber = Math.floor(currentNumber).toString();
-                setAnimatedNumber(formattedNumber);
-            }, 30);
-        };
-
-        return (
-            <div ref={ref} className={this.decorateCSS("stat-item")}>
-                <div className={this.decorateCSS("stat-number-container")}>
-                    <span className={this.decorateCSS("stat-number")}>
-                        {animatedNumber}
-                    </span>
-                    {stat.suffix && (
-                        <span className={this.decorateCSS("stat-suffix")}>
-                            {typeof stat.suffix === 'string' ? stat.suffix.replace(/<[^>]*>/g, '').trim() : stat.suffix}
-                        </span>
-                    )}
-                </div>
-                {stat.description && (
-                    <Base.P className={this.decorateCSS("stat-description")}>
-                        {stat.description}
-                    </Base.P>
-                )}
-            </div>
-        );
-    };
 
     render() {
         const statsProp = this.getPropValue("stats");
-        const stats: Stat[] = statsProp.map((item: any) => {
-            const number = this.castToString(item.getPropValue("number") || "0");
-            const suffix = this.castToString(item.getPropValue("suffix")) || "";
-            const description = this.castToString(item.getPropValue("description")) || "";
-            return { number, suffix, description };
-        });
-        
+        const stats: Stat[] = statsProp.map((item: any) => ({
+            number: item.getPropValue("number"),
+            suffix: item.getPropValue("suffix"),
+            description: item.getPropValue("description"),
+        }));
+
         const title = this.getPropValue("title");
         const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
+        const buttonIcon = button.icon as unknown as TypeMediaInputValue | undefined;
+        const buttonIconExist = !!buttonIcon && (buttonIcon.type === "icon" ? !!buttonIcon.name : !!buttonIcon.url);
         const description = this.getPropValue("description");
         const isDescriptionExist = this.castToString(description);
-        let image: TypeMediaInputValue | null = null;
-        try {
-            image = this.castToObject<TypeMediaInputValue>("image");
-        } catch (error) {
-            const rawImage = this.getPropValue("image");
-            if (rawImage && typeof rawImage === 'object') {
-                image = rawImage as TypeMediaInputValue;
-            }
-        }
-        
-        const animationDuration = this.getPropValue("animationDuration") || 2000;
+        const media = this.castToObject<any>("media");
+        const image = (media?.source ?? null) as TypeMediaInputValue | null;
+        const showOverlay = media?.overlay;
 
-        const leftContentexist = this.castToString(title) || isDescriptionExist || this.castToString(button.text) || image;
+        const shouldAnimate = this.castToObject<any>("settings")?.shouldAnimate ?? true;
+        const animationDuration = (this.castToObject<any>("settings")?.animationDuration ?? 2000) as number;
+
+        const AnimatedStat = ({ stat }: { stat: Stat }) => {
+            const ref = React.useRef<HTMLDivElement>(null);
+            const intervalRef = React.useRef<ReturnType<typeof setInterval> | null>(null);
+
+            const rawNumber = (this.castToString(stat.number) as string) || "";
+            const prefix = rawNumber.match(/^[^\d]*/)?.[0] ?? "";
+            const suffix = rawNumber.match(/[^\d]*$/)?.[0] ?? "";
+            const core = rawNumber.slice(prefix.length, rawNumber.length - suffix.length);
+            const isNumeric = /\d/.test(core);
+            const target = isNumeric ? parseFloat(core.replace(/,/g, "")) : NaN;
+            const decimals = core.includes(".") ? core.split(".")[1]?.length ?? 0 : 0;
+            const useGrouping = /,/.test(core);
+            const reduceMotion = typeof window !== "undefined" && !!window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
+            const animatable = shouldAnimate && isNumeric && !reduceMotion;
+
+            const format = (n: number) => prefix + n.toLocaleString("en-US", { minimumFractionDigits: decimals, maximumFractionDigits: decimals, useGrouping }) + suffix;
+
+            const [display, setDisplay] = React.useState<string>(() => (rawNumber ? (animatable ? format(0) : rawNumber) : ""));
+
+            React.useEffect(() => {
+                if (!rawNumber) {
+                    setDisplay("");
+                    return;
+                }
+                if (!animatable) {
+                    setDisplay(rawNumber);
+                    return;
+                }
+                const node = ref.current;
+                if (!node || typeof IntersectionObserver === "undefined") {
+                    setDisplay(rawNumber);
+                    return;
+                }
+                const clear = () => {
+                    if (intervalRef.current) {
+                        clearInterval(intervalRef.current);
+                        intervalRef.current = null;
+                    }
+                };
+                const run = () => {
+                    clear();
+                    setDisplay(format(0));
+                    const steps = Math.max(1, Math.round(animationDuration / 30));
+                    const increment = target / steps;
+                    let current = 0;
+                    intervalRef.current = setInterval(() => {
+                        current += increment;
+                        if (current >= target) {
+                            clear();
+                            setDisplay(rawNumber);
+                            return;
+                        }
+                        setDisplay(format(current));
+                    }, 30);
+                };
+                const observer = new IntersectionObserver(
+                    (entries) => {
+                        entries.forEach((entry) => {
+                            if (entry.isIntersecting) {
+                                run();
+                                observer.unobserve(entry.target);
+                            }
+                        });
+                    },
+                    { threshold: 0.5 }
+                );
+                observer.observe(node);
+                return () => {
+                    observer.disconnect();
+                    clear();
+                };
+            }, [rawNumber, animatable, animationDuration, target]);
+
+            const prefixExist = this.castToString(stat.prefix);
+            const suffixExist = this.castToString(stat.suffix);
+            const subtitleExist = this.castToString(stat.subtitle);
+            const titleExist = this.castToString(stat.title);
+            const descExist = this.castToString(stat.description);
+
+            const hasValue = !!display || prefixExist || suffixExist;
+
+            if (!hasValue && !subtitleExist && !titleExist && !descExist) return null;
+
+            return (
+                <div ref={ref} className={this.decorateCSS("stat-item")}>
+                    {hasValue && (
+                        <div className={this.decorateCSS("stat-number-container")}>
+                            {prefixExist && (
+                                <span className={this.decorateCSS("stat-prefix")}>
+                                    {stat.prefix}
+                                </span>
+                            )}
+                            {!!display && (
+                                <span className={this.decorateCSS("stat-number")}>
+                                    {animatable ? display : stat.number}
+                                </span>
+                            )}
+                            {suffixExist && (
+                                <span className={this.decorateCSS("stat-suffix")}>
+                                    {stat.suffix}
+                                </span>
+                            )}
+                        </div>
+                    )}
+                    {subtitleExist && (
+                        <Base.P className={this.decorateCSS("stat-subtitle")}>
+                            {stat.subtitle}
+                        </Base.P>
+                    )}
+                    {titleExist && (
+                        <Base.H5 className={this.decorateCSS("stat-title")}>
+                            {stat.title}
+                        </Base.H5>
+                    )}
+                    {descExist && (
+                        <Base.P className={this.decorateCSS("stat-description")}>
+                            {stat.description}
+                        </Base.P>
+                    )}
+                </div>
+            );
+        };
+
+        const subtitle = this.getPropValue("subtitle");
+        const subtitleExist = this.castToString(subtitle);
+
+        const leftContentexist = subtitleExist || this.castToString(title) || isDescriptionExist || this.castToString(button.text) || buttonIconExist || image;
         const hasStats = stats && stats.length > 0;
 
         let mainContentClass = this.decorateCSS("main-content");
@@ -263,6 +400,11 @@ class Stats9 extends BaseStats {
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
                     <div className={mainContentClass}>
                         {leftContentexist && <div className={this.decorateCSS("left-content")}>
+                            {subtitleExist && (
+                                <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                                    {subtitle}
+                                </Base.SectionSubTitle>
+                            )}
                             {(this.castToString(title)) && (
                                 <div className={this.decorateCSS("title-section")}>
                                     <Base.SectionTitle className={this.decorateCSS("main-title")}>
@@ -272,12 +414,13 @@ class Stats9 extends BaseStats {
                             )}
 
                             <div className={this.decorateCSS("content-section")}>
-                                {image && image.type === "image" && image.url && (
+                                {image?.url && (
                                     <div className={this.decorateCSS("image-container")}>
                                         <Base.Media
                                             value={image}
                                             className={this.decorateCSS("content-image")}
                                         />
+                                        {showOverlay && <div className={this.decorateCSS("overlay")}></div>}
                                     </div>
                                 )}
 
@@ -288,18 +431,18 @@ class Stats9 extends BaseStats {
                                         </p>
                                     )}
 
-                                    {this.castToString(button.text) && (
+                                    {(this.castToString(button.text) || buttonIconExist) && (
                                         <div className={this.decorateCSS("button-wrapper")}>
                                             <ComposerLink path={button.url}>
                                                 <Base.Button
                                                     buttonType={button.type}
                                                     className={this.decorateCSS("more-button")}
                                                 >
-                                                    <span className={this.decorateCSS("button-text")}>{button.text}</span>
-                                                    {button.icon && (
-                                                        <Base.Icon
-                                                            name={button.icon}
-                                                            propsIcon={{ className: this.decorateCSS("button-icon") }}
+                                                    {this.castToString(button.text) && <span className={this.decorateCSS("button-text")}>{button.text}</span>}
+                                                    {buttonIconExist && (
+                                                        <Base.Media
+                                                            value={buttonIcon}
+                                                            className={this.decorateCSS("button-icon")}
                                                         />
                                                     )}
                                                 </Base.Button>
@@ -310,13 +453,8 @@ class Stats9 extends BaseStats {
                             </div>
                         </div>}
                         {stats && stats.length > 0 && <div className={this.decorateCSS("stats-section")}>
-                            {stats && Array.isArray(stats) && stats.length > 0 && 
-                             stats.map((stat, index) => (
-                                <this.AnimatedStat
-                                    key={index}
-                                    stat={stat}
-                                    animationDuration={animationDuration}
-                                />
+                            {stats.map((stat, index) => (
+                                <AnimatedStat key={index} stat={stat} />
                             ))}
                         </div>}
                     </div>

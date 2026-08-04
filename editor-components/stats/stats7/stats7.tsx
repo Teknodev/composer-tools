@@ -4,9 +4,13 @@ import styles from "./stats7.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 
 type Item = {
+  prefix: React.JSX.Element;
+  number: React.JSX.Element;
+  suffix: React.JSX.Element;
+  subtitle: React.JSX.Element;
   title: React.JSX.Element;
+  description: React.JSX.Element;
   progress: number;
-  progressText: React.JSX.Element;
 };
 
 class Stats7Page extends BaseStats {
@@ -35,31 +39,25 @@ class Stats7Page extends BaseStats {
     this.addProp({
       type: "array",
       key: "items",
-      displayer: "Items",
+      displayer: "Stats",
       value: [
         {
           type: "object",
           key: "item",
           displayer: "Item",
           value: [
-            {
-              type: "string",
-              key: "title",
-              displayer: "Progress Title",
-              value: "Design",
-            },
+            { type: "string", key: "prefix", displayer: "Prefix", value: "" },
+            { type: "string", key: "number", displayer: "Value", value: "75%" },
+            { type: "string", key: "suffix", displayer: "Suffix", value: "" },
+            { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
+            { type: "string", key: "title", displayer: "Title", value: "Design" },
+            { type: "string", key: "description", displayer: "Description", value: "" },
             {
               type: "number",
               key: "progress",
               displayer: "Progress",
               value: 75,
             },
-            {
-              type: "string",
-              key: "progressText",
-              displayer: "Progress Text",
-              value: "75%",
-            },
           ],
         },
         {
@@ -67,24 +65,18 @@ class Stats7Page extends BaseStats {
           key: "item",
           displayer: "Item",
           value: [
-            {
-              type: "string",
-              key: "title",
-              displayer: "Progress Title",
-              value: "Brand Identity",
-            },
+            { type: "string", key: "prefix", displayer: "Prefix", value: "" },
+            { type: "string", key: "number", displayer: "Value", value: "57%" },
+            { type: "string", key: "suffix", displayer: "Suffix", value: "" },
+            { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
+            { type: "string", key: "title", displayer: "Title", value: "Brand Identity" },
+            { type: "string", key: "description", displayer: "Description", value: "" },
             {
               type: "number",
               key: "progress",
               displayer: "Progress",
               value: 57,
             },
-            {
-              type: "string",
-              key: "progressText",
-              displayer: "Progress Text",
-              value: "57%",
-            },
           ],
         },
         {
@@ -92,23 +84,17 @@ class Stats7Page extends BaseStats {
           key: "item",
           displayer: "Item",
           value: [
-            {
-              type: "string",
-              key: "title",
-              displayer: "Progress Title",
-              value: "Sketch",
-            },
+            { type: "string", key: "prefix", displayer: "Prefix", value: "" },
+            { type: "string", key: "number", displayer: "Value", value: "84%" },
+            { type: "string", key: "suffix", displayer: "Suffix", value: "" },
+            { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
+            { type: "string", key: "title", displayer: "Title", value: "Sketch" },
+            { type: "string", key: "description", displayer: "Description", value: "" },
             {
               type: "number",
               key: "progress",
               displayer: "Progress",
               value: 84,
-            },
-            {
-              type: "string",
-              key: "progressText",
-              displayer: "Progress Text",
-              value: "84%",
             },
           ],
         },
@@ -141,37 +127,49 @@ class Stats7Page extends BaseStats {
           {items.length > 0 && (
             <Base.VerticalContent className={this.decorateCSS("progress-container")}>
               {items.map((item: Item, index: number) => {
-                const { title, progress, progressText } = item;
-                let percent = progress;
-                let text = progressText ?? <>`${percent}%`</>;
+                const { progress } = item;
+                const prefixExist = this.castToString(item.prefix);
+                const numberExist = this.castToString(item.number);
+                const suffixExist = this.castToString(item.suffix);
+                const subtitleExist = this.castToString(item.subtitle);
+                const titleExist = this.castToString(item.title);
+                const descriptionExist = this.castToString(item.description);
 
-                if (percent === 0) {
-                  percent = 1;
-                  text = <>"0%"</>;
-                } else if (percent >= 100) {
-                  percent = 100;
-                }
+                const hasValue = prefixExist || numberExist || suffixExist;
 
-                if (this.castToString(title) || this.castToString(progressText))
-                  return (
-                    <div className={this.decorateCSS("item")} key={index}>
-                      {
-                        <div className={this.decorateCSS("progress-title")}>
-                          {this.castToString(title) && title}
-                          {this.castToString(text) && (
-                            <div className={this.decorateCSS("progress-percent")}>
-                              <div className={this.decorateCSS("progress-text")}>{text}</div>
-                            </div>
-                          )}
-                        </div>
-                      }
-                      {percent !== null && percent !== undefined && (
-                        <div className={this.decorateCSS("progress-active")}>
-                          <div className={this.decorateCSS("progress-passive")} style={{ width: `${percent}%` }}></div>
+                if (!hasValue && !subtitleExist && !titleExist && !descriptionExist) return null;
+
+                const hasProgress = progress !== null && progress !== undefined && `${progress}`.trim() !== "" && Number.isFinite(Number(progress));
+                const percent = hasProgress ? Math.min(Math.max(Number(progress), 0), 100) : 0;
+                const barWidth = percent === 0 ? 1 : percent;
+
+                return (
+                  <div className={this.decorateCSS("item")} key={index}>
+                    <div className={this.decorateCSS("progress-title")}>
+                      <div className={this.decorateCSS("progress-title-text")}>
+                        {subtitleExist && <div className={this.decorateCSS("progress-subtitle")}>{item.subtitle}</div>}
+                        {titleExist && <div className={this.decorateCSS("progress-heading")}>{item.title}</div>}
+                      </div>
+                      {hasValue && (
+                        <div className={this.decorateCSS("progress-percent")}>
+                          <div className={this.decorateCSS("progress-text")}>
+                            {prefixExist && <span className={this.decorateCSS("progress-prefix")}>{item.prefix}</span>}
+                            {numberExist && <span className={this.decorateCSS("progress-value")}>{item.number}</span>}
+                            {suffixExist && <span className={this.decorateCSS("progress-suffix")}>{item.suffix}</span>}
+                          </div>
                         </div>
                       )}
                     </div>
-                  );
+                    {hasProgress && (
+                      <div className={this.decorateCSS("progress-active")}>
+                        <div className={this.decorateCSS("progress-passive")} style={{ width: `${barWidth}%` }}></div>
+                      </div>
+                    )}
+                    {descriptionExist && (
+                      <div className={this.decorateCSS("progress-description")}>{item.description}</div>
+                    )}
+                  </div>
+                );
               })}
             </Base.VerticalContent>
           )}

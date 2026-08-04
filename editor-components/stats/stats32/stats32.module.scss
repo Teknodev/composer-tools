@@ -41,6 +41,7 @@
                     width: 100%;
 
                     .button {
+                      content: "";
                         .button-text {
                             content: "";
                         }
@@ -145,11 +146,32 @@
         .max-content {
             .content-wrapper {
                 flex-direction: column;
-                gap: var(--composer-gap-xl);
+                gap: var(--composer-gap-lg);
 
                 .left-column,
                 .right-column {
                     flex: auto;
+                }
+
+                .left-column {
+                    &.alignment-center {
+                        align-items: center;
+
+                        .title,
+                        .subtitle,
+                        .description {
+                            text-align: center;
+                        }
+
+                        .subtitle {
+                            margin-left: auto;
+                            margin-right: auto;
+                        }
+
+                        .button-container {
+                            justify-content: center;
+                        }
+                    }
                 }
 
                 .right-column {
