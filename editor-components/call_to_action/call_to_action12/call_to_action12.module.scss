@@ -112,17 +112,26 @@
           width: 100%;
           min-width: 100%;
           flex-direction: column;
+          --cta12-control-height: 58px;
 
           .inputs {
             width: 100%;
             .input {
               padding: var(--composer-gap-md);
+              height: var(--cta12-control-height);
             }
           }
 
           .submit-button {
-            width: auto;
-            align-self: flex-start;
+            width: 100%;
+            align-self: stretch;
+            height: var(--cta12-control-height);
+            justify-content: center;
+
+            .button-text {
+              width: 100%;
+              text-align: center;
+            }
           }
         }
       }
