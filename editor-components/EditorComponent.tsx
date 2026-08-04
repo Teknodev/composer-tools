@@ -408,6 +408,12 @@ export abstract class Component
   // default language's text on the canvas without ever touching the stored
   // (empty) value. Empty for the default language and on save/localization reads.
   private fallbackProps: TypeUsableComponentProps[] = [];
+  // Lazily-built map from this instance's (random) string-prop ids to the
+  // default-language value at the SAME structural position. Prop ids are random
+  // per instance (generateId uses Math.random), so they never match across
+  // languages — matching the fallback by position instead prevents repeated
+  // array items (FAQ/feature lists) from all inheriting the first item's text.
+  private _fallbackByPosition: Map<string, string> | null = null;
   private styles: any;
   public id: string;
   public globalComponentId: string | undefined;
@@ -519,6 +525,9 @@ export abstract class Component
     const nextHash = this._computeStructuralHash();
     if (nextHash !== this._lastStructuralEmitHash) {
       this._lastStructuralEmitHash = nextHash;
+      // Props tree changed shape → the positional fallback map may no longer
+      // align with it; drop it so the next fallback lookup rebuilds it.
+      this._fallbackByPosition = null;
       EventEmitter.emit(EVENTS.COMPONENT_DID_UPDATE, { data: this });
     }
   }
@@ -823,13 +832,63 @@ export abstract class Component
    * a key match for content whose prop ids differ across languages.
    */
   private getLanguageFallbackValue(prop: TypeUsableComponentProps): string | null {
-    const byId = this.findFallbackStringById((prop as any)?.id, this.fallbackProps);
+    // Primary: match by STRUCTURAL POSITION. The new language was cloned from
+    // the default, so the two prop trees share the same shape; walking them in
+    // lockstep maps each current string prop to the correct default value —
+    // unlike an id match (ids are random per instance) or a key match (which
+    // collapses every repeated array item onto the first one, duplicating text).
+    const propId = (prop as any)?.id;
+    if (propId) {
+      if (!this._fallbackByPosition) {
+        this._fallbackByPosition = this.buildFallbackByPosition();
+      }
+      const byPosition = this._fallbackByPosition.get(propId);
+      if (byPosition) return byPosition;
+    }
+    // Fallbacks for content whose structure has since diverged from the default.
+    const byId = this.findFallbackStringById(propId, this.fallbackProps);
     if (byId) return byId;
     const byKey = this.findShadowPropByKey(prop.key, this.fallbackProps);
     if (byKey && byKey.type === "string" && typeof byKey.value === "string" && byKey.value) {
       return byKey.value;
     }
     return null;
+  }
+
+  /**
+   * Walks this instance's props and the injected default-language fallbackProps
+   * in lockstep (by array index, recursing into array/object containers) and
+   * records, per current string-prop id, the default value at the same position.
+   * Only aligns nodes whose type + key match, so it degrades safely if the two
+   * trees have drifted apart.
+   */
+  private buildFallbackByPosition(): Map<string, string> {
+    const map = new Map<string, string>();
+    const walk = (
+      current: TypeUsableComponentProps[],
+      fallback: TypeUsableComponentProps[]
+    ): void => {
+      if (!Array.isArray(current) || !Array.isArray(fallback)) return;
+      const length = Math.min(current.length, fallback.length);
+      for (let i = 0; i < length; i++) {
+        const cur = current[i] as any;
+        const fb = fallback[i] as any;
+        if (!cur || !fb || cur.type !== fb.type || cur.key !== fb.key) continue;
+        if (cur.type === "string") {
+          if (cur.id && typeof fb.value === "string" && fb.value) {
+            map.set(cur.id, fb.value);
+          }
+        } else if (
+          (cur.type === "array" || cur.type === "object") &&
+          Array.isArray(cur.value) &&
+          Array.isArray(fb.value)
+        ) {
+          walk(cur.value as TypeUsableComponentProps[], fb.value as TypeUsableComponentProps[]);
+        }
+      }
+    };
+    walk(this.state?.componentProps?.props || [], this.fallbackProps || []);
+    return map;
   }
 
   private findFallbackStringById(
