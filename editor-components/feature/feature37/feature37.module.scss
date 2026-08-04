@@ -33,6 +33,10 @@
                     cursor: pointer;
                     background-color: transparent !important;
                     box-shadow: none !important;
+                    // Documented exception to the "no Base.Card padding override" rule:
+                    // this card is a 3D flip shell — its visible inset lives on the
+                    // absolutely-positioned .face elements below, so Base.Card's own
+                    // padding would offset the rotation plane instead of the content.
                     padding: 0 !important;
                     border-radius: 0 !important;
 
