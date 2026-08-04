@@ -32,13 +32,6 @@ export class Stats30 extends BaseStats {
         super(props, styles);
 
         this.addProp({
-            type: "boolean",
-            key: "coloredBackground",
-            displayer: "Colored Background",
-            value: true,
-        });
-
-        this.addProp({
             type: "string",
             key: "subtitle",
             displayer: "Subtitle",
@@ -125,10 +118,6 @@ export class Stats30 extends BaseStats {
         return "Stats 30";
     }
 
-    getColoredBackground() {
-        return this.getPropValue("coloredBackground") ? this.decorateCSS("colored-background") : "";
-    }
-
     private hasCardContent(stat: any): boolean {
         const titleExist = !!this.castToString(stat.title);
         const subtitleExist = !!this.castToString(stat.subtitle);
@@ -141,12 +130,10 @@ export class Stats30 extends BaseStats {
 
     private AnimatedCard = ({
         stat,
-        coloredBackgroundClass,
         statsAnimation,
         animationDuration,
     }: {
         stat: StatItem;
-        coloredBackgroundClass: string;
         statsAnimation: boolean;
         animationDuration: number;
     }) => {
@@ -199,7 +186,7 @@ export class Stats30 extends BaseStats {
         if (!this.hasCardContent(stat)) return null;
 
         return (
-            <Base.VerticalContent className={`${this.decorateCSS("stat-item")}${coloredBackgroundClass ? ` ${coloredBackgroundClass}` : ""}`}>
+            <Base.VerticalContent className={this.decorateCSS("stat-item")}>
                 {subtitleExist && (
                     <Base.H6 className={this.decorateCSS("stat-subtitle")}>
                         {stat.subtitleElement}
@@ -308,7 +295,6 @@ export class Stats30 extends BaseStats {
                                     <Base.Card key={index} className={this.decorateCSS("card-shell")}>
                                         <this.AnimatedCard
                                             stat={stat}
-                                            coloredBackgroundClass={this.getColoredBackground()}
                                             statsAnimation={statsAnimation}
                                             animationDuration={animationDuration}
                                         />
