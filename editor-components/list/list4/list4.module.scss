@@ -80,12 +80,12 @@
               background-color: var(--composer-primary-color);
             }
 
-            .item-icon {
+            .card-content .card-body .item-icon {
               color: var(--composer-html-background);
             }
 
-            .item-title,
-            .item-description {
+            .card-content .card-body .item-title,
+            .card-content .card-body .item-description {
               color: var(--composer-font-color-primary);
             }
           }
