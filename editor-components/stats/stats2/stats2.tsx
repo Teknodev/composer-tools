@@ -267,12 +267,9 @@ class Stats2Page extends BaseStats {
         }, 30);
       };
 
-      // Raw-data presence check (mirrors hasCardContent's amountExist) — never a mapped fallback.
       const finalAmountString = card.amount !== undefined && card.amount !== null ? card.amount.toString() : null;
       const rawAmountExist = finalAmountString !== null && finalAmountString !== "" && !isNaN(parseFloat(finalAmountString));
 
-      // Before the observer fires (or if it never does), fall back to the real value so the
-      // card paints immediately; once animating, the local count-up state takes over.
       const displayAmount = amount !== null ? amount : finalAmountString;
       const showDecimalsFinal = amount !== null ? showDecimals : true;
 
@@ -340,9 +337,7 @@ class Stats2Page extends BaseStats {
                   const isTextExist = this.castToString(card.text);
 
                   return this.hasCardContent(card) && (
-                    <Base.Card key={index} className={this.decorateCSS("card-shell")}>
-                      <AnimatedCard card={card} animationDuration={animationDuration} isTextExist={isTextExist} isFirstRow={isFirstRow} isLastRow={isLastRow} />
-                    </Base.Card>
+                    <AnimatedCard key={index} card={card} animationDuration={animationDuration} isTextExist={isTextExist} isFirstRow={isFirstRow} isLastRow={isLastRow} />
                   );
                 })}
               </Base.ListGrid>
