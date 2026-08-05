@@ -50,7 +50,6 @@
     .card {
         display: flex;
         flex-direction: column;
-        padding: 0;
         border-radius: var(--composer-border-radius-md);
         background: var(--composer-html-background);
         box-shadow: var(--box-shadow-active);
@@ -59,8 +58,6 @@
 
         .card-content {
             flex: 1;
-            padding: var(--composer-gap-xl) var(--composer-gap-xl) 30px var(--composer-gap-xl);
-            ;
 
             .card-subtitle {
                 color: var(--composer-font-color-primary);
@@ -210,7 +207,6 @@
 
             .card {
                 .card-content {
-                    padding: var(--composer-gap-lg) var(--composer-gap-lg) 30px var(--composer-gap-lg);
                     align-items: var(--composer-content-alignment);
 
                     .card-subtitle,
