@@ -697,7 +697,7 @@ export namespace Base {
           <img
             className={className}
             src={value.url}
-            alt=""
+            alt={value.alt ?? ""}
             {...props}
           />
         );
@@ -713,6 +713,7 @@ export namespace Base {
             muted={!!value.settings?.muted || !!value.settings?.autoplay}
             playsInline
             preload="auto"
+            aria-label={value.alt || undefined}
             ref={(el) => {
               if (el) {
                 el.playbackRate = value.settings?.playbackRate ?? 1;
