@@ -47,6 +47,7 @@
 
         .service-item {
           position: relative;
+          padding: var(--composer-gap-lg);
           border-radius: var(--composer-border-radius-sm);
           display: flex;
           flex-direction: column;
@@ -218,6 +219,8 @@
           padding-bottom: var(--composer-gap-lg);
 
           .service-item {
+            padding: var(--composer-gap-md) 0 0 0;
+
             .item-index {
               top: var(--composer-gap-md);
               left: var(--composer-gap-sm);
@@ -237,6 +240,8 @@
             margin-top: 0 !important;
 
             .service-item {
+              padding-top: var(--composer-gap-lg) !important;
+
               .border-frame {
                 top: 0;
               }
@@ -313,6 +318,7 @@
         }
 
         .service-item {
+          padding: var(--composer-gap-md);
           transform: none !important;
 
           &:nth-child(n) {
@@ -324,6 +330,10 @@
 
             &.no-lines {
               margin-top: 0;
+
+              .service-item {
+                padding-top: 0 !important;
+              }
             }
           }
 

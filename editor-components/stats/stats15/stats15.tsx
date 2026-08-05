@@ -242,8 +242,6 @@ class Stats15 extends BaseStats {
             const description = this.castToString(item.description) || "";
             return { prefix, number, suffix, title, titleElement: item.title, subtitle, subtitleElement: item.subtitle, description, descriptionElement: item.description };
         });
-        // Raw (pre-"|| 0"-fallback) numeric text, kept alongside `stats` so the
-        // Base.Card call-site guard can't be fooled by the display fallback.
         const rawNumbers = statsItems.map((item) => this.castToString(item.number));
 
         const animationProps = this.castToObject<{ statsAnimation: boolean; animationDuration: number }>("animation");
