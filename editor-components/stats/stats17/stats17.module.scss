@@ -68,15 +68,6 @@
                     column-gap: var(--composer-gap-lg);
                     row-gap: var(--composer-gap-md);
 
-                    .card-shell {
-                        display: flex;
-                        flex-direction: column;
-
-                        > * {
-                            flex: 1 1 auto;
-                        }
-                    }
-
                     .stat-item {
 
                         .stat-value {

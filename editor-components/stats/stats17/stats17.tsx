@@ -311,13 +311,12 @@ class Stats17 extends BaseStats {
                             {hasStats && (
                                 <Base.ListGrid gridCount={{ pc: itemCount, tablet: itemCount, phone: 1 }} className={this.decorateCSS("stats-grid")}>
                                     {stats.map((stat: StatItem, index: number) => this.hasStatContent(stat) && (
-                                        <Base.Card key={`stat20-${index}`} className={this.decorateCSS("card-shell")}>
-                                            <this.AnimatedStat
-                                                stat={stat}
-                                                animationDuration={animationDuration}
-                                                statsAnimation={statsAnimation}
-                                            />
-                                        </Base.Card>
+                                        <this.AnimatedStat
+                                            key={`stat20-${index}`}
+                                            stat={stat}
+                                            animationDuration={animationDuration}
+                                            statsAnimation={statsAnimation}
+                                        />
                                     ))}
                                 </Base.ListGrid>
                             )}
