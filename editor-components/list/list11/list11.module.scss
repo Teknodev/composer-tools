@@ -60,6 +60,7 @@
           align-items: stretch;
           background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
           border-radius: var(--composer-border-radius-md);
+          padding: 0;
           transition: all var(--composer-transition-duration-slow) ease-in-out;
 
           .card-items {

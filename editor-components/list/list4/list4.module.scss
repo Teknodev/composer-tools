@@ -129,6 +129,16 @@
             align-items: stretch;
             flex: 1 1 auto;
 
+            .card-shell {
+              display: flex;
+              flex-direction: column;
+              flex: 1 1 auto;
+              padding: 0;
+              background: transparent;
+              border: none;
+              border-radius: 0;
+            }
+
             .card-body {
               align-items: flex-start;
               text-align: left;
