@@ -1,7 +1,6 @@
  @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
-    background: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
     position: relative;
 
     .max-content {
@@ -51,6 +50,7 @@
     .card {
         display: flex;
         flex-direction: column;
+        padding: 0;
         border-radius: var(--composer-border-radius-md);
         background: var(--composer-html-background);
         box-shadow: var(--box-shadow-active);

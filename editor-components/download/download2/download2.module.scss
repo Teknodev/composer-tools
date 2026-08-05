@@ -24,6 +24,24 @@
           > * {
             flex: 1 1 auto;
           }
+
+          &:hover {
+            background-color: var(--composer-font-color-primary);
+
+            .icon-container {
+              background-color: var(--composer-html-background);
+
+              .icon {
+                color: var(--composer-font-color-primary);
+              }
+            }
+
+            .card-subtitle,
+            .card-title,
+            .card-description {
+              color: var(--composer-html-background);
+            }
+          }
         }
 
         .card {
@@ -74,24 +92,6 @@
               .card-button-icon {
                 line-height: 0;
               }
-            }
-          }
-
-          &:hover {
-            background-color: var(--composer-font-color-primary);
-
-            .icon-container {
-              background-color: var(--composer-html-background);
-
-              .icon {
-                color: var(--composer-font-color-primary);
-              }
-            }
-
-            .card-subtitle,
-            .card-title,
-            .card-description {
-              color: var(--composer-html-background);
             }
           }
         }

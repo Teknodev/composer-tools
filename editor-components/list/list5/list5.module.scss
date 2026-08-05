@@ -99,6 +99,99 @@
             margin-top: var(--composer-gap-lg);
           }
 
+          &[data-animation~="animate1"]:hover,
+          &[data-animation~="animate4"]:hover {
+            .card-header {
+              .item-index {
+                color: var(--composer-font-color-secondary);
+                transition: color var(--composer-transition-duration-normal) ease;
+              }
+
+              .icon-badge {
+                .icon-wrapper {
+                  background-color: var(--composer-font-color-secondary);
+                  transition: background-color var(--composer-transition-duration-normal) ease;
+
+                  .icon {
+                    color: var(--composer-primary-color);
+                    transition: color var(--composer-transition-duration-normal) ease;
+                  }
+                }
+
+                .icon-badge-border {
+                  border-right: var(--composer-border-width-sm) solid var(--composer-font-color-secondary);
+                  transition: border-color var(--composer-transition-duration-normal) ease;
+                }
+              }
+            }
+
+            .card-subtitle,
+            .card-title,
+            .card-description {
+              color: var(--composer-font-color-secondary);
+              transition: color var(--composer-transition-duration-normal) ease;
+            }
+          }
+
+          &[data-animation~="animate1"]:hover {
+            background-color: var(--composer-primary-color);
+          }
+
+          &[data-animation~="animate2"]:hover {
+            transform: translateY(calc(var(--composer-gap-md) * -1));
+            box-shadow: var(--composer-box-shadow-active);
+          }
+
+          &[data-animation~="animate3"]:hover {
+            transform: scale(1.05);
+          }
+
+          &[data-animation~="animate5"]:hover .arrow-icon {
+            width: 100%;
+            color: var(--composer-font-color-secondary);
+            transform: translateX(calc(50% - var(--composer-gap-md)));
+            transition: all var(--composer-transition-duration-normal) ease;
+          }
+
+          &[data-animation~="animate6"]:hover .icon-badge {
+            transform: rotate(360deg);
+            transition: transform var(--composer-transition-duration-normal);
+          }
+
+          &:hover {
+            .card-header {
+              .item-index {
+                color: var(--composer-font-color-secondary);
+                transition: color var(--composer-transition-duration-normal) ease;
+              }
+
+              .icon-badge {
+                .icon-wrapper {
+                  background-color: var(--composer-font-color-secondary);
+                  transition: background-color var(--composer-transition-duration-normal) ease;
+
+                  .icon {
+                    color: var(--composer-primary-color);
+                    transition: color var(--composer-transition-duration-normal) ease;
+                  }
+                }
+
+                .icon-badge-border {
+                  border-right: var(--composer-border-width-sm) solid var(--composer-font-color-secondary);
+                  transition: border-color var(--composer-transition-duration-normal) ease;
+                }
+              }
+            }
+
+            .card-subtitle,
+            .card-title,
+            .card-description,
+            .arrow-icon {
+              color: var(--composer-font-color-secondary);
+              transition: color var(--composer-transition-duration-normal) ease;
+            }
+          }
+
           .card {
             width: 100% !important;
             position: relative;
@@ -109,99 +202,6 @@
             border-radius: var(--composer-border-radius-sm);
             background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
             transition: all var(--composer-transition-duration-normal) ease;
-
-            &[data-animation~="animate1"]:hover,
-            &[data-animation~="animate4"]:hover {
-              .card-header {
-                .item-index {
-                  color: var(--composer-font-color-secondary);
-                  transition: color var(--composer-transition-duration-normal) ease;
-                }
-
-                .icon-badge {
-                  .icon-wrapper {
-                    background-color: var(--composer-font-color-secondary);
-                    transition: background-color var(--composer-transition-duration-normal) ease;
-
-                    .icon {
-                      color: var(--composer-primary-color);
-                      transition: color var(--composer-transition-duration-normal) ease;
-                    }
-                  }
-
-                  .icon-badge-border {
-                    border-right: var(--composer-border-width-sm) solid var(--composer-font-color-secondary);
-                    transition: border-color var(--composer-transition-duration-normal) ease;
-                  }
-                }
-              }
-
-              .card-subtitle,
-              .card-title,
-              .card-description {
-                color: var(--composer-font-color-secondary);
-                transition: color var(--composer-transition-duration-normal) ease;
-              }
-            }
-
-            &[data-animation~="animate1"]:hover {
-              background-color: var(--composer-primary-color);
-            }
-
-            &[data-animation~="animate2"]:hover {
-              transform: translateY(calc(var(--composer-gap-md) * -1));
-              box-shadow: var(--composer-box-shadow-active);
-            }
-
-            &[data-animation~="animate3"]:hover {
-              transform: scale(1.05);
-            }
-
-            &[data-animation~="animate5"]:hover .arrow-icon {
-              width: 100%;
-              color: var(--composer-font-color-secondary);
-              transform: translateX(calc(50% - var(--composer-gap-md)));
-              transition: all var(--composer-transition-duration-normal) ease;
-            }
-
-            &[data-animation~="animate6"]:hover .icon-badge {
-              transform: rotate(360deg);
-              transition: transform var(--composer-transition-duration-normal);
-            }
-
-            &:hover {
-              .card-header {
-                .item-index {
-                  color: var(--composer-font-color-secondary);
-                  transition: color var(--composer-transition-duration-normal) ease;
-                }
-
-                .icon-badge {
-                  .icon-wrapper {
-                    background-color: var(--composer-font-color-secondary);
-                    transition: background-color var(--composer-transition-duration-normal) ease;
-
-                    .icon {
-                      color: var(--composer-primary-color);
-                      transition: color var(--composer-transition-duration-normal) ease;
-                    }
-                  }
-
-                  .icon-badge-border {
-                    border-right: var(--composer-border-width-sm) solid var(--composer-font-color-secondary);
-                    transition: border-color var(--composer-transition-duration-normal) ease;
-                  }
-                }
-              }
-
-              .card-subtitle,
-              .card-title,
-              .card-description,
-              .arrow-icon {
-                color: var(--composer-font-color-secondary);
-                transition: color var(--composer-transition-duration-normal) ease;
-              }
-            }
 
             .card-header {
               display: flex;

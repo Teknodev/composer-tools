@@ -1,8 +1,6 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
-    background: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
-
     .max-content {
         .content-wrapper {
             display: flex;
@@ -55,7 +53,6 @@
                 }
 
                 .stat-item {
-                    background: var(--composer-html-background);
                     border-radius: var(--composer-border-radius-sm);
                     box-shadow: var(--box-shadow-active);
                     justify-content: space-between;
