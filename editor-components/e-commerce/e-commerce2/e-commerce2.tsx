@@ -3395,8 +3395,7 @@ class ECommerce2 extends BaseECommerce {
 
                             return (
                                 shouldRenderCard && (
-                                    <Base.Card key={imgIndex} className={this.decorateCSS("card-shell")}>
-                                    <Base.VerticalContent className={this.decorateCSS("card-container")}>
+                                    <Base.VerticalContent key={imgIndex} className={this.decorateCSS("card-container")}>
                                         <ComposerLink path={image.navigateTo}>
                                             <div className={this.decorateCSS("image-container")}>
                                                 <div className={`${this.decorateCSS("image-bottom")} animate__animated animate__fadeInUp`}>
@@ -3456,7 +3455,6 @@ class ECommerce2 extends BaseECommerce {
                                             )}
                                         </Base.VerticalContent>
                                     </Base.VerticalContent>
-                                    </Base.Card>
                                 )
                             );
                         })}

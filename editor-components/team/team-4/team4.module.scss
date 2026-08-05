@@ -17,8 +17,6 @@
         min-width: 250px;
         height: 100%;
         gap: var(--composer-gap-sm);
-        border: 1px solid var(--composer-tertiary-color);
-        border-radius: var(--composer-border-radius-xs);
 
         .member-image {
           min-height: 500px;
@@ -64,15 +62,5 @@
         }
       }
     }
-  }
-}
-
-.container .card-shell {
-  display: flex;
-  flex-direction: column;
-  border: none;
-  border-radius: 0;
-  > * {
-    flex: 1 1 auto;
   }
 }

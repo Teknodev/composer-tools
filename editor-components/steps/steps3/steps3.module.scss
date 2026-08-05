@@ -60,15 +60,6 @@
         }
       }
 
-      .card-shell {
-        display: flex;
-        flex-direction: column;
-
-        > * {
-          flex: 1 1 auto;
-        }
-      }
-
       .cards-container {
         column-gap: var(--composer-gap-xl);
         row-gap: var(--composer-gap-xl);

@@ -880,7 +880,7 @@ class PricingTable1 extends BasePricingTable {
                   if (!hasAnyContent) return null;
 
                   return (
-                    <Base.Card
+                    <div
                       key={index}
                       className={`${this.decorateCSS("item-card")} ${animationClasses} ${table.isActive ? this.decorateCSS("active") : ""}`}
                     >
@@ -1031,7 +1031,7 @@ class PricingTable1 extends BasePricingTable {
                           </div>
                         )}
                       </Base.VerticalContent>
-                    </Base.Card>
+                    </div>
                   );
                 }
               )}

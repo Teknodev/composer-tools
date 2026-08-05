@@ -12,6 +12,7 @@
         min-height: 100px;
         width: 100%;
         position: relative;
+        padding: var(--composer-gap-md);
 
         &.stick {
           &:not(:last-child)::after {
@@ -51,6 +52,7 @@
     .max-content {
       .bottom-child {
         .card {
+          padding: 0 !important;
           margin: 0px !important;
 
           &.stick {

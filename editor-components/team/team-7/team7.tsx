@@ -319,7 +319,7 @@ class Team7 extends Team {
                 const hasItem = itemName || itemPosition || item.profileImage || item.icons.length > 0;
                 return (
                   hasItem && (
-                    <Base.Card key={indexCard} className={this.decorateCSS("card")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
+                    <div key={indexCard} className={this.decorateCSS("card")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
                       <div className={this.decorateCSS("image-container")}>
                         {item.profileImage && (
                           <div className={this.decorateCSS("image-wrapper")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
@@ -342,7 +342,7 @@ class Team7 extends Team {
                         {itemName && <Base.H3 className={this.decorateCSS("item-name")}>{item.name}</Base.H3>}
                         {itemPosition && <Base.P className={this.decorateCSS("item-position")}>{item.position}</Base.P>}
                       </Base.VerticalContent>
-                    </Base.Card>
+                    </div>
                   )
                 );
               })}

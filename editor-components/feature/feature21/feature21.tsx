@@ -272,7 +272,7 @@ class Feature21 extends BaseFeature{
                             const cardExist = cardImageExist || cardTitleExist || cardDescriptionExist || buttonExist
 
                             return cardExist && (
-                                <Base.Card
+                                <div 
                                     key={`card-${index}`}
                                     className={`${this.decorateCSS("card")} ${this.decorateCSS(flexClass)}`}
                                     onMouseEnter={() => this.handleCardHover(index)}
@@ -339,7 +339,7 @@ class Feature21 extends BaseFeature{
                                         </div>
                                         }
                                     </div>
-                                </Base.Card>
+                                </div>
                             );
                         })}
                     </Base.ListGrid>

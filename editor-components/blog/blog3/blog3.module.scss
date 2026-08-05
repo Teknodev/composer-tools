@@ -128,6 +128,7 @@
               var(--composer-html-background),
               var(--composer-font-color-primary) 5%);
           border-radius: var(--composer-border-radius-md);
+          padding: 0;
           height: 100%;
           display: flex;
           flex-direction: column;

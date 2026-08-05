@@ -375,7 +375,7 @@ class Team3 extends Team {
                 const hasContent = item.profile || itemName || itemPosition || (item.icons && item.icons.length > 0);
 
                 return hasContent ? (
-                  <Base.Card key={indexCard} className={this.decorateCSS("all-card")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
+                  <div key={indexCard} className={this.decorateCSS("all-card")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
                     <div className={`${this.decorateCSS("card")} ${item.profile ? this.decorateCSS("card-image") : ""}`} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
                       <div className={this.decorateCSS("card-items")}>
                         <div className={this.decorateCSS("item-content")}>
@@ -401,7 +401,7 @@ class Team3 extends Team {
                         </div>
                       </div>
                     </div>
-                  </Base.Card>
+                  </div>
                 ) : null;
               })}
             </Base.ListGrid>

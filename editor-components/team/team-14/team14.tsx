@@ -196,7 +196,7 @@ class Team14 extends Team {
                   const description = this.castToString(teamItem.description);
 
                   return (
-                    <Base.Card className={this.decorateCSS("card")}>
+                    <div className={this.decorateCSS("card")}>
                       <div className={this.decorateCSS("portfolio")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
                         {image && <Base.Media value={image} className={this.decorateCSS("image")} key={index} data-animation={this.getPropValue("hoverAnimation").join(" ")} />}
                         {(name || position || description) && (
@@ -207,7 +207,7 @@ class Team14 extends Team {
                           </Base.VerticalContent>
                         )}
                       </div>
-                    </Base.Card>
+                    </div>
                   );
                 })}
             </Base.ListGrid>

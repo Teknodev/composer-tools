@@ -200,7 +200,7 @@ class Team16 extends Team {
                 const cardExist = nameExist || jobExist || descriptionExist || card.profileImage;
                 return (
                   cardExist && (
-                    <Base.Card key={indexCards} className={this.decorateCSS("card")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
+                    <div key={indexCards} className={this.decorateCSS("card")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
                       {card.profileImage && (
                         <div className={this.decorateCSS("image-wrapper")}>
                           <Base.Media value={card.profileImage} className={this.decorateCSS("image")} />
@@ -213,7 +213,7 @@ class Team16 extends Team {
                         </div>
                         {descriptionExist && <Base.P className={this.decorateCSS("description")}>{card.description}</Base.P>}
                       </div>
-                    </Base.Card>
+                    </div>
                   )
                 );
               })}
