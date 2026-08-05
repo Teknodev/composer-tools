@@ -94,6 +94,9 @@
           min-width: 0;
           display: flex;
           align-items: stretch;
+          border-radius: var(--composer-border-radius-sm);
+          background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+          transition: background-color var(--composer-transition-duration-normal) ease;
 
           &:nth-child(2n) {
             margin-top: var(--composer-gap-lg);
@@ -200,7 +203,7 @@
             flex: 1 1 auto;
             align-items: stretch;
             border-radius: var(--composer-border-radius-sm);
-            background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+            background-color: transparent;
             transition: all var(--composer-transition-duration-normal) ease;
 
             .card-header {

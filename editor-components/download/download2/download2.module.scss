@@ -20,6 +20,9 @@
         .card-shell {
           display: flex;
           flex-direction: column;
+          background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+          border-radius: var(--composer-border-radius-md);
+          transition: 0.5s;
 
           > * {
             flex: 1 1 auto;
@@ -46,7 +49,7 @@
 
         .card {
           align-items: flex-start;
-          background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+          background-color: transparent;
           border-radius: var(--composer-border-radius-md);
           transition: 0.5s;
 
