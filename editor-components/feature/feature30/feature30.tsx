@@ -7,6 +7,7 @@ import ComposerLink from "../../../composer-base-components/Link/ComposerLinkPro
 
 interface FeatureCardType {
     media?: TypeMediaInputValue;
+    subtitle: React.JSX.Element;
     title: React.JSX.Element;
     description: React.JSX.Element;
 }
@@ -56,6 +57,12 @@ class Feature30 extends BaseFeature {
                         },
                         {
                             type: "string",
+                            key: "subtitle",
+                            displayer: "Subtitle",
+                            value: ""
+                        },
+                        {
+                            type: "string",
                             key: "title",
                             displayer: "Title",
                             value: "Smooth Start",
@@ -79,6 +86,12 @@ class Feature30 extends BaseFeature {
                             displayer: "Media",
                             additionalParams: { availableTypes: ["image", "icon"] },
                             value: { type: "icon", name: "FaLifeRing" },
+                        },
+                        {
+                            type: "string",
+                            key: "subtitle",
+                            displayer: "Subtitle",
+                            value: ""
                         },
                         {
                             type: "string",
@@ -108,6 +121,12 @@ class Feature30 extends BaseFeature {
                         },
                         {
                             type: "string",
+                            key: "subtitle",
+                            displayer: "Subtitle",
+                            value: ""
+                        },
+                        {
+                            type: "string",
                             key: "title",
                             displayer: "Title",
                             value: "Low Prices",
@@ -134,6 +153,12 @@ class Feature30 extends BaseFeature {
                         },
                         {
                             type: "string",
+                            key: "subtitle",
+                            displayer: "Subtitle",
+                            value: ""
+                        },
+                        {
+                            type: "string",
                             key: "title",
                             displayer: "Title",
                             value: "Strong Defence",
@@ -157,6 +182,12 @@ class Feature30 extends BaseFeature {
                             displayer: "Media",
                             additionalParams: { availableTypes: ["image", "icon"] },
                             value: { type: "icon", name: "FaSailboat" },
+                        },
+                        {
+                            type: "string",
+                            key: "subtitle",
+                            displayer: "Subtitle",
+                            value: ""
                         },
                         {
                             type: "string",
@@ -219,10 +250,11 @@ class Feature30 extends BaseFeature {
         const alignment = Base.getContentAlignment();
 
         const filteredFeatures = features.filter((feature: FeatureCardType) => {
+            const hasSubtitle = this.castToString(feature.subtitle);
             const hasTitle = this.castToString(feature.title);
             const hasDescription = this.castToString(feature.description);
             const hasMedia = (feature.media as any)?.name || (feature.media as any)?.url;
-            return hasTitle || hasDescription || hasMedia;
+            return hasSubtitle || hasTitle || hasDescription || hasMedia;
         });
         const gridClass = `${this.decorateCSS("features-grid")} ${filteredFeatures.length > 0
             ? this.decorateCSS(`features-grid-${itemsPerRow}`)
@@ -250,6 +282,7 @@ class Feature30 extends BaseFeature {
                             className={gridClass}
                         >
                             {filteredFeatures.map((feature: FeatureCardType, index: number) => {
+                                const featureSubtitleExist = this.castToString(feature.subtitle);
                                 const featureTitleExist = this.castToString(feature.title);
                                 const featureDescExist = this.castToString(feature.description);
                                 const media = feature.media;
@@ -273,6 +306,11 @@ class Feature30 extends BaseFeature {
                                             <Base.VerticalContent
                                                 className={this.decorateCSS("content")}
                                             >
+                                                {featureSubtitleExist && (
+                                                    <Base.H6 className={this.decorateCSS("features-subtitle")}>
+                                                        {feature.subtitle}
+                                                    </Base.H6>
+                                                )}
                                                 {featureTitleExist && (
                                                     <Base.H5 className={this.decorateCSS("features-title")}>
                                                         {feature.title}

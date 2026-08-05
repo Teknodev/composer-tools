@@ -11,6 +11,7 @@ interface Card {
     name?: string;
     url?: string;
   };
+  subtitle: React.JSX.Element;
   title: React.JSX.Element;
   description: React.JSX.Element;
 }
@@ -59,6 +60,12 @@ class Feature29 extends BaseFeature {
               value: { type: "icon", name: "BsCloudCheck" },
             },
             {
+                type: "string",
+                key: "subtitle",
+                displayer: "Subtitle",
+                value: ""
+            },
+            {
               type: "string",
               key: "title",
               displayer: "Title",
@@ -84,6 +91,12 @@ class Feature29 extends BaseFeature {
               displayer: "Media",
               additionalParams: { availableTypes: ["icon", "image"] },
               value: { type: "icon", name: "BsShieldCheck" },
+            },
+            {
+                type: "string",
+                key: "subtitle",
+                displayer: "Subtitle",
+                value: ""
             },
             {
               type: "string",
@@ -113,6 +126,12 @@ class Feature29 extends BaseFeature {
               value: { type: "icon", name: "BsLock" },
             },
             {
+                type: "string",
+                key: "subtitle",
+                displayer: "Subtitle",
+                value: ""
+            },
+            {
               type: "string",
               key: "title",
               displayer: "Title",
@@ -138,6 +157,12 @@ class Feature29 extends BaseFeature {
               displayer: "Media",
               additionalParams: { availableTypes: ["icon", "image"] },
               value: { type: "icon", name: "BsGraphUp" },
+            },
+            {
+                type: "string",
+                key: "subtitle",
+                displayer: "Subtitle",
+                value: ""
             },
             {
               type: "string",
@@ -244,6 +269,7 @@ class Feature29 extends BaseFeature {
               className={gridClass}
             >
               {filteredFeatures.map((feature: Card) => {
+                const cardSubtitleExist = this.castToString(feature.subtitle);
                 const titleExist = this.castToString(feature.title);
                 const descriptionExist = this.castToString(feature.description);
                 const media = feature.media;
@@ -263,6 +289,11 @@ class Feature29 extends BaseFeature {
                         </div>
                       )}
 
+                      {cardSubtitleExist && (
+                        <Base.H6 className={this.decorateCSS("card-subtitle")}>
+                          {feature.subtitle}
+                        </Base.H6>
+                      )}
                       {titleExist && (
                         <Base.H5 className={this.decorateCSS("title")}>
                           {feature.title}

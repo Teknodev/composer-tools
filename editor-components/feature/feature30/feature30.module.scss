@@ -67,6 +67,7 @@ as *;
                     display: flex;
                     flex-direction: column;
 
+                    .features-subtitle,
                     .features-title,
                     .features-description {
                         color: var(--composer-font-color-primary);

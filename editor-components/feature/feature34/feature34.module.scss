@@ -34,11 +34,15 @@
         align-items: flex-start !important;
       }
 
+      .feature-subtitle,
       .feature-title,
       .feature-description {
         text-align: left;
       }
       .feature-description {
+        color: var(--composer-font-color-primary);
+      }
+      .feature-subtitle {
         color: var(--composer-font-color-primary);
       }
       .feature-title {
@@ -54,6 +58,7 @@
           align-items: flex-start !important;
         }
         .feature-description,
+        .feature-subtitle,
         .feature-title,
         .icon-container {
           text-align: left !important;
@@ -87,6 +92,7 @@
       flex-direction: column;
     }
 
+    .feature-subtitle,
     .feature-title,
     .feature-description {
       color: var(--composer-font-color-primary);

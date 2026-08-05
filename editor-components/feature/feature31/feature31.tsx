@@ -7,6 +7,7 @@ import { INPUTS } from "../../../custom-hooks/input-templates";
 
 type Card = {
     media: TypeMediaInputValue;
+    subtitle: React.JSX.Element;
     title: React.JSX.Element;
     description: React.JSX.Element;
 };
@@ -55,6 +56,12 @@ class Feature31 extends BaseFeature {
                         },
                         {
                             type: "string",
+                            key: "subtitle",
+                            displayer: "Subtitle",
+                            value: ""
+                        },
+                        {
+                            type: "string",
                             key: "title",
                             displayer: "Title",
                             value: "Perfect Design"
@@ -81,6 +88,12 @@ class Feature31 extends BaseFeature {
                         },
                         {
                             type: "string",
+                            key: "subtitle",
+                            displayer: "Subtitle",
+                            value: ""
+                        },
+                        {
+                            type: "string",
                             key: "title",
                             displayer: "Title",
                             value: "Free Test-Drive"
@@ -104,6 +117,12 @@ class Feature31 extends BaseFeature {
                             displayer: "Media",
                             additionalParams: { availableTypes: ["icon", "image"] },
                             value: { type: "icon", name: "BiSolidLike" },
+                        },
+                        {
+                            type: "string",
+                            key: "subtitle",
+                            displayer: "Subtitle",
+                            value: ""
                         },
                         {
                             type: "string",
@@ -179,10 +198,11 @@ class Feature31 extends BaseFeature {
                                 gridCount={{ pc: this.getPropValue("itemCount"), tablet: 1 }}
                             >
                                 {cards.map((card: Card, index: number) => {
+                                    const subtitleExist = this.castToString(card.subtitle);
                                     const titleExist = this.castToString(card.title);
                                     const descExist = this.castToString(card.description);
                                     const isImage = card.media?.type === "image";
-                                    if (!titleExist && !descExist && !card.media) return null;
+                                    if (!subtitleExist && !titleExist && !descExist && !card.media) return null;
 
                                     return (
                                         <div key={index} className={this.decorateCSS("card-container")}>
@@ -192,6 +212,7 @@ class Feature31 extends BaseFeature {
                                                 </div>
                                             )}
                                             <Base.VerticalContent className={this.decorateCSS("card-content")}>
+                                                {subtitleExist && (<Base.H6 className={this.decorateCSS("card-subtitle")}>{card.subtitle}</Base.H6>)}
                                                 {titleExist && (<Base.H5 className={this.decorateCSS("card-title")}>{card.title}</Base.H5>)}
                                                 {descExist && (<Base.P className={this.decorateCSS("card-description")}>{card.description}</Base.P>)}
                                             </Base.VerticalContent>
