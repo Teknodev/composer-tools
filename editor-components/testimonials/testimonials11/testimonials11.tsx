@@ -266,7 +266,6 @@ class Testimonials11Page extends Testimonials {
   }
 
   render() {
-    const coverImage = this.getPropValue("componentBackground");
     const cardList = this.castToObject<CardItem[]>("items");
     return (
       <Base.Container
@@ -281,7 +280,7 @@ class Testimonials11Page extends Testimonials {
 
             <Base.ListGrid gridCount={{ phone: 1, tablet: 2, pc: this.getPropValue("itemCount") }} className={this.decorateCSS("content")}>
               {cardList.map((item: any, index: number) => (
-                <Base.Card className={`${this.decorateCSS("cards")} ${!coverImage && this.decorateCSS("cards-no-background")} `}>
+                <Base.Card className={this.decorateCSS("cards")}>
                   <div className={this.decorateCSS("card-top")}>
                     {item.profileImage && <Base.Media value={item.profileImage} className={this.decorateCSS("card-image")} />}
                     <div className={this.decorateCSS("card-top-right")}>

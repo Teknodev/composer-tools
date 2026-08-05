@@ -24,11 +24,7 @@
           flex-direction: column;
           width: 100%;
           gap: var(--composer-gap-sm);
-          color: black;
-
-          &.cards-no-background {
-            color: var(--composer-font-color-primary);
-          }
+          color: var(--composer-font-color-primary);
 
           .card-top {
             display: flex;
