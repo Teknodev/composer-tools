@@ -75,6 +75,21 @@
             animation: bounce 1s ease-in-out;
           }
 
+          &[data-animation~="animate2"]:hover {
+            .card-content .card-shell {
+              background-color: var(--composer-primary-color);
+            }
+
+            .item-icon {
+              color: var(--composer-html-background);
+            }
+
+            .item-title,
+            .item-description {
+              color: var(--composer-font-color-primary);
+            }
+          }
+
           .border-frame {
             position: absolute;
             left: var(--composer-gap-lg);
@@ -134,35 +149,15 @@
               display: flex;
               flex-direction: column;
               flex: 1 1 auto;
-              padding: 0;
-              background: transparent;
-              border: none;
-              border-radius: 0;
+              transition: background-color var(--composer-transition-duration-slow) ease;
             }
 
             .card-body {
               align-items: flex-start;
               text-align: left;
-              padding: var(--composer-gap-md);
-              background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
-              border-radius: var(--composer-border-width-sm);
               flex: 1 1 auto;
-              transition: background-color var(--composer-transition-duration-slow) ease;
               display: flex;
               flex-direction: column;
-
-              &[data-animation~="animate2"]:hover {
-                background-color: var(--composer-primary-color);
-
-                .item-icon {
-                  color: var(--composer-html-background);
-                }
-
-                .item-title,
-                .item-description {
-                  color: var(--composer-font-color-primary);
-                }
-              }
 
               &[data-animation~="animate3"]:hover .item-icon {
                 transform: rotate(360deg);
@@ -341,7 +336,6 @@
             margin-top: calc(var(--composer-gap-lg) + var(--composer-gap-xs));
 
             .card-body {
-              padding: var(--composer-gap-md);
               gap: var(--composer-gap-sm);
             }
           }
