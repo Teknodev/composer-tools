@@ -47,10 +47,6 @@
           cursor: pointer;
           transition: all var(--composer-transition-duration-normal) ease-in-out;
 
-          &[data-animation~="animate5"]:hover {
-            box-shadow: var(--composer-box-shadow-lg);
-          }
-
           &[data-animation~="animate1"]:hover .image-container .card-image {
             transform: scale(1.1);
           }

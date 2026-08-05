@@ -45,8 +45,6 @@
             }
 
             .card {
-                background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
-                border-radius: var(--composer-border-radius-md);
                 align-items: flex-start;
 
                 .card-value {

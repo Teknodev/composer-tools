@@ -61,12 +61,10 @@
                     &:hover {
                         border: solid 1px transparent;
                         border-radius: var(--composer-border-radius-md);
-                        box-shadow: var(--box-shadow-active);
                     }
                 }
 
                 .card {
-                    border-radius: var(--composer-border-radius-md);
                     .icon-box {
                         width: fit-content;
                         display: flex;

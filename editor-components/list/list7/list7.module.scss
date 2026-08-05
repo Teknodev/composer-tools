@@ -66,10 +66,6 @@
             }
           }
 
-          &[data-animation~="animate2"]:hover .item-content {
-            box-shadow: var(--composer-box-shadow-lg);
-          }
-
           &[data-animation~="animate3"]:hover {
             .border-layer-1 {
               position: absolute;
@@ -96,7 +92,6 @@
 
           .item-content {
             height: 100%;
-            border-radius: var(--composer-border-radius-sm);
             display: flex;
             flex-direction: column;
             box-sizing: border-box;

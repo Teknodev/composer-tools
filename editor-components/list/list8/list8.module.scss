@@ -55,10 +55,6 @@
           align-items: center;
           transition: all var(--composer-transition-duration-slow) ease-out;
 
-          &[data-animation~="animate1"]:hover {
-            box-shadow: var(--composer-box-shadow-lg);
-          }
-
           &[data-animation~="animate2"]:hover .number-badge {
             animation: swing 1s ease-in-out;
             transform-origin: top center;

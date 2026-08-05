@@ -19,8 +19,6 @@
     .team {
       flex: 1 1;
       gap: var(--composer-gap-xs);
-      background-color: transparent;
-      border-radius: var(--composer-border-radius-md);
       min-width: 250px;
       height: 100%;
       align-items: center;
@@ -151,14 +149,6 @@
 
     &:hover {
       transform: scale(1.04);
-    }
-  }
-
-  &[data-animation~="animate3"] {
-    transition: all 0.5s ease;
-
-    &:hover {
-      box-shadow: 0 0 20px rgba(var(--composer-primary-color-rgb), 0.4);
     }
   }
 

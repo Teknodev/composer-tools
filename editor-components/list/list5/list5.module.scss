@@ -142,7 +142,6 @@
 
           &[data-animation~="animate2"]:hover {
             transform: translateY(calc(var(--composer-gap-md) * -1));
-            box-shadow: var(--composer-box-shadow-active);
           }
 
           &[data-animation~="animate3"]:hover {
@@ -202,8 +201,6 @@
             flex-direction: column;
             flex: 1 1 auto;
             align-items: stretch;
-            border-radius: var(--composer-border-radius-sm);
-            background-color: transparent;
             transition: all var(--composer-transition-duration-normal) ease;
 
             .card-header {

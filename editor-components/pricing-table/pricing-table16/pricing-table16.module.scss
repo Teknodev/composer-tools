@@ -44,9 +44,6 @@
             .card {
                 display: flex;
                 flex-direction: column;
-                border-radius: var(--composer-border-radius-md);
-                background: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
-                box-shadow: var(--box-shadow-active);
                 color: var(--composer-font-color-primary);
                 gap: var(--composer-gap-lg);
                 overflow: hidden;
@@ -143,9 +140,6 @@
                 display: flex;
                 flex-direction: row;
                 gap: var(--composer-gap-md);
-                border-radius: var(--composer-border-radius-md);
-                background: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
-                box-shadow: var(--box-shadow-active);
 
                 .bottom-card-left {
                     display: flex;

@@ -9,11 +9,9 @@
     }
     .cardContainer {
       .card {
-        border-radius: var(--composer-border-radius-lg);
         display: flex;
         flex-direction: column;
         gap: var(--composer-gap-md);
-        background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
         .description {
           margin: 0px;
           color: var(--composer-font-color-primary);
