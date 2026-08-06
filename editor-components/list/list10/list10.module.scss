@@ -92,7 +92,7 @@
         .card-shell {
           display: flex;
           flex-direction: column;
-          padding: 0;
+          padding: 0 !important;
 
           > * {
             flex: 1 1 auto;
@@ -101,12 +101,15 @@
 
         .card {
           display: flex;
+          position: relative;
           flex-direction: column;
           justify-content: flex-start;
           align-items: flex-start;
           text-align: left;
           width: 100%;
           height: 100%;
+          padding: var(--composer-gap-lg);
+          overflow: hidden;
           opacity: 1;
           transform: translateY(0) scale(1);
           transition: transform var(--composer-transition-duration-slow);
@@ -125,8 +128,10 @@
           }
 
           &[data-animation~="animate1"]:where(:hover, :focus-within) .image-container {
-            mask-size: 300% 300%;
-            mask-position: 50% 50%;
+            mask-image: none;
+            -webkit-mask-image: none;
+            mask-size: 100% 100%;
+            mask-position: center;
           }
 
           &[data-animation~="animate1"]::before {
