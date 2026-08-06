@@ -64,17 +64,22 @@ class Stats9 extends BaseStats {
             ],
         });
 
-        this.addProp(
-            INPUTS.BUTTON(
-                "button",
-                "Button",
-                "MORE ABOUT US",
-                "",
-                "MdArrowOutward",
-                null,
-                "Link"
-            )
-        );
+        this.addProp({
+            type: "array",
+            key: "buttons",
+            displayer: "Buttons",
+            value: [
+                INPUTS.BUTTON(
+                    "button",
+                    "Button",
+                    "MORE ABOUT US",
+                    "",
+                    "MdArrowOutward",
+                    null,
+                    "Link"
+                ),
+            ],
+        });
 
         this.addProp({
             type: "array",
@@ -247,9 +252,8 @@ class Stats9 extends BaseStats {
         }));
 
         const title = this.getPropValue("title");
-        const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
-        const buttonIcon = button.icon as unknown as TypeMediaInputValue | undefined;
-        const buttonIconExist = !!buttonIcon && (buttonIcon.type === "icon" ? !!buttonIcon.name : !!buttonIcon.url);
+        const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons") || [];
+        const visibleButtons = buttons.filter((btn) => this.castToString(btn.text) || btn.icon);
         const description = this.getPropValue("description");
         const isDescriptionExist = this.castToString(description);
         const media = this.castToObject<any>("media");
@@ -385,7 +389,7 @@ class Stats9 extends BaseStats {
         const subtitle = this.getPropValue("subtitle");
         const subtitleExist = this.castToString(subtitle);
 
-        const leftContentexist = subtitleExist || this.castToString(title) || isDescriptionExist || this.castToString(button.text) || buttonIconExist || image;
+        const leftContentexist = subtitleExist || this.castToString(title) || isDescriptionExist || visibleButtons.length > 0 || image;
         const hasStats = stats && stats.length > 0;
 
         let mainContentClass = this.decorateCSS("main-content");
@@ -431,22 +435,24 @@ class Stats9 extends BaseStats {
                                         </p>
                                     )}
 
-                                    {(this.castToString(button.text) || buttonIconExist) && (
-                                        <div className={this.decorateCSS("button-wrapper")}>
-                                            <ComposerLink path={button.url}>
-                                                <Base.Button
-                                                    buttonType={button.type}
-                                                    className={this.decorateCSS("more-button")}
-                                                >
-                                                    {this.castToString(button.text) && <span className={this.decorateCSS("button-text")}>{button.text}</span>}
-                                                    {buttonIconExist && (
-                                                        <Base.Media
-                                                            value={buttonIcon}
-                                                            className={this.decorateCSS("button-icon")}
-                                                        />
-                                                    )}
-                                                </Base.Button>
-                                            </ComposerLink>
+                                    {visibleButtons.length > 0 && (
+                                        <div className={this.decorateCSS("button-container")}>
+                                            {visibleButtons.map((btn, index) => (
+                                                <ComposerLink key={index} path={btn.url}>
+                                                    <Base.Button
+                                                        buttonType={btn.type}
+                                                        className={this.decorateCSS("button")}
+                                                    >
+                                                        {this.castToString(btn.text) && <Base.P className={this.decorateCSS("button-text")}>{btn.text}</Base.P>}
+                                                        {btn.icon && (
+                                                            <Base.Media
+                                                                value={btn.icon}
+                                                                className={this.decorateCSS("button-icon")}
+                                                            />
+                                                        )}
+                                                    </Base.Button>
+                                                </ComposerLink>
+                                            ))}
                                         </div>
                                     )}
                                 </div>

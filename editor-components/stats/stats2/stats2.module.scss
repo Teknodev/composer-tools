@@ -57,6 +57,10 @@
         }
 
         .button-content {
+          display: flex;
+          flex-wrap: wrap;
+          gap: var(--composer-gap-sm);
+
           > div {
             width: 100% !important;
 

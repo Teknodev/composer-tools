@@ -18,6 +18,33 @@ class Stats11 extends BaseStats {
     super(props, styles);
 
     this.addProp({
+      type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "Our services",
+    });
+    this.addProp({
+      type: "string",
+      key: "title",
+      displayer: "Title",
+      value: "Work with love",
+    });
+    this.addProp({
+      type: "string",
+      key: "text1",
+      displayer: "Text",
+      value:
+        "We help our clients realise their ambitions through architecture that’s grounded in people, their experiences and their environments, applying our integrated expertise and the most advanced digital tools to unlock the potential in every project.",
+    });
+    this.addProp({
+      type: "string",
+      key: "text2",
+      displayer: "Text 2",
+      value:
+        "It’s an approach that’s allowed us to create exhilarating sporting venues, bring greener futures to commercial developments, connect communities through more intuitive and efficient transport systems, and deliver cutting edge scientific and industrial facilities.",
+    });
+
+    this.addProp({
       type: "array",
       key: "stats",
       displayer: "Stats",
@@ -65,14 +92,27 @@ class Stats11 extends BaseStats {
     });
 
     this.addProp({
-      type: "media",
-      key: "image",
-      displayer: "Image",
-      additionalParams: { availableTypes: ["image", "video"] },
-      value: {
-        type: "image",
-        url: "https://woodmart.xtemos.com/wp-content/uploads/2023/03/w-architecture-image.jpg.webp",
-      },
+      type: "object",
+      key: "media",
+      displayer: "Media",
+      value: [
+        {
+          type: "media",
+          key: "source",
+          displayer: "Media",
+          additionalParams: { availableTypes: ["image", "video"] },
+          value: {
+            type: "image",
+            url: "https://woodmart.xtemos.com/wp-content/uploads/2023/03/w-architecture-image.jpg.webp",
+          },
+        },
+        {
+          type: "boolean",
+          key: "overlay",
+          displayer: "Overlay",
+          value: false,
+        },
+      ],
     });
     this.addProp({
       type: "boolean",
@@ -80,35 +120,6 @@ class Stats11 extends BaseStats {
       displayer: "Line",
       value: true,
     });
-
-    this.addProp({
-      type: "string",
-      key: "subtitle",
-      displayer: "Subtitle",
-      value: "Our services",
-    });
-    this.addProp({
-      type: "string",
-      key: "title",
-      displayer: "Title",
-      value: "Work with love",
-    });
-    this.addProp({
-      type: "string",
-      key: "text1",
-      displayer: "Text",
-      value:
-        "We help our clients realise their ambitions through architecture that’s grounded in people, their experiences and their environments, applying our integrated expertise and the most advanced digital tools to unlock the potential in every project.",
-    });
-    this.addProp({
-      type: "string",
-      key: "text2",
-      displayer: "Text 2",
-      value:
-        "It’s an approach that’s allowed us to create exhilarating sporting venues, bring greener futures to commercial developments, connect communities through more intuitive and efficient transport systems, and deliver cutting edge scientific and industrial facilities.",
-    });
-
-
 
     this.addProp({
       type: "array",
@@ -134,7 +145,9 @@ class Stats11 extends BaseStats {
 
   render() {
     const statItems = this.castToObject<StatItem[]>("stats");
-    const image = this.getPropValue("image") as TypeMediaInputValue;
+    const media = this.castToObject<any>("media");
+    const image = media?.source as TypeMediaInputValue;
+    const showOverlay = media?.overlay;
     const subtitle = this.getPropValue("subtitle");
     const title = this.getPropValue("title");
     const text1 = this.getPropValue("text1");
@@ -204,6 +217,9 @@ class Stats11 extends BaseStats {
                     className={this.decorateCSS("image")}
                     value={image}
                   />
+                  {showOverlay && (
+                    <div className={this.decorateCSS("overlay")}></div>
+                  )}
                 </div>
               )}
             </Base.GridCell>

@@ -39,7 +39,12 @@ class Stats2Page extends BaseStats {
       value: "We combine human empathy and intelligent data to provide the <span style='font-weight: 800;'>highest level of satisfaction</span>.",
     });
 
-    this.addProp(INPUTS.BUTTON("button", "Button", "LET'S TALK NOW", "", null, null, "Primary"));
+    this.addProp({
+      type: "array",
+      key: "buttons",
+      displayer: "Buttons",
+      value: [INPUTS.BUTTON("button", "Button", "LET'S TALK NOW", "", null, null, "Primary")],
+    });
 
     this.addProp({
       type: "array",
@@ -178,8 +183,8 @@ class Stats2Page extends BaseStats {
     const animationDuration = (settings?.animationDuration ?? 2000) as number;
     const itemCount = this.getPropValue("itemCount") ?? 2;
 
-    const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
-    const isButtonTextExist = this.castToString(button.text);
+    const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons") || [];
+    const visibleButtons = buttons.filter((btn) => this.castToString(btn.text) || btn.icon);
 
     const totalRows = Math.ceil(cards.length / itemCount);
 
@@ -304,17 +309,19 @@ class Stats2Page extends BaseStats {
           )}
 
           <Base.ContainerGrid className={this.decorateCSS("bottom-content")}>
-            {(isDescExist || isButtonTextExist) && (
+            {(isDescExist || visibleButtons.length > 0) && (
               <Base.VerticalContent className={`${this.decorateCSS("description-column")} ${cardLength <= 0 ? this.decorateCSS("full-width") : ""} ${!isTitleExist ? this.decorateCSS("no-title") : ""}`}>
                 {isDescExist && <Base.SectionDescription className={`${this.decorateCSS("description")} ${cardLength <= 0 ? this.decorateCSS("full-width") : ""}`}>{description}</Base.SectionDescription>}
 
-                {isButtonTextExist && (
+                {visibleButtons.length > 0 && (
                   <div className={this.decorateCSS("button-content")}>
-                    <ComposerLink path={button.url}>
-                      <Base.Button buttonType={button.type} className={`${this.decorateCSS("contact-button")} ${cardLength <= 0 ? this.decorateCSS("button-full-width") : ""}`}>
-                        {button.text}
-                      </Base.Button>
-                    </ComposerLink>
+                    {visibleButtons.map((btn, index) => (
+                      <ComposerLink key={index} path={btn.url}>
+                        <Base.Button buttonType={btn.type} className={`${this.decorateCSS("contact-button")} ${cardLength <= 0 ? this.decorateCSS("button-full-width") : ""}`}>
+                          {btn.text}
+                        </Base.Button>
+                      </ComposerLink>
+                    ))}
                   </div>
                 )}
               </Base.VerticalContent>

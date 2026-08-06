@@ -40,6 +40,15 @@ class Stats5Page extends BaseStats {
 
     this.addProp({
       type: "array",
+      key: "buttons",
+      displayer: "",
+      value: [
+        INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+      ],
+    });
+
+    this.addProp({
+      type: "array",
       key: "stats",
       displayer: "Stats",
       value: [
@@ -129,15 +138,6 @@ class Stats5Page extends BaseStats {
           displayer: "Animation Duration (ms)",
           value: 2000,
         },
-      ],
-    });
-
-    this.addProp({
-      type: "array",
-      key: "buttons",
-      displayer: "",
-      value: [
-        INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
       ],
     });
   }

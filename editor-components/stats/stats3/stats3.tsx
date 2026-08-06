@@ -51,14 +51,27 @@ class Stats3Page extends BaseStats {
     });
 
     this.addProp({
-      type: "media",
-      key: "backgroundImage",
-      displayer: "Card Background Image",
-      additionalParams: { availableTypes: ["image", "video"] },
-      value: {
-        type: "image",
-        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6773f9390655f8002caf5eca?alt=media",
-      },
+      type: "object",
+      key: "media",
+      displayer: "Media",
+      value: [
+        {
+          type: "media",
+          key: "source",
+          displayer: "Media",
+          additionalParams: { availableTypes: ["image", "video"] },
+          value: {
+            type: "image",
+            url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6773f9390655f8002caf5eca?alt=media",
+          },
+        },
+        {
+          type: "boolean",
+          key: "overlay",
+          displayer: "Overlay",
+          value: false,
+        },
+      ],
     });
 
     this.addProp({
@@ -155,8 +168,10 @@ class Stats3Page extends BaseStats {
     const description = this.castToString(this.getPropValue("description"));
 
     const buttons = this.getPropValue("buttons");
-    const image = this.getPropValue("backgroundImage") as TypeMediaInputValue;
+    const media = this.castToObject<any>("media");
+    const image = (media?.source ?? null) as TypeMediaInputValue | null;
     const imageExist = image?.url;
+    const showOverlay = media?.overlay;
     const cardContent = this.getPropValue("stats") || [];
 
     const settings = this.castToObject<any>("settings");
@@ -193,7 +208,12 @@ class Stats3Page extends BaseStats {
             )}
             {(imageExist || (cardContent.length > 0 && isBoxVisible)) && (
               <Base.VerticalContent className={`${this.decorateCSS("right-container")} ${!imageExist ? this.decorateCSS("right-container-without-image") : ""}`}>
-                {imageExist && <Base.Media value={image} className={this.decorateCSS("image")} />}
+                {imageExist && (
+                  <div className={this.decorateCSS("image-container")}>
+                    <Base.Media value={image} className={this.decorateCSS("image")} />
+                    {showOverlay && <div className={this.decorateCSS("overlay")}></div>}
+                  </div>
+                )}
                 {isBoxVisible && cardContent.length > 0 && (
                   <div className={`${this.decorateCSS("card-container")} ${!imageExist ? this.decorateCSS("card-container-without-image") : ""}`}>
                     <div className={this.decorateCSS("card")}>

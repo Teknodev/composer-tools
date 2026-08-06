@@ -397,7 +397,7 @@ class Stats4Page extends BaseStats {
                         <div className={this.decorateCSS("faq-item")} key={index}>
                           {(titleExist || toggleIconExist) && (
                             <header className={this.decorateCSS("faq-item-header")}>
-                              {titleExist && <Base.H5 className={this.decorateCSS("faq-item-title")}>{item.title}</Base.H5>}
+                              {titleExist && <Base.H6 className={this.decorateCSS("faq-item-title")}>{item.title}</Base.H6>}
                               {toggleIconExist && (
                                 <button
                                   className={this.decorateCSS("faq-item-button")}

@@ -64,6 +64,10 @@ $font-color-primary: var(--composer-font-color-primary);
             margin-left: 0;
             margin-right: auto;
           }
+
+          .description {
+            font-weight: 800;
+          }
         }
 
         .author-container {
@@ -102,6 +106,7 @@ $font-color-primary: var(--composer-font-color-primary);
           color: var(--composer-font-color-primary);
           word-break: break-word;
           text-transform: uppercase;
+          font-weight: 800;
         }
 
         .author-role-container {

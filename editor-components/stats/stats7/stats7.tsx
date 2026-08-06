@@ -2,6 +2,8 @@ import * as React from "react";
 import { BaseStats } from "../../EditorComponent";
 import styles from "./stats7.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
+import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
+import { INPUTS } from "../../../custom-hooks/input-templates";
 
 type Item = {
   prefix: React.JSX.Element;
@@ -38,13 +40,22 @@ class Stats7Page extends BaseStats {
     });
     this.addProp({
       type: "array",
-      key: "items",
+      key: "buttons",
+      displayer: "",
+      value: [
+        INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+      ],
+    });
+
+    this.addProp({
+      type: "array",
+      key: "stats",
       displayer: "Stats",
       value: [
         {
           type: "object",
-          key: "item",
-          displayer: "Item",
+          key: "stat",
+          displayer: "Stat",
           value: [
             { type: "string", key: "prefix", displayer: "Prefix", value: "" },
             { type: "string", key: "number", displayer: "Value", value: "75%" },
@@ -62,8 +73,8 @@ class Stats7Page extends BaseStats {
         },
         {
           type: "object",
-          key: "item",
-          displayer: "Item",
+          key: "stat",
+          displayer: "Stat",
           value: [
             { type: "string", key: "prefix", displayer: "Prefix", value: "" },
             { type: "string", key: "number", displayer: "Value", value: "57%" },
@@ -81,8 +92,8 @@ class Stats7Page extends BaseStats {
         },
         {
           type: "object",
-          key: "item",
-          displayer: "Item",
+          key: "stat",
+          displayer: "Stat",
           value: [
             { type: "string", key: "prefix", displayer: "Prefix", value: "" },
             { type: "string", key: "number", displayer: "Value", value: "84%" },
@@ -110,8 +121,12 @@ class Stats7Page extends BaseStats {
     const isSubtitleExist = this.castToString(this.getPropValue("subtitle"));
     const isTitleExist = this.castToString(this.getPropValue("title"));
     const isDescriptionExist = this.castToString(this.getPropValue("description"));
-    const showDiv = isSubtitleExist || isTitleExist || isDescriptionExist;
-    const items = this.castToObject<Item[]>("items");
+
+    const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons") || [];
+    const visibleButtons = buttons.filter((btn) => this.castToString(btn.text) || btn.icon);
+
+    const showDiv = isSubtitleExist || isTitleExist || isDescriptionExist || visibleButtons.length > 0;
+    const items = this.castToObject<Item[]>("stats");
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
@@ -121,6 +136,18 @@ class Stats7Page extends BaseStats {
               {isSubtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
               {isTitleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
               {isDescriptionExist && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
+              {visibleButtons.length > 0 && (
+                <div className={this.decorateCSS("button-container")}>
+                  {visibleButtons.map((btn, index) => (
+                    <ComposerLink key={index} path={btn.url}>
+                      <Base.Button buttonType={btn.type} className={this.decorateCSS("button")}>
+                        {btn.icon && <Base.Media className={this.decorateCSS("button-icon")} value={btn.icon} />}
+                        {this.castToString(btn.text) && <Base.P className={this.decorateCSS("button-text")}>{btn.text}</Base.P>}
+                      </Base.Button>
+                    </ComposerLink>
+                  ))}
+                </div>
+              )}
             </Base.VerticalContent>
           )}
 
