@@ -419,7 +419,7 @@ class List2 extends BaseList {
       displayer: "Hover Animation Style",
       value: ["animate1", "animate3"],
       additionalParams: {
-        selectItems: ["animate1", "animate2", "animate3", "animate4", "animate5"]
+        selectItems: ["animate1", "animate2", "animate3", "animate4"]
       }
     });
     this.setComponentState("moreImages", 0);
