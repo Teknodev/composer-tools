@@ -60,27 +60,18 @@
                 }
 
                 .card {
-                    border: solid 1px rgba(var(--composer-font-color-primary-rgb), 0.2);
-                    border-radius: var(--composer-border-radius-md);
-                    padding: var(--composer-gap-lg);
                     .icon-box {
                         width: fit-content;
                         display: flex;
                         justify-content: center;
                         align-items: center;
                         padding: var(--composer-gap-sm);
-                        background-color: var(--composer-primary-color);                    
+                        background-color: var(--composer-primary-color);
                         border-radius: var(--composer-border-radius-sm);
                         .icon {
                             font-size: 2rem;
                             color: var(--composer-font-color-secondary);
                         }
-                    }
-
-                    &:hover {
-                        border: solid 1px transparent;
-                        border-radius: var(--composer-border-radius-md);
-                        box-shadow: var(--box-shadow-active);
                     }
 
                     .card-content {
@@ -111,7 +102,6 @@
             .section {
                 .cards {
                     .card {
-                        padding: var(--composer-gap-md);
                         .icon-box {
                             .icon {
                                 font-size: 1.5rem;

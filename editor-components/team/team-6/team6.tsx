@@ -565,7 +565,7 @@ class Team6 extends Team {
 
                 return (
                   hasCard && (
-                    <Base.Card key={indexItems} className={this.decorateCSS("all-card")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
+                    <div key={indexItems} className={this.decorateCSS("all-card")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
                       <div className={this.decorateCSS("top")}>
                         <div className={this.decorateCSS("image-wrapper")}>
                           {card.profileImage ? (
@@ -628,7 +628,7 @@ class Team6 extends Team {
                           )}
                         </div>
                       </div>
-                    </Base.Card>
+                    </div>
                   )
                 );
               })}

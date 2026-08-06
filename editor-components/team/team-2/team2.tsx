@@ -369,7 +369,7 @@ class Team2 extends Team {
       displayer: "Hover Animation Style",
       value: ["animate1"],
       additionalParams: {
-        selectItems: ["animate1", "animate2", "animate3", "animate4", "animate5", "animate6"]
+        selectItems: ["animate1", "animate2", "animate4", "animate5", "animate6"]
       }
     });
   }
@@ -401,8 +401,12 @@ class Team2 extends Team {
               const description = this.castToString(team.description);
 
               return (
-                <Base.Card key={index} className={this.decorateCSS("card-shell")}>
-                  <Base.VerticalContent className={`${this.decorateCSS("team")}`} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
+                <Base.Card
+                  key={index}
+                  className={this.decorateCSS("card-shell")}
+                  data-animation={this.getPropValue("hoverAnimation").join(" ")}
+                >
+                  <Base.VerticalContent className={`${this.decorateCSS("team")}`}>
                     {team.profileImage && <Base.Media value={team.profileImage} className={this.decorateCSS("image")} />}
                     {name && <Base.H3 className={this.decorateCSS("title")}>{team.name}</Base.H3>}
                     {position && <Base.H4 className={this.decorateCSS("position")}>{team.position}</Base.H4>}

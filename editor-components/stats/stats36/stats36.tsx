@@ -342,13 +342,12 @@ class Stats36 extends BaseStats {
                                     <div className={this.decorateCSS("content-stats")}>
                                         <Base.ListGrid gridCount={{ pc: 1, tablet: 1, phone: 1 }} className={this.decorateCSS("stats-grid")}>
                                             {statsItems.map((item, index) => (
-                                                <Base.Card key={index} className={this.decorateCSS("card-shell")}>
-                                                    <this.AnimatedStat
-                                                        stat={item}
-                                                        statsAnimation={statsAnimation}
-                                                        animationDuration={animationDuration}
-                                                    />
-                                                </Base.Card>
+                                                <this.AnimatedStat
+                                                    key={index}
+                                                    stat={item}
+                                                    statsAnimation={statsAnimation}
+                                                    animationDuration={animationDuration}
+                                                />
                                             ))}
                                         </Base.ListGrid>
                                     </div>

@@ -67,15 +67,6 @@
         gap: 0;
         flex: 3;
 
-        .card-shell {
-          display: flex;
-          flex-direction: column;
-
-          > * {
-            flex: 1 1 auto;
-          }
-        }
-
         .listed {
           display: flex;
           flex-direction: column;

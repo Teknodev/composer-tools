@@ -706,8 +706,8 @@ class PricingMultiple extends BasePricingTable {
                   if (!hasCardContent) return null;
 
                   return (
-                    <Base.Card key={indexCards} className={this.decorateCSS("card-shell")}>
                     <Base.VerticalContent
+                      key={indexCards}
                       className={`${this.decorateCSS("card")} ${price.isFocus && this.decorateCSS("focused")
                         } ${settings.animations &&
                         settings.animations
@@ -849,7 +849,6 @@ class PricingMultiple extends BasePricingTable {
                         </div>
                       )}
                     </Base.VerticalContent>
-                    </Base.Card>
                   );
                 }
               )}

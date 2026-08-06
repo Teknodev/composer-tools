@@ -310,7 +310,7 @@ class List4 extends BaseList {
 
                   if (!hasTitle && !hasSubtitle && !hasDescription && !hasIcon) return null;
                   return (
-                    <Base.Card
+                    <div
                       key={index}
                       className={this.decorateCSS("service-item")}
                       data-animation={hoverAnimation.join(" ")}
@@ -337,55 +337,57 @@ class List4 extends BaseList {
                       <div
                         className={this.decorateCSS("card-content")}
                       >
-                        <Base.VerticalContent
-                          className={this.decorateCSS("card-body")}
-                          data-animation={hoverAnimation.join(" ")}
-                        >
-                          {card.icon && (
-                            <Base.Media
-                              value={card.icon}
-                              className={this.decorateCSS("item-icon")}
-                            />
-                          )}
+                        <Base.Card className={this.decorateCSS("card-shell")}>
+                          <Base.VerticalContent
+                            className={this.decorateCSS("card-body")}
+                            data-animation={hoverAnimation.join(" ")}
+                          >
+                            {card.icon && (
+                              <Base.Media
+                                value={card.icon}
+                                className={this.decorateCSS("item-icon")}
+                              />
+                            )}
 
-                          {hasSubtitle && (
-                            <Base.H6 className={this.decorateCSS("item-subtitle")}>
-                              {card.subtitle}
-                            </Base.H6>
-                          )}
-                          {hasTitle && (
-                            <Base.H5
-                              className={this.decorateCSS("item-title")}
-                            >
-                              {card.title}
-                            </Base.H5>
-                          )}
-                          {hasDescription && (
-                            <Base.P className={this.decorateCSS("item-description")}>
-                              {card.description}
-                            </Base.P>
-                          )}
-                          {hasValidCardButtons && (
-                            <div className={this.decorateCSS("card-button-container")}>
-                              {cardButtons.map((btn: CardButton, btnIndex: number) => {
-                                const btnText = this.castToString(btn.text);
-                                const btnIconMedia = btn.icon as TypeMediaInputValue;
-                                const btnIconExist = btnIconMedia && btnIconMedia.type === "icon" && btnIconMedia.name;
-                                if (!btnText && !btnIconExist) return null;
-                                return (
-                                  <ComposerLink key={btnIndex} path={btn.url}>
-                                    <Base.Button buttonType={btn.type} className={this.decorateCSS("card-button")}>
-                                      {btnText && <Base.P className={this.decorateCSS("card-button-text")}>{btn.text}</Base.P>}
-                                      {btnIconExist && <Base.Media className={this.decorateCSS("card-button-icon")} value={btnIconMedia} />}
-                                    </Base.Button>
-                                  </ComposerLink>
-                                );
-                              })}
-                            </div>
-                          )}
-                        </Base.VerticalContent>
+                            {hasSubtitle && (
+                              <Base.H6 className={this.decorateCSS("item-subtitle")}>
+                                {card.subtitle}
+                              </Base.H6>
+                            )}
+                            {hasTitle && (
+                              <Base.H5
+                                className={this.decorateCSS("item-title")}
+                              >
+                                {card.title}
+                              </Base.H5>
+                            )}
+                            {hasDescription && (
+                              <Base.P className={this.decorateCSS("item-description")}>
+                                {card.description}
+                              </Base.P>
+                            )}
+                            {hasValidCardButtons && (
+                              <div className={this.decorateCSS("card-button-container")}>
+                                {cardButtons.map((btn: CardButton, btnIndex: number) => {
+                                  const btnText = this.castToString(btn.text);
+                                  const btnIconMedia = btn.icon as TypeMediaInputValue;
+                                  const btnIconExist = btnIconMedia && btnIconMedia.type === "icon" && btnIconMedia.name;
+                                  if (!btnText && !btnIconExist) return null;
+                                  return (
+                                    <ComposerLink key={btnIndex} path={btn.url}>
+                                      <Base.Button buttonType={btn.type} className={this.decorateCSS("card-button")}>
+                                        {btnText && <Base.P className={this.decorateCSS("card-button-text")}>{btn.text}</Base.P>}
+                                        {btnIconExist && <Base.Media className={this.decorateCSS("card-button-icon")} value={btnIconMedia} />}
+                                      </Base.Button>
+                                    </ComposerLink>
+                                  );
+                                })}
+                              </div>
+                            )}
+                          </Base.VerticalContent>
+                        </Base.Card>
                       </div>
-                    </Base.Card>
+                    </div>
                   )
                 }
               )}

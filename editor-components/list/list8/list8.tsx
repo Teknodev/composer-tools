@@ -200,9 +200,9 @@ class List8 extends BaseList {
       type: "multiSelect",
       key: "hoverAnimation",
       displayer: "Hover Animation Style",
-      value: ["animate1"],
+      value: ["animate2"],
       additionalParams: {
-        selectItems: ["animate1", "animate2", "animate3", "animate4"],
+        selectItems: ["animate2", "animate3", "animate4"],
       },
     });
   }

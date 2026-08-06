@@ -233,16 +233,16 @@ class Stats5Page extends BaseStats {
 
                 if (titleExist || item.stat)
                   return (
-                    <Base.Card
+                    <div
                       key={index}
                       className={`
                           ${this.decorateCSS("card")}
                           ${this.getCardClasses(index, itemCountInRow)}
                         `}
                     >
-                      {item.stat && <Base.SectionTitle className={this.decorateCSS("card-data-title")}>{statValue}</Base.SectionTitle>}
+                      {item.stat && <Base.H2 className={this.decorateCSS("card-data-title")}>{statValue}</Base.H2>}
                       {titleExist && <Base.SectionDescription className={this.decorateCSS("card-data-description")}>{item.title}</Base.SectionDescription>}
-                    </Base.Card>
+                    </div>
                   );
                 return null;
               })}

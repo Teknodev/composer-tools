@@ -1,14 +1,5 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
-.card-shell {
-  display: flex;
-  flex-direction: column;
-
-  > * {
-    flex: 1 1 auto;
-  }
-}
-
 .container {
   .max-content {
     .table {

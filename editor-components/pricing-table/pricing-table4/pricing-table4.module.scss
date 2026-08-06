@@ -1,16 +1,5 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
-.container .card-shell {
-  display: flex;
-  flex-direction: column;
-  border: none;
-  border-radius: 0;
-
-  > * {
-    flex: 1 1 auto;
-  }
-}
-
 $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
 
 @keyframes breathe {
@@ -82,7 +71,6 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
           flex-direction: column;
           justify-content: space-between;
           align-items: center;
-          border: 1px solid var(--composer-tertiary-color);
           border-radius: var(--composer-border-radius-md);
           box-shadow: var(--box-shadow-active);
           overflow: hidden;

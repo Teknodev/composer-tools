@@ -302,36 +302,34 @@ class Team9 extends Team {
                   const hasCard = nameExist || item.profileImage || item.icons.length > 0;
                   return (
                     hasCard && (
-                      <Base.Card key={index} className={this.decorateCSS("card-shell")}>
-                        <Base.VerticalContent className={this.decorateCSS("card")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
-                          {item.profileImage && <Base.Media value={item.profileImage} className={this.decorateCSS("person-image")} />}
-                          <div className={this.decorateCSS("person-info")}>
-                            {item.icons.length > 0 && (
-                              <div className={this.decorateCSS("icons-bar")}>
-                                {item.icons.map((card: Icon, iconIndex: number) => {
-                                  if (card.icon) {
-                                    return (
-                                      <ComposerLink key={iconIndex} path={card.url}>
-                                        <Base.Icon
-                                          name={card.icon}
-                                          propsIcon={{
-                                            className: this.decorateCSS("icon"),
-                                            style: { "--icon-index": iconIndex } as React.CSSProperties
-                                          }}
-                                        />
-                                      </ComposerLink>
-                                    );
-                                  }
-                                  return null;
-                                })}
-                              </div>
-                            )}
-                            <div className={this.decorateCSS("text-group")}>
-                              <div className={this.decorateCSS("item-name")}>{item.name}</div>
+                      <Base.VerticalContent key={index} className={this.decorateCSS("card")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
+                        {item.profileImage && <Base.Media value={item.profileImage} className={this.decorateCSS("person-image")} />}
+                        <div className={this.decorateCSS("person-info")}>
+                          {item.icons.length > 0 && (
+                            <div className={this.decorateCSS("icons-bar")}>
+                              {item.icons.map((card: Icon, iconIndex: number) => {
+                                if (card.icon) {
+                                  return (
+                                    <ComposerLink key={iconIndex} path={card.url}>
+                                      <Base.Icon
+                                        name={card.icon}
+                                        propsIcon={{ 
+                                          className: this.decorateCSS("icon"),
+                                          style: { "--icon-index": iconIndex } as React.CSSProperties
+                                        }}
+                                      />
+                                    </ComposerLink>
+                                  );
+                                }
+                                return null;
+                              })}
                             </div>
+                          )}
+                          <div className={this.decorateCSS("text-group")}>
+                            <div className={this.decorateCSS("item-name")}>{item.name}</div>
                           </div>
-                        </Base.VerticalContent>
-                      </Base.Card>
+                        </div>
+                      </Base.VerticalContent>
                     )
                   );
                 })}

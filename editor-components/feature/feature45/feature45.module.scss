@@ -34,10 +34,6 @@
         }
       }
       .card {
-        box-shadow: var(--box-shadow-active);
-        border-radius: var(--composer-border-radius-md);
-        padding: var(--composer-gap-lg);
-
         .card-title,
         .card-description {
           color: var(--composer-font-color-primary);
@@ -85,11 +81,5 @@
 @container (max-width: #{$composer-tablet-width}) {
   .container .max-content {
     gap: var(--composer-gap-md);
-  }
-}
-
-@container (max-width: #{$composer-phone-width}) {
-  .container .cards-list .card {
-    padding: var(--composer-gap-md) !important;
   }
 }

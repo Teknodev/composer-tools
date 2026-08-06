@@ -413,7 +413,7 @@ class List9 extends BaseList {
                                 if (!cardTitleExist && !cardDescriptionExist && !iconExist && !imageExist) return null;
 
                                 return (
-                                    <Base.Card
+                                    <div
                                         key={indexCard}
                                         className={this.decorateCSS("card")}
                                         data-animation={this.getPropValue("hoverAnimation").join(" ")}
@@ -473,7 +473,7 @@ class List9 extends BaseList {
                                                 </div>
                                             )}
                                         </Base.VerticalContent>
-                                    </Base.Card>
+                                    </div>
                                 );
                             }
                         )}

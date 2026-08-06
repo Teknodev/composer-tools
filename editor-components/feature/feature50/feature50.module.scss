@@ -36,10 +36,6 @@
         align-items: stretch;
         width: 100%;
         min-height: 250px;
-        background-color: var(--composer-font-color-primary);
-        color: var(--composer-html-background);
-        border-radius: var(--composer-border-radius-md);
-        padding: var(--composer-gap-lg);
 
         .card-content {
           align-items: flex-start;
@@ -50,6 +46,7 @@
           .card-subtitle,
           .card-title, 
           .card-description {
+            color: var(--composer-font-color-primary);
             text-align: left;
           }
 
@@ -65,6 +62,7 @@
               content: "";
               .card-button-text {
                 content: "";
+                color: var(--composer-font-color-primary);
               }
             }
           }
@@ -80,6 +78,7 @@
             width: 128px;
             height: 128px;
             object-fit: contain;
+            color: var(--composer-font-color-primary);
           }
           .media-image {
             object-fit: cover;
@@ -148,8 +147,6 @@
     .max-content {
       .cards-grid {
         .card {
-          padding: var(--composer-gap-md);
-          
           .media-wrapper {
             .media {
               font-size: 4rem;

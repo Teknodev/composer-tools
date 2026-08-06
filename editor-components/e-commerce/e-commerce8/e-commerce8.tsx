@@ -854,7 +854,7 @@ class ECommerce8 extends BaseECommerce {
                                 if (!displayImage && !cardLeftText && !productTitle && !cost?.value) return null;
 
                                 return (
-                                    <Base.Card key={cardIndex} className={this.decorateCSS("card-container")}>
+                                    <div key={cardIndex} className={this.decorateCSS("card-container")}>
                                         <ComposerLink path={navigateTo} isFullWidth={true}>
                                             <div className={`${this.decorateCSS("image-container")} ${displayHoverImage && this.decorateCSS("has-hover-media")} ${hoverAnimation && this.decorateCSS("has-animation")}`}>
                                                 {displayImage && (
@@ -959,7 +959,7 @@ class ECommerce8 extends BaseECommerce {
                                                 </div>
                                             )}
                                         </div>
-                                    </Base.Card>
+                                    </div>
                                 );
                             })}
                         </Base.ListGrid>

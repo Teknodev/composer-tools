@@ -22,10 +22,7 @@
         .card {
           display: flex;
           gap: var(--composer-gap-md);
-          flex-direction: column;  
-          background-color: color-mix(in srgb, var(--composer-html-background),var(--composer-font-color-primary) 5%);   
-          border-radius: var(--composer-border-radius-sm);
-          padding: var(--composer-gap-xl);   
+          flex-direction: column;
           .icon-wrapper {
             display: flex;
             justify-content: center;

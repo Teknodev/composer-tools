@@ -267,17 +267,8 @@ class Stats2Page extends BaseStats {
         }, 30);
       };
 
-      // Raw-data presence check (mirrors hasCardContent's amountExist) — never a mapped fallback.
-      const finalAmountString = card.amount !== undefined && card.amount !== null ? card.amount.toString() : null;
-      const rawAmountExist = finalAmountString !== null && finalAmountString !== "" && !isNaN(parseFloat(finalAmountString));
-
-      // Before the observer fires (or if it never does), fall back to the real value so the
-      // card paints immediately; once animating, the local count-up state takes over.
-      const displayAmount = amount !== null ? amount : finalAmountString;
-      const showDecimalsFinal = amount !== null ? showDecimals : true;
-
-      const integerPart = displayAmount ? Math.floor(parseFloat(displayAmount)) : null;
-      const decimalPart = displayAmount ? displayAmount.split(".")[1] || "" : "";
+      const integerPart = amount ? Math.floor(parseFloat(amount)) : null;
+      const decimalPart = amount ? amount.split(".")[1] || "" : "";
 
       const conditionalClasses = [isFirstRow ? this.decorateCSS("border-top-none") : "", isLastRow ? this.decorateCSS("border-bottom-none") : ""].filter(Boolean).join(" ");
 
@@ -287,13 +278,13 @@ class Stats2Page extends BaseStats {
         this.hasCardContent(card) && (
           <div ref={ref} className={classes}>
             {isTextExist && <Base.P className={this.decorateCSS("card-text")}>{card.text}</Base.P>}
-            {(rawAmountExist || card.icon || card.secondIcon) && (
+            {(amount !== null || card.icon || card.secondIcon) && (
               <div className={this.decorateCSS("card-amount-container")}>
                 {card.icon && <Base.Icon propsIcon={{ className: this.decorateCSS("card-icon") }} name={card.icon} />}
-                {rawAmountExist && displayAmount !== "NaN" && (
+                {amount !== null && amount !== "NaN" && (
                   <div className={this.decorateCSS("card-amount")}>
                     {integerPart}
-                    {showDecimalsFinal && decimalPart && <span>.{decimalPart}</span>}
+                    {showDecimals && decimalPart && <span>.{decimalPart}</span>}
                   </div>
                 )}
                 {card.secondIcon && <Base.Icon propsIcon={{ className: this.decorateCSS("card-icon-after") }} name={card.secondIcon} />}
@@ -340,9 +331,7 @@ class Stats2Page extends BaseStats {
                   const isTextExist = this.castToString(card.text);
 
                   return this.hasCardContent(card) && (
-                    <Base.Card key={index} className={this.decorateCSS("card-shell")}>
-                      <AnimatedCard card={card} animationDuration={animationDuration} isTextExist={isTextExist} isFirstRow={isFirstRow} isLastRow={isLastRow} />
-                    </Base.Card>
+                    <AnimatedCard key={index} card={card} animationDuration={animationDuration} isTextExist={isTextExist} isFirstRow={isFirstRow} isLastRow={isLastRow} />
                   );
                 })}
               </Base.ListGrid>

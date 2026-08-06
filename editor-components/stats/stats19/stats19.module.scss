@@ -1,8 +1,6 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
-    background: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
-
     .max-content {
         .content-wrapper {
             display: flex;
@@ -55,10 +53,6 @@
                 }
 
                 .stat-item {
-                    background: var(--composer-html-background);
-                    border-radius: var(--composer-border-radius-sm);
-                    box-shadow: var(--box-shadow-active);
-                    padding: var(--composer-gap-lg) var(--composer-gap-md);
                     justify-content: space-between;
                     height: 100%;
                     align-items: flex-start;
@@ -105,8 +99,6 @@
         gap: var(--composer-gap-sm);
 
         .stats-grid .stat-item {
-            padding: var(--composer-gap-md);
-
             .stat-value {
                 font-size: 3rem;
             }

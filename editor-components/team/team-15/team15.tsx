@@ -388,7 +388,7 @@ class Team15 extends Team {
                 const cardExists = imageExists || titleExists || descriptionExists;
                 return (
                   cardExists && (
-                    <Base.Card key={index} className={this.decorateCSS("card")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
+                    <div key={index} className={this.decorateCSS("card")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
                       {imageExists && <Base.Media value={card.getPropValue("profileImage")} className={this.decorateCSS("image")} />}
                       {overlay && <div className={this.decorateCSS("overlay")}></div>}
                       {overlay && <div className={this.decorateCSS("overlay2")}></div>}
@@ -426,7 +426,7 @@ class Team15 extends Team {
                           </div>
                         </div>
                       </div>
-                    </Base.Card>
+                    </div>
                   )
                 );
               })}

@@ -27,13 +27,6 @@
 
     .cards-list {
       gap: var(--composer-gap-lg);
-      .card-shell {
-        display: flex;
-        flex-direction: column;
-        > * {
-          flex: 1 1 auto;
-        }
-      }
       .card {
         border-radius: var(--composer-border-radius-md);
         align-items: flex-start !important;

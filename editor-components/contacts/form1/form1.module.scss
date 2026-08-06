@@ -40,10 +40,6 @@
       }
 
       .card {
-        padding: var(--composer-gap-lg);
-        border-radius: var(--composer-border-radius-sm);
-        background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
-        border: none;
         align-items: center;
 
         .card-content {

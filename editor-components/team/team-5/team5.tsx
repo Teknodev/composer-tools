@@ -504,31 +504,29 @@ class Team5 extends Team {
 
               return (
                 hasItem && (
-                  <Base.Card key={index} className={this.decorateCSS("card-shell")}>
-                    <Base.VerticalContent className={this.decorateCSS("egg-item")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
-                      <div className={this.decorateCSS("image-container")} data-animation={this.getPropValue("hoverAnimation").join(" ")} >
-                        {item.background && <Base.Media value={item.background} className={this.decorateCSS("background-image")} />}
-                        {item.picture && <Base.Media value={item.picture} className={this.decorateCSS("member-image")} />}
-                      </div>
-                      <Base.Row className={this.decorateCSS("icon-container")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
-                        {item.socials.map((value, i) => (
-                          <ComposerLink key={i} path={value.url}>
-                            <Base.Icon
-                              name={value.icon}
-                              propsIcon={{
-                                className: this.decorateCSS("icon"),
-                                style: { "--icon-index": i } as React.CSSProperties
-                              }}
-                            />
-                          </ComposerLink>
-                        ))}
-                      </Base.Row>
-                      <Base.VerticalContent className={this.decorateCSS("members-container")}>
-                        {itemName && <Base.H4 className={this.decorateCSS("name")}>{item.name}</Base.H4>}
-                        {itemOccupation && <Base.H5 className={this.decorateCSS("occupation")}>{item.occupation}</Base.H5>}
-                      </Base.VerticalContent>
+                  <Base.VerticalContent key={index} className={this.decorateCSS("egg-item")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
+                    <div className={this.decorateCSS("image-container")} data-animation={this.getPropValue("hoverAnimation").join(" ")} >
+                      {item.background && <Base.Media value={item.background} className={this.decorateCSS("background-image")} />}
+                      {item.picture && <Base.Media value={item.picture} className={this.decorateCSS("member-image")} />}
+                    </div>
+                    <Base.Row className={this.decorateCSS("icon-container")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
+                      {item.socials.map((value, i) => (
+                        <ComposerLink key={i} path={value.url}>
+                          <Base.Icon 
+                            name={value.icon} 
+                            propsIcon={{ 
+                              className: this.decorateCSS("icon"),
+                              style: { "--icon-index": i } as React.CSSProperties
+                            }} 
+                          />
+                        </ComposerLink>
+                      ))}
+                    </Base.Row>
+                    <Base.VerticalContent className={this.decorateCSS("members-container")}>
+                      {itemName && <Base.H4 className={this.decorateCSS("name")}>{item.name}</Base.H4>}
+                      {itemOccupation && <Base.H5 className={this.decorateCSS("occupation")}>{item.occupation}</Base.H5>}
                     </Base.VerticalContent>
-                  </Base.Card>
+                  </Base.VerticalContent>
                 )
               );
             })}

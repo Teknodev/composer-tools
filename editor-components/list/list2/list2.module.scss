@@ -27,6 +27,9 @@
         .card-shell {
           display: flex;
           flex-direction: column;
+          padding: 0;
+          border-radius: var(--composer-border-radius-md);
+          overflow: hidden;
 
           > * {
             flex: 1 1 auto;
@@ -40,15 +43,10 @@
           justify-content: flex-end;
           width: 100%;
           min-height: 350px;
-          border-radius: var(--composer-border-radius-md);
           overflow: hidden;
           position: relative;
           cursor: pointer;
           transition: all var(--composer-transition-duration-normal) ease-in-out;
-
-          &[data-animation~="animate5"]:hover {
-            box-shadow: var(--composer-box-shadow-lg);
-          }
 
           &[data-animation~="animate1"]:hover .image-container .card-image {
             transform: scale(1.1);

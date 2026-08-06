@@ -17,6 +17,14 @@
     &.has-media {
         .max-content {
             padding-right: 0;
+
+            .right-column {
+                .stats-list {
+                    .card-shell {
+                        background: transparent;
+                    }
+                }
+            }
         }
     }
 

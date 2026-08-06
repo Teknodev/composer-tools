@@ -45,10 +45,7 @@
             }
 
             .card {
-                background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
-                border-radius: var(--composer-border-radius-md);
                 align-items: flex-start;
-                padding: var(--composer-gap-xl);
 
                 .card-value {
                     color: var(--composer-font-color-primary);
@@ -88,12 +85,6 @@
 }
 
 @container (max-width: #{$composer-tablet-width}) {
-    .cards-grid {
-        .card {
-            padding: var(--composer-gap-md) !important;
-        }
-    }
-
     .card-value {
         font-size: 2.5rem !important;
     }

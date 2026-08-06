@@ -1213,7 +1213,7 @@ class PricingTable7 extends BasePricingTable {
                 if (!hasAnyContent) return null;
 
                 return (
-                  <Base.Card
+                  <div
                     key={index}
                     className={`${this.decorateCSS(
                       "card-item-count"
@@ -1335,7 +1335,7 @@ class PricingTable7 extends BasePricingTable {
                         </ComposerLink>
                       )}
                     </Base.VerticalContent>
-                  </Base.Card>
+                  </div>
                 );
               })}
           </Base.ListGrid>

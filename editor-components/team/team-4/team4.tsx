@@ -198,15 +198,13 @@ class Team4 extends Team {
               const teamMemberPosition = this.castToString(teamMember.position);
               return (
                 (teamMemberName || teamMemberPosition || teamMember.profileImage) && (
-                  <Base.Card key={indexTeamMembers} className={this.decorateCSS("card-shell")}>
-                    <Base.VerticalContent className={this.decorateCSS("team-member")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
-                      {teamMember.profileImage && <Base.Media value={teamMember.profileImage} className={this.decorateCSS("member-image")} data-animation={this.getPropValue("hoverAnimation").join(" ")} />}
-                      <Base.VerticalContent className={this.decorateCSS("name-and-position")}>
-                        {teamMemberName && <Base.H2 className={this.decorateCSS("team-member-name")}>{teamMember.name}</Base.H2>}
-                        {teamMemberPosition && <Base.P className={this.decorateCSS("team-member-position")}>{teamMember.position}</Base.P>}
-                      </Base.VerticalContent>
+                  <Base.VerticalContent key={indexTeamMembers} className={this.decorateCSS("team-member")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
+                    {teamMember.profileImage && <Base.Media value={teamMember.profileImage} className={this.decorateCSS("member-image")} data-animation={this.getPropValue("hoverAnimation").join(" ")} />}
+                    <Base.VerticalContent className={this.decorateCSS("name-and-position")}>
+                      {teamMemberName && <Base.H2 className={this.decorateCSS("team-member-name")}>{teamMember.name}</Base.H2>}
+                      {teamMemberPosition && <Base.P className={this.decorateCSS("team-member-position")}>{teamMember.position}</Base.P>}
                     </Base.VerticalContent>
-                  </Base.Card>
+                  </Base.VerticalContent>
                 )
               );
             })}

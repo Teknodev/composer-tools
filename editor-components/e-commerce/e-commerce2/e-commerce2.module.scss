@@ -63,12 +63,6 @@
   }
 
   .grid {
-    .card-shell {
-      display: flex;
-      flex-direction: column;
-      > * { flex: 1 1 auto; }
-    }
-
     .card-container {
       gap: var(--composer-gap-sm);
       position: relative;
