@@ -3,11 +3,31 @@ import ComposerLink from "../../../composer-base-components/Link/ComposerLinkPro
 import { BaseFooter, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./footer10.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
+import { INPUTS } from "../../../custom-hooks/input-templates";
 
 
 type icon = {
   icon: TypeMediaInputValue;
   page: string;
+};
+
+type FooterValues = {
+  footerTitle: React.JSX.Element;
+  footerTitleLink: string;
+  footerTitleMedia: TypeMediaInputValue;
+  footerText: FooterTextValues[];
+};
+
+type FooterTextValues = {
+  navTitle: React.JSX.Element;
+  navNavigateTo: string;
+  navMedia: TypeMediaInputValue;
+};
+
+const hasMedia = (media?: TypeMediaInputValue | null): boolean => {
+  if (!media) return false;
+  if (media.type === "icon") return !!media.name;
+  return !!media.url;
 };
 
 class Footer10Page extends BaseFooter {
@@ -34,7 +54,7 @@ class Footer10Page extends BaseFooter {
           key: "logo",
           displayer: "Logo",
           additionalParams: {
-            availableTypes: ["image"],
+            availableTypes: ["image", "icon"],
           },
           value: {
             type: "image",
@@ -50,6 +70,346 @@ class Footer10Page extends BaseFooter {
       ],
     });
 
+    this.addProp({
+      type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "",
+    });
+
+    this.addProp({
+      type: "string",
+      key: "title",
+      displayer: "Title",
+      value: "",
+    });
+
+    this.addProp({
+      type: "string",
+      key: "description",
+      displayer: "Description",
+      value: "",
+    });
+
+    this.addProp({
+      type: "array",
+      key: "buttons",
+      displayer: "Buttons",
+      value: [
+        INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+      ],
+    });
+
+    this.addProp({
+      type: "array",
+      key: "footer",
+      displayer: "Footer",
+      value: [
+        {
+          type: "object",
+          key: "footer-title",
+          displayer: "Footer",
+          value: [
+            {
+              type: "string",
+              key: "footerTitle",
+              displayer: "Menu Item",
+              value: "",
+            },
+            {
+              type: "page",
+              key: "footerTitleLink",
+              displayer: "Navigate To",
+              value: "",
+            },
+            {
+              type: "media",
+              key: "footerTitleMedia",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["icon", "image"],
+              },
+              value: {
+                type: "icon",
+                name: "",
+              },
+            },
+            {
+              type: "array",
+              key: "footerText",
+              displayer: "Menu Subitem",
+              value: [
+                {
+                  type: "object",
+                  key: "footer-text",
+                  displayer: "Text Values",
+                  value: [
+                    { type: "string", key: "navTitle", displayer: "Text", value: "" },
+                    { type: "page", key: "navNavigateTo", displayer: "Navigate To", value: "" },
+                    {
+                      type: "media",
+                      key: "navMedia",
+                      displayer: "Media",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "",
+                      },
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "footer-text",
+                  displayer: "Text Values",
+                  value: [
+                    { type: "string", key: "navTitle", displayer: "Text", value: "" },
+                    { type: "page", key: "navNavigateTo", displayer: "Navigate To", value: "" },
+                    {
+                      type: "media",
+                      key: "navMedia",
+                      displayer: "Media",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "",
+                      },
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "footer-text",
+                  displayer: "Text Values",
+                  value: [
+                    { type: "string", key: "navTitle", displayer: "Text", value: "" },
+                    { type: "page", key: "navNavigateTo", displayer: "Navigate To", value: "" },
+                    {
+                      type: "media",
+                      key: "navMedia",
+                      displayer: "Media",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "",
+                      },
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "footer-title",
+          displayer: "Footer",
+          value: [
+            {
+              type: "string",
+              key: "footerTitle",
+              displayer: "Menu Item",
+              value: "",
+            },
+            {
+              type: "page",
+              key: "footerTitleLink",
+              displayer: "Navigate To",
+              value: "",
+            },
+            {
+              type: "media",
+              key: "footerTitleMedia",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["icon", "image"],
+              },
+              value: {
+                type: "icon",
+                name: "",
+              },
+            },
+            {
+              type: "array",
+              key: "footerText",
+              displayer: "Menu Subitem",
+              value: [
+                {
+                  type: "object",
+                  key: "footer-text",
+                  displayer: "Text Values",
+                  value: [
+                    { type: "string", key: "navTitle", displayer: "Text", value: "" },
+                    { type: "page", key: "navNavigateTo", displayer: "Navigate To", value: "" },
+                    {
+                      type: "media",
+                      key: "navMedia",
+                      displayer: "Media",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "",
+                      },
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "footer-text",
+                  displayer: "Text Values",
+                  value: [
+                    { type: "string", key: "navTitle", displayer: "Text", value: "" },
+                    { type: "page", key: "navNavigateTo", displayer: "Navigate To", value: "" },
+                    {
+                      type: "media",
+                      key: "navMedia",
+                      displayer: "Media",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "",
+                      },
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "footer-text",
+                  displayer: "Text Values",
+                  value: [
+                    { type: "string", key: "navTitle", displayer: "Text", value: "" },
+                    { type: "page", key: "navNavigateTo", displayer: "Navigate To", value: "" },
+                    {
+                      type: "media",
+                      key: "navMedia",
+                      displayer: "Media",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "",
+                      },
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "footer-title",
+          displayer: "Footer",
+          value: [
+            {
+              type: "string",
+              key: "footerTitle",
+              displayer: "Menu Item",
+              value: "",
+            },
+            {
+              type: "page",
+              key: "footerTitleLink",
+              displayer: "Navigate To",
+              value: "",
+            },
+            {
+              type: "media",
+              key: "footerTitleMedia",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["icon", "image"],
+              },
+              value: {
+                type: "icon",
+                name: "",
+              },
+            },
+            {
+              type: "array",
+              key: "footerText",
+              displayer: "Menu Subitem",
+              value: [
+                {
+                  type: "object",
+                  key: "footer-text",
+                  displayer: "Text Values",
+                  value: [
+                    { type: "string", key: "navTitle", displayer: "Text", value: "" },
+                    { type: "page", key: "navNavigateTo", displayer: "Navigate To", value: "" },
+                    {
+                      type: "media",
+                      key: "navMedia",
+                      displayer: "Media",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "",
+                      },
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "footer-text",
+                  displayer: "Text Values",
+                  value: [
+                    { type: "string", key: "navTitle", displayer: "Text", value: "" },
+                    { type: "page", key: "navNavigateTo", displayer: "Navigate To", value: "" },
+                    {
+                      type: "media",
+                      key: "navMedia",
+                      displayer: "Media",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "",
+                      },
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "footer-text",
+                  displayer: "Text Values",
+                  value: [
+                    { type: "string", key: "navTitle", displayer: "Text", value: "" },
+                    { type: "page", key: "navNavigateTo", displayer: "Navigate To", value: "" },
+                    {
+                      type: "media",
+                      key: "navMedia",
+                      displayer: "Media",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "",
+                      },
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    });
 
     this.addProp({
       type: "array",
@@ -151,8 +511,8 @@ class Footer10Page extends BaseFooter {
 
     this.addProp({
       type: "array",
-      key: "icons",
-      displayer: "Icons",
+      key: "socials",
+      displayer: "Social Media Items",
       value: [
         {
           type: "object",
@@ -164,7 +524,7 @@ class Footer10Page extends BaseFooter {
               key: "icon",
               displayer: "Icon",
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon", "image"],
               },
               value: {
                 type: "icon",
@@ -189,7 +549,7 @@ class Footer10Page extends BaseFooter {
               key: "icon",
               displayer: "Icon",
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon", "image"],
               },
               value: {
                 type: "icon",
@@ -214,7 +574,7 @@ class Footer10Page extends BaseFooter {
               key: "icon",
               displayer: "Icon",
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon", "image"],
               },
               value: {
                 type: "icon",
@@ -239,7 +599,7 @@ class Footer10Page extends BaseFooter {
               key: "icon",
               displayer: "Icon",
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon", "image"],
               },
               value: {
                 type: "icon",
@@ -274,17 +634,35 @@ class Footer10Page extends BaseFooter {
     const logoObject = this.castToObject<any>("logo");
     const logo = logoObject?.logo;
     const logoUrl = logoObject?.logoUrl;
+    const footer = this.castToObject<FooterValues[]>("footer");
     const links = this.castToObject<any[]>("links");
     const line = this.getPropValue("line");
 
-    const icons = this.castToObject<icon[]>("icons");
+    const socials = this.castToObject<icon[]>("socials");
 
-    const upperExist = logo || links.length > 0;
+    const subtitleExist = this.castToString(this.getPropValue("subtitle"));
+    const titleExist = this.castToString(this.getPropValue("title"));
+    const descriptionExist = this.castToString(this.getPropValue("description"));
+    const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons") || [];
+    const hasRenderableButton = buttons.some((btn) => this.castToString(btn.text));
+
+    const logoExist = !!(logo?.url || logo?.name);
+    const logoAreaExist = logoExist || subtitleExist || titleExist || descriptionExist || hasRenderableButton;
+    const linksPropExist = links.some((item: any) => this.castToString(item.text));
+    const footerColumnsExist = footer.some((item: FooterValues) => {
+      const footerTitleExist = this.castToString(item.footerTitle);
+      const footerTitleMediaExist = hasMedia(item.footerTitleMedia);
+      const hasItems = item.footerText?.some((v: FooterTextValues) => this.castToString(v.navTitle) || hasMedia(v.navMedia));
+      return footerTitleExist || footerTitleMediaExist || hasItems;
+    });
+
+    const upperExist = logoAreaExist || linksPropExist;
+    const middleExist = footerColumnsExist;
 
     const footerTextExist = this.castToString(this.getPropValue("footerText"));
 
-    const iconsExist = icons.length > 0;
-    const bottomExist = footerTextExist || iconsExist;
+    const socialsExist = socials.length > 0;
+    const bottomExist = footerTextExist || socialsExist;
 
     const alignment = Base.getContentAlignment();
 
@@ -292,20 +670,47 @@ class Footer10Page extends BaseFooter {
 
     return (
       <div className={`${this.decorateCSS("container")} ${position === "Absolute" ? this.decorateCSS("absolute") : ""}`}>
-        {upperExist && (
-          <Base.Container className={this.decorateCSS("first-container")}>
-            <Base.MaxContent className={this.decorateCSS("first-max-content")}>
+        <div className={this.decorateCSS("footer-inner")}>
+        {(upperExist || middleExist) && (
+          <Base.Container className={this.decorateCSS("footer-wrapper")}>
+            <Base.MaxContent className={this.decorateCSS("max-content")}>
               {upperExist && (
                 <div className={`${this.decorateCSS("upper")} ${alignment === "center" && this.decorateCSS("center")}`}>
-                  {logo?.url && (
-                    <ComposerLink path={logoUrl}>
-                      <div className={this.decorateCSS("logo")}>
-                        <Base.Media value={logo} className={this.decorateCSS("image")} />
-                      </div>
-                    </ComposerLink>
+                  {logoAreaExist && (
+                    <Base.VerticalContent className={this.decorateCSS("logo-area")}>
+                      {logoExist && (
+                        <ComposerLink path={logoUrl}>
+                          <div className={this.decorateCSS("logo")}>
+                            <Base.Media value={logo} className={`${this.decorateCSS("image")} ${logo?.type === "icon" ? this.decorateCSS("is-icon") : ""}`} />
+                          </div>
+                        </ComposerLink>
+                      )}
+                      {subtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
+                      {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
+                      {descriptionExist && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
+                      {hasRenderableButton && (
+                        <div className={this.decorateCSS("button-container")}>
+                          {buttons.map(
+                            (item: INPUTS.CastedButton, index: number) =>
+                              this.castToString(item.text) && (
+                                <ComposerLink key={index} path={item.url}>
+                                  <Base.Button
+                                    buttonType={item.type}
+                                    className={this.decorateCSS("button")}
+                                  >
+                                    <Base.P className={this.decorateCSS("button-text")}>
+                                      {item.text}
+                                    </Base.P>
+                                  </Base.Button>
+                                </ComposerLink>
+                              )
+                          )}
+                        </div>
+                      )}
+                    </Base.VerticalContent>
                   )}
-                  {links.length > 0 && (
-                    <div className={`${this.decorateCSS("links")} ${logo?.url && this.decorateCSS("full-width")}`}>
+                  {linksPropExist && (
+                    <div className={`${this.decorateCSS("links")} ${logoAreaExist && this.decorateCSS("full-width")}`}>
                       {links.map((item: any, index: number) => {
                         const textExist = this.castToString(item.text);
                         return (
@@ -325,6 +730,61 @@ class Footer10Page extends BaseFooter {
                   )}
                 </div>
               )}
+
+              {middleExist && (
+                <div className={this.decorateCSS("footer-columns")}>
+                  {footer.map((item: FooterValues, indexFooter: number) => {
+                    const footerTitleExist = this.castToString(item.footerTitle);
+                    const footerTitleMediaExist = hasMedia(item.footerTitleMedia);
+                    const footerTextExist = item.footerText.length > 0;
+                    const listExist = footerTitleExist || footerTitleMediaExist || footerTextExist;
+                    return (
+                      listExist && (
+                        <Base.VerticalContent key={indexFooter} className={this.decorateCSS("list-group")}>
+                          {(footerTitleExist || footerTitleMediaExist) && (
+                            <ComposerLink path={item.footerTitleLink}>
+                              <div className={this.decorateCSS("menu-media-wrapper")}>
+                                {footerTitleMediaExist && (
+                                  <Base.Media value={item.footerTitleMedia} className={this.decorateCSS("menu-title-media")} />
+                                )}
+                                {footerTitleExist && <Base.H6 className={this.decorateCSS("column-title")}>{item.footerTitle}</Base.H6>}
+                              </div>
+                            </ComposerLink>
+                          )}
+                          {item.footerText.length > 0 && (
+                            <Base.VerticalContent className={this.decorateCSS("text-container")}>
+                          {item.footerText.map((v: FooterTextValues, indexFooterText: number) => {
+                            const textExist = this.castToString(v.navTitle);
+                            const navMediaExist = hasMedia(v.navMedia);
+                            return (
+                              (textExist || navMediaExist) && (
+                                <ComposerLink key={indexFooterText} path={v.navNavigateTo}>
+                                  <div className={this.decorateCSS("menu-media-wrapper")}>
+                                    {navMediaExist && (
+                                      <Base.Media value={v.navMedia} className={this.decorateCSS("menu-item-media")} />
+                                    )}
+                                    {textExist && (
+                                      <Base.P
+                                        className={this.decorateCSS("footer-text")}
+                                        data-animation={v.navNavigateTo ? this.getPropValue("hoverAnimation").join(" ") : ""}
+                                        data-has-link={Boolean(v.navNavigateTo)}
+                                      >
+                                        {v.navTitle}
+                                      </Base.P>
+                                    )}
+                                  </div>
+                                </ComposerLink>
+                              )
+                            );
+                          })}
+                        </Base.VerticalContent>
+                          )}
+                        </Base.VerticalContent>
+                      )
+                    );
+                  })}
+                </div>
+              )}
             </Base.MaxContent>
           </Base.Container>
         )}
@@ -336,14 +796,14 @@ class Footer10Page extends BaseFooter {
             <Base.MaxContent className={this.decorateCSS("second-max-content")}>
               <div className={`${this.decorateCSS("bottom")} ${alignment === "center" && this.decorateCSS("center")}`}>
                 {footerTextExist && (
-                  <div className={iconsExist ? this.decorateCSS("left") : this.decorateCSS("left-full")}>
+                  <div className={socialsExist ? this.decorateCSS("left") : this.decorateCSS("left-full")}>
                     <Base.P className={this.decorateCSS("text")}>{this.getPropValue("footerText")}</Base.P>
                   </div>
                 )}
-                {icons.length > 0 && (
+                {socials.length > 0 && (
                   <div className={this.decorateCSS("icons")}>
-                    {icons.length > 0 &&
-                      icons.map((item: icon, index: number) => {
+                    {socials.length > 0 &&
+                      socials.map((item: icon, index: number) => {
                         return (
                           item.icon && (
                             <div 
@@ -351,7 +811,7 @@ class Footer10Page extends BaseFooter {
                               data-animation={item.page ? this.getPropValue("hoverAnimation").join(" ") : ""}
                             >
                               <ComposerLink path={item.page}>
-                                <Base.Media value={item.icon} className={this.decorateCSS("icon")} />
+                                <Base.Media value={item.icon} className={`${this.decorateCSS("icon")} ${item.icon.type === "icon" ? this.decorateCSS("is-icon") : ""}`} />
                               </ComposerLink>
                             </div>
                           )
@@ -363,6 +823,7 @@ class Footer10Page extends BaseFooter {
             </Base.MaxContent>
           </Base.Container>
         )}
+        </div>
       </div>
     );
   }

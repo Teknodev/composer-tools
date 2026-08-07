@@ -323,57 +323,59 @@ class List10 extends BaseList {
                                 if (!badgeExist && !descExist && !bottomTextExist && !imageExist) return null;
 
                                 return (
-                                    <ComposerLink key={index} path={card.url}>
-                                        <Base.VerticalContent
-                                            className={this.decorateCSS("card")}
-                                            data-animation={this.getPropValue("hoverAnimation").join(" ")}
-                                        >
-                                            {badgeExist && (
-                                                <Base.P className={this.decorateCSS("badge")}>
-                                                    {card.badge}
-                                                </Base.P>
-                                            )}
-                                            <div className={this.decorateCSS("image-container")}>
-                                                {imageExist && (
-                                                    <Base.Media
-                                                        className={this.decorateCSS("image")}
-                                                        value={card.image}
-                                                    />
+                                    <Base.Card key={index} className={this.decorateCSS("card-shell")}>
+                                        <ComposerLink path={card.url}>
+                                            <Base.VerticalContent
+                                                className={this.decorateCSS("card")}
+                                                data-animation={this.getPropValue("hoverAnimation").join(" ")}
+                                            >
+                                                {badgeExist && (
+                                                    <Base.P className={this.decorateCSS("badge")}>
+                                                        {card.badge}
+                                                    </Base.P>
                                                 )}
-                                                {imageOverlay && (
-                                                    <div className={this.decorateCSS("overlay")} />
-                                                )}
-                                            </div>
-                                            <div className={this.decorateCSS("image-spacer")} />
-                                            {descExist && (
-                                                <Base.SectionDescription className={this.decorateCSS("description")}>
-                                                    {card.description}
-                                                </Base.SectionDescription>
-                                            )}
-                                            {bottomTextExist && (
-                                                <Base.P className={this.decorateCSS("bottom-text")}>
-                                                    {card.bottomText}
-                                                </Base.P>
-                                            )}
-                                            {hasValidCardButtons && (
-                                                <div className={this.decorateCSS("card-button-container")}>
-                                                    {cardButtons.map((btn: INPUTS.CastedButton, btnIndex: number) => {
-                                                        const btnText = this.castToString(btn.text);
-                                                        const btnIconExist = btn.icon && (btn.icon as any).name;
-                                                        if (!btnText && !btnIconExist) return null;
-                                                        return (
-                                                            <ComposerLink key={btnIndex} path={btn.url}>
-                                                                <Base.Button buttonType={btn.type} className={this.decorateCSS("card-button")}>
-                                                                    {btnText && <Base.P className={this.decorateCSS("card-button-text")}>{btn.text}</Base.P>}
-                                                                    {btnIconExist && <Base.Media className={this.decorateCSS("card-button-icon")} value={btn.icon as unknown as TypeMediaInputValue} />}
-                                                                </Base.Button>
-                                                            </ComposerLink>
-                                                        );
-                                                    })}
+                                                <div className={this.decorateCSS("image-container")}>
+                                                    {imageExist && (
+                                                        <Base.Media
+                                                            className={this.decorateCSS("image")}
+                                                            value={card.image}
+                                                        />
+                                                    )}
+                                                    {imageOverlay && (
+                                                        <div className={this.decorateCSS("overlay")} />
+                                                    )}
                                                 </div>
-                                            )}
-                                        </Base.VerticalContent>
-                                    </ComposerLink>
+                                                <div className={this.decorateCSS("image-spacer")} />
+                                                {descExist && (
+                                                    <Base.SectionDescription className={this.decorateCSS("description")}>
+                                                        {card.description}
+                                                    </Base.SectionDescription>
+                                                )}
+                                                {bottomTextExist && (
+                                                    <Base.P className={this.decorateCSS("bottom-text")}>
+                                                        {card.bottomText}
+                                                    </Base.P>
+                                                )}
+                                                {hasValidCardButtons && (
+                                                    <div className={this.decorateCSS("card-button-container")}>
+                                                        {cardButtons.map((btn: INPUTS.CastedButton, btnIndex: number) => {
+                                                            const btnText = this.castToString(btn.text);
+                                                            const btnIconExist = btn.icon && (btn.icon as any).name;
+                                                            if (!btnText && !btnIconExist) return null;
+                                                            return (
+                                                                <ComposerLink key={btnIndex} path={btn.url}>
+                                                                    <Base.Button buttonType={btn.type} className={this.decorateCSS("card-button")}>
+                                                                        {btnText && <Base.P className={this.decorateCSS("card-button-text")}>{btn.text}</Base.P>}
+                                                                        {btnIconExist && <Base.Media className={this.decorateCSS("card-button-icon")} value={btn.icon as unknown as TypeMediaInputValue} />}
+                                                                    </Base.Button>
+                                                                </ComposerLink>
+                                                            );
+                                                        })}
+                                                    </div>
+                                                )}
+                                            </Base.VerticalContent>
+                                        </ComposerLink>
+                                    </Base.Card>
                                 );
                             })}
                         </Base.ListGrid>

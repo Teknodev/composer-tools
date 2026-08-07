@@ -138,6 +138,26 @@ class Stats24 extends BaseStats {
         return "Stats 24";
     }
 
+    private hasStatContent(stat: any): boolean {
+        const valueExist = !!this.castToString(stat.number);
+        const suffixExist = !!this.castToString(stat.suffix);
+        const titleExist = !!this.castToString(stat.title);
+        const subtitleExist = !!this.castToString(stat.subtitle);
+        const descriptionExist = !!this.castToString(stat.description);
+        const prefixExist = !!stat.prefix;
+
+        let iconObj: TypeMediaInputValue | undefined;
+        let iconString = "";
+        if (typeof stat.icon === "object") {
+            iconObj = stat.icon as TypeMediaInputValue;
+        } else if (typeof stat.icon === "string") {
+            iconString = stat.icon;
+        }
+        const iconExist = !!iconObj || !!iconString;
+
+        return valueExist || suffixExist || titleExist || subtitleExist || descriptionExist || prefixExist || iconExist;
+    }
+
     private AnimatedStat = ({ stat, animationDuration = 2000, statsAnimation }: { stat: StatItem; animationDuration?: number; statsAnimation: boolean }) => {
         const originalNumberString = stat.number;
         const targetNumber = parseFloat(originalNumberString) || 0;
@@ -196,7 +216,7 @@ class Stats24 extends BaseStats {
 
         const iconExist = !!iconObj || !!iconString;
 
-        if (!valueExist && !suffixExist && !titleExist && !subtitleExist && !descriptionExist && !prefixExist && !iconExist) return null;
+        if (!this.hasStatContent(stat)) return null;
 
         return (
             <Base.VerticalContent className={this.decorateCSS("stat-item")}>
@@ -336,7 +356,7 @@ class Stats24 extends BaseStats {
                         {hasStats && (
                             <div className={this.decorateCSS("card")}>
                                 <Base.ListGrid gridCount={{ pc: itemCount, tablet: 4, phone: 1 }} className={this.decorateCSS("stats-grid")}>
-                                    {stats.map((stat: StatItem, index: number) => (
+                                    {stats.map((stat: StatItem, index: number) => this.hasStatContent(stat) && (
                                         <this.AnimatedStat
                                             key={`stat28-${index}`}
                                             stat={stat}

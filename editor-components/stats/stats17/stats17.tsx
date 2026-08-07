@@ -124,6 +124,15 @@ class Stats17 extends BaseStats {
 
     static getName(): string { return "Stats 17"; }
 
+    private hasStatContent(stat: any): boolean {
+        const suffixExist = !!this.castToString(stat.suffix);
+        const numberExist = !!(stat.number && stat.number !== "" && stat.number !== "0");
+        const titleExist = !!this.castToString(stat.title);
+        const subtitleExist = !!this.castToString(stat.subtitle);
+        const infoTextExist = !!this.castToString(stat.infoText);
+        return numberExist || suffixExist || titleExist || subtitleExist || infoTextExist;
+    }
+
     private AnimatedStat = ({ stat, animationDuration = 2000, statsAnimation }: { stat: StatItem; animationDuration?: number; statsAnimation: boolean }) => {
         const originalNumberString = stat.number;
         const targetNumber = parseFloat(originalNumberString) || 0;
@@ -169,7 +178,7 @@ class Stats17 extends BaseStats {
         const infoTextExist = this.castToString(stat.infoText);
         const displayNumber = statsAnimation ? animatedNumber : formatNumber(targetNumber);
 
-        if (!numberExist && !suffixExist && !titleExist && !subtitleExist && !infoTextExist) return null;
+        if (!this.hasStatContent(stat)) return null;
 
         return (
             <Base.VerticalContent className={this.decorateCSS("stat-item")}>
@@ -301,7 +310,7 @@ class Stats17 extends BaseStats {
 
                             {hasStats && (
                                 <Base.ListGrid gridCount={{ pc: itemCount, tablet: itemCount, phone: 1 }} className={this.decorateCSS("stats-grid")}>
-                                    {stats.map((stat: StatItem, index: number) => (
+                                    {stats.map((stat: StatItem, index: number) => this.hasStatContent(stat) && (
                                         <this.AnimatedStat
                                             key={`stat20-${index}`}
                                             stat={stat}

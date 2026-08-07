@@ -445,10 +445,13 @@ class List5 extends BaseList {
                   const cardButtons = listItem.buttons || [];
                   const hasValidCardButtons = cardButtons.some((btn: INPUTS.CastedButton) => this.castToString(btn.text) || (btn.icon && (btn.icon as any).name));
                   return (
-                    <div key={index} className={this.decorateCSS("card-wrapper")}>
+                    <Base.Card
+                      key={index}
+                      className={this.decorateCSS("card-wrapper")}
+                      data-animation={hoverAnimation.join(" ")}
+                    >
                       <Base.VerticalContent
                         className={this.decorateCSS("card")}
-                        data-animation={hoverAnimation.join(" ")}
                       >
                         <ComposerLink path={listItem.url}>
                           <Base.VerticalContent className={this.decorateCSS("card-inner")}>
@@ -519,7 +522,7 @@ class List5 extends BaseList {
                           </ComposerLink>
                         )}
                       </Base.VerticalContent>
-                    </div>
+                    </Base.Card>
                   );
                 })}
               </Base.ListGrid>

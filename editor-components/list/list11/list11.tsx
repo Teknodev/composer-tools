@@ -371,7 +371,7 @@ class List11 extends BaseList {
                                 const hasValidCardButtons = cardButtons.some((btn: INPUTS.CastedButton) => this.castToString(btn.text) || (btn.icon && (btn.icon as any).name));
 
                                 return (
-                                    <div key={index} className={this.decorateCSS("card")}
+                                    <Base.Card key={index} className={this.decorateCSS("card")}
                                         data-animation={this.getPropValue("hoverAnimation").join(" ")}>
                                         <div className={this.decorateCSS("card-items")}>
                                             {imageExist && (
@@ -434,7 +434,7 @@ class List11 extends BaseList {
                                                 )}
                                             </Base.VerticalContent>
                                         </div>
-                                    </div>
+                                    </Base.Card>
                                 );
                             })}
                         </Base.ListGrid>

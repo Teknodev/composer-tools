@@ -185,7 +185,7 @@ class Feature31 extends BaseFeature {
                                     if (!titleExist && !descExist && !card.media) return null;
 
                                     return (
-                                        <div key={index} className={this.decorateCSS("card-container")}>
+                                        <Base.Card key={index} className={this.decorateCSS("card-container")}>
                                             {card.media && (
                                                 <div className={`${this.decorateCSS("icon-box")} ${!enableIconBackground ? this.decorateCSS("no-bg") : ""}`}>
                                                     <Base.Media value={card.media} className={`${this.decorateCSS("card-icon")} ${isImage ? this.decorateCSS("is-image") : ""}`} />
@@ -195,7 +195,7 @@ class Feature31 extends BaseFeature {
                                                 {titleExist && (<Base.H5 className={this.decorateCSS("card-title")}>{card.title}</Base.H5>)}
                                                 {descExist && (<Base.P className={this.decorateCSS("card-description")}>{card.description}</Base.P>)}
                                             </Base.VerticalContent>
-                                        </div>
+                                        </Base.Card>
                                     );
                                 })}
                             </Base.ListGrid>

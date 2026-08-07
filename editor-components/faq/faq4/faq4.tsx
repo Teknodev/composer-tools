@@ -3,6 +3,8 @@ import styles from "./faq4.module.scss";
 import { BaseFAQ } from "../../EditorComponent";
 
 import { Base } from "../../../composer-base-components/base/base";
+import { INPUTS } from "../../../custom-hooks/input-templates";
+import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 
 type Card = {
   sectionTitle: React.JSX.Element;
@@ -40,10 +42,22 @@ class Faq4 extends BaseFAQ {
 
     this.addProp({
       type: "media",
-      key: "icon",
-      displayer: "Icon",
+      key: "activeIcon",
+      displayer: "Active Icon",
       additionalParams: {
-        availableTypes: ["icon"],
+        availableTypes: ["icon", "image"],
+      },
+      value: {
+        type: "icon",
+        name: "FaAngleUp",
+      },
+    });
+    this.addProp({
+      type: "media",
+      key: "inactiveIcon",
+      displayer: "Inactive Icon",
+      additionalParams: {
+        availableTypes: ["icon", "image"],
       },
       value: {
         type: "icon",
@@ -198,6 +212,22 @@ class Faq4 extends BaseFAQ {
         },
       ],
     });
+    this.addProp({
+      type: "array",
+      key: "buttons",
+      displayer: "Buttons",
+      value: [
+        INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+      ],
+    });
+
+    this.addProp({
+      type: "boolean",
+      key: "line",
+      displayer: "Line",
+      value: true,
+    });
+
     this.setComponentState("selectedSection", 0);
     this.setComponentState("cardIndex", -1);
     this.setComponentState("onclick", false);
@@ -215,87 +245,107 @@ class Faq4 extends BaseFAQ {
     this.setComponentState("onclick", !this.getComponentState("onclick"));
   }
   render() {
-    const card = this.castToObject<Card[]>("cards")
+    const card = this.castToObject<Card[]>("cards");
+    const lineEnabled = this.getPropValue("line");
+    const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons") || [];
+    const visibleButtons = buttons.filter(btn => this.castToString(btn.text));
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("page")}>
-            {(this.castToString(this.getPropValue("subtitle")) || this.castToString(this.getPropValue("title")) || this.castToString(this.getPropValue("text"))) && (
-              <Base.VerticalContent className={this.decorateCSS("up-page")}>
-                {this.castToString(this.getPropValue("subtitle")) && (
-                  <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
-                    {this.getPropValue("subtitle")}
-                  </Base.SectionSubTitle>
-                )}
-                {this.castToString(this.getPropValue("title")) && (
-                  <Base.SectionTitle className={this.decorateCSS("title")}>
-                    {this.getPropValue("title")}
-                  </Base.SectionTitle>
-                )}
-                {this.castToString(this.getPropValue("text")) && (
-                  <Base.SectionDescription className={this.decorateCSS("description")}>
-                    {this.getPropValue("text")}
-                  </Base.SectionDescription>
-                )}
-              </Base.VerticalContent>
-            )}
-            {(card.length > 0) && (
-              <div className={this.decorateCSS("middle-page")}>
+          {(this.castToString(this.getPropValue("subtitle")) || this.castToString(this.getPropValue("title")) || this.castToString(this.getPropValue("text"))) && (
+            <Base.VerticalContent className={this.decorateCSS("up-page")}>
+              {this.castToString(this.getPropValue("subtitle")) && (
+                <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                  {this.getPropValue("subtitle")}
+                </Base.SectionSubTitle>
+              )}
+              {this.castToString(this.getPropValue("title")) && (
+                <Base.SectionTitle className={this.decorateCSS("title")}>
+                  {this.getPropValue("title")}
+                </Base.SectionTitle>
+              )}
+              {this.castToString(this.getPropValue("text")) && (
+                <Base.SectionDescription className={this.decorateCSS("description")}>
+                  {this.getPropValue("text")}
+                </Base.SectionDescription>
+              )}
+            </Base.VerticalContent>
+          )}
+          {(card.length > 0) && (
+            <div className={this.decorateCSS("faq-content-wrapper")}>
+              <div className={`${this.decorateCSS("middle-page")}${!lineEnabled ? ` ${this.decorateCSS("no-line")}` : ""}`}>
                 {card.map((card: Card, index: number) => (
                   <div className={this.decorateCSS("sections")} onClick={() => this.sectionButton(index)}>
-                    <Base.H4 className={`${this.decorateCSS("section-title")} ${this.getComponentState("selectedSection") === index ? this.decorateCSS("active") : ""}`}>
+                    <Base.H6 className={`${this.decorateCSS("section-title")} ${this.getComponentState("selectedSection") === index ? this.decorateCSS("active") : ""}`}>
                       {card.sectionTitle}
-                    </Base.H4>
+                    </Base.H6>
                   </div>
                 ))}
               </div>
-            )}
-            {(card[this.getComponentState("selectedSection")]?.items.length > 0) && (
-              <div className={this.decorateCSS("down-page")}>
-                <div className={this.decorateCSS("card-wrapper")}>
-                  {card[this.getComponentState("selectedSection")]?.items.map((item: Item, index: number) => (
-                    <div className={`${this.decorateCSS("card")} ${this.getComponentState("cardIndex") === index ? (this.getComponentState("onclick") ? this.decorateCSS("active") : "") : ""}`} onClick={() => this.cardButton(index)}>
-                      {(this.castToString(item.title) || this.getPropValue("icon")) && (
-                        <div className={this.decorateCSS("child-container")}>
-                          {this.castToString(item.title) && (
-                            <div className={this.decorateCSS("card-left")}>
-                              <Base.H4 className={this.decorateCSS("card-title")}>
-                                {item.title}
-                              </Base.H4>
+              {(card[this.getComponentState("selectedSection")]?.items.length > 0) && (
+                <div className={this.decorateCSS("down-page")}>
+                  <div className={this.decorateCSS("card-wrapper")}>
+                    {card[this.getComponentState("selectedSection")]?.items.map((item: Item, index: number) => {
+                      const is_active = this.getComponentState("cardIndex") === index && this.getComponentState("onclick");
+                      const activeIcon = this.getPropValue("activeIcon");
+                      const inactiveIcon = this.getPropValue("inactiveIcon");
+                      const currentIcon = is_active ? activeIcon : inactiveIcon;
+
+                      const activeIconExist = activeIcon?.type === "icon" ? activeIcon?.name : activeIcon?.url;
+                      const inactiveIconExist = inactiveIcon?.type === "icon" ? inactiveIcon?.name : inactiveIcon?.url;
+                      const currentIconExist = currentIcon?.type === "icon" ? currentIcon?.name : currentIcon?.url;
+
+                      return (
+                        <div key={index} className={`${this.decorateCSS("card")} ${this.getComponentState("cardIndex") === index ? (this.getComponentState("onclick") ? this.decorateCSS("active") : "") : ""}${!lineEnabled ? ` ${this.decorateCSS("no-line")}` : ""}`} onClick={() => this.cardButton(index)}>
+                          {(this.castToString(item.title) || activeIconExist || inactiveIconExist) && (
+                            <div className={this.decorateCSS("child-container")}>
+                              {this.castToString(item.title) && (
+                                <div className={this.decorateCSS("card-left")}>
+                                  <Base.H5 className={this.decorateCSS("card-title")}>
+                                    {item.title}
+                                  </Base.H5>
+                                </div>
+                              )}
+                              {currentIconExist && (
+                                <div className={this.decorateCSS("card-right")}>
+                                  <div className={this.decorateCSS("icon-wrapper")}>
+                                    <Base.Media
+                                      value={currentIcon}
+                                      className={this.decorateCSS("icon")}
+                                    />
+                                  </div>
+                                </div>
+                              )}
                             </div>
                           )}
-                          {this.getPropValue("icon") && (
-                            <div className={this.decorateCSS("card-right")}>
-                              <div className={this.decorateCSS("icon-wrapper")}>
-                                <Base.Media
-                                  value={this.getPropValue("icon")}
-                                  className={`${this.decorateCSS("icon")} ${this.getComponentState("cardIndex") === index
-                                    ? this.getComponentState("onclick")
-                                      ? this.decorateCSS("active")
-                                      : ""
-                                    : ""
-                                    }`}
-                                />
-                              </div>
+                          {this.castToString(item.description) && (
+                            <div className={`${this.decorateCSS("hide-card")} ${this.getComponentState("cardIndex") === index ? (this.getComponentState("onclick") ? this.decorateCSS("active") : "") : ""}`}>
+                              <Base.P className={this.decorateCSS("text")}>
+                                {item.description}
+                              </Base.P>
                             </div>
                           )}
                         </div>
-                      )}
-                      {this.castToString(item.description) && (
-                        <div className={`${this.decorateCSS("hide-card")} ${this.getComponentState("cardIndex") === index ? (this.getComponentState("onclick") ? this.decorateCSS("active") : "") : ""}`}>
-                          <Base.P className={this.decorateCSS("text")}>
-                            {item.description}
-                          </Base.P>
-                        </div>
-                      )}
-                    </div>
-                  ))}
+                      );
+                    })}
+                  </div>
                 </div>
-              </div>
-            )}
-          </div>
+              )}
+            </div>
+          )}
+          {visibleButtons.length > 0 && (
+            <div className={this.decorateCSS("buttons-wrapper")}>
+              {visibleButtons.map((button: INPUTS.CastedButton, index: number) => (
+                <ComposerLink key={index} path={button.url}>
+                  <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
+                    <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
+                  </Base.Button>
+                </ComposerLink>
+              ))}
+            </div>
+          )}
         </Base.MaxContent>
-      </Base.Container>
+      </Base.Container >
     );
   }
 }

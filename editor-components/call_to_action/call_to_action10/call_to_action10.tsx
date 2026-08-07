@@ -285,37 +285,39 @@ class CallToAction10Page extends BaseCallToAction {
             {(cardItem.length > 0) && (
               <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount"), tablet: 3, phone: 1 }} className={this.decorateCSS("card-container")}>
                 {cardItem.map((item: CardItem, index: number) => (
-                  <Base.VerticalContent key={index} className={this.decorateCSS("card")}>
-                    {item.cardIcon && (
-                      <div className={`${this.decorateCSS("icon-wrapper")} ${!item.iconBackground && this.decorateCSS("no-bg")}`}>
-                        <Base.Media value={item.cardIcon} className={this.decorateCSS("icon")} />
-                      </div>
-                    )}
-                    {this.castToString(item.cardSubtitle) && (
-                      <Base.H6 className={this.decorateCSS("card-subtitle")}>
-                        {item.cardSubtitle}
-                      </Base.H6>
-                    )}
-                    {this.castToString(item.cardTitle) && (
-                      <Base.H5 className={this.decorateCSS("card-title")}>
-                        {item.cardTitle}
-                      </Base.H5>
-                    )}
-                    {this.castToString(item.cardDescription) && (
-                      <Base.P className={this.decorateCSS("card-description")}>
-                        {item.cardDescription}
-                      </Base.P>
-                    )}
-                    {item.button && (
-                      this.castToString(item.button.text) && (
-                        <ComposerLink path={item.button.url}>
-                          <Base.Button className={this.decorateCSS("card-button")} buttonType={item.button.type}>
-                            <Base.P className={this.decorateCSS("card-button-text")}>{item.button.text}</Base.P>
-                          </Base.Button>
-                        </ComposerLink>
-                      ))
-                    }
-                  </Base.VerticalContent>
+                  <Base.Card key={index} className={this.decorateCSS("card-shell")}>
+                    <Base.VerticalContent className={this.decorateCSS("card")}>
+                      {item.cardIcon && (
+                        <div className={`${this.decorateCSS("icon-wrapper")} ${!item.iconBackground && this.decorateCSS("no-bg")}`}>
+                          <Base.Media value={item.cardIcon} className={this.decorateCSS("icon")} />
+                        </div>
+                      )}
+                      {this.castToString(item.cardSubtitle) && (
+                        <Base.H6 className={this.decorateCSS("card-subtitle")}>
+                          {item.cardSubtitle}
+                        </Base.H6>
+                      )}
+                      {this.castToString(item.cardTitle) && (
+                        <Base.H5 className={this.decorateCSS("card-title")}>
+                          {item.cardTitle}
+                        </Base.H5>
+                      )}
+                      {this.castToString(item.cardDescription) && (
+                        <Base.P className={this.decorateCSS("card-description")}>
+                          {item.cardDescription}
+                        </Base.P>
+                      )}
+                      {item.button && (
+                        this.castToString(item.button.text) && (
+                          <ComposerLink path={item.button.url}>
+                            <Base.Button className={this.decorateCSS("card-button")} buttonType={item.button.type}>
+                              <Base.P className={this.decorateCSS("card-button-text")}>{item.button.text}</Base.P>
+                            </Base.Button>
+                          </ComposerLink>
+                        ))
+                      }
+                    </Base.VerticalContent>
+                  </Base.Card>
                 ))}
               </Base.ListGrid>
             )}

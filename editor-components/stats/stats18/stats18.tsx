@@ -139,6 +139,16 @@ class Stats18Page extends BaseStats {
         return "Stats 18";
     }
 
+    private hasCardContent(card: CardData): boolean {
+        const prefixExist = !!this.castToString(card.prefix);
+        const suffixExist = !!this.castToString(card.suffix);
+        const titleExist = !!this.castToString(card.title);
+        const subtitleExist = !!this.castToString(card.subtitle);
+        const descriptionExist = !!this.castToString(card.description);
+        const valueExist = !!(card.value && card.value !== "");
+        return valueExist || prefixExist || suffixExist || titleExist || subtitleExist || descriptionExist;
+    }
+
     private AnimatedCard = ({ card, animationDuration = 2000, statsAnimation, showLine }: { card: CardData; animationDuration?: number; statsAnimation: boolean; showLine: boolean }) => {
         const originalString = card.value;
         const targetNumber = parseFloat(originalString) || 0;
@@ -184,7 +194,7 @@ class Stats18Page extends BaseStats {
         const descriptionExist = this.castToString(card.description);
         const valueExist = originalString && originalString !== "";
 
-        if (!valueExist && !prefixExist && !suffixExist && !titleExist && !subtitleExist && !descriptionExist) return null;
+        if (!this.hasCardContent(card)) return null;
 
         return (
             <Base.VerticalContent className={this.decorateCSS("card")}>
@@ -296,14 +306,15 @@ class Stats18Page extends BaseStats {
                             gridCount={{ pc: itemCount, tablet: 4, phone: 1 }}
                             className={this.decorateCSS("cards-grid")}
                         >
-                            {statsList.map((card: CardData, index: number) => (
-                                <this.AnimatedCard
-                                    key={`stat18-${index}`}
-                                    card={card}
-                                    animationDuration={animationDuration}
-                                    statsAnimation={statsAnimation}
-                                    showLine={showLine}
-                                />
+                            {statsList.map((card: CardData, index: number) => this.hasCardContent(card) && (
+                                <Base.Card key={`stat18-${index}`} className={this.decorateCSS("card-shell")}>
+                                    <this.AnimatedCard
+                                        card={card}
+                                        animationDuration={animationDuration}
+                                        statsAnimation={statsAnimation}
+                                        showLine={showLine}
+                                    />
+                                </Base.Card>
                             ))}
                         </Base.ListGrid>
                     )}
