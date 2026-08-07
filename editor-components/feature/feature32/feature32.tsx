@@ -294,7 +294,7 @@ class Feature32 extends BaseFeature {
                   if (!cardSubtitleExist && !titleExist && !descExist && !card.icon && !hasCardButton) return null;
 
                   return (
-                    <div
+                    <Base.Card
                       key={index}
                       className={this.decorateCSS("card-container")}
                     >
@@ -316,7 +316,7 @@ class Feature32 extends BaseFeature {
                           </ComposerLink>
                         )}
                       </Base.VerticalContent>
-                    </div>
+                    </Base.Card>
                   );
                 })}
               </Base.ListGrid>

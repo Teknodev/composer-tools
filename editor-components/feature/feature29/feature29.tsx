@@ -274,7 +274,7 @@ class Feature29 extends BaseFeature {
                 const descriptionExist = this.castToString(feature.description);
                 const media = feature.media;
                 return (
-                  <div
+                  <Base.Card
                     className={`${this.decorateCSS(
                       "feature-card"
                     )} ${this.decorateCSS(alignment)}`}
@@ -305,7 +305,7 @@ class Feature29 extends BaseFeature {
                         </Base.P>
                       )}
                     </Base.VerticalContent>
-                  </div>
+                  </Base.Card>
                 );
               })}
             </Base.ListGrid>

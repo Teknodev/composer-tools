@@ -435,7 +435,7 @@ class Feature39 extends BaseFeature {
                                 const isImage = card.icon?.type === "image";
 
                                 return (!cardSubtitleExist && !titleExist && !descExist && !card.icon) || (
-                                    <div key={index} className={this.decorateCSS("card-wrapper")}>
+                                    <Base.Card key={index} className={this.decorateCSS("card-wrapper")}>
                                         <Base.VerticalContent className={this.decorateCSS("card-content")}>
                                             {card.icon &&
                                                 <div className={`${this.decorateCSS("icon-box")} ${!enableIconBackground && this.decorateCSS("no-bg")}`}>
@@ -446,7 +446,7 @@ class Feature39 extends BaseFeature {
                                             {titleExist && <Base.H4 className={this.decorateCSS("card-title")}>{card.title}</Base.H4>}
                                             {descExist && <Base.P className={this.decorateCSS("card-description")}>{card.description}</Base.P>}
                                         </Base.VerticalContent>
-                                    </div>
+                                    </Base.Card>
                                 );
                             })}
                         </Base.ListGrid>

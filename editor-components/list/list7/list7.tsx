@@ -213,7 +213,7 @@ class List7 extends BaseList {
       displayer: "Hover Animation Style",
       value: ["animate1"],
       additionalParams: {
-        selectItems: ["animate1", "animate2", "animate3", "animate4"],
+        selectItems: ["animate1", "animate3", "animate4"],
       },
     });
 
@@ -306,7 +306,7 @@ class List7 extends BaseList {
                   if (!itemTitleExist && !itemDescriptionExist && !cardNumber) return null;
 
                   return (
-                    <div key={index} className={this.decorateCSS("list-item")} data-animation={hoverAnimation.join(" ")}>
+                    <Base.Card key={index} className={this.decorateCSS("list-item")} data-animation={hoverAnimation.join(" ")}>
                       <div className={this.decorateCSS("border-layer-1")}></div>
                       <div className={this.decorateCSS("border-layer-2")}></div>
                       <Base.VerticalContent
@@ -356,7 +356,7 @@ class List7 extends BaseList {
                           </div>
                         )}
                       </Base.VerticalContent>
-                    </div>
+                    </Base.Card>
                   );
                 })}
               </Base.ListGrid>

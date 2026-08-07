@@ -123,6 +123,14 @@ class Stats16 extends BaseStats {
     return "Stats 16";
   }
 
+  private hasStatContent(stat: any): boolean {
+    const hasTitle = !!(stat.title && this.castToString(stat.title));
+    const hasPrefix = !!(stat.prefix && stat.prefix.trim() !== "");
+    const hasSuffix = !!(stat.suffix && stat.suffix.trim() !== "");
+    const hasNumber = (parseFloat(stat.number) || 0) !== 0 || hasPrefix || hasSuffix;
+    return hasNumber || hasTitle;
+  }
+
   private AnimatedStat = ({
     stat,
     animationEnabled = true,
@@ -197,7 +205,7 @@ class Stats16 extends BaseStats {
     const hasSuffix = stat.suffix && stat.suffix.trim() !== "";
     const hasNumber = targetNumber !== 0 || hasPrefix || hasSuffix;
 
-    if (!hasNumber && !hasTitle) return null;
+    if (!this.hasStatContent(stat)) return null;
 
     return (
       <div ref={ref} className={this.decorateCSS("card")}>
@@ -293,18 +301,15 @@ class Stats16 extends BaseStats {
                 className={this.decorateCSS("stats-grid")}
               >
                 {statItems.map((item, index) => {
-                  const hasTitle = this.castToString(item.title);
-                  const hasPrefix = item.prefix && item.prefix.trim() !== "";
-                  const hasSuffix = item.suffix && item.suffix.trim() !== "";
-                  const hasNumber = (parseFloat(item.number) || 0) !== 0 || hasPrefix || hasSuffix;
-                  if (!hasNumber && !hasTitle) return null;
+                  if (!this.hasStatContent(item)) return null;
                   return (
-                    <this.AnimatedStat
-                      key={index}
-                      stat={item}
-                      animationEnabled={animationEnabled}
-                      animationDuration={animationDuration}
-                    />
+                    <Base.Card key={index} className={this.decorateCSS("card-shell")}>
+                      <this.AnimatedStat
+                        stat={item}
+                        animationEnabled={animationEnabled}
+                        animationDuration={animationDuration}
+                      />
+                    </Base.Card>
                   );
                 })}
               </Base.ListGrid>

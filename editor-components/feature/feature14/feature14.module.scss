@@ -44,10 +44,16 @@
 
         .section {
             .cards {
+                .card-shell {
+                    display: flex;
+                    flex-direction: column;
+
+                    > * {
+                        flex: 1 1 auto;
+                    }
+                }
+
                 .card {
-                    border: solid 1px rgba(var(--composer-font-color-primary-rgb), 0.2);
-                    border-radius: var(--composer-border-radius-md);
-                    padding: var(--composer-gap-lg);
                     align-items: flex-start;
 
                     .icon-box {
@@ -74,12 +80,6 @@
                                 color: var(--composer-font-color-primary);
                             }
                         }
-                    }
-
-                    &:hover {
-                        border: solid 1px transparent;
-                        border-radius: var(--composer-border-radius-md);
-                        box-shadow: var(--box-shadow-active);
                     }
 
                     .card-subtitle,
@@ -141,7 +141,6 @@
             .section {
                 .cards {
                     .card {
-                        padding: var(--composer-gap-md);
                         .icon-box {
                             .icon {
                                 font-size: 1.5rem;

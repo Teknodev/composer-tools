@@ -362,7 +362,7 @@ class Feature15 extends BaseFeature {
                                     const btnIconExist = card.button?.icon && (card.button.icon.type === "icon" ? card.button.icon.name : card.button.icon.url);
                                     const hasCardButton = !!(btnText || btnIconExist);
                                     return (
-                                        <div key={index} className={this.decorateCSS("card")}>
+                                        <Base.Card key={index} className={this.decorateCSS("card")}>
                                             {card.icon && (
                                                 <div className={this.decorateCSS("icon-box")}>
                                                     <Base.Media
@@ -396,7 +396,7 @@ class Feature15 extends BaseFeature {
                                                     </ComposerLink>
                                                 )}
                                             </Base.VerticalContent>
-                                        </div>
+                                        </Base.Card>
                                     );
                                 }
                             )}

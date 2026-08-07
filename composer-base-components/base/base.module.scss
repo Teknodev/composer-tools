@@ -508,13 +508,19 @@
   }
   
     @container (max-width: #{$composer-tablet-width}) {
-        padding: var(--composer-gap-sm) !important;
         font-size: calc(0.9375 * var(--composer-font-size-md)) !important;
+
+        &:not(.link) {
+            padding: var(--composer-gap-sm) !important;
+        }
     }
 
     @container (max-width: #{$composer-phone-width}) {
-        padding: var(--composer-gap-xs) var(--composer-gap-sm) !important;
         font-size: calc(0.875 * var(--composer-font-size-md)) !important;
+
+        &:not(.link) {
+            padding: var(--composer-gap-xs) var(--composer-gap-sm) !important;
+        }
     }
 
   &.primary {
@@ -718,8 +724,10 @@
 }
 
 .baseCard {
-    border: 1px solid var(--composer-tertiary-color);
-    border-radius: var(--composer-border-radius-xs);
+    border: 1px solid transparent;
+    border-radius: var(--composer-border-radius-md);
+    background: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+    padding: var(--composer-gap-lg);
 }
 
 // Text-only (AI without image generation): cover placeholder images with a

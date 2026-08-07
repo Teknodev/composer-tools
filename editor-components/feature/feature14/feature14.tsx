@@ -359,7 +359,8 @@ class Feature14 extends BaseFeature {
                   return btnText || btnIconExist;
                 });
                 return (
-                  <Base.VerticalContent key={index} className={this.decorateCSS("card")}>
+                  <Base.Card key={index} className={this.decorateCSS("card-shell")}>
+                  <Base.VerticalContent className={this.decorateCSS("card")}>
                     {item.icon && (
                       <div
                         className={`${this.decorateCSS("icon-box")} ${!item.iconBackground ? this.decorateCSS("no-background") : ""}`}
@@ -395,6 +396,7 @@ class Feature14 extends BaseFeature {
                       </div>
                     )}
                   </Base.VerticalContent>
+                  </Base.Card>
                 );
               })}
             </Base.ListGrid>

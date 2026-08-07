@@ -317,7 +317,7 @@ class PricingTable13 extends BasePricingTable {
                             const hasContent = cardSubtitleExist || cardTitleExist || cardPriceExist || cardDescriptionExist || (cardFeatures.length > 0) || hasValidCardButton;
 
                             return hasContent && (
-                                <div key={idx} className={this.decorateCSS("card")}>
+                                <Base.Card key={idx} className={this.decorateCSS("card")}>
                                     <Base.VerticalContent className={this.decorateCSS("card-content")}>
                                         {cardPriceExist && (
                                             <div className={this.decorateCSS("card-price-row")}>
@@ -375,7 +375,7 @@ class PricingTable13 extends BasePricingTable {
                                             </ComposerLink>
                                         </div>
                                     )}
-                                </div>
+                                </Base.Card>
                             );
                         })}
                     </Base.ListGrid>

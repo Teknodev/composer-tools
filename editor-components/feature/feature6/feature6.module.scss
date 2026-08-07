@@ -3,6 +3,8 @@
 .container {
   .max-content {
     .content {
+      display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
       gap: var(--composer-gap-md);
@@ -51,6 +53,7 @@
     justify-content: center;
     cursor: pointer;
     min-height: 100px;
+    padding: 0;
 
     .listed {
       position: relative;

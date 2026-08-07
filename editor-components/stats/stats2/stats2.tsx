@@ -185,6 +185,16 @@ class Stats2Page extends BaseStats {
     return "Stats 2";
   }
 
+  private hasCardContent(card: any): boolean {
+    const textExist = !!this.castToString(card.text);
+    const amountExist =
+      card.amount !== undefined &&
+      card.amount !== null &&
+      card.amount !== "" &&
+      !isNaN(parseFloat(String(card.amount)));
+    return textExist || amountExist || !!card.icon || !!card.secondIcon;
+  }
+
   render() {
     const cards = this.castToObject<Card[]>("cards");
     const cardLength = cards.length;
@@ -265,7 +275,7 @@ class Stats2Page extends BaseStats {
       const classes = `${this.decorateCSS("listed")} ${conditionalClasses}`.trim();
 
       return (
-        (isTextExist || amount !== null || card.icon || card.secondIcon) && (
+        this.hasCardContent(card) && (
           <div ref={ref} className={classes}>
             {isTextExist && <Base.P className={this.decorateCSS("card-text")}>{card.text}</Base.P>}
             {(amount !== null || card.icon || card.secondIcon) && (
@@ -319,7 +329,10 @@ class Stats2Page extends BaseStats {
                   const isLastRow = currentRow === totalRows;
 
                   const isTextExist = this.castToString(card.text);
-                  return <AnimatedCard key={index} card={card} animationDuration={animationDuration} isTextExist={isTextExist} isFirstRow={isFirstRow} isLastRow={isLastRow} />;
+
+                  return this.hasCardContent(card) && (
+                    <AnimatedCard key={index} card={card} animationDuration={animationDuration} isTextExist={isTextExist} isFirstRow={isFirstRow} isLastRow={isLastRow} />
+                  );
                 })}
               </Base.ListGrid>
             )}

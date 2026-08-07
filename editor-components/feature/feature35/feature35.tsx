@@ -178,12 +178,12 @@ class Feature35 extends BaseFeature {
                                         const btnTextExist = this.castToString(card.button.text);
                                         const cardExist = cardSubtitleExist || titleExist || descExist || btnTextExist;
                                         return cardExist && (
-                                            <Base.VerticalContent className={this.decorateCSS("card")}>
+                                            <Base.Card className={this.decorateCSS("card")}>
                                                 {cardSubtitleExist && (<Base.H6 className={this.decorateCSS("card-subtitle")}>{card.subtitle}</Base.H6>)}
                                                 {titleExist && (<Base.H5 className={this.decorateCSS("card-title")}>{card.title}</Base.H5>)}
                                                 {descExist && (<Base.P className={this.decorateCSS("card-description")}>{card.description}</Base.P>)}
                                                 {btnTextExist && (<ComposerLink path={card.button.url}><Base.Button buttonType={card.button.type} className={this.decorateCSS("card-button")} ><Base.P className={this.decorateCSS("button-text")}> {card.button.text} </Base.P></Base.Button></ComposerLink>)}
-                                            </Base.VerticalContent>
+                                            </Base.Card>
                                         );
                                     })}
                                 </Base.ListGrid>

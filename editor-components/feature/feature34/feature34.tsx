@@ -410,7 +410,7 @@ class Feature34 extends BaseFeature {
 
                 return (
                   hasContent && (
-                    <div key={index} className={this.decorateCSS("feature-item")}>
+                    <Base.Card key={index} className={this.decorateCSS("feature-item")}>
                       {feature.icon && (
                         <div className={this.decorateCSS("icon-container")}>
                           <Base.Media value={feature.icon} className={this.decorateCSS("icon")} />
@@ -433,7 +433,7 @@ class Feature34 extends BaseFeature {
                           </Base.P>
                         )}
                       </Base.VerticalContent>
-                    </div>
+                    </Base.Card>
                   )
                 );
               })}
