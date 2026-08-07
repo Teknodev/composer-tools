@@ -182,7 +182,7 @@ class Feature6 extends BaseFeature {
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <Base.VerticalContent className={this.decorateCSS("content")}>
+          <div className={this.decorateCSS("content")}>
             {(titleExist || descExist || subtitleExist) && (
               <Base.VerticalContent className={this.decorateCSS("header")}>
                 {subtitleExist && (
@@ -214,7 +214,7 @@ class Feature6 extends BaseFeature {
                   if (!shouldRender) return null;
 
                   return (
-                    <div
+                    <Base.Card
                       key={index}
                       className={this.decorateCSS("card-item-count")}
                     >
@@ -238,7 +238,7 @@ class Feature6 extends BaseFeature {
                           )}
                         </div>
                       </div>
-                    </div>
+                    </Base.Card>
                   );
                 })}
               </Base.ListGrid>
@@ -258,7 +258,7 @@ class Feature6 extends BaseFeature {
                 })}
               </Base.ContainerGrid>
             )}
-          </Base.VerticalContent>
+          </div>
         </Base.MaxContent>
       </Base.Container>
     );

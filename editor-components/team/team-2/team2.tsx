@@ -960,7 +960,7 @@ class Team2 extends Team {
 
               return (
                 hasCard && (
-                  <Base.VerticalContent className={this.decorateCSS("team")} key={indexCards} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
+                  <Base.Card className={this.decorateCSS("team")} key={indexCards} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
                     {card.profileImage &&
                       <div className={this.decorateCSS("image-container")}>
                         <Base.Media value={card.profileImage} className={`${this.decorateCSS("image")} ${card.profileImage?.type === "icon" && this.decorateCSS("has-icon")}`} data-animation={this.getPropValue("hoverAnimation").join(" ")} />
@@ -982,7 +982,7 @@ class Team2 extends Team {
                         );
                       })}
                     </div>
-                  </Base.VerticalContent>
+                  </Base.Card>
                 )
               );
             })}

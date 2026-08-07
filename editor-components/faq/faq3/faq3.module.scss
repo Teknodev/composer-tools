@@ -1,142 +1,200 @@
 @use '../../../composer-base-components/base/utitilities/viewports.module.scss' as *;
+
 .container {
   .max-content {
-    .content{
-      display: flex;
-      flex-direction: column;
-      gap: var(--composer-gap-xl);
-      .header {
-        .title, .description, .subtitle {
-          content: "";
+    display: flex;
+    flex-direction: column;
+    gap: var(--composer-gap-lg);
+
+    .header {
+
+      .title,
+      .description,
+      .subtitle {
+        content: "";
+      }
+
+      .button-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--composer-gap-sm);
+
+        .button {
+          .button-text {
+            content: "";
+          }
         }
       }
-      .bottom-container {
+    }
+
+    .bottom-container {
+      display: flex;
+      width: 100%;
+      gap: calc(var(--composer-gap-xl) * 2);
+
+      .content-left {
+        flex: 1.5;
         display: flex;
-        width: 100%;
-        gap: calc(var(--composer-gap-xl) * 2);
+        flex-direction: column;
+
+        .card {
+          color: var(--composer-font-color-primary);
+          border-bottom: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.5);
+          cursor: pointer;
+
+          &.no-line {
+            border-bottom: none;
+          }
+
+          .top-card {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            transition: padding 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            padding: var(--composer-gap-md) 0;
+            gap: var(--composer-gap-md);
+
+            .card-left {
+              flex: 1;
+              display: flex;
+              gap: var(--composer-gap-xs);
+
+              .question-index {
+                color: var(--composer-font-color-primary);
+                width: fit-content;
+                text-align: left;
+                margin: 0;
+              }
+
+              .question-text {
+                color: var(--composer-font-color-primary);
+                transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+                width: fit-content;
+                text-align: left;
+                margin: 0;
+                font-weight: 800;
+              }
+
+              &:hover {
+                .question-index {
+                  color: var(--composer-primary-color);
+                  cursor: pointer;
+                }
+
+                .question-text {
+                  color: var(--composer-primary-color);
+                  cursor: pointer;
+                }
+              }
+            }
+
+            .card-right {
+              min-width: fit-content;
+
+              .icon {
+                color: var(--composer-primary-color);
+                font-size: 1.5rem;
+                width: 24px;
+                height: 24px;
+                object-fit: contain;
+              }
+            }
+          }
+
+          .answer-box {
+            overflow: hidden;
+            height: 0px;
+            padding: 0px;
+            transition: padding 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
+            .answer-text {
+              display: none;
+              color: var(--composer-tertiary-color);
+              text-align: left;
+              margin: 0;
+            }
+
+            &.active {
+              padding-bottom: var(--composer-gap-md);
+              height: 100%;
+
+              .answer-text {
+                display: flex;
+                height: 0px;
+                transition: height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
+                &.active {
+                  height: 100%;
+                }
+              }
+            }
+          }
+
+        }
+      }
+
+      .content-right {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: var(--composer-gap-lg);
+
+        .info-items {
+          align-items: flex-start;
+          text-align: left;
+
+          .title-info {
+            color: var(--composer-font-color-primary);
+            text-align: left;
+            font-weight: 800;
+          }
+
+          .description-info {
+            color: var(--composer-tertiary-color);
+            text-align: left;
+          }
+
+          .button-info {
+            width: fit-content;
+
+            .button-text {
+              content: "";
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-tablet-width}) {
+  .container {
+    .max-content {
+      .bottom-container {
+        gap: var(--composer-gap-xl);
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+  .container {
+    .max-content {
+      gap: var(--composer-gap-md);
+
+      .bottom-container {
+        flex-direction: column;
 
         .content-left {
-          flex: 1.5;
-          display: flex;
-          flex-direction: column;
-          gap: var(--composer-gap-md);
           .card {
-            color: var(--composer-font-color-primary);
-            border-bottom: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.5);
-            cursor: pointer;
             .top-card {
-              display: flex;
-              justify-content: flex-start;
-              align-items: center;
-              transition: padding 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-              padding:var(--composer-gap-md) 0;
-              .card-left{
-                flex: 1;
-                display: flex;
-                gap: var(--composer-gap-xs);
-                .question-index {
-                  color: var(--composer-font-color-primary);
-                  width: fit-content;
-                }
-                .card-subtitle {
-                  color: var(--composer-font-color-primary);
-                  transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-                  width: fit-content;
-                }
-                  
-                &:hover {
-                  .question-index{
-                    color: var(--composer-primary-color);
-                    cursor: pointer;
-                  }
-                  .card-subtitle {
-                    color: var(--composer-primary-color);
-                    cursor: pointer;
-                  }
-                }
-              }
-              .card-right{
-                min-width: fit-content;
+              .card-right {
                 .icon {
-                  color: var(--composer-primary-color);
-                  font-size: 1rem;
+                  font-size: 1.25rem;
                 }
               }
             }
-
-            .text-box {
-              overflow: hidden;
-              height: 0px;
-              padding: 0px;
-              transition: padding 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-              .card-text {
-                display: none;
-                color:var(--composer-tertiary-color);
-              }
-              &.active {
-                padding-bottom: var(--composer-gap-md);
-                height: 100%;
-                .card-text {
-                  display: flex;
-                  height: 0px;
-                  transition: height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-                  &.active{
-                    height: 100%;
-                  }
-                }
-              }
-            }
-
           }
-        }
-
-        .content-right {
-          flex: 1;
-          display: flex;
-          flex-direction: column;
-          gap: var(--composer-gap-lg);
-          padding:var(--composer-gap-md) 0;
-          .info-items {
-            display: flex;
-            flex-direction: column;
-            gap: var(--composer-gap-md);
-            .title-info {
-              margin: 0px;
-              color: var(--composer-font-color-primary);
-            }
-            .description-info {
-              margin: 0px;
-              color:var(--composer-tertiary-color);
-            }
-            .button-info {
-              width: fit-content;
-              .button-text {
-                content: "";
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-}
-@container (max-width: #{$composer-tablet-width}){
-  .container{
-    .max-content{
-      .content{
-        .bottom-container {
-          gap: var(--composer-gap-xl);
-        }
-      }
-    }
-  }
-}
-@container (max-width: #{$composer-phone-width}){
-  .container{
-    .max-content{
-      .content{
-        .bottom-container {
-          flex-direction: column;
         }
       }
     }

@@ -690,7 +690,7 @@ class Team1 extends Team {
           <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount"), tablet: 2, phone: 1 }} className={this.decorateCSS("down-page")}>
             {this.castToObject<Card[]>("cards").map((card: Card, indexCards: number) => {
               return (
-                <div key={indexCards} className={this.decorateCSS("all-card")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
+                <Base.Card key={indexCards} className={this.decorateCSS("all-card")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
                   <Base.VerticalContent className={this.decorateCSS("card")}>
                     {card.profileImage && (
                       <div className={this.decorateCSS("image-container")}>
@@ -714,7 +714,7 @@ class Team1 extends Team {
                       })}
                     </Base.Row>
                   </Base.VerticalContent>
-                </div>
+                </Base.Card>
               );
             })}
           </Base.ListGrid>

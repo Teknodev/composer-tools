@@ -704,7 +704,7 @@ class Team12 extends Team {
               const hasItem = nameExist || positionExist || cardDescriptionExist || hasImage || (teamMember.socials && teamMember.socials.length > 0);
               return (
                 hasItem && (
-                  <div className={`${this.decorateCSS("member")} ${!hasImage && this.decorateCSS("no-image")}`} data-animation={(this.getPropValue("hoverAnimation") || []).join(" ")}>
+                  <Base.Card className={`${this.decorateCSS("member")} ${!hasImage && this.decorateCSS("no-image")}`} data-animation={(this.getPropValue("hoverAnimation") || []).join(" ")}>
                     {hasImage && <Base.Media value={teamMember.profileImage} className={this.decorateCSS("image")} />}
                     {this.getPropValue("overlay") && hasImage && <div className={this.decorateCSS("overlay")} />}
                     <Base.VerticalContent className={this.decorateCSS("info")}>
@@ -730,7 +730,7 @@ class Team12 extends Team {
                         </Base.Row>
                       )}
                     </Base.VerticalContent>
-                  </div>
+                  </Base.Card>
                 )
               );
             })}

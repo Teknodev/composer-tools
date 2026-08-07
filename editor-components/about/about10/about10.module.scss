@@ -148,6 +148,15 @@
         align-items: start;
         width: 100%;
 
+        .card-shell {
+          display: flex;
+          flex-direction: column;
+
+          > * {
+            flex: 1 1 auto;
+          }
+        }
+
         .feature-item {
 
           .feature-title,

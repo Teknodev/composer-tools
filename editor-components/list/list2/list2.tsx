@@ -419,7 +419,7 @@ class List2 extends BaseList {
       displayer: "Hover Animation Style",
       value: ["animate1", "animate3"],
       additionalParams: {
-        selectItems: ["animate1", "animate2", "animate3", "animate4", "animate5"]
+        selectItems: ["animate1", "animate2", "animate3", "animate4"]
       }
     });
     this.setComponentState("moreImages", 0);
@@ -520,64 +520,66 @@ class List2 extends BaseList {
                     return this.castToString(btn.text) || (iconMedia && iconMedia.type === "icon" && iconMedia.name);
                   });
                   return (
-                    <ComposerLink key={index} path={item.url}>
-                      <div
-                        className={cardClasses.join(" ")}
-                        data-animation={this.getPropValue("hoverAnimation").join(" ")}
-                      >
-                        {hasImage && (
-                          <div className={this.decorateCSS("image-container")}>
-                            <Base.Media className={this.decorateCSS("card-image")} value={item.image} />
-                            {imageOverlay && (
-                              <div className={this.decorateCSS("overlay")} />
-                            )}
+                    <Base.Card key={index} className={this.decorateCSS("card-shell")}>
+                      <ComposerLink path={item.url}>
+                        <div
+                          className={cardClasses.join(" ")}
+                          data-animation={this.getPropValue("hoverAnimation").join(" ")}
+                        >
+                          {hasImage && (
+                            <div className={this.decorateCSS("image-container")}>
+                              <Base.Media className={this.decorateCSS("card-image")} value={item.image} />
+                              {imageOverlay && (
+                                <div className={this.decorateCSS("overlay")} />
+                              )}
+                            </div>
+                          )}
+                          <div className={this.decorateCSS("overlay-gradient")}></div>
+                          <div className={this.decorateCSS("card-content")}>
+                            {line && <div className={this.decorateCSS("stick")}></div>}
+                            <div className={this.decorateCSS("category")}>
+                              {this.castToString(item.text) && (
+                                <Base.H5 className={this.decorateCSS("category-name")}>
+                                  {item.text}
+                                </Base.H5>
+                              )}
+                              {(this.castToString(item.count) || this.castToString(item.label)) && (
+                                <div className={this.decorateCSS("count-badge")}>
+                                  {this.castToString(item.count) && (
+                                    <Base.P className={this.decorateCSS("count-value")}>
+                                      {item.count}
+                                    </Base.P>
+                                  )}
+                                  {this.castToString(item.label) && (
+                                    <Base.P className={this.decorateCSS("count-label")}>
+                                      {item.label}
+                                    </Base.P>
+                                  )}
+                                </div>
+                              )}
+                            </div>
                           </div>
-                        )}
-                        <div className={this.decorateCSS("overlay-gradient")}></div>
-                        <div className={this.decorateCSS("card-content")}>
-                          {line && <div className={this.decorateCSS("stick")}></div>}
-                          <div className={this.decorateCSS("category")}>
-                            {this.castToString(item.text) && (
-                              <Base.H5 className={this.decorateCSS("category-name")}>
-                                {item.text}
-                              </Base.H5>
-                            )}
-                            {(this.castToString(item.count) || this.castToString(item.label)) && (
-                              <div className={this.decorateCSS("count-badge")}>
-                                {this.castToString(item.count) && (
-                                  <Base.P className={this.decorateCSS("count-value")}>
-                                    {item.count}
-                                  </Base.P>
-                                )}
-                                {this.castToString(item.label) && (
-                                  <Base.P className={this.decorateCSS("count-label")}>
-                                    {item.label}
-                                  </Base.P>
-                                )}
-                              </div>
-                            )}
-                          </div>
+                          {hasValidCardButtons && (
+                            <div className={this.decorateCSS("card-button-container")}>
+                              {cardButtons.map((btn: CardButton, btnIndex: number) => {
+                                const btnText = this.castToString(btn.text);
+                                const btnIconMedia = btn.icon as TypeMediaInputValue;
+                                const btnIconExist = btnIconMedia && btnIconMedia.type === "icon" && btnIconMedia.name;
+                                if (!btnText && !btnIconExist) return null;
+                                return (
+                                  <ComposerLink key={btnIndex} path={btn.url}>
+                                    <Base.Button buttonType={btn.type} className={this.decorateCSS("card-button")}>
+                                      {btnText && <Base.P className={this.decorateCSS("card-button-text")}>{btn.text}</Base.P>}
+                                      {btnIconExist && <Base.Media className={this.decorateCSS("card-button-icon")} value={btnIconMedia} />}
+                                    </Base.Button>
+                                  </ComposerLink>
+                                );
+                              })}
+                            </div>
+                          )}
                         </div>
-                        {hasValidCardButtons && (
-                          <div className={this.decorateCSS("card-button-container")}>
-                            {cardButtons.map((btn: CardButton, btnIndex: number) => {
-                              const btnText = this.castToString(btn.text);
-                              const btnIconMedia = btn.icon as TypeMediaInputValue;
-                              const btnIconExist = btnIconMedia && btnIconMedia.type === "icon" && btnIconMedia.name;
-                              if (!btnText && !btnIconExist) return null;
-                              return (
-                                <ComposerLink key={btnIndex} path={btn.url}>
-                                  <Base.Button buttonType={btn.type} className={this.decorateCSS("card-button")}>
-                                    {btnText && <Base.P className={this.decorateCSS("card-button-text")}>{btn.text}</Base.P>}
-                                    {btnIconExist && <Base.Media className={this.decorateCSS("card-button-icon")} value={btnIconMedia} />}
-                                  </Base.Button>
-                                </ComposerLink>
-                              );
-                            })}
-                          </div>
-                        )}
-                      </div>
-                    </ComposerLink>
+                      </ComposerLink>
+                    </Base.Card>
                   );
                 })}
               </Base.ListGrid>

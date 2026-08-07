@@ -74,9 +74,7 @@
 
       .card {
         width: 100%;
-        border: solid 1px rgba(var(--composer-font-color-primary-rgb), 0.2);
         border-radius: var(--composer-border-radius-md);
-        padding: var(--composer-gap-xl);
         display: flex;
         flex-direction: column;
         gap: var(--composer-gap-lg);
@@ -246,8 +244,6 @@
 
       .right-column {
         .card {
-          padding: var(--composer-gap-md);
-
           .card-inner {
             flex-direction: column;
             gap: var(--composer-gap-lg);

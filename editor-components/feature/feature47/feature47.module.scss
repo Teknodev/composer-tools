@@ -34,18 +34,22 @@
         .cards-container {
             gap: var(--composer-gap-lg);
 
+            .card-shell {
+                display: flex;
+                flex-direction: column;
+                > * {
+                    flex: 1 1 auto;
+                }
+            }
+
             .card {
-                padding: var(--composer-gap-lg);
-                border-radius: var(--composer-border-radius-md);
-                box-shadow: var(--box-shadow-active);
                 justify-content: flex-start;
-                align-items: flex-start; 
+                align-items: flex-start;
                 height: 100%;
                 width: 100%;
 
                 &.only-button {
                     gap: 0;
-                    padding-top: 0;
                 }
 
                 .card-button {

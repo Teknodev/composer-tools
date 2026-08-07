@@ -240,7 +240,7 @@ class Stats5Page extends BaseStats {
                           ${this.getCardClasses(index, itemCountInRow)}
                         `}
                     >
-                      {item.stat && <Base.SectionTitle className={this.decorateCSS("card-data-title")}>{statValue}</Base.SectionTitle>}
+                      {item.stat && <Base.H2 className={this.decorateCSS("card-data-title")}>{statValue}</Base.H2>}
                       {titleExist && <Base.SectionDescription className={this.decorateCSS("card-data-description")}>{item.title}</Base.SectionDescription>}
                     </div>
                   );

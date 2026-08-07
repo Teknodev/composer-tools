@@ -131,6 +131,15 @@ class Stats36 extends BaseStats {
 
     static getName(): string { return "Stats 36"; }
 
+    private hasStatContent(stat: any): boolean {
+        const numberString = this.castToString(stat.number);
+        const valueExist = !!(numberString && numberString !== "" && numberString !== "0");
+        const subtitleExist = !!this.castToString(stat.subtitle);
+        const titleExist = !!this.castToString(stat.title);
+        const descriptionExist = !!this.castToString(stat.description);
+        return valueExist || titleExist || subtitleExist || descriptionExist;
+    }
+
     private AnimatedStat = ({
         stat,
         animationDuration = 2000,
@@ -186,7 +195,7 @@ class Stats36 extends BaseStats {
         const titleExist = this.castToString(stat.title);
         const descriptionExist = this.castToString(stat.description);
 
-        if (!valueExist && !titleExist && !subtitleExist && !descriptionExist) return null;
+        if (!this.hasStatContent(stat)) return null;
 
         return (
             <Base.VerticalContent className={this.decorateCSS("stat-item")}>
@@ -261,9 +270,7 @@ class Stats36 extends BaseStats {
                 description,
                 descriptionElement: item.description,
             };
-        }).filter(item => {
-            return (item.number !== "" && item.number !== "0") || item.title !== "" || item.subtitle !== "" || item.description !== "";
-        });
+        }).filter(item => this.hasStatContent(item));
 
         const animationProps = this.castToObject<{ statsAnimation: boolean; animationDuration: number }>("animation");
         const statsAnimation = !!animationProps?.statsAnimation;

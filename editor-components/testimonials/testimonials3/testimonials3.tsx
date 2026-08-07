@@ -125,7 +125,7 @@ class Testimonials3Page extends Testimonials {
             {this.castToString(this.getPropValue("title")) && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
             <Base.ListGrid className={this.decorateCSS("card-container")} gridCount={{ pc: this.getPropValue("itemCount"), tablet: 2, phone: 1 }}>
               {card.map((card: any, index: number) => (
-                <div className={this.decorateCSS("card")}>
+                <Base.Card className={this.decorateCSS("card")}>
                   {card.star > 0 && this.getPropValue("star_icon") && (
                     <div className={this.decorateCSS("stars")}>
                       {[...Array(Number(card.star))].map((_: any, index: number) => (
@@ -135,7 +135,7 @@ class Testimonials3Page extends Testimonials {
                   )}
                   {this.castToString(card.subtitle) && <Base.P className={this.decorateCSS("cardSubtitle")}> {card.subtitle}</Base.P>}
                   {card.image && <img className={this.decorateCSS("image")} src={card.image} alt={card.image} />}
-                </div>
+                </Base.Card>
               ))}
             </Base.ListGrid>
           </Base.VerticalContent>
