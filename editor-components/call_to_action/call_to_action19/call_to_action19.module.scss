@@ -26,6 +26,7 @@
 
                     .subtitle {
                         margin-left: 0;
+                        text-align: left;
                     }
 
                     .bottom-row {
@@ -180,6 +181,40 @@
                 .bottom-row {
                     .rating {
                         width: 100%;
+                    }
+                }
+            }
+
+            .left-section {
+                &.center {
+                    align-items: center;
+
+                    .header {
+                        align-items: center;
+
+                        .title,
+                        .description {
+                            text-align: center;
+                        }
+
+                        .subtitle {
+                            margin-left: auto;
+                            margin-right: auto;
+                            text-align: center;
+                        }
+
+                        .bottom-row {
+                            justify-content: center;
+
+                            .rating {
+                                align-items: center;
+
+                                .rating-value,
+                                .rating-text {
+                                    text-align: center;
+                                }
+                            }
+                        }
                     }
                 }
             }

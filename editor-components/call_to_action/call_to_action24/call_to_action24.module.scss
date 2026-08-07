@@ -94,4 +94,26 @@
     .container .max-content .card-container .card.has-background {
         padding: var(--composer-gap-xl) var(--composer-gap-md);
     }
+
+    .container .max-content .card-container .card .card-content.left {
+        align-items: flex-start;
+
+        .title,
+        .subtitle,
+        .description {
+            text-align: left;
+        }
+
+        .subtitle {
+            transform: translateX(3rem) !important;
+
+            &::before {
+                display: block !important;
+            }
+        }
+
+        .button-container {
+            justify-content: flex-start;
+        }
+    }
 }

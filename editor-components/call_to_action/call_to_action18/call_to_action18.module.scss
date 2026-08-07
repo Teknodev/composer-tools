@@ -16,12 +16,13 @@
         margin-left: 0;
       }
 
-      .title, .description {
+      .title,
+      .description {
         text-align: left;
       }
     }
 
-    
+
     &.card-background-enabled {
       background-color: var(--composer-font-color-primary);
       padding: 80px var(--composer-gap-xl);
@@ -38,7 +39,8 @@
           }
         }
 
-        .title, .description {
+        .title,
+        .description {
           color: var(--composer-html-background);
         }
       }
@@ -47,9 +49,10 @@
     .buttons {
       display: flex;
       gap: var(--composer-gap-sm);
-      flex-shrink: 0;
       flex-wrap: wrap;
       align-items: center;
+      justify-content: flex-end;
+      flex-shrink: 0;
 
       .button {
         .button-text {
@@ -65,11 +68,7 @@
     .max-content {
       flex-direction: row;
       align-items: center;
-      gap: var(--composer-gap-sm);
-
-      &.card-background-enabled {
-        padding: 80px var(--composer-gap-lg);
-      }
+      gap: var(--composer-gap-md);
     }
   }
 }
@@ -78,7 +77,25 @@
   .container {
     .max-content {
       flex-direction: column;
-      align-items: flex-start;
+
+      .header {
+        align-items: var(--composer-content-alignment);
+
+        .subtitle {
+          margin-right: 0;
+        }
+
+        .subtitle,
+        .title,
+        .description {
+          text-align: var(--composer-content-alignment);
+        }
+      }
+
+      .buttons {
+        justify-content: var(--composer-content-alignment);
+        width: 100%;
+      }
 
       &.card-background-enabled {
         padding: var(--composer-gap-xl) var(--composer-gap-md);

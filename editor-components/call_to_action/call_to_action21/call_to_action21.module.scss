@@ -64,6 +64,10 @@
                     .subtitle {
                         background: transparent;
                         padding: 0;
+
+                        &::before {
+                            background-color: var(--composer-font-color-secondary) !important;
+                        }
                     }
                 }
             }
@@ -80,5 +84,27 @@
 @container (max-width: #{$composer-phone-width}) {
     .container .max-content .card.has-background {
         padding: 50px 20px;
+    }
+
+    .container .max-content .card .card-content.left {
+        align-items: flex-start;
+
+        .title,
+        .subtitle,
+        .description {
+            text-align: left;
+        }
+
+        .subtitle {
+            transform: translateX(3rem) !important;
+
+            &::before {
+                display: block !important;
+            }
+        }
+
+        .button-container {
+            justify-content: flex-start;
+        }
     }
 }
