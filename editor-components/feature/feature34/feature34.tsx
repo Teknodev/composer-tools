@@ -7,6 +7,7 @@ import { INPUTS } from "../../../custom-hooks/input-templates";
 
 type FeatureItem = {
   icon: TypeMediaInputValue;
+  subtitle: React.JSX.Element;
   title: React.JSX.Element;
   description: React.JSX.Element;
 };
@@ -70,6 +71,12 @@ class Feature34 extends BaseFeature {
               },
             },
             {
+                type: "string",
+                key: "subtitle",
+                displayer: "Subtitle",
+                value: ""
+            },
+            {
               type: "string",
               key: "title",
               displayer: "Title",
@@ -99,6 +106,12 @@ class Feature34 extends BaseFeature {
                 type: "icon",
                 name: "BiCheck",
               },
+            },
+            {
+                type: "string",
+                key: "subtitle",
+                displayer: "Subtitle",
+                value: ""
             },
             {
               type: "string",
@@ -132,6 +145,12 @@ class Feature34 extends BaseFeature {
               },
             },
             {
+                type: "string",
+                key: "subtitle",
+                displayer: "Subtitle",
+                value: ""
+            },
+            {
               type: "string",
               key: "title",
               displayer: "Title",
@@ -161,6 +180,12 @@ class Feature34 extends BaseFeature {
                 type: "icon",
                 name: "BiCheck",
               },
+            },
+            {
+                type: "string",
+                key: "subtitle",
+                displayer: "Subtitle",
+                value: ""
             },
             {
               type: "string",
@@ -194,6 +219,12 @@ class Feature34 extends BaseFeature {
               },
             },
             {
+                type: "string",
+                key: "subtitle",
+                displayer: "Subtitle",
+                value: ""
+            },
+            {
               type: "string",
               key: "title",
               displayer: "Title",
@@ -223,6 +254,12 @@ class Feature34 extends BaseFeature {
                 type: "icon",
                 name: "BiCheck",
               },
+            },
+            {
+                type: "string",
+                key: "subtitle",
+                displayer: "Subtitle",
+                value: ""
             },
             {
               type: "string",
@@ -256,6 +293,12 @@ class Feature34 extends BaseFeature {
               },
             },
             {
+                type: "string",
+                key: "subtitle",
+                displayer: "Subtitle",
+                value: ""
+            },
+            {
               type: "string",
               key: "title",
               displayer: "Title",
@@ -287,6 +330,12 @@ class Feature34 extends BaseFeature {
               },
             },
             {
+                type: "string",
+                key: "subtitle",
+                displayer: "Subtitle",
+                value: ""
+            },
+            {
               type: "string",
               key: "title",
               displayer: "Title",
@@ -306,7 +355,7 @@ class Feature34 extends BaseFeature {
     this.addProp({
       type: "number",
       key: "itemCount",
-      displayer: "Item Count In a Row",
+      displayer: "Item Count in a Row",
       value: 4,
     });
   }
@@ -350,13 +399,14 @@ class Feature34 extends BaseFeature {
 
           {showFeatures && (
             <Base.ListGrid
-              gridCount={{ pc: itemCount }}
+              gridCount={{ pc: itemCount, tablet: 4 }}
               className={this.decorateCSS("features-grid")}
             >
               {features.map((feature, index) => {
+                const hasSubtitle = this.castToString(feature.subtitle);
                 const hasTitle = this.castToString(feature.title);
                 const hasDescription = this.castToString(feature.description);
-                const hasContent = hasTitle || hasDescription || feature.icon;
+                const hasContent = hasSubtitle || hasTitle || hasDescription || feature.icon;
 
                 return (
                   hasContent && (
@@ -367,6 +417,11 @@ class Feature34 extends BaseFeature {
                         </div>
                       )}
                       <Base.VerticalContent className={this.decorateCSS("content")}>
+                        {hasSubtitle && (
+                          <Base.H6 className={this.decorateCSS("feature-subtitle")}>
+                            {feature.subtitle}
+                          </Base.H6>
+                        )}
                         {hasTitle && (
                           <Base.H5 className={this.decorateCSS("feature-title")}>
                             {feature.title}

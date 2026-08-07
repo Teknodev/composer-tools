@@ -1,6 +1,6 @@
-import * as React from "react";
+﻿import * as React from "react";
 import { BaseFeature, TypeMediaInputValue, TypeUsableComponentProps } from "../../EditorComponent";
-import styles from "./feature52.module.scss";
+import styles from "./feature48.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "../../../custom-hooks/input-templates";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
@@ -11,7 +11,7 @@ type ServiceItemType = {
     description: React.JSX.Element;
 };
 
-class Feature52 extends BaseFeature {
+class Feature48 extends BaseFeature {
     private containerRef = React.createRef<HTMLDivElement>();
     private lastItemCount: number | undefined;
     private lastIsSmallScreen: boolean | undefined;
@@ -51,7 +51,7 @@ class Feature52 extends BaseFeature {
         this.addProp({
             type: "number",
             key: "itemCount",
-            displayer: "Item Count in A Row",
+            displayer: "Item Count in a Row",
             value: 1,
         });
 
@@ -277,7 +277,7 @@ class Feature52 extends BaseFeature {
     }
 
     static getName(): string {
-        return "Feature 52";
+        return "Feature 48";
     }
 
     onComponentDidMount() {
@@ -453,7 +453,7 @@ class Feature52 extends BaseFeature {
 
                                                     return (
                                                         <div
-                                                            key={`feature52-service-${globalIdx}`}
+                                                            key={`feature48-service-${globalIdx}`}
                                                             className={`${this.decorateCSS("item-container")} ${isActive && this.decorateCSS("active-item")}`}
                                                         >
                                                             {itemHeaderExist && (
@@ -514,4 +514,4 @@ class Feature52 extends BaseFeature {
     }
 }
 
-export default Feature52;
+export default Feature48;

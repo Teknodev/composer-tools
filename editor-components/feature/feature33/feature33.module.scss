@@ -59,6 +59,7 @@
             .header .subtitle,
             .header .title,
             .header .description,
+            .features-grid .feature-item .feature-subtitle,
             .features-grid .feature-item .feature-title,
             .features-grid .feature-item .feature-text {
                 text-align: left;
@@ -72,16 +73,14 @@
                     margin-right: auto;
                 }
 
-                .description {
-                    margin-top: var(--composer-gap-md);
-                }
+              
             }
 
             .features-grid {
                 .feature-item {
-                    display: flex;
-                    flex-direction: column;
-                    gap: var(--composer-gap-md);
+                    .feature-subtitle {
+                        color: var(--composer-font-color-primary);
+                    }
 
                     .feature-title {
                         color: var(--composer-font-color-primary);

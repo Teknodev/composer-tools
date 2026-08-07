@@ -19,7 +19,8 @@ interface Section {
 
 interface ProductCard {
     title: React.JSX.Element;
-    image: TypeMediaInputValue;
+    media: TypeMediaInputValue;
+    overlay: boolean;
     sections: Section[];
     buttons: ButtonTypeObj[];
 }
@@ -67,12 +68,18 @@ class Feature38 extends BaseFeature {
                         },
                         {
                             type: "media",
-                            key: "image",
+                            key: "media",
                             displayer: "Media",
                             additionalParams: {
                                 availableTypes: ["image", "video"],
                             },
                             value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6964a92af959f6002d8277e2?alt=media" }
+                        },
+                        {
+                            type: "boolean",
+                            key: "overlay",
+                            displayer: "Overlay",
+                            value: false,
                         },
                         {
                             type: "array",
@@ -129,12 +136,18 @@ class Feature38 extends BaseFeature {
                         },
                         {
                             type: "media",
-                            key: "image",
+                            key: "media",
                             displayer: "Media",
                             additionalParams: {
                                 availableTypes: ["image", "video"],
                             },
                             value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6964a94ff959f6002d827822?alt=media" }
+                        },
+                        {
+                            type: "boolean",
+                            key: "overlay",
+                            displayer: "Overlay",
+                            value: false,
                         },
                         {
                             type: "array",
@@ -191,12 +204,18 @@ class Feature38 extends BaseFeature {
                         },
                         {
                             type: "media",
-                            key: "image",
+                            key: "media",
                             displayer: "Media",
                             additionalParams: {
                                 availableTypes: ["image", "video"],
                             },
                             value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6964a966f959f6002d8278af?alt=media" }
+                        },
+                        {
+                            type: "boolean",
+                            key: "overlay",
+                            displayer: "Overlay",
+                            value: false,
                         },
                         {
                             type: "array",
@@ -265,7 +284,7 @@ class Feature38 extends BaseFeature {
         const hasCards = cards.some((card: ProductCard) => this.castToString(card.title));
         const hasContent = subtitleExist || titleExist || descriptionExist || hasCards;
         const hasRightContent = cards.some((card: ProductCard) =>
-            card.image ||
+            card.media ||
             card.sections?.length > 0 ||
             card.buttons?.some((btn) => this.castToString(btn.text))
         );
@@ -313,16 +332,19 @@ class Feature38 extends BaseFeature {
                                         key={index}
                                         className={`${this.decorateCSS("right-content")} ${isActive && this.decorateCSS("active-item")}`}
                                     >
-                                        {card.image && (
-                                            <div className={this.decorateCSS("image-wrapper")}>
-                                                <Base.Media
-                                                    value={card.image}
-                                                    className={this.decorateCSS("itemImage")}
-                                                />
-                                            </div>
-                                        )}
+                                        {card.media && (
+                            <div className={this.decorateCSS("image-wrapper")}>
+                                <div className={this.decorateCSS("image-inner")}>
+                                    <Base.Media
+                                        value={card.media}
+                                        className={this.decorateCSS("itemImage")}
+                                    />
+                                    {card.overlay && <div className={this.decorateCSS("overlay")} />}
+                                </div>
+                            </div>
+                        )}
                                         {card.sections.length > 0 && (
-                                            <div className={this.decorateCSS("sectionsWrapper")}>
+                                            <Base.VerticalContent className={this.decorateCSS("sectionsWrapper")}>
                                                 {card.sections.map((section: Section, sectionIndex: number) => {
                                                     const sectionTitle = section.title;
                                                     const sectionText = section.text;
@@ -337,7 +359,7 @@ class Feature38 extends BaseFeature {
                                                         </Base.P>
                                                     );
                                                 })}
-                                            </div>
+                                            </Base.VerticalContent>
                                         )}
                                         {(() => {
                                             const validButtons = card.buttons?.filter((btn) => this.castToString(btn.text)) || [];

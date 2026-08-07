@@ -5,17 +5,53 @@ import ComposerLink from "../../../composer-base-components/Link/ComposerLinkPro
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "../../../custom-hooks/input-templates";
 
+type Button = {
+    text: React.JSX.Element;
+    url: string;
+    icon: TypeMediaInputValue;
+    type: string;
+};
+
 interface Card{
-    image: TypeMediaInputValue;
+    media: TypeMediaInputValue;
     video: TypeMediaInputValue;
+    overlay: boolean;
+    subtitle: React.JSX.Element;
     title: React.JSX.Element;
     description: React.JSX.Element;
-    button: INPUTS.CastedButton;
+    buttons: Button[];
 }
 
 class Feature21 extends BaseFeature{
     constructor(props?: any) {
         super(props, styles);
+
+        this.addProp({
+            type: "string",
+            key: "subtitle",
+            displayer: "Subtitle",
+            value: "",
+        });
+        this.addProp({
+            type: "string",
+            key: "title",
+            displayer: "Title",
+            value: "",
+        });
+        this.addProp({
+            type: "string",
+            key: "description",
+            displayer: "Description",
+            value: "",
+        });
+        this.addProp({
+            type: "array",
+            key: "buttons",
+            displayer: "Buttons",
+            value: [
+                INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+            ],
+        });
 
         this.addProp({
             type: "array",
@@ -29,7 +65,7 @@ class Feature21 extends BaseFeature{
                     value: [
                         {
                             type: "media",
-                            key: "image",
+                            key: "media",
                             displayer: "Media",
                             additionalParams: {
                                 availableTypes: ["image","video"],
@@ -52,6 +88,18 @@ class Feature21 extends BaseFeature{
                             },
                         },
                         {
+                            type: "boolean",
+                            key: "overlay",
+                            displayer: "Overlay",
+                            value: false,
+                        },
+                        {
+                            type: "string",
+                            key: "subtitle",
+                            displayer: "Subtitle",
+                            value: "",
+                        },
+                        {
                             type: "string",
                             key: "title",
                             displayer: "Title",
@@ -63,7 +111,14 @@ class Feature21 extends BaseFeature{
                             displayer: "Description",
                             value: "Go from plan to published in a third of the time—days, not weeks—with time saving tools specifically built for busy professionals like yourself.",
                         },
-                        INPUTS.BUTTON("button","Button","Learn More","",null,null,"Tertiary"),
+                        {
+                            type: "array",
+                            key: "buttons",
+                            displayer: "Buttons",
+                            value: [
+                                INPUTS.BUTTON("button", "Button", "Learn More", "", null, null, "Tertiary"),
+                            ],
+                        },
                     ]
                 },
                 {
@@ -73,7 +128,7 @@ class Feature21 extends BaseFeature{
                     value: [
                         {
                             type: "media",
-                            key: "image",
+                            key: "media",
                             displayer: "Media",
                             additionalParams: {
                                 availableTypes: ["image","video"],
@@ -96,6 +151,18 @@ class Feature21 extends BaseFeature{
                             },
                         },
                         {
+                            type: "boolean",
+                            key: "overlay",
+                            displayer: "Overlay",
+                            value: false,
+                        },
+                        {
+                            type: "string",
+                            key: "subtitle",
+                            displayer: "Subtitle",
+                            value: "",
+                        },
+                        {
                             type: "string",
                             key: "title",
                             displayer: "Title",
@@ -107,7 +174,14 @@ class Feature21 extends BaseFeature{
                             displayer: "Description",
                             value: "Eliminate busy work and eradicate ongoing website maintenance to scale your client base without scaling your team, costs, or workload.",
                         },
-                        INPUTS.BUTTON("button","Button","Learn More","",null,null,"Tertiary"),
+                        {
+                            type: "array",
+                            key: "buttons",
+                            displayer: "Buttons",
+                            value: [
+                                INPUTS.BUTTON("button", "Button", "Learn More", "", null, null, "Tertiary"),
+                            ],
+                        },
                     ]
                 },
                 {
@@ -117,7 +191,7 @@ class Feature21 extends BaseFeature{
                     value: [
                         {
                             type: "media",
-                            key: "image",
+                            key: "media",
                             displayer: "Media",
                             additionalParams: {
                                 availableTypes: ["image","video"],
@@ -140,6 +214,18 @@ class Feature21 extends BaseFeature{
                             },
                         },
                         {
+                            type: "boolean",
+                            key: "overlay",
+                            displayer: "Overlay",
+                            value: false,
+                        },
+                        {
+                            type: "string",
+                            key: "subtitle",
+                            displayer: "Subtitle",
+                            value: "",
+                        },
+                        {
                             type: "string",
                             key: "title",
                             displayer: "Title",
@@ -151,7 +237,14 @@ class Feature21 extends BaseFeature{
                             displayer: "Description",
                             value: "Rank higher and load faster with performance metrics 51% higher than the industry average and built traffic-boosting SEO and AEO tools built right in.",
                         },
-                        INPUTS.BUTTON("button","Button","Learn More","",null,null,"Tertiary"),
+                        {
+                            type: "array",
+                            key: "buttons",
+                            displayer: "Buttons",
+                            value: [
+                                INPUTS.BUTTON("button", "Button", "Learn More", "", null, null, "Tertiary"),
+                            ],
+                        },
                     ]
                 },
                 {
@@ -161,7 +254,7 @@ class Feature21 extends BaseFeature{
                     value: [
                         {
                             type: "media",
-                            key: "image",
+                            key: "media",
                             displayer: "Media",
                             additionalParams: {
                                 availableTypes: ["image","video"],
@@ -176,12 +269,24 @@ class Feature21 extends BaseFeature{
                             key: "video",
                             displayer: "Video",
                             additionalParams: {
-                                availableTypes: ["image"],
+                                availableTypes: ["image", "video"],
                             },
                             value: {
                                 type: "video",
                                 url: "",
                             },
+                        },
+                        {
+                            type: "boolean",
+                            key: "overlay",
+                            displayer: "Overlay",
+                            value: false,
+                        },
+                        {
+                            type: "string",
+                            key: "subtitle",
+                            displayer: "Subtitle",
+                            value: "",
                         },
                         {
                             type: "string",
@@ -195,7 +300,14 @@ class Feature21 extends BaseFeature{
                             displayer: "Description",
                             value: "Seamlessly integrate Duda into your workflows with powerful APIs and automation tools. Deliver and monetize websites, stores, and over 70 apps—all under your brand.",
                         },
-                        INPUTS.BUTTON("button","Button","Learn More","",null,null,"Tertiary"),
+                        {
+                            type: "array",
+                            key: "buttons",
+                            displayer: "Buttons",
+                            value: [
+                                INPUTS.BUTTON("button", "Button", "Learn More", "", null, null, "Tertiary"),
+                            ],
+                        },
                     ]
                 },
             ]
@@ -250,26 +362,81 @@ class Feature21 extends BaseFeature{
     render() {
         const cards = this.castToObject<Card[]>("cards") || [];
         const hoveredIndex = this.getComponentState("hoveredIndex");
+        const subtitleExist = this.castToString(this.getPropValue("subtitle"));
+        const titleExist = this.castToString(this.getPropValue("title"));
+        const descriptionExist = this.castToString(this.getPropValue("description"));
+        const topButtons = this.castToObject<Button[]>("buttons");
+        const hasValidTopButtons = topButtons && topButtons.some((btn: Button) => {
+            const buttonText = this.castToString(btn.text);
+            const iconExist = btn.icon && (btn.icon.type === "icon" ? btn.icon.name : btn.icon.url);
+            return buttonText || iconExist;
+        });
+        const hasAnyTopContent = subtitleExist || titleExist || descriptionExist || hasValidTopButtons;
 
         const alignment = Base.getContentAlignment();
 
         return(
             <Base.Container className={this.decorateCSS("container")}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
+                    {hasAnyTopContent && (
+                        <Base.VerticalContent className={this.decorateCSS("top-content")}>
+                            {subtitleExist && (
+                                <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                                    {this.getPropValue("subtitle")}
+                                </Base.SectionSubTitle>
+                            )}
+                            {titleExist && (
+                                <Base.SectionTitle className={this.decorateCSS("title")}>
+                                    {this.getPropValue("title")}
+                                </Base.SectionTitle>
+                            )}
+                            {descriptionExist && (
+                                <Base.SectionDescription className={this.decorateCSS("description")}>
+                                    {this.getPropValue("description")}
+                                </Base.SectionDescription>
+                            )}
+                            {hasValidTopButtons && (
+                                <div className={this.decorateCSS("button-container")}>
+                                    {topButtons.map((item: Button, index: number) => {
+                                        const buttonText = this.castToString(item.text);
+                                        const iconExist = item.icon && (item.icon.type === "icon" ? item.icon.name : item.icon.url);
+                                        if (!buttonText && !iconExist) return null;
+                                        return (
+                                            <ComposerLink key={index} path={item.url}>
+                                                <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
+                                                    {buttonText && (
+                                                        <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>
+                                                    )}
+                                                    {iconExist && (
+                                                        <Base.Media className={this.decorateCSS("button-icon")} value={item.icon} />
+                                                    )}
+                                                </Base.Button>
+                                            </ComposerLink>
+                                        );
+                                    })}
+                                </div>
+                            )}
+                        </Base.VerticalContent>
+                    )}
                     <Base.ListGrid gridCount={{ pc: 4, tablet: 2, phone: 1 }} className={this.decorateCSS("grid-container")} >
                         {cards.map((card: Card, index: number) => {
-                            const cardImage = card?.image;
+                            const cardImage = card?.media;
                             const cardVideo = card?.video;
+                            const cardSubtitle = card?.subtitle;
+                            const cardSubtitleExist = this.castToString(cardSubtitle);
                             const cardTitle = card?.title;
                             const cardTitleExist = this.castToString(cardTitle);
                             const cardDescription = card?.description;
                             const cardDescriptionExist = this.castToString(cardDescription);
-                            const button = card?.button || null;
-                            const buttonTextExist = this.castToString(button.text)
-                            const buttonExist = buttonTextExist ||  button.icon
+                            const buttons = card?.buttons || [];
+                            const hasValidButtons = buttons.some((btn: Button) => {
+                                const btnText = this.castToString(btn.text);
+                                const iconExist = btn.icon && (btn.icon.type === "icon" ? btn.icon.name : btn.icon.url);
+                                return btnText || iconExist;
+                            });
                             const flexClass = this.getCardFlexClass(index);
                             const cardImageExist = (cardImage && cardImage.url) || (cardVideo && cardVideo.url)
-                            const cardExist = cardImageExist || cardTitleExist || cardDescriptionExist || buttonExist
+                            const cardExist = cardImageExist || cardSubtitleExist || cardTitleExist || cardDescriptionExist || hasValidButtons
 
                             return cardExist && (
                                 <div 
@@ -296,45 +463,54 @@ class Feature21 extends BaseFeature{
                                                 />
                                             ) : cardImage && cardImage.url && (
                                                 <Base.Media
-                                                    value={card.image}
+                                                    value={card.media}
                                                     className={this.decorateCSS("card-image")}
                                                 />
                                             )}
+                                            {card.overlay && <div className={this.decorateCSS("overlay")} />}
                                         </div>}
                                         { 
                                         <div className={this.decorateCSS("text-content")}>
-                                            {<div className={this.decorateCSS("left-side")}>
+                                            {<Base.VerticalContent className={this.decorateCSS("left-side")}>
+                                                {cardSubtitleExist && (
+                                                    <Base.H6 className={this.decorateCSS("card-subtitle")}>
+                                                        {cardSubtitle}
+                                                    </Base.H6>
+                                                )}
                                                 {cardTitleExist && (
-                                                    <Base.H4 className={this.decorateCSS("card-title")}>
+                                                    <Base.H5 className={this.decorateCSS("card-title")}>
                                                         {cardTitle}
-                                                    </Base.H4>
+                                                    </Base.H5>
                                                 )}
                                                 {cardDescriptionExist && (
                                                     <Base.P className={this.decorateCSS("card-description")}>
                                                         {cardDescription}
                                                     </Base.P>
                                                 )}
-                                            </div>}
-                                            {buttonExist && <div className={`${this.decorateCSS("right-side")} ${alignment === "center" ? this.decorateCSS("center-alignment") : ""}`}>
-                                                {buttonExist && (
-                                                    <ComposerLink path={button.url || "#"}>
-                                                        <Base.Button
-                                                            buttonType={button.type || "Tertiary"}
-                                                            className={this.decorateCSS("card-button")}
-                                                        >
-                                                           {buttonTextExist && 
-                                                            <Base.P className={this.decorateCSS("button-text")}>
-                                                                {button.text}
-                                                            </Base.P>}
-                                                            {button.icon && (
-                                                                <Base.Media
-                                                                    value={button.icon}
-                                                                    className={this.decorateCSS("button-icon")}
-                                                                />
-                                                            )}
-                                                        </Base.Button>
-                                                    </ComposerLink>
-                                                )}
+                                            </Base.VerticalContent>}
+                                            {hasValidButtons && <div className={`${this.decorateCSS("right-side")} ${alignment === "center" ? this.decorateCSS("center-alignment") : ""}`}>
+                                                <div className={this.decorateCSS("button-container")}>
+                                                    {buttons.map((btn: Button, btnIndex: number) => {
+                                                        const btnText = this.castToString(btn.text);
+                                                        const iconExist = btn.icon && (btn.icon.type === "icon" ? btn.icon.name : btn.icon.url);
+                                                        if (!btnText && !iconExist) return null;
+                                                        return (
+                                                            <ComposerLink key={btnIndex} path={btn.url || "#"}>
+                                                                <Base.Button
+                                                                    buttonType={btn.type || "Tertiary"}
+                                                                    className={this.decorateCSS("card-button")}
+                                                                >
+                                                                    {btnText && (
+                                                                        <Base.P className={this.decorateCSS("button-text")}>{btn.text}</Base.P>
+                                                                    )}
+                                                                    {iconExist && (
+                                                                        <Base.Media value={btn.icon} className={this.decorateCSS("button-icon")} />
+                                                                    )}
+                                                                </Base.Button>
+                                                            </ComposerLink>
+                                                        );
+                                                    })}
+                                                </div>
                                             </div>}
                                         </div>
                                         }

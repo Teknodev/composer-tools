@@ -41,44 +41,41 @@
                 gap: var(--composer-gap-lg);
 
                 .card-container {
-                    display: flex;
-                    gap: var(--composer-gap-sm);
-                    flex-direction: column;
-
-                    .icon-box {
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
-                        background-color: var(--composer-primary-color);
-                        border-radius: var(--composer-border-radius-full);
-                        padding: var(--composer-gap-md);
-                        height: 70px;
-                        width: 70px;
-
-                        &.no-bg {
-                            background-color: transparent;
-
-                            .card-icon {
-                                color: var(--composer-primary-color);
-                            }
-                        }
-
-                        .card-icon {
-                            font-size: 2.5rem;
-                            color: var(--composer-font-color-secondary);
-                            display: flex;
-
-                            &.is-image {
-                                width: 100%;
-                                height: 100%;
-                            }
-                        }
-                    }
-
                     .card-content {
                         flex: 1;
                         align-items: flex-start;
 
+                        .icon-box {
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            background-color: var(--composer-primary-color);
+                            border-radius: var(--composer-border-radius-full);
+                            padding: var(--composer-gap-md);
+                            height: 70px;
+                            width: 70px;
+
+                            &.no-bg {
+                                background-color: transparent;
+
+                                .card-icon {
+                                    color: var(--composer-primary-color);
+                                }
+                            }
+
+                            .card-icon {
+                                font-size: 2.5rem;
+                                color: var(--composer-font-color-secondary);
+                                display: flex;
+
+                                &.is-image {
+                                    width: 100%;
+                                    height: 100%;
+                                }
+                            }
+                        }
+
+                        .card-subtitle,
                         .card-title {
                             color: var(--composer-font-color-primary);
                             text-align: left;
@@ -88,6 +85,17 @@
                             color: var(--composer-tertiary-color);
                             text-align: left;
                         }
+
+                        .card-button {
+                            display: flex;
+                            gap: var(--composer-gap-sm);
+                            flex-wrap: wrap;
+
+                            .card-button-text,
+                            .card-button-icon {
+                                content: "";
+                            }
+                        }
                     }
                 }
             }
@@ -95,7 +103,7 @@
     }
 }
 
-@container (max-width: #{$composer-tablet-width}) {
+@container (max-width: #{$composer-phone-width}) {
     .container {
         .max-content {
             .wrapper {
@@ -126,30 +134,8 @@
 
                 .right {
                     width: 100%;
-                    row-gap: var(--composer-gap-md);
-
-                    .card-container {
-                        .icon-box {
-                            height: 60px;
-                            width: 60px;
-
-                            .card-icon {
-                                font-size: 2rem;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-}
-
-@container (max-width: #{$composer-phone-width}) {
-    .container {
-        .max-content {
-            .wrapper {
-                .right {
                     gap: var(--composer-gap-md);
+                    row-gap: var(--composer-gap-md);
 
                     .card-container {
                         .icon-box {

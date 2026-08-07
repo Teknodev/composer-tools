@@ -8,10 +8,11 @@ import ComposerLink from "../../../composer-base-components/Link/ComposerLinkPro
 type Feature29CardSide = {
   visibility?: boolean;
   overlay?: boolean;
-  image?: TypeMediaInputValue;
+  media?: TypeMediaInputValue;
   title: React.JSX.Element;
+  subtitle: React.JSX.Element;
   description: React.JSX.Element;
-  button?: TypeUsableComponentProps[];
+  buttons?: TypeUsableComponentProps[];
 };
 
 class Feature28 extends BaseFeature {
@@ -40,6 +41,13 @@ class Feature28 extends BaseFeature {
     });
 
     this.addProp({
+      type: "array",
+      key: "buttons",
+      displayer: "Buttons",
+      value: [INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary")],
+    });
+
+    this.addProp({
       type: "object",
       key: "topLeftSide",
       displayer: "Left Side Top Card",
@@ -52,7 +60,7 @@ class Feature28 extends BaseFeature {
         },
         {
           type: "media",
-          key: "image",
+          key: "media",
           displayer: "Media",
           additionalParams: {
             availableTypes: ["image", "video"],
@@ -70,6 +78,12 @@ class Feature28 extends BaseFeature {
         },
         {
           type: "string",
+          key: "subtitle",
+          displayer: "Subtitle",
+          value: "",
+        },
+        {
+          type: "string",
           key: "title",
           displayer: "Title",
           value: "One integration, all your transaction needs",
@@ -81,7 +95,12 @@ class Feature28 extends BaseFeature {
           value:
             "Every payment option covered. Designed to support diverse gaming setups, including online casinos, sportsbooks, bookmakers, lotteries, bingo, draws and raffles, and more.",
         },
-        INPUTS.BUTTON("button", "Button", "Link", "", "IoIosArrowForward", null, "Bare"),
+        {
+          type: "array",
+          key: "buttons",
+          displayer: "Buttons",
+          value: [INPUTS.BUTTON("button", "Button", "Link", "", "IoIosArrowForward", null, "Bare")],
+        },
       ],
     });
 
@@ -98,7 +117,7 @@ class Feature28 extends BaseFeature {
         },
         {
           type: "media",
-          key: "image",
+          key: "media",
           displayer: "Media",
           additionalParams: {
             availableTypes: ["image", "video"],
@@ -116,6 +135,12 @@ class Feature28 extends BaseFeature {
         },
         {
           type: "string",
+          key: "subtitle",
+          displayer: "Subtitle",
+          value: "",
+        },
+        {
+          type: "string",
           key: "title",
           displayer: "Title",
           value: "Seamless setup, faster payments",
@@ -127,7 +152,12 @@ class Feature28 extends BaseFeature {
           value:
             "Streamlined onboarding that is quick, transparent, and efficient. Get full visibility at every step to help you speed up your market entry.",
         },
-        INPUTS.BUTTON("button", "Button", "Link", "", "IoIosArrowForward", null, "Bare"),
+        {
+          type: "array",
+          key: "buttons",
+          displayer: "Buttons",
+          value: [INPUTS.BUTTON("button", "Button", "Link", "", "IoIosArrowForward", null, "Bare")],
+        },
       ],
     });
 
@@ -144,7 +174,7 @@ class Feature28 extends BaseFeature {
         },
         {
           type: "media",
-          key: "image",
+          key: "media",
           displayer: "Media",
           additionalParams: {
             availableTypes: ["image", "video"],
@@ -162,6 +192,12 @@ class Feature28 extends BaseFeature {
         },
         {
           type: "string",
+          key: "subtitle",
+          displayer: "Subtitle",
+          value: "",
+        },
+        {
+          type: "string",
           key: "title",
           displayer: "Title",
           value: "",
@@ -172,7 +208,12 @@ class Feature28 extends BaseFeature {
           displayer: "Description",
           value: "",
         },
-        INPUTS.BUTTON("button", "Button", "", "", "", null, "Bare"),
+        {
+          type: "array",
+          key: "buttons",
+          displayer: "Buttons",
+          value: [INPUTS.BUTTON("button", "Button", "", "", "", null, "Bare")],
+        },
       ],
     });
 
@@ -189,7 +230,7 @@ class Feature28 extends BaseFeature {
         },
         {
           type: "media",
-          key: "image",
+          key: "media",
           displayer: "Media",
           additionalParams: {
             availableTypes: ["image", "video"],
@@ -207,6 +248,12 @@ class Feature28 extends BaseFeature {
         },
         {
           type: "string",
+          key: "subtitle",
+          displayer: "Subtitle",
+          value: "",
+        },
+        {
+          type: "string",
           key: "title",
           displayer: "Title",
           value: "",
@@ -217,7 +264,12 @@ class Feature28 extends BaseFeature {
           displayer: "Description",
           value: "",
         },
-        INPUTS.BUTTON("button", "Button", "", "", "", null, "Bare"),
+        {
+          type: "array",
+          key: "buttons",
+          displayer: "Buttons",
+          value: [INPUTS.BUTTON("button", "Button", "", "", "", null, "Bare")],
+        },
       ],
     });
 
@@ -234,7 +286,7 @@ class Feature28 extends BaseFeature {
         },
         {
           type: "media",
-          key: "image",
+          key: "media",
           displayer: "Media",
           additionalParams: {
             availableTypes: ["image", "video"],
@@ -252,6 +304,12 @@ class Feature28 extends BaseFeature {
         },
         {
           type: "string",
+          key: "subtitle",
+          displayer: "Subtitle",
+          value: "",
+        },
+        {
+          type: "string",
           key: "title",
           displayer: "Title",
           value: "New payment methods, made easy",
@@ -263,7 +321,12 @@ class Feature28 extends BaseFeature {
           value:
             "Providing eWallets, SMS top-ups, and various alternative payment methods to step-up your gaming operations.",
         },
-        INPUTS.BUTTON("button", "Button", "", "", "", null, "Bare"),
+        {
+          type: "array",
+          key: "buttons",
+          displayer: "Buttons",
+          value: [INPUTS.BUTTON("button", "Button", "", "", "", null, "Bare")],
+        },
       ],
     });
 
@@ -280,7 +343,7 @@ class Feature28 extends BaseFeature {
         },
         {
           type: "media",
-          key: "image",
+          key: "media",
           displayer: "Media",
           additionalParams: {
             availableTypes: ["image", "video"],
@@ -298,6 +361,12 @@ class Feature28 extends BaseFeature {
         },
         {
           type: "string",
+          key: "subtitle",
+          displayer: "Subtitle",
+          value: "",
+        },
+        {
+          type: "string",
           key: "title",
           displayer: "Title",
           value: "Reliable payouts engine, total dependability",
@@ -309,7 +378,12 @@ class Feature28 extends BaseFeature {
           value:
             "Timely and consistent player payments guaranteed, so no payout is ever missed. Processed through a single API request.",
         },
-        INPUTS.BUTTON("button", "Button", "", "", "", null, "Bare"),
+        {
+          type: "array",
+          key: "buttons",
+          displayer: "Buttons",
+          value: [INPUTS.BUTTON("button", "Button", "", "", "", null, "Bare")],
+        },
       ],
     });
 
@@ -343,7 +417,10 @@ class Feature28 extends BaseFeature {
     const heading = this.getPropValue("heading");
     const title = this.getPropValue("title");
     const description = this.getPropValue("description");
-    const hasHeading = this.castToString(heading) || this.castToString(title) || this.castToString(description);
+    const headerButtons = this.castToObject<INPUTS.CastedButton[]>("buttons") || [];
+    const validHeaderButtons = headerButtons.filter((button: INPUTS.CastedButton) => this.castToString(button.text));
+    const hasHeading =
+      this.castToString(heading) || this.castToString(title) || this.castToString(description) || validHeaderButtons.length > 0;
     const hoverAnimation = this.getPropValue("hoverAnimation")[0];
 
     const renderButton = (buttonGroup?: TypeUsableComponentProps[]) => {
@@ -356,6 +433,8 @@ class Feature28 extends BaseFeature {
       const buttonTextExist = this.castToString(buttonText);
       const iconExist = buttonIcon?.name || buttonIcon?.url;
       const imageExist = buttonImage?.url;
+
+      if (!buttonTextExist && !iconExist && !imageExist) return null;
 
       return (
         <ComposerLink path={buttonUrl || "#"}>
@@ -371,29 +450,47 @@ class Feature28 extends BaseFeature {
       );
     };
 
+    const renderCardButtons = (buttonGroups?: TypeUsableComponentProps[]) => {
+      if (!buttonGroups?.length) return null;
+
+      const renderedButtons = buttonGroups
+        .map((buttonGroup, index) => {
+          const button = renderButton(buttonGroup.value as TypeUsableComponentProps[]);
+          return button && <React.Fragment key={`card-button-${index}`}>{button}</React.Fragment>;
+        })
+        .filter(Boolean);
+
+      if (!renderedButtons.length) return null;
+
+      return <div className={this.decorateCSS("card-button-container")}>{renderedButtons}</div>;
+    };
+
     const renderCard = (
-      image: TypeMediaInputValue | undefined,
+      media: TypeMediaInputValue | undefined,
       overlay: boolean,
       title: React.JSX.Element,
+      subtitle: React.JSX.Element,
       description: React.JSX.Element,
-      button?: TypeUsableComponentProps[],
+      buttons?: TypeUsableComponentProps[],
       additionalClass?: string
     ) => {
-      const imageUrl = image && image.type !== "icon" && image.url;
+      const mediaUrl = media && media.type !== "icon" && media.url;
       const titleExist = !!this.castToString(title);
+      const subtitleExist = !!this.castToString(subtitle);
       const descriptionExist = this.castToString(description);
 
       return (
         <div
-        className={[this.decorateCSS("card"), additionalClass, imageUrl && this.decorateCSS("with-bg")]}
+          className={[this.decorateCSS("card"), additionalClass, mediaUrl && this.decorateCSS("with-bg")]}
           data-animation={hoverAnimation}
         >
-          {imageUrl && <Base.Media className={this.decorateCSS("card-media")} value={image} />}
+          {mediaUrl && <Base.Media className={this.decorateCSS("card-media")} value={media} />}
           {overlay && <div className={this.decorateCSS("overlay-layer")} />}
           <Base.VerticalContent className={this.decorateCSS("card-text-container")}>
-            {titleExist && <Base.H3 className={this.decorateCSS("card-title")}>{title}</Base.H3>}
+            {subtitleExist && <Base.H6 className={this.decorateCSS("card-subtitle")}>{subtitle}</Base.H6>}
+            {titleExist && <Base.H5 className={this.decorateCSS("card-title")}>{title}</Base.H5>}
             {descriptionExist && <Base.SectionDescription className={this.decorateCSS("card-description")}>{description}</Base.SectionDescription>}
-            {button && renderButton(button)}
+            {renderCardButtons(buttons)}
           </Base.VerticalContent>
         </div>
       );
@@ -413,6 +510,17 @@ class Feature28 extends BaseFeature {
               {this.castToString(description) && (
                 <Base.SectionDescription className={this.decorateCSS("description")}>{description}</Base.SectionDescription>
               )}
+              {validHeaderButtons.length > 0 && (
+                <div className={this.decorateCSS("header-button-container")}>
+                  {validHeaderButtons.map((button: INPUTS.CastedButton, index: number) => (
+                    <ComposerLink key={`header-button-${index}`} path={button.url}>
+                      <Base.Button buttonType={button.type} className={this.decorateCSS("header-button")}>
+                        <Base.P className={this.decorateCSS("header-button-text")}>{button.text}</Base.P>
+                      </Base.Button>
+                    </ComposerLink>
+                  ))}
+                </div>
+              )}
             </Base.VerticalContent>
           )}
 
@@ -422,11 +530,12 @@ class Feature28 extends BaseFeature {
                 {topLeftSide.visibility && (
                   <div className={this.decorateCSS("left-top-card")}>
                     {renderCard(
-                      topLeftSide.image,
+                      topLeftSide.media,
                       !!topLeftSide.overlay,
                       topLeftSide.title,
+                      topLeftSide.subtitle,
                       topLeftSide.description,
-                      topLeftSide.button
+                      topLeftSide.buttons
                     )}
                   </div>
                 )}
@@ -435,7 +544,7 @@ class Feature28 extends BaseFeature {
                   <div className={this.decorateCSS("left-bottom-cards")}>
                     {bottomLeftCards.map((card, index) => (
                       <React.Fragment key={`left-card-${index}`}>
-                        {renderCard(card.image, !!card.overlay, card.title, card.description, card.button)}
+                        {renderCard(card.media, !!card.overlay, card.title, card.subtitle, card.description, card.buttons)}
                       </React.Fragment>
                     ))}
                   </div>
@@ -446,11 +555,12 @@ class Feature28 extends BaseFeature {
             {middleSide.visibility && (
               <div className={this.decorateCSS("middle-side")}>
                 {renderCard(
-                  middleSide.image,
+                  middleSide.media,
                   !!middleSide.overlay,
                   middleSide.title,
+                  middleSide.subtitle,
                   middleSide.description,
-                  middleSide.button
+                  middleSide.buttons
                 )}
               </div>
             )}
@@ -460,11 +570,12 @@ class Feature28 extends BaseFeature {
                 {rightCards.map((card, index) => (
                   <div className={card.className} key={`${card.className}-${index}`}>
                     {renderCard(
-                      card.data.image,
+                      card.data.media,
                       !!card.data.overlay,
                       card.data.title,
+                      card.data.subtitle,
                       card.data.description,
-                      card.data.button,
+                      card.data.buttons,
                       this.decorateCSS("right-card")
                     )}
                   </div>

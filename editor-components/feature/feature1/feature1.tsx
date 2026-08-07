@@ -1,15 +1,22 @@
 import * as React from "react";
 import styles from "./feature1.module.scss";
-import { BaseFeature } from "../../EditorComponent";
+import { BaseFeature, TypeMediaInputValue } from "../../EditorComponent";
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "../../../custom-hooks/input-templates";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 
 interface Section {
-    sectionTitle: React.JSX.Element;
+    title: React.JSX.Element;
     text1: React.JSX.Element;
     text2: React.JSX.Element;
 }
+
+type Button = {
+    text: React.JSX.Element;
+    url: string;
+    icon: TypeMediaInputValue;
+    type: string;
+};
 
 class Feature1 extends BaseFeature {
     constructor(props?: any) {
@@ -29,8 +36,8 @@ class Feature1 extends BaseFeature {
                     value: [
                         {
                             type: "string",
-                            key: "sectionTitle",
-                            displayer: "Section Title",
+                            key: "title",
+                            displayer: "Title",
                             value: "What We Do"
                         },
                         {
@@ -54,8 +61,8 @@ class Feature1 extends BaseFeature {
                     value: [
                         {
                             type: "string",
-                            key: "sectionTitle",
-                            displayer: "Section Title",
+                            key: "title",
+                            displayer: "Title",
                             value: "Our Services"
                         },
                         {
@@ -75,7 +82,14 @@ class Feature1 extends BaseFeature {
             ]
         });
 
-        this.addProp(INPUTS.BUTTON("button", "Button", "VIEW SERVICES", "", null, null, "Primary"));
+        this.addProp({
+            type: "array",
+            key: "buttons",
+            displayer: "Buttons",
+            value: [
+                INPUTS.BUTTON("button", "Button", "VIEW SERVICES", "", null, null, "Primary"),
+            ],
+        });
         this.setComponentState("activeSection", 0);
     }
 
@@ -87,7 +101,12 @@ class Feature1 extends BaseFeature {
     render() {
         const sections = this.castToObject<Section[]>("sections");
         const activeSection = this.getComponentState("activeSection");
-        const buttonType: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
+        const buttons = this.castToObject<Button[]>("buttons");
+        const hasValidButtons = buttons && buttons.some((btn: Button) => {
+            const buttonText = this.castToString(btn.text);
+            const iconExist = btn.icon && (btn.icon.type === "icon" ? btn.icon.name : btn.icon.url);
+            return buttonText || iconExist;
+        });
 
         if (!sections || sections.length === 0) {
             return null;
@@ -99,13 +118,13 @@ class Feature1 extends BaseFeature {
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
                     <div className={this.decorateCSS("section-container")}>
                         {sections.map((section: Section, index: number) => (
-                            this.castToString(section.sectionTitle) ? (
+                            this.castToString(section.title) ? (
                                 <Base.SectionTitle
                                     key={`section-title-${index}`}
                                     className={`${this.decorateCSS("section-title")} ${activeSection === index ? this.decorateCSS("active") : ""}`}
                                     onClick={() => this.setComponentState("activeSection", index)}
                                 >
-                                    {section.sectionTitle}
+                                    {section.title}
                                 </Base.SectionTitle>
                             ) : null
                         ))}
@@ -130,13 +149,25 @@ class Feature1 extends BaseFeature {
                         ))}
                     </div>
 
-                    {this.castToString(buttonType.text) && (
+                    {hasValidButtons && (
                         <div className={this.decorateCSS("button-container")}>
-                            <ComposerLink path={buttonType.url}>
-                                <Base.Button buttonType={buttonType.type} className={this.decorateCSS("button")}>
-                                    <Base.P className={this.decorateCSS("button-text")}>{buttonType.text}</Base.P>
-                                </Base.Button>
-                            </ComposerLink>
+                            {buttons.map((item: Button, index: number) => {
+                                const buttonText = this.castToString(item.text);
+                                const iconExist = item.icon && (item.icon.type === "icon" ? item.icon.name : item.icon.url);
+                                if (!buttonText && !iconExist) return null;
+                                return (
+                                    <ComposerLink key={index} path={item.url}>
+                                        <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
+                                            {buttonText && (
+                                                <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>
+                                            )}
+                                            {iconExist && (
+                                                <Base.Media className={this.decorateCSS("button-icon")} value={item.icon} />
+                                            )}
+                                        </Base.Button>
+                                    </ComposerLink>
+                                );
+                            })}
                         </div>
                     )}
                 </Base.MaxContent>

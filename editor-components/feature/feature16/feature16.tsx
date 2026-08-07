@@ -1,7 +1,16 @@
 import * as React from "react";
-import { BaseFeature } from "../../EditorComponent";
+import { BaseFeature, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./feature16.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
+import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
+import { INPUTS } from "../../../custom-hooks/input-templates";
+
+type Button = {
+    text: React.JSX.Element;
+    url: string;
+    icon: TypeMediaInputValue;
+    type: string;
+};
 
 class Feature16 extends BaseFeature {
     constructor(props?: any) {
@@ -25,8 +34,16 @@ class Feature16 extends BaseFeature {
             key: "description",
             displayer: "Description",
             value: ""
+        });
 
-        })
+        this.addProp({
+            type: "array",
+            key: "buttons",
+            displayer: "Buttons",
+            value: [
+                INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+            ],
+        });
 
         this.addProp({
             type: "object",
@@ -53,6 +70,12 @@ class Feature16 extends BaseFeature {
                 },
                 {
                     type: "string",
+                    key: "topLeftSideSubtitle",
+                    displayer: "Subtitle",
+                    value: ""
+                },
+                {
+                    type: "string",
                     key: "topLeftSideTitle",
                     displayer: "Title",
                     value: "Crypto Trading Platform"
@@ -62,6 +85,14 @@ class Feature16 extends BaseFeature {
                     key: "topLeftSideDescription",
                     displayer: "Description",
                     value: "Lorem ipsum dolor sit amet consectet adipiscing elit. Excepteur sint occaecat cupidatat non proident."
+                },
+                {
+                    type: "array",
+                    key: "topLeftSideButton",
+                    displayer: "Button",
+                    value: [
+                        INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+                    ],
                 },
             ]
         })
@@ -90,6 +121,12 @@ class Feature16 extends BaseFeature {
                 },
                 {
                     type: "string",
+                    key: "bottomLeftSideSubtitle",
+                    displayer: "Subtitle",
+                    value: ""
+                },
+                {
+                    type: "string",
                     key: "bottomLeftSideTitle",
                     displayer: "Title",
                     value: "Mobile App Friendly"
@@ -99,6 +136,14 @@ class Feature16 extends BaseFeature {
                     key: "bottomLeftSideDescription",
                     displayer: "Description",
                     value: "Lorem ipsum dolor sit amet consectet adipiscing."
+                },
+                {
+                    type: "array",
+                    key: "bottomLeftSideButton",
+                    displayer: "Button",
+                    value: [
+                        INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+                    ],
                 },
             ]
         })
@@ -127,6 +172,12 @@ class Feature16 extends BaseFeature {
                 },
                 {
                     type: "string",
+                    key: "topRightSideSubtitle",
+                    displayer: "Subtitle",
+                    value: ""
+                },
+                {
+                    type: "string",
                     key: "topRightSideTitle",
                     displayer: "Title",
                     value: "Secure Wallet"
@@ -136,6 +187,14 @@ class Feature16 extends BaseFeature {
                     key: "topRightSideDescription",
                     displayer: "Description",
                     value: "Lorem ipsum dolor sit amet consectet adipiscing."
+                },
+                {
+                    type: "array",
+                    key: "topRightSideButton",
+                    displayer: "Button",
+                    value: [
+                        INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+                    ],
                 },
             ]
         })
@@ -164,6 +223,12 @@ class Feature16 extends BaseFeature {
                 },
                 {
                     type: "string",
+                    key: "topRightSide2Subtitle",
+                    displayer: "Subtitle",
+                    value: ""
+                },
+                {
+                    type: "string",
                     key: "topRightSide2Title",
                     displayer: "Title",
                     value: "Fully Protection"
@@ -173,6 +238,14 @@ class Feature16 extends BaseFeature {
                     key: "topRightSide2Description",
                     displayer: "Description",
                     value: "Lorem ipsum dolor sit amet consectet adipiscing."
+                },
+                {
+                    type: "array",
+                    key: "topRightSide2Button",
+                    displayer: "Button",
+                    value: [
+                        INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+                    ],
                 },
             ]
         })
@@ -201,6 +274,12 @@ class Feature16 extends BaseFeature {
                 },
                 {
                     type: "string",
+                    key: "middleRightSideSubtitle",
+                    displayer: "Subtitle",
+                    value: ""
+                },
+                {
+                    type: "string",
                     key: "middleRightSideTitle",
                     displayer: "Title",
                     value: "Currency Support"
@@ -210,6 +289,14 @@ class Feature16 extends BaseFeature {
                     key: "middleRightSideDescription",
                     displayer: "Description",
                     value: "Lorem ipsum dolor sit amet consectet adipiscing."
+                },
+                {
+                    type: "array",
+                    key: "middleRightSideButton",
+                    displayer: "Button",
+                    value: [
+                        INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+                    ],
                 },
             ]
         })
@@ -238,6 +325,12 @@ class Feature16 extends BaseFeature {
                 },
                 {
                     type: "string",
+                    key: "middleRightSide2Subtitle",
+                    displayer: "Subtitle",
+                    value: ""
+                },
+                {
+                    type: "string",
                     key: "middleRightSide2Title",
                     displayer: "Title",
                     value: "Trading Charts"
@@ -247,6 +340,14 @@ class Feature16 extends BaseFeature {
                     key: "middleRightSide2Description",
                     displayer: "Description",
                     value: "Lorem ipsum dolor sit amet consectet adipiscing."
+                },
+                {
+                    type: "array",
+                    key: "middleRightSide2Button",
+                    displayer: "Button",
+                    value: [
+                        INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+                    ],
                 },
             ]
         })
@@ -275,6 +376,12 @@ class Feature16 extends BaseFeature {
                 },
                 {
                     type: "string",
+                    key: "bottomRightSideSubtitle",
+                    displayer: "Subtitle",
+                    value: ""
+                },
+                {
+                    type: "string",
                     key: "bottomRightSideTitle",
                     displayer: "Title",
                     value: "Buy & Sell Coin"
@@ -284,6 +391,14 @@ class Feature16 extends BaseFeature {
                     key: "bottomRightSideDescription",
                     displayer: "Description",
                     value: "Lorem ipsum dolor sit amet consectet adipiscing."
+                },
+                {
+                    type: "array",
+                    key: "bottomRightSideButton",
+                    displayer: "Button",
+                    value: [
+                        INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+                    ],
                 },
             ]
         })
@@ -312,6 +427,12 @@ class Feature16 extends BaseFeature {
                 },
                 {
                     type: "string",
+                    key: "bottomRightSide2Subtitle",
+                    displayer: "Subtitle",
+                    value: ""
+                },
+                {
+                    type: "string",
                     key: "bottomRightSide2Title",
                     displayer: "Title",
                     value: "Real Time Trading"
@@ -321,6 +442,14 @@ class Feature16 extends BaseFeature {
                     key: "bottomRightSide2Description",
                     displayer: "Description",
                     value: "Lorem ipsum dolor sit amet consectet adipiscing."
+                },
+                {
+                    type: "array",
+                    key: "bottomRightSide2Button",
+                    displayer: "Button",
+                    value: [
+                        INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+                    ],
                 },
             ]
         })
@@ -341,9 +470,17 @@ class Feature16 extends BaseFeature {
 
     renderCard(cardData, prefix, isAlone = false) {
         const className = `${this.decorateCSS("card")} ${isAlone ? this.decorateCSS("single-card") : ""}`;
+        const hasSubtitle = this.castToString(cardData[`${prefix}Subtitle`]);
         const hasTitle = this.castToString(cardData[`${prefix}Title`]);
         const hasDescription = this.castToString(cardData[`${prefix}Description`]);
-        const hasTextContent = hasTitle || hasDescription;
+
+        const buttonsProp = this.getProp(prefix)?.value?.find((p: any) => p.key === `${prefix}Button`);
+        const buttons = buttonsProp ? (this.castingProcess(buttonsProp) as Button[]) : [];
+        const hasValidButtons = buttons.some((btn: Button) => {
+            const buttonText = this.castToString(btn.text);
+            const iconExist = btn.icon && (btn.icon.type === "icon" ? btn.icon.name : btn.icon.url);
+            return buttonText || iconExist;
+        });
 
         return (
             <Base.VerticalContent className={className} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
@@ -352,18 +489,40 @@ class Feature16 extends BaseFeature {
                         <Base.Media value={cardData[`${prefix}Image`]} className={this.decorateCSS("image")} />
                     </div>
                 )}
-                {hasTextContent && (
-                    <div className={this.decorateCSS("card-text-container")}>
-                        {hasTitle && (
-                            <Base.H4 className={this.decorateCSS("card-title")}>
-                                {cardData[`${prefix}Title`]}
-                            </Base.H4>
-                        )}
-                        {hasDescription && (
-                            <Base.P className={this.decorateCSS("card-description")}>
-                                {cardData[`${prefix}Description`]}
-                            </Base.P>
-                        )}
+                {hasSubtitle && (
+                    <Base.P className={this.decorateCSS("card-subtitle")}>
+                        {cardData[`${prefix}Subtitle`]}
+                    </Base.P>
+                )}
+                {hasTitle && (
+                    <Base.H5 className={this.decorateCSS("card-title")}>
+                        {cardData[`${prefix}Title`]}
+                    </Base.H5>
+                )}
+                {hasDescription && (
+                    <Base.P className={this.decorateCSS("card-description")}>
+                        {cardData[`${prefix}Description`]}
+                    </Base.P>
+                )}
+                {hasValidButtons && (
+                    <div className={this.decorateCSS("card-button-container")}>
+                        {buttons.map((item: Button, index: number) => {
+                            const buttonText = this.castToString(item.text);
+                            const iconExist = item.icon && (item.icon.type === "icon" ? item.icon.name : item.icon.url);
+                            if (!buttonText && !iconExist) return null;
+                            return (
+                                <ComposerLink key={index} path={item.url}>
+                                    <Base.Button buttonType={item.type} className={this.decorateCSS("card-button")}>
+                                        {buttonText && (
+                                            <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>
+                                        )}
+                                        {iconExist && (
+                                            <Base.Media className={this.decorateCSS("button-icon")} value={item.icon} />
+                                        )}
+                                    </Base.Button>
+                                </ComposerLink>
+                            );
+                        })}
                     </div>
                 )}
             </Base.VerticalContent>
@@ -381,6 +540,12 @@ class Feature16 extends BaseFeature {
         const middleRightSide2 = this.castToObject<any>("middleRightSide2");
 
         const description = this.castToString(this.getPropValue("description"));
+        const buttons = this.castToObject<Button[]>("buttons");
+        const hasValidButtons = buttons && buttons.some((btn: Button) => {
+            const buttonText = this.castToString(btn.text);
+            const iconExist = btn.icon && (btn.icon.type === "icon" ? btn.icon.name : btn.icon.url);
+            return buttonText || iconExist;
+        });
 
         const hasTopLeftContent = topLeftSide.visibility && (
             this.castToString(topLeftSide.topLeftSideTitle) || 
@@ -388,9 +553,19 @@ class Feature16 extends BaseFeature {
             topLeftSide.topLeftSideImage?.url
         );
         
+        const bottomLeftButtonsProp = this.getProp("bottomLeftSide")?.value?.find((p: any) => p.key === "bottomLeftSideButton");
+        const bottomLeftButtons = bottomLeftButtonsProp ? (this.castingProcess(bottomLeftButtonsProp) as Button[]) : [];
+        const hasValidBottomLeftButtons = bottomLeftButtons.some((btn: Button) => {
+            const buttonText = this.castToString(btn.text);
+            const iconExist = btn.icon && (btn.icon.type === "icon" ? btn.icon.name : btn.icon.url);
+            return buttonText || iconExist;
+        });
+
         const hasBottomLeftContent = bottomLeftSide.visibility && (
-            this.castToString(bottomLeftSide.bottomLeftSideTitle) || 
-            this.castToString(bottomLeftSide.bottomLeftSideDescription) || 
+            this.castToString(bottomLeftSide.bottomLeftSideSubtitle) ||
+            this.castToString(bottomLeftSide.bottomLeftSideTitle) ||
+            this.castToString(bottomLeftSide.bottomLeftSideDescription) ||
+            hasValidBottomLeftButtons ||
             bottomLeftSide.bottomLeftSideImage?.url
         );
 
@@ -459,6 +634,27 @@ class Feature16 extends BaseFeature {
                                 {description}
                             </Base.SectionDescription>
                         )}
+                        {hasValidButtons && (
+                            <div className={this.decorateCSS("button-container")}>
+                                {buttons.map((item: Button, index: number) => {
+                                    const buttonText = this.castToString(item.text);
+                                    const iconExist = item.icon && (item.icon.type === "icon" ? item.icon.name : item.icon.url);
+                                    if (!buttonText && !iconExist) return null;
+                                    return (
+                                        <ComposerLink key={index} path={item.url}>
+                                            <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
+                                                {buttonText && (
+                                                    <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>
+                                                )}
+                                                {iconExist && (
+                                                    <Base.Media className={this.decorateCSS("button-icon")} value={item.icon} />
+                                                )}
+                                            </Base.Button>
+                                        </ComposerLink>
+                                    );
+                                })}
+                            </div>
+                        )}
                     </Base.VerticalContent>
                     <div className={this.decorateCSS("side-container")}>
                         {renderLeftSide && (
@@ -471,19 +667,45 @@ class Feature16 extends BaseFeature {
                                 {hasBottomLeftContent && (
                                     <div className={this.decorateCSS("bottom-left-side")}>
                                         <div className={this.decorateCSS("bottom-left-side-card")}>
-                                            {(this.castToString(bottomLeftSide.bottomLeftSideTitle) || this.castToString(bottomLeftSide.bottomLeftSideDescription)) && (
-                                                <div className={this.decorateCSS("bottom-left-side-card-text-container")}>
+                                            {(this.castToString(bottomLeftSide.bottomLeftSideSubtitle) || this.castToString(bottomLeftSide.bottomLeftSideTitle) || this.castToString(bottomLeftSide.bottomLeftSideDescription) || hasValidBottomLeftButtons) && (
+                                                <Base.VerticalContent className={this.decorateCSS("bottom-left-side-card-text-container")}>
+                                                    {this.castToString(bottomLeftSide.bottomLeftSideSubtitle) && (
+                                                        <Base.H6 className={this.decorateCSS("bottom-left-side-card-subtitle")}>
+                                                            {bottomLeftSide.bottomLeftSideSubtitle}
+                                                        </Base.H6>
+                                                    )}
                                                     {this.castToString(bottomLeftSide.bottomLeftSideTitle) && (
-                                                        <Base.H4 className={this.decorateCSS("bottom-left-side-card-title")}>
+                                                        <Base.H5 className={this.decorateCSS("bottom-left-side-card-title")}>
                                                             {bottomLeftSide.bottomLeftSideTitle}
-                                                        </Base.H4>
+                                                        </Base.H5>
                                                     )}
                                                     {this.castToString(bottomLeftSide.bottomLeftSideDescription) && (
                                                         <Base.P className={this.decorateCSS("bottom-left-side-card-description")}>
                                                             {bottomLeftSide.bottomLeftSideDescription}
                                                         </Base.P>
                                                     )}
-                                                </div>
+                                                    {hasValidBottomLeftButtons && (
+                                                        <div className={this.decorateCSS("card-button-container")}>
+                                                            {bottomLeftButtons.map((item: Button, index: number) => {
+                                                                const buttonText = this.castToString(item.text);
+                                                                const iconExist = item.icon && (item.icon.type === "icon" ? item.icon.name : item.icon.url);
+                                                                if (!buttonText && !iconExist) return null;
+                                                                return (
+                                                                    <ComposerLink key={index} path={item.url}>
+                                                                        <Base.Button buttonType={item.type} className={this.decorateCSS("card-button")}>
+                                                                            {buttonText && (
+                                                                                <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>
+                                                                            )}
+                                                                            {iconExist && (
+                                                                                <Base.Media className={this.decorateCSS("button-icon")} value={item.icon} />
+                                                                            )}
+                                                                        </Base.Button>
+                                                                    </ComposerLink>
+                                                                );
+                                                            })}
+                                                        </div>
+                                                    )}
+                                                </Base.VerticalContent>
                                             )}
                                             {bottomLeftSide.bottomLeftSideImage?.url && (
                                                 <div className={this.decorateCSS("bottom-left-side-card-image-container")}>

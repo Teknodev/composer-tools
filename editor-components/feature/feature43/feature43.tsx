@@ -1,4 +1,4 @@
-import {
+﻿import {
   BaseFeature,
   TypeMediaInputValue,
 } from "../../EditorComponent";

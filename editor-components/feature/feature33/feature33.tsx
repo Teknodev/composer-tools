@@ -3,28 +3,39 @@ import { BaseFeature, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./feature33.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 
+type MediaGroup = {
+    media: TypeMediaInputValue;
+    overlay: boolean;
+};
+
 class Feature33 extends BaseFeature {
     constructor(props?: any) {
         super(props, styles);
 
         this.addProp({
-            type: "media",
-            key: "image",
+            type: "object",
+            key: "media",
             displayer: "Media",
-            value: {
-                type: "image",
-                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/69382412875e15002c5fbd92?alt=media"
-            },
-            additionalParams: {
-                availableTypes: ["image", "video"]
-            }
-        });
-
-        this.addProp({
-            type: "boolean",
-            key: "overlay",
-            displayer: "Overlay",
-            value: false,
+            value: [
+                {
+                    type: "media",
+                    key: "media",
+                    displayer: "Media",
+                    additionalParams: {
+                        availableTypes: ["image", "video"]
+                    },
+                    value: {
+                        type: "image",
+                        url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/69382412875e15002c5fbd92?alt=media"
+                    },
+                },
+                {
+                    type: "boolean",
+                    key: "overlay",
+                    displayer: "Overlay",
+                    value: false,
+                },
+            ],
         });
 
         this.addProp({
@@ -60,6 +71,12 @@ class Feature33 extends BaseFeature {
                     value: [
                         {
                             type: "string",
+                            key: "subtitle",
+                            displayer: "Feature Subtitle",
+                            value: ""
+                        },
+                        {
+                            type: "string",
                             key: "title",
                             displayer: "Feature Title",
                             value: "Performance"
@@ -77,6 +94,12 @@ class Feature33 extends BaseFeature {
                     key: "feature",
                     displayer: "Feature",
                     value: [
+                        {
+                            type: "string",
+                            key: "subtitle",
+                            displayer: "Feature Subtitle",
+                            value: ""
+                        },
                         {
                             type: "string",
                             key: "title",
@@ -108,7 +131,8 @@ class Feature33 extends BaseFeature {
     }
 
     render() {
-        const image = this.getPropValue("image") as TypeMediaInputValue;
+        const mediaGroup = this.castToObject<MediaGroup>("media");
+        const media = mediaGroup?.media;
 
         const rawTitle = this.getPropValue("title");
         const rawSubtitle = this.getPropValue("subtitle");
@@ -120,16 +144,17 @@ class Feature33 extends BaseFeature {
 
         const rawFeatures = (this.castToObject<any[]>("features") || []).filter(Boolean);
         const features = rawFeatures.map((feature) => ({
+            subtitle: feature?.subtitle,
             title: feature?.title,
             text: feature?.text,
-        })).filter((item) => this.castToString(item.title) || this.castToString(item.text));
+        })).filter((item) => this.castToString(item.subtitle) || this.castToString(item.title) || this.castToString(item.text));
 
         const itemsPerRow = this.getPropValue("itemsPerRow") || 2;
         const hasContent = Boolean(subtitleText || titleText || descriptionText || features.length > 0);
 
-        const overlay = this.getPropValue("overlay");
+        const overlay = mediaGroup?.overlay;
 
-        const hasMedia = !!(image?.url || image?.name);
+        const hasMedia = !!(media?.url || media?.name);
 
         const alignmentValue = Base.getContentAlignment();
         const noImageCenterClass = !hasMedia && alignmentValue === "center" ? this.decorateCSS("no-image-center") : "";
@@ -144,7 +169,7 @@ class Feature33 extends BaseFeature {
                         >
                             <Base.Media
                                 className={this.decorateCSS("image")}
-                                value={image}
+                                value={media}
                             />
                             {overlay && (
                                 <div className={this.decorateCSS("overlay")} />
@@ -181,6 +206,11 @@ class Feature33 extends BaseFeature {
                                 >
                                     {features.map((feature, index) => (
                                         <Base.Card key={index} className={this.decorateCSS("feature-item")}>
+                                            {this.castToString(feature.subtitle) && (
+                                                <Base.H6 className={this.decorateCSS("feature-subtitle")}>
+                                                    {feature.subtitle}
+                                                </Base.H6>
+                                            )}
                                             {this.castToString(feature.title) && (
                                                 <Base.H5 className={this.decorateCSS("feature-title")}>
                                                     {feature.title}

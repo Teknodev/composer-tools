@@ -1,19 +1,42 @@
 import * as React from "react";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
-import { BaseFeature, TypeMediaInputValue } from "../../EditorComponent";
+import { BaseFeature, TypeMediaInputValue, TypeUsableComponentProps } from "../../EditorComponent";
 import styles from "./feature10.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import { INPUTS } from "../../../custom-hooks/input-templates";
 
+type Button = {
+  text: React.JSX.Element;
+  url: string;
+  icon: TypeMediaInputValue;
+  type: string;
+};
+
+type Stat = {
+  label: React.JSX.Element;
+  value: React.JSX.Element;
+};
+
 type Card = {
-  image: TypeMediaInputValue;
+  media: TypeMediaInputValue;
+  overlay?: boolean;
+  subtitle?: React.JSX.Element;
   title: React.JSX.Element;
   description: React.JSX.Element;
+  stats?: Stat[];
   url: string;
 };
 
 class Feature10 extends BaseFeature {
+  transformSliderValues = (sliderProps: TypeUsableComponentProps[]): INPUTS.TYPE_SLIDER_SETTINGS => {
+    const flatObject: Record<string, any> = {};
+    sliderProps.forEach((prop: TypeUsableComponentProps) => {
+      flatObject[prop.key] = prop.value;
+    });
+    return flatObject;
+  };
+
   constructor(props?: any) {
     super(props, styles);
 
@@ -37,12 +60,24 @@ class Feature10 extends BaseFeature {
       displayer: "Description",
       value: "We've helped plenty of SaaS startups and scaleups develop reliable, secure infrastructure."
     });
+
+    this.addProp(INPUTS.SLIDER_SETTINGS("settings", "Slider Settings", {
+      arrows: true,
+      dots: false,
+      infinite: true,
+      speed: 725,
+      autoplay: true,
+      autoplaySpeed: 2000,
+      slidesToShow: 3,
+      slidesToScroll: 1,
+    }));
+
     this.addProp({
       type: "media",
       key: "rightArrow",
       displayer: "Right Arrow",
       additionalParams: {
-        availableTypes: ["icon"],
+        availableTypes: ["icon", "image"],
       },
       value: {
         type: "icon",
@@ -54,19 +89,12 @@ class Feature10 extends BaseFeature {
       key: "leftArrow",
       displayer: "Left Arrow",
       additionalParams: {
-        availableTypes: ["icon"],
+        availableTypes: ["icon", "image"],
       },
       value: {
         type: "icon",
         name: "GoArrowLeft"
       }
-    });
-
-    this.addProp({
-      type: "boolean",
-      key: "autoplay",
-      displayer: "Autoplay",
-      value: true
     });
 
     this.addProp({
@@ -81,7 +109,7 @@ class Feature10 extends BaseFeature {
           value: [
             {
               type: "media",
-              key: "image",
+              key: "media",
               displayer: "Media",
               additionalParams: {
                 availableTypes: ["image","video"],
@@ -90,6 +118,18 @@ class Feature10 extends BaseFeature {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67372f90506a40002c2aba0e?alt=media"
               }
+            },
+            {
+              type: "boolean",
+              key: "overlay",
+              displayer: "Overlay",
+              value: false
+            },
+            {
+              type: "string",
+              key: "subtitle",
+              displayer: "Subtitle",
+              value: "Case study"
             },
             {
               type: "string",
@@ -101,7 +141,32 @@ class Feature10 extends BaseFeature {
               type: "string",
               key: "description",
               displayer: "Description",
-              value: "Here's how Acme improved the infrastructure quality for Lets Get Digital without increasing costs."
+              value: "Here's how ElasticScale improved the infrastructure quality for Lets Get Digital without increasing costs."
+            },
+            {
+              type: "array",
+              key: "stats",
+              displayer: "Stats",
+              value: [
+                {
+                  type: "object",
+                  key: "stat",
+                  displayer: "Stat",
+                  value: [
+                    { type: "string", key: "label", displayer: "Label", value: "Reduced costs" },
+                    { type: "string", key: "value", displayer: "Value", value: "60% lower costs" }
+                  ]
+                },
+                {
+                  type: "object",
+                  key: "stat",
+                  displayer: "Stat",
+                  value: [
+                    { type: "string", key: "label", displayer: "Label", value: "Serverless architecture" },
+                    { type: "string", key: "value", displayer: "Value", value: "No patching required" }
+                  ]
+                }
+              ]
             },
             {
               type: "page",
@@ -118,7 +183,7 @@ class Feature10 extends BaseFeature {
           value: [
             {
               type: "media",
-              key: "image",
+              key: "media",
               displayer: "Media",
               additionalParams: {
                 availableTypes: ["image","video"],
@@ -127,6 +192,18 @@ class Feature10 extends BaseFeature {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6737443e506a40002c2ac5ae?alt=media"
               }
+            },
+            {
+              type: "boolean",
+              key: "overlay",
+              displayer: "Overlay",
+              value: false
+            },
+            {
+              type: "string",
+              key: "subtitle",
+              displayer: "Subtitle",
+              value: "Case study"
             },
             {
               type: "string",
@@ -138,7 +215,32 @@ class Feature10 extends BaseFeature {
               type: "string",
               key: "description",
               displayer: "Description",
-              value: "Acme implemented ES Foundation at Dataswitcher to improve scalability around peak conversions."
+              value: "ElasticScale implemented ES Foundation at Dataswitcher to improve scalability around peak conversions."
+            },
+            {
+              type: "array",
+              key: "stats",
+              displayer: "Stats",
+              value: [
+                {
+                  type: "object",
+                  key: "stat",
+                  displayer: "Stat",
+                  value: [
+                    { type: "string", key: "label", displayer: "Label", value: "Faster conversions" },
+                    { type: "string", key: "value", displayer: "Value", value: "5x faster" }
+                  ]
+                },
+                {
+                  type: "object",
+                  key: "stat",
+                  displayer: "Stat",
+                  value: [
+                    { type: "string", key: "label", displayer: "Label", value: "Improved performance" },
+                    { type: "string", key: "value", displayer: "Value", value: "40% latency reduction" }
+                  ]
+                }
+              ]
             },
             {
               type: "page",
@@ -155,7 +257,7 @@ class Feature10 extends BaseFeature {
           value: [
             {
               type: "media",
-              key: "image",
+              key: "media",
               displayer: "Media",
               additionalParams: {
                 availableTypes: ["image","video"],
@@ -164,6 +266,18 @@ class Feature10 extends BaseFeature {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67374467506a40002c2ac5c9?alt=media"
               }
+            },
+            {
+              type: "boolean",
+              key: "overlay",
+              displayer: "Overlay",
+              value: false
+            },
+            {
+              type: "string",
+              key: "subtitle",
+              displayer: "Subtitle",
+              value: "Case study"
             },
             {
               type: "string",
@@ -175,7 +289,32 @@ class Feature10 extends BaseFeature {
               type: "string",
               key: "description",
               displayer: "Description",
-              value: "Here's how Acme improved the infrastructure quality for AI Maid Help without increasing costs."
+              value: "Here's how ElasticScale improved the infrastructure quality for AI Maid Help without increasing costs."
+            },
+            {
+              type: "array",
+              key: "stats",
+              displayer: "Stats",
+              value: [
+                {
+                  type: "object",
+                  key: "stat",
+                  displayer: "Stat",
+                  value: [
+                    { type: "string", key: "label", displayer: "Label", value: "Reduced costs" },
+                    { type: "string", key: "value", displayer: "Value", value: "80% cost reduction" }
+                  ]
+                },
+                {
+                  type: "object",
+                  key: "stat",
+                  displayer: "Stat",
+                  value: [
+                    { type: "string", key: "label", displayer: "Label", value: "Faster development" },
+                    { type: "string", key: "value", displayer: "Value", value: "Due to Dockerization" }
+                  ]
+                }
+              ]
             },
             {
               type: "page",
@@ -192,7 +331,7 @@ class Feature10 extends BaseFeature {
           value: [
             {
               type: "media",
-              key: "image",
+              key: "media",
               displayer: "Media",
               additionalParams: {
                 availableTypes: ["image","video"],
@@ -201,6 +340,18 @@ class Feature10 extends BaseFeature {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67374467506a40002c2ac5c9?alt=media"
               }
+            },
+            {
+              type: "boolean",
+              key: "overlay",
+              displayer: "Overlay",
+              value: false
+            },
+            {
+              type: "string",
+              key: "subtitle",
+              displayer: "Subtitle",
+              value: "Case study"
             },
             {
               type: "string",
@@ -212,7 +363,32 @@ class Feature10 extends BaseFeature {
               type: "string",
               key: "description",
               displayer: "Description",
-              value: "Here's how Acme improved the infrastructure quality for AI Maid Help without increasing costs."
+              value: "Here's how ElasticScale improved the infrastructure quality for AI Maid Help without increasing costs."
+            },
+            {
+              type: "array",
+              key: "stats",
+              displayer: "Stats",
+              value: [
+                {
+                  type: "object",
+                  key: "stat",
+                  displayer: "Stat",
+                  value: [
+                    { type: "string", key: "label", displayer: "Label", value: "Reduced costs" },
+                    { type: "string", key: "value", displayer: "Value", value: "80% cost reduction" }
+                  ]
+                },
+                {
+                  type: "object",
+                  key: "stat",
+                  displayer: "Stat",
+                  value: [
+                    { type: "string", key: "label", displayer: "Label", value: "Faster development" },
+                    { type: "string", key: "value", displayer: "Value", value: "Due to Dockerization" }
+                  ]
+                }
+              ]
             },
             {
               type: "page",
@@ -229,7 +405,7 @@ class Feature10 extends BaseFeature {
           value: [
             {
               type: "media",
-              key: "image",
+              key: "media",
               displayer: "Media",
               additionalParams: {
                 availableTypes: ["image","video"],
@@ -238,6 +414,18 @@ class Feature10 extends BaseFeature {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67374467506a40002c2ac5c9?alt=media"
               }
+            },
+            {
+              type: "boolean",
+              key: "overlay",
+              displayer: "Overlay",
+              value: false
+            },
+            {
+              type: "string",
+              key: "subtitle",
+              displayer: "Subtitle",
+              value: "Case study"
             },
             {
               type: "string",
@@ -249,44 +437,32 @@ class Feature10 extends BaseFeature {
               type: "string",
               key: "description",
               displayer: "Description",
-              value: "Here's how Acme improved the infrastructure quality for AI Maid Help without increasing costs."
+              value: "Here's how ElasticScale improved the infrastructure quality for AI Maid Help without increasing costs."
             },
             {
-              type: "page",
-              key: "url",
-              displayer: "Navigate To",
-              value: ""
-            }
-          ]
-        },
-        {
-          type: "object",
-          key: "card",
-          displayer: "Card",
-          value: [
-            {
-              type: "media",
-              key: "image",
-              displayer: "Media",
-              additionalParams: {
-                availableTypes: ["image","video"],
-              },
-              value: {
-                type: "image",
-                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67374467506a40002c2ac5c9?alt=media"
-              }
-            },
-            {
-              type: "string",
-              key: "title",
-              displayer: "Title",
-              value: "AI Maid Help Case Study"
-            },
-            {
-              type: "string",
-              key: "description",
-              displayer: "Description",
-              value: "Here's how Acme improved the infrastructure quality for AI Maid Help without increasing costs."
+              type: "array",
+              key: "stats",
+              displayer: "Stats",
+              value: [
+                {
+                  type: "object",
+                  key: "stat",
+                  displayer: "Stat",
+                  value: [
+                    { type: "string", key: "label", displayer: "Label", value: "Reduced costs" },
+                    { type: "string", key: "value", displayer: "Value", value: "80% cost reduction" }
+                  ]
+                },
+                {
+                  type: "object",
+                  key: "stat",
+                  displayer: "Stat",
+                  value: [
+                    { type: "string", key: "label", displayer: "Label", value: "Faster development" },
+                    { type: "string", key: "value", displayer: "Value", value: "Due to Dockerization" }
+                  ]
+                }
+              ]
             },
             {
               type: "page",
@@ -298,7 +474,15 @@ class Feature10 extends BaseFeature {
         }
       ]
     });
-    this.addProp(INPUTS.BUTTON("button", "Button", "View our services", "", "GoArrowRight", null, "Primary"));
+
+    this.addProp({
+      type: "array",
+      key: "buttons",
+      displayer: "Buttons",
+      value: [
+        INPUTS.BUTTON("button", "Button", "View our services", "", "GoArrowRight", null, "Primary"),
+      ],
+    });
     this.setComponentState("slider-ref", React.createRef());
     this.setComponentState("active", 0);
     this.setComponentState("activeSlideIndex", 0);
@@ -311,21 +495,24 @@ class Feature10 extends BaseFeature {
   render() {
     const sliderRef = this.getComponentState("slider-ref");
     const cards = this.castToObject<Card[]>("cards");
+    const sliderSettings = this.transformSliderValues(this.getPropValue("settings"));
 
     const title = this.getPropValue("title");
     const subtitle = this.getPropValue("subtitle");
     const description = this.getPropValue("description");
 
-    const button = this.castToObject<INPUTS.CastedButton>("button");
+    const buttons = this.castToObject<Button[]>("buttons");
+    const hasValidButtons = buttons && buttons.some((btn: Button) => {
+      const buttonText = this.castToString(btn.text);
+      const iconExist = btn.icon && (btn.icon.type === "icon" ? btn.icon.name : btn.icon.url);
+      return buttonText || iconExist;
+    });
     const settings = {
+      ...sliderSettings,
       arrows: false,
       dots: false,
-      speed: 725,
-      autoplay: this.getPropValue("autoplay"),
-      autoplaySpeed: 2000,
       slidesToShow: cards.length > 2 ? 3 : cards.length,
       slidesToScroll: 1,
-      infinity: true,
 
       responsive: [
         {
@@ -373,7 +560,7 @@ class Feature10 extends BaseFeature {
                 </Base.SectionDescription>
               )}
             </Base.VerticalContent>
-            {(this.getPropValue("leftArrow") || this.getPropValue("rightArrow")) && (
+            {sliderSettings.arrows !== false && (this.getPropValue("leftArrow") || this.getPropValue("rightArrow")) && (
               <div className={this.decorateCSS("arrow-container")}>
                 {this.getPropValue("leftArrow") && (
                   <button
@@ -405,33 +592,70 @@ class Feature10 extends BaseFeature {
                 >
 
                   {cards.map((item: Card, index: number) => {
+                    const subtitleExist = !!this.castToString(item.subtitle);
                     const titleExist = !!this.castToString(item.title);
                     const descExist = !!this.castToString(item.description);
+                    const stats = item.stats || [];
+                    const hasStats = stats.length > 0;
 
-                    if (!item.image?.url && !titleExist && !descExist) return null;
+                    if (!item.media?.url && !subtitleExist && !titleExist && !descExist) return null;
 
                     return (
                       <ComposerLink path={item.url}>
                         <div
                           key={index}
-                          className={`${this.decorateCSS("card-container")} ${!(titleExist || descExist) && this.decorateCSS("fit-content")}`}
+                          className={`${this.decorateCSS("card-container")} ${!(subtitleExist || titleExist || descExist) && this.decorateCSS("fit-content")}`}
                         >
-                          {item.image && (
-                            <Base.Media value={item.image} className={`${this.decorateCSS("image")} ${!(titleExist || descExist) && this.decorateCSS("border-radius")}`} />
+                          {item.media && (
+                            <div className={this.decorateCSS("media-wrapper")}>
+                              <Base.Media value={item.media} className={`${this.decorateCSS("image")} ${!(subtitleExist || titleExist || descExist) && this.decorateCSS("border-radius")}`} />
+                              {item.overlay && (
+                                <div className={`${this.decorateCSS("overlay")} ${!(subtitleExist || titleExist || descExist) && this.decorateCSS("border-radius")}`} />
+                              )}
+                            </div>
                           )}
-                          {(titleExist || descExist) && (
-                            <div className={this.decorateCSS("bottom")}>
+                          {(subtitleExist || titleExist || descExist) && (
+                            <Base.VerticalContent className={this.decorateCSS("bottom")}>
+                              {subtitleExist && (
+                                <Base.P className={this.decorateCSS("card-subtitle")}>
+                                  {item.subtitle}
+                                </Base.P>
+                              )}
                               {titleExist && (
-                                <Base.H3 className={this.decorateCSS("title")}>
+                                <Base.H5 className={this.decorateCSS("title")}>
                                   {item.title}
-                                </Base.H3>
+                                </Base.H5>
                               )}
                               {descExist && (
                                 <Base.P className={this.decorateCSS("description")}>
                                   {item.description}
                                 </Base.P>
                               )}
-                            </div>
+                              {hasStats && <hr className={this.decorateCSS("card-divider")} />}
+                              {hasStats && (
+                                <div className={this.decorateCSS("card-stats")}>
+                                  {stats.map((stat: Stat, sIndex: number) => {
+                                    const labelExist = !!this.castToString(stat.label);
+                                    const valueExist = !!this.castToString(stat.value);
+                                    if (!labelExist && !valueExist) return null;
+                                     return (
+                                       <Base.VerticalContent key={sIndex} className={this.decorateCSS("card-stat-item")}>
+                                         {labelExist && (
+                                           <Base.H6 className={this.decorateCSS("stat-label")}>
+                                             {stat.label}
+                                           </Base.H6>
+                                         )}
+                                         {valueExist && (
+                                           <Base.P className={this.decorateCSS("stat-value")}>
+                                             {stat.value}
+                                           </Base.P>
+                                         )}
+                                       </Base.VerticalContent>
+                                     );
+                                  })}
+                                </div>
+                              )}
+                            </Base.VerticalContent>
                           )}
                         </div>
                       </ComposerLink>
@@ -440,23 +664,28 @@ class Feature10 extends BaseFeature {
                 </ComposerSlider>
               )}
             </div>
-            <div className={this.decorateCSS("button-wrapper")}>
-              {!!this.castToString(button.text) && (
-                <ComposerLink path={button.url}>
-                  <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
-                    {button.icon && (
-                      <Base.Media
-                        value={{ type: "icon", name: button.icon }}
-                        className={this.decorateCSS("button-icon")}
-                      />
-                    )}
-                    <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
-                  </Base.Button>
-                </ComposerLink>
-              )}
-            </div>
 
-
+            {hasValidButtons && (
+              <div className={this.decorateCSS("button-wrapper")}>
+                {buttons.map((item: Button, index: number) => {
+                  const buttonText = this.castToString(item.text);
+                  const iconExist = item.icon && (item.icon.type === "icon" ? item.icon.name : item.icon.url);
+                  if (!buttonText && !iconExist) return null;
+                  return (
+                    <ComposerLink key={index} path={item.url}>
+                      <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
+                        {buttonText && (
+                          <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>
+                        )}
+                        {iconExist && (
+                          <Base.Media className={this.decorateCSS("button-icon")} value={item.icon!} />
+                        )}
+                      </Base.Button>
+                    </ComposerLink>
+                  );
+                })}
+              </div>
+            )}
           </div>
         </Base.MaxContent>
       </Base.Container>
@@ -465,4 +694,3 @@ class Feature10 extends BaseFeature {
 }
 
 export default Feature10;
-

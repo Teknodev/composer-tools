@@ -5,11 +5,23 @@ import { Base } from "../../../composer-base-components/base/base";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 import { INPUTS } from "../../../custom-hooks/input-templates";
 
+type Button = {
+  text: React.JSX.Element;
+  url: string;
+  icon: TypeMediaInputValue;
+  type: string;
+};
+
 interface ListItem {
   title: string;
   text: string;
   icon: TypeMediaInputValue;
 }
+
+type MediaCard = {
+  media: TypeMediaInputValue;
+  overlay: boolean;
+};
 class Feature19 extends BaseFeature {
   constructor(props?: any) {
     super(props, styles);
@@ -33,23 +45,29 @@ class Feature19 extends BaseFeature {
       value: "A better way to get your home, rental, or office clean.",
     });
     this.addProp({
-      type: "media",
-      key: "image",
+      type: "object",
+      key: "mediaCard",
       displayer: "Media",
-      additionalParams: {
-        availableTypes: ["image","video"],
-      },
-      value: {
-        type: "image",
-        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661bad1bd2970002c628768?alt=media&timestamp=1719564173697",
-      },
-    });
-    
-    this.addProp({
-      type: "boolean",
-      key: "overlay",
-      displayer: "Overlay",
-      value: true,
+      value: [
+        {
+          type: "media",
+          key: "media",
+          displayer: "Media",
+          additionalParams: {
+            availableTypes: ["image", "video"],
+          },
+          value: {
+            type: "image",
+            url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661bad1bd2970002c628768?alt=media&timestamp=1719564173697",
+          },
+        },
+        {
+          type: "boolean",
+          key: "overlay",
+          displayer: "Overlay",
+          value: true,
+        },
+      ],
     });
     this.addProp({
       type: "array",
@@ -79,7 +97,7 @@ class Feature19 extends BaseFeature {
               key: "icon",
               displayer: "Icon",
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon", "image"],
               },
               value: {
                 type: "icon",
@@ -111,7 +129,7 @@ class Feature19 extends BaseFeature {
               key: "icon",
               displayer: "Icon",
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon", "image"],
               },
               value: {
                 type: "icon",
@@ -122,7 +140,14 @@ class Feature19 extends BaseFeature {
         },
       ],
     });
-    this.addProp(INPUTS.BUTTON("button", "Button", "Get In Tocuh!", "", null, null, "Primary"));
+    this.addProp({
+      type: "array",
+      key: "buttons",
+      displayer: "Buttons",
+      value: [
+        INPUTS.BUTTON("button", "Button", "Get In Tocuh!", "", null, null, "Primary"),
+      ],
+    });
 
     this.addProp({
       type: "multiSelect",
@@ -141,16 +166,24 @@ class Feature19 extends BaseFeature {
 
   render() {
     const subTitle = this.getPropValue("subtitle");
-    const overlay = this.getPropValue("overlay") as boolean;
+    const mediaCard = this.castToObject<MediaCard>("mediaCard");
+    const media = mediaCard.media;
+    const overlay = !!mediaCard.overlay;
+    const mediaExist = !!(media && media.url);
     const title = this.getPropValue("title");
     const description = this.getPropValue("description");
-    const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
+    const buttons = this.castToObject<Button[]>("buttons");
+    const hasValidButtons = buttons && buttons.some((btn: Button) => {
+      const buttonText = this.castToString(btn.text);
+      const iconExist = btn.icon && (btn.icon.type === "icon" ? btn.icon.name : btn.icon.url);
+      return buttonText || iconExist;
+    });
     const list = this.castToObject<ListItem[]>("items");
     const isAnyContentExists =
       this.castToString(subTitle) ||
       this.castToString(title) ||
       this.castToString(description) ||
-      this.castToString(button.text) ||
+      hasValidButtons ||
       list.length > 0;
 
     return (
@@ -192,9 +225,9 @@ class Feature19 extends BaseFeature {
                           />
                         )}
                         {this.castToString(listItem.title) && (
-                          <Base.H3 className={this.decorateCSS("list-item-title")}>
+                          <Base.H5 className={this.decorateCSS("list-item-title")}>
                             {listItem.title}
-                          </Base.H3>
+                          </Base.H5>
                         )}
                       </Base.Row>
 
@@ -208,25 +241,36 @@ class Feature19 extends BaseFeature {
                   ))}
                 </div>
               )}
-              {this.castToString(button.text) && (
-                <ComposerLink path={button.url}>
-                  <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
-                    {<Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>}
-                  </Base.Button>
-                </ComposerLink>
+              {hasValidButtons && (
+                <div className={this.decorateCSS("button-container")}>
+                  {buttons.map((item: Button, index: number) => {
+                    const buttonText = this.castToString(item.text);
+                    const iconExist = item.icon && (item.icon.type === "icon" ? item.icon.name : item.icon.url);
+                    if (!buttonText && !iconExist) return null;
+                    return (
+                      <ComposerLink key={index} path={item.url}>
+                        <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
+                          {buttonText && (
+                            <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>
+                          )}
+                          {iconExist && (
+                            <Base.Media className={this.decorateCSS("button-icon")} value={item.icon} />
+                          )}
+                        </Base.Button>
+                      </ComposerLink>
+                    );
+                  })}
+                </div>
               )}
             </Base.VerticalContent>
           )}
-          {this.getPropValue("image") && (
-            <div 
+          {mediaExist && (
+            <div
               className={`${this.decorateCSS("right-image")} ${!isAnyContentExists ? this.decorateCSS("no-content") : ""}`}
               data-animation={this.getPropValue("hoverAnimation").join(" ")}
               style={{ position: "relative" }}
             >
-              <Base.Media
-                value={this.getPropValue("image")}
-                className={this.decorateCSS("img")}
-              />
+              <Base.Media value={media} className={this.decorateCSS("img")} />
               {overlay && <div className={this.decorateCSS("overlay")} />}
             </div>
           )}
