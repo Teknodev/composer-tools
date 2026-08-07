@@ -658,7 +658,7 @@ export namespace Base {
     ...props 
   }: React.HTMLAttributes<HTMLDivElement>) {
     return (
-      <div className={`${styles.baseCard} ${className}`} data-element-category={ELEMENT_CATEGORY.CARD} {...props}>
+      <div className={`${styles.baseCard} ${className ?? ""}`} data-element-category={ELEMENT_CATEGORY.CARD} {...props}>
         {children}
       </div>
     );

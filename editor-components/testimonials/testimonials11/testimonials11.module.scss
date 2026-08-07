@@ -172,18 +172,9 @@
           overflow: hidden;
           display: flex;
           flex-direction: column;
-          background-color: var(--composer-html-background);
           width: 100%;
-          border-radius: var(--composer-border-radius-md);
-          padding: var(--composer-gap-md);
           gap: var(--composer-gap-sm);
-          background-color: white;
-          color: black;
-
-          &.cards-no-background {
-            background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
-            color: var(--composer-font-color-primary);
-          }
+          color: var(--composer-font-color-primary);
 
           .card-quote {
             position: absolute;

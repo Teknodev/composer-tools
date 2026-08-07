@@ -209,33 +209,35 @@ class Download2 extends BaseDownload {
                 const buttonExist = buttonTextExist || buttonIconExist || buttonImageExist;
                 const cardExist = cardSubtitleExist || cardTitleExist || cardDescriptionExist || buttonExist;
                 return cardExist && (
-                  <Base.VerticalContent className={this.decorateCSS("card")} key={index}>
-                    {card.icon && (
-                      <Base.Row className={this.decorateCSS("icon-container")}>
-                        <Base.Media value={card.icon} className={this.decorateCSS("icon")} />
-                      </Base.Row>
-                    )}
-                    {this.castToString(card.cardSubtitle) && <Base.H4 className={this.decorateCSS("card-subtitle")}>{card.cardSubtitle}</Base.H4>}
-                    {this.castToString(card.cardTitle) && <Base.H2 className={this.decorateCSS("card-title")}>{card.cardTitle}</Base.H2>}
-                    {this.castToString(card.cardDescription) && <Base.P className={this.decorateCSS("card-description")}>{card.cardDescription}</Base.P>}
-                    {buttonExist &&
-                      <div className={this.decorateCSS("card-button-container")}>
-                        <ComposerLink path={card?.button?.url}>
-                          {card?.button?.image && card?.button?.image?.url ? (
-                            <div className={this.decorateCSS("card-button-element")}>
-                              <div className={this.decorateCSS("card-button")}>
-                                <Base.Media value={card?.button?.image} className={this.decorateCSS("card-button-image")} />
+                  <Base.Card key={index} className={this.decorateCSS("card-shell")}>
+                    <Base.VerticalContent className={this.decorateCSS("card")}>
+                      {card.icon && (
+                        <Base.Row className={this.decorateCSS("icon-container")}>
+                          <Base.Media value={card.icon} className={this.decorateCSS("icon")} />
+                        </Base.Row>
+                      )}
+                      {this.castToString(card.cardSubtitle) && <Base.H4 className={this.decorateCSS("card-subtitle")}>{card.cardSubtitle}</Base.H4>}
+                      {this.castToString(card.cardTitle) && <Base.H2 className={this.decorateCSS("card-title")}>{card.cardTitle}</Base.H2>}
+                      {this.castToString(card.cardDescription) && <Base.P className={this.decorateCSS("card-description")}>{card.cardDescription}</Base.P>}
+                      {buttonExist &&
+                        <div className={this.decorateCSS("card-button-container")}>
+                          <ComposerLink path={card?.button?.url}>
+                            {card?.button?.image && card?.button?.image?.url ? (
+                              <div className={this.decorateCSS("card-button-element")}>
+                                <div className={this.decorateCSS("card-button")}>
+                                  <Base.Media value={card?.button?.image} className={this.decorateCSS("card-button-image")} />
+                                </div>
                               </div>
-                            </div>
-                          ) : (
-                            <Base.Button buttonType={card.button?.type} className={this.decorateCSS("card-button")}>
-                              {this.castToString(card.button?.text) && <Base.P className={this.decorateCSS("card-button-text")}>{card.button?.text}</Base.P>}
-                              {card.button?.icon && card.button?.icon?.name && (<Base.Media value={card.button?.icon} className={this.decorateCSS("card-button-icon")} />)}
-                            </Base.Button>
-                          )}
-                        </ComposerLink>
-                      </div>}
-                  </Base.VerticalContent>
+                            ) : (
+                              <Base.Button buttonType={card.button?.type} className={this.decorateCSS("card-button")}>
+                                {this.castToString(card.button?.text) && <Base.P className={this.decorateCSS("card-button-text")}>{card.button?.text}</Base.P>}
+                                {card.button?.icon && card.button?.icon?.name && (<Base.Media value={card.button?.icon} className={this.decorateCSS("card-button-icon")} />)}
+                              </Base.Button>
+                            )}
+                          </ComposerLink>
+                        </div>}
+                    </Base.VerticalContent>
+                  </Base.Card>
                 );
               })}
             </Base.ListGrid>

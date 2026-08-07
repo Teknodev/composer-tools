@@ -69,11 +69,16 @@
                 flex: 1;
                 gap: var(--composer-gap-md);
 
-                .stat-item {
-                    background: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
-                    border-radius: var(--composer-border-radius-sm);
-                    padding: var(--composer-gap-lg) var(--composer-gap-md);
+                .card-shell {
+                    display: flex;
+                    flex-direction: column;
 
+                    > * {
+                        flex: 1 1 auto;
+                    }
+                }
+
+                .stat-item {
                     .stat-value {
                         color: var(--composer-font-color-primary);
                         display: flex;
@@ -151,8 +156,6 @@
         }
 
         .stats-grid .stat-item {
-            padding: var(--composer-gap-md);
-
             .stat-value {
                 font-size: 3.5rem;
             }

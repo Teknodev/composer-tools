@@ -306,7 +306,7 @@ class Testimonials11Page extends Testimonials {
       const textExist = this.castToString(item.text);
       const ratingExist = starIconExist && Number(item.starCount) > 0;
       return (
-        <div key={index} className={`${this.decorateCSS("cards")}${!coverMediaExist ? ` ${this.decorateCSS("cards-no-background")}` : ""}`}>
+        <Base.Card key={index} className={`${this.decorateCSS("cards")}${!coverMediaExist ? ` ${this.decorateCSS("cards-no-background")}` : ""}`}>
           {quoteIconExist && (
             <div className={this.decorateCSS("card-quote")}>
               <Base.Media value={quoteIconVal} className={this.decorateCSS("card-quote-icon")} />
@@ -339,7 +339,7 @@ class Testimonials11Page extends Testimonials {
           {textExist && (
             <Base.P className={this.decorateCSS("card-description")}>{item.text}</Base.P>
           )}
-        </div>
+        </Base.Card>
       );
     };
 

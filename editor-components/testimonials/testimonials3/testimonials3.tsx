@@ -295,7 +295,7 @@ class Testimonials3Page extends Testimonials {
               const positionExist = item.author && this.castToString(item.author.position);
               const authorExist = item.author && (imageExist || nameExist || positionExist);
               return (
-                <Base.VerticalContent className={this.decorateCSS("card")} key={index}>
+                <Base.Card className={this.decorateCSS("card")} key={index}>
                   {(item.star > 0 && starIconExist) && (
                     <div className={this.decorateCSS("stars")}>
                       {[...Array(Number(item.star))].map((_: unknown, starIndex: number) => (
@@ -328,7 +328,7 @@ class Testimonials3Page extends Testimonials {
                       )}
                     </Base.VerticalContent>
                   )}
-                </Base.VerticalContent>
+                </Base.Card>
               );
             })}
           </Base.ListGrid>

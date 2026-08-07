@@ -255,7 +255,7 @@ class Feature32 extends BaseFeature {
                   if (!titleExist && !descExist && !card.icon) return null;
 
                   return (
-                    <div
+                    <Base.Card
                       key={index}
                       className={this.decorateCSS("card-container")}
                     >
@@ -270,7 +270,7 @@ class Feature32 extends BaseFeature {
                           {descExist && <Base.P className={this.decorateCSS("card-description")}>{card.description}</Base.P>}
                         </Base.VerticalContent>
                       }
-                    </div>
+                    </Base.Card>
                   );
                 })}
               </Base.ListGrid>

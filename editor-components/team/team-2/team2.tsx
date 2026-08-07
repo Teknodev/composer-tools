@@ -369,7 +369,7 @@ class Team2 extends Team {
       displayer: "Hover Animation Style",
       value: ["animate1"],
       additionalParams: {
-        selectItems: ["animate1", "animate2", "animate3", "animate4", "animate5", "animate6"]
+        selectItems: ["animate1", "animate2", "animate4", "animate5", "animate6"]
       }
     });
   }
@@ -401,26 +401,32 @@ class Team2 extends Team {
               const description = this.castToString(team.description);
 
               return (
-                <Base.VerticalContent className={`${this.decorateCSS("team")}`} key={index} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
-                  {team.profileImage && <Base.Media value={team.profileImage} className={this.decorateCSS("image")} />}
-                  {name && <Base.H3 className={this.decorateCSS("title")}>{team.name}</Base.H3>}
-                  {position && <Base.H4 className={this.decorateCSS("position")}>{team.position}</Base.H4>}
-                  {description && <Base.P className={this.decorateCSS("long-text")}>{team.description}</Base.P>}
-                  <div className={this.decorateCSS("icon-group")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
-                    {team.platforms &&
-                      team.platforms.map((item: Platform, indexPlatforms: number) => (
-                        <ComposerLink key={indexPlatforms} path={item.url}>
-                          <Base.Icon
-                            name={item.icon}
-                            propsIcon={{
-                              className: this.decorateCSS("icon"),
-                              style: { "--icon-index": indexPlatforms } as React.CSSProperties
-                            }}
-                          />
-                        </ComposerLink>
-                      ))}
-                  </div>
-                </Base.VerticalContent>
+                <Base.Card
+                  key={index}
+                  className={this.decorateCSS("card-shell")}
+                  data-animation={this.getPropValue("hoverAnimation").join(" ")}
+                >
+                  <Base.VerticalContent className={`${this.decorateCSS("team")}`}>
+                    {team.profileImage && <Base.Media value={team.profileImage} className={this.decorateCSS("image")} />}
+                    {name && <Base.H3 className={this.decorateCSS("title")}>{team.name}</Base.H3>}
+                    {position && <Base.H4 className={this.decorateCSS("position")}>{team.position}</Base.H4>}
+                    {description && <Base.P className={this.decorateCSS("long-text")}>{team.description}</Base.P>}
+                    <div className={this.decorateCSS("icon-group")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
+                      {team.platforms &&
+                        team.platforms.map((item: Platform, indexPlatforms: number) => (
+                          <ComposerLink key={indexPlatforms} path={item.url}>
+                            <Base.Icon
+                              name={item.icon}
+                              propsIcon={{
+                                className: this.decorateCSS("icon"),
+                                style: { "--icon-index": indexPlatforms } as React.CSSProperties
+                              }}
+                            />
+                          </ComposerLink>
+                        ))}
+                    </div>
+                  </Base.VerticalContent>
+                </Base.Card>
               );
             })}
           </Base.ListGrid>

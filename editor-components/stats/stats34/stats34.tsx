@@ -160,6 +160,16 @@ class Stats34 extends BaseStats {
         return "Stats 34";
     }
 
+    private hasStatContent(stat: any): boolean {
+        const prefixExist = !!this.castToString(stat.prefix);
+        const suffixExist = !!this.castToString(stat.suffix);
+        const titleExist = !!(stat.title && stat.title !== "");
+        const subtitleExist = !!(stat.subtitle && stat.subtitle !== "");
+        const descriptionExist = !!(stat.description && stat.description !== "");
+        const valueExist = !!(stat.number && stat.number !== "");
+        return valueExist || prefixExist || suffixExist || titleExist || subtitleExist || descriptionExist;
+    }
+
     private AnimatedStat = ({ stat, animationDuration = 2000, statsAnimation }: { stat: StatItem; animationDuration?: number; statsAnimation: boolean }) => {
         const originalString = stat.number;
         const targetNumber = parseFloat(originalString) || 0;
@@ -206,7 +216,7 @@ class Stats34 extends BaseStats {
         const valueExist = originalString && originalString !== "";
         const displayNumber = !valueExist ? "" : (statsAnimation ? formatNumber(animatedNumber) : formatNumber(targetNumber));
 
-        if (!valueExist && !prefixExist && !suffixExist && !titleExist && !subtitleExist && !descriptionExist) return null;
+        if (!this.hasStatContent(stat)) return null;
 
         return (
             <Base.VerticalContent className={this.decorateCSS("stat-item")}>
@@ -275,7 +285,7 @@ class Stats34 extends BaseStats {
 
         const hasContent = subtitleExist || titleExist || descriptionExist;
         const visibleButtons = buttons.filter((btn) => this.castToString(btn.text));
-        const visibleStats = stats.filter((s) => s.prefix || s.number || s.suffix || s.title || s.subtitle || s.description);
+        const visibleStats = stats.filter((s) => this.hasStatContent(s));
 
         return (
             <Base.Container className={this.decorateCSS("container")}>
@@ -334,12 +344,13 @@ class Stats34 extends BaseStats {
                         {visibleStats.length > 0 && (
                             <Base.ListGrid gridCount={{ pc: itemCount, tablet: 1, phone: 1 }} className={this.decorateCSS("stats-grid")}>
                                 {visibleStats.map((stat: StatItem, index: number) => (
-                                    <this.AnimatedStat
-                                        key={`stat34-${index}`}
-                                        stat={stat}
-                                        animationDuration={animationDuration}
-                                        statsAnimation={statsAnimation}
-                                    />
+                                    <Base.Card key={`stat34-${index}`} className={this.decorateCSS("card-shell")}>
+                                        <this.AnimatedStat
+                                            stat={stat}
+                                            animationDuration={animationDuration}
+                                            statsAnimation={statsAnimation}
+                                        />
+                                    </Base.Card>
                                 ))}
                             </Base.ListGrid>
                         )}
