@@ -726,7 +726,18 @@
 .baseCard {
     border: 1px solid transparent;
     border-radius: var(--composer-border-radius-md);
-    background: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+    // Dynamic elevation driven by the page background's luminance (--bg-lum, set
+    // in Editor.changeThemeColors; falls back to 1 = light). The card is the page
+    // background mixed toward white by (bg-lum * 130%, clamped 6–100%):
+    //   • white/light page (lum≈1) → 100% white → (near) pure white
+    //   • mid-dark page → proportional subtle lift
+    //   • near-black page (lum≈0) → floored at 6% white so the card still lifts
+    //     visibly off the page (below the floor it was ~invisible, card ≈ bg).
+    background: color-mix(
+        in srgb,
+        var(--composer-html-background),
+        #ffffff calc(clamp(6%, var(--bg-lum, 1) * 130%, 100%))
+    );
     padding: var(--composer-gap-lg);
 }
 
