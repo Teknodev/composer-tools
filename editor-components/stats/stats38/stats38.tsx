@@ -13,7 +13,7 @@ type MediaCard = {
 type StatItem = {
     prefix: string;
     prefixElement: React.JSX.Element;
-    number: string;
+    value: string;
     numberElement: React.JSX.Element;
     suffix: string;
     suffixElement: React.JSX.Element;
@@ -96,7 +96,7 @@ class Stats38 extends BaseStats {
                     displayer: "Stat",
                     value: [
                         { type: "string", key: "prefix", displayer: "Prefix", value: "" },
-                        { type: "string", key: "number", displayer: "Value", value: "10" },
+                        { type: "string", key: "value", displayer: "Value", value: "10" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "x" },
                         { type: "string", key: "subtitle", displayer: "Subtitle", value: "Increase in revenue" },
                         { type: "string", key: "title", displayer: "Title", value: "" },
@@ -109,7 +109,7 @@ class Stats38 extends BaseStats {
                     displayer: "Stat",
                     value: [
                         { type: "string", key: "prefix", displayer: "Prefix", value: "" },
-                        { type: "string", key: "number", displayer: "Value", value: "250" },
+                        { type: "string", key: "value", displayer: "Value", value: "250" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "%" },
                         { type: "string", key: "subtitle", displayer: "Subtitle", value: "Increase in signups" },
                         { type: "string", key: "title", displayer: "Title", value: "" },
@@ -153,13 +153,13 @@ class Stats38 extends BaseStats {
 
         const mediaExist = media && media.url;
 
-        const statsRaw = this.castToObject<{ prefix: React.JSX.Element; number: React.JSX.Element; suffix: React.JSX.Element; title: React.JSX.Element; subtitle: React.JSX.Element; description: React.JSX.Element }[]>("stats");
+        const statsRaw = this.castToObject<{ prefix: React.JSX.Element; value: React.JSX.Element; suffix: React.JSX.Element; title: React.JSX.Element; subtitle: React.JSX.Element; description: React.JSX.Element }[]>("stats");
 
         const stats: StatItem[] = statsRaw.map((item) => ({
             prefix: this.castToString(item.prefix) || "",
             prefixElement: item.prefix,
-            number: this.castToString(item.number) || "",
-            numberElement: item.number,
+            value: this.castToString(item.value) || "",
+            numberElement: item.value,
             suffix: this.castToString(item.suffix) || "",
             suffixElement: item.suffix,
             subtitle: this.castToString(item.subtitle) || "",
@@ -179,7 +179,7 @@ class Stats38 extends BaseStats {
         const subtitleExist = this.castToString(subtitle);
         const descriptionExist = this.castToString(description);
         const hasTextSection = subtitleExist || titleExist || descriptionExist || hasValidButtons;
-        const hasStats = stats.some(s => s.number || s.prefix || s.suffix || s.subtitle || s.title || s.description);
+        const hasStats = stats.some(s => s.value || s.prefix || s.suffix || s.subtitle || s.title || s.description);
         const noText = !hasTextSection && !hasStats;
 
         const AnimatedStat = ({ stat }: { stat: StatItem }) => {

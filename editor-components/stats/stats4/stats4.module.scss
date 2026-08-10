@@ -49,6 +49,9 @@
         .faq {
           width: 100%;
           color: var(--composer-font-color-primary);
+          display: flex;
+          flex-direction: column;
+          gap: var(--composer-gap-md);
 
           .faq-item {
             .bottom-line {
@@ -66,6 +69,7 @@
                 color: var(--composer-font-color-primary);
                 content: "";
                 text-align: left;
+                font-size: 1.25rem;
                 font-weight: 800;
               }
 
@@ -122,7 +126,7 @@
           }
 
           .stat-item-subtitle {
-            color: var(--composer-tertiary-color);
+            color: var(--composer-font-color-primary);
             font-size: 1rem;
             overflow-wrap: break-word;
             text-align: left !important;
@@ -132,6 +136,7 @@
             color: var(--composer-font-color-primary);
             overflow-wrap: break-word;
             text-align: left !important;
+            font-size: 1.25rem;
             font-weight: 800;
           }
 
@@ -139,6 +144,7 @@
             color: var(--composer-font-color-primary);
             overflow-wrap: break-word;
             text-align: left !important;
+            font-size: 1rem;
           }
 
           .stat-item-stat-value {
@@ -146,10 +152,16 @@
             font-size: 3rem !important;
             font-weight: 800;
             text-align: left !important;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
 
-            .stat-value-prefix,
-            .stat-value-suffix {
+            .stat-value-prefix {
               font-size: 1.75rem;
+            }
+
+            .stat-value-suffix {
+              font-size: 2.5rem;
             }
           }
         }
@@ -176,7 +188,7 @@
       .stats-container {
         .upper-container {
           flex-direction: column !important;
-          gap: 0;
+          gap: var(--composer-gap-lg);
 
           .upper-container-main {
             .title {

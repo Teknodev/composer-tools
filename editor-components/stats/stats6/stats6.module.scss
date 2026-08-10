@@ -1,10 +1,12 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
+  background-color: var(--composer-primary-color);
+
   .max-content {
     display: flex;
     flex-direction: column;
-    gap: var(--composer-gap-lg);
+    gap: var(--composer-gap-xl);
 
     .banner {
       align-items: center !important;
@@ -12,6 +14,7 @@
 
       .subtitle {
         text-align: center;
+        color: var(--composer-font-color-secondary);
         transform: none !important;
         &::before {
           display: none !important;
@@ -20,11 +23,12 @@
 
       .title {
         text-align: center;
+        color: var(--composer-font-color-secondary);
       }
 
       .description {
         text-align: center;
-        color: var(--composer-tertiary-color);
+        color: var(--composer-font-color-secondary);
       }
 
       .button-container {
@@ -52,7 +56,8 @@
 
           .data-card-title {
             font-size: 2.5rem !important;
-            color: var(--composer-primary-color);
+            font-weight: 800;
+            color: var(--composer-font-color-secondary);
             word-break: break-all;
             margin: 0;
             text-align: center !important;
@@ -69,23 +74,39 @@
 
           .data-card-subtitle {
             margin: 0;
-            color: var(--composer-tertiary-color);
-            font-size: 1.2rem !important;
+            color: var(--composer-font-color-secondary);
+            font-size: 1.25rem !important;
             text-align: center !important;
           }
 
           .data-card-heading {
             margin: 0;
-            color: var(--composer-font-color-primary);
-            font-size: 1.8rem !important;
+            color: var(--composer-font-color-secondary);
+            font-size: 1.75rem !important;
             text-align: center !important;
           }
 
           .data-card-description {
             margin: 0;
-            color: var(--composer-tertiary-color);
+            color: var(--composer-font-color-secondary);
             font-size: 1.5rem !important;
             text-align: center !important;
+          }
+        }
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-tablet-width}) {
+  .container {
+    .max-content {
+      .stats6-page {
+        .card {
+          .card-content {
+            .data-card-description {
+              font-size: 1.25rem !important;
+            }
           }
         }
       }
@@ -98,6 +119,14 @@
     .max-content {
       .stats6-page {
         gap: var(--composer-gap-lg) !important;
+
+        .card {
+          .card-content {
+            .data-card-description {
+              font-size: 1rem !important;
+            }
+          }
+        }
       }
     }
   }

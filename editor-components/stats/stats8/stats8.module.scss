@@ -219,18 +219,36 @@ $font-color-primary: var(--composer-font-color-primary);
           display: flex;
           padding: var(--composer-gap-md);
           border: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.3);
+          border-radius: var(--composer-border-radius-md);
+
+          &.no-image {
+            .stat-badge {
+              position: static;
+              margin: 0;
+              max-height: none;
+              overflow: visible;
+              border-color: rgba(var(--composer-font-color-primary-rgb), 0.3);
+
+              .number,
+              .description {
+                color: var(--composer-font-color-primary);
+              }
+            }
+          }
 
           .image {
             max-height: 750px;
             width: 100%;
             height: auto;
             object-fit: cover;
+            border-radius: var(--composer-border-radius-sm);
           }
 
           .overlay {
             position: absolute;
             inset: var(--composer-gap-md);
             z-index: 1;
+            border-radius: var(--composer-border-radius-sm);
             background-color: var(--composer-overlay-color);
           }
 

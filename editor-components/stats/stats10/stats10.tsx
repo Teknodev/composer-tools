@@ -3,11 +3,12 @@ import { BaseStats, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./stats10.module.scss";
 
 import { Base } from "../../../composer-base-components/base/base";
+import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
+import { INPUTS } from "../../../custom-hooks/input-templates";
 
 type ProgressItem = {
-  icon: string | TypeMediaInputValue;
   prefix: React.JSX.Element;
-  number: React.JSX.Element;
+  value: React.JSX.Element;
   suffix: React.JSX.Element;
   subtitle: React.JSX.Element;
   title: React.JSX.Element;
@@ -90,6 +91,12 @@ class Stats10 extends BaseStats {
     });
     this.addProp({
       type: "array",
+      key: "buttons",
+      displayer: "Buttons",
+      value: [INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary")],
+    });
+    this.addProp({
+      type: "array",
       key: "stats",
       displayer: "Stats",
       value: [
@@ -98,19 +105,11 @@ class Stats10 extends BaseStats {
           key: "stat",
           displayer: "Stat",
           value: [
-            {
-              type: "media",
-              key: "icon",
-              displayer: "Icon",
-              additionalParams: { availableTypes: ["image", "icon"] },
-              value: { type: "icon", name: "CgPlayButtonO" },
-            },
             { type: "string", key: "prefix", displayer: "Prefix", value: "" },
-            { type: "string", key: "number", displayer: "Value", value: "90%" },
+            { type: "string", key: "value", displayer: "Value", value: "90%" },
             { type: "string", key: "suffix", displayer: "Suffix", value: "" },
             { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
-            { type: "string", key: "title", displayer: "Title", value: "Confidentiality" },
-            { type: "string", key: "description", displayer: "Description", value: "" },
+            { type: "string", key: "title", displayer: "Description", value: "Confidentiality" },
             {
               type: "number",
               key: "progress",
@@ -124,19 +123,11 @@ class Stats10 extends BaseStats {
           key: "stat",
           displayer: "Stat",
           value: [
-            {
-              type: "media",
-              key: "icon",
-              displayer: "Icon",
-              additionalParams: { availableTypes: ["image", "icon"] },
-              value: { type: "icon", name: "CgPlayButtonO" },
-            },
             { type: "string", key: "prefix", displayer: "Prefix", value: "" },
-            { type: "string", key: "number", displayer: "Value", value: "95%" },
+            { type: "string", key: "value", displayer: "Value", value: "95%" },
             { type: "string", key: "suffix", displayer: "Suffix", value: "" },
             { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
-            { type: "string", key: "title", displayer: "Title", value: "Consumer Satisfaction" },
-            { type: "string", key: "description", displayer: "Description", value: "" },
+            { type: "string", key: "title", displayer: "Description", value: "Consumer Satisfaction" },
             {
               type: "number",
               key: "progress",
@@ -150,19 +141,11 @@ class Stats10 extends BaseStats {
           key: "stat",
           displayer: "Stat",
           value: [
-            {
-              type: "media",
-              key: "icon",
-              displayer: "Icon",
-              additionalParams: { availableTypes: ["image", "icon"] },
-              value: { type: "icon", name: "CgPlayButtonO" },
-            },
             { type: "string", key: "prefix", displayer: "Prefix", value: "" },
-            { type: "string", key: "number", displayer: "Value", value: "98%" },
+            { type: "string", key: "value", displayer: "Value", value: "98%" },
             { type: "string", key: "suffix", displayer: "Suffix", value: "" },
             { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
-            { type: "string", key: "title", displayer: "Title", value: "Therapy" },
-            { type: "string", key: "description", displayer: "Description", value: "" },
+            { type: "string", key: "title", displayer: "Description", value: "Therapy" },
             {
               type: "number",
               key: "progress",
@@ -176,19 +159,11 @@ class Stats10 extends BaseStats {
           key: "stat",
           displayer: "Stat",
           value: [
-            {
-              type: "media",
-              key: "icon",
-              displayer: "Icon",
-              additionalParams: { availableTypes: ["image", "icon"] },
-              value: { type: "icon", name: "CgPlayButtonO" },
-            },
             { type: "string", key: "prefix", displayer: "Prefix", value: "" },
-            { type: "string", key: "number", displayer: "Value", value: "85%" },
+            { type: "string", key: "value", displayer: "Value", value: "85%" },
             { type: "string", key: "suffix", displayer: "Suffix", value: "" },
             { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
-            { type: "string", key: "title", displayer: "Title", value: "Counseling" },
-            { type: "string", key: "description", displayer: "Description", value: "" },
+            { type: "string", key: "title", displayer: "Description", value: "Counseling" },
             {
               type: "number",
               key: "progress",
@@ -238,6 +213,8 @@ class Stats10 extends BaseStats {
     const subtitle = this.castToString(this.getPropValue("subtitle"));
     const title = this.castToString(this.getPropValue("title"));
     const description = this.castToString(this.getPropValue("description"));
+    const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons") || [];
+    const visibleButtons = buttons.filter((btn) => this.castToString(btn.text));
     const itemsLength = (this.getPropValue("stats") || []).length;
     const media = this.castToObject<any>("media");
     const image1 = media?.source1 as TypeMediaInputValue;
@@ -257,7 +234,7 @@ class Stats10 extends BaseStats {
       const ref = React.useRef<HTMLDivElement>(null);
       const intervalRef = React.useRef<ReturnType<typeof setInterval> | null>(null);
 
-      const rawNumber = (this.castToString(item.number) as string) || "";
+      const rawNumber = (this.castToString(item.value) as string) || "";
       const prefix = rawNumber.match(/^[^\d]*/)?.[0] ?? "";
       const suffix = rawNumber.match(/[^\d]*$/)?.[0] ?? "";
       const core = rawNumber.slice(prefix.length, rawNumber.length - suffix.length);
@@ -326,14 +303,12 @@ class Stats10 extends BaseStats {
         };
       }, [rawNumber, animatable, animationDuration, target]);
 
-      const iconExist = typeof item.icon === "object" ? (item.icon?.name || item.icon?.url) : item.icon;
       const titleExist = this.castToString(item.title);
       const subtitleExist = this.castToString(item.subtitle);
-      const descriptionExist = this.castToString(item.description);
       const prefixExist = this.castToString(item.prefix);
       const suffixExist = this.castToString(item.suffix);
       const textExist = !!rawNumber || prefixExist || suffixExist;
-      if (!iconExist && !titleExist && !subtitleExist && !descriptionExist && !textExist) return null;
+      if (!titleExist && !subtitleExist && !textExist) return null;
 
       return (
         <div
@@ -341,15 +316,10 @@ class Stats10 extends BaseStats {
           className={this.decorateCSS("item")}
           data-animation={hoverAnimation}
         >
-          {(iconExist || titleExist || subtitleExist || textExist) && (
+          {(titleExist || subtitleExist || textExist) && (
             <div className={this.decorateCSS("progress-content")}>
-              {(iconExist || titleExist || subtitleExist) && (
+              {(titleExist || subtitleExist) && (
                 <div className={this.decorateCSS("progress-title-container")}>
-                  {iconExist && (
-                    <div className={this.decorateCSS("progress-title-icon")}>
-                      <Base.Media value={typeof item.icon === "object" ? item.icon : { type: "icon", name: item.icon }} className={this.decorateCSS("icon")} />
-                    </div>
-                  )}
                   {(subtitleExist || titleExist) && (
                     <div className={this.decorateCSS("progress-title-text")}>
                       {subtitleExist && (
@@ -370,7 +340,7 @@ class Stats10 extends BaseStats {
                 <div className={this.decorateCSS("progress-text-container")}>
                   <div className={this.decorateCSS("progress-text")}>
                     {prefixExist && <span className={this.decorateCSS("progress-prefix")}>{item.prefix}</span>}
-                    {animatable ? display : item.number}
+                    {animatable ? display : item.value}
                     {suffixExist && <span className={this.decorateCSS("progress-suffix")}>{item.suffix}</span>}
                   </div>
                 </div>
@@ -392,11 +362,6 @@ class Stats10 extends BaseStats {
             </div>
           )}
 
-          {descriptionExist && (
-            <div className={this.decorateCSS("progress-description")}>
-              {item.description}
-            </div>
-          )}
         </div>
       );
     };
@@ -456,9 +421,9 @@ class Stats10 extends BaseStats {
               </div>
             )}
 
-            {(subtitle || title || description || (itemsLength > 0)) && (
+            {(subtitle || title || description || visibleButtons.length > 0 || (itemsLength > 0)) && (
               <div className={`${this.decorateCSS("right-page")} ${alignment === "center" ? this.decorateCSS("alignment-center") : ""}`}>
-                {(subtitle || title || description) && (
+                {(subtitle || title || description || visibleButtons.length > 0) && (
                   <Base.VerticalContent className={this.decorateCSS("top-section")}>
                     {subtitle && (
                       <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
@@ -474,6 +439,17 @@ class Stats10 extends BaseStats {
                       <Base.SectionDescription className={this.decorateCSS("description")}>
                         {this.getPropValue("description")}
                       </Base.SectionDescription>
+                    )}
+                    {visibleButtons.length > 0 && (
+                      <div className={this.decorateCSS("button-container")}>
+                        {visibleButtons.map((btn, index) => (
+                          <ComposerLink key={index} path={btn.url}>
+                            <Base.Button buttonType={btn.type} className={this.decorateCSS("button")}>
+                              {this.castToString(btn.text) && <Base.P className={this.decorateCSS("button-text")}>{btn.text}</Base.P>}
+                            </Base.Button>
+                          </ComposerLink>
+                        ))}
+                      </div>
                     )}
                   </Base.VerticalContent>
                 )}

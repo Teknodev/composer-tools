@@ -9,7 +9,7 @@ import { INPUTS } from "../../../custom-hooks/input-templates";
 type Card = {
   icon?: TypeMediaInputValue | string;
   prefix: React.JSX.Element;
-  number: React.JSX.Element;
+  value: React.JSX.Element;
   suffix: React.JSX.Element;
   subtitle: React.JSX.Element;
   title: React.JSX.Element;
@@ -64,7 +64,7 @@ class Stats2Page extends BaseStats {
               value: { type: "icon", name: "IoMdArrowUp" },
             },
             { type: "string", key: "prefix", displayer: "Prefix", value: "" },
-            { type: "string", key: "number", displayer: "Value", value: "8500" },
+            { type: "string", key: "value", displayer: "Value", value: "8500" },
             { type: "string", key: "suffix", displayer: "Suffix", value: "" },
             { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
             { type: "string", key: "title", displayer: "Title", value: "" },
@@ -84,7 +84,7 @@ class Stats2Page extends BaseStats {
               value: { type: "icon", name: "IoMdArrowUp" },
             },
             { type: "string", key: "prefix", displayer: "Prefix", value: "" },
-            { type: "string", key: "number", displayer: "Value", value: "660" },
+            { type: "string", key: "value", displayer: "Value", value: "660" },
             { type: "string", key: "suffix", displayer: "Suffix", value: "" },
             { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
             { type: "string", key: "title", displayer: "Title", value: "" },
@@ -104,7 +104,7 @@ class Stats2Page extends BaseStats {
               value: { type: "icon", name: "IoMdArrowUp" },
             },
             { type: "string", key: "prefix", displayer: "Prefix", value: "" },
-            { type: "string", key: "number", displayer: "Value", value: "6834" },
+            { type: "string", key: "value", displayer: "Value", value: "6834" },
             { type: "string", key: "suffix", displayer: "Suffix", value: "" },
             { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
             { type: "string", key: "title", displayer: "Title", value: "" },
@@ -124,7 +124,7 @@ class Stats2Page extends BaseStats {
               value: { type: "icon", name: "IoMdArrowUp" },
             },
             { type: "string", key: "prefix", displayer: "Prefix", value: "" },
-            { type: "string", key: "number", displayer: "Value", value: "300" },
+            { type: "string", key: "value", displayer: "Value", value: "300" },
             { type: "string", key: "suffix", displayer: "Suffix", value: "" },
             { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
             { type: "string", key: "title", displayer: "Title", value: "" },
@@ -194,7 +194,7 @@ class Stats2Page extends BaseStats {
       const ref = React.useRef<HTMLDivElement>(null);
       const intervalRef = React.useRef<ReturnType<typeof setInterval> | null>(null);
 
-      const rawNumber = (this.castToString(card.number) as string) || "";
+      const rawNumber = (this.castToString(card.value) as string) || "";
       const prefix = rawNumber.match(/^[^\d]*/)?.[0] ?? "";
       const suffix = rawNumber.match(/[^\d]*$/)?.[0] ?? "";
       const core = rawNumber.slice(prefix.length, rawNumber.length - suffix.length);
@@ -289,7 +289,7 @@ class Stats2Page extends BaseStats {
           {hasAmountRow && (
             <div className={this.decorateCSS("card-amount-container")}>
               {prefixExist && <div className={this.decorateCSS("card-prefix")}>{card.prefix}</div>}
-              {!!display && <div className={this.decorateCSS("card-amount")}>{animatable ? display : card.number}</div>}
+              {!!display && <div className={this.decorateCSS("card-amount")}>{animatable ? display : card.value}</div>}
               {suffixExist && <div className={this.decorateCSS("card-suffix")}>{card.suffix}</div>}
               {iconExist && <Base.Media value={typeof card.icon === "object" ? card.icon : { type: "icon", name: card.icon }} className={this.decorateCSS("suffix-icon")} />}
             </div>

@@ -6,7 +6,7 @@ import ComposerLink from "../../../composer-base-components/Link/ComposerLinkPro
 import { INPUTS } from "../../../custom-hooks/input-templates";
 interface StatItem {
   prefix: React.JSX.Element;
-  number: React.JSX.Element;
+  value: React.JSX.Element;
   suffix: React.JSX.Element;
   subtitle: React.JSX.Element;
   title: React.JSX.Element;
@@ -55,11 +55,10 @@ class Stats11 extends BaseStats {
           displayer: "Stat",
           value: [
             { type: "string", key: "prefix", displayer: "Prefix", value: "" },
-            { type: "string", key: "number", displayer: "Value", value: "12" },
+            { type: "string", key: "value", displayer: "Value", value: "12" },
             { type: "string", key: "suffix", displayer: "Suffix", value: "" },
             { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
-            { type: "string", key: "title", displayer: "Title", value: "" },
-            { type: "string", key: "description", displayer: "Description", value: "Years" },
+            { type: "string", key: "description", displayer: "Title", value: "Years" },
           ],
         },
         {
@@ -68,11 +67,10 @@ class Stats11 extends BaseStats {
           displayer: "Stat",
           value: [
             { type: "string", key: "prefix", displayer: "Prefix", value: "" },
-            { type: "string", key: "number", displayer: "Value", value: "68" },
+            { type: "string", key: "value", displayer: "Value", value: "68" },
             { type: "string", key: "suffix", displayer: "Suffix", value: "" },
             { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
-            { type: "string", key: "title", displayer: "Title", value: "" },
-            { type: "string", key: "description", displayer: "Description", value: "Projects" },
+            { type: "string", key: "description", displayer: "Title", value: "Projects" },
           ],
         },
         {
@@ -81,11 +79,10 @@ class Stats11 extends BaseStats {
           displayer: "Stat",
           value: [
             { type: "string", key: "prefix", displayer: "Prefix", value: "" },
-            { type: "string", key: "number", displayer: "Value", value: "16" },
+            { type: "string", key: "value", displayer: "Value", value: "16" },
             { type: "string", key: "suffix", displayer: "Suffix", value: "" },
             { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
-            { type: "string", key: "title", displayer: "Title", value: "" },
-            { type: "string", key: "description", displayer: "Description", value: "Award" },
+            { type: "string", key: "description", displayer: "Title", value: "Award" },
           ],
         },
       ],
@@ -170,20 +167,19 @@ class Stats11 extends BaseStats {
                 <div className={this.decorateCSS("stats-list")}>
                   {statItems.map((item, idx) => {
                     const prefixExist = this.castToString(item.prefix);
-                    const numberExist = this.castToString(item.number);
+                    const numberExist = this.castToString(item.value);
                     const suffixExist = this.castToString(item.suffix);
                     const subtitleExist = this.castToString(item.subtitle);
-                    const titleExist = this.castToString(item.title);
                     const descriptionExist = this.castToString(item.description);
                     const hasValue = prefixExist || numberExist || suffixExist;
-                    const hasText = subtitleExist || titleExist || descriptionExist;
+                    const hasText = subtitleExist || descriptionExist;
                     if (!hasValue && !hasText) return null;
                     return (
                       <div className={this.decorateCSS("stat-item")} key={idx}>
                         {hasValue && (
                           <Base.P className={this.decorateCSS("stat-value")}>
                             {prefixExist && <span className={this.decorateCSS("stat-prefix")}>{item.prefix}</span>}
-                            {numberExist && <span className={this.decorateCSS("stat-number")}>{item.number}</span>}
+                            {numberExist && <span className={this.decorateCSS("stat-number")}>{item.value}</span>}
                             {suffixExist && <span className={this.decorateCSS("stat-suffix")}>{item.suffix}</span>}
                           </Base.P>
                         )}
@@ -193,11 +189,6 @@ class Stats11 extends BaseStats {
                               <Base.P className={this.decorateCSS("stat-subtitle")}>
                                 {item.subtitle}
                               </Base.P>
-                            )}
-                            {titleExist && (
-                              <Base.H5 className={this.decorateCSS("stat-title")}>
-                                {item.title}
-                              </Base.H5>
                             )}
                             {descriptionExist && (
                               <Base.P className={this.decorateCSS("stat-label")}>

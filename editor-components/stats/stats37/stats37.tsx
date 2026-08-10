@@ -5,7 +5,7 @@ import { Base } from "../../../composer-base-components/base/base";
 
 type StatItem = {
     prefix: React.JSX.Element;
-    number: React.JSX.Element;
+    value: React.JSX.Element;
     suffix: React.JSX.Element;
     subtitle: React.JSX.Element;
     title: React.JSX.Element;
@@ -48,7 +48,7 @@ class Stats37 extends BaseStats {
                     displayer: "Stat",
                     value: [
                         { type: "string", key: "prefix", displayer: "Prefix", value: "" },
-                        { type: "string", key: "number", displayer: "Value", value: "15" },
+                        { type: "string", key: "value", displayer: "Value", value: "15" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "K" },
                         { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
                         { type: "string", key: "title", displayer: "Title", value: "Covered <br /> Injuries" },
@@ -61,7 +61,7 @@ class Stats37 extends BaseStats {
                     displayer: "Stat",
                     value: [
                         { type: "string", key: "prefix", displayer: "Prefix", value: "" },
-                        { type: "string", key: "number", displayer: "Value", value: "100" },
+                        { type: "string", key: "value", displayer: "Value", value: "100" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "%" },
                         { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
                         { type: "string", key: "title", displayer: "Title", value: "Guaranteed <br /> Issue" },
@@ -74,7 +74,7 @@ class Stats37 extends BaseStats {
                     displayer: "Stat",
                     value: [
                         { type: "string", key: "prefix", displayer: "Prefix", value: "" },
-                        { type: "string", key: "number", displayer: "Value", value: "5" },
+                        { type: "string", key: "value", displayer: "Value", value: "5" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "X" },
                         { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
                         { type: "string", key: "title", displayer: "Title", value: "More covered <br /> conditions" },
@@ -130,7 +130,7 @@ class Stats37 extends BaseStats {
                         <Base.ListGrid gridCount={{ pc: itemCount, tablet: 3, phone: 1 }} className={this.decorateCSS("stats-grid")}>
                             {stats.map((item, index) => {
                                 const prefixExist = this.castToString(item.prefix);
-                                const valueExist = this.castToString(item.number);
+                                const valueExist = this.castToString(item.value);
                                 const suffixExist = this.castToString(item.suffix);
                                 const statSubTitleExist = this.castToString(item.subtitle);
                                 const statTitleExist = this.castToString(item.title);
@@ -148,7 +148,7 @@ class Stats37 extends BaseStats {
                                                         <Base.H1 className={this.decorateCSS("stat-prefix")}>{item.prefix}</Base.H1>
                                                     )}
                                                     {valueExist && (
-                                                        <Base.H1 className={this.decorateCSS("stat-number")}>{item.number}</Base.H1>
+                                                        <Base.H1 className={this.decorateCSS("stat-number")}>{item.value}</Base.H1>
                                                     )}
                                                     {suffixExist && (
                                                         <Base.H1 className={this.decorateCSS("stat-suffix")}>{item.suffix}</Base.H1>

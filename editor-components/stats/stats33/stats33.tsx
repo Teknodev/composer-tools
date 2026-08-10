@@ -7,7 +7,7 @@ import ComposerLink from "../../../composer-base-components/Link/ComposerLinkPro
 
 type RawStatItem = {
     prefix: JSX.Element;
-    number: JSX.Element;
+    value: JSX.Element;
     suffix: JSX.Element;
     subtitle: JSX.Element;
     title: JSX.Element;
@@ -23,7 +23,7 @@ type RawStatItem = {
 type StatItem = {
     prefix: string;
     prefixElement: JSX.Element;
-    number: string;
+    value: string;
     suffix: string;
     suffixElement: JSX.Element;
     subtitle: string;
@@ -82,7 +82,7 @@ class Stats33 extends BaseStats {
                     displayer: "Stat",
                     value: [
                         { type: "string", key: "prefix", displayer: "Prefix", value: "" },
-                        { type: "string", key: "number", displayer: "Value", value: "17" },
+                        { type: "string", key: "value", displayer: "Value", value: "17" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "" },
                         { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
                         { type: "string", key: "title", displayer: "Title", value: "Years Of Experience" },
@@ -128,7 +128,7 @@ class Stats33 extends BaseStats {
                     displayer: "Stat",
                     value: [
                         { type: "string", key: "prefix", displayer: "Prefix", value: "" },
-                        { type: "string", key: "number", displayer: "Value", value: "84" },
+                        { type: "string", key: "value", displayer: "Value", value: "84" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "" },
                         { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
                         { type: "string", key: "title", displayer: "Title", value: "Completed Projects" },
@@ -194,7 +194,7 @@ class Stats33 extends BaseStats {
         const stats: StatItem[] = statsItems.map((item) => ({
             prefix: this.castToString(item.prefix) || "",
             prefixElement: item.prefix,
-            number: this.castToString(item.number),
+            value: this.castToString(item.value),
             suffix: this.castToString(item.suffix) || "",
             suffixElement: item.suffix,
             subtitle: this.castToString(item.subtitle) || "",
@@ -217,7 +217,7 @@ class Stats33 extends BaseStats {
             const ref = React.useRef<HTMLSpanElement>(null);
             const intervalRef = React.useRef<ReturnType<typeof setInterval> | null>(null);
 
-            const rawNumber = (this.castToString(stat.number) as string) || "";
+            const rawNumber = (this.castToString(stat.value) as string) || "";
             const numPrefix = rawNumber.match(/^[^\d]*/)?.[0] ?? "";
             const numSuffix = rawNumber.match(/[^\d]*$/)?.[0] ?? "";
             const core = rawNumber.slice(numPrefix.length, rawNumber.length - numSuffix.length);
@@ -298,7 +298,7 @@ class Stats33 extends BaseStats {
                     )}
                     {valueExist && (
                         <span className={this.decorateCSS("stat-number")}>
-                            {animatable ? display : stat.number}
+                            {animatable ? display : stat.value}
                         </span>
                     )}
                     {stat.suffix && (
@@ -370,7 +370,7 @@ class Stats33 extends BaseStats {
                             const statSubtitleExist = !!stat.subtitle;
                             const statTitleExist = !!stat.title;
                             const statDescriptionExist = !!stat.description;
-                            const numberExist = !!stat.number;
+                            const numberExist = !!stat.value;
                             const hasRenderableButtonContent = (btn: INPUTS.CastedButton) =>
                                 !!this.castToString(btn.text) || !!(btn.icon && btn.icon.name);
                             const hasValidButtons = stat.buttons.some(hasRenderableButtonContent);

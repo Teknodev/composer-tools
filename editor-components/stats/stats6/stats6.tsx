@@ -7,7 +7,7 @@ import { INPUTS } from "../../../custom-hooks/input-templates";
 
 type CardData = {
   prefix: React.JSX.Element;
-  number: React.JSX.Element;
+  value: React.JSX.Element;
   suffix: React.JSX.Element;
   subtitle: React.JSX.Element;
   title: React.JSX.Element;
@@ -42,9 +42,9 @@ class Stats6Page extends BaseStats {
     this.addProp({
       type: "array",
       key: "buttons",
-      displayer: "",
+      displayer: "Buttons",
       value: [
-        INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+        INPUTS.BUTTON("button", "Button", "", "", null, null, "White"),
       ],
     });
 
@@ -59,7 +59,7 @@ class Stats6Page extends BaseStats {
           displayer: "Stat",
           value: [
             { type: "string", key: "prefix", displayer: "Prefix", value: "" },
-            { type: "string", key: "number", displayer: "Value", value: "400" },
+            { type: "string", key: "value", displayer: "Value", value: "400" },
             { type: "string", key: "suffix", displayer: "Suffix", value: "" },
             { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
             { type: "string", key: "title", displayer: "Title", value: "" },
@@ -72,7 +72,7 @@ class Stats6Page extends BaseStats {
           displayer: "Stat",
           value: [
             { type: "string", key: "prefix", displayer: "Prefix", value: "" },
-            { type: "string", key: "number", displayer: "Value", value: "1000" },
+            { type: "string", key: "value", displayer: "Value", value: "1000" },
             { type: "string", key: "suffix", displayer: "Suffix", value: "" },
             { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
             { type: "string", key: "title", displayer: "Title", value: "" },
@@ -85,7 +85,7 @@ class Stats6Page extends BaseStats {
           displayer: "Stat",
           value: [
             { type: "string", key: "prefix", displayer: "Prefix", value: "" },
-            { type: "string", key: "number", displayer: "Value", value: "8000" },
+            { type: "string", key: "value", displayer: "Value", value: "8000" },
             { type: "string", key: "suffix", displayer: "Suffix", value: "" },
             { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
             { type: "string", key: "title", displayer: "Title", value: "" },
@@ -149,7 +149,7 @@ class Stats6Page extends BaseStats {
       const ref = React.useRef<HTMLDivElement>(null);
       const intervalRef = React.useRef<ReturnType<typeof setInterval> | null>(null);
 
-      const rawNumber = (this.castToString(card.number) as string) || "";
+      const rawNumber = (this.castToString(card.value) as string) || "";
       const prefix = rawNumber.match(/^[^\d]*/)?.[0] ?? "";
       const suffix = rawNumber.match(/[^\d]*$/)?.[0] ?? "";
       const core = rawNumber.slice(prefix.length, rawNumber.length - suffix.length);
@@ -234,7 +234,7 @@ class Stats6Page extends BaseStats {
             {hasValue && (
               <Base.P className={this.decorateCSS("data-card-title")}>
                 {prefixExist && <span className={this.decorateCSS("data-card-prefix")}>{card.prefix}</span>}
-                {!!display && <span className={this.decorateCSS("data-card-number")}>{animatable ? display : card.number}</span>}
+                {!!display && <span className={this.decorateCSS("data-card-number")}>{animatable ? display : card.value}</span>}
                 {suffixExist && <span className={this.decorateCSS("data-card-suffix")}>{card.suffix}</span>}
               </Base.P>
             )}
@@ -258,7 +258,7 @@ class Stats6Page extends BaseStats {
                 <div className={this.decorateCSS("button-container")}>
                   {visibleButtons.map((btn, index) => (
                     <ComposerLink key={index} path={btn.url}>
-                      <Base.Button buttonType={btn.type} className={this.decorateCSS("button-text-wrapper")}>
+                      <Base.Button buttonType={btn.type} className={this.decorateCSS("button")}>
                         {btn.text}
                       </Base.Button>
                     </ComposerLink>

@@ -8,7 +8,7 @@ import { INPUTS } from "../../../custom-hooks/input-templates";
 type StatItem = {
   prefix: string;
   prefixElement: JSX.Element;
-  number: string;
+  value: string;
   numberElement: JSX.Element;
   suffix: string;
   suffixElement: JSX.Element;
@@ -67,7 +67,7 @@ class Stats29 extends BaseStats {
           displayer: "Stat",
           value: [
             { type: "string", key: "prefix", displayer: "Prefix", value: "" },
-            { type: "string", key: "number", displayer: "Value", value: "50" },
+            { type: "string", key: "value", displayer: "Value", value: "50" },
             { type: "string", key: "suffix", displayer: "Suffix", value: "%" },
             { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
             { type: "string", key: "title", displayer: "Title", value: "OF BUYERS" },
@@ -85,7 +85,7 @@ class Stats29 extends BaseStats {
           displayer: "Stat",
           value: [
             { type: "string", key: "prefix", displayer: "Prefix", value: "" },
-            { type: "string", key: "number", displayer: "Value", value: "85" },
+            { type: "string", key: "value", displayer: "Value", value: "85" },
             { type: "string", key: "suffix", displayer: "Suffix", value: "%" },
             { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
             { type: "string", key: "title", displayer: "Title", value: "OF BUYERS" },
@@ -150,12 +150,12 @@ class Stats29 extends BaseStats {
     const statsItems = this.castToObject<StatItem[]>("stats");
     const stats: StatItem[] = statsItems.map((item: any) => {
       const prefix = this.castToString(item.prefix) || "";
-      const number = this.castToString(item.number) || "";
+      const number = this.castToString(item.value) || "";
       const suffix = this.castToString(item.suffix) || "";
       const subtitle = this.castToString(item.subtitle) || "";
       const title = this.castToString(item.title) || "";
       const description = this.castToString(item.description) || "";
-      return { prefix, prefixElement: item.prefix, number, numberElement: item.number, suffix, suffixElement: item.suffix, subtitle, subtitleElement: item.subtitle, title, titleElement: item.title, description, descriptionElement: item.description };
+      return { prefix, prefixElement: item.prefix, value: number, numberElement: item.value, suffix, suffixElement: item.suffix, subtitle, subtitleElement: item.subtitle, title, titleElement: item.title, description, descriptionElement: item.description };
     });
 
     const settings = this.castToObject<any>("settings");
@@ -169,7 +169,7 @@ class Stats29 extends BaseStats {
       const ref = React.useRef<HTMLSpanElement>(null);
       const intervalRef = React.useRef<ReturnType<typeof setInterval> | null>(null);
 
-      const rawNumber = (this.castToString(stat.number) as string) || "";
+      const rawNumber = (this.castToString(stat.value) as string) || "";
       const innerPrefix = rawNumber.match(/^[^\d]*/)?.[0] ?? "";
       const innerSuffix = rawNumber.match(/[^\d]*$/)?.[0] ?? "";
       const core = rawNumber.slice(innerPrefix.length, rawNumber.length - innerSuffix.length);
@@ -241,7 +241,7 @@ class Stats29 extends BaseStats {
       const subtitleExist = this.castToString(stat.subtitle);
       const titleExist = this.castToString(stat.title);
       const descriptionExist = this.castToString(stat.description);
-      const valueExist = this.castToString(stat.number);
+      const valueExist = this.castToString(stat.value);
       const prefixExist = this.castToString(stat.prefixElement);
       const suffixExist = this.castToString(stat.suffixElement);
 

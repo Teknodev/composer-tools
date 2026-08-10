@@ -8,7 +8,7 @@ import ComposerLink from "../../../composer-base-components/Link/ComposerLinkPro
 type StatItem = {
     prefix: string;
     prefixElement: JSX.Element;
-    number: string;
+    value: string;
     numberElement: JSX.Element;
     suffix: string;
     suffixElement: JSX.Element;
@@ -56,7 +56,7 @@ class Stats32 extends BaseStats {
                     displayer: "Stat",
                     value: [
                         { type: "string", key: "prefix", displayer: "Prefix", value: "" },
-                        { type: "string", key: "number", displayer: "Value", value: "500" },
+                        { type: "string", key: "value", displayer: "Value", value: "500" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "+" },
                         { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
                         { type: "string", key: "title", displayer: "Title", value: "Clip Editing" },
@@ -69,7 +69,7 @@ class Stats32 extends BaseStats {
                     displayer: "Stat",
                     value: [
                         { type: "string", key: "prefix", displayer: "Prefix", value: "" },
-                        { type: "string", key: "number", displayer: "Value", value: "75" },
+                        { type: "string", key: "value", displayer: "Value", value: "75" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "+" },
                         { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
                         { type: "string", key: "title", displayer: "Title", value: "Camera Work" },
@@ -82,7 +82,7 @@ class Stats32 extends BaseStats {
                     displayer: "Stat",
                     value: [
                         { type: "string", key: "prefix", displayer: "Prefix", value: "" },
-                        { type: "string", key: "number", displayer: "Value", value: "980" },
+                        { type: "string", key: "value", displayer: "Value", value: "980" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "+" },
                         { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
                         { type: "string", key: "title", displayer: "Title", value: "Commercial Projects" },
@@ -135,12 +135,12 @@ class Stats32 extends BaseStats {
         const statsItems = this.castToObject<{ prefix: JSX.Element; number: JSX.Element; suffix: JSX.Element; title: JSX.Element; subtitle: JSX.Element; description: JSX.Element }[]>("stats");
         const stats: StatItem[] = statsItems.map((item) => {
             const prefix = this.castToString(item.prefix) || "";
-            const number = this.castToString(item.number);
+            const number = this.castToString(item.value);
             const suffix = this.castToString(item.suffix) || "";
             const title = this.castToString(item.title) || "";
             const subtitle = this.castToString(item.subtitle) || "";
             const description = this.castToString(item.description) || "";
-            return { prefix, numberElement: item.number, prefixElement: item.prefix, number, suffix, suffixElement: item.suffix, title, titleElement: item.title, subtitle, subtitleElement: item.subtitle, description, descriptionElement: item.description };
+            return { prefix, numberElement: item.value, prefixElement: item.prefix, value: number, suffix, suffixElement: item.suffix, title, titleElement: item.title, subtitle, subtitleElement: item.subtitle, description, descriptionElement: item.description };
         });
 
         const settings = this.castToObject<any>("settings");
@@ -152,7 +152,7 @@ class Stats32 extends BaseStats {
             const ref = React.useRef<HTMLSpanElement>(null);
             const intervalRef = React.useRef<ReturnType<typeof setInterval> | null>(null);
 
-            const rawNumber = (this.castToString(stat.number) as string) || "";
+            const rawNumber = (this.castToString(stat.value) as string) || "";
             const isNumeric = /\d/.test(rawNumber);
             const target = isNumeric ? parseFloat(rawNumber.replace(/,/g, "")) : NaN;
             const decimals = rawNumber.includes(".") ? rawNumber.split(".")[1]?.length ?? 0 : 0;

@@ -12,7 +12,7 @@ type RatingItemType = {
 
 type StatItemType = {
     prefix: React.JSX.Element;
-    number: React.JSX.Element;
+    value: React.JSX.Element;
     suffix: React.JSX.Element;
     subtitle: React.JSX.Element;
     title: React.JSX.Element;
@@ -206,7 +206,7 @@ class Stats13 extends BaseStats {
                     displayer: "Stat Item",
                     value: [
                         { type: "string", key: "prefix", displayer: "Prefix", value: "" },
-                        { type: "string", key: "number", displayer: "Value", value: "90" },
+                        { type: "string", key: "value", displayer: "Value", value: "90" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "k+" },
                         { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
                         { type: "string", key: "title", displayer: "Title", value: "" },
@@ -219,7 +219,7 @@ class Stats13 extends BaseStats {
                     displayer: "Stat Item",
                     value: [
                         { type: "string", key: "prefix", displayer: "Prefix", value: "" },
-                        { type: "string", key: "number", displayer: "Value", value: "2.4" },
+                        { type: "string", key: "value", displayer: "Value", value: "2.4" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "k+" },
                         { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
                         { type: "string", key: "title", displayer: "Title", value: "" },
@@ -313,7 +313,7 @@ class Stats13 extends BaseStats {
             const ref = React.useRef<HTMLDivElement>(null);
             const intervalRef = React.useRef<ReturnType<typeof setInterval> | null>(null);
 
-            const rawNumber = (this.castToString(item.number) as string) || "";
+            const rawNumber = (this.castToString(item.value) as string) || "";
             const prefix = rawNumber.match(/^[^\d]*/)?.[0] ?? "";
             const suffix = rawNumber.match(/[^\d]*$/)?.[0] ?? "";
             const core = rawNumber.slice(prefix.length, rawNumber.length - suffix.length);

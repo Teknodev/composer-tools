@@ -7,7 +7,7 @@ import ComposerLink from "../../../composer-base-components/Link/ComposerLinkPro
 
 type Stat = {
     prefix: React.JSX.Element;
-    number: React.JSX.Element;
+    value: React.JSX.Element;
     suffix: React.JSX.Element;
     title: React.JSX.Element;
     subtitle: React.JSX.Element;
@@ -59,7 +59,7 @@ class Stats23 extends BaseStats {
                     displayer: "Stat",
                     value: [
                         { type: "string", key: "prefix", displayer: "Prefix", value: "" },
-                        { type: "string", key: "number", displayer: "Value", value: "2018" },
+                        { type: "string", key: "value", displayer: "Value", value: "2018" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "" },
                         { type: "string", key: "subtitle", displayer: "Subtitle", value: "FOUNDED" },
                         { type: "string", key: "title", displayer: "Title", value: "" },
@@ -72,7 +72,7 @@ class Stats23 extends BaseStats {
                     displayer: "Stat",
                     value: [
                         { type: "string", key: "prefix", displayer: "Prefix", value: "$" },
-                        { type: "string", key: "number", displayer: "Value", value: "171" },
+                        { type: "string", key: "value", displayer: "Value", value: "171" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "M" },
                         { type: "string", key: "subtitle", displayer: "Subtitle", value: "FUNDING" },
                         { type: "string", key: "title", displayer: "Title", value: "" },
@@ -85,7 +85,7 @@ class Stats23 extends BaseStats {
                     displayer: "Stat",
                     value: [
                         { type: "string", key: "prefix", displayer: "Prefix", value: "" },
-                        { type: "string", key: "number", displayer: "Value", value: "300" },
+                        { type: "string", key: "value", displayer: "Value", value: "300" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "+" },
                         { type: "string", key: "subtitle", displayer: "Subtitle", value: "PEOPLE" },
                         { type: "string", key: "title", displayer: "Title", value: "" },
@@ -98,7 +98,7 @@ class Stats23 extends BaseStats {
                     displayer: "Stat",
                     value: [
                         { type: "string", key: "prefix", displayer: "Prefix", value: "" },
-                        { type: "string", key: "number", displayer: "Value", value: "4.500" },
+                        { type: "string", key: "value", displayer: "Value", value: "4.500" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "+" },
                         { type: "string", key: "subtitle", displayer: "Subtitle", value: "SQUARE FEET" },
                         { type: "string", key: "title", displayer: "Title", value: "" },
@@ -153,7 +153,7 @@ class Stats23 extends BaseStats {
             const ref = React.useRef<HTMLSpanElement>(null);
             const intervalRef = React.useRef<ReturnType<typeof setInterval> | null>(null);
 
-            const rawNumber = (this.castToString(stat.number) as string) || "";
+            const rawNumber = (this.castToString(stat.value) as string) || "";
             const isNumeric = /\d/.test(rawNumber);
             const target = isNumeric ? parseFloat(rawNumber.replace(/,/g, "")) : NaN;
             const decimals = rawNumber.includes(".") ? rawNumber.split(".")[1]?.length ?? 0 : 0;
@@ -248,7 +248,7 @@ class Stats23 extends BaseStats {
                                 </span>
                             )}
                             <span ref={ref} className={this.decorateCSS("stat-number")}>
-                                {animatable ? display : stat.number}
+                                {animatable ? display : stat.value}
                             </span>
                             {suffixExist && (
                                 <span className={this.decorateCSS("stat-suffix")}>

@@ -112,7 +112,7 @@
 
       .stat-subtitle {
         font-size: 1rem;
-        color: var(--composer-tertiary-color);
+        color: var(--composer-font-color-primary);
         margin: 0;
         text-align: left;
       }
@@ -138,6 +138,32 @@
     }
   }
 
+  @container (max-width: #{$composer-tablet-width}) {
+    .max-content {
+      .feature {
+        .icon {
+          font-size: 2.5rem !important;
+        }
+
+        .value {
+          font-size: 2.5rem !important;
+        }
+
+        .stat-subtitle {
+          font-size: 1rem !important;
+        }
+
+        .title {
+          font-size: 1.5rem !important;
+        }
+
+        .description {
+          font-size: 1rem !important;
+        }
+      }
+    }
+  }
+
   @container (max-width: #{$composer-phone-width}) {
     .max-content {
       flex-direction: column;
@@ -146,6 +172,26 @@
       .feature {
         width: 100%;
         flex: 1 1 100% !important;
+
+        .icon {
+          font-size: 2.5rem !important;
+        }
+
+        .value {
+          font-size: 2.5rem !important;
+        }
+
+        .stat-subtitle {
+          font-size: 1rem !important;
+        }
+
+        .title {
+          font-size: 1.25rem !important;
+        }
+
+        .description {
+          font-size: 1rem !important;
+        }
       }
     }
   }

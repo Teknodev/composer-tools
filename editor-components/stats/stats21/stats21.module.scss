@@ -50,7 +50,8 @@
                     .stat-number,
                     .stat-suffix {
                         color: inherit;
-                    }
+                        font-weight: 800;
+                      }
                 }
 
                 .stat-title,
@@ -69,7 +70,8 @@
     .container .max-content {
         .stats-grid .stat-item .stat-value {
             font-size: 4rem;
-        }
+            font-weight: 800;
+          }
     }
 }
 
@@ -111,7 +113,8 @@
 
             .stat-item .stat-value {
                 font-size: 4rem;
-            }
+                font-weight: 800;
+              }
         }
     }
 }

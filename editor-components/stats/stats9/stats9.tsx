@@ -7,7 +7,7 @@ import { INPUTS } from "../../../custom-hooks/input-templates";
 
 interface Stat {
     prefix: React.JSX.Element;
-    number: React.JSX.Element;
+    value: React.JSX.Element;
     suffix: React.JSX.Element;
     subtitle: React.JSX.Element;
     title: React.JSX.Element;
@@ -99,7 +99,7 @@ class Stats9 extends BaseStats {
                         },
                         {
                             type: "string",
-                            key: "number",
+                            key: "value",
                             displayer: "Value",
                             value: "15",
                         },
@@ -142,7 +142,7 @@ class Stats9 extends BaseStats {
                         },
                         {
                             type: "string",
-                            key: "number",
+                            key: "value",
                             displayer: "Value",
                             value: "30",
                         },
@@ -185,7 +185,7 @@ class Stats9 extends BaseStats {
                         },
                         {
                             type: "string",
-                            key: "number",
+                            key: "value",
                             displayer: "Value",
                             value: "80",
                         },
@@ -246,7 +246,7 @@ class Stats9 extends BaseStats {
     render() {
         const statsProp = this.getPropValue("stats");
         const stats: Stat[] = statsProp.map((item: any) => ({
-            number: item.getPropValue("number"),
+            value: item.getPropValue("value"),
             suffix: item.getPropValue("suffix"),
             description: item.getPropValue("description"),
         }));
@@ -267,7 +267,7 @@ class Stats9 extends BaseStats {
             const ref = React.useRef<HTMLDivElement>(null);
             const intervalRef = React.useRef<ReturnType<typeof setInterval> | null>(null);
 
-            const rawNumber = (this.castToString(stat.number) as string) || "";
+            const rawNumber = (this.castToString(stat.value) as string) || "";
             const prefix = rawNumber.match(/^[^\d]*/)?.[0] ?? "";
             const suffix = rawNumber.match(/[^\d]*$/)?.[0] ?? "";
             const core = rawNumber.slice(prefix.length, rawNumber.length - suffix.length);
@@ -357,7 +357,7 @@ class Stats9 extends BaseStats {
                             )}
                             {!!display && (
                                 <span className={this.decorateCSS("stat-number")}>
-                                    {animatable ? display : stat.number}
+                                    {animatable ? display : stat.value}
                                 </span>
                             )}
                             {suffixExist && (

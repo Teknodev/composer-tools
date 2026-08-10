@@ -71,7 +71,8 @@
                         .stat-number,
                         .stat-suffix {
                             color: inherit;
-                        }
+                            font-weight: 800;
+                          }
                     }
 
                     .stat-title,
@@ -92,7 +93,8 @@
 
         .stats-grid .stat-item .stat-value {
             font-size: 3rem;
-        }
+            font-weight: 800;
+          }
     }
 }
 
@@ -133,7 +135,8 @@
 
             .stat-value {
                 font-size: 3rem;
-            }
+                font-weight: 800;
+              }
         }
     }
 }

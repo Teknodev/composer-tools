@@ -5,7 +5,7 @@ import { Base } from "../../../composer-base-components/base/base";
 
 type CardData = {
   prefix: React.JSX.Element;
-  number: React.JSX.Element;
+  value: React.JSX.Element;
   suffix: React.JSX.Element;
   subtitle: React.JSX.Element;
   title: React.JSX.Element;
@@ -89,7 +89,7 @@ class Stats8Page extends BaseStats {
           displayer: "Stat",
           value: [
             { type: "string", key: "prefix", displayer: "Prefix", value: "" },
-            { type: "string", key: "number", displayer: "Value", value: "37" },
+            { type: "string", key: "value", displayer: "Value", value: "37" },
             { type: "string", key: "suffix", displayer: "Suffix", value: "" },
             { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
             { type: "string", key: "title", displayer: "Title", value: "" },
@@ -102,7 +102,7 @@ class Stats8Page extends BaseStats {
           displayer: "Stat",
           value: [
             { type: "string", key: "prefix", displayer: "Prefix", value: "" },
-            { type: "string", key: "number", displayer: "Value", value: "19" },
+            { type: "string", key: "value", displayer: "Value", value: "19" },
             { type: "string", key: "suffix", displayer: "Suffix", value: "" },
             { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
             { type: "string", key: "title", displayer: "Title", value: "" },
@@ -318,7 +318,7 @@ class Stats8Page extends BaseStats {
                   <Base.VerticalContent className={this.decorateCSS("stats-container")}>
                     <Base.Row className={this.decorateCSS("stats")}>
                       {statsData.map((statData: CardData, indexStat: number) => {
-                        const counterExist = (this.castToString(statData.number) as string) || "";
+                        const counterExist = (this.castToString(statData.value) as string) || "";
                         const prefixExist = this.castToString(statData.prefix);
                         const suffixExist = this.castToString(statData.suffix);
                         const subtitleExist = this.castToString(statData.subtitle);
@@ -332,7 +332,7 @@ class Stats8Page extends BaseStats {
                                 {hasValue && (
                                   <div className={this.decorateCSS("stat-counter")}>
                                     {prefixExist && <span className={this.decorateCSS("stat-prefix")}>{statData.prefix}</span>}
-                                    {counterExist && <AnimatedNumber raw={counterExist} node={statData.number} className={this.decorateCSS("stat-number")} />}
+                                    {counterExist && <AnimatedNumber raw={counterExist} node={statData.value} className={this.decorateCSS("stat-number")} />}
                                     {suffixExist && <span className={this.decorateCSS("stat-suffix")}>{statData.suffix}</span>}
                                   </div>
                                 )}
@@ -350,12 +350,12 @@ class Stats8Page extends BaseStats {
               </div>
             </div>
           )}
-          {imageSrc?.url && (
+          {(imageSrc?.url || badgeNumberRaw || badgeDescription) && (
             <div className={this.decorateCSS("stats8-page")}>
               <div className={this.decorateCSS("image-container")}>
-                <div className={this.decorateCSS("image-container-border")}>
-                  <Base.Media value={imageSrc} className={this.decorateCSS("image")} />
-                  {showOverlay && <div className={this.decorateCSS("overlay")}></div>}
+                <div className={`${this.decorateCSS("image-container-border")} ${!imageSrc?.url ? this.decorateCSS("no-image") : ""}`}>
+                  {imageSrc?.url && <Base.Media value={imageSrc} className={this.decorateCSS("image")} />}
+                  {imageSrc?.url && showOverlay && <div className={this.decorateCSS("overlay")}></div>}
                   {(badgeNumberRaw || badgeDescription) && (
                     <div className={this.decorateCSS("stat-badge")}>
                       {badgeNumberRaw && <AnimatedNumber raw={badgeNumberRaw} node={media?.badgeNumber} className={this.decorateCSS("number")} />}

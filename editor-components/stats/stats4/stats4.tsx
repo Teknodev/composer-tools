@@ -13,7 +13,7 @@ type Faq = {
 
 type Stat = {
   prefix: React.JSX.Element;
-  number: React.JSX.Element;
+  value: React.JSX.Element;
   suffix: React.JSX.Element;
   subtitle: React.JSX.Element;
   title: React.JSX.Element;
@@ -47,7 +47,14 @@ class Stats4Page extends BaseStats {
       type: "array",
       key: "buttons",
       displayer: "Buttons",
-      value: [INPUTS.BUTTON("button", "Button", "LEARN MORE", "", null, null, "Primary")],
+      value: [INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary")],
+    });
+
+    this.addProp({
+      type: "boolean",
+      key: "showLine",
+      displayer: "Line",
+      value: true,
     });
 
     this.addProp({
@@ -126,7 +133,7 @@ class Stats4Page extends BaseStats {
           displayer: "Stat",
           value: [
             { type: "string", key: "prefix", displayer: "Prefix", value: "" },
-            { type: "string", key: "number", displayer: "Value", value: "300" },
+            { type: "string", key: "value", displayer: "Value", value: "300" },
             { type: "string", key: "suffix", displayer: "Suffix", value: "+" },
             { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
             { type: "string", key: "title", displayer: "Title", value: "Days of experience." },
@@ -139,7 +146,7 @@ class Stats4Page extends BaseStats {
           displayer: "Stat",
           value: [
             { type: "string", key: "prefix", displayer: "Prefix", value: "" },
-            { type: "string", key: "number", displayer: "Value", value: "500" },
+            { type: "string", key: "value", displayer: "Value", value: "500" },
             { type: "string", key: "suffix", displayer: "Suffix", value: "+" },
             { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
             { type: "string", key: "title", displayer: "Title", value: "Valuable happy clients." },
@@ -152,7 +159,7 @@ class Stats4Page extends BaseStats {
           displayer: "Stat",
           value: [
             { type: "string", key: "prefix", displayer: "Prefix", value: "" },
-            { type: "string", key: "number", displayer: "Value", value: "750" },
+            { type: "string", key: "value", displayer: "Value", value: "750" },
             { type: "string", key: "suffix", displayer: "Suffix", value: "+" },
             { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
             { type: "string", key: "title", displayer: "Title", value: "Presence in countries." },
@@ -165,7 +172,7 @@ class Stats4Page extends BaseStats {
           displayer: "Stat",
           value: [
             { type: "string", key: "prefix", displayer: "Prefix", value: "" },
-            { type: "string", key: "number", displayer: "Value", value: "856" },
+            { type: "string", key: "value", displayer: "Value", value: "856" },
             { type: "string", key: "suffix", displayer: "Suffix", value: "+" },
             { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
             { type: "string", key: "title", displayer: "Title", value: "Worldwide projects." },
@@ -241,6 +248,7 @@ class Stats4Page extends BaseStats {
     const title = this.castToString(this.getPropValue("title"));
     const description = this.castToString(this.getPropValue("description"));
     const faqs = this.castToObject<Faq[]>("faqItems");
+    const showLine = this.getPropValue("showLine");
     const statItems = this.castToObject<Stat[]>("stats");
     const expandIcon = this.getPropValue("expandIcon");
     const collapseIcon = this.getPropValue("collapseIcon");
@@ -258,7 +266,7 @@ class Stats4Page extends BaseStats {
       const ref = React.useRef<HTMLElement>(null);
       const intervalRef = React.useRef<ReturnType<typeof setInterval> | null>(null);
 
-      const rawNumber = (this.castToString(item.number) as string) || "";
+      const rawNumber = (this.castToString(item.value) as string) || "";
       const prefix = rawNumber.match(/^[^\d]*/)?.[0] ?? "";
       const suffix = rawNumber.match(/[^\d]*$/)?.[0] ?? "";
       const core = rawNumber.slice(prefix.length, rawNumber.length - suffix.length);
@@ -345,13 +353,13 @@ class Stats4Page extends BaseStats {
               {subtitleExist && <Base.P className={this.decorateCSS("stat-item-subtitle")}>{item.subtitle}</Base.P>}
               {titleExist && <Base.P className={this.decorateCSS("stat-item-title")}>{item.title}</Base.P>}
               {descriptionExist && <Base.P className={this.decorateCSS("stat-item-content")}>{item.description}</Base.P>}
-              <div className={this.decorateCSS("stat-line")} />
+              {showLine && <div className={this.decorateCSS("stat-line")} />}
             </>
           )}
           {hasValue && (
             <Base.P className={this.decorateCSS("stat-item-stat-value")}>
               {prefixExist && <span className={this.decorateCSS("stat-value-prefix")}>{item.prefix}</span>}
-              {animatable ? display : item.number}
+              {animatable ? display : item.value}
               {suffixExist && <span className={this.decorateCSS("stat-value-suffix")}>{item.suffix}</span>}
             </Base.P>
           )}
@@ -425,7 +433,7 @@ class Stats4Page extends BaseStats {
                               <Base.P className={this.decorateCSS("faq-text")}>{item.content}</Base.P>
                             </div>
                           )}
-                          <hr className={this.decorateCSS("bottom-line")} />
+                          {showLine && <hr className={this.decorateCSS("bottom-line")} />}
                         </div>
                       );
                     return null;

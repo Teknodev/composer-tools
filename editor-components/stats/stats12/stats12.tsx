@@ -6,7 +6,7 @@ import { Base } from "../../../composer-base-components/base/base";
 interface FeatureItem {
   icon?: string | TypeMediaInputValue;
   prefix: React.JSX.Element;
-  number: React.JSX.Element;
+  value: React.JSX.Element;
   suffix: React.JSX.Element;
   subtitle: React.JSX.Element;
   title: React.JSX.Element;
@@ -49,7 +49,7 @@ class Stats12 extends BaseStats {
           value: [
             { type: "media", key: "icon", displayer: "Icon", additionalParams: { availableTypes: ["image", "icon"] }, value: { type: "icon", name: "FiClock" } },
             { type: "string", key: "prefix", displayer: "Prefix", value: "" },
-            { type: "string", key: "number", displayer: "Value", value: "" },
+            { type: "string", key: "value", displayer: "Value", value: "" },
             { type: "string", key: "suffix", displayer: "Suffix", value: "" },
             { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
             { type: "string", key: "title", displayer: "Title", value: "90 Days Return" },
@@ -63,7 +63,7 @@ class Stats12 extends BaseStats {
           value: [
             { type: "media", key: "icon", displayer: "Icon", additionalParams: { availableTypes: ["image", "icon"] }, value: { type: "icon", name: "BsBookmarkDash" } },
             { type: "string", key: "prefix", displayer: "Prefix", value: "" },
-            { type: "string", key: "number", displayer: "Value", value: "" },
+            { type: "string", key: "value", displayer: "Value", value: "" },
             { type: "string", key: "suffix", displayer: "Suffix", value: "" },
             { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
             { type: "string", key: "title", displayer: "Title", value: "Free Delivery" },
@@ -77,7 +77,7 @@ class Stats12 extends BaseStats {
           value: [
             { type: "media", key: "icon", displayer: "Icon", additionalParams: { availableTypes: ["image", "icon"] }, value: { type: "icon", name: "FiCreditCard" } },
             { type: "string", key: "prefix", displayer: "Prefix", value: "" },
-            { type: "string", key: "number", displayer: "Value", value: "" },
+            { type: "string", key: "value", displayer: "Value", value: "" },
             { type: "string", key: "suffix", displayer: "Suffix", value: "" },
             { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
             { type: "string", key: "title", displayer: "Title", value: "Secure Payment" },
@@ -128,7 +128,7 @@ class Stats12 extends BaseStats {
           {features.map((feat, idx) => {
             const iconExist = typeof feat.icon === "object" ? (feat.icon?.name || feat.icon?.url) : feat.icon;
             const prefixExist = this.castToString(feat.prefix);
-            const numberExist = this.castToString(feat.number);
+            const numberExist = this.castToString(feat.value);
             const suffixExist = this.castToString(feat.suffix);
             const subtitleExist = this.castToString(feat.subtitle);
             const titleExist = this.castToString(feat.title);
@@ -146,7 +146,7 @@ class Stats12 extends BaseStats {
                       {hasValue && (
                         <Base.P className={this.decorateCSS("value")}>
                           {prefixExist && <span className={this.decorateCSS("prefix")}>{feat.prefix}</span>}
-                          {numberExist && <span className={this.decorateCSS("number")}>{feat.number}</span>}
+                          {numberExist && <span className={this.decorateCSS("number")}>{feat.value}</span>}
                           {suffixExist && <span className={this.decorateCSS("suffix")}>{feat.suffix}</span>}
                         </Base.P>
                       )}

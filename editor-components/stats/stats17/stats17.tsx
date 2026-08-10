@@ -8,7 +8,7 @@ import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 type StatItem = {
     prefix: string;
     prefixElement: JSX.Element;
-    number: string;
+    value: string;
     numberElement: JSX.Element;
     suffix: string;
     suffixElement: JSX.Element;
@@ -76,7 +76,7 @@ class Stats17 extends BaseStats {
                 {
                     type: "object", key: "stat", displayer: "Stat", value: [
                         { type: "string", key: "prefix", displayer: "Prefix", value: "" },
-                        { type: "string", key: "number", displayer: "Value", value: "300" },
+                        { type: "string", key: "value", displayer: "Value", value: "300" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "+" },
                         { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
                         { type: "string", key: "title", displayer: "Title", value: "Experienced people on the team" },
@@ -86,7 +86,7 @@ class Stats17 extends BaseStats {
                 {
                     type: "object", key: "stat", displayer: "Stat", value: [
                         { type: "string", key: "prefix", displayer: "Prefix", value: "" },
-                        { type: "string", key: "number", displayer: "Value", value: "20" },
+                        { type: "string", key: "value", displayer: "Value", value: "20" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "+" },
                         { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
                         { type: "string", key: "title", displayer: "Title", value: "Cities where employees work" },
@@ -96,7 +96,7 @@ class Stats17 extends BaseStats {
                 {
                     type: "object", key: "stat", displayer: "Stat", value: [
                         { type: "string", key: "prefix", displayer: "Prefix", value: "" },
-                        { type: "string", key: "number", displayer: "Value", value: "180" },
+                        { type: "string", key: "value", displayer: "Value", value: "180" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "+" },
                         { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
                         { type: "string", key: "title", displayer: "Title", value: "Days of product development" },
@@ -156,12 +156,12 @@ class Stats17 extends BaseStats {
         const statsItems = this.castToObject<{ prefix: JSX.Element; number: JSX.Element; suffix: JSX.Element; title: JSX.Element; subtitle: JSX.Element; description: JSX.Element }[]>("stats");
         const stats: StatItem[] = statsItems.map((item) => {
             const prefix = this.castToString(item.prefix) || "";
-            const number = this.castToString(item.number) || "";
+            const number = this.castToString(item.value) || "";
             const suffix = this.castToString(item.suffix) || "";
             const title = this.castToString(item.title) || "";
             const subtitle = this.castToString(item.subtitle) || "";
             const description = this.castToString(item.description) || "";
-            return { prefix, numberElement: item.number, prefixElement: item.prefix, number, suffix, suffixElement: item.suffix, title, titleElement: item.title, subtitle, subtitleElement: item.subtitle, description, descriptionElement: item.description };
+            return { prefix, numberElement: item.value, prefixElement: item.prefix, value: number, suffix, suffixElement: item.suffix, title, titleElement: item.title, subtitle, subtitleElement: item.subtitle, description, descriptionElement: item.description };
         });
 
         const hasTopSection = subtitle || title || description || hasValidButtons;
@@ -171,7 +171,7 @@ class Stats17 extends BaseStats {
             const ref = React.useRef<HTMLSpanElement>(null);
             const intervalRef = React.useRef<ReturnType<typeof setInterval> | null>(null);
 
-            const rawNumber = (this.castToString(stat.number) as string) || "";
+            const rawNumber = (this.castToString(stat.value) as string) || "";
             const prefix = rawNumber.match(/^[^\d]*/)?.[0] ?? "";
             const suffix = rawNumber.match(/[^\d]*$/)?.[0] ?? "";
             const core = rawNumber.slice(prefix.length, rawNumber.length - suffix.length);

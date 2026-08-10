@@ -9,7 +9,7 @@ type StatItem = {
   subtitle: React.ReactNode;
   title: React.ReactNode;
   description: React.ReactNode;
-  number: string;
+  value: string;
   numberElement: JSX.Element;
   prefix: string;
   prefixElement: JSX.Element;
@@ -50,7 +50,7 @@ class Stats16 extends BaseStats {
           displayer: "Stat Item",
           value: [
             { type: "string", key: "prefix", displayer: "Prefix", value: "" },
-            { type: "string", key: "number", displayer: "Value", value: "100" },
+            { type: "string", key: "value", displayer: "Value", value: "100" },
             { type: "string", key: "suffix", displayer: "Suffix", value: "%" },
             { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
             { type: "string", key: "title", displayer: "Title", value: "Satisfaction" },
@@ -63,7 +63,7 @@ class Stats16 extends BaseStats {
           displayer: "Stat Item",
           value: [
             { type: "string", key: "prefix", displayer: "Prefix", value: "" },
-            { type: "string", key: "number", displayer: "Value", value: "75" },
+            { type: "string", key: "value", displayer: "Value", value: "75" },
             { type: "string", key: "suffix", displayer: "Suffix", value: "K" },
             { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
             { type: "string", key: "title", displayer: "Title", value: "Happy Users" },
@@ -76,7 +76,7 @@ class Stats16 extends BaseStats {
           displayer: "Stat Item",
           value: [
             { type: "string", key: "prefix", displayer: "Prefix", value: "" },
-            { type: "string", key: "number", displayer: "Value", value: "125" },
+            { type: "string", key: "value", displayer: "Value", value: "125" },
             { type: "string", key: "suffix", displayer: "Suffix", value: "k+" },
             { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
             { type: "string", key: "title", displayer: "Title", value: "Downloads" },
@@ -134,10 +134,10 @@ class Stats16 extends BaseStats {
       const subtitle = item.getPropValue("subtitle");
       const itemTitle = item.getPropValue("title");
       const itemDescription = item.getPropValue("description");
-      const number = this.castToString(item.getPropValue("number")) || "";
+      const number = this.castToString(item.getPropValue("value")) || "";
       const prefix = this.castToString(item.getPropValue("prefix")) || "";
       const suffix = this.castToString(item.getPropValue("suffix")) || "";
-      return { subtitle, title: itemTitle, description: itemDescription, number, prefix, numberElement: item.getPropValue("number"), prefixElement: item.getPropValue("prefix"), suffix, suffixElement: item.getPropValue("suffix") };
+      return { subtitle, title: itemTitle, description: itemDescription, value: number, prefix, numberElement: item.getPropValue("value"), prefixElement: item.getPropValue("prefix"), suffix, suffixElement: item.getPropValue("suffix") };
     });
 
     const settings = this.castToObject<any>("settings");
@@ -153,7 +153,7 @@ class Stats16 extends BaseStats {
       const ref = React.useRef<HTMLDivElement>(null);
       const intervalRef = React.useRef<ReturnType<typeof setInterval> | null>(null);
 
-      const rawNumber = (this.castToString(stat.number) as string) || "";
+      const rawNumber = (this.castToString(stat.value) as string) || "";
       const numPrefix = rawNumber.match(/^[^\d]*/)?.[0] ?? "";
       const numSuffix = rawNumber.match(/[^\d]*$/)?.[0] ?? "";
       const core = rawNumber.slice(numPrefix.length, rawNumber.length - numSuffix.length);

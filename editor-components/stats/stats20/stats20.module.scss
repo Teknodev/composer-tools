@@ -85,7 +85,7 @@
                         .stat-number,
                         .stat-suffix {
                             color: inherit;
-                        }
+                          }
                     }
 
                     .stat-title,
@@ -103,7 +103,7 @@
     .container .max-content .content-wrapper {
         .stats-grid .stat-item .stat-value {
             font-size: 4rem;
-        }
+          }
 
         .left-card .left-container {
             padding: calc(var(--composer-gap-lg) * 2) var(--composer-gap-lg);
@@ -156,7 +156,7 @@
 
             .stat-value {
                 font-size: 3.5rem;
-            }
+              }
         }
     }
 }

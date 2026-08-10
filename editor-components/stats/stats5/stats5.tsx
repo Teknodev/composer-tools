@@ -7,7 +7,7 @@ import { INPUTS } from "../../../custom-hooks/input-templates";
 
 type Card = {
   prefix: React.JSX.Element;
-  number: React.JSX.Element;
+  value: React.JSX.Element;
   suffix: React.JSX.Element;
   subtitle: React.JSX.Element;
   title: React.JSX.Element;
@@ -41,7 +41,7 @@ class Stats5Page extends BaseStats {
     this.addProp({
       type: "array",
       key: "buttons",
-      displayer: "",
+      displayer: "Buttons",
       value: [
         INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
       ],
@@ -58,7 +58,7 @@ class Stats5Page extends BaseStats {
           displayer: "Stat",
           value: [
             { type: "string", key: "prefix", displayer: "Prefix", value: "" },
-            { type: "string", key: "number", displayer: "Value", value: "98" },
+            { type: "string", key: "value", displayer: "Value", value: "98" },
             { type: "string", key: "suffix", displayer: "Suffix", value: "" },
             { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
             { type: "string", key: "title", displayer: "Title", value: "" },
@@ -71,7 +71,7 @@ class Stats5Page extends BaseStats {
           displayer: "Stat",
           value: [
             { type: "string", key: "prefix", displayer: "Prefix", value: "" },
-            { type: "string", key: "number", displayer: "Value", value: "65" },
+            { type: "string", key: "value", displayer: "Value", value: "65" },
             { type: "string", key: "suffix", displayer: "Suffix", value: "" },
             { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
             { type: "string", key: "title", displayer: "Title", value: "" },
@@ -84,7 +84,7 @@ class Stats5Page extends BaseStats {
           displayer: "Stat",
           value: [
             { type: "string", key: "prefix", displayer: "Prefix", value: "" },
-            { type: "string", key: "number", displayer: "Value", value: "7" },
+            { type: "string", key: "value", displayer: "Value", value: "7" },
             { type: "string", key: "suffix", displayer: "Suffix", value: "" },
             { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
             { type: "string", key: "title", displayer: "Title", value: "" },
@@ -97,7 +97,7 @@ class Stats5Page extends BaseStats {
           displayer: "Stat",
           value: [
             { type: "string", key: "prefix", displayer: "Prefix", value: "" },
-            { type: "string", key: "number", displayer: "Value", value: "10" },
+            { type: "string", key: "value", displayer: "Value", value: "10" },
             { type: "string", key: "suffix", displayer: "Suffix", value: "" },
             { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
             { type: "string", key: "title", displayer: "Title", value: "" },
@@ -176,7 +176,7 @@ class Stats5Page extends BaseStats {
       const ref = React.useRef<HTMLDivElement>(null);
       const intervalRef = React.useRef<ReturnType<typeof setInterval> | null>(null);
 
-      const rawNumber = (this.castToString(card.number) as string) || "";
+      const rawNumber = (this.castToString(card.value) as string) || "";
       const prefix = rawNumber.match(/^[^\d]*/)?.[0] ?? "";
       const suffix = rawNumber.match(/[^\d]*$/)?.[0] ?? "";
       const core = rawNumber.slice(prefix.length, rawNumber.length - suffix.length);
@@ -261,7 +261,7 @@ class Stats5Page extends BaseStats {
           {hasValue && (
             <Base.SectionTitle className={this.decorateCSS("card-data-title")}>
               {prefixExist && <span className={this.decorateCSS("card-data-prefix")}>{card.prefix}</span>}
-              {!!display && <span className={this.decorateCSS("card-data-number")}>{animatable ? display : card.number}</span>}
+              {!!display && <span className={this.decorateCSS("card-data-number")}>{animatable ? display : card.value}</span>}
               {suffixExist && <span className={this.decorateCSS("card-data-suffix")}>{card.suffix}</span>}
             </Base.SectionTitle>
           )}

@@ -62,18 +62,11 @@
           .stat-subtitle {
             font-size: 1.25rem;
             margin: 0;
-            color: var(--composer-tertiary-color);
-            text-align: left !important;
-          }
-          .stat-title {
-            font-size: 2rem;
-            font-weight: 800;
-            margin: 0;
             color: var(--composer-font-color-primary);
             text-align: left !important;
           }
           .stat-label {
-            font-size: 3rem;
+            font-size: 3.75rem;
             font-weight: 800;
             margin: 0;
             color: var(--composer-font-color-primary);
@@ -167,10 +160,10 @@
         .stats-list {
           .stat-item {
             .stat-value {
-              font-size: 3rem !important;
+              font-size: 3.75rem !important;
             }
             .stat-label {
-              font-size: 2.5rem !important;
+              font-size: 3.75rem !important;
             }
           }
         }
@@ -245,7 +238,7 @@
               font-size: 2.5rem !important;
             }
             .stat-label {
-              font-size: 2rem !important;
+              font-size: 2.5rem !important;
             }
           }
         }

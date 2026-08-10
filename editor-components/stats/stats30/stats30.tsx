@@ -8,7 +8,7 @@ import { INPUTS } from "../../../custom-hooks/input-templates";
 type StatItem = {
     prefix: string;
     prefixElement: JSX.Element;
-    number: string;
+    value: string;
     numberElement: JSX.Element;
     suffix: string;
     suffixElement: JSX.Element;
@@ -72,7 +72,7 @@ export class Stats30 extends BaseStats {
                     displayer: "Card",
                     value: [
                         { type: "string", key: "prefix", displayer: "Prefix", value: "" },
-                        { type: "string", key: "number", displayer: "Value", value: "56" },
+                        { type: "string", key: "value", displayer: "Value", value: "56" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "" },
                         { type: "string", key: "subtitle", displayer: "Subtitle", value: "Teamwork" },
                         { type: "string", key: "title", displayer: "Title", value: "Experienced team members" },
@@ -85,7 +85,7 @@ export class Stats30 extends BaseStats {
                     displayer: "Card",
                     value: [
                         { type: "string", key: "prefix", displayer: "Prefix", value: "" },
-                        { type: "string", key: "number", displayer: "Value", value: "87" },
+                        { type: "string", key: "value", displayer: "Value", value: "87" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "" },
                         { type: "string", key: "subtitle", displayer: "Subtitle", value: "Process" },
                         { type: "string", key: "title", displayer: "Title", value: "Days of product development" },
@@ -154,8 +154,8 @@ export class Stats30 extends BaseStats {
             const cardData = item?.card || item || {};
             return {
                 prefix: this.castToString(cardData.prefix) || "",
-                numberElement: cardData.number, prefixElement: cardData.prefix,
-                number: this.castToString(cardData.number) || "",
+                numberElement: cardData.value, prefixElement: cardData.prefix,
+                value: this.castToString(cardData.value) || "",
                 suffix: this.castToString(cardData.suffix) || "",
                 suffixElement: cardData.suffix,
                 subtitle: this.castToString(cardData.subtitle) || "",
@@ -171,7 +171,7 @@ export class Stats30 extends BaseStats {
             const ref = React.useRef<HTMLSpanElement>(null);
             const intervalRef = React.useRef<ReturnType<typeof setInterval> | null>(null);
 
-            const rawNumber = (this.castToString(stat.number) as string) || "";
+            const rawNumber = (this.castToString(stat.value) as string) || "";
             const prefix = rawNumber.match(/^[^\d]*/)?.[0] ?? "";
             const suffix = rawNumber.match(/[^\d]*$/)?.[0] ?? "";
             const core = rawNumber.slice(prefix.length, rawNumber.length - suffix.length);

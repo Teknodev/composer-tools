@@ -51,7 +51,8 @@
                         .stat-number,
                         .stat-suffix {
                             color: inherit;
-                        }
+                            font-weight: 800;
+                          }
                     }
 
                     .text-inner {
@@ -135,7 +136,8 @@
             .text-content {
                 .stat-value {
                     font-size: 8rem;
-                }
+                    font-weight: 800;
+                  }
             }
 
             .media-wrapper {
@@ -160,7 +162,8 @@
             .text-content {
                 .stat-value {
                     font-size: 6rem;
-                }
+                    font-weight: 800;
+                  }
 
                 .text-inner {
                     .stats-description {

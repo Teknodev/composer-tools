@@ -7,7 +7,7 @@ import { INPUTS } from "../../../custom-hooks/input-templates";
 
 type featuresItem = {
   prefix: React.JSX.Element;
-  number: React.JSX.Element;
+  value: React.JSX.Element;
   suffix: React.JSX.Element;
   subtitle: React.JSX.Element;
   title: React.JSX.Element;
@@ -50,7 +50,7 @@ class Stats14 extends BaseStats {
           displayer: "Stat",
           value: [
             { type: "string", key: "prefix", displayer: "Prefix", value: "" },
-            { type: "string", key: "number", displayer: "Value", value: "From 20 days" },
+            { type: "string", key: "value", displayer: "Value", value: "From 20 days" },
             { type: "string", key: "suffix", displayer: "Suffix", value: "" },
             { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
             { type: "string", key: "title", displayer: "Title", value: "" },
@@ -63,7 +63,7 @@ class Stats14 extends BaseStats {
           displayer: "Stat",
           value: [
             { type: "string", key: "prefix", displayer: "Prefix", value: "" },
-            { type: "string", key: "number", displayer: "Value", value: "Up to 7.5%" },
+            { type: "string", key: "value", displayer: "Value", value: "Up to 7.5%" },
             { type: "string", key: "suffix", displayer: "Suffix", value: "" },
             { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
             { type: "string", key: "title", displayer: "Title", value: "" },
@@ -76,7 +76,7 @@ class Stats14 extends BaseStats {
           displayer: "Stat",
           value: [
             { type: "string", key: "prefix", displayer: "Prefix", value: "" },
-            { type: "string", key: "number", displayer: "Value", value: "From $1,000" },
+            { type: "string", key: "value", displayer: "Value", value: "From $1,000" },
             { type: "string", key: "suffix", displayer: "Suffix", value: "" },
             { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
             { type: "string", key: "title", displayer: "Title", value: "" },
@@ -179,7 +179,7 @@ class Stats14 extends BaseStats {
                   >
                     {FeaturesItem.map((item: featuresItem, index: number) => {
                       const prefixExist = this.castToString(item.prefix);
-                      const numberExist = this.castToString(item.number);
+                      const numberExist = this.castToString(item.value);
                       const suffixExist = this.castToString(item.suffix);
                       const subtitleExist = this.castToString(item.subtitle);
                       const titleExist = this.castToString(item.title);
@@ -191,7 +191,7 @@ class Stats14 extends BaseStats {
                           {hasValue && (
                             <Base.P className={this.decorateCSS("topText")}>
                               {prefixExist && <span className={this.decorateCSS("prefix")}>{item.prefix}</span>}
-                              {numberExist && <span className={this.decorateCSS("number")}>{item.number}</span>}
+                              {numberExist && <span className={this.decorateCSS("number")}>{item.value}</span>}
                               {suffixExist && <span className={this.decorateCSS("suffix")}>{item.suffix}</span>}
                             </Base.P>
                           )}

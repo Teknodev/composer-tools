@@ -7,7 +7,7 @@ import { INPUTS } from "../../../custom-hooks/input-templates";
 
 type Item = {
   prefix: React.JSX.Element;
-  number: React.JSX.Element;
+  value: React.JSX.Element;
   suffix: React.JSX.Element;
   subtitle: React.JSX.Element;
   title: React.JSX.Element;
@@ -41,7 +41,7 @@ class Stats7Page extends BaseStats {
     this.addProp({
       type: "array",
       key: "buttons",
-      displayer: "",
+      displayer: "Buttons",
       value: [
         INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
       ],
@@ -58,7 +58,7 @@ class Stats7Page extends BaseStats {
           displayer: "Stat",
           value: [
             { type: "string", key: "prefix", displayer: "Prefix", value: "" },
-            { type: "string", key: "number", displayer: "Value", value: "75%" },
+            { type: "string", key: "value", displayer: "Value", value: "75%" },
             { type: "string", key: "suffix", displayer: "Suffix", value: "" },
             { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
             { type: "string", key: "title", displayer: "Title", value: "Design" },
@@ -77,7 +77,7 @@ class Stats7Page extends BaseStats {
           displayer: "Stat",
           value: [
             { type: "string", key: "prefix", displayer: "Prefix", value: "" },
-            { type: "string", key: "number", displayer: "Value", value: "57%" },
+            { type: "string", key: "value", displayer: "Value", value: "57%" },
             { type: "string", key: "suffix", displayer: "Suffix", value: "" },
             { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
             { type: "string", key: "title", displayer: "Title", value: "Brand Identity" },
@@ -96,7 +96,7 @@ class Stats7Page extends BaseStats {
           displayer: "Stat",
           value: [
             { type: "string", key: "prefix", displayer: "Prefix", value: "" },
-            { type: "string", key: "number", displayer: "Value", value: "84%" },
+            { type: "string", key: "value", displayer: "Value", value: "84%" },
             { type: "string", key: "suffix", displayer: "Suffix", value: "" },
             { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
             { type: "string", key: "title", displayer: "Title", value: "Sketch" },
@@ -108,6 +108,26 @@ class Stats7Page extends BaseStats {
               value: 84,
             },
           ],
+        },
+      ],
+    });
+
+    this.addProp({
+      type: "object",
+      key: "settings",
+      displayer: "Settings",
+      value: [
+        {
+          type: "boolean",
+          key: "shouldAnimate",
+          displayer: "Animate Progress",
+          value: true,
+        },
+        {
+          type: "number",
+          key: "animationDuration",
+          displayer: "Animation Duration (ms)",
+          value: 2000,
         },
       ],
     });
@@ -128,11 +148,59 @@ class Stats7Page extends BaseStats {
     const showDiv = isSubtitleExist || isTitleExist || isDescriptionExist || visibleButtons.length > 0;
     const items = this.castToObject<Item[]>("stats");
 
+    const settings = this.castToObject<any>("settings");
+    const shouldAnimate = settings?.shouldAnimate ?? true;
+    const animationDuration = settings?.animationDuration ?? 2000;
+
+    const alignment = Base.getContentAlignment();
+    const hasStats = items.length > 0;
+
+    const AnimatedBar = ({ percent }: { percent: number }) => {
+      const ref = React.useRef<HTMLDivElement>(null);
+      const [width, setWidth] = React.useState<number>(shouldAnimate ? 0 : percent);
+
+      React.useEffect(() => {
+        if (!shouldAnimate) {
+          setWidth(percent);
+          return;
+        }
+        const node = ref.current;
+        if (!node || typeof IntersectionObserver === "undefined") {
+          setWidth(percent);
+          return;
+        }
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                setWidth(percent);
+                observer.disconnect();
+              }
+            });
+          },
+          { threshold: 0.4 }
+        );
+        observer.observe(node);
+        return () => observer.disconnect();
+      }, [percent]);
+
+      return (
+        <div ref={ref} className={this.decorateCSS("progress-active")}>
+          <div
+            className={this.decorateCSS("progress-passive")}
+            style={{ width: `${width}%`, transitionDuration: `${animationDuration}ms` }}
+          ></div>
+        </div>
+      );
+    };
+
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           {showDiv && (
-            <Base.VerticalContent className={this.decorateCSS("title-child")}>
+            <Base.VerticalContent
+              className={`${this.decorateCSS("title-child")} ${hasStats ? this.decorateCSS("force-left") : alignment === "center" ? this.decorateCSS("alignment-center") : ""}`}
+            >
               {isSubtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
               {isTitleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
               {isDescriptionExist && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
@@ -156,7 +224,7 @@ class Stats7Page extends BaseStats {
               {items.map((item: Item, index: number) => {
                 const { progress } = item;
                 const prefixExist = this.castToString(item.prefix);
-                const numberExist = this.castToString(item.number);
+                const numberExist = this.castToString(item.value);
                 const suffixExist = this.castToString(item.suffix);
                 const subtitleExist = this.castToString(item.subtitle);
                 const titleExist = this.castToString(item.title);
@@ -181,17 +249,13 @@ class Stats7Page extends BaseStats {
                         <div className={this.decorateCSS("progress-percent")}>
                           <div className={this.decorateCSS("progress-text")}>
                             {prefixExist && <span className={this.decorateCSS("progress-prefix")}>{item.prefix}</span>}
-                            {numberExist && <span className={this.decorateCSS("progress-value")}>{item.number}</span>}
+                            {numberExist && <span className={this.decorateCSS("progress-value")}>{item.value}</span>}
                             {suffixExist && <span className={this.decorateCSS("progress-suffix")}>{item.suffix}</span>}
                           </div>
                         </div>
                       )}
                     </div>
-                    {hasProgress && (
-                      <div className={this.decorateCSS("progress-active")}>
-                        <div className={this.decorateCSS("progress-passive")} style={{ width: `${barWidth}%` }}></div>
-                      </div>
-                    )}
+                    {hasProgress && <AnimatedBar percent={barWidth} />}
                     {descriptionExist && (
                       <div className={this.decorateCSS("progress-description")}>{item.description}</div>
                     )}

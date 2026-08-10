@@ -9,7 +9,7 @@ type StatItem = {
   subtitle: React.ReactNode;
   title: React.ReactNode;
   description: React.ReactNode;
-  number: string;
+  value: string;
   numberElement: JSX.Element;
   prefix: string;
   prefixElement: JSX.Element;
@@ -59,7 +59,7 @@ class Stats22 extends BaseStats {
           displayer: "Stat Item",
           value: [
             { type: "string", key: "prefix", displayer: "Prefix", value: "" },
-            { type: "string", key: "number", displayer: "Value", value: "350" },
+            { type: "string", key: "value", displayer: "Value", value: "350" },
             { type: "string", key: "suffix", displayer: "Suffix", value: "+" },
             { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
             { type: "string", key: "title", displayer: "Title", value: "Awesome Projects" },
@@ -72,7 +72,7 @@ class Stats22 extends BaseStats {
           displayer: "Stat Item",
           value: [
             { type: "string", key: "prefix", displayer: "Prefix", value: "" },
-            { type: "string", key: "number", displayer: "Value", value: "90" },
+            { type: "string", key: "value", displayer: "Value", value: "90" },
             { type: "string", key: "suffix", displayer: "Suffix", value: "+" },
             { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
             { type: "string", key: "title", displayer: "Title", value: "Satisfied Clients" },
@@ -85,7 +85,7 @@ class Stats22 extends BaseStats {
           displayer: "Stat Item",
           value: [
             { type: "string", key: "prefix", displayer: "Prefix", value: "" },
-            { type: "string", key: "number", displayer: "Value", value: "5" },
+            { type: "string", key: "value", displayer: "Value", value: "5" },
             { type: "string", key: "suffix", displayer: "Suffix", value: "+" },
             { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
             { type: "string", key: "title", displayer: "Title", value: "Years Experience" },
@@ -129,17 +129,17 @@ class Stats22 extends BaseStats {
       const subtitle = item.getPropValue("subtitle");
       const itemTitle = item.getPropValue("title");
       const itemDescription = item.getPropValue("description");
-      const number = this.castToString(item.getPropValue("number")) || "";
+      const number = this.castToString(item.getPropValue("value")) || "";
       const prefix = this.castToString(item.getPropValue("prefix")) || "";
       const suffix = this.castToString(item.getPropValue("suffix")) || "";
-      return { subtitle, title: itemTitle, description: itemDescription, number, prefix, numberElement: item.getPropValue("number"), prefixElement: item.getPropValue("prefix"), suffix, suffixElement: item.getPropValue("suffix") };
+      return { subtitle, title: itemTitle, description: itemDescription, value: number, prefix, numberElement: item.getPropValue("value"), prefixElement: item.getPropValue("prefix"), suffix, suffixElement: item.getPropValue("suffix") };
     });
 
     const visibleStatItems = statItems.filter((item) => {
       const hasTitle = this.castToString(item.title);
       const hasPrefix = item.prefix && item.prefix.trim() !== "";
       const hasSuffix = item.suffix && item.suffix.trim() !== "";
-      const hasNumber = (item.number && item.number.trim() !== "") || hasPrefix || hasSuffix;
+      const hasNumber = (item.value && item.value.trim() !== "") || hasPrefix || hasSuffix;
       return hasNumber || hasTitle;
     });
 
@@ -153,7 +153,7 @@ class Stats22 extends BaseStats {
       const ref = React.useRef<HTMLDivElement>(null);
       const intervalRef = React.useRef<ReturnType<typeof setInterval> | null>(null);
 
-      const rawNumber = (this.castToString(stat.number) as string) || "";
+      const rawNumber = (this.castToString(stat.value) as string) || "";
       const core = rawNumber.replace(/[^\d.]/g, "");
       const isNumeric = /\d/.test(core);
       const target = isNumeric ? parseFloat(core.replace(/,/g, "")) : NaN;
@@ -225,7 +225,7 @@ class Stats22 extends BaseStats {
       const hasDescription = stat.description && this.castToString(stat.description);
       const hasPrefix = stat.prefix && stat.prefix.trim() !== "";
       const hasSuffix = stat.suffix && stat.suffix.trim() !== "";
-      const hasNumber = (stat.number && stat.number.trim() !== "") || hasPrefix || hasSuffix;
+      const hasNumber = (stat.value && stat.value.trim() !== "") || hasPrefix || hasSuffix;
 
       if (!hasNumber && !hasTitle) return null;
 

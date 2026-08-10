@@ -8,7 +8,7 @@ import ComposerLink from "../../../../custom-hooks/composer-base-components/Link
 type StatItem = {
     prefix: string;
     prefixElement: JSX.Element;
-    number: string;
+    value: string;
     numberElement: JSX.Element;
     suffix: string;
     suffixElement: JSX.Element;
@@ -65,7 +65,7 @@ class Stats21 extends BaseStats {
                     displayer: "Stat",
                     value: [
                         { type: "string", key: "prefix", displayer: "Prefix", value: "" },
-                        { type: "string", key: "number", displayer: "Value", value: "2018" },
+                        { type: "string", key: "value", displayer: "Value", value: "2018" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "" },
                         { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
                         { type: "string", key: "title", displayer: "Title", value: "History of success" },
@@ -78,7 +78,7 @@ class Stats21 extends BaseStats {
                     displayer: "Stat",
                     value: [
                         { type: "string", key: "prefix", displayer: "Prefix", value: "" },
-                        { type: "string", key: "number", displayer: "Value", value: "1500" },
+                        { type: "string", key: "value", displayer: "Value", value: "1500" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "+" },
                         { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
                         { type: "string", key: "title", displayer: "Title", value: "Capitalize on low hanging fruit" },
@@ -91,7 +91,7 @@ class Stats21 extends BaseStats {
                     displayer: "Stat",
                     value: [
                         { type: "string", key: "prefix", displayer: "Prefix", value: "$" },
-                        { type: "string", key: "number", displayer: "Value", value: "0.01" },
+                        { type: "string", key: "value", displayer: "Value", value: "0.01" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "" },
                         { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
                         { type: "string", key: "title", displayer: "Title", value: "Leverage agile frameworks" },
@@ -136,12 +136,12 @@ class Stats21 extends BaseStats {
         const statsItems = this.castToObject<{ prefix: JSX.Element; number: JSX.Element; suffix: JSX.Element; title: JSX.Element; subtitle: JSX.Element; description: JSX.Element }[]>("stats");
         const stats: StatItem[] = statsItems.map((item) => {
             const prefix = this.castToString(item.prefix) || "";
-            const number = this.castToString(item.number) || "";
+            const number = this.castToString(item.value) || "";
             const suffix = this.castToString(item.suffix) || "";
             const title = this.castToString(item.title) || "";
             const subtitle = this.castToString(item.subtitle) || "";
             const description = this.castToString(item.description) || "";
-            return { prefix, numberElement: item.number, prefixElement: item.prefix, number, suffix, suffixElement: item.suffix, title, titleElement: item.title, subtitle, subtitleElement: item.subtitle, description, descriptionElement: item.description };
+            return { prefix, numberElement: item.value, prefixElement: item.prefix, value: number, suffix, suffixElement: item.suffix, title, titleElement: item.title, subtitle, subtitleElement: item.subtitle, description, descriptionElement: item.description };
         });
 
         const settings = this.castToObject<any>("settings");
@@ -154,7 +154,7 @@ class Stats21 extends BaseStats {
             const ref = React.useRef<HTMLSpanElement>(null);
             const intervalRef = React.useRef<ReturnType<typeof setInterval> | null>(null);
 
-            const rawNumber = (this.castToString(stat.number) as string) || "";
+            const rawNumber = (this.castToString(stat.value) as string) || "";
             const prefix = rawNumber.match(/^[^\d]*/)?.[0] ?? "";
             const suffix = rawNumber.match(/[^\d]*$/)?.[0] ?? "";
             const core = rawNumber.slice(prefix.length, rawNumber.length - suffix.length);

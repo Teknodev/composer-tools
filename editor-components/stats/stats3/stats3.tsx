@@ -9,7 +9,7 @@ import { INPUTS } from "../../../custom-hooks/input-templates";
 type Stat = {
   icon?: TypeMediaInputValue | string;
   prefix: React.JSX.Element;
-  number: React.JSX.Element;
+  value: React.JSX.Element;
   suffix: React.JSX.Element;
   subtitle: React.JSX.Element;
   title: React.JSX.Element;
@@ -92,7 +92,7 @@ class Stats3Page extends BaseStats {
               value: { type: "icon", name: "FaMedal" },
             },
             { type: "string", key: "prefix", displayer: "Prefix", value: "" },
-            { type: "string", key: "number", displayer: "Value", value: "12 th" },
+            { type: "string", key: "value", displayer: "Value", value: "12 th" },
             { type: "string", key: "suffix", displayer: "Suffix", value: "" },
             { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
             { type: "string", key: "title", displayer: "Title", value: "" },
@@ -112,7 +112,7 @@ class Stats3Page extends BaseStats {
               value: { type: "icon", name: "FiUser" },
             },
             { type: "string", key: "prefix", displayer: "Prefix", value: "" },
-            { type: "string", key: "number", displayer: "Value", value: "800 +" },
+            { type: "string", key: "value", displayer: "Value", value: "800 +" },
             { type: "string", key: "suffix", displayer: "Suffix", value: "" },
             { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
             { type: "string", key: "title", displayer: "Title", value: "" },
@@ -132,7 +132,7 @@ class Stats3Page extends BaseStats {
               value: { type: "icon", name: "BsHeartPulse" },
             },
             { type: "string", key: "prefix", displayer: "Prefix", value: "" },
-            { type: "string", key: "number", displayer: "Value", value: "100 +" },
+            { type: "string", key: "value", displayer: "Value", value: "100 +" },
             { type: "string", key: "suffix", displayer: "Suffix", value: "" },
             { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
             { type: "string", key: "title", displayer: "Title", value: "" },
@@ -220,7 +220,7 @@ class Stats3Page extends BaseStats {
                       {this.castToObject<Stat[]>("stats").map((item: Stat, index: number) => {
                         const iconExist = mediaExists(item.icon);
                         const prefixExist = this.castToString(item.prefix);
-                        const numberExist = this.castToString(item.number);
+                        const numberExist = this.castToString(item.value);
                         const suffixExist = this.castToString(item.suffix);
                         const subtitleExist = this.castToString(item.subtitle);
                         const titleExist = this.castToString(item.title);
@@ -236,7 +236,7 @@ class Stats3Page extends BaseStats {
                                   {hasValue && (
                                     <Base.H5 className={this.decorateCSS("number")}>
                                       {prefixExist && <span className={this.decorateCSS("prefix")}>{item.prefix}</span>}
-                                      {numberExist && <span className={this.decorateCSS("value")}>{item.number}</span>}
+                                      {numberExist && <span className={this.decorateCSS("value")}>{item.value}</span>}
                                       {suffixExist && <span className={this.decorateCSS("suffix")}>{item.suffix}</span>}
                                     </Base.H5>
                                   )}

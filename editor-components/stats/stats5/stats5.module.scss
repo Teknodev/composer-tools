@@ -51,7 +51,6 @@
         min-height: 100px;
         width: 100%;
         position: relative;
-        padding: var(--composer-gap-md);
 
         &.stick {
           &:not(:last-child)::after {
@@ -61,12 +60,13 @@
             top: 35%;
             bottom: 35%;
             width: 1px;
-            background-color: var(--composer-font-color-primary);
+            background-color: var(--composer-tertiary-color);
           }
         }
 
         .card-data-title {
           font-size: 13rem;
+          opacity: 0.1;
           margin: 0;
           white-space: normal;
           word-break: break-word;
@@ -123,6 +123,32 @@
   }
 }
 
+@container (max-width: #{$composer-tablet-width}) {
+  .container {
+    .max-content {
+      .bottom-child {
+        .card {
+          .card-data-title {
+            font-size: 10rem !important;
+          }
+
+          .card-data-subtitle {
+            font-size: 1.25rem !important;
+          }
+
+          .card-data-heading {
+            font-size: 2rem !important;
+          }
+
+          .card-data-description {
+            font-size: 1.75rem !important;
+          }
+        }
+      }
+    }
+  }
+}
+
 @container (max-width: #{$composer-phone-width}) {
   .container {
     .max-content {
@@ -149,23 +175,23 @@
           }
 
           .card-data-title {
-            font-size: 7rem;
+            font-size: 7rem !important;
           }
 
           .card-data-subtitle {
-            font-size: 1.2rem;
+            font-size: 1.25rem !important;
             width: 100%;
             text-align: center !important;
           }
 
           .card-data-heading {
-            font-size: 1.8rem;
+            font-size: 1.75rem !important;
             width: 100%;
             text-align: center !important;
           }
 
           .card-data-description {
-            font-size: 1.5rem;
+            font-size: 1.5rem !important;
             width: 100%;
             text-align: center !important;
           }

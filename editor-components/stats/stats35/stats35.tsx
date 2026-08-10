@@ -8,7 +8,7 @@ import ComposerLink from "../../../composer-base-components/Link/ComposerLinkPro
 type StatItem = {
     prefix: string;
     prefixElement: JSX.Element;
-    number: string;
+    value: string;
     numberElement: JSX.Element;
     suffix: string;
     suffixElement: JSX.Element;
@@ -89,7 +89,7 @@ class Stats35 extends BaseStats {
                     displayer: "Stat",
                     value: [
                         { type: "string", key: "prefix", displayer: "Prefix", value: "" },
-                        { type: "string", key: "number", displayer: "Value", value: "2018" },
+                        { type: "string", key: "value", displayer: "Value", value: "2018" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "" },
                         { type: "string", key: "subtitle", displayer: "Subtitle", value: "Year of foundation" },
                         { type: "string", key: "title", displayer: "Title", value: "" },
@@ -102,7 +102,7 @@ class Stats35 extends BaseStats {
                     displayer: "Stat",
                     value: [
                         { type: "string", key: "prefix", displayer: "Prefix", value: "$" },
-                        { type: "string", key: "number", displayer: "Value", value: "171" },
+                        { type: "string", key: "value", displayer: "Value", value: "171" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "M" },
                         { type: "string", key: "subtitle", displayer: "Subtitle", value: "Across ten total funds" },
                         { type: "string", key: "title", displayer: "Title", value: "" },
@@ -115,7 +115,7 @@ class Stats35 extends BaseStats {
                     displayer: "Stat",
                     value: [
                         { type: "string", key: "prefix", displayer: "Prefix", value: "" },
-                        { type: "string", key: "number", displayer: "Value", value: "400" },
+                        { type: "string", key: "value", displayer: "Value", value: "400" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "+" },
                         { type: "string", key: "subtitle", displayer: "Subtitle", value: "Companies invested in" },
                         { type: "string", key: "title", displayer: "Title", value: "" },
@@ -168,7 +168,7 @@ class Stats35 extends BaseStats {
 
         const statsItems = this.castToObject<{
             prefix: JSX.Element;
-            number: JSX.Element;
+            value: JSX.Element;
             suffix: JSX.Element;
             subtitle: JSX.Element;
             title: JSX.Element;
@@ -177,8 +177,8 @@ class Stats35 extends BaseStats {
 
         const stats: StatItem[] = statsItems.map((item) => ({
             prefix: this.castToString(item.prefix) || "",
-            numberElement: item.number, prefixElement: item.prefix,
-            number: this.castToString(item.number) || "",
+            numberElement: item.value, prefixElement: item.prefix,
+            value: this.castToString(item.value) || "",
             suffix: this.castToString(item.suffix) || "",
             suffixElement: item.suffix,
             subtitle: this.castToString(item.subtitle) || "",
@@ -199,7 +199,7 @@ class Stats35 extends BaseStats {
 
         const alignment = Base.getContentAlignment();
         const hasLeftSection = subtitleExist || titleExist || descriptionExist || hasValidButtons;
-        const hasVisibleStats = stats.some(stat => stat.number || stat.prefix || stat.suffix || stat.subtitle || stat.title || stat.description);
+        const hasVisibleStats = stats.some(stat => stat.value || stat.prefix || stat.suffix || stat.subtitle || stat.title || stat.description);
         const hasRightSection = hasVisibleStats || hasMedia;
 
         const mediaOnly = hasMedia && !hasLeftSection && !hasVisibleStats;
@@ -208,7 +208,7 @@ class Stats35 extends BaseStats {
             const ref = React.useRef<HTMLSpanElement>(null);
             const intervalRef = React.useRef<ReturnType<typeof setInterval> | null>(null);
 
-            const rawNumber = (this.castToString(stat.number) as string) || "";
+            const rawNumber = (this.castToString(stat.value) as string) || "";
             const innerPrefix = rawNumber.match(/^[^\d]*/)?.[0] ?? "";
             const innerSuffix = rawNumber.match(/[^\d]*$/)?.[0] ?? "";
             const core = rawNumber.slice(innerPrefix.length, rawNumber.length - innerSuffix.length);
@@ -277,7 +277,7 @@ class Stats35 extends BaseStats {
                 };
             }, [rawNumber, animatable, animationDuration, target]);
 
-            const valueExist = this.castToString(stat.number);
+            const valueExist = this.castToString(stat.value);
             const subtitleExist = this.castToString(stat.subtitle);
             const titleExist = this.castToString(stat.title);
             const descriptionExist = this.castToString(stat.description);

@@ -7,7 +7,7 @@ import { INPUTS } from "../../../custom-hooks/input-templates";
 
 type CardData = {
   prefix: React.JSX.Element;
-  number: React.JSX.Element;
+  value: React.JSX.Element;
   suffix: React.JSX.Element;
   subtitle: React.JSX.Element;
   title: React.JSX.Element;
@@ -57,7 +57,7 @@ class Stats1Page extends BaseStats {
           displayer: "Stat",
           value: [
             { type: "string", key: "prefix", displayer: "Prefix", value: "" },
-            { type: "string", key: "number", displayer: "Value", value: "1002" },
+            { type: "string", key: "value", displayer: "Value", value: "1002" },
             { type: "string", key: "suffix", displayer: "Suffix", value: "" },
             { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
             { type: "string", key: "title", displayer: "Title", value: "Active Users" },
@@ -70,7 +70,7 @@ class Stats1Page extends BaseStats {
           displayer: "Stat",
           value: [
             { type: "string", key: "prefix", displayer: "Prefix", value: "" },
-            { type: "string", key: "number", displayer: "Value", value: "2999" },
+            { type: "string", key: "value", displayer: "Value", value: "2999" },
             { type: "string", key: "suffix", displayer: "Suffix", value: "" },
             { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
             { type: "string", key: "title", displayer: "Title", value: "Articles" },
@@ -83,7 +83,7 @@ class Stats1Page extends BaseStats {
           displayer: "Stat",
           value: [
             { type: "string", key: "prefix", displayer: "Prefix", value: "" },
-            { type: "string", key: "number", displayer: "Value", value: "97" },
+            { type: "string", key: "value", displayer: "Value", value: "97" },
             { type: "string", key: "suffix", displayer: "Suffix", value: "" },
             { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
             { type: "string", key: "title", displayer: "Title", value: "Authors" },
@@ -246,7 +246,7 @@ class Stats1Page extends BaseStats {
 
                   {cardList.map((cardData: CardData, indexCard: number) => {
                     const angle = (indexCard / cardList.length) * 360;
-                    const numberStr = (this.castToString(cardData.number) as string) || "";
+                    const numberStr = (this.castToString(cardData.value) as string) || "";
                     const isPrefixExist = this.castToString(cardData.prefix);
                     const isSuffixExist = this.castToString(cardData.suffix);
                     const isCardSubtitleExist = this.castToString(cardData.subtitle);
@@ -263,7 +263,7 @@ class Stats1Page extends BaseStats {
                         {isValueExist && (
                           <Base.H5 className={this.decorateCSS("counter-value")} style={{ color }}>
                             {isPrefixExist && <span className={this.decorateCSS("counter-prefix")}>{cardData.prefix}</span>}
-                            {!!numberStr && <AnimatedNumber value={numberStr} node={cardData.number} className={this.decorateCSS("counter-value-inner")} />}
+                            {!!numberStr && <AnimatedNumber value={numberStr} node={cardData.value} className={this.decorateCSS("counter-value-inner")} />}
                             {isSuffixExist && <span className={this.decorateCSS("counter-suffix")}>{cardData.suffix}</span>}
                           </Base.H5>
                         )}

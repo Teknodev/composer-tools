@@ -9,7 +9,7 @@ type StatItem = {
     icon: TypeMediaInputValue | string;
     prefix: string;
     prefixElement: JSX.Element;
-    number: string;
+    value: string;
     numberElement: JSX.Element;
     suffix: string;
     suffixElement: JSX.Element;
@@ -67,7 +67,7 @@ class Stats24 extends BaseStats {
                     value: [
                         { type: "media", key: "icon", displayer: "Icon", additionalParams: { availableTypes: ["image", "icon"] }, value: { type: "icon", name: "" } },
                         { type: "string", key: "prefix", displayer: "Prefix", value: "" },
-                        { type: "string", key: "number", displayer: "Value", value: "25" },
+                        { type: "string", key: "value", displayer: "Value", value: "25" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "+" },
                         { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
                         { type: "string", key: "title", displayer: "Title", value: "Experienced people on the team" },
@@ -81,7 +81,7 @@ class Stats24 extends BaseStats {
                     value: [
                         { type: "media", key: "icon", displayer: "Icon", additionalParams: { availableTypes: ["image", "icon"] }, value: { type: "icon", name: "" } },
                         { type: "string", key: "prefix", displayer: "Prefix", value: "" },
-                        { type: "string", key: "number", displayer: "Value", value: "14" },
+                        { type: "string", key: "value", displayer: "Value", value: "14" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "" },
                         { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
                         { type: "string", key: "title", displayer: "Title", value: "Cities where employees work" },
@@ -95,7 +95,7 @@ class Stats24 extends BaseStats {
                     value: [
                         { type: "media", key: "icon", displayer: "Icon", additionalParams: { availableTypes: ["image", "icon"] }, value: { type: "icon", name: "" } },
                         { type: "string", key: "prefix", displayer: "Prefix", value: "" },
-                        { type: "string", key: "number", displayer: "Value", value: "180" },
+                        { type: "string", key: "value", displayer: "Value", value: "180" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "" },
                         { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
                         { type: "string", key: "title", displayer: "Title", value: "Days of product development" },
@@ -109,7 +109,7 @@ class Stats24 extends BaseStats {
                     value: [
                         { type: "media", key: "icon", displayer: "Icon", additionalParams: { availableTypes: ["image", "icon"] }, value: { type: "icon", name: "IoInfiniteSharp" } },
                         { type: "string", key: "prefix", displayer: "Prefix", value: "" },
-                        { type: "string", key: "number", displayer: "Value", value: "" },
+                        { type: "string", key: "value", displayer: "Value", value: "" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "" },
                         { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
                         { type: "string", key: "title", displayer: "Title", value: "Infinite possibilities" },
@@ -159,7 +159,7 @@ class Stats24 extends BaseStats {
             const ref = React.useRef<HTMLSpanElement>(null);
             const intervalRef = React.useRef<ReturnType<typeof setInterval> | null>(null);
 
-            const rawNumber = (this.castToString(stat.number) as string) || "";
+            const rawNumber = (this.castToString(stat.value) as string) || "";
             const isNumeric = /\d/.test(rawNumber);
             const target = isNumeric ? parseFloat(rawNumber.replace(/,/g, "")) : NaN;
             const decimals = rawNumber.includes(".") ? rawNumber.split(".")[1]?.length ?? 0 : 0;
@@ -228,7 +228,7 @@ class Stats24 extends BaseStats {
             const titleExist = this.castToString(stat.title);
             const subtitleExist = this.castToString(stat.subtitle);
             const descriptionExist = this.castToString(stat.description);
-            const valueExist = this.castToString(stat.number);
+            const valueExist = this.castToString(stat.value);
             const suffixExist = this.castToString(stat.suffix);
             const prefixExist = this.castToString(stat.prefix);
 
@@ -311,13 +311,13 @@ class Stats24 extends BaseStats {
             }
 
             const prefix = this.castToString(item.prefix) || "";
-            const number = this.castToString(item.number) || "";
+            const number = this.castToString(item.value) || "";
             const suffix = this.castToString(item.suffix) || "";
             const title = this.castToString(item.title) || "";
             const subtitle = this.castToString(item.subtitle) || "";
             const description = this.castToString(item.description) || "";
 
-            return { icon: iconProp, prefix, numberElement: item.number, prefixElement: item.prefix, number, suffix, suffixElement: item.suffix, title, titleElement: item.title, subtitle, subtitleElement: item.subtitle, description, descriptionElement: item.description };
+            return { icon: iconProp, prefix, numberElement: item.value, prefixElement: item.prefix, value: number, suffix, suffixElement: item.suffix, title, titleElement: item.title, subtitle, subtitleElement: item.subtitle, description, descriptionElement: item.description };
         });
 
         const hasStats = stats.length > 0;
