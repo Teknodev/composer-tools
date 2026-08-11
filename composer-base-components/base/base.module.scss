@@ -736,7 +736,7 @@
     background: color-mix(
         in srgb,
         var(--composer-html-background),
-        #ffffff calc(clamp(6%, var(--bg-lum, 1) * 130%, 100%))
+        #ffffff calc(clamp(8%, var(--bg-lum, 1) * 130%, 100%))
     );
     padding: var(--composer-gap-lg);
 }
