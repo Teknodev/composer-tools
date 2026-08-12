@@ -84,6 +84,22 @@ export namespace Base {
     setStyleValue("--composer-text-only", value ? "true" : "false");
   }
 
+  // Text-only placeholder layers are tinted toward one of the theme's brand
+  // colors (primary / secondary / tertiary) or a neutral font tone, so the
+  // covered images don't all read as a single flat colour. The variant is a
+  // deterministic hash of the image URL — the same image always gets the same
+  // colour (stable across re-renders), while different images spread across
+  // the palette. Returns 0..3 → maps to the .themeCoverLayer{0..3} classes.
+  const THEME_COVER_VARIANTS = 7;
+  export function themeCoverVariant(seed: string | undefined): number {
+    const s = seed || "";
+    let h = 0;
+    for (let i = 0; i < s.length; i++) {
+      h = (h * 31 + s.charCodeAt(i)) | 0;
+    }
+    return Math.abs(h) % THEME_COVER_VARIANTS;
+  }
+
   export function setFontSize(size: string) {
     setStyleValue("--composer-font-size-md", `${size}px`);
   }
@@ -689,7 +705,10 @@ export namespace Base {
           return (
             <span className={`${styles.themeCover} ${className ?? ""}`} {...props}>
               <img className={styles.themeCoverImage} src={value.url} alt="" />
-              <span className={styles.themeCoverLayer} aria-hidden="true" />
+              <span
+                className={`${styles.themeCoverLayer} ${styles[`themeCoverLayer${themeCoverVariant(value.url)}`]}`}
+                aria-hidden="true"
+              />
             </span>
           );
         }
