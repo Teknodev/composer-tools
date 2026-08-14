@@ -44,7 +44,6 @@ interface Logo {
 }
 
 class Navbar10 extends BaseNavigator {
-  private containerRef = React.createRef<HTMLDivElement>();
 
   constructor(props?: any) {
     super(props, styles);
@@ -2345,7 +2344,7 @@ class Navbar10 extends BaseNavigator {
     this.setComponentState("subNavActiveIndex", null);
     this.setComponentState("subNavActive", null);
     this.setComponentState("changeBackground", false);
-    this.setComponentState("isMobile", false);
+    this.setComponentState("isBigScreen", false);
     this.setComponentState("navbarOverflowShow", false);
     this.setComponentState("activeDropdown", null);
   }
@@ -2355,28 +2354,12 @@ class Navbar10 extends BaseNavigator {
   }
 
   onComponentDidMount() {
-    this.handleResize();
-    window.addEventListener('resize', this.handleResize);
     document.addEventListener('click', this.handleClickOutside);
   }
 
   onComponentWillUnmount() {
-    window.removeEventListener('resize', this.handleResize);
     document.removeEventListener('click', this.handleClickOutside);
   }
-
-  private handleResize = () => {
-    const el = this.containerRef.current;
-    
-    if (!el) return;
-    
-    const width = el.clientWidth;
-    const phonePxInt = 640; 
-    
-    const isMobile = width <= phonePxInt;
-    
-    this.setComponentState("isMobile", isMobile);
-  };
 
   handleOpenMenu = () => {
     Base.Navigator.changeScrollBehaviour("hidden");
@@ -2456,7 +2439,7 @@ class Navbar10 extends BaseNavigator {
     const hamburgerNavActive = this.getComponentState("hamburgerNavActive");
     const navbarOverflowShow = this.getComponentState("navbarOverflowShow");
     const isScrolled = this.getComponentState("isScrolled");
-    const isMobile = this.getComponentState("isMobile");
+    const isMobile = !this.getComponentState("isBigScreen");
     const activeDropdown = this.getComponentState("activeDropdown");
     const mobileDivider = this.getPropValue("mobileDivider");
 
@@ -2487,7 +2470,6 @@ class Navbar10 extends BaseNavigator {
     return (
       <div className={this.decorateCSS("navbar-root")}>
         <Base.Navigator.Container
-          ref={this.containerRef}
           position={position}
           hamburgerNavActive={hamburgerNavActive}
           positionContainer={`${this.decorateCSS("navbarContainer")} ${
@@ -2496,6 +2478,14 @@ class Navbar10 extends BaseNavigator {
           setIsScrolled={(val: boolean) =>
             this.setComponentState("isScrolled", val)
           }
+          setIsBigScreen={(val: boolean) =>
+            this.setComponentState("isBigScreen", val)
+          }
+          // The desktop nav gives way to the hamburger below 640px (see the
+          // `@container (max-width: $composer-phone-width)` block in the stylesheet),
+          // so big-screen starts one pixel above it — the same off-by-one pairing
+          // the default 1025 has with the 1024px tablet breakpoint.
+          screenSize={641}
           className={this.decorateCSS("filledBackground")}
         >
           <Base.MaxContent
