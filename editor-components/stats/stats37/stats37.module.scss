@@ -20,6 +20,15 @@
             gap: var(--composer-gap-xl);
             width: 100%;
 
+            .card-shell {
+                display: flex;
+                flex-direction: column;
+
+                > * {
+                    flex: 1 1 auto;
+                }
+            }
+
             .stat-item {
                 align-items: flex-start;
                 gap: var(--composer-gap-sm);
@@ -41,6 +50,15 @@
                             font-size: 4.5rem !important;
                             line-height: 1.1;
                             font-weight: 800;
+                        }
+                        .stat-suffix {
+                            color: var(--composer-font-color-primary);
+                        }
+                        .stat-number {
+                            color: var(--composer-font-color-primary);
+                        }
+                        .stat-prefix {
+                            color: var(--composer-font-color-primary);
                         }
                     }
 

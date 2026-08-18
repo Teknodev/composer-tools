@@ -1,7 +1,15 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
-  background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+  .card-shell {
+    display: flex;
+    flex-direction: column;
+
+    > * {
+      flex: 1 1 auto;
+    }
+  }
+
   .max-content {
     .banner {
       margin-bottom: calc(2 * var(--composer-gap-lg));
@@ -19,7 +27,7 @@
 
         .data-card-title {
           font-size: 2.5rem;
-          color: var(--composer-primary-color);
+          color: var(--composer-font-color-primary);
           word-break: break-all;
           margin: 0;
         }

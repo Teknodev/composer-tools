@@ -200,9 +200,9 @@ class List8 extends BaseList {
       type: "multiSelect",
       key: "hoverAnimation",
       displayer: "Hover Animation Style",
-      value: ["animate1"],
+      value: ["animate2"],
       additionalParams: {
-        selectItems: ["animate1", "animate2", "animate3", "animate4"],
+        selectItems: ["animate2", "animate3", "animate4"],
       },
     });
   }
@@ -308,7 +308,7 @@ class List8 extends BaseList {
                   const hasItemContent = itemSubtitleExist || itemTitleExist || itemTextExist;
 
                   return (
-                    <div
+                    <Base.Card
                       key={index}
                       className={this.decorateCSS("list-item")}
                       data-animation={hoverAnimation.join(" ")}
@@ -367,7 +367,7 @@ class List8 extends BaseList {
                           </div>
                         )}
                       </Base.VerticalContent>
-                    </div>
+                    </Base.Card>
                   );
                 })}
               </Base.ListGrid>

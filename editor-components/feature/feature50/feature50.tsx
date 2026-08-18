@@ -325,7 +325,8 @@ class Feature50 extends BaseFeature {
                             const isImageMedia = card.media && (card.media as any).type === "image";
 
                             return (
-                            <Base.VerticalContent key={index} className={this.decorateCSS("card")}>
+                            <Base.Card key={index} className={this.decorateCSS("card-shell")}>
+                            <Base.VerticalContent className={this.decorateCSS("card")}>
                                 <Base.VerticalContent className={this.decorateCSS("card-content")}>
                                     {this.castToString(card.subtitle) && (
                                         <Base.H6 className={this.decorateCSS("card-subtitle")}>
@@ -378,6 +379,7 @@ class Feature50 extends BaseFeature {
                                     </div>
                                 )}
                             </Base.VerticalContent>
+                            </Base.Card>
                         )})}
                     </Base.ListGrid>
 

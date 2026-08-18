@@ -17,6 +17,14 @@
     &.has-media {
         .max-content {
             padding-right: 0;
+
+            .right-column {
+                .stats-list {
+                    .card-shell {
+                        background: transparent;
+                    }
+                }
+            }
         }
     }
 
@@ -159,6 +167,15 @@
             gap: var(--composer-gap-xl);
             width: 100%;
             align-items: flex-start;
+
+            .card-shell {
+                display: flex;
+                flex-direction: column;
+
+                > * {
+                    flex: 1 1 auto;
+                }
+            }
 
             .stat-item {
                 display: flex;

@@ -7,6 +7,7 @@ import { IconBaseProps } from "react-icons/lib";
 import { iconLibraries } from "./utitilities/iconList";
 import { TypeMediaInputValue } from "../../editor-components/EditorComponent";
 import { ELEMENT_CATEGORY } from "../../element-categories";
+import LottiePlayer from "./utitilities/LottiePlayer";
 
 declare global {
   namespace JSX {
@@ -81,6 +82,22 @@ export namespace Base {
 
   export function setTextOnly(value: boolean) {
     setStyleValue("--composer-text-only", value ? "true" : "false");
+  }
+
+  // Text-only placeholder layers are tinted toward one of the theme's brand
+  // colors (primary / secondary / tertiary) or a neutral font tone, so the
+  // covered images don't all read as a single flat colour. The variant is a
+  // deterministic hash of the image URL — the same image always gets the same
+  // colour (stable across re-renders), while different images spread across
+  // the palette. Returns 0..3 → maps to the .themeCoverLayer{0..3} classes.
+  const THEME_COVER_VARIANTS = 7;
+  export function themeCoverVariant(seed: string | undefined): number {
+    const s = seed || "";
+    let h = 0;
+    for (let i = 0; i < s.length; i++) {
+      h = (h * 31 + s.charCodeAt(i)) | 0;
+    }
+    return Math.abs(h) % THEME_COVER_VARIANTS;
   }
 
   export function setFontSize(size: string) {
@@ -670,7 +687,7 @@ export namespace Base {
     ...props 
   }: React.HTMLAttributes<HTMLDivElement>) {
     return (
-      <div className={`${styles.baseCard} ${className}`} data-element-category={ELEMENT_CATEGORY.CARD} {...props}>
+      <div className={`${styles.baseCard} ${className ?? ""}`} data-element-category={ELEMENT_CATEGORY.CARD} {...props}>
         {children}
       </div>
     );
@@ -701,7 +718,10 @@ export namespace Base {
           return (
             <span className={`${styles.themeCover} ${className ?? ""}`} {...props}>
               <img className={styles.themeCoverImage} src={value.url} alt="" />
-              <span className={styles.themeCoverLayer} aria-hidden="true" />
+              <span
+                className={`${styles.themeCoverLayer} ${styles[`themeCoverLayer${themeCoverVariant(value.url)}`]}`}
+                aria-hidden="true"
+              />
             </span>
           );
         }
@@ -734,16 +754,18 @@ export namespace Base {
           />
         );
       case "lottie":
-        return React.createElement('lottie-player', {
-          className,
-          src: value.url,
-          background: "transparent",
-          speed: "1",
-          loop: !!value.settings?.loop,
-          autoplay: !!value.settings?.autoplay,
-          style: { width: '100%', height: '100%' },
-          ...props
-        });
+        // LottiePlayer loads the <lottie-player> web component on demand; the
+        // raw element would otherwise stay un-upgraded (blank) since the script
+        // is not bundled.
+        return (
+          <LottiePlayer
+            className={className}
+            src={value.url}
+            loop={!!value.settings?.loop}
+            autoplay={!!value.settings?.autoplay}
+            {...props}
+          />
+        );
       default:
         return null;
     }

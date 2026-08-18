@@ -26,6 +26,14 @@
       width: 100%;
       gap: var(--composer-gap-lg);
 
+      .card-shell {
+        display: flex;
+        flex-direction: column;
+        > * {
+          flex: 1 1 auto;
+        }
+      }
+
       .service-card {
         width: 100%;
         color: var(--composer-font-color-primary);
@@ -34,6 +42,15 @@
         .card-title,
         .card-description {
           text-align: left;
+        }
+        .card-description {
+          color: var(--composer-font-color-primary);
+        }
+        .card-title {
+          color: var(--composer-font-color-primary);
+        }
+        .card-subtitle {
+          color: var(--composer-font-color-primary);
         }
 
         .media-wrapper {

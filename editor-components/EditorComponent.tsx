@@ -345,6 +345,7 @@ export type TypeUsableComponentProps = {
     availableTypes?: MediaType[];
   };
   max?: number;
+  malformed?: boolean;
 } & AvailablePropTypes & {
   getPropValue?: (
     propName: string,
@@ -689,9 +690,14 @@ export abstract class Component
         );
       }
 
+      const isValueArray = Array.isArray(propInState.value);
+      if (isComplexType && !isValueArray) {
+        propInState.malformed = true;
+      }
+
       const isMatchingValue =
         (!isComplexType && propInState.value === value) ||
-        (isComplexType && propInState.value.every((item) => item.getPropValue) && propInState.value === value);
+        (isComplexType && isValueArray && propInState.value.every((item) => item.getPropValue) && propInState.value === value);
 
       if (isMatchingValue) return;
 
@@ -1016,9 +1022,13 @@ export abstract class Component
   private attachPropId(_prop: TypeUsableComponentProps) {
     _prop.id = generateId(_prop.key);
     if (_prop.type == "array" || _prop.type == "object") {
-      (_prop.value as TypeUsableComponentProps[]).forEach(
-        (v: TypeUsableComponentProps) => this.attachPropId(v)
-      );
+      if (Array.isArray(_prop.value)) {
+        (_prop.value as TypeUsableComponentProps[]).forEach(
+          (v: TypeUsableComponentProps) => this.attachPropId(v)
+        );
+      } else {
+        _prop.malformed = true;
+      }
     }
 
     return _prop;
@@ -1043,6 +1053,8 @@ export abstract class Component
   }
 
   private syncComplexValue(source: TypeUsableComponentProps[], target: TypeUsableComponentProps[]): void {
+    if (!Array.isArray(source) || !Array.isArray(target)) return;
+
     source.forEach(sourceProp => {
       const targetIndex = target.findIndex(prop => prop.key === sourceProp.key);
       if (targetIndex === -1) return;
@@ -1059,6 +1071,10 @@ export abstract class Component
       }
 
       if (isComplexType) {
+        if (!Array.isArray(targetProp.value)) {
+          targetProp.malformed = true;
+          return;
+        }
         this.syncComplexValue(
           sourceProp.value as TypeUsableComponentProps[],
           targetProp.value as TypeUsableComponentProps[]
@@ -1075,10 +1091,16 @@ export abstract class Component
     const prop: TypeUsableComponentProps = this.state.componentProps.props[i];
 
     const isInvalidIndex = i === -1;
+    const isComplexType = prop.type === "array" || prop.type === "object";
+    const isValueMalformed = isComplexType && !Array.isArray(prop.value);
+    if (isValueMalformed) {
+      prop.malformed = true;
+    }
     const isMatchingSimpleValue =
-      prop.type !== "array" && prop.type !== "object" && prop.value === value;
+      !isComplexType && prop.value === value;
     const isMatchingComplexValue =
-      (prop.type === "array" || prop.type === "object") &&
+      isComplexType &&
+      !isValueMalformed &&
       prop.value.every((item) => item.getPropValue) &&
       prop.value === value;
 
@@ -1121,11 +1143,11 @@ export abstract class Component
     let cssClass = [this.styles[section]];
 
     let cssManuplations = Object.entries(this.getCSSClasses()).filter(
-      ([p, v]) => v.length > 0
+      ([p, v]) => Array.isArray(v) && v.length > 0
     );
 
     cssManuplations.forEach(([key, value]: any) => {
-      if (key === section) {
+      if (key === section && Array.isArray(value)) {
         value.forEach((el: any) => {
           cssClass.push(el.class);
         });
@@ -1184,9 +1206,20 @@ export abstract class Component
   }
 
   private castingProcess(object: any) {
+    if (!Array.isArray(object.value)) {
+      if (object.type === "array" || object.type === "object") {
+        object.malformed = true;
+      }
+      return object.type === "object" ? {} : [];
+    }
+
     let casted = object.value.map((propValue: any) => {
       let clonedPropValue = { ...propValue };
       if (clonedPropValue.hasOwnProperty("getPropValue")) {
+        if (!Array.isArray(clonedPropValue.value)) {
+          clonedPropValue.malformed = true;
+          return clonedPropValue;
+        }
         clonedPropValue.value.forEach((nestedObject: any, index: number) => {
           clonedPropValue[nestedObject.key] = clonedPropValue.getPropValue(
             nestedObject.key
@@ -1221,9 +1254,11 @@ export abstract class Component
         let value: any = {};
 
         if (initialProp.type == "object" && isObjectContainsAnotherObject) {
-          initialProp.value.forEach((propVal: any) => {
-            value[propVal.key] = initialProp[propVal.key];
-          });
+          if (Array.isArray(initialProp.value)) {
+            initialProp.value.forEach((propVal: any) => {
+              value[propVal.key] = initialProp[propVal.key];
+            });
+          }
         } else {
           value = manipulatedValue.value;
         }

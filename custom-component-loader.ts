@@ -4,6 +4,10 @@ import ComponentsRegistery, { CustomComponentLoadFailure } from "./editor-compon
 import { CATEGORIES, Component } from "./editor-components/EditorComponent";
 import * as _EditorComponents from "./editor-components/EditorComponent";
 import * as _BaseModule from "./composer-base-components/base/base";
+import ComposerLink, {
+  setComposerLink,
+  getComposerLink,
+} from "./composer-base-components/Link/ComposerLinkProvider";
 import { logger } from "classes/Logger";
 
 export interface CustomComponentMeta {
@@ -34,7 +38,19 @@ if (typeof window !== "undefined") {
   }
   window.React = React;
   window.ReactDOM = ReactDOM;
-  window.ComposerTools = { ..._EditorComponents, ..._BaseModule };
+  // Custom-component bundles resolve `@blinkpage/composer-tools` to this global
+  // (component-studio externalises the package), so anything they import must be
+  // spread here. ComposerLink is listed explicitly because it is a default
+  // export — spreading its module would land it under `default`, not the name
+  // the bundles actually look up. Without it every custom component that links
+  // somewhere renders `undefined` and React throws #130.
+  window.ComposerTools = {
+    ..._EditorComponents,
+    ..._BaseModule,
+    ComposerLink,
+    setComposerLink,
+    getComposerLink,
+  };
 }
 
 function execScript(code: string, label: string): void {
@@ -325,12 +341,50 @@ function isGlobalSelector(selector: string): boolean {
 }
 
 /**
- * Scope one comma-separated selector list to the playground. Each selector is
- * prefixed individually; selectors that target global scope are dropped and
- * recorded. Returns the rebuilt list, or "" when every selector was dropped
- * (signalling the caller to drop the whole rule).
+ * Rewrite a selector whose subject targets global scope so it lands ON the
+ * canvas instead of above it.
+ *
+ * `#playground` IS the page as far as an uploaded component is concerned, so
+ * `body { background: … }` should paint the canvas, not the editor chrome.
+ * Mapping (rather than dropping) keeps the isolation guarantee intact — nothing
+ * can still take effect at or above `#playground` — while letting a component
+ * render as its author designed it:
+ *
+ *   :root / html / body   →  #playground
+ *   *                     →  #playground *
+ *   body > *              →  #playground > *
+ *   body.dark             →  #playground.dark
+ *
+ * Qualifiers on the subject (classes, attributes, pseudos) are preserved.
  */
-function scopeSelectorList(selectorList: string, violations: CssScopeViolation[]): string {
+function mapGlobalSelector(selector: string): string {
+  let out = selector
+    .replace(/:root(?![\w-])/gi, PLAYGROUND_SCOPE)
+    .replace(/(^|[\s>+~,(])(?:html|body)(?![\w-])/gi, `$1${PLAYGROUND_SCOPE}`);
+
+  // Nothing matched ⇒ the subject was a bare universal (`*`, `*::before`).
+  if (out === selector) out = `${PLAYGROUND_SCOPE} ${selector}`;
+
+  // `html body` collapses to `#playground #playground` — fold repeats so the
+  // result stays a single canvas-rooted selector.
+  let prev: string;
+  do {
+    prev = out;
+    out = out.replace(
+      new RegExp(`${PLAYGROUND_SCOPE}(\\s*[>+~]?\\s*)${PLAYGROUND_SCOPE}`, "g"),
+      PLAYGROUND_SCOPE,
+    );
+  } while (out !== prev);
+
+  return out;
+}
+
+/**
+ * Scope one comma-separated selector list to the playground. Each selector is
+ * prefixed individually; selectors targeting global scope are re-pointed at the
+ * canvas via {@link mapGlobalSelector} rather than discarded.
+ */
+function scopeSelectorList(selectorList: string, _violations: CssScopeViolation[]): string {
   const kept: string[] = [];
   for (const raw of splitTopLevel(selectorList, ",")) {
     const sel = raw.trim();
@@ -339,15 +393,7 @@ function scopeSelectorList(selectorList: string, violations: CssScopeViolation[]
       kept.push(sel);
       continue;
     }
-    if (isGlobalSelector(sel)) {
-      violations.push({
-        selector: sel,
-        reason:
-          "targets global scope (:root/html/body/*); its declarations (including --custom-properties) would escape #playground",
-      });
-      continue;
-    }
-    kept.push(`${PLAYGROUND_SCOPE} ${sel}`);
+    kept.push(isGlobalSelector(sel) ? mapGlobalSelector(sel) : `${PLAYGROUND_SCOPE} ${sel}`);
   }
   return kept.join(", ");
 }
@@ -379,7 +425,8 @@ function transformRule(prelude: string, inner: string, violations: CssScopeViola
 
 /**
  * Walk a rule list (top-level stylesheet or the body of a conditional group
- * at-rule). Selectors are scoped, global-scope rules dropped, and stray
+ * at-rule). Selectors are scoped, global-scope selectors re-pointed at the
+ * canvas, and stray
  * top-level custom-property declarations (which would otherwise leak to
  * document scope) are removed.
  */
@@ -443,10 +490,16 @@ function processCss(css: string): { css: string; violations: CssScopeViolation[]
 }
 
 /**
- * Detect — without modifying the CSS — every selector that would escape the
- * playground scope: selectors targeting `:root`/`html`/`body`/`*`, and
- * custom-property declarations placed above the canvas. Shares its rule set
- * with {@link scopeToPlayground} so an upload-time gate can reason identically.
+ * Detect — without modifying the CSS — every declaration that would escape the
+ * playground scope. Shares its rule set with {@link scopeToPlayground} so an
+ * upload-time gate can reason identically.
+ *
+ * NOTE: global selectors are NO LONGER violations. {@link scopeToPlayground}
+ * re-points `:root`/`html`/`body`/`*` at `#playground`, so a component's
+ * palette block and its `body { background: … }` / `* { box-sizing: … }` base
+ * rules are all honoured on the canvas and must not be rejected at upload time.
+ * The only remaining violation is a custom property declared outside any
+ * selector, which would resolve at document scope.
  */
 export function findCssScopeViolations(css: string): CssScopeViolation[] {
   return processCss(css).violations;
@@ -460,9 +513,12 @@ export function findCssScopeViolations(css: string): CssScopeViolation[] {
  *   - Every selector in a comma list is prefixed with `#playground`
  *     individually, even across newlines.
  *   - Selectors targeting global scope (`:root`/`html`/`body`/`*`, including
- *     `:is()/:where()` wrappers and leading combinators) are dropped so an
- *     uploaded component can never repaint the editor chrome; an emptied rule
- *     is removed entirely.
+ *     `:is()/:where()` wrappers and leading combinators) are **re-pointed at
+ *     `#playground`** rather than dropped: `body` → `#playground`,
+ *     `*` → `#playground *`, `body > *` → `#playground > *`. The canvas IS the
+ *     page for an uploaded component, so its palette, `body { background }` and
+ *     `* { box-sizing }` base rules all take effect there — while still never
+ *     applying at or above the canvas, so editor chrome stays untouched.
  *   - `@media`/`@supports`/`@layer`/`@container` bodies are recursed into so
  *     their nested selectors are scoped; `@keyframes`/`@font-face` are left
  *     intact; other at-rule statements are preserved.

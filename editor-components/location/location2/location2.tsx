@@ -644,7 +644,7 @@ class Location2 extends Location {
 
                 if (isContTitleExist || isContIconExist || isDesExist) {
                   return (
-                    <div key={idx} className={this.decorateCSS("element-container")}>
+                    <Base.Card key={idx} className={this.decorateCSS("element-container")}>
                       {isContIconExist && <Base.Media value={item.contentIcon} className={this.decorateCSS("feature-icon")} />}
                       {isContTitleExist && (
                         <div className={this.decorateCSS("content-title-container")}>
@@ -663,7 +663,7 @@ class Location2 extends Location {
                           })}
                         </div>
                       )}
-                    </div>
+                    </Base.Card>
                   );
                 }
                 return null;

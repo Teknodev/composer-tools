@@ -22,22 +22,24 @@
             }
 
             .stats-container {
+                .card-shell {
+                    display: flex;
+                    flex-direction: column;
+
+                    > * {
+                        flex: 1 1 auto;
+                    }
+                }
+
                 .stat-item {
                     align-items: flex-start;
                     text-align: left;
-
-                    &.colored-background {
-                        background: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
-                        padding: var(--composer-gap-xl);
-                        border-radius: var(--composer-border-radius-md);
-                    }
 
                     .stat-subtitle,
                     .stat-title,
                     .stat-description {
                         text-align: left;
                     }
-
                     .stat-subtitle,
                     .stat-title {
                         color: var(--composer-font-color-primary);
@@ -84,10 +86,6 @@
 
         .stats-container {
             .stat-item {
-                &.colored-background {
-                    padding: var(--composer-gap-lg);
-                }
-
                 .stat-value-container {
                     .stat-value,
                     .stat-prefix,

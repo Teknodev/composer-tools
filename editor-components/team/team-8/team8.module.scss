@@ -75,6 +75,7 @@
                 align-items: center;
                 transition: transform 0.3s ease-in-out;
                 .item-title {
+                  color: var(--composer-font-color-primary);
                   &.image {
                     color: white;
                   }
@@ -84,6 +85,7 @@
                 }
 
                 .first-header {
+                  color: var(--composer-font-color-primary);
                   &.image {
                     color: white;
                   }

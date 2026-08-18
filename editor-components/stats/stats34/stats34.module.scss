@@ -1,7 +1,6 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
-    background-color: var(--composer-primary-color);
     .max-content {
         .wrapper {
             display: flex;
@@ -23,7 +22,6 @@
                     text-align: left;
                     margin-left: 0;
                     margin-right: 0;
-                    color: var(--composer-font-color-secondary);
                 }
 
                 .subtitle {
@@ -89,6 +87,15 @@
                 min-width: 0;
                 align-content: space-between;
 
+                .card-shell {
+                    display: flex;
+                    flex-direction: column;
+
+                    > * {
+                        flex: 1 1 auto;
+                    }
+                }
+
                 .stat-item {
                     align-items: flex-start;
 
@@ -109,7 +116,16 @@
                     .stat-subtitle,
                     .stat-description {
                         text-align: left;
-                        color: var(--composer-font-color-secondary);
+                        color: var(--composer-font-color-primary);
+                    }
+                    .stat-description {
+                        color: var(--composer-font-color-primary);
+                    }
+                    .stat-title {
+                        color: var(--composer-font-color-primary);
+                    }
+                    .stat-subtitle {
+                        color: var(--composer-font-color-primary);
                     }
                 }
             }

@@ -59,6 +59,15 @@
             .stats-grid {
                 gap: var(--composer-gap-xl);
 
+                .card-shell {
+                    display: flex;
+                    flex-direction: column;
+
+                    > * {
+                        flex: 1 1 auto;
+                    }
+                }
+
                 .stat-item {
                     align-items: flex-start;
 

@@ -1,7 +1,6 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
-    background-color: var(--composer-font-color-primary);
 
     .max-content {
         display: flex;
@@ -17,15 +16,12 @@
             }
 
             .subtitle {
-                color: var(--composer-html-background);
-
                 &::before {
                     background: var(--composer-html-background) !important;
                 }
             }
 
             .subtitle-badge {
-                color: var(--composer-font-color-secondary) !important;
                 background: var(--composer-primary-color) !important;
             }
 
@@ -136,7 +132,7 @@
                         .card-title,
                         .card-description {
                             text-align: left;
-                            color: var(--composer-html-background);
+                            color: var(--composer-font-color-primary);
                         }
 
                         .card-title {
@@ -188,14 +184,8 @@
         .max-content {
             .heading {
 
-                .subtitle,
-                .title {
-                    color: var(--composer-html-background);
-                }
-
                 .subtitle-badge {
                     background: transparent !important;
-                    color: var(--composer-html-background) !important;
                     padding: 0 !important;
                 }
             }
@@ -206,8 +196,6 @@
         .max-content {
             .heading {
                 .subtitle {
-                    color: var(--composer-primary-color);
-
                     &::before {
                         background: var(--composer-primary-color) !important;
                     }
@@ -215,7 +203,6 @@
 
                 .subtitle-badge {
                     background: var(--composer-font-color-secondary) !important;
-                    color: var(--composer-primary-color) !important;
                 }
             }
         }

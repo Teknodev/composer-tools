@@ -140,32 +140,37 @@ class Stats37 extends BaseStats {
                                 if (!hasValueSection && !statSubTitleExist && !statTitleExist && !statDescriptionExist) return null;
 
                                 return (
-                                    <Base.VerticalContent key={index} className={this.decorateCSS("stat-item")}>
-                                        {hasValueSection && (
+                                    <Base.Card key={index} className={this.decorateCSS("card-shell")}>
+                                    <Base.VerticalContent className={this.decorateCSS("stat-item")}>
+                                        {(hasValueSection || statSubTitleExist || statTitleExist) && (
                                             <div className={this.decorateCSS("stat-value-row")}>
-                                                <span className={this.decorateCSS("stat-value")}>
-                                                    {prefixExist && (
-                                                        <Base.H1 className={this.decorateCSS("stat-prefix")}>{item.prefix}</Base.H1>
-                                                    )}
-                                                    {valueExist && (
-                                                        <Base.H1 className={this.decorateCSS("stat-number")}>{item.value}</Base.H1>
-                                                    )}
-                                                    {suffixExist && (
-                                                        <Base.H1 className={this.decorateCSS("stat-suffix")}>{item.suffix}</Base.H1>
-                                                    )}
-                                                </span>
-                                                <Base.VerticalContent className={this.decorateCSS("stat-info")}>
-                                                    {statSubTitleExist && (
-                                                        <Base.P className={this.decorateCSS("stat-subtitle")}>
-                                                            {item.cardSubtitle}
-                                                        </Base.P>
-                                                    )}
-                                                    {statTitleExist && (
-                                                        <Base.H6 className={this.decorateCSS("stat-title")}>
-                                                            {item.cardTitle}
-                                                        </Base.H6>
-                                                    )}
-                                                </Base.VerticalContent>
+                                                {hasValueSection && (
+                                                    <span className={this.decorateCSS("stat-value")}>
+                                                        {prefixExist && (
+                                                            <Base.H1 className={this.decorateCSS("stat-prefix")}>{item.prefix}</Base.H1>
+                                                        )}
+                                                        {valueExist && (
+                                                            <Base.H1 className={this.decorateCSS("stat-number")}>{item.value}</Base.H1>
+                                                        )}
+                                                        {suffixExist && (
+                                                            <Base.H1 className={this.decorateCSS("stat-suffix")}>{item.suffix}</Base.H1>
+                                                        )}
+                                                    </span>
+                                                )}
+                                                {(statSubTitleExist || statTitleExist) && (
+                                                    <Base.VerticalContent className={this.decorateCSS("stat-info")}>
+                                                        {statSubTitleExist && (
+                                                            <Base.P className={this.decorateCSS("stat-subtitle")}>
+                                                                {item.cardSubtitle}
+                                                            </Base.P>
+                                                        )}
+                                                        {statTitleExist && (
+                                                            <Base.H6 className={this.decorateCSS("stat-title")}>
+                                                                {item.cardTitle}
+                                                            </Base.H6>
+                                                        )}
+                                                    </Base.VerticalContent>
+                                                )}
                                             </div>
                                         )}
                                         {statDescriptionExist && (
@@ -174,6 +179,7 @@ class Stats37 extends BaseStats {
                                             </Base.P>
                                         )}
                                     </Base.VerticalContent>
+                                    </Base.Card>
                                 );
                             })}
                         </Base.ListGrid>
