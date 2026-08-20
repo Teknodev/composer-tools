@@ -6,7 +6,7 @@ import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "../../../custom-hooks/input-templates";
 
 type Card = {
-  title: React.JSX.Element;
+  card_title: React.JSX.Element;
   image: TypeMediaInputValue;
   overlay: boolean;
   link: string;
@@ -68,7 +68,7 @@ class Feature6 extends BaseFeature {
             },
             {
               type: "string",
-              key: "title",
+              key: "card_title",
               displayer: "Title",
               value: "The Lakeside Redesign: a Rustic House for Modern Living",
             },
@@ -99,7 +99,7 @@ class Feature6 extends BaseFeature {
             },
             {
               type: "string",
-              key: "title",
+              key: "card_title",
               displayer: "Title",
               value: "Minimalist Magic: A Contemporary Studio Apartment",
             },
@@ -130,7 +130,7 @@ class Feature6 extends BaseFeature {
             },
             {
               type: "string",
-              key: "title",
+              key: "card_title",
               displayer: "Title",
               value: "The Heritage Home: Restoring Charm in a Victorian House",
             },
@@ -206,7 +206,7 @@ class Feature6 extends BaseFeature {
             {cards?.length > 0 && (
               <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount"), tablet: 3 }} className={this.decorateCSS("cards-container")}>
                 {cards.map((card: Card, index: number) => {
-                  const titleExist = !!this.castToString(card.title);
+                  const titleExist = !!this.castToString(card.card_title);
                   const imageExist = !!card.image;
 
                   const shouldRender = (titleExist || imageExist);
@@ -233,7 +233,7 @@ class Feature6 extends BaseFeature {
                         >
                           {titleExist && (
                             <Base.H5 className={this.decorateCSS("title")}>
-                              {card.title}
+                              {card.card_title}
                             </Base.H5>
                           )}
                         </div>

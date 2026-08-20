@@ -41,7 +41,7 @@ class IntroSection1 extends BaseIntroSection {
           displayer: "Description Item",
           value: [
             { type: "media", key: "icon", displayer: "Icon", value: { type: "icon", name: "FaRegCheckCircle" } },
-            { type: "string", key: "title", displayer: "Title", value: "Affordable" },
+            { type: "string", key: "item_title", displayer: "Title", value: "Affordable" },
             { type: "string", key: "text", displayer: "Description", value: "Plans start at $19/month with free 7-day trial" },
           ]
         },
@@ -51,7 +51,7 @@ class IntroSection1 extends BaseIntroSection {
           displayer: "Description Item",
           value: [
             { type: "media", key: "icon", displayer: "Icon", value: { type: "icon", name: "FaRegCheckCircle" } },
-            { type: "string", key: "title", displayer: "Title", value: "Efficient" },
+            { type: "string", key: "item_title", displayer: "Title", value: "Efficient" },
             { type: "string", key: "text", displayer: "Description", value: "1-minute integration & immediate turnaround" },
           ]
         },
@@ -61,7 +61,7 @@ class IntroSection1 extends BaseIntroSection {
           displayer: "Description Item",
           value: [
             { type: "media", key: "icon", displayer: "Icon", value: { type: "icon", name: "FaRegCheckCircle" } },
-            { type: "string", key: "title", displayer: "Title", value: "Compliant" },
+            { type: "string", key: "item_title", displayer: "Title", value: "Compliant" },
             { type: "string", key: "text", displayer: "Description", value: "Accessibility statement and certifications" },
           ]
         }
@@ -145,7 +145,7 @@ class IntroSection1 extends BaseIntroSection {
     const descriptionExist = this.castToString(descriptionText);
     const isVideo = !!(video?.url);
     const hasRightContainer = !!(isVideo || thumbnail);
-    const hasAnyDescription = Array.isArray(descriptions) && descriptions.some((d: any) => this.castToString(d?.title) || this.castToString(d?.text) || d?.icon);
+    const hasAnyDescription = Array.isArray(descriptions) && descriptions.some((d: any) => this.castToString(d.item_title) || this.castToString(d?.text) || d?.icon);
     const hasAnyButton = Array.isArray(buttons) && buttons.some((b: any) => this.castToString(b?.text) || b?.icon);
     const hasTitle = this.castToString(title);
     const hasLeftContainer = !!(hasTitle || descriptionExist || hasAnyDescription || hasAnyButton);
@@ -182,8 +182,8 @@ class IntroSection1 extends BaseIntroSection {
                               <Base.Media value={d.icon} className={this.decorateCSS("feature-icon")} />
                             </div>
                           )}
-                          {this.castToString(d.title) && (
-                            <Base.P className={this.decorateCSS("feature-title")}>{d.title}</Base.P>
+                          {this.castToString(d.item_title) && (
+                            <Base.P className={this.decorateCSS("feature-title")}>{d.item_title}</Base.P>
                           )}
                         </div>
                         {this.castToString(d.text) && (

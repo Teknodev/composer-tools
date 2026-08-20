@@ -7,10 +7,10 @@ import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "../../../custom-hooks/input-templates";
 
 type PricingItems = {
-  buttons?: INPUTS.CastedButton[];
-  subtitle: React.JSX.Element;
-  title: React.JSX.Element;
-  description: React.JSX.Element;
+  tableItem_buttons?: INPUTS.CastedButton[];
+  tableItem_subtitle: React.JSX.Element;
+  tableItem_title: React.JSX.Element;
+  tableItem_description: React.JSX.Element;
   price: React.JSX.Element;
   duration: React.JSX.Element;
   icon: TypeMediaInputValue;
@@ -65,19 +65,19 @@ class PricingTable2 extends BasePricingTable {
           value: [
             {
               type: "string",
-              key: "subtitle",
+              key: "tableItem_subtitle",
               displayer: "Pricing Subtitle",
               value: "",
             },
             {
               type: "string",
-              key: "title",
+              key: "tableItem_title",
               displayer: "Pricing Title",
               value: "Basic Package",
             },
             {
               type: "string",
-              key: "description",
+              key: "tableItem_description",
               displayer: "Pricing Description",
               value: "",
             },
@@ -221,7 +221,7 @@ class PricingTable2 extends BasePricingTable {
             },
             {
               type: "array",
-              key: "buttons",
+              key: "tableItem_buttons",
               displayer: "Buttons",
               value: [
                 INPUTS.BUTTON("button", "Button", "Select Now", "", "", null, "Primary"),
@@ -236,19 +236,19 @@ class PricingTable2 extends BasePricingTable {
           value: [
             {
               type: "string",
-              key: "subtitle",
+              key: "tableItem_subtitle",
               displayer: "Pricing Subtitle",
               value: "",
             },
             {
               type: "string",
-              key: "title",
+              key: "tableItem_title",
               displayer: "Pricing Title",
               value: "Basic Package",
             },
             {
               type: "string",
-              key: "description",
+              key: "tableItem_description",
               displayer: "Pricing Description",
               value: "",
             },
@@ -392,7 +392,7 @@ class PricingTable2 extends BasePricingTable {
             },
             {
               type: "array",
-              key: "buttons",
+              key: "tableItem_buttons",
               displayer: "Buttons",
               value: [
                 INPUTS.BUTTON("button", "Button", "Select Now", "", "", null, "Primary"),
@@ -407,19 +407,19 @@ class PricingTable2 extends BasePricingTable {
           value: [
             {
               type: "string",
-              key: "subtitle",
+              key: "tableItem_subtitle",
               displayer: "Pricing Subtitle",
               value: "",
             },
             {
               type: "string",
-              key: "title",
+              key: "tableItem_title",
               displayer: "Pricing Title",
               value: "Basic Package",
             },
             {
               type: "string",
-              key: "description",
+              key: "tableItem_description",
               displayer: "Pricing Description",
               value: "",
             },
@@ -563,7 +563,7 @@ class PricingTable2 extends BasePricingTable {
             },
             {
               type: "array",
-              key: "buttons",
+              key: "tableItem_buttons",
               displayer: "Buttons",
               value: [
                 INPUTS.BUTTON("button", "Button", "Select Now", "", "", null, "Primary"),
@@ -592,7 +592,7 @@ class PricingTable2 extends BasePricingTable {
 
   private getButtonsFromItem(item: PricingItems) {
     // Newer pages store a `buttons` array; older ones a single `button` object.
-    let buttonsArray = item?.buttons;
+    let buttonsArray = item.tableItem_buttons;
     if (!Array.isArray(buttonsArray)) {
       const legacyButton = (item as any)?.button;
       buttonsArray = legacyButton ? [legacyButton] : [];
@@ -719,9 +719,9 @@ class PricingTable2 extends BasePricingTable {
                   // Legacy saved pages use cardTitle/cardPrice/cardDuration/
                   // cardIcon; fall back to those when the new keys are absent.
                   const legacy = table as any;
-                  const cardSubtitle = table.subtitle;
-                  const cardTitle = table.title;
-                  const cardDescription = table.description;
+                  const cardSubtitle = table.tableItem_subtitle;
+                  const cardTitle = table.tableItem_title;
+                  const cardDescription = table.tableItem_description;
                   const cardPrice = table.price;
                   const cardDuration = table.duration;
                   const cardIcon = table.icon;

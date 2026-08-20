@@ -10,8 +10,8 @@ type CardData = {
   mini: boolean;
   date: React.JSX.Element;
   readTime: React.JSX.Element;
-  title: React.JSX.Element;
-  description: React.JSX.Element;
+  cardInfo_title: React.JSX.Element;
+  cardInfo_description: React.JSX.Element;
   profileImage: { type: "image"; url: string };
   fullname: React.JSX.Element;
   profileDescription: React.JSX.Element;
@@ -133,13 +133,13 @@ class Blog3 extends BaseBlog {
             },
             {
               type: "string",
-              key: "title",
+              key: "cardInfo_title",
               displayer: "Title",
               value: "The nine-to-five Is Dead. Here's What to Replace It With",
             },
             {
               type: "string",
-              key: "description",
+              key: "cardInfo_description",
               displayer: "Description",
               value: "Without even reducing the 40-hour work week. Time is money, right?",
             },
@@ -212,13 +212,13 @@ class Blog3 extends BaseBlog {
             },
             {
               type: "string",
-              key: "title",
+              key: "cardInfo_title",
               displayer: "Title",
               value: "The Power of Visualization in the 21st century",
             },
             {
               type: "string",
-              key: "description",
+              key: "cardInfo_description",
               displayer: "Description",
               value:
                 "While futurists and fundraisers used to make bullish predictions about artificial general intelligence, they’ve become quieter lately. Peter Thiel — the tech billionaire and rumored vampire — says Silicon Valley big brains have lost enthusiasm for AGI.",
@@ -293,13 +293,13 @@ class Blog3 extends BaseBlog {
             },
             {
               type: "string",
-              key: "title",
+              key: "cardInfo_title",
               displayer: "Title",
               value: "Why the security engineers loves working in fosec",
             },
             {
               type: "string",
-              key: "description",
+              key: "cardInfo_description",
               displayer: "Description",
               value:
                 "Working in cybersecurity means you’re constantly playing a game of catch-up. Every day you learn something new, but your work is also never finished.",
@@ -373,13 +373,13 @@ class Blog3 extends BaseBlog {
             },
             {
               type: "string",
-              key: "title",
+              key: "cardInfo_title",
               displayer: "Title",
               value: "There Are Zero Bridges Across The Amazon. Here Is Why",
             },
             {
               type: "string",
-              key: "description",
+              key: "cardInfo_description",
               displayer: "Description",
               value:
                 "Here is a fun fact to stick in the back of your mind for trivia night or to use as an interesting ice breaker: the Amazon River has no bridges. None. Zero. Zilch. That is in spite of the fact that the Amazon is 4,345 miles long.",
@@ -465,8 +465,8 @@ class Blog3 extends BaseBlog {
     }>("icons");
 
     const Card = ({ data, style }: { data: CardData, style?: object; }) => {
-      const title = this.castToString(data.title);
-      const description = this.castToString(data.description);
+      const title = this.castToString(data.cardInfo_title);
+      const description = this.castToString(data.cardInfo_description);
 
       const profileDescriptionExist = !!this.castToString(data.profileDescription);
       const fullNameExist = !!this.castToString(data.fullname);
@@ -534,14 +534,14 @@ class Blog3 extends BaseBlog {
                     ${underlineAnimation ? this.decorateCSS("underline-animation") : ""}
                   `}
                 >
-                  {data.title}
+                  {data.cardInfo_title}
                   <div className={this.decorateCSS("title-underline")} />
                 </Base.H5>
               </ComposerLink>
             )}
             {description && (
               <Base.SectionDescription className={this.decorateCSS("description")}>
-                {data.description}
+                {data.cardInfo_description}
               </Base.SectionDescription>
             )}
 
@@ -581,8 +581,8 @@ class Blog3 extends BaseBlog {
 
       for (let i = 0; i < cards.length; i++) {
         if (!(
-          this.castToString(cards[i].title) ||
-          this.castToString(cards[i].description) ||
+          this.castToString(cards[i].cardInfo_title) ||
+          this.castToString(cards[i].cardInfo_description) ||
           this.castToString(cards[i].date) ||
           this.castToString(cards[i].readTime) ||
           this.castToString(cards[i].fullname) ||
@@ -610,8 +610,8 @@ class Blog3 extends BaseBlog {
             </></Block>
           );
           data.push({
-            card1: this.castToString(cards[i].title),
-            card2: this.castToString(cards[i + 1].title),
+            card1: this.castToString(cards[i].cardInfo_title),
+            card2: this.castToString(cards[i + 1].cardInfo_title),
           });
 
           ++i;
@@ -621,7 +621,7 @@ class Blog3 extends BaseBlog {
               <Card data={cards[i]} />
             </Block>
           );
-          data.push(this.castToString(cards[i].title));
+          data.push(this.castToString(cards[i].cardInfo_title));
         }
       }
 

@@ -59,9 +59,9 @@ class Stats22 extends BaseStats {
             { type: "string", key: "prefix", displayer: "Prefix", value: "" },
             { type: "string", key: "number", displayer: "Value", value: "350" },
             { type: "string", key: "suffix", displayer: "Suffix", value: "+" },
-            { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
-            { type: "string", key: "title", displayer: "Title", value: "Awesome Projects" },
-            { type: "string", key: "description", displayer: "Description", value: "" },
+            { type: "string", key: "statItem_subtitle", displayer: "Subtitle", value: "" },
+            { type: "string", key: "statItem_title", displayer: "Title", value: "Awesome Projects" },
+            { type: "string", key: "statItem_description", displayer: "Description", value: "" },
           ],
         },
         {
@@ -72,9 +72,9 @@ class Stats22 extends BaseStats {
             { type: "string", key: "prefix", displayer: "Prefix", value: "" },
             { type: "string", key: "number", displayer: "Value", value: "90" },
             { type: "string", key: "suffix", displayer: "Suffix", value: "+" },
-            { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
-            { type: "string", key: "title", displayer: "Title", value: "Satisfied Clients" },
-            { type: "string", key: "description", displayer: "Description", value: "" },
+            { type: "string", key: "statItem_subtitle", displayer: "Subtitle", value: "" },
+            { type: "string", key: "statItem_title", displayer: "Title", value: "Satisfied Clients" },
+            { type: "string", key: "statItem_description", displayer: "Description", value: "" },
           ],
         },
         {
@@ -85,9 +85,9 @@ class Stats22 extends BaseStats {
             { type: "string", key: "prefix", displayer: "Prefix", value: "" },
             { type: "string", key: "number", displayer: "Value", value: "5" },
             { type: "string", key: "suffix", displayer: "Suffix", value: "+" },
-            { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
-            { type: "string", key: "title", displayer: "Title", value: "Years Experience" },
-            { type: "string", key: "description", displayer: "Description", value: "" },
+            { type: "string", key: "statItem_subtitle", displayer: "Subtitle", value: "" },
+            { type: "string", key: "statItem_title", displayer: "Title", value: "Years Experience" },
+            { type: "string", key: "statItem_description", displayer: "Description", value: "" },
           ],
         },
       ],
@@ -259,9 +259,9 @@ class Stats22 extends BaseStats {
     const animationDuration = animationProps?.animationDuration || 2000;
     const statItemsProp = this.getPropValue("statItems");
     const statItems: StatItem[] = statItemsProp.map((item: any) => {
-      const subtitle = item.getPropValue("subtitle");
-      const itemTitle = item.getPropValue("title");
-      const itemDescription = item.getPropValue("description");
+      const subtitle = item.getPropValue("statItem_subtitle");
+      const itemTitle = item.getPropValue("statItem_title");
+      const itemDescription = item.getPropValue("statItem_description");
       const number = this.castToString(item.getPropValue("number")) || "";
       const prefix = this.castToString(item.getPropValue("prefix")) || "";
       const suffix = this.castToString(item.getPropValue("suffix")) || "";

@@ -15,7 +15,7 @@ interface Card {
 }
 interface Icon {
   url: string;
-  name: string;
+  icon_name: string;
 }
 
 class Team13 extends Team {
@@ -132,7 +132,7 @@ class Team13 extends Team {
             },
             {
               type: "icon",
-              key: "name",
+              key: "icon_name",
               displayer: "Icon",
               value: "SlSocialFacebook",
             },
@@ -151,7 +151,7 @@ class Team13 extends Team {
             },
             {
               type: "icon",
-              key: "name",
+              key: "icon_name",
               displayer: "Icon",
               value: "SlSocialVkontakte",
             },
@@ -170,7 +170,7 @@ class Team13 extends Team {
             },
             {
               type: "icon",
-              key: "name",
+              key: "icon_name",
               displayer: "Icon",
               value: "SlSocialLinkedin",
             },

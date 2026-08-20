@@ -12,7 +12,7 @@ type PopularSettings = {
 };
 
 type ListItem = {
-  text: JSX.Element;
+  futureItem_text: JSX.Element;
   buttonIcon: TypeMediaInputValue;
 };
 
@@ -21,16 +21,16 @@ type RawButtonProp = {
 };
 
 type TitleItem = {
-  text: JSX.Element;
+  title_text: JSX.Element;
   icon: TypeMediaInputValue;
 };
 
 type Pricing = {
-  title: JSX.Element;
-  subtitle: JSX.Element;
-  description: JSX.Element;
+  tableItem_title: JSX.Element;
+  tableItem_subtitle: JSX.Element;
+  tableItem_description: JSX.Element;
   price: JSX.Element;
-  buttons: RawButtonProp[];
+  tableItem_buttons: RawButtonProp[];
   duration: JSX.Element;
   duration1: JSX.Element;
   list: ListItem[];
@@ -101,19 +101,19 @@ class PricingTable1 extends BasePricingTable {
             },
             {
               type: "string",
-              key: "subtitle",
+              key: "tableItem_subtitle",
               displayer: "Pricing Subtitle",
               value: "STARTER",
             },
             {
               type: "string",
-              key: "title",
+              key: "tableItem_title",
               displayer: "Price Title",
               value: "Individual",
             },
             {
               type: "string",
-              key: "description",
+              key: "tableItem_description",
               displayer: "Pricing Description",
               value: "",
             },
@@ -129,7 +129,7 @@ class PricingTable1 extends BasePricingTable {
                   value: [
                     {
                       type: "string",
-                      key: "text",
+                      key: "futureItem_text",
                       displayer: "List Item",
                       value: "Marketing strategy",
                     },
@@ -151,7 +151,7 @@ class PricingTable1 extends BasePricingTable {
                   value: [
                     {
                       type: "string",
-                      key: "text",
+                      key: "futureItem_text",
                       displayer: "List Item",
                       value: "Competitive work analysis",
                     },
@@ -173,7 +173,7 @@ class PricingTable1 extends BasePricingTable {
                   value: [
                     {
                       type: "string",
-                      key: "text",
+                      key: "futureItem_text",
                       displayer: "List Item",
                       value: "Social media share audit",
                     },
@@ -195,7 +195,7 @@ class PricingTable1 extends BasePricingTable {
                   value: [
                     {
                       type: "string",
-                      key: "text",
+                      key: "futureItem_text",
                       displayer: "List Item",
                       value: "Monthly management",
                     },
@@ -232,7 +232,7 @@ class PricingTable1 extends BasePricingTable {
             },
             {
               type: "array",
-              key: "buttons",
+              key: "tableItem_buttons",
               displayer: "Buttons",
               value: [
                 INPUTS.BUTTON("button", "Button", "Join this plan", "", "AiOutlineArrowRight", null, "Primary"),
@@ -278,19 +278,19 @@ class PricingTable1 extends BasePricingTable {
             },
             {
               type: "string",
-              key: "subtitle",
+              key: "tableItem_subtitle",
               displayer: "Pricing Subtitle",
               value: "PROFESSIONAL",
             },
             {
               type: "string",
-              key: "title",
+              key: "tableItem_title",
               displayer: "Pricing Title",
               value: "Business",
             },
             {
               type: "string",
-              key: "description",
+              key: "tableItem_description",
               displayer: "Pricing Description",
               value: "",
             },
@@ -306,7 +306,7 @@ class PricingTable1 extends BasePricingTable {
                   value: [
                     {
                       type: "string",
-                      key: "text",
+                      key: "futureItem_text",
                       displayer: "List Item",
                       value: "Marketing strategy",
                     },
@@ -328,7 +328,7 @@ class PricingTable1 extends BasePricingTable {
                   value: [
                     {
                       type: "string",
-                      key: "text",
+                      key: "futureItem_text",
                       displayer: "List Item",
                       value: "Competitive work analysis",
                     },
@@ -350,7 +350,7 @@ class PricingTable1 extends BasePricingTable {
                   value: [
                     {
                       type: "string",
-                      key: "text",
+                      key: "futureItem_text",
                       displayer: "List Item",
                       value: "Social media share audit",
                     },
@@ -372,7 +372,7 @@ class PricingTable1 extends BasePricingTable {
                   value: [
                     {
                       type: "string",
-                      key: "text",
+                      key: "futureItem_text",
                       displayer: "List Item",
                       value: "Monthly management",
                     },
@@ -409,7 +409,7 @@ class PricingTable1 extends BasePricingTable {
             },
             {
               type: "array",
-              key: "buttons",
+              key: "tableItem_buttons",
               displayer: "Buttons",
               value: [
                 INPUTS.BUTTON("button", "Button", "Join this plan", "", "AiOutlineArrowRight", null, "Primary"),
@@ -455,19 +455,19 @@ class PricingTable1 extends BasePricingTable {
             },
             {
               type: "string",
-              key: "subtitle",
+              key: "tableItem_subtitle",
               displayer: "Pricing Subtitle",
               value: "ENTERPRISE",
             },
             {
               type: "string",
-              key: "title",
+              key: "tableItem_title",
               displayer: "Price Title",
               value: "Corporate",
             },
             {
               type: "string",
-              key: "description",
+              key: "tableItem_description",
               displayer: "Pricing Description",
               value: "",
             },
@@ -483,7 +483,7 @@ class PricingTable1 extends BasePricingTable {
                   value: [
                     {
                       type: "string",
-                      key: "text",
+                      key: "futureItem_text",
                       displayer: "List Item",
                       value: "Marketing strategy",
                     },
@@ -505,7 +505,7 @@ class PricingTable1 extends BasePricingTable {
                   value: [
                     {
                       type: "string",
-                      key: "text",
+                      key: "futureItem_text",
                       displayer: "List Item",
                       value: "Competitive work analysis",
                     },
@@ -527,7 +527,7 @@ class PricingTable1 extends BasePricingTable {
                   value: [
                     {
                       type: "string",
-                      key: "text",
+                      key: "futureItem_text",
                       displayer: "List Item",
                       value: "Social media share audit",
                     },
@@ -549,7 +549,7 @@ class PricingTable1 extends BasePricingTable {
                   value: [
                     {
                       type: "string",
-                      key: "text",
+                      key: "futureItem_text",
                       displayer: "List Item",
                       value: "Monthly management",
                     },
@@ -586,7 +586,7 @@ class PricingTable1 extends BasePricingTable {
             },
             {
               type: "array",
-              key: "buttons",
+              key: "tableItem_buttons",
               displayer: "Buttons",
               value: [
                 INPUTS.BUTTON("button", "Button", "Join this plan", "", "AiOutlineArrowRight", null, "Primary"),
@@ -616,12 +616,12 @@ class PricingTable1 extends BasePricingTable {
       value: [
         {
           type: "object",
-          key: "title",
+          key: "titles_title",
           displayer: "Title",
           value: [
             {
               type: "string",
-              key: "text",
+              key: "title_text",
               displayer: "Text",
               value: "Get 30 day free trial",
             },
@@ -638,12 +638,12 @@ class PricingTable1 extends BasePricingTable {
         },
         {
           type: "object",
-          key: "title",
+          key: "titles_title",
           displayer: "Title",
           value: [
             {
               type: "string",
-              key: "text",
+              key: "title_text",
               displayer: "Text",
               value: "No any hidden fees pay",
             },
@@ -660,12 +660,12 @@ class PricingTable1 extends BasePricingTable {
         },
         {
           type: "object",
-          key: "title",
+          key: "titles_title",
           displayer: "Title",
           value: [
             {
               type: "string",
-              key: "text",
+              key: "title_text",
               displayer: "Text",
               value: "You can cancel anytime",
             },
@@ -719,7 +719,7 @@ class PricingTable1 extends BasePricingTable {
 
   getButtonsFromItem = (item: Pricing) => {
     // Newer pages store a `buttons` array; older ones a single `buttonType` object.
-    let buttonsArray: RawButtonProp[] | undefined = item?.buttons;
+    let buttonsArray: RawButtonProp[] | undefined = item.tableItem_buttons;
     if (!Array.isArray(buttonsArray)) {
       const legacyButton = (item as any)?.buttonType;
       buttonsArray = legacyButton ? [legacyButton] : [];
@@ -824,9 +824,9 @@ class PricingTable1 extends BasePricingTable {
                 (table: Pricing, index: number) => {
                   // Normalize new + legacy per-card keys into local values.
                   const legacy = table as any;
-                  const cardSubtitleVal = table.subtitle ?? legacy.cardsubtitle;
-                  const cardTitleVal = table.title ?? legacy.cardTitle;
-                  const cardDescriptionVal = table.description ?? legacy.cardDescription;
+                  const cardSubtitleVal = table.tableItem_subtitle ?? legacy.cardsubtitle;
+                  const cardTitleVal = table.tableItem_title ?? legacy.cardTitle;
+                  const cardDescriptionVal = table.tableItem_description ?? legacy.cardDescription;
                   const cardPriceVal = table.price ?? legacy.cardPrice;
                   const cardDurationVal = table.duration ?? legacy.cardDuration;
                   const cardDuration1Val = table.duration1 ?? legacy.cardDuration1;
@@ -838,7 +838,7 @@ class PricingTable1 extends BasePricingTable {
                       : [];
                   // Legacy list items use `cardListItem` instead of `text`.
                   const getListText = (listItem: ListItem) =>
-                    listItem.text ?? (listItem as any).cardListItem;
+                    listItem.futureItem_text ?? (listItem as any).cardListItem;
 
                   const popularText = this.castToString(
                     table.popular_settings.text
@@ -1039,7 +1039,7 @@ class PricingTable1 extends BasePricingTable {
           </div>
           <div className={this.decorateCSS("titles")}>
             {this.castToObject<TitleItem[]>("titles").map((title: TitleItem, index: number) => {
-              const text = title.text;
+              const text = title.title_text;
               const icon = title.icon;
               const textExist = this.castToString(text);
               const iconExist = icon && (icon.type === "icon" ? icon.name : icon.url);

@@ -76,7 +76,7 @@ class Stats9 extends BaseStats {
                         },
                         {
                             type: "string",
-                            key: "description",
+                            key: "stat_description",
                             displayer: "Description",
                             value: "years experience working",
                         },
@@ -101,7 +101,7 @@ class Stats9 extends BaseStats {
                         },
                         {
                             type: "string",
-                            key: "description",
+                            key: "stat_description",
                             displayer: "Description",
                             value: "games completed",
                         },
@@ -126,7 +126,7 @@ class Stats9 extends BaseStats {
                         },
                         {
                             type: "string",
-                            key: "description",
+                            key: "stat_description",
                             displayer: "Description",
                             value: "downloads of all-time",
                         },
@@ -228,7 +228,7 @@ class Stats9 extends BaseStats {
         const stats: Stat[] = statsProp.map((item: any) => {
             const number = this.castToString(item.getPropValue("number") || "0");
             const suffix = this.castToString(item.getPropValue("suffix")) || "";
-            const description = this.castToString(item.getPropValue("description")) || "";
+            const description = this.castToString(item.getPropValue("stat_description")) || "";
             return { number, suffix, description };
         });
         

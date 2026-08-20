@@ -8,12 +8,12 @@ import { INPUTS } from "../../../custom-hooks/input-templates";
 
 type Card = {
   cardTitle: React.JSX.Element;
-  description: React.JSX.Element;
+  items_description: React.JSX.Element;
   cardIcon: string;
 };
 type BottomItem = {
-  title: React.JSX.Element;
-  description: React.JSX.Element;
+  downContainer_title: React.JSX.Element;
+  downContainer_description: React.JSX.Element;
 }
 
 class Faq2 extends BaseFAQ {
@@ -64,7 +64,7 @@ class Faq2 extends BaseFAQ {
             },
             {
               type: "string",
-              key: "description",
+              key: "items_description",
               displayer: "Answer",
               value:
                 "We offer standard and express shipping options. Standard shipping usually takes 5-7 business days, while express shipping takes 1-3 business days.",
@@ -96,7 +96,7 @@ class Faq2 extends BaseFAQ {
             },
             {
               type: "string",
-              key: "description",
+              key: "items_description",
               displayer: "Answer",
               value:
                 "Once your order has been shipped, you will receive a tracking number via email. You can use this tracking number to track your order on our website or on the carrier's website.",
@@ -128,7 +128,7 @@ class Faq2 extends BaseFAQ {
             },
             {
               type: "string",
-              key: "description",
+              key: "items_description",
               displayer: "Answer",
               value:
                 " We offer a 30-day return policy for most products. If you are not satisfied with your purchase, you can return it within 30 days for a full refund or exchange.",
@@ -160,7 +160,7 @@ class Faq2 extends BaseFAQ {
             },
             {
               type: "string",
-              key: "description",
+              key: "items_description",
               displayer: "Answer",
               value:
                 "You can contact our customer support team by email or phone. Our email address and phone number can be found on our website's contact page.",
@@ -192,7 +192,7 @@ class Faq2 extends BaseFAQ {
             },
             {
               type: "string",
-              key: "description",
+              key: "items_description",
               displayer: "Answer",
               value:
                 "Yes, we offer discounts and promotions from time to time. You can sign up for our newsletter to receive updates on our latest promotions.",
@@ -224,7 +224,7 @@ class Faq2 extends BaseFAQ {
             },
             {
               type: "string",
-              key: "description",
+              key: "items_description",
               displayer: "Answer",
               value:
                 "We accept credit/debit cards, PayPal, and other digital payment methods. You can select your preferred payment method during checkout.",
@@ -252,13 +252,13 @@ class Faq2 extends BaseFAQ {
       value: [
         {
           type: "string",
-          key: "title",
+          key: "downContainer_title",
           displayer: "Title",
           value: "Have more questions?",
         },
         {
           type: "string",
-          key: "description",
+          key: "downContainer_description",
           displayer: "Description",
           value:
             "Can't find answer you're looking for? Please send us a message.",
@@ -321,9 +321,9 @@ class Faq2 extends BaseFAQ {
                               {item.cardTitle}
                             </Base.H3>
                           )}
-                          {this.castToString(item.description) && (
+                          {this.castToString(item.items_description) && (
                             <Base.P className={this.decorateCSS("card-description")}>
-                              {item.description}
+                              {item.items_description}
                             </Base.P>
                           )}
                         </Base.VerticalContent>
@@ -335,18 +335,18 @@ class Faq2 extends BaseFAQ {
             )}
 
 
-            {(this.castToString(downContainer.title) || this.castToString(downContainer.description) || this.getPropValue("buttons").length > 0) && (
+            {(this.castToString(downContainer.downContainer_title) || this.castToString(downContainer.downContainer_description) || this.getPropValue("buttons").length > 0) && (
               <div className={this.decorateCSS("down-container")}>
-                {(this.castToString(downContainer.title) || this.castToString(downContainer.description)) && (
+                {(this.castToString(downContainer.downContainer_title) || this.castToString(downContainer.downContainer_description)) && (
                   <div className={this.decorateCSS("content")}>
-                    {this.castToString(downContainer.title) && (
+                    {this.castToString(downContainer.downContainer_title) && (
                       <Base.H2 className={this.decorateCSS("down-title")}>
-                        {downContainer.title}
+                        {downContainer.downContainer_title}
                       </Base.H2>
                     )}
-                    {this.castToString(downContainer.description) && (
+                    {this.castToString(downContainer.downContainer_description) && (
                       <Base.P className={this.decorateCSS("down-description")}>
-                        {downContainer.description}
+                        {downContainer.downContainer_description}
                       </Base.P>
                     )}
                   </div>

@@ -97,9 +97,9 @@ class Stats38 extends BaseStats {
                         { type: "string", key: "prefix", displayer: "Prefix", value: "" },
                         { type: "string", key: "number", displayer: "Value", value: "10" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "x" },
-                        { type: "string", key: "subtitle", displayer: "Subtitle", value: "Increase in revenue" },
-                        { type: "string", key: "title", displayer: "Title", value: "" },
-                        { type: "string", key: "description", displayer: "Description", value: "" },
+                        { type: "string", key: "stat_subtitle", displayer: "Subtitle", value: "Increase in revenue" },
+                        { type: "string", key: "stat_title", displayer: "Title", value: "" },
+                        { type: "string", key: "stat_description", displayer: "Description", value: "" },
                     ],
                 },
                 {
@@ -110,9 +110,9 @@ class Stats38 extends BaseStats {
                         { type: "string", key: "prefix", displayer: "Prefix", value: "" },
                         { type: "string", key: "number", displayer: "Value", value: "250" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "%" },
-                        { type: "string", key: "subtitle", displayer: "Subtitle", value: "Increase in signups" },
-                        { type: "string", key: "title", displayer: "Title", value: "" },
-                        { type: "string", key: "description", displayer: "Description", value: "" },
+                        { type: "string", key: "stat_subtitle", displayer: "Subtitle", value: "Increase in signups" },
+                        { type: "string", key: "stat_title", displayer: "Title", value: "" },
+                        { type: "string", key: "stat_description", displayer: "Description", value: "" },
                     ],
                 },
             ],
@@ -266,7 +266,7 @@ class Stats38 extends BaseStats {
 
         const mediaExist = media && media.url;
 
-        const statsRaw = this.castToObject<{ prefix: React.JSX.Element; number: React.JSX.Element; suffix: React.JSX.Element; title: React.JSX.Element; subtitle: React.JSX.Element; description: React.JSX.Element }[]>("stats");
+        const statsRaw = this.castToObject<{ prefix: React.JSX.Element; number: React.JSX.Element; suffix: React.JSX.Element; stat_title: React.JSX.Element; stat_subtitle: React.JSX.Element; stat_description: React.JSX.Element }[]>("stats");
 
         const stats: StatItem[] = statsRaw.map((item) => ({
             prefix: this.castToString(item.prefix) || "",
@@ -274,12 +274,12 @@ class Stats38 extends BaseStats {
             number: this.castToString(item.number) || "",
             suffix: this.castToString(item.suffix) || "",
             suffixElement: item.suffix,
-            subtitle: this.castToString(item.subtitle) || "",
-            subtitleElement: item.subtitle,
-            title: this.castToString(item.title) || "",
-            titleElement: item.title,
-            description: this.castToString(item.description) || "",
-            descriptionElement: item.description,
+            subtitle: this.castToString(item.stat_subtitle) || "",
+            subtitleElement: item.stat_subtitle,
+            title: this.castToString(item.stat_title) || "",
+            titleElement: item.stat_title,
+            description: this.castToString(item.stat_description) || "",
+            descriptionElement: item.stat_description,
         }));
 
         const animationProps = this.castToObject<{

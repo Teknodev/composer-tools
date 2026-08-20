@@ -12,7 +12,7 @@ type VectorsItem = {
 };
 
 type BreadcrumbItem = {
-    title: React.JSX.Element;
+    item_title: React.JSX.Element;
     icon: TypeMediaInputValue;
     navigateTo: string;
 };
@@ -105,7 +105,7 @@ class Breadcrumb4 extends BaseBreadcrumb {
                     value: [
                         {
                             type: "string",
-                            key: "title",
+                            key: "item_title",
                             displayer: "Title",
                             value: "Home",
                         },
@@ -136,7 +136,7 @@ class Breadcrumb4 extends BaseBreadcrumb {
                     value: [
                         {
                             type: "string",
-                            key: "title",
+                            key: "item_title",
                             displayer: "Title",
                             value: "Current Page",
                         },
@@ -243,7 +243,7 @@ class Breadcrumb4 extends BaseBreadcrumb {
                         )}
                         <div className={this.decorateCSS("pages")}>
                             {breadcrumbItems.map((item: BreadcrumbItem, index: number) => {
-                                const itemTitleExist = this.castToString(item.title);
+                                const itemTitleExist = this.castToString(item.item_title);
                                 const itemIconExist = item.icon && (item.icon.type === "icon" ? item.icon.name : item.icon.url);
                                 const isLast = index === breadcrumbItems.length - 1;
                                 return (
@@ -259,7 +259,7 @@ class Breadcrumb4 extends BaseBreadcrumb {
                                                     )}
                                                     {itemTitleExist && (
                                                         <Base.P className={this.decorateCSS("text")}>
-                                                            {item.title}
+                                                            {item.item_title}
                                                         </Base.P>
                                                     )}
                                                 </div>

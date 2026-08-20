@@ -12,7 +12,7 @@ type ButtonTypeObj = {
 }
 
 type Card = {
-    title: React.JSX.Element;
+    card_title: React.JSX.Element;
     icon: TypeMediaInputValue;
     hoverTitle: React.JSX.Element;
     hoverDescription: React.JSX.Element;
@@ -55,7 +55,7 @@ class Feature37 extends BaseFeature {
                     value: [
                         {
                             type: "string",
-                            key: "title",
+                            key: "card_title",
                             displayer: "Title",
                             value: "Quick Start",
                         },
@@ -92,7 +92,7 @@ class Feature37 extends BaseFeature {
                     value: [
                         {
                             type: "string",
-                            key: "title",
+                            key: "card_title",
                             displayer: "Title",
                             value: "24/7 Support",
                         },
@@ -129,7 +129,7 @@ class Feature37 extends BaseFeature {
                     value: [
                         {
                             type: "string",
-                            key: "title",
+                            key: "card_title",
                             displayer: "Title",
                             value: "Free Guides",
                         },
@@ -166,7 +166,7 @@ class Feature37 extends BaseFeature {
                     value: [
                         {
                             type: "string",
-                            key: "title",
+                            key: "card_title",
                             displayer: "Title",
                             value: "Modern Design",
                         },
@@ -203,7 +203,7 @@ class Feature37 extends BaseFeature {
                     value: [
                         {
                             type: "string",
-                            key: "title",
+                            key: "card_title",
                             displayer: "Title",
                             value: "High Quality",
                         },
@@ -240,7 +240,7 @@ class Feature37 extends BaseFeature {
                     value: [
                         {
                             type: "string",
-                            key: "title",
+                            key: "card_title",
                             displayer: "Title",
                             value: "Premium Addons",
                         },
@@ -351,7 +351,7 @@ class Feature37 extends BaseFeature {
                             {cards?.length > 0 && (
                                 <Base.ListGrid ref={this.cardsRootRef} gridCount={{ pc: this.getPropValue("itemCount") || 3, tablet: 3 }} className={this.decorateCSS("cards-container")}>
                                     {cards.map((card: Card, index: number) => {
-                                        const titleExist = this.castToString(card.title);
+                                        const titleExist = this.castToString(card.card_title);
                                         const hoverTitleExist = this.castToString(card.hoverTitle);
                                         const hoverDescExist = this.castToString(card.hoverDescription);
                                         const iconExist = card.icon;
@@ -363,7 +363,7 @@ class Feature37 extends BaseFeature {
                                                 <div className={this.decorateCSS("card-inner")}>
                                                     <div className={`${this.decorateCSS("face")} ${this.decorateCSS("front")}`}>
                                                         {iconExist && (<div className={this.decorateCSS("icon-wrapper")}> <Base.Media value={card.icon} className={`${this.decorateCSS("card-icon")} ${isImage && this.decorateCSS("is-image")}`} />  </div>)}
-                                                        {titleExist && (<Base.H3 className={this.decorateCSS("card-title")}>{card.title}</Base.H3>)}
+                                                        {titleExist && (<Base.H3 className={this.decorateCSS("card-title")}>{card.card_title}</Base.H3>)}
                                                     </div>
                                                     <Base.VerticalContent className={`${this.decorateCSS("face")} ${this.decorateCSS("top")}`}>
                                                         {hoverTitleExist && (<Base.H3 className={this.decorateCSS("card-hover-title")}>{card.hoverTitle}</Base.H3>)}

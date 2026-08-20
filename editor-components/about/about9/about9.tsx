@@ -6,8 +6,8 @@ import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 
 type MediaGroup = {
-    media: TypeMediaInputValue;
-    overlay: boolean;
+    media_2_media: TypeMediaInputValue;
+    media_2_overlay: boolean;
 };
 
 class About9 extends BaseAbout {
@@ -60,7 +60,7 @@ class About9 extends BaseAbout {
             value: [
                 {
                     type: "media",
-                    key: "media",
+                    key: "media_2_media",
                     displayer: "Media",
                     additionalParams: {
                         availableTypes: ["image", "video"],
@@ -72,7 +72,7 @@ class About9 extends BaseAbout {
                 },
                 {
                     type: "boolean",
-                    key: "overlay",
+                    key: "media_2_overlay",
                     displayer: "Overlay",
                     value: false,
                 },
@@ -113,8 +113,8 @@ class About9 extends BaseAbout {
         const text2Str = this.castToString(this.getPropValue("text-2"));
         const media1 = this.castToObject<MediaGroup>("media-1");
         const media2 = this.castToObject<MediaGroup>("media-2");
-        const image1 = media1?.media;
-        const image2 = media2?.media;
+        const image1 = media1.media_2_media;
+        const image2 = media2.media_2_media;
         const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
 
         const hasValidButtons = buttons.some((button) => this.castToString(button.text));
@@ -153,13 +153,13 @@ class About9 extends BaseAbout {
                                     {image1 && (
                                         <div className={this.decorateCSS("image-1")}>
                                             <Base.Media value={image1} className={this.decorateCSS("image")} />
-                                            {media1?.overlay && <div className={this.decorateCSS("overlay")} />}
+                                            {media1.media_2_overlay && <div className={this.decorateCSS("overlay")} />}
                                         </div>
                                     )}
                                     {image2 && (
                                         <div className={this.decorateCSS("image-2")}>
                                             <Base.Media value={image2} className={this.decorateCSS("image")} />
-                                            {media2?.overlay && <div className={this.decorateCSS("overlay")} />}
+                                            {media2.media_2_overlay && <div className={this.decorateCSS("overlay")} />}
                                         </div>
                                     )}
                                 </div>

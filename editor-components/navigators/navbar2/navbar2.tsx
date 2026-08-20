@@ -14,8 +14,8 @@ type Item = {
 };
 
 interface Logo {
-  image: TypeMediaInputValue;
-  navigateTo: string;
+  absoluteLogo_image: TypeMediaInputValue;
+  absoluteLogo_navigateTo: string;
 }
 
 interface Language {
@@ -462,7 +462,7 @@ class Navbar2 extends BaseNavigator {
       value: [
         {
           type: "media",
-          key: "image",
+          key: "absoluteLogo_image",
           displayer: "Image",
           additionalParams: {
             availableTypes: ["image"],
@@ -474,7 +474,7 @@ class Navbar2 extends BaseNavigator {
         },
         {
           type: "page",
-          key: "navigateTo",
+          key: "absoluteLogo_navigateTo",
           value: "",
           displayer: "Navigate To",
         },
@@ -683,10 +683,10 @@ class Navbar2 extends BaseNavigator {
           }`}
         >
           {currentLogo && (
-            <ComposerLink path={currentLogo.navigateTo}>
+            <ComposerLink path={currentLogo.absoluteLogo_navigateTo}>
               <div className={this.decorateCSS("logo")} onClick={()=> this.toggleMobileMenu()}>
                 <Base.Media
-                  value={currentLogo.image}
+                  value={currentLogo.absoluteLogo_image}
                   className={this.decorateCSS("image")}
                 />
               </div>

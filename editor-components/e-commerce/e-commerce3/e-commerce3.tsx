@@ -13,13 +13,13 @@ type Tab = {
 }
 
 type Details = {
-  title: React.JSX.Element,
+  details_detail_title: React.JSX.Element,
   value: React.JSX.Element,
 }
 
 type Properties = {
-  title: React.JSX.Element,
-  items: { title: React.JSX.Element }[],
+  properties_property_title: React.JSX.Element,
+  items_property: { items_property_title: React.JSX.Element }[],
 }
 
 class ECommerce3 extends BaseECommerce {
@@ -71,7 +71,7 @@ class ECommerce3 extends BaseECommerce {
                   value: [
                     {
                       type: "string",
-                      key: "title",
+                      key: "details_detail_title",
                       displayer: "Title",
                       value: "",
                     },
@@ -128,7 +128,7 @@ class ECommerce3 extends BaseECommerce {
                   value: [
                     {
                       type: "string",
-                      key: "title",
+                      key: "details_detail_title",
                       displayer: "Title",
                       value: "Weight",
                     },
@@ -147,7 +147,7 @@ class ECommerce3 extends BaseECommerce {
                   value: [
                     {
                       type: "string",
-                      key: "title",
+                      key: "details_detail_title",
                       displayer: "Title",
                       value: "Dimensions",
                     },
@@ -173,7 +173,7 @@ class ECommerce3 extends BaseECommerce {
                   value: [
                     {
                       type: "string",
-                      key: "title",
+                      key: "properties_property_title",
                       displayer: "Title",
                       value: "Color",
                     },
@@ -184,12 +184,12 @@ class ECommerce3 extends BaseECommerce {
                       value: [
                         {
                           type: "object",
-                          key: "property",
+                          key: "items_property",
                           displayer: "Property",
                           value: [
                             {
                               type: "string",
-                              key: "title",
+                              key: "items_property_title",
                               displayer: "Title",
                               value: "Beige",
                             },
@@ -197,12 +197,12 @@ class ECommerce3 extends BaseECommerce {
                         },
                         {
                           type: "object",
-                          key: "property",
+                          key: "items_property",
                           displayer: "Property",
                           value: [
                             {
                               type: "string",
-                              key: "title",
+                              key: "items_property_title",
                               displayer: "Title",
                               value: "Black",
                             },
@@ -219,7 +219,7 @@ class ECommerce3 extends BaseECommerce {
                   value: [
                     {
                       type: "string",
-                      key: "title",
+                      key: "properties_property_title",
                       displayer: "Title",
                       value: "Material",
                     },
@@ -230,12 +230,12 @@ class ECommerce3 extends BaseECommerce {
                       value: [
                         {
                           type: "object",
-                          key: "property",
+                          key: "items_property",
                           displayer: "Property",
                           value: [
                             {
                               type: "string",
-                              key: "title",
+                              key: "items_property_title",
                               displayer: "Title",
                               value: "Metal",
                             },
@@ -243,12 +243,12 @@ class ECommerce3 extends BaseECommerce {
                         },
                         {
                           type: "object",
-                          key: "property",
+                          key: "items_property",
                           displayer: "Property",
                           value: [
                             {
                               type: "string",
-                              key: "title",
+                              key: "items_property_title",
                               displayer: "Title",
                               value: "Black",
                             },
@@ -302,33 +302,33 @@ class ECommerce3 extends BaseECommerce {
                     {this.castToString(item.subtitle) && <Base.H5 className={this.decorateCSS("subtitle")}>{item.subtitle}</Base.H5>}
                     {this.castToString(item.title) && <Base.H4 className={this.decorateCSS("title")}>{item.title}</Base.H4>}
                     {this.castToString(item.description) && <Base.SectionDescription className={this.decorateCSS("description")}>{item.description}</Base.SectionDescription>}
-                    {(((item.details ?? []).some(d => this.castToString(d.title) || this.castToString(d.value))) || ((item.properties ?? []).some(p => this.castToString(p.title) || p.items.length > 0))) && (
+                    {(((item.details ?? []).some(d => this.castToString(d.details_detail_title) || this.castToString(d.value))) || ((item.properties ?? []).some(p => this.castToString(p.properties_property_title) || p.items_property.length > 0))) && (
                     <div className={this.decorateCSS("content")}>
                       <div className={this.decorateCSS("left")}>
                         {(item.details ?? []).map((detail: Details) => (
-                          (this.castToString(detail.title) || this.castToString(detail.value)) ? (
-                            <Base.P className={this.decorateCSS("detail-title")}>{detail.title}</Base.P>
+                          (this.castToString(detail.details_detail_title) || this.castToString(detail.value)) ? (
+                            <Base.P className={this.decorateCSS("detail-title")}>{detail.details_detail_title}</Base.P>
                           ) : null
                         ))}
                         {(item.properties ?? []).map((property: Properties) => (
-                          (this.castToString(property.title) || property.items.length > 0) ? (
-                            <Base.P className={this.decorateCSS("property-title")}>{property.title}</Base.P>
+                          (this.castToString(property.properties_property_title) || property.items_property.length > 0) ? (
+                            <Base.P className={this.decorateCSS("property-title")}>{property.properties_property_title}</Base.P>
                           ) : null
                         ))}
                       </div>
                       <div className={this.decorateCSS("right")}>
                         {(item.details ?? []).map((detail: Details) => (
-                          (this.castToString(detail.value) || this.castToString(detail.title)) ? (
+                          (this.castToString(detail.value) || this.castToString(detail.details_detail_title)) ? (
                             <Base.P className={this.decorateCSS("detail-value")}>{detail.value}</Base.P>
                           ) : null
                         ))}
                         {(item.properties ?? []).map((property: Properties) => (
                           <>
-                            {(this.castToString(property.title) || property.items.length > 0) && (
+                            {(this.castToString(property.properties_property_title) || property.items_property.length > 0) && (
                               <div className={this.decorateCSS("box")}>
-                                {(property.items ?? []).length > 0 ? property.items.map((propItem, index) => (
+                                {(property.items_property ?? []).length > 0 ? property.items_property.map((propItem, index) => (
                                   <Base.P key={index} className={this.decorateCSS("property-value")}>
-                                    {propItem.title}
+                                    {propItem.items_property_title}
                                   </Base.P>
                                 )) : null}
                               </div>

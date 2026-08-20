@@ -91,7 +91,7 @@ class FormModal1 extends BaseModal {
                     },
                     {
                       type: "string",
-                      key: "placeholder",
+                      key: "countryOption_placeholder",
                       displayer: "Placeholder",
                       value: "+1(555) 000-0000",
                     },
@@ -110,7 +110,7 @@ class FormModal1 extends BaseModal {
                     },
                     {
                       type: "string",
-                      key: "placeholder",
+                      key: "countryOption_placeholder",
                       displayer: "Placeholder",
                       value: "+90(555) 000-0000",
                     },
@@ -164,7 +164,7 @@ class FormModal1 extends BaseModal {
                     },
                     {
                       type: "string",
-                      key: "placeholder",
+                      key: "countryOption_placeholder",
                       displayer: "Placeholder",
                       value: "+1(555) 000-0000",
                     },
@@ -183,7 +183,7 @@ class FormModal1 extends BaseModal {
                     },
                     {
                       type: "string",
-                      key: "placeholder",
+                      key: "countryOption_placeholder",
                       displayer: "Placeholder",
                       value: "+90(555) 000-0000",
                     },
@@ -237,7 +237,7 @@ class FormModal1 extends BaseModal {
                     },
                     {
                       type: "string",
-                      key: "placeholder",
+                      key: "countryOption_placeholder",
                       displayer: "Placeholder",
                       value: "+1(555) 000-0000",
                     },
@@ -256,7 +256,7 @@ class FormModal1 extends BaseModal {
                     },
                     {
                       type: "string",
-                      key: "placeholder",
+                      key: "countryOption_placeholder",
                       displayer: "Placeholder",
                       value: "+90(555) 000-0000",
                     },
@@ -295,7 +295,7 @@ class FormModal1 extends BaseModal {
                     },
                     {
                       type: "string",
-                      key: "placeholder",
+                      key: "countryOption_placeholder",
                       displayer: "Placeholder",
                       value: "+1(555) 000-0000",
                     },
@@ -314,7 +314,7 @@ class FormModal1 extends BaseModal {
                     },
                     {
                       type: "string",
-                      key: "placeholder",
+                      key: "countryOption_placeholder",
                       displayer: "Placeholder",
                       value: "+90(555) 000-0000",
                     },

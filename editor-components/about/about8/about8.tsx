@@ -6,12 +6,12 @@ import { INPUTS } from "../../../custom-hooks/input-templates";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 
 type Text = {
-  description: string;
+  text_description: string;
 };
 
 type MediaGroup = {
-  media: TypeMediaInputValue;
-  overlay: boolean;
+  media_2_media: TypeMediaInputValue;
+  media_2_overlay: boolean;
 };
 
 class About8 extends BaseAbout {
@@ -72,7 +72,7 @@ class About8 extends BaseAbout {
       value: [
         {
           type: "media",
-          key: "media",
+          key: "media_2_media",
           displayer: "Media",
           additionalParams: {
             availableTypes: ["image", "video"],
@@ -84,7 +84,7 @@ class About8 extends BaseAbout {
         },
         {
           type: "boolean",
-          key: "overlay",
+          key: "media_2_overlay",
           displayer: "Overlay",
           value: false,
         },
@@ -103,7 +103,7 @@ class About8 extends BaseAbout {
           value: [
             {
               type: "string",
-              key: "description",
+              key: "text_description",
               displayer: "Description",
               value:
                 "At the end of the day, going forward, a new normal that has evolved from generation is on the runway towards a cloud solution.",
@@ -117,7 +117,7 @@ class About8 extends BaseAbout {
           value: [
             {
               type: "string",
-              key: "description",
+              key: "text_description",
               displayer: "Description",
               value:
                 "At the end of the day, going forward, a new normal that has evolved from generation is on the runway towards a cloud solution.",
@@ -146,8 +146,8 @@ class About8 extends BaseAbout {
 
     const media1 = this.castToObject<MediaGroup>("media-1");
     const media2 = this.castToObject<MediaGroup>("media-2");
-    const image1 = media1?.media;
-    const image2 = media2?.media;
+    const image1 = media1.media_2_media;
+    const image2 = media2.media_2_media;
     const texts = this.castToObject<Text[]>("texts");
     const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
     const alignment = Base.getContentAlignment();
@@ -158,7 +158,7 @@ class About8 extends BaseAbout {
 
     const hasTitle = !!titleStr;
     const hasButton = buttons.some((button) => this.castToString(button.text));
-    const validTexts = texts?.filter((t) => !!this.castToString(t.description)) || [];
+    const validTexts = texts?.filter((t) => !!this.castToString(t.text_description)) || [];
     const hasTexts = validTexts.length > 0;
     const hasContent = hasTexts || hasButton;
 
@@ -191,13 +191,13 @@ class About8 extends BaseAbout {
             className={`${this.decorateCSS("main-content")} ${!hasContent ? this.decorateCSS("no-content") : ""} ${hasImages ? this.decorateCSS("with-image") : ""}`}
           >
             {hasImage1 && (
-              <div className={`${this.decorateCSS("image-box")} ${media1?.overlay ? this.decorateCSS("overlay") : ""}`}>
+              <div className={`${this.decorateCSS("image-box")} ${media1.media_2_overlay ? this.decorateCSS("overlay") : ""}`}>
                 <Base.Media value={image1} className={this.decorateCSS("image")} />
                 <div className={this.decorateCSS("overlay-layer")} />
               </div>
             )}
             {hasImage2 && (
-              <div className={`${this.decorateCSS("image-box")} ${media2?.overlay ? this.decorateCSS("overlay") : ""}`}>
+              <div className={`${this.decorateCSS("image-box")} ${media2.media_2_overlay ? this.decorateCSS("overlay") : ""}`}>
                 <Base.Media value={image2} className={this.decorateCSS("image")} />
                 <div className={this.decorateCSS("overlay-layer")} />
               </div>
@@ -211,7 +211,7 @@ class About8 extends BaseAbout {
                         key={index}
                         className={this.decorateCSS("text")}
                       >
-                        {text.description}
+                        {text.text_description}
                       </Base.SectionDescription>
                     ))}
                   </div>

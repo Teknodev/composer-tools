@@ -10,7 +10,7 @@ type SliderItem = {
 
 type RightItem = {
   icon: TypeMediaInputValue;
-  link: string;
+  item_link: string;
 };
 
 type LeftItem = {
@@ -216,7 +216,7 @@ class HeroSection13 extends BaseHeroSection {
       value: [
         {
           type: "object",
-          key: "item",
+          key: "right_items_item",
           displayer: "Item",
           value: [
             {
@@ -233,7 +233,7 @@ class HeroSection13 extends BaseHeroSection {
             },
             {
               type: "page",
-              key: "link",
+              key: "item_link",
               value: "",
               displayer: "Navigate To",
             },
@@ -241,7 +241,7 @@ class HeroSection13 extends BaseHeroSection {
         },
         {
           type: "object",
-          key: "item",
+          key: "right_items_item",
           displayer: "Item",
           value: [
             {
@@ -258,7 +258,7 @@ class HeroSection13 extends BaseHeroSection {
             },
             {
               type: "page",
-              key: "link",
+              key: "item_link",
               value: "",
               displayer: "Navigate To",
             },
@@ -266,7 +266,7 @@ class HeroSection13 extends BaseHeroSection {
         },
         {
           type: "object",
-          key: "item",
+          key: "right_items_item",
           displayer: "Item",
           value: [
             {
@@ -283,7 +283,7 @@ class HeroSection13 extends BaseHeroSection {
             },
             {
               type: "page",
-              key: "link",
+              key: "item_link",
               value: "",
               displayer: "Navigate To",
             },
@@ -291,7 +291,7 @@ class HeroSection13 extends BaseHeroSection {
         },
         {
           type: "object",
-          key: "item",
+          key: "right_items_item",
           displayer: "Item",
           value: [
             {
@@ -308,7 +308,7 @@ class HeroSection13 extends BaseHeroSection {
             },
             {
               type: "page",
-              key: "link",
+              key: "item_link",
               value: "",
               displayer: "Navigate To",
             },
@@ -397,7 +397,7 @@ class HeroSection13 extends BaseHeroSection {
                   <div className={this.decorateCSS("content-right")}>
                     {rightItems.map((item: RightItem, index: number) => {
                       return (
-                        <ComposerLink key={index} path={item.link}>
+                        <ComposerLink key={index} path={item.item_link}>
                           <Base.Media value={item.icon} className={this.decorateCSS("icon")} />
                         </ComposerLink>
                       );

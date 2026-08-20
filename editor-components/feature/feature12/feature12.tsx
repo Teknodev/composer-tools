@@ -8,13 +8,13 @@ import { INPUTS } from "../../../custom-hooks/input-templates";
 import { TypeMediaInputValue } from "../../EditorComponent";
 
 type Card = {
-  title: React.JSX.Element;
-  description: React.JSX.Element;
+  card_title: React.JSX.Element;
+  card_description: React.JSX.Element;
   icon: TypeMediaInputValue;
 };
 
 type FirstItem = {
-  title: React.JSX.Element;
+  firstItem_title: React.JSX.Element;
   backgroundImage: TypeMediaInputValue;
   overlay: boolean;
 };
@@ -47,7 +47,7 @@ class Feature12 extends BaseFeature {
       value: [
         {
           type: "string",
-          key: "title",
+          key: "firstItem_title",
           displayer: "Title",
           value: "Best Of Our Features",
         },
@@ -96,13 +96,13 @@ class Feature12 extends BaseFeature {
             },
             {
               type: "string",
-              key: "title",
+              key: "card_title",
               displayer: "Title",
               value: "Graphic Clean Design",
             },
             {
               type: "string",
-              key: "description",
+              key: "card_description",
               displayer: "Description",
               value: "Consectetur adipiscing elit",
             },
@@ -127,13 +127,13 @@ class Feature12 extends BaseFeature {
             },
             {
               type: "string",
-              key: "title",
+              key: "card_title",
               displayer: "Title",
               value: "Web & Mobile Design",
             },
             {
               type: "string",
-              key: "description",
+              key: "card_description",
               displayer: "Description",
               value: "Sed do eiusmod tempor incididunt.",
             },
@@ -158,13 +158,13 @@ class Feature12 extends BaseFeature {
             },
             {
               type: "string",
-              key: "title",
+              key: "card_title",
               displayer: "Title",
               value: "Social Media Marketing",
             },
             {
               type: "string",
-              key: "description",
+              key: "card_description",
               displayer: "Description",
               value: "Uttt labore et dolore magna aliqua.",
             },
@@ -199,7 +199,7 @@ class Feature12 extends BaseFeature {
     const cards = this.castToObject<Card[]>("cards");
     const firstItem = this.castToObject<FirstItem>("firstItem");
 
-    const firstCardTitleExist = this.castToString(firstItem.title);
+    const firstCardTitleExist = this.castToString(firstItem.firstItem_title);
 
     const firstItemBackground = firstItem.backgroundImage;
     const firstItemBackgroundUrl = firstItemBackground?.url ?? firstItemBackground;
@@ -254,7 +254,7 @@ class Feature12 extends BaseFeature {
                 )}
                 {firstCardTitleExist && (
                   <Base.H3 className={this.decorateCSS("first-card-title")}>
-                    {firstItem.title}
+                    {firstItem.firstItem_title}
                   </Base.H3>
                 )}
                 {buttonTextExist && (
@@ -269,8 +269,8 @@ class Feature12 extends BaseFeature {
 
             {cards?.length > 0 &&
               cards.map((card: Card, index: number) => {
-                const descExist = !!this.castToString(card.description);
-                const titleExist = !!this.castToString(card.title);
+                const descExist = !!this.castToString(card.card_description);
+                const titleExist = !!this.castToString(card.card_title);
 
                 const shouldRender = descExist || titleExist;
 
@@ -302,12 +302,12 @@ class Feature12 extends BaseFeature {
                           )}
                           {titleExist && (
                             <Base.H3 className={this.decorateCSS("card-title")}>
-                              {card.title}
+                              {card.card_title}
                             </Base.H3>
                           )}
                           {descExist && (
                             <Base.P className={this.decorateCSS("card-description")}>
-                              {card.description}
+                              {card.card_description}
                             </Base.P>
                           )}
                         </div>

@@ -6,8 +6,8 @@ import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "../../../custom-hooks/input-templates";
 
 interface Logo {
-  image: TypeMediaInputValue;
-  navigateTo: string;
+  absoluteLogo_image: TypeMediaInputValue;
+  absoluteLogo_navigateTo: string;
 }
 
 interface Language {
@@ -164,7 +164,7 @@ class Navbar5 extends BaseNavigator {
       value: [
         {
           type: "media",
-          key: "image",
+          key: "absoluteLogo_image",
           displayer: "Image",
           additionalParams: {
             availableTypes: ["image"],
@@ -176,7 +176,7 @@ class Navbar5 extends BaseNavigator {
         },
         {
           type: "page",
-          key: "navigateTo",
+          key: "absoluteLogo_navigateTo",
           value: "",
           displayer: "Navigate To",
         },
@@ -539,11 +539,11 @@ class Navbar5 extends BaseNavigator {
             </div>
           )}
 
-          {currentLogo.image && (
+          {currentLogo.absoluteLogo_image && (
             <div className={this.decorateCSS("logo")}>
-              <ComposerLink path={currentLogo.navigateTo}>
+              <ComposerLink path={currentLogo.absoluteLogo_navigateTo}>
                 <Base.Media
-                  value={currentLogo.image}
+                  value={currentLogo.absoluteLogo_image}
                   className={this.decorateCSS("logoImage")}
                   onClick={()=> this.closeNav()}
                 />

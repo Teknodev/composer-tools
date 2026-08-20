@@ -9,12 +9,12 @@ import { INPUTS } from "../../../custom-hooks/input-templates";
 type ListItem = {
   index: JSX.Element;
   title: JSX.Element;
-  subtitle: JSX.Element;
+  list_item_subtitle: JSX.Element;
   uppericon: TypeMediaInputValue;
-  description: JSX.Element;
+  list_item_description: JSX.Element;
   lowericon: TypeMediaInputValue;
   url: string;
-  buttons: INPUTS.CastedButton[];
+  list_item_buttons: INPUTS.CastedButton[];
 };
 
 class List5 extends BaseList {
@@ -93,7 +93,7 @@ class List5 extends BaseList {
             },
             {
               type: "string",
-              key: "subtitle",
+              key: "list_item_subtitle",
               displayer: "Subtitle",
               value: "",
             },
@@ -117,7 +117,7 @@ class List5 extends BaseList {
             },
             {
               type: "string",
-              key: "description",
+              key: "list_item_description",
               displayer: "Description",
               value: "There are many variations passages Lorem Ipsum available the majority have suffered.",
             },
@@ -141,7 +141,7 @@ class List5 extends BaseList {
             },
             {
               type: "array",
-              key: "buttons",
+              key: "list_item_buttons",
               displayer: "Buttons",
               value: [
                 INPUTS.BUTTON("button", "Button", "", "", null, null, "White"),
@@ -162,7 +162,7 @@ class List5 extends BaseList {
             },
             {
               type: "string",
-              key: "subtitle",
+              key: "list_item_subtitle",
               displayer: "Subtitle",
               value: "",
             },
@@ -186,7 +186,7 @@ class List5 extends BaseList {
             },
             {
               type: "string",
-              key: "description",
+              key: "list_item_description",
               displayer: "Description",
               value: "There are many variations passages Lorem Ipsum available the majority have suffered.",
             },
@@ -210,7 +210,7 @@ class List5 extends BaseList {
             },
             {
               type: "array",
-              key: "buttons",
+              key: "list_item_buttons",
               displayer: "Buttons",
               value: [
                 INPUTS.BUTTON("button", "Button", "", "", null, null, "White"),
@@ -231,7 +231,7 @@ class List5 extends BaseList {
             },
             {
               type: "string",
-              key: "subtitle",
+              key: "list_item_subtitle",
               displayer: "Subtitle",
               value: "",
             },
@@ -255,7 +255,7 @@ class List5 extends BaseList {
             },
             {
               type: "string",
-              key: "description",
+              key: "list_item_description",
               displayer: "Description",
               value: "There are many variations passages Lorem Ipsum available the majority have suffered.",
             },
@@ -279,7 +279,7 @@ class List5 extends BaseList {
             },
             {
               type: "array",
-              key: "buttons",
+              key: "list_item_buttons",
               displayer: "Buttons",
               value: [
                 INPUTS.BUTTON("button", "Button", "", "", null, null, "White"),
@@ -300,7 +300,7 @@ class List5 extends BaseList {
             },
             {
               type: "string",
-              key: "subtitle",
+              key: "list_item_subtitle",
               displayer: "Subtitle",
               value: "",
             },
@@ -324,7 +324,7 @@ class List5 extends BaseList {
             },
             {
               type: "string",
-              key: "description",
+              key: "list_item_description",
               displayer: "Description",
               value: "There are many variations passages Lorem Ipsum available the majority have suffered.",
             },
@@ -348,7 +348,7 @@ class List5 extends BaseList {
             },
             {
               type: "array",
-              key: "buttons",
+              key: "list_item_buttons",
               displayer: "Buttons",
               value: [
                 INPUTS.BUTTON("button", "Button", "", "", null, null, "White"),
@@ -442,7 +442,7 @@ class List5 extends BaseList {
                 gridCount={{ pc: this.getPropValue("itemCount"), tablet: 2 }}
               >
                 {ListItems.map((listItem: ListItem, index: number) => {
-                  const cardButtons = listItem.buttons || [];
+                  const cardButtons = listItem.list_item_buttons || [];
                   const hasValidCardButtons = cardButtons.some((btn: INPUTS.CastedButton) => this.castToString(btn.text) || (btn.icon && (btn.icon as any).name));
                   return (
                     <Base.Card
@@ -479,9 +479,9 @@ class List5 extends BaseList {
                                 )}
                               </div>
                             )}
-                            {this.castToString(listItem.subtitle) && (
+                            {this.castToString(listItem.list_item_subtitle) && (
                               <Base.H6 className={this.decorateCSS("card-subtitle")}>
-                                {listItem.subtitle}
+                                {listItem.list_item_subtitle}
                               </Base.H6>
                             )}
                             {this.castToString(listItem.title) && (
@@ -489,9 +489,9 @@ class List5 extends BaseList {
                                 {listItem.title}
                               </Base.H5>
                             )}
-                            {this.castToString(listItem.description) && (
+                            {this.castToString(listItem.list_item_description) && (
                               <Base.P className={this.decorateCSS("card-description")}>
-                                {listItem.description}
+                                {listItem.list_item_description}
                               </Base.P>
                             )}
                           </Base.VerticalContent>

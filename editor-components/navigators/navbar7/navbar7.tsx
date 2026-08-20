@@ -6,8 +6,8 @@ import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "../../../custom-hooks/input-templates";
 
 interface Logo {
-  image: TypeMediaInputValue;
-  navigateTo: string;
+  absoluteLogo_image: TypeMediaInputValue;
+  absoluteLogo_navigateTo: string;
 }
 
 interface Icon {
@@ -18,13 +18,13 @@ interface Icon {
 interface MenuItem {
   title: React.JSX.Element;
   navigate_to: string;
-  menuType: string;
+  sub_item_menuType: string;
   sub_items: MenuItem[];
 }
 
 interface Language {
   label: "code" | "name";
-  icon: TypeMediaInputValue;
+  language_icon: TypeMediaInputValue;
   showLanguage: boolean;
   showLocalizationAlways: boolean;
   showDivider: boolean;
@@ -69,7 +69,7 @@ class Navbar7 extends BaseNavigator {
       value: [
         {
           type: "media",
-          key: "image",
+          key: "absoluteLogo_image",
           displayer: "Image",
           additionalParams: {
             availableTypes: ["image"],
@@ -81,7 +81,7 @@ class Navbar7 extends BaseNavigator {
         },
         {
           type: "page",
-          key: "navigateTo",
+          key: "absoluteLogo_navigateTo",
           value: "",
           displayer: "Navigate To",
         },
@@ -870,7 +870,7 @@ class Navbar7 extends BaseNavigator {
                     },
                     {
                       type: "select",
-                      key: "menuType",
+                      key: "sub_item_menuType",
                       displayer: "Type",
                       value: "Normal",
                       additionalParams: { selectItems: ["Dropdown", "Normal"] },
@@ -917,7 +917,7 @@ class Navbar7 extends BaseNavigator {
       value: [
         {
           type: "object",
-          key: "item",
+          key: "icons_item",
           displayer: "Item",
           value: [
             {
@@ -942,7 +942,7 @@ class Navbar7 extends BaseNavigator {
         },
         {
           type: "object",
-          key: "item",
+          key: "icons_item",
           displayer: "Item",
           value: [
             {
@@ -967,7 +967,7 @@ class Navbar7 extends BaseNavigator {
         },
         {
           type: "object",
-          key: "item",
+          key: "icons_item",
           displayer: "Item",
           value: [
             {
@@ -992,7 +992,7 @@ class Navbar7 extends BaseNavigator {
         },
         {
           type: "object",
-          key: "item",
+          key: "icons_item",
           displayer: "Item",
           value: [
             {
@@ -1034,7 +1034,7 @@ class Navbar7 extends BaseNavigator {
         },
         {
           type: "media",
-          key: "icon",
+          key: "language_icon",
           displayer: "Icon",
           additionalParams: {
             availableTypes: ["icon"],
@@ -1231,11 +1231,11 @@ class Navbar7 extends BaseNavigator {
                 : ""
             }`}
           >
-            {currentLogo.image && (
+            {currentLogo.absoluteLogo_image && (
               <div className={this.decorateCSS("logo")}>
-                <ComposerLink path={currentLogo.navigateTo}>
+                <ComposerLink path={currentLogo.absoluteLogo_navigateTo}>
                   <Base.Media
-                    value={currentLogo.image}
+                    value={currentLogo.absoluteLogo_image}
                     className={this.decorateCSS("logoImage")}
                   />
                 </ComposerLink>
@@ -1366,7 +1366,7 @@ class Navbar7 extends BaseNavigator {
                   <Base.Language
                     type="dropdown"
                     title={language.label}
-                    icon={language.icon}
+                    icon={language.language_icon}
                     dropdownButtonClassName={`${this.decorateCSS(
                       "localization"
                     )}`}
@@ -1401,12 +1401,12 @@ class Navbar7 extends BaseNavigator {
                 : ""
             }`}
           >
-            {currentLogo.image && (
+            {currentLogo.absoluteLogo_image && (
               <div className={this.decorateCSS("logo")}>
-                <ComposerLink path={currentLogo.navigateTo}>
+                <ComposerLink path={currentLogo.absoluteLogo_navigateTo}>
                   <div onClick={()=> this.handleCloseMenu()}>
                     <Base.Media
-                      value={currentLogo.image}
+                      value={currentLogo.absoluteLogo_image}
                       className={this.decorateCSS("logoImage")}
                     />
                   </div>
@@ -1418,7 +1418,7 @@ class Navbar7 extends BaseNavigator {
                   <Base.Language
                     type="dropdown"
                     title={language.label}
-                    icon={(language.icon?.type === "icon" ? language.icon.name : "GrLanguage") || "GrLanguage"}
+                    icon={(language.language_icon?.type === "icon" ? language.language_icon.name : "GrLanguage") || "GrLanguage"}
                     dropdownButtonClassName={`${this.decorateCSS(
                       "localization"
                     )}`}

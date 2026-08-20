@@ -5,14 +5,14 @@ import ComposerLink from "../../../composer-base-components/Link/ComposerLinkPro
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 interface ListItems {
-    title: React.JSX.Element;
-    subtitle: React.JSX.Element;
+    listItem_title: React.JSX.Element;
+    listItem_subtitle: React.JSX.Element;
     description: React.JSX.Element;
     itemImage: TypeMediaInputValue;
     url: string;
     navigateToText: React.JSX.Element;
     icon: TypeMediaInputValue;
-    buttons: INPUTS.CastedButton[];
+    listItem_buttons: INPUTS.CastedButton[];
     overlay: boolean;
 }
 
@@ -57,13 +57,13 @@ class List11 extends BaseList {
                     value: [
                         {
                             type: "string",
-                            key: "subtitle",
+                            key: "listItem_subtitle",
                             displayer: "Subtitle",
                             value: ""
                         },
                         {
                             type: "string",
-                            key: "title",
+                            key: "listItem_title",
                             displayer: "Title",
                             value: "Share tools quickly and confidently in minutes"
                         },
@@ -111,7 +111,7 @@ class List11 extends BaseList {
                         },
                         {
                             type: "array",
-                            key: "buttons",
+                            key: "listItem_buttons",
                             displayer: "Buttons",
                             value: [
                                 INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
@@ -132,13 +132,13 @@ class List11 extends BaseList {
                     value: [
                         {
                             type: "string",
-                            key: "subtitle",
+                            key: "listItem_subtitle",
                             displayer: "Subtitle",
                             value: ""
                         },
                         {
                             type: "string",
-                            key: "title",
+                            key: "listItem_title",
                             displayer: "Title",
                             value: "Connect every part of your entire business"
                         },
@@ -186,7 +186,7 @@ class List11 extends BaseList {
                         },
                         {
                             type: "array",
-                            key: "buttons",
+                            key: "listItem_buttons",
                             displayer: "Buttons",
                             value: [
                                 INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
@@ -207,13 +207,13 @@ class List11 extends BaseList {
                     value: [
                         {
                             type: "string",
-                            key: "subtitle",
+                            key: "listItem_subtitle",
                             displayer: "Subtitle",
                             value: ""
                         },
                         {
                             type: "string",
-                            key: "title",
+                            key: "listItem_title",
                             displayer: "Title",
                             value: "Maintain compliance and control your apps"
                         },
@@ -261,7 +261,7 @@ class List11 extends BaseList {
                         },
                         {
                             type: "array",
-                            key: "buttons",
+                            key: "listItem_buttons",
                             displayer: "Buttons",
                             value: [
                                 INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
@@ -361,13 +361,13 @@ class List11 extends BaseList {
                         )}
                         <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount"), tablet: 3 }} className={this.decorateCSS("grid")}>
                             {listItems.map((item: ListItems, index: number) => {
-                                const itemTitleExist = this.castToString(item.title);
-                                const itemSubtitleExist = this.castToString(item.subtitle);
+                                const itemTitleExist = this.castToString(item.listItem_title);
+                                const itemSubtitleExist = this.castToString(item.listItem_subtitle);
                                 const itemDescriptionExist = this.castToString(item.description);
                                 const navigateToTextExist = this.castToString(item.navigateToText);
                                 const iconExist = item.icon && !!item.icon.url;
                                 const imageExist = !!item.itemImage;
-                                const cardButtons = item.buttons || [];
+                                const cardButtons = item.listItem_buttons || [];
                                 const hasValidCardButtons = cardButtons.some((btn: INPUTS.CastedButton) => this.castToString(btn.text) || (btn.icon && (btn.icon as any).name));
 
                                 return (
@@ -385,12 +385,12 @@ class List11 extends BaseList {
                                             <Base.VerticalContent className={this.decorateCSS("card-content")}>
                                                 {itemSubtitleExist && (
                                                     <Base.H6 className={this.decorateCSS("card-subtitle")}>
-                                                        {item.subtitle}
+                                                        {item.listItem_subtitle}
                                                     </Base.H6>
                                                 )}
                                                 {itemTitleExist && (
                                                     <Base.H6 className={this.decorateCSS("card-title")}>
-                                                        {item.title}
+                                                        {item.listItem_title}
                                                     </Base.H6>
                                                 )}
                                                 {itemDescriptionExist && (

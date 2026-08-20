@@ -5,7 +5,7 @@ import { BaseImageGallery } from "../../EditorComponent";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 
 type CardType = {
-    title: React.ReactNode;
+    card_item_title: React.ReactNode;
     image: string;
     text: string;
     link: string;
@@ -106,7 +106,7 @@ class ImageGallery10 extends BaseImageGallery {
                         },
                         {
                             type: "string",
-                            key: "title",
+                            key: "card_item_title",
                             displayer: "Title",
                             value: "Drawing",
                         },
@@ -155,7 +155,7 @@ class ImageGallery10 extends BaseImageGallery {
                         },
                         {
                             type: "string",
-                            key: "title",
+                            key: "card_item_title",
                             displayer: "Title",
                             value: "Drawing",
                         },
@@ -204,7 +204,7 @@ class ImageGallery10 extends BaseImageGallery {
                         },
                         {
                             type: "string",
-                            key: "title",
+                            key: "card_item_title",
                             displayer: "Title",
                             value: "Drawing",
                         },
@@ -253,7 +253,7 @@ class ImageGallery10 extends BaseImageGallery {
                         },
                         {
                             type: "string",
-                            key: "title",
+                            key: "card_item_title",
                             displayer: "Title",
                             value: "Drawing",
                         },
@@ -302,7 +302,7 @@ class ImageGallery10 extends BaseImageGallery {
                         },
                         {
                             type: "string",
-                            key: "title",
+                            key: "card_item_title",
                             displayer: "Title",
                             value: "Drawing",
                         },
@@ -351,7 +351,7 @@ class ImageGallery10 extends BaseImageGallery {
                         },
                         {
                             type: "string",
-                            key: "title",
+                            key: "card_item_title",
                             displayer: "Title",
                             value: "Drawing",
                         },
@@ -400,7 +400,7 @@ class ImageGallery10 extends BaseImageGallery {
                         },
                         {
                             type: "string",
-                            key: "title",
+                            key: "card_item_title",
                             displayer: "Title",
                             value: "Drawing",
                         },
@@ -449,7 +449,7 @@ class ImageGallery10 extends BaseImageGallery {
                         },
                         {
                             type: "string",
-                            key: "title",
+                            key: "card_item_title",
                             displayer: "Title",
                             value: "Drawing",
                         },
@@ -498,7 +498,7 @@ class ImageGallery10 extends BaseImageGallery {
                         },
                         {
                             type: "string",
-                            key: "title",
+                            key: "card_item_title",
                             displayer: "Title",
                             value: "Drawing",
                         },

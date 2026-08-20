@@ -6,12 +6,12 @@ import { Base } from "../../../composer-base-components/base/base";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 
 type SliderItem = {
-  logo: TypeMediaInputValue;
-  title: React.JSX.Element;
-  subtitle: React.JSX.Element;
-  description: React.JSX.Element;
-  image: TypeMediaInputValue;
-  page?: string;
+  sliderItem_logo: TypeMediaInputValue;
+  sliderItem_title: React.JSX.Element;
+  sliderItem_subtitle: React.JSX.Element;
+  sliderItem_description: React.JSX.Element;
+  sliderItem_image: TypeMediaInputValue;
+  sliderItem_page?: string;
 };
 
 class HeroSection12 extends BaseHeroSection {
@@ -329,12 +329,12 @@ class HeroSection12 extends BaseHeroSection {
       value: [
         {
           type: "object",
-          key: "sliderItem",
+          key: "rightSliderItems_sliderItem",
           displayer: "Slider Item",
           value: [
             {
               type: "media",
-              key: "image",
+              key: "sliderItem_image",
               displayer: "Media",
               additionalParams: {
                 availableTypes: ["image", "video"],
@@ -346,7 +346,7 @@ class HeroSection12 extends BaseHeroSection {
             },
             {
               type: "media",
-              key: "logo",
+              key: "sliderItem_logo",
               displayer: "Logo",
               additionalParams: {
                 availableTypes: ["image", "icon"],
@@ -358,25 +358,25 @@ class HeroSection12 extends BaseHeroSection {
             },
             {
               type: "string",
-              key: "subtitle",
+              key: "sliderItem_subtitle",
               displayer: "Subtitle",
               value: "",
             },
             {
               type: "string",
-              key: "title",
+              key: "sliderItem_title",
               displayer: "Title",
               value: "Pumpkin Pie",
             },
             {
               type: "string",
-              key: "description",
+              key: "sliderItem_description",
               displayer: "Description",
               value: "",
             },
             {
               type: "page",
-              key: "page",
+              key: "sliderItem_page",
               displayer: "Navigate To",
               value: "",
             },
@@ -384,12 +384,12 @@ class HeroSection12 extends BaseHeroSection {
         },
         {
           type: "object",
-          key: "sliderItem",
+          key: "rightSliderItems_sliderItem",
           displayer: "Slider Item",
           value: [
             {
               type: "media",
-              key: "image",
+              key: "sliderItem_image",
               displayer: "Media",
               additionalParams: {
                 availableTypes: ["image", "video"],
@@ -401,7 +401,7 @@ class HeroSection12 extends BaseHeroSection {
             },
             {
               type: "media",
-              key: "logo",
+              key: "sliderItem_logo",
               displayer: "Logo",
               additionalParams: {
                 availableTypes: ["image", "icon"],
@@ -413,25 +413,25 @@ class HeroSection12 extends BaseHeroSection {
             },
             {
               type: "string",
-              key: "subtitle",
+              key: "sliderItem_subtitle",
               displayer: "Subtitle",
               value: "",
             },
             {
               type: "string",
-              key: "title",
+              key: "sliderItem_title",
               displayer: "Title",
               value: "Coffee Time",
             },
             {
               type: "string",
-              key: "description",
+              key: "sliderItem_description",
               displayer: "Description",
               value: "",
             },
             {
               type: "page",
-              key: "page",
+              key: "sliderItem_page",
               displayer: "Navigate To",
               value: "",
             },
@@ -439,12 +439,12 @@ class HeroSection12 extends BaseHeroSection {
         },
         {
           type: "object",
-          key: "sliderItem",
+          key: "rightSliderItems_sliderItem",
           displayer: "Slider Item",
           value: [
             {
               type: "media",
-              key: "image",
+              key: "sliderItem_image",
               displayer: "Media",
               additionalParams: {
                 availableTypes: ["image", "video"],
@@ -456,7 +456,7 @@ class HeroSection12 extends BaseHeroSection {
             },
             {
               type: "media",
-              key: "logo",
+              key: "sliderItem_logo",
               displayer: "Logo",
               additionalParams: {
                 availableTypes: ["image", "icon"],
@@ -468,25 +468,25 @@ class HeroSection12 extends BaseHeroSection {
             },
             {
               type: "string",
-              key: "subtitle",
+              key: "sliderItem_subtitle",
               displayer: "Subtitle",
               value: "",
             },
             {
               type: "string",
-              key: "title",
+              key: "sliderItem_title",
               displayer: "Title",
               value: "Autumn Stories",
             },
             {
               type: "string",
-              key: "description",
+              key: "sliderItem_description",
               displayer: "Description",
               value: "",
             },
             {
               type: "page",
-              key: "page",
+              key: "sliderItem_page",
               displayer: "Navigate To",
               value: "",
             },
@@ -494,12 +494,12 @@ class HeroSection12 extends BaseHeroSection {
         },
         {
           type: "object",
-          key: "sliderItem",
+          key: "rightSliderItems_sliderItem",
           displayer: "Slider Item",
           value: [
             {
               type: "media",
-              key: "image",
+              key: "sliderItem_image",
               displayer: "Media",
               additionalParams: {
                 availableTypes: ["image", "video"],
@@ -511,7 +511,7 @@ class HeroSection12 extends BaseHeroSection {
             },
             {
               type: "media",
-              key: "logo",
+              key: "sliderItem_logo",
               displayer: "Logo",
               additionalParams: {
                 availableTypes: ["image", "icon"],
@@ -523,25 +523,25 @@ class HeroSection12 extends BaseHeroSection {
             },
             {
               type: "string",
-              key: "subtitle",
+              key: "sliderItem_subtitle",
               displayer: "Subtitle",
               value: "",
             },
             {
               type: "string",
-              key: "title",
+              key: "sliderItem_title",
               displayer: "Title",
               value: "Still Life",
             },
             {
               type: "string",
-              key: "description",
+              key: "sliderItem_description",
               displayer: "Description",
               value: "",
             },
             {
               type: "page",
-              key: "page",
+              key: "sliderItem_page",
               displayer: "Navigate To",
               value: "",
             },
@@ -549,12 +549,12 @@ class HeroSection12 extends BaseHeroSection {
         },
         {
           type: "object",
-          key: "sliderItem",
+          key: "rightSliderItems_sliderItem",
           displayer: "Slider Item",
           value: [
             {
               type: "media",
-              key: "image",
+              key: "sliderItem_image",
               displayer: "Media",
               additionalParams: {
                 availableTypes: ["image", "video"],
@@ -566,7 +566,7 @@ class HeroSection12 extends BaseHeroSection {
             },
             {
               type: "media",
-              key: "logo",
+              key: "sliderItem_logo",
               displayer: "Logo",
               additionalParams: {
                 availableTypes: ["image", "icon"],
@@ -578,25 +578,25 @@ class HeroSection12 extends BaseHeroSection {
             },
             {
               type: "string",
-              key: "subtitle",
+              key: "sliderItem_subtitle",
               displayer: "Subtitle",
               value: "",
             },
             {
               type: "string",
-              key: "title",
+              key: "sliderItem_title",
               displayer: "Title",
               value: "Boooo!",
             },
             {
               type: "string",
-              key: "description",
+              key: "sliderItem_description",
               displayer: "Description",
               value: "",
             },
             {
               type: "page",
-              key: "page",
+              key: "sliderItem_page",
               displayer: "Navigate To",
               value: "",
             },
@@ -806,18 +806,18 @@ class HeroSection12 extends BaseHeroSection {
                 {...leftSliderSettings}
               >
                 {leftSliderItems.map((item: SliderItem, index: number) => {
-                  const imageWithSettings = item.image?.type === "video" ? {
-                    ...item.image,
+                  const imageWithSettings = item.sliderItem_image?.type === "video" ? {
+                    ...item.sliderItem_image,
                     settings: {
                       autoplay: true,
                       loop: true,
                       muted: true,
                       controls: false
                     }
-                  } : item.image;
+                  } : item.sliderItem_image;
                   return (
                   <div key={index} className={this.decorateCSS("slider-item")}>
-                    {item.image && (
+                    {item.sliderItem_image && (
                       <div
                         className={this.decorateCSS("image-overlay-container")}
                       >
@@ -825,35 +825,35 @@ class HeroSection12 extends BaseHeroSection {
                           className={this.decorateCSS("slider-item-image")}
                           value={imageWithSettings}
                         />
-                        {showOverlay && (item.image.type === "image" || item.image.type === "video") && item.image.url && (
+                        {showOverlay && (item.sliderItem_image.type === "image" || item.sliderItem_image.type === "video") && item.sliderItem_image.url && (
                           <div className={this.decorateCSS("image-overlay")} />
                         )}
                       </div>
                     )}
                     <Base.VerticalContent className={`${this.decorateCSS("slider-item-content")} ${
-                      !item.image && this.decorateCSS("no-image-text")
+                      !item.sliderItem_image && this.decorateCSS("no-image-text")
                     }`}>
-                      {item.logo && (
+                      {item.sliderItem_logo && (
                         <Base.Media
-                          value={item.logo}
-                          className={`${this.decorateCSS("logo")} ${item.logo.type == "image" && this.decorateCSS("logo-image")}`}
+                          value={item.sliderItem_logo}
+                          className={`${this.decorateCSS("logo")} ${item.sliderItem_logo.type == "image" && this.decorateCSS("logo-image")}`}
                         />
                       )}
-                      {this.castToString(item.subtitle) && (
+                      {this.castToString(item.sliderItem_subtitle) && (
                         <Base.H5 className={this.decorateCSS("slider-item-subtitle")}>
-                          {item.subtitle}
+                          {item.sliderItem_subtitle}
                         </Base.H5>
                       )}
-                      {this.castToString(item.title) && (
+                      {this.castToString(item.sliderItem_title) && (
                         <Base.H2 className={this.decorateCSS("slider-item-text")}>
-                          <ComposerLink path={item.page}>
-                            {item.title}
+                          <ComposerLink path={item.sliderItem_page}>
+                            {item.sliderItem_title}
                           </ComposerLink>
                         </Base.H2>
                       )}
-                      {this.castToString(item.description) && (
+                      {this.castToString(item.sliderItem_description) && (
                         <Base.P className={this.decorateCSS("slider-item-description")}>
-                          {item.description}
+                          {item.sliderItem_description}
                         </Base.P>
                       )}
                     </Base.VerticalContent>
@@ -875,18 +875,18 @@ class HeroSection12 extends BaseHeroSection {
                 {...rightSliderSettings}
               >
                 {rightSliderItems.map((item: SliderItem, index: number) => {
-                  const imageWithSettings = item.image?.type === "video" ? {
-                    ...item.image,
+                  const imageWithSettings = item.sliderItem_image?.type === "video" ? {
+                    ...item.sliderItem_image,
                     settings: {
                       autoplay: true,
                       loop: true,
                       muted: true,
                       controls: false
                     }
-                  } : item.image;
+                  } : item.sliderItem_image;
                   return (
                   <div key={index} className={this.decorateCSS("slider-item")}>
-                    {item.image && (
+                    {item.sliderItem_image && (
                       <div
                         className={this.decorateCSS("image-overlay-container")}
                       >
@@ -894,35 +894,35 @@ class HeroSection12 extends BaseHeroSection {
                           className={this.decorateCSS("slider-item-image")}
                           value={imageWithSettings}
                         />
-                        {showOverlay && (item.image.type === "image" || item.image.type === "video") && item.image.url && (
+                        {showOverlay && (item.sliderItem_image.type === "image" || item.sliderItem_image.type === "video") && item.sliderItem_image.url && (
                           <div className={this.decorateCSS("image-overlay")} />
                         )}
                       </div>
                     )}
                     <Base.VerticalContent className={`${this.decorateCSS("slider-item-content")} ${
-                      !item.image && this.decorateCSS("no-image-text")
+                      !item.sliderItem_image && this.decorateCSS("no-image-text")
                     }`}>
-                      {item.logo && (
+                      {item.sliderItem_logo && (
                         <Base.Media
-                          value={item.logo}
-                          className={`${this.decorateCSS("logo")} ${item.logo.type == "image" && this.decorateCSS("logo-image")}`}
+                          value={item.sliderItem_logo}
+                          className={`${this.decorateCSS("logo")} ${item.sliderItem_logo.type == "image" && this.decorateCSS("logo-image")}`}
                         />
                       )}
-                      {this.castToString(item.subtitle) && (
+                      {this.castToString(item.sliderItem_subtitle) && (
                         <Base.H5 className={this.decorateCSS("slider-item-subtitle")}>
-                          {item.subtitle}
+                          {item.sliderItem_subtitle}
                         </Base.H5>
                       )}
-                      {this.castToString(item.title) && (
-                        <ComposerLink path={item.page}>
+                      {this.castToString(item.sliderItem_title) && (
+                        <ComposerLink path={item.sliderItem_page}>
                           <Base.H2 className={this.decorateCSS("slider-item-text")}>
-                              {item.title}
+                              {item.sliderItem_title}
                           </Base.H2>
                         </ComposerLink>
                       )}
-                      {this.castToString(item.description) && (
+                      {this.castToString(item.sliderItem_description) && (
                         <Base.P className={this.decorateCSS("slider-item-description")}>
-                          {item.description}
+                          {item.sliderItem_description}
                         </Base.P>
                       )}
                     </Base.VerticalContent>

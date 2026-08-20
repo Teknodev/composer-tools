@@ -7,7 +7,7 @@ import { Base } from "../../../composer-base-components/base/base";
 
 type Card = {
   image: TypeMediaInputValue;
-  title: string;
+  card_title: string;
   description: string;
   firstIcon: string;
   secondIcon: string;
@@ -104,7 +104,7 @@ class Team15 extends Team {
           value: [
             {
               type: "string",
-              key: "title",
+              key: "card_title",
               displayer: "Title",
               value: "Aleesha Charlotte",
             },
@@ -165,7 +165,7 @@ class Team15 extends Team {
           value: [
             {
               type: "string",
-              key: "title",
+              key: "card_title",
               displayer: "Title",
               value: "David Michale",
             },
@@ -227,7 +227,7 @@ class Team15 extends Team {
           value: [
             {
               type: "string",
-              key: "title",
+              key: "card_title",
               displayer: "Title",
               value: "Jorge Schiro",
             },
@@ -288,7 +288,7 @@ class Team15 extends Team {
           value: [
             {
               type: "string",
-              key: "title",
+              key: "card_title",
               displayer: "Title",
               value: "John Arlnoald",
             },

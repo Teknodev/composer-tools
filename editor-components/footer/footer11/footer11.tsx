@@ -14,7 +14,7 @@ type FooterValues = {
   footerTitle: React.JSX.Element;
   footerTitleLink: string;
   footerTitleMedia: TypeMediaInputValue;
-  footerText: FooterTextValues[];
+  footer_title_footerText: FooterTextValues[];
 };
 
 type FooterTextValues = {
@@ -78,7 +78,7 @@ class Footer11Page extends BaseFooter {
             },
             {
               type: "array",
-              key: "footerText",
+              key: "footer_title_footerText",
               displayer: "Menu Subitem",
               value: [
                 {
@@ -179,7 +179,7 @@ class Footer11Page extends BaseFooter {
             },
             {
               type: "array",
-              key: "footerText",
+              key: "footer_title_footerText",
               displayer: "Menu Subitem",
               value: [
                 {
@@ -280,7 +280,7 @@ class Footer11Page extends BaseFooter {
             },
             {
               type: "array",
-              key: "footerText",
+              key: "footer_title_footerText",
               displayer: "Menu Subitem",
               value: [
                 {
@@ -497,7 +497,7 @@ class Footer11Page extends BaseFooter {
     const columnsExist = footer.some((item: FooterValues) => {
       const footerTitleExist = this.castToString(item.footerTitle);
       const footerTitleMediaExist = hasMedia(item.footerTitleMedia);
-      const hasItems = item.footerText?.some((v: FooterTextValues) => this.castToString(v.navTitle) || hasMedia(v.navMedia));
+      const hasItems = item.footer_title_footerText?.some((v: FooterTextValues) => this.castToString(v.navTitle) || hasMedia(v.navMedia));
       return footerTitleExist || footerTitleMediaExist || hasItems;
     });
 
@@ -514,7 +514,7 @@ class Footer11Page extends BaseFooter {
               {footer.map((item: FooterValues, indexFooter: number) => {
                 const footerTitleExist = this.castToString(item.footerTitle);
                 const footerTitleMediaExist = hasMedia(item.footerTitleMedia);
-                const hasItems = item.footerText?.some((v: FooterTextValues) => this.castToString(v.navTitle) || hasMedia(v.navMedia));
+                const hasItems = item.footer_title_footerText?.some((v: FooterTextValues) => this.castToString(v.navTitle) || hasMedia(v.navMedia));
                 const listExist = footerTitleExist || footerTitleMediaExist || hasItems;
                 return (
                   listExist && (
@@ -531,7 +531,7 @@ class Footer11Page extends BaseFooter {
                       )}
                       {hasItems && (
                         <Base.VerticalContent className={this.decorateCSS("text-container")}>
-                          {item.footerText.map((v: FooterTextValues, indexFooterText: number) => {
+                          {item.footer_title_footerText.map((v: FooterTextValues, indexFooterText: number) => {
                             const textExist = this.castToString(v.navTitle);
                             const navMediaExist = hasMedia(v.navMedia);
                             return (

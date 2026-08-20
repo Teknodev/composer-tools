@@ -63,7 +63,7 @@ class Testimonials15Page extends Testimonials {
             value: [
                 {
                     type: "boolean",
-                    key: "visibility",
+                    key: "topRightBox_visibility",
                     displayer: "Visibility",
                     value: true,
                 },
@@ -99,7 +99,7 @@ class Testimonials15Page extends Testimonials {
             value: [
                 {
                     type: "boolean",
-                    key: "visibility",
+                    key: "bottomRightBox_visibility",
                     displayer: "Visibility",
                     value: true,
                 },
@@ -148,7 +148,7 @@ class Testimonials15Page extends Testimonials {
             value: [
                 {
                     type: "boolean",
-                    key: "visibility",
+                    key: "videoBox_visibility",
                     displayer: "Visibility",
                     value: true,
                 },
@@ -234,9 +234,9 @@ class Testimonials15Page extends Testimonials {
         const renderRightSide = visibleCount > 0;
 
         const leftExist = this.getPropValue("image") || (bottomLeftBox.visibility && (this.castToString(bottomLeftBox.title) || this.castToString(bottomLeftBox.subtitle) || bottomLeftBox.number));
-        const topExist = topRightBox.visibility && (this.castToString(topRightBox.text) || this.castToString(topRightBox.mainTitle) || button.icon || this.castToString(button.text));
-        const bottomExist = bottomRightBox.visibility && (this.castToString(bottomRightBox.description) || this.castToString(bottomRightBox.name) || bottomRightBox.starNumber);
-        const videoExist = videoBox.visibility;
+        const topExist = topRightBox.topRightBox_visibility && (this.castToString(topRightBox.text) || this.castToString(topRightBox.mainTitle) || button.icon || this.castToString(button.text));
+        const bottomExist = bottomRightBox.bottomRightBox_visibility && (this.castToString(bottomRightBox.description) || this.castToString(bottomRightBox.name) || bottomRightBox.starNumber);
+        const videoExist = videoBox.videoBox_visibility;
         
         const rightExist = topExist || bottomExist || videoExist;
         
@@ -285,7 +285,7 @@ class Testimonials15Page extends Testimonials {
                             </div>
                             {renderRightSide && (
                                 <div className={`${this.decorateCSS("right-section")} ${rightSectionClass}`}>
-                                    {topRightBox.visibility && (
+                                    {topRightBox.topRightBox_visibility && (
                                         <div className={this.decorateCSS("top-right-content")}>
                                             <Base.VerticalContent className={this.decorateCSS("content-wrapper")}>
                                                 <Base.SectionSubTitle className={`${this.decorateCSS("content-header")} ${this.decorateCSS("line")}`}>
@@ -318,9 +318,9 @@ class Testimonials15Page extends Testimonials {
                                             </Base.VerticalContent>
                                         </div>
                                     )}
-                                    {(bottomRightBox.visibility || videoBox.visibility) && (
+                                    {(bottomRightBox.bottomRightBox_visibility || videoBox.videoBox_visibility) && (
                                         <div className={this.decorateCSS("bottom-row")}>
-                                            {bottomRightBox.visibility && (
+                                            {bottomRightBox.bottomRightBox_visibility && (
                                                 <Base.VerticalContent className={this.decorateCSS("bottom-right-content")}>
                                                     <div className={this.decorateCSS("quote-container")}>
                                                         <div className={this.decorateCSS("stars-container")}>
@@ -354,7 +354,7 @@ class Testimonials15Page extends Testimonials {
                                                     </div>
                                                 </Base.VerticalContent>
                                             )}
-                                            {videoBox.visibility && (
+                                            {videoBox.videoBox_visibility && (
                                                 <div className={this.decorateCSS("video-content")}>
                                                     <div 
                                                         className={this.decorateCSS("video-container")}

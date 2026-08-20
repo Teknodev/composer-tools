@@ -77,7 +77,7 @@ class Form8 extends BaseContacts {
               value: [
                 {
                   type: "string",
-                  key: "title",
+                  key: "contact_title",
                   value: "Email:",
                   displayer: "Title",
                 },
@@ -96,7 +96,7 @@ class Form8 extends BaseContacts {
               value: [
                 {
                   type: "string",
-                  key: "title",
+                  key: "contact_title",
                   value: "Phone:",
                   displayer: "Title",
                 },
@@ -115,7 +115,7 @@ class Form8 extends BaseContacts {
               value: [
                 {
                   type: "string",
-                  key: "title",
+                  key: "contact_title",
                   value: "Skype:",
                   displayer: "Title",
                 },
@@ -154,7 +154,7 @@ class Form8 extends BaseContacts {
                   value: [
                     {
                       type: "object",
-                      key: "input",
+                      key: "inputs_input",
                       displayer: "Input",
                       value: [
                         {
@@ -208,7 +208,7 @@ class Form8 extends BaseContacts {
                   value: [
                     {
                       type: "object",
-                      key: "input",
+                      key: "inputs_input",
                       displayer: "Input",
                       value: [
                         {
@@ -262,7 +262,7 @@ class Form8 extends BaseContacts {
                   value: [
                     {
                       type: "object",
-                      key: "input",
+                      key: "inputs_input",
                       displayer: "Input",
                       value: [
                         {

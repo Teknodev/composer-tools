@@ -6,7 +6,7 @@ import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "../../../custom-hooks/input-templates";
 
 type MediaGroup = {
-    media: TypeMediaInputValue;
+    media_media: TypeMediaInputValue;
     overlay: boolean;
 };
 
@@ -49,7 +49,7 @@ class About13 extends BaseAbout {
             value: [
                 {
                     type: "media",
-                    key: "media",
+                    key: "media_media",
                     displayer: "Media",
                     value: {
                         url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/692d8a9e496aa1002ca4869f?alt=media",
@@ -73,7 +73,7 @@ class About13 extends BaseAbout {
 
     render() {
         const mediaGroup = this.castToObject<MediaGroup>("media");
-        const image = mediaGroup?.media;
+        const image = mediaGroup.media_media;
         const isImageExist = !!image;
         const subtitleExist = this.castToString(this.getPropValue("subtitle"));
         const titleExist = this.castToString(this.getPropValue("title"));
