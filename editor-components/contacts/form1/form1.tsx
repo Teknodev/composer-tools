@@ -8,10 +8,10 @@ import { INPUTS } from "../../../custom-hooks/input-templates";
 type Item = {
   icon: TypeMediaInputValue;
   isIconFilled: boolean;
-  subtitle: React.JSX.Element;
-  title: React.JSX.Element;
-  description: React.JSX.Element;
-  buttons: Button[];
+  card_subtitle: React.JSX.Element;
+  card_title: React.JSX.Element;
+  card_description: React.JSX.Element;
+  card_buttons: Button[];
   rows: { item: React.JSX.Element }[];
 };
 
@@ -94,25 +94,25 @@ class Form1 extends BaseContacts {
             },
             {
               type: "string",
-              key: "subtitle",
+              key: "card_subtitle",
               displayer: "Subtitle",
               value: "",
             },
             {
               type: "string",
-              key: "title",
+              key: "card_title",
               displayer: "Title",
               value: "Send Email",
             },
             {
               type: "string",
-              key: "description",
+              key: "card_description",
               displayer: "Description",
               value: "",
             },
             {
               type: "array",
-              key: "buttons",
+              key: "card_buttons",
               displayer: "Buttons",
               value: [
                 INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
@@ -125,7 +125,7 @@ class Form1 extends BaseContacts {
               value: [
                 {
                   type: "object",
-                  key: "item",
+                  key: "rowItem",
                   displayer: "Input",
                   value: [
                     {
@@ -138,7 +138,7 @@ class Form1 extends BaseContacts {
                 },
                 {
                   type: "object",
-                  key: "item",
+                  key: "rowItem",
                   displayer: "Input",
                   value: [
                     {
@@ -178,25 +178,25 @@ class Form1 extends BaseContacts {
             },
             {
               type: "string",
-              key: "subtitle",
+              key: "card_subtitle",
               displayer: "Subtitle",
               value: "",
             },
             {
               type: "string",
-              key: "title",
+              key: "card_title",
               displayer: "Title",
               value: "Call Us",
             },
             {
               type: "string",
-              key: "description",
+              key: "card_description",
               displayer: "Description",
               value: "",
             },
             {
               type: "array",
-              key: "buttons",
+              key: "card_buttons",
               displayer: "Buttons",
               value: [
                 INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
@@ -209,7 +209,7 @@ class Form1 extends BaseContacts {
               value: [
                 {
                   type: "object",
-                  key: "item",
+                  key: "rowItem",
                   displayer: "Input",
                   value: [
                     {
@@ -222,7 +222,7 @@ class Form1 extends BaseContacts {
                 },
                 {
                   type: "object",
-                  key: "item",
+                  key: "rowItem",
                   displayer: "Input",
                   value: [
                     {
@@ -262,25 +262,25 @@ class Form1 extends BaseContacts {
             },
             {
               type: "string",
-              key: "subtitle",
+              key: "card_subtitle",
               displayer: "Subtitle",
               value: "",
             },
             {
               type: "string",
-              key: "title",
+              key: "card_title",
               displayer: "Title",
               value: "Address",
             },
             {
               type: "string",
-              key: "description",
+              key: "card_description",
               displayer: "Description",
               value: "",
             },
             {
               type: "array",
-              key: "buttons",
+              key: "card_buttons",
               displayer: "Buttons",
               value: [
                 INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
@@ -293,7 +293,7 @@ class Form1 extends BaseContacts {
               value: [
                 {
                   type: "object",
-                  key: "item",
+                  key: "rowItem",
                   displayer: "Input",
                   value: [
                     {
@@ -306,7 +306,7 @@ class Form1 extends BaseContacts {
                 },
                 {
                   type: "object",
-                  key: "item",
+                  key: "rowItem",
                   displayer: "Input",
                   value: [
                     {
@@ -388,10 +388,10 @@ class Form1 extends BaseContacts {
             <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount"), tablet: 3, phone: 1 }} className={this.decorateCSS("cards-container")}>
               {cards.map((item: Item, index: number) => {
                 const iconExist = item.icon && (item.icon.type === "icon" ? item.icon.name : item.icon.url);
-                const cardTitleExist = !!this.castToString(item.title);
-                const cardSubtitleExist = this.castToString(item.subtitle);
-                const cardDescriptionExist = this.castToString(item.description);
-                const cardButtons = item.buttons || [];
+                const cardTitleExist = !!this.castToString(item.card_title);
+                const cardSubtitleExist = this.castToString(item.card_subtitle);
+                const cardDescriptionExist = this.castToString(item.card_description);
+                const cardButtons = item.card_buttons || [];
                 const hasValidCardButtons = cardButtons.some((btn: Button) => {
                   const btnText = this.castToString(btn.text);
                   const btnIconExist = btn.icon && (btn.icon.type === "icon" ? btn.icon.name : btn.icon.url);
@@ -414,9 +414,9 @@ class Form1 extends BaseContacts {
                             />
                           </div>
                         )}
-                        {cardSubtitleExist && <Base.H6 className={this.decorateCSS("card-subtitle")}>{item.subtitle}</Base.H6>}
-                        {cardTitleExist && <Base.H5 className={this.decorateCSS("title")}>{item.title}</Base.H5>}
-                        {cardDescriptionExist && <Base.P className={this.decorateCSS("card-description")}>{item.description}</Base.P>}
+                        {cardSubtitleExist && <Base.H6 className={this.decorateCSS("card-subtitle")}>{item.card_subtitle}</Base.H6>}
+                        {cardTitleExist && <Base.H5 className={this.decorateCSS("title")}>{item.card_title}</Base.H5>}
+                        {cardDescriptionExist && <Base.P className={this.decorateCSS("card-description")}>{item.card_description}</Base.P>}
                         {item.rows.map((row: { item: React.JSX.Element }, rowIndex: number) => {
                           const itemExist = this.castToString(row.item);
                           return itemExist && <Base.P key={rowIndex} className={this.decorateCSS("row-item")}>{row.item}</Base.P>;
