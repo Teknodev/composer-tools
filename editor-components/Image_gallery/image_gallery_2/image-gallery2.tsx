@@ -12,7 +12,7 @@ type ImageType = {
 
 type sectionType = {
     title: string;
-    imageGallery_section: ImageType[];
+    imageGallery: ImageType[];
 };
 
 class ImageGallery2 extends BaseImageGallery {
@@ -868,9 +868,9 @@ class ImageGallery2 extends BaseImageGallery {
         const currentIndex: number = this.getComponentState("default");
 
         if (this.getPropValue("showAll") && currentIndex === -1) {
-            return galleryCollection.flatMap((section) => section.imageGallery_section) || [];
+            return galleryCollection.flatMap((section) => section.imageGallery) || [];
         }
-        return galleryCollection[currentIndex].imageGallery_section || [];
+        return galleryCollection[currentIndex]?.imageGallery || [];
     }
 
     static getName(): string {

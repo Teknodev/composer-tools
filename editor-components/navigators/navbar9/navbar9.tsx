@@ -6,8 +6,13 @@ import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "../../../custom-hooks/input-templates";
 
 interface Logo {
-  absoluteLogo_image: TypeMediaInputValue;
-  absoluteLogo_navigateTo: string;
+  // `defaultLogo` keeps the original keys; `absoluteLogo` was made unique with a
+  // prefix by the unique-prop-key rename. currentLogo can be either, so it holds
+  // both shapes (optional) and is normalized before use.
+  image?: TypeMediaInputValue;
+  navigateTo?: string;
+  absoluteLogo_image?: TypeMediaInputValue;
+  absoluteLogo_navigateTo?: string;
 }
 
 interface MenuItems {
@@ -1201,8 +1206,8 @@ class Navbar9 extends BaseNavigator {
     const changeBackground = this.getComponentState("changeBackground");
     const currentLogo =
       ((transparentBackground && !changeBackground) || (hamburgerNavActive && isBigScreen)) && !isScrolled
-        ? absoluteLogo
-        : defaultLogo;
+        ? { image: absoluteLogo.absoluteLogo_image, navigateTo: absoluteLogo.absoluteLogo_navigateTo }
+        : { image: defaultLogo.image, navigateTo: defaultLogo.navigateTo };
 
     const menuItems = this.castToObject<MenuItems[]>("menuItems");
     const overlay = this.getPropValue("overlay");
@@ -1232,12 +1237,12 @@ class Navbar9 extends BaseNavigator {
           setIsScrolled={(value: boolean) => this.setComponentState("isScrolled", value)}
         >
           <Base.MaxContent className={`${this.decorateCSS("maxContent")} ${transparentBackground ? this.decorateCSS("transparentBackground") : ""} ${hamburgerNavActive ? this.decorateCSS("hamburgerActive") : ""}`}>
-            {currentLogo.absoluteLogo_image && (
-              <ComposerLink path={currentLogo.absoluteLogo_navigateTo}>
+            {currentLogo.image && (
+              <ComposerLink path={currentLogo.navigateTo}>
                 <div className={this.decorateCSS("logo")}>
                   <div onClick={()=> this.handleCloseMenu()}>
                     <Base.Media
-                      value={currentLogo.absoluteLogo_image}
+                      value={currentLogo.image}
                       className={this.decorateCSS("logoImage")}
                     />
                   </div>

@@ -7,8 +7,13 @@ import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "../../../custom-hooks/input-templates";
 
 interface Logo {
-  absoluteLogo_image: TypeMediaInputValue;
-  absoluteLogo_navigateTo: string;
+  // `defaultLogo` keeps the original keys; `absoluteLogo` was made unique with a
+  // prefix by the unique-prop-key rename. currentLogo can be either, so it holds
+  // both shapes (optional) and is normalized before use.
+  image?: TypeMediaInputValue;
+  navigateTo?: string;
+  absoluteLogo_image?: TypeMediaInputValue;
+  absoluteLogo_navigateTo?: string;
 }
 
 interface Icon {
@@ -1201,7 +1206,9 @@ class Navbar6 extends BaseNavigator {
     const hamburgerNavActive = this.getComponentState("hamburgerNavActive");
     const changeBackground = this.getComponentState("changeBackground");
     const currentLogo =
-      transparentBackground && !changeBackground ? absoluteLogo : defaultLogo;
+      transparentBackground && !changeBackground
+        ? { image: absoluteLogo.absoluteLogo_image, navigateTo: absoluteLogo.absoluteLogo_navigateTo }
+        : { image: defaultLogo.image, navigateTo: defaultLogo.navigateTo };
     const icons = this.castToObject<Icon[]>("icons");
     const menuItems = this.castToObject<MenuItem[]>("menuItems");
     const divider = this.getPropValue("divider");
@@ -1346,12 +1353,12 @@ class Navbar6 extends BaseNavigator {
                 </nav>
               )}
 
-              {currentLogo.absoluteLogo_image && (
+              {currentLogo.image && (
                 <div className={this.decorateCSS("logo")}>
-                  <ComposerLink path={currentLogo.absoluteLogo_navigateTo}>
+                  <ComposerLink path={currentLogo.navigateTo}>
                     <div onClick={()=> this.handleCloseMenu()}>
                       <Base.Media
-                        value={currentLogo.absoluteLogo_image}
+                        value={currentLogo.image}
                         className={this.decorateCSS("logoImage")}
                       />
                     </div>

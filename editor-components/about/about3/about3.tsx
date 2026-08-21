@@ -7,8 +7,10 @@ import ComposerLink from "../../../composer-base-components/Link/ComposerLinkPro
 import { INPUTS } from "../../../custom-hooks/input-templates";
 
 type ImageMedia = {
-  front_image_media: TypeMediaInputValue;
-  front_image_overlay: boolean;
+  media?: TypeMediaInputValue;
+  overlay?: boolean;
+  front_image_media?: TypeMediaInputValue;
+  front_image_overlay?: boolean;
 };
 
 class About3 extends BaseAbout {
@@ -158,8 +160,8 @@ class About3 extends BaseAbout {
 
     const backImage = this.castToObject<ImageMedia>("back-image");
     const frontImage = this.castToObject<ImageMedia>("front-image");
-    const backMedia = backImage.front_image_media;
-    const frontMedia = frontImage.front_image_media;
+    const backMedia = backImage?.media;
+    const frontMedia = frontImage?.front_image_media;
 
     const isImage1Exist = !!backMedia;
     const isImage2Exist = !!frontMedia;
@@ -257,7 +259,7 @@ class About3 extends BaseAbout {
                       muted={true}
                       loop={true}
                     />
-                    {backImage.front_image_overlay && (
+                    {backImage?.overlay && (
                       <div className={this.decorateCSS("overlay")} />
                     )}
                   </div>
@@ -272,7 +274,7 @@ class About3 extends BaseAbout {
                       muted={true}
                       loop={true}
                     />
-                    {frontImage.front_image_overlay && (
+                    {frontImage?.front_image_overlay && (
                       <div className={this.decorateCSS("overlay")} />
                     )}
                   </div>

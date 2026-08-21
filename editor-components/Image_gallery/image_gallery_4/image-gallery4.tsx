@@ -562,7 +562,12 @@ class ImageGallery4 extends BaseImageGallery {
   makeArrayPure(arr: any[]): Image[] {
     if (!arr?.length) return [];
 
-    return arr.filter((el) => el !== undefined);
+    return arr
+      .filter((el) => el !== undefined)
+      .map((el: any) => ({
+        ...el,
+        image_item_image: el?.image_item_image ?? el?.image,
+      }));
   }
 
   getImages(): Image[] {
@@ -736,7 +741,7 @@ class ImageGallery4 extends BaseImageGallery {
 
           </div>
 
-          {galleryItems[this.getComponentState("focusedImage")].image_item_image && (
+          {galleryItems[this.getComponentState("focusedImage")]?.image_item_image && (
             <Base.Overlay isVisible={true} className={this.getComponentState("isFocused") ? this.decorateCSS("gallery-item-fullscreen") : ""}>
               {icons.nextIcon && (
                 <div className={this.decorateCSS("right-arrow")} onClick={this.nextImage}>

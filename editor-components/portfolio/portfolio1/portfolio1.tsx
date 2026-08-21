@@ -12,6 +12,13 @@ type SideCard = {
   rightCard_buttons?: INPUTS.CastedButton[];
 };
 
+type LeftCard = {
+  subtitle: React.JSX.Element;
+  title: React.JSX.Element;
+  description: React.JSX.Element;
+  buttons?: INPUTS.CastedButton[];
+};
+
 class Portfolio1 extends BasePortfolio {
   constructor(props?: any) {
     super(props, styles);
@@ -133,8 +140,7 @@ class Portfolio1 extends BasePortfolio {
     });
   }
 
-  private getButtonsFromItem(item: SideCard) {
-    const buttonsArray = item.rightCard_buttons;
+  private getButtonsFromItem(buttonsArray?: INPUTS.CastedButton[]) {
     if (!Array.isArray(buttonsArray)) return [];
 
     return buttonsArray.map((btn: any) => {
@@ -209,12 +215,12 @@ class Portfolio1 extends BasePortfolio {
   }
 
   private renderLeftSide() {
-    const card = this.castToObject<SideCard>("leftCard");
-    const buttons = this.getButtonsFromItem(card);
+    const card = this.castToObject<LeftCard>("leftCard");
+    const buttons = this.getButtonsFromItem(card.buttons);
 
-    const subtitle = card.rightCard_subtitle;
-    const title = card.rightCard_title;
-    const description = card.rightCard_description;
+    const subtitle = card.subtitle;
+    const title = card.title;
+    const description = card.description;
 
     const hasSubtitle = this.castToString(subtitle);
     const hasTitle = this.castToString(title);
@@ -254,7 +260,7 @@ class Portfolio1 extends BasePortfolio {
 
   private renderRightSide() {
     const card = this.castToObject<SideCard>("rightCard");
-    const buttons = this.getButtonsFromItem(card);
+    const buttons = this.getButtonsFromItem(card.rightCard_buttons);
 
     const subtitle = card.rightCard_subtitle;
     const title = card.rightCard_title;

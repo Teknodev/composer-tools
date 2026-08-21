@@ -28,7 +28,7 @@ type ReviewItem = {
 
 type CategoryOrTag = {
   section_title: React.JSX.Element;
-  items_item: { category?: React.JSX.Element; tag?: React.JSX.Element }[];
+  items: { category?: React.JSX.Element; tag?: React.JSX.Element }[];
 }
 
 type Icons = {
@@ -788,9 +788,9 @@ class ECommerce1 extends BaseECommerce {
                   {categoriesAndTags.map((item, index) => (
                     <div key={index} className={this.decorateCSS("category")}>
                       {this.castToString(item.section_title) && (<Base.P className={this.decorateCSS("categoryLabel")}>{item.section_title}</Base.P>)}
-                      {(item.items_item.length > 0) && (
+                      {(item.items.length > 0) && (
                         <div className={this.decorateCSS("categoryText")}>
-                          {item.items_item.map((subItem, subIndex) => (
+                          {item.items.map((subItem, subIndex) => (
                             <Base.P key={subIndex} className={this.decorateCSS("text")}>
                               {subItem.category || subItem.tag}
                             </Base.P>

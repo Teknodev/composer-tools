@@ -14,6 +14,15 @@ type SliderItem = {
   sliderItem_page?: string;
 };
 
+type LeftSliderItem = {
+  logo: TypeMediaInputValue;
+  title: React.JSX.Element;
+  subtitle: React.JSX.Element;
+  description: React.JSX.Element;
+  image: TypeMediaInputValue;
+  page?: string;
+};
+
 class HeroSection12 extends BaseHeroSection {
   leftSliderRef: any;
   rightSliderRef: any;
@@ -686,7 +695,7 @@ class HeroSection12 extends BaseHeroSection {
     };
 
     const decorateIcon = { className: this.decorateCSS("icon") };
-    const leftSliderItems = this.castToObject<SliderItem[]>("leftSliderItems");
+    const leftSliderItems = this.castToObject<LeftSliderItem[]>("leftSliderItems");
     const rightSliderItems =
       this.castToObject<SliderItem[]>("rightSliderItems");
 
@@ -805,19 +814,19 @@ class HeroSection12 extends BaseHeroSection {
                 ref={(slider: any) => (this.leftSliderRef = slider)}
                 {...leftSliderSettings}
               >
-                {leftSliderItems.map((item: SliderItem, index: number) => {
-                  const imageWithSettings = item.sliderItem_image?.type === "video" ? {
-                    ...item.sliderItem_image,
+                {leftSliderItems.map((item: LeftSliderItem, index: number) => {
+                  const imageWithSettings = item.image?.type === "video" ? {
+                    ...item.image,
                     settings: {
                       autoplay: true,
                       loop: true,
                       muted: true,
                       controls: false
                     }
-                  } : item.sliderItem_image;
+                  } : item.image;
                   return (
                   <div key={index} className={this.decorateCSS("slider-item")}>
-                    {item.sliderItem_image && (
+                    {item.image && (
                       <div
                         className={this.decorateCSS("image-overlay-container")}
                       >
@@ -825,35 +834,35 @@ class HeroSection12 extends BaseHeroSection {
                           className={this.decorateCSS("slider-item-image")}
                           value={imageWithSettings}
                         />
-                        {showOverlay && (item.sliderItem_image.type === "image" || item.sliderItem_image.type === "video") && item.sliderItem_image.url && (
+                        {showOverlay && (item.image.type === "image" || item.image.type === "video") && item.image.url && (
                           <div className={this.decorateCSS("image-overlay")} />
                         )}
                       </div>
                     )}
                     <Base.VerticalContent className={`${this.decorateCSS("slider-item-content")} ${
-                      !item.sliderItem_image && this.decorateCSS("no-image-text")
+                      !item.image && this.decorateCSS("no-image-text")
                     }`}>
-                      {item.sliderItem_logo && (
+                      {item.logo && (
                         <Base.Media
-                          value={item.sliderItem_logo}
-                          className={`${this.decorateCSS("logo")} ${item.sliderItem_logo.type == "image" && this.decorateCSS("logo-image")}`}
+                          value={item.logo}
+                          className={`${this.decorateCSS("logo")} ${item.logo.type == "image" && this.decorateCSS("logo-image")}`}
                         />
                       )}
-                      {this.castToString(item.sliderItem_subtitle) && (
+                      {this.castToString(item.subtitle) && (
                         <Base.H5 className={this.decorateCSS("slider-item-subtitle")}>
-                          {item.sliderItem_subtitle}
+                          {item.subtitle}
                         </Base.H5>
                       )}
-                      {this.castToString(item.sliderItem_title) && (
+                      {this.castToString(item.title) && (
                         <Base.H2 className={this.decorateCSS("slider-item-text")}>
-                          <ComposerLink path={item.sliderItem_page}>
-                            {item.sliderItem_title}
+                          <ComposerLink path={item.page}>
+                            {item.title}
                           </ComposerLink>
                         </Base.H2>
                       )}
-                      {this.castToString(item.sliderItem_description) && (
+                      {this.castToString(item.description) && (
                         <Base.P className={this.decorateCSS("slider-item-description")}>
-                          {item.sliderItem_description}
+                          {item.description}
                         </Base.P>
                       )}
                     </Base.VerticalContent>

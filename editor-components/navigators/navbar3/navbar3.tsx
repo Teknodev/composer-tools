@@ -18,8 +18,13 @@ type Item = {
 };
 
 interface Logo {
-  absoluteLogo_image: TypeMediaInputValue;
-  absoluteLogo_navigateTo: string;
+  // `defaultLogo` keeps the original keys; `absoluteLogo` was made unique with a
+  // prefix by the unique-prop-key rename. currentLogo can be either, so it holds
+  // both shapes (optional) and is normalized before use.
+  image?: TypeMediaInputValue;
+  navigateTo?: string;
+  absoluteLogo_image?: TypeMediaInputValue;
+  absoluteLogo_navigateTo?: string;
 }
 
 interface Language {
@@ -1308,8 +1313,8 @@ class Navbar3 extends BaseNavigator {
 
     const currentLogo =
       (transparentBackground && !changeBackground)
-        ? absoluteLogo
-        : defaultLogo;
+        ? { image: absoluteLogo.absoluteLogo_image, navigateTo: absoluteLogo.absoluteLogo_navigateTo }
+        : { image: defaultLogo.image, navigateTo: defaultLogo.navigateTo };
 
     const language = this.castToObject<Language>("language");
 
@@ -1375,11 +1380,11 @@ class Navbar3 extends BaseNavigator {
                 : ""
             }`}
           >
-            {currentLogo.absoluteLogo_image && (
+            {currentLogo.image && (
               <div className={this.decorateCSS("logo")}>
-                <ComposerLink path={currentLogo.absoluteLogo_navigateTo}>
+                <ComposerLink path={currentLogo.navigateTo}>
                   <Base.Media
-                    value={currentLogo.absoluteLogo_image}
+                    value={currentLogo.image}
                     className={this.decorateCSS("logoImage")}
                   />
                 </ComposerLink>
@@ -1534,11 +1539,11 @@ class Navbar3 extends BaseNavigator {
                 : ""
             }`}
           >
-            {currentLogo.absoluteLogo_image && (
+            {currentLogo.image && (
               <div className={this.decorateCSS("logo")} onClick={() => this.handleCloseMenu()}>
-                <ComposerLink path={currentLogo.absoluteLogo_navigateTo}>
+                <ComposerLink path={currentLogo.navigateTo}>
                   <Base.Media
-                    value={currentLogo.absoluteLogo_image}
+                    value={currentLogo.image}
                     className={this.decorateCSS("logoImage")}
                   />
                 </ComposerLink>

@@ -39,8 +39,13 @@ interface MenuItems {
   rightSection?: RightSection;
 }
 interface Logo {
-  absoluteLogo_image: TypeMediaInputValue;
-  absoluteLogo_urlTo: string;
+  // `defaultLogo` keeps the original keys; `absoluteLogo` was made unique with a
+  // prefix by the unique-prop-key rename. currentLogo can be either, so it holds
+  // both shapes (optional) and is normalized before use.
+  image?: TypeMediaInputValue;
+  urlTo?: string;
+  absoluteLogo_image?: TypeMediaInputValue;
+  absoluteLogo_urlTo?: string;
 }
 
 class Navbar10 extends BaseNavigator {
@@ -2453,8 +2458,8 @@ class Navbar10 extends BaseNavigator {
     const currentLogo =
       (transparentBackground && !changeBackground) ||
       (hamburgerNavActive && !isMobile)
-        ? absoluteLogo
-        : defaultLogo;
+        ? { image: absoluteLogo.absoluteLogo_image, urlTo: absoluteLogo.absoluteLogo_urlTo }
+        : { image: defaultLogo.image, urlTo: defaultLogo.urlTo };
 
     const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
     const navigationIcons = this.castToObject<{
@@ -2504,9 +2509,9 @@ class Navbar10 extends BaseNavigator {
                   className={this.decorateCSS("logo")}
                   onClick={() => this.handleCloseMenu()}
                 >
-                  <ComposerLink path={currentLogo.absoluteLogo_urlTo}>
+                  <ComposerLink path={currentLogo.urlTo}>
                     <Base.Media
-                      value={currentLogo.absoluteLogo_image}
+                      value={currentLogo.image}
                       className={this.decorateCSS("logoImage")}
                     />
                   </ComposerLink>

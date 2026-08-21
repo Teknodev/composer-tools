@@ -451,7 +451,7 @@ class Form8 extends BaseContacts {
                 {secondTextExist && <Base.P className={this.decorateCSS("paragraph")}> {secondText} </Base.P>}
                 <Base.VerticalContent className={this.decorateCSS("contact-texts")}>
                   {contactTexts.map((item: any, i) => {
-                    const title = item.getPropValue("title");
+                    const title = item.getPropValue("contact_title");
                     const text = item.getPropValue("text");
                     const titleExist = !!this.castToString(title);
                     const textExist = !!this.castToString(text);

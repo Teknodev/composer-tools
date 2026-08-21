@@ -16,8 +16,13 @@ type MenuItems = {
 };
 
 interface Logo {
-  absoluteLogo_image: TypeMediaInputValue;
-  absoluteLogo_navigateTo: string;
+  // `defaultLogo` keeps the original keys; `absoluteLogo` was made unique with a
+  // prefix by the unique-prop-key rename. currentLogo can be either, so it holds
+  // both shapes (optional) and is normalized before use.
+  image?: TypeMediaInputValue;
+  navigateTo?: string;
+  absoluteLogo_image?: TypeMediaInputValue;
+  absoluteLogo_navigateTo?: string;
 }
 
 interface Language {
@@ -444,8 +449,8 @@ class Navbar8 extends BaseNavigator {
     const colorfullBackground = isStickyColorful || isDefault;
     const currentLogo =
       ((colorfullBackground && backgroundChange) || (transparentBackground && !backgroundChange))
-        ? absoluteLogo
-        : defaultLogo;
+        ? { image: absoluteLogo.absoluteLogo_image, navigateTo: absoluteLogo.absoluteLogo_navigateTo }
+        : { image: defaultLogo.image, navigateTo: defaultLogo.navigateTo };
 
     const dropdownSocialMediaTitle = this.castToString(
       this.getPropValue("dropdownSocialMediaTitle")
@@ -488,11 +493,11 @@ class Navbar8 extends BaseNavigator {
               : ""
             } ${backgroundChange ? this.decorateCSS("openedMaxContent") : ""}`}
         >
-          {currentLogo.absoluteLogo_image && (
+          {currentLogo.image && (
             <div onClick={() => this.setComponentState("isMenuOpen", false)} className={this.decorateCSS("logo")}>
-              <ComposerLink path={currentLogo.absoluteLogo_navigateTo}>
+              <ComposerLink path={currentLogo.navigateTo}>
                 <Base.Media
-                  value={currentLogo.absoluteLogo_image}
+                  value={currentLogo.image}
                   className={`${this.decorateCSS("logoImage")} ${backgroundChange ? this.decorateCSS("openedLogoImage") : ""}`}
                   onClick={()=> this.handleCloseMenu()}
                 />
