@@ -71,7 +71,7 @@ class ImageGallery2 extends BaseImageGallery {
                             value: [
                                 {
                                     type: "object",
-                                    key: "section",
+                                    key: "imageGallery_section",
                                     displayer: "Section",
                                     value: [
                                         {
@@ -96,7 +96,7 @@ class ImageGallery2 extends BaseImageGallery {
                                 },
                                 {
                                     type: "object",
-                                    key: "section",
+                                    key: "imageGallery_section",
                                     displayer: "Section",
                                     value: [
                                         {
@@ -121,7 +121,7 @@ class ImageGallery2 extends BaseImageGallery {
                                 },
                                 {
                                     type: "object",
-                                    key: "section",
+                                    key: "imageGallery_section",
                                     displayer: "Section",
                                     value: [
                                         {
@@ -146,7 +146,7 @@ class ImageGallery2 extends BaseImageGallery {
                                 },
                                 {
                                     type: "object",
-                                    key: "section",
+                                    key: "imageGallery_section",
                                     displayer: "Section",
                                     value: [
                                         {
@@ -171,7 +171,7 @@ class ImageGallery2 extends BaseImageGallery {
                                 },
                                 {
                                     type: "object",
-                                    key: "section",
+                                    key: "imageGallery_section",
                                     displayer: "Section",
                                     value: [
                                         {
@@ -196,7 +196,7 @@ class ImageGallery2 extends BaseImageGallery {
                                 },
                                 {
                                     type: "object",
-                                    key: "section",
+                                    key: "imageGallery_section",
                                     displayer: "Section",
                                     value: [
                                         {
@@ -241,7 +241,7 @@ class ImageGallery2 extends BaseImageGallery {
                             value: [
                                 {
                                     type: "object",
-                                    key: "section",
+                                    key: "imageGallery_section",
                                     displayer: "Section",
                                     value: [
                                         {
@@ -266,7 +266,7 @@ class ImageGallery2 extends BaseImageGallery {
                                 },
                                 {
                                     type: "object",
-                                    key: "section",
+                                    key: "imageGallery_section",
                                     displayer: "Section",
                                     value: [
                                         {
@@ -291,7 +291,7 @@ class ImageGallery2 extends BaseImageGallery {
                                 },
                                 {
                                     type: "object",
-                                    key: "section",
+                                    key: "imageGallery_section",
                                     displayer: "Section",
                                     value: [
                                         {
@@ -316,7 +316,7 @@ class ImageGallery2 extends BaseImageGallery {
                                 },
                                 {
                                     type: "object",
-                                    key: "section",
+                                    key: "imageGallery_section",
                                     displayer: "Section",
                                     value: [
                                         {
@@ -341,7 +341,7 @@ class ImageGallery2 extends BaseImageGallery {
                                 },
                                 {
                                     type: "object",
-                                    key: "section",
+                                    key: "imageGallery_section",
                                     displayer: "Section",
                                     value: [
                                         {
@@ -366,7 +366,7 @@ class ImageGallery2 extends BaseImageGallery {
                                 },
                                 {
                                     type: "object",
-                                    key: "section",
+                                    key: "imageGallery_section",
                                     displayer: "Section",
                                     value: [
                                         {
@@ -411,7 +411,7 @@ class ImageGallery2 extends BaseImageGallery {
                             value: [
                                 {
                                     type: "object",
-                                    key: "section",
+                                    key: "imageGallery_section",
                                     displayer: "Section",
                                     value: [
                                         {
@@ -436,7 +436,7 @@ class ImageGallery2 extends BaseImageGallery {
                                 },
                                 {
                                     type: "object",
-                                    key: "section",
+                                    key: "imageGallery_section",
                                     displayer: "Section",
                                     value: [
                                         {
@@ -461,7 +461,7 @@ class ImageGallery2 extends BaseImageGallery {
                                 },
                                 {
                                     type: "object",
-                                    key: "section",
+                                    key: "imageGallery_section",
                                     displayer: "Section",
                                     value: [
                                         {
@@ -486,7 +486,7 @@ class ImageGallery2 extends BaseImageGallery {
                                 },
                                 {
                                     type: "object",
-                                    key: "section",
+                                    key: "imageGallery_section",
                                     displayer: "Section",
                                     value: [
                                         {
@@ -511,7 +511,7 @@ class ImageGallery2 extends BaseImageGallery {
                                 },
                                 {
                                     type: "object",
-                                    key: "section",
+                                    key: "imageGallery_section",
                                     displayer: "Section",
                                     value: [
                                         {
@@ -536,7 +536,7 @@ class ImageGallery2 extends BaseImageGallery {
                                 },
                                 {
                                     type: "object",
-                                    key: "section",
+                                    key: "imageGallery_section",
                                     displayer: "Section",
                                     value: [
                                         {
@@ -581,7 +581,7 @@ class ImageGallery2 extends BaseImageGallery {
                             value: [
                                 {
                                     type: "object",
-                                    key: "section",
+                                    key: "imageGallery_section",
                                     displayer: "Section",
                                     value: [
                                         {
@@ -606,7 +606,7 @@ class ImageGallery2 extends BaseImageGallery {
                                 },
                                 {
                                     type: "object",
-                                    key: "section",
+                                    key: "imageGallery_section",
                                     displayer: "Section",
                                     value: [
                                         {
@@ -631,7 +631,7 @@ class ImageGallery2 extends BaseImageGallery {
                                 },
                                 {
                                     type: "object",
-                                    key: "section",
+                                    key: "imageGallery_section",
                                     displayer: "Section",
                                     value: [
                                         {
@@ -656,7 +656,7 @@ class ImageGallery2 extends BaseImageGallery {
                                 },
                                 {
                                     type: "object",
-                                    key: "section",
+                                    key: "imageGallery_section",
                                     displayer: "Section",
                                     value: [
                                         {
@@ -681,7 +681,7 @@ class ImageGallery2 extends BaseImageGallery {
                                 },
                                 {
                                     type: "object",
-                                    key: "section",
+                                    key: "imageGallery_section",
                                     displayer: "Section",
                                     value: [
                                         {
@@ -706,7 +706,7 @@ class ImageGallery2 extends BaseImageGallery {
                                 },
                                 {
                                     type: "object",
-                                    key: "section",
+                                    key: "imageGallery_section",
                                     displayer: "Section",
                                     value: [
                                         {

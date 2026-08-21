@@ -14,8 +14,13 @@ type Item = {
 };
 
 interface Logo {
-  image: TypeMediaInputValue;
-  navigateTo: string;
+  // `defaultLogo` keeps the original keys; `absoluteLogo` was made unique with a
+  // prefix by the unique-prop-key rename. currentLogo can be either, so it holds
+  // both shapes (optional) and is normalized before use.
+  image?: TypeMediaInputValue;
+  navigateTo?: string;
+  absoluteLogo_image?: TypeMediaInputValue;
+  absoluteLogo_navigateTo?: string;
 }
 
 interface Language {
@@ -462,7 +467,7 @@ class Navbar2 extends BaseNavigator {
       value: [
         {
           type: "media",
-          key: "image",
+          key: "absoluteLogo_image",
           displayer: "Image",
           additionalParams: {
             availableTypes: ["image"],
@@ -474,7 +479,7 @@ class Navbar2 extends BaseNavigator {
         },
         {
           type: "page",
-          key: "navigateTo",
+          key: "absoluteLogo_navigateTo",
           value: "",
           displayer: "Navigate To",
         },
@@ -651,7 +656,9 @@ class Navbar2 extends BaseNavigator {
     const changeBackground = this.getComponentState("changeBackground");
 
     const currentLogo =
-      transparentBackground ? absoluteLogo : defaultLogo;
+      transparentBackground
+        ? { image: absoluteLogo.absoluteLogo_image, navigateTo: absoluteLogo.absoluteLogo_navigateTo }
+        : { image: defaultLogo.image, navigateTo: defaultLogo.navigateTo };
     const menuItems = this.castToObject<Item[]>("nav");
     const divider = this.getPropValue("divider");
     const language = this.castToObject<Language>("language");

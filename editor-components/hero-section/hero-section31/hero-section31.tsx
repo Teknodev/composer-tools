@@ -172,7 +172,7 @@ class HeroSection31 extends BaseHeroSection {
             {
               type: "boolean",
               displayer: "Overlay",
-              key: "overlay",
+              key: "item_overlay",
               value: true,
             },
             {
@@ -598,7 +598,7 @@ class HeroSection31 extends BaseHeroSection {
             {
               type: "boolean",
               displayer: "Overlay",
-              key: "overlay",
+              key: "item_overlay",
               value: true,
             },
             {

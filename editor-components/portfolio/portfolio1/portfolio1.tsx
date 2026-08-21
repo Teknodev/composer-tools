@@ -6,6 +6,13 @@ import ComposerLink from "../../../composer-base-components/Link/ComposerLinkPro
 import { INPUTS } from "../../../custom-hooks/input-templates";
 
 type SideCard = {
+  rightCard_subtitle: React.JSX.Element;
+  rightCard_title: React.JSX.Element;
+  rightCard_description: React.JSX.Element;
+  rightCard_buttons?: INPUTS.CastedButton[];
+};
+
+type LeftCard = {
   subtitle: React.JSX.Element;
   title: React.JSX.Element;
   description: React.JSX.Element;
@@ -86,26 +93,26 @@ class Portfolio1 extends BasePortfolio {
       value: [
         {
           type: "string",
-          key: "subtitle",
+          key: "rightCard_subtitle",
           displayer: "Subtitle",
           value: "SWEET",
         },
         {
           type: "string",
-          key: "title",
+          key: "rightCard_title",
           displayer: "Title",
           value: "MASTERPIECES",
         },
         {
           type: "string",
-          key: "description",
+          key: "rightCard_description",
           displayer: "Description",
           value:
             "Lorem ipsum dolor sit amet, ea mel modo qualisque, possit nemore facilis vel te. Laudem aeterno dolorum no vix, ea sed falli option. Doming legendos his cu. Te nonumy eleifend expetenda usu. Quo appetere gubergren et.",
         },
         {
           type: "array",
-          key: "buttons",
+          key: "rightCard_buttons",
           displayer: "Buttons",
           value: [
             INPUTS.BUTTON(
@@ -133,8 +140,7 @@ class Portfolio1 extends BasePortfolio {
     });
   }
 
-  private getButtonsFromItem(item: SideCard) {
-    const buttonsArray = item?.buttons;
+  private getButtonsFromItem(buttonsArray?: INPUTS.CastedButton[]) {
     if (!Array.isArray(buttonsArray)) return [];
 
     return buttonsArray.map((btn: any) => {
@@ -209,12 +215,12 @@ class Portfolio1 extends BasePortfolio {
   }
 
   private renderLeftSide() {
-    const card = this.castToObject<SideCard>("leftCard");
-    const buttons = this.getButtonsFromItem(card);
+    const card = this.castToObject<LeftCard>("leftCard");
+    const buttons = this.getButtonsFromItem(card.buttons);
 
-    const subtitle = card?.subtitle;
-    const title = card?.title;
-    const description = card?.description;
+    const subtitle = card.subtitle;
+    const title = card.title;
+    const description = card.description;
 
     const hasSubtitle = this.castToString(subtitle);
     const hasTitle = this.castToString(title);
@@ -254,11 +260,11 @@ class Portfolio1 extends BasePortfolio {
 
   private renderRightSide() {
     const card = this.castToObject<SideCard>("rightCard");
-    const buttons = this.getButtonsFromItem(card);
+    const buttons = this.getButtonsFromItem(card.rightCard_buttons);
 
-    const subtitle = card?.subtitle;
-    const title = card?.title;
-    const description = card?.description;
+    const subtitle = card.rightCard_subtitle;
+    const title = card.rightCard_title;
+    const description = card.rightCard_description;
 
     const hasSubtitle = this.castToString(subtitle);
     const hasTitle = this.castToString(title);

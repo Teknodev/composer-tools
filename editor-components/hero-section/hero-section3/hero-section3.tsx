@@ -16,7 +16,7 @@ type ISliderData = {
   logo: TypeMediaInputValue;
   overlay: boolean;
   backgroundImage?: TypeMediaInputValue;
-  animation?: boolean;
+  item_animation?: boolean;
   line?: boolean;
 };
 
@@ -86,7 +86,7 @@ class HeroSection3 extends BaseHeroSection {
             },
             {
               type: "boolean",
-              key: "animation",
+              key: "item_animation",
               displayer: "Animation",
               value: true,
             },
@@ -172,7 +172,7 @@ class HeroSection3 extends BaseHeroSection {
             },
             {
               type: "boolean",
-              key: "animation",
+              key: "item_animation",
               displayer: "Animation",
               value: true,
             },
@@ -259,7 +259,7 @@ class HeroSection3 extends BaseHeroSection {
             },
             {
               type: "boolean",
-              key: "animation",
+              key: "item_animation",
               displayer: "Animation",
               value: true,
             },
@@ -373,7 +373,7 @@ class HeroSection3 extends BaseHeroSection {
               const typeClass = typeClassMap[item.type] || "1";
 
               const slideBg = item["background-image"] ?? item.backgroundImage;
-              const slideBgAnim = item["animation"] ?? item.animation ?? false;
+              const slideBgAnim = item["item_animation"] ?? item.item_animation ?? false;
               const showLine = item["line"] ?? item.line ?? true;
 
               return (

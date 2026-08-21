@@ -13,12 +13,12 @@ type NavItem = {
 };
 
 type SubnavItem = {
-  title: React.JSX.Element;
+  subnavItem_title: React.JSX.Element;
   images: Image[];
 };
 
 type Image = {
-  image: TypeMediaInputValue;
+  image_item_image: TypeMediaInputValue;
 };
 
 class ImageGallery4 extends BaseImageGallery {
@@ -86,7 +86,7 @@ class ImageGallery4 extends BaseImageGallery {
                   value: [
                     {
                       type: "string",
-                      key: "title",
+                      key: "subnavItem_title",
                       displayer: "Title",
                       value: "Beef",
                     },
@@ -102,7 +102,7 @@ class ImageGallery4 extends BaseImageGallery {
                           value: [
                             {
                               type: "media",
-                              key: "image",
+                              key: "image_item_image",
                               displayer: "Image",
                               value: {
                                 type: "image",
@@ -121,7 +121,7 @@ class ImageGallery4 extends BaseImageGallery {
                           value: [
                             {
                               type: "media",
-                              key: "image",
+                              key: "image_item_image",
                               displayer: "Image",
                               value: {
                                 type: "image",
@@ -144,7 +144,7 @@ class ImageGallery4 extends BaseImageGallery {
                   value: [
                     {
                       type: "string",
-                      key: "title",
+                      key: "subnavItem_title",
                       displayer: "Title",
                       value: "Pork",
                     },
@@ -160,7 +160,7 @@ class ImageGallery4 extends BaseImageGallery {
                           value: [
                             {
                               type: "media",
-                              key: "image",
+                              key: "image_item_image",
                               displayer: "Image",
                               value: {
                                 type: "image",
@@ -179,7 +179,7 @@ class ImageGallery4 extends BaseImageGallery {
                           value: [
                             {
                               type: "media",
-                              key: "image",
+                              key: "image_item_image",
                               displayer: "Image",
                               value: {
                                 type: "image",
@@ -202,7 +202,7 @@ class ImageGallery4 extends BaseImageGallery {
                   value: [
                     {
                       type: "string",
-                      key: "title",
+                      key: "subnavItem_title",
                       displayer: "Title",
                       value: "Lamb",
                     },
@@ -218,7 +218,7 @@ class ImageGallery4 extends BaseImageGallery {
                           value: [
                             {
                               type: "media",
-                              key: "image",
+                              key: "image_item_image",
                               displayer: "Image",
                               value: {
                                 type: "image",
@@ -237,7 +237,7 @@ class ImageGallery4 extends BaseImageGallery {
                           value: [
                             {
                               type: "media",
-                              key: "image",
+                              key: "image_item_image",
                               displayer: "Image",
                               value: {
                                 type: "image",
@@ -312,7 +312,7 @@ class ImageGallery4 extends BaseImageGallery {
                   value: [
                     {
                       type: "string",
-                      key: "title",
+                      key: "subnavItem_title",
                       displayer: "Title",
                       value: "Fish",
                     },
@@ -328,7 +328,7 @@ class ImageGallery4 extends BaseImageGallery {
                           value: [
                             {
                               type: "media",
-                              key: "image",
+                              key: "image_item_image",
                               displayer: "Image",
                               value: {
                                 type: "image",
@@ -347,7 +347,7 @@ class ImageGallery4 extends BaseImageGallery {
                           value: [
                             {
                               type: "media",
-                              key: "image",
+                              key: "image_item_image",
                               displayer: "Image",
                               value: {
                                 type: "image",
@@ -370,7 +370,7 @@ class ImageGallery4 extends BaseImageGallery {
                   value: [
                     {
                       type: "string",
-                      key: "title",
+                      key: "subnavItem_title",
                       displayer: "Title",
                       value: "Octopus",
                     },
@@ -386,7 +386,7 @@ class ImageGallery4 extends BaseImageGallery {
                           value: [
                             {
                               type: "media",
-                              key: "image",
+                              key: "image_item_image",
                               displayer: "Image",
                               value: {
                                 type: "image",
@@ -405,7 +405,7 @@ class ImageGallery4 extends BaseImageGallery {
                           value: [
                             {
                               type: "media",
-                              key: "image",
+                              key: "image_item_image",
                               displayer: "Image",
                               value: {
                                 type: "image",
@@ -562,7 +562,12 @@ class ImageGallery4 extends BaseImageGallery {
   makeArrayPure(arr: any[]): Image[] {
     if (!arr?.length) return [];
 
-    return arr.filter((el) => el !== undefined);
+    return arr
+      .filter((el) => el !== undefined)
+      .map((el: any) => ({
+        ...el,
+        image_item_image: el?.image_item_image ?? el?.image,
+      }));
   }
 
   getImages(): Image[] {
@@ -662,20 +667,20 @@ class ImageGallery4 extends BaseImageGallery {
                   >
                     {(subnavItems || []).map(
                       (item: SubnavItem, index: number) => {
-                        if (!this.castToString(item.title)) return null;
+                        if (!this.castToString(item.subnavItem_title)) return null;
                         return (
                           <div
                             key={index}
                             className={this.decorateCSS("list-item")}
                           >
-                            {this.castToString(item.title) && (
+                            {this.castToString(item.subnavItem_title) && (
                               <Base.H5
                                 className={`${this.decorateCSS("button")} ${activeSubnav === index ? this.decorateCSS("active") : ""}`}
                                 onClick={() => {
                                   this.handleSubSectionClick(index);
                                 }}
                               >
-                                {item.title}
+                                {item.subnavItem_title}
                               </Base.H5>
                             )}
                           </div>
@@ -689,17 +694,17 @@ class ImageGallery4 extends BaseImageGallery {
             {galleryItems?.length > 0 && (
               <Base.ListGrid gridCount={{ pc: itemsPerRow }} className={this.decorateCSS("gallery-container")}>
                 {galleryItems.slice(0, this.getComponentState("imageCount")).map((item: Image, index: number) => {
-                  if (!item.image) return null;
+                  if (!item.image_item_image) return null;
                   return (
                     <div
                       key={index}
                       className={this.decorateCSS("gallery-item")}
 
                     >
-                      {item.image && (
+                      {item.image_item_image && (
                         <div className={this.decorateCSS("gallery-image-container")}>
                           <Base.Media
-                            value={item.image}
+                            value={item.image_item_image}
                             className={this.decorateCSS("gallery-image")}
                           />
                           <div className={this.decorateCSS("gallery-image-overlay")}
@@ -736,7 +741,7 @@ class ImageGallery4 extends BaseImageGallery {
 
           </div>
 
-          {galleryItems[this.getComponentState("focusedImage")]?.image && (
+          {galleryItems[this.getComponentState("focusedImage")]?.image_item_image && (
             <Base.Overlay isVisible={true} className={this.getComponentState("isFocused") ? this.decorateCSS("gallery-item-fullscreen") : ""}>
               {icons.nextIcon && (
                 <div className={this.decorateCSS("right-arrow")} onClick={this.nextImage}>
@@ -757,10 +762,10 @@ class ImageGallery4 extends BaseImageGallery {
               )}
               <div className={this.decorateCSS("fullscreen-container")}>
                 <div className={this.decorateCSS("focused-image-container")} onClick={(e) => e.stopPropagation()}>
-                  {galleryItems[this.getComponentState("focusedImage")].image && (
+                  {galleryItems[this.getComponentState("focusedImage")].image_item_image && (
                     <Base.Media
                       className={this.decorateCSS("focused-image")}
-                      value={galleryItems[this.getComponentState("focusedImage")].image}
+                      value={galleryItems[this.getComponentState("focusedImage")].image_item_image}
                     />
                   )}
                   {icons.closeIcon && (

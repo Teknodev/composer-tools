@@ -7,10 +7,10 @@ import { INPUTS } from "../../../custom-hooks/input-templates";
 
 type Card = {
   stepNumber: React.JSX.Element;
-  subtitle: React.JSX.Element;
-  title: React.JSX.Element;
-  description: React.JSX.Element;
-  buttons: INPUTS.CastedButton[];
+  card_subtitle: React.JSX.Element;
+  card_title: React.JSX.Element;
+  card_description: React.JSX.Element;
+  card_buttons: INPUTS.CastedButton[];
 };
 
 class Steps2 extends BaseSteps {
@@ -56,26 +56,26 @@ class Steps2 extends BaseSteps {
             },
             {
               type: "string",
-              key: "subtitle",
+              key: "card_subtitle",
               displayer: "Subtitle",
               value: "",
             },
             {
               type: "string",
-              key: "title",
+              key: "card_title",
               displayer: "Title",
               value: "Backup & Recovery",
             },
             {
               type: "string",
-              key: "description",
+              key: "card_description",
               displayer: "Description",
               value:
                 "Capitalize on low hanging fruit to identify a ballpark value added activity to beta test. Override the digital divide with additional clickthroughs from immersion along the highway will close the loop.",
             },
             {
               type: "array",
-              key: "buttons",
+              key: "card_buttons",
               displayer: "Buttons",
               value: [
                 INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
@@ -96,26 +96,26 @@ class Steps2 extends BaseSteps {
             },
             {
               type: "string",
-              key: "subtitle",
+              key: "card_subtitle",
               displayer: "Subtitle",
               value: "",
             },
             {
               type: "string",
-              key: "title",
+              key: "card_title",
               displayer: "Title",
               value: "Network Service",
             },
             {
               type: "string",
-              key: "description",
+              key: "card_description",
               displayer: "Description",
               value:
                 "Podcasting operational change management inside of workflows to establish a framework. Taking seamless key performance indicators offline to maximise the long tail. Keeping your eye on the ball.",
             },
             {
               type: "array",
-              key: "buttons",
+              key: "card_buttons",
               displayer: "Buttons",
               value: [
                 INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
@@ -136,26 +136,26 @@ class Steps2 extends BaseSteps {
             },
             {
               type: "string",
-              key: "subtitle",
+              key: "card_subtitle",
               displayer: "Subtitle",
               value: "",
             },
             {
               type: "string",
-              key: "title",
+              key: "card_title",
               displayer: "Title",
               value: "Stability Fixes",
             },
             {
               type: "string",
-              key: "description",
+              key: "card_description",
               displayer: "Description",
               value:
                 "Collaboratively administrate empowered markets via plug-and-play networks. Dynamically procrastinate B2C users after installed base benefits. Dramatically visualize customer directed convergence.",
             },
             {
               type: "array",
-              key: "buttons",
+              key: "card_buttons",
               displayer: "Buttons",
               value: [
                 INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
@@ -176,26 +176,26 @@ class Steps2 extends BaseSteps {
             },
             {
               type: "string",
-              key: "subtitle",
+              key: "card_subtitle",
               displayer: "Subtitle",
               value: "",
             },
             {
               type: "string",
-              key: "title",
+              key: "card_title",
               displayer: "Title",
               value: "System Administration",
             },
             {
               type: "string",
-              key: "description",
+              key: "card_description",
               displayer: "Description",
               value:
                 "Collaboratively administrate empowered markets via plug-and-play networks. Dynamically procrastinate B2C users after installed base benefits. Dramatically visualize customer directed convergence.",
             },
             {
               type: "array",
-              key: "buttons",
+              key: "card_buttons",
               displayer: "Buttons",
               value: [
                 INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
@@ -216,26 +216,26 @@ class Steps2 extends BaseSteps {
             },
             {
               type: "string",
-              key: "subtitle",
+              key: "card_subtitle",
               displayer: "Subtitle",
               value: "",
             },
             {
               type: "string",
-              key: "title",
+              key: "card_title",
               displayer: "Title",
               value: "Server Migration",
             },
             {
               type: "string",
-              key: "description",
+              key: "card_description",
               displayer: "Description",
               value:
                 "Completely synergize resource taxing relationships via premier niche markets. Professionally cultivate one-to-one customer service with robust ideas. Dynamically innovate resource-leveling customer.",
             },
             {
               type: "array",
-              key: "buttons",
+              key: "card_buttons",
               displayer: "Buttons",
               value: [
                 INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
@@ -256,26 +256,26 @@ class Steps2 extends BaseSteps {
             },
             {
               type: "string",
-              key: "subtitle",
+              key: "card_subtitle",
               displayer: "Subtitle",
               value: "",
             },
             {
               type: "string",
-              key: "title",
+              key: "card_title",
               displayer: "Title",
               value: "Technical Consultation",
             },
             {
               type: "string",
-              key: "description",
+              key: "card_description",
               displayer: "Description",
               value:
                 "Objectively innovate empowered manufactured products whereas parallel platforms. Holisticly predominate extensible testing procedures for reliable supply chains.",
             },
             {
               type: "array",
-              key: "buttons",
+              key: "card_buttons",
               displayer: "Buttons",
               value: [
                 INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
@@ -354,17 +354,17 @@ class Steps2 extends BaseSteps {
             >
               {cards.map((card: Card, index: number) => {
                 const cardStepNumberExist = this.castToString(card.stepNumber);
-                const cardSubtitleExist = this.castToString(card.subtitle);
-                const cardTitleExist = this.castToString(card.title);
-                const cardDescriptionExist = this.castToString(card.description);
-                const cardButtonsExist = card.buttons?.some((btn) => this.castToString(btn.text));
+                const cardSubtitleExist = this.castToString(card.card_subtitle);
+                const cardTitleExist = this.castToString(card.card_title);
+                const cardDescriptionExist = this.castToString(card.card_description);
+                const cardButtonsExist = card.card_buttons?.some((btn) => this.castToString(btn.text));
 
                 return (cardStepNumberExist || cardSubtitleExist || cardTitleExist || cardDescriptionExist || cardButtonsExist) && (
                   <Base.Card key={index} className={this.decorateCSS("card-shell")}>
                     <Base.VerticalContent className={`${this.decorateCSS("card")} ${showLine && this.decorateCSS("with-line")} ${contentAlignment === "center" && this.decorateCSS("center-align")}`}>
                       {cardSubtitleExist && (
                         <Base.H6 className={`${this.decorateCSS("card-subtitle")} ${cardStepNumberExist ? this.decorateCSS("has-number") : ""}`}>
-                          {card.subtitle}
+                          {card.card_subtitle}
                         </Base.H6>
                       )}
                       {(cardStepNumberExist || cardTitleExist) && (
@@ -376,19 +376,19 @@ class Steps2 extends BaseSteps {
                           )}
                           {cardTitleExist && (
                             <Base.H4 className={this.decorateCSS("card-title")}>
-                              {card.title}
+                              {card.card_title}
                             </Base.H4>
                           )}
                         </div>
                       )}
                       {cardDescriptionExist && (
                         <Base.P className={this.decorateCSS("card-description")}>
-                          {card.description}
+                          {card.card_description}
                         </Base.P>
                       )}
                       {cardButtonsExist && (
                         <div className={this.decorateCSS("card-buttons")}>
-                          {card.buttons.map((button: INPUTS.CastedButton, btnIndex: number) =>
+                          {card.card_buttons.map((button: INPUTS.CastedButton, btnIndex: number) =>
                             this.castToString(button.text) && (
                               <ComposerLink key={`card-${index}-btn-${btnIndex}`} path={button.url}>
                                 <Base.Button buttonType={button.type} className={this.decorateCSS("card-button")}>

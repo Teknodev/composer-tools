@@ -13,8 +13,8 @@ type ButtonTypeObj = {
 
 type Card = {
     icon: TypeMediaInputValue;
-    title: React.JSX.Element;
-    description: React.JSX.Element;
+    card_title: React.JSX.Element;
+    card_description: React.JSX.Element;
 };
 
 class Feature39 extends BaseFeature {
@@ -91,13 +91,13 @@ class Feature39 extends BaseFeature {
                         },
                         {
                             type: "string",
-                            key: "title",
+                            key: "card_title",
                             displayer: "Title",
                             value: "Modern Design"
                         },
                         {
                             type: "string",
-                            key: "description",
+                            key: "card_description",
                             displayer: "Description",
                             value: "Imagination is more important than knowledge. Imagination encircles the world."
                         }
@@ -122,13 +122,13 @@ class Feature39 extends BaseFeature {
                         },
                         {
                             type: "string",
-                            key: "title",
+                            key: "card_title",
                             displayer: "Title",
                             value: "High Quality"
                         },
                         {
                             type: "string",
-                            key: "description",
+                            key: "card_description",
                             displayer: "Description",
                             value: "Imagination is more important than knowledge. Imagination encircles the world."
                         }
@@ -153,13 +153,13 @@ class Feature39 extends BaseFeature {
                         },
                         {
                             type: "string",
-                            key: "title",
+                            key: "card_title",
                             displayer: "Title",
                             value: "Ultra Responsive"
                         },
                         {
                             type: "string",
-                            key: "description",
+                            key: "card_description",
                             displayer: "Description",
                             value: "Imagination is more important than knowledge. Imagination encircles the world."
                         }
@@ -184,13 +184,13 @@ class Feature39 extends BaseFeature {
                         },
                         {
                             type: "string",
-                            key: "title",
+                            key: "card_title",
                             displayer: "Title",
                             value: "Dedicated Support"
                         },
                         {
                             type: "string",
-                            key: "description",
+                            key: "card_description",
                             displayer: "Description",
                             value: "Imagination is more important than knowledge. Imagination encircles the world."
                         }
@@ -215,13 +215,13 @@ class Feature39 extends BaseFeature {
                         },
                         {
                             type: "string",
-                            key: "title",
+                            key: "card_title",
                             displayer: "Title",
                             value: "Visual Page Builder"
                         },
                         {
                             type: "string",
-                            key: "description",
+                            key: "card_description",
                             displayer: "Description",
                             value: "Imagination is more important than knowledge. Imagination encircles the world."
                         }
@@ -246,13 +246,13 @@ class Feature39 extends BaseFeature {
                         },
                         {
                             type: "string",
-                            key: "title",
+                            key: "card_title",
                             displayer: "Title",
                             value: "Fully Customizable"
                         },
                         {
                             type: "string",
-                            key: "description",
+                            key: "card_description",
                             displayer: "Description",
                             value: "Imagination is more important than knowledge. Imagination encircles the world."
                         }
@@ -277,13 +277,13 @@ class Feature39 extends BaseFeature {
                         },
                         {
                             type: "string",
-                            key: "title",
+                            key: "card_title",
                             displayer: "Title",
                             value: "Premium Addons"
                         },
                         {
                             type: "string",
-                            key: "description",
+                            key: "card_description",
                             displayer: "Description",
                             value: "Imagination is more important than knowledge. Imagination encircles the world."
                         }
@@ -308,13 +308,13 @@ class Feature39 extends BaseFeature {
                         },
                         {
                             type: "string",
-                            key: "title",
+                            key: "card_title",
                             displayer: "Title",
                             value: "100% Translatable"
                         },
                         {
                             type: "string",
-                            key: "description",
+                            key: "card_description",
                             displayer: "Description",
                             value: "Imagination is more important than knowledge. Imagination encircles the world."
                         }
@@ -380,8 +380,8 @@ class Feature39 extends BaseFeature {
                             gridCount={{ pc: this.getPropValue("itemCount") || 4, tablet: 2, phone: 1 }}
                         >
                             {cards.map((card: Card, index: number) => {
-                                const titleExist = !!this.castToString(card.title);
-                                const descExist = !!this.castToString(card.description);
+                                const titleExist = !!this.castToString(card.card_title);
+                                const descExist = !!this.castToString(card.card_description);
                                 const isImage = card.icon?.type === "image";
 
                                 return (!titleExist && !descExist && !card.icon) || (
@@ -393,8 +393,8 @@ class Feature39 extends BaseFeature {
                                         }
                                         {(titleExist || descExist) &&
                                             <Base.VerticalContent className={this.decorateCSS("card-content")}>
-                                                {titleExist && <Base.H4 className={this.decorateCSS("card-title")}>{card.title}</Base.H4>}
-                                                {descExist && <Base.P className={this.decorateCSS("card-description")}>{card.description}</Base.P>}
+                                                {titleExist && <Base.H4 className={this.decorateCSS("card-title")}>{card.card_title}</Base.H4>}
+                                                {descExist && <Base.P className={this.decorateCSS("card-description")}>{card.card_description}</Base.P>}
                                             </Base.VerticalContent>
                                         }
                                     </Base.Card>

@@ -190,7 +190,7 @@ class Location4 extends Location {
             {
               type: "string",
               displayer: "Description",
-              key: "description",
+              key: "marker_description",
               value: "16122 Collins street, Melbourne, Australia",
             },
             {

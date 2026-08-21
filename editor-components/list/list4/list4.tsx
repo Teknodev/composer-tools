@@ -10,11 +10,11 @@ type CardButton = Omit<INPUTS.CastedButton, "icon"> & {
 };
 
 type Card = {
-  description: JSX.Element;
-  subtitle: JSX.Element;
+  card_description: JSX.Element;
+  card_subtitle: JSX.Element;
   icon: TypeMediaInputValue;
-  title: JSX.Element;
-  buttons: CardButton[];
+  card_title: JSX.Element;
+  card_buttons: CardButton[];
 };
 
 class List4 extends BaseList {
@@ -60,19 +60,19 @@ class List4 extends BaseList {
           value: [
             {
               type: "string",
-              key: "subtitle",
+              key: "card_subtitle",
               displayer: "Subtitle",
               value: "",
             },
             {
               type: "string",
-              key: "title",
+              key: "card_title",
               displayer: "Title",
               value: "Creative Idea",
             },
             {
               type: "string",
-              key: "description",
+              key: "card_description",
               displayer: "Description",
               value:
                 "Web design encompasses many different skills and disciplines in the production of all web.",
@@ -91,7 +91,7 @@ class List4 extends BaseList {
             },
             {
               type: "array",
-              key: "buttons",
+              key: "card_buttons",
               displayer: "Buttons",
               value: [
                 INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
@@ -106,19 +106,19 @@ class List4 extends BaseList {
           value: [
             {
               type: "string",
-              key: "subtitle",
+              key: "card_subtitle",
               displayer: "Subtitle",
               value: "",
             },
             {
               type: "string",
-              key: "title",
+              key: "card_title",
               displayer: "Title",
               value: "High Creative Minds",
             },
             {
               type: "string",
-              key: "description",
+              key: "card_description",
               displayer: "Description",
               value:
                 "Web design encompasses many different skills and disciplines in the production of all web.",
@@ -137,7 +137,7 @@ class List4 extends BaseList {
             },
             {
               type: "array",
-              key: "buttons",
+              key: "card_buttons",
               displayer: "Buttons",
               value: [
                 INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
@@ -152,19 +152,19 @@ class List4 extends BaseList {
           value: [
             {
               type: "string",
-              key: "subtitle",
+              key: "card_subtitle",
               displayer: "Subtitle",
               value: "",
             },
             {
               type: "string",
-              key: "title",
+              key: "card_title",
               displayer: "Title",
               value: "Business Planning",
             },
             {
               type: "string",
-              key: "description",
+              key: "card_description",
               displayer: "Description",
               value:
                 "Web design encompasses many different skills and disciplines in the production of all web.",
@@ -183,7 +183,7 @@ class List4 extends BaseList {
             },
             {
               type: "array",
-              key: "buttons",
+              key: "card_buttons",
               displayer: "Buttons",
               value: [
                 INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
@@ -298,11 +298,11 @@ class List4 extends BaseList {
             <Base.ListGrid className={`${this.decorateCSS("services-grid")} ${!this.getPropValue("showLine") ? this.decorateCSS("no-lines") : ""} ${!hasHeader ? this.decorateCSS("no-header") : ""}`} gridCount={{ pc: this.getPropValue("itemCount"), tablet: 3 }}>
               {this.castToObject<Card[]>("content-card").map(
                 (card: Card, index: number) => {
-                  const hasTitle = this.castToString(card.title);
-                  const hasSubtitle = this.castToString(card.subtitle);
-                  const hasDescription = this.castToString(card.description);
+                  const hasTitle = this.castToString(card.card_title);
+                  const hasSubtitle = this.castToString(card.card_subtitle);
+                  const hasDescription = this.castToString(card.card_description);
                   const hasIcon = !!card.icon;
-                  const cardButtons = card.buttons || [];
+                  const cardButtons = card.card_buttons || [];
                   const hasValidCardButtons = cardButtons.some((btn: CardButton) => {
                     const iconMedia = btn.icon as TypeMediaInputValue;
                     return this.castToString(btn.text) || (iconMedia && iconMedia.type === "icon" && iconMedia.name);
@@ -351,19 +351,19 @@ class List4 extends BaseList {
 
                             {hasSubtitle && (
                               <Base.H6 className={this.decorateCSS("item-subtitle")}>
-                                {card.subtitle}
+                                {card.card_subtitle}
                               </Base.H6>
                             )}
                             {hasTitle && (
                               <Base.H5
                                 className={this.decorateCSS("item-title")}
                               >
-                                {card.title}
+                                {card.card_title}
                               </Base.H5>
                             )}
                             {hasDescription && (
                               <Base.P className={this.decorateCSS("item-description")}>
-                                {card.description}
+                                {card.card_description}
                               </Base.P>
                             )}
                             {hasValidCardButtons && (

@@ -64,9 +64,9 @@ class Header9 extends BaseHeader {
             { type: "string", key: "prefix", displayer: "Prefix", value: "" },
             { type: "string", key: "number", displayer: "Value", value: "10" },
             { type: "string", key: "suffix", displayer: "Suffix", value: "k+" },
-            { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
-            { type: "string", key: "title", displayer: "Title", value: "Active Users" },
-            { type: "string", key: "description", displayer: "Description", value: "" },
+            { type: "string", key: "stat_subtitle", displayer: "Subtitle", value: "" },
+            { type: "string", key: "stat_title", displayer: "Title", value: "Active Users" },
+            { type: "string", key: "stat_description", displayer: "Description", value: "" },
           ]
         },
         {
@@ -74,9 +74,9 @@ class Header9 extends BaseHeader {
             { type: "string", key: "prefix", displayer: "Prefix", value: "" },
             { type: "string", key: "number", displayer: "Value", value: "0.9" },
             { type: "string", key: "suffix", displayer: "Suffix", value: "%" },
-            { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
-            { type: "string", key: "title", displayer: "Title", value: "Commission Fee" },
-            { type: "string", key: "description", displayer: "Description", value: "" },
+            { type: "string", key: "stat_subtitle", displayer: "Subtitle", value: "" },
+            { type: "string", key: "stat_title", displayer: "Title", value: "Commission Fee" },
+            { type: "string", key: "stat_description", displayer: "Description", value: "" },
           ]
         },
       ],
@@ -219,19 +219,19 @@ class Header9 extends BaseHeader {
     const description = this.getPropValue("description");
     const statsProp = this.getPropValue("stats");
     const stats = statsProp.map((item: any) => {
-      const subtitle = this.castToString(item.getPropValue("subtitle")) || "";
-      const itemTitle = this.castToString(item.getPropValue("title")) || "";
-      const itemDescription = this.castToString(item.getPropValue("description")) || "";
+      const subtitle = this.castToString(item.getPropValue("stat_subtitle")) || "";
+      const itemTitle = this.castToString(item.getPropValue("stat_title")) || "";
+      const itemDescription = this.castToString(item.getPropValue("stat_description")) || "";
       const number = this.castToString(item.getPropValue("number")) || "";
       const prefix = this.castToString(item.getPropValue("prefix")) || "";
       const suffix = this.castToString(item.getPropValue("suffix")) || "";
       return {
         subtitle,
-        subtitleElement: item.getPropValue("subtitle"),
+        subtitleElement: item.getPropValue("stat_subtitle"),
         title: itemTitle,
-        titleElement: item.getPropValue("title"),
+        titleElement: item.getPropValue("stat_title"),
         description: itemDescription,
-        descriptionElement: item.getPropValue("description"),
+        descriptionElement: item.getPropValue("stat_description"),
         number,
         numberElement: item.getPropValue("number"),
         prefix,

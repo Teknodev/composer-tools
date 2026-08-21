@@ -12,8 +12,8 @@ type Faq = {
 };
 
 type InfoArrayItem = {
-  title: React.JSX.Element;
-  description: React.JSX.Element;
+  info_title: React.JSX.Element;
+  info_description: React.JSX.Element;
   button: INPUTS.CastedButton;
 };
 
@@ -226,13 +226,13 @@ class Faq3 extends BaseFAQ {
           value: [
             {
               type: "string",
-              key: "title",
+              key: "info_title",
               displayer: "Title",
               value: "Questions?",
             },
             {
               type: "string",
-              key: "description",
+              key: "info_description",
               displayer: "Description",
               value:
                 "Blandit justo vestibulum tincidunt, ipsum id non, volutpat neque pede eget donec.",
@@ -247,13 +247,13 @@ class Faq3 extends BaseFAQ {
           value: [
             {
               type: "string",
-              key: "title",
+              key: "info_title",
               displayer: "Title",
               value: "About Us",
             },
             {
               type: "string",
-              key: "description",
+              key: "info_description",
               displayer: "Description",
               value:
                 "Etiam nisl cras, arcu dui, wisi aenean non sit quisque nulla, eget aut molestie. Rhoncus sociis, nulla luctus diam montes cubilia.",
@@ -403,14 +403,14 @@ class Faq3 extends BaseFAQ {
                 <div className={this.decorateCSS("content-right")}>
                   {infoArray.map((item: InfoArrayItem, index: number) => (
                     <Base.VerticalContent key={index} className={this.decorateCSS("info-items")}>
-                      {this.castToString(item.title) && (
+                      {this.castToString(item.info_title) && (
                         <Base.H6 className={this.decorateCSS("title-info")}>
-                          {item.title}
+                          {item.info_title}
                         </Base.H6>
                       )}
-                      {this.castToString(item.description) && (
+                      {this.castToString(item.info_description) && (
                         <Base.P className={this.decorateCSS("description-info")}>
-                          {item.description}
+                          {item.info_description}
                         </Base.P>
                       )}
                       {this.castToString(item.button.text) && (

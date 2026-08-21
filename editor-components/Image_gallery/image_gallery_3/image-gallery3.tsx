@@ -5,7 +5,7 @@ import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "../../../custom-hooks/input-templates";
 
 interface ImageItem {
-    image: TypeMediaInputValue;
+    image_image: TypeMediaInputValue;
     overlay: boolean;
 }
 
@@ -56,7 +56,7 @@ class ImageGallery3 extends BaseImageGallery {
                     value: [
                         {
                             type: "media",
-                            key: "image",
+                            key: "image_image",
                             displayer: "Image",
                             value: {
                                 type: "image",
@@ -81,7 +81,7 @@ class ImageGallery3 extends BaseImageGallery {
                     value: [
                         {
                             type: "media",
-                            key: "image",
+                            key: "image_image",
                             displayer: "Image",
                             value: {
                                 type: "image",
@@ -107,7 +107,7 @@ class ImageGallery3 extends BaseImageGallery {
                     value: [
                         {
                             type: "media",
-                            key: "image",
+                            key: "image_image",
                             displayer: "Image",
                             value: {
                                 type: "image",
@@ -132,7 +132,7 @@ class ImageGallery3 extends BaseImageGallery {
                     value: [
                         {
                             type: "media",
-                            key: "image",
+                            key: "image_image",
                             displayer: "Image",
                             value: {
                                 type: "image",
@@ -157,7 +157,7 @@ class ImageGallery3 extends BaseImageGallery {
                     value: [
                         {
                             type: "media",
-                            key: "image",
+                            key: "image_image",
                             displayer: "Image",
                             value: {
                                 type: "image",
@@ -229,7 +229,7 @@ class ImageGallery3 extends BaseImageGallery {
                     )}
                     {type === "Header One Image" && images[0] && (
                         <div className={this.decorateCSS("image-box")}>
-                            <Base.Media className={this.decorateCSS("image")} value={images[0].image} />
+                            <Base.Media className={this.decorateCSS("image")} value={images[0].image_image} />
                             {images[0].overlay && (
                                 <div className={this.decorateCSS("overlay")}></div>
                             )}
@@ -238,13 +238,13 @@ class ImageGallery3 extends BaseImageGallery {
                     {type === "Header Two Image" && images[0] && images[1] && (
                         <>
                             <div className={this.decorateCSS("image-box")}>
-                                <Base.Media className={this.decorateCSS("image")} value={images[0].image} />
+                                <Base.Media className={this.decorateCSS("image")} value={images[0].image_image} />
                                 {images[0].overlay && (
                                     <div className={this.decorateCSS("overlay")}></div>
                                 )}
                             </div>
                             <div className={this.decorateCSS("image-box")}>
-                                <Base.Media className={this.decorateCSS("image")} value={images[1].image} />
+                                <Base.Media className={this.decorateCSS("image")} value={images[1].image_image} />
                                 {images[1].overlay && (
                                     <div className={this.decorateCSS("overlay")}></div>
                                 )}
@@ -283,9 +283,9 @@ class ImageGallery3 extends BaseImageGallery {
                                                     key={`${patternIndex}-${rowIndex}`} 
                                                     className={`${this.decorateCSS("image-row")} ${this.decorateCSS(isIncompleteRow ? 'row-1' : `row-${imagesInRow}`)}`}
                                                 >
-                                                    {rowImages.map((item, index) => item.image && (
+                                                    {rowImages.map((item, index) => item.image_image && (
                                                         <div key={`${patternIndex}-${rowIndex}-${index}`} className={this.decorateCSS("image-box")}>
-                                                            <Base.Media className={this.decorateCSS("image")} value={item.image} />
+                                                            <Base.Media className={this.decorateCSS("image")} value={item.image_image} />
                                                             {item.overlay && (
                                                                 <div className={this.decorateCSS("overlay")}></div>
                                                             )}

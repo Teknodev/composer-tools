@@ -8,7 +8,7 @@ type Card = {
   profileImage: TypeMediaInputValue;
   text: React.JSX.Element;
   author: React.JSX.Element;
-  subtitle: React.JSX.Element;
+  profile_subtitle: React.JSX.Element;
 };
 type Box = {
   topText: React.JSX.Element;
@@ -93,7 +93,7 @@ class Testimonials13Page extends Testimonials {
             },
             {
               type: "string",
-              key: "subtitle",
+              key: "profile_subtitle",
               value: "Student",
               displayer: "Author Position",
             },
@@ -131,7 +131,7 @@ class Testimonials13Page extends Testimonials {
             },
             {
               type: "string",
-              key: "subtitle",
+              key: "profile_subtitle",
               value: "Artist",
               displayer: "Author Position",
             },
@@ -169,7 +169,7 @@ class Testimonials13Page extends Testimonials {
             },
             {
               type: "string",
-              key: "subtitle",
+              key: "profile_subtitle",
               value: "Designer",
               displayer: "Author Position",
             },
@@ -319,16 +319,16 @@ class Testimonials13Page extends Testimonials {
                               )}
                             </div>
                           )}
-                          {(this.castToString(item.text) || this.getPropValue("sliderIcon") || this.castToString(item.author) || this.castToString(item.subtitle)) && (
+                          {(this.castToString(item.text) || this.getPropValue("sliderIcon") || this.castToString(item.author) || this.castToString(item.profile_subtitle)) && (
                             <div className={this.decorateCSS("header-page")}>
                               {this.castToString(item.text) && (
                                 <Base.P className={`${this.decorateCSS("item-description")} ${!(this.getPropValue("prevIcon") || this.getPropValue("nextIcon") || item.profileImage) && this.decorateCSS("item-description-no-margin")}`}>{item.text}</Base.P>
                               )}
-                              {(this.getPropValue("sliderIcon") || this.castToString(item.author) || this.castToString(item.subtitle)) && (
+                              {(this.getPropValue("sliderIcon") || this.castToString(item.author) || this.castToString(item.profile_subtitle)) && (
                                 <Base.VerticalContent className={this.decorateCSS("bottom-container")}>
                                   {this.getPropValue("sliderIcon") && <Base.Icon name={this.getPropValue("sliderIcon")} propsIcon={{ className: this.decorateCSS("item-icon") }}></Base.Icon>}
                                   {this.castToString(item.author) && <Base.H2 className={this.decorateCSS("first-header")}>{item.author}</Base.H2>}
-                                  {this.castToString(item.subtitle) && <Base.P className={this.decorateCSS("item-title")}>{item.subtitle}</Base.P>}
+                                  {this.castToString(item.profile_subtitle) && <Base.P className={this.decorateCSS("item-title")}>{item.profile_subtitle}</Base.P>}
                                 </Base.VerticalContent>
                               )}
                             </div>

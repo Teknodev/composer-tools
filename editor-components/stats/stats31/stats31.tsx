@@ -58,9 +58,9 @@ class Stats31 extends BaseStats {
                         { type: "string", key: "prefix", displayer: "Prefix", value: "" },
                         { type: "string", key: "number", displayer: "Value", value: "50" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "" },
-                        { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
-                        { type: "string", key: "title", displayer: "Title", value: "promotion tools" },
-                        { type: "string", key: "description", displayer: "Description", value: "" },
+                        { type: "string", key: "stat_subtitle", displayer: "Subtitle", value: "" },
+                        { type: "string", key: "stat_title", displayer: "Title", value: "promotion tools" },
+                        { type: "string", key: "stat_description", displayer: "Description", value: "" },
                     ],
                 },
                 {
@@ -71,9 +71,9 @@ class Stats31 extends BaseStats {
                         { type: "string", key: "prefix", displayer: "Prefix", value: "$" },
                         { type: "string", key: "number", displayer: "Value", value: "75000" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "" },
-                        { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
-                        { type: "string", key: "title", displayer: "Title", value: "total net profit every month" },
-                        { type: "string", key: "description", displayer: "Description", value: "" },
+                        { type: "string", key: "stat_subtitle", displayer: "Subtitle", value: "" },
+                        { type: "string", key: "stat_title", displayer: "Title", value: "total net profit every month" },
+                        { type: "string", key: "stat_description", displayer: "Description", value: "" },
                     ],
                 },
                 {
@@ -84,9 +84,9 @@ class Stats31 extends BaseStats {
                         { type: "string", key: "prefix", displayer: "Prefix", value: "" },
                         { type: "string", key: "number", displayer: "Value", value: "35" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "k" },
-                        { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
-                        { type: "string", key: "title", displayer: "Title", value: "of satisfied customers!" },
-                        { type: "string", key: "description", displayer: "Description", value: "" },
+                        { type: "string", key: "stat_subtitle", displayer: "Subtitle", value: "" },
+                        { type: "string", key: "stat_title", displayer: "Title", value: "of satisfied customers!" },
+                        { type: "string", key: "stat_description", displayer: "Description", value: "" },
                     ],
                 },
                 {
@@ -97,9 +97,9 @@ class Stats31 extends BaseStats {
                         { type: "string", key: "prefix", displayer: "Prefix", value: "" },
                         { type: "string", key: "number", displayer: "Value", value: "8" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "" },
-                        { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
-                        { type: "string", key: "title", displayer: "Title", value: "years of successful experience" },
-                        { type: "string", key: "description", displayer: "Description", value: "" },
+                        { type: "string", key: "stat_subtitle", displayer: "Subtitle", value: "" },
+                        { type: "string", key: "stat_title", displayer: "Title", value: "years of successful experience" },
+                        { type: "string", key: "stat_description", displayer: "Description", value: "" },
                     ],
                 },
             ],
@@ -231,14 +231,14 @@ class Stats31 extends BaseStats {
         const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
         const itemCount = this.getPropValue("itemCount");
 
-        const statsItems = this.castToObject<{ prefix: JSX.Element; number: JSX.Element; suffix: JSX.Element; title: JSX.Element; subtitle: JSX.Element; description: JSX.Element }[]>("stats");
+        const statsItems = this.castToObject<{ prefix: JSX.Element; number: JSX.Element; suffix: JSX.Element; stat_title: JSX.Element; stat_subtitle: JSX.Element; stat_description: JSX.Element }[]>("stats");
         const stats: StatItem[] = statsItems.map((item) => {
             const prefix = this.castToString(item.prefix) || "";
             const number = this.castToString(item.number) || "";
             const suffix = this.castToString(item.suffix) || "";
-            const title = this.castToString(item.title) || "";
-            const subtitle = this.castToString(item.subtitle) || "";
-            const description = this.castToString(item.description) || "";
+            const title = this.castToString(item.stat_title) || "";
+            const subtitle = this.castToString(item.stat_subtitle) || "";
+            const description = this.castToString(item.stat_description) || "";
             return {
                 prefix,
                 prefixElement: item.prefix,
@@ -246,11 +246,11 @@ class Stats31 extends BaseStats {
                 suffix,
                 suffixElement: item.suffix,
                 title,
-                titleElement: item.title,
+                titleElement: item.stat_title,
                 subtitle,
-                subtitleElement: item.subtitle,
+                subtitleElement: item.stat_subtitle,
                 description,
-                descriptionElement: item.description
+                descriptionElement: item.stat_description
             };
         });
 

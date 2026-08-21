@@ -7,8 +7,8 @@ import ComposerLink from "../../../composer-base-components/Link/ComposerLinkPro
 
 type SliderItem = {
   subTitle: string;
-  title: string;
-  description: string;
+  card_title: string;
+  card_description: string;
   media: TypeMediaInputValue;
   button: INPUTS.CastedButton;
   icon: TypeMediaInputValue;
@@ -71,13 +71,13 @@ class Slider6 extends BaseSlider {
             },
             {
               type: "string",
-              key: "title",
+              key: "card_title",
               displayer: "Title",
               value: "Unbeatable performance",
             },
             {
               type: "string",
-              key: "description",
+              key: "card_description",
               displayer: "Description",
               value:
                 "Grow your clients' businesses with reliable, high-performance sites born to rank and built to convert—no maintenance needed.",
@@ -122,13 +122,13 @@ class Slider6 extends BaseSlider {
             },
             {
               type: "string",
-              key: "title",
+              key: "card_title",
               displayer: "Title",
               value: "Rock-solid infrastructure",
             },
             {
               type: "string",
-              key: "description",
+              key: "card_description",
               displayer: "Description",
               value:
                 "Build sites that can weather any storm with reliable 99.95% uptime SLA, automatic backups, free SSL encryption, and more.",
@@ -173,13 +173,13 @@ class Slider6 extends BaseSlider {
             },
             {
               type: "string",
-              key: "title",
+              key: "card_title",
               displayer: "Title",
               value: "Sell anything, anytime",
             },
             {
               type: "string",
-              key: "description",
+              key: "card_description",
               displayer: "Description",
               value:
                 "Create highly customizable, SEO-ready eCommerce sites for clients with all the features you need to sell anything to anyone.",
@@ -347,8 +347,8 @@ class Slider6 extends BaseSlider {
             <div className={`${this.decorateCSS("tabs-layout")} ${noMediaAtAll && this.decorateCSS("all-no-media")} `}>
               <div className={`${this.decorateCSS("tabs-left")} ${(!activeItemHasMedia || noMediaAtAll) && this.decorateCSS("full-width")}`}>
                 {sliderItems.map((item: SliderItem, index: number) => {
-                  const itemTitleExist = !!this.castToString(item.title);
-                  const itemDescExist = !!this.castToString(item.description);
+                  const itemTitleExist = !!this.castToString(item.card_title);
+                  const itemDescExist = !!this.castToString(item.card_description);
                   const itemSubTitleExist = !!this.castToString(item.subTitle);
                   const buttonExist = !!item.button && !!this.castToString(item.button.text);
                   const hasCardContent = itemTitleExist || itemDescExist || itemSubTitleExist || buttonExist;
@@ -363,8 +363,8 @@ class Slider6 extends BaseSlider {
                       )}
                       <Base.VerticalContent className={this.decorateCSS("card-content")}>
                         {itemSubTitleExist && (<Base.H6 className={this.decorateCSS("card-subtitle")}> {item.subTitle} </Base.H6>)}
-                        {itemTitleExist && (<Base.H5 className={this.decorateCSS("card-title")}> {item.title} </Base.H5>)}
-                        {itemDescExist && (<Base.P className={this.decorateCSS("card-description")}>{item.description}</Base.P>)}
+                        {itemTitleExist && (<Base.H5 className={this.decorateCSS("card-title")}> {item.card_title} </Base.H5>)}
+                        {itemDescExist && (<Base.P className={this.decorateCSS("card-description")}>{item.card_description}</Base.P>)}
                         {item.button && this.castToString(item.button.text) && (
                           <ComposerLink path={item.button.url}>
                             <Base.Row className={this.decorateCSS("button-wrapper")}>

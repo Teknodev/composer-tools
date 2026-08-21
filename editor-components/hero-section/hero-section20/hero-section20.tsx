@@ -17,7 +17,7 @@ type SliderItem = {
 
 type SocialIcon = {
   icon_text: React.JSX.Element;
-  link: string;
+  icon_link: string;
 };
 
 class HeroSection20 extends BaseHeroSection {
@@ -661,7 +661,7 @@ class HeroSection20 extends BaseHeroSection {
       value: [
         {
           type: "object",
-          key: "icon",
+          key: "social_icons_icon",
           displayer: "Icon",
           value: [
             {
@@ -672,7 +672,7 @@ class HeroSection20 extends BaseHeroSection {
             },
             {
               type: "page",
-              key: "link",
+              key: "icon_link",
               displayer: "Navigate To",
               value: "",
             },
@@ -680,7 +680,7 @@ class HeroSection20 extends BaseHeroSection {
         },
         {
           type: "object",
-          key: "icon",
+          key: "social_icons_icon",
           displayer: "Icon",
           value: [
             {
@@ -691,7 +691,7 @@ class HeroSection20 extends BaseHeroSection {
             },
             {
               type: "page",
-              key: "link",
+              key: "icon_link",
               displayer: "Navigate To",
               value: "",
             },
@@ -699,7 +699,7 @@ class HeroSection20 extends BaseHeroSection {
         },
         {
           type: "object",
-          key: "icon",
+          key: "social_icons_icon",
           displayer: "Icon",
           value: [
             {
@@ -710,7 +710,7 @@ class HeroSection20 extends BaseHeroSection {
             },
             {
               type: "page",
-              key: "link",
+              key: "icon_link",
               displayer: "Navigate To",
               value: "",
             },
@@ -718,7 +718,7 @@ class HeroSection20 extends BaseHeroSection {
         },
         {
           type: "object",
-          key: "icon",
+          key: "social_icons_icon",
           displayer: "Icon",
           value: [
             {
@@ -729,7 +729,7 @@ class HeroSection20 extends BaseHeroSection {
             },
             {
               type: "page",
-              key: "link",
+              key: "icon_link",
               displayer: "Navigate To",
               value: "",
             },
@@ -737,7 +737,7 @@ class HeroSection20 extends BaseHeroSection {
         },
         {
           type: "object",
-          key: "icon",
+          key: "social_icons_icon",
           displayer: "Icon",
           value: [
             {
@@ -748,7 +748,7 @@ class HeroSection20 extends BaseHeroSection {
             },
             {
               type: "page",
-              key: "link",
+              key: "icon_link",
               displayer: "Navigate To",
               value: "",
             },
@@ -972,7 +972,7 @@ class HeroSection20 extends BaseHeroSection {
                           <div className={this.decorateCSS("social-icons")}>
                             {icons.map((icon, i) => (
                               <div className={this.decorateCSS("icon")}>
-                                <ComposerLink path={icon.link}>{icon.icon_text}</ComposerLink>
+                                <ComposerLink path={icon.icon_link}>{icon.icon_text}</ComposerLink>
                               </div>
                             ))}
                           </div>

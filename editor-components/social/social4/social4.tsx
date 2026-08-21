@@ -12,7 +12,7 @@ type CardItem = {
     mediaItems: MediaItem[],
     likeCount: React.JSX.Element,
     commentCount: React.JSX.Element,
-    description: React.JSX.Element,
+    cardItem_description: React.JSX.Element,
     url: string,
     videoIconActive: boolean,
     imageIconActive: boolean,
@@ -25,7 +25,7 @@ type CardItem = {
 }
 
 type MediaItem = {
-    media: TypeMediaInputValue
+    imageItem_media: TypeMediaInputValue
 }
 
 class Social4 extends BaseSocial {
@@ -132,7 +132,7 @@ class Social4 extends BaseSocial {
                         },
                         {
                             type: "string",
-                            key: "description",
+                            key: "cardItem_description",
                             displayer: "Description",
                             value: "There’s something magical about sailing. The sound of waves against the hull, the wind filling the sails, and the horizon stretching endlessly ahead. It’s not just a sport — it’s freedom, adventure, and peace all at once. Whether you're navigating calm waters or riding the ocean breeze, sailing reminds us to slow down, breathe, and embrace the journey — not just the destination. Here’s to salty air, sun-kissed skin, and the endless blue. 🌤️ #SailingLife #OceanVibes #WindAndWaves #FreedomAtSea"
                         },
@@ -208,7 +208,7 @@ class Social4 extends BaseSocial {
                                         [
                                             {
                                                 type: "media",
-                                                key: "media",
+                                                key: "imageItem_media",
                                                 displayer: "Media",
                                                 value: { type: "video", url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6801ffc5bf76cc002cc3bd38?alt=media&timestamp=1744961479941" },
                                                 additionalParams: { availableTypes: ["image", "video"] }
@@ -231,7 +231,7 @@ class Social4 extends BaseSocial {
                         },
                         {
                             type: "string",
-                            key: "description",
+                            key: "cardItem_description",
                             displayer: "Description",
                             value: "Every street has a story. 🚶‍♂️🛣️.  From early morning footsteps to late-night lights, streets carry the rhythm of everyday life. Look closer — there’s magic in the ordinary. #StreetVibes #CityLife #EverydayStories"
                         },
@@ -307,7 +307,7 @@ class Social4 extends BaseSocial {
                                         [
                                             {
                                                 type: "media",
-                                                key: "media",
+                                                key: "imageItem_media",
                                                 displayer: "Media",
                                                 value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6801fdd7bf76cc002cc3bbab?alt=media&timestamp=1744960987167" },
                                                 additionalParams: { availableTypes: ["image", "video"] }
@@ -330,7 +330,7 @@ class Social4 extends BaseSocial {
                         },
                         {
                             type: "string",
-                            key: "description",
+                            key: "cardItem_description",
                             displayer: "Description",
                             value: "Architecture is where history meets imagination. 🏛️✈️. Every building tells a story — of culture, time, and vision. Wandering through unfamiliar streets, discovering hidden architectural gems, reminds us why we travel: to be inspired. Sometimes it’s not the destination, but the details that take your breath away. #ArchitecturalWonders #TravelMoments #DesignInspiration #Wanderlust"
                         },
@@ -406,7 +406,7 @@ class Social4 extends BaseSocial {
                                         [
                                             {
                                                 type: "media",
-                                                key: "media",
+                                                key: "imageItem_media",
                                                 displayer: "Media",
                                                 value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6801fe14bf76cc002cc3bbdc?alt=media&timestamp=1744961046618" },
                                                 additionalParams: { availableTypes: ["image", "video"] }
@@ -421,7 +421,7 @@ class Social4 extends BaseSocial {
                                         [
                                             {
                                                 type: "media",
-                                                key: "media",
+                                                key: "imageItem_media",
                                                 displayer: "Media",
                                                 value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6801fe45bf76cc002cc3bc1c?alt=media&timestamp=1744961097553" },
                                                 additionalParams: { availableTypes: ["image", "video"] }
@@ -444,7 +444,7 @@ class Social4 extends BaseSocial {
                         },
                         {
                             type: "string",
-                            key: "description",
+                            key: "cardItem_description",
                             displayer: "Description",
                             value: "In black and white, the city speaks louder. 🖤🏙️. No colors, no distractions — just shadows, lights, and lines. A different kind of beauty hides in monochrome: raw, timeless, and honest. Every skyline tells a silent story. #BlackAndWhiteCity #UrbanMood #MonochromeMagic #CitySilhouettes"
                         },
@@ -520,7 +520,7 @@ class Social4 extends BaseSocial {
                                         [
                                             {
                                                 type: "media",
-                                                key: "media",
+                                                key: "imageItem_media",
                                                 displayer: "Media",
                                                 value: { type: "video", url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6801ff32bf76cc002cc3bcea?alt=media&timestamp=1744961331979" },
                                                 additionalParams: { availableTypes: ["image", "video"] }
@@ -543,7 +543,7 @@ class Social4 extends BaseSocial {
                         },
                         {
                             type: "string",
-                            key: "description",
+                            key: "cardItem_description",
                             displayer: "Description",
                             value: "Lost in the magic of Cappadocia. 🎈🧡"
                         },
@@ -619,7 +619,7 @@ class Social4 extends BaseSocial {
                                         [
                                             {
                                                 type: "media",
-                                                key: "media",
+                                                key: "imageItem_media",
                                                 displayer: "Media",
                                                 value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6802001fbf76cc002cc3bd55?alt=media&timestamp=1744961569247" },
                                                 additionalParams: { availableTypes: ["image", "video"] }
@@ -642,7 +642,7 @@ class Social4 extends BaseSocial {
                         },
                         {
                             type: "string",
-                            key: "description",
+                            key: "cardItem_description",
                             displayer: "Description",
                             value: "Flavors of Asia in every bite. 🍜🌶️🥢. From spicy street food to delicate dumplings — Asian cuisine is a journey for the senses. #AsianFoodLovers #TasteOfAsia #FoodieAdventure #SpiceAndSoul"
                         },
@@ -718,7 +718,7 @@ class Social4 extends BaseSocial {
                                         [
                                             {
                                                 type: "media",
-                                                key: "media",
+                                                key: "imageItem_media",
                                                 displayer: "Media",
                                                 value: { type: "video", url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6801ff06bf76cc002cc3bce4?alt=media&timestamp=1744961288526" },
                                                 additionalParams: { availableTypes: ["image", "video"] }
@@ -741,7 +741,7 @@ class Social4 extends BaseSocial {
                         },
                         {
                             type: "string",
-                            key: "description",
+                            key: "cardItem_description",
                             displayer: "Description",
                             value: "The ocean doesn’t ask for attention — it takes it. 🌊💙. Endless, powerful, and deeply calming. Where the waves speak louder than words.#OceanVibes #SeaLover #BlueEscape #WavesAndWhispers"
                         },
@@ -817,7 +817,7 @@ class Social4 extends BaseSocial {
                                         [
                                             {
                                                 type: "media",
-                                                key: "media",
+                                                key: "imageItem_media",
                                                 displayer: "Media",
                                                 value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6802012fbf76cc002cc3bdbd?alt=media&timestamp=1744961841826" },
                                                 additionalParams: { availableTypes: ["image", "video"] }
@@ -832,7 +832,7 @@ class Social4 extends BaseSocial {
                                         [
                                             {
                                                 type: "media",
-                                                key: "media",
+                                                key: "imageItem_media",
                                                 displayer: "Media",
                                                 value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/68020154bf76cc002cc3bdc1?alt=media&timestamp=1744961878598" },
                                                 additionalParams: { availableTypes: ["image", "video"] }
@@ -847,7 +847,7 @@ class Social4 extends BaseSocial {
                                         [
                                             {
                                                 type: "media",
-                                                key: "media",
+                                                key: "imageItem_media",
                                                 displayer: "Media",
                                                 value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6802017abf76cc002cc3bdd2?alt=media&timestamp=1744961916904" },
                                                 additionalParams: { availableTypes: ["image", "video"] }
@@ -870,7 +870,7 @@ class Social4 extends BaseSocial {
                         },
                         {
                             type: "string",
-                            key: "description",
+                            key: "cardItem_description",
                             displayer: "Description",
                             value: "In black and white, emotions have no place to hide. 🎞️🖤"
                         },
@@ -946,7 +946,7 @@ class Social4 extends BaseSocial {
                                         [
                                             {
                                                 type: "media",
-                                                key: "media",
+                                                key: "imageItem_media",
                                                 displayer: "Media",
                                                 value: { type: "video", url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/68020059bf76cc002cc3bd6b?alt=media&timestamp=1744961627435" },
                                                 additionalParams: { availableTypes: ["image", "video"] }
@@ -969,7 +969,7 @@ class Social4 extends BaseSocial {
                         },
                         {
                             type: "string",
-                            key: "description",
+                            key: "cardItem_description",
                             displayer: "Description",
                             value: "Where the earth whispers and the soul listens. 🌿🍃.  Nature doesn’t rush, yet everything gets done. Breathe in peace, exhale the noise. #NatureLovers #IntoTheWild #GreenEscape #SoulfulScenes"
                         },
@@ -1045,7 +1045,7 @@ class Social4 extends BaseSocial {
                                         [
                                             {
                                                 type: "media",
-                                                key: "media",
+                                                key: "imageItem_media",
                                                 displayer: "Media",
                                                 value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/68020086bf76cc002cc3bd6f?alt=media&timestamp=1744961672471" },
                                                 additionalParams: { availableTypes: ["image", "video"] }
@@ -1068,7 +1068,7 @@ class Social4 extends BaseSocial {
                         },
                         {
                             type: "string",
-                            key: "description",
+                            key: "cardItem_description",
                             displayer: "Description",
                             value: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
                         },
@@ -1144,7 +1144,7 @@ class Social4 extends BaseSocial {
                                         [
                                             {
                                                 type: "media",
-                                                key: "media",
+                                                key: "imageItem_media",
                                                 displayer: "Media",
                                                 value: { type: "video", url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/680201efbf76cc002cc3be21?alt=media&timestamp=1744962032906" },
                                                 additionalParams: { availableTypes: ["image", "video"] }
@@ -1167,7 +1167,7 @@ class Social4 extends BaseSocial {
                         },
                         {
                             type: "string",
-                            key: "description",
+                            key: "cardItem_description",
                             displayer: "Description",
                             value: "Proin vel purus eu enim porttitor dictum a ac orci. Cras a magna eget tortor malesuada scelerisque. Aenean sagittis tortor et purus efficitur, nec venenatis justo gravida. Aliquam eget felis non enim egestas vulputate. Nulla in lorem purus."
                         },
@@ -1243,7 +1243,7 @@ class Social4 extends BaseSocial {
                                         [
                                             {
                                                 type: "media",
-                                                key: "media",
+                                                key: "imageItem_media",
                                                 displayer: "Media",
                                                 value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/68020242bf76cc002cc3be29?alt=media&timestamp=1744962116673" },
                                                 additionalParams: { availableTypes: ["image", "video"] }
@@ -1258,7 +1258,7 @@ class Social4 extends BaseSocial {
                                         [
                                             {
                                                 type: "media",
-                                                key: "media",
+                                                key: "imageItem_media",
                                                 displayer: "Media",
                                                 value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6802025bbf76cc002cc3be2e?alt=media&timestamp=1744962141453" },
                                                 additionalParams: { availableTypes: ["image", "video"] }
@@ -1281,7 +1281,7 @@ class Social4 extends BaseSocial {
                         },
                         {
                             type: "string",
-                            key: "description",
+                            key: "cardItem_description",
                             displayer: "Description",
                             value: "Curabitur sed nibh sit amet arcu malesuada viverra. Nam ac felis eget ligula volutpat condimentum. Nulla vitae nisi ligula. Suspendisse potenti. Fusce auctor fringilla mi at dictum. Aenean interdum mauris ut felis efficitur, sed congue orci elementum. Donec at neque erat."
                         },
@@ -1357,7 +1357,7 @@ class Social4 extends BaseSocial {
                                         [
                                             {
                                                 type: "media",
-                                                key: "media",
+                                                key: "imageItem_media",
                                                 displayer: "Media",
                                                 value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/680202cbbf76cc002cc3be97?alt=media&timestamp=1744962253596" },
                                                 additionalParams: { availableTypes: ["image", "video"] }
@@ -1380,7 +1380,7 @@ class Social4 extends BaseSocial {
                         },
                         {
                             type: "string",
-                            key: "description",
+                            key: "cardItem_description",
                             displayer: "Description",
                             value: "Ut consectetur felis vel ante tempus, et vulputate felis fermentum. "
                         },
@@ -1456,7 +1456,7 @@ class Social4 extends BaseSocial {
                                         [
                                             {
                                                 type: "media",
-                                                key: "media",
+                                                key: "imageItem_media",
                                                 displayer: "Media",
                                                 value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/680203b3bf76cc002cc3bfb6?alt=media&timestamp=1744962485711" },
                                                 additionalParams: { availableTypes: ["image", "video"] }
@@ -1471,7 +1471,7 @@ class Social4 extends BaseSocial {
                                         [
                                             {
                                                 type: "media",
-                                                key: "media",
+                                                key: "imageItem_media",
                                                 displayer: "Media",
                                                 value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/68020402bf76cc002cc3c0e2?alt=media&timestamp=1744962564042" },
                                                 additionalParams: { availableTypes: ["image", "video"] }
@@ -1486,7 +1486,7 @@ class Social4 extends BaseSocial {
                                         [
                                             {
                                                 type: "media",
-                                                key: "media",
+                                                key: "imageItem_media",
                                                 displayer: "Media",
                                                 value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/68020426bf76cc002cc3c14b?alt=media&timestamp=1744962602646" },
                                                 additionalParams: { availableTypes: ["image", "video"] }
@@ -1501,7 +1501,7 @@ class Social4 extends BaseSocial {
                                         [
                                             {
                                                 type: "media",
-                                                key: "media",
+                                                key: "imageItem_media",
                                                 displayer: "Media",
                                                 value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/68020448bf76cc002cc3c19c?alt=media&timestamp=1744962633978" },
                                                 additionalParams: { availableTypes: ["image", "video"] }
@@ -1524,7 +1524,7 @@ class Social4 extends BaseSocial {
                         },
                         {
                             type: "string",
-                            key: "description",
+                            key: "cardItem_description",
                             displayer: "Description",
                             value: "Duis vel lacinia tortor. Nam cursus, dui et posuere venenatis, risus erat vehicula odio, sed blandit enim nisl in felis. "
                         },
@@ -1600,7 +1600,7 @@ class Social4 extends BaseSocial {
                                         [
                                             {
                                                 type: "media",
-                                                key: "media",
+                                                key: "imageItem_media",
                                                 displayer: "Media",
                                                 value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6802049ebf76cc002cc3c251?alt=media&timestamp=1744962720101" },
                                                 additionalParams: { availableTypes: ["image", "video"] }
@@ -1623,7 +1623,7 @@ class Social4 extends BaseSocial {
                         },
                         {
                             type: "string",
-                            key: "description",
+                            key: "cardItem_description",
                             displayer: "Description",
                             value: "Aenean tincidunt lacus quis lacus tincidunt, sit amet facilisis libero luctus."
                         },
@@ -1878,7 +1878,7 @@ class Social4 extends BaseSocial {
 
                         <Base.ListGrid gridCount={{ pc: pagination.rowCount, tablet: pagination.rowCount, phone: 2 }} className={this.decorateCSS("gallery-grid")}>
                             {cardItems.slice(0, this.getComponentState("imageCount")).map((item: CardItem, index: number) => {
-                                const firstMedia = item.mediaItems[0]?.media;
+                                const firstMedia = item.mediaItems[0].imageItem_media;
                                 const isVideo = firstMedia?.type === "video" && (firstMedia as any)?.url;
                                 const isImage = firstMedia?.type === "image" && (firstMedia as any)?.url;
 
@@ -1924,7 +1924,7 @@ class Social4 extends BaseSocial {
                                                         )}
                                                     </div>
                                                 )}
-                                                {this.castToString(item.description) && (<Base.P className={this.decorateCSS("description")}>{item.description}</Base.P>)}
+                                                {this.castToString(item.cardItem_description) && (<Base.P className={this.decorateCSS("description")}>{item.cardItem_description}</Base.P>)}
                                             </div>
                                         </div>
                                     </div>
@@ -1957,7 +1957,7 @@ class Social4 extends BaseSocial {
                                 const profileMediaValue = typeof item.profileMedia === "string" && item.profileMedia
                                     ? { type: "image", url: item.profileMedia as string }
                                     : item.profileMedia;
-                                const firstMedia = item.mediaItems[0]?.media;
+                                const firstMedia = item.mediaItems[0].imageItem_media;
                                 const isVideo = item.mediaItems.length === 1 && firstMedia?.type === "video" && (firstMedia as any)?.url;
 
                                 return (
@@ -2008,9 +2008,9 @@ class Social4 extends BaseSocial {
                                             <div className={this.decorateCSS("post-image-container")}>
                                                 <ComposerSlider {...settingsCard} className={this.decorateCSS("post-slider")}>
                                                     {item.mediaItems.map((mediaItem: MediaItem, mIndex: number) => {
-                                                        if (!(mediaItem.media as any)?.url) return null;
+                                                        if (!(mediaItem.imageItem_media as any)?.url) return null;
                                                         return (
-                                                            <Base.Media key={mIndex} value={mediaItem.media} className={this.decorateCSS("image")} />
+                                                            <Base.Media key={mIndex} value={mediaItem.imageItem_media} className={this.decorateCSS("image")} />
                                                         )
                                                     })
                                                     }
@@ -2041,11 +2041,11 @@ class Social4 extends BaseSocial {
                                                     )}
                                                 </div>
                                             )}
-                                            {(this.castToString(item.name) || this.castToString(item.description)) && (
+                                            {(this.castToString(item.name) || this.castToString(item.cardItem_description)) && (
                                                 <div className={this.decorateCSS("name-and-description")}>
                                                     <div className={this.decorateCSS("full-text")}>
                                                         {this.castToString(item.name) && (<Base.P className={this.decorateCSS("name")}>{item.name}</Base.P>)}
-                                                        {this.castToString(item.description) && (<Base.P className={this.decorateCSS("description")}>{item.description}</Base.P>)}
+                                                        {this.castToString(item.cardItem_description) && (<Base.P className={this.decorateCSS("description")}>{item.cardItem_description}</Base.P>)}
                                                     </div>
                                                 </div>
                                             )}

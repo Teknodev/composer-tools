@@ -72,7 +72,7 @@ class Feature16 extends BaseFeature {
             value: [
                 {
                     type: "boolean",
-                    key: "visibility",
+                    key: "bottomLeftSide_visibility",
                     displayer: "Visibility",
                     value: true
                 },
@@ -109,7 +109,7 @@ class Feature16 extends BaseFeature {
             value: [
                 {
                     type: "boolean",
-                    key: "visibility",
+                    key: "topRightSide_visibility",
                     displayer: "Visibility",
                     value: true
                 },
@@ -146,7 +146,7 @@ class Feature16 extends BaseFeature {
             value: [
                 {
                     type: "boolean",
-                    key: "visibility",
+                    key: "topRightSide2_visibility",
                     displayer: "Visibility",
                     value: true
                 },
@@ -183,7 +183,7 @@ class Feature16 extends BaseFeature {
             value: [
                 {
                     type: "boolean",
-                    key: "visibility",
+                    key: "middleRightSide_visibility",
                     displayer: "Visibility",
                     value: true
                 },
@@ -220,7 +220,7 @@ class Feature16 extends BaseFeature {
             value: [
                 {
                     type: "boolean",
-                    key: "visibility",
+                    key: "middleRightSide2_visibility",
                     displayer: "Visibility",
                     value: true
                 },
@@ -257,7 +257,7 @@ class Feature16 extends BaseFeature {
             value: [
                 {
                     type: "boolean",
-                    key: "visibility",
+                    key: "bottomRightSide_visibility",
                     displayer: "Visibility",
                     value: true
                 },
@@ -294,7 +294,7 @@ class Feature16 extends BaseFeature {
             value: [
                 {
                     type: "boolean",
-                    key: "visibility",
+                    key: "bottomRightSide2_visibility",
                     displayer: "Visibility",
                     value: true
                 },
@@ -388,43 +388,43 @@ class Feature16 extends BaseFeature {
             topLeftSide.topLeftSideImage?.url
         );
         
-        const hasBottomLeftContent = bottomLeftSide.visibility && (
+        const hasBottomLeftContent = bottomLeftSide.bottomLeftSide_visibility && (
             this.castToString(bottomLeftSide.bottomLeftSideTitle) || 
             this.castToString(bottomLeftSide.bottomLeftSideDescription) || 
             bottomLeftSide.bottomLeftSideImage?.url
         );
 
-        const hasTopRightContent = topRightSide.visibility && (
+        const hasTopRightContent = topRightSide.topRightSide_visibility && (
             this.castToString(topRightSide.topRightSideTitle) || 
             this.castToString(topRightSide.topRightSideDescription) || 
             topRightSide.topRightSideImage?.url
         );
 
-        const hasTopRight2Content = topRightSide2.visibility && (
+        const hasTopRight2Content = topRightSide2.topRightSide2_visibility && (
             this.castToString(topRightSide2.topRightSide2Title) || 
             this.castToString(topRightSide2.topRightSide2Description) || 
             topRightSide2.topRightSide2Image?.url
         );
 
-        const hasMiddleRightContent = middleRightSide.visibility && (
+        const hasMiddleRightContent = middleRightSide.middleRightSide_visibility && (
             this.castToString(middleRightSide.middleRightSideTitle) || 
             this.castToString(middleRightSide.middleRightSideDescription) || 
             middleRightSide.middleRightSideImage?.url
         );
 
-        const hasMiddleRight2Content = middleRightSide2.visibility && (
+        const hasMiddleRight2Content = middleRightSide2.middleRightSide2_visibility && (
             this.castToString(middleRightSide2.middleRightSide2Title) || 
             this.castToString(middleRightSide2.middleRightSide2Description) || 
             middleRightSide2.middleRightSide2Image?.url
         );
 
-        const hasBottomRightContent = bottomRightSide.visibility && (
+        const hasBottomRightContent = bottomRightSide.bottomRightSide_visibility && (
             this.castToString(bottomRightSide.bottomRightSideTitle) || 
             this.castToString(bottomRightSide.bottomRightSideDescription) || 
             bottomRightSide.bottomRightSideImage?.url
         );
 
-        const hasBottomRight2Content = bottomRightSide2.visibility && (
+        const hasBottomRight2Content = bottomRightSide2.bottomRightSide2_visibility && (
             this.castToString(bottomRightSide2.bottomRightSide2Title) || 
             this.castToString(bottomRightSide2.bottomRightSide2Description) || 
             bottomRightSide2.bottomRightSide2Image?.url

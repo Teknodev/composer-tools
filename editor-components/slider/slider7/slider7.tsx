@@ -8,7 +8,7 @@ import { INPUTS } from "../../../custom-hooks/input-templates";
 
 type Card = {
   header: string;
-  description: string;
+  card_description: string;
   media: TypeMediaInputValue;
   path: string;
 };
@@ -85,7 +85,7 @@ class Slider7 extends BaseSlider {
             },
             {
               type: "string",
-              key: "description",
+              key: "card_description",
               displayer: "Description",
               value:
                 "Leverage Duda's AI Content Collection form or White Label AI Site Builder to make client onboarding painless (finally).",
@@ -116,7 +116,7 @@ class Slider7 extends BaseSlider {
             },
             {
               type: "string",
-              key: "description",
+              key: "card_description",
               displayer: "Description",
               value:
                 "Work alongside clients and teammates with in-line comment threads that support image and file uploads, right where you need them.",
@@ -147,7 +147,7 @@ class Slider7 extends BaseSlider {
             },
             {
               type: "string",
-              key: "description",
+              key: "card_description",
               displayer: "Description",
               value:
                 "Grant your clients white label access to the editor. Don't worry, they won't receive any branded communications from Duda. Your customers are your own.",
@@ -178,7 +178,7 @@ class Slider7 extends BaseSlider {
             },
             {
               type: "string",
-              key: "description",
+              key: "card_description",
               displayer: "Description",
               value:
                 "Draft content, summarize feedback and speed up routine tasks.",
@@ -209,7 +209,7 @@ class Slider7 extends BaseSlider {
             },
             {
               type: "string",
-              key: "description",
+              key: "card_description",
               displayer: "Description",
               value:
                 "Collect files in one place with version history and previews.",
@@ -240,7 +240,7 @@ class Slider7 extends BaseSlider {
             },
             {
               type: "string",
-              key: "description",
+              key: "card_description",
               displayer: "Description",
               value:
                 "Keep everything on-brand with logos, colors and typography.",
@@ -271,7 +271,7 @@ class Slider7 extends BaseSlider {
             },
             {
               type: "string",
-              key: "description",
+              key: "card_description",
               displayer: "Description",
               value:
                 "Build multi-step approvals and notifications with role-based permissions.",
@@ -421,7 +421,7 @@ class Slider7 extends BaseSlider {
 
     const validItems = items.filter((item) => {
       const hasMedia = !!item.media;
-      const hasCardDescription = this.castToString(item.description);
+      const hasCardDescription = this.castToString(item.card_description);
       const hasHeaderText = this.castToString(item.header);
       return hasMedia || hasHeaderText || hasCardDescription;
     });
@@ -467,7 +467,7 @@ class Slider7 extends BaseSlider {
               <ComposerSlider key={sliderMode} ref={this.sliderRef} {...settings} >
                 {validItems.map((item, i) => {
                   const media = item.media;
-                  const hasCardDescription = this.castToString(item.description);
+                  const hasCardDescription = this.castToString(item.card_description);
                   const hasHeaderText = this.castToString(item.header);
 
                   const slideClasses = [this.decorateCSS("slide")];
@@ -498,7 +498,7 @@ class Slider7 extends BaseSlider {
                               )}
                               {hasCardDescription && (
                                 <Base.P className={this.decorateCSS("card-description")}>
-                                  {item.description}
+                                  {item.card_description}
                                 </Base.P>
                               )}
                             </Base.VerticalContent>

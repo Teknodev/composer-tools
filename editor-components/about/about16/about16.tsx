@@ -7,9 +7,9 @@ import { INPUTS } from "../../../custom-hooks/input-templates";
 
 type CardItemType = {
     video: TypeMediaInputValue;
-    subtitle: React.JSX.Element;
-    title: React.JSX.Element;
-    description: React.JSX.Element;
+    card_subtitle: React.JSX.Element;
+    card_title: React.JSX.Element;
+    card_description: React.JSX.Element;
     icon: TypeMediaInputValue;
     navigateTo: string;
 }
@@ -61,19 +61,19 @@ class About16 extends BaseAbout {
                         },
                         {
                             type: "string",
-                            key: "subtitle",
+                            key: "card_subtitle",
                             displayer: "Subtitle",
                             value: "Supercars",
                         },
                         {
                             type: "string",
-                            key: "title",
+                            key: "card_title",
                             displayer: "Title",
                             value: "Your Dream Drive Awaits!",
                         },
                         {
                             type: "string",
-                            key: "description",
+                            key: "card_description",
                             displayer: "Description",
                             value: "",
                         },
@@ -112,19 +112,19 @@ class About16 extends BaseAbout {
                         },
                         {
                             type: "string",
-                            key: "subtitle",
+                            key: "card_subtitle",
                             displayer: "Subtitle",
                             value: "SUV Cars",
                         },
                         {
                             type: "string",
-                            key: "title",
+                            key: "card_title",
                             displayer: "Title",
                             value: "Conquer The Off-Road",
                         },
                         {
                             type: "string",
-                            key: "description",
+                            key: "card_description",
                             displayer: "Description",
                             value: "",
                         },
@@ -210,9 +210,9 @@ class About16 extends BaseAbout {
                         {cards.length > 0 && (
                             <Base.ListGrid gridCount={{ pc: itemCount, tablet: 2, phone: 1 }} className={this.decorateCSS("list-container")}>
                                 {cards.map((card, index) => {
-                                    const cardSubtitle = this.castToString(card.subtitle);
-                                    const cardTitle = this.castToString(card.title);
-                                    const cardDescription = this.castToString(card.description);
+                                    const cardSubtitle = this.castToString(card.card_subtitle);
+                                    const cardTitle = this.castToString(card.card_title);
+                                    const cardDescription = this.castToString(card.card_description);
                                     const isImage = card.icon?.type === "image";
                                     const hasTextDetails = cardTitle || cardDescription || cardSubtitle;
                                     const hasMedia = !!card.video;
@@ -240,9 +240,9 @@ class About16 extends BaseAbout {
                                                         )}
                                                         {hasTextDetails && (
                                                             <Base.VerticalContent className={this.decorateCSS("text-details")}>
-                                                                {cardSubtitle && (<Base.H5 className={this.decorateCSS("card-subtitle")}>{card.subtitle}</Base.H5>)}
-                                                                {cardTitle && (<Base.H4 className={this.decorateCSS("card-title")}>{card.title}</Base.H4>)}
-                                                                {cardDescription && (<Base.P className={this.decorateCSS("card-description")}>{card.description}</Base.P>)}
+                                                                {cardSubtitle && (<Base.H5 className={this.decorateCSS("card-subtitle")}>{card.card_subtitle}</Base.H5>)}
+                                                                {cardTitle && (<Base.H4 className={this.decorateCSS("card-title")}>{card.card_title}</Base.H4>)}
+                                                                {cardDescription && (<Base.P className={this.decorateCSS("card-description")}>{card.card_description}</Base.P>)}
                                                             </Base.VerticalContent>
                                                         )}
                                                     </div>

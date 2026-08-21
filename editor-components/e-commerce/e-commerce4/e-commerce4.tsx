@@ -1968,7 +1968,7 @@ class ECommerce4 extends BaseECommerce {
                                                         },
                                                         {
                                                             type: "boolean",
-                                                            key: "isSoldOut",
+                                                            key: "sizeOption_isSoldOut",
                                                             displayer: "Show Sold Out",
                                                             value: false,
                                                         },
@@ -2080,7 +2080,7 @@ class ECommerce4 extends BaseECommerce {
                                                         },
                                                         {
                                                             type: "boolean",
-                                                            key: "isSoldOut",
+                                                            key: "sizeOption_isSoldOut",
                                                             displayer: "Show Sold Out",
                                                             value: false,
                                                         },

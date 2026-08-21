@@ -8,13 +8,18 @@ import { INPUTS } from "../../../custom-hooks/input-templates";
 interface MenuItems {
   title: React.JSX.Element;
   navigate_to: string;
-  menuType: string;
+  sub_item_menuType: string;
   sub_items: MenuItems[];
 }
 
 interface Logo {
-  image: TypeMediaInputValue;
-  navigateTo: string;
+  // `defaultLogo` keeps the original keys; `absoluteLogo` was made unique with a
+  // prefix by the unique-prop-key rename. currentLogo can be either, so it holds
+  // both shapes (optional) and is normalized before use.
+  image?: TypeMediaInputValue;
+  navigateTo?: string;
+  absoluteLogo_image?: TypeMediaInputValue;
+  absoluteLogo_navigateTo?: string;
 }
 
 interface Language {
@@ -65,7 +70,7 @@ class Navbar1 extends BaseNavigator {
       value: [
         {
           type: "media",
-          key: "image",
+          key: "absoluteLogo_image",
           displayer: "Image",
           additionalParams: {
             availableTypes: ["image"],
@@ -77,7 +82,7 @@ class Navbar1 extends BaseNavigator {
         },
         {
           type: "page",
-          key: "navigateTo",
+          key: "absoluteLogo_navigateTo",
           value: "",
           displayer: "Navigate To",
         },
@@ -866,7 +871,7 @@ class Navbar1 extends BaseNavigator {
                     },
                     {
                       type: "select",
-                      key: "menuType",
+                      key: "sub_item_menuType",
                       displayer: "Type",
                       value: "Normal",
                       additionalParams: { selectItems: ["Dropdown", "Normal"] },
@@ -1276,8 +1281,8 @@ class Navbar1 extends BaseNavigator {
 
     const currentLogo =
       (transparentBackground && !changeBackground) || (hamburgerNavActive && isBigScreen)
-        ? absoluteLogo
-        : defaultLogo;
+        ? { image: absoluteLogo.absoluteLogo_image, navigateTo: absoluteLogo.absoluteLogo_navigateTo }
+        : { image: defaultLogo.image, navigateTo: defaultLogo.navigateTo };
 
     const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
     const divider = this.getPropValue("divider");
@@ -1494,7 +1499,7 @@ class Navbar1 extends BaseNavigator {
                               {item.title}
                             </Base.P>
                           </ComposerLink>
-                          {item.menuType === "Dropdown" && (
+                          {item.sub_item_menuType === "Dropdown" && (
                             <Base.Media
                               value={navigationIcons?.dropdownIcon}
                               className={`${this.decorateCSS("dropdownIcon")} ${this.getComponentState("subNavActiveIndex") ===
@@ -1505,7 +1510,7 @@ class Navbar1 extends BaseNavigator {
                             />
                           )}
                         </div>
-                        {item.menuType === "Dropdown" && (
+                        {item.sub_item_menuType === "Dropdown" && (
                           <div
                             onClick={() => this.handleCloseMenu()}
                             className={`${this.decorateCSS("hamburgerSubmenu")} ${this.getComponentState("subNavActiveIndex") ===

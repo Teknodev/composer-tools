@@ -8,10 +8,10 @@ import { INPUTS } from "../../../custom-hooks/input-templates";
 type ListItem = {
   number: React.JSX.Element;
   icon: TypeMediaInputValue;
-  subtitle: React.JSX.Element;
-  title: React.JSX.Element;
+  list_item_subtitle: React.JSX.Element;
+  list_item_title: React.JSX.Element;
   text: React.JSX.Element;
-  buttons: INPUTS.CastedButton[];
+  list_item_buttons: INPUTS.CastedButton[];
 };
 
 type CardButton = INPUTS.CastedButton;
@@ -71,13 +71,13 @@ class List8 extends BaseList {
             },
             {
               type: "string",
-              key: "subtitle",
+              key: "list_item_subtitle",
               displayer: "Subtitle",
               value: "",
             },
             {
               type: "string",
-              key: "title",
+              key: "list_item_title",
               displayer: "Title",
               value: "List Your Space",
             },
@@ -90,7 +90,7 @@ class List8 extends BaseList {
             },
             {
               type: "array",
-              key: "buttons",
+              key: "list_item_buttons",
               displayer: "Buttons",
               value: [INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary")],
             },
@@ -116,13 +116,13 @@ class List8 extends BaseList {
             },
             {
               type: "string",
-              key: "subtitle",
+              key: "list_item_subtitle",
               displayer: "Subtitle",
               value: "",
             },
             {
               type: "string",
-              key: "title",
+              key: "list_item_title",
               displayer: "Title",
               value: "Get More Orders",
             },
@@ -135,7 +135,7 @@ class List8 extends BaseList {
             },
             {
               type: "array",
-              key: "buttons",
+              key: "list_item_buttons",
               displayer: "Buttons",
               value: [INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary")],
             },
@@ -161,13 +161,13 @@ class List8 extends BaseList {
             },
             {
               type: "string",
-              key: "subtitle",
+              key: "list_item_subtitle",
               displayer: "Subtitle",
               value: "",
             },
             {
               type: "string",
-              key: "title",
+              key: "list_item_title",
               displayer: "Title",
               value: "Earn Money",
             },
@@ -180,7 +180,7 @@ class List8 extends BaseList {
             },
             {
               type: "array",
-              key: "buttons",
+              key: "list_item_buttons",
               displayer: "Buttons",
               value: [INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary")],
             },
@@ -290,8 +290,8 @@ class List8 extends BaseList {
                 gridCount={{ pc: itemCount, tablet: 3, phone: 1 }}
               >
                 {listItems.map((item: ListItem, index: number) => {
-                  const itemSubtitleExist = this.castToString(item.subtitle);
-                  const itemTitleExist = this.castToString(item.title);
+                  const itemSubtitleExist = this.castToString(item.list_item_subtitle);
+                  const itemTitleExist = this.castToString(item.list_item_title);
                   const itemTextExist = this.castToString(item.text);
                   const iconExist = item.icon && (item.icon.name || item.icon.url);
                   const itemNumberExist = this.castToString(item.number);
@@ -326,20 +326,20 @@ class List8 extends BaseList {
                         )}
                         {itemSubtitleExist && (
                           <Base.H6 className={this.decorateCSS("item-subtitle")}>
-                            {item.subtitle}
+                            {item.list_item_subtitle}
                           </Base.H6>
                         )}
                         {itemTitleExist && (
                           <Base.H5 className={this.decorateCSS("item-title")}>
-                            {item.title}
+                            {item.list_item_title}
                           </Base.H5>
                         )}
                         {itemTextExist && (
                           <Base.P className={this.decorateCSS("item-text")}>{item.text}</Base.P>
                         )}
-                        {item.buttons && item.buttons.length > 0 && (
+                        {item.list_item_buttons && item.list_item_buttons.length > 0 && (
                           <div className={this.decorateCSS("item-buttons")}>
-                            {item.buttons.map((btn: CardButton, bIndex: number) => {
+                            {item.list_item_buttons.map((btn: CardButton, bIndex: number) => {
                               const btnTextExist = this.castToString(btn.text);
                               const btnIconExist = btn.icon && btn.icon.name;
                               if (!btnTextExist && !btnIconExist) return null;

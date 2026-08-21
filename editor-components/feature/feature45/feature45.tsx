@@ -8,9 +8,9 @@ import { INPUTS } from "../../../custom-hooks/input-templates";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 
 type Card = {
-  title: Element;
-  subtitle: Element;
-  description: Element;
+  card_title: Element;
+  card_subtitle: Element;
+  card_description: Element;
   buttons: PrimaryButton[];
 };
 
@@ -58,19 +58,19 @@ class Feature45 extends BaseFeature {
           value: [
             {
               type: "string",
-              key: "subtitle",
+              key: "card_subtitle",
               displayer: "Subtitle",
               value: "Our Experience",
             },
             {
               type: "string",
-              key: "title",
+              key: "card_title",
               displayer: "Title",
               value: "12 Years of Development",
             },
             {
               type: "string",
-              key: "description",
+              key: "card_description",
               displayer: "Description",
               value:
                 "Imagination is more important than knowledge. Knowledge is limited.",
@@ -100,19 +100,19 @@ class Feature45 extends BaseFeature {
           value: [
             {
               type: "string",
-              key: "subtitle",
+              key: "card_subtitle",
               displayer: "Subtitle",
               value: "Always in Touch",
             },
             {
               type: "string",
-              key: "title",
+              key: "card_title",
               displayer: "Title",
               value: "Professional Managers",
             },
             {
               type: "string",
-              key: "description",
+              key: "card_description",
               displayer: "Description",
               value:
                 "Imagination is more important than knowledge. Knowledge is limited.",
@@ -142,19 +142,19 @@ class Feature45 extends BaseFeature {
           value: [
             {
               type: "string",
-              key: "subtitle",
+              key: "card_subtitle",
               displayer: "Subtitle",
               value: "Our Values",
             },
             {
               type: "string",
-              key: "title",
+              key: "card_title",
               displayer: "Title",
               value: "Modern Clean Design",
             },
             {
               type: "string",
-              key: "description",
+              key: "card_description",
               displayer: "Description",
               value:
                 "Imagination is more important than knowledge. Knowledge is limited.",
