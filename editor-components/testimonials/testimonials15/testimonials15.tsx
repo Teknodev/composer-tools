@@ -194,9 +194,9 @@ class Testimonials15Page extends Testimonials {
     getVisibilityInfo(topRightBox:any, bottomRightBox:any, videoBox:any) {
         const visibleBoxes = [];
 
-        if (topRightBox.visibility) visibleBoxes.push('topRightBox');
-        if (bottomRightBox.visibility) visibleBoxes.push('bottomRightBox');
-        if (videoBox.visibility) visibleBoxes.push('videoBox');
+        if (topRightBox.topRightBox_visibility) visibleBoxes.push('topRightBox');
+        if (bottomRightBox.bottomRightBox_visibility) visibleBoxes.push('bottomRightBox');
+        if (videoBox.videoBox_visibility) visibleBoxes.push('videoBox');
 
         return {
             visibleBoxes,
