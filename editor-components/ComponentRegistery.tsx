@@ -72,6 +72,37 @@ class ComponentsRegistery {
     });
   }
 
+  /**
+   * Drops registered custom components the authoritative list no longer
+   * carries, and reports what went.
+   *
+   * registerDynamic only ever appends — it dedupes on customComponentId, and a
+   * new version carries a new id. So after a Block Builder save produced v2,
+   * returning to the editor re-ran the loader and added v2 while v1 stayed
+   * behind, and the picker listed both until a reload rebuilt the registry from
+   * scratch. The server already answers with one entry per name (plus versions
+   * a page still references), so mirroring that list is the whole fix.
+   *
+   * Entries without a customComponentId are left alone — nothing in the fetched
+   * list can vouch for them either way.
+   */
+  pruneCustomComponents(validIds: Set<string>): typeof Component[] {
+    const category = CATEGORIES.CUSTOM;
+    const registered = this.availableComponents[category];
+    if (!registered) return [];
+
+    const isStale = (c: typeof Component) => {
+      const id = (c as unknown as { customComponentId?: string }).customComponentId;
+      return !!id && !validIds.has(String(id));
+    };
+
+    const removed = registered.filter(isStale);
+    if (removed.length > 0) {
+      this.availableComponents[category] = registered.filter((c) => !isStale(c));
+    }
+    return removed;
+  }
+
   unregisterCustomComponent(customComponentId: string) {
     const category = CATEGORIES.CUSTOM;
     if (this.availableComponents[category]) {

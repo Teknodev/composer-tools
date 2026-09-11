@@ -578,6 +578,24 @@ export async function loadCustomComponentsFromMeta(
 
   if (!components || components.length === 0) return failures;
 
+  // The fetched list is authoritative: one entry per name (the newest version)
+  // plus any older version a page still references. Anything registered from an
+  // earlier pass that is missing from it has been superseded or deleted, so drop
+  // it before registering — otherwise a version bump leaves both the old and the
+  // new entry in the picker until the tab is reloaded.
+  const prunedVersions = registry.pruneCustomComponents(
+    new Set(components.map((c) => String(c._id)))
+  );
+  if (prunedVersions.length > 0) {
+    console.info(
+      `[CustomComponents] Dropped ${prunedVersions.length} superseded component(s):`,
+      prunedVersions.map(
+        (c) =>
+          `${c.getName()} v${(c as unknown as { customComponentVersion?: number }).customComponentVersion}`
+      )
+    );
+  }
+
   const activeComponents = components.filter((c) => c.status === "active" && c.bundle_content);
 
   if (activeComponents.length === 0) {
