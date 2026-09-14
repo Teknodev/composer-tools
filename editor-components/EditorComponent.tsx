@@ -207,6 +207,12 @@ export type InteractionType = {
   show_once?: false,
 };
 export type PageInteractionType = {
+  /**
+   * Stable identifier. Page interactions were positional-only, so nothing
+   * could refer to one; the Auto-AB conversion goal stores the interaction it
+   * optimizes toward by id. Backfilled for records saved before this existed.
+   */
+  id?: string;
   type?: string;
   modal?: string;
   scroll_depth?: number;

@@ -80,7 +80,11 @@ function legacyTypeToTrigger(type: string | undefined): InteractionTrigger {
       return { type: "click" };
     case "Hover":
       return { type: "hover" };
+    case "Page Load":
+      return { type: "page-load" };
     default:
+      // "Exit Intent" lands here too — the trigger union has no exit-intent
+      // member, so there is nothing truthful to map it to.
       return { type: "click" }; // default to click
   }
 }
