@@ -314,6 +314,14 @@ export class WebAnimationEngine {
     const animation = element.animate(keyframes, options);
     registry.set(interactionId, animation);
 
+    // The finished promise settles asynchronously. If this interaction was
+    // replayed in the meantime, the registry entry belongs to the new
+    // animation; deleting it orphaned that animation (cancelAll no longer
+    // reached it, so two ran at once). Only drop the entry if it is ours.
+    const releaseEntry = () => {
+      if (registry.get(interactionId) === animation) registry.delete(interactionId);
+    };
+
     // When animation finishes, commit styles to inline and cancel the fill effect
     // so that subsequent animations see the real inline state.
     const finishedPromise = animation.finished
@@ -322,7 +330,7 @@ export class WebAnimationEngine {
         // in InteractionManager), do not commit styles — the caller has already
         // restored baseline or started a different animation sequence.
         if (anim.playState === "idle") {
-          registry.delete(interactionId);
+          releaseEntry();
           return anim;
         }
 
@@ -364,11 +372,11 @@ export class WebAnimationEngine {
           // consistent function-notation transforms.
           transformStateManager.recompose(element);
         }
-        registry.delete(interactionId);
+        releaseEntry();
         return anim;
       })
       .catch((err) => {
-        registry.delete(interactionId);
+        releaseEntry();
         throw err;
       });
 
@@ -378,7 +386,7 @@ export class WebAnimationEngine {
       resume: () => animation.play(),
       cancel: () => {
         try { animation.cancel(); } catch { /* noop */ }
-        registry.delete(interactionId);
+        releaseEntry();
       },
       finished: finishedPromise,
     };

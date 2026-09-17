@@ -21,7 +21,12 @@
  */
 
 import { Interactions, Interaction } from "../../types/interaction";
-import { InteractionManager } from "./InteractionManager";
+import {
+  InteractionManager,
+  resetPageLoadRegistry,
+  prehidePageLoadTargets,
+  hasDetachedPageLoad,
+} from "./InteractionManager";
 import {
   LegacyModalActionHandler,
   LegacyModalInteraction,
@@ -243,6 +248,27 @@ export class DomInteractionRuntime {
    */
   resetState(): void {
     this.legacyModalHandler.reset();
+  }
+
+  /**
+   * Let page-load animations play again — call when a different page is shown.
+   * Within one page they play once, however often the runtime is rebuilt.
+   */
+  static resetPageLoads(): void {
+    resetPageLoadRegistry();
+  }
+
+  /**
+   * Hide the targets of page-load animations that have not played yet. Call
+   * before the page is painted (a layout effect), well ahead of initialize(),
+   * so their final state never shows first. Idempotent.
+   */
+  static prehidePageLoads(configs: ComponentInteractionConfig[]): void {
+    for (const { componentId, animationInteractions } of configs) {
+      if (componentId && animationInteractions) {
+        prehidePageLoadTargets(componentId, animationInteractions);
+      }
+    }
   }
 
   /**
@@ -481,12 +507,27 @@ export class DomInteractionRuntime {
   private setupMutationObserver(configs: ComponentInteractionConfig[]): void {
     if (!this.rootElement) return;
 
+    // Mutations seen since the last time they were handled.
+    let pending: MutationRecord[] = [];
+
     this.mutationObserver = new MutationObserver((mutations) => {
       if (this.destroyed) return;
+      pending.push(...mutations);
 
       // Debounce mutation processing
       if (this.pendingMutationTimeout) {
         clearTimeout(this.pendingMutationTimeout);
+        this.pendingMutationTimeout = null;
+      }
+
+      // A page-load animation's node was replaced while it was playing: move
+      // it onto the new node now, before the next paint, instead of leaving
+      // the new node hidden (or unanimated) through the debounce.
+      if (hasDetachedPageLoad()) {
+        const batch = pending;
+        pending = [];
+        this.handleMutations(batch, configs);
+        return;
       }
 
       this.pendingMutationTimeout = setTimeout(() => {
@@ -494,7 +535,9 @@ export class DomInteractionRuntime {
         // are fully rendered before re-initializing interaction managers.
         requestAnimationFrame(() => {
           if (this.destroyed) return;
-          this.handleMutations(mutations, configs);
+          const batch = pending;
+          pending = [];
+          this.handleMutations(batch, configs);
           this.pendingMutationTimeout = null;
         });
       }, 200);
