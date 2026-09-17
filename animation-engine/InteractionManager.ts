@@ -170,9 +170,146 @@ interface PageLoadRecord {
 
 const playedPageLoad = new Map<string, PageLoadRecord>();
 
+/**
+ * Whether a page-load animation is still running on a node that has left the
+ * DOM — the preview replaced it mid-animation and the runtime has to move the
+ * animation onto the new node before the next frame.
+ */
+export function hasDetachedPageLoad(): boolean {
+  for (const record of playedPageLoad.values()) {
+    if (!record.done && !record.interrupted && record.element && !record.element.isConnected) {
+      return true;
+    }
+  }
+  return false;
+}
+
 /** Forget which page-load animations have played — call when the page changes. */
 export function resetPageLoadRegistry(): void {
   playedPageLoad.clear();
+  finishedPageLoads.clear();
+  for (const base of [...prehideRules.keys()]) releasePrehide(base);
+}
+
+// ── Page-load prehide ──────────────────────────────────────────────────────
+
+/**
+ * Until a page-load animation starts, its target is hidden with a stylesheet
+ * rule. The runtime only starts some time after the page is drawn, so the
+ * element was painted in its final state, then snapped to the animation's
+ * start and played — and when the preview replaced the section's DOM, the new
+ * node flashed in its final state again before the animation resumed. A rule
+ * (rather than an inline style) also covers nodes that do not exist yet.
+ *
+ * A node the animation is running on carries the rule's token in
+ * `data-ix-live`, which exempts it. The rule is removed once the animation has
+ * played, if the target cannot be found, and in any case after a safety
+ * timeout, so nothing stays hidden.
+ */
+const PREHIDE_STYLE_ID = "ix-page-load-prehide";
+const PREHIDE_SAFETY_MS = 6000;
+const prehideRules = new Map<string, { selectors: string[]; token: string; timer: ReturnType<typeof setTimeout> }>();
+/** Page-load animations (without target index) that have finished playing. */
+const finishedPageLoads = new Set<string>();
+
+function pageLoadBase(componentId: string, sectionName: string, interaction: Interaction): string {
+  return `${componentId}::${sectionName}::${pageLoadKey(interaction)}`;
+}
+
+function prehideToken(base: string): string {
+  let hash = 0;
+  for (let i = 0; i < base.length; i++) hash = (Math.imul(31, hash) + base.charCodeAt(i)) | 0;
+  return `ixpl${(hash >>> 0).toString(36)}`;
+}
+
+function toSafeSelector(selector: string): string {
+  const bareIdMatch = /^#([^\s>+~,:[\]()]+)$/.exec(selector);
+  if (bareIdMatch) {
+    return `[id="${bareIdMatch[1].replace(/\\/g, "\\\\").replace(/"/g, '\\"')}"]`;
+  }
+  const bareClassMatch = /^\.([^\s>+~,:[\]()]+)$/.exec(selector);
+  if (bareClassMatch) {
+    return `[class~="${bareClassMatch[1].replace(/\\/g, "\\\\").replace(/"/g, '\\"')}"]`;
+  }
+  return selector;
+}
+
+function renderPrehide(): void {
+  if (typeof document === "undefined") return;
+  let style = document.getElementById(PREHIDE_STYLE_ID) as HTMLStyleElement | null;
+  if (prehideRules.size === 0) {
+    style?.remove();
+    return;
+  }
+  if (!style) {
+    style = document.createElement("style");
+    style.id = PREHIDE_STYLE_ID;
+    document.head.appendChild(style);
+  }
+  const css: string[] = [];
+  for (const { selectors, token } of prehideRules.values()) {
+    const list = selectors.map((sel) => `${sel}:not([data-ix-live~="${token}"])`).join(",");
+    css.push(`${list}{visibility:hidden !important;}`);
+  }
+  style.textContent = css.join("\n");
+}
+
+function releasePrehide(base: string): void {
+  const rule = prehideRules.get(base);
+  if (!rule) return;
+  clearTimeout(rule.timer);
+  prehideRules.delete(base);
+  renderPrehide();
+}
+
+function markPageLoadLive(el: HTMLElement, base: string): void {
+  const token = prehideToken(base);
+  const tokens = (el.getAttribute("data-ix-live") || "").split(/\s+/).filter(Boolean);
+  if (!tokens.includes(token)) {
+    tokens.push(token);
+    el.setAttribute("data-ix-live", tokens.join(" "));
+  }
+}
+
+/**
+ * Hide the targets of a component's page-load animations that have not played
+ * yet. Safe to call repeatedly (each render); call it before the page is
+ * painted so the final state never shows first.
+ */
+export function prehidePageLoadTargets(componentId: string, interactions: Interactions): void {
+  if (typeof document === "undefined") return;
+  let changed = false;
+  for (const [sectionName, list] of Object.entries(interactions || {})) {
+    for (const interaction of (list || []).map(migrateInteraction)) {
+      if (!interaction.enabled) continue;
+      const fields = getAnimateFields(interaction);
+      if (!fields || !isPlayOncePageLoad(interaction, fields.timing)) continue;
+      const base = pageLoadBase(componentId, sectionName, interaction);
+      if (finishedPageLoads.has(base) || prehideRules.has(base)) continue;
+
+      const target = fields.target?.selector?.trim();
+      const selectors = target
+        ? [toSafeSelector(target)]
+        : [
+            `[class~="auto-generate-${componentId}-${sectionName}"]`,
+            `[id="${sectionName.replace(/"/g, '\\"')}"]`,
+          ];
+      try {
+        // Reject a selector the browser cannot parse rather than breaking
+        // every rule in the sheet.
+        document.querySelector(selectors.join(","));
+      } catch {
+        continue;
+      }
+      prehideRules.set(base, {
+        selectors,
+        token: prehideToken(base),
+        timer: setTimeout(() => releasePrehide(base), PREHIDE_SAFETY_MS),
+      });
+      changed = true;
+    }
+  }
+  if (changed) renderPrehide();
 }
 
 function pageLoadSlot(
@@ -368,6 +505,8 @@ export class InteractionManager {
     // Defence-in-depth: only attach triggers in preview mode
     if (!isPreviewMode) return;
 
+    prehidePageLoadTargets(componentId, interactions);
+
     for (const [sectionName, interactionList] of Object.entries(interactions)) {
       if (!interactionList || interactionList.length === 0) continue;
 
@@ -507,6 +646,29 @@ export class InteractionManager {
               for (const el of targets) allTargetElements.add(el);
             }
 
+            if (triggerType === "page-load") {
+              for (const { interaction, targets, animFields } of resolvedEntries) {
+                if (!isPlayOncePageLoad(interaction, animFields.timing)) continue;
+                const base = pageLoadBase(componentId, sectionName, interaction);
+                // A delayed animation keeps its old behaviour: visible until
+                // it starts.
+                if ((animFields.timing.delay ?? 0) > 0) {
+                  for (const el of targets) markPageLoadLive(el, base);
+                }
+                // The resolver fell back to something the rule does not cover
+                // (or nothing matched): don't leave the real target hidden.
+                const rule = prehideRules.get(base);
+                if (rule) {
+                  try {
+                    const covered = new Set(document.querySelectorAll(rule.selectors.join(",")));
+                    if (!targets.some((el) => covered.has(el))) releasePrehide(base);
+                  } catch {
+                    releasePrehide(base);
+                  }
+                }
+              }
+            }
+
             // Capture baseline styles before any animation runs (idempotent)
             for (const el of allTargetElements) {
               this.baselineStore.capture(el);
@@ -552,6 +714,7 @@ export class InteractionManager {
                       playedPageLoad.set(slot, { done: false, startedAt: performance.now(), element: el });
                     }
                     this.ownPageLoadSlots.add(slot);
+                    markPageLoadLive(el, pageLoadBase(componentId, sectionName, interaction));
                     let slots = this.pageLoadSlots.get(el);
                     if (!slots) {
                       slots = new Map();
@@ -1728,7 +1891,15 @@ export class InteractionManager {
 
     const pageLoad = this.pageLoadSlots.get(el)?.get(interactionId);
     const pageLoadRecord = pageLoad ? playedPageLoad.get(pageLoad) : undefined;
-    if (pageLoadRecord) pageLoadRecord.done = true;
+    if (pageLoad && pageLoadRecord) {
+      pageLoadRecord.done = true;
+      // Slot is "<componentId>::<section>::<index>::<key>"; the rule is per
+      // animation, not per target.
+      const [cid, section, , ...rest] = pageLoad.split("::");
+      const base = `${cid}::${section}::${rest.join("::")}`;
+      finishedPageLoads.add(base);
+      releasePrehide(base);
+    }
 
     // Track completion for non-replay guard
     let done = this.completedNonReplayAnimations.get(el);
