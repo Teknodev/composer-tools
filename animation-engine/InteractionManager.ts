@@ -144,8 +144,12 @@ class BaselineStyleStore {
  * element back and restarted it. Two runtimes on the same page (the published
  * client runs two) raced the same way.
  *
- * Keyed per element by the interaction's id and content, so an edited
- * interaction still replays while an unchanged one plays exactly once. A record
+ * Keyed by where the animation lives — component, section, the target's index
+ * among the section's matches — plus the interaction's id and content, not by
+ * the DOM node: a re-render that replaces the section's elements (the editor
+ * preview does this while it settles) otherwise played the animation again on
+ * the new node. An edited interaction still replays while an unchanged one
+ * plays exactly once; the registry is reset when the page changes. A record
  * is claimed when the animation starts and marked done when it completes. If
  * its runtime is destroyed mid-animation the record is marked interrupted, and
  * the rebuilt runtime resumes the animation at the elapsed time instead of
@@ -160,9 +164,25 @@ interface PageLoadRecord {
   interrupted?: boolean;
   /** Inline styles the finished animation left behind, re-applied on rebuild. */
   styles?: Record<string, string>;
+  /** The node it last ran on, to read those styles from at teardown. */
+  element?: HTMLElement;
 }
 
-const playedPageLoad = new WeakMap<HTMLElement, Map<string, PageLoadRecord>>();
+const playedPageLoad = new Map<string, PageLoadRecord>();
+
+/** Forget which page-load animations have played — call when the page changes. */
+export function resetPageLoadRegistry(): void {
+  playedPageLoad.clear();
+}
+
+function pageLoadSlot(
+  componentId: string,
+  sectionName: string,
+  targetIndex: number,
+  interaction: Interaction
+): string {
+  return `${componentId}::${sectionName}::${targetIndex}::${pageLoadKey(interaction)}`;
+}
 
 const PAGE_LOAD_STYLE_PROPS = [...BASELINE_STYLE_PROPS, "display"] as const;
 
@@ -321,8 +341,10 @@ export class InteractionManager {
    */
   private deferredTextAnimationReverts = new WeakSet<HTMLElement>();
 
-  /** Page-load interaction ids started by this instance → their registry key. */
-  private pageLoadKeys = new Map<string, string>();
+  /** Per element: page-load interaction id → its registry slot. */
+  private pageLoadSlots = new WeakMap<HTMLElement, Map<string, string>>();
+  /** Registry slots claimed by this instance, settled at destroy(). */
+  private ownPageLoadSlots = new Set<string>();
 
   // ── Public ──────────────────────────────────────────────────────────────
 
@@ -455,9 +477,11 @@ export class InteractionManager {
         if (triggerType === "page-load") {
           for (const { interaction, animFields } of interactionEntries) {
             if (!isPlayOncePageLoad(interaction, animFields.timing)) continue;
-            const key = pageLoadKey(interaction);
-            for (const el of this.resolveTargets(sectionElement, animFields.target)) {
-              const record = playedPageLoad.get(el)?.get(key);
+            const targetsNow = this.resolveTargets(sectionElement, animFields.target);
+            for (const [targetIndex, el] of targetsNow.entries()) {
+              const record = playedPageLoad.get(
+                pageLoadSlot(componentId, sectionName, targetIndex, interaction)
+              );
               if (!record?.done || !record.styles) continue;
               for (const [prop, value] of Object.entries(record.styles)) {
                 if (value) el.style.setProperty(prop, value);
@@ -516,22 +540,24 @@ export class InteractionManager {
                   // see playedPageLoad.
                   let resumeAt = 0;
                   if (isPlayOncePageLoad(interaction, animFields.timing)) {
-                    const key = pageLoadKey(interaction);
-                    let records = playedPageLoad.get(el);
-                    if (!records) {
-                      records = new Map();
-                      playedPageLoad.set(el, records);
-                    }
-                    const record = records.get(key);
+                    const slot = pageLoadSlot(componentId, sectionName, targets.indexOf(el), interaction);
+                    const record = playedPageLoad.get(slot);
                     if (record) {
                       // Finished, or already running under another runtime.
                       if (record.done || !record.interrupted) return;
                       resumeAt = performance.now() - record.startedAt;
                       record.interrupted = false;
+                      record.element = el;
                     } else {
-                      records.set(key, { done: false, startedAt: performance.now() });
+                      playedPageLoad.set(slot, { done: false, startedAt: performance.now(), element: el });
                     }
-                    this.pageLoadKeys.set(interaction.id, key);
+                    this.ownPageLoadSlots.add(slot);
+                    let slots = this.pageLoadSlots.get(el);
+                    if (!slots) {
+                      slots = new Map();
+                      this.pageLoadSlots.set(el, slots);
+                    }
+                    slots.set(interaction.id, slot);
                   }
 
                   const isClickTrigger = trigger.type === "click" || trigger.type === "focus";
@@ -621,9 +647,10 @@ export class InteractionManager {
         if (triggerType === "page-load") {
           const hasInterrupted = interactionEntries.some(({ interaction, animFields }) => {
             if (!isPlayOncePageLoad(interaction, animFields.timing)) return false;
-            const key = pageLoadKey(interaction);
             return this.resolveTargets(sectionElement, animFields.target).some(
-              (el) => playedPageLoad.get(el)?.get(key)?.interrupted
+              (_el, targetIndex) =>
+                playedPageLoad.get(pageLoadSlot(componentId, sectionName, targetIndex, interaction))
+                  ?.interrupted
             );
           });
           if (hasInterrupted) onTrigger();
@@ -652,27 +679,27 @@ export class InteractionManager {
     }
     this.cleanups = [];
 
-    const ownKeys = new Set(this.pageLoadKeys.values());
+    // Page-load records this instance claimed: a finished one keeps the inline
+    // end state it produced (re-applied on rebuild, even onto a replacement
+    // node); an unfinished one is marked interrupted so the rebuilt runtime
+    // resumes it. Read before the baseline restore below clears those styles.
+    for (const slot of this.ownPageLoadSlots) {
+      const record = playedPageLoad.get(slot);
+      if (!record) continue;
+      if (!record.done) {
+        record.interrupted = true;
+        continue;
+      }
+      if (!record.element) continue;
+      const styles: Record<string, string> = {};
+      for (const prop of PAGE_LOAD_STYLE_PROPS) {
+        styles[prop] = record.element.style.getPropertyValue(prop);
+      }
+      record.styles = styles;
+    }
+    this.ownPageLoadSlots.clear();
 
     for (const el of this.trackedElements) {
-      // Page-load records this instance claimed: a finished one keeps the
-      // inline end state it produced (re-applied on rebuild); an unfinished
-      // one is marked interrupted so the rebuilt runtime resumes it.
-      const records = playedPageLoad.get(el);
-      if (records) {
-        for (const [key, record] of records) {
-          if (!ownKeys.has(key)) continue;
-          if (!record.done) {
-            record.interrupted = true;
-            continue;
-          }
-          const styles: Record<string, string> = {};
-          for (const prop of PAGE_LOAD_STYLE_PROPS) {
-            styles[prop] = el.style.getPropertyValue(prop);
-          }
-          record.styles = styles;
-        }
-      }
 
       // Cancel any in-progress smooth-revert transitions
       this.cancelSmoothRevert(el);
@@ -1699,8 +1726,8 @@ export class InteractionManager {
     if (!ids) return;
     ids.delete(interactionId);
 
-    const pageLoad = this.pageLoadKeys.get(interactionId);
-    const pageLoadRecord = pageLoad ? playedPageLoad.get(el)?.get(pageLoad) : undefined;
+    const pageLoad = this.pageLoadSlots.get(el)?.get(interactionId);
+    const pageLoadRecord = pageLoad ? playedPageLoad.get(pageLoad) : undefined;
     if (pageLoadRecord) pageLoadRecord.done = true;
 
     // Track completion for non-replay guard

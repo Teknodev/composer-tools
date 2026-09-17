@@ -21,7 +21,7 @@
  */
 
 import { Interactions, Interaction } from "../../types/interaction";
-import { InteractionManager } from "./InteractionManager";
+import { InteractionManager, resetPageLoadRegistry } from "./InteractionManager";
 import {
   LegacyModalActionHandler,
   LegacyModalInteraction,
@@ -243,6 +243,14 @@ export class DomInteractionRuntime {
    */
   resetState(): void {
     this.legacyModalHandler.reset();
+  }
+
+  /**
+   * Let page-load animations play again — call when a different page is shown.
+   * Within one page they play once, however often the runtime is rebuilt.
+   */
+  static resetPageLoads(): void {
+    resetPageLoadRegistry();
   }
 
   /**
