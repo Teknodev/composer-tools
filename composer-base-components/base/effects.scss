@@ -37,9 +37,12 @@
 
 /* ─── Glass ─────────────────────────────────────────────────── */
 
-.effect-glass {
+:where(.effect-glass) {
   --effect-glass-blur: 12;
   --effect-glass-tint: rgba(255, 255, 255, 0.15);
+}
+
+.effect-glass {
   backdrop-filter: blur(calc(var(--effect-glass-blur) * 1px));
   -webkit-backdrop-filter: blur(calc(var(--effect-glass-blur) * 1px));
   background: var(--effect-glass-tint);
