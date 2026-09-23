@@ -363,29 +363,31 @@ class Testimonials12Page extends Testimonials {
 
                 return (
                   <div key={index} className={this.decorateCSS("card")}>
-                    {iconExist && (
-                      <Base.Media value={icon} className={this.decorateCSS("span-image")} />
-                    )}
-                    {textExist && (
-                      <Base.P className={this.decorateCSS("card-description")}>{card.text}</Base.P>
-                    )}
-                    {(imageExist || nameExist || subtitleCardExist) && (
-                      <div className={this.decorateCSS("below-content")}>
-                        {imageExist && (
-                          <Base.Media value={card.image} className={this.decorateCSS("card-image")} />
-                        )}
-                        {card.author && (nameExist || subtitleCardExist) && (
-                          <Base.VerticalContent className={this.decorateCSS("below-right-content")}>
-                            {nameExist && (
-                              <Base.H4 className={this.decorateCSS("item-name")}>{card.author.name}</Base.H4>
-                            )}
-                            {subtitleCardExist && (
-                              <Base.H5 className={this.decorateCSS("item-subtitle")}>{card.author.position}</Base.H5>
-                            )}
-                          </Base.VerticalContent>
-                        )}
-                      </div>
-                    )}
+                    <Base.VerticalContent className={this.decorateCSS("card-content")}>
+                      {iconExist && (
+                        <Base.Media value={icon} className={this.decorateCSS("span-image")} />
+                      )}
+                      {textExist && (
+                        <Base.P className={this.decorateCSS("card-description")}>{card.text}</Base.P>
+                      )}
+                      {(imageExist || nameExist || subtitleCardExist) && (
+                        <div className={this.decorateCSS("below-content")}>
+                          {imageExist && (
+                            <Base.Media value={card.image} className={this.decorateCSS("card-image")} />
+                          )}
+                          {card.author && (nameExist || subtitleCardExist) && (
+                            <Base.VerticalContent className={this.decorateCSS("below-right-content")}>
+                              {nameExist && (
+                                <Base.H4 className={this.decorateCSS("item-name")}>{card.author.name}</Base.H4>
+                              )}
+                              {subtitleCardExist && (
+                                <Base.H5 className={this.decorateCSS("item-subtitle")}>{card.author.position}</Base.H5>
+                              )}
+                            </Base.VerticalContent>
+                          )}
+                        </div>
+                      )}
+                    </Base.VerticalContent>
                   </div>
                 );
               })}

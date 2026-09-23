@@ -173,8 +173,14 @@
           display: flex;
           flex-direction: column;
           width: 100%;
-          gap: var(--composer-gap-sm);
           color: var(--composer-font-color-primary);
+
+          .card-content {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            align-items: flex-start;
+          }
 
           .card-quote {
             position: absolute;
@@ -197,9 +203,6 @@
           .card-top {
             position: relative;
             z-index: 1;
-            display: flex;
-            flex-direction: column;
-            gap: var(--composer-gap-md);
             align-items: flex-start;
 
             .card-image {
@@ -227,7 +230,6 @@
                 text-align: left !important;
                 justify-content: flex-start !important;
                 align-self: flex-start !important;
-                margin: 0 !important;
                 color: color-mix(in srgb, currentColor 55%, transparent);
               }
 

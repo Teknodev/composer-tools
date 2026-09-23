@@ -312,32 +312,36 @@ class Testimonials11Page extends Testimonials {
               <Base.Media value={quoteIconVal} className={this.decorateCSS("card-quote-icon")} />
             </div>
           )}
-          {(item.image || nameExist || positionExist || ratingExist) && (
-            <div className={this.decorateCSS("card-top")}>
-              {item.image && (
-                <Base.Media value={item.image} className={this.decorateCSS("card-image")} />
+          {(item.image || nameExist || positionExist || ratingExist || textExist) && (
+            <Base.VerticalContent className={this.decorateCSS("card-content")}>
+              {(item.image || nameExist || positionExist || ratingExist) && (
+                <Base.VerticalContent className={this.decorateCSS("card-top")}>
+                  {item.image && (
+                    <Base.Media value={item.image} className={this.decorateCSS("card-image")} />
+                  )}
+                  {(nameExist || positionExist || ratingExist) && (
+                    <Base.VerticalContent className={this.decorateCSS("card-top-right")}>
+                      {nameExist && (
+                        <Base.H6 className={this.decorateCSS("card-title")}>{item.name}</Base.H6>
+                      )}
+                      {positionExist && (
+                        <Base.P className={this.decorateCSS("card-subtitle")}>{item.position}</Base.P>
+                      )}
+                      {ratingExist && (
+                        <div className={this.decorateCSS("card-rating")}>
+                          {[...Array(Number(item.starCount))].map((_: unknown, starIndex: number) => (
+                            <Base.Media key={starIndex} value={starIconVal} className={this.decorateCSS("star-icon")} />
+                          ))}
+                        </div>
+                      )}
+                    </Base.VerticalContent>
+                  )}
+                </Base.VerticalContent>
               )}
-              {(nameExist || positionExist || ratingExist) && (
-                <div className={this.decorateCSS("card-top-right")}>
-                  {nameExist && (
-                    <Base.H6 className={this.decorateCSS("card-title")}>{item.name}</Base.H6>
-                  )}
-                  {positionExist && (
-                    <Base.P className={this.decorateCSS("card-subtitle")}>{item.position}</Base.P>
-                  )}
-                  {ratingExist && (
-                    <div className={this.decorateCSS("card-rating")}>
-                      {[...Array(Number(item.starCount))].map((_: unknown, starIndex: number) => (
-                        <Base.Media key={starIndex} value={starIconVal} className={this.decorateCSS("star-icon")} />
-                      ))}
-                    </div>
-                  )}
-                </div>
+              {textExist && (
+                <Base.P className={this.decorateCSS("card-description")}>{item.text}</Base.P>
               )}
-            </div>
-          )}
-          {textExist && (
-            <Base.P className={this.decorateCSS("card-description")}>{item.text}</Base.P>
+            </Base.VerticalContent>
           )}
         </Base.Card>
       );

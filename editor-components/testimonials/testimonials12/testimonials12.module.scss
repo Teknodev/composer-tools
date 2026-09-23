@@ -97,7 +97,10 @@
           background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
           display: flex !important;
           flex-direction: column;
-          gap: var(--composer-gap-md);
+          .card-content {
+            width: 100%;
+            align-items: flex-start;
+          }
           .span-image {
             width: 45px;
             height: 45px;
@@ -129,7 +132,6 @@
               .item-name {
                 font-size: 1.5rem;
                 color: var(--composer-font-color-primary);
-                margin: 0;
                 text-align: left !important;
                 justify-content: flex-start !important;
               }

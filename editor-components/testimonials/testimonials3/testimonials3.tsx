@@ -296,38 +296,40 @@ class Testimonials3Page extends Testimonials {
               const authorExist = item.author && (imageExist || nameExist || positionExist);
               return (
                 <Base.Card className={this.decorateCSS("card")} key={index}>
-                  {(item.star > 0 && starIconExist) && (
-                    <div className={this.decorateCSS("stars")}>
-                      {[...Array(Number(item.star))].map((_: unknown, starIndex: number) => (
-                        <Base.Media value={starIcon} className={this.decorateCSS("icon")} key={starIndex} />
-                      ))}
-                    </div>
-                  )}
-                  {this.castToString(item.text) && <Base.P className={this.decorateCSS("item-text")}>{item.text}</Base.P>}
-                  {authorExist && (
-                    <Base.VerticalContent className={this.decorateCSS("author-container")}>
-                      {imageExist && (
-                        <Base.Media
-                          className={`${this.decorateCSS("author-image")} ${item.author.image.type === "icon" ? this.decorateCSS("author-image-icon") : ""}`}
-                          value={item.author.image}
-                        />
-                      )}
-                      {(nameExist || positionExist) && (
-                        <Base.VerticalContent className={this.decorateCSS("author-details")}>
-                          {nameExist && (
-                            <Base.P className={this.decorateCSS("author-name")}>
-                              {item.author.name}
-                            </Base.P>
-                          )}
-                          {positionExist && (
-                            <Base.P className={this.decorateCSS("author-position")}>
-                              {item.author.position}
-                            </Base.P>
-                          )}
-                        </Base.VerticalContent>
-                      )}
-                    </Base.VerticalContent>
-                  )}
+                  <Base.VerticalContent className={this.decorateCSS("card-content")}>
+                    {(item.star > 0 && starIconExist) && (
+                      <div className={this.decorateCSS("stars")}>
+                        {[...Array(Number(item.star))].map((_: unknown, starIndex: number) => (
+                          <Base.Media value={starIcon} className={this.decorateCSS("icon")} key={starIndex} />
+                        ))}
+                      </div>
+                    )}
+                    {this.castToString(item.text) && <Base.P className={this.decorateCSS("item-text")}>{item.text}</Base.P>}
+                    {authorExist && (
+                      <Base.VerticalContent className={this.decorateCSS("author-container")}>
+                        {imageExist && (
+                          <Base.Media
+                            className={`${this.decorateCSS("author-image")} ${item.author.image.type === "icon" ? this.decorateCSS("author-image-icon") : ""}`}
+                            value={item.author.image}
+                          />
+                        )}
+                        {(nameExist || positionExist) && (
+                          <Base.VerticalContent className={this.decorateCSS("author-details")}>
+                            {nameExist && (
+                              <Base.P className={this.decorateCSS("author-name")}>
+                                {item.author.name}
+                              </Base.P>
+                            )}
+                            {positionExist && (
+                              <Base.P className={this.decorateCSS("author-position")}>
+                                {item.author.position}
+                              </Base.P>
+                            )}
+                          </Base.VerticalContent>
+                        )}
+                      </Base.VerticalContent>
+                    )}
+                  </Base.VerticalContent>
                 </Base.Card>
               );
             })}
