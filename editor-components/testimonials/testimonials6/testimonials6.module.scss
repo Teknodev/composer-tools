@@ -147,6 +147,16 @@
       .card-container {
         .card {
           padding: var(--composer-gap-lg) var(--composer-gap-md);
+
+          .bottom-container {
+            .author-info {
+              .person {
+                .item-subtitle {
+                  font-size: 0.875rem !important;
+                }
+              }
+            }
+          }
         }
       }
     }
