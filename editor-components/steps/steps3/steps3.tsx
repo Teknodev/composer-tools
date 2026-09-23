@@ -7,10 +7,10 @@ import { INPUTS } from "../../../custom-hooks/input-templates";
 
 type Card = {
   stepNumber: React.JSX.Element;
-  subtitle: React.JSX.Element;
-  title: React.JSX.Element;
-  description: React.JSX.Element;
-  buttons: INPUTS.CastedButton[];
+  card_subtitle: React.JSX.Element;
+  card_title: React.JSX.Element;
+  card_description: React.JSX.Element;
+  card_buttons: INPUTS.CastedButton[];
 };
 
 class Steps3 extends BaseSteps {
@@ -72,26 +72,26 @@ class Steps3 extends BaseSteps {
             },
             {
               type: "string",
-              key: "subtitle",
+              key: "card_subtitle",
               displayer: "Subtitle",
               value: "",
             },
             {
               type: "string",
-              key: "title",
+              key: "card_title",
               displayer: "Title",
               value: "Make Your Business Visible Online",
             },
             {
               type: "string",
-              key: "description",
+              key: "card_description",
               displayer: "Description",
               value:
                 "Imagination is more important than knowledge. Knowledge is limited. Imagination encircles the world.",
             },
             {
               type: "array",
-              key: "buttons",
+              key: "card_buttons",
               displayer: "Buttons",
               value: [
                 INPUTS.BUTTON("button", "Button", "", "", null, null, "White"),
@@ -112,26 +112,26 @@ class Steps3 extends BaseSteps {
             },
             {
               type: "string",
-              key: "subtitle",
+              key: "card_subtitle",
               displayer: "Subtitle",
               value: "",
             },
             {
               type: "string",
-              key: "title",
+              key: "card_title",
               displayer: "Title",
               value: "Make Your eCommerce Website Easily",
             },
             {
               type: "string",
-              key: "description",
+              key: "card_description",
               displayer: "Description",
               value:
                 "Imagination is more important than knowledge. Knowledge is limited. Imagination encircles the world.",
             },
             {
               type: "array",
-              key: "buttons",
+              key: "card_buttons",
               displayer: "Buttons",
               value: [
                 INPUTS.BUTTON("button", "Button", "", "", null, null, "White"),
@@ -152,26 +152,26 @@ class Steps3 extends BaseSteps {
             },
             {
               type: "string",
-              key: "subtitle",
+              key: "card_subtitle",
               displayer: "Subtitle",
               value: "",
             },
             {
               type: "string",
-              key: "title",
+              key: "card_title",
               displayer: "Title",
               value: "Make Your Portfolio Really Impressive",
             },
             {
               type: "string",
-              key: "description",
+              key: "card_description",
               displayer: "Description",
               value:
                 "Imagination is more important than knowledge. Knowledge is limited. Imagination encircles the world.",
             },
             {
               type: "array",
-              key: "buttons",
+              key: "card_buttons",
               displayer: "Buttons",
               value: [
                 INPUTS.BUTTON("button", "Button", "", "", null, null, "White"),
@@ -249,10 +249,10 @@ class Steps3 extends BaseSteps {
               >
                 {cards.map((card: Card, index: number) => {
                   const cardStepNumberExist = this.castToString(card.stepNumber);
-                  const cardSubtitleExist = this.castToString(card.subtitle);
-                  const cardTitleExist = this.castToString(card.title);
-                  const cardDescriptionExist = this.castToString(card.description);
-                  const cardButtonsExist = card.buttons?.some((btn) => this.castToString(btn.text));
+                  const cardSubtitleExist = this.castToString(card.card_subtitle);
+                  const cardTitleExist = this.castToString(card.card_title);
+                  const cardDescriptionExist = this.castToString(card.card_description);
+                  const cardButtonsExist = card.card_buttons?.some((btn) => this.castToString(btn.text));
 
                   return (cardStepNumberExist || cardSubtitleExist || cardTitleExist || cardDescriptionExist || cardButtonsExist) && (
                     <Base.VerticalContent key={index} className={this.decorateCSS("card")}>
@@ -264,22 +264,22 @@ class Steps3 extends BaseSteps {
                       <Base.VerticalContent className={this.decorateCSS("card-content")}>
                         {cardSubtitleExist && (
                           <Base.H6 className={this.decorateCSS("card-subtitle")}>
-                            {card.subtitle}
+                            {card.card_subtitle}
                           </Base.H6>
                         )}
                         {cardTitleExist && (
                           <Base.H5 className={this.decorateCSS("card-title")}>
-                            {card.title}
+                            {card.card_title}
                           </Base.H5>
                         )}
                         {cardDescriptionExist && (
                           <Base.P className={this.decorateCSS("card-description")}>
-                            {card.description}
+                            {card.card_description}
                           </Base.P>
                         )}
                         {cardButtonsExist && (
                           <div className={this.decorateCSS("card-buttons")}>
-                            {card.buttons.map((button: INPUTS.CastedButton, btnIndex: number) =>
+                            {card.card_buttons.map((button: INPUTS.CastedButton, btnIndex: number) =>
                               this.castToString(button.text) && (
                                 <ComposerLink key={`card-${index}-btn-${btnIndex}`} path={button.url}>
                                   <Base.Button buttonType={button.type} className={this.decorateCSS("card-button")}>

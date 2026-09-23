@@ -6,12 +6,12 @@ import { INPUTS } from "../../../custom-hooks/input-templates";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 
 interface FAQ {
-  subtitle: React.ReactNode;
+  block_subtitle: React.ReactNode;
   text: React.ReactNode;
 }
 
 interface ColumnHeader {
-  title: string;
+  header_title: string;
 }
 
 class Faq10 extends BaseFAQ {
@@ -78,7 +78,7 @@ class Faq10 extends BaseFAQ {
           value: [
             {
               type: "string",
-              key: "subtitle",
+              key: "block_subtitle",
               displayer: "Question",
               value: "Do you offer a free trial?",
             },
@@ -98,7 +98,7 @@ class Faq10 extends BaseFAQ {
           value: [
             {
               type: "string",
-              key: "subtitle",
+              key: "block_subtitle",
               displayer: "Question",
               value: "Unsubscribe from Newsletter",
             },
@@ -119,7 +119,7 @@ class Faq10 extends BaseFAQ {
           value: [
             {
               type: "string",
-              key: "subtitle",
+              key: "block_subtitle",
               displayer: "Question",
               value: "My Payment Methods",
             },
@@ -139,7 +139,7 @@ class Faq10 extends BaseFAQ {
           value: [
             {
               type: "string",
-              key: "subtitle",
+              key: "block_subtitle",
               displayer: "Question",
               value: "Return Process",
             },
@@ -159,7 +159,7 @@ class Faq10 extends BaseFAQ {
           value: [
             {
               type: "string",
-              key: "subtitle",
+              key: "block_subtitle",
               displayer: "Question",
               value: "Drop off Return",
             },
@@ -179,7 +179,7 @@ class Faq10 extends BaseFAQ {
           value: [
             {
               type: "string",
-              key: "subtitle",
+              key: "block_subtitle",
               displayer: "Question",
               value: "Return with Gift Receipt",
             },
@@ -199,7 +199,7 @@ class Faq10 extends BaseFAQ {
           value: [
             {
               type: "string",
-              key: "subtitle",
+              key: "block_subtitle",
               displayer: "Question",
               value: "Purchase Conditions",
             },
@@ -219,7 +219,7 @@ class Faq10 extends BaseFAQ {
           value: [
             {
               type: "string",
-              key: "subtitle",
+              key: "block_subtitle",
               displayer: "Question",
               value: "Corporate Social Responsibility",
             },
@@ -239,7 +239,7 @@ class Faq10 extends BaseFAQ {
           value: [
             {
               type: "string",
-              key: "subtitle",
+              key: "block_subtitle",
               displayer: "Question",
               value: "Manufacturers and Suppliers Code of Conduct",
             },
@@ -267,7 +267,7 @@ class Faq10 extends BaseFAQ {
           value: [
             {
               type: "string",
-              key: "title",
+              key: "header_title",
               displayer: "Title",
               value: "My Account",
             },
@@ -280,7 +280,7 @@ class Faq10 extends BaseFAQ {
           value: [
             {
               type: "string",
-              key: "title",
+              key: "header_title",
               displayer: "Title",
               value: "Exchanges & Returns",
             },
@@ -293,7 +293,7 @@ class Faq10 extends BaseFAQ {
           value: [
             {
               type: "string",
-              key: "title",
+              key: "header_title",
               displayer: "Title",
               value: "General Information",
             },
@@ -407,7 +407,7 @@ class Faq10 extends BaseFAQ {
           <div className={this.decorateCSS("faq-grid")} ref={this.gridRef}>
             {columns.map((colCards, colIdx) => {
               const header = columnHeaders[colIdx];
-              const headerTitle = header ? this.castToString(header.title) : "";
+              const headerTitle = header ? this.castToString(header.header_title) : "";
               return (
                 <div className={this.decorateCSS("faq-col")} key={colIdx}>
                   {headerTitle && (
@@ -424,7 +424,7 @@ class Faq10 extends BaseFAQ {
 
                     const hasText = Boolean(card.text);
 
-                    const cardSubtitleExist = this.castToString(card.subtitle);
+                    const cardSubtitleExist = this.castToString(card.block_subtitle);
                     const cardTextExist = this.castToString(card.text);
                     const iconPlus = this.getPropValue("iconPlus");
                     const icon = this.getPropValue("icon");
@@ -440,7 +440,7 @@ class Faq10 extends BaseFAQ {
                         <div className={this.decorateCSS("card-header")}>
                           {cardSubtitleExist && (
                             <Base.P className={this.decorateCSS("card-title")}>
-                              {card.subtitle}
+                              {card.block_subtitle}
                             </Base.P>
                           )}
                           <span

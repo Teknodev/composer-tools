@@ -114,7 +114,7 @@ class Location5 extends Location {
             },
             {
               type: "string",
-              key: "description",
+              key: "locationAddress_description",
               displayer: "Description",
               value: "(We work by appointment)",
             },
@@ -204,7 +204,7 @@ class Location5 extends Location {
             },
             {
               type: "string",
-              key: "description",
+              key: "locationAddress_description",
               displayer: "Description",
               value: "(We work by appointment)",
             },
@@ -415,7 +415,7 @@ class Location5 extends Location {
 
                 const city = location.getPropValue("city");
                 const address = location.getPropValue("address");
-                const description = location.getPropValue("description");
+                const description = location.getPropValue("locationAddress_description");
                 const locationIndex = location.getPropValue("index");
 
                 const hasCity = this.castToString(city);

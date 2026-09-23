@@ -6,14 +6,19 @@ import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "../../../custom-hooks/input-templates";
 
 interface Logo {
-  image: TypeMediaInputValue;
-  navigateTo: string;
+  // `defaultLogo` keeps the original keys; `absoluteLogo` was made unique with a
+  // prefix by the unique-prop-key rename. currentLogo can be either, so it holds
+  // both shapes (optional) and is normalized before use.
+  image?: TypeMediaInputValue;
+  navigateTo?: string;
+  absoluteLogo_image?: TypeMediaInputValue;
+  absoluteLogo_navigateTo?: string;
 }
 
 interface MenuItems {
   title: React.JSX.Element;
   navigate_to: string;
-  menuType: string;
+  sub_item_menuType: string;
   sub_items: MenuItems[];
 }
 interface Language {
@@ -25,7 +30,7 @@ interface Language {
 }
 
 interface Icons {
-  icon: TypeMediaInputValue;
+  item_icon: TypeMediaInputValue;
   page: string;
 }
 
@@ -68,7 +73,7 @@ class Navbar9 extends BaseNavigator {
       value: [
         {
           type: "media",
-          key: "image",
+          key: "absoluteLogo_image",
           displayer: "Image",
           additionalParams: {
             availableTypes: ["image"],
@@ -80,7 +85,7 @@ class Navbar9 extends BaseNavigator {
         },
         {
           type: "page",
-          key: "navigateTo",
+          key: "absoluteLogo_navigateTo",
           value: "",
           displayer: "Navigate To",
         },
@@ -916,7 +921,7 @@ class Navbar9 extends BaseNavigator {
                     },
                     {
                       type: "select",
-                      key: "menuType",
+                      key: "sub_item_menuType",
                       displayer: "Type",
                       value: "Normal",
                       additionalParams: { selectItems: ["Dropdown", "Normal"] },
@@ -963,12 +968,12 @@ class Navbar9 extends BaseNavigator {
       value: [
         {
           type: "object",
-          key: "item",
+          key: "icons_item",
           displayer: "Item",
           value: [
             {
               type: "media",
-              key: "icon",
+              key: "item_icon",
               displayer: "Icon",
               additionalParams: {
                 availableTypes: ["icon"],
@@ -988,12 +993,12 @@ class Navbar9 extends BaseNavigator {
         },
         {
           type: "object",
-          key: "item",
+          key: "icons_item",
           displayer: "Item",
           value: [
             {
               type: "media",
-              key: "icon",
+              key: "item_icon",
               displayer: "Icon",
               additionalParams: {
                 availableTypes: ["icon"],
@@ -1013,12 +1018,12 @@ class Navbar9 extends BaseNavigator {
         },
         {
           type: "object",
-          key: "item",
+          key: "icons_item",
           displayer: "Item",
           value: [
             {
               type: "media",
-              key: "icon",
+              key: "item_icon",
               displayer: "Icon",
               additionalParams: {
                 availableTypes: ["icon"],
@@ -1038,12 +1043,12 @@ class Navbar9 extends BaseNavigator {
         },
         {
           type: "object",
-          key: "item",
+          key: "icons_item",
           displayer: "Item",
           value: [
             {
               type: "media",
-              key: "icon",
+              key: "item_icon",
               displayer: "Icon",
               additionalParams: {
                 availableTypes: ["icon"],
@@ -1201,8 +1206,8 @@ class Navbar9 extends BaseNavigator {
     const changeBackground = this.getComponentState("changeBackground");
     const currentLogo =
       ((transparentBackground && !changeBackground) || (hamburgerNavActive && isBigScreen)) && !isScrolled
-        ? absoluteLogo
-        : defaultLogo;
+        ? { image: absoluteLogo.absoluteLogo_image, navigateTo: absoluteLogo.absoluteLogo_navigateTo }
+        : { image: defaultLogo.image, navigateTo: defaultLogo.navigateTo };
 
     const menuItems = this.castToObject<MenuItems[]>("menuItems");
     const overlay = this.getPropValue("overlay");
@@ -1367,7 +1372,7 @@ class Navbar9 extends BaseNavigator {
                     <ComposerLink key={index} path={icon.page}>
                       <div className={`${this.decorateCSS("icon-container")} ${animations}`}  onClick={()=> this.handleCloseMenu()}>
                         <Base.Media
-                          value={icon.icon}
+                          value={icon.item_icon}
                           className={this.decorateCSS("icon")}
                         />
                       </div>
@@ -1452,7 +1457,7 @@ class Navbar9 extends BaseNavigator {
                               {item.title}
                             </Base.P>
                           </ComposerLink>
-                          {item.menuType === "Dropdown" && (
+                          {item.sub_item_menuType === "Dropdown" && (
                             <Base.Media
                               value={navigationIcons?.dropdownIcon}
                               className={`${this.decorateCSS("dropdownIcon")} ${
@@ -1463,7 +1468,7 @@ class Navbar9 extends BaseNavigator {
                             />
                           )}
                         </div>
-                        {item.menuType === "Dropdown" && (
+                        {item.sub_item_menuType === "Dropdown" && (
                           <div
                             className={`${this.decorateCSS(
                               "hamburgerSubmenu"
@@ -1587,7 +1592,7 @@ class Navbar9 extends BaseNavigator {
                     {icons.map((icon: Icons, index: number) => (
                       <ComposerLink key={index} path={icon.page}>
                         <div className={`${this.decorateCSS("icon-container")} ${animations}`} onClick={()=> this.handleCloseMenu()}>
-                          <Base.Media value={icon.icon} className={this.decorateCSS("icon")} />
+                          <Base.Media value={icon.item_icon} className={this.decorateCSS("icon")} />
                         </div>
                       </ComposerLink>
                     ))}

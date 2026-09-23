@@ -90,9 +90,9 @@ class Stats35 extends BaseStats {
                         { type: "string", key: "prefix", displayer: "Prefix", value: "" },
                         { type: "string", key: "number", displayer: "Value", value: "2018" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "" },
-                        { type: "string", key: "subtitle", displayer: "Subtitle", value: "Year of foundation" },
-                        { type: "string", key: "title", displayer: "Title", value: "" },
-                        { type: "string", key: "description", displayer: "Description", value: "" },
+                        { type: "string", key: "stat_subtitle", displayer: "Subtitle", value: "Year of foundation" },
+                        { type: "string", key: "stat_title", displayer: "Title", value: "" },
+                        { type: "string", key: "stat_description", displayer: "Description", value: "" },
                     ],
                 },
                 {
@@ -103,9 +103,9 @@ class Stats35 extends BaseStats {
                         { type: "string", key: "prefix", displayer: "Prefix", value: "$" },
                         { type: "string", key: "number", displayer: "Value", value: "171" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "M" },
-                        { type: "string", key: "subtitle", displayer: "Subtitle", value: "Across ten total funds" },
-                        { type: "string", key: "title", displayer: "Title", value: "" },
-                        { type: "string", key: "description", displayer: "Description", value: "" },
+                        { type: "string", key: "stat_subtitle", displayer: "Subtitle", value: "Across ten total funds" },
+                        { type: "string", key: "stat_title", displayer: "Title", value: "" },
+                        { type: "string", key: "stat_description", displayer: "Description", value: "" },
                     ],
                 },
                 {
@@ -116,9 +116,9 @@ class Stats35 extends BaseStats {
                         { type: "string", key: "prefix", displayer: "Prefix", value: "" },
                         { type: "string", key: "number", displayer: "Value", value: "400" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "+" },
-                        { type: "string", key: "subtitle", displayer: "Subtitle", value: "Companies invested in" },
-                        { type: "string", key: "title", displayer: "Title", value: "" },
-                        { type: "string", key: "description", displayer: "Description", value: "" },
+                        { type: "string", key: "stat_subtitle", displayer: "Subtitle", value: "Companies invested in" },
+                        { type: "string", key: "stat_title", displayer: "Title", value: "" },
+                        { type: "string", key: "stat_description", displayer: "Description", value: "" },
                     ],
                 },
             ],
@@ -263,9 +263,9 @@ class Stats35 extends BaseStats {
             prefix: JSX.Element;
             number: JSX.Element;
             suffix: JSX.Element;
-            subtitle: JSX.Element;
-            title: JSX.Element;
-            description: JSX.Element;
+            stat_subtitle: JSX.Element;
+            stat_title: JSX.Element;
+            stat_description: JSX.Element;
         }[]>("stats");
 
         const stats: StatItem[] = statsItems.map((item) => ({
@@ -274,12 +274,12 @@ class Stats35 extends BaseStats {
             number: this.castToString(item.number) || "",
             suffix: this.castToString(item.suffix) || "",
             suffixElement: item.suffix,
-            subtitle: this.castToString(item.subtitle) || "",
-            subtitleElement: item.subtitle,
-            title: this.castToString(item.title) || "",
-            titleElement: item.title,
-            description: this.castToString(item.description) || "",
-            descriptionElement: item.description,
+            subtitle: this.castToString(item.stat_subtitle) || "",
+            subtitleElement: item.stat_subtitle,
+            title: this.castToString(item.stat_title) || "",
+            titleElement: item.stat_title,
+            description: this.castToString(item.stat_description) || "",
+            descriptionElement: item.stat_description,
         }));
 
         const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");

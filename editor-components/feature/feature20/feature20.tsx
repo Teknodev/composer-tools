@@ -8,7 +8,7 @@ import ComposerLink from "../../../composer-base-components/Link/ComposerLinkPro
 interface Item {
   image: TypeMediaInputValue;
   sectionHeading: React.JSX.Element;
-  description: React.JSX.Element;
+  item_description: React.JSX.Element;
   button: INPUTS.CastedButton;
 }
 
@@ -80,7 +80,7 @@ class Feature20 extends BaseFeature {
             },
             {
               type: "string",
-              key: "description",
+              key: "item_description",
               displayer: "Description",
               value:
                 "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco, consectetur adipisicing elit, sed do eiusmod.",
@@ -114,7 +114,7 @@ class Feature20 extends BaseFeature {
             },
             {
               type: "string",
-              key: "description",
+              key: "item_description",
               displayer: "Description",
               value:
                 "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco, consectetur adipisicing elit, sed do eiusmod.",
@@ -148,7 +148,7 @@ class Feature20 extends BaseFeature {
             },
             {
               type: "string",
-              key: "description",
+              key: "item_description",
               displayer: "Description",
               value:
                 "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco, consectetur adipisicing elit, sed do eiusmod.",
@@ -196,7 +196,7 @@ class Feature20 extends BaseFeature {
             </div>}
 
             {items.map((item, i) => {
-              const hasTextContent = this.castToString(item.sectionHeading) || this.castToString(item.description) || this.castToString(item.button.text);
+              const hasTextContent = this.castToString(item.sectionHeading) || this.castToString(item.item_description) || this.castToString(item.button.text);
               return (hasTextContent || item.image) && (
               <React.Fragment key={i}>
                 <div
@@ -213,9 +213,9 @@ class Feature20 extends BaseFeature {
                     )}
                     {overlay && item.image && <div className={this.decorateCSS("overlay")} />}
                   </div>
-                  {(this.castToString(item.sectionHeading) || this.castToString(item.description) || this.castToString(item.button.text)) && <Base.VerticalContent className={this.decorateCSS("text")}>
+                  {(this.castToString(item.sectionHeading) || this.castToString(item.item_description) || this.castToString(item.button.text)) && <Base.VerticalContent className={this.decorateCSS("text")}>
                     {this.castToString(item.sectionHeading) && <Base.H4 className={this.decorateCSS("section-heading")}>{item.sectionHeading}</Base.H4>}
-                    {this.castToString(item.description) && <Base.P className={this.decorateCSS("desc")}>{item.description}</Base.P>}
+                    {this.castToString(item.item_description) && <Base.P className={this.decorateCSS("desc")}>{item.item_description}</Base.P>}
                     {this.castToString(item.button.text) && (
                       <ComposerLink path={item.button.url || '#'}>
                         <Base.Button buttonType={item.button.type} className={this.decorateCSS("button")}>

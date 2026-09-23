@@ -9,10 +9,10 @@ import ComposerLink from "../../../composer-base-components/Link/ComposerLinkPro
 type CardItem = {
     icon: TypeMediaInputValue;
     image: TypeMediaInputValue;
-    subtitle: React.JSX.Element;
-    title: React.JSX.Element;
-    description: React.JSX.Element;
-    buttons: INPUTS.CastedButton[];
+    card_subtitle: React.JSX.Element;
+    card_title: React.JSX.Element;
+    card_description: React.JSX.Element;
+    card_buttons: INPUTS.CastedButton[];
 };
 
 class List9 extends BaseList {
@@ -67,19 +67,19 @@ class List9 extends BaseList {
                         },
                         {
                             type: "string",
-                            key: "subtitle",
+                            key: "card_subtitle",
                             displayer: "Subtitle",
                             value: "",
                         },
                         {
                             type: "string",
-                            key: "title",
+                            key: "card_title",
                             displayer: "Title",
                             value: "CREATE AMAZING DESING WITH MINT THEME",
                         },
                         {
                             type: "string",
-                            key: "description",
+                            key: "card_description",
                             displayer: "Description",
                             value:
                                 "Creating a higher spacing for people through a unique campaigns.",
@@ -98,7 +98,7 @@ class List9 extends BaseList {
                         },
                         {
                             type: "array",
-                            key: "buttons",
+                            key: "card_buttons",
                             displayer: "Buttons",
                             value: [
                                 INPUTS.BUTTON("button", "Button", "", "", null, null, "White"),
@@ -125,19 +125,19 @@ class List9 extends BaseList {
                         },
                         {
                             type: "string",
-                            key: "subtitle",
+                            key: "card_subtitle",
                             displayer: "Subtitle",
                             value: "",
                         },
                         {
                             type: "string",
-                            key: "title",
+                            key: "card_title",
                             displayer: "Title",
                             value: "WE CRAFT BEAUTIFUL & AWESOME THEMES",
                         },
                         {
                             type: "string",
-                            key: "description",
+                            key: "card_description",
                             displayer: "Description",
                             value:
                                 "Creating a higher spacing for people through a unique campaigns.",
@@ -156,7 +156,7 @@ class List9 extends BaseList {
                         },
                         {
                             type: "array",
-                            key: "buttons",
+                            key: "card_buttons",
                             displayer: "Buttons",
                             value: [
                                 INPUTS.BUTTON("button", "Button", "", "", null, null, "White"),
@@ -183,19 +183,19 @@ class List9 extends BaseList {
                         },
                         {
                             type: "string",
-                            key: "subtitle",
+                            key: "card_subtitle",
                             displayer: "Subtitle",
                             value: "",
                         },
                         {
                             type: "string",
-                            key: "title",
+                            key: "card_title",
                             displayer: "Title",
                             value: "READY TO START YOUR NEXT WEB PROJECT NOW?",
                         },
                         {
                             type: "string",
-                            key: "description",
+                            key: "card_description",
                             displayer: "Description",
                             value:
                                 "Creating a higher spacing for people through a unique campaigns.",
@@ -214,7 +214,7 @@ class List9 extends BaseList {
                         },
                         {
                             type: "array",
-                            key: "buttons",
+                            key: "card_buttons",
                             displayer: "Buttons",
                             value: [
                                 INPUTS.BUTTON("button", "Button", "", "", null, null, "White"),
@@ -241,19 +241,19 @@ class List9 extends BaseList {
                         },
                         {
                             type: "string",
-                            key: "subtitle",
+                            key: "card_subtitle",
                             displayer: "Subtitle",
                             value: "",
                         },
                         {
                             type: "string",
-                            key: "title",
+                            key: "card_title",
                             displayer: "Title",
                             value: "WE BELIEVE IN THE POWER OF GREAT DESIGN",
                         },
                         {
                             type: "string",
-                            key: "description",
+                            key: "card_description",
                             displayer: "Description",
                             value:
                                 "Creating a higher spacing for people through a unique campaigns.",
@@ -272,7 +272,7 @@ class List9 extends BaseList {
                         },
                         {
                             type: "array",
-                            key: "buttons",
+                            key: "card_buttons",
                             displayer: "Buttons",
                             value: [
                                 INPUTS.BUTTON("button", "Button", "", "", null, null, "White"),
@@ -402,12 +402,12 @@ class List9 extends BaseList {
                     >
                         {cards.map(
                             (card: CardItem, indexCard: number) => {
-                                const cardTitleExist = this.castToString(card.title);
-                                const cardSubtitleExist = this.castToString(card.subtitle);
-                                const cardDescriptionExist = this.castToString(card.description);
+                                const cardTitleExist = this.castToString(card.card_title);
+                                const cardSubtitleExist = this.castToString(card.card_subtitle);
+                                const cardDescriptionExist = this.castToString(card.card_description);
                                 const iconExist = card.icon && (card.icon.name || card.icon.url);
                                 const imageExist = card.image && (card.image.name || card.image.url);
-                                const cardButtons = card.buttons || [];
+                                const cardButtons = card.card_buttons || [];
                                 const hasValidCardButtons = cardButtons.some((btn: INPUTS.CastedButton) => this.castToString(btn.text) || (btn.icon && btn.icon.name));
 
                                 if (!cardTitleExist && !cardDescriptionExist && !iconExist && !imageExist) return null;
@@ -442,17 +442,17 @@ class List9 extends BaseList {
                                             )}
                                             {cardSubtitleExist && (
                                                 <Base.H6 className={this.decorateCSS("card-subtitle")}>
-                                                    {card.subtitle}
+                                                    {card.card_subtitle}
                                                 </Base.H6>
                                             )}
                                             {cardTitleExist && (
                                                 <Base.H5 className={this.decorateCSS("card-title")}>
-                                                    {card.title}
+                                                    {card.card_title}
                                                 </Base.H5>
                                             )}
                                             {cardDescriptionExist && (
                                                 <Base.P className={this.decorateCSS("card-description")}>
-                                                    {card.description}
+                                                    {card.card_description}
                                                 </Base.P>
                                             )}
                                             {hasValidCardButtons && (

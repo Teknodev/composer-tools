@@ -15,8 +15,8 @@ type SliderItem = {
 };
 
 type FeaturedItem = {
-  title: React.JSX.Element;
-  subtitle: React.JSX.Element;
+  featured_item_title: React.JSX.Element;
+  featured_item_subtitle: React.JSX.Element;
   media: TypeMediaInputValue;
   link: string;
 };
@@ -270,13 +270,13 @@ class Header4 extends BaseHeader {
           value: [
             {
               type: "string",
-              key: "title",
+              key: "featured_item_title",
               displayer: "Title",
               value: "Multi-Family Housing",
             },
             {
               type: "string",
-              key: "subtitle",
+              key: "featured_item_subtitle",
               displayer: "Subtitle",
               value: "The Oaks",
             },
@@ -307,13 +307,13 @@ class Header4 extends BaseHeader {
           value: [
             {
               type: "string",
-              key: "title",
+              key: "featured_item_title",
               displayer: "Title",
               value: "The Arches",
             },
             {
               type: "string",
-              key: "subtitle",
+              key: "featured_item_subtitle",
               displayer: "Subtitle",
               value: "Modern House",
             },
@@ -344,13 +344,13 @@ class Header4 extends BaseHeader {
           value: [
             {
               type: "string",
-              key: "title",
+              key: "featured_item_title",
               displayer: "Title",
               value: "Dream House",
             },
             {
               type: "string",
-              key: "subtitle",
+              key: "featured_item_subtitle",
               displayer: "Subtitle",
               value: "Modern Farmhouse",
             },
@@ -521,21 +521,21 @@ class Header4 extends BaseHeader {
                     <div className={this.decorateCSS("slider-footer-items")}>
                       {featuredItems.map((item, index) => {
                         return (
-                          <div key={index} className={`${this.decorateCSS("slider-footer-item")} ${(!item.media || (!item.title && !item.subtitle)) && this.decorateCSS("half-width")}`}>
+                          <div key={index} className={`${this.decorateCSS("slider-footer-item")} ${(!item.media || (!item.featured_item_title && !item.featured_item_subtitle)) && this.decorateCSS("half-width")}`}>
                             {item.media && (
                               <Base.Media className={` ${this.decorateCSS("slider-footer-item-media")} ${hoverAnimation && this.decorateCSS("hover-animation")}`} value={item.media} />
                             )}
-                            {(item.title || item.subtitle) && (
+                            {(item.featured_item_title || item.featured_item_subtitle) && (
                               <div className={this.decorateCSS("slider-footer-item-body")}>
-                                {item.title &&
+                                {item.featured_item_title &&
                                   (!item.link ? (
-                                    <Base.P className={this.decorateCSS("slider-footer-item-title")}>{item.title}</Base.P>
+                                    <Base.P className={this.decorateCSS("slider-footer-item-title")}>{item.featured_item_title}</Base.P>
                                   ) : (
                                     <ComposerLink path={item.link}>
-                                      <Base.P className={this.decorateCSS("slider-footer-item-title")}>{item.title}</Base.P>
+                                      <Base.P className={this.decorateCSS("slider-footer-item-title")}>{item.featured_item_title}</Base.P>
                                     </ComposerLink>
                                   ))}
-                                {item.subtitle && <Base.P className={this.decorateCSS("slider-footer-item-subtitle")}>{item.subtitle}</Base.P>}
+                                {item.featured_item_subtitle && <Base.P className={this.decorateCSS("slider-footer-item-subtitle")}>{item.featured_item_subtitle}</Base.P>}
                               </div>
                             )}
                           </div>

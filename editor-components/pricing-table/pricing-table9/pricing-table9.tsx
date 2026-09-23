@@ -8,13 +8,13 @@ import { INPUTS } from "../../../custom-hooks/input-templates";
 
 interface PricingContent {
   text: React.JSX.Element;
-  icon: TypeMediaInputValue;
+  content_icon: TypeMediaInputValue;
 }
 
 interface PricingColumn {
-  title: React.JSX.Element;
+  columnContent_title: React.JSX.Element;
   contents: PricingContent[];
-  buttons: INPUTS.CastedButton[];
+  columnContent_buttons: INPUTS.CastedButton[];
 }
 
 type PricingTable9Props = {
@@ -159,7 +159,7 @@ class PricingTable9 extends BasePricingTable {
             },
             {
               type: "array",
-              key: "buttons",
+              key: "columnContent_buttons",
               displayer: "Buttons",
               value: [
                 INPUTS.BUTTON("type", "Button", "", "", null, null, "Primary"),
@@ -174,7 +174,7 @@ class PricingTable9 extends BasePricingTable {
           value: [
             {
               type: "string",
-              key: "title",
+              key: "columnContent_title",
               displayer: "Title",
               value: "BASIC",
             },
@@ -197,7 +197,7 @@ class PricingTable9 extends BasePricingTable {
                     },
                     {
                       type: "media",
-                      key: "icon",
+                      key: "content_icon",
                       displayer: "Icon",
                       additionalParams: { availableTypes: ["icon", "image"] },
                       value: { type: "icon", name: "FcCheckmark" },
@@ -223,7 +223,7 @@ class PricingTable9 extends BasePricingTable {
                     },
                     {
                       type: "media",
-                      key: "icon",
+                      key: "content_icon",
                       displayer: "Icon",
                       additionalParams: { availableTypes: ["icon", "image"] },
                       value: { type: "icon", name: "FcCheckmark" },
@@ -249,7 +249,7 @@ class PricingTable9 extends BasePricingTable {
                     },
                     {
                       type: "media",
-                      key: "icon",
+                      key: "content_icon",
                       displayer: "Icon",
                       additionalParams: { availableTypes: ["icon", "image"] },
                       value: { type: "icon", name: "FcCheckmark" },
@@ -275,7 +275,7 @@ class PricingTable9 extends BasePricingTable {
                     },
                     {
                       type: "media",
-                      key: "icon",
+                      key: "content_icon",
                       displayer: "Icon",
                       additionalParams: { availableTypes: ["icon", "image"] },
                       value: { type: "icon", name: "FcCheckmark" },
@@ -301,7 +301,7 @@ class PricingTable9 extends BasePricingTable {
                     },
                     {
                       type: "media",
-                      key: "icon",
+                      key: "content_icon",
                       displayer: "Icon",
                       additionalParams: { availableTypes: ["icon", "image"] },
                       value: { type: "icon", name: "FcCheckmark" },
@@ -318,7 +318,7 @@ class PricingTable9 extends BasePricingTable {
             },
             {
               type: "array",
-              key: "buttons",
+              key: "columnContent_buttons",
               displayer: "Buttons",
               value: [
                 INPUTS.BUTTON("type", "Button", "FREE / month", "", "", null, "Primary"),
@@ -333,7 +333,7 @@ class PricingTable9 extends BasePricingTable {
           value: [
             {
               type: "string",
-              key: "title",
+              key: "columnContent_title",
               displayer: "Title",
               value: "START",
             },
@@ -356,7 +356,7 @@ class PricingTable9 extends BasePricingTable {
                     },
                     {
                       type: "media",
-                      key: "icon",
+                      key: "content_icon",
                       displayer: "Icon",
                       additionalParams: { availableTypes: ["icon", "image"] },
                       value: { type: "icon", name: "FcCheckmark" },
@@ -382,7 +382,7 @@ class PricingTable9 extends BasePricingTable {
                     },
                     {
                       type: "media",
-                      key: "icon",
+                      key: "content_icon",
                       displayer: "Icon",
                       additionalParams: { availableTypes: ["icon", "image"] },
                       value: { type: "icon", name: "FcCheckmark" },
@@ -408,7 +408,7 @@ class PricingTable9 extends BasePricingTable {
                     },
                     {
                       type: "media",
-                      key: "icon",
+                      key: "content_icon",
                       displayer: "Icon",
                       additionalParams: { availableTypes: ["icon", "image"] },
                       value: { type: "icon", name: "FcCheckmark" },
@@ -434,7 +434,7 @@ class PricingTable9 extends BasePricingTable {
                     },
                     {
                       type: "media",
-                      key: "icon",
+                      key: "content_icon",
                       displayer: "Icon",
                       additionalParams: { availableTypes: ["icon", "image"] },
                       value: { type: "icon", name: "FcCheckmark" },
@@ -460,7 +460,7 @@ class PricingTable9 extends BasePricingTable {
                     },
                     {
                       type: "media",
-                      key: "icon",
+                      key: "content_icon",
                       displayer: "Icon",
                       additionalParams: { availableTypes: ["icon", "image"] },
                       value: { type: "icon", name: "FcCheckmark" },
@@ -477,7 +477,7 @@ class PricingTable9 extends BasePricingTable {
             },
             {
               type: "array",
-              key: "buttons",
+              key: "columnContent_buttons",
               displayer: "Buttons",
               value: [
                 INPUTS.BUTTON("type", "Button", "49.99$ / month", "", "", null, "Primary"),
@@ -492,7 +492,7 @@ class PricingTable9 extends BasePricingTable {
           value: [
             {
               type: "string",
-              key: "title",
+              key: "columnContent_title",
               displayer: "Title",
               value: "STANDARD",
             },
@@ -515,7 +515,7 @@ class PricingTable9 extends BasePricingTable {
                     },
                     {
                       type: "media",
-                      key: "icon",
+                      key: "content_icon",
                       displayer: "Icon",
                       additionalParams: { availableTypes: ["icon", "image"] },
                       value: { type: "icon", name: "FcCheckmark" },
@@ -541,7 +541,7 @@ class PricingTable9 extends BasePricingTable {
                     },
                     {
                       type: "media",
-                      key: "icon",
+                      key: "content_icon",
                       displayer: "Icon",
                       additionalParams: { availableTypes: ["icon", "image"] },
                       value: { type: "icon", name: "FcCheckmark" },
@@ -567,7 +567,7 @@ class PricingTable9 extends BasePricingTable {
                     },
                     {
                       type: "media",
-                      key: "icon",
+                      key: "content_icon",
                       displayer: "Icon",
                       additionalParams: { availableTypes: ["icon", "image"] },
                       value: { type: "icon", name: "FcCheckmark" },
@@ -593,7 +593,7 @@ class PricingTable9 extends BasePricingTable {
                     },
                     {
                       type: "media",
-                      key: "icon",
+                      key: "content_icon",
                       displayer: "Icon",
                       additionalParams: { availableTypes: ["icon", "image"] },
                       value: { type: "icon", name: "FcCheckmark" },
@@ -619,7 +619,7 @@ class PricingTable9 extends BasePricingTable {
                     },
                     {
                       type: "media",
-                      key: "icon",
+                      key: "content_icon",
                       displayer: "Icon",
                       additionalParams: { availableTypes: ["icon", "image"] },
                       value: { type: "icon", name: "FcCheckmark" },
@@ -636,7 +636,7 @@ class PricingTable9 extends BasePricingTable {
             },
             {
               type: "array",
-              key: "buttons",
+              key: "columnContent_buttons",
               displayer: "Buttons",
               value: [
                 INPUTS.BUTTON("type", "Button", "89.99$ / month", "", "", null, "Primary"),
@@ -651,7 +651,7 @@ class PricingTable9 extends BasePricingTable {
           value: [
             {
               type: "string",
-              key: "title",
+              key: "columnContent_title",
               displayer: "Title",
               value: "BUSINESS",
             },
@@ -674,7 +674,7 @@ class PricingTable9 extends BasePricingTable {
                     },
                     {
                       type: "media",
-                      key: "icon",
+                      key: "content_icon",
                       displayer: "Icon",
                       additionalParams: { availableTypes: ["icon", "image"] },
                       value: { type: "icon", name: "FcCheckmark" },
@@ -700,7 +700,7 @@ class PricingTable9 extends BasePricingTable {
                     },
                     {
                       type: "media",
-                      key: "icon",
+                      key: "content_icon",
                       displayer: "Icon",
                       additionalParams: { availableTypes: ["icon", "image"] },
                       value: { type: "icon", name: "FcCheckmark" },
@@ -726,7 +726,7 @@ class PricingTable9 extends BasePricingTable {
                     },
                     {
                       type: "media",
-                      key: "icon",
+                      key: "content_icon",
                       displayer: "Icon",
                       additionalParams: { availableTypes: ["icon", "image"] },
                       value: { type: "icon", name: "FcCheckmark" },
@@ -752,7 +752,7 @@ class PricingTable9 extends BasePricingTable {
                     },
                     {
                       type: "media",
-                      key: "icon",
+                      key: "content_icon",
                       displayer: "Icon",
                       additionalParams: { availableTypes: ["icon", "image"] },
                       value: { type: "icon", name: "FcCheckmark" },
@@ -778,7 +778,7 @@ class PricingTable9 extends BasePricingTable {
                     },
                     {
                       type: "media",
-                      key: "icon",
+                      key: "content_icon",
                       displayer: "Icon",
                       additionalParams: { availableTypes: ["icon", "image"] },
                       value: { type: "icon", name: "FcCheckmark" },
@@ -795,7 +795,7 @@ class PricingTable9 extends BasePricingTable {
             },
             {
               type: "array",
-              key: "buttons",
+              key: "columnContent_buttons",
               displayer: "Buttons",
               value: [
                 INPUTS.BUTTON("type", "Button", "129.99$ / month", "", "", null, "Primary"),
@@ -822,7 +822,7 @@ class PricingTable9 extends BasePricingTable {
 
   private hasAnyColumnTitle(): boolean {
     const columns = this.castToObject<PricingColumn[]>("columns");
-    return columns.some((column) => this.castToString(column?.title));
+    return columns.some((column) => this.castToString(column.columnContent_title));
   }
 
   render() {
@@ -949,8 +949,8 @@ class PricingTable9 extends BasePricingTable {
               <div className={this.decorateCSS("columns-container")}>
                 {columns.map(
                   (column: PricingColumn, index: number) => {
-                    const cardButtons = column?.buttons || [];
-                    const columnTitleExist = this.castToString(column?.title);
+                    const cardButtons = column.columnContent_buttons || [];
+                    const columnTitleExist = this.castToString(column.columnContent_title);
                     const hasButtonsWithContent = cardButtons.some((btn: INPUTS.CastedButton) => {
                       const btnText = this.castToString(btn.text);
                       const btnIconValue = btn.icon as unknown as TypeMediaInputValue;
@@ -966,7 +966,7 @@ class PricingTable9 extends BasePricingTable {
                         {this.hasAnyColumnTitle() && (
                           <div className={this.decorateCSS("title-container")}>
                             <Base.H6 className={`${this.decorateCSS("column-title")} ${!columnTitleExist ? this.decorateCSS("empty") : ""}`}>
-                              {column?.title}
+                              {column.columnContent_title}
                             </Base.H6>
                           </div>
                         )}
@@ -977,7 +977,7 @@ class PricingTable9 extends BasePricingTable {
 
                               if (!firstColumnContent) return null;
 
-                              const iconExist = content.icon && (content.icon.type === "icon" ? content.icon.name : content.icon.url);
+                              const iconExist = content.content_icon && (content.content_icon.type === "icon" ? content.content_icon.name : content.content_icon.url);
                               const textExist = this.castToString(content.text);
 
                               if (!iconExist && !textExist) return null;
@@ -991,7 +991,7 @@ class PricingTable9 extends BasePricingTable {
                                   <div className={this.decorateCSS("content-right")}>
                                     {iconExist && (
                                       <Base.Media
-                                        value={content.icon}
+                                        value={content.content_icon}
                                         className={this.decorateCSS("content-icon")}
                                       />
                                     )}
@@ -1081,8 +1081,8 @@ class PricingTable9 extends BasePricingTable {
                   {columns
                     .filter((_, index: number) => index !== 0)
                     .map((column: PricingColumn, index: number) => {
-                      const cardButtons = column?.buttons || [];
-                      const columnTitleExist = this.castToString(column?.title);
+                      const cardButtons = column.columnContent_buttons || [];
+                      const columnTitleExist = this.castToString(column.columnContent_title);
                       const hasButtonsWithContent = cardButtons.some((btn: INPUTS.CastedButton) => {
                         const btnText = this.castToString(btn.text);
                         const btnIcon = btn.icon as unknown as TypeMediaInputValue;
@@ -1099,7 +1099,7 @@ class PricingTable9 extends BasePricingTable {
                               <Base.H6
                                 className={`${this.decorateCSS("column-title")} ${!columnTitleExist ? this.decorateCSS("empty") : ""}`}
                               >
-                                {column?.title}
+                                {column.columnContent_title}
                               </Base.H6>
                             </div>
                           )}
@@ -1110,7 +1110,7 @@ class PricingTable9 extends BasePricingTable {
 
                                 if (!firstColumnContent) return null;
 
-                                const iconExist = content.icon && (content.icon.type === "icon" ? content.icon.name : content.icon.url);
+                                const iconExist = content.content_icon && (content.content_icon.type === "icon" ? content.content_icon.name : content.content_icon.url);
                                 const textExist = this.castToString(content.text);
                                 const firstColumnTextExist = this.castToString(firstColumnContent.text);
 
@@ -1129,7 +1129,7 @@ class PricingTable9 extends BasePricingTable {
                                     <div className={this.decorateCSS("content-right")}>
                                       {iconExist && (
                                         <Base.Media
-                                          value={content.icon}
+                                          value={content.content_icon}
                                           className={this.decorateCSS(
                                             "content-icon"
                                           )}

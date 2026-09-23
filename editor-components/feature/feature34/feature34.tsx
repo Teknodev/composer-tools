@@ -7,8 +7,8 @@ import { INPUTS } from "../../../custom-hooks/input-templates";
 
 type FeatureItem = {
   icon: TypeMediaInputValue;
-  title: React.JSX.Element;
-  description: React.JSX.Element;
+  feature_title: React.JSX.Element;
+  feature_description: React.JSX.Element;
 };
 
 type ButtonIcon = TypeMediaInputValue | undefined;
@@ -71,13 +71,13 @@ class Feature34 extends BaseFeature {
             },
             {
               type: "string",
-              key: "title",
+              key: "feature_title",
               displayer: "Title",
               value: "Modern Design",
             },
             {
               type: "string",
-              key: "description",
+              key: "feature_description",
               displayer: "Description",
               value: "Completely iterate covalent strategic theme areas via accurate e-markets.",
             },
@@ -102,13 +102,13 @@ class Feature34 extends BaseFeature {
             },
             {
               type: "string",
-              key: "title",
+              key: "feature_title",
               displayer: "Title",
               value: "High Quality",
             },
             {
               type: "string",
-              key: "description",
+              key: "feature_description",
               displayer: "Description",
               value: "Imagination is more important than knowledge. Imagination encircles the world.",
             },
@@ -133,13 +133,13 @@ class Feature34 extends BaseFeature {
             },
             {
               type: "string",
-              key: "title",
+              key: "feature_title",
               displayer: "Title",
               value: "Ultra Responsive",
             },
             {
               type: "string",
-              key: "description",
+              key: "feature_description",
               displayer: "Description",
               value: "Completely iterate covalent strategic theme areas via accurate e-markets.",
             },
@@ -164,13 +164,13 @@ class Feature34 extends BaseFeature {
             },
             {
               type: "string",
-              key: "title",
+              key: "feature_title",
               displayer: "Title",
               value: "Dedicated Support",
             },
             {
               type: "string",
-              key: "description",
+              key: "feature_description",
               displayer: "Description",
               value: "Imagination is more important than knowledge. Imagination encircles the world.",
             },
@@ -195,13 +195,13 @@ class Feature34 extends BaseFeature {
             },
             {
               type: "string",
-              key: "title",
+              key: "feature_title",
               displayer: "Title",
               value: "Fully Customizable",
             },
             {
               type: "string",
-              key: "description",
+              key: "feature_description",
               displayer: "Description",
               value: "Imagination is more important than knowledge. Imagination encircles the world.",
             },
@@ -226,13 +226,13 @@ class Feature34 extends BaseFeature {
             },
             {
               type: "string",
-              key: "title",
+              key: "feature_title",
               displayer: "Title",
               value: "Premium Addons",
             },
             {
               type: "string",
-              key: "description",
+              key: "feature_description",
               displayer: "Description",
               value: "Completely iterate covalent strategic theme areas via accurate e-markets.",
             },
@@ -257,13 +257,13 @@ class Feature34 extends BaseFeature {
             },
             {
               type: "string",
-              key: "title",
+              key: "feature_title",
               displayer: "Title",
               value: "100% Translatable",
             },
             {
               type: "string",
-              key: "description",
+              key: "feature_description",
               displayer: "Description",
               value: "Imagination is more important than knowledge. Imagination encircles the world.",
             },
@@ -288,13 +288,13 @@ class Feature34 extends BaseFeature {
             },
             {
               type: "string",
-              key: "title",
+              key: "feature_title",
               displayer: "Title",
               value: "Free Test-Drive",
             },
             {
               type: "string",
-              key: "description",
+              key: "feature_description",
               displayer: "Description",
               value: "Completely iterate covalent strategic theme areas via accurate e-markets.",
             },
@@ -354,8 +354,8 @@ class Feature34 extends BaseFeature {
               className={this.decorateCSS("features-grid")}
             >
               {features.map((feature, index) => {
-                const hasTitle = this.castToString(feature.title);
-                const hasDescription = this.castToString(feature.description);
+                const hasTitle = this.castToString(feature.feature_title);
+                const hasDescription = this.castToString(feature.feature_description);
                 const hasContent = hasTitle || hasDescription || feature.icon;
 
                 return (
@@ -369,12 +369,12 @@ class Feature34 extends BaseFeature {
                       <Base.VerticalContent className={this.decorateCSS("content")}>
                         {hasTitle && (
                           <Base.H5 className={this.decorateCSS("feature-title")}>
-                            {feature.title}
+                            {feature.feature_title}
                           </Base.H5>
                         )}
                         {hasDescription && (
                           <Base.P className={this.decorateCSS("feature-description")}>
-                            {feature.description}
+                            {feature.feature_description}
                           </Base.P>
                         )}
                       </Base.VerticalContent>

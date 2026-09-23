@@ -8,11 +8,11 @@ import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "../../../custom-hooks/input-templates";
 
 type IIconBoxes = {
-  subtitle: React.JSX.Element;
+  card_subtitle: React.JSX.Element;
   bars: any;
-  description: React.JSX.Element;
+  card_description: React.JSX.Element;
   list: any;
-  title: React.JSX.Element;
+  card_title: React.JSX.Element;
   price: React.JSX.Element;
   priceBig: React.JSX.Element;
   plan: React.JSX.Element;
@@ -67,7 +67,7 @@ class PricingTable8 extends BasePricingTable {
           value: [
             {
               type: "string",
-              key: "title",
+              key: "card_title",
               displayer: "Title",
               value: "Basic",
             },
@@ -91,13 +91,13 @@ class PricingTable8 extends BasePricingTable {
             },
             {
               type: "string",
-              key: "subtitle",
+              key: "card_subtitle",
               displayer: "Plan Title",
               value: "Basic plan",
             },
             {
               type: "string",
-              key: "description",
+              key: "card_description",
               displayer: "Description",
               value:
                 "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cum dolorum corporis, cumque repudiandae eius, eligendi assumenda quia ab accusantium optio, aut temporibus quis. Optio libero mollitia doloribus fugit consequuntur pariatur?",
@@ -121,7 +121,7 @@ class PricingTable8 extends BasePricingTable {
                   value: [
                     {
                       type: "string",
-                      key: "title",
+                      key: "bar_title",
                       displayer: "Bar1",
                       value: "500 Gb",
                     },
@@ -140,7 +140,7 @@ class PricingTable8 extends BasePricingTable {
                   value: [
                     {
                       type: "string",
-                      key: "title",
+                      key: "bar_title",
                       displayer: "Bar2",
                       value: "3 Years",
                     },
@@ -164,7 +164,7 @@ class PricingTable8 extends BasePricingTable {
           value: [
             {
               type: "string",
-              key: "title",
+              key: "card_title",
               displayer: "Title",
               value: "Medium",
             },
@@ -188,13 +188,13 @@ class PricingTable8 extends BasePricingTable {
             },
             {
               type: "string",
-              key: "subtitle",
+              key: "card_subtitle",
               displayer: "Plan Title",
               value: "Medium plan",
             },
             {
               type: "string",
-              key: "description",
+              key: "card_description",
               displayer: "Description",
               value:
                 "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cum dolorum corporis, cumque repudiandae eius, eligendi assumenda quia ab accusantium optio, aut temporibus quis. Optio libero mollitia doloribus fugit consequuntur pariatur?",
@@ -218,7 +218,7 @@ class PricingTable8 extends BasePricingTable {
                   value: [
                     {
                       type: "string",
-                      key: "title",
+                      key: "bar_title",
                       displayer: "Bar1",
                       value: "500 Gb",
                     },
@@ -237,7 +237,7 @@ class PricingTable8 extends BasePricingTable {
                   value: [
                     {
                       type: "string",
-                      key: "title",
+                      key: "bar_title",
                       displayer: "Bar2",
                       value: "3 Years",
                     },
@@ -261,7 +261,7 @@ class PricingTable8 extends BasePricingTable {
           value: [
             {
               type: "string",
-              key: "title",
+              key: "card_title",
               displayer: "Title",
               value: "Premium",
             },
@@ -285,13 +285,13 @@ class PricingTable8 extends BasePricingTable {
             },
             {
               type: "string",
-              key: "subtitle",
+              key: "card_subtitle",
               displayer: "Plan Title",
               value: "Professional plan",
             },
             {
               type: "string",
-              key: "description",
+              key: "card_description",
               displayer: "Description",
               value:
                 "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cum dolorum corporis, cumque repudiandae eius, eligendi assumenda quia ab accusantium optio, aut temporibus quis. Optio libero mollitia doloribus fugit consequuntur pariatur?",
@@ -315,7 +315,7 @@ class PricingTable8 extends BasePricingTable {
                   value: [
                     {
                       type: "string",
-                      key: "title",
+                      key: "bar_title",
                       displayer: "Bar1",
                       value: "500 Gb",
                     },
@@ -334,7 +334,7 @@ class PricingTable8 extends BasePricingTable {
                   value: [
                     {
                       type: "string",
-                      key: "title",
+                      key: "bar_title",
                       displayer: "Bar2",
                       value: "3 Years",
                     },
@@ -401,7 +401,7 @@ class PricingTable8 extends BasePricingTable {
   }
 
   private hasCardContent(card: IIconBoxes): boolean {
-    const titleExist = this.castToString(card.title);
+    const titleExist = this.castToString(card.card_title);
     const priceExist = this.castToString(card.price);
     const priceBigExist = this.castToString(card.priceBig);
     const planExist = this.castToString(card.plan);
@@ -422,8 +422,8 @@ class PricingTable8 extends BasePricingTable {
   }
 
   private hasLowerContainerContent(card: IIconBoxes): boolean {
-    const planTitleExist = this.castToString(card.subtitle);
-    const descriptionExist = this.castToString(card.description);
+    const planTitleExist = this.castToString(card.card_subtitle);
+    const descriptionExist = this.castToString(card.card_description);
     const hasBars =
       card.bars &&
       card.bars.length > 0 &&
@@ -433,8 +433,8 @@ class PricingTable8 extends BasePricingTable {
   }
 
   private hasPlanDescContent(card: IIconBoxes): boolean {
-    const planTitleExist = this.castToString(card.subtitle);
-    const descriptionExist = this.castToString(card.description);
+    const planTitleExist = this.castToString(card.card_subtitle);
+    const descriptionExist = this.castToString(card.card_description);
     return !!(planTitleExist || descriptionExist);
   }
 
@@ -556,7 +556,7 @@ class PricingTable8 extends BasePricingTable {
                 {cards.map((card: IIconBoxes, index: number) => {
                   if (!this.hasCardContent(card)) return null;
 
-                  const cardTitleExist = this.castToString(card.title);
+                  const cardTitleExist = this.castToString(card.card_title);
                   const cardPriceBigExist = this.castToString(card.priceBig);
                   const hasPricingContainer =
                     this.hasPricingContainerContent(card);
@@ -576,7 +576,7 @@ class PricingTable8 extends BasePricingTable {
                         <div className={this.decorateCSS("card-background-wrapper")} />
                         {cardTitleExist && (
                           <Base.H3 className={this.decorateCSS("title")}>
-                            {card.title}
+                            {card.card_title}
                           </Base.H3>
                         )}
                         <div className={this.decorateCSS("price-stack")}>
@@ -626,7 +626,7 @@ class PricingTable8 extends BasePricingTable {
                 {cards.map((card, index) => {
                   if (!this.hasCardContent(card)) return null;
 
-                  const cardTitleExist = this.castToString(card.title);
+                  const cardTitleExist = this.castToString(card.card_title);
                   const cardPriceBigExist = this.castToString(card.priceBig);
                   const hasPricingContainer =
                     this.hasPricingContainerContent(card);
@@ -649,7 +649,7 @@ class PricingTable8 extends BasePricingTable {
                         <div className={this.decorateCSS("card-background-wrapper")} />
                         {cardTitleExist && (
                           <Base.H3 className={this.decorateCSS("title")}>
-                            {card.title}
+                            {card.card_title}
                           </Base.H3>
                         )}
                         <div className={this.decorateCSS("price-stack")}>
@@ -700,14 +700,14 @@ class PricingTable8 extends BasePricingTable {
                       <Base.VerticalContent
                         className={this.decorateCSS("plan-desc")}
                       >
-                        {this.castToString(currentCard.subtitle) && (
+                        {this.castToString(currentCard.card_subtitle) && (
                           <Base.H4 className={this.decorateCSS("text")}>
-                            {currentCard.subtitle}
+                            {currentCard.card_subtitle}
                           </Base.H4>
                         )}
-                        {this.castToString(currentCard.description) && (
+                        {this.castToString(currentCard.card_description) && (
                           <Base.P className={this.decorateCSS("description-text")}>
-                            {currentCard.description}
+                            {currentCard.card_description}
                           </Base.P>
                         )}
                       </Base.VerticalContent>

@@ -7,11 +7,11 @@ import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "../../../custom-hooks/input-templates";
 
 type Card = {
-  title: React.JSX.Element;
-  description: React.JSX.Element;
+  plan_title: React.JSX.Element;
+  plan_description: React.JSX.Element;
   price: React.JSX.Element;
   duration: React.JSX.Element;
-  buttons?: INPUTS.CastedButton[];
+  plan_buttons?: INPUTS.CastedButton[];
 };
 
 class PricingTable5 extends BasePricingTable {
@@ -80,13 +80,13 @@ class PricingTable5 extends BasePricingTable {
           value: [
             {
               type: "string",
-              key: "title",
+              key: "plan_title",
               displayer: "Title",
               value: "Basic Plan",
             },
             {
               type: "string",
-              key: "description",
+              key: "plan_description",
               displayer: "Description",
               value:
                 "Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod. ",
@@ -106,7 +106,7 @@ class PricingTable5 extends BasePricingTable {
 
             {
               type: "array",
-              key: "buttons",
+              key: "plan_buttons",
               displayer: "Buttons",
               value: [
                 INPUTS.BUTTON("button", "Button", "GET STARTED", "", "", null, "White"),
@@ -121,13 +121,13 @@ class PricingTable5 extends BasePricingTable {
           value: [
             {
               type: "string",
-              key: "title",
+              key: "plan_title",
               displayer: "Title",
               value: "Standard Plan",
             },
             {
               type: "string",
-              key: "description",
+              key: "plan_description",
               displayer: "Description",
               value:
                 "Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod. ",
@@ -146,7 +146,7 @@ class PricingTable5 extends BasePricingTable {
             },
             {
               type: "array",
-              key: "buttons",
+              key: "plan_buttons",
               displayer: "Buttons",
               value: [
                 INPUTS.BUTTON("button", "Button", "GET STARTED", "", "", null, "White"),
@@ -161,13 +161,13 @@ class PricingTable5 extends BasePricingTable {
           value: [
             {
               type: "string",
-              key: "title",
+              key: "plan_title",
               displayer: "Title",
               value: "Premium Plan",
             },
             {
               type: "string",
-              key: "description",
+              key: "plan_description",
               displayer: "Description",
               value:
                 "Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod. ",
@@ -186,7 +186,7 @@ class PricingTable5 extends BasePricingTable {
             },
             {
               type: "array",
-              key: "buttons",
+              key: "plan_buttons",
               displayer: "Buttons",
               value: [
                 INPUTS.BUTTON("button", "Button", "GET STARTED", "", "", null, "White"),
@@ -208,7 +208,7 @@ class PricingTable5 extends BasePricingTable {
   }
 
   private getButtonsFromItem(item: Card) {
-    const buttonsArray = item?.buttons;
+    const buttonsArray = item.plan_buttons;
     if (!Array.isArray(buttonsArray)) return [];
 
     return buttonsArray.map((btn) => {
@@ -339,7 +339,7 @@ class PricingTable5 extends BasePricingTable {
                 {plans.map((plan: Card, index: number) => {
                   const isActive =
                     index === this.getComponentState("activePlan");
-                  const planTitleExist = this.castToString(plan.title);
+                  const planTitleExist = this.castToString(plan.plan_title);
                   const priceExist = this.castToString(plan.price);
                   const planDescription = this.castToString(
                     plan.duration
@@ -363,7 +363,7 @@ class PricingTable5 extends BasePricingTable {
                       <div className={this.decorateCSS("plan-upper")}>
                         {planTitleExist && (
                           <Base.H6 className={this.decorateCSS("plan-title")}>
-                            {plan.title}
+                            {plan.plan_title}
                           </Base.H6>
                         )}
                         {(() => {
@@ -387,9 +387,9 @@ class PricingTable5 extends BasePricingTable {
                         })()}
                       </div>
 
-                      {this.castToString(plan.description) && (
+                      {this.castToString(plan.plan_description) && (
                         <Base.P className={this.decorateCSS("plan-description")}>
-                          {plan.description}
+                          {plan.plan_description}
                         </Base.P>
                       )}
 

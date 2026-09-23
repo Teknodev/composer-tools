@@ -44,7 +44,7 @@ class CallToAction31 extends BaseCallToAction {
             value: [
                 {
                     type: "media",
-                    key: "media",
+                    key: "media_media",
                     displayer: "Media",
                     additionalParams: {
                         availableTypes: ["image", "video"],
@@ -79,7 +79,7 @@ class CallToAction31 extends BaseCallToAction {
 
     render() {
         const media = this.castToObject<any>("media");
-        const mediaData = media.media;
+        const mediaData = media.media_media;
         const overlay = media.overlay;
         const alignment = Base.getContentAlignment();
         const coloredBackground = this.getPropValue("coloredBackground");

@@ -11,7 +11,7 @@ type CoverMedia = {
 };
 
 type VideoMedia = {
-  media: TypeMediaInputValue;
+  back_media_media: TypeMediaInputValue;
   icon: TypeMediaInputValue;
 };
 
@@ -81,7 +81,7 @@ class About2 extends BaseAbout {
       value: [
         {
           type: "media",
-          key: "media",
+          key: "back_media_media",
           displayer: "Media",
           additionalParams: {
             availableTypes: ["video"],
@@ -125,7 +125,7 @@ class About2 extends BaseAbout {
 
   render() {
     const videoProps = this.castToObject<VideoMedia>("back-media");
-    const rawVideo = videoProps?.media;
+    const rawVideo = videoProps.back_media_media;
     const closeIcon = videoProps?.icon;
 
     const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");

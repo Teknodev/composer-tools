@@ -12,7 +12,7 @@ type Platform = {
 
 type TeamCardMember = {
   name: string;
-  description: string;
+  team_description: string;
   image: TypeMediaInputValue;
   platforms: { icon: string; url: string }[];
 };
@@ -116,7 +116,7 @@ class Team2 extends Team {
             },
             {
               type: "string",
-              key: "description",
+              key: "team_description",
               value: "Their design skills are truly exceptional, and they have a keen eye for aesthetics that sets them apart from others in the field.",
               displayer: "Description",
             },
@@ -159,7 +159,7 @@ class Team2 extends Team {
             },
             {
               type: "string",
-              key: "description",
+              key: "team_description",
               value: "We are a group of experienced professionals with diverse backgrounds and skill sets, working together to achieve.",
               displayer: "Description",
             },
@@ -202,7 +202,7 @@ class Team2 extends Team {
             },
             {
               type: "string",
-              key: "description",
+              key: "team_description",
               value: "An online learning platform can provide access to educational content from anywhere with an internet connection.",
               displayer: "Description",
             },
@@ -245,7 +245,7 @@ class Team2 extends Team {
             },
             {
               type: "string",
-              key: "description",
+              key: "team_description",
               value: "Their design skills are truly exceptional, and they have a keen eye for aesthetics that sets them apart from others in the field.",
               displayer: "Description",
             },
@@ -288,7 +288,7 @@ class Team2 extends Team {
             },
             {
               type: "string",
-              key: "description",
+              key: "team_description",
               value: "We are a group of experienced professionals with diverse backgrounds and skill sets, working together to achieve.",
               displayer: "Description",
             },
@@ -331,7 +331,7 @@ class Team2 extends Team {
             },
             {
               type: "string",
-              key: "description",
+              key: "team_description",
               value: "An online learning platform can provide access to educational content from anywhere with an internet connection.",
               displayer: "Description",
             },

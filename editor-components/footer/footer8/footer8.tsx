@@ -11,7 +11,7 @@ type FooterValues = {
   footerTitle: React.JSX.Element;
   footerTitleLink: string;
   footerTitleMedia: TypeMediaInputValue;
-  footerText: FooterTextValues[];
+  footer_title_footerText: FooterTextValues[];
 };
 
 type FooterTextValues = {
@@ -47,7 +47,7 @@ class Footer8Page extends BaseFooter {
       value: [
         {
           type: "media",
-          key: "logo",
+          key: "logo_logo",
           displayer: "Logo",
           additionalParams: {
             availableTypes: ["image", "icon"],
@@ -132,7 +132,7 @@ class Footer8Page extends BaseFooter {
             },
             {
               type: "array",
-              key: "footerText",
+              key: "footer_title_footerText",
               displayer: "Menu Subitem",
               value: [
                 {
@@ -298,7 +298,7 @@ class Footer8Page extends BaseFooter {
             },
             {
               type: "array",
-              key: "footerText",
+              key: "footer_title_footerText",
               displayer: "Menu Subitem",
               value: [
                 {
@@ -464,7 +464,7 @@ class Footer8Page extends BaseFooter {
             },
             {
               type: "array",
-              key: "footerText",
+              key: "footer_title_footerText",
               displayer: "Menu Subitem",
               value: [
                 {
@@ -595,7 +595,7 @@ class Footer8Page extends BaseFooter {
             },
             {
               type: "array",
-              key: "footerText",
+              key: "footer_title_footerText",
               displayer: "Menu Subitem",
               value: [
                 {
@@ -746,7 +746,7 @@ class Footer8Page extends BaseFooter {
       value: [
         {
           type: "object",
-          key: "content",
+          key: "socials_content",
           displayer: "Content Elements",
           value: [
             {
@@ -763,13 +763,13 @@ class Footer8Page extends BaseFooter {
             },
             {
               type: "string",
-              key: "text",
+              key: "content_text",
               displayer: "Text",
               value: "Facebook",
             },
             {
               type: "page",
-              key: "url",
+              key: "content_url",
               displayer: "Navigate To",
               value: "",
             },
@@ -777,7 +777,7 @@ class Footer8Page extends BaseFooter {
         },
         {
           type: "object",
-          key: "content",
+          key: "socials_content",
           displayer: "Content Elements",
           value: [
             {
@@ -794,13 +794,13 @@ class Footer8Page extends BaseFooter {
             },
             {
               type: "string",
-              key: "text",
+              key: "content_text",
               displayer: "Text",
               value: "Instagram",
             },
             {
               type: "page",
-              key: "url",
+              key: "content_url",
               displayer: "Navigate To",
               value: "",
             },
@@ -808,7 +808,7 @@ class Footer8Page extends BaseFooter {
         },
         {
           type: "object",
-          key: "content",
+          key: "socials_content",
           displayer: "Content Elements",
           value: [
             {
@@ -825,13 +825,13 @@ class Footer8Page extends BaseFooter {
             },
             {
               type: "string",
-              key: "text",
+              key: "content_text",
               displayer: "Text",
               value: "Twitter",
             },
             {
               type: "page",
-              key: "url",
+              key: "content_url",
               displayer: "Navigate To",
               value: "",
             },
@@ -861,7 +861,7 @@ class Footer8Page extends BaseFooter {
     const socials = this.castToObject<any[]>("socials");
 
     const logoObject = this.castToObject<any>("logo");
-    const logo = logoObject?.logo;
+    const logo = logoObject.logo_logo;
     const logoUrl = logoObject?.logoUrl;
 
     const subtitleExist = this.castToString(this.getPropValue("subtitle"));
@@ -899,10 +899,10 @@ class Footer8Page extends BaseFooter {
                       <div className={this.decorateCSS("header-socials")}>
                         {socials.map((item: any, index: number) =>
                           hasMedia(item.icon) ? (
-                            <ComposerLink key={index} path={item.url}>
+                            <ComposerLink key={index} path={item.content_url}>
                               <div
                                 className={this.decorateCSS("header-social-element")}
-                                data-animation={item.url ? this.getPropValue("hoverAnimation").join(" ") : ""}
+                                data-animation={item.content_url ? this.getPropValue("hoverAnimation").join(" ") : ""}
                               >
                                 <Base.Media value={item.icon} className={`${this.decorateCSS("header-social-icon")} ${item.icon?.type === "icon" ? this.decorateCSS("is-icon") : ""}`} />
                               </div>
@@ -937,7 +937,7 @@ class Footer8Page extends BaseFooter {
                   footer.map((item: FooterValues, indexFooter: number) => {
                     const footerTitleExist = this.castToString(item.footerTitle);
                     const footerTitleMediaExist = hasMedia(item.footerTitleMedia);
-                    const footerTextExist = item.footerText.length > 0;
+                    const footerTextExist = item.footer_title_footerText.length > 0;
                     const listExist = footerTitleExist || footerTitleMediaExist || footerTextExist;
                     return (
                       listExist && (
@@ -952,9 +952,9 @@ class Footer8Page extends BaseFooter {
                               </div>
                             </ComposerLink>
                           )}
-                          {item.footerText.length > 0 && (
+                          {item.footer_title_footerText.length > 0 && (
                             <Base.VerticalContent className={this.decorateCSS("text-container")}>
-                              {item.footerText.map((v: FooterTextValues, indexFooterText: number) => {
+                              {item.footer_title_footerText.map((v: FooterTextValues, indexFooterText: number) => {
                                 const footerTextExist = this.castToString(v.navTitle);
                                 const navMediaExist = hasMedia(v.navMedia);
                                 const elementExist = footerTextExist || navMediaExist;

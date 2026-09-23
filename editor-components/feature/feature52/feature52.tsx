@@ -7,8 +7,8 @@ import ComposerLink from "../../../composer-base-components/Link/ComposerLinkPro
 
 type ServiceItemType = {
     icon: TypeMediaInputValue;
-    title: React.JSX.Element;
-    description: React.JSX.Element;
+    service_title: React.JSX.Element;
+    service_description: React.JSX.Element;
 };
 
 class Feature52 extends BaseFeature {
@@ -87,13 +87,13 @@ class Feature52 extends BaseFeature {
                         },
                         {
                             type: "string",
-                            key: "title",
+                            key: "service_title",
                             displayer: "Title",
                             value: "Strategy Planning",
                         },
                         {
                             type: "string",
-                            key: "description",
+                            key: "service_description",
                             displayer: "Description",
                             value:
                                 "I am text block. Click edit button to change this text. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.<br><br>Distinctively exploit optimal alignments for intuitive bandwidth. Quickly coordinate e-business applications through revolutionary catalysts.",
@@ -119,13 +119,13 @@ class Feature52 extends BaseFeature {
                         },
                         {
                             type: "string",
-                            key: "title",
+                            key: "service_title",
                             displayer: "Title",
                             value: "Technology Consulting",
                         },
                         {
                             type: "string",
-                            key: "description",
+                            key: "service_description",
                             displayer: "Description",
                             value:
                                 "I am text block. Click edit button to change this text. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.",
@@ -151,13 +151,13 @@ class Feature52 extends BaseFeature {
                         },
                         {
                             type: "string",
-                            key: "title",
+                            key: "service_title",
                             displayer: "Title",
                             value: "Design & Development",
                         },
                         {
                             type: "string",
-                            key: "description",
+                            key: "service_description",
                             displayer: "Description",
                             value:
                                 "I am text block. Click edit button to change this text. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.",
@@ -183,13 +183,13 @@ class Feature52 extends BaseFeature {
                         },
                         {
                             type: "string",
-                            key: "title",
+                            key: "service_title",
                             displayer: "Title",
                             value: "Performance Audit",
                         },
                         {
                             type: "string",
-                            key: "description",
+                            key: "service_description",
                             displayer: "Description",
                             value:
                                 "I am text block. Click edit button to change this text. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.",
@@ -444,8 +444,8 @@ class Feature52 extends BaseFeature {
                                                 {line && <div className={this.decorateCSS("line")}></div>}
                                                 {colItems.map((item, idxInCol) => {
                                                     const globalIdx = columns.slice(0, colIdx).reduce((acc, curr) => acc + curr.length, 0) + idxInCol;
-                                                    const itemTitleExist = this.castToString(item.title);
-                                                    const itemDescriptionExist = this.castToString(item.description);
+                                                    const itemTitleExist = this.castToString(item.service_title);
+                                                    const itemDescriptionExist = this.castToString(item.service_description);
                                                     const itemIconExist = !!item.icon?.name || !!item.icon?.url;
                                                     const isActive = activeIndices.includes(globalIdx);
                                                     const currentToggleIcon = isActive ? collapseIcon : expandIcon;
@@ -474,7 +474,7 @@ class Feature52 extends BaseFeature {
                                                                         )}
                                                                         {itemTitleExist && (
                                                                             <Base.H6 className={`${this.decorateCSS("item-title")} ${isActive && this.decorateCSS("item-title-active")}`}>
-                                                                                {item.title}
+                                                                                {item.service_title}
                                                                             </Base.H6>
                                                                         )}
                                                                     </div>
@@ -493,7 +493,7 @@ class Feature52 extends BaseFeature {
                                                                     className={`${this.decorateCSS("item-description-container")} ${isActive && this.decorateCSS("item-description-active")}`}
                                                                 >
                                                                     <Base.P className={this.decorateCSS("item-description")}>
-                                                                        {item.description}
+                                                                        {item.service_description}
                                                                     </Base.P>
                                                                 </div>
                                                             )}

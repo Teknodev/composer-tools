@@ -9,7 +9,7 @@ type FooterValues = {
   footerTitle: React.JSX.Element;
   footerTitleLink: string;
   footerTitleMedia: TypeMediaInputValue;
-  footerText: FooterTextValues[];
+  footer_title_footerText: FooterTextValues[];
 };
 
 type FooterTextValues = {
@@ -102,7 +102,7 @@ class Footer6Page extends BaseFooter {
             },
             {
               type: "array",
-              key: "footerText",
+              key: "footer_title_footerText",
               displayer: "Menu Subitem",
               value: [
                 {
@@ -233,7 +233,7 @@ class Footer6Page extends BaseFooter {
             },
             {
               type: "array",
-              key: "footerText",
+              key: "footer_title_footerText",
               displayer: "Menu Subitem",
               value: [
                 {
@@ -364,7 +364,7 @@ class Footer6Page extends BaseFooter {
             },
             {
               type: "array",
-              key: "footerText",
+              key: "footer_title_footerText",
               displayer: "Menu Subitem",
               value: [
                 {
@@ -537,7 +537,7 @@ class Footer6Page extends BaseFooter {
                 footer.map((item: FooterValues, indexFooter: number) => {
                   const footerTitleExist = this.castToString(item.footerTitle);
                   const footerTitleMediaExist = hasMedia(item.footerTitleMedia);
-                  const footerExist = footerTitleExist || footerTitleMediaExist || item.footerText.length > 0;
+                  const footerExist = footerTitleExist || footerTitleMediaExist || item.footer_title_footerText.length > 0;
                   return (
                     footerExist && (
                       <Base.VerticalContent key={indexFooter} className={this.decorateCSS("list-group")}>
@@ -551,9 +551,9 @@ class Footer6Page extends BaseFooter {
                             </div>
                           </ComposerLink>
                         )}
-                        {item.footerText.length > 0 && (
+                        {item.footer_title_footerText.length > 0 && (
                           <Base.VerticalContent className={this.decorateCSS("text-container")}>
-                            {item.footerText.map((v: FooterTextValues, indexFooterText: number) => {
+                            {item.footer_title_footerText.map((v: FooterTextValues, indexFooterText: number) => {
                               const footerTextExist = this.castToString(v.navTitle);
                               const navMediaExist = hasMedia(v.navMedia);
                               const titleStr = this.castToString(item.footerTitle).toLowerCase();

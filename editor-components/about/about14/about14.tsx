@@ -6,7 +6,7 @@ import ComposerLink from "../../../composer-base-components/Link/ComposerLinkPro
 import { INPUTS } from "../../../custom-hooks/input-templates";
 
 type MediaGroup = {
-    media: TypeMediaInputValue;
+    media_media: TypeMediaInputValue;
     overlay: boolean;
 };
 
@@ -26,7 +26,7 @@ class About14 extends BaseAbout {
             value: [
                 {
                     type: "media",
-                    key: "media",
+                    key: "media_media",
                     displayer: "Media",
                     additionalParams: {
                         availableTypes: ["image", "video"],
@@ -112,7 +112,7 @@ class About14 extends BaseAbout {
     render() {
         const isExpanded = this.getComponentState("isExpanded");
         const mediaGroup = this.castToObject<MediaGroup>("media");
-        const imageMedia = mediaGroup?.media;
+        const imageMedia = mediaGroup.media_media;
 
         const title = this.getPropValue("title");
         const description = this.getPropValue("description");

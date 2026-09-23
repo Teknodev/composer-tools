@@ -11,7 +11,7 @@ type Slide = {
   description: React.JSX.Element;
   description_title: React.JSX.Element;
   image: TypeMediaInputValue;
-  overlay: boolean;
+  item_overlay: boolean;
 };
 
 type Social = {
@@ -106,7 +106,7 @@ class HeroSection18 extends BaseHeroSection {
             {
               type: "boolean",
               displayer: "Overlay",
-              key: "overlay",
+              key: "item_overlay",
               value: false,
             },
           ],
@@ -157,7 +157,7 @@ class HeroSection18 extends BaseHeroSection {
             {              
               type: "boolean",
               displayer: "Overlay",
-              key: "overlay",
+              key: "item_overlay",
               value: false,
             },
           ],
@@ -207,7 +207,7 @@ class HeroSection18 extends BaseHeroSection {
             {
               type: "boolean",
               displayer: "Overlay",
-              key: "overlay",
+              key: "item_overlay",
               value: false,
             }
           ],
@@ -257,7 +257,7 @@ class HeroSection18 extends BaseHeroSection {
             {
               type: "boolean",
               displayer: "Overlay",
-              key: "overlay",
+              key: "item_overlay",
               value: false,
             }
           ],
@@ -307,7 +307,7 @@ class HeroSection18 extends BaseHeroSection {
             {
               type: "boolean",
               displayer: "Overlay",
-              key: "overlay",
+              key: "item_overlay",
               value: false,
             }
           ],
@@ -339,7 +339,7 @@ class HeroSection18 extends BaseHeroSection {
             },
             {
               type: "media",
-              key: "icon",
+              key: "icon_icon",
               displayer: "Icon",
               additionalParams: { availableTypes: ["icon", "image"] },
               value: { type: "icon", name: "FaFacebook" },
@@ -365,7 +365,7 @@ class HeroSection18 extends BaseHeroSection {
             },
             {
               type: "media",
-              key: "icon",
+              key: "icon_icon",
               displayer: "Icon",
               additionalParams: { availableTypes: ["icon", "image"] },
               value: { type: "icon", name: "FaInstagram" },
@@ -391,7 +391,7 @@ class HeroSection18 extends BaseHeroSection {
             },
             {
               type: "media",
-              key: "icon",
+              key: "icon_icon",
               displayer: "Icon",
               additionalParams: { availableTypes: ["icon", "image"] },
               value: { type: "icon", name: "FaDribbble" },
@@ -512,7 +512,7 @@ class HeroSection18 extends BaseHeroSection {
                       {!!item.image && (
                         <div className={this.decorateCSS("image-wrapper")}>
                           <Base.Media value={item.image} className={this.decorateCSS("image")} autoPlay muted loop playsInline />
-                          {item.overlay && <div className={this.decorateCSS("slide-overlay")} />}
+                          {item.item_overlay && <div className={this.decorateCSS("slide-overlay")} />}
                         </div>
                       )}
                       {(descTitleExist || descExist) && (
@@ -535,7 +535,7 @@ class HeroSection18 extends BaseHeroSection {
                     <ComposerLink path={item.url} key={index}>
                         <div className={this.decorateCSS("social-item")}>
                           <Base.H6 className={`${this.decorateCSS("name")} ${!cover && this.decorateCSS("name-no-image")}`}>{item.text}</Base.H6>
-                          {item.icon && <Base.Media value={item.icon} className={this.decorateCSS("social-icon")}/>} 
+                          {item.icon_icon && <Base.Media value={item.icon_icon} className={this.decorateCSS("social-icon")}/>} 
                         </div>
                     </ComposerLink>
                   ))}

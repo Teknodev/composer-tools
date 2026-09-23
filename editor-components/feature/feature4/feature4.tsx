@@ -7,10 +7,10 @@ import { Base, TypeButton } from "../../../composer-base-components/base/base";
 import { INPUTS } from "../../../custom-hooks/input-templates";
 
 type Card = {
-  title: React.JSX.Element;
-  subtitle: React.JSX.Element;
+  card_title: React.JSX.Element;
+  card_subtitle: React.JSX.Element;
   icon: TypeMediaInputValue;
-  description: React.JSX.Element;
+  card_description: React.JSX.Element;
   image: TypeMediaInputValue;
   buttons: TypeButton[];
 };
@@ -77,7 +77,7 @@ class Feature4 extends BaseFeature {
           value: [
             {
               type: "string",
-              key: "title",
+              key: "card_title",
               displayer: "Title",
               value: "Customer Center",
             },
@@ -95,13 +95,13 @@ class Feature4 extends BaseFeature {
             },
             {
               type: "string",
-              key: "subtitle",
+              key: "card_subtitle",
               displayer: "Subtitle",
               value: "Sustainable Practices",
             },
             {
               type: "string",
-              key: "description",
+              key: "card_description",
               displayer: "Description",
               value:
                 "From exotic beaches to bustling cities, our website offers.",
@@ -138,7 +138,7 @@ class Feature4 extends BaseFeature {
           value: [
             {
               type: "string",
-              key: "title",
+              key: "card_title",
               displayer: "Title",
               value: "Assistance",
             },
@@ -156,13 +156,13 @@ class Feature4 extends BaseFeature {
             },
             {
               type: "string",
-              key: "subtitle",
+              key: "card_subtitle",
               displayer: "Subtitle",
               value: "Cross-functional Team",
             },
             {
               type: "string",
-              key: "description",
+              key: "card_description",
               displayer: "Description",
               value:
                 "From exotic beaches to bustling cities, our website offers.",
@@ -199,7 +199,7 @@ class Feature4 extends BaseFeature {
           value: [
             {
               type: "string",
-              key: "title",
+              key: "card_title",
               displayer: "Title",
               value: "Solutions Hub",
             },
@@ -217,13 +217,13 @@ class Feature4 extends BaseFeature {
             },
             {
               type: "string",
-              key: "subtitle",
+              key: "card_subtitle",
               displayer: "Subtitle",
               value: "Customer Engagement",
             },
             {
               type: "string",
-              key: "description",
+              key: "card_description",
               displayer: "Description",
               value:
                 "From exotic beaches to bustling cities, our website offers.",
@@ -260,7 +260,7 @@ class Feature4 extends BaseFeature {
           value: [
             {
               type: "string",
-              key: "title",
+              key: "card_title",
               displayer: "Title",
               value: "Performance",
             },
@@ -278,13 +278,13 @@ class Feature4 extends BaseFeature {
             },
             {
               type: "string",
-              key: "subtitle",
+              key: "card_subtitle",
               displayer: "Subtitle",
               value: "Efficient Full Solutions",
             },
             {
               type: "string",
-              key: "description",
+              key: "card_description",
               displayer: "Description",
               value:
                 "From exotic beaches to bustling cities, our website offers.",
@@ -321,7 +321,7 @@ class Feature4 extends BaseFeature {
           value: [
             {
               type: "string",
-              key: "title",
+              key: "card_title",
               displayer: "Title",
               value: "Operational",
             },
@@ -339,13 +339,13 @@ class Feature4 extends BaseFeature {
             },
             {
               type: "string",
-              key: "subtitle",
+              key: "card_subtitle",
               displayer: "Subtitle",
               value: "Efficient User Experience",
             },
             {
               type: "string",
-              key: "description",
+              key: "card_description",
               displayer: "Description",
               value:
                 "From exotic beaches to bustling cities, our website offers.",
@@ -442,9 +442,9 @@ class Feature4 extends BaseFeature {
               </Base.VerticalContent>
             )}
             {cards?.length > 0 && cards.map((card: Card, index: number) => {
-              const titleExist = !!this.castToString(card.title);
-              const subtitleExist = !!this.castToString(card.subtitle);
-              const descExist = !!this.castToString(card.description);
+              const titleExist = !!this.castToString(card.card_title);
+              const subtitleExist = !!this.castToString(card.card_subtitle);
+              const descExist = !!this.castToString(card.card_description);
               const iconExist = !!card.icon?.name;
               const imageExist = !!card.image?.url;
               const buttonsExist = card.buttons?.length > 0;
@@ -471,7 +471,7 @@ class Feature4 extends BaseFeature {
                         titleExist && (
                           <Base.H3 className={`${this.decorateCSS("title")}
                     ${this.getPropValue("componentBackground")?.url && this.decorateCSS("title-with-bg")} } `}>
-                            {card.title}
+                            {card.card_title}
                           </Base.H3>
                         )
                       }
@@ -479,7 +479,7 @@ class Feature4 extends BaseFeature {
                         subtitleExist && (
                           <Base.P className={`${this.decorateCSS("subtitle")} 
                         ${this.getPropValue("componentBackground")?.url && this.decorateCSS("subtitle-with-bg")} }`}>
-                            {card.subtitle}
+                            {card.card_subtitle}
                           </Base.P>
                         )
                       }
@@ -499,7 +499,7 @@ class Feature4 extends BaseFeature {
                                 ${card.image?.url || imageOverlay ? this.decorateCSS("image-or-overlay-exist") : ""}
                               `}
                               >
-                                {card.description}
+                                {card.card_description}
                               </Base.P>
                             )}
 

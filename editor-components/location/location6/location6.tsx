@@ -356,7 +356,7 @@ class Location6 extends Location {
             {
               type: "string",
               displayer: "Description",
-              key: "description",
+              key: "marker_description",
               value: "Corpus Christi School",
             },
           ],
@@ -390,7 +390,7 @@ class Location6 extends Location {
             {
               type: "string",
               displayer: "Description",
-              key: "description",
+              key: "marker_description",
               value: "KFC Restaurant",
             },
           ],
@@ -424,7 +424,7 @@ class Location6 extends Location {
             {
               type: "string",
               displayer: "Description",
-              key: "description",
+              key: "marker_description",
               value: "Baitun Nor Mosque",
             },
           ],
@@ -458,7 +458,7 @@ class Location6 extends Location {
             {
               type: "string",
               displayer: "Description",
-              key: "description",
+              key: "marker_description",
               value: "Central Park",
             },
           ],
@@ -492,7 +492,7 @@ class Location6 extends Location {
             {
               type: "string",
               displayer: "Description",
-              key: "description",
+              key: "marker_description",
               value: "Central Hospital",
             },
           ],

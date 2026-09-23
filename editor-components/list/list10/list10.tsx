@@ -8,10 +8,10 @@ import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 type Card = {
     image: TypeMediaInputValue;
     badge: React.JSX.Element;
-    description: React.JSX.Element;
+    card_description: React.JSX.Element;
     bottomText: React.JSX.Element;
     url: string;
-    buttons: INPUTS.CastedButton[];
+    card_buttons: INPUTS.CastedButton[];
 };
 
 class List10 extends BaseList {
@@ -90,7 +90,7 @@ class List10 extends BaseList {
                         },
                         {
                             type: "string",
-                            key: "description",
+                            key: "card_description",
                             displayer: "Description",
                             value: "Antenna Promises New era For Satellite Communication",
                         },
@@ -108,7 +108,7 @@ class List10 extends BaseList {
                         },
                         {
                             type: "array",
-                            key: "buttons",
+                            key: "card_buttons",
                             displayer: "Buttons",
                             value: [
                                 INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
@@ -141,7 +141,7 @@ class List10 extends BaseList {
                         },
                         {
                             type: "string",
-                            key: "description",
+                            key: "card_description",
                             displayer: "Description",
                             value: "Antenna Promises New era For Satellite Communication",
                         },
@@ -159,7 +159,7 @@ class List10 extends BaseList {
                         },
                         {
                             type: "array",
-                            key: "buttons",
+                            key: "card_buttons",
                             displayer: "Buttons",
                             value: [
                                 INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
@@ -192,7 +192,7 @@ class List10 extends BaseList {
                         },
                         {
                             type: "string",
-                            key: "description",
+                            key: "card_description",
                             displayer: "Description",
                             value: "Antenna Promises New era For Satellite Communication",
                         },
@@ -210,7 +210,7 @@ class List10 extends BaseList {
                         },
                         {
                             type: "array",
-                            key: "buttons",
+                            key: "card_buttons",
                             displayer: "Buttons",
                             value: [
                                 INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
@@ -314,10 +314,10 @@ class List10 extends BaseList {
                         >
                             {cards.map((card: Card, index: number) => {
                                 const badgeExist = this.castToString(card.badge);
-                                const descExist = this.castToString(card.description);
+                                const descExist = this.castToString(card.card_description);
                                 const bottomTextExist = this.castToString(card.bottomText);
                                 const imageExist = !!card.image;
-                                const cardButtons = card.buttons || [];
+                                const cardButtons = card.card_buttons || [];
                                 const hasValidCardButtons = cardButtons.some((btn: INPUTS.CastedButton) => this.castToString(btn.text) || (btn.icon && (btn.icon as any).name));
 
                                 if (!badgeExist && !descExist && !bottomTextExist && !imageExist) return null;
@@ -348,7 +348,7 @@ class List10 extends BaseList {
                                                 <div className={this.decorateCSS("image-spacer")} />
                                                 {descExist && (
                                                     <Base.SectionDescription className={this.decorateCSS("description")}>
-                                                        {card.description}
+                                                        {card.card_description}
                                                     </Base.SectionDescription>
                                                 )}
                                                 {bottomTextExist && (

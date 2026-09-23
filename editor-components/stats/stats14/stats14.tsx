@@ -43,7 +43,7 @@ class Stats14 extends BaseStats {
       value: [
         {
           type: "object",
-          key: "features-item",
+          key: "features_item_features_item",
           displayer: "Feature Item",
           value: [
             { type: "string", key: "topText", displayer: "Top Text", value: "From 20 days" },
@@ -52,7 +52,7 @@ class Stats14 extends BaseStats {
         },
         {
           type: "object",
-          key: "features-item",
+          key: "features_item_features_item",
           displayer: "Feature Item",
           value: [
             { type: "string", key: "topText", displayer: "Top Text", value: "Up to 7.5%" },
@@ -61,7 +61,7 @@ class Stats14 extends BaseStats {
         },
         {
           type: "object",
-          key: "features-item",
+          key: "features_item_features_item",
           displayer: "Feature Item",
           value: [
             { type: "string", key: "topText", displayer: "Top Text", value: "From $1,000" },

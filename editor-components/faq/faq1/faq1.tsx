@@ -6,7 +6,7 @@ import { INPUTS } from "../../../custom-hooks/input-templates";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 
 type FAQ = {
-  subtitle: React.JSX.Element;
+  block_subtitle: React.JSX.Element;
   text: React.JSX.Element;
   image: string;
 };
@@ -69,7 +69,7 @@ class Faq1 extends BaseFAQ {
           value: [
             {
               type: "string",
-              key: "subtitle",
+              key: "block_subtitle",
               displayer: "Question",
               value: "Which payment options are available?",
             },
@@ -88,7 +88,7 @@ class Faq1 extends BaseFAQ {
           value: [
             {
               type: "string",
-              key: "subtitle",
+              key: "block_subtitle",
               displayer: "Question",
               value: "Which payment options are available?",
             },
@@ -107,7 +107,7 @@ class Faq1 extends BaseFAQ {
           value: [
             {
               type: "string",
-              key: "subtitle",
+              key: "block_subtitle",
               displayer: "Question",
               value: "Do you accept credit cards or other forms of payment?",
             },
@@ -138,7 +138,7 @@ class Faq1 extends BaseFAQ {
       value: [
         {
           type: "string",
-          key: "text",
+          key: "bottomContainer_text",
           displayer: "Text",
           value: "Still have any questions?",
         },
@@ -219,10 +219,10 @@ class Faq1 extends BaseFAQ {
                     this.cardClicked(indexCard);
                   }}
                 >
-                  {(this.castToString(card.subtitle) || this.getPropValue("activeIcon") || this.getPropValue("inactiveIcon")) && (
+                  {(this.castToString(card.block_subtitle) || this.getPropValue("activeIcon") || this.getPropValue("inactiveIcon")) && (
                     <div className={this.decorateCSS("in-box")}>
-                      {this.castToString(card.subtitle) && (
-                        <Base.H6 className={this.decorateCSS("card-subtitle")}>{card.subtitle}</Base.H6>
+                      {this.castToString(card.block_subtitle) && (
+                        <Base.H6 className={this.decorateCSS("card-subtitle")}>{card.block_subtitle}</Base.H6>
                       )}
                       {(this.getPropValue("activeIcon") || this.getPropValue("inactiveIcon")) && (
                         <Base.Media

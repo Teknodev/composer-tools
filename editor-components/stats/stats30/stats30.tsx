@@ -22,9 +22,9 @@ type RawStatItem = {
     value?: JSX.Element;
     number?: JSX.Element;
     suffix?: JSX.Element;
-    title?: JSX.Element;
-    subtitle?: JSX.Element;
-    description?: JSX.Element;
+    card_title?: JSX.Element;
+    card_subtitle?: JSX.Element;
+    card_description?: JSX.Element;
 };
 
 export class Stats30 extends BaseStats {
@@ -65,9 +65,9 @@ export class Stats30 extends BaseStats {
                         { type: "string", key: "prefix", displayer: "Prefix", value: "" },
                         { type: "string", key: "value", displayer: "Value", value: "56" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "" },
-                        { type: "string", key: "subtitle", displayer: "Subtitle", value: "Teamwork" },
-                        { type: "string", key: "title", displayer: "Title", value: "Experienced team members" },
-                        { type: "string", key: "description", displayer: "Description", value: "" },
+                        { type: "string", key: "card_subtitle", displayer: "Subtitle", value: "Teamwork" },
+                        { type: "string", key: "card_title", displayer: "Title", value: "Experienced team members" },
+                        { type: "string", key: "card_description", displayer: "Description", value: "" },
                     ],
                 },
                 {
@@ -78,9 +78,9 @@ export class Stats30 extends BaseStats {
                         { type: "string", key: "prefix", displayer: "Prefix", value: "" },
                         { type: "string", key: "value", displayer: "Value", value: "87" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "" },
-                        { type: "string", key: "subtitle", displayer: "Subtitle", value: "Process" },
-                        { type: "string", key: "title", displayer: "Title", value: "Days of product development" },
-                        { type: "string", key: "description", displayer: "Description", value: "" },
+                        { type: "string", key: "card_subtitle", displayer: "Subtitle", value: "Process" },
+                        { type: "string", key: "card_title", displayer: "Title", value: "Days of product development" },
+                        { type: "string", key: "card_description", displayer: "Description", value: "" },
                     ],
                 },
 
@@ -251,12 +251,12 @@ export class Stats30 extends BaseStats {
                 prefix: this.castToString(cardData.prefix) || "",
                 statValue: this.castToString(cardData.value) || this.castToString(cardData.number) || "",
                 suffix: this.castToString(cardData.suffix) || "",
-                subtitle: this.castToString(cardData.subtitle) || "",
-                subtitleElement: cardData.subtitle,
-                title: this.castToString(cardData.title) || "",
-                titleElement: cardData.title,
-                description: this.castToString(cardData.description) || "",
-                descriptionElement: cardData.description,
+                subtitle: this.castToString(cardData.card_subtitle) || "",
+                subtitleElement: cardData.card_subtitle,
+                title: this.castToString(cardData.card_title) || "",
+                titleElement: cardData.card_title,
+                description: this.castToString(cardData.card_description) || "",
+                descriptionElement: cardData.card_description,
             };
         });
 

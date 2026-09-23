@@ -8,7 +8,7 @@ import ComposerLink from "../../../composer-base-components/Link/ComposerLinkPro
 
 type Category = {
   categoryName: React.JSX.Element;
-  questions: Array<any>;
+  questions_questions: Array<any>;
 };
 
 class Faq8 extends BaseFAQ {
@@ -113,7 +113,7 @@ class Faq8 extends BaseFAQ {
             },
             {
               type: "array",
-              key: "questions",
+              key: "questions_questions",
               displayer: "Questions",
               value: [
                 {
@@ -229,7 +229,7 @@ class Faq8 extends BaseFAQ {
             },
             {
               type: "array",
-              key: "questions",
+              key: "questions_questions",
               displayer: "Questions",
               value: [
                 {
@@ -345,7 +345,7 @@ class Faq8 extends BaseFAQ {
             },
             {
               type: "array",
-              key: "questions",
+              key: "questions_questions",
               displayer: "Questions",
               value: [
                 {
@@ -466,7 +466,7 @@ class Faq8 extends BaseFAQ {
             },
             {
               type: "array",
-              key: "questions",
+              key: "questions_questions",
               displayer: "Questions",
               value: [
                 {
@@ -587,7 +587,7 @@ class Faq8 extends BaseFAQ {
             },
             {
               type: "array",
-              key: "questions",
+              key: "questions_questions",
               displayer: "Questions",
               value: [
                 {
@@ -791,11 +791,11 @@ class Faq8 extends BaseFAQ {
                   )}
                 </div>
               )}
-              {(this.castToObject<Category[]>("categories")[this.getComponentState("activeIndex")]?.questions.length > 0) && (
+              {(this.castToObject<Category[]>("categories")[this.getComponentState("activeIndex")].questions_questions.length > 0) && (
                 <div className={this.decorateCSS("questions")}>
                   {this.castToObject<Category[]>("categories")[
                     this.getComponentState("activeIndex")
-                  ]?.questions.map((question, questionIndex) => {
+                  ].questions_questions.map((question, questionIndex) => {
                     return (
                       <div
                         onClick={() => this.handleAnswer(questionIndex)}
