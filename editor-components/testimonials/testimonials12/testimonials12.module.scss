@@ -110,6 +110,7 @@
           }
           .card-description {
             color: var(--composer-font-color-primary);
+            font-size: 1.125rem;
             text-align: left !important;
             justify-content: flex-start !important;
           }
@@ -180,6 +181,9 @@
             }
           }
           .card {
+            .card-description {
+              font-size: 1.125rem !important;
+            }
             .below-content {
               .below-right-content {
                 .item-name {
@@ -213,6 +217,9 @@
             }
           }
           .card {
+            .card-description {
+              font-size: 1.0625rem !important;
+            }
             .span-image {
               width: 40px;
               height: 40px;
