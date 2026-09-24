@@ -248,13 +248,13 @@
             align-items: center !important;
 
             .item-name {
-              font-size: 1.375rem !important;
+              font-size: calc(1.1875 * var(--composer-font-size-md)) !important;
               color: var(--composer-font-color-primary);
               text-align: center !important;
             }
 
             .item-subtitle {
-              font-size: 0.9375rem !important;
+              font-size: calc(0.9375 * var(--composer-font-size-md)) !important;
               color: var(--composer-font-color-primary);
               text-align: center !important;
             }
@@ -270,14 +270,14 @@
           margin-top: var(--composer-gap-md);
 
           .image {
-            width: 55px;
-            height: 55px;
+            width: 72px;
+            height: 72px;
             object-fit: cover;
             border-radius: 50%;
             transition: transform 0.3s ease;
             cursor: pointer;
             &.active {
-              transform: scale(1.2);
+              transform: scale(1.25);
             }
             font-size: 3rem;
           }
@@ -337,12 +337,19 @@
 
             .person-text {
               .item-name {
-                font-size: 1.25rem !important;
+                font-size: calc(1.0625 * var(--composer-font-size-md)) !important;
               }
 
               .item-subtitle {
-                font-size: 1rem !important;
+                font-size: calc(0.9375 * var(--composer-font-size-md)) !important;
               }
+            }
+          }
+
+          .images {
+            .image {
+              width: 52px;
+              height: 52px;
             }
           }
         }
@@ -375,11 +382,11 @@
 
              .person-text {
                .item-name {
-                 font-size: 1rem !important;
+                 font-size: calc(1.0625 * var(--composer-font-size-md)) !important;
                }
 
                .item-subtitle {
-                 font-size: 1rem !important;
+                 font-size: calc(0.9375 * var(--composer-font-size-md)) !important;
                }
              }
           }
@@ -387,8 +394,8 @@
         .testimonials4 {
           .images {
             .image {
-              width: 45px;
-              height: 45px;
+              width: 40px;
+              height: 40px;
             }
           }
         }
