@@ -127,11 +127,11 @@
       flex-direction: column;
       width: 100%;
       max-width: 800px;
+      align-items: center !important;
+      text-align: center !important;
 
       .subtitle {
         margin: 0 !important;
-        padding: 0 !important;
-        background: transparent !important;
         transform: none !important;
         &::before {
           display: none !important;
@@ -142,12 +142,14 @@
       .subtitle,
       .title,
       .description {
-        content: "";
+        text-align: center !important;
+        justify-content: center !important;
       }
 
       .button-container {
         display: flex;
         flex-wrap: wrap;
+        justify-content: center;
         gap: var(--composer-gap-sm);
         .button {
           display: flex;
