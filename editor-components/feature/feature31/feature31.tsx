@@ -7,9 +7,9 @@ import { INPUTS } from "../../../custom-hooks/input-templates";
 
 type Card = {
     media: TypeMediaInputValue;
-    subtitle: React.JSX.Element;
-    title: React.JSX.Element;
-    description: React.JSX.Element;
+    card_subtitle: React.JSX.Element;
+    card_title: React.JSX.Element;
+    card_description: React.JSX.Element;
 };
 
 class Feature31 extends BaseFeature {
@@ -56,19 +56,19 @@ class Feature31 extends BaseFeature {
                         },
                         {
                             type: "string",
-                            key: "subtitle",
+                            key: "card_subtitle",
                             displayer: "Subtitle",
                             value: ""
                         },
                         {
                             type: "string",
-                            key: "title",
+                            key: "card_title",
                             displayer: "Title",
                             value: "Perfect Design"
                         },
                         {
                             type: "string",
-                            key: "description",
+                            key: "card_description",
                             displayer: "Description",
                             value: "Keeping your eye on the ball while performing a deep dive on the start-up mentality to derive convergence on cross-platform integration."
                         }
@@ -88,19 +88,19 @@ class Feature31 extends BaseFeature {
                         },
                         {
                             type: "string",
-                            key: "subtitle",
+                            key: "card_subtitle",
                             displayer: "Subtitle",
                             value: ""
                         },
                         {
                             type: "string",
-                            key: "title",
+                            key: "card_title",
                             displayer: "Title",
                             value: "Free Test-Drive"
                         },
                         {
                             type: "string",
-                            key: "description",
+                            key: "card_description",
                             displayer: "Description",
                             value: "Podcasting operational change management inside of workflows to establish a framework. Taking seamlessly key performance indicators offline to maximise the long tail."
                         }
@@ -120,19 +120,19 @@ class Feature31 extends BaseFeature {
                         },
                         {
                             type: "string",
-                            key: "subtitle",
+                            key: "card_subtitle",
                             displayer: "Subtitle",
                             value: ""
                         },
                         {
                             type: "string",
-                            key: "title",
+                            key: "card_title",
                             displayer: "Title",
                             value: "High Quality"
                         },
                         {
                             type: "string",
-                            key: "description",
+                            key: "card_description",
                             displayer: "Description",
                             value: "Keeping your eye on the ball while performing a deep dive on the start-up mentality to derive convergence on cross-platform integration."
                         }
@@ -198,9 +198,9 @@ class Feature31 extends BaseFeature {
                                 gridCount={{ pc: this.getPropValue("itemCount"), tablet: 1 }}
                             >
                                 {cards.map((card: Card, index: number) => {
-                                    const subtitleExist = this.castToString(card.subtitle);
-                                    const titleExist = this.castToString(card.title);
-                                    const descExist = this.castToString(card.description);
+                                    const subtitleExist = this.castToString(card.card_subtitle);
+                                    const titleExist = this.castToString(card.card_title);
+                                    const descExist = this.castToString(card.card_description);
                                     const isImage = card.media?.type === "image";
                                     if (!subtitleExist && !titleExist && !descExist && !card.media) return null;
 
@@ -212,9 +212,9 @@ class Feature31 extends BaseFeature {
                                                 </div>
                                             )}
                                             <Base.VerticalContent className={this.decorateCSS("card-content")}>
-                                                {subtitleExist && (<Base.H6 className={this.decorateCSS("card-subtitle")}>{card.subtitle}</Base.H6>)}
-                                                {titleExist && (<Base.H5 className={this.decorateCSS("card-title")}>{card.title}</Base.H5>)}
-                                                {descExist && (<Base.P className={this.decorateCSS("card-description")}>{card.description}</Base.P>)}
+                                                {subtitleExist && (<Base.H6 className={this.decorateCSS("card-subtitle")}>{card.card_subtitle}</Base.H6>)}
+                                                {titleExist && (<Base.H5 className={this.decorateCSS("card-title")}>{card.card_title}</Base.H5>)}
+                                                {descExist && (<Base.P className={this.decorateCSS("card-description")}>{card.card_description}</Base.P>)}
                                             </Base.VerticalContent>
                                         </Base.Card>
                                     );

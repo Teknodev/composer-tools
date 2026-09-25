@@ -6,10 +6,10 @@ import ComposerLink from "../../../composer-base-components/Link/ComposerLinkPro
 import { INPUTS } from "../../../custom-hooks/input-templates";
 
 type Card = {
-    title: string;
+    card_title: string;
     icon: TypeMediaInputValue;
-    subtitle: React.JSX.Element;
-    description: string;
+    card_subtitle: React.JSX.Element;
+    card_description: string;
     button?: ButtonTypeObj
 }
 type ButtonTypeObj = {
@@ -62,19 +62,19 @@ class Feature47 extends BaseFeature {
                     },
                     {
                         type: "string",
-                        key: "subtitle",
+                        key: "card_subtitle",
                         displayer: "Card Subtitle",
                         value: "",
                     },
                     {
                         type: "string",
-                        key: "title",
+                        key: "card_title",
                         displayer: "Title",
                         value: "Web Development",
                     },
                     {
                         type: "string",
-                        key: "description",
+                        key: "card_description",
                         displayer: "Description",
                         value: "Completely iterate covalent strategic theme areas via accurate e-markets.",
                     },
@@ -100,19 +100,19 @@ class Feature47 extends BaseFeature {
                     },
                     {
                         type: "string",
-                        key: "subtitle",
+                        key: "card_subtitle",
                         displayer: "Card Subtitle",
                         value: "",
                     },
                     {
                         type: "string",
-                        key: "title",
+                        key: "card_title",
                         displayer: "Title",
                         value: "Digital Marketing",
                     },
                     {
                         type: "string",
-                        key: "description",
+                        key: "card_description",
                         displayer: "Description",
                         value: "Completely iterate covalent strategic theme areas via accurate e-markets.",
                     },
@@ -138,19 +138,19 @@ class Feature47 extends BaseFeature {
                     },
                     {
                         type: "string",
-                        key: "subtitle",
+                        key: "card_subtitle",
                         displayer: "Card Subtitle",
                         value: "",
                     },
                     {
                         type: "string",
-                        key: "title",
+                        key: "card_title",
                         displayer: "Title",
                         value: "Search Engine Optimization"
                     },
                     {
                         type: "string",
-                        key: "description",
+                        key: "card_description",
                         displayer: "Description",
                         value: "Completely iterate covalent strategic theme areas via accurate e-markets."
                     },
@@ -176,19 +176,19 @@ class Feature47 extends BaseFeature {
                     },
                     {
                         type: "string",
-                        key: "subtitle",
+                        key: "card_subtitle",
                         displayer: "Card Subtitle",
                         value: "",
                     },
                     {
                         type: "string",
-                        key: "title",
+                        key: "card_title",
                         displayer: "Title",
                         value: "Social Media Marketing"
                     },
                     {
                         type: "string",
-                        key: "description",
+                        key: "card_description",
                         displayer: "Description",
                         value: "Completely iterate covalent strategic theme areas via accurate e-markets."
                     },
@@ -262,9 +262,9 @@ class Feature47 extends BaseFeature {
                     {cards?.length > 0 && (
                         <Base.ListGrid className={this.decorateCSS("cards-container")} gridCount={{ pc: itemCount || 4, tablet: 4, phone: 1 }}>
                             {cards.map((card: Card, index: number) => {
-                                const cardSubtitleExist = this.castToString(card.subtitle);
-                                const titleExist = !!this.castToString(card.title);
-                                const descExist = !!this.castToString(card.description);
+                                const cardSubtitleExist = this.castToString(card.card_subtitle);
+                                const titleExist = !!this.castToString(card.card_title);
+                                const descExist = !!this.castToString(card.card_description);
                                 const iconExist = !!card.icon;
                                 const iconBackground = this.getPropValue("iconBackground");
                                 const buttonExist = card.button && this.castToString(card.button.text);
@@ -279,17 +279,17 @@ class Feature47 extends BaseFeature {
                                         )}
                                             {cardSubtitleExist && (
                                                 <Base.H6 className={this.decorateCSS("card-subtitle")}>
-                                                    {card.subtitle}
+                                                    {card.card_subtitle}
                                                 </Base.H6>
                                             )}
                                             {titleExist && (
                                                 <Base.H4 className={this.decorateCSS("card-title")}>
-                                                    {card.title}
+                                                    {card.card_title}
                                                 </Base.H4>
                                             )}
                                             {descExist && (
                                                 <Base.P className={this.decorateCSS("card-description")}>
-                                                    {card.description}
+                                                    {card.card_description}
                                                 </Base.P>
                                             )}
                                         {card.button && this.castToString(card.button.text) && (

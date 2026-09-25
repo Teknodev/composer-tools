@@ -4,7 +4,7 @@ import styles from "./feature33.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 
 type MediaGroup = {
-    media: TypeMediaInputValue;
+    feature_media: TypeMediaInputValue;
     overlay: boolean;
 };
 
@@ -19,7 +19,7 @@ class Feature33 extends BaseFeature {
             value: [
                 {
                     type: "media",
-                    key: "media",
+                    key: "feature_media",
                     displayer: "Media",
                     additionalParams: {
                         availableTypes: ["image", "video"]
@@ -71,13 +71,13 @@ class Feature33 extends BaseFeature {
                     value: [
                         {
                             type: "string",
-                            key: "subtitle",
+                            key: "feature_subtitle",
                             displayer: "Feature Subtitle",
                             value: ""
                         },
                         {
                             type: "string",
-                            key: "title",
+                            key: "feature_title",
                             displayer: "Feature Title",
                             value: "Performance"
                         },
@@ -96,13 +96,13 @@ class Feature33 extends BaseFeature {
                     value: [
                         {
                             type: "string",
-                            key: "subtitle",
+                            key: "feature_subtitle",
                             displayer: "Feature Subtitle",
                             value: ""
                         },
                         {
                             type: "string",
-                            key: "title",
+                            key: "feature_title",
                             displayer: "Feature Title",
                             value: "Interaction"
                         },
@@ -132,7 +132,7 @@ class Feature33 extends BaseFeature {
 
     render() {
         const mediaGroup = this.castToObject<MediaGroup>("media");
-        const media = mediaGroup?.media;
+        const media = mediaGroup?.feature_media;
 
         const rawTitle = this.getPropValue("title");
         const rawSubtitle = this.getPropValue("subtitle");
@@ -144,10 +144,10 @@ class Feature33 extends BaseFeature {
 
         const rawFeatures = (this.castToObject<any[]>("features") || []).filter(Boolean);
         const features = rawFeatures.map((feature) => ({
-            subtitle: feature?.subtitle,
-            title: feature?.title,
+            feature_subtitle: feature?.feature_subtitle,
+            feature_title: feature?.feature_title,
             text: feature?.text,
-        })).filter((item) => this.castToString(item.subtitle) || this.castToString(item.title) || this.castToString(item.text));
+        })).filter((item) => this.castToString(item.feature_subtitle) || this.castToString(item.feature_title) || this.castToString(item.text));
 
         const itemsPerRow = this.getPropValue("itemsPerRow") || 2;
         const hasContent = Boolean(subtitleText || titleText || descriptionText || features.length > 0);
@@ -206,14 +206,14 @@ class Feature33 extends BaseFeature {
                                 >
                                     {features.map((feature, index) => (
                                         <Base.Card key={index} className={this.decorateCSS("feature-item")}>
-                                            {this.castToString(feature.subtitle) && (
+                                            {this.castToString(feature.feature_subtitle) && (
                                                 <Base.H6 className={this.decorateCSS("feature-subtitle")}>
-                                                    {feature.subtitle}
+                                                    {feature.feature_subtitle}
                                                 </Base.H6>
                                             )}
-                                            {this.castToString(feature.title) && (
+                                            {this.castToString(feature.feature_title) && (
                                                 <Base.H5 className={this.decorateCSS("feature-title")}>
-                                                    {feature.title}
+                                                    {feature.feature_title}
                                                 </Base.H5>
                                             )}
                                             {this.castToString(feature.text) && (

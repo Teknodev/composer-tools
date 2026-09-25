@@ -97,9 +97,9 @@ class Stats36 extends BaseStats {
                         { type: "string", key: "prefix", displayer: "Prefix", value: "" },
                         { type: "string", key: "number", displayer: "Value", value: "90" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "%" },
-                        { type: "string", key: "subtitle", displayer: "Subtitle", value: "Work Progress" },
-                        { type: "string", key: "title", displayer: "Title", value: "" },
-                        { type: "string", key: "description", displayer: "Description", value: "" },
+                        { type: "string", key: "stat_subtitle", displayer: "Subtitle", value: "Work Progress" },
+                        { type: "string", key: "stat_title", displayer: "Title", value: "" },
+                        { type: "string", key: "stat_description", displayer: "Description", value: "" },
                     ],
                 },
                 {
@@ -110,9 +110,9 @@ class Stats36 extends BaseStats {
                         { type: "string", key: "prefix", displayer: "Prefix", value: "" },
                         { type: "string", key: "number", displayer: "Value", value: "97" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "%" },
-                        { type: "string", key: "subtitle", displayer: "Subtitle", value: "Projects Done" },
-                        { type: "string", key: "title", displayer: "Title", value: "" },
-                        { type: "string", key: "description", displayer: "Description", value: "" },
+                        { type: "string", key: "stat_subtitle", displayer: "Subtitle", value: "Projects Done" },
+                        { type: "string", key: "stat_title", displayer: "Title", value: "" },
+                        { type: "string", key: "stat_description", displayer: "Description", value: "" },
                     ],
                 },
             ],
@@ -244,7 +244,7 @@ class Stats36 extends BaseStats {
         const mediaGroup = this.castToObject<MediaGroup>("mediaGroup");
         const media = mediaGroup.media;
         const showOverlay = mediaGroup.overlay;
-        const statsRaw = this.castToObject<{ prefix: React.JSX.Element; number: React.JSX.Element; suffix: React.JSX.Element; title: React.JSX.Element; subtitle: React.JSX.Element; description: React.JSX.Element }[]>("stats");
+        const statsRaw = this.castToObject<{ prefix: React.JSX.Element; number: React.JSX.Element; suffix: React.JSX.Element; stat_title: React.JSX.Element; stat_subtitle: React.JSX.Element; stat_description: React.JSX.Element }[]>("stats");
         const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
         const hasValidButtons = buttons.some((btn) => this.castToString(btn.text) || (btn.icon && btn.icon.name));
         const alignment = Base.getContentAlignment();
@@ -253,9 +253,9 @@ class Stats36 extends BaseStats {
             const prefix = this.castToString(item.prefix) || "";
             const number = this.castToString(item.number) || "";
             const suffix = this.castToString(item.suffix) || "";
-            const title = this.castToString(item.title) || "";
-            const subtitle = this.castToString(item.subtitle) || "";
-            const description = this.castToString(item.description) || "";
+            const title = this.castToString(item.stat_title) || "";
+            const subtitle = this.castToString(item.stat_subtitle) || "";
+            const description = this.castToString(item.stat_description) || "";
 
             return {
                 prefix,
@@ -264,11 +264,11 @@ class Stats36 extends BaseStats {
                 suffix,
                 suffixElement: item.suffix,
                 title,
-                titleElement: item.title,
+                titleElement: item.stat_title,
                 subtitle,
-                subtitleElement: item.subtitle,
+                subtitleElement: item.stat_subtitle,
                 description,
-                descriptionElement: item.description,
+                descriptionElement: item.stat_description,
             };
         }).filter(item => this.hasStatContent(item));
 

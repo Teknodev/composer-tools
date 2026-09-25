@@ -59,25 +59,25 @@ class Feature5 extends BaseFeature {
         },
         {
           type: "string",
-          key: "subtitle",
+          key: "image_subtitle",
           displayer: "Subtitle",
           value: "",
         },
         {
           type: "string",
-          key: "title",
+          key: "row1_title",
           displayer: "Title",
           value: "The 10 Best Apps for Planning Your Next Trip",
         },
         {
           type: "string",
-          key: "description",
+          key: "image_description",
           displayer: "Description",
           value: "",
         },
         {
           type: "array",
-          key: "buttons",
+          key: "image_buttons",
           displayer: "Buttons",
           value: [
             INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
@@ -104,20 +104,20 @@ class Feature5 extends BaseFeature {
           value: [
             {
               type: "string",
-              key: "subtitle",
+              key: "image_subtitle",
               displayer: "Subtitle",
               value: "",
             },
             {
               type: "string",
-              key: "description",
+              key: "image_description",
               displayer: "Description",
               value:
                 "Newspaper is not only convenient to use, but it also uses very low resources and loads extremely fast. Welcome to the future!",
             },
             {
               type: "array",
-              key: "buttons",
+              key: "image_buttons",
               displayer: "Buttons",
               value: [
                 INPUTS.BUTTON("button", "Button", "EXPLORE", "", null, null, "Link"),
@@ -132,7 +132,7 @@ class Feature5 extends BaseFeature {
           value: [
             {
               type: "string",
-              key: "subtitle",
+              key: "image_subtitle",
               displayer: "Subtitle",
               value: "",
             },
@@ -144,13 +144,13 @@ class Feature5 extends BaseFeature {
             },
             {
               type: "string",
-              key: "description",
+              key: "image_description",
               displayer: "Description",
               value: "",
             },
             {
               type: "array",
-              key: "buttons",
+              key: "image_buttons",
               displayer: "Buttons",
               value: [
                 INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
@@ -183,19 +183,19 @@ class Feature5 extends BaseFeature {
             },
             {
               type: "string",
-              key: "subtitle",
+              key: "image_subtitle",
               displayer: "Subtitle",
               value: "",
             },
             {
               type: "string",
-              key: "description",
+              key: "image_description",
               displayer: "Description",
               value: "",
             },
             {
               type: "array",
-              key: "buttons",
+              key: "image_buttons",
               displayer: "Buttons",
               value: [
                 INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
@@ -236,19 +236,19 @@ class Feature5 extends BaseFeature {
             },
             {
               type: "string",
-              key: "subtitle",
+              key: "image_subtitle",
               displayer: "Subtitle",
               value: "Girl's Guide: Tricks to Save Time in the Morning",
             },
             {
               type: "string",
-              key: "description",
+              key: "image_description",
               displayer: "Description",
               value: "",
             },
             {
               type: "array",
-              key: "buttons",
+              key: "image_buttons",
               displayer: "Buttons",
               value: [
                 INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
@@ -281,19 +281,19 @@ class Feature5 extends BaseFeature {
             },
             {
               type: "string",
-              key: "subtitle",
+              key: "image_subtitle",
               displayer: "Subtitle",
               value: "Motivation Monday: Only 3 Days Left of Summer",
             },
             {
               type: "string",
-              key: "description",
+              key: "image_description",
               displayer: "Description",
               value: "",
             },
             {
               type: "array",
-              key: "buttons",
+              key: "image_buttons",
               displayer: "Buttons",
               value: [
                 INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
@@ -326,19 +326,19 @@ class Feature5 extends BaseFeature {
             },
             {
               type: "string",
-              key: "subtitle",
+              key: "image_subtitle",
               displayer: "Subtitle",
               value: "Five Rules For a Long, Healthy and Happy Life",
             },
             {
               type: "string",
-              key: "description",
+              key: "image_description",
               displayer: "Description",
               value: "",
             },
             {
               type: "array",
-              key: "buttons",
+              key: "image_buttons",
               displayer: "Buttons",
               value: [
                 INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
@@ -363,10 +363,10 @@ class Feature5 extends BaseFeature {
   render() {
     const row1 = this.castToObject<{
       left_image: { type: "image"; url: string };
-      subtitle: React.JSX.Element;
-      title: React.JSX.Element;
-      description: React.JSX.Element;
-      buttons: TypeUsableComponentProps[];
+      image_subtitle: React.JSX.Element;
+      row1_title: React.JSX.Element;
+      image_description: React.JSX.Element;
+      image_buttons: TypeUsableComponentProps[];
       link: string;
     }>("row1");
     const subtitle = this.getPropValue("subtitle");
@@ -376,22 +376,22 @@ class Feature5 extends BaseFeature {
     const hasValidButtons = buttons.some((btn) => this.castToString(btn.text));
     const row2 = this.castToObject<{
       first_item: {
-        subtitle: React.JSX.Element;
-        description: React.JSX.Element;
-        buttons: INPUTS.CastedButton[];
+        image_subtitle: React.JSX.Element;
+        image_description: React.JSX.Element;
+        image_buttons: INPUTS.CastedButton[];
       };
       second_item: {
-        subtitle: React.JSX.Element;
+        image_subtitle: React.JSX.Element;
         text: React.JSX.Element;
-        description: React.JSX.Element;
-        buttons: INPUTS.CastedButton[];
+        image_description: React.JSX.Element;
+        image_buttons: INPUTS.CastedButton[];
         link: string;
       };
       third_item: {
         media: { type: "image"; url: string };
-        subtitle: React.JSX.Element;
-        description: React.JSX.Element;
-        buttons: INPUTS.CastedButton[];
+        image_subtitle: React.JSX.Element;
+        image_description: React.JSX.Element;
+        image_buttons: INPUTS.CastedButton[];
         link: string;
       };
     }>("row2");
@@ -399,31 +399,31 @@ class Feature5 extends BaseFeature {
     const row3 = this.castToObject<{
       image_and_subtitle_1: {
         media: { type: "image"; url: string };
-        subtitle: React.JSX.Element;
-        description: React.JSX.Element;
-        buttons: INPUTS.CastedButton[];
+        image_subtitle: React.JSX.Element;
+        image_description: React.JSX.Element;
+        image_buttons: INPUTS.CastedButton[];
         link: string;
       };
       image_and_subtitle_2: {
         media: { type: "image"; url: string };
-        subtitle: React.JSX.Element;
-        description: React.JSX.Element;
-        buttons: INPUTS.CastedButton[];
+        image_subtitle: React.JSX.Element;
+        image_description: React.JSX.Element;
+        image_buttons: INPUTS.CastedButton[];
         link: string;
       };
       image_and_subtitle_3: {
         media: { type: "image"; url: string };
-        subtitle: React.JSX.Element;
-        description: React.JSX.Element;
-        buttons: INPUTS.CastedButton[];
+        image_subtitle: React.JSX.Element;
+        image_description: React.JSX.Element;
+        image_buttons: INPUTS.CastedButton[];
         link: string;
       };
     }>("row3");
 
-    const row1SubtitleExist = this.castToString(row1.subtitle);
-    const row1TitleExist = this.castToString(row1.title);
-    const row1DescriptionExist = this.castToString(row1.description);
-    const row1Buttons: INPUTS.CastedButton[] = (row1.buttons || []).map((btn) => {
+    const row1SubtitleExist = this.castToString(row1.image_subtitle);
+    const row1TitleExist = this.castToString(row1.row1_title);
+    const row1DescriptionExist = this.castToString(row1.image_description);
+    const row1Buttons: INPUTS.CastedButton[] = (row1.image_buttons || []).map((btn) => {
       const buttonProps = btn.value as TypeUsableComponentProps[];
       return {
         text: this.getPropValue("text", { parent_object: buttonProps }),
@@ -438,25 +438,25 @@ class Feature5 extends BaseFeature {
       row1SubtitleExist || row1TitleExist || row1DescriptionExist || row1HasValidButtons;
     const isRow1Visible = row1.left_image?.url || row1ContentExist;
 
-    const firstSubtitleExist = this.castToString(row2.first_item.subtitle);
-    const firstDescriptionExist = this.castToString(row2.first_item.description);
-    const firstButtons = row2.first_item.buttons || [];
+    const firstSubtitleExist = this.castToString(row2.first_item.image_subtitle);
+    const firstDescriptionExist = this.castToString(row2.first_item.image_description);
+    const firstButtons = row2.first_item.image_buttons || [];
     const firstHasValidButtons = firstButtons.some((btn) => this.castToString(btn.text));
     const firstContentExist = firstSubtitleExist || firstDescriptionExist || firstHasValidButtons;
     const isFirstColumnVisible = firstContentExist || firstButtons.some((btn) => btn.url);
 
-    const secondSubtitleExist = this.castToString(row2.second_item.subtitle);
+    const secondSubtitleExist = this.castToString(row2.second_item.image_subtitle);
     const secondTextExist = this.castToString(row2.second_item.text);
-    const secondDescriptionExist = this.castToString(row2.second_item.description);
-    const secondButtons = row2.second_item.buttons || [];
+    const secondDescriptionExist = this.castToString(row2.second_item.image_description);
+    const secondButtons = row2.second_item.image_buttons || [];
     const secondHasValidButtons = secondButtons.some((btn) => this.castToString(btn.text));
     const secondContentExist =
       secondSubtitleExist || secondTextExist || secondDescriptionExist || secondHasValidButtons;
     const isSecondColumnVisible = secondContentExist;
 
-    const thirdSubtitleExist = this.castToString(row2.third_item.subtitle);
-    const thirdDescriptionExist = this.castToString(row2.third_item.description);
-    const thirdButtons = row2.third_item.buttons || [];
+    const thirdSubtitleExist = this.castToString(row2.third_item.image_subtitle);
+    const thirdDescriptionExist = this.castToString(row2.third_item.image_description);
+    const thirdButtons = row2.third_item.image_buttons || [];
     const thirdHasValidButtons = thirdButtons.some((btn) => this.castToString(btn.text));
     const thirdContentExist = thirdSubtitleExist || thirdDescriptionExist || thirdHasValidButtons;
     const isThirdColumnVisible = row2.third_item.media?.url || thirdContentExist;
@@ -464,23 +464,23 @@ class Feature5 extends BaseFeature {
     const isRow2Visible =
       isFirstColumnVisible || isSecondColumnVisible || isThirdColumnVisible;
 
-    const subtitle1 = this.castToString(row3.image_and_subtitle_1.subtitle);
-    const description1 = this.castToString(row3.image_and_subtitle_1.description);
-    const buttons1 = row3.image_and_subtitle_1.buttons || [];
+    const subtitle1 = this.castToString(row3.image_and_subtitle_1.image_subtitle);
+    const description1 = this.castToString(row3.image_and_subtitle_1.image_description);
+    const buttons1 = row3.image_and_subtitle_1.image_buttons || [];
     const hasValidButtons1 = buttons1.some((btn) => this.castToString(btn.text));
     const content1Exist = subtitle1 || description1 || hasValidButtons1;
     const imageOrContentExist1 = row3.image_and_subtitle_1.media?.url || content1Exist;
 
-    const subtitle2 = this.castToString(row3.image_and_subtitle_2.subtitle);
-    const description2 = this.castToString(row3.image_and_subtitle_2.description);
-    const buttons2 = row3.image_and_subtitle_2.buttons || [];
+    const subtitle2 = this.castToString(row3.image_and_subtitle_2.image_subtitle);
+    const description2 = this.castToString(row3.image_and_subtitle_2.image_description);
+    const buttons2 = row3.image_and_subtitle_2.image_buttons || [];
     const hasValidButtons2 = buttons2.some((btn) => this.castToString(btn.text));
     const content2Exist = subtitle2 || description2 || hasValidButtons2;
     const imageOrContentExist2 = row3.image_and_subtitle_2.media?.url || content2Exist;
 
-    const subtitle3 = this.castToString(row3.image_and_subtitle_3.subtitle);
-    const description3 = this.castToString(row3.image_and_subtitle_3.description);
-    const buttons3 = row3.image_and_subtitle_3.buttons || [];
+    const subtitle3 = this.castToString(row3.image_and_subtitle_3.image_subtitle);
+    const description3 = this.castToString(row3.image_and_subtitle_3.image_description);
+    const buttons3 = row3.image_and_subtitle_3.image_buttons || [];
     const hasValidButtons3 = buttons3.some((btn) => this.castToString(btn.text));
     const content3Exist = subtitle3 || description3 || hasValidButtons3;
     const imageOrContentExist3 = row3.image_and_subtitle_3.media?.url || content3Exist;
@@ -557,17 +557,17 @@ class Feature5 extends BaseFeature {
                     >
                       {row1SubtitleExist && (
                         <Base.H5 className={this.decorateCSS("card-subtitle")}>
-                          {row1.subtitle}
+                          {row1.image_subtitle}
                         </Base.H5>
                       )}
                       {row1TitleExist && (
                         <Base.H3 className={this.decorateCSS("title")}>
-                          {row1.title}
+                          {row1.row1_title}
                         </Base.H3>
                       )}
                       {row1DescriptionExist && (
                         <Base.P className={this.decorateCSS("card-description")}>
-                          {row1.description}
+                          {row1.image_description}
                         </Base.P>
                       )}
                       {row1HasValidButtons && (
@@ -604,12 +604,12 @@ class Feature5 extends BaseFeature {
                       <Base.VerticalContent className={this.decorateCSS("card-content")}>
                         {firstSubtitleExist && (
                           <Base.H5 className={this.decorateCSS("card-subtitle")}>
-                            {row2.first_item.subtitle}
+                            {row2.first_item.image_subtitle}
                           </Base.H5>
                         )}
                         {firstDescriptionExist && (
                           <Base.P className={this.decorateCSS("card-description")}>
-                            {row2.first_item.description}
+                            {row2.first_item.image_description}
                           </Base.P>
                         )}
                         {firstHasValidButtons && (
@@ -641,7 +641,7 @@ class Feature5 extends BaseFeature {
                     <Base.VerticalContent className={this.decorateCSS("card-content")}>
                       {secondSubtitleExist && (
                         <Base.H5 className={this.decorateCSS("card-subtitle")}>
-                          {row2.second_item.subtitle}
+                          {row2.second_item.image_subtitle}
                         </Base.H5>
                       )}
                       {secondTextExist && (
@@ -653,7 +653,7 @@ class Feature5 extends BaseFeature {
                       )}
                       {secondDescriptionExist && (
                         <Base.P className={this.decorateCSS("card-description")}>
-                          {row2.second_item.description}
+                          {row2.second_item.image_description}
                         </Base.P>
                       )}
                       {secondHasValidButtons && (
@@ -699,12 +699,12 @@ class Feature5 extends BaseFeature {
                       <Base.VerticalContent className={this.decorateCSS("card-content")}>
                         {thirdSubtitleExist && (
                           <Base.H5 className={this.decorateCSS("card-subtitle")}>
-                            {row2.third_item.subtitle}
+                            {row2.third_item.image_subtitle}
                           </Base.H5>
                         )}
                         {thirdDescriptionExist && (
                           <Base.P className={this.decorateCSS("card-description")}>
-                            {row2.third_item.description}
+                            {row2.third_item.image_description}
                           </Base.P>
                         )}
                         {thirdHasValidButtons && (
@@ -764,12 +764,12 @@ class Feature5 extends BaseFeature {
                         <Base.VerticalContent className={this.decorateCSS("card-content")}>
                           {subtitle1 && (
                             <Base.H5 className={this.decorateCSS("card-subtitle")}>
-                              {row3.image_and_subtitle_1.subtitle}
+                              {row3.image_and_subtitle_1.image_subtitle}
                             </Base.H5>
                           )}
                           {description1 && (
                             <Base.P className={this.decorateCSS("card-description")}>
-                              {row3.image_and_subtitle_1.description}
+                              {row3.image_and_subtitle_1.image_description}
                             </Base.P>
                           )}
                           {hasValidButtons1 && (
@@ -817,12 +817,12 @@ class Feature5 extends BaseFeature {
                         <Base.VerticalContent className={this.decorateCSS("card-content")}>
                           {subtitle2 && (
                             <Base.H5 className={this.decorateCSS("card-subtitle")}>
-                              {row3.image_and_subtitle_2.subtitle}
+                              {row3.image_and_subtitle_2.image_subtitle}
                             </Base.H5>
                           )}
                           {description2 && (
                             <Base.P className={this.decorateCSS("card-description")}>
-                              {row3.image_and_subtitle_2.description}
+                              {row3.image_and_subtitle_2.image_description}
                             </Base.P>
                           )}
                           {hasValidButtons2 && (
@@ -870,12 +870,12 @@ class Feature5 extends BaseFeature {
                         <Base.VerticalContent className={this.decorateCSS("card-content")}>
                           {subtitle3 && (
                             <Base.H5 className={this.decorateCSS("card-subtitle")}>
-                              {row3.image_and_subtitle_3.subtitle}
+                              {row3.image_and_subtitle_3.image_subtitle}
                             </Base.H5>
                           )}
                           {description3 && (
                             <Base.P className={this.decorateCSS("card-description")}>
-                              {row3.image_and_subtitle_3.description}
+                              {row3.image_and_subtitle_3.image_description}
                             </Base.P>
                           )}
                           {hasValidButtons3 && (

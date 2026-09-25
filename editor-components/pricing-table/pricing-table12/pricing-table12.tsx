@@ -13,7 +13,7 @@ type CardItem = {
   cardDescription: React.JSX.Element;
   cardPrice: React.JSX.Element;
   cardDuration: React.JSX.Element;
-  buttons: INPUTS.CastedButton[];
+  item_buttons: INPUTS.CastedButton[];
 };
 
 class PricingTable12 extends BasePricingTable {
@@ -67,7 +67,7 @@ class PricingTable12 extends BasePricingTable {
             { type: "string", key: "cardDuration", displayer: "Duration", value: "/month" },
             {
               type: "array",
-              key: "buttons",
+              key: "item_buttons",
               displayer: "Buttons",
               value: [INPUTS.BUTTON("button", "Button", "GET STARTED", "", null, null, "White")],
             },
@@ -85,7 +85,7 @@ class PricingTable12 extends BasePricingTable {
             { type: "string", key: "cardDuration", displayer: "Duration", value: "/month" },
             {
               type: "array",
-              key: "buttons",
+              key: "item_buttons",
               displayer: "Buttons",
               value: [INPUTS.BUTTON("button", "Button", "GET STARTED", "", null, null, "White")],
             },
@@ -128,7 +128,7 @@ class PricingTable12 extends BasePricingTable {
         const cardPriceExist = this.castToString(item.cardPrice);
         const cardDurationExist = this.castToString(item.cardDuration);
 
-        const rawButtons = item.buttons || ((item as any).button ? [(item as any).button] : []);
+        const rawButtons = item.item_buttons || ((item as any).button ? [(item as any).button] : []);
         const buttons = Array.isArray(rawButtons) ? rawButtons : [];
         const buttonExist = buttons.map((btn: any) => {
           if (btn && btn.value && Array.isArray(btn.value)) {
@@ -202,7 +202,7 @@ class PricingTable12 extends BasePricingTable {
               const cardPriceExist = this.castToString(item.cardPrice);
               const cardDurationExist = this.castToString(item.cardDuration);
 
-              const rawButtons = item.buttons || ((item as any).button ? [(item as any).button] : []);
+              const rawButtons = item.item_buttons || ((item as any).button ? [(item as any).button] : []);
               const buttons = Array.isArray(rawButtons) ? rawButtons : [];
               const visibleCardButtons = buttons.map((btn: any) => {
                 if (btn && btn.value && Array.isArray(btn.value)) {

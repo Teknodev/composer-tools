@@ -11,7 +11,7 @@ type Card = {
   items: Item[];
 };
 type Item = {
-  title: React.JSX.Element;
+  item_title: React.JSX.Element;
   description: React.JSX.Element;
 };
 
@@ -92,7 +92,7 @@ class Faq4 extends BaseFAQ {
                   value: [
                     {
                       type: "string",
-                      key: "title",
+                      key: "item_title",
                       displayer: "Question",
                       value: "What are the shipping options available?",
                     },
@@ -112,7 +112,7 @@ class Faq4 extends BaseFAQ {
                   value: [
                     {
                       type: "string",
-                      key: "title",
+                      key: "item_title",
                       displayer: "Question",
                       value: "How can I contact customer support?",
                     },
@@ -153,7 +153,7 @@ class Faq4 extends BaseFAQ {
                   value: [
                     {
                       type: "string",
-                      key: "title",
+                      key: "item_title",
                       displayer: "Question",
                       value: "How can I track my order?",
                     },
@@ -193,7 +193,7 @@ class Faq4 extends BaseFAQ {
                   value: [
                     {
                       type: "string",
-                      key: "title",
+                      key: "item_title",
                       displayer: "Question",
                       value: "What is your return policy?",
                     },
@@ -297,12 +297,12 @@ class Faq4 extends BaseFAQ {
 
                       return (
                         <div key={index} className={`${this.decorateCSS("card")} ${this.getComponentState("cardIndex") === index ? (this.getComponentState("onclick") ? this.decorateCSS("active") : "") : ""}${!lineEnabled ? ` ${this.decorateCSS("no-line")}` : ""}`} onClick={() => this.cardButton(index)}>
-                          {(this.castToString(item.title) || activeIconExist || inactiveIconExist) && (
+                          {(this.castToString(item.item_title) || activeIconExist || inactiveIconExist) && (
                             <div className={this.decorateCSS("child-container")}>
-                              {this.castToString(item.title) && (
+                              {this.castToString(item.item_title) && (
                                 <div className={this.decorateCSS("card-left")}>
                                   <Base.H5 className={this.decorateCSS("card-title")}>
-                                    {item.title}
+                                    {item.item_title}
                                   </Base.H5>
                                 </div>
                               )}

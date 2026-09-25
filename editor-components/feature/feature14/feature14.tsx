@@ -8,11 +8,11 @@ import { INPUTS } from "../../../custom-hooks/input-templates";
 
 type CardItem = {
   icon: TypeMediaInputValue;
-  subtitle: React.JSX.Element;
-  title: React.JSX.Element;
+  cardItem_subtitle: React.JSX.Element;
+  cardItem_title: React.JSX.Element;
   description: React.JSX.Element;
   iconBackground: boolean;
-  buttons: Button[];
+  cardItem_buttons: Button[];
 };
 
 type Button = {
@@ -83,13 +83,13 @@ class Feature14 extends BaseFeature {
             },
             {
               type: "string",
-              key: "subtitle",
+              key: "cardItem_subtitle",
               displayer: "Card Subtitle",
               value: "",
             },
             {
               type: "string",
-              key: "title",
+              key: "cardItem_title",
               displayer: "Card Title",
               value: "Best price guaranteed",
             },
@@ -101,7 +101,7 @@ class Feature14 extends BaseFeature {
             },
             {
               type: "array",
-              key: "buttons",
+              key: "cardItem_buttons",
               displayer: "Buttons",
               value: [
                 INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
@@ -134,13 +134,13 @@ class Feature14 extends BaseFeature {
             },
             {
               type: "string",
-              key: "subtitle",
+              key: "cardItem_subtitle",
               displayer: "Card Subtitle",
               value: "",
             },
             {
               type: "string",
-              key: "title",
+              key: "cardItem_title",
               displayer: "Card Title",
               value: "Great communication",
             },
@@ -152,7 +152,7 @@ class Feature14 extends BaseFeature {
             },
             {
               type: "array",
-              key: "buttons",
+              key: "cardItem_buttons",
               displayer: "Buttons",
               value: [
                 INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
@@ -185,13 +185,13 @@ class Feature14 extends BaseFeature {
             },
             {
               type: "string",
-              key: "subtitle",
+              key: "cardItem_subtitle",
               displayer: "Card Subtitle",
               value: "",
             },
             {
               type: "string",
-              key: "title",
+              key: "cardItem_title",
               displayer: "Card Title",
               value: "We provide high standards",
             },
@@ -203,7 +203,7 @@ class Feature14 extends BaseFeature {
             },
             {
               type: "array",
-              key: "buttons",
+              key: "cardItem_buttons",
               displayer: "Buttons",
               value: [
                 INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
@@ -236,13 +236,13 @@ class Feature14 extends BaseFeature {
             },
             {
               type: "string",
-              key: "subtitle",
+              key: "cardItem_subtitle",
               displayer: "Card Subtitle",
               value: "",
             },
             {
               type: "string",
-              key: "title",
+              key: "cardItem_title",
               displayer: "Card Title",
               value: "We worked with many big companies",
             },
@@ -254,7 +254,7 @@ class Feature14 extends BaseFeature {
             },
             {
               type: "array",
-              key: "buttons",
+              key: "cardItem_buttons",
               displayer: "Buttons",
               value: [
                 INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
@@ -351,8 +351,8 @@ class Feature14 extends BaseFeature {
           <div className={this.decorateCSS("section")}>
             <Base.ListGrid className={this.decorateCSS("cards")} gridCount={{ pc: this.getPropValue("itemCount"), tablet: 4 }}>
               {cardItems.map((item: CardItem, index: number) => {
-                const subtitleExist = !!this.castToString(item.subtitle);
-                const cardButtons = item.buttons || [];
+                const subtitleExist = !!this.castToString(item.cardItem_subtitle);
+                const cardButtons = item.cardItem_buttons || [];
                 const hasValidCardButtons = cardButtons.some((btn: Button) => {
                   const btnText = this.castToString(btn.text);
                   const btnIconExist = btn.icon && (btn.icon.type === "icon" ? btn.icon.name : btn.icon.url);
@@ -370,10 +370,10 @@ class Feature14 extends BaseFeature {
                     )}
 
                     {subtitleExist && (
-                      <Base.H6 className={this.decorateCSS("card-subtitle")}>{item.subtitle}</Base.H6>
+                      <Base.H6 className={this.decorateCSS("card-subtitle")}>{item.cardItem_subtitle}</Base.H6>
                     )}
-                    {this.castToString(item.title) && (
-                      <Base.H5 className={this.decorateCSS("card-title")}>{item.title}</Base.H5>
+                    {this.castToString(item.cardItem_title) && (
+                      <Base.H5 className={this.decorateCSS("card-title")}>{item.cardItem_title}</Base.H5>
                     )}
                     {this.castToString(item.description) && (
                       <Base.P className={this.decorateCSS("card-description")}>{item.description}</Base.P>

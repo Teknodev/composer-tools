@@ -7,9 +7,9 @@ import { INPUTS } from "../../../custom-hooks/input-templates";
 
 type Card = {
   icon: TypeMediaInputValue;
-  subtitle: React.JSX.Element;
-  title: React.JSX.Element;
-  description: React.JSX.Element;
+  card_subtitle: React.JSX.Element;
+  card_title: React.JSX.Element;
+  card_description: React.JSX.Element;
   button: Button;
 };
 
@@ -89,19 +89,19 @@ class Feature8 extends BaseFeature {
             },
             {
               type: "string",
-              key: "subtitle",
+              key: "card_subtitle",
               displayer: "Subtitle",
               value: "",
             },
             {
               type: "string",
-              key: "title",
+              key: "card_title",
               displayer: "Title",
               value: "Non-visual\nCuration",
             },
             {
               type: "string",
-              key: "description",
+              key: "card_description",
               displayer: "Description",
               value: "Manually curating your collections feels like doing your taxes.",
             },
@@ -127,19 +127,19 @@ class Feature8 extends BaseFeature {
             },
             {
               type: "string",
-              key: "subtitle",
+              key: "card_subtitle",
               displayer: "Subtitle",
               value: "",
             },
             {
               type: "string",
-              key: "title",
+              key: "card_title",
               displayer: "Title",
               value: "Limited\nSorting",
             },
             {
               type: "string",
-              key: "description",
+              key: "card_description",
               displayer: "Description",
               value: "It's too basic to sort your collections by 'New In' or 'Best Sellers'.",
             },
@@ -165,19 +165,19 @@ class Feature8 extends BaseFeature {
             },
             {
               type: "string",
-              key: "subtitle",
+              key: "card_subtitle",
               displayer: "Subtitle",
               value: "",
             },
             {
               type: "string",
-              key: "title",
+              key: "card_title",
               displayer: "Title",
               value: "Messy\nData",
             },
             {
               type: "string",
-              key: "description",
+              key: "card_description",
               displayer: "Description",
               value: "You need 5 tabs open to take data-driven decisions from excel sheets.",
             },
@@ -442,9 +442,9 @@ class Feature8 extends BaseFeature {
           {cards?.length > 0 && (
             <Base.ListGrid ref={this.cardsRootRef} gridCount={{ pc: this.getPropValue("itemCount") || 3, tablet: 3 }} className={this.decorateCSS("cards-container")}>
               {cards.map((card: Card, index: number) => {
-                const subtitleExist = this.castToString(card.subtitle);
-                const titleExist = this.castToString(card.title);
-                const descExist = this.castToString(card.description);
+                const subtitleExist = this.castToString(card.card_subtitle);
+                const titleExist = this.castToString(card.card_title);
+                const descExist = this.castToString(card.card_description);
                 const btnText = card.button ? this.castToString(card.button.text) : "";
                 const btnIconExist = card.button?.icon && (card.button.icon.type === "icon" ? card.button.icon.name : card.button.icon.url);
                 const hasCardButton = !!(btnText || btnIconExist);
@@ -462,17 +462,17 @@ class Feature8 extends BaseFeature {
                       )}
                       {subtitleExist && (
                         <Base.H5 className={this.decorateCSS("card-subtitle")}>
-                          {card.subtitle}
+                          {card.card_subtitle}
                         </Base.H5>
                       )}
                       {titleExist && (
                         <Base.H4 className={this.decorateCSS("title")}>
-                          {card.title}
+                          {card.card_title}
                         </Base.H4>
                       )}
                       {descExist && (
                         <Base.P className={this.decorateCSS("description")}>
-                          {card.description}
+                          {card.card_description}
                         </Base.P>
                       )}
                       {hasCardButton && (

@@ -13,14 +13,14 @@ type link = {
 };
 
 type icon = {
-  title: string;
+  socials_item_title: string;
   page: string;
   icon: TypeMediaInputValue;
 };
 
 type page = {
-  title: string;
-  page: string;
+  links_item_title: string;
+  item_page: string;
 };
 
 const hasMedia = (media?: TypeMediaInputValue | null): boolean => {
@@ -50,7 +50,7 @@ class Footer9Page extends BaseFooter {
       value: [
         {
           type: "media",
-          key: "logo",
+          key: "logo_logo",
           displayer: "Logo",
           additionalParams: {
             availableTypes: ["image", "icon"],
@@ -134,7 +134,7 @@ class Footer9Page extends BaseFooter {
             },
             {
               type: "array",
-              key: "footerText",
+              key: "footer_title_footerText",
               displayer: "Menu Subitem",
               value: [
                 {
@@ -404,7 +404,7 @@ class Footer9Page extends BaseFooter {
           value: [
             {
               type: "string",
-              key: "title",
+              key: "socials_item_title",
               displayer: "Title",
               value: "Twitter",
             },
@@ -435,7 +435,7 @@ class Footer9Page extends BaseFooter {
           value: [
             {
               type: "string",
-              key: "title",
+              key: "socials_item_title",
               displayer: "Title",
               value: "Instagram",
             },
@@ -466,7 +466,7 @@ class Footer9Page extends BaseFooter {
           value: [
             {
               type: "string",
-              key: "title",
+              key: "socials_item_title",
               displayer: "Title",
               value: "Linkedin",
             },
@@ -507,18 +507,18 @@ class Footer9Page extends BaseFooter {
       value: [
         {
           type: "object",
-          key: "item",
+          key: "links_item",
           displayer: "Item",
           value: [
             {
               type: "string",
-              key: "title",
+              key: "links_item_title",
               displayer: "Title",
               value: "Terms of Use",
             },
             {
               type: "page",
-              key: "page",
+              key: "item_page",
               displayer: "Navigate To",
               value: "",
             },
@@ -526,18 +526,18 @@ class Footer9Page extends BaseFooter {
         },
         {
           type: "object",
-          key: "item",
+          key: "links_item",
           displayer: "Item",
           value: [
             {
               type: "string",
-              key: "title",
+              key: "links_item_title",
               displayer: "Title",
               value: "Privacy Policy",
             },
             {
               type: "page",
-              key: "page",
+              key: "item_page",
               displayer: "Navigate To",
               value: "",
             },
@@ -564,7 +564,7 @@ class Footer9Page extends BaseFooter {
     const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
 
     const logoObject = this.castToObject<any>("logo");
-    const logo = logoObject?.logo;
+    const logo = logoObject.logo_logo;
     const logoUrl = logoObject?.logoUrl;
     const subtitleExist = this.castToString(this.getPropValue("subtitle"));
     const titleExist = this.castToString(this.getPropValue("title"));
@@ -612,7 +612,7 @@ class Footer9Page extends BaseFooter {
               {footer.map((item: any, indexFooter: number) => {
                 const footerTitleExist = this.castToString(item.footerTitle);
                 const footerTitleMediaExist = hasMedia(item.footerTitleMedia);
-                const footerTextExist = item.footerText?.length > 0;
+                const footerTextExist = item.footer_title_footerText?.length > 0;
                 const listExist = footerTitleExist || footerTitleMediaExist || footerTextExist;
                 return (
                   listExist && (
@@ -629,7 +629,7 @@ class Footer9Page extends BaseFooter {
                       )}
                       {footerTextExist && (
                         <div className={this.decorateCSS("text-container")}>
-                          {item.footerText.map((v: any, indexFooterText: number) => {
+                          {item.footer_title_footerText.map((v: any, indexFooterText: number) => {
                             const textExist = this.castToString(v.navTitle);
                             const navMediaExist = hasMedia(v.navMedia);
                             return (
@@ -674,7 +674,7 @@ class Footer9Page extends BaseFooter {
                         value={item.icon}
                         className={`${this.decorateCSS("icon")} ${item.icon?.type === "icon" ? this.decorateCSS("is-icon") : ""}`}
                       />
-                      <Base.P className={this.decorateCSS("icon-text")}>{item.title}</Base.P>
+                      <Base.P className={this.decorateCSS("icon-text")}>{item.socials_item_title}</Base.P>
                     </div>
                   </ComposerLink>
                 );
@@ -687,12 +687,12 @@ class Footer9Page extends BaseFooter {
               <Base.Row className={this.decorateCSS("list")}>
                 {links.map((item: page,) => {
                   return (
-                    <ComposerLink path={item.page}>
+                    <ComposerLink path={item.item_page}>
                       <Base.P 
                         className={this.decorateCSS("item")}
-                        data-animation={item.page ? this.getPropValue("hoverAnimation").join(" ") : ""}
+                        data-animation={item.item_page ? this.getPropValue("hoverAnimation").join(" ") : ""}
                       >
-                        {item.title}
+                        {item.links_item_title}
                       </Base.P>
                     </ComposerLink>
                   );

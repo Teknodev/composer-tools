@@ -5,7 +5,7 @@ import { Base } from "../../../composer-base-components/base/base";
 
 interface CardItem {
   profileImage: TypeMediaInputValue;
-  title: React.JSX.Element;
+  item_title: React.JSX.Element;
   subtitle: React.JSX.Element;
   description: React.JSX.Element;
 }
@@ -49,7 +49,7 @@ class Testimonials11Page extends Testimonials {
             },
             {
               type: "string",
-              key: "title",
+              key: "item_title",
               displayer: "Author Name",
               value: "Sarah Lewin",
             },
@@ -86,7 +86,7 @@ class Testimonials11Page extends Testimonials {
             },
             {
               type: "string",
-              key: "title",
+              key: "item_title",
               displayer: "Author Name",
               value: "Gregory Tabot",
             },
@@ -123,7 +123,7 @@ class Testimonials11Page extends Testimonials {
             },
             {
               type: "string",
-              key: "title",
+              key: "item_title",
               displayer: "Author Name",
               value: "Jess Simpson",
             },
@@ -160,7 +160,7 @@ class Testimonials11Page extends Testimonials {
             },
             {
               type: "string",
-              key: "title",
+              key: "item_title",
               displayer: "Author Name",
               value: "Jess Simpson",
             },
@@ -197,7 +197,7 @@ class Testimonials11Page extends Testimonials {
             },
             {
               type: "string",
-              key: "title",
+              key: "item_title",
               displayer: "Author Name",
               value: "Jess Simpson",
             },
@@ -234,7 +234,7 @@ class Testimonials11Page extends Testimonials {
             },
             {
               type: "string",
-              key: "title",
+              key: "item_title",
               displayer: "Author Name",
               value: "Jess Simpson",
             },

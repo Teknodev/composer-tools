@@ -8,7 +8,7 @@ import ComposerLink from "../../../composer-base-components/Link/ComposerLinkPro
 interface Card {
   icon: TypeMediaInputValue;
   content: string;
-  description: string;
+  card_description: string;
   button?: {
     text: string;
     url: string;
@@ -72,7 +72,7 @@ class Feature46 extends BaseFeature {
             },
             {
               type: "string",
-              key: "description",
+              key: "card_description",
               displayer: "Description",
               value:
                 "Quickly cultivate optimal processes and tactical architectures. Completely iterate covalent strategic theme areas via accurate e-markets.",
@@ -106,7 +106,7 @@ class Feature46 extends BaseFeature {
             },
             {
               type: "string",
-              key: "description",
+              key: "card_description",
               displayer: "Description",
               value:
                 "Quickly cultivate optimal processes and tactical architectures. Completely iterate covalent strategic theme areas via accurate e-markets.",
@@ -140,7 +140,7 @@ class Feature46 extends BaseFeature {
             },
             {
               type: "string",
-              key: "description",
+              key: "card_description",
               displayer: "Description",
               value:
                 "Quickly cultivate optimal processes and tactical architectures. Completely iterate covalent strategic theme areas via accurate e-markets.",
@@ -183,7 +183,7 @@ class Feature46 extends BaseFeature {
     const hasContent = (card: Card) => {
       return (
         this.castToString(card.content) ||
-        this.castToString(card.description) ||
+        this.castToString(card.card_description) ||
         card.icon
       );
     };
@@ -245,9 +245,9 @@ class Feature46 extends BaseFeature {
                         {card.content}
                       </Base.H3>
                     )}
-                    {this.castToString(card.description) && (
+                    {this.castToString(card.card_description) && (
                       <Base.P className={this.decorateCSS("card-description")}>
-                        {card.description}
+                        {card.card_description}
                       </Base.P>
                     )}
                     {card.button && this.castToString(card.button.text) && (

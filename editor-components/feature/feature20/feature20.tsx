@@ -15,10 +15,10 @@ type Button = {
 interface Item {
   media: TypeMediaInputValue;
   overlay: boolean;
-  subtitle: React.JSX.Element;
+  item_subtitle: React.JSX.Element;
   sectionHeading: React.JSX.Element;
-  description: React.JSX.Element;
-  buttons: Button[];
+  item_description: React.JSX.Element;
+  item_buttons: Button[];
 }
 
 class Feature20 extends BaseFeature {
@@ -99,7 +99,7 @@ class Feature20 extends BaseFeature {
             },
             {
               type: "string",
-              key: "subtitle",
+              key: "item_subtitle",
               displayer: "Subtitle",
               value: "",
             },
@@ -111,14 +111,14 @@ class Feature20 extends BaseFeature {
             },
             {
               type: "string",
-              key: "description",
+              key: "item_description",
               displayer: "Description",
               value:
                 "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco, consectetur adipisicing elit, sed do eiusmod.",
             },
             {
               type: "array",
-              key: "buttons",
+              key: "item_buttons",
               displayer: "Buttons",
               value: [
                 INPUTS.BUTTON("button","Button","READ MORE","",null,null,"Tertiary"),
@@ -152,7 +152,7 @@ class Feature20 extends BaseFeature {
             },
             {
               type: "string",
-              key: "subtitle",
+              key: "item_subtitle",
               displayer: "Subtitle",
               value: "",
             },
@@ -164,14 +164,14 @@ class Feature20 extends BaseFeature {
             },
             {
               type: "string",
-              key: "description",
+              key: "item_description",
               displayer: "Description",
               value:
                 "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco, consectetur adipisicing elit, sed do eiusmod.",
             },
             {
               type: "array",
-              key: "buttons",
+              key: "item_buttons",
               displayer: "Buttons",
               value: [
                 INPUTS.BUTTON("button","Button","READ MORE","",null,null,"Tertiary"),
@@ -205,7 +205,7 @@ class Feature20 extends BaseFeature {
             },
             {
               type: "string",
-              key: "subtitle",
+              key: "item_subtitle",
               displayer: "Subtitle",
               value: "",
             },
@@ -217,14 +217,14 @@ class Feature20 extends BaseFeature {
             },
             {
               type: "string",
-              key: "description",
+              key: "item_description",
               displayer: "Description",
               value:
                 "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco, consectetur adipisicing elit, sed do eiusmod.",
             },
             {
               type: "array",
-              key: "buttons",
+              key: "item_buttons",
               displayer: "Buttons",
               value: [
                 INPUTS.BUTTON("button","Button","READ MORE","",null,null,"Tertiary"),
@@ -292,13 +292,13 @@ class Feature20 extends BaseFeature {
             </div>}
 
             {items.map((item: Item, i: number) => {
-              const itemButtons = item.buttons || [];
+              const itemButtons = item.item_buttons || [];
               const hasValidItemButtons = itemButtons.some((btn: Button) => {
                 const btnText = this.castToString(btn.text);
                 const btnIconExist = btn.icon && (btn.icon.type === "icon" ? btn.icon.name : btn.icon.url);
                 return btnText || btnIconExist;
               });
-              const hasTextContent = this.castToString(item.subtitle) || this.castToString(item.sectionHeading) || this.castToString(item.description) || hasValidItemButtons;
+              const hasTextContent = this.castToString(item.item_subtitle) || this.castToString(item.sectionHeading) || this.castToString(item.item_description) || hasValidItemButtons;
               return (hasTextContent || item.media) && (
               <React.Fragment key={i}>
                 <div
@@ -316,9 +316,9 @@ class Feature20 extends BaseFeature {
                     {item.overlay && item.media && <div className={this.decorateCSS("overlay")} />}
                   </div>
                   {hasTextContent && <Base.VerticalContent className={this.decorateCSS("text")}>
-                    {this.castToString(item.subtitle) && <Base.H5 className={this.decorateCSS("item-subtitle")}>{item.subtitle}</Base.H5>}
+                    {this.castToString(item.item_subtitle) && <Base.H5 className={this.decorateCSS("item-subtitle")}>{item.item_subtitle}</Base.H5>}
                     {this.castToString(item.sectionHeading) && <Base.H4 className={this.decorateCSS("section-heading")}>{item.sectionHeading}</Base.H4>}
-                    {this.castToString(item.description) && <Base.P className={this.decorateCSS("desc")}>{item.description}</Base.P>}
+                    {this.castToString(item.item_description) && <Base.P className={this.decorateCSS("desc")}>{item.item_description}</Base.P>}
                     {hasValidItemButtons && (
                       <div className={this.decorateCSS("button-container")}>
                         {itemButtons.map((button: Button, buttonIndex: number) => {

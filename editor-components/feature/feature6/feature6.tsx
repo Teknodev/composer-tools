@@ -6,9 +6,9 @@ import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "../../../custom-hooks/input-templates";
 
 type Card = {
-  title: React.JSX.Element;
-  subtitle: React.JSX.Element;
-  description: React.JSX.Element;
+  card_title: React.JSX.Element;
+  card_subtitle: React.JSX.Element;
+  card_description: React.JSX.Element;
   media: TypeMediaInputValue;
   overlay: boolean;
   link: string;
@@ -71,19 +71,19 @@ class Feature6 extends BaseFeature {
             },
             {
               type: "string",
-              key: "subtitle",
+              key: "card_subtitle",
               displayer: "Subtitle",
               value: "",
             },
             {
               type: "string",
-              key: "title",
+              key: "card_title",
               displayer: "Title",
               value: "The Lakeside Redesign: a Rustic House for Modern Living",
             },
             {
               type: "string",
-              key: "description",
+              key: "card_description",
               displayer: "Description",
               value: "",
             },
@@ -115,19 +115,19 @@ class Feature6 extends BaseFeature {
             },
             {
               type: "string",
-              key: "subtitle",
+              key: "card_subtitle",
               displayer: "Subtitle",
               value: "",
             },
             {
               type: "string",
-              key: "title",
+              key: "card_title",
               displayer: "Title",
               value: "Minimalist Magic: A Contemporary Studio Apartment",
             },
             {
               type: "string",
-              key: "description",
+              key: "card_description",
               displayer: "Description",
               value: "",
             },
@@ -159,19 +159,19 @@ class Feature6 extends BaseFeature {
             },
             {
               type: "string",
-              key: "subtitle",
+              key: "card_subtitle",
               displayer: "Subtitle",
               value: "",
             },
             {
               type: "string",
-              key: "title",
+              key: "card_title",
               displayer: "Title",
               value: "The Heritage Home: Restoring Charm in a Victorian House",
             },
             {
               type: "string",
-              key: "description",
+              key: "card_description",
               displayer: "Description",
               value: "",
             },
@@ -248,9 +248,9 @@ class Feature6 extends BaseFeature {
             {cards?.length > 0 && (
               <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount"), tablet: 3 }} className={this.decorateCSS("cards-container")}>
                 {cards.map((card: Card, index: number) => {
-                  const titleExist = !!this.castToString(card.title);
-                  const subtitleExist = !!this.castToString(card.subtitle);
-                  const descriptionExist = !!this.castToString(card.description);
+                  const titleExist = !!this.castToString(card.card_title);
+                  const subtitleExist = !!this.castToString(card.card_subtitle);
+                  const descriptionExist = !!this.castToString(card.card_description);
                   const imageExist = !!card.media;
                   const buttonTextExist = card.button && !!this.castToString(card.button.text);
 
@@ -279,17 +279,17 @@ class Feature6 extends BaseFeature {
                           <Base.VerticalContent className={this.decorateCSS("card-text-content")}>
                             {subtitleExist && (
                               <Base.SectionSubTitle className={this.decorateCSS("card-subtitle")}>
-                                {card.subtitle}
+                                {card.card_subtitle}
                               </Base.SectionSubTitle>
                             )}
                             {titleExist && (
                               <Base.H5 className={this.decorateCSS("title")}>
-                                {card.title}
+                                {card.card_title}
                               </Base.H5>
                             )}
                             {descriptionExist && (
                               <Base.P className={this.decorateCSS("card-description")}>
-                                {card.description}
+                                {card.card_description}
                               </Base.P>
                             )}
                             {buttonTextExist && (

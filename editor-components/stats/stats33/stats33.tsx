@@ -9,11 +9,11 @@ type RawStatItem = {
     prefix: JSX.Element;
     number: JSX.Element;
     suffix: JSX.Element;
-    subtitle: JSX.Element;
-    title: JSX.Element;
-    description: JSX.Element;
+    stat_subtitle: JSX.Element;
+    stat_title: JSX.Element;
+    stat_description: JSX.Element;
     media: TypeMediaInputValue;
-    buttons: INPUTS.CastedButton[];
+    stat_buttons: INPUTS.CastedButton[];
     rowReverse: boolean;
 };
 
@@ -85,9 +85,9 @@ class Stats33 extends BaseStats {
                         { type: "string", key: "prefix", displayer: "Prefix", value: "" },
                         { type: "string", key: "number", displayer: "Value", value: "17" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "" },
-                        { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
-                        { type: "string", key: "title", displayer: "Title", value: "Years Of Experience" },
-                        { type: "string", key: "description", displayer: "Description", value: "Capitalize on low hanging fruit to identify a ballpark value added activity to beta test. Override the digital divide with additional clickthroughs from DevOps" },
+                        { type: "string", key: "stat_subtitle", displayer: "Subtitle", value: "" },
+                        { type: "string", key: "stat_title", displayer: "Title", value: "Years Of Experience" },
+                        { type: "string", key: "stat_description", displayer: "Description", value: "Capitalize on low hanging fruit to identify a ballpark value added activity to beta test. Override the digital divide with additional clickthroughs from DevOps" },
                         {
                             type: "media",
                             key: "media",
@@ -100,7 +100,7 @@ class Stats33 extends BaseStats {
                         },
                         {
                             type: "array",
-                            key: "buttons",
+                            key: "stat_buttons",
                             displayer: "Buttons",
                             value: [
                                 INPUTS.BUTTON("button", "Button", "About Us", "", "FaArrowRight", null, "Primary"),
@@ -118,9 +118,9 @@ class Stats33 extends BaseStats {
                         { type: "string", key: "prefix", displayer: "Prefix", value: "" },
                         { type: "string", key: "number", displayer: "Value", value: "84" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "" },
-                        { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
-                        { type: "string", key: "title", displayer: "Title", value: "Completed Projects" },
-                        { type: "string", key: "description", displayer: "Description", value: "Leverage agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster collaborative" },
+                        { type: "string", key: "stat_subtitle", displayer: "Subtitle", value: "" },
+                        { type: "string", key: "stat_title", displayer: "Title", value: "Completed Projects" },
+                        { type: "string", key: "stat_description", displayer: "Description", value: "Leverage agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster collaborative" },
                         {
                             type: "media",
                             key: "media",
@@ -133,7 +133,7 @@ class Stats33 extends BaseStats {
                         },
                         {
                             type: "array",
-                            key: "buttons",
+                            key: "stat_buttons",
                             displayer: "Buttons",
                             value: [
                                 INPUTS.BUTTON("button", "Button", "View All Projects", "", "FaArrowRight", null, "Primary"),
@@ -240,14 +240,14 @@ class Stats33 extends BaseStats {
             number: this.castToString(item.number),
             suffix: this.castToString(item.suffix) || "",
             suffixElement: item.suffix,
-            subtitle: this.castToString(item.subtitle) || "",
-            subtitleElement: item.subtitle,
-            title: this.castToString(item.title) || "",
-            titleElement: item.title,
-            description: this.castToString(item.description) || "",
-            descriptionElement: item.description,
+            subtitle: this.castToString(item.stat_subtitle) || "",
+            subtitleElement: item.stat_subtitle,
+            title: this.castToString(item.stat_title) || "",
+            titleElement: item.stat_title,
+            description: this.castToString(item.stat_description) || "",
+            descriptionElement: item.stat_description,
             media: item.media,
-            buttons: item.buttons || [],
+            buttons: item.stat_buttons || [],
             rowReverse: !!item.rowReverse,
         }));
 

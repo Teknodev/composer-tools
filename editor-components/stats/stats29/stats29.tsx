@@ -12,11 +12,11 @@ type StatItem = {
   numberElement: JSX.Element;
   suffix: string;
   suffixElement: JSX.Element;
-  subtitle: string;
+  stat_subtitle: string;
   subtitleElement: JSX.Element;
-  title: string;
+  stat_title: string;
   titleElement: JSX.Element;
-  description: string;
+  stat_description: string;
   descriptionElement: JSX.Element;
 };
 
@@ -69,11 +69,11 @@ class Stats29 extends BaseStats {
             { type: "string", key: "prefix", displayer: "Prefix", value: "" },
             { type: "string", key: "number", displayer: "Value", value: "50" },
             { type: "string", key: "suffix", displayer: "Suffix", value: "%" },
-            { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
-            { type: "string", key: "title", displayer: "Title", value: "OF BUYERS" },
+            { type: "string", key: "stat_subtitle", displayer: "Subtitle", value: "" },
+            { type: "string", key: "stat_title", displayer: "Title", value: "OF BUYERS" },
             {
               type: "string",
-              key: "description",
+              key: "stat_description",
               displayer: "Description",
               value: "bring to the table win-win survival strategies to ensure proactive domination. At the end of the day a new normal generation.",
             },
@@ -87,12 +87,12 @@ class Stats29 extends BaseStats {
             { type: "string", key: "prefix", displayer: "Prefix", value: "" },
             { type: "string", key: "number", displayer: "Value", value: "85" },
             { type: "string", key: "suffix", displayer: "Suffix", value: "%" },
-            { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
-            { type: "string", key: "title", displayer: "Title", value: "OF BUYERS" },
+            { type: "string", key: "stat_subtitle", displayer: "Subtitle", value: "" },
+            { type: "string", key: "stat_title", displayer: "Title", value: "OF BUYERS" },
 
             {
               type: "string",
-              key: "description",
+              key: "stat_description",
               displayer: "Description",
               value: "bring to the table win-win survival strategies to ensure proactive domination. At the end of the day a new normal generation.",
             },
@@ -171,9 +171,9 @@ class Stats29 extends BaseStats {
       };
     }, [targetNumber, statsAnimation, animationDuration, originalString]);
 
-    const subtitleExist = this.castToString(stat.subtitle);
-    const titleExist = this.castToString(stat.title);
-    const descriptionExist = this.castToString(stat.description);
+    const subtitleExist = this.castToString(stat.stat_subtitle);
+    const titleExist = this.castToString(stat.stat_title);
+    const descriptionExist = this.castToString(stat.stat_description);
     const valueExist = this.castToString(originalString);
 
     if (!this.hasStatContent(stat)) return null;

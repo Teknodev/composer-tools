@@ -13,12 +13,12 @@ type ButtonTypeObj = {
 }
 
 interface Section {
-    title: React.JSX.Element;
+    section_title: React.JSX.Element;
     text: React.JSX.Element;
 }
 
 interface ProductCard {
-    title: React.JSX.Element;
+    card_title: React.JSX.Element;
     media: TypeMediaInputValue;
     overlay: boolean;
     sections: Section[];
@@ -62,7 +62,7 @@ class Feature38 extends BaseFeature {
                     value: [
                         {
                             type: "string",
-                            key: "title",
+                            key: "card_title",
                             displayer: "Title",
                             value: "Digital Solutions Provider"
                         },
@@ -91,7 +91,7 @@ class Feature38 extends BaseFeature {
                                     key: "section",
                                     displayer: "Section",
                                     value: [
-                                        { type: "string", key: "title", displayer: "Title", value: "The Impact:" },
+                                        { type: "string", key: "section_title", displayer: "Title", value: "The Impact:" },
                                         { type: "string", key: "text", displayer: "Text", value: "Grew their customer base by 82%; shrank site build times by 40%; increased revenue with a restructured business model." },
                                     ],
                                 },
@@ -100,7 +100,7 @@ class Feature38 extends BaseFeature {
                                     key: "section",
                                     displayer: "Section",
                                     value: [
-                                        { type: "string", key: "title", displayer: "Title", value: "How They Did it:" },
+                                        { type: "string", key: "section_title", displayer: "Title", value: "How They Did it:" },
                                         { type: "string", key: "text", displayer: "Text", value: "Duda's dedicated account management team helped set tags & codes inside the platform, facilitate product flows, and offer guidance on the most efficient ways to use the platform" },
                                     ],
                                 },
@@ -109,7 +109,7 @@ class Feature38 extends BaseFeature {
                                     key: "section",
                                     displayer: "Section",
                                     value: [
-                                        { type: "string", key: "title", displayer: "Title", value: "Favorite Duda Tool:" },
+                                        { type: "string", key: "section_title", displayer: "Title", value: "Favorite Duda Tool:" },
                                         { type: "string", key: "text", displayer: "Text", value: "Drag and drop editor for easy, client-managed design changes." },
                                     ],
                                 },
@@ -130,7 +130,7 @@ class Feature38 extends BaseFeature {
                     value: [
                         {
                             type: "string",
-                            key: "title",
+                            key: "card_title",
                             displayer: "Title",
                             value: "Award-Winning Marketing Firm"
                         },
@@ -159,7 +159,7 @@ class Feature38 extends BaseFeature {
                                     key: "section",
                                     displayer: "Section",
                                     value: [
-                                        { type: "string", key: "title", displayer: "Title", value: "The Impact:" },
+                                        { type: "string", key: "section_title", displayer: "Title", value: "The Impact:" },
                                         { type: "string", key: "text", displayer: "Text", value: "Reduced average site build times by 75%; increased revenue with expanded services; improved lifetime customer value." },
                                     ],
                                 },
@@ -168,7 +168,7 @@ class Feature38 extends BaseFeature {
                                     key: "section",
                                     displayer: "Section",
                                     value: [
-                                        { type: "string", key: "title", displayer: "Title", value: "How They Did it:" },
+                                        { type: "string", key: "section_title", displayer: "Title", value: "How They Did it:" },
                                         { type: "string", key: "text", displayer: "Text", value: "Successful team onboarding in 2–3 days, compared to 2–3 weeks on WordPress; design tools that reduced development work from 15 days to 5 hours!" },
                                     ],
                                 },
@@ -177,7 +177,7 @@ class Feature38 extends BaseFeature {
                                     key: "section",
                                     displayer: "Section",
                                     value: [
-                                        { type: "string", key: "title", displayer: "Title", value: "Favorite Duda Tool:" },
+                                        { type: "string", key: "section_title", displayer: "Title", value: "Favorite Duda Tool:" },
                                         { type: "string", key: "text", displayer: "Text", value: "Personalization engine for serving targeted content by audience." },
                                     ],
                                 },
@@ -198,7 +198,7 @@ class Feature38 extends BaseFeature {
                     value: [
                         {
                             type: "string",
-                            key: "title",
+                            key: "card_title",
                             displayer: "Title",
                             value: "Digital Marketing Leader"
                         },
@@ -227,7 +227,7 @@ class Feature38 extends BaseFeature {
                                     key: "section",
                                     displayer: "Section",
                                     value: [
-                                        { type: "string", key: "title", displayer: "Title", value: "The Impact:" },
+                                        { type: "string", key: "section_title", displayer: "Title", value: "The Impact:" },
                                         { type: "string", key: "text", displayer: "Text", value: "Achieved their goals of offering a quality, industry-leading product and faster site creation & management at scale." },
                                     ],
                                 },
@@ -236,7 +236,7 @@ class Feature38 extends BaseFeature {
                                     key: "section",
                                     displayer: "Section",
                                     value: [
-                                        { type: "string", key: "title", displayer: "Title", value: "How They Did it:" },
+                                        { type: "string", key: "section_title", displayer: "Title", value: "How They Did it:" },
                                         { type: "string", key: "text", displayer: "Text", value: "Seamless migration of thousands of legacy websites in just a few months, using APIs to add metadata and create URL redirects." },
                                     ],
                                 },
@@ -245,7 +245,7 @@ class Feature38 extends BaseFeature {
                                     key: "section",
                                     displayer: "Section",
                                     value: [
-                                        { type: "string", key: "title", displayer: "Title", value: "Favorite Duda Tool:" },
+                                        { type: "string", key: "section_title", displayer: "Title", value: "Favorite Duda Tool:" },
                                         { type: "string", key: "text", displayer: "Text", value: "Connected Data to prepopulate site templates with structured customer data." },
                                     ],
                                 },
@@ -281,7 +281,7 @@ class Feature38 extends BaseFeature {
         const cards = this.castToObject<ProductCard[]>("cards");
         const divider = this.getPropValue("divider");
         const activeIndex = this.getComponentState("activeIndex") || 0;
-        const hasCards = cards.some((card: ProductCard) => this.castToString(card.title));
+        const hasCards = cards.some((card: ProductCard) => this.castToString(card.card_title));
         const hasContent = subtitleExist || titleExist || descriptionExist || hasCards;
         const hasRightContent = cards.some((card: ProductCard) =>
             card.media ||
@@ -302,7 +302,7 @@ class Feature38 extends BaseFeature {
                             {hasCards && (
                                 <div className={this.decorateCSS("items-wrapper")}>
                                     {cards.map((card: ProductCard, index: number) => {
-                                        const cardTitle = card.title;
+                                        const cardTitle = card.card_title;
                                         const isActive = activeIndex === index;
                                         return this.castToString(cardTitle) && (
                                             <Base.H5
@@ -346,7 +346,7 @@ class Feature38 extends BaseFeature {
                                         {card.sections.length > 0 && (
                                             <Base.VerticalContent className={this.decorateCSS("sectionsWrapper")}>
                                                 {card.sections.map((section: Section, sectionIndex: number) => {
-                                                    const sectionTitle = section.title;
+                                                    const sectionTitle = section.section_title;
                                                     const sectionText = section.text;
                                                     return (sectionTitle || sectionText) && (
                                                         <Base.P key={sectionIndex} className={this.decorateCSS("section")}>

@@ -6,7 +6,7 @@ import { Base } from '../../../composer-base-components/base/base';
 import { INPUTS } from 'composer-tools/custom-hooks/input-templates';
 
 interface FeatureItem {
-    description: React.ReactNode;
+    feature_description: React.ReactNode;
     icon?: TypeMediaInputValue;
 }
 type Button = INPUTS.CastedButton;
@@ -90,7 +90,7 @@ class CallToAction19 extends BaseCallToAction {
                         },
                         {
                             type: "string",
-                            key: "description",
+                            key: "feature_description",
                             displayer: "Description",
                             value: "Easily customize and edit fields and more",
                         },
@@ -115,7 +115,7 @@ class CallToAction19 extends BaseCallToAction {
                         },
                         {
                             type: "string",
-                            key: "description",
+                            key: "feature_description",
                             displayer: "Description",
                             value: "99.9% cheaper than alternative solutions",
                         },
@@ -140,7 +140,7 @@ class CallToAction19 extends BaseCallToAction {
                         },
                         {
                             type: "string",
-                            key: "description",
+                            key: "feature_description",
                             displayer: "Description",
                             value: "Built to industry leading standards",
                         },
@@ -166,7 +166,7 @@ class CallToAction19 extends BaseCallToAction {
         const description = this.castToString(this.getPropValue("description"));
         const buttons = this.castToObject<Button[]>("buttons");
         const features = this.castToObject<FeatureItem[]>("features");
-        const validFeatures = features.filter((item: FeatureItem) => this.castToString(item.description) || item.icon);
+        const validFeatures = features.filter((item: FeatureItem) => this.castToString(item.feature_description) || item.icon);
         const ratingValue = this.getPropValue("ratingValue");
         const ratingText = this.getPropValue("ratingText");
         const itemCountInARow = this.getPropValue("itemCountInARow");
@@ -242,9 +242,9 @@ class CallToAction19 extends BaseCallToAction {
                                                         />
                                                     </div>
                                                 )}
-                                                {this.castToString(item.description) && (
+                                                {this.castToString(item.feature_description) && (
                                                     <Base.P className={this.decorateCSS("feature-list")}>
-                                                        {item.description}
+                                                        {item.feature_description}
                                                     </Base.P>
                                                 )}
                                             </div>

@@ -13,9 +13,9 @@ type ButtonTypeObj = {
 
 type Card = {
   icon: TypeMediaInputValue;
-  subtitle: React.JSX.Element;
-  title: React.JSX.Element;
-  description: React.JSX.Element;
+  card_subtitle: React.JSX.Element;
+  card_title: React.JSX.Element;
+  card_description: React.JSX.Element;
   button: {
     text: React.JSX.Element;
     url: string;
@@ -80,19 +80,19 @@ class Feature32 extends BaseFeature {
             },
             {
               type: "string",
-              key: "subtitle",
+              key: "card_subtitle",
               displayer: "Card Subtitle",
               value: "",
             },
             {
               type: "string",
-              key: "title",
+              key: "card_title",
               displayer: "Title",
               value: "Competitive rates"
             },
             {
               type: "string",
-              key: "description",
+              key: "card_description",
               displayer: "Description",
               value: "Completely iterate covalent strategic theme areas via accurate e-markets."
             },
@@ -118,19 +118,19 @@ class Feature32 extends BaseFeature {
             },
             {
               type: "string",
-              key: "subtitle",
+              key: "card_subtitle",
               displayer: "Card Subtitle",
               value: "",
             },
             {
               type: "string",
-              key: "title",
+              key: "card_title",
               displayer: "Title",
               value: "No hidden fees"
             },
             {
               type: "string",
-              key: "description",
+              key: "card_description",
               displayer: "Description",
               value: "Completely iterate covalent strategic theme areas via accurate e-markets."
             },
@@ -156,19 +156,19 @@ class Feature32 extends BaseFeature {
             },
             {
               type: "string",
-              key: "subtitle",
+              key: "card_subtitle",
               displayer: "Card Subtitle",
               value: "",
             },
             {
               type: "string",
-              key: "title",
+              key: "card_title",
               displayer: "Title",
               value: "Stable performance"
             },
             {
               type: "string",
-              key: "description",
+              key: "card_description",
               displayer: "Description",
               value: "Completely iterate covalent strategic theme areas via accurate e-markets."
             },
@@ -194,19 +194,19 @@ class Feature32 extends BaseFeature {
             },
             {
               type: "string",
-              key: "subtitle",
+              key: "card_subtitle",
               displayer: "Card Subtitle",
               value: "",
             },
             {
               type: "string",
-              key: "title",
+              key: "card_title",
               displayer: "Title",
               value: "Instant transfers"
             },
             {
               type: "string",
-              key: "description",
+              key: "card_description",
               displayer: "Description",
               value: "Completely iterate covalent strategic theme areas via accurate e-markets."
             },
@@ -283,9 +283,9 @@ class Feature32 extends BaseFeature {
                 gridCount={{ pc: this.getPropValue("itemCount") || 3, tablet: 2, phone: 1 }}
               >
                 {cards.map((card: Card, index: number) => {
-                  const cardSubtitleExist = this.castToString(card.subtitle);
-                  const titleExist = !!this.castToString(card.title);
-                  const descExist = !!this.castToString(card.description);
+                  const cardSubtitleExist = this.castToString(card.card_subtitle);
+                  const titleExist = !!this.castToString(card.card_title);
+                  const descExist = !!this.castToString(card.card_description);
                   const isImage = card.icon?.type === "image";
                   const btnText = this.castToString(card.button?.text);
                   const btnIconExist = card.button?.icon && (card.button.icon.type === "icon" ? card.button.icon.name : card.button.icon.url);
@@ -304,9 +304,9 @@ class Feature32 extends BaseFeature {
                             <Base.Media value={card.icon} className={`${this.decorateCSS("card-icon")} ${isImage && this.decorateCSS("is-image")}`} />
                           </div>
                         }
-                        {cardSubtitleExist && <Base.H6 className={this.decorateCSS("card-subtitle")}>{card.subtitle}</Base.H6>}
-                        {titleExist && <Base.H5 className={this.decorateCSS("card-title")}>{card.title}</Base.H5>}
-                        {descExist && <Base.P className={this.decorateCSS("card-description")}>{card.description}</Base.P>}
+                        {cardSubtitleExist && <Base.H6 className={this.decorateCSS("card-subtitle")}>{card.card_subtitle}</Base.H6>}
+                        {titleExist && <Base.H5 className={this.decorateCSS("card-title")}>{card.card_title}</Base.H5>}
+                        {descExist && <Base.P className={this.decorateCSS("card-description")}>{card.card_description}</Base.P>}
                         {hasCardButton && (
                           <ComposerLink path={card.button.url}>
                             <Base.Button buttonType={card.button.type} className={this.decorateCSS("card-button")}>

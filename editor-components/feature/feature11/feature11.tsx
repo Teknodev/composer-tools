@@ -14,9 +14,9 @@ type Button = {
 
 type Card = {
   icon: TypeMediaInputValue;
-  subtitle: React.JSX.Element;
-  title: React.JSX.Element;
-  description: React.JSX.Element;
+  card_subtitle: React.JSX.Element;
+  card_title: React.JSX.Element;
+  card_description: React.JSX.Element;
   button: Button;
 };
 
@@ -79,19 +79,19 @@ class Feature11 extends BaseFeature {
             },
             {
               type: "string",
-              key: "subtitle",
+              key: "card_subtitle",
               displayer: "Card Subtitle",
               value: ""
             },
             {
               type: "string",
-              key: "title",
+              key: "card_title",
               displayer: "Title",
               value: "Easy drag & drop"
             },
             {
               type: "string",
-              key: "description",
+              key: "card_description",
               displayer: "Description",
               value: "To add an element just drag component from the Assets panel and drop it to the work area."
             },
@@ -117,19 +117,19 @@ class Feature11 extends BaseFeature {
             },
             {
               type: "string",
-              key: "subtitle",
+              key: "card_subtitle",
               displayer: "Card Subtitle",
               value: ""
             },
             {
               type: "string",
-              key: "title",
+              key: "card_title",
               displayer: "Title",
               value: "Flexible modification"
             },
             {
               type: "string",
-              key: "description",
+              key: "card_description",
               displayer: "Description",
               value: "You can easily change an instance setting depending on your goals."
             },
@@ -155,19 +155,19 @@ class Feature11 extends BaseFeature {
             },
             {
               type: "string",
-              key: "subtitle",
+              key: "card_subtitle",
               displayer: "Card Subtitle",
               value: ""
             },
             {
               type: "string",
-              key: "title",
+              key: "card_title",
               displayer: "Title",
               value: "Quick color and font changes"
             },
             {
               type: "string",
-              key: "description",
+              key: "card_description",
               displayer: "Description",
               value: "You can use the default color scheme and font or change them to create your own design."
             },
@@ -193,19 +193,19 @@ class Feature11 extends BaseFeature {
             },
             {
               type: "string",
-              key: "subtitle",
+              key: "card_subtitle",
               displayer: "Card Subtitle",
               value: ""
             },
             {
               type: "string",
-              key: "title",
+              key: "card_title",
               displayer: "Title",
               value: "Pre-made blocks"
             },
             {
               type: "string",
-              key: "description",
+              key: "card_description",
               displayer: "Description",
               value: "A large variety of ready-made blocks for your project."
             },
@@ -231,19 +231,19 @@ class Feature11 extends BaseFeature {
             },
             {
               type: "string",
-              key: "subtitle",
+              key: "card_subtitle",
               displayer: "Card Subtitle",
               value: ""
             },
             {
               type: "string",
-              key: "title",
+              key: "card_title",
               displayer: "Title",
               value: "All-in-one file"
             },
             {
               type: "string",
-              key: "description",
+              key: "card_description",
               displayer: "Description",
               value: "You will find everything to create your design in one Figma file."
             },
@@ -269,19 +269,19 @@ class Feature11 extends BaseFeature {
             },
             {
               type: "string",
-              key: "subtitle",
+              key: "card_subtitle",
               displayer: "Card Subtitle",
               value: ""
             },
             {
               type: "string",
-              key: "title",
+              key: "card_title",
               displayer: "Title",
               value: "Essential elements in one place"
             },
             {
               type: "string",
-              key: "description",
+              key: "card_description",
               displayer: "Description",
               value: "Use them for any websites, dashboards, and even in your TED Talks."
             },
@@ -369,9 +369,9 @@ class Feature11 extends BaseFeature {
                 gridCount={{ pc: this.getPropValue("itemCount"), tablet: 2 }}
               >
                 {cards.map((card: Card, index: number) => {
-                  const subtitleExist = !!this.castToString(card.subtitle);
-                  const titleExist = !!this.castToString(card.title);
-                  const descExist = !!this.castToString(card.description);
+                  const subtitleExist = !!this.castToString(card.card_subtitle);
+                  const titleExist = !!this.castToString(card.card_title);
+                  const descExist = !!this.castToString(card.card_description);
                   const iconExist = !!(card.icon && (card.icon.type === "icon" ? card.icon.name : card.icon.url));
                   const btnText = card.button ? this.castToString(card.button.text) : "";
                   const btnIconExist = card.button?.icon && (card.button.icon.type === "icon" ? card.button.icon.name : card.button.icon.url);
@@ -388,17 +388,17 @@ class Feature11 extends BaseFeature {
                         {iconExist && <Base.Media value={card.icon} className={this.decorateCSS("card-icon")} />}
                         {subtitleExist && (
                           <Base.H6 className={this.decorateCSS("card-subtitle")}>
-                            {card.subtitle}
+                            {card.card_subtitle}
                           </Base.H6>
                         )}
                         {titleExist && (
                           <Base.H5 className={this.decorateCSS("card-title")}>
-                            {card.title}
+                            {card.card_title}
                           </Base.H5>
                         )}
                         {descExist && (
                           <Base.P className={this.decorateCSS("card-description")}>
-                            {card.description}
+                            {card.card_description}
                           </Base.P>
                         )}
                         {hasCardButton && (

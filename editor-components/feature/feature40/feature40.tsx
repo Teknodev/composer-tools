@@ -14,9 +14,9 @@ type ButtonTypeObj = {
 
 type Card = {
     icon: TypeMediaInputValue;
-    subtitle: React.JSX.Element;
-    title: React.JSX.Element;
-    description: React.JSX.Element;
+    card_subtitle: React.JSX.Element;
+    card_title: React.JSX.Element;
+    card_description: React.JSX.Element;
     button: INPUTS.CastedButton;
 };
 
@@ -69,19 +69,19 @@ class Feature40 extends BaseFeature {
                         },
                         {
                             type: "string",
-                            key: "subtitle",
+                            key: "card_subtitle",
                             displayer: "Card Subtitle",
                             value: "",
                         },
                         {
                             type: "string",
-                            key: "title",
+                            key: "card_title",
                             displayer: "Title",
                             value: "Smooth Start"
                         },
                         {
                             type: "string",
-                            key: "description",
+                            key: "card_description",
                             displayer: "Description",
                             value: "Distinctively exploit optimal alignments for intuitive bandwidth."
                         },
@@ -107,19 +107,19 @@ class Feature40 extends BaseFeature {
                         },
                         {
                             type: "string",
-                            key: "subtitle",
+                            key: "card_subtitle",
                             displayer: "Card Subtitle",
                             value: "",
                         },
                         {
                             type: "string",
-                            key: "title",
+                            key: "card_title",
                             displayer: "Title",
                             value: "Card Membership"
                         },
                         {
                             type: "string",
-                            key: "description",
+                            key: "card_description",
                             displayer: "Description",
                             value: "Distinctively exploit optimal alignments for intuitive bandwidth."
                         },
@@ -145,19 +145,19 @@ class Feature40 extends BaseFeature {
                         },
                         {
                             type: "string",
-                            key: "subtitle",
+                            key: "card_subtitle",
                             displayer: "Card Subtitle",
                             value: "",
                         },
                         {
                             type: "string",
-                            key: "title",
+                            key: "card_title",
                             displayer: "Title",
                             value: "Invest Any Amount"
                         },
                         {
                             type: "string",
-                            key: "description",
+                            key: "card_description",
                             displayer: "Description",
                             value: "Distinctively exploit optimal alignments for intuitive bandwidth."
                         },
@@ -213,9 +213,9 @@ class Feature40 extends BaseFeature {
                                 gridCount={{ pc: this.getPropValue("itemCount") || 3, tablet: 3, phone: 1 }}
                             >
                                 {cards.map((card: Card, index: number) => {
-                                    const cardSubtitleExist = this.castToString(card.subtitle);
-                                    const titleExist = !!this.castToString(card.title);
-                                    const descExist = !!this.castToString(card.description);
+                                    const cardSubtitleExist = this.castToString(card.card_subtitle);
+                                    const titleExist = !!this.castToString(card.card_title);
+                                    const descExist = !!this.castToString(card.card_description);
                                     const isImage = card.icon?.type === "image";
                                     const itemCount = this.getPropValue("itemCount") || 3;
                                     const isLastInRow = (index + 1) % itemCount === 0;
@@ -233,9 +233,9 @@ class Feature40 extends BaseFeature {
                                                 {card.icon &&
                                                     <Base.Media value={card.icon} className={`${this.decorateCSS("card-icon")} ${isImage && this.decorateCSS("is-image")}`} />
                                                 }
-                                                {cardSubtitleExist && <Base.H6 className={this.decorateCSS("card-subtitle")}>{card.subtitle}</Base.H6>}
-                                                {titleExist && <Base.H4 className={this.decorateCSS("card-title")}>{card.title}</Base.H4>}
-                                                {descExist && <Base.P className={this.decorateCSS("card-description")}>{card.description}</Base.P>}
+                                                {cardSubtitleExist && <Base.H6 className={this.decorateCSS("card-subtitle")}>{card.card_subtitle}</Base.H6>}
+                                                {titleExist && <Base.H4 className={this.decorateCSS("card-title")}>{card.card_title}</Base.H4>}
+                                                {descExist && <Base.P className={this.decorateCSS("card-description")}>{card.card_description}</Base.P>}
                                                 {buttonExist && (
                                                         <ComposerLink path={card.button?.url || ""}>
                                                             <Base.Button buttonType={card.button?.type || "Primary"} className={this.decorateCSS("card-button")}>

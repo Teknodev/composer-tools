@@ -8,11 +8,11 @@ import { INPUTS } from "../../../custom-hooks/input-templates";
 import { TypeMediaInputValue } from "../../EditorComponent";
 
 type Card = {
-  subtitle: React.JSX.Element;
-  title: React.JSX.Element;
-  description: React.JSX.Element;
+  card_subtitle: React.JSX.Element;
+  card_title: React.JSX.Element;
+  card_description: React.JSX.Element;
   icon: TypeMediaInputValue;
-  buttons: Button[];
+  card_buttons: Button[];
 };
 
 type Button = {
@@ -23,12 +23,12 @@ type Button = {
 };
 
 type FirstItem = {
-  subtitle: React.JSX.Element;
-  title: React.JSX.Element;
+  firstItem_subtitle: React.JSX.Element;
+  firstItem_title: React.JSX.Element;
   icon: TypeMediaInputValue;
   backgroundImage: TypeMediaInputValue;
   overlay: boolean;
-  buttons: Button[];
+  firstItem_buttons: Button[];
 };
 
 class Feature12 extends BaseFeature {
@@ -79,13 +79,13 @@ class Feature12 extends BaseFeature {
         },
         {
           type: "string",
-          key: "subtitle",
+          key: "firstItem_subtitle",
           displayer: "Card Subtitle",
           value: "",
         },
         {
           type: "string",
-          key: "title",
+          key: "firstItem_title",
           displayer: "Title",
           value: "Best Of Our Features",
         },
@@ -109,7 +109,7 @@ class Feature12 extends BaseFeature {
         },
         {
           type: "array",
-          key: "buttons",
+          key: "firstItem_buttons",
           displayer: "Buttons",
           value: [
             INPUTS.BUTTON("button", "Button", "SEE ALL SERVICES", "", null, null, "Primary"),
@@ -141,25 +141,25 @@ class Feature12 extends BaseFeature {
             },
             {
               type: "string",
-              key: "subtitle",
+              key: "card_subtitle",
               displayer: "Card Subtitle",
               value: "",
             },
             {
               type: "string",
-              key: "title",
+              key: "card_title",
               displayer: "Title",
               value: "Graphic Clean Design",
             },
             {
               type: "string",
-              key: "description",
+              key: "card_description",
               displayer: "Description",
               value: "Consectetur adipiscing elit",
             },
             {
               type: "array",
-              key: "buttons",
+              key: "card_buttons",
               displayer: "Buttons",
               value: [
                 INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
@@ -186,25 +186,25 @@ class Feature12 extends BaseFeature {
             },
             {
               type: "string",
-              key: "subtitle",
+              key: "card_subtitle",
               displayer: "Card Subtitle",
               value: "",
             },
             {
               type: "string",
-              key: "title",
+              key: "card_title",
               displayer: "Title",
               value: "Web & Mobile Design",
             },
             {
               type: "string",
-              key: "description",
+              key: "card_description",
               displayer: "Description",
               value: "Sed do eiusmod tempor incididunt.",
             },
             {
               type: "array",
-              key: "buttons",
+              key: "card_buttons",
               displayer: "Buttons",
               value: [
                 INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
@@ -231,25 +231,25 @@ class Feature12 extends BaseFeature {
             },
             {
               type: "string",
-              key: "subtitle",
+              key: "card_subtitle",
               displayer: "Card Subtitle",
               value: "",
             },
             {
               type: "string",
-              key: "title",
+              key: "card_title",
               displayer: "Title",
               value: "Social Media Marketing",
             },
             {
               type: "string",
-              key: "description",
+              key: "card_description",
               displayer: "Description",
               value: "Uttt labore et dolore magna aliqua.",
             },
             {
               type: "array",
-              key: "buttons",
+              key: "card_buttons",
               displayer: "Buttons",
               value: [
                 INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
@@ -286,8 +286,8 @@ class Feature12 extends BaseFeature {
     const cards = this.castToObject<Card[]>("cards");
     const firstItem = this.castToObject<FirstItem>("firstItem");
 
-    const firstCardTitleExist = this.castToString(firstItem.title);
-    const firstCardSubtitleExist = this.castToString(firstItem.subtitle);
+    const firstCardTitleExist = this.castToString(firstItem.firstItem_title);
+    const firstCardSubtitleExist = this.castToString(firstItem.firstItem_subtitle);
     const firstCardIconExist = !!(firstItem.icon && (firstItem.icon.type === "icon" ? firstItem.icon.name : firstItem.icon.url));
 
     const firstItemBackground = firstItem.backgroundImage;
@@ -295,7 +295,7 @@ class Feature12 extends BaseFeature {
     const firstItemBackgroundIsVideo = firstItemBackground?.type === "video";
     const firstItemOverlay = firstItem.overlay;
 
-    const firstItemButtonsProp = this.getProp("firstItem")?.value?.find((p: any) => p.key === "buttons");
+    const firstItemButtonsProp = this.getProp("firstItem")?.value?.find((p: any) => p.key === "firstItem_buttons");
     const firstItemButtons = firstItemButtonsProp ? (this.castingProcess(firstItemButtonsProp) as Button[]) : [];
 
     const firstItemHasValidButtons = firstItemButtons && firstItemButtons.some((btn: Button) => {
@@ -385,12 +385,12 @@ class Feature12 extends BaseFeature {
                   )}
                   {firstCardSubtitleExist && (
                     <Base.H6 className={this.decorateCSS("first-card-subtitle")}>
-                      {firstItem.subtitle}
+                      {firstItem.firstItem_subtitle}
                     </Base.H6>
                   )}
                   {firstCardTitleExist && (
                     <Base.H5 className={this.decorateCSS("first-card-title")}>
-                      {firstItem.title}
+                      {firstItem.firstItem_title}
                     </Base.H5>
                   )}
                   {firstItemHasValidButtons && (
@@ -420,11 +420,11 @@ class Feature12 extends BaseFeature {
 
             {cards?.length > 0 &&
               cards.map((card: Card, index: number) => {
-                const subtitleExist = !!this.castToString(card.subtitle);
-                const descExist = !!this.castToString(card.description);
-                const titleExist = !!this.castToString(card.title);
+                const subtitleExist = !!this.castToString(card.card_subtitle);
+                const descExist = !!this.castToString(card.card_description);
+                const titleExist = !!this.castToString(card.card_title);
                 const iconExist = !!(card.icon && (card.icon.type === "icon" ? card.icon.name : card.icon.url));
-                const cardButtons = card.buttons;
+                const cardButtons = card.card_buttons;
                 const hasCardButton = !!(cardButtons && cardButtons.some((btn: Button) => {
                   const buttonText = this.castToString(btn.text);
                   const btnIconExist = btn.icon && (btn.icon.type === "icon" ? btn.icon.name : btn.icon.url);
@@ -461,17 +461,17 @@ class Feature12 extends BaseFeature {
                           )}
                           {subtitleExist && (
                             <Base.H6 className={this.decorateCSS("card-subtitle")}>
-                              {card.subtitle}
+                              {card.card_subtitle}
                             </Base.H6>
                           )}
                           {titleExist && (
                             <Base.H5 className={this.decorateCSS("card-title")}>
-                              {card.title}
+                              {card.card_title}
                             </Base.H5>
                           )}
                           {descExist && (
                             <Base.P className={this.decorateCSS("card-description")}>
-                              {card.description}
+                              {card.card_description}
                             </Base.P>
                           )}
                           {hasCardButton && (

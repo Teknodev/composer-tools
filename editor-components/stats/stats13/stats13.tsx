@@ -7,13 +7,13 @@ import ComposerLink from "../../../composer-base-components/Link/ComposerLinkPro
 import { useState, useEffect } from "react";
 
 type RatingItemType = {
-    icon: TypeMediaInputValue;
+    icon_icon: TypeMediaInputValue;
 }
 
 type StatItemType = {
     number: React.JSX.Element;
     symbol: React.JSX.Element;
-    description: React.JSX.Element;
+    stat_description: React.JSX.Element;
 }
 
 class Stats13 extends BaseStats {
@@ -92,7 +92,7 @@ class Stats13 extends BaseStats {
                     value: [
                         {
                             type: "media",
-                            key: "icon",
+                            key: "icon_icon",
                             displayer: "Icon",
                             additionalParams: {
                                 availableTypes: ["image", "icon"]
@@ -111,7 +111,7 @@ class Stats13 extends BaseStats {
                     value: [
                         {
                             type: "media",
-                            key: "icon",
+                            key: "icon_icon",
                             displayer: "Icon",
                             additionalParams: {
                                 availableTypes: ["image", "icon"]
@@ -130,7 +130,7 @@ class Stats13 extends BaseStats {
                     value: [
                         {
                             type: "media",
-                            key: "icon",
+                            key: "icon_icon",
                             displayer: "Icon",
                             additionalParams: {
                                 availableTypes: ["image", "icon"]
@@ -149,7 +149,7 @@ class Stats13 extends BaseStats {
                     value: [
                         {
                             type: "media",
-                            key: "icon",
+                            key: "icon_icon",
                             displayer: "Icon",
                             additionalParams: {
                                 availableTypes: ["image", "icon"]
@@ -168,7 +168,7 @@ class Stats13 extends BaseStats {
                     value: [
                         {
                             type: "media",
-                            key: "icon",
+                            key: "icon_icon",
                             displayer: "Icon",
                             additionalParams: {
                                 availableTypes: ["image", "icon"]
@@ -217,7 +217,7 @@ class Stats13 extends BaseStats {
                         },
                         {
                             type: "string",
-                            key: "description",
+                            key: "stat_description",
                             displayer: "Description",
                             value: "People Trust Impreza"
                         }
@@ -242,7 +242,7 @@ class Stats13 extends BaseStats {
                         },
                         {
                             type: "string",
-                            key: "description",
+                            key: "stat_description",
                             displayer: "Description",
                             value: "Average 5-Star Reviews"
                         }
@@ -345,7 +345,7 @@ class Stats13 extends BaseStats {
                                                 return (
                                                     <div key={index} className={this.decorateCSS("rating-content")}>
                                                         <Base.Media
-                                                            value={item.icon}
+                                                            value={item.icon_icon}
                                                             className={this.decorateCSS("icon")}
                                                         />
                                                     </div>
@@ -387,7 +387,7 @@ class Stats13 extends BaseStats {
                                                     const numberAsString = this.castToString(item.number);
                                                     const parsedNumber = parseFloat(numberAsString as string) || 0;
                                                     const symbol = item.symbol;
-                                                    const description = item.description;
+                                                    const description = item.stat_description;
 
                                                     return (
                                                         <div key={`stat-${index}`} className={this.decorateCSS("stat-item")}>

@@ -5,7 +5,7 @@ import { BaseBreadcrumb, TypeMediaInputValue } from "../../EditorComponent";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 
 type BreadcrumbItem = {
-    title: React.JSX.Element;
+    item_title: React.JSX.Element;
     icon: TypeMediaInputValue;
     navigateTo: string;
 };
@@ -67,7 +67,7 @@ class Breadcrumb1 extends BaseBreadcrumb {
                     value: [
                         {
                             type: "string",
-                            key: "title",
+                            key: "item_title",
                             displayer: "Title",
                             value: "Home",
                         },
@@ -98,7 +98,7 @@ class Breadcrumb1 extends BaseBreadcrumb {
                     value: [
                         {
                             type: "string",
-                            key: "title",
+                            key: "item_title",
                             displayer: "Title",
                             value: "Current Page",
                         },
@@ -208,7 +208,7 @@ class Breadcrumb1 extends BaseBreadcrumb {
                                 }`}
                         >
                             {breadcrumbItems.map((item: BreadcrumbItem, index: number) => {
-                                const itemTitleExist = this.castToString(item.title);
+                                const itemTitleExist = this.castToString(item.item_title);
                                 const itemIconExist = item.icon && (item.icon.type === "icon" ? item.icon.name : item.icon.url);
                                 const isLast = index === breadcrumbItems.length - 1;
                                 if (!itemTitleExist && !itemIconExist) return null;
@@ -224,7 +224,7 @@ class Breadcrumb1 extends BaseBreadcrumb {
                                                 )}
                                                 {itemTitleExist && (
                                                     <Base.P className={this.decorateCSS("home-page")}>
-                                                        {item.title}
+                                                        {item.item_title}
                                                     </Base.P>
                                                 )}
                                             </div>

@@ -13,7 +13,7 @@ type Button = {
 };
 
 interface ListItem {
-  title: string;
+  item_title: string;
   text: string;
   icon: TypeMediaInputValue;
 }
@@ -81,7 +81,7 @@ class Feature19 extends BaseFeature {
           value: [
             {
               type: "string",
-              key: "title",
+              key: "item_title",
               displayer: "Title",
               value: "Smart & Creative",
             },
@@ -113,7 +113,7 @@ class Feature19 extends BaseFeature {
           value: [
             {
               type: "string",
-              key: "title",
+              key: "item_title",
               displayer: "Title",
               value: "Distributed",
             },

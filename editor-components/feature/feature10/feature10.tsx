@@ -21,9 +21,9 @@ type Stat = {
 type Card = {
   media: TypeMediaInputValue;
   overlay?: boolean;
-  subtitle?: React.JSX.Element;
-  title: React.JSX.Element;
-  description: React.JSX.Element;
+  card_subtitle?: React.JSX.Element;
+  card_title: React.JSX.Element;
+  card_description: React.JSX.Element;
   stats?: Stat[];
   url: string;
 };
@@ -127,19 +127,19 @@ class Feature10 extends BaseFeature {
             },
             {
               type: "string",
-              key: "subtitle",
+              key: "card_subtitle",
               displayer: "Subtitle",
               value: "Case study"
             },
             {
               type: "string",
-              key: "title",
+              key: "card_title",
               displayer: "Title",
               value: "Lets Get Digital Case Study"
             },
             {
               type: "string",
-              key: "description",
+              key: "card_description",
               displayer: "Description",
               value: "Here's how ElasticScale improved the infrastructure quality for Lets Get Digital without increasing costs."
             },
@@ -201,19 +201,19 @@ class Feature10 extends BaseFeature {
             },
             {
               type: "string",
-              key: "subtitle",
+              key: "card_subtitle",
               displayer: "Subtitle",
               value: "Case study"
             },
             {
               type: "string",
-              key: "title",
+              key: "card_title",
               displayer: "Title",
               value: "Dataswitcher Case Study"
             },
             {
               type: "string",
-              key: "description",
+              key: "card_description",
               displayer: "Description",
               value: "ElasticScale implemented ES Foundation at Dataswitcher to improve scalability around peak conversions."
             },
@@ -275,19 +275,19 @@ class Feature10 extends BaseFeature {
             },
             {
               type: "string",
-              key: "subtitle",
+              key: "card_subtitle",
               displayer: "Subtitle",
               value: "Case study"
             },
             {
               type: "string",
-              key: "title",
+              key: "card_title",
               displayer: "Title",
               value: "AI Maid Help Case Study"
             },
             {
               type: "string",
-              key: "description",
+              key: "card_description",
               displayer: "Description",
               value: "Here's how ElasticScale improved the infrastructure quality for AI Maid Help without increasing costs."
             },
@@ -349,19 +349,19 @@ class Feature10 extends BaseFeature {
             },
             {
               type: "string",
-              key: "subtitle",
+              key: "card_subtitle",
               displayer: "Subtitle",
               value: "Case study"
             },
             {
               type: "string",
-              key: "title",
+              key: "card_title",
               displayer: "Title",
               value: "AI Maid Help Case Study"
             },
             {
               type: "string",
-              key: "description",
+              key: "card_description",
               displayer: "Description",
               value: "Here's how ElasticScale improved the infrastructure quality for AI Maid Help without increasing costs."
             },
@@ -423,19 +423,19 @@ class Feature10 extends BaseFeature {
             },
             {
               type: "string",
-              key: "subtitle",
+              key: "card_subtitle",
               displayer: "Subtitle",
               value: "Case study"
             },
             {
               type: "string",
-              key: "title",
+              key: "card_title",
               displayer: "Title",
               value: "AI Maid Help Case Study"
             },
             {
               type: "string",
-              key: "description",
+              key: "card_description",
               displayer: "Description",
               value: "Here's how ElasticScale improved the infrastructure quality for AI Maid Help without increasing costs."
             },
@@ -592,9 +592,9 @@ class Feature10 extends BaseFeature {
                 >
 
                   {cards.map((item: Card, index: number) => {
-                    const subtitleExist = !!this.castToString(item.subtitle);
-                    const titleExist = !!this.castToString(item.title);
-                    const descExist = !!this.castToString(item.description);
+                    const subtitleExist = !!this.castToString(item.card_subtitle);
+                    const titleExist = !!this.castToString(item.card_title);
+                    const descExist = !!this.castToString(item.card_description);
                     const stats = item.stats || [];
                     const hasStats = stats.length > 0;
 
@@ -618,17 +618,17 @@ class Feature10 extends BaseFeature {
                             <Base.VerticalContent className={this.decorateCSS("bottom")}>
                               {subtitleExist && (
                                 <Base.P className={this.decorateCSS("card-subtitle")}>
-                                  {item.subtitle}
+                                  {item.card_subtitle}
                                 </Base.P>
                               )}
                               {titleExist && (
                                 <Base.H5 className={this.decorateCSS("title")}>
-                                  {item.title}
+                                  {item.card_title}
                                 </Base.H5>
                               )}
                               {descExist && (
                                 <Base.P className={this.decorateCSS("description")}>
-                                  {item.description}
+                                  {item.card_description}
                                 </Base.P>
                               )}
                               {hasStats && <hr className={this.decorateCSS("card-divider")} />}

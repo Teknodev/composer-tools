@@ -19,11 +19,11 @@ type Button = {
 };
 
 type Card = {
-  title: React.JSX.Element;
-  subtitle: React.JSX.Element;
-  description: React.JSX.Element;
+  card_title: React.JSX.Element;
+  card_subtitle: React.JSX.Element;
+  card_description: React.JSX.Element;
   icon: TypeMediaInputValue;
-  buttons: Button[];
+  card_buttons: Button[];
 };
 
 class Feature3 extends BaseFeature {
@@ -79,13 +79,13 @@ class Feature3 extends BaseFeature {
           value: [
             {
               type: "string",
-              key: "subtitle",
+              key: "card_subtitle",
               displayer: "Card Subtitle",
               value: "",
             },
             {
               type: "string",
-              key: "title",
+              key: "card_title",
               displayer: "Card Title",
               value: "Search Engine Optimization",
             },
@@ -103,13 +103,13 @@ class Feature3 extends BaseFeature {
             },
             {
               type: "string",
-              key: "description",
+              key: "card_description",
               displayer: "Card Description",
               value: "",
             },
             {
               type: "array",
-              key: "buttons",
+              key: "card_buttons",
               displayer: "Buttons",
               value: [
                 INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
@@ -124,13 +124,13 @@ class Feature3 extends BaseFeature {
           value: [
             {
               type: "string",
-              key: "subtitle",
+              key: "card_subtitle",
               displayer: "Card Subtitle",
               value: "",
             },
             {
               type: "string",
-              key: "title",
+              key: "card_title",
               displayer: "Card Title",
               value: "Marketing & Advertisement",
             },
@@ -148,13 +148,13 @@ class Feature3 extends BaseFeature {
             },
             {
               type: "string",
-              key: "description",
+              key: "card_description",
               displayer: "Card Description",
               value: "",
             },
             {
               type: "array",
-              key: "buttons",
+              key: "card_buttons",
               displayer: "Buttons",
               value: [
                 INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
@@ -169,13 +169,13 @@ class Feature3 extends BaseFeature {
           value: [
             {
               type: "string",
-              key: "subtitle",
+              key: "card_subtitle",
               displayer: "Card Subtitle",
               value: "",
             },
             {
               type: "string",
-              key: "title",
+              key: "card_title",
               displayer: "Card Title",
               value: "Reporting & Analysis",
             },
@@ -193,13 +193,13 @@ class Feature3 extends BaseFeature {
             },
             {
               type: "string",
-              key: "description",
+              key: "card_description",
               displayer: "Card Description",
               value: "",
             },
             {
               type: "array",
-              key: "buttons",
+              key: "card_buttons",
               displayer: "Buttons",
               value: [
                 INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
@@ -495,11 +495,11 @@ class Feature3 extends BaseFeature {
                     `}
                   >
                     {cards.map((card: Card, index: number) => {
-                      const titleExist = !!this.castToString(card.title);
-                      const subtitleExist = !!this.castToString(card.subtitle);
-                      const descExist = !!this.castToString(card.description);
+                      const titleExist = !!this.castToString(card.card_title);
+                      const subtitleExist = !!this.castToString(card.card_subtitle);
+                      const descExist = !!this.castToString(card.card_description);
                       const iconExist = !!(card.icon && (card.icon.type === "icon" ? card.icon.name : card.icon.url));
-                      const cardButtons = card.buttons || [];
+                      const cardButtons = card.card_buttons || [];
                       const hasCardButton = cardButtons.some((btn: Button) => {
                         const btnText = this.castToString(btn.text);
                         const btnIconExist = btn.icon && (btn.icon.type === "icon" ? btn.icon.name : btn.icon.url);
@@ -519,17 +519,17 @@ class Feature3 extends BaseFeature {
                             )}
                             {subtitleExist && (
                               <Base.H6 className={this.decorateCSS("card-subtitle")}>
-                                {card.subtitle}
+                                {card.card_subtitle}
                               </Base.H6>
                             )}
                             {titleExist && (
                               <Base.H5 className={this.decorateCSS("card-title")}>
-                                {card.title}
+                                {card.card_title}
                               </Base.H5>
                             )}
                             {descExist && (
                               <Base.P className={this.decorateCSS("card-description")}>
-                                {card.description}
+                                {card.card_description}
                               </Base.P>
                             )}
                             {hasCardButton && (

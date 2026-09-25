@@ -5,7 +5,7 @@ import { BaseBreadcrumb, TypeMediaInputValue } from "../../EditorComponent";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 
 type BreadcrumbItem = {
-  title: JSX.Element;
+  item_title: JSX.Element;
   icon: TypeMediaInputValue;
   navigateTo: string;
 };
@@ -63,7 +63,7 @@ class Breadcrumb3 extends BaseBreadcrumb {
           value: [
             {
               type: "string",
-              key: "title",
+              key: "item_title",
               displayer: "Title",
               value: "Home",
             },
@@ -94,7 +94,7 @@ class Breadcrumb3 extends BaseBreadcrumb {
           value: [
             {
               type: "string",
-              key: "title",
+              key: "item_title",
               displayer: "Title",
               value: "About",
             },
@@ -186,7 +186,7 @@ class Breadcrumb3 extends BaseBreadcrumb {
             {isBreadcrumbVisible && (
               <div className={this.decorateCSS("breadcrumb-items")}>
                 {breadcrumbItems.map((item: BreadcrumbItem, index: number) => {
-                  const itemTitleExist = !!this.castToString(item.title);
+                  const itemTitleExist = !!this.castToString(item.item_title);
                   const itemIconExist = !!(item.icon && (item.icon.type === "icon" ? item.icon.name : item.icon.url));
                   if (!itemTitleExist && !itemIconExist) return null;
                   const isLast = index === breadcrumbItems.length - 1;
@@ -202,7 +202,7 @@ class Breadcrumb3 extends BaseBreadcrumb {
                           )}
                           {itemTitleExist && (
                             <Base.P className={this.decorateCSS("breadcrumb-title")}>
-                              {item.title}
+                              {item.item_title}
                             </Base.P>
                           )}
                         </div>

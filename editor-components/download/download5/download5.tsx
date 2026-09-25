@@ -5,7 +5,7 @@ import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "../../../custom-hooks/input-templates";
 
 type Background = {
-  media: TypeMediaInputValue;
+  media_media: TypeMediaInputValue;
   overlay: boolean;
 };
 
@@ -20,7 +20,7 @@ class Download5 extends BaseDownload {
       value: [
         {
           type: "media",
-          key: "media",
+          key: "media_media",
           displayer: "Media",
           additionalParams: {
             availableTypes: ["image", "video"],
@@ -81,7 +81,7 @@ class Download5 extends BaseDownload {
     const description = this.castToString(this.getPropValue("description"));
     const hasContent = subtitle || title || description;
     const background = this.castToObject<Background>("media");
-    const backgroundImage = background?.media;
+    const backgroundImage = background.media_media;
     const overlay = background?.overlay;
     const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
 

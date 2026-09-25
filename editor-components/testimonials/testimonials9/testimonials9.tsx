@@ -6,7 +6,7 @@ import ComposerSlider from "../../../composer-base-components/slider/slider";
 import { Base } from "../../../composer-base-components/base/base";
 type Card = {
   profileImage: TypeMediaInputValue;
-  title: React.JSX.Element;
+  slider_object_title: React.JSX.Element;
   subtitle: React.JSX.Element;
   description: React.JSX.Element;
 };
@@ -56,7 +56,7 @@ class Testimonials9Page extends Testimonials {
             },
             {
               type: "string",
-              key: "title",
+              key: "slider_object_title",
               value: "Thein N.",
               displayer: "Author Name",
             },
@@ -93,7 +93,7 @@ class Testimonials9Page extends Testimonials {
             },
             {
               type: "string",
-              key: "title",
+              key: "slider_object_title",
               value: "Bailey H.",
               displayer: "Author Name",
             },
@@ -130,7 +130,7 @@ class Testimonials9Page extends Testimonials {
             },
             {
               type: "string",
-              key: "title",
+              key: "slider_object_title",
               value: "Ashley S.",
               displayer: "Author Name",
             },
@@ -167,7 +167,7 @@ class Testimonials9Page extends Testimonials {
             },
             {
               type: "string",
-              key: "title",
+              key: "slider_object_title",
               value: "Tom H.",
               displayer: "Author Name",
             },
@@ -204,7 +204,7 @@ class Testimonials9Page extends Testimonials {
             },
             {
               type: "string",
-              key: "title",
+              key: "slider_object_title",
               value: "Ronald R.",
               displayer: "Author Name",
             },
@@ -241,7 +241,7 @@ class Testimonials9Page extends Testimonials {
             },
             {
               type: "string",
-              key: "title",
+              key: "slider_object_title",
               value: "Olivia D.",
               displayer: "Author Name",
             },
@@ -278,7 +278,7 @@ class Testimonials9Page extends Testimonials {
             },
             {
               type: "string",
-              key: "title",
+              key: "slider_object_title",
               value: "Sarah B.",
               displayer: "Author Name",
             },
@@ -315,7 +315,7 @@ class Testimonials9Page extends Testimonials {
             },
             {
               type: "string",
-              key: "title",
+              key: "slider_object_title",
               value: "Mary J.",
               displayer: "Author Name",
             },
@@ -377,9 +377,9 @@ class Testimonials9Page extends Testimonials {
                     return (
                       <div className={`${this.decorateCSS("card-inner")} ${activeIndex === index ? this.decorateCSS("active") : ""}`}>
                         {item.profileImage && <Base.Media value={item.profileImage} className={this.decorateCSS("img")} />}
-                        {(this.castToString(item.title) || this.castToString(item.subtitle)) && (
+                        {(this.castToString(item.slider_object_title) || this.castToString(item.subtitle)) && (
                           <Base.VerticalContent className={this.decorateCSS("text")}>
-                            {this.castToString(item.title) && <Base.H4 className={this.decorateCSS("title")}>{item.title}</Base.H4>}
+                            {this.castToString(item.slider_object_title) && <Base.H4 className={this.decorateCSS("title")}>{item.slider_object_title}</Base.H4>}
                             {this.castToString(item.subtitle) && <Base.H5 className={this.decorateCSS("subtitle")}>{item.subtitle}</Base.H5>}
                           </Base.VerticalContent>
                         )}

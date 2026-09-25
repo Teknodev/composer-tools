@@ -9,10 +9,10 @@ type CardButton = INPUTS.CastedButton;
 
 type ListItem = {
   icon: TypeMediaInputValue;
-  subtitle: JSX.Element;
-  description: JSX.Element;
-  title: JSX.Element;
-  buttons: INPUTS.CastedButton[];
+  list_item_subtitle: JSX.Element;
+  list_item_description: JSX.Element;
+  list_item_title: JSX.Element;
+  list_item_buttons: INPUTS.CastedButton[];
 };
 
 class List7 extends BaseList {
@@ -71,26 +71,26 @@ class List7 extends BaseList {
             },
             {
               type: "string",
-              key: "subtitle",
+              key: "list_item_subtitle",
               displayer: "Subtitle",
               value: "",
             },
             {
               type: "string",
-              key: "title",
+              key: "list_item_title",
               displayer: "Title",
               value: "Contagious Energy",
             },
             {
               type: "string",
-              key: "description",
+              key: "list_item_description",
               displayer: "Description",
               value:
                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
             },
             {
               type: "array",
-              key: "buttons",
+              key: "list_item_buttons",
               displayer: "Buttons",
               value: [
                 INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
@@ -117,26 +117,26 @@ class List7 extends BaseList {
             },
             {
               type: "string",
-              key: "subtitle",
+              key: "list_item_subtitle",
               displayer: "Subtitle",
               value: "",
             },
             {
               type: "string",
-              key: "title",
+              key: "list_item_title",
               displayer: "Title",
               value: "Contagious Energy",
             },
             {
               type: "string",
-              key: "description",
+              key: "list_item_description",
               displayer: "Description",
               value:
                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
             },
             {
               type: "array",
-              key: "buttons",
+              key: "list_item_buttons",
               displayer: "Buttons",
               value: [
                 INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
@@ -163,26 +163,26 @@ class List7 extends BaseList {
             },
             {
               type: "string",
-              key: "subtitle",
+              key: "list_item_subtitle",
               displayer: "Subtitle",
               value: "",
             },
             {
               type: "string",
-              key: "title",
+              key: "list_item_title",
               displayer: "Title",
               value: "Contagious Energy",
             },
             {
               type: "string",
-              key: "description",
+              key: "list_item_description",
               displayer: "Description",
               value:
                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
             },
             {
               type: "array",
-              key: "buttons",
+              key: "list_item_buttons",
               displayer: "Buttons",
               value: [
                 INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
@@ -296,11 +296,11 @@ class List7 extends BaseList {
                 gridCount={{ pc: itemCount, tablet: 3, phone: 1 }}
               >
                 {listItems.map((item: ListItem, index: number) => {
-                  const itemTitleExist = this.castToString(item.title);
-                  const itemDescriptionExist = this.castToString(item.description);
-                  const itemSubtitleExist = this.castToString(item.subtitle);
+                  const itemTitleExist = this.castToString(item.list_item_title);
+                  const itemDescriptionExist = this.castToString(item.list_item_description);
+                  const itemSubtitleExist = this.castToString(item.list_item_subtitle);
                   const iconExist = item.icon && (item.icon.name || item.icon.url);
-                  const cardButtons = item.buttons || [];
+                  const cardButtons = item.list_item_buttons || [];
                   const hasValidCardButtons = cardButtons.some((btn: INPUTS.CastedButton) => this.castToString(btn.text) || (btn.icon && btn.icon.name));
 
                   if (!itemTitleExist && !itemDescriptionExist && !cardNumber) return null;
@@ -325,17 +325,17 @@ class List7 extends BaseList {
                         )}
                         {itemSubtitleExist && (
                           <Base.H6 className={this.decorateCSS("item-subtitle")}>
-                            {item.subtitle}
+                            {item.list_item_subtitle}
                           </Base.H6>
                         )}
                         {itemTitleExist && (
                           <Base.H5 className={this.decorateCSS("item-title")}>
-                            {item.title}
+                            {item.list_item_title}
                           </Base.H5>
                         )}
                         {itemDescriptionExist && (
                           <Base.P className={this.decorateCSS("item-description")}>
-                            {item.description}
+                            {item.list_item_description}
                           </Base.P>
                         )}
                         {hasValidCardButtons && (

@@ -12,9 +12,9 @@ type ButtonTypeObj = {
 }
 
 type Card = {
-    subtitle: React.JSX.Element;
-    title: React.JSX.Element;
-    description: React.JSX.Element;
+    card_subtitle: React.JSX.Element;
+    card_title: React.JSX.Element;
+    card_description: React.JSX.Element;
     button: ButtonTypeObj;
 };
 
@@ -55,19 +55,19 @@ class Feature35 extends BaseFeature {
                     value: [
                         {
                             type: "string",
-                            key: "subtitle",
+                            key: "card_subtitle",
                             displayer: "Card Subtitle",
                             value: "",
                         },
                         {
                             type: "string",
-                            key: "title",
+                            key: "card_title",
                             displayer: "Title",
                             value: "Modern Design",
                         },
                         {
                             type: "string",
-                            key: "description",
+                            key: "card_description",
                             displayer: "Description",
                             value: "Imagination is more important than knowledge. Knowledge is limited. Imagination encircles the world.",
                         },
@@ -81,19 +81,19 @@ class Feature35 extends BaseFeature {
                     value: [
                         {
                             type: "string",
-                            key: "subtitle",
+                            key: "card_subtitle",
                             displayer: "Card Subtitle",
                             value: "",
                         },
                         {
                             type: "string",
-                            key: "title",
+                            key: "card_title",
                             displayer: "Title",
                             value: "High Quality",
                         },
                         {
                             type: "string",
-                            key: "description",
+                            key: "card_description",
                             displayer: "Description",
                             value: "Imagination is more important than knowledge. Knowledge is limited. Imagination encircles the world.",
                         },
@@ -107,19 +107,19 @@ class Feature35 extends BaseFeature {
                     value: [
                         {
                             type: "string",
-                            key: "subtitle",
+                            key: "card_subtitle",
                             displayer: "Card Subtitle",
                             value: "",
                         },
                         {
                             type: "string",
-                            key: "title",
+                            key: "card_title",
                             displayer: "Title",
                             value: "Free Test-Drive",
                         },
                         {
                             type: "string",
-                            key: "description",
+                            key: "card_description",
                             displayer: "Description",
                             value: "Imagination is more important than knowledge. Knowledge is limited. Imagination encircles the world.",
                         },
@@ -172,16 +172,16 @@ class Feature35 extends BaseFeature {
                             {cards?.length > 0 && (
                                 <Base.ListGrid ref={this.cardsRootRef} gridCount={{ pc: this.getPropValue("itemCount") || 3, tablet: 3, phone: 1 }} className={this.decorateCSS("cards-container")}>
                                     {cards.map((card: Card) => {
-                                        const cardSubtitleExist = this.castToString(card.subtitle);
-                                        const titleExist = this.castToString(card.title);
-                                        const descExist = this.castToString(card.description);
+                                        const cardSubtitleExist = this.castToString(card.card_subtitle);
+                                        const titleExist = this.castToString(card.card_title);
+                                        const descExist = this.castToString(card.card_description);
                                         const btnTextExist = this.castToString(card.button.text);
                                         const cardExist = cardSubtitleExist || titleExist || descExist || btnTextExist;
                                         return cardExist && (
                                             <Base.Card className={this.decorateCSS("card")}>
-                                                {cardSubtitleExist && (<Base.H6 className={this.decorateCSS("card-subtitle")}>{card.subtitle}</Base.H6>)}
-                                                {titleExist && (<Base.H5 className={this.decorateCSS("card-title")}>{card.title}</Base.H5>)}
-                                                {descExist && (<Base.P className={this.decorateCSS("card-description")}>{card.description}</Base.P>)}
+                                                {cardSubtitleExist && (<Base.H6 className={this.decorateCSS("card-subtitle")}>{card.card_subtitle}</Base.H6>)}
+                                                {titleExist && (<Base.H5 className={this.decorateCSS("card-title")}>{card.card_title}</Base.H5>)}
+                                                {descExist && (<Base.P className={this.decorateCSS("card-description")}>{card.card_description}</Base.P>)}
                                                 {btnTextExist && (<ComposerLink path={card.button.url}><Base.Button buttonType={card.button.type} className={this.decorateCSS("card-button")} ><Base.P className={this.decorateCSS("button-text")}> {card.button.text} </Base.P></Base.Button></ComposerLink>)}
                                             </Base.Card>
                                         );

@@ -6,7 +6,7 @@ import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "../../../custom-hooks/input-templates";
 
 type Feature = {
-  title: React.JSX.Element;
+  feature_title: React.JSX.Element;
   iconFeature: TypeMediaInputValue;
 };
 
@@ -79,7 +79,7 @@ class Feature7 extends BaseFeature {
           value: [
             {
               type: "string",
-              key: "title",
+              key: "feature_title",
               displayer: "Text",
               value: "Amazing communication.",
             },
@@ -104,7 +104,7 @@ class Feature7 extends BaseFeature {
           value: [
             {
               type: "string",
-              key: "title",
+              key: "feature_title",
               displayer: "Text",
               value: "Best trending designing experience.",
             },
@@ -129,7 +129,7 @@ class Feature7 extends BaseFeature {
           value: [
             {
               type: "string",
-              key: "title",
+              key: "feature_title",
               displayer: "Text",
               value: "Email & Live chat.",
             },
@@ -220,7 +220,7 @@ class Feature7 extends BaseFeature {
                     {(this.getPropValue("features").length > 0) && (
                       <Base.Row className={this.decorateCSS("featuresList")}>
                         {features.map((item: Feature, index: number) => {
-                          const titleExist = !!this.castToString(item.title);
+                          const titleExist = !!this.castToString(item.feature_title);
 
                           if (!titleExist && !item.iconFeature) return null;
 
@@ -236,7 +236,7 @@ class Feature7 extends BaseFeature {
                               )}
                               {titleExist && (
                                 <Base.H6 className={this.decorateCSS("featureTitle")}>
-                                  {item.title}
+                                  {item.feature_title}
                                 </Base.H6>
                               )}
                             </div>
