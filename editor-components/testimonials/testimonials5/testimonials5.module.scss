@@ -209,9 +209,9 @@
               color: var(--composer-html-background);
 
               .star {
-                font-size: 1.25rem;
-                width: 1.25rem;
-                height: 1.25rem;
+                font-size: 1.5rem;
+                width: 1.5rem;
+                height: 1.5rem;
                 object-fit: contain;
               }
             }
@@ -338,6 +338,14 @@
             .description {
               font-size: 1.375rem !important;
             }
+
+            .stars {
+              .star {
+                font-size: 1.25rem !important;
+                width: 1.25rem !important;
+                height: 1.25rem !important;
+              }
+            }
           }
         }
       }
@@ -364,6 +372,12 @@
               .prevArrow,
               .nextArrow {
                 padding: var(--composer-gap-sm) !important;
+
+                .icon {
+                  width: calc(1.5 * var(--composer-font-size-md));
+                  height: calc(1.5 * var(--composer-font-size-md));
+                  font-size: calc(1.5 * var(--composer-font-size-md));
+                }
               }
             }
           }
@@ -401,6 +415,10 @@
               align-self: flex-start;
             }
 
+            .sliderTitle {
+              font-size: calc(1.25 * var(--composer-font-size-md)) !important;
+            }
+
             .sliderTitle,
             .sliderPosition {
               writing-mode: unset;
@@ -421,52 +439,60 @@
               .description {
                 font-size: calc(1 * var(--composer-font-size-md)) !important;
               }
+
+              .stars {
+                padding: calc(1.5 * var(--composer-gap-xs)) var(--composer-gap-md);
+
+                .star {
+                  font-size: 1.125rem !important;
+                  width: 1.125rem !important;
+                  height: 1.125rem !important;
+                }
+              }
             }
           }
         }
       }
     }
 
-    &.center {
-      .maxContent {
-        .containerGrid {
-          .leftContainer {
-            .leftContainerText {
-              align-items: center !important;
+    .maxContent {
+      .containerGrid {
+        .leftContainer {
+          .leftContainerText {
+            align-items: center !important;
+            text-align: center !important;
+
+            .subtitle,
+            .title,
+            .top-description {
               text-align: center !important;
+              justify-content: center !important;
+            }
 
-              .subtitle,
-              .title,
-              .top-description {
-                text-align: center !important;
-                justify-content: center !important;
-              }
-
-              .button-container {
-                justify-content: center;
-              }
+            .button-container {
+              justify-content: center;
             }
           }
+        }
 
-          .slider {
-            .rightWrapper {
-              .authorContainer {
-                align-items: center;
-                align-self: center;
-              }
+        .slider {
+          .rightWrapper {
+            .authorContainer {
+              align-items: center;
+              align-self: center;
+            }
 
-              .sliderTitle,
-              .sliderPosition {
-                text-align: center;
-                align-self: center;
-              }
+            .sliderTitle,
+            .sliderPosition {
+              text-align: center;
+              align-self: center;
+            }
 
-              .rightContainer {
-                align-items: center;
+            .rightContainer {
+              align-items: center;
 
-                .description {
-                  text-align: center !important;
-                }
+              .description {
+                text-align: center !important;
               }
             }
           }

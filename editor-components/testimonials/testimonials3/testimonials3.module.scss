@@ -136,6 +136,12 @@
       .card-container {
         .card {
           content: "";
+
+          .author-container {
+            .author-image:not(.author-image-icon) {
+              width: 75%;
+            }
+          }
         }
       }
     }
@@ -150,6 +156,12 @@
       .card-container {
         .card {
           content: "";
+
+          .author-container {
+            .author-image:not(.author-image-icon) {
+              width: 60%;
+            }
+          }
         }
       }
     }
