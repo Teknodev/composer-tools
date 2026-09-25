@@ -21,6 +21,9 @@
       transition: transform 0.5s;
 
       .team {
+        display: flex;
+        flex-direction: column;
+        gap: var(--composer-gap-sm);
         height: 100%;
         box-shadow: var(--box-shadow-active);
         background-color: color-mix(in srgb,

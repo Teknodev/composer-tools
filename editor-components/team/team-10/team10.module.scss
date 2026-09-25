@@ -296,6 +296,14 @@
 
           .features-wrapper {
             gap: var(--composer-gap-md);
+
+            .features {
+              .feature-subtitle,
+              .feature-title,
+              .feature-description {
+                font-size: 10px !important;
+              }
+            }
           }
         }
 
