@@ -222,7 +222,9 @@ export type TypeLocation = {
 };
 
 export type TypeMediaInputValue =
-  | { type: "image"; url: string }
+  // `alt` is what the ALT field in the media popover stores (COMP-1256); the
+  // renderer reads it back so a described image is described on the page too.
+  | { type: "image"; url: string; alt?: string }
   | { type: "icon"; name: string }
   | {
     type: "lottie";

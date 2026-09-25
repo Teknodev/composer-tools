@@ -717,7 +717,7 @@ export namespace Base {
         if (getTextOnly()) {
           return (
             <span className={`${styles.themeCover} ${className ?? ""}`} {...props}>
-              <img className={styles.themeCoverImage} src={value.url} alt="" />
+              <img className={styles.themeCoverImage} src={value.url} alt={value.alt ?? ""} />
               <span
                 className={`${styles.themeCoverLayer} ${styles[`themeCoverLayer${themeCoverVariant(value.url)}`]}`}
                 aria-hidden="true"
@@ -729,7 +729,10 @@ export namespace Base {
           <img
             className={className}
             src={value.url}
-            alt=""
+            // The ALT the user typed in the media popover was stored and then
+            // thrown away here, so every published image was announced as
+            // decorative no matter what they wrote.
+            alt={value.alt ?? ""}
             {...props}
           />
         );
