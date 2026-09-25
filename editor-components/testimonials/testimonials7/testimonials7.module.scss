@@ -263,8 +263,9 @@ $ref-arrow-color: #ffffff;
 
     .max-content {
       .testimonials7 {
-        min-width: 35%;
-        max-width: 60%;
+        min-width: 55%;
+        max-width: 70%;
+        padding: var(--composer-gap-xl);
 
         .slider-wrapper {
           width: 100%;
@@ -284,7 +285,7 @@ $ref-arrow-color: #ffffff;
 
               .item-content {
                 .item-description {
-                  font-size: 1rem;
+                  font-size: calc(1.125 * var(--composer-font-size-md));
                 }
               }
             }
@@ -306,7 +307,8 @@ $ref-arrow-color: #ffffff;
       top: auto !important;
       left: auto !important;
       width: 100% !important;
-      height: 350px;
+      height: auto;
+      object-fit: contain;
       flex-shrink: 0;
       z-index: 0;
     }
