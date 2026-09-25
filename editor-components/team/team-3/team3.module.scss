@@ -223,11 +223,29 @@
           color: var(--composer-font-color-primary);
           text-align: left;
           font-weight: 800;
+          font-size: calc(1.25 * var(--composer-font-size-md));
+
+          @container (max-width: #{$composer-tablet-width}) {
+            font-size: calc(1.125 * var(--composer-font-size-md)) !important;
+          }
+
+          @container (max-width: #{$composer-phone-width}) {
+            font-size: calc(1 * var(--composer-font-size-md)) !important;
+          }
         }
 
         .card-position {
           color: var(--composer-primary-color);
           text-align: left;
+          font-size: calc(1 * var(--composer-font-size-md));
+
+          @container (max-width: #{$composer-tablet-width}) {
+            font-size: calc(0.9375 * var(--composer-font-size-md)) !important;
+          }
+
+          @container (max-width: #{$composer-phone-width}) {
+            font-size: calc(0.875 * var(--composer-font-size-md)) !important;
+          }
         }
 
         .card-description {
@@ -308,40 +326,46 @@
     }
   }
 
-  @container (max-width: #{$composer-phone-width}) {
-    .container {
-      .max-content {
-        .page {
-          .down-page {
-            .all-card {
-              .card {
-                margin-left: var(--composer-gap-md);
+}
 
-                .card-items {
-                  .card-content {
-                    .image-container {
-                      .image {
-                        margin-left: var(--composer-gap-md);
-                      }
-                    }
-
-                    .box-text {
-                      padding: 0 var(--composer-gap-lg);
-                    }
-
-                    .icon-group {
-                      gap: var(--composer-gap-xs) !important;
-                      margin-top: var(--composer-gap-md) !important;
-
-                      .icon {
-                        width: var(--composer-gap-md) !important;
-                        height: var(--composer-gap-md) !important;
-                      }
-                    }
-                  }
-                }
-              }
+@container (max-width: #{$composer-phone-width}) {
+  .container {
+    .max-content {
+      .down-page {
+        .all-card {
+          .card {
+            &.card-image {
+              margin-left: 0;
             }
+          }
+
+          .card-content {
+            margin-left: 0;
+            flex-direction: column;
+            align-items: center;
+            gap: var(--composer-gap-md);
+          }
+
+          .image-container {
+            flex: none;
+            width: 70%;
+            aspect-ratio: 260 / 278;
+          }
+
+          .box-text {
+            flex: none;
+            width: 100%;
+            align-items: center;
+          }
+
+          .card-name,
+          .card-position,
+          .card-description {
+            text-align: center;
+          }
+
+          .icon-group {
+            justify-content: center;
           }
         }
       }

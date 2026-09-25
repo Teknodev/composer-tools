@@ -95,7 +95,7 @@ class Team1 extends Team {
               type: "string",
               key: "cardDescription",
               displayer: "Description",
-              value: "We are a group of experienced professionals with diverse backgrounds and skill sets, working together to achieve common goals.",
+              value: "Experienced professionals with diverse skills, working together toward common goals.",
             },
             {
               type: "array",
@@ -236,7 +236,7 @@ class Team1 extends Team {
               type: "string",
               key: "cardDescription",
               displayer: "Description",
-              value: "Their design skills are truly exceptional, and they have a keen eye for aesthetics that sets them apart from others in the field.",
+              value: "Exceptional design skills and a keen eye for aesthetics that stand out in the field.",
             },
             {
               type: "array",
@@ -377,7 +377,7 @@ class Team1 extends Team {
               type: "string",
               key: "cardDescription",
               displayer: "Description",
-              value: "An online learning platform can provide access to educational content from anywhere with an internet connection.",
+              value: "Makes educational content accessible from anywhere with an internet connection.",
             },
             {
               type: "array",
@@ -518,7 +518,7 @@ class Team1 extends Team {
               type: "string",
               key: "cardDescription",
               displayer: "Description",
-              value: "A personal finance website can be incredibly helpful for people looking to improve their financial literacy and manage their money better.",
+              value: "Helps people improve their financial literacy and manage their money better.",
             },
             {
               type: "array",

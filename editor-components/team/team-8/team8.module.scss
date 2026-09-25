@@ -158,6 +158,10 @@
                 .card-subtitle {
                   text-align: center;
 
+                  @container (max-width: #{$composer-tablet-width}) {
+                    font-size: calc(1.125 * var(--composer-font-size-md)) !important;
+                  }
+
                   &.image {
                     color: white;
                   }

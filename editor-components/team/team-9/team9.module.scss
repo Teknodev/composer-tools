@@ -19,7 +19,7 @@
     .slider {
       .card {
         flex-direction: column-reverse;
-        gap: var(--composer-gap-sm);
+        gap: calc(var(--composer-gap-xl) + var(--composer-gap-xs));
         align-items: flex-start;
 
         .image-container {
@@ -278,7 +278,7 @@
 
         .card {
           display: flex !important;
-          gap: var(--composer-gap-md) !important;
+          gap: calc(var(--composer-gap-xl) + var(--composer-gap-xs)) !important;
 
           .image-container {
             .person-image {

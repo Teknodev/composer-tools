@@ -625,192 +625,6 @@ class Team15 extends Team {
             },
           ],
         },
-        {
-          type: "object",
-          key: "card",
-          displayer: "Card",
-          value: [
-            {
-              type: "media",
-              key: "profileImage",
-              displayer: "Media",
-              additionalParams: {
-                availableTypes: ["image", "video"],
-              },
-              value: {
-                type: "image",
-                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6727b8527acba6002c5dfa3e?alt=media&timestamp=1730656339472",
-              },
-            },
-            {
-              type: "boolean",
-              key: "overlay",
-              displayer: "Overlay",
-              value: false,
-            },
-            {
-              type: "string",
-              key: "name",
-              displayer: "Person Name",
-              value: '<p dir="ltr"><span style="white-space: pre-wrap;">John </span></p><p dir="ltr"><span style="white-space: pre-wrap;">Arlnoald</span></p>',
-            },
-            {
-              type: "string",
-              key: "position",
-              displayer: "Position",
-              value: "- Counselor",
-            },
-            {
-              type: "string",
-              key: "cardDescription",
-              displayer: "Description",
-              value: "",
-            },
-            {
-              type: "media",
-              key: "contactIcon",
-              displayer: "Contact Icon",
-              additionalParams: {
-                availableTypes: ["icon", "image"],
-              },
-              value: {
-                type: "icon",
-                name: "IoMdMail",
-              },
-            },
-            {
-              type: "page",
-              key: "contactIconUrl",
-              displayer: "Navigate To",
-              value: "",
-            },
-            {
-              type: "media",
-              key: "shareIcon",
-              displayer: "Share Icon",
-              additionalParams: {
-                availableTypes: ["icon", "image"],
-              },
-              value: {
-                type: "icon",
-                name: "IoMdShare",
-              },
-            },
-            {
-              type: "page",
-              key: "shareIconUrl",
-              displayer: "Navigate To",
-              value: "",
-            },
-            {
-              type: "array",
-              key: "socials",
-              displayer: "Social Media",
-              value: [
-                {
-                  type: "object",
-                  key: "social",
-                  displayer: "Social",
-                  value: [
-                    {
-                      type: "media",
-                      key: "icon",
-                      additionalParams: {
-                        availableTypes: ["icon", "image"],
-                      },
-                      value: {
-                        type: "icon",
-                        name: "FaFacebookSquare"
-                      },
-                      displayer: "Icon",
-                    },
-                    {
-                      type: "page",
-                      key: "url",
-                      displayer: "Navigate To",
-                      value: "",
-                    },
-                  ],
-                },
-                {
-                  type: "object",
-                  key: "social",
-                  displayer: "Social",
-                  value: [
-                    {
-                      type: "media",
-                      key: "icon",
-                      additionalParams: {
-                        availableTypes: ["icon", "image"],
-                      },
-                      value: {
-                        type: "icon",
-                        name: "FaTwitterSquare"
-                      },
-                      displayer: "Icon",
-                    },
-                    {
-                      type: "page",
-                      key: "url",
-                      displayer: "Navigate To",
-                      value: "",
-                    },
-                  ],
-                },
-                {
-                  type: "object",
-                  key: "social",
-                  displayer: "Social",
-                  value: [
-                    {
-                      type: "media",
-                      key: "icon",
-                      additionalParams: {
-                        availableTypes: ["icon", "image"],
-                      },
-                      value: {
-                        type: "icon",
-                        name: "FaInstagram"
-                      },
-                      displayer: "Icon",
-                    },
-                    {
-                      type: "page",
-                      key: "url",
-                      displayer: "Navigate To",
-                      value: "",
-                    },
-                  ],
-                },
-                {
-                  type: "object",
-                  key: "social",
-                  displayer: "Social",
-                  value: [
-                    {
-                      type: "media",
-                      key: "icon",
-                      additionalParams: {
-                        availableTypes: ["icon", "image"],
-                      },
-                      value: {
-                        type: "icon",
-                        name: "FaLinkedin"
-                      },
-                      displayer: "Icon",
-                    },
-                    {
-                      type: "page",
-                      key: "url",
-                      displayer: "Navigate To",
-                      value: "",
-                    },
-                  ],
-                },
-              ],
-            },
-          ],
-        },
       ],
     });
 
@@ -825,7 +639,7 @@ class Team15 extends Team {
       type: "number",
       key: "itemCount",
       displayer: "Item Count In a Row",
-      value: 4,
+      value: 3,
     });
 
     this.addProp({
@@ -861,7 +675,7 @@ class Team15 extends Team {
               {description && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
             </Base.VerticalContent>
           )}
-          <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount"), tablet: 4, phone: 1 }} className={this.decorateCSS("cards-box")}>
+          <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount"), tablet: 3, phone: 1 }} className={this.decorateCSS("cards-box")}>
             {(this.castToObject<Card[]>("cards") || []).map((card: Card, index: number) => {
               const profileImage = card.profileImage;
               const nameExists = this.castToString(card.name);

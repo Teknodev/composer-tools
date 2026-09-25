@@ -115,6 +115,15 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
           .card-name {
             color: var(--composer-font-color-primary);
             text-align: left;
+            font-size: calc(1.75 * var(--composer-font-size-md));
+
+            @container (max-width: #{$composer-tablet-width}) {
+              font-size: calc(1.375 * var(--composer-font-size-md)) !important;
+            }
+
+            @container (max-width: #{$composer-phone-width}) {
+              font-size: calc(1.25 * var(--composer-font-size-md)) !important;
+            }
           }
 
           .card-position {
@@ -124,6 +133,15 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
             color: var(--composer-tertiary-color);
             padding: var(--composer-gap-xs) var(--composer-gap-sm);
             text-align: left;
+            font-size: calc(0.875 * var(--composer-font-size-md));
+
+            @container (max-width: #{$composer-tablet-width}) {
+              font-size: calc(0.875 * var(--composer-font-size-md)) !important;
+            }
+
+            @container (max-width: #{$composer-phone-width}) {
+              font-size: calc(0.875 * var(--composer-font-size-md)) !important;
+            }
             margin-left: 0;
           }
 

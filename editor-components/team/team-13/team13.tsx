@@ -348,7 +348,7 @@ class Team13 extends Team {
                       {this.getPropValue("overlay") && <div className={this.decorateCSS("overlay")} />}
                     </div>
                   )}
-                  {nameExist && <Base.H6 className={this.decorateCSS("name")}>{card.name}</Base.H6>}
+                  {nameExist && <Base.P className={this.decorateCSS("name")}>{card.name}</Base.P>}
                   {positionExist && <Base.P className={this.decorateCSS("position")}>{card.position}</Base.P>}
                   {cardDescriptionExist && <Base.P className={this.decorateCSS("card-description")}>{card.cardDescription}</Base.P>}
                 </Base.VerticalContent>

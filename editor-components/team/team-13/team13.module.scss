@@ -217,6 +217,15 @@
           .name {
             color: var(--composer-font-color-primary);
             text-align: left;
+            font-size: calc(1.25 * var(--composer-font-size-md));
+
+            @container (max-width: #{$composer-tablet-width}) {
+              font-size: calc(1.125 * var(--composer-font-size-md)) !important;
+            }
+
+            @container (max-width: #{$composer-phone-width}) {
+              font-size: calc(1 * var(--composer-font-size-md)) !important;
+            }
           }
 
           .position {
