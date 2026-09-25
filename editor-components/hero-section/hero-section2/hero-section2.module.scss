@@ -29,11 +29,11 @@
   padding: 0px var(--composer-gap-xl) 80px var(--composer-gap-xl) !important;
   .max-content {
     .slider {
-      height: 43vw;
       overflow: hidden;
 
       .slider-item-container {
-        height: 40vw;
+        aspect-ratio: 1340 / 576;
+        height: auto !important;
       }
 
       div {
@@ -79,7 +79,6 @@
         z-index: 2;
         .card {
           height: auto !important;
-          bottom: var(--composer-gap-xl);
           width: 30%;
           position: absolute;
           right: 100px;
@@ -207,6 +206,7 @@
 
 
 .dots {
+  position: static !important;
   display: flex !important;
   justify-content: center;
   align-items: center;
@@ -245,11 +245,33 @@
     padding: 0px var(--composer-gap-lg) 80px var(--composer-gap-lg) !important;
     .max-content {
       .slider {
+        .slider-item-container {
+          aspect-ratio: auto;
+          min-height: calc(100cqw * 576 / 1340);
+        }
+
         .content-max-width {
+          display: flex;
+          justify-content: flex-end;
+          align-items: center;
+          min-height: calc(100cqw * 576 / 1340);
+          padding: var(--composer-gap-xl) var(--composer-gap-lg);
+          box-sizing: border-box;
+
           .card {
-            right: 40px;
+            position: relative;
+            top: unset;
+            right: unset;
+            transform: unset;
             max-width: 50%;
-            width: 35%;
+            width: 50%;
+
+            .date-author {
+              .author,
+              .date {
+                font-size: 0.75rem !important;
+              }
+            }
           }
         }
       }
@@ -269,21 +291,23 @@
           display: flex !important;
           flex-direction: column !important;
           height: auto !important;
+          min-height: unset;
           background-color: var(--composer-html-background) !important;
           position: relative;
           
           .background-image {
             position: static !important;
             width: 100%;
-            height: 35vw;
+            height: auto !important;
+            aspect-ratio: 3 / 2;
             object-fit: cover;
             flex-shrink: 0;
             order: -1;
             border-radius: 0 0 var(--composer-border-radius-md) var(--composer-border-radius-md);
-            
+
             video {
               width: 100%;
-              height: 35vw;
+              height: 100%;
               object-fit: cover;
             }
           }
@@ -296,6 +320,9 @@
         .content-max-width {
           position: static !important;
           width: 100% !important;
+          display: block;
+          min-height: unset;
+          padding: 0;
           order: 1;
           
           .card {
