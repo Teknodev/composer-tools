@@ -5,8 +5,8 @@ import { Base } from "../../../composer-base-components/base/base";
 
 type Card = {
   icon: TypeMediaInputValue;
-  title: React.JSX.Element;
-  description: React.JSX.Element;
+  card_title: React.JSX.Element;
+  card_description: React.JSX.Element;
 };
 
 class Feature8 extends BaseFeature {
@@ -69,13 +69,13 @@ class Feature8 extends BaseFeature {
             },
             {
               type: "string",
-              key: "title",
+              key: "card_title",
               displayer: "Title",
               value: "Non-visual Curation",
             },
             {
               type: "string",
-              key: "description",
+              key: "card_description",
               displayer: "Description",
               value: "Manually curating your collections feels like doing your taxes.",
             },
@@ -100,13 +100,13 @@ class Feature8 extends BaseFeature {
             },
             {
               type: "string",
-              key: "title",
+              key: "card_title",
               displayer: "Title",
               value: "Limited Sorting",
             },
             {
               type: "string",
-              key: "description",
+              key: "card_description",
               displayer: "Description",
               value: "It's too basic to sort your collections by 'New In' or 'Best Sellers'.",
             },
@@ -131,13 +131,13 @@ class Feature8 extends BaseFeature {
             },
             {
               type: "string",
-              key: "title",
+              key: "card_title",
               displayer: "Title",
               value: "Messy Data",
             },
             {
               type: "string",
-              key: "description",
+              key: "card_description",
               displayer: "Description",
               value: "You need 5 tabs open to take data-driven decisions from excel sheets.",
             },
@@ -162,13 +162,13 @@ class Feature8 extends BaseFeature {
             },
             {
               type: "string",
-              key: "title",
+              key: "card_title",
               displayer: "Title",
               value: "Non-visual Curation",
             },
             {
               type: "string",
-              key: "description",
+              key: "card_description",
               displayer: "Description",
               value: "Manually curating your collections feels like doing your taxes.",
             },
@@ -193,13 +193,13 @@ class Feature8 extends BaseFeature {
             },
             {
               type: "string",
-              key: "title",
+              key: "card_title",
               displayer: "Title",
               value: "Non-visual Curation",
             },
             {
               type: "string",
-              key: "description",
+              key: "card_description",
               displayer: "Description",
               value: "Manually curating your collections feels like doing your taxes.",
             },
@@ -436,8 +436,8 @@ class Feature8 extends BaseFeature {
           {cards?.length > 0 && (
             <Base.ListGrid ref={this.cardsRootRef} gridCount={{ pc: this.getPropValue("itemCount") || 5, tablet: 3 }} className={this.decorateCSS("cards-container")}>
               {cards.map((card: Card) => {
-                const titleExist = this.castToString(card.title);
-                const descExist = this.castToString(card.description);
+                const titleExist = this.castToString(card.card_title);
+                const descExist = this.castToString(card.card_description);
 
                 const cardExist = titleExist || descExist || card.icon;
 
@@ -451,12 +451,12 @@ class Feature8 extends BaseFeature {
                     )}
                     {titleExist && (
                       <Base.H3 className={this.decorateCSS("title")}>
-                        {card.title}
+                        {card.card_title}
                       </Base.H3>
                     )}
                     {descExist && (
                       <Base.P className={this.decorateCSS("description")}>
-                        {card.description}
+                        {card.card_description}
                       </Base.P>
                     )}
                   </Base.Card>

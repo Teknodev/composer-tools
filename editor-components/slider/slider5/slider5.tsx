@@ -27,7 +27,7 @@ type ReviewItem = {
 };
 
 type CategoryOrTag = {
-  title: React.JSX.Element;
+  section_title: React.JSX.Element;
   items: { category?: React.JSX.Element; tag?: React.JSX.Element }[];
 };
 
@@ -219,7 +219,7 @@ class Slider5 extends BaseSlider {
           value: [
             {
               type: "string",
-              key: "title",
+              key: "section_title",
               displayer: "Label",
               value: "SKU: ",
             },
@@ -252,7 +252,7 @@ class Slider5 extends BaseSlider {
           value: [
             {
               type: "string",
-              key: "title",
+              key: "section_title",
               displayer: "Label",
               value: "Categories: ",
             },
@@ -288,7 +288,7 @@ class Slider5 extends BaseSlider {
       value: [
         {
           type: "object",
-          key: "item",
+          key: "sliderItems_item",
           displayer: "Item",
           value: [
             {
@@ -315,7 +315,7 @@ class Slider5 extends BaseSlider {
         },
         {
           type: "object",
-          key: "item",
+          key: "sliderItems_item",
           displayer: "Item",
           value: [
             {
@@ -342,7 +342,7 @@ class Slider5 extends BaseSlider {
         },
         {
           type: "object",
-          key: "item",
+          key: "sliderItems_item",
           displayer: "Item",
           value: [
             {
@@ -369,7 +369,7 @@ class Slider5 extends BaseSlider {
         },
         {
           type: "object",
-          key: "item",
+          key: "sliderItems_item",
           displayer: "Item",
           value: [
             {
@@ -1112,9 +1112,9 @@ class Slider5 extends BaseSlider {
                     <div className={this.decorateCSS("categories")}>
                       {categoriesAndTags.map((item, index) => (
                         <div key={index} className={this.decorateCSS("category")}>
-                          {this.castToString(item.title) && (
+                          {this.castToString(item.section_title) && (
                             <Base.P className={this.decorateCSS("categoryLabel")}>
-                              {item.title}
+                              {item.section_title}
                             </Base.P>
                           )}
                           {item.items.length > 0 && (

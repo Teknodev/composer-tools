@@ -10,11 +10,11 @@ type CardType = {
   title: React.JSX.Element;
   subtitle: React.JSX.Element;
   description: React.JSX.Element;
-  imageSubtitle: React.JSX.Element;
-  imageTitle: React.JSX.Element;
+  sliderContent_imageSubtitle: React.JSX.Element;
+  sliderContent_imageTitle: React.JSX.Element;
   imageDescription: React.JSX.Element;
-  image: { type: "image"; url: string };
-  url: string;
+  sliderContent_image: { type: "image"; url: string };
+  sliderContent_url: string;
 };
 type sectionButtonItem = {
   text: string;
@@ -124,19 +124,19 @@ class Blog1 extends BaseBlog {
           value: [
             {
               type: "string",
-              key: "imageSubtitle",
+              key: "sliderContent_imageSubtitle",
               displayer: "Card Subtitle",
               value: "May 18, 2023  /  News",
             },
             {
               type: "string",
-              key: "imageTitle",
+              key: "sliderContent_imageTitle",
               displayer: "Card Title",
               value: "Architectural Marvels",
             },
             {
               type: "media",
-              key: "image",
+              key: "sliderContent_image",
               displayer: "Media",
               additionalParams: {
                 availableTypes: ["image", "video"],
@@ -148,7 +148,7 @@ class Blog1 extends BaseBlog {
             },
             {
               type: "page",
-              key: "url",
+              key: "sliderContent_url",
               displayer: "Navigate To",
               value: "",
             },
@@ -161,19 +161,19 @@ class Blog1 extends BaseBlog {
           value: [
             {
               type: "string",
-              key: "imageSubtitle",
+              key: "sliderContent_imageSubtitle",
               displayer: "Card Subtitle",
               value: "May 15, 2023  /  Insights",
             },
             {
               type: "string",
-              key: "imageTitle",
+              key: "sliderContent_imageTitle",
               displayer: "Card Title",
               value: "Exploring the Evolution of Architecture",
             },
             {
               type: "media",
-              key: "image",
+              key: "sliderContent_image",
               displayer: "Media",
               additionalParams: {
                 availableTypes: ["image", "video"],
@@ -185,7 +185,7 @@ class Blog1 extends BaseBlog {
             },
             {
               type: "page",
-              key: "url",
+              key: "sliderContent_url",
               displayer: "Navigate To",
               value: "",
             },
@@ -198,19 +198,19 @@ class Blog1 extends BaseBlog {
           value: [
             {
               type: "string",
-              key: "imageSubtitle",
+              key: "sliderContent_imageSubtitle",
               displayer: "Card Subtitle",
               value: "Dec 15, 2022  /  News",
             },
             {
               type: "string",
-              key: "imageTitle",
+              key: "sliderContent_imageTitle",
               displayer: "Card Title",
               value: "Nature is Good",
             },
             {
               type: "media",
-              key: "image",
+              key: "sliderContent_image",
               displayer: "Media",
               additionalParams: {
                 availableTypes: ["image", "video"],
@@ -222,7 +222,7 @@ class Blog1 extends BaseBlog {
             },
             {
               type: "page",
-              key: "url",
+              key: "sliderContent_url",
               displayer: "Navigate To",
               value: "",
             },
@@ -235,19 +235,19 @@ class Blog1 extends BaseBlog {
           value: [
             {
               type: "string",
-              key: "imageSubtitle",
+              key: "sliderContent_imageSubtitle",
               displayer: "Card Subtitle",
               value: "Feb 14, 2021  /  News",
             },
             {
               type: "string",
-              key: "imageTitle",
+              key: "sliderContent_imageTitle",
               displayer: "Card Title",
               value: "New Day New You",
             },
             {
               type: "media",
-              key: "image",
+              key: "sliderContent_image",
               displayer: "Media",
               additionalParams: {
                 availableTypes: ["image", "video"],
@@ -259,7 +259,7 @@ class Blog1 extends BaseBlog {
             },
             {
               type: "page",
-              key: "url",
+              key: "sliderContent_url",
               displayer: "Navigate To",
               value: "",
             },
@@ -347,7 +347,7 @@ class Blog1 extends BaseBlog {
   render() {
     const items = this.castToObject<CardType[]>("items").filter(
       (item: CardType) =>
-        item.image?.url || item.imageTitle || item.imageSubtitle || item.url
+        item.sliderContent_image?.url || item.sliderContent_imageTitle || item.sliderContent_imageSubtitle || item.sliderContent_url
     );
     const settings = {
       arrows: false,
@@ -476,11 +476,11 @@ class Blog1 extends BaseBlog {
                     >
                       <div className={this.decorateCSS("card")}>
                         <div className={this.decorateCSS("gradient-overlay")} />
-                        {item.image?.url && (
+                        {item.sliderContent_image?.url && (
                           <div className={this.decorateCSS("media-wrapper")}>
-                            <ComposerLink path={item.url}>
+                            <ComposerLink path={item.sliderContent_url}>
                               <Base.Media
-                                value={item.image}
+                                value={item.sliderContent_image}
                                 className={this.decorateCSS("media")}
                               />
                               {this.getPropValue("overlay") && (
@@ -489,23 +489,23 @@ class Blog1 extends BaseBlog {
                             </ComposerLink>
                           </div>
                         )}
-                        {(this.castToString(item.imageSubtitle) ||
-                          this.castToString(item.imageTitle)) && (
+                        {(this.castToString(item.sliderContent_imageSubtitle) ||
+                          this.castToString(item.sliderContent_imageTitle)) && (
                             <Base.VerticalContent
                               className={this.decorateCSS("content")}
                             >
-                              {this.castToString(item.imageSubtitle) && (
+                              {this.castToString(item.sliderContent_imageSubtitle) && (
                                 <Base.P
                                   className={this.decorateCSS("card-subtitle")}
                                 >
-                                  {item.imageSubtitle}
+                                  {item.sliderContent_imageSubtitle}
                                 </Base.P>
                               )}
-                              {this.castToString(item.imageTitle) && (
+                              {this.castToString(item.sliderContent_imageTitle) && (
                                 <Base.H5
                                   className={this.decorateCSS("card-title")}
                                 >
-                                  {item.imageTitle}
+                                  {item.sliderContent_imageTitle}
                                   <div className={this.decorateCSS("title-underline")} />
                                 </Base.H5>
                               )}

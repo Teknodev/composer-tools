@@ -6,12 +6,12 @@ import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "../../../custom-hooks/input-templates";
 
 type Background = {
-  media: TypeMediaInputValue;
+  media_media: TypeMediaInputValue;
   overlay: boolean;
 };
 
 type IconItem = {
-  icon: TypeMediaInputValue;
+  icon_icon: TypeMediaInputValue;
 };
 
 class Download10 extends BaseDownload {
@@ -65,7 +65,7 @@ class Download10 extends BaseDownload {
           value: [
             {
               type: "media",
-              key: "icon",
+              key: "icon_icon",
               displayer: "Icon",
               additionalParams: {
                 availableTypes: ["icon", "image"],
@@ -84,7 +84,7 @@ class Download10 extends BaseDownload {
           value: [
             {
               type: "media",
-              key: "icon",
+              key: "icon_icon",
               displayer: "Icon",
               additionalParams: {
                 availableTypes: ["icon", "image"],
@@ -103,7 +103,7 @@ class Download10 extends BaseDownload {
           value: [
             {
               type: "media",
-              key: "icon",
+              key: "icon_icon",
               displayer: "Icon",
               additionalParams: {
                 availableTypes: ["icon", "image"],
@@ -122,7 +122,7 @@ class Download10 extends BaseDownload {
           value: [
             {
               type: "media",
-              key: "icon",
+              key: "icon_icon",
               displayer: "Icon",
               additionalParams: {
                 availableTypes: ["icon", "image"],
@@ -141,7 +141,7 @@ class Download10 extends BaseDownload {
           value: [
             {
               type: "media",
-              key: "icon",
+              key: "icon_icon",
               displayer: "Icon",
               additionalParams: {
                 availableTypes: ["icon", "image"],
@@ -170,7 +170,7 @@ class Download10 extends BaseDownload {
       value: [
         {
           type: "media",
-          key: "media",
+          key: "media_media",
           displayer: "Media",
           additionalParams: {
             availableTypes: ["image", "video"],
@@ -203,7 +203,7 @@ class Download10 extends BaseDownload {
     const reviewScore = this.castToString(this.getPropValue("text2"));
     const icons = this.castToObject<IconItem[]>("icons");
     const background = this.castToObject<Background>("media");
-    const image = background?.media;
+    const image = background.media_media;
     const overlay = background?.overlay;
     const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
     const hasLeftContainer = hasContent || buttons.length > 0 || reviewTitle || reviewScore || icons.length > 0;
@@ -246,7 +246,7 @@ class Download10 extends BaseDownload {
                   <Base.VerticalContent className={this.decorateCSS("stats")}>
                     {reviewTitle && <Base.H5 className={this.decorateCSS("stats-title")}>{this.getPropValue("text1")}</Base.H5>}
                     <Base.Row className={this.decorateCSS("down-description")}>
-                      <div className={this.decorateCSS("stars")}>{icons.map((item: IconItem) => item.icon && <Base.Media value={item.icon} className={this.decorateCSS("icon")} />)}</div>
+                      <div className={this.decorateCSS("stars")}>{icons.map((item: IconItem) => item.icon_icon && <Base.Media value={item.icon_icon} className={this.decorateCSS("icon")} />)}</div>
                       {reviewScore && <Base.P className={this.decorateCSS("info")}>{this.getPropValue("text2")}</Base.P>}
                     </Base.Row>
                   </Base.VerticalContent>

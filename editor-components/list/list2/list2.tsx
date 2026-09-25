@@ -15,7 +15,7 @@ type CardItem = {
   count: JSX.Element;
   label: JSX.Element;
   text: JSX.Element;
-  buttons: CardButton[];
+  card_buttons: CardButton[];
 };
 
 type CountSettings = {
@@ -128,7 +128,7 @@ class List2 extends BaseList {
             },
             {
               type: "array",
-              key: "buttons",
+              key: "card_buttons",
               displayer: "Buttons",
               value: [
                 INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
@@ -179,7 +179,7 @@ class List2 extends BaseList {
             },
             {
               type: "array",
-              key: "buttons",
+              key: "card_buttons",
               displayer: "Buttons",
               value: [
                 INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
@@ -230,7 +230,7 @@ class List2 extends BaseList {
             },
             {
               type: "array",
-              key: "buttons",
+              key: "card_buttons",
               displayer: "Buttons",
               value: [
                 INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
@@ -281,7 +281,7 @@ class List2 extends BaseList {
             },
             {
               type: "array",
-              key: "buttons",
+              key: "card_buttons",
               displayer: "Buttons",
               value: [
                 INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
@@ -332,7 +332,7 @@ class List2 extends BaseList {
             },
             {
               type: "array",
-              key: "buttons",
+              key: "card_buttons",
               displayer: "Buttons",
               value: [
                 INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
@@ -383,7 +383,7 @@ class List2 extends BaseList {
             },
             {
               type: "array",
-              key: "buttons",
+              key: "card_buttons",
               displayer: "Buttons",
               value: [
                 INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
@@ -514,7 +514,7 @@ class List2 extends BaseList {
                   if (!hasImage) {
                     cardClasses.push(this.decorateCSS("card-no-image"));
                   }
-                  const cardButtons = item.buttons || [];
+                  const cardButtons = item.card_buttons || [];
                   const hasValidCardButtons = cardButtons.some((btn: CardButton) => {
                     const iconMedia = btn.icon as TypeMediaInputValue;
                     return this.castToString(btn.text) || (iconMedia && iconMedia.type === "icon" && iconMedia.name);

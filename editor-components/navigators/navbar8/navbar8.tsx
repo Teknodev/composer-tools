@@ -6,18 +6,23 @@ import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "../../../custom-hooks/input-templates";
 
 type Icon = {
-  icon: TypeMediaInputValue;
-  url: string;
+  item_icon: TypeMediaInputValue;
+  item_url: string;
 };
 
 type MenuItems = {
-  title: React.JSX.Element;
+  items_title: React.JSX.Element;
   url: string;
 };
 
 interface Logo {
-  image: TypeMediaInputValue;
-  navigateTo: string;
+  // `defaultLogo` keeps the original keys; `absoluteLogo` was made unique with a
+  // prefix by the unique-prop-key rename. currentLogo can be either, so it holds
+  // both shapes (optional) and is normalized before use.
+  image?: TypeMediaInputValue;
+  navigateTo?: string;
+  absoluteLogo_image?: TypeMediaInputValue;
+  absoluteLogo_navigateTo?: string;
 }
 
 interface Language {
@@ -66,7 +71,7 @@ class Navbar8 extends BaseNavigator {
       value: [
         {
           type: "media",
-          key: "image",
+          key: "absoluteLogo_image",
           displayer: "Image",
           additionalParams: {
             availableTypes: ["image"],
@@ -78,7 +83,7 @@ class Navbar8 extends BaseNavigator {
         },
         {
           type: "page",
-          key: "navigateTo",
+          key: "absoluteLogo_navigateTo",
           value: "",
           displayer: "Navigate To",
         },
@@ -177,7 +182,7 @@ class Navbar8 extends BaseNavigator {
           value: [
             {
               type: "string",
-              key: "title",
+              key: "items_title",
               displayer: "Title",
               value: "Home",
             },
@@ -196,7 +201,7 @@ class Navbar8 extends BaseNavigator {
           value: [
             {
               type: "string",
-              key: "title",
+              key: "items_title",
               displayer: "Title",
               value: "About",
             },
@@ -215,7 +220,7 @@ class Navbar8 extends BaseNavigator {
           value: [
             {
               type: "string",
-              key: "title",
+              key: "items_title",
               displayer: "Title",
               value: "Portfolio",
             },
@@ -234,7 +239,7 @@ class Navbar8 extends BaseNavigator {
           value: [
             {
               type: "string",
-              key: "title",
+              key: "items_title",
               displayer: "Title",
               value: "Contact",
             },
@@ -290,7 +295,7 @@ class Navbar8 extends BaseNavigator {
           value: [
             {
               type: "media",
-              key: "icon",
+              key: "item_icon",
               displayer: "Icon",
               additionalParams: {
                 availableTypes: ["icon"],
@@ -302,7 +307,7 @@ class Navbar8 extends BaseNavigator {
             },
             {
               type: "page",
-              key: "url",
+              key: "item_url",
               value: "",
               displayer: "Navigate To",
             },
@@ -315,7 +320,7 @@ class Navbar8 extends BaseNavigator {
           value: [
             {
               type: "media",
-              key: "icon",
+              key: "item_icon",
               displayer: "Icon",
               additionalParams: {
                 availableTypes: ["icon"],
@@ -327,7 +332,7 @@ class Navbar8 extends BaseNavigator {
             },
             {
               type: "page",
-              key: "url",
+              key: "item_url",
               value: "",
               displayer: "Navigate To",
             },
@@ -340,7 +345,7 @@ class Navbar8 extends BaseNavigator {
           value: [
             {
               type: "media",
-              key: "icon",
+              key: "item_icon",
               displayer: "Icon",
               additionalParams: {
                 availableTypes: ["icon"],
@@ -352,7 +357,7 @@ class Navbar8 extends BaseNavigator {
             },
             {
               type: "page",
-              key: "url",
+              key: "item_url",
               value: "",
               displayer: "Navigate To",
             },
@@ -365,7 +370,7 @@ class Navbar8 extends BaseNavigator {
           value: [
             {
               type: "media",
-              key: "icon",
+              key: "item_icon",
               displayer: "Icon",
               additionalParams: {
                 availableTypes: ["icon"],
@@ -377,7 +382,7 @@ class Navbar8 extends BaseNavigator {
             },
             {
               type: "page",
-              key: "url",
+              key: "item_url",
               value: "",
               displayer: "Navigate To",
             },
@@ -444,8 +449,8 @@ class Navbar8 extends BaseNavigator {
     const colorfullBackground = isStickyColorful || isDefault;
     const currentLogo =
       ((colorfullBackground && backgroundChange) || (transparentBackground && !backgroundChange))
-        ? absoluteLogo
-        : defaultLogo;
+        ? { image: absoluteLogo.absoluteLogo_image, navigateTo: absoluteLogo.absoluteLogo_navigateTo }
+        : { image: defaultLogo.image, navigateTo: defaultLogo.navigateTo };
 
     const dropdownSocialMediaTitle = this.castToString(
       this.getPropValue("dropdownSocialMediaTitle")
@@ -578,7 +583,7 @@ class Navbar8 extends BaseNavigator {
                 <div className={this.decorateCSS("dropdownItemList")}>
                   <div className={this.decorateCSS("dropdownItemContent")}>
                   {itemList.map((item: MenuItems, index: number) =>  {
-                    return this.castToString(item.title) && ( 
+                    return this.castToString(item.items_title) && ( 
                       <div
                           className={`${this.decorateCSS("dropdownItem")}`}
                           key={index}
@@ -588,7 +593,7 @@ class Navbar8 extends BaseNavigator {
                             <Base.H3 className={`${this.decorateCSS("dropdownItem")} ${animations}`}
                             onClick={()=> this.handleCloseMenu()}
                             >
-                              {item.title}
+                              {item.items_title}
                             </Base.H3>
                         </ComposerLink>
                        </div>

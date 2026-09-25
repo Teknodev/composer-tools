@@ -43,7 +43,7 @@ class Feature5 extends BaseFeature {
         },
         {
           type: "string",
-          key: "title",
+          key: "row1_title",
           displayer: "Title",
           value: "The 10 Best Apps for Planning Your Next Trip",
         },
@@ -89,7 +89,7 @@ class Feature5 extends BaseFeature {
             },
             {
               type: "page",
-              key: "link",
+              key: "second_item_link",
               displayer: "Navigate To",
               value: "",
             },
@@ -114,7 +114,7 @@ class Feature5 extends BaseFeature {
             },
             {
               type: "page",
-              key: "link",
+              key: "third_item_link",
               displayer: "Navigate To",
               value: "",
             },
@@ -135,7 +135,7 @@ class Feature5 extends BaseFeature {
           value: [
             {
               type: "media",
-              key: "image",
+              key: "image_and_subtitle_1_image",
               displayer: "Media",
               additionalParams: {
                 availableTypes: ["image","video"],
@@ -153,7 +153,7 @@ class Feature5 extends BaseFeature {
             },
             {
               type: "page",
-              key: "link",
+              key: "image_and_subtitle_1_link",
               displayer: "Navigate To",
               value: "",
             },
@@ -166,7 +166,7 @@ class Feature5 extends BaseFeature {
           value: [
             {
               type: "media",
-              key: "image",
+              key: "image_and_subtitle_2_image",
               displayer: "Media",
               additionalParams: {
                 availableTypes: ["image","video"],
@@ -178,13 +178,13 @@ class Feature5 extends BaseFeature {
             },
             {
               type: "string",
-              key: "sub_title",
+              key: "image_and_subtitle_2_sub_title",
               displayer: "Subtitle",
               value: "Motivation Monday: Only 3 Days Left of Summer",
             },
             {
               type: "page",
-              key: "link",
+              key: "image_and_subtitle_2_link",
               displayer: "Navigate To",
               value: "",
             },
@@ -197,7 +197,7 @@ class Feature5 extends BaseFeature {
           value: [
             {
               type: "media",
-              key: "image",
+              key: "image_and_subtitle_3_image",
               displayer: "Media",
               additionalParams: {
                 availableTypes: ["image","video"],
@@ -209,13 +209,13 @@ class Feature5 extends BaseFeature {
             },
             {
               type: "string",
-              key: "sub_title",
+              key: "image_and_subtitle_3_sub_title",
               displayer: "Subtitle",
               value: "Five Rules For a Long, Healthy and Happy Life",
             },
             {
               type: "page",
-              key: "link",
+              key: "image_and_subtitle_3_link",
               displayer: "Navigate To",
               value: "",
             },
@@ -232,7 +232,7 @@ class Feature5 extends BaseFeature {
   render() {
     const row1 = this.castToObject<{
       left_image: { type: "image"; url: string };
-      title: React.JSX.Element;
+      row1_title: React.JSX.Element;
       link: string;
     }>("row1");
     const subtitle = this.getPropValue("subtitle");
@@ -244,33 +244,33 @@ class Feature5 extends BaseFeature {
       };
       second_item: {
         text: React.JSX.Element;
-        link: string;
+        second_item_link: string;
       };
       third_item: {
         image: { type: "image"; url: string };
-        link: string;
+        third_item_link: string;
       };
     }>("row2");
 
     const row3 = this.castToObject<{
       image_and_subtitle_1: {
-        image: { type: "image"; url: string };
+        image_and_subtitle_1_image: { type: "image"; url: string };
         sub_title: React.JSX.Element;
-        link: string;
+        image_and_subtitle_1_link: string;
       };
       image_and_subtitle_2: {
-        image: { type: "image"; url: string };
-        sub_title: React.JSX.Element;
-        link: string;
+        image_and_subtitle_2_image: { type: "image"; url: string };
+        image_and_subtitle_2_sub_title: React.JSX.Element;
+        image_and_subtitle_2_link: string;
       };
       image_and_subtitle_3: {
-        image: { type: "image"; url: string };
-        sub_title: React.JSX.Element;
-        link: string;
+        image_and_subtitle_3_image: { type: "image"; url: string };
+        image_and_subtitle_3_sub_title: React.JSX.Element;
+        image_and_subtitle_3_link: string;
       };
     }>("row3");
 
-    const isRow1Visible = row1.left_image?.url || this.castToString(row1.title);
+    const isRow1Visible = row1.left_image?.url || this.castToString(row1.row1_title);
 
     const isFirstColumnVisible =
       this.castToString(row2.first_item.description) ||
@@ -283,24 +283,24 @@ class Feature5 extends BaseFeature {
       isFirstColumnVisible || isSecondColumnVisible || isThirdColumnVisible;
 
     const subtitle1 = this.castToString(row3.image_and_subtitle_1.sub_title);
-    const imageOrSubtitleExist1 = row3.image_and_subtitle_1.image?.url || subtitle1;
+    const imageOrSubtitleExist1 = row3.image_and_subtitle_1.image_and_subtitle_1_image?.url || subtitle1;
 
-    const subtitle2 = this.castToString(row3.image_and_subtitle_2.sub_title);
-    const imageOrSubtitleExist2 = row3.image_and_subtitle_2.image?.url || subtitle2;
+    const subtitle2 = this.castToString(row3.image_and_subtitle_2.image_and_subtitle_2_sub_title);
+    const imageOrSubtitleExist2 = row3.image_and_subtitle_2.image_and_subtitle_2_image?.url || subtitle2;
 
-    const subtitle3 = this.castToString(row3.image_and_subtitle_3.sub_title);
-    const imageOrSubtitleExist3 = row3.image_and_subtitle_3.image?.url || subtitle3;
+    const subtitle3 = this.castToString(row3.image_and_subtitle_3.image_and_subtitle_3_sub_title);
+    const imageOrSubtitleExist3 = row3.image_and_subtitle_3.image_and_subtitle_3_image?.url || subtitle3;
 
     const isRow3Visible =
-      row3.image_and_subtitle_1.image?.url ||
-      row3.image_and_subtitle_2.image?.url ||
-      row3.image_and_subtitle_3.image?.url ||
+      row3.image_and_subtitle_1.image_and_subtitle_1_image?.url ||
+      row3.image_and_subtitle_2.image_and_subtitle_2_image?.url ||
+      row3.image_and_subtitle_3.image_and_subtitle_3_image?.url ||
       subtitle1 ||
       subtitle2 ||
       subtitle3;
-    const isFirstImageExist = row3.image_and_subtitle_1.image?.url;
-    const isSecondImageExist = row3.image_and_subtitle_2.image?.url;
-    const isThirdImageExist = row3.image_and_subtitle_3.image?.url;
+    const isFirstImageExist = row3.image_and_subtitle_1.image_and_subtitle_1_image?.url;
+    const isSecondImageExist = row3.image_and_subtitle_2.image_and_subtitle_2_image?.url;
+    const isThirdImageExist = row3.image_and_subtitle_3.image_and_subtitle_3_image?.url;
     const row3Status =
       !isFirstImageExist || !isSecondImageExist || !isThirdImageExist;
 
@@ -308,10 +308,10 @@ class Feature5 extends BaseFeature {
       row3.image_and_subtitle_1.sub_title
     );
     const noSubtitleSecondImage = !this.castToString(
-      row3.image_and_subtitle_2.sub_title
+      row3.image_and_subtitle_2.image_and_subtitle_2_sub_title
     );
     const noSubtitleThirdImage = !this.castToString(
-      row3.image_and_subtitle_3.sub_title
+      row3.image_and_subtitle_3.image_and_subtitle_3_sub_title
     );
     return (
       <Base.Container className={this.decorateCSS("container")}>
@@ -335,7 +335,7 @@ class Feature5 extends BaseFeature {
                   <div
                     className={`
                       ${this.decorateCSS("image-wrapper")}
-                      ${!this.castToString(row1.title) ? this.decorateCSS("row1-image-only") : ""}
+                      ${!this.castToString(row1.row1_title) ? this.decorateCSS("row1-image-only") : ""}
                     `}
                   >
                     <Base.Media
@@ -344,14 +344,14 @@ class Feature5 extends BaseFeature {
                     />
                   </div>
                 )}
-                {this.castToString(row1.title) && (
+                {this.castToString(row1.row1_title) && (
                   <Base.H2
                     className={`
                       ${this.decorateCSS("title")}
                       ${!row1.left_image?.url ? this.decorateCSS("row1-title-only") : ""} 
                     `}
                   >
-                    {row1.title}
+                    {row1.row1_title}
                   </Base.H2>
                 )}
               </div>
@@ -387,7 +387,7 @@ class Feature5 extends BaseFeature {
                 <div className={this.decorateCSS("second")}>
                   {!!this.castToString(row2.second_item.text) && (
                     <Base.H2 className={this.decorateCSS("text")}>
-                      <ComposerLink path={row2.second_item.link}>
+                      <ComposerLink path={row2.second_item.second_item_link}>
                         {row2.second_item.text}
                       </ComposerLink>
                     </Base.H2>
@@ -403,7 +403,7 @@ class Feature5 extends BaseFeature {
                   }}
                 >
                   {row2.third_item.image && (
-                    <ComposerLink path={row2.third_item.link}>
+                    <ComposerLink path={row2.third_item.third_item_link}>
                       <Base.Media
                         value={row2.third_item.image}
                         className={this.decorateCSS("image")}
@@ -418,22 +418,22 @@ class Feature5 extends BaseFeature {
             <div
               className={`
                   ${this.decorateCSS("row3")} 
-                  ${!row3.image_and_subtitle_1.image?.url &&
-                  !row3.image_and_subtitle_2.image?.url &&
-                  !row3.image_and_subtitle_3.image?.url
+                  ${!row3.image_and_subtitle_1.image_and_subtitle_1_image?.url &&
+                  !row3.image_and_subtitle_2.image_and_subtitle_2_image?.url &&
+                  !row3.image_and_subtitle_3.image_and_subtitle_3_image?.url
                   ? this.decorateCSS("row3-no-image")
                   : ""
                 }`}
             >
               {imageOrSubtitleExist1 && (
                 <ComposerLink
-                  path={row3.image_and_subtitle_1.link}
+                  path={row3.image_and_subtitle_1.image_and_subtitle_1_link}
                   isFullWidth={true}
                 >
                   <div className={this.decorateCSS("image_and_subtitle_1")}>
-                    {row3.image_and_subtitle_1.image && (
+                    {row3.image_and_subtitle_1.image_and_subtitle_1_image && (
                       <Base.Media
-                        value={row3.image_and_subtitle_1.image}
+                        value={row3.image_and_subtitle_1.image_and_subtitle_1_image}
                         className={`
                           ${this.decorateCSS("image")} 
                           ${row3Status ? this.decorateCSS("row3-images-less") : ""} 
@@ -452,13 +452,13 @@ class Feature5 extends BaseFeature {
               )}
               {imageOrSubtitleExist2 && (
                 <ComposerLink
-                  path={row3.image_and_subtitle_2.link}
+                  path={row3.image_and_subtitle_2.image_and_subtitle_2_link}
                   isFullWidth={true}
                 >
                   <div className={this.decorateCSS("image_and_subtitle_2")}>
-                    {row3.image_and_subtitle_2.image && (
+                    {row3.image_and_subtitle_2.image_and_subtitle_2_image && (
                       <Base.Media
-                        value={row3.image_and_subtitle_2.image}
+                        value={row3.image_and_subtitle_2.image_and_subtitle_2_image}
                         className={`
                           ${this.decorateCSS("image")} 
                           ${row3Status ? this.decorateCSS("row3-images-less") : ""}
@@ -466,9 +466,9 @@ class Feature5 extends BaseFeature {
                         `}
                       />
                     )}
-                    {!!this.castToString(row3.image_and_subtitle_2.sub_title) && (
+                    {!!this.castToString(row3.image_and_subtitle_2.image_and_subtitle_2_sub_title) && (
                       <Base.H4 className={this.decorateCSS("subtitle")}>
-                        {row3.image_and_subtitle_2.sub_title}
+                        {row3.image_and_subtitle_2.image_and_subtitle_2_sub_title}
                       </Base.H4>
                     )}
                   </div>
@@ -476,13 +476,13 @@ class Feature5 extends BaseFeature {
               )}
               {imageOrSubtitleExist3 && (
                 <ComposerLink
-                  path={row3.image_and_subtitle_3.link}
+                  path={row3.image_and_subtitle_3.image_and_subtitle_3_link}
                   isFullWidth={true}
                 >
                   <div className={this.decorateCSS("image_and_subtitle_3")}>
-                    {!!row3.image_and_subtitle_3.image && (
+                    {!!row3.image_and_subtitle_3.image_and_subtitle_3_image && (
                       <Base.Media
-                        value={row3.image_and_subtitle_3.image}
+                        value={row3.image_and_subtitle_3.image_and_subtitle_3_image}
                         className={`
                           ${this.decorateCSS("image")} 
                           ${row3Status ? this.decorateCSS("row3-images-less") : ""}
@@ -490,9 +490,9 @@ class Feature5 extends BaseFeature {
                         `}
                       />
                     )}
-                    {!!this.castToString(row3.image_and_subtitle_3.sub_title) && (
+                    {!!this.castToString(row3.image_and_subtitle_3.image_and_subtitle_3_sub_title) && (
                       <Base.H4 className={this.decorateCSS("subtitle")}>
-                        {row3.image_and_subtitle_3.sub_title}
+                        {row3.image_and_subtitle_3.image_and_subtitle_3_sub_title}
                       </Base.H4>
                     )}
                   </div>

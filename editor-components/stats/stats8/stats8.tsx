@@ -5,7 +5,7 @@ import { Base } from "../../../composer-base-components/base/base";
 
 type CardData = {
   counter: React.JSX.Element;
-  description: React.JSX.Element;
+  stat_description: React.JSX.Element;
 };
 
 class Stats8Page extends BaseStats {
@@ -81,7 +81,7 @@ class Stats8Page extends BaseStats {
             },
             {
               type: "string",
-              key: "description",
+              key: "stat_description",
               displayer: "Description",
               value: "Business Partner",
             },
@@ -100,7 +100,7 @@ class Stats8Page extends BaseStats {
             },
             {
               type: "string",
-              key: "description",
+              key: "stat_description",
               displayer: "Description",
               value: "Satisfied Customers",
             },
@@ -320,11 +320,11 @@ class Stats8Page extends BaseStats {
                 <Base.Row className={this.decorateCSS("stats")}>
                   {statsData.map((statData: CardData, indexStat: number) => {
                     return (
-                      (this.castToString(statData.counter) || this.castToString(statData.description)) && (
+                      (this.castToString(statData.counter) || this.castToString(statData.stat_description)) && (
                         <div className={`${this.decorateCSS("stat-border")} ${!imageSrc && this.decorateCSS("stat-border-full-width")}`}>
                           <div key={indexStat} className={`${this.decorateCSS("stat")} ${showBackground ? this.decorateCSS("with-background") : this.decorateCSS("no-background")}`}>
                             {this.getComponentState(`number-${indexStat}`) !== "0" && <span className={this.decorateCSS("stat-counter")}>{this.getComponentState(`number-${indexStat}`)}</span>}
-                            <Base.P className={this.decorateCSS("stat-description")}>{statData.description}</Base.P>
+                            <Base.P className={this.decorateCSS("stat-description")}>{statData.stat_description}</Base.P>
                           </div>
                         </div>
                       )

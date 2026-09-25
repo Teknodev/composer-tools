@@ -5,7 +5,7 @@ import { INPUTS } from "../../../custom-hooks/input-templates";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 
 type ImageItemType = {
-    media: TypeMediaInputValue;
+    mediaItem_media: TypeMediaInputValue;
     overlay: boolean;
 }
 
@@ -35,7 +35,7 @@ class About15 extends BaseAbout {
                     value: [
                         {
                             type: "media",
-                            key: "media",
+                            key: "mediaItem_media",
                             displayer: "Media",
                             additionalParams: {
                                 availableTypes: ["image", "video"],
@@ -60,7 +60,7 @@ class About15 extends BaseAbout {
                     value: [
                         {
                             type: "media",
-                            key: "media",
+                            key: "mediaItem_media",
                             displayer: "Media",
                             additionalParams: {
                                 availableTypes: ["image", "video"],
@@ -85,7 +85,7 @@ class About15 extends BaseAbout {
                     value: [
                         {
                             type: "media",
-                            key: "media",
+                            key: "mediaItem_media",
                             displayer: "Media",
                             additionalParams: {
                                 availableTypes: ["image", "video"],
@@ -150,7 +150,7 @@ class About15 extends BaseAbout {
         const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
         const media = this.castToObject<ImageItemType[]>("media") || [];
         const validMedia = media.filter((item) => {
-            const m = item.media;
+            const m = item.mediaItem_media;
             return m && (m.url || m.name);
         });
         const hasMedia = validMedia.length > 0;
@@ -190,7 +190,7 @@ class About15 extends BaseAbout {
                                     {validMedia.map((item: ImageItemType, index: number) => {
                                         return (
                                             <div key={`img-${index}`} className={this.decorateCSS("media-box")}>
-                                                <Base.Media value={item.media} className={this.decorateCSS("media-item")} />
+                                                <Base.Media value={item.mediaItem_media} className={this.decorateCSS("media-item")} />
                                                 {item.overlay && (<div className={this.decorateCSS("overlay")}></div>)}
                                             </div>
                                         );

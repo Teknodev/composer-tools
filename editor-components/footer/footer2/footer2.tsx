@@ -7,7 +7,7 @@ import { Base } from "../../../composer-base-components/base/base";
 type MenuItem = {
   text: React.JSX.Element;
   pageLink: string;
-  media: TypeMediaInputValue;
+  menuItem_media: TypeMediaInputValue;
 };
 
 type Column = {
@@ -116,7 +116,7 @@ class Footer2Page extends BaseFooter {
                     { type: "page", key: "pageLink", displayer: "Navigate To", value: "" },
                     {
                       type: "media",
-                      key: "media",
+                      key: "menuItem_media",
                       displayer: "Media",
                       additionalParams: {
                         availableTypes: ["icon", "image"],
@@ -137,7 +137,7 @@ class Footer2Page extends BaseFooter {
                     { type: "page", key: "pageLink", displayer: "Navigate To", value: "" },
                     {
                       type: "media",
-                      key: "media",
+                      key: "menuItem_media",
                       displayer: "Media",
                       additionalParams: {
                         availableTypes: ["icon", "image"],
@@ -158,7 +158,7 @@ class Footer2Page extends BaseFooter {
                     { type: "page", key: "pageLink", displayer: "Navigate To", value: "" },
                     {
                       type: "media",
-                      key: "media",
+                      key: "menuItem_media",
                       displayer: "Media",
                       additionalParams: {
                         availableTypes: ["icon", "image"],
@@ -217,7 +217,7 @@ class Footer2Page extends BaseFooter {
                     { type: "page", key: "pageLink", displayer: "Navigate To", value: "" },
                     {
                       type: "media",
-                      key: "media",
+                      key: "menuItem_media",
                       displayer: "Media",
                       additionalParams: {
                         availableTypes: ["icon", "image"],
@@ -238,7 +238,7 @@ class Footer2Page extends BaseFooter {
                     { type: "page", key: "pageLink", displayer: "Navigate To", value: "" },
                     {
                       type: "media",
-                      key: "media",
+                      key: "menuItem_media",
                       displayer: "Media",
                       additionalParams: {
                         availableTypes: ["icon", "image"],
@@ -259,7 +259,7 @@ class Footer2Page extends BaseFooter {
                     { type: "page", key: "pageLink", displayer: "Navigate To", value: "" },
                     {
                       type: "media",
-                      key: "media",
+                      key: "menuItem_media",
                       displayer: "Media",
                       additionalParams: {
                         availableTypes: ["icon", "image"],
@@ -318,7 +318,7 @@ class Footer2Page extends BaseFooter {
                     { type: "page", key: "pageLink", displayer: "Navigate To", value: "" },
                     {
                       type: "media",
-                      key: "media",
+                      key: "menuItem_media",
                       displayer: "Media",
                       additionalParams: {
                         availableTypes: ["icon", "image"],
@@ -339,7 +339,7 @@ class Footer2Page extends BaseFooter {
                     { type: "page", key: "pageLink", displayer: "Navigate To", value: "" },
                     {
                       type: "media",
-                      key: "media",
+                      key: "menuItem_media",
                       displayer: "Media",
                       additionalParams: {
                         availableTypes: ["icon", "image"],
@@ -360,7 +360,7 @@ class Footer2Page extends BaseFooter {
                     { type: "page", key: "pageLink", displayer: "Navigate To", value: "" },
                     {
                       type: "media",
-                      key: "media",
+                      key: "menuItem_media",
                       displayer: "Media",
                       additionalParams: {
                         availableTypes: ["icon", "image"],
@@ -441,7 +441,7 @@ class Footer2Page extends BaseFooter {
                   const menuItems: MenuItem[] = column.menuItems || [];
                   const categoryTitleExist = this.castToString(column.categoryTitle);
                   const categoryMediaExist = hasMedia(column.categoryTitleMedia);
-                  const hasItems = menuItems.some((item: MenuItem) => this.castToString(item.text) || hasMedia(item.media));
+                  const hasItems = menuItems.some((item: MenuItem) => this.castToString(item.text) || hasMedia(item.menuItem_media));
                   if (!categoryTitleExist && !categoryMediaExist && !hasItems) return null;
                   return (
                     <div key={colIndex} className={this.decorateCSS("list")}>
@@ -459,14 +459,14 @@ class Footer2Page extends BaseFooter {
                         <Base.VerticalContent className={this.decorateCSS("text-items")}>
                           {menuItems.map((item: MenuItem, itemIndex: number) => {
                             const textExist = this.castToString(item.text);
-                            const mediaExist = hasMedia(item.media);
+                            const mediaExist = hasMedia(item.menuItem_media);
                             const isLast = itemIndex === menuItems.length - 1;
                             return (
                               (textExist || mediaExist) && (
                                 <ComposerLink key={itemIndex} path={item.pageLink}>
                                   <div className={this.decorateCSS("menu-media-wrapper")}>
                                     {mediaExist && (
-                                      <Base.Media value={item.media} className={this.decorateCSS("menu-item-media")} />
+                                      <Base.Media value={item.menuItem_media} className={this.decorateCSS("menu-item-media")} />
                                     )}
                                     {textExist && (
                                       <Base.P

@@ -7,9 +7,9 @@ import { INPUTS } from "../../../custom-hooks/input-templates";
 
 type ITabs = {
   tabText: React.JSX.Element;
-  title: React.JSX.Element;
-  subtitle?: React.JSX.Element;
-  description: React.JSX.Element;
+  tab_title: React.JSX.Element;
+  tab_subtitle?: React.JSX.Element;
+  tab_description: React.JSX.Element;
   buttons: INPUTS.CastedButton[];
   image: TypeMediaInputValue;
 };
@@ -59,20 +59,20 @@ class Feature17 extends BaseFeature {
 
             {
               type: "string",
-              key: "subtitle",
+              key: "tab_subtitle",
               displayer: "Subtitle",
               value: "",
             },
             {
               type: "string",
-              key: "title",
+              key: "tab_title",
               displayer: "Title",
               value: "Share tools quickly and confidently in minutes",
             },
 
             {
               type: "string",
-              key: "description",
+              key: "tab_description",
               displayer: "Description",
               value:
                 "This powerful tool eliminates the need to leave Salesforce to get things done as I can create a custom proposal with dynamic pricing tables. You can also customize your own dynamic versions.",
@@ -122,20 +122,20 @@ class Feature17 extends BaseFeature {
 
             {
               type: "string",
-              key: "subtitle",
+              key: "tab_subtitle",
               displayer: "Subtitle",
               value: "",
             },
             {
               type: "string",
-              key: "title",
+              key: "tab_title",
               displayer: "Title",
               value: "Connect every part of your entire business",
             },
 
             {
               type: "string",
-              key: "description",
+              key: "tab_description",
               displayer: "Description",
               value:
                 "Keep data consistent, with native CRM integrations that streamline your entire Tool workflow.",
@@ -186,19 +186,19 @@ class Feature17 extends BaseFeature {
 
             {
               type: "string",
-              key: "subtitle",
+              key: "tab_subtitle",
               displayer: "Subtitle",
               value: "",
             },
             {
               type: "string",
-              key: "title",
+              key: "tab_title",
               displayer: "Title",
               value: "Maintain compliance and control your apps",
             },
             {
               type: "string",
-              key: "description",
+              key: "tab_description",
               displayer: "Description",
               value:
                 "Improve security and trust with built-in legally binding e-Signatures. Create pre-approved templates, content blocks and lock all legal information to prevent costly mistakes.",
@@ -249,20 +249,20 @@ class Feature17 extends BaseFeature {
 
             {
               type: "string",
-              key: "subtitle",
+              key: "tab_subtitle",
               displayer: "Subtitle",
               value: "",
             },
             {
               type: "string",
-              key: "title",
+              key: "tab_title",
               displayer: "Title",
               value: "Review quickly and confidently",
             },
 
             {
               type: "string",
-              key: "description",
+              key: "tab_description",
               displayer: "Description",
               value:
                 "Get real-time access to approvals, comments and version tracking. Smart features like variables and conditional logic help you eliminate Tool errors.",
@@ -335,9 +335,9 @@ class Feature17 extends BaseFeature {
 
     const filteredTabs = tabs.filter((tab: ITabs) => {
       const tabTextExist = this.castToString(tab.tabText);
-      const tabSubtitleExist = this.castToString(tab.subtitle);
-      const tabTitleExist = this.castToString(tab.title);
-      const tabDescriptionExist = this.castToString(tab.description);
+      const tabSubtitleExist = this.castToString(tab.tab_subtitle);
+      const tabTitleExist = this.castToString(tab.tab_title);
+      const tabDescriptionExist = this.castToString(tab.tab_description);
 
       const buttons = tab.buttons || [];
       const hasAnyButton = buttons.some(
@@ -400,9 +400,9 @@ class Feature17 extends BaseFeature {
               </div>
             </div>
             {filteredTabs.map((tab: ITabs, index: number) => {
-              const tabSubtitleExist = this.castToString(tab.subtitle);
-              const tabTitleExist = this.castToString(tab.title);
-              const tabDescriptionExist = this.castToString(tab.description);
+              const tabSubtitleExist = this.castToString(tab.tab_subtitle);
+              const tabTitleExist = this.castToString(tab.tab_title);
+              const tabDescriptionExist = this.castToString(tab.tab_description);
 
               const buttons = tab.buttons || [];
               const hasAnyButton = buttons.some(
@@ -452,12 +452,12 @@ class Feature17 extends BaseFeature {
                         <Base.H4
                           className={this.decorateCSS("content-subtitle")}
                         >
-                          {tab.subtitle}
+                          {tab.tab_subtitle}
                         </Base.H4>
                       )}
                       {tabTitleExist && (
                         <Base.H2 className={this.decorateCSS("content-title")}>
-                          {tab.title}
+                          {tab.tab_title}
                         </Base.H2>
                       )}
 
@@ -465,7 +465,7 @@ class Feature17 extends BaseFeature {
                         <Base.P
                           className={this.decorateCSS("content-description")}
                         >
-                          {tab.description}
+                          {tab.tab_description}
                         </Base.P>
                       )}
 

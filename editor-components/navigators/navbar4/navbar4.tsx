@@ -8,7 +8,7 @@ import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "../../../custom-hooks/input-templates";
 
 interface Logo {
-  image: TypeMediaInputValue;
+  defaultLogo_image: TypeMediaInputValue;
   navigateTo: string;
 }
 
@@ -21,13 +21,13 @@ interface Information {
 interface MenuItems {
   title: React.JSX.Element;
   navigate_to: string;
-  menuType: string;
+  sub_item_menuType: string;
   sub_items: MenuItems[];
 }
 
 interface Language {
   label: "code" | "name";
-  icon: TypeMediaInputValue;
+  language_icon: TypeMediaInputValue;
   showLanguage: boolean;
   showLocalizationAlways: boolean;
   showDivider: boolean;
@@ -83,7 +83,7 @@ class Navbar4 extends BaseNavigator {
       value: [
         {
           type: "media",
-          key: "image",
+          key: "defaultLogo_image",
           displayer: "Image",
           additionalParams: {
             availableTypes: ["image"],
@@ -109,7 +109,7 @@ class Navbar4 extends BaseNavigator {
       value: [
         {
           type: "media",
-          key: "image",
+          key: "absoluteLogo_image",
           displayer: "Image",
           additionalParams: {
             availableTypes: ["image"],
@@ -121,7 +121,7 @@ class Navbar4 extends BaseNavigator {
         },
         {
           type: "page",
-          key: "navigateTo",
+          key: "absoluteLogo_navigateTo",
           value: "",
           displayer: "Navigate To",
         },
@@ -243,7 +243,7 @@ class Navbar4 extends BaseNavigator {
       value: [
         {
           type: "object",
-          key: "item",
+          key: "menuItems_item",
           displayer: "Item",
           value: [
             {
@@ -546,7 +546,7 @@ class Navbar4 extends BaseNavigator {
         },
         {
           type: "object",
-          key: "item",
+          key: "menuItems_item",
           displayer: "Item",
           value: [
             {
@@ -624,7 +624,7 @@ class Navbar4 extends BaseNavigator {
         },
         {
           type: "object",
-          key: "item",
+          key: "menuItems_item",
           displayer: "Item",
           value: [
             {
@@ -927,7 +927,7 @@ class Navbar4 extends BaseNavigator {
         },
         {
           type: "object",
-          key: "item",
+          key: "menuItems_item",
           displayer: "Item",
           value: [
             {
@@ -1018,7 +1018,7 @@ class Navbar4 extends BaseNavigator {
                     },
                     {
                       type: "select",
-                      key: "menuType",
+                      key: "sub_item_menuType",
                       displayer: "Type",
                       value: "Normal",
                       additionalParams: { selectItems: ["Dropdown", "Normal"] },
@@ -1057,7 +1057,7 @@ class Navbar4 extends BaseNavigator {
         },
         {
           type: "object",
-          key: "item",
+          key: "menuItems_item",
           displayer: "Item",
           value: [
             {
@@ -1135,7 +1135,7 @@ class Navbar4 extends BaseNavigator {
         },
         {
           type: "object",
-          key: "item",
+          key: "menuItems_item",
           displayer: "Item",
           value: [
             {
@@ -1230,7 +1230,7 @@ class Navbar4 extends BaseNavigator {
         },
         {
           type: "media",
-          key: "icon",
+          key: "language_icon",
           displayer: "Icon",
           additionalParams: {
             availableTypes: ["icon"],
@@ -1411,7 +1411,7 @@ class Navbar4 extends BaseNavigator {
     const informationContainer = information.image || informationTextContainer;
 
     const topBar =
-      informationContainer || defaultLogo.image || icons.length > 0;
+      informationContainer || defaultLogo.defaultLogo_image || icons.length > 0;
 
     const isHamburgerActive = this.getComponentState("hamburgerNavActive");
     const backgroundChange = this.getComponentState("backgroundChange");
@@ -1471,12 +1471,12 @@ class Navbar4 extends BaseNavigator {
                   </div>
                 )}
 
-                {defaultLogo.image && (
+                {defaultLogo.defaultLogo_image && (
                   <div className={this.decorateCSS("logo")}>
                     <ComposerLink path={defaultLogo.navigateTo}>
-                      {defaultLogo.image && (
+                      {defaultLogo.defaultLogo_image && (
                         <Base.Media
-                          value={defaultLogo.image}
+                          value={defaultLogo.defaultLogo_image}
                           className={this.decorateCSS("image")}
                         />
                       )}
@@ -1502,7 +1502,7 @@ class Navbar4 extends BaseNavigator {
         <div className={this.decorateCSS("smallDevicelogo")}>
           <ComposerLink path={defaultLogo.navigateTo}>
             <Base.Media
-              value={defaultLogo.image}
+              value={defaultLogo.defaultLogo_image}
               className={this.decorateCSS("smallDeviceLogoImg")}
               onClick={()=> this.handleCloseMenu()}
             />
@@ -1633,7 +1633,7 @@ class Navbar4 extends BaseNavigator {
                 <Base.Language
                   type="dropdown"
                   title={language.label}
-                  icon={language.icon}
+                  icon={language.language_icon}
                   dropdownButtonClassName={`${this.decorateCSS("localization")}`}
                   dropdownLabelClassName={`${this.decorateCSS("localizationLabel")} ${animations}`}
                   iconClassName={this.decorateCSS("languageIcon")}
@@ -1650,7 +1650,7 @@ class Navbar4 extends BaseNavigator {
                   <Base.Language
                     type="dropdown"
                     title={language.label}
-                    icon={language.icon?.name || "GrLanguage"}
+                    icon={language.language_icon?.name || "GrLanguage"}
                     dropdownButtonClassName={`${this.decorateCSS(
                       "localization"
                     )}`}
@@ -1718,7 +1718,7 @@ class Navbar4 extends BaseNavigator {
                             {item.title}
                           </Base.P>
                         </ComposerLink>
-                        {item.menuType === "Dropdown" && (
+                        {item.sub_item_menuType === "Dropdown" && (
                           <Base.Media
                             value={navigationIcons?.dropdownIcon}
                             className={`${this.decorateCSS("dropdownIcon")} ${
@@ -1730,7 +1730,7 @@ class Navbar4 extends BaseNavigator {
                           />
                         )}
                       </div>
-                      {item.menuType === "Dropdown" && (
+                      {item.sub_item_menuType === "Dropdown" && (
                         <div
                           className={`${this.decorateCSS("hamburgerSubmenu")} ${
                             this.getComponentState("subNavActiveIndex") ===

@@ -8,11 +8,11 @@ import { INPUTS } from "../../../custom-hooks/input-templates";
 
 type Card = {
   icon: TypeMediaInputValue;
-  title: React.JSX.Element;
+  card_title: React.JSX.Element;
   price: React.JSX.Element;
   tagSettings: TagSettings;
   items: { text: React.JSX.Element }[];
-  buttons?: INPUTS.CastedButton[];
+  card_buttons?: INPUTS.CastedButton[];
 };
 
 type TagSettings = {
@@ -105,7 +105,7 @@ class PricingTable3 extends BasePricingTable {
 
             {
               type: "string",
-              key: "title",
+              key: "card_title",
               displayer: "Title",
               value: "<span style='color: var(--composer-primary-color);'>PERSONAL</span> PLAN",
             },
@@ -163,7 +163,7 @@ class PricingTable3 extends BasePricingTable {
             },
             {
               type: "array",
-              key: "buttons",
+              key: "card_buttons",
               displayer: "Buttons",
               value: [
                 INPUTS.BUTTON("button", "Button", "Join this plan", "", "", null, "Primary"),
@@ -207,7 +207,7 @@ class PricingTable3 extends BasePricingTable {
 
             {
               type: "string",
-              key: "title",
+              key: "card_title",
               displayer: "Title",
               value: "<span style='color: var(--composer-primary-color);'>BUSINESS</span> PLAN",
             },
@@ -265,7 +265,7 @@ class PricingTable3 extends BasePricingTable {
             },
             {
               type: "array",
-              key: "buttons",
+              key: "card_buttons",
               displayer: "Buttons",
               value: [
                 INPUTS.BUTTON("button", "Button", "Join this plan", "", "", null, "Primary"),
@@ -287,7 +287,7 @@ class PricingTable3 extends BasePricingTable {
   }
 
   private getButtonsFromItem(item: Card) {
-    const buttonsArray = item?.buttons;
+    const buttonsArray = item.card_buttons;
     if (!Array.isArray(buttonsArray)) return [];
 
     return buttonsArray.map((btn) => {
@@ -419,7 +419,7 @@ class PricingTable3 extends BasePricingTable {
               >
                 {cards.map((card: Card, idx: number) => {
                   const showTag = card.tagSettings.showTag;
-                  const titleExist = this.castToString(card.title);
+                  const titleExist = this.castToString(card.card_title);
                   const cardButtons = this.getButtonsFromItem(card);
                   const hasCardButtons = this.hasAnyButtonInItem(cardButtons);
 
@@ -451,7 +451,7 @@ class PricingTable3 extends BasePricingTable {
                             )}
                             {titleExist && (
                               <Base.H6 className={this.decorateCSS("card-title")}>
-                                {card.title}
+                                {card.card_title}
                               </Base.H6>
                             )}
                             {this.castToString(card.price) && (

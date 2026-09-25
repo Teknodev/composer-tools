@@ -219,29 +219,29 @@ class Form5 extends BaseContacts {
         {
           type: "object",
           displayer: "Input",
-          key: "input",
+          key: "second_inputs_input",
           value: [
             {
               type: "string",
               displayer: "Placeholder",
-              key: "placeholder",
+              key: "input_placeholder",
               value: "Email",
             },
             {
               type: "boolean",
-              key: "is_required",
+              key: "input_is_required",
               displayer: "Required Message",
               value: true,
             },
             {
               type: "string",
-              key: "required_error_message",
+              key: "input_required_error_message",
               displayer: "Required Error Message",
               value: "Required",
             },
             {
               type: "select",
-              key: "type",
+              key: "input_type",
               displayer: "Type",
               value: "Text",
               additionalParams: {
@@ -250,7 +250,7 @@ class Form5 extends BaseContacts {
             },
             {
               type: "string",
-              key: "type_error_message",
+              key: "input_type_error_message",
               displayer: "Type Error Message",
               value: "Invalid type",
             },
@@ -259,29 +259,29 @@ class Form5 extends BaseContacts {
         {
           type: "object",
           displayer: "Input",
-          key: "input",
+          key: "second_inputs_input",
           value: [
             {
               type: "string",
               displayer: "Placeholder",
-              key: "placeholder",
+              key: "input_placeholder",
               value: "Phone",
             },
             {
               type: "boolean",
-              key: "is_required",
+              key: "input_is_required",
               displayer: "Required Message",
               value: true,
             },
             {
               type: "string",
-              key: "required_error_message",
+              key: "input_required_error_message",
               displayer: "Required Error Message",
               value: "Required",
             },
             {
               type: "select",
-              key: "type",
+              key: "input_type",
               displayer: "Type",
               value: "Number",
               additionalParams: {
@@ -290,7 +290,7 @@ class Form5 extends BaseContacts {
             },
             {
               type: "string",
-              key: "type_error_message",
+              key: "input_type_error_message",
               displayer: "Type Error Message",
               value: "Invalid type",
             },
@@ -299,29 +299,29 @@ class Form5 extends BaseContacts {
         {
           type: "object",
           displayer: "Input",
-          key: "input",
+          key: "second_inputs_input",
           value: [
             {
               type: "string",
               displayer: "Placeholder",
-              key: "placeholder",
+              key: "input_placeholder",
               value: "Description",
             },
             {
               type: "boolean",
-              key: "is_required",
+              key: "input_is_required",
               displayer: "Required Message",
               value: true,
             },
             {
               type: "string",
-              key: "required_error_message",
+              key: "input_required_error_message",
               displayer: "Required Error Message",
               value: "Required",
             },
             {
               type: "select",
-              key: "type",
+              key: "input_type",
               displayer: "Type",
               value: "Text",
               additionalParams: {
@@ -330,7 +330,7 @@ class Form5 extends BaseContacts {
             },
             {
               type: "string",
-              key: "type_error_message",
+              key: "input_type_error_message",
               displayer: "Type Error Message",
               value: "Invalid type",
             },
@@ -508,7 +508,7 @@ class Form5 extends BaseContacts {
                         <div className={this.decorateCSS("right-inputs")}>
                           {secondInputs.map((input: any, index: number) => (
                             <div key={index} className={this.decorateCSS("input-container")}>
-                              {getInputType(input.getPropValue("type")) === "textarea" ? (
+                              {getInputType(input.getPropValue("input_type")) === "textarea" ? (
                                 <textarea
                                   placeholder=" "
                                   className={`${this.decorateCSS("input")} ${this.decorateCSS("textarea")}`}
@@ -517,10 +517,10 @@ class Form5 extends BaseContacts {
                                   name={getInputName(index + firstInputs.length)}
                                   value={values[getInputName(index + firstInputs.length)]}
                                 ></textarea>
-                              ) : getInputType(input.getPropValue("type")) === "select" ? (
+                              ) : getInputType(input.getPropValue("input_type")) === "select" ? (
                                 <select value={values[getInputName(index + firstInputs.length)]} onChange={handleChange} name={getInputName(index + firstInputs.length)} className={`${this.decorateCSS("select")} ${this.decorateCSS("custom-select")}`}>
                                   <option value="" disabled hidden>
-                                    {input.getPropValue("placeholder")}
+                                    {input.getPropValue("input_placeholder")}
                                   </option>
                                   {input.getPropValue("options").map((option: any, idx: number) => {
                                     const optVal = getOptionValue(option);
@@ -534,14 +534,14 @@ class Form5 extends BaseContacts {
                               ) : (
                                 <input
                                   placeholder=" "
-                                  type={getInputType(input.getPropValue("type"))}
+                                  type={getInputType(input.getPropValue("input_type"))}
                                   onChange={handleChange}
                                   value={values[getInputName(index + firstInputs.length)]}
                                   name={getInputName(index + firstInputs.length)}
                                   className={this.decorateCSS("input")}
                                 />
                               )}
-                              {getInputType(input.getPropValue("type")) === "select" ? "" : <Base.P className={this.decorateCSS("placeholder")}>{input.getPropValue("placeholder")}</Base.P>}
+                              {getInputType(input.getPropValue("input_type")) === "select" ? "" : <Base.P className={this.decorateCSS("placeholder")}>{input.getPropValue("input_placeholder")}</Base.P>}
                               <ErrorMessage className={this.decorateCSS("error-message")} name={getInputName(index + firstInputs.length)} component={"span"} />
                             </div>
                           ))}

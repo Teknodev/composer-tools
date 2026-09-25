@@ -15,7 +15,7 @@ interface FeatureItem {
 }
 
 type MediaGroup = {
-  media: TypeMediaInputValue;
+  media_media: TypeMediaInputValue;
   overlay: boolean;
 };
 
@@ -61,7 +61,7 @@ class About10 extends BaseAbout {
       value: [
         {
           type: "media",
-          key: "media",
+          key: "media_media",
           displayer: "Media",
           additionalParams: {
             availableTypes: ["image", "video"],
@@ -92,19 +92,19 @@ class About10 extends BaseAbout {
           value: [
             {
               type: "string",
-              key: "subtitle",
+              key: "feature_subtitle",
               displayer: "Subtitle",
               value: "",
             },
             {
               type: "string",
-              key: "title",
+              key: "feature_title",
               displayer: "Title",
               value: "Location",
             },
             {
               type: "string",
-              key: "description",
+              key: "feature_description",
               displayer: "Description",
               value: "5 min to the city center",
             },
@@ -117,19 +117,19 @@ class About10 extends BaseAbout {
           value: [
             {
               type: "string",
-              key: "subtitle",
+              key: "feature_subtitle",
               displayer: "Subtitle",
               value: "",
             },
             {
               type: "string",
-              key: "title",
+              key: "feature_title",
               displayer: "Title",
               value: "Convenience",
             },
             {
               type: "string",
-              key: "description",
+              key: "feature_description",
               displayer: "Description",
               value: "We work around the clock",
             },
@@ -142,19 +142,19 @@ class About10 extends BaseAbout {
           value: [
             {
               type: "string",
-              key: "subtitle",
+              key: "feature_subtitle",
               displayer: "Subtitle",
               value: "",
             },
             {
               type: "string",
-              key: "title",
+              key: "feature_title",
               displayer: "Title",
               value: "Masters",
             },
             {
               type: "string",
-              key: "description",
+              key: "feature_description",
               displayer: "Description",
               value: "High-class specialists",
             },
@@ -167,19 +167,19 @@ class About10 extends BaseAbout {
           value: [
             {
               type: "string",
-              key: "subtitle",
+              key: "feature_subtitle",
               displayer: "Subtitle",
               value: "",
             },
             {
               type: "string",
-              key: "title",
+              key: "feature_title",
               displayer: "Title",
               value: "Universal",
             },
             {
               type: "string",
-              key: "description",
+              key: "feature_description",
               displayer: "Description",
               value: "Spa for men and women",
             },
@@ -226,13 +226,13 @@ class About10 extends BaseAbout {
     });
     const hasButtonText = buttons.some((btn) => this.castToString(btn.text));
     const mainMediaGroup = this.castToObject<MediaGroup>("media");
-    const mainImage = mainMediaGroup?.media;
-    const featuresItems = this.castToObject<{ title: JSX.Element; subtitle: JSX.Element; description: JSX.Element }[]>("features");
+    const mainImage = mainMediaGroup.media_media;
+    const featuresItems = this.castToObject<{ feature_title: JSX.Element; feature_subtitle: JSX.Element; feature_description: JSX.Element }[]>("features");
     const features: FeatureItem[] = featuresItems.map((item) => {
-      const title = this.castToString(item.title) || "";
-      const subtitle = this.castToString(item.subtitle) || "";
-      const description = this.castToString(item.description) || "";
-      return { title, titleElement: item.title, subtitle, subtitleElement: item.subtitle, description, descriptionElement: item.description };
+      const title = this.castToString(item.feature_title) || "";
+      const subtitle = this.castToString(item.feature_subtitle) || "";
+      const description = this.castToString(item.feature_description) || "";
+      return { title, titleElement: item.feature_title, subtitle, subtitleElement: item.feature_subtitle, description, descriptionElement: item.feature_description };
     });
     const hoverAnimation = this.getPropValue("hoverAnimation") || [];
     const animationClass = hoverAnimation.length && hoverAnimation.join(" ");

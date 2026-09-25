@@ -75,8 +75,8 @@ class Stats17 extends BaseStats {
                         { type: "string", key: "prefix", displayer: "Prefix", value: "" },
                         { type: "string", key: "number", displayer: "Value", value: "300" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "+" },
-                        { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
-                        { type: "string", key: "title", displayer: "Title", value: "Experienced people on the team" },
+                        { type: "string", key: "stat_subtitle", displayer: "Subtitle", value: "" },
+                        { type: "string", key: "stat_title", displayer: "Title", value: "Experienced people on the team" },
                         { type: "string", key: "infoText", displayer: "Info Text", value: "" },
                     ]
                 },
@@ -85,8 +85,8 @@ class Stats17 extends BaseStats {
                         { type: "string", key: "prefix", displayer: "Prefix", value: "" },
                         { type: "string", key: "number", displayer: "Value", value: "20" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "+" },
-                        { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
-                        { type: "string", key: "title", displayer: "Title", value: "Cities where employees work" },
+                        { type: "string", key: "stat_subtitle", displayer: "Subtitle", value: "" },
+                        { type: "string", key: "stat_title", displayer: "Title", value: "Cities where employees work" },
                         { type: "string", key: "infoText", displayer: "Info Text", value: "" },
                     ]
                 },
@@ -95,8 +95,8 @@ class Stats17 extends BaseStats {
                         { type: "string", key: "prefix", displayer: "Prefix", value: "" },
                         { type: "string", key: "number", displayer: "Value", value: "180" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "+" },
-                        { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
-                        { type: "string", key: "title", displayer: "Title", value: "Days of product development" },
+                        { type: "string", key: "stat_subtitle", displayer: "Subtitle", value: "" },
+                        { type: "string", key: "stat_title", displayer: "Title", value: "Days of product development" },
                         { type: "string", key: "infoText", displayer: "Info Text", value: "" },
                     ]
                 },
@@ -230,15 +230,15 @@ class Stats17 extends BaseStats {
 
         const alignment = Base.getContentAlignment();
 
-        const statsItems = this.castToObject<{ prefix: JSX.Element; number: JSX.Element; suffix: JSX.Element; title: JSX.Element; subtitle: JSX.Element; infoText: JSX.Element }[]>("stats");
+        const statsItems = this.castToObject<{ prefix: JSX.Element; number: JSX.Element; suffix: JSX.Element; stat_title: JSX.Element; stat_subtitle: JSX.Element; infoText: JSX.Element }[]>("stats");
         const stats: StatItem[] = statsItems.map((item) => {
             const prefix = this.castToString(item.prefix) || "";
             const number = this.castToString(item.number) || "0";
             const suffix = this.castToString(item.suffix) || "";
-            const title = this.castToString(item.title) || "";
-            const subtitle = this.castToString(item.subtitle) || "";
+            const title = this.castToString(item.stat_title) || "";
+            const subtitle = this.castToString(item.stat_subtitle) || "";
             const infoText = this.castToString(item.infoText) || "";
-            return { prefix, number, suffix, title, titleElement: item.title, subtitle, subtitleElement: item.subtitle, infoText, infoTextElement: item.infoText };
+            return { prefix, number, suffix, title, titleElement: item.stat_title, subtitle, subtitleElement: item.stat_subtitle, infoText, infoTextElement: item.infoText };
         });
 
         const animationProps = this.castToObject<{ statsAnimation: boolean; animationDuration: number }>("animation");

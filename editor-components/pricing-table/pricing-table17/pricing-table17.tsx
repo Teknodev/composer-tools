@@ -16,8 +16,8 @@ type CardItem = {
   cardDescription: React.JSX.Element;
   cardPrice: React.JSX.Element;
   cardDuration: React.JSX.Element;
-  cardFeature: CardFeatureItem[];
-  buttons: INPUTS.CastedButton[];
+  cardFeature_item: CardFeatureItem[];
+  item_buttons: INPUTS.CastedButton[];
 };
 
 type BottomCardItem = {
@@ -83,7 +83,7 @@ class PricingTable17 extends BasePricingTable {
               value: [
                 {
                   type: "object",
-                  key: "item",
+                  key: "cardFeature_item",
                   displayer: "Feature Item",
                   value: [
                     { type: "media", key: "icon", displayer: "Icon", additionalParams: { availableTypes: ["image", "icon"] }, value: { type: "icon", name: "FaCheck" } },
@@ -92,7 +92,7 @@ class PricingTable17 extends BasePricingTable {
                 },
                 {
                   type: "object",
-                  key: "item",
+                  key: "cardFeature_item",
                   displayer: "Feature Item",
                   value: [
                     { type: "media", key: "icon", displayer: "Icon", additionalParams: { availableTypes: ["image", "icon"] }, value: { type: "icon", name: "FaCheck" } },
@@ -101,7 +101,7 @@ class PricingTable17 extends BasePricingTable {
                 },
                 {
                   type: "object",
-                  key: "item",
+                  key: "cardFeature_item",
                   displayer: "Feature Item",
                   value: [
                     { type: "media", key: "icon", displayer: "Icon", additionalParams: { availableTypes: ["image", "icon"] }, value: { type: "icon", name: "FaCheck" } },
@@ -110,7 +110,7 @@ class PricingTable17 extends BasePricingTable {
                 },
                 {
                   type: "object",
-                  key: "item",
+                  key: "cardFeature_item",
                   displayer: "Feature Item",
                   value: [
                     { type: "media", key: "icon", displayer: "Icon", additionalParams: { availableTypes: ["image", "icon"] }, value: { type: "icon", name: "FaCheck" } },
@@ -121,7 +121,7 @@ class PricingTable17 extends BasePricingTable {
             },
             {
               type: "array",
-              key: "buttons",
+              key: "item_buttons",
               displayer: "Buttons",
               value: [INPUTS.BUTTON("button", "Button", "GET STARTED TODAY", "", null, null, "Primary")],
             },
@@ -144,7 +144,7 @@ class PricingTable17 extends BasePricingTable {
               value: [
                 {
                   type: "object",
-                  key: "item",
+                  key: "cardFeature_item",
                   displayer: "Feature Item",
                   value: [
                     { type: "media", key: "icon", displayer: "Icon", additionalParams: { availableTypes: ["image", "icon"] }, value: { type: "icon", name: "FaCheck" } },
@@ -153,7 +153,7 @@ class PricingTable17 extends BasePricingTable {
                 },
                 {
                   type: "object",
-                  key: "item",
+                  key: "cardFeature_item",
                   displayer: "Feature Item",
                   value: [
                     { type: "media", key: "icon", displayer: "Icon", additionalParams: { availableTypes: ["image", "icon"] }, value: { type: "icon", name: "FaCheck" } },
@@ -162,7 +162,7 @@ class PricingTable17 extends BasePricingTable {
                 },
                 {
                   type: "object",
-                  key: "item",
+                  key: "cardFeature_item",
                   displayer: "Feature Item",
                   value: [
                     { type: "media", key: "icon", displayer: "Icon", additionalParams: { availableTypes: ["image", "icon"] }, value: { type: "icon", name: "FaCheck" } },
@@ -171,7 +171,7 @@ class PricingTable17 extends BasePricingTable {
                 },
                 {
                   type: "object",
-                  key: "item",
+                  key: "cardFeature_item",
                   displayer: "Feature Item",
                   value: [
                     { type: "media", key: "icon", displayer: "Icon", additionalParams: { availableTypes: ["image", "icon"] }, value: { type: "icon", name: "FaCheck" } },
@@ -180,7 +180,7 @@ class PricingTable17 extends BasePricingTable {
                 },
                 {
                   type: "object",
-                  key: "item",
+                  key: "cardFeature_item",
                   displayer: "Feature Item",
                   value: [
                     { type: "media", key: "icon", displayer: "Icon", additionalParams: { availableTypes: ["image", "icon"] }, value: { type: "icon", name: "FaCheck" } },
@@ -191,7 +191,7 @@ class PricingTable17 extends BasePricingTable {
             },
             {
               type: "array",
-              key: "buttons",
+              key: "item_buttons",
               displayer: "Buttons",
               value: [INPUTS.BUTTON("button", "Button", "GET STARTED TODAY", "", null, null, "Primary")],
             },
@@ -249,7 +249,7 @@ class PricingTable17 extends BasePricingTable {
         const cardPriceExist = this.castToString(item.cardPrice);
         const cardDurationExist = this.castToString(item.cardDuration);
 
-        const rawButtons = item.buttons || ((item as any).button ? [(item as any).button] : []);
+        const rawButtons = item.item_buttons || ((item as any).button ? [(item as any).button] : []);
         const buttons = Array.isArray(rawButtons) ? rawButtons : [];
         const buttonExist = buttons.map((btn: any) => {
           if (btn && btn.value && Array.isArray(btn.value)) {
@@ -260,8 +260,8 @@ class PricingTable17 extends BasePricingTable {
           return btn;
         }).some(btn => this.castToString(btn.text));
 
-        const filteredFeatures = Array.isArray(item.cardFeature)
-          ? item.cardFeature.filter((feature) => {
+        const filteredFeatures = Array.isArray(item.cardFeature_item)
+          ? item.cardFeature_item.filter((feature) => {
             const textExist = this.castToString(feature.text);
             const iconExist = feature.icon && (typeof feature.icon === "object" ? feature.icon.name || feature.icon.url : true);
             return textExist || iconExist;
@@ -345,7 +345,7 @@ class PricingTable17 extends BasePricingTable {
                 const cardPriceExist = this.castToString(item.cardPrice);
                 const cardDurationExist = this.castToString(item.cardDuration);
 
-                const rawButtons = item.buttons || ((item as any).button ? [(item as any).button] : []);
+                const rawButtons = item.item_buttons || ((item as any).button ? [(item as any).button] : []);
                 const buttons = Array.isArray(rawButtons) ? rawButtons : [];
                 const visibleCardButtons = buttons.map((btn: any) => {
                   if (btn && btn.value && Array.isArray(btn.value)) {
@@ -359,8 +359,8 @@ class PricingTable17 extends BasePricingTable {
                 }).filter(btn => this.castToString(btn.text));
                 const buttonExist = visibleCardButtons.length > 0;
 
-                const filteredFeatures = Array.isArray(item.cardFeature)
-                  ? item.cardFeature.filter((feature) => {
+                const filteredFeatures = Array.isArray(item.cardFeature_item)
+                  ? item.cardFeature_item.filter((feature) => {
                     const textExist = this.castToString(feature.text);
                     const iconExist = feature.icon && (typeof feature.icon === "object" ? feature.icon.name || feature.icon.url : true);
                     return textExist || iconExist;

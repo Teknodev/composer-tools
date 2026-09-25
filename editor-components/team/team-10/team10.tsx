@@ -16,15 +16,15 @@ type Socials = {
 };
 
 type Feature = {
-  subtitle: React.JSX.Element;
-  title: React.JSX.Element;
+  feature_subtitle: React.JSX.Element;
+  feature_title: React.JSX.Element;
   featureDescription: React.JSX.Element;
 };
 
 type Card = {
   profileImage: TypeMediaInputValue;
-  subtitle: React.JSX.Element;
-  title: React.JSX.Element;
+  member_subtitle: React.JSX.Element;
+  member_title: React.JSX.Element;
   features: Feature[];
   cardDescription: React.JSX.Element;
   socials: Socials[];
@@ -119,13 +119,13 @@ class Team10 extends Team {
             },
             {
               type: "string",
-              key: "subtitle",
+              key: "member_subtitle",
               displayer: "Position",
               value: "TEAM MANAGER",
             },
             {
               type: "string",
-              key: "title",
+              key: "member_title",
               displayer: "Person Name",
               value:
                 '<p dir="ltr"><span style="white-space: pre-wrap;">MARINA </span></p><p dir="ltr"><span style="white-space: pre-wrap;">GONZALES</span></p>',
@@ -142,13 +142,13 @@ class Team10 extends Team {
                   value: [
                     {
                       type: "string",
-                      key: "subtitle",
+                      key: "feature_subtitle",
                       displayer: "Subtitle",
                       value: "",
                     },
                     {
                       type: "string",
-                      key: "title",
+                      key: "feature_title",
                       displayer: "Title",
                       value: "AGE",
                     },
@@ -167,13 +167,13 @@ class Team10 extends Team {
                   value: [
                     {
                       type: "string",
-                      key: "subtitle",
+                      key: "feature_subtitle",
                       displayer: "Subtitle",
                       value: "",
                     },
                     {
                       type: "string",
-                      key: "title",
+                      key: "feature_title",
                       displayer: "Title",
                       value: "JOINED",
                     },
@@ -192,13 +192,13 @@ class Team10 extends Team {
                   value: [
                     {
                       type: "string",
-                      key: "subtitle",
+                      key: "feature_subtitle",
                       displayer: "Subtitle",
                       value: "",
                     },
                     {
                       type: "string",
-                      key: "title",
+                      key: "feature_title",
                       displayer: "Title",
                       value: "COUNTRY",
                     },
@@ -346,13 +346,13 @@ class Team10 extends Team {
             },
             {
               type: "string",
-              key: "subtitle",
+              key: "member_subtitle",
               displayer: "Position",
               value: "TEAM MANAGER",
             },
             {
               type: "string",
-              key: "title",
+              key: "member_title",
               displayer: "Person Name",
               value:
                 '<p dir="ltr"><span style="white-space: pre-wrap;">MARINA </span></p><p dir="ltr"><span style="white-space: pre-wrap;">GONZALES</span></p>',
@@ -369,13 +369,13 @@ class Team10 extends Team {
                   value: [
                     {
                       type: "string",
-                      key: "subtitle",
+                      key: "feature_subtitle",
                       displayer: "Subtitle",
                       value: "",
                     },
                     {
                       type: "string",
-                      key: "title",
+                      key: "feature_title",
                       displayer: "Title",
                       value: "AGE",
                     },
@@ -394,13 +394,13 @@ class Team10 extends Team {
                   value: [
                     {
                       type: "string",
-                      key: "subtitle",
+                      key: "feature_subtitle",
                       displayer: "Subtitle",
                       value: "",
                     },
                     {
                       type: "string",
-                      key: "title",
+                      key: "feature_title",
                       displayer: "Title",
                       value: "JOINED",
                     },
@@ -419,13 +419,13 @@ class Team10 extends Team {
                   value: [
                     {
                       type: "string",
-                      key: "subtitle",
+                      key: "feature_subtitle",
                       displayer: "Subtitle",
                       value: "",
                     },
                     {
                       type: "string",
-                      key: "title",
+                      key: "feature_title",
                       displayer: "Title",
                       value: "COUNTRY",
                     },
@@ -573,13 +573,13 @@ class Team10 extends Team {
             },
             {
               type: "string",
-              key: "subtitle",
+              key: "member_subtitle",
               displayer: "Position",
               value: "TEAM MANAGER",
             },
             {
               type: "string",
-              key: "title",
+              key: "member_title",
               displayer: "Person Name",
               value:
                 '<p dir="ltr"><span style="white-space: pre-wrap;">MARINA </span></p><p dir="ltr"><span style="white-space: pre-wrap;">GONZALES</span></p>',
@@ -596,13 +596,13 @@ class Team10 extends Team {
                   value: [
                     {
                       type: "string",
-                      key: "subtitle",
+                      key: "feature_subtitle",
                       displayer: "Subtitle",
                       value: "",
                     },
                     {
                       type: "string",
-                      key: "title",
+                      key: "feature_title",
                       displayer: "Title",
                       value: "AGE",
                     },
@@ -621,13 +621,13 @@ class Team10 extends Team {
                   value: [
                     {
                       type: "string",
-                      key: "subtitle",
+                      key: "feature_subtitle",
                       displayer: "Subtitle",
                       value: "",
                     },
                     {
                       type: "string",
-                      key: "title",
+                      key: "feature_title",
                       displayer: "Title",
                       value: "JOINED",
                     },
@@ -646,13 +646,13 @@ class Team10 extends Team {
                   value: [
                     {
                       type: "string",
-                      key: "subtitle",
+                      key: "feature_subtitle",
                       displayer: "Subtitle",
                       value: "",
                     },
                     {
                       type: "string",
-                      key: "title",
+                      key: "feature_title",
                       displayer: "Title",
                       value: "COUNTRY",
                     },
@@ -800,13 +800,13 @@ class Team10 extends Team {
             },
             {
               type: "string",
-              key: "subtitle",
+              key: "member_subtitle",
               displayer: "Position",
               value: "TEAM MANAGER",
             },
             {
               type: "string",
-              key: "title",
+              key: "member_title",
               displayer: "Person Name",
               value:
                 '<p dir="ltr"><span style="white-space: pre-wrap;">MARINA </span></p><p dir="ltr"><span style="white-space: pre-wrap;">GONZALES</span></p>',
@@ -823,13 +823,13 @@ class Team10 extends Team {
                   value: [
                     {
                       type: "string",
-                      key: "subtitle",
+                      key: "feature_subtitle",
                       displayer: "Subtitle",
                       value: "",
                     },
                     {
                       type: "string",
-                      key: "title",
+                      key: "feature_title",
                       displayer: "Title",
                       value: "AGE",
                     },
@@ -848,13 +848,13 @@ class Team10 extends Team {
                   value: [
                     {
                       type: "string",
-                      key: "subtitle",
+                      key: "feature_subtitle",
                       displayer: "Subtitle",
                       value: "",
                     },
                     {
                       type: "string",
-                      key: "title",
+                      key: "feature_title",
                       displayer: "Title",
                       value: "JOINED",
                     },
@@ -873,13 +873,13 @@ class Team10 extends Team {
                   value: [
                     {
                       type: "string",
-                      key: "subtitle",
+                      key: "feature_subtitle",
                       displayer: "Subtitle",
                       value: "",
                     },
                     {
                       type: "string",
-                      key: "title",
+                      key: "feature_title",
                       displayer: "Title",
                       value: "COUNTRY",
                     },
@@ -1067,8 +1067,8 @@ class Team10 extends Team {
           {(this.castToObject<Card[]>("team") || []).map((teamMember: Card, index: number) => {
             const imageValue = teamMember.profileImage;
             const socials = teamMember.socials || [];
-            const subtitleExists = this.castToString(teamMember.subtitle);
-            const titleExists = this.castToString(teamMember.title);
+            const subtitleExists = this.castToString(teamMember.member_subtitle);
+            const titleExists = this.castToString(teamMember.member_title);
             const cardDescriptionExists = this.castToString(teamMember.cardDescription);
             const hasFeatures = teamMember.features && teamMember.features.length > 0;
             const hasInfo = subtitleExists || titleExists || hasFeatures || cardDescriptionExists || socials.length > 0;
@@ -1092,25 +1092,25 @@ class Team10 extends Team {
                     </div>
                     {(subtitleExists || titleExists) && (
                       <Base.VerticalContent className={this.decorateCSS("title-group")}>
-                        {subtitleExists && <Base.P className={this.decorateCSS("member-subtitle")}>{teamMember.subtitle}</Base.P>}
-                        {titleExists && <Base.H2 className={this.decorateCSS("member-title")} data-animation={hoverAnimation.join(" ")}>{teamMember.title}</Base.H2>}
+                        {subtitleExists && <Base.P className={this.decorateCSS("member-subtitle")}>{teamMember.member_subtitle}</Base.P>}
+                        {titleExists && <Base.H2 className={this.decorateCSS("member-title")} data-animation={hoverAnimation.join(" ")}>{teamMember.member_title}</Base.H2>}
                       </Base.VerticalContent>
                     )}
                     {hasFeatures && (
                       <div className={this.decorateCSS("features-wrapper")}>
                         {teamMember.features?.map((feature: Feature, indexFeatures: number) => {
-                          const featureSubtitleExist = this.castToString(feature.subtitle);
-                          const featureTitleExist = this.castToString(feature.title);
+                          const featureSubtitleExist = this.castToString(feature.feature_subtitle);
+                          const featureTitleExist = this.castToString(feature.feature_title);
                           const featureDescExist = this.castToString(feature.featureDescription);
                           const hasFeature = featureSubtitleExist || featureTitleExist || featureDescExist;
 
                           return hasFeature && (
                             <Base.VerticalContent key={indexFeatures} className={this.decorateCSS("features")}>
                               {featureSubtitleExist && (
-                                <Base.P className={this.decorateCSS("feature-subtitle")}>{feature.subtitle}</Base.P>
+                                <Base.P className={this.decorateCSS("feature-subtitle")}>{feature.feature_subtitle}</Base.P>
                               )}
                               {featureTitleExist && (
-                                <Base.P className={this.decorateCSS("feature-title")}>{feature.title}</Base.P>
+                                <Base.P className={this.decorateCSS("feature-title")}>{feature.feature_title}</Base.P>
                               )}
                               {featureDescExist && (
                                 <Base.P className={this.decorateCSS("feature-description")}>{feature.featureDescription}</Base.P>

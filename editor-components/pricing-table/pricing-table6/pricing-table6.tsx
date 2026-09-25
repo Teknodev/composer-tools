@@ -7,7 +7,7 @@ import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "../../../custom-hooks/input-templates";
 
 type Pricing = {
-  title: React.JSX.Element;
+  plan_title_title: React.JSX.Element;
   product: Array<{
     cardTitle1: string;
     description: string;
@@ -25,13 +25,13 @@ type Pricing = {
     right_items: {
       enable: boolean;
       text: React.JSX.Element;
-      subtitle: React.JSX.Element;
-      title: React.JSX.Element;
+      right_items_subtitle: React.JSX.Element;
+      right_items_title: React.JSX.Element;
       list: {
-        text: string;
+        list_item_text: string;
         dash_icon: string;
       }[];
-      buttons: INPUTS.CastedButton[];
+      right_items_buttons: INPUTS.CastedButton[];
     };
   }>;
 };
@@ -82,7 +82,7 @@ class PricingMultipleTwo extends BasePricingTable {
           value: [
             {
               type: "string",
-              key: "title",
+              key: "plan_title_title",
               displayer: "Title",
               value: "Annual",
             },
@@ -145,13 +145,13 @@ class PricingMultipleTwo extends BasePricingTable {
                       value: [
                         {
                           type: "string",
-                          key: "subtitle",
+                          key: "right_items_subtitle",
                           displayer: "Subtitle",
                           value: "PRIMARY",
                         },
                           {
                             type: "string",
-                            key: "title",
+                            key: "right_items_title",
                             displayer: "Package Title",
                             value: "60 hour package per month",
                           },
@@ -179,7 +179,7 @@ class PricingMultipleTwo extends BasePricingTable {
                                 },
                                 {
                                   type: "string",
-                                  key: "text",
+                                  key: "list_item_text",
                                   displayer: "Property",
                                   value:
                                     "3 hours of training (VR therapy + platform use)",
@@ -208,7 +208,7 @@ class PricingMultipleTwo extends BasePricingTable {
                                 },
                                 {
                                   type: "string",
-                                  key: "text",
+                                  key: "list_item_text",
                                   displayer: "Property",
                                   value: "Unlimited technical support",
                                 },
@@ -236,7 +236,7 @@ class PricingMultipleTwo extends BasePricingTable {
                                 },
                                 {
                                   type: "string",
-                                  key: "text",
+                                  key: "list_item_text",
                                   displayer: "Property",
                                   value: "Hours of supervision per month",
                                 },
@@ -255,7 +255,7 @@ class PricingMultipleTwo extends BasePricingTable {
                         },
                         {
                           type: "array",
-                          key: "buttons",
+                          key: "right_items_buttons",
                           displayer: "Buttons",
                           value: [
                             INPUTS.BUTTON(
@@ -328,13 +328,13 @@ class PricingMultipleTwo extends BasePricingTable {
                       value: [
                         {
                           type: "string",
-                          key: "subtitle",
+                          key: "right_items_subtitle",
                           displayer: "Subtitle",
                           value: "POPULAR",
                         },
                           {
                             type: "string",
-                            key: "title",
+                            key: "right_items_title",
                             displayer: "Package Title",
                             value: "60 hour package per month",
                           },
@@ -362,7 +362,7 @@ class PricingMultipleTwo extends BasePricingTable {
                                 },
                                 {
                                   type: "string",
-                                  key: "text",
+                                  key: "list_item_text",
                                   displayer: "Property",
                                   value:
                                     "3 hours of training (VR therapy + platform use)",
@@ -391,7 +391,7 @@ class PricingMultipleTwo extends BasePricingTable {
                                 },
                                 {
                                   type: "string",
-                                  key: "text",
+                                  key: "list_item_text",
                                   displayer: "Property",
                                   value: "Unlimited technical support",
                                 },
@@ -419,7 +419,7 @@ class PricingMultipleTwo extends BasePricingTable {
                                 },
                                 {
                                   type: "string",
-                                  key: "text",
+                                  key: "list_item_text",
                                   displayer: "Property",
                                   value: "Hours of supervision per month",
                                 },
@@ -438,7 +438,7 @@ class PricingMultipleTwo extends BasePricingTable {
                         },
                         {
                           type: "array",
-                          key: "buttons",
+                          key: "right_items_buttons",
                           displayer: "Buttons",
                           value: [
                             INPUTS.BUTTON(
@@ -511,13 +511,13 @@ class PricingMultipleTwo extends BasePricingTable {
                       value: [
                         {
                           type: "string",
-                          key: "subtitle",
+                          key: "right_items_subtitle",
                           displayer: "Subtitle",
                           value: "PREMIUM",
                         },
                           {
                             type: "string",
-                            key: "title",
+                            key: "right_items_title",
                             displayer: "Package Title",
                             value: "60 hour package per month",
                           },
@@ -545,7 +545,7 @@ class PricingMultipleTwo extends BasePricingTable {
                                 },
                                 {
                                   type: "string",
-                                  key: "text",
+                                  key: "list_item_text",
                                   displayer: "Property",
                                   value:
                                     "3 hours of training (VR therapy + platform use)",
@@ -574,7 +574,7 @@ class PricingMultipleTwo extends BasePricingTable {
                                 },
                                 {
                                   type: "string",
-                                  key: "text",
+                                  key: "list_item_text",
                                   displayer: "Property",
                                   value: "Unlimited technical support",
                                 },
@@ -602,7 +602,7 @@ class PricingMultipleTwo extends BasePricingTable {
                                 },
                                 {
                                   type: "string",
-                                  key: "text",
+                                  key: "list_item_text",
                                   displayer: "Property",
                                   value: "Hours of supervision per month",
                                 },
@@ -621,7 +621,7 @@ class PricingMultipleTwo extends BasePricingTable {
                         },
                         {
                           type: "array",
-                          key: "buttons",
+                          key: "right_items_buttons",
                           displayer: "Buttons",
                           value: [
                             INPUTS.BUTTON(
@@ -650,7 +650,7 @@ class PricingMultipleTwo extends BasePricingTable {
           value: [
             {
               type: "string",
-              key: "title",
+              key: "plan_title_title",
               displayer: "Title",
               value: "Yearly",
             },
@@ -713,13 +713,13 @@ class PricingMultipleTwo extends BasePricingTable {
                       value: [
                         {
                           type: "string",
-                          key: "subtitle",
+                          key: "right_items_subtitle",
                           displayer: "Subtitle",
                           value: "PRIMARY",
                         },
                           {
                             type: "string",
-                            key: "title",
+                            key: "right_items_title",
                             displayer: "Package Title",
                             value: "60 hour package per month",
                           },
@@ -747,7 +747,7 @@ class PricingMultipleTwo extends BasePricingTable {
                                 },
                                 {
                                   type: "string",
-                                  key: "text",
+                                  key: "list_item_text",
                                   displayer: "Property",
                                   value:
                                     "3 hours of training (VR therapy + platform use)",
@@ -776,7 +776,7 @@ class PricingMultipleTwo extends BasePricingTable {
                                 },
                                 {
                                   type: "string",
-                                  key: "text",
+                                  key: "list_item_text",
                                   displayer: "Property",
                                   value: "Unlimited technical support",
                                 },
@@ -804,7 +804,7 @@ class PricingMultipleTwo extends BasePricingTable {
                                 },
                                 {
                                   type: "string",
-                                  key: "text",
+                                  key: "list_item_text",
                                   displayer: "Property",
                                   value: "Hours of supervision per month",
                                 },
@@ -823,7 +823,7 @@ class PricingMultipleTwo extends BasePricingTable {
                         },
                         {
                           type: "array",
-                          key: "buttons",
+                          key: "right_items_buttons",
                           displayer: "Buttons",
                           value: [
                             INPUTS.BUTTON(
@@ -896,13 +896,13 @@ class PricingMultipleTwo extends BasePricingTable {
                       value: [
                         {
                           type: "string",
-                          key: "subtitle",
+                          key: "right_items_subtitle",
                           displayer: "Subtitle",
                           value: "POPULAR",
                         },
                           {
                             type: "string",
-                            key: "title",
+                            key: "right_items_title",
                             displayer: "Package Title",
                             value: "60 hour package per month",
                           },
@@ -930,7 +930,7 @@ class PricingMultipleTwo extends BasePricingTable {
                                 },
                                 {
                                   type: "string",
-                                  key: "text",
+                                  key: "list_item_text",
                                   displayer: "Property",
                                   value:
                                     "3 hours of training (VR therapy + platform use)",
@@ -959,7 +959,7 @@ class PricingMultipleTwo extends BasePricingTable {
                                 },
                                 {
                                   type: "string",
-                                  key: "text",
+                                  key: "list_item_text",
                                   displayer: "Property",
                                   value: "Unlimited technical support",
                                 },
@@ -987,7 +987,7 @@ class PricingMultipleTwo extends BasePricingTable {
                                 },
                                 {
                                   type: "string",
-                                  key: "text",
+                                  key: "list_item_text",
                                   displayer: "Property",
                                   value: "Hours of supervision per month",
                                 },
@@ -1006,7 +1006,7 @@ class PricingMultipleTwo extends BasePricingTable {
                         },
                         {
                           type: "array",
-                          key: "buttons",
+                          key: "right_items_buttons",
                           displayer: "Buttons",
                           value: [
                             INPUTS.BUTTON(
@@ -1078,13 +1078,13 @@ class PricingMultipleTwo extends BasePricingTable {
                       value: [
                         {
                           type: "string",
-                          key: "subtitle",
+                          key: "right_items_subtitle",
                           displayer: "Subtitle",
                           value: "PREMIUM",
                         },
                           {
                             type: "string",
-                            key: "title",
+                            key: "right_items_title",
                             displayer: "Package Title",
                             value: "60 hour package per month",
                           },
@@ -1112,7 +1112,7 @@ class PricingMultipleTwo extends BasePricingTable {
                                 },
                                 {
                                   type: "string",
-                                  key: "text",
+                                  key: "list_item_text",
                                   displayer: "Property",
                                   value:
                                     "3 hours of training (VR therapy + platform use)",
@@ -1141,7 +1141,7 @@ class PricingMultipleTwo extends BasePricingTable {
                                 },
                                 {
                                   type: "string",
-                                  key: "text",
+                                  key: "list_item_text",
                                   displayer: "Property",
                                   value: "Unlimited technical support",
                                 },
@@ -1169,7 +1169,7 @@ class PricingMultipleTwo extends BasePricingTable {
                                 },
                                 {
                                   type: "string",
-                                  key: "text",
+                                  key: "list_item_text",
                                   displayer: "Property",
                                   value: "Hours of supervision per month",
                                 },
@@ -1188,7 +1188,7 @@ class PricingMultipleTwo extends BasePricingTable {
                         },
                         {
                           type: "array",
-                          key: "buttons",
+                          key: "right_items_buttons",
                           displayer: "Buttons",
                           value: [
                             INPUTS.BUTTON(
@@ -1467,8 +1467,8 @@ class PricingMultipleTwo extends BasePricingTable {
                               const rightItems = plan[planIndex]?.right_items;
                               if (!rightItems) return null;
 
-                              const subtitle = rightItems.subtitle;
-                              const title = rightItems.title;
+                              const subtitle = rightItems.right_items_subtitle;
+                              const title = rightItems.right_items_title;
                               const subtitleExist = this.castToString(subtitle);
                               const titleExist = this.castToString(title);
 
@@ -1556,7 +1556,7 @@ class PricingMultipleTwo extends BasePricingTable {
                               if (!rightItems) return null;
 
                               const activeButtons = this.getButtonsFromItem(
-                                rightItems.buttons
+                                rightItems.right_items_buttons
                               );
                               const hasButtons = this.hasAnyButton(activeButtons);
                               const bottomText = rightItems.text;

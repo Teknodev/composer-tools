@@ -7,11 +7,11 @@ import ComposerLink from "../../../composer-base-components/Link/ComposerLinkPro
 
 type Card = {
     media: TypeMediaInputValue;
-    subtitle: Element;
-    title: Element;
-    description: Element;
+    card_subtitle: Element;
+    card_title: Element;
+    card_description: Element;
     overlay: boolean;
-    buttons: {
+    card_buttons: {
         type: TypeButton;
         text: Element;
         url: string;
@@ -61,13 +61,13 @@ class Feature50 extends BaseFeature {
                     value: [
                         {
                             type: "string",
-                            key: "subtitle",
+                            key: "card_subtitle",
                             displayer: "Subtitle",
                             value: ""
                         },
                         {
                             type: "string",
-                            key: "title",
+                            key: "card_title",
                             displayer: "Title",
                             value: "Digital Products"
                         },
@@ -91,13 +91,13 @@ class Feature50 extends BaseFeature {
                         },
                         {
                             type: "string",
-                            key: "description",
+                            key: "card_description",
                             displayer: "Description",
                             value: ""
                         },
                         {
                             type: "array",
-                            key: "buttons",
+                            key: "card_buttons",
                             displayer: "Buttons",
                             value: [
                                 INPUTS.BUTTON("button", "Button", "", "", null, null, "Link")
@@ -112,13 +112,13 @@ class Feature50 extends BaseFeature {
                     value: [
                         {
                             type: "string",
-                            key: "subtitle",
+                            key: "card_subtitle",
                             displayer: "Subtitle",
                             value: ""
                         },
                         {
                             type: "string",
-                            key: "title",
+                            key: "card_title",
                             displayer: "Title",
                             value: "Interactive Design"
                         },
@@ -142,13 +142,13 @@ class Feature50 extends BaseFeature {
                         },
                         {
                             type: "string",
-                            key: "description",
+                            key: "card_description",
                             displayer: "Description",
                             value: ""
                         },
                         {
                             type: "array",
-                            key: "buttons",
+                            key: "card_buttons",
                             displayer: "Buttons",
                             value: [
                                 INPUTS.BUTTON("button", "Button", "", "", null, null, "Link")
@@ -163,13 +163,13 @@ class Feature50 extends BaseFeature {
                     value: [
                         {
                             type: "string",
-                            key: "subtitle",
+                            key: "card_subtitle",
                             displayer: "Subtitle",
                             value: ""
                         },
                         {
                             type: "string",
-                            key: "title",
+                            key: "card_title",
                             displayer: "Title",
                             value: "Design Systems"
                         },
@@ -193,13 +193,13 @@ class Feature50 extends BaseFeature {
                         },
                         {
                             type: "string",
-                            key: "description",
+                            key: "card_description",
                             displayer: "Description",
                             value: ""
                         },
                         {
                             type: "array",
-                            key: "buttons",
+                            key: "card_buttons",
                             displayer: "Buttons",
                             value: [
                                 INPUTS.BUTTON("button", "Button", "", "", null, null, "Link")
@@ -214,13 +214,13 @@ class Feature50 extends BaseFeature {
                     value: [
                         {
                             type: "string",
-                            key: "subtitle",
+                            key: "card_subtitle",
                             displayer: "Subtitle",
                             value: ""
                         },
                         {
                             type: "string",
-                            key: "title",
+                            key: "card_title",
                             displayer: "Title",
                             value: "Visual Identity"
                         },
@@ -244,13 +244,13 @@ class Feature50 extends BaseFeature {
                         },
                         {
                             type: "string",
-                            key: "description",
+                            key: "card_description",
                             displayer: "Description",
                             value: ""
                         },
                         {
                             type: "array",
-                            key: "buttons",
+                            key: "card_buttons",
                             displayer: "Buttons",
                             value: [
                                 INPUTS.BUTTON("button", "Button", "", "", null, null, "Link")
@@ -328,27 +328,27 @@ class Feature50 extends BaseFeature {
                             <Base.Card key={index} className={this.decorateCSS("card-shell")}>
                             <Base.VerticalContent className={this.decorateCSS("card")}>
                                 <Base.VerticalContent className={this.decorateCSS("card-content")}>
-                                    {this.castToString(card.subtitle) && (
+                                    {this.castToString(card.card_subtitle) && (
                                         <Base.H6 className={this.decorateCSS("card-subtitle")}>
-                                            {card.subtitle}
+                                            {card.card_subtitle}
                                         </Base.H6>
                                     )}
 
-                                    {this.castToString(card.title) && (
+                                    {this.castToString(card.card_title) && (
                                         <Base.H4 className={this.decorateCSS("card-title")}>
-                                            {card.title}
+                                            {card.card_title}
                                         </Base.H4>
                                     )}
 
-                                    {this.castToString(card.description) && (
+                                    {this.castToString(card.card_description) && (
                                         <Base.P className={this.decorateCSS("card-description")}>
-                                            {card.description}
+                                            {card.card_description}
                                         </Base.P>
                                     )}
 
-                                    {card.buttons && card.buttons.length > 0 && (
+                                    {card.card_buttons && card.card_buttons.length > 0 && (
                                         <div className={this.decorateCSS("card-buttons")}>
-                                            {card.buttons.map((button, btnIndex) => (
+                                            {card.card_buttons.map((button, btnIndex) => (
                                                 this.castToString(button.text) && (
                                                     <Base.Button
                                                         className={this.decorateCSS("card-button")}

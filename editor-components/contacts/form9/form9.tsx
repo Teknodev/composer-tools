@@ -58,13 +58,13 @@ class Form9 extends BaseContacts {
             },
             {
               type: "string",
-              key: "title",
+              key: "feature_title",
               displayer: "Title",
               value: "Flexible, fast setup",
             },
             {
               type: "string",
-              key: "description",
+              key: "feature_description",
               displayer: "Description",
               value:
                 "Effortless integration, so you can start accepting credit cards the easy way",
@@ -85,13 +85,13 @@ class Form9 extends BaseContacts {
             },
             {
               type: "string",
-              key: "title",
+              key: "feature_title",
               displayer: "Title",
               value: "Better customer experience",
             },
             {
               type: "string",
-              key: "description",
+              key: "feature_description",
               displayer: "Description",
               value:
                 "An optimised, streamlined payment journey, and one unified interface",
@@ -112,13 +112,13 @@ class Form9 extends BaseContacts {
             },
             {
               type: "string",
-              key: "title",
+              key: "feature_title",
               displayer: "Title",
               value: "Global growth",
             },
             {
               type: "string",
-              key: "description",
+              key: "feature_description",
               displayer: "Description",
               value:
                 "Reach new customers and diverse markets all over the world",
@@ -482,9 +482,9 @@ class Form9 extends BaseContacts {
       Array.isArray(features) &&
       features.some((item: any) => {
         const icon = item.getPropValue("icon");
-        const featureTitle = this.castToString(item.getPropValue("title"));
+        const featureTitle = this.castToString(item.getPropValue("feature_title"));
         const featureDescription = this.castToString(
-          item.getPropValue("description")
+          item.getPropValue("feature_description")
         );
         return !!(
           icon ||
@@ -661,10 +661,10 @@ class Form9 extends BaseContacts {
                     {features?.map((item: any, i: number) => {
                       const media = item.getPropValue("icon");
                       const featureTitle = this.castToString(
-                        item.getPropValue("title")
+                        item.getPropValue("feature_title")
                       );
                       const featureDescription = this.castToString(
-                        item.getPropValue("description")
+                        item.getPropValue("feature_description")
                       );
                       const hasMedia =
                         !!media &&
@@ -693,7 +693,7 @@ class Form9 extends BaseContacts {
                               <Base.P
                                 className={this.decorateCSS("feature-title")}
                               >
-                                {item.getPropValue("title")}
+                                {item.getPropValue("feature_title")}
                               </Base.P>
                             )}
                             {featureDescription && (
@@ -702,7 +702,7 @@ class Form9 extends BaseContacts {
                                   "feature-description"
                                 )}
                               >
-                                {item.getPropValue("description")}
+                                {item.getPropValue("feature_description")}
                               </Base.P>
                             )}
                           </div>

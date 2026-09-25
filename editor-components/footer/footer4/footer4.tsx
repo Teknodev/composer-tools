@@ -12,7 +12,7 @@ type FooterValues = {
   footerTitle: React.JSX.Element;
   footerTitleLink: string;
   footerTitleMedia: TypeMediaInputValue;
-  footerText: FooterTextValues[];
+  footer_title_footerText: FooterTextValues[];
 };
 
 type FooterTextValues = {
@@ -83,7 +83,7 @@ class Footer4Page extends BaseFooter {
           value: [
             {
               type: "media",
-              key: "media",
+              key: "item_media",
               displayer: "Media",
               additionalParams: {
                 availableTypes: ["image", "icon"],
@@ -108,7 +108,7 @@ class Footer4Page extends BaseFooter {
           value: [
             {
               type: "media",
-              key: "media",
+              key: "item_media",
               displayer: "Media",
               additionalParams: {
                 availableTypes: ["image", "icon"],
@@ -133,7 +133,7 @@ class Footer4Page extends BaseFooter {
           value: [
             {
               type: "media",
-              key: "media",
+              key: "item_media",
               displayer: "Media",
               additionalParams: {
                 availableTypes: ["image", "icon"],
@@ -158,7 +158,7 @@ class Footer4Page extends BaseFooter {
           value: [
             {
               type: "media",
-              key: "media",
+              key: "item_media",
               displayer: "Media",
               additionalParams: {
                 availableTypes: ["image", "icon"],
@@ -183,7 +183,7 @@ class Footer4Page extends BaseFooter {
           value: [
             {
               type: "media",
-              key: "media",
+              key: "item_media",
               displayer: "Media",
               additionalParams: {
                 availableTypes: ["image", "icon"],
@@ -240,7 +240,7 @@ class Footer4Page extends BaseFooter {
             },
             {
               type: "array",
-              key: "footerText",
+              key: "footer_title_footerText",
               displayer: "Menu Subitem",
               value: [
                 {
@@ -433,7 +433,7 @@ class Footer4Page extends BaseFooter {
             },
             {
               type: "array",
-              key: "footerText",
+              key: "footer_title_footerText",
               displayer: "Menu Subitem",
               value: [
                 {
@@ -762,7 +762,7 @@ class Footer4Page extends BaseFooter {
             },
             {
               type: "page",
-              key: "url",
+              key: "content_url",
               displayer: "Navigate To",
               value: "",
             },
@@ -781,7 +781,7 @@ class Footer4Page extends BaseFooter {
             },
             {
               type: "page",
-              key: "url",
+              key: "content_url",
               displayer: "Navigate To",
               value: "",
             },
@@ -800,7 +800,7 @@ class Footer4Page extends BaseFooter {
             },
             {
               type: "page",
-              key: "url",
+              key: "content_url",
               displayer: "Navigate To",
               value: "",
             },
@@ -912,10 +912,10 @@ class Footer4Page extends BaseFooter {
                           <Base.Row className={this.decorateCSS("image-container")}>
                             {media.map((item: any, index: number) => {
                               return (
-                                item.media && (
+                                item.item_media && (
                                   <div className={this.decorateCSS("image-element")} key={index}>
                                     <ComposerLink path={item.url}>
-                                      <Base.Media value={item.media} className={`${this.decorateCSS("image")} ${item.media?.type === "icon" ? this.decorateCSS("is-icon") : ""}`} />
+                                      <Base.Media value={item.item_media} className={`${this.decorateCSS("image")} ${item.item_media?.type === "icon" ? this.decorateCSS("is-icon") : ""}`} />
                                     </ComposerLink>
                                   </div>
                                 )
@@ -931,7 +931,7 @@ class Footer4Page extends BaseFooter {
                     this.castToObject<any[]>("footer").map((item: FooterValues, indexFooter: number) => {
                       const footerTitleExist = this.castToString(item.footerTitle);
                       const footerTitleMediaExist = hasMedia(item.footerTitleMedia);
-                      const footerExist = footerTitleExist || footerTitleMediaExist || item.footerText.length > 0;
+                      const footerExist = footerTitleExist || footerTitleMediaExist || item.footer_title_footerText.length > 0;
                       return (
                         footerExist && (
                           <Base.VerticalContent key={indexFooter} className={this.decorateCSS("list-group")}>
@@ -945,9 +945,9 @@ class Footer4Page extends BaseFooter {
                                 </div>
                               </ComposerLink>
                             )}
-                            {item.footerText.length > 0 && (
+                            {item.footer_title_footerText.length > 0 && (
                               <Base.VerticalContent className={this.decorateCSS("text-container")}>
-                                {item.footerText.map((v: FooterTextValues, indexFooterText: number) => {
+                                {item.footer_title_footerText.map((v: FooterTextValues, indexFooterText: number) => {
                                   const footerTextExist = this.castToString(v.navTitle);
                                   const navMediaExist = hasMedia(v.navMedia);
                                   return (
@@ -1051,11 +1051,11 @@ class Footer4Page extends BaseFooter {
                       return (
                         textExist && (
                           <div className={this.decorateCSS("link-element")}>
-                            <ComposerLink key={index} path={item.url}>
+                            <ComposerLink key={index} path={item.content_url}>
                               <Base.P
                                 className={this.decorateCSS("link-text")}
-                                data-animation={item.url ? this.getPropValue("hoverAnimation").join(" ") : ""}
-                                data-has-link={Boolean(item.url)}
+                                data-animation={item.content_url ? this.getPropValue("hoverAnimation").join(" ") : ""}
+                                data-has-link={Boolean(item.content_url)}
                               >
                                 {item.text}
                               </Base.P>

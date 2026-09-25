@@ -24,7 +24,7 @@ type ItemDetailsSection = {
 };
 
 type ShareSection = {
-  title: React.JSX.Element;
+  share_title: React.JSX.Element;
   shareIcon: TypeMediaInputValue;
   socials: Socials[];
   shareCopyLink: ShareCopyLink;
@@ -84,7 +84,7 @@ class ECommerce7 extends BaseECommerce {
       value: [
         {
           type: "object",
-          key: "media",
+          key: "media_media",
           displayer: "Media",
           value: [
             {
@@ -109,7 +109,7 @@ class ECommerce7 extends BaseECommerce {
         },
         {
           type: "object",
-          key: "media",
+          key: "media_media",
           displayer: "Media",
           value: [
             {
@@ -134,7 +134,7 @@ class ECommerce7 extends BaseECommerce {
         },
         {
           type: "object",
-          key: "media",
+          key: "media_media",
           displayer: "Media",
           value: [
             {
@@ -159,7 +159,7 @@ class ECommerce7 extends BaseECommerce {
         },
         {
           type: "object",
-          key: "media",
+          key: "media_media",
           displayer: "Media",
           value: [
             {
@@ -273,7 +273,7 @@ class ECommerce7 extends BaseECommerce {
       value: [
         {
           type: "string",
-          key: "title",
+          key: "share_title",
           displayer: "Menu Title",
           value: "Share",
         },
@@ -338,7 +338,7 @@ class ECommerce7 extends BaseECommerce {
               value: [
                 {
                   type: "media",
-                  key: "icon",
+                  key: "social_icon",
                   displayer: "Option Icon",
                   additionalParams: {
                     availableTypes: ["icon", "image"],
@@ -350,7 +350,7 @@ class ECommerce7 extends BaseECommerce {
                 },
                 {
                   type: "string",
-                  key: "text",
+                  key: "social_text",
                   displayer: "Option Label",
                   value: "Facebook",
                 },
@@ -369,7 +369,7 @@ class ECommerce7 extends BaseECommerce {
               value: [
                 {
                   type: "media",
-                  key: "icon",
+                  key: "social_icon",
                   displayer: "Option Icon",
                   additionalParams: {
                     availableTypes: ["icon", "image"],
@@ -381,7 +381,7 @@ class ECommerce7 extends BaseECommerce {
                 },
                 {
                   type: "string",
-                  key: "text",
+                  key: "social_text",
                   displayer: "Option Label",
                   value: "Twitter",
                 },
@@ -400,7 +400,7 @@ class ECommerce7 extends BaseECommerce {
               value: [
                 {
                   type: "media",
-                  key: "icon",
+                  key: "social_icon",
                   displayer: "Option Icon",
                   additionalParams: {
                     availableTypes: ["icon", "image"],
@@ -412,7 +412,7 @@ class ECommerce7 extends BaseECommerce {
                 },
                 {
                   type: "string",
-                  key: "text",
+                  key: "social_text",
                   displayer: "Option Label",
                   value: "Pinterest",
                 },
@@ -672,13 +672,13 @@ class ECommerce7 extends BaseECommerce {
               value: [
                 {
                   type: "string",
-                  key: "title",
+                  key: "itemDetail_title",
                   displayer: "Title",
                   value: "Description",
                 },
                 {
                   type: "string",
-                  key: "description",
+                  key: "itemDetail_description",
                   displayer: "Description",
                   value:
                     "A blend that pays homage to the Aussie pioneers of the Outback. Capturing the authentic essence of the original billy brew, this bush-style tea was traditionally made in billy tins over a campfire. Now, you can bring the timeless tradition of Bendigo Billy Tea into your home and enjoy the simple pleasures of a well-brewed cup.",
@@ -692,13 +692,13 @@ class ECommerce7 extends BaseECommerce {
               value: [
                 {
                   type: "string",
-                  key: "title",
+                  key: "itemDetail_title",
                   displayer: "Title",
                   value: "Ingredients",
                 },
                 {
                   type: "string",
-                  key: "description",
+                  key: "itemDetail_description",
                   displayer: "Description",
                   value:
                     "Black tea, Fennel, Lavender, and Eucalyptus leaves. Store in a cool, dry place.",
@@ -712,13 +712,13 @@ class ECommerce7 extends BaseECommerce {
               value: [
                 {
                   type: "string",
-                  key: "title",
+                  key: "itemDetail_title",
                   displayer: "Title",
                   value: "Brewing",
                 },
                 {
                   type: "string",
-                  key: "description",
+                  key: "itemDetail_description",
                   displayer: "Description",
                   value:
                     "Add 1 teaspoon of loose leaf tea per cup. Brew for 3-5 minutes. We are committed to using only the highest quality whole tea leaves and ingredients. Letting your tea leaves steep for the recommended duration allows the ingredients to fully infuse, achieving optimal taste and health benefits. Serve tea black or add milk. A slice of lemon also works beautifully in this blend.",
@@ -879,7 +879,7 @@ class ECommerce7 extends BaseECommerce {
     const isSubtitle = this.castToString(subtitle);
     const isTitle = this.castToString(this.getPropValue("title"));
     const isShareIcon = shareSection?.shareIcon;
-    const isSahreTitle = this.castToString(shareSection?.title);
+    const isSahreTitle = this.castToString(shareSection.share_title);
     const isSizeLabel = this.castToString(sizeSettings.sizeLabel);
     const isItemDetailTitle = this.castToString(itemDetailsSectionData.itemDetailTitle);
     const icons = this.castToObject<Icons>("icons");
@@ -1120,7 +1120,7 @@ class ECommerce7 extends BaseECommerce {
                                       )}
                                       {isSahreTitle && (
                                         <Base.P className={this.decorateCSS("title")}>
-                                          {shareSection.title}
+                                          {shareSection.share_title}
                                         </Base.P>
                                       )}
                                       {socials.length > 0 && (

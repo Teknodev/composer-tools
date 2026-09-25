@@ -4,7 +4,7 @@ import styles from "./stats7.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 
 type Item = {
-  title: React.JSX.Element;
+  item_title: React.JSX.Element;
   progress: number;
   progressText: React.JSX.Element;
 };
@@ -44,7 +44,7 @@ class Stats7Page extends BaseStats {
           value: [
             {
               type: "string",
-              key: "title",
+              key: "item_title",
               displayer: "Progress Title",
               value: "Design",
             },
@@ -69,7 +69,7 @@ class Stats7Page extends BaseStats {
           value: [
             {
               type: "string",
-              key: "title",
+              key: "item_title",
               displayer: "Progress Title",
               value: "Brand Identity",
             },
@@ -94,7 +94,7 @@ class Stats7Page extends BaseStats {
           value: [
             {
               type: "string",
-              key: "title",
+              key: "item_title",
               displayer: "Progress Title",
               value: "Sketch",
             },
@@ -141,7 +141,7 @@ class Stats7Page extends BaseStats {
           {items.length > 0 && (
             <Base.VerticalContent className={this.decorateCSS("progress-container")}>
               {items.map((item: Item, index: number) => {
-                const { title, progress, progressText } = item;
+                const { item_title: title, progress, progressText } = item;
                 let percent = progress;
                 let text = progressText ?? <>`${percent}%`</>;
 

@@ -17,7 +17,7 @@ type CardItem = {
     cardPrice: React.JSX.Element;
     cardDuration: React.JSX.Element;
     cardInfo: React.JSX.Element;
-    cardFeature: CardFeatureItem[];
+    cardFeature_item: CardFeatureItem[];
     button: INPUTS.CastedButton;
 };
 
@@ -89,7 +89,7 @@ class PricingTable16 extends BasePricingTable {
                             value: [
                                 {
                                     type: "object",
-                                    key: "item",
+                                    key: "cardFeature_item",
                                     displayer: "Feature Item",
                                     value: [
                                         { type: "media", key: "icon", displayer: "Icon", additionalParams: { availableTypes: ["image", "icon"] }, value: { type: "icon", name: "" } },
@@ -119,7 +119,7 @@ class PricingTable16 extends BasePricingTable {
                             value: [
                                 {
                                     type: "object",
-                                    key: "item",
+                                    key: "cardFeature_item",
                                     displayer: "Feature",
                                     value: [
                                         { type: "media", key: "icon", displayer: "Icon", additionalParams: { availableTypes: ["image", "icon"] }, value: { type: "icon", name: "" } },
@@ -149,7 +149,7 @@ class PricingTable16 extends BasePricingTable {
                             value: [
                                 {
                                     type: "object",
-                                    key: "item",
+                                    key: "cardFeature_item",
                                     displayer: "Feature",
                                     value: [
                                         { type: "media", key: "icon", displayer: "Icon", additionalParams: { availableTypes: ["image", "icon"] }, value: { type: "icon", name: "" } },
@@ -179,7 +179,7 @@ class PricingTable16 extends BasePricingTable {
                             value: [
                                 {
                                     type: "object",
-                                    key: "item",
+                                    key: "cardFeature_item",
                                     displayer: "Feature",
                                     value: [
                                         { type: "media", key: "icon", displayer: "Icon", additionalParams: { availableTypes: ["image", "icon"] }, value: { type: "icon", name: "FaCheck" } },
@@ -188,7 +188,7 @@ class PricingTable16 extends BasePricingTable {
                                 },
                                 {
                                     type: "object",
-                                    key: "item",
+                                    key: "cardFeature_item",
                                     displayer: "Feature",
                                     value: [
                                         { type: "media", key: "icon", displayer: "Icon", additionalParams: { availableTypes: ["image", "icon"] }, value: { type: "icon", name: "FaCheck" } },
@@ -197,7 +197,7 @@ class PricingTable16 extends BasePricingTable {
                                 },
                                 {
                                     type: "object",
-                                    key: "item",
+                                    key: "cardFeature_item",
                                     displayer: "Feature",
                                     value: [
                                         { type: "media", key: "icon", displayer: "Icon", additionalParams: { availableTypes: ["image", "icon"] }, value: { type: "icon", name: "FaCheck" } },
@@ -206,7 +206,7 @@ class PricingTable16 extends BasePricingTable {
                                 },
                                 {
                                     type: "object",
-                                    key: "item",
+                                    key: "cardFeature_item",
                                     displayer: "Feature",
                                     value: [
                                         { type: "media", key: "icon", displayer: "Icon", additionalParams: { availableTypes: ["image", "icon"] }, value: { type: "icon", name: "FaCheck" } },
@@ -228,7 +228,7 @@ class PricingTable16 extends BasePricingTable {
             value: [
                 {
                     type: "object",
-                    key: "item",
+                    key: "bottomCard_item",
                     displayer: "Item",
                     value: [
                         { type: "media", key: "bottomIcon", displayer: "Icon", additionalParams: { availableTypes: ["icon", "image"] }, value: { type: "icon", name: "MdOutlineAccountBalanceWallet" } },
@@ -240,7 +240,7 @@ class PricingTable16 extends BasePricingTable {
                 },
                 {
                     type: "object",
-                    key: "item",
+                    key: "bottomCard_item",
                     displayer: "Item",
                     value: [
                         { type: "media", key: "bottomIcon", displayer: "Icon", additionalParams: { availableTypes: ["icon", "image"] }, value: { type: "icon", name: "HiUsers" } },
@@ -336,8 +336,8 @@ class PricingTable16 extends BasePricingTable {
                                 const buttonImageExist = item.button?.image && item.button?.image?.url;
                                 const buttonExist = buttonTextExist || buttonIconExist || buttonImageExist;
 
-                                const filteredFeatures = Array.isArray(item.cardFeature)
-                                    ? item.cardFeature.filter((feature) => {
+                                const filteredFeatures = Array.isArray(item.cardFeature_item)
+                                    ? item.cardFeature_item.filter((feature) => {
                                         const textExist = this.castToString(feature.text);
                                         const iconExist = feature.icon && (typeof feature.icon === "object" ? feature.icon.name || feature.icon.url : true);
                                         return textExist || iconExist;

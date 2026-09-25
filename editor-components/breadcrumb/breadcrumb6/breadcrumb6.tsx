@@ -9,7 +9,7 @@ type VectorsItem = {
 };
 
 type BreadcrumbItem = {
-  title: JSX.Element;
+  item_title: JSX.Element;
   icon: TypeMediaInputValue;
   navigateTo: string;
 };
@@ -88,7 +88,7 @@ class Breadcrumb6 extends BaseBreadcrumb {
           value: [
             {
               type: "string",
-              key: "title",
+              key: "item_title",
               displayer: "Title",
               value: "Home",
             },
@@ -119,7 +119,7 @@ class Breadcrumb6 extends BaseBreadcrumb {
           value: [
             {
               type: "string",
-              key: "title",
+              key: "item_title",
               displayer: "Title",
               value: "About",
             },
@@ -218,7 +218,7 @@ class Breadcrumb6 extends BaseBreadcrumb {
             )}
             <div className={this.decorateCSS("breadcrumb")}>
               {breadcrumbItems.map((item: BreadcrumbItem, index: number) => {
-                const itemTitleExist = this.castToString(item.title);
+                const itemTitleExist = this.castToString(item.item_title);
                 const itemIconExist = item.icon && (item.icon.type === "icon" ? item.icon.name : item.icon.url);
                 const isLast = index === breadcrumbItems.length - 1;
                 return (
@@ -234,7 +234,7 @@ class Breadcrumb6 extends BaseBreadcrumb {
                           )}
                           {itemTitleExist && (
                             <Base.P className={this.decorateCSS("home")}>
-                              {item.title}
+                              {item.item_title}
                             </Base.P>
                           )}
                         </div>

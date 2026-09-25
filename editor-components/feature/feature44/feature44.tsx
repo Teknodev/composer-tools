@@ -7,11 +7,11 @@ import ComposerLink from "../../../composer-base-components/Link/ComposerLinkPro
 
 type ServiceCard = {
     media: TypeMediaInputValue;
-    subtitle: Element;
-    title: Element;
-    description: Element;
+    service_subtitle: Element;
+    service_title: Element;
+    service_description: Element;
     overlay: boolean;
-    buttons: {
+    service_buttons: {
         type: TypeButton;
         text: Element;
         url: string;
@@ -61,13 +61,13 @@ class Feature44 extends BaseFeature {
                     value: [
                         {
                             type: "string",
-                            key: "subtitle",
+                            key: "service_subtitle",
                             displayer: "Subtitle",
                             value: ""
                         },
                         {
                             type: "string",
-                            key: "title",
+                            key: "service_title",
                             displayer: "Title",
                             value: "Web Design"
                         },
@@ -91,13 +91,13 @@ class Feature44 extends BaseFeature {
                         },
                         {
                             type: "string",
-                            key: "description",
+                            key: "service_description",
                             displayer: "Description",
                             value: "Quickly cultivate optimal processes and tactical architectures. Completely iterate covalent strategic theme areas via accurate e-markets."
                         },
                         {
                             type: "array",
-                            key: "buttons",
+                            key: "service_buttons",
                             displayer: "Buttons",
                             value: [
                                 INPUTS.BUTTON("button", "Button", "", "", null, null, "Link")
@@ -112,13 +112,13 @@ class Feature44 extends BaseFeature {
                     value: [
                         {
                             type: "string",
-                            key: "subtitle",
+                            key: "service_subtitle",
                             displayer: "Subtitle",
                             value: ""
                         },
                         {
                             type: "string",
-                            key: "title",
+                            key: "service_title",
                             displayer: "Title",
                             value: "Development"
                         },
@@ -142,13 +142,13 @@ class Feature44 extends BaseFeature {
                         },
                         {
                             type: "string",
-                            key: "description",
+                            key: "service_description",
                             displayer: "Description",
                             value: "Energistically scale future-proof core competencies. Credibly innovate granular internal or \"organic\" sources whereas high standards in web-readiness."
                         },
                         {
                             type: "array",
-                            key: "buttons",
+                            key: "service_buttons",
                             displayer: "Buttons",
                             value: [
                                 INPUTS.BUTTON("button", "Button", "", "", null, null, "Link")
@@ -163,13 +163,13 @@ class Feature44 extends BaseFeature {
                     value: [
                         {
                             type: "string",
-                            key: "subtitle",
+                            key: "service_subtitle",
                             displayer: "Subtitle",
                             value: ""
                         },
                         {
                             type: "string",
-                            key: "title",
+                            key: "service_title",
                             displayer: "Title",
                             value: "SEO & Analytics"
                         },
@@ -193,13 +193,13 @@ class Feature44 extends BaseFeature {
                         },
                         {
                             type: "string",
-                            key: "description",
+                            key: "service_description",
                             displayer: "Description",
                             value: "Leverage agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy and overall value proposition."
                         },
                         {
                             type: "array",
-                            key: "buttons",
+                            key: "service_buttons",
                             displayer: "Buttons",
                             value: [
                                 INPUTS.BUTTON("button", "Button", "", "", null, null, "Link")
@@ -273,15 +273,15 @@ class Feature44 extends BaseFeature {
                         {services?.map((service: ServiceCard, index: number) => (
                             <Base.Card key={index} className={this.decorateCSS("card-shell")}>
                             <Base.VerticalContent className={this.decorateCSS("service-card")}>
-                                {this.castToString(service.subtitle) && (
+                                {this.castToString(service.service_subtitle) && (
                                     <Base.H6 className={this.decorateCSS("card-subtitle")}>
-                                        {service.subtitle}
+                                        {service.service_subtitle}
                                     </Base.H6>
                                 )}
 
-                                {this.castToString(service.title) && (
+                                {this.castToString(service.service_title) && (
                                     <Base.H4 className={this.decorateCSS("card-title")}>
-                                        {service.title}
+                                        {service.service_title}
                                     </Base.H4>
                                 )}
 
@@ -297,15 +297,15 @@ class Feature44 extends BaseFeature {
                                     </div>
                                 )}
 
-                                {this.castToString(service.description) && (
+                                {this.castToString(service.service_description) && (
                                     <Base.P className={this.decorateCSS("card-description")}>
-                                        {service.description}
+                                        {service.service_description}
                                     </Base.P>
                                 )}
 
-                                {service.buttons && service.buttons.length > 0 && (
+                                {service.service_buttons && service.service_buttons.length > 0 && (
                                     <div className={this.decorateCSS("card-buttons")}>
-                                        {service.buttons.map((button, btnIndex) => (
+                                        {service.service_buttons.map((button, btnIndex) => (
                                             this.castToString(button.text) && (
                                                 <Base.Button
                                                     className={this.decorateCSS("card-button")}
