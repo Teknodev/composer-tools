@@ -308,6 +308,17 @@
             }
 
             .content {
+              .items {
+                .description {
+                  font-size: calc(1.5 * var(--composer-font-size-md)) !important;
+                }
+                .name {
+                  font-size: calc(1.25 * var(--composer-font-size-md)) !important;
+                }
+              }
+            }
+
+            .content {
               flex: 1;
               width: 100%;
 
@@ -367,7 +378,10 @@
               }
               .items {
                 .description {
-                  font-size: 1.25rem;
+                  font-size: calc(1.375 * var(--composer-font-size-md)) !important;
+                }
+                .name {
+                  font-size: calc(1.125 * var(--composer-font-size-md)) !important;
                 }
               }
               .images {
