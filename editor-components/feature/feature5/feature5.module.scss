@@ -412,3 +412,19 @@
     }
   }
 }
+
+.container {
+  .media-container {
+    position: relative;
+    display: flex;
+    width: 100%;
+  }
+
+  .overlay {
+    position: absolute;
+    inset: 0;
+    background-color: var(--composer-overlay-color);
+    pointer-events: none;
+    border-radius: inherit;
+  }
+}

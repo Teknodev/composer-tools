@@ -58,6 +58,12 @@ class Feature5 extends BaseFeature {
           },
         },
         {
+          type: "boolean",
+          key: "overlay",
+          displayer: "Overlay",
+          value: false,
+        },
+        {
           type: "string",
           key: "image_subtitle",
           displayer: "Subtitle",
@@ -182,6 +188,12 @@ class Feature5 extends BaseFeature {
               },
             },
             {
+              type: "boolean",
+              key: "overlay",
+              displayer: "Overlay",
+              value: false,
+            },
+            {
               type: "string",
               key: "image_subtitle",
               displayer: "Subtitle",
@@ -235,6 +247,12 @@ class Feature5 extends BaseFeature {
               },
             },
             {
+              type: "boolean",
+              key: "overlay",
+              displayer: "Overlay",
+              value: false,
+            },
+            {
               type: "string",
               key: "image_subtitle",
               displayer: "Subtitle",
@@ -278,6 +296,12 @@ class Feature5 extends BaseFeature {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a4c2ea2f8a5b002ce6c056?alt=media",
               },
+            },
+            {
+              type: "boolean",
+              key: "overlay",
+              displayer: "Overlay",
+              value: false,
             },
             {
               type: "string",
@@ -325,6 +349,12 @@ class Feature5 extends BaseFeature {
               },
             },
             {
+              type: "boolean",
+              key: "overlay",
+              displayer: "Overlay",
+              value: false,
+            },
+            {
               type: "string",
               key: "image_subtitle",
               displayer: "Subtitle",
@@ -363,6 +393,7 @@ class Feature5 extends BaseFeature {
   render() {
     const row1 = this.castToObject<{
       left_image: { type: "image"; url: string };
+      overlay?: boolean;
       image_subtitle: React.JSX.Element;
       row1_title: React.JSX.Element;
       image_description: React.JSX.Element;
@@ -389,6 +420,7 @@ class Feature5 extends BaseFeature {
       };
       third_item: {
         media: { type: "image"; url: string };
+        overlay?: boolean;
         image_subtitle: React.JSX.Element;
         image_description: React.JSX.Element;
         image_buttons: INPUTS.CastedButton[];
@@ -399,6 +431,7 @@ class Feature5 extends BaseFeature {
     const row3 = this.castToObject<{
       image_and_subtitle_1: {
         media: { type: "image"; url: string };
+        overlay?: boolean;
         image_subtitle: React.JSX.Element;
         image_description: React.JSX.Element;
         image_buttons: INPUTS.CastedButton[];
@@ -406,6 +439,7 @@ class Feature5 extends BaseFeature {
       };
       image_and_subtitle_2: {
         media: { type: "image"; url: string };
+        overlay?: boolean;
         image_subtitle: React.JSX.Element;
         image_description: React.JSX.Element;
         image_buttons: INPUTS.CastedButton[];
@@ -413,6 +447,7 @@ class Feature5 extends BaseFeature {
       };
       image_and_subtitle_3: {
         media: { type: "image"; url: string };
+        overlay?: boolean;
         image_subtitle: React.JSX.Element;
         image_description: React.JSX.Element;
         image_buttons: INPUTS.CastedButton[];
@@ -546,6 +581,7 @@ class Feature5 extends BaseFeature {
                         value={row1.left_image}
                         className={this.decorateCSS("left-image")}
                       />
+                      {row1.overlay && <div className={this.decorateCSS("overlay")} />}
                     </div>
                   )}
                   {row1ContentExist && (
@@ -693,6 +729,7 @@ class Feature5 extends BaseFeature {
                           value={row2.third_item.media}
                           className={this.decorateCSS("image")}
                         />
+                        {row2.third_item.overlay && <div className={this.decorateCSS("overlay")} />}
                       </ComposerLink>
                     )}
                     {thirdContentExist && (
@@ -751,14 +788,17 @@ class Feature5 extends BaseFeature {
                   >
                     <div className={this.decorateCSS("image_and_subtitle_1")}>
                       {row3.image_and_subtitle_1.media && (
-                        <Base.Media
-                          value={row3.image_and_subtitle_1.media}
-                          className={`
-                            ${this.decorateCSS("image")}
-                            ${row3Status ? this.decorateCSS("row3-images-less") : ""}
-                            ${noContentFirstImage ? this.decorateCSS("row3-no-subtitle") : ""}
-                          `}
-                        />
+                        <div className={this.decorateCSS("media-container")}>
+                          <Base.Media
+                            value={row3.image_and_subtitle_1.media}
+                            className={`
+                              ${this.decorateCSS("image")}
+                              ${row3Status ? this.decorateCSS("row3-images-less") : ""}
+                              ${noContentFirstImage ? this.decorateCSS("row3-no-subtitle") : ""}
+                            `}
+                          />
+                          {row3.image_and_subtitle_1.overlay && <div className={this.decorateCSS("overlay")} />}
+                        </div>
                       )}
                       {content1Exist && (
                         <Base.VerticalContent className={this.decorateCSS("card-content")}>
@@ -804,14 +844,17 @@ class Feature5 extends BaseFeature {
                   >
                     <div className={this.decorateCSS("image_and_subtitle_2")}>
                       {row3.image_and_subtitle_2.media && (
-                        <Base.Media
-                          value={row3.image_and_subtitle_2.media}
-                          className={`
-                            ${this.decorateCSS("image")}
-                            ${row3Status ? this.decorateCSS("row3-images-less") : ""}
-                            ${noContentSecondImage ? this.decorateCSS("row3-no-subtitle") : ""}
-                          `}
-                        />
+                        <div className={this.decorateCSS("media-container")}>
+                          <Base.Media
+                            value={row3.image_and_subtitle_2.media}
+                            className={`
+                              ${this.decorateCSS("image")}
+                              ${row3Status ? this.decorateCSS("row3-images-less") : ""}
+                              ${noContentSecondImage ? this.decorateCSS("row3-no-subtitle") : ""}
+                            `}
+                          />
+                          {row3.image_and_subtitle_2.overlay && <div className={this.decorateCSS("overlay")} />}
+                        </div>
                       )}
                       {content2Exist && (
                         <Base.VerticalContent className={this.decorateCSS("card-content")}>
@@ -857,14 +900,17 @@ class Feature5 extends BaseFeature {
                   >
                     <div className={this.decorateCSS("image_and_subtitle_3")}>
                       {!!row3.image_and_subtitle_3.media && (
-                        <Base.Media
-                          value={row3.image_and_subtitle_3.media}
-                          className={`
-                            ${this.decorateCSS("image")}
-                            ${row3Status ? this.decorateCSS("row3-images-less") : ""}
-                            ${noContentThirdImage ? this.decorateCSS("row3-no-subtitle") : ""}
-                          `}
-                        />
+                        <div className={this.decorateCSS("media-container")}>
+                          <Base.Media
+                            value={row3.image_and_subtitle_3.media}
+                            className={`
+                              ${this.decorateCSS("image")}
+                              ${row3Status ? this.decorateCSS("row3-images-less") : ""}
+                              ${noContentThirdImage ? this.decorateCSS("row3-no-subtitle") : ""}
+                            `}
+                          />
+                          {row3.image_and_subtitle_3.overlay && <div className={this.decorateCSS("overlay")} />}
+                        </div>
                       )}
                       {content3Exist && (
                         <Base.VerticalContent className={this.decorateCSS("card-content")}>

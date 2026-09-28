@@ -31,11 +31,7 @@
       gap: var(--composer-gap-md);
 
       .card {
-        background-color: color-mix(
-          in srgb,
-          var(--composer-html-background),
-          var(--composer-font-color-primary) 5%
-        );
+        background-color: var(--composer-html-background);
         border-radius: var(--composer-border-radius-sm);
         padding: var(--composer-gap-lg);
         border: 1px solid transparent;
@@ -115,6 +111,18 @@
               justify-content: center;
               align-items: center;
               transform: translateY(4rem);
+              .bottom-left-side-card-media {
+                position: relative;
+                display: flex;
+
+                .overlay {
+                  position: absolute;
+                  inset: 0;
+                  background-color: var(--composer-overlay-color);
+                  pointer-events: none;
+                }
+              }
+
               .bottom-left-side-card-image {
                 max-height: 400px;
                 object-fit: contain;

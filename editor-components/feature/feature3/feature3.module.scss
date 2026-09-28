@@ -130,7 +130,7 @@ $circlepaddingbottom: calc(300px + var(--composer-gap-xl));
                             align-items: flex-start;
                             text-align: left;
                             padding: var(--composer-gap-lg);
-                            background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+                            background-color: var(--composer-html-background);
                             border-radius: var(--composer-border-radius-sm);
                             z-index: 1;
                             transition: opacity var(--composer-transition-duration-slow) ease, transform var(--composer-transition-duration-slow) ease;
@@ -203,7 +203,7 @@ $circlepaddingbottom: calc(300px + var(--composer-gap-xl));
 
                 .logo-container {
                     padding: 50px 0px;
-                    background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+                    background-color: var(--composer-html-background);
                     border-radius: var(--composer-border-radius-sm);
                     display: flex;
                     justify-content: center;
@@ -357,7 +357,7 @@ $circlepaddingbottom: calc(300px + var(--composer-gap-xl));
                     .logo-container {
                         border-right: none;
                         border-radius: var(--composer-border-radius-sm);
-                        background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+                        background-color: var(--composer-html-background);
                         padding: var(--composer-gap-sm);
                         height: 100px;
 

@@ -120,6 +120,12 @@ class Feature16 extends BaseFeature {
                     }
                 },
                 {
+                    type: "boolean",
+                    key: "overlay",
+                    displayer: "Overlay",
+                    value: false,
+                },
+                {
                     type: "string",
                     key: "bottomLeftSideSubtitle",
                     displayer: "Subtitle",
@@ -265,7 +271,7 @@ class Feature16 extends BaseFeature {
                     key: "middleRightSideImage",
                     displayer: "Media",
                     additionalParams: {
-                         availableTypes: ["image","video"],
+                         availableTypes: ["image","icon"],
                     },
                     value: {
                         type: "image",
@@ -709,7 +715,10 @@ class Feature16 extends BaseFeature {
                                             )}
                                             {bottomLeftSide.bottomLeftSideImage?.url && (
                                                 <div className={this.decorateCSS("bottom-left-side-card-image-container")}>
-                                                    <Base.Media value={bottomLeftSide.bottomLeftSideImage} className={this.decorateCSS("bottom-left-side-card-image")} />
+                                                    <div className={this.decorateCSS("bottom-left-side-card-media")}>
+                                                        <Base.Media value={bottomLeftSide.bottomLeftSideImage} className={this.decorateCSS("bottom-left-side-card-image")} />
+                                                        {bottomLeftSide.overlay && <div className={this.decorateCSS("overlay")} />}
+                                                    </div>
                                                 </div>
                                             )}
                                         </div>
