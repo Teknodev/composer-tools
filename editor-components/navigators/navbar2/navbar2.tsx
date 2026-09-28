@@ -50,7 +50,7 @@ class Navbar2 extends BaseNavigator {
               type: "string",
               key: "nav_title",
               displayer: "Title",
-              value: "HOME",
+              value: "Home",
             },
             {
               type: "page",
@@ -79,7 +79,7 @@ class Navbar2 extends BaseNavigator {
                       type: "string",
                       key: "nav_title",
                       displayer: "Title",
-                      value: "FASHION HOME",
+                      value: "Fashion Home",
                     },
                     {
                       type: "page",
@@ -128,7 +128,7 @@ class Navbar2 extends BaseNavigator {
               type: "string",
               key: "nav_title",
               displayer: "Title",
-              value: "FEATURES",
+              value: "Features",
             },
             {
               type: "page",
@@ -206,7 +206,7 @@ class Navbar2 extends BaseNavigator {
               type: "string",
               key: "nav_title",
               displayer: "Title",
-              value: "POST BLOCKS",
+              value: "Post Blocks",
             },
             {
               type: "page",
@@ -284,7 +284,7 @@ class Navbar2 extends BaseNavigator {
               type: "string",
               key: "nav_title",
               displayer: "Title",
-              value: "NEWS",
+              value: "News",
             },
             {
               type: "page",
@@ -362,7 +362,7 @@ class Navbar2 extends BaseNavigator {
               type: "string",
               key: "nav_title",
               displayer: "Title",
-              value: "CONTACTS",
+              value: "Contacts",
             },
             {
               type: "page",
@@ -599,7 +599,7 @@ class Navbar2 extends BaseNavigator {
       type:"multiSelect",
       key: "animations",
       displayer: "Animations",
-      value: ["animation1","animation2"],
+      value: [],
       additionalParams:{
         selectItems:["animation1", "animation2"]
       }
