@@ -213,6 +213,7 @@
   list-style: none;
   z-index: 100;
   pointer-events: auto;
+  margin-top: var(--composer-gap-md) !important;
 
   li {
     width: 20px !important;
@@ -238,6 +239,33 @@
   opacity: 1 !important;
 }
 
+@container (max-width : #{$composer-tablet-width}) {
+  .dots {
+    li {
+      width: 16px !important;
+    }
+
+    .dot {
+      width: 10px !important;
+      height: 10px !important;
+      margin: 0 8px;
+    }
+  }
+}
+
+@container (max-width : #{$composer-phone-width}) {
+  .dots {
+    li {
+      width: 14px !important;
+    }
+
+    .dot {
+      width: 8px !important;
+      height: 8px !important;
+      margin: 0 6px;
+    }
+  }
+}
 
 
 @container (max-width : #{$composer-tablet-width}) {
