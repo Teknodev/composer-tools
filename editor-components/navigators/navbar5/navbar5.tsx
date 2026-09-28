@@ -259,7 +259,7 @@ class Navbar5 extends BaseNavigator {
       type: "string",
       key: "title",
       displayer: "Title",
-      value: "UK BASED BRANDING AGENCY.",
+      value: "UK based branding agency.",
     });
 
     this.addProp({
@@ -276,7 +276,7 @@ class Navbar5 extends BaseNavigator {
               type: "string",
               key: "itemTitle",
               displayer: "Title",
-              value: "HOME",
+              value: "Home",
             },
             {
               type: "page",
@@ -295,7 +295,7 @@ class Navbar5 extends BaseNavigator {
               type: "string",
               key: "itemTitle",
               displayer: "Title",
-              value: "ABOUT",
+              value: "About",
             },
             {
               type: "page",
@@ -314,7 +314,7 @@ class Navbar5 extends BaseNavigator {
               type: "string",
               key: "itemTitle",
               displayer: "Title",
-              value: "SERVICES",
+              value: "Services",
             },
             {
               type: "page",
@@ -333,7 +333,7 @@ class Navbar5 extends BaseNavigator {
               type: "string",
               key: "itemTitle",
               displayer: "Title",
-              value: "PROJECTS",
+              value: "Projects",
             },
             {
               type: "page",
@@ -352,7 +352,7 @@ class Navbar5 extends BaseNavigator {
               type: "string",
               key: "itemTitle",
               displayer: "Title",
-              value: "CONTACT",
+              value: "Contact",
             },
             {
               type: "page",
