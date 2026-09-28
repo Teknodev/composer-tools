@@ -169,11 +169,6 @@
 
                 .card-title {
                   text-align: center;
-                  font-weight: 800;
-
-                  @container (max-width: #{$composer-tablet-width}) {
-                    font-size: calc(1.375 * var(--composer-font-size-md)) !important;
-                  }
 
                   &.image {
                     color: white;

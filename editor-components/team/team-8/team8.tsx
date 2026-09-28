@@ -464,8 +464,8 @@ class Team8 extends Team {
                           )}
                           {(titleExist || subtitleExist || descriptionExist) && (
                             <Base.VerticalContent className={this.decorateCSS("header-page")}>
-                              {subtitleExist && <Base.P className={`${this.decorateCSS("card-subtitle")} ${imageExist ? this.decorateCSS("image") : this.decorateCSS("no-image")}`}>{item.name}</Base.P>}
-                              {titleExist && <Base.H5 className={`${this.decorateCSS("card-title")} ${imageExist ? this.decorateCSS("image") : this.decorateCSS("no-image")}`}>{item.position}</Base.H5>}
+                              {subtitleExist && <Base.H5 className={`${this.decorateCSS("card-subtitle")} ${imageExist ? this.decorateCSS("image") : this.decorateCSS("no-image")}`}>{item.name}</Base.H5>}
+                              {titleExist && <Base.H6 className={`${this.decorateCSS("card-title")} ${imageExist ? this.decorateCSS("image") : this.decorateCSS("no-image")}`}>{item.position}</Base.H6>}
                               {descriptionExist && <Base.P className={`${this.decorateCSS("card-description")} ${imageExist ? this.decorateCSS("image") : this.decorateCSS("no-image")}`}>{item.cardDescription}</Base.P>}
                             </Base.VerticalContent>
                           )}

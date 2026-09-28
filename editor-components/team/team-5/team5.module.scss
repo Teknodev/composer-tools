@@ -195,11 +195,6 @@
             color: var(--composer-font-color-primary);
             transition: transform 0.3s ease;
             text-align: center;
-            font-weight: 800;
-
-            @container (max-width: #{$composer-phone-width}) {
-              font-size: calc(1.375 * var(--composer-font-size-md)) !important;
-            }
           }
 
           .card-position,

@@ -718,8 +718,8 @@ class Team7 extends Team {
                   )}
                   {hasItem &&
                     <Base.VerticalContent className={this.decorateCSS("text-group")}>
-                      {itemName && <Base.P className={this.decorateCSS("card-name")}>{item.name}</Base.P>}
-                      {itemPosition && <Base.P className={this.decorateCSS("card-position")}>{item.position}</Base.P>}
+                      {itemName && <Base.H5 className={this.decorateCSS("card-name")}>{item.name}</Base.H5>}
+                      {itemPosition && <Base.H6 className={this.decorateCSS("card-position")}>{item.position}</Base.H6>}
                       {itemDescription && <Base.P className={this.decorateCSS("card-description")}>{item.cardDescription}</Base.P>}
                     </Base.VerticalContent>
                   }
