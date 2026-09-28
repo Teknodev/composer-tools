@@ -60,11 +60,7 @@
           border-bottom: 3px solid transparent;
           transition: border-color 0.3s ease;
           min-height: 70px;
-          
-          &:hover {
-            border-bottom-color: var(--composer-primary-color);
-          }
-          
+
           &.active {
             border-bottom-color: var(--composer-primary-color);
           }
@@ -74,6 +70,7 @@
           font-weight: normal;
           transition: all 0.4s ease;
           font-weight: 500;
+          font-size: calc(0.875 * var(--composer-font-size-md));
           color: var(--composer-font-color-primary);
           &.animation1 {
             &:hover {
@@ -269,7 +266,7 @@
               &:hover{
                 background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 10%);
                 transition: 0.4s;
-                padding-left: 10px;
+                padding-left: calc(var(--composer-gap-xs) + var(--composer-gap-sm));
                 border-radius: var(--composer-border-radius-sm);
                 
                 .DropdownSectionItemTitle {
@@ -919,7 +916,7 @@
           padding: var(--composer-gap-sm) 0;
           cursor: pointer;
           position: relative;
-          margin-bottom: var(--composer-gap-sm);
+          margin-bottom: 0;
         }
       }
     }
@@ -938,7 +935,7 @@
     .hamburgerCategorySection {
       color: var(--composer-font-color-primary);
       font-size: 1rem;
-      margin-bottom: calc(var(--composer-gap-sm) * 3);
+      margin-bottom: var(--composer-gap-md);
       font-weight: bold;
     }
     .hamburgerCategoryItemTitle {

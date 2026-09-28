@@ -209,14 +209,20 @@ class Navbar10 extends BaseNavigator {
                     {
                       type: "media",
                       key: "categories_category_image",
-                      displayer: "Image",
+                      displayer: "Media",
                       additionalParams: {
-                        availableTypes: ["image"],
+                        availableTypes: ["icon", "image", "video"],
                       },
                       value: {
                         type: "image",
                         url: "",
                       },
+                    },
+                    {
+                      type: "boolean",
+                      key: "categories_category_overlay",
+                      displayer: "Overlay",
+                      value: false,
                     },
                     {
                       type: "page",
@@ -544,14 +550,20 @@ class Navbar10 extends BaseNavigator {
                     {
                       type: "media",
                       key: "categories_category_image",
-                      displayer: "Image",
+                      displayer: "Media",
                       additionalParams: {
-                        availableTypes: ["image"],
+                        availableTypes: ["icon", "image", "video"],
                       },
                       value: {
                         type: "image",
                         url: "",
                       },
+                    },
+                    {
+                      type: "boolean",
+                      key: "categories_category_overlay",
+                      displayer: "Overlay",
+                      value: false,
                     },
                     {
                       type: "page",
@@ -738,14 +750,20 @@ class Navbar10 extends BaseNavigator {
                     {
                       type: "media",
                       key: "categories_category_image",
-                      displayer: "Image",
+                      displayer: "Media",
                       additionalParams: {
-                        availableTypes: ["image"],
+                        availableTypes: ["icon", "image", "video"],
                       },
                       value: {
                         type: "image",
                         url: "",
                       },
+                    },
+                    {
+                      type: "boolean",
+                      key: "categories_category_overlay",
+                      displayer: "Overlay",
+                      value: false,
                     },
                     {
                       type: "page",
@@ -882,14 +900,20 @@ class Navbar10 extends BaseNavigator {
                     {
                       type: "media",
                       key: "rightCategories_category_image",
-                      displayer: "Image",
+                      displayer: "Media",
                       additionalParams: {
-                        availableTypes: ["image"],
+                        availableTypes: ["icon", "image", "video"],
                       },
                       value: {
                         type: "image",
                         url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/68906a03d3784c002c811913?alt=media&timestamp=1754294795993",
                       },
+                    },
+                    {
+                      type: "boolean",
+                      key: "rightCategories_category_overlay",
+                      displayer: "Overlay",
+                      value: false,
                     },
                     {
                       type: "page",
@@ -1041,14 +1065,20 @@ class Navbar10 extends BaseNavigator {
                     {
                       type: "media",
                       key: "categories_category_image",
-                      displayer: "Image",
+                      displayer: "Media",
                       additionalParams: {
-                        availableTypes: ["image"],
+                        availableTypes: ["icon", "image", "video"],
                       },
                       value: {
                         type: "image",
                         url: "",
                       },
+                    },
+                    {
+                      type: "boolean",
+                      key: "categories_category_overlay",
+                      displayer: "Overlay",
+                      value: false,
                     },
                   ],
                 },
@@ -1117,14 +1147,20 @@ class Navbar10 extends BaseNavigator {
                     {
                       type: "media",
                       key: "categories_category_image",
-                      displayer: "Image",
+                      displayer: "Media",
                       additionalParams: {
-                        availableTypes: ["image"],
+                        availableTypes: ["icon", "image", "video"],
                       },
                       value: {
                         type: "image",
                         url: "",
                       },
+                    },
+                    {
+                      type: "boolean",
+                      key: "categories_category_overlay",
+                      displayer: "Overlay",
+                      value: false,
                     },
                     {
                       type: "page",
@@ -1292,14 +1328,20 @@ class Navbar10 extends BaseNavigator {
                     {
                       type: "media",
                       key: "rightCategories_category_image",
-                      displayer: "Image",
+                      displayer: "Media",
                       additionalParams: {
-                        availableTypes: ["image"],
+                        availableTypes: ["icon", "image", "video"],
                       },
                       value: {
                         type: "image",
                         url: "",
                       },
+                    },
+                    {
+                      type: "boolean",
+                      key: "rightCategories_category_overlay",
+                      displayer: "Overlay",
+                      value: false,
                     },
                   ],
                 },
@@ -1754,14 +1796,20 @@ class Navbar10 extends BaseNavigator {
                     {
                       type: "media",
                       key: "categories_category_image",
-                      displayer: "Image",
+                      displayer: "Media",
                       additionalParams: {
-                        availableTypes: ["image"],
+                        availableTypes: ["icon", "image", "video"],
                       },
                       value: {
                         type: "image",
                         url: "",
                       },
+                    },
+                    {
+                      type: "boolean",
+                      key: "categories_category_overlay",
+                      displayer: "Overlay",
+                      value: false,
                     },
                     {
                       type: "page",
@@ -1867,14 +1915,20 @@ class Navbar10 extends BaseNavigator {
                     {
                       type: "media",
                       key: "rightCategories_category_image",
-                      displayer: "Image",
+                      displayer: "Media",
                       additionalParams: {
-                        availableTypes: ["image"],
+                        availableTypes: ["icon", "image", "video"],
                       },
                       value: {
                         type: "image",
                         url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/68906a03d3784c002c811913?alt=media&timestamp=1754294795993",
                       },
+                    },
+                    {
+                      type: "boolean",
+                      key: "rightCategories_category_overlay",
+                      displayer: "Overlay",
+                      value: false,
                     },
                     {
                       type: "page",
@@ -2039,14 +2093,20 @@ class Navbar10 extends BaseNavigator {
                     {
                       type: "media",
                       key: "rightCategories_category_image",
-                      displayer: "Image",
+                      displayer: "Media",
                       additionalParams: {
-                        availableTypes: ["image"],
+                        availableTypes: ["icon", "image", "video"],
                       },
                       value: {
                         type: "image",
                         url: "",
                       },
+                    },
+                    {
+                      type: "boolean",
+                      key: "rightCategories_category_overlay",
+                      displayer: "Overlay",
+                      value: false,
                     },
                     {
                       type: "page",
@@ -2147,14 +2207,20 @@ class Navbar10 extends BaseNavigator {
                     {
                       type: "media",
                       key: "categories_category_image",
-                      displayer: "Image",
+                      displayer: "Media",
                       additionalParams: {
-                        availableTypes: ["image"],
+                        availableTypes: ["icon", "image", "video"],
                       },
                       value: {
                         type: "image",
                         url: "",
                       },
+                    },
+                    {
+                      type: "boolean",
+                      key: "categories_category_overlay",
+                      displayer: "Overlay",
+                      value: false,
                     },
                     {
                       type: "page",
@@ -2229,14 +2295,20 @@ class Navbar10 extends BaseNavigator {
                     {
                       type: "media",
                       key: "rightCategories_category_image",
-                      displayer: "Image",
+                      displayer: "Media",
                       additionalParams: {
-                        availableTypes: ["image"],
+                        availableTypes: ["icon", "image", "video"],
                       },
                       value: {
                         type: "image",
                         url: "",
                       },
+                    },
+                    {
+                      type: "boolean",
+                      key: "rightCategories_category_overlay",
+                      displayer: "Overlay",
+                      value: false,
                     },
                     {
                       type: "page",
@@ -2258,7 +2330,7 @@ class Navbar10 extends BaseNavigator {
       key: "buttons",
       displayer: "Button",
       value: [
-        INPUTS.BUTTON("button", "Button", "Log In", "", null, null, "Tertiary"),
+        INPUTS.BUTTON("button", "Button", "Log In", "", null, null, "Bare"),
         INPUTS.BUTTON(
           "button",
           "Button",
@@ -2266,7 +2338,7 @@ class Navbar10 extends BaseNavigator {
           "",
           null,
           null,
-          "Tertiary"
+          "Bare"
         ),
         INPUTS.BUTTON(
           "button",
