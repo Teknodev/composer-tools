@@ -407,7 +407,7 @@
 
           .rightWrapper {
             flex-direction: column-reverse;
-            gap: var(--composer-gap-xs);
+            gap: var(--composer-gap-md);
 
             .authorContainer {
               flex-direction: column-reverse;
@@ -467,6 +467,14 @@
             .top-description {
               text-align: center !important;
               justify-content: center !important;
+            }
+
+            .subtitle {
+              transform: translateX(0);
+
+              &::before {
+                display: none;
+              }
             }
 
             .button-container {

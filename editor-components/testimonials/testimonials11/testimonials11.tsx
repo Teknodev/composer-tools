@@ -38,7 +38,7 @@ class Testimonials11Page extends Testimonials {
           key: "media",
           displayer: "Background Media",
           additionalParams: { availableTypes: ["image", "video"] },
-          value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67239fe77acba6002c5d6377?alt=media" },
+          value: { type: "image", url: "" },
         },
         {
           type: "boolean",
