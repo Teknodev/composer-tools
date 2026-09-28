@@ -84,7 +84,7 @@
           .icon-group {
             display: flex;
             align-items: center;
-            gap: var(--composer-gap-md);
+            gap: var(--composer-gap-sm);
             flex-wrap: wrap;
 
             .icon {
@@ -96,8 +96,8 @@
               cursor: pointer;
 
               &.has-image {
-                width: var(--composer-gap-md);
-                height: var(--composer-gap-md);
+                width: 20px;
+                height: 20px;
                 object-fit: cover;
               }
             }
@@ -134,6 +134,21 @@
     .max-content {
       .cards {
         .card {
+          .box-text {
+            .icon-group {
+              gap: var(--composer-gap-xs);
+
+              .icon {
+                font-size: 1.25rem;
+
+                &.has-image {
+                  width: 16px;
+                  height: 16px;
+                }
+              }
+            }
+          }
+
           &[data-animation~="animate2"]:hover {
             transform: scale(1.05);
           }

@@ -698,8 +698,8 @@ class Team1 extends Team {
                         {this.getPropValue("overlay") && <div className={this.decorateCSS("overlay")} />}
                       </div>
                     )}
-                    <Base.H6 className={this.decorateCSS("card-name")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>{card.name}</Base.H6>
-                    <Base.P className={this.decorateCSS("position")}>{card.position}</Base.P>
+                    <Base.H5 className={this.decorateCSS("card-name")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>{card.name}</Base.H5>
+                    <Base.H6 className={this.decorateCSS("position")}>{card.position}</Base.H6>
                     <Base.P className={this.decorateCSS("card-description")}>{card.cardDescription}</Base.P>
                     <Base.Row className={this.decorateCSS("icon-group")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
                       {card.socials?.map((item: socials, indexSocials: number) => {

@@ -95,7 +95,7 @@
           .platforms {
             display: flex;
             align-items: center;
-            gap: var(--composer-gap-md);
+            gap: var(--composer-gap-sm);
 
             .platform {
               .icon {
@@ -104,8 +104,8 @@
                 transition: 0.8s;
 
                 &.has-image {
-                  width: var(--composer-gap-md);
-                  height: var(--composer-gap-md);
+                  width: 20px;
+                  height: 20px;
                   object-fit: cover;
                 }
               }
@@ -277,8 +277,7 @@
 
               .platform {
                 .icon {
-                  width: 1rem;
-                  height: 1rem;
+                  font-size: 1.5rem;
                 }
               }
             }
@@ -296,6 +295,27 @@
     .max-content {
       .vertical-content {
         padding: 0 !important;
+      }
+
+      .cards {
+        .member {
+          .info {
+            .platforms {
+              gap: var(--composer-gap-xs);
+
+              .platform {
+                .icon {
+                  font-size: 1.25rem;
+
+                  &.has-image {
+                    width: 16px;
+                    height: 16px;
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     }
   }

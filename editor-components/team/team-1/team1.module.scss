@@ -323,3 +323,35 @@
     }
   }
 }
+
+@container (max-width: #{$composer-phone-width}) {
+  .container {
+    .max-content {
+      .down-page {
+        .all-card {
+          .card {
+            .icon-group {
+              gap: var(--composer-gap-xs);
+
+              .icon {
+                font-size: 1.25rem;
+
+                &.has-image {
+                  width: 16px;
+                  height: 16px;
+                }
+              }
+            }
+
+            .image-container {
+              .image {
+                width: 80px;
+                height: 80px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

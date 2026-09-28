@@ -112,7 +112,7 @@ class Team3 extends Team {
                       },
                       value: {
                         type: "icon",
-                        name: "FaFacebookSquare"
+                        name: "RiFacebookLine"
                       },
                       displayer: "Icon",
                     },
@@ -137,7 +137,7 @@ class Team3 extends Team {
                       },
                       value: {
                         type: "icon",
-                        name: "FaTwitterSquare"
+                        name: "RiTwitterXFill"
                       },
                       displayer: "Icon",
                     },
@@ -162,32 +162,7 @@ class Team3 extends Team {
                       },
                       value: {
                         type: "icon",
-                        name: "FaInstagram"
-                      },
-                      displayer: "Icon",
-                    },
-                    {
-                      type: "page",
-                      key: "url",
-                      displayer: "Navigate To",
-                      value: "",
-                    },
-                  ],
-                },
-                {
-                  type: "object",
-                  key: "social",
-                  displayer: "Social",
-                  value: [
-                    {
-                      type: "media",
-                      key: "icon",
-                      additionalParams: {
-                        availableTypes: ["icon", "image"],
-                      },
-                      value: {
-                        type: "icon",
-                        name: "FaLinkedin"
+                        name: "RiLinkedinLine"
                       },
                       displayer: "Icon",
                     },
@@ -253,7 +228,7 @@ class Team3 extends Team {
                       },
                       value: {
                         type: "icon",
-                        name: "FaFacebookSquare"
+                        name: "RiFacebookLine"
                       },
                       displayer: "Icon",
                     },
@@ -278,7 +253,7 @@ class Team3 extends Team {
                       },
                       value: {
                         type: "icon",
-                        name: "FaTwitterSquare"
+                        name: "RiTwitterXFill"
                       },
                       displayer: "Icon",
                     },
@@ -303,32 +278,7 @@ class Team3 extends Team {
                       },
                       value: {
                         type: "icon",
-                        name: "FaInstagram"
-                      },
-                      displayer: "Icon",
-                    },
-                    {
-                      type: "page",
-                      key: "url",
-                      displayer: "Navigate To",
-                      value: "",
-                    },
-                  ],
-                },
-                {
-                  type: "object",
-                  key: "social",
-                  displayer: "Social",
-                  value: [
-                    {
-                      type: "media",
-                      key: "icon",
-                      additionalParams: {
-                        availableTypes: ["icon", "image"],
-                      },
-                      value: {
-                        type: "icon",
-                        name: "FaLinkedin"
+                        name: "RiLinkedinLine"
                       },
                       displayer: "Icon",
                     },
@@ -394,7 +344,7 @@ class Team3 extends Team {
                       },
                       value: {
                         type: "icon",
-                        name: "FaFacebookSquare"
+                        name: "RiFacebookLine"
                       },
                       displayer: "Icon",
                     },
@@ -419,7 +369,7 @@ class Team3 extends Team {
                       },
                       value: {
                         type: "icon",
-                        name: "FaTwitterSquare"
+                        name: "RiTwitterXFill"
                       },
                       displayer: "Icon",
                     },
@@ -444,32 +394,7 @@ class Team3 extends Team {
                       },
                       value: {
                         type: "icon",
-                        name: "FaInstagram"
-                      },
-                      displayer: "Icon",
-                    },
-                    {
-                      type: "page",
-                      key: "url",
-                      displayer: "Navigate To",
-                      value: "",
-                    },
-                  ],
-                },
-                {
-                  type: "object",
-                  key: "social",
-                  displayer: "Social",
-                  value: [
-                    {
-                      type: "media",
-                      key: "icon",
-                      additionalParams: {
-                        availableTypes: ["icon", "image"],
-                      },
-                      value: {
-                        type: "icon",
-                        name: "FaLinkedin"
+                        name: "RiLinkedinLine"
                       },
                       displayer: "Icon",
                     },
@@ -535,7 +460,7 @@ class Team3 extends Team {
                       },
                       value: {
                         type: "icon",
-                        name: "FaFacebookSquare"
+                        name: "RiFacebookLine"
                       },
                       displayer: "Icon",
                     },
@@ -560,7 +485,7 @@ class Team3 extends Team {
                       },
                       value: {
                         type: "icon",
-                        name: "FaTwitterSquare"
+                        name: "RiTwitterXFill"
                       },
                       displayer: "Icon",
                     },
@@ -585,32 +510,7 @@ class Team3 extends Team {
                       },
                       value: {
                         type: "icon",
-                        name: "FaInstagram"
-                      },
-                      displayer: "Icon",
-                    },
-                    {
-                      type: "page",
-                      key: "url",
-                      displayer: "Navigate To",
-                      value: "",
-                    },
-                  ],
-                },
-                {
-                  type: "object",
-                  key: "social",
-                  displayer: "Social",
-                  value: [
-                    {
-                      type: "media",
-                      key: "icon",
-                      additionalParams: {
-                        availableTypes: ["icon", "image"],
-                      },
-                      value: {
-                        type: "icon",
-                        name: "FaLinkedin"
+                        name: "RiLinkedinLine"
                       },
                       displayer: "Icon",
                     },
@@ -676,7 +576,7 @@ class Team3 extends Team {
                       },
                       value: {
                         type: "icon",
-                        name: "FaFacebookSquare"
+                        name: "RiFacebookLine"
                       },
                       displayer: "Icon",
                     },
@@ -701,7 +601,7 @@ class Team3 extends Team {
                       },
                       value: {
                         type: "icon",
-                        name: "FaTwitterSquare"
+                        name: "RiTwitterXFill"
                       },
                       displayer: "Icon",
                     },
@@ -726,32 +626,7 @@ class Team3 extends Team {
                       },
                       value: {
                         type: "icon",
-                        name: "FaInstagram"
-                      },
-                      displayer: "Icon",
-                    },
-                    {
-                      type: "page",
-                      key: "url",
-                      displayer: "Navigate To",
-                      value: "",
-                    },
-                  ],
-                },
-                {
-                  type: "object",
-                  key: "social",
-                  displayer: "Social",
-                  value: [
-                    {
-                      type: "media",
-                      key: "icon",
-                      additionalParams: {
-                        availableTypes: ["icon", "image"],
-                      },
-                      value: {
-                        type: "icon",
-                        name: "FaLinkedin"
+                        name: "RiLinkedinLine"
                       },
                       displayer: "Icon",
                     },
@@ -817,7 +692,7 @@ class Team3 extends Team {
                       },
                       value: {
                         type: "icon",
-                        name: "FaFacebookSquare"
+                        name: "RiFacebookLine"
                       },
                       displayer: "Icon",
                     },
@@ -842,7 +717,7 @@ class Team3 extends Team {
                       },
                       value: {
                         type: "icon",
-                        name: "FaTwitterSquare"
+                        name: "RiTwitterXFill"
                       },
                       displayer: "Icon",
                     },
@@ -867,32 +742,7 @@ class Team3 extends Team {
                       },
                       value: {
                         type: "icon",
-                        name: "FaInstagram"
-                      },
-                      displayer: "Icon",
-                    },
-                    {
-                      type: "page",
-                      key: "url",
-                      displayer: "Navigate To",
-                      value: "",
-                    },
-                  ],
-                },
-                {
-                  type: "object",
-                  key: "social",
-                  displayer: "Social",
-                  value: [
-                    {
-                      type: "media",
-                      key: "icon",
-                      additionalParams: {
-                        availableTypes: ["icon", "image"],
-                      },
-                      value: {
-                        type: "icon",
-                        name: "FaLinkedin"
+                        name: "RiLinkedinLine"
                       },
                       displayer: "Icon",
                     },
@@ -979,7 +829,7 @@ class Team3 extends Team {
                         <div className={this.decorateCSS("card-content")}>
                           {card.profileImage && (
                             <div className={this.decorateCSS("image-container")}>
-                              <Base.Media value={card.profileImage} className={`${this.decorateCSS("image")} ${card.profileImage?.type === "icon" && this.decorateCSS("has-icon")}`} data-animation={this.getPropValue("hoverAnimation").join(" ")} />
+                              <Base.Media value={card.profileImage} className={`${this.decorateCSS("image")} ${card.profileImage?.type === "icon" && this.decorateCSS("has-icon")}`} />
                               {this.getPropValue("overlay") && <div className={this.decorateCSS("overlay")} />}
                             </div>
                           )}
@@ -993,7 +843,6 @@ class Team3 extends Team {
                                   <Base.Media
                                     value={item.icon}
                                     className={`${this.decorateCSS("icon")} ${item.icon?.type === "image" && this.decorateCSS("has-image")}`}
-                                    style={{ "--icon-index": indexSocials } as React.CSSProperties}
                                   />
                                 </ComposerLink>
                               ))}

@@ -230,6 +230,17 @@
                     &:hover {
                       color: var(--composer-primary-color);
                     }
+
+                    @container (min-width: 1025px) {
+                      font-size: 1rem;
+                      width: 16px;
+                      height: 16px;
+
+                      &.has-image {
+                        width: 1.5rem;
+                        height: 1.5rem;
+                      }
+                    }
                   }
                 }
               }

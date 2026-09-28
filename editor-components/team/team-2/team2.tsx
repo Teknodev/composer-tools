@@ -967,7 +967,7 @@ class Team2 extends Team {
                         {this.getPropValue("overlay") && <div className={this.decorateCSS("overlay")} />}
                       </div>
                     }
-                    {cardNameExist && <Base.H6 className={this.decorateCSS("card-title")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>{card.name}</Base.H6>}
+                    {cardNameExist && <Base.H5 className={this.decorateCSS("card-title")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>{card.name}</Base.H5>}
                     {cardPositionExist && <Base.H6 className={this.decorateCSS("card-position")}>{card.position}</Base.H6>}
                     {cardDescriptionExist && <Base.P className={this.decorateCSS("card-description")}>{card.cardDescription}</Base.P>}
                     <div className={this.decorateCSS("icon-group")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
