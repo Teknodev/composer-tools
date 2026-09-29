@@ -16,6 +16,13 @@ const WRAPPERS: Array<[string, React.ComponentType<any>, Record<string, unknown>
   ["Row", Base.Row, {}],
 ];
 
+const RULE_CLASS = "video-bg-rule-target";
+const CORE_WRAPPERS = WRAPPERS.filter(([name]) => ["MaxContent", "VerticalContent", "Card"].includes(name));
+
+function setVideoRule(styleEl: HTMLStyleElement, url: string) {
+  styleEl.textContent = `.${RULE_CLASS} { ${VIDEO_BG_VARS.URL}: ${url}; }`;
+}
+
 function renderWrapper(Wrapper: React.ComponentType<any>, props: Record<string, unknown> = {}) {
   const { container } = render(
     <Wrapper data-testid="target" {...props}>
@@ -31,7 +38,44 @@ describe("video background on Base wrappers", () => {
     vi.spyOn(HTMLMediaElement.prototype, "pause").mockImplementation(() => undefined);
   });
 
-  afterEach(() => cleanup());
+  afterEach(() => {
+    cleanup();
+    document.head.querySelectorAll("style[data-video-rule]").forEach((el) => el.remove());
+  });
+
+  it.each(CORE_WRAPPERS)("%s gets exactly one video from a rule holding --bg-video-url", (_name, Wrapper, props) => {
+    const styleEl = document.createElement("style");
+    styleEl.setAttribute("data-video-rule", "");
+    document.head.appendChild(styleEl);
+    setVideoRule(styleEl, VIDEO_URL);
+    const el = renderWrapper(Wrapper, { ...props, className: RULE_CLASS });
+
+    applyVideoBackgrounds(document);
+    applyVideoBackgrounds(document);
+
+    expect(el.querySelectorAll("video[data-bg-video]")).toHaveLength(1);
+    expect(el.querySelector(":scope > video[data-bg-video]")!.getAttribute("src")).toBe(VIDEO_URL);
+    expect(el.style.isolation).toBe("isolate");
+  });
+
+  it.each(CORE_WRAPPERS)("%s loses the video and injected styles when the rule URL is cleared", (_name, Wrapper, props) => {
+    const styleEl = document.createElement("style");
+    styleEl.setAttribute("data-video-rule", "");
+    document.head.appendChild(styleEl);
+    setVideoRule(styleEl, VIDEO_URL);
+    const el = renderWrapper(Wrapper, { ...props, className: RULE_CLASS });
+    applyVideoBackgrounds(document);
+    expect(el.querySelector("video[data-bg-video]")).not.toBeNull();
+
+    styleEl.textContent = "";
+    applyVideoBackgrounds(document);
+
+    expect(el.querySelector("video[data-bg-video]")).toBeNull();
+    expect(el.style.isolation).toBe("");
+    expect(el.style.position).toBe("");
+    expect(el.dataset.videoBgIsolated).toBeUndefined();
+    expect(el.dataset.videoBgPositioned).toBeUndefined();
+  });
 
   it.each(WRAPPERS)("%s renders the data-video-bg attribute on its root", (_name, Wrapper, props) => {
     const el = renderWrapper(Wrapper, props);
