@@ -34,7 +34,7 @@
         background-color: var(--composer-html-background);
         border-radius: var(--composer-border-radius-sm);
         padding: var(--composer-gap-lg);
-        border: 1px solid transparent;
+        border: 1px solid var(--composer-tertiary-color);
         width: 100%;
         &[data-animation~="animate1"] {
           &:hover {
@@ -86,7 +86,7 @@
         .top-left-side {
           height: auto;
           border-radius: var(--composer-border-radius-sm);
-          border: 1px solid transparent;
+          border: 1px solid var(--composer-tertiary-color);
           box-sizing: border-box;
           &[data-animation~="animate1"] {
             &:hover {

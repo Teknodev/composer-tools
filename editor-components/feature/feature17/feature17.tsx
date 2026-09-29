@@ -506,9 +506,9 @@ class Feature17 extends BaseFeature {
                         </Base.H5>
                       )}
                       {tabTitleExist && (
-                        <Base.H4 className={this.decorateCSS("content-title")}>
+                        <Base.H3 className={this.decorateCSS("content-title")}>
                           {tab.tab_title}
-                        </Base.H4>
+                        </Base.H3>
                       )}
 
                       {tabDescriptionExist && (

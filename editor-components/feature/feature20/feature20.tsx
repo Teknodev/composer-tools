@@ -66,7 +66,7 @@ class Feature20 extends BaseFeature {
       type: "boolean",
       key: "showDividers",
       displayer: "Dividers",
-      value: true,  
+      value: false,
     });
 
     this.addProp({

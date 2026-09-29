@@ -56,7 +56,7 @@ class Feature35 extends BaseFeature {
                         {
                             type: "string",
                             key: "card_subtitle",
-                            displayer: "Card Subtitle",
+                            displayer: "Subtitle",
                             value: "",
                         },
                         {
@@ -82,7 +82,7 @@ class Feature35 extends BaseFeature {
                         {
                             type: "string",
                             key: "card_subtitle",
-                            displayer: "Card Subtitle",
+                            displayer: "Subtitle",
                             value: "",
                         },
                         {
@@ -108,7 +108,7 @@ class Feature35 extends BaseFeature {
                         {
                             type: "string",
                             key: "card_subtitle",
-                            displayer: "Card Subtitle",
+                            displayer: "Subtitle",
                             value: "",
                         },
                         {

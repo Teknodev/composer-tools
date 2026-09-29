@@ -75,13 +75,13 @@ class Feature42 extends BaseFeature {
             {
               type: "string",
               key: "cardSubTitle",
-              displayer: "Card Subtitle",
+              displayer: "Subtitle",
               value: ""
             },
             {
               type: "string",
               key: "cardTitle",
-              displayer: "Card Title",
+              displayer: "Heading",
               value: "Tools and software for every business"
             },
             {
@@ -122,13 +122,13 @@ class Feature42 extends BaseFeature {
             {
               type: "string",
               key: "cardSubTitle",
-              displayer: "Card Subtitle",
+              displayer: "Subtitle",
               value: ""
             },
             {
               type: "string",
               key: "cardTitle",
-              displayer: "Card Title",
+              displayer: "Heading",
               value: "Smart data analytics dashboards"
             },
             {
@@ -169,13 +169,13 @@ class Feature42 extends BaseFeature {
             {
               type: "string",
               key: "cardSubTitle",
-              displayer: "Card Subtitle",
+              displayer: "Subtitle",
               value: ""
             },
             {
               type: "string",
               key: "cardTitle",
-              displayer: "Card Title",
+              displayer: "Heading",
               value: "Visual component of the project"
             },
             {

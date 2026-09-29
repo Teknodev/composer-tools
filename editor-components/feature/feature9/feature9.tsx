@@ -63,7 +63,7 @@ class Feature9 extends BaseFeature {
             {
               type: "string",
               key: "num",
-              displayer: "Card Number",
+              displayer: "Number",
               value: "1"
             },
             {
@@ -100,7 +100,7 @@ class Feature9 extends BaseFeature {
             {
               type: "string",
               key: "num",
-              displayer: "Card Number",
+              displayer: "Number",
               value: "2"
             },
             {
@@ -137,7 +137,7 @@ class Feature9 extends BaseFeature {
             {
               type: "string",
               key: "num",
-              displayer: "Card Number",
+              displayer: "Number",
               value: "3"
             },
             {
@@ -174,7 +174,7 @@ class Feature9 extends BaseFeature {
             {
               type: "string",
               key: "num",
-              displayer: "Card Number",
+              displayer: "Number",
               value: "4"
             },
             {
@@ -211,7 +211,7 @@ class Feature9 extends BaseFeature {
             {
               type: "string",
               key: "num",
-              displayer: "Card Number",
+              displayer: "Number",
               value: "5"
             },
             {

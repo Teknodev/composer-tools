@@ -350,7 +350,9 @@ class Feature2 extends BaseFeature {
                   {iconExist && (
                     <div className={this.decorateCSS("icon-container")}>
                       {showBadge && (
-                        <Base.P className={this.decorateCSS("item-index")}>{index + 1}.</Base.P>
+                        <div className={this.decorateCSS("item-index-container")}>
+                          <Base.P className={this.decorateCSS("item-index")}>{index + 1}.</Base.P>
+                        </div>
                       )}
                       <Base.Media
                         value={item.icon}

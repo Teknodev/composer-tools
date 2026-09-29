@@ -67,12 +67,12 @@ class Feature14 extends BaseFeature {
         {
           type: "object",
           key: "cardItem",
-          displayer: "Card Item",
+          displayer: "Item",
           value: [
             {
               type: "media",
               key: "icon",
-              displayer: "Card Icon",
+              displayer: "Icon",
               additionalParams: {
                 availableTypes: ["icon", "image"],
               },
@@ -84,19 +84,19 @@ class Feature14 extends BaseFeature {
             {
               type: "string",
               key: "cardItem_subtitle",
-              displayer: "Card Subtitle",
+              displayer: "Subtitle",
               value: "",
             },
             {
               type: "string",
               key: "cardItem_title",
-              displayer: "Card Title",
+              displayer: "Title",
               value: "Best price guaranteed",
             },
             {
               type: "string",
               key: "description",
-              displayer: "Card Description",
+              displayer: "Description",
               value: "Lorem ipsum odor amet, consectetuer adipiscing elit. Vivamus vivamus semper vulputate venenatis vitae egestas commodo porta.",
             },
             {
@@ -118,12 +118,12 @@ class Feature14 extends BaseFeature {
         {
           type: "object",
           key: "cardItem",
-          displayer: "Card Item",
+          displayer: "Item",
           value: [
             {
               type: "media",
               key: "icon",
-              displayer: "Card Icon",
+              displayer: "Icon",
               additionalParams: {
                 availableTypes: ["icon", "image"],
               },
@@ -135,19 +135,19 @@ class Feature14 extends BaseFeature {
             {
               type: "string",
               key: "cardItem_subtitle",
-              displayer: "Card Subtitle",
+              displayer: "Subtitle",
               value: "",
             },
             {
               type: "string",
               key: "cardItem_title",
-              displayer: "Card Title",
+              displayer: "Title",
               value: "Great communication",
             },
             {
               type: "string",
               key: "description",
-              displayer: "Card Description",
+              displayer: "Description",
               value: "Lorem ipsum odor amet, consectetuer adipiscing elit. Vivamus vivamus semper vulputate venenatis vitae egestas commodo porta.",
             },
             {
@@ -169,12 +169,12 @@ class Feature14 extends BaseFeature {
         {
           type: "object",
           key: "cardItem",
-          displayer: "Card Item",
+          displayer: "Item",
           value: [
             {
               type: "media",
               key: "icon",
-              displayer: "Card Icon",
+              displayer: "Icon",
               additionalParams: {
                 availableTypes: ["icon", "image"],
               },
@@ -186,19 +186,19 @@ class Feature14 extends BaseFeature {
             {
               type: "string",
               key: "cardItem_subtitle",
-              displayer: "Card Subtitle",
+              displayer: "Subtitle",
               value: "",
             },
             {
               type: "string",
               key: "cardItem_title",
-              displayer: "Card Title",
+              displayer: "Title",
               value: "We provide high standards",
             },
             {
               type: "string",
               key: "description",
-              displayer: "Card Description",
+              displayer: "Description",
               value: "Lorem ipsum odor amet, consectetuer adipiscing elit. Vivamus vivamus semper vulputate venenatis vitae egestas commodo porta.",
             },
             {
@@ -220,12 +220,12 @@ class Feature14 extends BaseFeature {
         {
           type: "object",
           key: "cardItem",
-          displayer: "Card Item",
+          displayer: "Item",
           value: [
             {
               type: "media",
               key: "icon",
-              displayer: "Card Icon",
+              displayer: "Icon",
               additionalParams: {
                 availableTypes: ["icon", "image"],
               },
@@ -237,19 +237,19 @@ class Feature14 extends BaseFeature {
             {
               type: "string",
               key: "cardItem_subtitle",
-              displayer: "Card Subtitle",
+              displayer: "Subtitle",
               value: "",
             },
             {
               type: "string",
               key: "cardItem_title",
-              displayer: "Card Title",
+              displayer: "Title",
               value: "We worked with many big companies",
             },
             {
               type: "string",
               key: "description",
-              displayer: "Card Description",
+              displayer: "Description",
               value: "Lorem ipsum odor amet, consectetuer adipiscing elit. Vivamus vivamus semper vulputate venenatis vitae egestas commodo porta.",
             },
             {

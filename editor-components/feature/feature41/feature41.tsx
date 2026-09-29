@@ -83,19 +83,19 @@ class Feature41 extends BaseFeature {
                         {
                             type: "string",
                             key: "cardSubtitle",
-                            displayer: "Card Subtitle",
+                            displayer: "Subtitle",
                             value: ""
                         },
                         {
                             type: "string",
                             key: "cardTitle",
-                            displayer: "Card Title",
+                            displayer: "Title",
                             value: "Perfect Design"
                         },
                         {
                             type: "string",
                             key: "cardDescription",
-                            displayer: "Card Description",
+                            displayer: "Description",
                             value: "Credibly innovate granular internal or “organic” sources whereas high standards in web-readiness. Energistically scale future-proof core competencies impactful experiences."
                         },
                         INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
@@ -131,19 +131,19 @@ class Feature41 extends BaseFeature {
                         {
                             type: "string",
                             key: "cardSubtitle",
-                            displayer: "Card Subtitle",
+                            displayer: "Subtitle",
                             value: ""
                         },
                         {
                             type: "string",
                             key: "cardTitle",
-                            displayer: "Card Title",
+                            displayer: "Title",
                             value: "Ultra Responsive"
                         },
                         {
                             type: "string",
                             key: "cardDescription",
-                            displayer: "Card Description",
+                            displayer: "Description",
                             value: "Credibly innovate granular internal or “organic” sources whereas high standards in web-readiness. Energistically scale future-proof core competencies impactful experiences."
                         },
                         INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
@@ -179,19 +179,19 @@ class Feature41 extends BaseFeature {
                         {
                             type: "string",
                             key: "cardSubtitle",
-                            displayer: "Card Subtitle",
+                            displayer: "Subtitle",
                             value: ""
                         },
                         {
                             type: "string",
                             key: "cardTitle",
-                            displayer: "Card Title",
+                            displayer: "Title",
                             value: "Free Test-Drive"
                         },
                         {
                             type: "string",
                             key: "cardDescription",
-                            displayer: "Card Description",
+                            displayer: "Description",
                             value: "Credibly innovate granular internal or “organic” sources whereas high standards in web-readiness. Energistically scale future-proof core competencies impactful experiences."
                         },
                         INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),

@@ -51,7 +51,7 @@ class Feature11 extends BaseFeature {
       key: "buttons",
       displayer: "Buttons",
       value: [
-        INPUTS.BUTTON("button", "Button", "Start Creating", "", null, null, "Primary"),
+        INPUTS.BUTTON("button", "Button", "Start Creating", "", "FaArrowRight", null, "Primary"),
       ]
     });
 
@@ -80,7 +80,7 @@ class Feature11 extends BaseFeature {
             {
               type: "string",
               key: "card_subtitle",
-              displayer: "Card Subtitle",
+              displayer: "Subtitle",
               value: ""
             },
             {
@@ -118,7 +118,7 @@ class Feature11 extends BaseFeature {
             {
               type: "string",
               key: "card_subtitle",
-              displayer: "Card Subtitle",
+              displayer: "Subtitle",
               value: ""
             },
             {
@@ -156,7 +156,7 @@ class Feature11 extends BaseFeature {
             {
               type: "string",
               key: "card_subtitle",
-              displayer: "Card Subtitle",
+              displayer: "Subtitle",
               value: ""
             },
             {
@@ -194,7 +194,7 @@ class Feature11 extends BaseFeature {
             {
               type: "string",
               key: "card_subtitle",
-              displayer: "Card Subtitle",
+              displayer: "Subtitle",
               value: ""
             },
             {
@@ -232,7 +232,7 @@ class Feature11 extends BaseFeature {
             {
               type: "string",
               key: "card_subtitle",
-              displayer: "Card Subtitle",
+              displayer: "Subtitle",
               value: ""
             },
             {
@@ -270,7 +270,7 @@ class Feature11 extends BaseFeature {
             {
               type: "string",
               key: "card_subtitle",
-              displayer: "Card Subtitle",
+              displayer: "Subtitle",
               value: ""
             },
             {
@@ -348,10 +348,15 @@ class Feature11 extends BaseFeature {
                     <div className={this.decorateCSS("buttons-container")}>
                       {buttons.map((btn: INPUTS.CastedButton, index: number) => {
                         if (this.castToString(btn.text)) {
+                          const btnIcon = btn.icon as unknown as TypeMediaInputValue;
+                          const btnIconExist = btnIcon && (btnIcon.type === "icon" ? btnIcon.name : btnIcon.url);
                           return (
                             <ComposerLink key={index} path={btn.url}>
                               <Base.Button buttonType={btn.type} className={this.decorateCSS("button")}>
                                 <Base.P className={this.decorateCSS("button-text")}>{btn.text}</Base.P>
+                                {btnIconExist && (
+                                  <Base.Media className={this.decorateCSS("button-icon")} value={btnIcon} />
+                                )}
                               </Base.Button>
                             </ComposerLink>
                           );

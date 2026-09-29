@@ -19,8 +19,9 @@
                     gap: var(--composer-gap-sm);
                     width: 100%;
                     justify-content: flex-start;
-                    .button { 
-                        .button-text {
+                    .button {
+                        .button-text,
+                        .button-icon {
                             content: "";
                         }
                     }

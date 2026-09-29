@@ -80,13 +80,13 @@ class Feature3 extends BaseFeature {
             {
               type: "string",
               key: "card_subtitle",
-              displayer: "Card Subtitle",
+              displayer: "Subtitle",
               value: "",
             },
             {
               type: "string",
               key: "card_title",
-              displayer: "Card Title",
+              displayer: "Title",
               value: "Search Engine Optimization",
             },
             {
@@ -104,7 +104,7 @@ class Feature3 extends BaseFeature {
             {
               type: "string",
               key: "card_description",
-              displayer: "Card Description",
+              displayer: "Description",
               value: "",
             },
             {
@@ -125,13 +125,13 @@ class Feature3 extends BaseFeature {
             {
               type: "string",
               key: "card_subtitle",
-              displayer: "Card Subtitle",
+              displayer: "Subtitle",
               value: "",
             },
             {
               type: "string",
               key: "card_title",
-              displayer: "Card Title",
+              displayer: "Title",
               value: "Marketing & Advertisement",
             },
             {
@@ -149,7 +149,7 @@ class Feature3 extends BaseFeature {
             {
               type: "string",
               key: "card_description",
-              displayer: "Card Description",
+              displayer: "Description",
               value: "",
             },
             {
@@ -170,13 +170,13 @@ class Feature3 extends BaseFeature {
             {
               type: "string",
               key: "card_subtitle",
-              displayer: "Card Subtitle",
+              displayer: "Subtitle",
               value: "",
             },
             {
               type: "string",
               key: "card_title",
-              displayer: "Card Title",
+              displayer: "Title",
               value: "Reporting & Analysis",
             },
             {
@@ -194,7 +194,7 @@ class Feature3 extends BaseFeature {
             {
               type: "string",
               key: "card_description",
-              displayer: "Card Description",
+              displayer: "Description",
               value: "",
             },
             {

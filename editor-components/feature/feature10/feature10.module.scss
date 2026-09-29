@@ -118,6 +118,8 @@
                         }
                         .bottom{
                             padding: var(--composer-gap-md);
+                            background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+                            border-radius: 0 0 var(--composer-border-radius-sm) var(--composer-border-radius-sm);
                             align-items: stretch;
                             justify-content: flex-start;
                             width: 100%;
