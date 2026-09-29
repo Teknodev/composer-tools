@@ -19,7 +19,8 @@ interface Category {
   items: CategoryItem[];
   url: string;
   icon?: TypeMediaInputValue;
-  image: TypeMediaInputValue;
+  image?: TypeMediaInputValue;
+  overlay?: boolean;
 }
 
 interface RightSection {
@@ -2426,6 +2427,39 @@ class Navbar10 extends BaseNavigator {
     this.setComponentState("activeDropdown", null);
   }
 
+  // The unique-prop-key rename (#1275) prefixed the category keys, but the markup reads
+  // the short names (title, url, image, items, label…). Map the prefixed keys back once here.
+  normalizeMenuItems(items: any[]): MenuItems[] {
+    const hasMedia = (media?: TypeMediaInputValue) =>
+      !!media && (media.type === "icon" ? !!media.name : !!media.url);
+
+    const normalizeCategory = (category: any, prefix: "categories" | "rightCategories"): Category => {
+      const image = category[`${prefix}_category_image`];
+      const rawItems = (prefix === "categories" ? category.items : category.category_items) || [];
+      return {
+        ...category,
+        title: category[`${prefix}_category_title`],
+        url: category[`menuItems_item_${prefix}_category_url`],
+        image: hasMedia(image) ? image : undefined,
+        overlay: category[`${prefix}_category_overlay`],
+        items: rawItems.map((catItem: any) => ({
+          ...catItem,
+          label: catItem.label ?? catItem.item_label,
+          icon: catItem.icon ?? catItem.item_icon,
+          url: catItem[`${prefix}_category_items_item_url`],
+        })),
+      };
+    };
+
+    return (items || []).map((item: any) => ({
+      ...item,
+      categories: (item.categories || []).map((category: any) => normalizeCategory(category, "categories")),
+      rightCategories_category: (item.rightCategories || []).map((category: any) =>
+        normalizeCategory(category, "rightCategories")
+      ),
+    }));
+  }
+
   static getName(): string {
     return "Navbar 10";
   }
@@ -2512,7 +2546,7 @@ class Navbar10 extends BaseNavigator {
     const defaultLogo = this.castToObject<Logo>("defaultLogo");
     const absoluteLogo = this.castToObject<Logo>("absoluteLogo");
     const position = this.getPropValue("position");
-    const menuItems = this.castToObject<MenuItems[]>("menuItems");
+    const menuItems = this.normalizeMenuItems(this.castToObject<any[]>("menuItems"));
     const hamburgerNavActive = this.getComponentState("hamburgerNavActive");
     const navbarOverflowShow = this.getComponentState("navbarOverflowShow");
     const isScrolled = this.getComponentState("isScrolled");
@@ -2558,11 +2592,10 @@ class Navbar10 extends BaseNavigator {
           setIsBigScreen={(val: boolean) =>
             this.setComponentState("isBigScreen", val)
           }
-          // The desktop nav gives way to the hamburger below 640px (see the
-          // `@container (max-width: $composer-phone-width)` block in the stylesheet),
-          // so big-screen starts one pixel above it — the same off-by-one pairing
-          // the default 1025 has with the 1024px tablet breakpoint.
-          screenSize={641}
+          // The desktop nav gives way to the hamburger from the tablet breakpoint down
+          // (see the `@container (max-width: $composer-tablet-width)` block in the
+          // stylesheet), so big-screen starts one pixel above 1024px.
+          screenSize={1025}
           className={this.decorateCSS("filledBackground")}
         >
           <Base.MaxContent
@@ -2732,6 +2765,9 @@ class Navbar10 extends BaseNavigator {
                                             value={category.image}
                                             className={this.decorateCSS("categoryImage")}
                                           />
+                                          {category.overlay && (
+                                            <div className={this.decorateCSS("categoryImageOverlay")} />
+                                          )}
                                         </div>
                                       )}
                                     </div>
@@ -2810,12 +2846,15 @@ class Navbar10 extends BaseNavigator {
                                           </div>
                                         </ComposerLink>
                                       ))}
-                                      {category.image && ((category.image.type === "image" && category.image.url) || (category.image.type === "icon" && category.image.name)) && (
+                                      {category.image && (
                                         <div className={this.decorateCSS("dropdownCategoryImage")}>
                                           <Base.Media
                                             value={category.image}
                                             className={this.decorateCSS("categoryImage")}
                                           />
+                                          {category.overlay && (
+                                            <div className={this.decorateCSS("categoryImageOverlay")} />
+                                          )}
                                         </div>
                                       )}
                                     </div>
@@ -3015,12 +3054,15 @@ class Navbar10 extends BaseNavigator {
                                           )
                                         )}
                                       </div>
-                                      {category.image && ((category.image.type === "image" && category.image.url) || (category.image.type === "icon" && category.image.name)) && (
+                                      {category.image && (
                                         <div className={this.decorateCSS("dropdownCategoryImage")}>
                                           <Base.Media
                                             value={category.image}
                                             className={this.decorateCSS("categoryImage")}
                                           />
+                                          {category.overlay && (
+                                            <div className={this.decorateCSS("categoryImageOverlay")} />
+                                          )}
                                         </div>
                                       )}
                                     </div>
@@ -3084,12 +3126,15 @@ class Navbar10 extends BaseNavigator {
                                           )
                                         )}
                                       </div>
-                                      {category.image && ((category.image.type === "image" && category.image.url) || (category.image.type === "icon" && category.image.name)) && (
+                                      {category.image && (
                                         <div className={this.decorateCSS("dropdownCategoryImage")}>
                                           <Base.Media
                                             value={category.image}
                                             className={this.decorateCSS("categoryImage")}
                                           />
+                                          {category.overlay && (
+                                            <div className={this.decorateCSS("categoryImageOverlay")} />
+                                          )}
                                         </div>
                                       )}
                                     </div>

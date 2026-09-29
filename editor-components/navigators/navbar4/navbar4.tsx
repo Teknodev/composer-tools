@@ -1453,9 +1453,9 @@ class Navbar4 extends BaseNavigator {
                         className={this.decorateCSS("informationTextContainer")}
                       >
                         {informationTitle && (
-                          <Base.P className={this.decorateCSS("informationTitle")}>
+                          <Base.H6 className={this.decorateCSS("informationTitle")}>
                             {information.title}
-                          </Base.P>
+                          </Base.H6>
                         )}
                         {informationDescription && (
                           <Base.P
