@@ -98,11 +98,11 @@
         .carousel {
           :global {
             .slick-prev {
-              left: 20px;
+              left: var(--composer-gap-md);
             }
 
             .slick-next {
-              right: 20px;
+              right: var(--composer-gap-md);
             }
           }
 

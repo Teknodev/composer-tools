@@ -34,8 +34,6 @@
 
     .vertical-content {
       padding: var(--composer-gap-md) var(--composer-gap-xl);
-      display: flex;
-      flex-direction: column;
       align-items: center !important;
       text-align: center !important;
       margin-left: auto !important;
@@ -107,7 +105,7 @@
         flex-direction: column;
         justify-content: flex-start;
         align-items: flex-start;
-        gap: 10px;
+        gap: var(--composer-gap-sm);
         padding: var(--composer-gap-lg);
         box-sizing: border-box;
         overflow: auto;
@@ -152,7 +150,6 @@
           .member-subtitle {
             color: var(--composer-tertiary-color);
             text-align: left;
-            font-weight: 800;
           }
 
           .member-title {
@@ -175,15 +172,12 @@
             .feature-title {
               color: var(--composer-tertiary-color);
               text-align: left;
-              font-size: 10px;
               margin: 0;
             }
 
             .feature-description {
               color: var(--composer-font-color-primary);
               text-align: left;
-              font-size: 10px;
-              font-weight: 800;
             }
           }
         }
@@ -294,14 +288,6 @@
 
           .features-wrapper {
             gap: var(--composer-gap-md);
-
-            .features {
-              .feature-subtitle,
-              .feature-title,
-              .feature-description {
-                font-size: 10px !important;
-              }
-            }
           }
         }
 

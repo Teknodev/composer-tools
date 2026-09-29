@@ -12,9 +12,9 @@ type socials = {
 
 type Card = {
   profileImage: TypeMediaInputValue;
-  name: string;
-  position: string;
-  cardDescription: string;
+  name: React.JSX.Element;
+  position: React.JSX.Element;
+  cardDescription: React.JSX.Element;
   socials: socials[];
 };
 
@@ -698,9 +698,16 @@ class Team1 extends Team {
                         {this.getPropValue("overlay") && <div className={this.decorateCSS("overlay")} />}
                       </div>
                     )}
-                    <Base.H5 className={this.decorateCSS("card-name")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>{card.name}</Base.H5>
-                    <Base.H6 className={this.decorateCSS("position")}>{card.position}</Base.H6>
-                    <Base.P className={this.decorateCSS("card-description")}>{card.cardDescription}</Base.P>
+                    {this.castToString(card.name) && (
+                      <Base.H5 className={this.decorateCSS("card-name")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>{card.name}</Base.H5>
+                    )}
+                    {this.castToString(card.position) && (
+                      <Base.H6 className={this.decorateCSS("position")}>{card.position}</Base.H6>
+                    )}
+                    {this.castToString(card.cardDescription) && (
+                      <Base.P className={this.decorateCSS("card-description")}>{card.cardDescription}</Base.P>
+                    )}
+                    {card.socials?.length > 0 && (
                     <Base.Row className={this.decorateCSS("icon-group")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
                       {card.socials?.map((item: socials, indexSocials: number) => {
                         return (
@@ -713,6 +720,7 @@ class Team1 extends Team {
                         );
                       })}
                     </Base.Row>
+                    )}
                   </Base.VerticalContent>
                 </div>
               );

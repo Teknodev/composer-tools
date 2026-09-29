@@ -825,7 +825,7 @@ class Team3 extends Team {
                       data-animation={this.getPropValue("hoverAnimation").join(" ")}
                       data-show-lines={showLines}
                     >
-                      <div className={this.decorateCSS("card-items")}>
+                      <Base.VerticalContent className={this.decorateCSS("card-items")}>
                         <div className={this.decorateCSS("card-content")}>
                           {card.profileImage && (
                             <div className={this.decorateCSS("image-container")}>
@@ -849,7 +849,7 @@ class Team3 extends Team {
                             </div>
                           </Base.VerticalContent>
                         </div>
-                      </div>
+                      </Base.VerticalContent>
                     </div>
                   </div>
                 )
