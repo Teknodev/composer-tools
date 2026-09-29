@@ -154,12 +154,18 @@
       .wrapper {
         .right-page {
           .right-content {
+            align-items: flex-start;
 
             .title,
             .subtitle,
             .description {
               margin-left: 0;
+              margin-right: auto;
               text-align: left;
+            }
+
+            .button-container {
+              justify-content: flex-start;
             }
 
             .title {
@@ -330,7 +336,8 @@
                 max-width: unset;
               }
 
-              .input-button-wrapper {
+              .input-button-wrapper,
+              .button-container {
                 justify-content: var(--composer-content-alignment);
               }
             }

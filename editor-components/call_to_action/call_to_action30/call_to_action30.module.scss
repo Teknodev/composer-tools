@@ -9,11 +9,7 @@
       padding: 0;
 
       &.card-enabled {
-        background-color: color-mix(
-          in srgb,
-          var(--composer-html-background),
-          var(--composer-font-color-primary) 5%
-        );
+        background-color: var(--composer-html-background);
         border-radius: var(--composer-border-radius-md);
         padding: 80px var(--composer-gap-xl);
       }

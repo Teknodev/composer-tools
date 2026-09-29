@@ -195,7 +195,7 @@ class CallToAction9Page extends BaseCallToAction {
           >
             <Base.VerticalContent className={this.decorateCSS("header")}>
               {this.castToString(this.getPropValue("subtitle")) && (
-                <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                <Base.SectionSubTitle className={`${this.decorateCSS("subtitle")} ${Base.getSectionSubTitleType() !== "line" ? this.decorateCSS("subtitle-no-line") : ""}`}>
                   {this.getPropValue("subtitle")}
                 </Base.SectionSubTitle>
               )}

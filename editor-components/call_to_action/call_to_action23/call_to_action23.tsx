@@ -90,7 +90,7 @@ class CallToAction23Page extends BaseCallToAction {
                 <div className={this.decorateCSS("header-group")}>
                   <Base.VerticalContent className={this.decorateCSS("vertical-content")}>
                     {subtitle && (
-                      <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                      <Base.SectionSubTitle className={`${this.decorateCSS("subtitle")} ${Base.getSectionSubTitleType() !== "line" ? this.decorateCSS("subtitle-no-line") : ""}`}>
                         {this.getPropValue("subtitle")}
                       </Base.SectionSubTitle>
                     )}

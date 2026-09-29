@@ -75,7 +75,7 @@ class CallToAction22 extends BaseCallToAction {
               <Base.VerticalContent className={this.decorateCSS("header")}>
                 {subtitleExist && (
                   <Base.SectionSubTitle
-                    className={this.decorateCSS("subtitle")}
+                    className={`${this.decorateCSS("subtitle")} ${Base.getSectionSubTitleType() !== "line" ? this.decorateCSS("subtitle-no-line") : ""}`}
                   >
                     {this.getPropValue("subtitle")}
                   </Base.SectionSubTitle>

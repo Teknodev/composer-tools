@@ -64,7 +64,7 @@ class CallToAction1Page extends BaseCallToAction {
           <Base.VerticalContent className={`${this.decorateCSS("content")} ${isLeft ? this.decorateCSS("left") : ""}`}>
             <Base.Media value={this.getPropValue("icon")} className={this.decorateCSS("icon")}></Base.Media>
             {this.castToString(this.getPropValue("subtitle")) && (
-              <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>
+              <Base.SectionSubTitle className={`${this.decorateCSS("subtitle")} ${Base.getSectionSubTitleType() !== "line" ? this.decorateCSS("subtitle-no-line") : ""}`}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>
             )}
             {this.castToString(this.getPropValue("title")) && (
               <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>

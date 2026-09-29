@@ -68,7 +68,7 @@ class CallToAction21 extends BaseCallToAction {
                     >
                         <Base.VerticalContent className={`${this.decorateCSS("card-content")} ${isLeft ? this.decorateCSS("left") : ""}`}>
                             {subtitle && (
-                                <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                                <Base.SectionSubTitle className={`${this.decorateCSS("subtitle")} ${Base.getSectionSubTitleType() !== "line" ? this.decorateCSS("subtitle-no-line") : ""}`}>
                                     {this.getPropValue("subtitle")}
                                 </Base.SectionSubTitle>
                             )}

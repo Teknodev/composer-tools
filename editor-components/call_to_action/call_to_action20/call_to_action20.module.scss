@@ -69,6 +69,10 @@
             margin-left: 0;
             margin-right: 0;
             transform: translateX(3rem) !important;
+            &.subtitle-no-line {
+              transform: none !important;
+            }
+
 
             &::before {
               display: block !important;

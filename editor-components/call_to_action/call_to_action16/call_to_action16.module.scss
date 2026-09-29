@@ -63,6 +63,10 @@
 
                         .subtitle {
                             transform: translateX(3rem) !important;
+                            &.subtitle-no-line {
+                              transform: none !important;
+                            }
+
                             text-align: left;
 
                             &::before {

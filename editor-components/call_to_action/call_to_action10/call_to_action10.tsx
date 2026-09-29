@@ -247,8 +247,8 @@ class CallToAction10Page extends BaseCallToAction {
           <Base.VerticalContent className={`${this.decorateCSS("content")} ${isLeft ? this.decorateCSS("left") : ""}`}>
             <Base.VerticalContent className={this.decorateCSS("header")}>
               {this.castToString(this.getPropValue("subtitle")) && (
-                <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
-                  {this.castToString(this.getPropValue("subtitle"))}
+                <Base.SectionSubTitle className={`${this.decorateCSS("subtitle")} ${Base.getSectionSubTitleType() !== "line" ? this.decorateCSS("subtitle-no-line") : ""}`}>
+                  {this.getPropValue("subtitle")}
                 </Base.SectionSubTitle>
               )}
               {(this.castToString(this.getPropValue("title")) || headerIcon) && (
@@ -265,7 +265,7 @@ class CallToAction10Page extends BaseCallToAction {
               )}
               {this.castToString(this.getPropValue("description")) && (
                 <Base.SectionDescription className={this.decorateCSS("description")}>
-                  {this.castToString(this.getPropValue("description"))}
+                  {this.getPropValue("description")}
                 </Base.SectionDescription>
               )}
               {buttons.length > 0 && (
@@ -283,7 +283,7 @@ class CallToAction10Page extends BaseCallToAction {
               )}
             </Base.VerticalContent>
             {(cardItem.length > 0) && (
-              <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount"), tablet: 3, phone: 1 }} className={this.decorateCSS("card-container")}>
+              <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount"), tablet: this.getPropValue("itemCount"), phone: 1 }} className={this.decorateCSS("card-container")}>
                 {cardItem.map((item: CardItem, index: number) => (
                   <Base.Card key={index} className={this.decorateCSS("card-shell")}>
                     <Base.VerticalContent className={this.decorateCSS("card")}>
@@ -293,14 +293,14 @@ class CallToAction10Page extends BaseCallToAction {
                         </div>
                       )}
                       {this.castToString(item.cardSubtitle) && (
-                        <Base.H6 className={this.decorateCSS("card-subtitle")}>
+                        <Base.P className={this.decorateCSS("card-subtitle")}>
                           {item.cardSubtitle}
-                        </Base.H6>
+                        </Base.P>
                       )}
                       {this.castToString(item.cardTitle) && (
-                        <Base.H5 className={this.decorateCSS("card-title")}>
+                        <Base.H6 className={this.decorateCSS("card-title")}>
                           {item.cardTitle}
-                        </Base.H5>
+                        </Base.H6>
                       )}
                       {this.castToString(item.cardDescription) && (
                         <Base.P className={this.decorateCSS("card-description")}>

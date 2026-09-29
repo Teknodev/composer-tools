@@ -106,9 +106,11 @@
             align-items: flex-start;
 
             .subtitle {
+              align-self: flex-start;
               text-align: left;
               justify-content: flex-start;
               margin-left: 0;
+              margin-right: auto;
             }
 
             .title,

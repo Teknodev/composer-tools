@@ -97,6 +97,10 @@
 
         .subtitle {
             transform: translateX(3rem) !important;
+            &.subtitle-no-line {
+              transform: none !important;
+            }
+
 
             &::before {
                 display: block !important;

@@ -64,7 +64,7 @@ class CallToAction16 extends BaseCallToAction {
                     <div className={`${this.decorateCSS("content")} ${isLeft ? this.decorateCSS("left") : ""}`}>
                         {(hasContent || visibleButtons.length > 0) && (
                             <Base.VerticalContent className={this.decorateCSS("header")}>
-                                {subtitleExist && (<Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>)}
+                                {subtitleExist && (<Base.SectionSubTitle className={`${this.decorateCSS("subtitle")} ${Base.getSectionSubTitleType() !== "line" ? this.decorateCSS("subtitle-no-line") : ""}`}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>)}
                                 {titleExist && (<Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>)}
                                 {descriptionExist && (<Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>)}
                                 {visibleButtons.length > 0 && (

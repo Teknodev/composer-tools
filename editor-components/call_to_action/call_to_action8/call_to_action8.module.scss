@@ -101,6 +101,8 @@
     .max-content {
       .content {
         .title-box {
+          align-items: flex-start;
+
           .vertical-content {
             align-items: flex-start;
 
@@ -109,6 +111,7 @@
             .description {
               text-align: left;
               margin-left: 0;
+              margin-right: auto;
             }
           }
 
@@ -186,6 +189,7 @@
             }
           }
         }
+
 
         .image-box {
           .image,
