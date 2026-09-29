@@ -64,7 +64,7 @@ class Testimonials11Page extends Testimonials {
       type: "string",
       key: "title",
       displayer: "Title",
-      value: "Testimonials",
+      value: "",
     });
     this.addProp({
       type: "string",
@@ -363,9 +363,6 @@ class Testimonials11Page extends Testimonials {
         {overlayActive && coverMediaExist && <div className={this.decorateCSS("overlay")} />}
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("wrapper")}>
-            {bgQuoteStartExist && (
-              <Base.Media value={bgQuoteStartVal} className={`${this.decorateCSS("bg-quote")} ${this.decorateCSS("bg-quote-start")}${coverMediaExist ? ` ${this.decorateCSS("bg-quote-with-image")}` : ""}`} />
-            )}
             {hasAnyTopContent && (
               <Base.VerticalContent className={this.decorateCSS("top-content")}>
                 {subtitleExist && (
@@ -407,6 +404,9 @@ class Testimonials11Page extends Testimonials {
               </Base.VerticalContent>
             )}
             <div className={this.decorateCSS("content")}>
+              {bgQuoteStartExist && (
+                <Base.Media value={bgQuoteStartVal} className={`${this.decorateCSS("bg-quote")} ${this.decorateCSS("bg-quote-start")}${coverMediaExist ? ` ${this.decorateCSS("bg-quote-with-image")}` : ""}`} />
+              )}
               <Base.ListGrid gridCount={gridCount} className={this.decorateCSS("grid")}>
                 {topCards.map((item: Item, index: number) => renderCard(item, index))}
               </Base.ListGrid>
@@ -438,10 +438,10 @@ class Testimonials11Page extends Testimonials {
                   {bottomCards.map((item: Item, index: number) => renderCard(item, midpoint + index))}
                 </Base.ListGrid>
               )}
+              {bgQuoteEndExist && (
+                <Base.Media value={bgQuoteEndVal} className={`${this.decorateCSS("bg-quote")} ${this.decorateCSS("bg-quote-end")}${coverMediaExist ? ` ${this.decorateCSS("bg-quote-with-image")}` : ""}`} />
+              )}
             </div>
-            {bgQuoteEndExist && (
-              <Base.Media value={bgQuoteEndVal} className={`${this.decorateCSS("bg-quote")} ${this.decorateCSS("bg-quote-end")}${coverMediaExist ? ` ${this.decorateCSS("bg-quote-with-image")}` : ""}`} />
-            )}
           </div>
         </Base.MaxContent>
       </Base.Container>

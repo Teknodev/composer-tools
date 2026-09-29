@@ -85,6 +85,7 @@ $ref-arrow-color: #ffffff;
       align-items: flex-start;
       background: $ref-box-bg;
       box-shadow: var(--composer-box-shadow);
+      border-radius: var(--composer-border-radius-sm) var(--composer-border-radius-sm) 0 0;
       color: $ref-text-color;
       padding: 80px;
       position: relative;

@@ -117,13 +117,13 @@
       .bg-quote-start {
         top: 0;
         left: 0;
-        transform: translate(-8%, -20%);
+        transform: translate(-8%, calc(-100% - var(--composer-gap-sm)));
       }
 
       .bg-quote-end {
         bottom: 0;
         right: 0;
-        transform: translate(8%, 85%);
+        transform: translate(8%, calc(100% + var(--composer-gap-sm)));
       }
 
       .content {
@@ -293,18 +293,6 @@
           width: 3rem;
           height: 3rem;
           font-size: 3rem;
-        }
-
-        .bg-quote-start {
-          transform: translate(-8%, -15%);
-        }
-
-        .bg-quote-end {
-          position: relative;
-          bottom: auto;
-          right: auto;
-          align-self: flex-end;
-          transform: none;
         }
 
         .content {

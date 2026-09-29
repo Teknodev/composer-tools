@@ -58,6 +58,7 @@
           position: relative;
           isolation: isolate;
           background: var(--composer-primary-color);
+          border-radius: var(--composer-border-radius-md) 0 0 var(--composer-border-radius-md);
           padding-bottom: calc(var(--composer-gap-xl) * 2 + var(--composer-gap-md));
 
           .slider-icons {
