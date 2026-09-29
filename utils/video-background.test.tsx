@@ -16,6 +16,12 @@ const WRAPPERS: Array<[string, React.ComponentType<any>, Record<string, unknown>
   ["Row", Base.Row, {}],
 ];
 
+const EXISTING_USERS: Array<[string, React.ComponentType<any>]> = [
+  ["Container", Base.Container],
+  ["H1", Base.H1],
+  ["P", Base.P],
+];
+
 const RULE_CLASS = "video-bg-rule-target";
 const CORE_WRAPPERS = WRAPPERS.filter(([name]) => ["MaxContent", "VerticalContent", "Card"].includes(name));
 
@@ -133,6 +139,41 @@ describe("video background on Base wrappers", () => {
 
     expect(el.style.isolation).toBe("isolate");
     expect(el.dataset.videoBgIsolated).toBeUndefined();
+  });
+
+  it.each(EXISTING_USERS)("%s keeps its content after one background video layered below it", (_name, Wrapper) => {
+    const el = renderWrapper(Wrapper);
+    el.style.setProperty(VIDEO_BG_VARS.URL, VIDEO_URL);
+
+    applyVideoBackgrounds(document);
+    applyVideoBackgrounds(document);
+
+    const videos = el.querySelectorAll<HTMLVideoElement>(":scope > video[data-bg-video]");
+    expect(videos).toHaveLength(1);
+    expect(el.firstElementChild).toBe(videos[0]);
+    expect(videos[0].nextElementSibling?.textContent).toBe("content");
+    expect(videos[0].style.zIndex).toBe("-1");
+    expect(videos[0].style.pointerEvents).toBe("none");
+    expect(el.style.isolation).toBe("isolate");
+  });
+
+  it.each(EXISTING_USERS)("%s keeps its own position and z-index through a video add and clear", (_name, Wrapper) => {
+    const el = renderWrapper(Wrapper, { style: { position: "absolute", zIndex: 3 } });
+    el.style.setProperty(VIDEO_BG_VARS.URL, VIDEO_URL);
+    applyVideoBackgrounds(document);
+
+    expect(el.style.position).toBe("absolute");
+    expect(el.style.zIndex).toBe("3");
+    expect(el.dataset.videoBgPositioned).toBeUndefined();
+
+    el.style.removeProperty(VIDEO_BG_VARS.URL);
+    applyVideoBackgrounds(document);
+
+    expect(el.querySelector("video[data-bg-video]")).toBeNull();
+    expect(el.style.position).toBe("absolute");
+    expect(el.style.zIndex).toBe("3");
+    expect(el.style.isolation).toBe("");
+    expect(el.textContent).toBe("content");
   });
 
   it("injects no video into an element without data-video-bg", () => {
