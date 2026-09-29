@@ -271,7 +271,7 @@ class Feature44 extends BaseFeature {
                         className={this.decorateCSS("services-grid")}
                     >
                         {services?.map((service: ServiceCard, index: number) => (
-                            <Base.Card key={index} className={this.decorateCSS("card-shell")}>
+                            <div key={index} className={this.decorateCSS("card-shell")}>
                             <Base.VerticalContent className={this.decorateCSS("service-card")}>
                                 {this.castToString(service.service_subtitle) && (
                                     <Base.H6 className={this.decorateCSS("card-subtitle")}>
@@ -323,7 +323,7 @@ class Feature44 extends BaseFeature {
                                     </div>
                                 )}
                             </Base.VerticalContent>
-                            </Base.Card>
+                            </div>
                         ))}
                     </Base.ListGrid>
 
