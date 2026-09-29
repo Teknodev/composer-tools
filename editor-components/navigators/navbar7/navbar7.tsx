@@ -23,7 +23,11 @@ interface Icon {
 interface MenuItem {
   title: React.JSX.Element;
   navigate_to: string;
-  sub_item_menuType: string;
+  menuType?: "Dropdown" | "Mega" | "Normal";
+  sub_item_badge: React.JSX.Element;
+  sub_sub_item_badge: React.JSX.Element;
+  sub_sub_item_media?: TypeMediaInputValue;
+  sub_sub_item_description: React.JSX.Element;
   sub_items: MenuItem[];
 }
 
@@ -107,7 +111,7 @@ class Navbar7 extends BaseNavigator {
               type: "string",
               key: "title",
               displayer: "Title",
-              value: "Catalog",
+              value: "Home",
             },
             {
               type: "page",
@@ -120,7 +124,7 @@ class Navbar7 extends BaseNavigator {
               key: "menuType",
               displayer: "Type",
               value: "Dropdown",
-              additionalParams: { selectItems: ["Dropdown", "Normal"] },
+              additionalParams: { selectItems: ["Dropdown", "Mega", "Normal"] },
             },
             {
               type: "array",
@@ -136,12 +140,18 @@ class Navbar7 extends BaseNavigator {
                       type: "string",
                       key: "title",
                       displayer: "Title",
-                      value: "Fashion Home",
+                      value: "Home 01",
                     },
                     {
                       type: "page",
                       key: "navigate_to",
                       displayer: "Navigate To",
+                      value: "",
+                    },
+                    {
+                      type: "string",
+                      key: "sub_item_badge",
+                      displayer: "Badge",
                       value: "",
                     },
                     {
@@ -164,6 +174,25 @@ class Navbar7 extends BaseNavigator {
                               type: "page",
                               key: "navigate_to",
                               displayer: "Navigate To",
+                              value: "",
+                            },
+                            {
+                              type: "string",
+                              key: "sub_sub_item_badge",
+                              displayer: "Badge",
+                              value: "",
+                            },
+                            {
+                              type: "media",
+                              key: "sub_sub_item_media",
+                              displayer: "Media",
+                              additionalParams: { availableTypes: ["image", "video"] },
+                              value: { type: "image", url: "" },
+                            },
+                            {
+                              type: "string",
+                              key: "sub_sub_item_description",
+                              displayer: "Description",
                               value: "",
                             },
                           ],
@@ -181,12 +210,18 @@ class Navbar7 extends BaseNavigator {
                       type: "string",
                       key: "title",
                       displayer: "Title",
-                      value: "Winery Home",
+                      value: "Home 02",
                     },
                     {
                       type: "page",
                       key: "navigate_to",
                       displayer: "Navigate To",
+                      value: "",
+                    },
+                    {
+                      type: "string",
+                      key: "sub_item_badge",
+                      displayer: "Badge",
                       value: "",
                     },
                     {
@@ -209,6 +244,25 @@ class Navbar7 extends BaseNavigator {
                               type: "page",
                               key: "navigate_to",
                               displayer: "Navigate To",
+                              value: "",
+                            },
+                            {
+                              type: "string",
+                              key: "sub_sub_item_badge",
+                              displayer: "Badge",
+                              value: "",
+                            },
+                            {
+                              type: "media",
+                              key: "sub_sub_item_media",
+                              displayer: "Media",
+                              additionalParams: { availableTypes: ["image", "video"] },
+                              value: { type: "image", url: "" },
+                            },
+                            {
+                              type: "string",
+                              key: "sub_sub_item_description",
+                              displayer: "Description",
                               value: "",
                             },
                           ],
@@ -226,12 +280,18 @@ class Navbar7 extends BaseNavigator {
                       type: "string",
                       key: "title",
                       displayer: "Title",
-                      value: "New Arrivals",
+                      value: "Home 03",
                     },
                     {
                       type: "page",
                       key: "navigate_to",
                       displayer: "Navigate To",
+                      value: "",
+                    },
+                    {
+                      type: "string",
+                      key: "sub_item_badge",
+                      displayer: "Badge",
                       value: "",
                     },
                     {
@@ -254,6 +314,25 @@ class Navbar7 extends BaseNavigator {
                               type: "page",
                               key: "navigate_to",
                               displayer: "Navigate To",
+                              value: "",
+                            },
+                            {
+                              type: "string",
+                              key: "sub_sub_item_badge",
+                              displayer: "Badge",
+                              value: "",
+                            },
+                            {
+                              type: "media",
+                              key: "sub_sub_item_media",
+                              displayer: "Media",
+                              additionalParams: { availableTypes: ["image", "video"] },
+                              value: { type: "image", url: "" },
+                            },
+                            {
+                              type: "string",
+                              key: "sub_sub_item_description",
+                              displayer: "Description",
                               value: "",
                             },
                           ],
@@ -271,12 +350,18 @@ class Navbar7 extends BaseNavigator {
                       type: "string",
                       key: "title",
                       displayer: "Title",
-                      value: "Men & Women",
+                      value: "Home 04",
                     },
                     {
                       type: "page",
                       key: "navigate_to",
                       displayer: "Navigate To",
+                      value: "",
+                    },
+                    {
+                      type: "string",
+                      key: "sub_item_badge",
+                      displayer: "Badge",
                       value: "",
                     },
                     {
@@ -299,6 +384,25 @@ class Navbar7 extends BaseNavigator {
                               type: "page",
                               key: "navigate_to",
                               displayer: "Navigate To",
+                              value: "",
+                            },
+                            {
+                              type: "string",
+                              key: "sub_sub_item_badge",
+                              displayer: "Badge",
+                              value: "",
+                            },
+                            {
+                              type: "media",
+                              key: "sub_sub_item_media",
+                              displayer: "Media",
+                              additionalParams: { availableTypes: ["image", "video"] },
+                              value: { type: "image", url: "" },
+                            },
+                            {
+                              type: "string",
+                              key: "sub_sub_item_description",
+                              displayer: "Description",
                               value: "",
                             },
                           ],
@@ -316,12 +420,18 @@ class Navbar7 extends BaseNavigator {
                       type: "string",
                       key: "title",
                       displayer: "Title",
-                      value: "Trend Collection",
+                      value: "Home 05",
                     },
                     {
                       type: "page",
                       key: "navigate_to",
                       displayer: "Navigate To",
+                      value: "",
+                    },
+                    {
+                      type: "string",
+                      key: "sub_item_badge",
+                      displayer: "Badge",
                       value: "",
                     },
                     {
@@ -344,6 +454,25 @@ class Navbar7 extends BaseNavigator {
                               type: "page",
                               key: "navigate_to",
                               displayer: "Navigate To",
+                              value: "",
+                            },
+                            {
+                              type: "string",
+                              key: "sub_sub_item_badge",
+                              displayer: "Badge",
+                              value: "",
+                            },
+                            {
+                              type: "media",
+                              key: "sub_sub_item_media",
+                              displayer: "Media",
+                              additionalParams: { availableTypes: ["image", "video"] },
+                              value: { type: "image", url: "" },
+                            },
+                            {
+                              type: "string",
+                              key: "sub_sub_item_description",
+                              displayer: "Description",
                               value: "",
                             },
                           ],
@@ -361,12 +490,18 @@ class Navbar7 extends BaseNavigator {
                       type: "string",
                       key: "title",
                       displayer: "Title",
-                      value: "Creative",
+                      value: "Home 06",
                     },
                     {
                       type: "page",
                       key: "navigate_to",
                       displayer: "Navigate To",
+                      value: "",
+                    },
+                    {
+                      type: "string",
+                      key: "sub_item_badge",
+                      displayer: "Badge",
                       value: "",
                     },
                     {
@@ -389,6 +524,585 @@ class Navbar7 extends BaseNavigator {
                               type: "page",
                               key: "navigate_to",
                               displayer: "Navigate To",
+                              value: "",
+                            },
+                            {
+                              type: "string",
+                              key: "sub_sub_item_badge",
+                              displayer: "Badge",
+                              value: "",
+                            },
+                            {
+                              type: "media",
+                              key: "sub_sub_item_media",
+                              displayer: "Media",
+                              additionalParams: { availableTypes: ["image", "video"] },
+                              value: { type: "image", url: "" },
+                            },
+                            {
+                              type: "string",
+                              key: "sub_sub_item_description",
+                              displayer: "Description",
+                              value: "",
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "sub_item",
+                  displayer: "Sub Item",
+                  value: [
+                    {
+                      type: "string",
+                      key: "title",
+                      displayer: "Title",
+                      value: "Home 07",
+                    },
+                    {
+                      type: "page",
+                      key: "navigate_to",
+                      displayer: "Navigate To",
+                      value: "",
+                    },
+                    {
+                      type: "string",
+                      key: "sub_item_badge",
+                      displayer: "Badge",
+                      value: "",
+                    },
+                    {
+                      type: "array",
+                      key: "sub_items",
+                      displayer: "Sub Items",
+                      value: [
+                        {
+                          type: "object",
+                          key: "sub_item",
+                          displayer: "Sub Item",
+                          value: [
+                            {
+                              type: "string",
+                              key: "title",
+                              displayer: "Title",
+                              value: "",
+                            },
+                            {
+                              type: "page",
+                              key: "navigate_to",
+                              displayer: "Navigate To",
+                              value: "",
+                            },
+                            {
+                              type: "string",
+                              key: "sub_sub_item_badge",
+                              displayer: "Badge",
+                              value: "",
+                            },
+                            {
+                              type: "media",
+                              key: "sub_sub_item_media",
+                              displayer: "Media",
+                              additionalParams: { availableTypes: ["image", "video"] },
+                              value: { type: "image", url: "" },
+                            },
+                            {
+                              type: "string",
+                              key: "sub_sub_item_description",
+                              displayer: "Description",
+                              value: "",
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "sub_item",
+                  displayer: "Sub Item",
+                  value: [
+                    {
+                      type: "string",
+                      key: "title",
+                      displayer: "Title",
+                      value: "Home 08",
+                    },
+                    {
+                      type: "page",
+                      key: "navigate_to",
+                      displayer: "Navigate To",
+                      value: "",
+                    },
+                    {
+                      type: "string",
+                      key: "sub_item_badge",
+                      displayer: "Badge",
+                      value: "",
+                    },
+                    {
+                      type: "array",
+                      key: "sub_items",
+                      displayer: "Sub Items",
+                      value: [
+                        {
+                          type: "object",
+                          key: "sub_item",
+                          displayer: "Sub Item",
+                          value: [
+                            {
+                              type: "string",
+                              key: "title",
+                              displayer: "Title",
+                              value: "",
+                            },
+                            {
+                              type: "page",
+                              key: "navigate_to",
+                              displayer: "Navigate To",
+                              value: "",
+                            },
+                            {
+                              type: "string",
+                              key: "sub_sub_item_badge",
+                              displayer: "Badge",
+                              value: "",
+                            },
+                            {
+                              type: "media",
+                              key: "sub_sub_item_media",
+                              displayer: "Media",
+                              additionalParams: { availableTypes: ["image", "video"] },
+                              value: { type: "image", url: "" },
+                            },
+                            {
+                              type: "string",
+                              key: "sub_sub_item_description",
+                              displayer: "Description",
+                              value: "",
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "sub_item",
+                  displayer: "Sub Item",
+                  value: [
+                    {
+                      type: "string",
+                      key: "title",
+                      displayer: "Title",
+                      value: "Home 09",
+                    },
+                    {
+                      type: "page",
+                      key: "navigate_to",
+                      displayer: "Navigate To",
+                      value: "",
+                    },
+                    {
+                      type: "string",
+                      key: "sub_item_badge",
+                      displayer: "Badge",
+                      value: "",
+                    },
+                    {
+                      type: "array",
+                      key: "sub_items",
+                      displayer: "Sub Items",
+                      value: [
+                        {
+                          type: "object",
+                          key: "sub_item",
+                          displayer: "Sub Item",
+                          value: [
+                            {
+                              type: "string",
+                              key: "title",
+                              displayer: "Title",
+                              value: "",
+                            },
+                            {
+                              type: "page",
+                              key: "navigate_to",
+                              displayer: "Navigate To",
+                              value: "",
+                            },
+                            {
+                              type: "string",
+                              key: "sub_sub_item_badge",
+                              displayer: "Badge",
+                              value: "",
+                            },
+                            {
+                              type: "media",
+                              key: "sub_sub_item_media",
+                              displayer: "Media",
+                              additionalParams: { availableTypes: ["image", "video"] },
+                              value: { type: "image", url: "" },
+                            },
+                            {
+                              type: "string",
+                              key: "sub_sub_item_description",
+                              displayer: "Description",
+                              value: "",
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "sub_item",
+                  displayer: "Sub Item",
+                  value: [
+                    {
+                      type: "string",
+                      key: "title",
+                      displayer: "Title",
+                      value: "Home 10",
+                    },
+                    {
+                      type: "page",
+                      key: "navigate_to",
+                      displayer: "Navigate To",
+                      value: "",
+                    },
+                    {
+                      type: "string",
+                      key: "sub_item_badge",
+                      displayer: "Badge",
+                      value: "",
+                    },
+                    {
+                      type: "array",
+                      key: "sub_items",
+                      displayer: "Sub Items",
+                      value: [
+                        {
+                          type: "object",
+                          key: "sub_item",
+                          displayer: "Sub Item",
+                          value: [
+                            {
+                              type: "string",
+                              key: "title",
+                              displayer: "Title",
+                              value: "",
+                            },
+                            {
+                              type: "page",
+                              key: "navigate_to",
+                              displayer: "Navigate To",
+                              value: "",
+                            },
+                            {
+                              type: "string",
+                              key: "sub_sub_item_badge",
+                              displayer: "Badge",
+                              value: "",
+                            },
+                            {
+                              type: "media",
+                              key: "sub_sub_item_media",
+                              displayer: "Media",
+                              additionalParams: { availableTypes: ["image", "video"] },
+                              value: { type: "image", url: "" },
+                            },
+                            {
+                              type: "string",
+                              key: "sub_sub_item_description",
+                              displayer: "Description",
+                              value: "",
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "sub_item",
+                  displayer: "Sub Item",
+                  value: [
+                    {
+                      type: "string",
+                      key: "title",
+                      displayer: "Title",
+                      value: "Home 11",
+                    },
+                    {
+                      type: "page",
+                      key: "navigate_to",
+                      displayer: "Navigate To",
+                      value: "",
+                    },
+                    {
+                      type: "string",
+                      key: "sub_item_badge",
+                      displayer: "Badge",
+                      value: "",
+                    },
+                    {
+                      type: "array",
+                      key: "sub_items",
+                      displayer: "Sub Items",
+                      value: [
+                        {
+                          type: "object",
+                          key: "sub_item",
+                          displayer: "Sub Item",
+                          value: [
+                            {
+                              type: "string",
+                              key: "title",
+                              displayer: "Title",
+                              value: "",
+                            },
+                            {
+                              type: "page",
+                              key: "navigate_to",
+                              displayer: "Navigate To",
+                              value: "",
+                            },
+                            {
+                              type: "string",
+                              key: "sub_sub_item_badge",
+                              displayer: "Badge",
+                              value: "",
+                            },
+                            {
+                              type: "media",
+                              key: "sub_sub_item_media",
+                              displayer: "Media",
+                              additionalParams: { availableTypes: ["image", "video"] },
+                              value: { type: "image", url: "" },
+                            },
+                            {
+                              type: "string",
+                              key: "sub_sub_item_description",
+                              displayer: "Description",
+                              value: "",
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "sub_item",
+                  displayer: "Sub Item",
+                  value: [
+                    {
+                      type: "string",
+                      key: "title",
+                      displayer: "Title",
+                      value: "Home 12",
+                    },
+                    {
+                      type: "page",
+                      key: "navigate_to",
+                      displayer: "Navigate To",
+                      value: "",
+                    },
+                    {
+                      type: "string",
+                      key: "sub_item_badge",
+                      displayer: "Badge",
+                      value: "",
+                    },
+                    {
+                      type: "array",
+                      key: "sub_items",
+                      displayer: "Sub Items",
+                      value: [
+                        {
+                          type: "object",
+                          key: "sub_item",
+                          displayer: "Sub Item",
+                          value: [
+                            {
+                              type: "string",
+                              key: "title",
+                              displayer: "Title",
+                              value: "",
+                            },
+                            {
+                              type: "page",
+                              key: "navigate_to",
+                              displayer: "Navigate To",
+                              value: "",
+                            },
+                            {
+                              type: "string",
+                              key: "sub_sub_item_badge",
+                              displayer: "Badge",
+                              value: "",
+                            },
+                            {
+                              type: "media",
+                              key: "sub_sub_item_media",
+                              displayer: "Media",
+                              additionalParams: { availableTypes: ["image", "video"] },
+                              value: { type: "image", url: "" },
+                            },
+                            {
+                              type: "string",
+                              key: "sub_sub_item_description",
+                              displayer: "Description",
+                              value: "",
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "sub_item",
+                  displayer: "Sub Item",
+                  value: [
+                    {
+                      type: "string",
+                      key: "title",
+                      displayer: "Title",
+                      value: "Home 13",
+                    },
+                    {
+                      type: "page",
+                      key: "navigate_to",
+                      displayer: "Navigate To",
+                      value: "",
+                    },
+                    {
+                      type: "string",
+                      key: "sub_item_badge",
+                      displayer: "Badge",
+                      value: "",
+                    },
+                    {
+                      type: "array",
+                      key: "sub_items",
+                      displayer: "Sub Items",
+                      value: [
+                        {
+                          type: "object",
+                          key: "sub_item",
+                          displayer: "Sub Item",
+                          value: [
+                            {
+                              type: "string",
+                              key: "title",
+                              displayer: "Title",
+                              value: "",
+                            },
+                            {
+                              type: "page",
+                              key: "navigate_to",
+                              displayer: "Navigate To",
+                              value: "",
+                            },
+                            {
+                              type: "string",
+                              key: "sub_sub_item_badge",
+                              displayer: "Badge",
+                              value: "",
+                            },
+                            {
+                              type: "media",
+                              key: "sub_sub_item_media",
+                              displayer: "Media",
+                              additionalParams: { availableTypes: ["image", "video"] },
+                              value: { type: "image", url: "" },
+                            },
+                            {
+                              type: "string",
+                              key: "sub_sub_item_description",
+                              displayer: "Description",
+                              value: "",
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "sub_item",
+                  displayer: "Sub Item",
+                  value: [
+                    {
+                      type: "string",
+                      key: "title",
+                      displayer: "Title",
+                      value: "Home 14",
+                    },
+                    {
+                      type: "page",
+                      key: "navigate_to",
+                      displayer: "Navigate To",
+                      value: "",
+                    },
+                    {
+                      type: "string",
+                      key: "sub_item_badge",
+                      displayer: "Badge",
+                      value: "",
+                    },
+                    {
+                      type: "array",
+                      key: "sub_items",
+                      displayer: "Sub Items",
+                      value: [
+                        {
+                          type: "object",
+                          key: "sub_item",
+                          displayer: "Sub Item",
+                          value: [
+                            {
+                              type: "string",
+                              key: "title",
+                              displayer: "Title",
+                              value: "",
+                            },
+                            {
+                              type: "page",
+                              key: "navigate_to",
+                              displayer: "Navigate To",
+                              value: "",
+                            },
+                            {
+                              type: "string",
+                              key: "sub_sub_item_badge",
+                              displayer: "Badge",
+                              value: "",
+                            },
+                            {
+                              type: "media",
+                              key: "sub_sub_item_media",
+                              displayer: "Media",
+                              additionalParams: { availableTypes: ["image", "video"] },
+                              value: { type: "image", url: "" },
+                            },
+                            {
+                              type: "string",
+                              key: "sub_sub_item_description",
+                              displayer: "Description",
                               value: "",
                             },
                           ],
@@ -410,7 +1124,7 @@ class Navbar7 extends BaseNavigator {
               type: "string",
               key: "title",
               displayer: "Title",
-              value: "About Us",
+              value: "Shop",
             },
             {
               type: "page",
@@ -422,8 +1136,8 @@ class Navbar7 extends BaseNavigator {
               type: "select",
               key: "menuType",
               displayer: "Type",
-              value: "Normal",
-              additionalParams: { selectItems: ["Dropdown", "Normal"] },
+              value: "Mega",
+              additionalParams: { selectItems: ["Dropdown", "Mega", "Normal"] },
             },
             {
               type: "array",
@@ -439,12 +1153,18 @@ class Navbar7 extends BaseNavigator {
                       type: "string",
                       key: "title",
                       displayer: "Title",
-                      value: "SUB ITEM1",
+                      value: "Shop Layout",
                     },
                     {
                       type: "page",
                       key: "navigate_to",
                       displayer: "Navigate To",
+                      value: "",
+                    },
+                    {
+                      type: "string",
+                      key: "sub_item_badge",
+                      displayer: "Badge",
                       value: "",
                     },
                     {
@@ -461,13 +1181,1625 @@ class Navbar7 extends BaseNavigator {
                               type: "string",
                               key: "title",
                               displayer: "Title",
-                              value: "",
+                              value: "Shop - Left Sidebar",
                             },
                             {
                               type: "page",
                               key: "navigate_to",
                               displayer: "Navigate To",
                               value: "",
+                            },
+                            {
+                              type: "string",
+                              key: "sub_sub_item_badge",
+                              displayer: "Badge",
+                              value: "",
+                            },
+                            {
+                              type: "media",
+                              key: "sub_sub_item_media",
+                              displayer: "Media",
+                              additionalParams: { availableTypes: ["image", "video"] },
+                              value: { type: "image", url: "" },
+                            },
+                            {
+                              type: "string",
+                              key: "sub_sub_item_description",
+                              displayer: "Description",
+                              value: "",
+                            },
+                          ],
+                        },
+                        {
+                          type: "object",
+                          key: "sub_item",
+                          displayer: "Sub Item",
+                          value: [
+                            {
+                              type: "string",
+                              key: "title",
+                              displayer: "Title",
+                              value: "Shop - Right Sidebar",
+                            },
+                            {
+                              type: "page",
+                              key: "navigate_to",
+                              displayer: "Navigate To",
+                              value: "",
+                            },
+                            {
+                              type: "string",
+                              key: "sub_sub_item_badge",
+                              displayer: "Badge",
+                              value: "",
+                            },
+                            {
+                              type: "media",
+                              key: "sub_sub_item_media",
+                              displayer: "Media",
+                              additionalParams: { availableTypes: ["image", "video"] },
+                              value: { type: "image", url: "" },
+                            },
+                            {
+                              type: "string",
+                              key: "sub_sub_item_description",
+                              displayer: "Description",
+                              value: "",
+                            },
+                          ],
+                        },
+                        {
+                          type: "object",
+                          key: "sub_item",
+                          displayer: "Sub Item",
+                          value: [
+                            {
+                              type: "string",
+                              key: "title",
+                              displayer: "Title",
+                              value: "Shop - Fullwidth V1",
+                            },
+                            {
+                              type: "page",
+                              key: "navigate_to",
+                              displayer: "Navigate To",
+                              value: "",
+                            },
+                            {
+                              type: "string",
+                              key: "sub_sub_item_badge",
+                              displayer: "Badge",
+                              value: "",
+                            },
+                            {
+                              type: "media",
+                              key: "sub_sub_item_media",
+                              displayer: "Media",
+                              additionalParams: { availableTypes: ["image", "video"] },
+                              value: { type: "image", url: "" },
+                            },
+                            {
+                              type: "string",
+                              key: "sub_sub_item_description",
+                              displayer: "Description",
+                              value: "",
+                            },
+                          ],
+                        },
+                        {
+                          type: "object",
+                          key: "sub_item",
+                          displayer: "Sub Item",
+                          value: [
+                            {
+                              type: "string",
+                              key: "title",
+                              displayer: "Title",
+                              value: "Shop - Fullwidth V2",
+                            },
+                            {
+                              type: "page",
+                              key: "navigate_to",
+                              displayer: "Navigate To",
+                              value: "",
+                            },
+                            {
+                              type: "string",
+                              key: "sub_sub_item_badge",
+                              displayer: "Badge",
+                              value: "",
+                            },
+                            {
+                              type: "media",
+                              key: "sub_sub_item_media",
+                              displayer: "Media",
+                              additionalParams: { availableTypes: ["image", "video"] },
+                              value: { type: "image", url: "" },
+                            },
+                            {
+                              type: "string",
+                              key: "sub_sub_item_description",
+                              displayer: "Description",
+                              value: "",
+                            },
+                          ],
+                        },
+                        {
+                          type: "object",
+                          key: "sub_item",
+                          displayer: "Sub Item",
+                          value: [
+                            {
+                              type: "string",
+                              key: "title",
+                              displayer: "Title",
+                              value: "Shop - Fullwidth V3",
+                            },
+                            {
+                              type: "page",
+                              key: "navigate_to",
+                              displayer: "Navigate To",
+                              value: "",
+                            },
+                            {
+                              type: "string",
+                              key: "sub_sub_item_badge",
+                              displayer: "Badge",
+                              value: "Hot",
+                            },
+                            {
+                              type: "media",
+                              key: "sub_sub_item_media",
+                              displayer: "Media",
+                              additionalParams: { availableTypes: ["image", "video"] },
+                              value: { type: "image", url: "" },
+                            },
+                            {
+                              type: "string",
+                              key: "sub_sub_item_description",
+                              displayer: "Description",
+                              value: "",
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "sub_item",
+                  displayer: "Sub Item",
+                  value: [
+                    {
+                      type: "string",
+                      key: "title",
+                      displayer: "Title",
+                      value: "Shop Features",
+                    },
+                    {
+                      type: "page",
+                      key: "navigate_to",
+                      displayer: "Navigate To",
+                      value: "",
+                    },
+                    {
+                      type: "string",
+                      key: "sub_item_badge",
+                      displayer: "Badge",
+                      value: "",
+                    },
+                    {
+                      type: "array",
+                      key: "sub_items",
+                      displayer: "Sub Items",
+                      value: [
+                        {
+                          type: "object",
+                          key: "sub_item",
+                          displayer: "Sub Item",
+                          value: [
+                            {
+                              type: "string",
+                              key: "title",
+                              displayer: "Title",
+                              value: "Shop - List View",
+                            },
+                            {
+                              type: "page",
+                              key: "navigate_to",
+                              displayer: "Navigate To",
+                              value: "",
+                            },
+                            {
+                              type: "string",
+                              key: "sub_sub_item_badge",
+                              displayer: "Badge",
+                              value: "",
+                            },
+                            {
+                              type: "media",
+                              key: "sub_sub_item_media",
+                              displayer: "Media",
+                              additionalParams: { availableTypes: ["image", "video"] },
+                              value: { type: "image", url: "" },
+                            },
+                            {
+                              type: "string",
+                              key: "sub_sub_item_description",
+                              displayer: "Description",
+                              value: "",
+                            },
+                          ],
+                        },
+                        {
+                          type: "object",
+                          key: "sub_item",
+                          displayer: "Sub Item",
+                          value: [
+                            {
+                              type: "string",
+                              key: "title",
+                              displayer: "Title",
+                              value: "Shop - Filter List",
+                            },
+                            {
+                              type: "page",
+                              key: "navigate_to",
+                              displayer: "Navigate To",
+                              value: "",
+                            },
+                            {
+                              type: "string",
+                              key: "sub_sub_item_badge",
+                              displayer: "Badge",
+                              value: "",
+                            },
+                            {
+                              type: "media",
+                              key: "sub_sub_item_media",
+                              displayer: "Media",
+                              additionalParams: { availableTypes: ["image", "video"] },
+                              value: { type: "image", url: "" },
+                            },
+                            {
+                              type: "string",
+                              key: "sub_sub_item_description",
+                              displayer: "Description",
+                              value: "",
+                            },
+                          ],
+                        },
+                        {
+                          type: "object",
+                          key: "sub_item",
+                          displayer: "Sub Item",
+                          value: [
+                            {
+                              type: "string",
+                              key: "title",
+                              displayer: "Title",
+                              value: "Shop - Filter Inline",
+                            },
+                            {
+                              type: "page",
+                              key: "navigate_to",
+                              displayer: "Navigate To",
+                              value: "",
+                            },
+                            {
+                              type: "string",
+                              key: "sub_sub_item_badge",
+                              displayer: "Badge",
+                              value: "",
+                            },
+                            {
+                              type: "media",
+                              key: "sub_sub_item_media",
+                              displayer: "Media",
+                              additionalParams: { availableTypes: ["image", "video"] },
+                              value: { type: "image", url: "" },
+                            },
+                            {
+                              type: "string",
+                              key: "sub_sub_item_description",
+                              displayer: "Description",
+                              value: "",
+                            },
+                          ],
+                        },
+                        {
+                          type: "object",
+                          key: "sub_item",
+                          displayer: "Sub Item",
+                          value: [
+                            {
+                              type: "string",
+                              key: "title",
+                              displayer: "Title",
+                              value: "Shop - Filter Top",
+                            },
+                            {
+                              type: "page",
+                              key: "navigate_to",
+                              displayer: "Navigate To",
+                              value: "",
+                            },
+                            {
+                              type: "string",
+                              key: "sub_sub_item_badge",
+                              displayer: "Badge",
+                              value: "",
+                            },
+                            {
+                              type: "media",
+                              key: "sub_sub_item_media",
+                              displayer: "Media",
+                              additionalParams: { availableTypes: ["image", "video"] },
+                              value: { type: "image", url: "" },
+                            },
+                            {
+                              type: "string",
+                              key: "sub_sub_item_description",
+                              displayer: "Description",
+                              value: "",
+                            },
+                          ],
+                        },
+                        {
+                          type: "object",
+                          key: "sub_item",
+                          displayer: "Sub Item",
+                          value: [
+                            {
+                              type: "string",
+                              key: "title",
+                              displayer: "Title",
+                              value: "Shop - Infinite Scroll",
+                            },
+                            {
+                              type: "page",
+                              key: "navigate_to",
+                              displayer: "Navigate To",
+                              value: "",
+                            },
+                            {
+                              type: "string",
+                              key: "sub_sub_item_badge",
+                              displayer: "Badge",
+                              value: "",
+                            },
+                            {
+                              type: "media",
+                              key: "sub_sub_item_media",
+                              displayer: "Media",
+                              additionalParams: { availableTypes: ["image", "video"] },
+                              value: { type: "image", url: "" },
+                            },
+                            {
+                              type: "string",
+                              key: "sub_sub_item_description",
+                              displayer: "Description",
+                              value: "",
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "sub_item",
+                  displayer: "Sub Item",
+                  value: [
+                    {
+                      type: "string",
+                      key: "title",
+                      displayer: "Title",
+                      value: "Shop By Popular Parts",
+                    },
+                    {
+                      type: "page",
+                      key: "navigate_to",
+                      displayer: "Navigate To",
+                      value: "",
+                    },
+                    {
+                      type: "string",
+                      key: "sub_item_badge",
+                      displayer: "Badge",
+                      value: "",
+                    },
+                    {
+                      type: "array",
+                      key: "sub_items",
+                      displayer: "Sub Items",
+                      value: [
+                        {
+                          type: "object",
+                          key: "sub_item",
+                          displayer: "Sub Item",
+                          value: [
+                            {
+                              type: "string",
+                              key: "title",
+                              displayer: "Title",
+                              value: "Chairs",
+                            },
+                            {
+                              type: "page",
+                              key: "navigate_to",
+                              displayer: "Navigate To",
+                              value: "",
+                            },
+                            {
+                              type: "string",
+                              key: "sub_sub_item_badge",
+                              displayer: "Badge",
+                              value: "",
+                            },
+                            {
+                              type: "media",
+                              key: "sub_sub_item_media",
+                              displayer: "Media",
+                              additionalParams: { availableTypes: ["image", "video"] },
+                              value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a383502f8a5b002ce6aa53?alt=media" },
+                            },
+                            {
+                              type: "string",
+                              key: "sub_sub_item_description",
+                              displayer: "Description",
+                              value: "",
+                            },
+                          ],
+                        },
+                        {
+                          type: "object",
+                          key: "sub_item",
+                          displayer: "Sub Item",
+                          value: [
+                            {
+                              type: "string",
+                              key: "title",
+                              displayer: "Title",
+                              value: "Decor",
+                            },
+                            {
+                              type: "page",
+                              key: "navigate_to",
+                              displayer: "Navigate To",
+                              value: "",
+                            },
+                            {
+                              type: "string",
+                              key: "sub_sub_item_badge",
+                              displayer: "Badge",
+                              value: "",
+                            },
+                            {
+                              type: "media",
+                              key: "sub_sub_item_media",
+                              displayer: "Media",
+                              additionalParams: { availableTypes: ["image", "video"] },
+                              value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a383962f8a5b002ce6aa92?alt=media" },
+                            },
+                            {
+                              type: "string",
+                              key: "sub_sub_item_description",
+                              displayer: "Description",
+                              value: "",
+                            },
+                          ],
+                        },
+                        {
+                          type: "object",
+                          key: "sub_item",
+                          displayer: "Sub Item",
+                          value: [
+                            {
+                              type: "string",
+                              key: "title",
+                              displayer: "Title",
+                              value: "Furnitures",
+                            },
+                            {
+                              type: "page",
+                              key: "navigate_to",
+                              displayer: "Navigate To",
+                              value: "",
+                            },
+                            {
+                              type: "string",
+                              key: "sub_sub_item_badge",
+                              displayer: "Badge",
+                              value: "",
+                            },
+                            {
+                              type: "media",
+                              key: "sub_sub_item_media",
+                              displayer: "Media",
+                              additionalParams: { availableTypes: ["image", "video"] },
+                              value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a383c62f8a5b002ce6aac7?alt=media" },
+                            },
+                            {
+                              type: "string",
+                              key: "sub_sub_item_description",
+                              displayer: "Description",
+                              value: "",
+                            },
+                          ],
+                        },
+                        {
+                          type: "object",
+                          key: "sub_item",
+                          displayer: "Sub Item",
+                          value: [
+                            {
+                              type: "string",
+                              key: "title",
+                              displayer: "Title",
+                              value: "Sofas",
+                            },
+                            {
+                              type: "page",
+                              key: "navigate_to",
+                              displayer: "Navigate To",
+                              value: "",
+                            },
+                            {
+                              type: "string",
+                              key: "sub_sub_item_badge",
+                              displayer: "Badge",
+                              value: "",
+                            },
+                            {
+                              type: "media",
+                              key: "sub_sub_item_media",
+                              displayer: "Media",
+                              additionalParams: { availableTypes: ["image", "video"] },
+                              value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a383fd2f8a5b002ce6aae3?alt=media" },
+                            },
+                            {
+                              type: "string",
+                              key: "sub_sub_item_description",
+                              displayer: "Description",
+                              value: "",
+                            },
+                          ],
+                        },
+                        {
+                          type: "object",
+                          key: "sub_item",
+                          displayer: "Sub Item",
+                          value: [
+                            {
+                              type: "string",
+                              key: "title",
+                              displayer: "Title",
+                              value: "Lighting",
+                            },
+                            {
+                              type: "page",
+                              key: "navigate_to",
+                              displayer: "Navigate To",
+                              value: "",
+                            },
+                            {
+                              type: "string",
+                              key: "sub_sub_item_badge",
+                              displayer: "Badge",
+                              value: "",
+                            },
+                            {
+                              type: "media",
+                              key: "sub_sub_item_media",
+                              displayer: "Media",
+                              additionalParams: { availableTypes: ["image", "video"] },
+                              value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/669e00772f8a5b002ce60145?alt=media" },
+                            },
+                            {
+                              type: "string",
+                              key: "sub_sub_item_description",
+                              displayer: "Description",
+                              value: "",
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "item",
+          displayer: "Item",
+          value: [
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value: "Product",
+            },
+            {
+              type: "page",
+              key: "navigate_to",
+              displayer: "Navigate To",
+              value: "",
+            },
+            {
+              type: "select",
+              key: "menuType",
+              displayer: "Type",
+              value: "Mega",
+              additionalParams: { selectItems: ["Dropdown", "Mega", "Normal"] },
+            },
+            {
+              type: "array",
+              key: "sub_items",
+              displayer: "Sub Items",
+              value: [
+                {
+                  type: "object",
+                  key: "sub_item",
+                  displayer: "Sub Item",
+                  value: [
+                    {
+                      type: "string",
+                      key: "title",
+                      displayer: "Title",
+                      value: "Product Layout",
+                    },
+                    {
+                      type: "page",
+                      key: "navigate_to",
+                      displayer: "Navigate To",
+                      value: "",
+                    },
+                    {
+                      type: "string",
+                      key: "sub_item_badge",
+                      displayer: "Badge",
+                      value: "",
+                    },
+                    {
+                      type: "array",
+                      key: "sub_items",
+                      displayer: "Sub Items",
+                      value: [
+                        {
+                          type: "object",
+                          key: "sub_item",
+                          displayer: "Sub Item",
+                          value: [
+                            {
+                              type: "string",
+                              key: "title",
+                              displayer: "Title",
+                              value: "Left Thumbnail",
+                            },
+                            {
+                              type: "page",
+                              key: "navigate_to",
+                              displayer: "Navigate To",
+                              value: "",
+                            },
+                            {
+                              type: "string",
+                              key: "sub_sub_item_badge",
+                              displayer: "Badge",
+                              value: "",
+                            },
+                            {
+                              type: "media",
+                              key: "sub_sub_item_media",
+                              displayer: "Media",
+                              additionalParams: { availableTypes: ["image", "video"] },
+                              value: { type: "image", url: "" },
+                            },
+                            {
+                              type: "string",
+                              key: "sub_sub_item_description",
+                              displayer: "Description",
+                              value: "",
+                            },
+                          ],
+                        },
+                        {
+                          type: "object",
+                          key: "sub_item",
+                          displayer: "Sub Item",
+                          value: [
+                            {
+                              type: "string",
+                              key: "title",
+                              displayer: "Title",
+                              value: "Right Thumbnail",
+                            },
+                            {
+                              type: "page",
+                              key: "navigate_to",
+                              displayer: "Navigate To",
+                              value: "",
+                            },
+                            {
+                              type: "string",
+                              key: "sub_sub_item_badge",
+                              displayer: "Badge",
+                              value: "",
+                            },
+                            {
+                              type: "media",
+                              key: "sub_sub_item_media",
+                              displayer: "Media",
+                              additionalParams: { availableTypes: ["image", "video"] },
+                              value: { type: "image", url: "" },
+                            },
+                            {
+                              type: "string",
+                              key: "sub_sub_item_description",
+                              displayer: "Description",
+                              value: "",
+                            },
+                          ],
+                        },
+                        {
+                          type: "object",
+                          key: "sub_item",
+                          displayer: "Sub Item",
+                          value: [
+                            {
+                              type: "string",
+                              key: "title",
+                              displayer: "Title",
+                              value: "Top Thumbnail",
+                            },
+                            {
+                              type: "page",
+                              key: "navigate_to",
+                              displayer: "Navigate To",
+                              value: "",
+                            },
+                            {
+                              type: "string",
+                              key: "sub_sub_item_badge",
+                              displayer: "Badge",
+                              value: "",
+                            },
+                            {
+                              type: "media",
+                              key: "sub_sub_item_media",
+                              displayer: "Media",
+                              additionalParams: { availableTypes: ["image", "video"] },
+                              value: { type: "image", url: "" },
+                            },
+                            {
+                              type: "string",
+                              key: "sub_sub_item_description",
+                              displayer: "Description",
+                              value: "",
+                            },
+                          ],
+                        },
+                        {
+                          type: "object",
+                          key: "sub_item",
+                          displayer: "Sub Item",
+                          value: [
+                            {
+                              type: "string",
+                              key: "title",
+                              displayer: "Title",
+                              value: "Bottom Thumbnail",
+                            },
+                            {
+                              type: "page",
+                              key: "navigate_to",
+                              displayer: "Navigate To",
+                              value: "",
+                            },
+                            {
+                              type: "string",
+                              key: "sub_sub_item_badge",
+                              displayer: "Badge",
+                              value: "",
+                            },
+                            {
+                              type: "media",
+                              key: "sub_sub_item_media",
+                              displayer: "Media",
+                              additionalParams: { availableTypes: ["image", "video"] },
+                              value: { type: "image", url: "" },
+                            },
+                            {
+                              type: "string",
+                              key: "sub_sub_item_description",
+                              displayer: "Description",
+                              value: "",
+                            },
+                          ],
+                        },
+                        {
+                          type: "object",
+                          key: "sub_item",
+                          displayer: "Sub Item",
+                          value: [
+                            {
+                              type: "string",
+                              key: "title",
+                              displayer: "Title",
+                              value: "Gallery Stacked",
+                            },
+                            {
+                              type: "page",
+                              key: "navigate_to",
+                              displayer: "Navigate To",
+                              value: "",
+                            },
+                            {
+                              type: "string",
+                              key: "sub_sub_item_badge",
+                              displayer: "Badge",
+                              value: "",
+                            },
+                            {
+                              type: "media",
+                              key: "sub_sub_item_media",
+                              displayer: "Media",
+                              additionalParams: { availableTypes: ["image", "video"] },
+                              value: { type: "image", url: "" },
+                            },
+                            {
+                              type: "string",
+                              key: "sub_sub_item_description",
+                              displayer: "Description",
+                              value: "",
+                            },
+                          ],
+                        },
+                        {
+                          type: "object",
+                          key: "sub_item",
+                          displayer: "Sub Item",
+                          value: [
+                            {
+                              type: "string",
+                              key: "title",
+                              displayer: "Title",
+                              value: "Product Accordion",
+                            },
+                            {
+                              type: "page",
+                              key: "navigate_to",
+                              displayer: "Navigate To",
+                              value: "",
+                            },
+                            {
+                              type: "string",
+                              key: "sub_sub_item_badge",
+                              displayer: "Badge",
+                              value: "",
+                            },
+                            {
+                              type: "media",
+                              key: "sub_sub_item_media",
+                              displayer: "Media",
+                              additionalParams: { availableTypes: ["image", "video"] },
+                              value: { type: "image", url: "" },
+                            },
+                            {
+                              type: "string",
+                              key: "sub_sub_item_description",
+                              displayer: "Description",
+                              value: "",
+                            },
+                          ],
+                        },
+                        {
+                          type: "object",
+                          key: "sub_item",
+                          displayer: "Sub Item",
+                          value: [
+                            {
+                              type: "string",
+                              key: "title",
+                              displayer: "Title",
+                              value: "Product - Fullwidth",
+                            },
+                            {
+                              type: "page",
+                              key: "navigate_to",
+                              displayer: "Navigate To",
+                              value: "",
+                            },
+                            {
+                              type: "string",
+                              key: "sub_sub_item_badge",
+                              displayer: "Badge",
+                              value: "",
+                            },
+                            {
+                              type: "media",
+                              key: "sub_sub_item_media",
+                              displayer: "Media",
+                              additionalParams: { availableTypes: ["image", "video"] },
+                              value: { type: "image", url: "" },
+                            },
+                            {
+                              type: "string",
+                              key: "sub_sub_item_description",
+                              displayer: "Description",
+                              value: "",
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "sub_item",
+                  displayer: "Sub Item",
+                  value: [
+                    {
+                      type: "string",
+                      key: "title",
+                      displayer: "Title",
+                      value: "Product Feature",
+                    },
+                    {
+                      type: "page",
+                      key: "navigate_to",
+                      displayer: "Navigate To",
+                      value: "",
+                    },
+                    {
+                      type: "string",
+                      key: "sub_item_badge",
+                      displayer: "Badge",
+                      value: "",
+                    },
+                    {
+                      type: "array",
+                      key: "sub_items",
+                      displayer: "Sub Items",
+                      value: [
+                        {
+                          type: "object",
+                          key: "sub_item",
+                          displayer: "Sub Item",
+                          value: [
+                            {
+                              type: "string",
+                              key: "title",
+                              displayer: "Title",
+                              value: "Variant Swatch",
+                            },
+                            {
+                              type: "page",
+                              key: "navigate_to",
+                              displayer: "Navigate To",
+                              value: "",
+                            },
+                            {
+                              type: "string",
+                              key: "sub_sub_item_badge",
+                              displayer: "Badge",
+                              value: "",
+                            },
+                            {
+                              type: "media",
+                              key: "sub_sub_item_media",
+                              displayer: "Media",
+                              additionalParams: { availableTypes: ["image", "video"] },
+                              value: { type: "image", url: "" },
+                            },
+                            {
+                              type: "string",
+                              key: "sub_sub_item_description",
+                              displayer: "Description",
+                              value: "",
+                            },
+                          ],
+                        },
+                        {
+                          type: "object",
+                          key: "sub_item",
+                          displayer: "Sub Item",
+                          value: [
+                            {
+                              type: "string",
+                              key: "title",
+                              displayer: "Title",
+                              value: "Variant Dropdown",
+                            },
+                            {
+                              type: "page",
+                              key: "navigate_to",
+                              displayer: "Navigate To",
+                              value: "",
+                            },
+                            {
+                              type: "string",
+                              key: "sub_sub_item_badge",
+                              displayer: "Badge",
+                              value: "",
+                            },
+                            {
+                              type: "media",
+                              key: "sub_sub_item_media",
+                              displayer: "Media",
+                              additionalParams: { availableTypes: ["image", "video"] },
+                              value: { type: "image", url: "" },
+                            },
+                            {
+                              type: "string",
+                              key: "sub_sub_item_description",
+                              displayer: "Description",
+                              value: "",
+                            },
+                          ],
+                        },
+                        {
+                          type: "object",
+                          key: "sub_item",
+                          displayer: "Sub Item",
+                          value: [
+                            {
+                              type: "string",
+                              key: "title",
+                              displayer: "Title",
+                              value: "Quantity Dropdown",
+                            },
+                            {
+                              type: "page",
+                              key: "navigate_to",
+                              displayer: "Navigate To",
+                              value: "",
+                            },
+                            {
+                              type: "string",
+                              key: "sub_sub_item_badge",
+                              displayer: "Badge",
+                              value: "",
+                            },
+                            {
+                              type: "media",
+                              key: "sub_sub_item_media",
+                              displayer: "Media",
+                              additionalParams: { availableTypes: ["image", "video"] },
+                              value: { type: "image", url: "" },
+                            },
+                            {
+                              type: "string",
+                              key: "sub_sub_item_description",
+                              displayer: "Description",
+                              value: "",
+                            },
+                          ],
+                        },
+                        {
+                          type: "object",
+                          key: "sub_item",
+                          displayer: "Sub Item",
+                          value: [
+                            {
+                              type: "string",
+                              key: "title",
+                              displayer: "Title",
+                              value: "Product Countdown",
+                            },
+                            {
+                              type: "page",
+                              key: "navigate_to",
+                              displayer: "Navigate To",
+                              value: "",
+                            },
+                            {
+                              type: "string",
+                              key: "sub_sub_item_badge",
+                              displayer: "Badge",
+                              value: "",
+                            },
+                            {
+                              type: "media",
+                              key: "sub_sub_item_media",
+                              displayer: "Media",
+                              additionalParams: { availableTypes: ["image", "video"] },
+                              value: { type: "image", url: "" },
+                            },
+                            {
+                              type: "string",
+                              key: "sub_sub_item_description",
+                              displayer: "Description",
+                              value: "",
+                            },
+                          ],
+                        },
+                        {
+                          type: "object",
+                          key: "sub_item",
+                          displayer: "Sub Item",
+                          value: [
+                            {
+                              type: "string",
+                              key: "title",
+                              displayer: "Title",
+                              value: "Gift Box",
+                            },
+                            {
+                              type: "page",
+                              key: "navigate_to",
+                              displayer: "Navigate To",
+                              value: "",
+                            },
+                            {
+                              type: "string",
+                              key: "sub_sub_item_badge",
+                              displayer: "Badge",
+                              value: "Hot",
+                            },
+                            {
+                              type: "media",
+                              key: "sub_sub_item_media",
+                              displayer: "Media",
+                              additionalParams: { availableTypes: ["image", "video"] },
+                              value: { type: "image", url: "" },
+                            },
+                            {
+                              type: "string",
+                              key: "sub_sub_item_description",
+                              displayer: "Description",
+                              value: "",
+                            },
+                          ],
+                        },
+                        {
+                          type: "object",
+                          key: "sub_item",
+                          displayer: "Sub Item",
+                          value: [
+                            {
+                              type: "string",
+                              key: "title",
+                              displayer: "Title",
+                              value: "PreOrder",
+                            },
+                            {
+                              type: "page",
+                              key: "navigate_to",
+                              displayer: "Navigate To",
+                              value: "",
+                            },
+                            {
+                              type: "string",
+                              key: "sub_sub_item_badge",
+                              displayer: "Badge",
+                              value: "New",
+                            },
+                            {
+                              type: "media",
+                              key: "sub_sub_item_media",
+                              displayer: "Media",
+                              additionalParams: { availableTypes: ["image", "video"] },
+                              value: { type: "image", url: "" },
+                            },
+                            {
+                              type: "string",
+                              key: "sub_sub_item_description",
+                              displayer: "Description",
+                              value: "",
+                            },
+                          ],
+                        },
+                        {
+                          type: "object",
+                          key: "sub_item",
+                          displayer: "Sub Item",
+                          value: [
+                            {
+                              type: "string",
+                              key: "title",
+                              displayer: "Title",
+                              value: "Video, 3D, AR Models",
+                            },
+                            {
+                              type: "page",
+                              key: "navigate_to",
+                              displayer: "Navigate To",
+                              value: "",
+                            },
+                            {
+                              type: "string",
+                              key: "sub_sub_item_badge",
+                              displayer: "Badge",
+                              value: "",
+                            },
+                            {
+                              type: "media",
+                              key: "sub_sub_item_media",
+                              displayer: "Media",
+                              additionalParams: { availableTypes: ["image", "video"] },
+                              value: { type: "image", url: "" },
+                            },
+                            {
+                              type: "string",
+                              key: "sub_sub_item_description",
+                              displayer: "Description",
+                              value: "",
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "sub_item",
+                  displayer: "Sub Item",
+                  value: [
+                    {
+                      type: "string",
+                      key: "title",
+                      displayer: "Title",
+                      value: "Product Features",
+                    },
+                    {
+                      type: "page",
+                      key: "navigate_to",
+                      displayer: "Navigate To",
+                      value: "",
+                    },
+                    {
+                      type: "string",
+                      key: "sub_item_badge",
+                      displayer: "Badge",
+                      value: "",
+                    },
+                    {
+                      type: "array",
+                      key: "sub_items",
+                      displayer: "Sub Items",
+                      value: [
+                        {
+                          type: "object",
+                          key: "sub_item",
+                          displayer: "Sub Item",
+                          value: [
+                            {
+                              type: "string",
+                              key: "title",
+                              displayer: "Title",
+                              value: "Frequently Bought",
+                            },
+                            {
+                              type: "page",
+                              key: "navigate_to",
+                              displayer: "Navigate To",
+                              value: "",
+                            },
+                            {
+                              type: "string",
+                              key: "sub_sub_item_badge",
+                              displayer: "Badge",
+                              value: "",
+                            },
+                            {
+                              type: "media",
+                              key: "sub_sub_item_media",
+                              displayer: "Media",
+                              additionalParams: { availableTypes: ["image", "video"] },
+                              value: { type: "image", url: "" },
+                            },
+                            {
+                              type: "string",
+                              key: "sub_sub_item_description",
+                              displayer: "Description",
+                              value: "",
+                            },
+                          ],
+                        },
+                        {
+                          type: "object",
+                          key: "sub_item",
+                          displayer: "Sub Item",
+                          value: [
+                            {
+                              type: "string",
+                              key: "title",
+                              displayer: "Title",
+                              value: "Sticky Information",
+                            },
+                            {
+                              type: "page",
+                              key: "navigate_to",
+                              displayer: "Navigate To",
+                              value: "",
+                            },
+                            {
+                              type: "string",
+                              key: "sub_sub_item_badge",
+                              displayer: "Badge",
+                              value: "",
+                            },
+                            {
+                              type: "media",
+                              key: "sub_sub_item_media",
+                              displayer: "Media",
+                              additionalParams: { availableTypes: ["image", "video"] },
+                              value: { type: "image", url: "" },
+                            },
+                            {
+                              type: "string",
+                              key: "sub_sub_item_description",
+                              displayer: "Description",
+                              value: "",
+                            },
+                          ],
+                        },
+                        {
+                          type: "object",
+                          key: "sub_item",
+                          displayer: "Sub Item",
+                          value: [
+                            {
+                              type: "string",
+                              key: "title",
+                              displayer: "Title",
+                              value: "Ask A Question",
+                            },
+                            {
+                              type: "page",
+                              key: "navigate_to",
+                              displayer: "Navigate To",
+                              value: "",
+                            },
+                            {
+                              type: "string",
+                              key: "sub_sub_item_badge",
+                              displayer: "Badge",
+                              value: "",
+                            },
+                            {
+                              type: "media",
+                              key: "sub_sub_item_media",
+                              displayer: "Media",
+                              additionalParams: { availableTypes: ["image", "video"] },
+                              value: { type: "image", url: "" },
+                            },
+                            {
+                              type: "string",
+                              key: "sub_sub_item_description",
+                              displayer: "Description",
+                              value: "",
+                            },
+                          ],
+                        },
+                        {
+                          type: "object",
+                          key: "sub_item",
+                          displayer: "Sub Item",
+                          value: [
+                            {
+                              type: "string",
+                              key: "title",
+                              displayer: "Title",
+                              value: "Product Zoom",
+                            },
+                            {
+                              type: "page",
+                              key: "navigate_to",
+                              displayer: "Navigate To",
+                              value: "",
+                            },
+                            {
+                              type: "string",
+                              key: "sub_sub_item_badge",
+                              displayer: "Badge",
+                              value: "",
+                            },
+                            {
+                              type: "media",
+                              key: "sub_sub_item_media",
+                              displayer: "Media",
+                              additionalParams: { availableTypes: ["image", "video"] },
+                              value: { type: "image", url: "" },
+                            },
+                            {
+                              type: "string",
+                              key: "sub_sub_item_description",
+                              displayer: "Description",
+                              value: "",
+                            },
+                          ],
+                        },
+                        {
+                          type: "object",
+                          key: "sub_item",
+                          displayer: "Sub Item",
+                          value: [
+                            {
+                              type: "string",
+                              key: "title",
+                              displayer: "Title",
+                              value: "Product Recommendations",
+                            },
+                            {
+                              type: "page",
+                              key: "navigate_to",
+                              displayer: "Navigate To",
+                              value: "",
+                            },
+                            {
+                              type: "string",
+                              key: "sub_sub_item_badge",
+                              displayer: "Badge",
+                              value: "",
+                            },
+                            {
+                              type: "media",
+                              key: "sub_sub_item_media",
+                              displayer: "Media",
+                              additionalParams: { availableTypes: ["image", "video"] },
+                              value: { type: "image", url: "" },
+                            },
+                            {
+                              type: "string",
+                              key: "sub_sub_item_description",
+                              displayer: "Description",
+                              value: "",
+                            },
+                          ],
+                        },
+                        {
+                          type: "object",
+                          key: "sub_item",
+                          displayer: "Sub Item",
+                          value: [
+                            {
+                              type: "string",
+                              key: "title",
+                              displayer: "Title",
+                              value: "Recently Viewed",
+                            },
+                            {
+                              type: "page",
+                              key: "navigate_to",
+                              displayer: "Navigate To",
+                              value: "",
+                            },
+                            {
+                              type: "string",
+                              key: "sub_sub_item_badge",
+                              displayer: "Badge",
+                              value: "",
+                            },
+                            {
+                              type: "media",
+                              key: "sub_sub_item_media",
+                              displayer: "Media",
+                              additionalParams: { availableTypes: ["image", "video"] },
+                              value: { type: "image", url: "" },
+                            },
+                            {
+                              type: "string",
+                              key: "sub_sub_item_description",
+                              displayer: "Description",
+                              value: "",
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "sub_item",
+                  displayer: "Sub Item",
+                  value: [
+                    {
+                      type: "string",
+                      key: "title",
+                      displayer: "Title",
+                      value: "Featured Products",
+                    },
+                    {
+                      type: "page",
+                      key: "navigate_to",
+                      displayer: "Navigate To",
+                      value: "",
+                    },
+                    {
+                      type: "string",
+                      key: "sub_item_badge",
+                      displayer: "Badge",
+                      value: "",
+                    },
+                    {
+                      type: "array",
+                      key: "sub_items",
+                      displayer: "Sub Items",
+                      value: [
+                        {
+                          type: "object",
+                          key: "sub_item",
+                          displayer: "Sub Item",
+                          value: [
+                            {
+                              type: "string",
+                              key: "title",
+                              displayer: "Title",
+                              value: "Wicked Lounge Rattan",
+                            },
+                            {
+                              type: "page",
+                              key: "navigate_to",
+                              displayer: "Navigate To",
+                              value: "",
+                            },
+                            {
+                              type: "string",
+                              key: "sub_sub_item_badge",
+                              displayer: "Badge",
+                              value: "",
+                            },
+                            {
+                              type: "media",
+                              key: "sub_sub_item_media",
+                              displayer: "Media",
+                              additionalParams: { availableTypes: ["image", "video"] },
+                              value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/669dfff22f8a5b002ce60115?alt=media" },
+                            },
+                            {
+                              type: "string",
+                              key: "sub_sub_item_description",
+                              displayer: "Description",
+                              value: "$120.00",
+                            },
+                          ],
+                        },
+                        {
+                          type: "object",
+                          key: "sub_item",
+                          displayer: "Sub Item",
+                          value: [
+                            {
+                              type: "string",
+                              key: "title",
+                              displayer: "Title",
+                              value: "Wicked Lounge Rattan",
+                            },
+                            {
+                              type: "page",
+                              key: "navigate_to",
+                              displayer: "Navigate To",
+                              value: "",
+                            },
+                            {
+                              type: "string",
+                              key: "sub_sub_item_badge",
+                              displayer: "Badge",
+                              value: "",
+                            },
+                            {
+                              type: "media",
+                              key: "sub_sub_item_media",
+                              displayer: "Media",
+                              additionalParams: { availableTypes: ["image", "video"] },
+                              value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/669e00952f8a5b002ce60151?alt=media" },
+                            },
+                            {
+                              type: "string",
+                              key: "sub_sub_item_description",
+                              displayer: "Description",
+                              value: "$285.99",
                             },
                           ],
                         },
@@ -500,8 +2832,8 @@ class Navbar7 extends BaseNavigator {
               type: "select",
               key: "menuType",
               displayer: "Type",
-              value: "Normal",
-              additionalParams: { selectItems: ["Dropdown", "Normal"] },
+              value: "Dropdown",
+              additionalParams: { selectItems: ["Dropdown", "Mega", "Normal"] },
             },
             {
               type: "array",
@@ -517,12 +2849,18 @@ class Navbar7 extends BaseNavigator {
                       type: "string",
                       key: "title",
                       displayer: "Title",
-                      value: "ABOUT US",
+                      value: "Blog - Right Sidebar",
                     },
                     {
                       type: "page",
                       key: "navigate_to",
                       displayer: "Navigate To",
+                      value: "",
+                    },
+                    {
+                      type: "string",
+                      key: "sub_item_badge",
+                      displayer: "Badge",
                       value: "",
                     },
                     {
@@ -545,6 +2883,25 @@ class Navbar7 extends BaseNavigator {
                               type: "page",
                               key: "navigate_to",
                               displayer: "Navigate To",
+                              value: "",
+                            },
+                            {
+                              type: "string",
+                              key: "sub_sub_item_badge",
+                              displayer: "Badge",
+                              value: "",
+                            },
+                            {
+                              type: "media",
+                              key: "sub_sub_item_media",
+                              displayer: "Media",
+                              additionalParams: { availableTypes: ["image", "video"] },
+                              value: { type: "image", url: "" },
+                            },
+                            {
+                              type: "string",
+                              key: "sub_sub_item_description",
+                              displayer: "Description",
                               value: "",
                             },
                           ],
@@ -562,12 +2919,18 @@ class Navbar7 extends BaseNavigator {
                       type: "string",
                       key: "title",
                       displayer: "Title",
-                      value: "LOOKBOOK",
+                      value: "Blog - Left Sidebar",
                     },
                     {
                       type: "page",
                       key: "navigate_to",
                       displayer: "Navigate To",
+                      value: "",
+                    },
+                    {
+                      type: "string",
+                      key: "sub_item_badge",
+                      displayer: "Badge",
                       value: "",
                     },
                     {
@@ -590,6 +2953,25 @@ class Navbar7 extends BaseNavigator {
                               type: "page",
                               key: "navigate_to",
                               displayer: "Navigate To",
+                              value: "",
+                            },
+                            {
+                              type: "string",
+                              key: "sub_sub_item_badge",
+                              displayer: "Badge",
+                              value: "",
+                            },
+                            {
+                              type: "media",
+                              key: "sub_sub_item_media",
+                              displayer: "Media",
+                              additionalParams: { availableTypes: ["image", "video"] },
+                              value: { type: "image", url: "" },
+                            },
+                            {
+                              type: "string",
+                              key: "sub_sub_item_description",
+                              displayer: "Description",
                               value: "",
                             },
                           ],
@@ -607,12 +2989,18 @@ class Navbar7 extends BaseNavigator {
                       type: "string",
                       key: "title",
                       displayer: "Title",
-                      value: "TYPOGRAPHY",
+                      value: "Blog - Fullwidth",
                     },
                     {
                       type: "page",
                       key: "navigate_to",
                       displayer: "Navigate To",
+                      value: "",
+                    },
+                    {
+                      type: "string",
+                      key: "sub_item_badge",
+                      displayer: "Badge",
                       value: "",
                     },
                     {
@@ -635,6 +3023,25 @@ class Navbar7 extends BaseNavigator {
                               type: "page",
                               key: "navigate_to",
                               displayer: "Navigate To",
+                              value: "",
+                            },
+                            {
+                              type: "string",
+                              key: "sub_sub_item_badge",
+                              displayer: "Badge",
+                              value: "",
+                            },
+                            {
+                              type: "media",
+                              key: "sub_sub_item_media",
+                              displayer: "Media",
+                              additionalParams: { availableTypes: ["image", "video"] },
+                              value: { type: "image", url: "" },
+                            },
+                            {
+                              type: "string",
+                              key: "sub_sub_item_description",
+                              displayer: "Description",
                               value: "",
                             },
                           ],
@@ -652,12 +3059,18 @@ class Navbar7 extends BaseNavigator {
                       type: "string",
                       key: "title",
                       displayer: "Title",
-                      value: "SHORTCODES",
+                      value: "Blog - Grid View 1",
                     },
                     {
                       type: "page",
                       key: "navigate_to",
                       displayer: "Navigate To",
+                      value: "",
+                    },
+                    {
+                      type: "string",
+                      key: "sub_item_badge",
+                      displayer: "Badge",
                       value: "",
                     },
                     {
@@ -680,6 +3093,25 @@ class Navbar7 extends BaseNavigator {
                               type: "page",
                               key: "navigate_to",
                               displayer: "Navigate To",
+                              value: "",
+                            },
+                            {
+                              type: "string",
+                              key: "sub_sub_item_badge",
+                              displayer: "Badge",
+                              value: "",
+                            },
+                            {
+                              type: "media",
+                              key: "sub_sub_item_media",
+                              displayer: "Media",
+                              additionalParams: { availableTypes: ["image", "video"] },
+                              value: { type: "image", url: "" },
+                            },
+                            {
+                              type: "string",
+                              key: "sub_sub_item_description",
+                              displayer: "Description",
                               value: "",
                             },
                           ],
@@ -697,12 +3129,18 @@ class Navbar7 extends BaseNavigator {
                       type: "string",
                       key: "title",
                       displayer: "Title",
-                      value: "COMING SOON",
+                      value: "Blog - Grid View 2",
                     },
                     {
                       type: "page",
                       key: "navigate_to",
                       displayer: "Navigate To",
+                      value: "",
+                    },
+                    {
+                      type: "string",
+                      key: "sub_item_badge",
+                      displayer: "Badge",
                       value: "",
                     },
                     {
@@ -725,6 +3163,25 @@ class Navbar7 extends BaseNavigator {
                               type: "page",
                               key: "navigate_to",
                               displayer: "Navigate To",
+                              value: "",
+                            },
+                            {
+                              type: "string",
+                              key: "sub_sub_item_badge",
+                              displayer: "Badge",
+                              value: "",
+                            },
+                            {
+                              type: "media",
+                              key: "sub_sub_item_media",
+                              displayer: "Media",
+                              additionalParams: { availableTypes: ["image", "video"] },
+                              value: { type: "image", url: "" },
+                            },
+                            {
+                              type: "string",
+                              key: "sub_sub_item_description",
+                              displayer: "Description",
                               value: "",
                             },
                           ],
@@ -742,12 +3199,18 @@ class Navbar7 extends BaseNavigator {
                       type: "string",
                       key: "title",
                       displayer: "Title",
-                      value: "PAGE 404",
+                      value: "Blog - Grid View 3",
                     },
                     {
                       type: "page",
                       key: "navigate_to",
                       displayer: "Navigate To",
+                      value: "",
+                    },
+                    {
+                      type: "string",
+                      key: "sub_item_badge",
+                      displayer: "Badge",
                       value: "",
                     },
                     {
@@ -770,6 +3233,235 @@ class Navbar7 extends BaseNavigator {
                               type: "page",
                               key: "navigate_to",
                               displayer: "Navigate To",
+                              value: "",
+                            },
+                            {
+                              type: "string",
+                              key: "sub_sub_item_badge",
+                              displayer: "Badge",
+                              value: "",
+                            },
+                            {
+                              type: "media",
+                              key: "sub_sub_item_media",
+                              displayer: "Media",
+                              additionalParams: { availableTypes: ["image", "video"] },
+                              value: { type: "image", url: "" },
+                            },
+                            {
+                              type: "string",
+                              key: "sub_sub_item_description",
+                              displayer: "Description",
+                              value: "",
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "sub_item",
+                  displayer: "Sub Item",
+                  value: [
+                    {
+                      type: "string",
+                      key: "title",
+                      displayer: "Title",
+                      value: "Blog - Grid Simple",
+                    },
+                    {
+                      type: "page",
+                      key: "navigate_to",
+                      displayer: "Navigate To",
+                      value: "",
+                    },
+                    {
+                      type: "string",
+                      key: "sub_item_badge",
+                      displayer: "Badge",
+                      value: "",
+                    },
+                    {
+                      type: "array",
+                      key: "sub_items",
+                      displayer: "Sub Items",
+                      value: [
+                        {
+                          type: "object",
+                          key: "sub_item",
+                          displayer: "Sub Item",
+                          value: [
+                            {
+                              type: "string",
+                              key: "title",
+                              displayer: "Title",
+                              value: "",
+                            },
+                            {
+                              type: "page",
+                              key: "navigate_to",
+                              displayer: "Navigate To",
+                              value: "",
+                            },
+                            {
+                              type: "string",
+                              key: "sub_sub_item_badge",
+                              displayer: "Badge",
+                              value: "",
+                            },
+                            {
+                              type: "media",
+                              key: "sub_sub_item_media",
+                              displayer: "Media",
+                              additionalParams: { availableTypes: ["image", "video"] },
+                              value: { type: "image", url: "" },
+                            },
+                            {
+                              type: "string",
+                              key: "sub_sub_item_description",
+                              displayer: "Description",
+                              value: "",
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "sub_item",
+                  displayer: "Sub Item",
+                  value: [
+                    {
+                      type: "string",
+                      key: "title",
+                      displayer: "Title",
+                      value: "Blog - List View 1",
+                    },
+                    {
+                      type: "page",
+                      key: "navigate_to",
+                      displayer: "Navigate To",
+                      value: "",
+                    },
+                    {
+                      type: "string",
+                      key: "sub_item_badge",
+                      displayer: "Badge",
+                      value: "",
+                    },
+                    {
+                      type: "array",
+                      key: "sub_items",
+                      displayer: "Sub Items",
+                      value: [
+                        {
+                          type: "object",
+                          key: "sub_item",
+                          displayer: "Sub Item",
+                          value: [
+                            {
+                              type: "string",
+                              key: "title",
+                              displayer: "Title",
+                              value: "",
+                            },
+                            {
+                              type: "page",
+                              key: "navigate_to",
+                              displayer: "Navigate To",
+                              value: "",
+                            },
+                            {
+                              type: "string",
+                              key: "sub_sub_item_badge",
+                              displayer: "Badge",
+                              value: "",
+                            },
+                            {
+                              type: "media",
+                              key: "sub_sub_item_media",
+                              displayer: "Media",
+                              additionalParams: { availableTypes: ["image", "video"] },
+                              value: { type: "image", url: "" },
+                            },
+                            {
+                              type: "string",
+                              key: "sub_sub_item_description",
+                              displayer: "Description",
+                              value: "",
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "sub_item",
+                  displayer: "Sub Item",
+                  value: [
+                    {
+                      type: "string",
+                      key: "title",
+                      displayer: "Title",
+                      value: "Blog - List View 2",
+                    },
+                    {
+                      type: "page",
+                      key: "navigate_to",
+                      displayer: "Navigate To",
+                      value: "",
+                    },
+                    {
+                      type: "string",
+                      key: "sub_item_badge",
+                      displayer: "Badge",
+                      value: "",
+                    },
+                    {
+                      type: "array",
+                      key: "sub_items",
+                      displayer: "Sub Items",
+                      value: [
+                        {
+                          type: "object",
+                          key: "sub_item",
+                          displayer: "Sub Item",
+                          value: [
+                            {
+                              type: "string",
+                              key: "title",
+                              displayer: "Title",
+                              value: "",
+                            },
+                            {
+                              type: "page",
+                              key: "navigate_to",
+                              displayer: "Navigate To",
+                              value: "",
+                            },
+                            {
+                              type: "string",
+                              key: "sub_sub_item_badge",
+                              displayer: "Badge",
+                              value: "",
+                            },
+                            {
+                              type: "media",
+                              key: "sub_sub_item_media",
+                              displayer: "Media",
+                              additionalParams: { availableTypes: ["image", "video"] },
+                              value: { type: "image", url: "" },
+                            },
+                            {
+                              type: "string",
+                              key: "sub_sub_item_description",
+                              displayer: "Description",
                               value: "",
                             },
                           ],
@@ -791,7 +3483,7 @@ class Navbar7 extends BaseNavigator {
               type: "string",
               key: "title",
               displayer: "Title",
-              value: "Contacts",
+              value: "Pages",
             },
             {
               type: "page",
@@ -803,8 +3495,8 @@ class Navbar7 extends BaseNavigator {
               type: "select",
               key: "menuType",
               displayer: "Type",
-              value: "Mormal",
-              additionalParams: { selectItems: ["Dropdown", "Normal"] },
+              value: "Dropdown",
+              additionalParams: { selectItems: ["Dropdown", "Mega", "Normal"] },
             },
             {
               type: "array",
@@ -820,12 +3512,18 @@ class Navbar7 extends BaseNavigator {
                       type: "string",
                       key: "title",
                       displayer: "Title",
-                      value: "BLOG POSTS",
+                      value: "About Us",
                     },
                     {
                       type: "page",
                       key: "navigate_to",
                       displayer: "Navigate To",
+                      value: "",
+                    },
+                    {
+                      type: "string",
+                      key: "sub_item_badge",
+                      displayer: "Badge",
                       value: "",
                     },
                     {
@@ -848,6 +3546,25 @@ class Navbar7 extends BaseNavigator {
                               type: "page",
                               key: "navigate_to",
                               displayer: "Navigate To",
+                              value: "",
+                            },
+                            {
+                              type: "string",
+                              key: "sub_sub_item_badge",
+                              displayer: "Badge",
+                              value: "",
+                            },
+                            {
+                              type: "media",
+                              key: "sub_sub_item_media",
+                              displayer: "Media",
+                              additionalParams: { availableTypes: ["image", "video"] },
+                              value: { type: "image", url: "" },
+                            },
+                            {
+                              type: "string",
+                              key: "sub_sub_item_description",
+                              displayer: "Description",
                               value: "",
                             },
                           ],
@@ -865,7 +3582,7 @@ class Navbar7 extends BaseNavigator {
                       type: "string",
                       key: "title",
                       displayer: "Title",
-                      value: "MASONARY",
+                      value: "FAQ's",
                     },
                     {
                       type: "page",
@@ -874,11 +3591,118 @@ class Navbar7 extends BaseNavigator {
                       value: "",
                     },
                     {
-                      type: "select",
-                      key: "sub_item_menuType",
-                      displayer: "Type",
-                      value: "Normal",
-                      additionalParams: { selectItems: ["Dropdown", "Normal"] },
+                      type: "string",
+                      key: "sub_item_badge",
+                      displayer: "Badge",
+                      value: "",
+                    },
+                    {
+                      type: "array",
+                      key: "sub_items",
+                      displayer: "Sub Items",
+                      value: [
+                        {
+                          type: "object",
+                          key: "sub_item",
+                          displayer: "Sub Item",
+                          value: [
+                            {
+                              type: "string",
+                              key: "title",
+                              displayer: "Title",
+                              value: "FAQ's 01",
+                            },
+                            {
+                              type: "page",
+                              key: "navigate_to",
+                              displayer: "Navigate To",
+                              value: "",
+                            },
+                            {
+                              type: "string",
+                              key: "sub_sub_item_badge",
+                              displayer: "Badge",
+                              value: "",
+                            },
+                            {
+                              type: "media",
+                              key: "sub_sub_item_media",
+                              displayer: "Media",
+                              additionalParams: { availableTypes: ["image", "video"] },
+                              value: { type: "image", url: "" },
+                            },
+                            {
+                              type: "string",
+                              key: "sub_sub_item_description",
+                              displayer: "Description",
+                              value: "",
+                            },
+                          ],
+                        },
+                        {
+                          type: "object",
+                          key: "sub_item",
+                          displayer: "Sub Item",
+                          value: [
+                            {
+                              type: "string",
+                              key: "title",
+                              displayer: "Title",
+                              value: "FAQ's 02",
+                            },
+                            {
+                              type: "page",
+                              key: "navigate_to",
+                              displayer: "Navigate To",
+                              value: "",
+                            },
+                            {
+                              type: "string",
+                              key: "sub_sub_item_badge",
+                              displayer: "Badge",
+                              value: "",
+                            },
+                            {
+                              type: "media",
+                              key: "sub_sub_item_media",
+                              displayer: "Media",
+                              additionalParams: { availableTypes: ["image", "video"] },
+                              value: { type: "image", url: "" },
+                            },
+                            {
+                              type: "string",
+                              key: "sub_sub_item_description",
+                              displayer: "Description",
+                              value: "",
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "sub_item",
+                  displayer: "Sub Item",
+                  value: [
+                    {
+                      type: "string",
+                      key: "title",
+                      displayer: "Title",
+                      value: "404 Page",
+                    },
+                    {
+                      type: "page",
+                      key: "navigate_to",
+                      displayer: "Navigate To",
+                      value: "",
+                    },
+                    {
+                      type: "string",
+                      key: "sub_item_badge",
+                      displayer: "Badge",
+                      value: "",
                     },
                     {
                       type: "array",
@@ -900,6 +3724,478 @@ class Navbar7 extends BaseNavigator {
                               type: "page",
                               key: "navigate_to",
                               displayer: "Navigate To",
+                              value: "",
+                            },
+                            {
+                              type: "string",
+                              key: "sub_sub_item_badge",
+                              displayer: "Badge",
+                              value: "",
+                            },
+                            {
+                              type: "media",
+                              key: "sub_sub_item_media",
+                              displayer: "Media",
+                              additionalParams: { availableTypes: ["image", "video"] },
+                              value: { type: "image", url: "" },
+                            },
+                            {
+                              type: "string",
+                              key: "sub_sub_item_description",
+                              displayer: "Description",
+                              value: "",
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "sub_item",
+                  displayer: "Sub Item",
+                  value: [
+                    {
+                      type: "string",
+                      key: "title",
+                      displayer: "Title",
+                      value: "Password Page",
+                    },
+                    {
+                      type: "page",
+                      key: "navigate_to",
+                      displayer: "Navigate To",
+                      value: "",
+                    },
+                    {
+                      type: "string",
+                      key: "sub_item_badge",
+                      displayer: "Badge",
+                      value: "",
+                    },
+                    {
+                      type: "array",
+                      key: "sub_items",
+                      displayer: "Sub Items",
+                      value: [
+                        {
+                          type: "object",
+                          key: "sub_item",
+                          displayer: "Sub Item",
+                          value: [
+                            {
+                              type: "string",
+                              key: "title",
+                              displayer: "Title",
+                              value: "",
+                            },
+                            {
+                              type: "page",
+                              key: "navigate_to",
+                              displayer: "Navigate To",
+                              value: "",
+                            },
+                            {
+                              type: "string",
+                              key: "sub_sub_item_badge",
+                              displayer: "Badge",
+                              value: "",
+                            },
+                            {
+                              type: "media",
+                              key: "sub_sub_item_media",
+                              displayer: "Media",
+                              additionalParams: { availableTypes: ["image", "video"] },
+                              value: { type: "image", url: "" },
+                            },
+                            {
+                              type: "string",
+                              key: "sub_sub_item_description",
+                              displayer: "Description",
+                              value: "",
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "sub_item",
+                  displayer: "Sub Item",
+                  value: [
+                    {
+                      type: "string",
+                      key: "title",
+                      displayer: "Title",
+                      value: "Search Page",
+                    },
+                    {
+                      type: "page",
+                      key: "navigate_to",
+                      displayer: "Navigate To",
+                      value: "",
+                    },
+                    {
+                      type: "string",
+                      key: "sub_item_badge",
+                      displayer: "Badge",
+                      value: "",
+                    },
+                    {
+                      type: "array",
+                      key: "sub_items",
+                      displayer: "Sub Items",
+                      value: [
+                        {
+                          type: "object",
+                          key: "sub_item",
+                          displayer: "Sub Item",
+                          value: [
+                            {
+                              type: "string",
+                              key: "title",
+                              displayer: "Title",
+                              value: "",
+                            },
+                            {
+                              type: "page",
+                              key: "navigate_to",
+                              displayer: "Navigate To",
+                              value: "",
+                            },
+                            {
+                              type: "string",
+                              key: "sub_sub_item_badge",
+                              displayer: "Badge",
+                              value: "",
+                            },
+                            {
+                              type: "media",
+                              key: "sub_sub_item_media",
+                              displayer: "Media",
+                              additionalParams: { availableTypes: ["image", "video"] },
+                              value: { type: "image", url: "" },
+                            },
+                            {
+                              type: "string",
+                              key: "sub_sub_item_description",
+                              displayer: "Description",
+                              value: "",
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "item",
+          displayer: "Item",
+          value: [
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value: "Contact",
+            },
+            {
+              type: "page",
+              key: "navigate_to",
+              displayer: "Navigate To",
+              value: "",
+            },
+            {
+              type: "select",
+              key: "menuType",
+              displayer: "Type",
+              value: "Dropdown",
+              additionalParams: { selectItems: ["Dropdown", "Mega", "Normal"] },
+            },
+            {
+              type: "array",
+              key: "sub_items",
+              displayer: "Sub Items",
+              value: [
+                {
+                  type: "object",
+                  key: "sub_item",
+                  displayer: "Sub Item",
+                  value: [
+                    {
+                      type: "string",
+                      key: "title",
+                      displayer: "Title",
+                      value: "Contact 01",
+                    },
+                    {
+                      type: "page",
+                      key: "navigate_to",
+                      displayer: "Navigate To",
+                      value: "",
+                    },
+                    {
+                      type: "string",
+                      key: "sub_item_badge",
+                      displayer: "Badge",
+                      value: "",
+                    },
+                    {
+                      type: "array",
+                      key: "sub_items",
+                      displayer: "Sub Items",
+                      value: [
+                        {
+                          type: "object",
+                          key: "sub_item",
+                          displayer: "Sub Item",
+                          value: [
+                            {
+                              type: "string",
+                              key: "title",
+                              displayer: "Title",
+                              value: "",
+                            },
+                            {
+                              type: "page",
+                              key: "navigate_to",
+                              displayer: "Navigate To",
+                              value: "",
+                            },
+                            {
+                              type: "string",
+                              key: "sub_sub_item_badge",
+                              displayer: "Badge",
+                              value: "",
+                            },
+                            {
+                              type: "media",
+                              key: "sub_sub_item_media",
+                              displayer: "Media",
+                              additionalParams: { availableTypes: ["image", "video"] },
+                              value: { type: "image", url: "" },
+                            },
+                            {
+                              type: "string",
+                              key: "sub_sub_item_description",
+                              displayer: "Description",
+                              value: "",
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "sub_item",
+                  displayer: "Sub Item",
+                  value: [
+                    {
+                      type: "string",
+                      key: "title",
+                      displayer: "Title",
+                      value: "Contact 02",
+                    },
+                    {
+                      type: "page",
+                      key: "navigate_to",
+                      displayer: "Navigate To",
+                      value: "",
+                    },
+                    {
+                      type: "string",
+                      key: "sub_item_badge",
+                      displayer: "Badge",
+                      value: "",
+                    },
+                    {
+                      type: "array",
+                      key: "sub_items",
+                      displayer: "Sub Items",
+                      value: [
+                        {
+                          type: "object",
+                          key: "sub_item",
+                          displayer: "Sub Item",
+                          value: [
+                            {
+                              type: "string",
+                              key: "title",
+                              displayer: "Title",
+                              value: "",
+                            },
+                            {
+                              type: "page",
+                              key: "navigate_to",
+                              displayer: "Navigate To",
+                              value: "",
+                            },
+                            {
+                              type: "string",
+                              key: "sub_sub_item_badge",
+                              displayer: "Badge",
+                              value: "",
+                            },
+                            {
+                              type: "media",
+                              key: "sub_sub_item_media",
+                              displayer: "Media",
+                              additionalParams: { availableTypes: ["image", "video"] },
+                              value: { type: "image", url: "" },
+                            },
+                            {
+                              type: "string",
+                              key: "sub_sub_item_description",
+                              displayer: "Description",
+                              value: "",
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "sub_item",
+                  displayer: "Sub Item",
+                  value: [
+                    {
+                      type: "string",
+                      key: "title",
+                      displayer: "Title",
+                      value: "Contact 03",
+                    },
+                    {
+                      type: "page",
+                      key: "navigate_to",
+                      displayer: "Navigate To",
+                      value: "",
+                    },
+                    {
+                      type: "string",
+                      key: "sub_item_badge",
+                      displayer: "Badge",
+                      value: "",
+                    },
+                    {
+                      type: "array",
+                      key: "sub_items",
+                      displayer: "Sub Items",
+                      value: [
+                        {
+                          type: "object",
+                          key: "sub_item",
+                          displayer: "Sub Item",
+                          value: [
+                            {
+                              type: "string",
+                              key: "title",
+                              displayer: "Title",
+                              value: "",
+                            },
+                            {
+                              type: "page",
+                              key: "navigate_to",
+                              displayer: "Navigate To",
+                              value: "",
+                            },
+                            {
+                              type: "string",
+                              key: "sub_sub_item_badge",
+                              displayer: "Badge",
+                              value: "",
+                            },
+                            {
+                              type: "media",
+                              key: "sub_sub_item_media",
+                              displayer: "Media",
+                              additionalParams: { availableTypes: ["image", "video"] },
+                              value: { type: "image", url: "" },
+                            },
+                            {
+                              type: "string",
+                              key: "sub_sub_item_description",
+                              displayer: "Description",
+                              value: "",
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "sub_item",
+                  displayer: "Sub Item",
+                  value: [
+                    {
+                      type: "string",
+                      key: "title",
+                      displayer: "Title",
+                      value: "Contact 04",
+                    },
+                    {
+                      type: "page",
+                      key: "navigate_to",
+                      displayer: "Navigate To",
+                      value: "",
+                    },
+                    {
+                      type: "string",
+                      key: "sub_item_badge",
+                      displayer: "Badge",
+                      value: "",
+                    },
+                    {
+                      type: "array",
+                      key: "sub_items",
+                      displayer: "Sub Items",
+                      value: [
+                        {
+                          type: "object",
+                          key: "sub_item",
+                          displayer: "Sub Item",
+                          value: [
+                            {
+                              type: "string",
+                              key: "title",
+                              displayer: "Title",
+                              value: "",
+                            },
+                            {
+                              type: "page",
+                              key: "navigate_to",
+                              displayer: "Navigate To",
+                              value: "",
+                            },
+                            {
+                              type: "string",
+                              key: "sub_sub_item_badge",
+                              displayer: "Badge",
+                              value: "",
+                            },
+                            {
+                              type: "media",
+                              key: "sub_sub_item_media",
+                              displayer: "Media",
+                              additionalParams: { availableTypes: ["image", "video"] },
+                              value: { type: "image", url: "" },
+                            },
+                            {
+                              type: "string",
+                              key: "sub_sub_item_description",
+                              displayer: "Description",
                               value: "",
                             },
                           ],
@@ -1145,6 +4441,11 @@ class Navbar7 extends BaseNavigator {
 
   }
 
+  hasMedia(media?: TypeMediaInputValue): boolean {
+    if (!media) return false;
+    return media.type === "icon" ? !!media.name : !!media.url;
+  }
+
   static getName(): string {
     return "Navbar 7";
   }
@@ -1265,7 +4566,7 @@ class Navbar7 extends BaseNavigator {
                         >
                           {item.title}
                         </Base.P>
-                        {item.menuType === "Dropdown" && (
+                        {(item.menuType === "Dropdown" || item.menuType === "Mega") && (
                           <Base.Media
                             value={navigationIcons?.dropdownIcon}
                             className={`${this.decorateCSS("dropdownIcon")} ${
@@ -1301,6 +4602,11 @@ class Navbar7 extends BaseNavigator {
                                     >
                                       {subItem.title}
                                     </Base.P>
+                                    {this.castToString(subItem.sub_item_badge) && (
+                                      <Base.P className={this.decorateCSS("badge")}>
+                                        {subItem.sub_item_badge}
+                                      </Base.P>
+                                    )}
                                   </div>
                                 </ComposerLink>
                                 {subItem.sub_items.length > 0 &&
@@ -1334,13 +4640,20 @@ class Navbar7 extends BaseNavigator {
                                           <ComposerLink
                                             path={subSubItem.navigate_to}
                                           >
-                                            <Base.P
-                                              className={this.decorateCSS(
-                                                "dropdownItemTitle"
+                                            <div className={this.decorateCSS("subdropdownItemContent")}>
+                                              <Base.P
+                                                className={this.decorateCSS(
+                                                  "dropdownItemTitle"
+                                                )}
+                                              >
+                                                {subSubItem.title}
+                                              </Base.P>
+                                              {this.castToString(subSubItem.sub_sub_item_badge) && (
+                                                <Base.P className={this.decorateCSS("badge")}>
+                                                  {subSubItem.sub_sub_item_badge}
+                                                </Base.P>
                                               )}
-                                            >
-                                              {subSubItem.title}
-                                            </Base.P>
+                                            </div>
                                           </ComposerLink>
                                         </div>
                                       )
@@ -1350,6 +4663,72 @@ class Navbar7 extends BaseNavigator {
                             </div>
                           )
                         )}
+                      </div>
+                    )}
+                    {item.menuType === "Mega" && item.sub_items?.length > 0 && (
+                      <div className={this.decorateCSS("megaMenu")}>
+                        {item.sub_items.map((column: MenuItem, columnIndex: number) => {
+                          const columnTitleExist = this.castToString(column.title);
+                          const columnLinks = (column.sub_items || []).filter((link: MenuItem) =>
+                            this.castToString(link.title)
+                          );
+                          return (
+                            (columnTitleExist || columnLinks.length > 0) && (
+                              <div key={columnIndex} className={this.decorateCSS("megaMenuColumn")}>
+                                {columnTitleExist && (
+                                  <ComposerLink path={column.navigate_to}>
+                                    <div className={this.decorateCSS("megaMenuColumnHeader")}>
+                                      <Base.P className={this.decorateCSS("megaMenuColumnTitle")}>
+                                        {column.title}
+                                      </Base.P>
+                                      {this.castToString(column.sub_item_badge) && (
+                                        <Base.P className={this.decorateCSS("badge")}>
+                                          {column.sub_item_badge}
+                                        </Base.P>
+                                      )}
+                                    </div>
+                                  </ComposerLink>
+                                )}
+                                {columnLinks.length > 0 && (
+                                  <div className={this.decorateCSS("megaMenuLinks")}>
+                                    {column.sub_items.map(
+                                      (link: MenuItem, linkIndex: number) =>
+                                        this.castToString(link.title) && (
+                                          <ComposerLink key={linkIndex} path={link.navigate_to}>
+                                            <div className={this.decorateCSS("megaMenuLink")}>
+                                              {this.hasMedia(link.sub_sub_item_media) && (
+                                                <Base.Media
+                                                  value={link.sub_sub_item_media!}
+                                                  className={this.decorateCSS("megaMenuLinkMedia")}
+                                                />
+                                              )}
+                                              <div className={this.decorateCSS("megaMenuLinkContent")}>
+                                                <div className={this.decorateCSS("megaMenuLinkHeader")}>
+                                                  <Base.P className={this.decorateCSS("megaMenuLinkTitle")}>
+                                                    {link.title}
+                                                  </Base.P>
+                                                  {this.castToString(link.sub_sub_item_badge) && (
+                                                    <Base.P className={this.decorateCSS("badge")}>
+                                                      {link.sub_sub_item_badge}
+                                                    </Base.P>
+                                                  )}
+                                                </div>
+                                                {this.castToString(link.sub_sub_item_description) && (
+                                                  <Base.P className={this.decorateCSS("megaMenuLinkDescription")}>
+                                                    {link.sub_sub_item_description}
+                                                  </Base.P>
+                                                )}
+                                              </div>
+                                            </div>
+                                          </ComposerLink>
+                                        )
+                                    )}
+                                  </div>
+                                )}
+                              </div>
+                            )
+                          );
+                        })}
                       </div>
                     )}
                   </div>
@@ -1485,7 +4864,7 @@ class Navbar7 extends BaseNavigator {
                             {item.title}
                           </Base.P>
                         </ComposerLink>
-                        {item.menuType === "Dropdown" && (
+                        {(item.menuType === "Dropdown" || item.menuType === "Mega") && (
                           <Base.Media
                             value={navigationIcons?.rightIcon}
                             className={`${this.decorateCSS("dropdownIcon")} ${
@@ -1497,7 +4876,7 @@ class Navbar7 extends BaseNavigator {
                           />
                         )}
                       </div>
-                      {item.menuType === "Dropdown" && (
+                      {(item.menuType === "Dropdown" || item.menuType === "Mega") && (
                         <div className={`${this.decorateCSS("hamburgerSubmenu")}
                         ${this.getComponentState("subNavActiveIndex") ===index? this.decorateCSS("active") : ""}`}>
                           {item.sub_items?.map(
@@ -1531,6 +4910,11 @@ class Navbar7 extends BaseNavigator {
                                       {subItem.title}
                                     </Base.P>
                                   </ComposerLink>
+                                  {this.castToString(subItem.sub_item_badge) && (
+                                    <Base.P className={this.decorateCSS("badge")}>
+                                      {subItem.sub_item_badge}
+                                    </Base.P>
+                                  )}
                                   {subItem.sub_items.length > 0 &&
                                     subItem.sub_items.some((item: any) =>
                                       this.castToString(item.title)
@@ -1587,6 +4971,11 @@ class Navbar7 extends BaseNavigator {
                                                 {subSubItem.title}
                                               </Base.P>
                                             </ComposerLink>
+                                            {this.castToString(subSubItem.sub_sub_item_badge) && (
+                                              <Base.P className={this.decorateCSS("badge")}>
+                                                {subSubItem.sub_sub_item_badge}
+                                              </Base.P>
+                                            )}
                                           </div>
                                         )
                                       )}
