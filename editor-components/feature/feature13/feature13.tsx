@@ -5,13 +5,13 @@ import styles from "./feature13.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 
 type Tab = {
-  title: React.JSX.Element;
+  tab_item_title: React.JSX.Element;
   content: React.JSX.Element;
   progresses: Progress[];
 };
 
 type Progress = {
-  title: React.JSX.Element;
+  progress_title: React.JSX.Element;
   percentage: number;
   utility: React.JSX.Element;
 };
@@ -160,7 +160,7 @@ class Feature13 extends BaseFeature {
           value: [
             {
               type: "string",
-              key: "title",
+              key: "tab_item_title",
               displayer: "Title",
               value: "History",
             },
@@ -183,7 +183,7 @@ class Feature13 extends BaseFeature {
                   value: [
                     {
                       type: "string",
-                      key: "title",
+                      key: "progress_title",
                       displayer: "Title",
                       value: "Renovation",
                     },
@@ -208,7 +208,7 @@ class Feature13 extends BaseFeature {
                   value: [
                     {
                       type: "string",
-                      key: "title",
+                      key: "progress_title",
                       displayer: "Title",
                       value: "Architecture",
                     },
@@ -233,7 +233,7 @@ class Feature13 extends BaseFeature {
                   value: [
                     {
                       type: "string",
-                      key: "title",
+                      key: "progress_title",
                       displayer: "Title",
                       value: "Functional Spaces",
                     },
@@ -262,7 +262,7 @@ class Feature13 extends BaseFeature {
           value: [
             {
               type: "string",
-              key: "title",
+              key: "tab_item_title",
               displayer: "Title",
               value: "Mission",
             },
@@ -285,7 +285,7 @@ class Feature13 extends BaseFeature {
                   value: [
                     {
                       type: "string",
-                      key: "title",
+                      key: "progress_title",
                       displayer: "Title",
                       value: "Design Excellence",
                     },
@@ -310,7 +310,7 @@ class Feature13 extends BaseFeature {
                   value: [
                     {
                       type: "string",
-                      key: "title",
+                      key: "progress_title",
                       displayer: "Title",
                       value: "Sustainability",
                     },
@@ -339,7 +339,7 @@ class Feature13 extends BaseFeature {
           value: [
             {
               type: "string",
-              key: "title",
+              key: "tab_item_title",
               displayer: "Title",
               value: "Vision",
             },
@@ -362,7 +362,7 @@ class Feature13 extends BaseFeature {
                   value: [
                     {
                       type: "string",
-                      key: "title",
+                      key: "progress_title",
                       displayer: "Title",
                       value: "Client Satisfaction",
                     },
@@ -387,7 +387,7 @@ class Feature13 extends BaseFeature {
                   value: [
                     {
                       type: "string",
-                      key: "title",
+                      key: "progress_title",
                       displayer: "Title",
                       value: "Innovation",
                     },
@@ -595,7 +595,7 @@ class Feature13 extends BaseFeature {
                       <div className={this.decorateCSS("tabs")}>
                         <div className={this.decorateCSS("tabs-list")}>
                           {tabList.map((item: Tab, index: number) => {
-                            const titleExist = !!this.castToString(item.title);
+                            const titleExist = !!this.castToString(item.tab_item_title);
 
                             if (!titleExist) return null;
 
@@ -613,14 +613,14 @@ class Feature13 extends BaseFeature {
                                     : ""
                                     }`}
                                 >
-                                  {item.title}
+                                  {item.tab_item_title}
                                 </Base.H3>
                               </div>
                             );
                           })}
                         </div>
                       </div>
-                      {this.castToString(tabList[activeTab].title) &&
+                      {this.castToString(tabList[activeTab].tab_item_title) &&
                         this.castToString(tabList[activeTab].content) && (
                           <Base.P className={this.decorateCSS("comp-body-content")}>
                             {tabList[activeTab].content}
@@ -631,7 +631,7 @@ class Feature13 extends BaseFeature {
                   {currentProgresses && currentProgresses.length > 0 && (
                     <footer className={this.decorateCSS("comp-progresses")}>
                       {currentProgresses.map((item: Progress, index: number) => {
-                        const titleExist = !!this.castToString(item.title);
+                        const titleExist = !!this.castToString(item.progress_title);
                         const percentage: number = item.percentage;
                         const utility = item.utility;
 
@@ -641,7 +641,7 @@ class Feature13 extends BaseFeature {
                           <div key={index} className={this.decorateCSS("progress-item")}>
                             <div className={this.decorateCSS("progress-header")}>
                               <Base.H4 className={this.decorateCSS("progress-title")}>
-                                {item.title}
+                                {item.progress_title}
                               </Base.H4>
                               {utility && (<Base.P
                                 className={this.decorateCSS(

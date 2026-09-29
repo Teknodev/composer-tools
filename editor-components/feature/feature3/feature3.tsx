@@ -11,7 +11,7 @@ type Logo = {
 };
 
 type Card = {
-  title: React.JSX.Element;
+  card_title: React.JSX.Element;
   icon: TypeMediaInputValue;
 };
 
@@ -52,7 +52,7 @@ class Feature3 extends BaseFeature {
           value: [
             {
               type: "string",
-              key: "title",
+              key: "card_title",
               displayer: "Card Title",
               value: "Search Engine Optimization",
             },
@@ -77,7 +77,7 @@ class Feature3 extends BaseFeature {
           value: [
             {
               type: "string",
-              key: "title",
+              key: "card_title",
               displayer: "Card Title",
               value: "Marketing & Advertisement",
             },
@@ -102,7 +102,7 @@ class Feature3 extends BaseFeature {
           value: [
             {
               type: "string",
-              key: "title",
+              key: "card_title",
               displayer: "Card Title",
               value: "Reporting & Analysis",
             },
@@ -361,7 +361,7 @@ class Feature3 extends BaseFeature {
                     `}
                   >
                     {cards.map((card: Card, index: number) => {
-                      const titleExist = !!this.castToString(card.title);
+                      const titleExist = !!this.castToString(card.card_title);
                       const iconExist = !!card.icon?.name;
 
                       if (!titleExist && !iconExist) return null;
@@ -377,7 +377,7 @@ class Feature3 extends BaseFeature {
                             )}
                             {titleExist && (
                               <Base.H4 className={this.decorateCSS("card-title")}>
-                                {card.title}
+                                {card.card_title}
                               </Base.H4>
                             )}
                           </Base.VerticalContent>

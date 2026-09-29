@@ -62,9 +62,9 @@ class Stats18Page extends BaseStats {
                         { type: "string", key: "prefix", displayer: "Prefix", value: "$" },
                         { type: "string", key: "value", displayer: "Value", value: "50" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "M+" },
-                        { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
-                        { type: "string", key: "title", displayer: "Title", value: "Total investment in 2022" },
-                        { type: "string", key: "description", displayer: "Description", value: "" },
+                        { type: "string", key: "card_subtitle", displayer: "Subtitle", value: "" },
+                        { type: "string", key: "card_title", displayer: "Title", value: "Total investment in 2022" },
+                        { type: "string", key: "card_description", displayer: "Description", value: "" },
                     ],
                 },
                 {
@@ -75,9 +75,9 @@ class Stats18Page extends BaseStats {
                         { type: "string", key: "prefix", displayer: "Prefix", value: "" },
                         { type: "string", key: "value", displayer: "Value", value: "5000" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "+" },
-                        { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
-                        { type: "string", key: "title", displayer: "Title", value: "Employees" },
-                        { type: "string", key: "description", displayer: "Description", value: "" },
+                        { type: "string", key: "card_subtitle", displayer: "Subtitle", value: "" },
+                        { type: "string", key: "card_title", displayer: "Title", value: "Employees" },
+                        { type: "string", key: "card_description", displayer: "Description", value: "" },
                     ],
                 },
                 {
@@ -88,9 +88,9 @@ class Stats18Page extends BaseStats {
                         { type: "string", key: "prefix", displayer: "Prefix", value: "" },
                         { type: "string", key: "value", displayer: "Value", value: "12" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "x" },
-                        { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
-                        { type: "string", key: "title", displayer: "Title", value: "Increased website traffic" },
-                        { type: "string", key: "description", displayer: "Description", value: "" },
+                        { type: "string", key: "card_subtitle", displayer: "Subtitle", value: "" },
+                        { type: "string", key: "card_title", displayer: "Title", value: "Increased website traffic" },
+                        { type: "string", key: "card_description", displayer: "Description", value: "" },
                     ],
                 },
                 {
@@ -101,9 +101,9 @@ class Stats18Page extends BaseStats {
                         { type: "string", key: "prefix", displayer: "Prefix", value: "" },
                         { type: "string", key: "value", displayer: "Value", value: "99" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "%" },
-                        { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
-                        { type: "string", key: "title", displayer: "Title", value: "Client Satisfaction" },
-                        { type: "string", key: "description", displayer: "Description", value: "" },
+                        { type: "string", key: "card_subtitle", displayer: "Subtitle", value: "" },
+                        { type: "string", key: "card_title", displayer: "Title", value: "Client Satisfaction" },
+                        { type: "string", key: "card_description", displayer: "Description", value: "" },
                     ],
                 },
             ],
@@ -245,10 +245,10 @@ class Stats18Page extends BaseStats {
         const showLine = !!this.getPropValue("showLine");
         const itemCount = this.getPropValue("itemCount");
 
-        const statsListRaw = this.castToObject<{ prefix: JSX.Element; value: JSX.Element; suffix: JSX.Element; title: JSX.Element; subtitle: JSX.Element; description: JSX.Element }[]>("card-list");
+        const statsListRaw = this.castToObject<{ prefix: JSX.Element; value: JSX.Element; suffix: JSX.Element; card_title: JSX.Element; card_subtitle: JSX.Element; card_description: JSX.Element }[]>("card-list");
         const statsList: CardData[] = statsListRaw.map((item) => {
             const value = this.castToString(item.value);
-            return { prefix: item.prefix, value, valueElement: item.value, suffix: item.suffix, title: item.title, subtitle: item.subtitle, description: item.description };
+            return { prefix: item.prefix, value, valueElement: item.value, suffix: item.suffix, title: item.card_title, subtitle: item.card_subtitle, description: item.card_description };
         });
 
         const animationProps = this.castToObject<{ statsAnimation: boolean; animationDuration: number }>("animation");

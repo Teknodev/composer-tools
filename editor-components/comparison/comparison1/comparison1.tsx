@@ -6,8 +6,8 @@ import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "../../../custom-hooks/input-templates";
 interface Card {
   direction: boolean;
-  subtitle: React.JSX.Element;
-  title: React.JSX.Element;
+  card_subtitle: React.JSX.Element;
+  card_title: React.JSX.Element;
   button: INPUTS.CastedButton;
   leftImage: { type: string; url: string };
   rightImage: { type: string; url: string };
@@ -71,13 +71,13 @@ class Comparison1 extends BaseComparison {
             },
             {
               type: "string",
-              key: "subtitle",
+              key: "card_subtitle",
               displayer: "Subtitle",
               value: "Compare",
             },
             {
               type: "string",
-              key: "title",
+              key: "card_title",
               displayer: "Title",
               value: "BEDROOM RENOVATION",
             },
@@ -208,19 +208,19 @@ class Comparison1 extends BaseComparison {
                   }`
                 }
                 >
-                  {(this.castToString(card.title) ||
-                    this.castToString(card.description) || this.castToString(card.subtitle) || this.castToString(card.button.text)) && (
+                  {(this.castToString(card.card_title) ||
+                    this.castToString(card.description) || this.castToString(card.card_subtitle) || this.castToString(card.button.text)) && (
                       <Base.VerticalContent
                         className={this.decorateCSS("left-card")}
                       >
-                        {this.castToString(card.subtitle) && (
+                        {this.castToString(card.card_subtitle) && (
                           <Base.SectionSubTitle className={this.decorateCSS("card-subtitle")}>
-                            {card.subtitle}
+                            {card.card_subtitle}
                           </Base.SectionSubTitle>
                         )}
-                        {this.castToString(card.title) && (
+                        {this.castToString(card.card_title) && (
                           <Base.SectionTitle className={this.decorateCSS("card-title")}>
-                            {card.title}
+                            {card.card_title}
                           </Base.SectionTitle>
                         )}
                         {this.castToString(card.description) && (

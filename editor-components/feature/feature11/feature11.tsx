@@ -7,8 +7,8 @@ import { INPUTS } from "../../../custom-hooks/input-templates";
 
 type Card = {
   icon: TypeMediaInputValue;
-  title: React.JSX.Element;
-  description: React.JSX.Element;
+  card_title: React.JSX.Element;
+  card_description: React.JSX.Element;
 };
 
 class Feature11 extends BaseFeature {
@@ -63,13 +63,13 @@ class Feature11 extends BaseFeature {
             },
             {
               type: "string",
-              key: "title",
+              key: "card_title",
               displayer: "Title",
               value: "Easy drag & drop"
             },
             {
               type: "string",
-              key: "description",
+              key: "card_description",
               displayer: "Description",
               value: "To add an element just drag component from the Assets panel and drop it to the work area."
             }
@@ -94,13 +94,13 @@ class Feature11 extends BaseFeature {
             },
             {
               type: "string",
-              key: "title",
+              key: "card_title",
               displayer: "Title",
               value: "Flexible modification"
             },
             {
               type: "string",
-              key: "description",
+              key: "card_description",
               displayer: "Description",
               value: "You can easily change an instance setting depending on your goals."
             }
@@ -125,13 +125,13 @@ class Feature11 extends BaseFeature {
             },
             {
               type: "string",
-              key: "title",
+              key: "card_title",
               displayer: "Title",
               value: "Quick color and font changes"
             },
             {
               type: "string",
-              key: "description",
+              key: "card_description",
               displayer: "Description",
               value: "You can use the default color scheme and font or change them to create your own design."
             }
@@ -156,13 +156,13 @@ class Feature11 extends BaseFeature {
             },
             {
               type: "string",
-              key: "title",
+              key: "card_title",
               displayer: "Title",
               value: "Pre-made blocks"
             },
             {
               type: "string",
-              key: "description",
+              key: "card_description",
               displayer: "Description",
               value: "A large variety of ready-made blocks for your project."
             }
@@ -187,13 +187,13 @@ class Feature11 extends BaseFeature {
             },
             {
               type: "string",
-              key: "title",
+              key: "card_title",
               displayer: "Title",
               value: "All-in-one file"
             },
             {
               type: "string",
-              key: "description",
+              key: "card_description",
               displayer: "Description",
               value: "You will find everything to create your design in one Figma file."
             }
@@ -218,13 +218,13 @@ class Feature11 extends BaseFeature {
             },
             {
               type: "string",
-              key: "title",
+              key: "card_title",
               displayer: "Title",
               value: "Essential elements in one place"
             },
             {
               type: "string",
-              key: "description",
+              key: "card_description",
               displayer: "Description",
               value: "Use them for any websites, dashboards, and even in your TED Talks."
             }
@@ -299,8 +299,8 @@ class Feature11 extends BaseFeature {
                 gridCount={{ pc: this.getPropValue("itemCount") }}
               >
                 {cards.map((card: Card, index: number) => {
-                  const titleExist = !!this.castToString(card.title);
-                  const descExist = !!this.castToString(card.description);
+                  const titleExist = !!this.castToString(card.card_title);
+                  const descExist = !!this.castToString(card.card_description);
 
                   if (!titleExist && !descExist && !card.icon) return null;
 
@@ -313,12 +313,12 @@ class Feature11 extends BaseFeature {
                       <Base.VerticalContent className={this.decorateCSS("card-content")}>
                         {titleExist && (
                           <Base.H3 className={this.decorateCSS("card-title")}>
-                            {card.title}
+                            {card.card_title}
                           </Base.H3>
                         )}
                         {descExist && (
                           <Base.P className={this.decorateCSS("card-description")}>
-                            {card.description}
+                            {card.card_description}
                           </Base.P>
                         )}
                       </Base.VerticalContent>

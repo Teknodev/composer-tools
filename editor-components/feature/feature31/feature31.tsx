@@ -7,8 +7,8 @@ import { INPUTS } from "../../../custom-hooks/input-templates";
 
 type Card = {
     media: TypeMediaInputValue;
-    title: React.JSX.Element;
-    description: React.JSX.Element;
+    card_title: React.JSX.Element;
+    card_description: React.JSX.Element;
 };
 
 class Feature31 extends BaseFeature {
@@ -55,13 +55,13 @@ class Feature31 extends BaseFeature {
                         },
                         {
                             type: "string",
-                            key: "title",
+                            key: "card_title",
                             displayer: "Title",
                             value: "Perfect Design"
                         },
                         {
                             type: "string",
-                            key: "description",
+                            key: "card_description",
                             displayer: "Description",
                             value: "Keeping your eye on the ball while performing a deep dive on the start-up mentality to derive convergence on cross-platform integration."
                         }
@@ -81,13 +81,13 @@ class Feature31 extends BaseFeature {
                         },
                         {
                             type: "string",
-                            key: "title",
+                            key: "card_title",
                             displayer: "Title",
                             value: "Free Test-Drive"
                         },
                         {
                             type: "string",
-                            key: "description",
+                            key: "card_description",
                             displayer: "Description",
                             value: "Podcasting operational change management inside of workflows to establish a framework. Taking seamlessly key performance indicators offline to maximise the long tail."
                         }
@@ -107,13 +107,13 @@ class Feature31 extends BaseFeature {
                         },
                         {
                             type: "string",
-                            key: "title",
+                            key: "card_title",
                             displayer: "Title",
                             value: "High Quality"
                         },
                         {
                             type: "string",
-                            key: "description",
+                            key: "card_description",
                             displayer: "Description",
                             value: "Keeping your eye on the ball while performing a deep dive on the start-up mentality to derive convergence on cross-platform integration."
                         }
@@ -179,8 +179,8 @@ class Feature31 extends BaseFeature {
                                 gridCount={{ pc: this.getPropValue("itemCount") }}
                             >
                                 {cards.map((card: Card, index: number) => {
-                                    const titleExist = this.castToString(card.title);
-                                    const descExist = this.castToString(card.description);
+                                    const titleExist = this.castToString(card.card_title);
+                                    const descExist = this.castToString(card.card_description);
                                     const isImage = card.media?.type === "image";
                                     if (!titleExist && !descExist && !card.media) return null;
 
@@ -192,8 +192,8 @@ class Feature31 extends BaseFeature {
                                                 </div>
                                             )}
                                             <Base.VerticalContent className={this.decorateCSS("card-content")}>
-                                                {titleExist && (<Base.H5 className={this.decorateCSS("card-title")}>{card.title}</Base.H5>)}
-                                                {descExist && (<Base.P className={this.decorateCSS("card-description")}>{card.description}</Base.P>)}
+                                                {titleExist && (<Base.H5 className={this.decorateCSS("card-title")}>{card.card_title}</Base.H5>)}
+                                                {descExist && (<Base.P className={this.decorateCSS("card-description")}>{card.card_description}</Base.P>)}
                                             </Base.VerticalContent>
                                         </Base.Card>
                                     );

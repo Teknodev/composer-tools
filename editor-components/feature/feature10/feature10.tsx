@@ -8,8 +8,8 @@ import { INPUTS } from "../../../custom-hooks/input-templates";
 
 type Card = {
   image: TypeMediaInputValue;
-  title: React.JSX.Element;
-  description: React.JSX.Element;
+  card_title: React.JSX.Element;
+  card_description: React.JSX.Element;
   url: string;
 };
 
@@ -93,13 +93,13 @@ class Feature10 extends BaseFeature {
             },
             {
               type: "string",
-              key: "title",
+              key: "card_title",
               displayer: "Title",
               value: "Lets Get Digital Case Study"
             },
             {
               type: "string",
-              key: "description",
+              key: "card_description",
               displayer: "Description",
               value: "Here's how Acme improved the infrastructure quality for Lets Get Digital without increasing costs."
             },
@@ -130,13 +130,13 @@ class Feature10 extends BaseFeature {
             },
             {
               type: "string",
-              key: "title",
+              key: "card_title",
               displayer: "Title",
               value: "Dataswitcher Case Study"
             },
             {
               type: "string",
-              key: "description",
+              key: "card_description",
               displayer: "Description",
               value: "Acme implemented ES Foundation at Dataswitcher to improve scalability around peak conversions."
             },
@@ -167,13 +167,13 @@ class Feature10 extends BaseFeature {
             },
             {
               type: "string",
-              key: "title",
+              key: "card_title",
               displayer: "Title",
               value: "AI Maid Help Case Study"
             },
             {
               type: "string",
-              key: "description",
+              key: "card_description",
               displayer: "Description",
               value: "Here's how Acme improved the infrastructure quality for AI Maid Help without increasing costs."
             },
@@ -204,13 +204,13 @@ class Feature10 extends BaseFeature {
             },
             {
               type: "string",
-              key: "title",
+              key: "card_title",
               displayer: "Title",
               value: "AI Maid Help Case Study"
             },
             {
               type: "string",
-              key: "description",
+              key: "card_description",
               displayer: "Description",
               value: "Here's how Acme improved the infrastructure quality for AI Maid Help without increasing costs."
             },
@@ -241,13 +241,13 @@ class Feature10 extends BaseFeature {
             },
             {
               type: "string",
-              key: "title",
+              key: "card_title",
               displayer: "Title",
               value: "AI Maid Help Case Study"
             },
             {
               type: "string",
-              key: "description",
+              key: "card_description",
               displayer: "Description",
               value: "Here's how Acme improved the infrastructure quality for AI Maid Help without increasing costs."
             },
@@ -278,13 +278,13 @@ class Feature10 extends BaseFeature {
             },
             {
               type: "string",
-              key: "title",
+              key: "card_title",
               displayer: "Title",
               value: "AI Maid Help Case Study"
             },
             {
               type: "string",
-              key: "description",
+              key: "card_description",
               displayer: "Description",
               value: "Here's how Acme improved the infrastructure quality for AI Maid Help without increasing costs."
             },
@@ -405,8 +405,8 @@ class Feature10 extends BaseFeature {
                 >
 
                   {cards.map((item: Card, index: number) => {
-                    const titleExist = !!this.castToString(item.title);
-                    const descExist = !!this.castToString(item.description);
+                    const titleExist = !!this.castToString(item.card_title);
+                    const descExist = !!this.castToString(item.card_description);
 
                     if (!item.image?.url && !titleExist && !descExist) return null;
 
@@ -423,12 +423,12 @@ class Feature10 extends BaseFeature {
                             <div className={this.decorateCSS("bottom")}>
                               {titleExist && (
                                 <Base.H3 className={this.decorateCSS("title")}>
-                                  {item.title}
+                                  {item.card_title}
                                 </Base.H3>
                               )}
                               {descExist && (
                                 <Base.P className={this.decorateCSS("description")}>
-                                  {item.description}
+                                  {item.card_description}
                                 </Base.P>
                               )}
                             </div>

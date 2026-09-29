@@ -27,7 +27,7 @@ type ReviewItem = {
 }
 
 type CategoryOrTag = {
-  title: React.JSX.Element;
+  section_title: React.JSX.Element;
   items: { category?: React.JSX.Element; tag?: React.JSX.Element }[];
 }
 
@@ -320,7 +320,7 @@ class ECommerce1 extends BaseECommerce {
           value: [
             {
               type: "string",
-              key: "title",
+              key: "section_title",
               displayer: "Label",
               value: "SKU: ",
             },
@@ -331,7 +331,7 @@ class ECommerce1 extends BaseECommerce {
               value: [
                 {
                   type: "object",
-                  key: "item",
+                  key: "items_item",
                   displayer: "Item",
                   value: [
                     {
@@ -353,7 +353,7 @@ class ECommerce1 extends BaseECommerce {
           value: [
             {
               type: "string",
-              key: "title",
+              key: "section_title",
               displayer: "Label",
               value: "Categories: ",
             },
@@ -364,7 +364,7 @@ class ECommerce1 extends BaseECommerce {
               value: [
                 {
                   type: "object",
-                  key: "item",
+                  key: "items_item",
                   displayer: "Item",
                   value: [
                     {
@@ -377,7 +377,7 @@ class ECommerce1 extends BaseECommerce {
                 },
                 {
                   type: "object",
-                  key: "item",
+                  key: "items_item",
                   displayer: "Item",
                   value: [
                     {
@@ -399,7 +399,7 @@ class ECommerce1 extends BaseECommerce {
           value: [
             {
               type: "string",
-              key: "title",
+              key: "section_title",
               displayer: "Label",
               value: "Tags: ",
             },
@@ -410,7 +410,7 @@ class ECommerce1 extends BaseECommerce {
               value: [
                 {
                   type: "object",
-                  key: "item",
+                  key: "items_item",
                   displayer: "Item",
                   value: [
                     {
@@ -423,7 +423,7 @@ class ECommerce1 extends BaseECommerce {
                 },
                 {
                   type: "object",
-                  key: "item",
+                  key: "items_item",
                   displayer: "Item",
                   value: [
                     {
@@ -787,7 +787,7 @@ class ECommerce1 extends BaseECommerce {
                 <div className={this.decorateCSS("categories")}>
                   {categoriesAndTags.map((item, index) => (
                     <div key={index} className={this.decorateCSS("category")}>
-                      {this.castToString(item.title) && (<Base.P className={this.decorateCSS("categoryLabel")}>{item.title}</Base.P>)}
+                      {this.castToString(item.section_title) && (<Base.P className={this.decorateCSS("categoryLabel")}>{item.section_title}</Base.P>)}
                       {(item.items.length > 0) && (
                         <div className={this.decorateCSS("categoryText")}>
                           {item.items.map((subItem, subIndex) => (

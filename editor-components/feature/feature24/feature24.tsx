@@ -7,7 +7,7 @@ import { INPUTS } from "../../../custom-hooks/input-templates";
 
 type Card = {
   media: TypeMediaInputValue;
-  title: React.JSX.Element;
+  card_title: React.JSX.Element;
 };
 
 class Feature24 extends BaseFeature {
@@ -54,7 +54,7 @@ class Feature24 extends BaseFeature {
             },
             {
               type: "string",
-              key: "title",
+              key: "card_title",
               displayer: "Title",
               value: "Expertly crafted components"
             }
@@ -74,7 +74,7 @@ class Feature24 extends BaseFeature {
             },
             {
               type: "string",
-              key: "title",
+              key: "card_title",
               displayer: "Title",
               value: "Built-in interactive examples"
             }
@@ -94,7 +94,7 @@ class Feature24 extends BaseFeature {
             },
             {
               type: "string",
-              key: "title",
+              key: "card_title",
               displayer: "Title",
               value: "Beautifully designed templates"
             }
@@ -114,7 +114,7 @@ class Feature24 extends BaseFeature {
             },
             {
               type: "string",
-              key: "title",
+              key: "card_title",
               displayer: "Title",
               value: "SEO & accessibility best practices"
             }
@@ -134,7 +134,7 @@ class Feature24 extends BaseFeature {
             },
             {
               type: "string",
-              key: "title",
+              key: "card_title",
               displayer: "Title",
               value: "Mobile notifications included"
             }
@@ -154,7 +154,7 @@ class Feature24 extends BaseFeature {
             },
             {
               type: "string",
-              key: "title",
+              key: "card_title",
               displayer: "Title",
               value: "Highly customizable layouts"
             }
@@ -174,7 +174,7 @@ class Feature24 extends BaseFeature {
             },
             {
               type: "string",
-              key: "title",
+              key: "card_title",
               displayer: "Title",
               value: "Expertly crafted components"
             }
@@ -194,7 +194,7 @@ class Feature24 extends BaseFeature {
             },
             {
               type: "string",
-              key: "title",
+              key: "card_title",
               displayer: "Title",
               value: "Built-in interactive examples"
             }
@@ -214,7 +214,7 @@ class Feature24 extends BaseFeature {
             },
             {
               type: "string",
-              key: "title",
+              key: "card_title",
               displayer: "Title",
               value: "Beautifully designed templates"
             }
@@ -234,7 +234,7 @@ class Feature24 extends BaseFeature {
             },
             {
               type: "string",
-              key: "title",
+              key: "card_title",
               displayer: "Title",
               value: "SEO & accessibility best practices"
             }
@@ -254,7 +254,7 @@ class Feature24 extends BaseFeature {
             },
             {
               type: "string",
-              key: "title",
+              key: "card_title",
               displayer: "Title",
               value: "Mobile notifications included"
             }
@@ -274,7 +274,7 @@ class Feature24 extends BaseFeature {
             },
             {
               type: "string",
-              key: "title",
+              key: "card_title",
               displayer: "Title",
               value: "Highly customizable layouts"
             }
@@ -337,7 +337,7 @@ class Feature24 extends BaseFeature {
               gridCount={{ pc: this.getPropValue("itemCount") || 3, tablet: 2, phone: 1 }}
             >
               {cards.map((card: Card, index: number) => {
-                const titleExist = this.castToString(card.title);
+                const titleExist = this.castToString(card.card_title);
                 const isImage = card.media?.type === "image";
                 if (!titleExist && !card.media) return null;
 
@@ -349,7 +349,7 @@ class Feature24 extends BaseFeature {
                       </div>
                     )}
                     <Base.VerticalContent className={this.decorateCSS("card-content")}>
-                      {titleExist && (<Base.H4 className={this.decorateCSS("card-title")}>{card.title}</Base.H4>)}
+                      {titleExist && (<Base.H4 className={this.decorateCSS("card-title")}>{card.card_title}</Base.H4>)}
                     </Base.VerticalContent>
                   </div>
                 );

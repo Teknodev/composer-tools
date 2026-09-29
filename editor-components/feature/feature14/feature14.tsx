@@ -8,7 +8,7 @@ import { INPUTS } from "../../../custom-hooks/input-templates";
 
 type CardItem = {
   icon: TypeMediaInputValue,
-  title: string,
+  cardItem_title: string,
   description: string,
 };
 
@@ -66,7 +66,7 @@ class Feature14 extends BaseFeature {
             },
             {
               type: "string",
-              key: "title",
+              key: "cardItem_title",
               displayer: "Card Title",
               value: "Best price guaranteed",
             },
@@ -97,7 +97,7 @@ class Feature14 extends BaseFeature {
             },
             {
               type: "string",
-              key: "title",
+              key: "cardItem_title",
               displayer: "Card Title",
               value: "Great communication",
             },
@@ -128,7 +128,7 @@ class Feature14 extends BaseFeature {
             },
             {
               type: "string",
-              key: "title",
+              key: "cardItem_title",
               displayer: "Card Title",
               value: "We provide high standards",
             },
@@ -159,7 +159,7 @@ class Feature14 extends BaseFeature {
             },
             {
               type: "string",
-              key: "title",
+              key: "cardItem_title",
               displayer: "Card Title",
               value: "We worked with many big companies",
             },

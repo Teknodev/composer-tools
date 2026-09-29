@@ -7,8 +7,8 @@ import { Base } from "../../../composer-base-components/base/base";
 
 interface TTeam {
   image: TypeMediaInputValue;
-  subtitle: string;
-  title: string;
+  member_subtitle: string;
+  member_title: string;
   description: string;
   value1title: string;
   value2title: string;
@@ -141,13 +141,13 @@ class Team10 extends Team {
             },
             {
               type: "string",
-              key: "subtitle",
+              key: "member_subtitle",
               displayer: "Position",
               value: "TEAM MANAGER",
             },
             {
               type: "string",
-              key: "title",
+              key: "member_title",
               displayer: "Title",
               value: "MARINA GONZALES",
             },
@@ -220,13 +220,13 @@ class Team10 extends Team {
             },
             {
               type: "string",
-              key: "subtitle",
+              key: "member_subtitle",
               displayer: "Position",
               value: "TEAM MANAGER",
             },
             {
               type: "string",
-              key: "title",
+              key: "member_title",
               displayer: "Title",
               value: "MARINA GONZALES",
             },
@@ -299,13 +299,13 @@ class Team10 extends Team {
             },
             {
               type: "string",
-              key: "subtitle",
+              key: "member_subtitle",
               displayer: "Position",
               value: "TEAM MANAGER",
             },
             {
               type: "string",
-              key: "title",
+              key: "member_title",
               displayer: "Title",
               value: "MARINA GONZALES",
             },
@@ -378,13 +378,13 @@ class Team10 extends Team {
             },
             {
               type: "string",
-              key: "subtitle",
+              key: "member_subtitle",
               displayer: "Position",
               value: "TEAM MANAGER",
             },
             {
               type: "string",
-              key: "title",
+              key: "member_title",
               displayer: "Title",
               value: "MARINA GONZALES",
             },

@@ -12,10 +12,10 @@ type CardButton = Omit<INPUTS.CastedButton, "icon"> & {
 
 type Card = {
   image: TypeMediaInputValue;
-  subtitle: JSX.Element;
-  title: JSX.Element;
-  description: JSX.Element;
-  buttons: CardButton[];
+  card_subtitle: JSX.Element;
+  card_title: JSX.Element;
+  card_description: JSX.Element;
+  card_buttons: CardButton[];
   overlay: boolean;
 };
 
@@ -84,25 +84,25 @@ class List1 extends BaseList {
             },
             {
               type: "string",
-              key: "subtitle",
+              key: "card_subtitle",
               displayer: "Subtitle",
               value: "",
             },
             {
               type: "string",
-              key: "title",
+              key: "card_title",
               displayer: "Title",
               value: "Sesame Honey Roasted",
             },
             {
               type: "string",
-              key: "description",
+              key: "card_description",
               displayer: "Description",
               value: "BY GINO D'ACAMPO",
             },
             {
               type: "array",
-              key: "buttons",
+              key: "card_buttons",
               displayer: "Buttons",
               value: [
                 INPUTS.BUTTON("button", "Button", "MAIN COURSE", "", "MdNavigateNext", null, "Link"),
@@ -135,25 +135,25 @@ class List1 extends BaseList {
             },
             {
               type: "string",
-              key: "subtitle",
+              key: "card_subtitle",
               displayer: "Subtitle",
               value: "",
             },
             {
               type: "string",
-              key: "title",
+              key: "card_title",
               displayer: "Title",
               value: "Chicken Reshmi Kabab",
             },
             {
               type: "string",
-              key: "description",
+              key: "card_description",
               displayer: "Description",
               value: "BY ADDISON",
             },
             {
               type: "array",
-              key: "buttons",
+              key: "card_buttons",
               displayer: "Buttons",
               value: [
                 INPUTS.BUTTON("button", "Button", "MAIN COURSE", "", "MdNavigateNext", null, "Link"),
@@ -186,25 +186,25 @@ class List1 extends BaseList {
             },
             {
               type: "string",
-              key: "subtitle",
+              key: "card_subtitle",
               displayer: "Subtitle",
               value: "",
             },
             {
               type: "string",
-              key: "title",
+              key: "card_title",
               displayer: "Title",
               value: "Sesame Honey Roasted",
             },
             {
               type: "string",
-              key: "description",
+              key: "card_description",
               displayer: "Description",
               value: "BY GINO D'ACAMPO",
             },
             {
               type: "array",
-              key: "buttons",
+              key: "card_buttons",
               displayer: "Buttons",
               value: [
                 INPUTS.BUTTON("button", "Button", "MAIN COURSE", "", "MdNavigateNext", null, "Link"),
@@ -237,25 +237,25 @@ class List1 extends BaseList {
             },
             {
               type: "string",
-              key: "subtitle",
+              key: "card_subtitle",
               displayer: "Subtitle",
               value: "",
             },
             {
               type: "string",
-              key: "title",
+              key: "card_title",
               displayer: "Title",
               value: "Haak-Kashmiri Spinach",
             },
             {
               type: "string",
-              key: "description",
+              key: "card_description",
               displayer: "Description",
               value: "BY CHARLES",
             },
             {
               type: "array",
-              key: "buttons",
+              key: "card_buttons",
               displayer: "Buttons",
               value: [
                 INPUTS.BUTTON("button", "Button", "MAIN COURSE", "", "MdNavigateNext", null, "Link"),
@@ -288,25 +288,25 @@ class List1 extends BaseList {
             },
             {
               type: "string",
-              key: "subtitle",
+              key: "card_subtitle",
               displayer: "Subtitle",
               value: "",
             },
             {
               type: "string",
-              key: "title",
+              key: "card_title",
               displayer: "Title",
               value: "Sesame Honey Roasted",
             },
             {
               type: "string",
-              key: "description",
+              key: "card_description",
               displayer: "Description",
               value: "BY GINO D'ACAMPO",
             },
             {
               type: "array",
-              key: "buttons",
+              key: "card_buttons",
               displayer: "Buttons",
               value: [
                 INPUTS.BUTTON("button", "Button", "MAIN COURSE", "", "MdNavigateNext", null, "Link"),
@@ -339,25 +339,25 @@ class List1 extends BaseList {
             },
             {
               type: "string",
-              key: "subtitle",
+              key: "card_subtitle",
               displayer: "Subtitle",
               value: "",
             },
             {
               type: "string",
-              key: "title",
+              key: "card_title",
               displayer: "Title",
               value: "Chicken Reshmi Kabab",
             },
             {
               type: "string",
-              key: "description",
+              key: "card_description",
               displayer: "Description",
               value: "BY ADDISON",
             },
             {
               type: "array",
-              key: "buttons",
+              key: "card_buttons",
               displayer: "Buttons",
               value: [
                 INPUTS.BUTTON("button", "Button", "MAIN COURSE", "", "MdNavigateNext", null, "Link"),
@@ -493,10 +493,10 @@ class List1 extends BaseList {
                 className={`${this.decorateCSS("carousel")} ${backgroundColor ? (userSettings.dots ? this.decorateCSS("has-bg-with-dots") : this.decorateCSS("has-bg-no-dots")) : ""}`}
               >
                 {sliderItems.map((item: Card, indexSlider: number) => {
-                  const itemTitleExist = this.castToString(item.title);
-                  const itemSubtitleExist = this.castToString(item.subtitle);
-                  const itemDescExist = this.castToString(item.description);
-                  const buttons = item.buttons || [];
+                  const itemTitleExist = this.castToString(item.card_title);
+                  const itemSubtitleExist = this.castToString(item.card_subtitle);
+                  const itemDescExist = this.castToString(item.card_description);
+                  const buttons = item.card_buttons || [];
                   const isIcon = !!item.image && (item.image as TypeMediaInputValue).type === "icon";
                   const cardExist =
                     itemTitleExist ||
@@ -535,17 +535,17 @@ class List1 extends BaseList {
                           <Base.VerticalContent className={this.decorateCSS("card-header")}>
                             {itemSubtitleExist && (
                               <Base.H6 className={this.decorateCSS("card-subtitle")}>
-                                {item.subtitle}
+                                {item.card_subtitle}
                               </Base.H6>
                             )}
                             {itemTitleExist && (
                               <Base.H5 className={this.decorateCSS("card-title")}>
-                                {item.title}
+                                {item.card_title}
                               </Base.H5>
                             )}
                             {itemDescExist && (
                               <Base.P className={this.decorateCSS("card-description")}>
-                                {item.description}
+                                {item.card_description}
                               </Base.P>
                             )}
                           </Base.VerticalContent>

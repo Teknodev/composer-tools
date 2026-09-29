@@ -204,7 +204,7 @@ class Location2 extends Location {
       value: [
         {
           type: "object",
-          key: "content",
+          key: "middle_content_content",
           displayer: "Feature Elements",
           value: [
             {
@@ -249,7 +249,7 @@ class Location2 extends Location {
         },
         {
           type: "object",
-          key: "content",
+          key: "middle_content_content",
           displayer: "Feature Elements",
           value: [
             {
@@ -307,7 +307,7 @@ class Location2 extends Location {
         },
         {
           type: "object",
-          key: "content",
+          key: "middle_content_content",
           displayer: "Feature Elements",
           value: [
             {
@@ -365,7 +365,7 @@ class Location2 extends Location {
         },
         {
           type: "object",
-          key: "content",
+          key: "middle_content_content",
           displayer: "Feature Elements",
           value: [
             {

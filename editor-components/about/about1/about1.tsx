@@ -6,10 +6,10 @@ import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 import { Base, TypeButton } from "../../../composer-base-components/base/base";
 
 type ListItem = {
-  subtitle: string;
-  title: string;
-  description: string;
-  buttons: ButtonType[];
+  item_subtitle: string;
+  item_title: string;
+  item_description: string;
+  item_buttons: ButtonType[];
 }
 type Icon = {
   icon: TypeMediaInputValue;
@@ -96,26 +96,26 @@ class About1 extends BaseAbout {
           value: [
             {
               type: "string",
-              key: "subtitle",
+              key: "item_subtitle",
               displayer: "Subtitle",
               value: "",
             },
             {
               type: "string",
-              key: "title",
+              key: "item_title",
               displayer: "Title",
               value: "b.1991, LA, America",
             },
             {
               type: "string",
               displayer: "Description",
-              key: "description",
+              key: "item_description",
               value:
                 "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Similique nulla, tenetur necessitatibus asperiores voluptatum hic animi natus nisi quaerat cumque tempora laudantium ad voluptas dolorem neque repellendus totam aperiam alias! Similique nulla, tenetur necessitatibus asperiores voluptatum, Lorem ipsum, dolor sit amet consectetur adipisicing elit. Similique nulla, tenetur necessitatibus asperiores voluptatum hic animi natus nisi quaerat cumque tempora laudantium ad voluptas dolorem neque repellendus totam aperiam alias! Similique nulla, tenetur necessitatibus asperiores voluptatum",
             },
             {
               type: "array",
-              key: "buttons",
+              key: "item_buttons",
               displayer: "Buttons",
               value: [
                 INPUTS.BUTTON("button", "Button", "", "", "", "", "Primary"),
@@ -130,26 +130,26 @@ class About1 extends BaseAbout {
           value: [
             {
               type: "string",
-              key: "subtitle",
+              key: "item_subtitle",
               displayer: "Subtitle",
               value: "",
             },
             {
               type: "string",
-              key: "title",
+              key: "item_title",
               displayer: "Title",
               value: "Education",
             },
             {
               type: "string",
               displayer: "Description",
-              key: "description",
+              key: "item_description",
               value:
                 "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Obcaecati quibusdam similique expedita, unde tempore necessitatibus possimus maiores corrupti nostrum. Sed quos culpa vero labore magnam, impedit asperiores ullam inventore quidem?",
             },
             {
               type: "array",
-              key: "buttons",
+              key: "item_buttons",
               displayer: "Buttons",
               value: [
                 INPUTS.BUTTON("button", "Button", "", "", "", "", "Primary"),
@@ -164,26 +164,26 @@ class About1 extends BaseAbout {
           value: [
             {
               type: "string",
-              key: "subtitle",
+              key: "item_subtitle",
               displayer: "Subtitle",
               value: "",
             },
             {
               type: "string",
-              key: "title",
+              key: "item_title",
               displayer: "Title",
               value: "Exhibitions - Workshop",
             },
             {
               type: "string",
               displayer: "Description",
-              key: "description",
+              key: "item_description",
               value:
                 "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Obcaecati quibusdam similique expedita, unde tempore necessitatibus possimus maiores corrupti nostrum. Sed quos culpa vero labore magnam, impedit asperiores ullam inventore quidem? Lorem ipsum dolor sit, amet consectetur adipisicing elit. Obcaecati quibusdam similique expedita, unde tempore necessitatibus possimus maiores corrupti nostrum. Sed quos culpa vero labore magnam, impedit asperiores ullam inventore quidem?",
             },
             {
               type: "array",
-              key: "buttons",
+              key: "item_buttons",
               displayer: "Buttons",
               value: [
                 INPUTS.BUTTON("button", "Button", "", "", "", "", "Primary"),
@@ -200,7 +200,7 @@ class About1 extends BaseAbout {
       value: [
         {
           type: "object",
-          key: "item",
+          key: "right_items_item",
           displayer: "Item",
           value: [
             {
@@ -225,7 +225,7 @@ class About1 extends BaseAbout {
         },
         {
           type: "object",
-          key: "item",
+          key: "right_items_item",
           displayer: "Item",
           value: [
             {
@@ -250,7 +250,7 @@ class About1 extends BaseAbout {
         },
         {
           type: "object",
-          key: "item",
+          key: "right_items_item",
           displayer: "Item",
           value: [
             {
@@ -275,7 +275,7 @@ class About1 extends BaseAbout {
         },
         {
           type: "object",
-          key: "item",
+          key: "right_items_item",
           displayer: "Item",
           value: [
             {
@@ -328,7 +328,7 @@ class About1 extends BaseAbout {
     const rightItems = this.castToObject<Icon[]>("right-items");
     const textContent = this.castToObject<ListItem[]>("items");
     const hasTextContent = textContent.some(
-      (item) => this.castToString(item.subtitle) || this.castToString(item.title) || this.castToString(item.description) || (item.buttons && item.buttons.length > 0)
+      (item) => this.castToString(item.item_subtitle) || this.castToString(item.item_title) || this.castToString(item.item_description) || (item.item_buttons && item.item_buttons.length > 0)
     );
 
     return (
@@ -401,24 +401,24 @@ class About1 extends BaseAbout {
             {hasTextContent && (
               <Base.GridCell className={this.decorateCSS("content-right")}>
                 {textContent.map((item, index) => {
-                  const itemButtons = item.buttons || [];
+                  const itemButtons = item.item_buttons || [];
                   const hasItemButtons = itemButtons?.some((btn) => this.castToString(btn.text) || btn.image?.url || btn.icon?.name);
 
                   return (
                     <Base.VerticalContent key={index} className={this.decorateCSS("item")}>
-                      {this.castToString(item.subtitle) && (
+                      {this.castToString(item.item_subtitle) && (
                         <Base.H6 className={this.decorateCSS("item-subtitle")}>
-                          {item.subtitle}
+                          {item.item_subtitle}
                         </Base.H6>
                       )}
-                      {this.castToString(item.title) && (
+                      {this.castToString(item.item_title) && (
                         <Base.H5 className={this.decorateCSS("title")}>
-                          {item.title}
+                          {item.item_title}
                         </Base.H5>
                       )}
-                      {this.castToString(item.description) && (
+                      {this.castToString(item.item_description) && (
                         <Base.P className={this.decorateCSS("item-description")}>
-                          {item.description}
+                          {item.item_description}
                         </Base.P>
                       )}
                       {hasItemButtons && (

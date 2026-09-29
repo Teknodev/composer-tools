@@ -13,7 +13,7 @@ type Item = {
   cardIndex: React.JSX.Element;
   question: React.JSX.Element;
   answer: React.JSX.Element;
-  buttons: INPUTS.CastedButton[];
+  item_buttons: INPUTS.CastedButton[];
 }
 
 class Faq5 extends BaseFAQ {
@@ -123,7 +123,7 @@ class Faq5 extends BaseFAQ {
                     },
                     {
                       type: "array",
-                      key: "buttons",
+                      key: "item_buttons",
                       displayer: "Buttons",
                       value: [
                         INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
@@ -157,7 +157,7 @@ class Faq5 extends BaseFAQ {
                     },
                     {
                       type: "array",
-                      key: "buttons",
+                      key: "item_buttons",
                       displayer: "Buttons",
                       value: [
                         INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
@@ -191,7 +191,7 @@ class Faq5 extends BaseFAQ {
                     },
                     {
                       type: "array",
-                      key: "buttons",
+                      key: "item_buttons",
                       displayer: "Buttons",
                       value: [
                         INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
@@ -225,7 +225,7 @@ class Faq5 extends BaseFAQ {
                     },
                     {
                       type: "array",
-                      key: "buttons",
+                      key: "item_buttons",
                       displayer: "Buttons",
                       value: [
                         INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
@@ -279,7 +279,7 @@ class Faq5 extends BaseFAQ {
                     },
                     {
                       type: "array",
-                      key: "buttons",
+                      key: "item_buttons",
                       displayer: "Buttons",
                       value: [
                         INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
@@ -313,7 +313,7 @@ class Faq5 extends BaseFAQ {
                     },
                     {
                       type: "array",
-                      key: "buttons",
+                      key: "item_buttons",
                       displayer: "Buttons",
                       value: [
                         INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
@@ -347,7 +347,7 @@ class Faq5 extends BaseFAQ {
                     },
                     {
                       type: "array",
-                      key: "buttons",
+                      key: "item_buttons",
                       displayer: "Buttons",
                       value: [
                         INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
@@ -401,7 +401,7 @@ class Faq5 extends BaseFAQ {
                     },
                     {
                       type: "array",
-                      key: "buttons",
+                      key: "item_buttons",
                       displayer: "Buttons",
                       value: [
                         INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
@@ -435,7 +435,7 @@ class Faq5 extends BaseFAQ {
                     },
                     {
                       type: "array",
-                      key: "buttons",
+                      key: "item_buttons",
                       displayer: "Buttons",
                       value: [
                         INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
@@ -469,7 +469,7 @@ class Faq5 extends BaseFAQ {
                     },
                     {
                       type: "array",
-                      key: "buttons",
+                      key: "item_buttons",
                       displayer: "Buttons",
                       value: [
                         INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
@@ -503,7 +503,7 @@ class Faq5 extends BaseFAQ {
                     },
                     {
                       type: "array",
-                      key: "buttons",
+                      key: "item_buttons",
                       displayer: "Buttons",
                       value: [
                         INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
@@ -537,7 +537,7 @@ class Faq5 extends BaseFAQ {
                     },
                     {
                       type: "array",
-                      key: "buttons",
+                      key: "item_buttons",
                       displayer: "Buttons",
                       value: [
                         INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
@@ -591,7 +591,7 @@ class Faq5 extends BaseFAQ {
                     },
                     {
                       type: "array",
-                      key: "buttons",
+                      key: "item_buttons",
                       displayer: "Buttons",
                       value: [
                         INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
@@ -625,7 +625,7 @@ class Faq5 extends BaseFAQ {
                     },
                     {
                       type: "array",
-                      key: "buttons",
+                      key: "item_buttons",
                       displayer: "Buttons",
                       value: [
                         INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
@@ -713,7 +713,7 @@ class Faq5 extends BaseFAQ {
                 <div className={this.decorateCSS("bottom-wrapper")}>
                   {cards[this.getComponentState("activeSection")].items.map((item: Item, index: number) => {
                     const hasAnswer = !!this.castToString(item.answer);
-                    const hasButtons = item.buttons && item.buttons.some((button: INPUTS.CastedButton) => !!this.castToString(button.text));
+                    const hasButtons = item.item_buttons && item.item_buttons.some((button: INPUTS.CastedButton) => !!this.castToString(button.text));
 
                     return (
                       <div className={this.decorateCSS("card")} onClick={() => this.handleCard(index)}>
@@ -752,7 +752,7 @@ class Faq5 extends BaseFAQ {
                             )}
                             {hasButtons && (
                               <div className={this.decorateCSS("buttons-wrapper")}>
-                                {item.buttons.map((button: INPUTS.CastedButton) =>
+                                {item.item_buttons.map((button: INPUTS.CastedButton) =>
                                   this.castToString(button.text) && (
                                     <ComposerLink path={button.url}>
                                       <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>

@@ -8,7 +8,7 @@ import ComposerLink from "../../../composer-base-components/Link/ComposerLinkPro
 
 type SlideItems = {
     media: TypeMediaInputValue;
-    description: React.JSX.Element
+    Slider_Item_description: React.JSX.Element
     socialIcons: SocialIcon[]
     overlay: boolean;
 }
@@ -78,7 +78,7 @@ class Social2 extends BaseSocial {
                             },
                             {
                                 type: "string",
-                                key: "description",
+                                key: "Slider_Item_description",
                                 displayer: "Description",
                                 value: "🍀Acne safe skincare routine with CHANDO Himalaya Toner - Himalayan Essence Toner Essence - Rejuvenation Repairing Essence Cream - Time Frozen Aging Resistance Activating Essence Cream"
                             },
@@ -217,7 +217,7 @@ class Social2 extends BaseSocial {
                             },
                             {
                                 type: "string",
-                                key: "description",
+                                key: "Slider_Item_description",
                                 displayer: "Description",
                                 value: ""
                             },
@@ -356,7 +356,7 @@ class Social2 extends BaseSocial {
                             },
                             {
                                 type: "string",
-                                key: "description",
+                                key: "Slider_Item_description",
                                 displayer: "Description",
                                 value: "Skincare Over 40: Achieve Porcelain Skin with This 3-Step Routine ft. Chando Himalaya! Want flawless, porcelain-like skin like the girls on Douyin? While we can’t be them, we can definitely get our skin looking and feeling just as smooth! Thanks to Chando Himalaya and its star ingredient HiMurchaSin, glowing skin is as easy as 1, 2, 3! @chandohimalaya_official #SkincareOver40 #PorcelainSkin #DouyinBeauty #ChandoHimalaya #GlassSkinGoals #AntiAgingRoutine #FlawlessSkin Comment SHOP below to receive a DM with the link to shop this post on my LTK ⬇ https://liketk.it/4UMpx #ltkbeauty #ltkstyletip #ltkover40"
                             },
@@ -495,7 +495,7 @@ class Social2 extends BaseSocial {
                             },
                             {
                                 type: "string",
-                                key: "description",
+                                key: "Slider_Item_description",
                                 displayer: "Description",
                                 value: "One drop to zap that fatigue from your skin! Try CHANDO's Himalaya 3-step routine and let Himalayan yeast transform you from saggy to sassy! 🍃#chandohimalaya #FindYourBeauty #fallskincare #HiMurchaSin"
                             },
@@ -634,7 +634,7 @@ class Social2 extends BaseSocial {
                             },
                             {
                                 type: "string",
-                                key: "description",
+                                key: "Slider_Item_description",
                                 displayer: "Description",
                                 value: "Just tried the CHANDO Himalaya Green Tea Purifying Mask! 🧖‍♀️ It's so relaxing, even your hubby is considering a spa day. Who knew green tea could be this persuasive? #chandohimalaya #FindYourBeauty #fallskincare"
                             },
@@ -773,7 +773,7 @@ class Social2 extends BaseSocial {
                             },
                             {
                                 type: "string",
-                                key: "description",
+                                key: "Slider_Item_description",
                                 displayer: "Description",
                                 value: ""
                             },
@@ -1143,10 +1143,10 @@ class Social2 extends BaseSocial {
                                     {sliderItems[selectedIndex].media?.url && (
                                         <Base.Media value={sliderItems[selectedIndex].media} className={this.decorateCSS("selected-video")} />
                                     )}
-                                    {this.castToString(sliderItems[selectedIndex].description) && (
+                                    {this.castToString(sliderItems[selectedIndex].Slider_Item_description) && (
                                         <div className={this.decorateCSS("video-text-container")}>
                                             <Base.P className={this.decorateCSS("video-text")}>
-                                                {sliderItems[selectedIndex].description}
+                                                {sliderItems[selectedIndex].Slider_Item_description}
                                             </Base.P>
                                         </div>
                                     )}

@@ -11,11 +11,11 @@ import { INPUTS } from "../../../custom-hooks/input-templates";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 
 type Card = {
-  title: Element;
+  card_title: Element;
   overlayTitle: Element;
-  subtitle: Element;
-  description: Element;
-  buttons: PrimaryButton[];
+  card_subtitle: Element;
+  card_description: Element;
+  card_buttons: PrimaryButton[];
   media: TypeMediaInputValue;
   overlay: boolean;
 };
@@ -82,13 +82,13 @@ class Feature43 extends BaseFeature {
             },
             {
               type: "string",
-              key: "subtitle",
+              key: "card_subtitle",
               displayer: "Subtitle",
               value: "",
             },
             {
               type: "string",
-              key: "title",
+              key: "card_title",
               displayer: "Title",
               value: "12 Years of",
             },
@@ -100,13 +100,13 @@ class Feature43 extends BaseFeature {
             },
             {
               type: "string",
-              key: "description",
+              key: "card_description",
               displayer: "Description",
               value: "",
             },
             {
               type: "array",
-              key: "buttons",
+              key: "card_buttons",
               displayer: "Buttons",
               value: [
                 INPUTS.BUTTON(
@@ -147,13 +147,13 @@ class Feature43 extends BaseFeature {
             },
             {
               type: "string",
-              key: "subtitle",
+              key: "card_subtitle",
               displayer: "Subtitle",
               value: "",
             },
             {
               type: "string",
-              key: "title",
+              key: "card_title",
               displayer: "Title",
               value: "Professional",
             },
@@ -165,13 +165,13 @@ class Feature43 extends BaseFeature {
             },
             {
               type: "string",
-              key: "description",
+              key: "card_description",
               displayer: "Description",
               value: "",
             },
             {
               type: "array",
-              key: "buttons",
+              key: "card_buttons",
               displayer: "Buttons",
               value: [
                 INPUTS.BUTTON(
@@ -212,13 +212,13 @@ class Feature43 extends BaseFeature {
             },
             {
               type: "string",
-              key: "subtitle",
+              key: "card_subtitle",
               displayer: "Subtitle",
               value: "",
             },
             {
               type: "string",
-              key: "title",
+              key: "card_title",
               displayer: "Title",
               value: "High Visual",
             },
@@ -230,13 +230,13 @@ class Feature43 extends BaseFeature {
             },
             {
               type: "string",
-              key: "description",
+              key: "card_description",
               displayer: "Description",
               value: "",
             },
             {
               type: "array",
-              key: "buttons",
+              key: "card_buttons",
               displayer: "Buttons",
               value: [
                 INPUTS.BUTTON(
@@ -347,21 +347,21 @@ class Feature43 extends BaseFeature {
                   <Base.VerticalContent
                     className={this.decorateCSS("card-header")}
                   >
-                    {this.castToString(card.subtitle) && (
+                    {this.castToString(card.card_subtitle) && (
                       <Base.H6 className={this.decorateCSS("card-subtitle")}>
-                        {card.subtitle}
+                        {card.card_subtitle}
                       </Base.H6>
                     )}
-                    {this.castToString(card.title) && (
+                    {this.castToString(card.card_title) && (
                       <Base.H3 className={this.decorateCSS("card-title")}>
-                        {card.title}
+                        {card.card_title}
                       </Base.H3>
                     )}
                   </Base.VerticalContent>
 
                   <div className={this.decorateCSS("media-wrapper")}>
                     {(this.castToString(card.overlayTitle) ||
-                      this.castToString(card.description)) && (
+                      this.castToString(card.card_description)) && (
                       <Base.VerticalContent
                         className={`${this.decorateCSS("media-text-wrapper")} ${isCardHasMedia(card) ? this.decorateCSS("with-image") : ""}`}
                       >
@@ -372,20 +372,20 @@ class Feature43 extends BaseFeature {
                             {card.overlayTitle}
                           </Base.H3>
                         )}
-                        {this.castToString(card.description) && (
+                        {this.castToString(card.card_description) && (
                           <Base.P
                             className={this.decorateCSS(
                               "card-overlay-description",
                             )}
                           >
-                            {card.description}
+                            {card.card_description}
                           </Base.P>
                         )}
-                        {isCardButtonsExist(card.buttons) && (
+                        {isCardButtonsExist(card.card_buttons) && (
                           <Base.Row
                             className={this.decorateCSS("card-buttons-wrapper")}
                           >
-                            {card.buttons.map((button, index) => {
+                            {card.card_buttons.map((button, index) => {
                               const buttonText = this.castToString(button.text);
                               const buttonExist = buttonText || button.icon;
                               return (

@@ -12,8 +12,8 @@ type ButtonTypeObj = {
 }
 
 type Card = {
-    title: React.JSX.Element;
-    description: React.JSX.Element;
+    card_title: React.JSX.Element;
+    card_description: React.JSX.Element;
     button: ButtonTypeObj;
 };
 
@@ -54,13 +54,13 @@ class Feature35 extends BaseFeature {
                     value: [
                         {
                             type: "string",
-                            key: "title",
+                            key: "card_title",
                             displayer: "Title",
                             value: "Modern Design",
                         },
                         {
                             type: "string",
-                            key: "description",
+                            key: "card_description",
                             displayer: "Description",
                             value: "Imagination is more important than knowledge. Knowledge is limited. Imagination encircles the world.",
                         },
@@ -74,13 +74,13 @@ class Feature35 extends BaseFeature {
                     value: [
                         {
                             type: "string",
-                            key: "title",
+                            key: "card_title",
                             displayer: "Title",
                             value: "High Quality",
                         },
                         {
                             type: "string",
-                            key: "description",
+                            key: "card_description",
                             displayer: "Description",
                             value: "Imagination is more important than knowledge. Knowledge is limited. Imagination encircles the world.",
                         },
@@ -94,13 +94,13 @@ class Feature35 extends BaseFeature {
                     value: [
                         {
                             type: "string",
-                            key: "title",
+                            key: "card_title",
                             displayer: "Title",
                             value: "Free Test-Drive",
                         },
                         {
                             type: "string",
-                            key: "description",
+                            key: "card_description",
                             displayer: "Description",
                             value: "Imagination is more important than knowledge. Knowledge is limited. Imagination encircles the world.",
                         },
@@ -153,14 +153,14 @@ class Feature35 extends BaseFeature {
                             {cards?.length > 0 && (
                                 <Base.ListGrid ref={this.cardsRootRef} gridCount={{ pc: this.getPropValue("itemCount") || 3, tablet: 2 }} className={this.decorateCSS("cards-container")}>
                                     {cards.map((card: Card) => {
-                                        const titleExist = this.castToString(card.title);
-                                        const descExist = this.castToString(card.description);
+                                        const titleExist = this.castToString(card.card_title);
+                                        const descExist = this.castToString(card.card_description);
                                         const btnTextExist = this.castToString(card.button.text);
                                         const cardExist = titleExist || descExist || btnTextExist;
                                         return cardExist && (
                                             <Base.Card className={this.decorateCSS("card")}>
-                                                {titleExist && (<Base.H3 className={this.decorateCSS("card-title")}>{card.title}</Base.H3>)}
-                                                {descExist && (<Base.P className={this.decorateCSS("card-description")}>{card.description}</Base.P>)}
+                                                {titleExist && (<Base.H3 className={this.decorateCSS("card-title")}>{card.card_title}</Base.H3>)}
+                                                {descExist && (<Base.P className={this.decorateCSS("card-description")}>{card.card_description}</Base.P>)}
                                                 {btnTextExist && (<ComposerLink path={card.button.url}><Base.Button buttonType={card.button.type} className={this.decorateCSS("card-button")} ><Base.P className={this.decorateCSS("button-text")}> {card.button.text} </Base.P></Base.Button></ComposerLink>)}
                                             </Base.Card>
                                         );

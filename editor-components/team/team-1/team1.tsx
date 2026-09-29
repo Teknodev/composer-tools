@@ -14,7 +14,7 @@ type Card = {
   image: TypeMediaInputValue;
   name: string;
   position: string;
-  description: string;
+  item_description: string;
   platforms: { icon: string; url: string }[];
 };
 
@@ -155,7 +155,7 @@ class Team1 extends Team {
             },
             {
               type: "string",
-              key: "description",
+              key: "item_description",
               displayer: "Description",
               value: "We are a group of experienced professionals with diverse backgrounds and skill sets, working together to achieve common goals.",
             },
@@ -198,7 +198,7 @@ class Team1 extends Team {
             },
             {
               type: "string",
-              key: "description",
+              key: "item_description",
               displayer: "Description",
               value: "Their design skills are truly exceptional, and they have a keen eye for aesthetics that sets them apart from others in the field.",
             },
@@ -241,7 +241,7 @@ class Team1 extends Team {
             },
             {
               type: "string",
-              key: "description",
+              key: "item_description",
               displayer: "Description",
               value: "An online learning platform can provide access to educational content from anywhere with an internet connection.",
             },

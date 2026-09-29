@@ -10,8 +10,8 @@ type Faq = {
 };
 
 type Stat = {
-  title: React.JSX.Element;
-  content: React.JSX.Element;
+  statItem_title: React.JSX.Element;
+  statItem_content: React.JSX.Element;
   stat: React.JSX.Element;
 };
 
@@ -111,13 +111,13 @@ class Stats4Page extends BaseStats {
           value: [
             {
               type: "string",
-              key: "title",
+              key: "statItem_title",
               displayer: "Title",
               value: "Days of experience.",
             },
             {
               type: "string",
-              key: "content",
+              key: "statItem_content",
               displayer: "Content",
               value: "We have crafted beautiful and engaging web solutions.",
             },
@@ -136,13 +136,13 @@ class Stats4Page extends BaseStats {
           value: [
             {
               type: "string",
-              key: "title",
+              key: "statItem_title",
               displayer: "Title",
               value: "Valuable happy clients.",
             },
             {
               type: "string",
-              key: "content",
+              key: "statItem_content",
               displayer: "Content",
               value: "We have crafted beautiful and engaging web solutions.",
             },
@@ -161,13 +161,13 @@ class Stats4Page extends BaseStats {
           value: [
             {
               type: "string",
-              key: "title",
+              key: "statItem_title",
               displayer: "Title",
               value: "Presence in countries.",
             },
             {
               type: "string",
-              key: "content",
+              key: "statItem_content",
               displayer: "Content",
               value: "We have crafted beautiful and engaging web solutions.",
             },
@@ -186,13 +186,13 @@ class Stats4Page extends BaseStats {
           value: [
             {
               type: "string",
-              key: "title",
+              key: "statItem_title",
               displayer: "Title",
               value: "Worldwide projects.",
             },
             {
               type: "string",
-              key: "content",
+              key: "statItem_content",
               displayer: "Content",
               value: "We have crafted beautiful and engaging web solutions.",
             },
@@ -419,8 +419,8 @@ class Stats4Page extends BaseStats {
             {statItems?.length > 0 && (
               <Base.ListGrid gridCount={{ pc: itemCount, tablet: 2, phone: 1 }} className={this.decorateCSS("stats")}>
                 {statItems.map((item: Stat, index: number) => {
-                  const titleExist = this.castToString(item.title);
-                  const contentExist = this.castToString(item.content);
+                  const titleExist = this.castToString(item.statItem_title);
+                  const contentExist = this.castToString(item.statItem_content);
 
                   const statValue = item.stat === this.getComponentState(`number-${index}`) ? item.stat : this.getComponentState(`number-${index}`);
 
@@ -431,8 +431,8 @@ class Stats4Page extends BaseStats {
                           {(titleExist || contentExist) && (
                             <>
                               <div className={this.decorateCSS("stat-item-body")}>
-                                {titleExist && <Base.P className={this.decorateCSS("stat-item-title")}>{item.title}</Base.P>}
-                                {contentExist && <Base.P className={this.decorateCSS("stat-item-content")}>{item.content}</Base.P>}
+                                {titleExist && <Base.P className={this.decorateCSS("stat-item-title")}>{item.statItem_title}</Base.P>}
+                                {contentExist && <Base.P className={this.decorateCSS("stat-item-content")}>{item.statItem_content}</Base.P>}
                               </div>
                               <div className={this.decorateCSS("stat-line")} />
                             </>

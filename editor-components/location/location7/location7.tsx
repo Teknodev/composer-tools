@@ -133,7 +133,7 @@ class Location7 extends Location {
             {
               type: "array",
               displayer: "Description",
-              key: "description",
+              key: "marker_description",
               value: [
                 {
                   type: "string",
@@ -183,7 +183,7 @@ class Location7 extends Location {
             {
               type: "array",
               displayer: "Description",
-              key: "description",
+              key: "marker_description",
               value: [
                 {
                   type: "string",
@@ -234,7 +234,7 @@ class Location7 extends Location {
             {
               type: "array",
               displayer: "Description",
-              key: "description",
+              key: "marker_description",
               value: [
                 {
                   type: "string",
@@ -284,7 +284,7 @@ class Location7 extends Location {
             {
               type: "array",
               displayer: "Description",
-              key: "description",
+              key: "marker_description",
               value: [
                 {
                   type: "string",
@@ -334,7 +334,7 @@ class Location7 extends Location {
             {
               type: "array",
               displayer: "Description",
-              key: "description",
+              key: "marker_description",
               value: [
                 {
                   type: "string",
@@ -384,7 +384,7 @@ class Location7 extends Location {
             {
               type: "array",
               displayer: "Description",
-              key: "description",
+              key: "marker_description",
               value: [
                 {
                   type: "string",
@@ -463,7 +463,7 @@ class Location7 extends Location {
         const leftPercent = (markerProps.find((p: Marker) => p.key === "leftPercent")?.value || "") as string;
         const topPercent = (markerProps.find((p: Marker) => p.key === "topPercent")?.value || "") as string;
         const popupTitle = (markerProps.find((p: Marker) => p.key === "popupTitle")?.value || "") as string;
-        const descriptionProp = markerProps.find((p: Marker) => p.key === "description");
+        const descriptionProp = markerProps.find((p: Marker) => p.key === "marker_description");
         const descriptionVal = Array.isArray(descriptionProp?.value) ? descriptionProp.value : [];
         const description = descriptionVal.map((item: { value?: React.JSX.Element } | React.JSX.Element) => {
           return item && typeof item === "object" && "value" in item ? item.value : item;
