@@ -237,18 +237,24 @@
             align-items: center !important;
           }
 
-          .stats {
-            .stat-item {
-              align-items: center !important;
+        }
 
-              .stat-item-subtitle,
-              .stat-item-title,
-              .stat-item-content,
-              .stat-item-stat-value {
-                text-align: center !important;
-                margin-left: auto !important;
-                margin-right: auto !important;
-              }
+        // Like the original, stat items are always centered on mobile, whatever the alignment.
+        .stats {
+          .stat-item {
+            align-items: center !important;
+
+            .stat-item-subtitle,
+            .stat-item-title,
+            .stat-item-content,
+            .stat-item-stat-value {
+              text-align: center !important;
+              margin-left: auto !important;
+              margin-right: auto !important;
+            }
+
+            .stat-item-stat-value {
+              justify-content: center;
             }
           }
         }
