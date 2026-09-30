@@ -83,6 +83,39 @@ describe("video background on Base wrappers", () => {
     expect(el.dataset.videoBgPositioned).toBeUndefined();
   });
 
+  it("injects a video for a rule-based --bg-video-url and removes it when the variable is set to null", () => {
+    const styleEl = document.createElement("style");
+    styleEl.setAttribute("data-video-rule", "");
+    document.head.appendChild(styleEl);
+    setVideoRule(styleEl, VIDEO_URL);
+    const el = renderWrapper(Base.Card, { className: RULE_CLASS });
+
+    applyVideoBackgrounds(document);
+
+    const video = el.querySelector<HTMLVideoElement>(":scope > video[data-bg-video]");
+    expect(video).not.toBeNull();
+    expect(video!.getAttribute("src")).toBe(VIDEO_URL);
+
+    setVideoRule(styleEl, "null");
+    applyVideoBackgrounds(document);
+
+    expect(el.querySelector("video[data-bg-video]")).toBeNull();
+    expect(el.style.isolation).toBe("");
+    expect(el.dataset.videoBgIsolated).toBeUndefined();
+  });
+
+  it("injects no video for a rule that sets --bg-video-url to null", () => {
+    const styleEl = document.createElement("style");
+    styleEl.setAttribute("data-video-rule", "");
+    document.head.appendChild(styleEl);
+    setVideoRule(styleEl, "null");
+    const el = renderWrapper(Base.Card, { className: RULE_CLASS });
+
+    applyVideoBackgrounds(document);
+
+    expect(el.querySelector("video[data-bg-video]")).toBeNull();
+  });
+
   it.each(WRAPPERS)("%s renders the data-video-bg attribute on its root", (_name, Wrapper, props) => {
     const el = renderWrapper(Wrapper, props);
     expect(el.hasAttribute("data-video-bg")).toBe(true);
