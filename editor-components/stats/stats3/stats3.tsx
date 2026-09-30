@@ -216,7 +216,7 @@ class Stats3Page extends BaseStats {
                 )}
                 {isBoxVisible && cardContent.length > 0 && (
                   <div className={`${this.decorateCSS("card-container")} ${!imageExist ? this.decorateCSS("card-container-without-image") : ""}`}>
-                    <div className={this.decorateCSS("card")}>
+                    <Base.VerticalContent className={this.decorateCSS("card")}>
                       {this.castToObject<Stat[]>("stats").map((item: Stat, index: number) => {
                         const iconExist = mediaExists(item.icon);
                         const prefixExist = this.castToString(item.prefix);
@@ -249,7 +249,7 @@ class Stats3Page extends BaseStats {
                           </div>
                         );
                       })}
-                    </div>
+                    </Base.VerticalContent>
                   </div>
                 )}
               </Base.VerticalContent>
