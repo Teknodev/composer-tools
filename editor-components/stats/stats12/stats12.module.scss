@@ -74,7 +74,7 @@
       .top-row {
         display: flex;
         align-items: flex-start;
-        gap: var(--composer-gap-lg);
+        gap: var(--composer-gap-md);
         width: 100%;
       }
 
@@ -120,6 +120,7 @@
       .title {
         font-size: 1.5rem;
         font-weight: 600;
+        color: var(--composer-font-color-primary);
         margin: 0;
         line-height: 1.2;
         margin-right: auto ;
