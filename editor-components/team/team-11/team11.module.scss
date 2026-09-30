@@ -7,10 +7,24 @@
     gap: var(--composer-gap-md);
 
     .vertical-content {
+      align-items: center !important;
+      text-align: center !important;
+      margin-left: auto !important;
+      margin-right: auto !important;
+
+      .subtitle {
+        transform: none !important;
+        &::before {
+          display: none !important;
+        }
+      }
+
       .subtitle,
       .title,
       .description {
         content: "";
+        text-align: center !important;
+        justify-content: center !important;
       }
 
       .button-container {
