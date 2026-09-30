@@ -43,7 +43,7 @@ class Stats2Page extends BaseStats {
       type: "array",
       key: "buttons",
       displayer: "Buttons",
-      value: [INPUTS.BUTTON("button", "Button", "LET'S TALK NOW", "", null, null, "Primary")],
+      value: [INPUTS.BUTTON("button", "Button", "LET'S TALK NOW", "", "FaRegEnvelope", null, "Primary")],
     });
 
     this.addProp({
@@ -61,11 +61,11 @@ class Stats2Page extends BaseStats {
               key: "icon",
               displayer: "Icon",
               additionalParams: { availableTypes: ["image", "icon"] },
-              value: { type: "icon", name: "IoMdArrowUp" },
+              value: { type: "icon", name: "FiArrowUp" },
             },
             { type: "string", key: "prefix", displayer: "Prefix", value: "" },
             { type: "string", key: "value", displayer: "Value", value: "8500" },
-            { type: "string", key: "suffix", displayer: "Suffix", value: "" },
+            { type: "string", key: "suffix", displayer: "Suffix", value: "+" },
             { type: "string", key: "stat_subtitle", displayer: "Subtitle", value: "" },
             { type: "string", key: "stat_title", displayer: "Title", value: "" },
             { type: "string", key: "stat_description", displayer: "Description", value: "Users on marketplaces we've created in 2023." },
@@ -81,11 +81,11 @@ class Stats2Page extends BaseStats {
               key: "icon",
               displayer: "Icon",
               additionalParams: { availableTypes: ["image", "icon"] },
-              value: { type: "icon", name: "IoMdArrowUp" },
+              value: { type: "icon", name: "FiArrowUp" },
             },
             { type: "string", key: "prefix", displayer: "Prefix", value: "" },
             { type: "string", key: "value", displayer: "Value", value: "660" },
-            { type: "string", key: "suffix", displayer: "Suffix", value: "" },
+            { type: "string", key: "suffix", displayer: "Suffix", value: "+" },
             { type: "string", key: "stat_subtitle", displayer: "Subtitle", value: "" },
             { type: "string", key: "stat_title", displayer: "Title", value: "" },
             { type: "string", key: "stat_description", displayer: "Description", value: "Successfully finished projects with creativity." },
@@ -101,11 +101,11 @@ class Stats2Page extends BaseStats {
               key: "icon",
               displayer: "Icon",
               additionalParams: { availableTypes: ["image", "icon"] },
-              value: { type: "icon", name: "IoMdArrowUp" },
+              value: { type: "icon", name: "FiArrowUp" },
             },
             { type: "string", key: "prefix", displayer: "Prefix", value: "" },
             { type: "string", key: "value", displayer: "Value", value: "6834" },
-            { type: "string", key: "suffix", displayer: "Suffix", value: "" },
+            { type: "string", key: "suffix", displayer: "Suffix", value: "+" },
             { type: "string", key: "stat_subtitle", displayer: "Subtitle", value: "" },
             { type: "string", key: "stat_title", displayer: "Title", value: "" },
             { type: "string", key: "stat_description", displayer: "Description", value: "Monthly visitors on our e-Commerce platform." },
@@ -121,11 +121,11 @@ class Stats2Page extends BaseStats {
               key: "icon",
               displayer: "Icon",
               additionalParams: { availableTypes: ["image", "icon"] },
-              value: { type: "icon", name: "IoMdArrowUp" },
+              value: { type: "icon", name: "FiArrowUp" },
             },
             { type: "string", key: "prefix", displayer: "Prefix", value: "" },
             { type: "string", key: "value", displayer: "Value", value: "300" },
-            { type: "string", key: "suffix", displayer: "Suffix", value: "" },
+            { type: "string", key: "suffix", displayer: "Suffix", value: "%" },
             { type: "string", key: "stat_subtitle", displayer: "Subtitle", value: "" },
             { type: "string", key: "stat_title", displayer: "Title", value: "" },
             { type: "string", key: "stat_description", displayer: "Description", value: "Onboarding conversions growth increased." },
@@ -197,12 +197,12 @@ class Stats2Page extends BaseStats {
     const animationDuration = (settings?.animationDuration ?? 2000) as number;
     const itemCount = this.getPropValue("itemCount") ?? 2;
 
+    const mediaExists = (m?: TypeMediaInputValue | string) => (typeof m === "object" ? m?.name || m?.url : m);
+
     const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons") || [];
-    const visibleButtons = buttons.filter((btn) => this.castToString(btn.text) || btn.icon);
+    const visibleButtons = buttons.filter((btn) => this.castToString(btn.text) || mediaExists(btn.icon as unknown as TypeMediaInputValue));
 
     const totalRows = Math.ceil(cards.length / itemCount);
-
-    const mediaExists = (m?: TypeMediaInputValue | string) => (typeof m === "object" ? m?.name || m?.url : m);
 
     const AnimatedCard = ({ card, isFirstRow, isLastRow }: { card: Card; isFirstRow: boolean; isLastRow: boolean }) => {
       const ref = React.useRef<HTMLDivElement>(null);
@@ -302,10 +302,10 @@ class Stats2Page extends BaseStats {
           )}
           {hasAmountRow && (
             <div className={this.decorateCSS("card-amount-container")}>
+              {iconExist && <Base.Media value={typeof card.icon === "object" ? card.icon : { type: "icon", name: card.icon }} className={this.decorateCSS("suffix-icon")} />}
               {prefixExist && <div className={this.decorateCSS("card-prefix")}>{card.prefix}</div>}
               {!!display && <div className={this.decorateCSS("card-amount")}>{animatable ? display : card.value}</div>}
               {suffixExist && <div className={this.decorateCSS("card-suffix")}>{card.suffix}</div>}
-              {iconExist && <Base.Media value={typeof card.icon === "object" ? card.icon : { type: "icon", name: card.icon }} className={this.decorateCSS("suffix-icon")} />}
             </div>
           )}
         </div>
@@ -332,7 +332,8 @@ class Stats2Page extends BaseStats {
                     {visibleButtons.map((btn, index) => (
                       <ComposerLink key={index} path={btn.url}>
                         <Base.Button buttonType={btn.type} className={`${this.decorateCSS("contact-button")} ${cardLength <= 0 ? this.decorateCSS("button-full-width") : ""}`}>
-                          {btn.text}
+                          {this.castToString(btn.text) && <Base.P className={this.decorateCSS("button-text")}>{btn.text}</Base.P>}
+                          {mediaExists(btn.icon as unknown as TypeMediaInputValue) && <Base.Media value={btn.icon as unknown as TypeMediaInputValue} className={this.decorateCSS("button-icon")} />}
                         </Base.Button>
                       </ComposerLink>
                     ))}
