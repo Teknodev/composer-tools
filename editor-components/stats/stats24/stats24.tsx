@@ -69,9 +69,9 @@ class Stats24 extends BaseStats {
                         { type: "string", key: "prefix", displayer: "Prefix", value: "" },
                         { type: "string", key: "value", displayer: "Value", value: "25" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "+" },
-                        { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
-                        { type: "string", key: "title", displayer: "Title", value: "Experienced people on the team" },
-                        { type: "string", key: "description", displayer: "Description", value: "" },
+                        { type: "string", key: "stat_subtitle", displayer: "Subtitle", value: "" },
+                        { type: "string", key: "stat_title", displayer: "Title", value: "Experienced people on the team" },
+                        { type: "string", key: "stat_description", displayer: "Description", value: "" },
                     ],
                 },
                 {
@@ -83,9 +83,9 @@ class Stats24 extends BaseStats {
                         { type: "string", key: "prefix", displayer: "Prefix", value: "" },
                         { type: "string", key: "value", displayer: "Value", value: "14" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "" },
-                        { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
-                        { type: "string", key: "title", displayer: "Title", value: "Cities where employees work" },
-                        { type: "string", key: "description", displayer: "Description", value: "" },
+                        { type: "string", key: "stat_subtitle", displayer: "Subtitle", value: "" },
+                        { type: "string", key: "stat_title", displayer: "Title", value: "Cities where employees work" },
+                        { type: "string", key: "stat_description", displayer: "Description", value: "" },
                     ],
                 },
                 {
@@ -97,9 +97,9 @@ class Stats24 extends BaseStats {
                         { type: "string", key: "prefix", displayer: "Prefix", value: "" },
                         { type: "string", key: "value", displayer: "Value", value: "180" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "" },
-                        { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
-                        { type: "string", key: "title", displayer: "Title", value: "Days of product development" },
-                        { type: "string", key: "description", displayer: "Description", value: "" },
+                        { type: "string", key: "stat_subtitle", displayer: "Subtitle", value: "" },
+                        { type: "string", key: "stat_title", displayer: "Title", value: "Days of product development" },
+                        { type: "string", key: "stat_description", displayer: "Description", value: "" },
                     ],
                 },
                 {
@@ -111,9 +111,9 @@ class Stats24 extends BaseStats {
                         { type: "string", key: "prefix", displayer: "Prefix", value: "" },
                         { type: "string", key: "value", displayer: "Value", value: "" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "" },
-                        { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
-                        { type: "string", key: "title", displayer: "Title", value: "Infinite possibilities" },
-                        { type: "string", key: "description", displayer: "Description", value: "" },
+                        { type: "string", key: "stat_subtitle", displayer: "Subtitle", value: "" },
+                        { type: "string", key: "stat_title", displayer: "Title", value: "Infinite possibilities" },
+                        { type: "string", key: "stat_description", displayer: "Description", value: "" },
                     ],
                 },
             ],
@@ -299,7 +299,7 @@ class Stats24 extends BaseStats {
 
         const hasTopSection = subtitleExist || titleExist || descriptionExist || hasValidButtons;
 
-        const statsItems = this.castToObject<{ icon: any; prefix: JSX.Element; number: JSX.Element; suffix: JSX.Element; title: JSX.Element; subtitle: JSX.Element; description: JSX.Element }[]>("stats");
+        const statsItems = this.castToObject<{ icon: any; prefix: JSX.Element; value: JSX.Element; suffix: JSX.Element; stat_title: JSX.Element; stat_subtitle: JSX.Element; stat_description: JSX.Element }[]>("stats");
         const stats: StatItem[] = statsItems.map((item: any) => {
             const icon = item.icon;
 
@@ -313,11 +313,11 @@ class Stats24 extends BaseStats {
             const prefix = this.castToString(item.prefix) || "";
             const number = this.castToString(item.value) || "";
             const suffix = this.castToString(item.suffix) || "";
-            const title = this.castToString(item.title) || "";
-            const subtitle = this.castToString(item.subtitle) || "";
-            const description = this.castToString(item.description) || "";
+            const title = this.castToString(item.stat_title) || "";
+            const subtitle = this.castToString(item.stat_subtitle) || "";
+            const description = this.castToString(item.stat_description) || "";
 
-            return { icon: iconProp, prefix, numberElement: item.value, prefixElement: item.prefix, value: number, suffix, suffixElement: item.suffix, title, titleElement: item.title, subtitle, subtitleElement: item.subtitle, description, descriptionElement: item.description };
+            return { icon: iconProp, prefix, numberElement: item.value, prefixElement: item.prefix, value: number, suffix, suffixElement: item.suffix, title, titleElement: item.stat_title, subtitle, subtitleElement: item.stat_subtitle, description, descriptionElement: item.stat_description };
         });
 
         const hasStats = stats.length > 0;

@@ -20,7 +20,7 @@
             gap: var(--composer-gap-lg);
 
             .cards-content {
-                gap: 0;
+                gap: var(--composer-gap-md);
                 align-items: center;
                 width: 50%;
 

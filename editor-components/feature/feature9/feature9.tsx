@@ -7,7 +7,7 @@ import { INPUTS } from "../../../custom-hooks/input-templates";
 
 type Card = {
   icon: TypeMediaInputValue;
-  title: React.JSX.Element;
+  card_title: React.JSX.Element;
   description: React.JSX.Element;
   num: React.JSX.Element;
 };
@@ -64,7 +64,7 @@ class Feature9 extends BaseFeature {
             },
             {
               type: "string",
-              key: "title",
+              key: "card_title",
               displayer: "Title",
               value: "Discovery"
             },
@@ -101,7 +101,7 @@ class Feature9 extends BaseFeature {
             },
             {
               type: "string",
-              key: "title",
+              key: "card_title",
               displayer: "Title",
               value: "Foundation"
             },
@@ -138,7 +138,7 @@ class Feature9 extends BaseFeature {
             },
             {
               type: "string",
-              key: "title",
+              key: "card_title",
               displayer: "Title",
               value: "Prototyping"
             },
@@ -175,7 +175,7 @@ class Feature9 extends BaseFeature {
             },
             {
               type: "string",
-              key: "title",
+              key: "card_title",
               displayer: "Title",
               value: "Design"
             },
@@ -212,7 +212,7 @@ class Feature9 extends BaseFeature {
             },
             {
               type: "string",
-              key: "title",
+              key: "card_title",
               displayer: "Title",
               value: "Development"
             },
@@ -300,7 +300,7 @@ class Feature9 extends BaseFeature {
             {cards?.length > 0 &&
               <div className={this.decorateCSS("cards-container")}>
                 {cards.map((card: Card, index: number) => {
-                  const titleExist = !!this.castToString(card.title);
+                  const titleExist = !!this.castToString(card.card_title);
                   const descExist = !!this.castToString(card.description);
                   const numExist = !!this.castToString(card.num);
 
@@ -331,7 +331,7 @@ class Feature9 extends BaseFeature {
                               }
                               {titleExist &&
                                 <Base.H2 className={this.decorateCSS("card-title")}>
-                                  {card.title}
+                                  {card.card_title}
                                 </Base.H2>
                               }
                             </div>

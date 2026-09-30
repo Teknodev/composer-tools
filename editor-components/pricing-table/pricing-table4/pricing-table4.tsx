@@ -11,11 +11,11 @@ import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "../../../custom-hooks/input-templates";
 
 type Pricing = {
-  title: React.JSX.Element;
+  card_title: React.JSX.Element;
   list: TypeUsableComponentProps[];
-  subtitle: React.JSX.Element;
+  card_subtitle: React.JSX.Element;
   price: React.JSX.Element;
-  buttons: INPUTS.CastedButton[];
+  card_buttons: INPUTS.CastedButton[];
   isFocus: boolean;
   icon: TypeMediaInputValue;
 };
@@ -78,13 +78,13 @@ class PricingMultiple extends BasePricingTable {
             },
             {
               type: "string",
-              key: "title",
+              key: "card_title",
               displayer: "Title-1",
               value: "Enterprise",
             },
             {
               type: "string",
-              key: "subtitle",
+              key: "card_subtitle",
               displayer: "Title-2",
               value: "Basic Solution",
             },
@@ -213,7 +213,7 @@ class PricingMultiple extends BasePricingTable {
             },
             {
               type: "array",
-              key: "buttons",
+              key: "card_buttons",
               displayer: "Buttons",
               value: [
                 INPUTS.BUTTON("buttonType", "Button", "CHOOSE PLAN", "", "", null, "Primary"),
@@ -234,13 +234,13 @@ class PricingMultiple extends BasePricingTable {
             },
             {
               type: "string",
-              key: "title",
+              key: "card_title",
               displayer: "Title-1",
               value: "Professional",
             },
             {
               type: "string",
-              key: "subtitle",
+              key: "card_subtitle",
               displayer: "Title-2",
               value: "Advanced Platform",
             },
@@ -370,7 +370,7 @@ class PricingMultiple extends BasePricingTable {
 
             {
               type: "array",
-              key: "buttons",
+              key: "card_buttons",
               displayer: "Buttons",
               value: [
                 INPUTS.BUTTON("buttonType", "Button", "CHOOSE PLAN", "", null, null, "Primary"),
@@ -391,13 +391,13 @@ class PricingMultiple extends BasePricingTable {
             },
             {
               type: "string",
-              key: "title",
+              key: "card_title",
               displayer: "Title-1",
               value: "Starter",
             },
             {
               type: "string",
-              key: "subtitle",
+              key: "card_subtitle",
               displayer: "Title-2",
               value: "Customizable Platform",
             },
@@ -527,7 +527,7 @@ class PricingMultiple extends BasePricingTable {
 
             {
               type: "array",
-              key: "buttons",
+              key: "card_buttons",
               displayer: "Buttons",
               value: [
                 INPUTS.BUTTON("buttonType", "Button", "CHOOSE PLAN", "", null, null, "Primary"),
@@ -563,7 +563,7 @@ class PricingMultiple extends BasePricingTable {
   }
 
   private getButtonsFromItem(item: Pricing) {
-    const buttonsArray = item?.buttons;
+    const buttonsArray = item.card_buttons;
     if (!Array.isArray(buttonsArray)) return [];
 
     return buttonsArray.map((btn) => {
@@ -686,8 +686,8 @@ class PricingMultiple extends BasePricingTable {
             >
               {this.castToObject<Pricing[]>("cards").map(
                 (price: Pricing, indexCards: number) => {
-                  const title1 = this.castToString(price.title);
-                  const title2 = this.castToString(price.subtitle);
+                  const title1 = this.castToString(price.card_title);
+                  const title2 = this.castToString(price.card_subtitle);
                   const pricing = this.castToString(price.price);
                   const hasCardUp = title1 || title2 || pricing;
 
@@ -726,14 +726,14 @@ class PricingMultiple extends BasePricingTable {
                               <Base.H5
                                 className={this.decorateCSS("price-title1")}
                               >
-                                {price.title}
+                                {price.card_title}
                               </Base.H5>
                             )}
                             {title2 && (
                               <Base.P
                                 className={this.decorateCSS("price-title2")}
                               >
-                                {price.subtitle}
+                                {price.card_subtitle}
                               </Base.P>
                             )}
                             {pricing && (

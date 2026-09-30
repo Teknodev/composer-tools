@@ -63,9 +63,7 @@
                 display: flex;
                 transition: 0.4s;
                 color: var(--composer-font-color-primary);
-                padding: var(--composer-gap-md);
                 gap: var(--composer-gap-md);
-                border-radius: var(--composer-border-radius-sm);
 
                 .icon-box {
                     .icon {
@@ -198,9 +196,6 @@
             .cards{
                 padding: var(--composer-gap-md);
                 margin-bottom: 0px;
-                .card{
-                    padding: var(--composer-gap-md);
-                }
             }
             .video-container{
                 height: 370px;

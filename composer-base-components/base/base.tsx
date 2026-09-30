@@ -84,6 +84,22 @@ export namespace Base {
     setStyleValue("--composer-text-only", value ? "true" : "false");
   }
 
+  // Text-only placeholder layers are tinted toward one of the theme's brand
+  // colors (primary / secondary / tertiary) or a neutral font tone, so the
+  // covered images don't all read as a single flat colour. The variant is a
+  // deterministic hash of the image URL — the same image always gets the same
+  // colour (stable across re-renders), while different images spread across
+  // the palette. Returns 0..3 → maps to the .themeCoverLayer{0..3} classes.
+  const THEME_COVER_VARIANTS = 7;
+  export function themeCoverVariant(seed: string | undefined): number {
+    const s = seed || "";
+    let h = 0;
+    for (let i = 0; i < s.length; i++) {
+      h = (h * 31 + s.charCodeAt(i)) | 0;
+    }
+    return Math.abs(h) % THEME_COVER_VARIANTS;
+  }
+
   export function setFontSize(size: string) {
     setStyleValue("--composer-font-size-md", `${size}px`);
   }
@@ -545,12 +561,25 @@ export namespace Base {
       composerToolsCurrentLanguage,
       isProcessable,
       setComposerToolsCurrentLanguage,
+      setIsLocalizationChange,
     } = useComposerToolsData();
 
     const handleLanguageChange = async (lang: { code: string; name: string }) => {
-      if(!isProcessable) return;
+      // This layer only publishes the choice into composer-tools state — the app
+      // (editor/preview) owns the actual locale switch, so the published-site
+      // bundle stays free of any editor coupling.
       setComposerToolsCurrentLanguage(lang);
-    
+
+      // Editor.tsx re-applies the locale only when `isProcessable ||
+      // isLocalizationChange`. In the editor `isProcessable` is false, so
+      // without this flag the language change was observed and then ignored.
+      setIsLocalizationChange(true);
+
+      // The URL slug only drives live-site / preview navigation. In the editor
+      // `isProcessable` is false — that used to return early and make the
+      // dropdown a complete no-op; now only the URL rewrite is skipped.
+      if (!isProcessable) return;
+
       let currentPath = window.location.pathname;
       const normalizedPath = currentPath.replace(/\/$/, "");
       const pathParts = normalizedPath.split("/");
@@ -658,7 +687,7 @@ export namespace Base {
     ...props 
   }: React.HTMLAttributes<HTMLDivElement>) {
     return (
-      <div className={`${styles.baseCard} ${className}`} data-element-category={ELEMENT_CATEGORY.CARD} {...props}>
+      <div className={`${styles.baseCard} ${className ?? ""}`} data-element-category={ELEMENT_CATEGORY.CARD} {...props}>
         {children}
       </div>
     );
@@ -689,7 +718,10 @@ export namespace Base {
           return (
             <span className={`${styles.themeCover} ${className ?? ""}`} {...props}>
               <img className={styles.themeCoverImage} src={value.url} alt="" />
-              <span className={styles.themeCoverLayer} aria-hidden="true" />
+              <span
+                className={`${styles.themeCoverLayer} ${styles[`themeCoverLayer${themeCoverVariant(value.url)}`]}`}
+                aria-hidden="true"
+              />
             </span>
           );
         }

@@ -9,9 +9,9 @@ type Card = {
   prefix: React.JSX.Element;
   value: React.JSX.Element;
   suffix: React.JSX.Element;
-  subtitle: React.JSX.Element;
-  title: React.JSX.Element;
-  description: React.JSX.Element;
+  stat_subtitle: React.JSX.Element;
+  stat_title: React.JSX.Element;
+  stat_description: React.JSX.Element;
 };
 
 class Stats5Page extends BaseStats {
@@ -60,9 +60,9 @@ class Stats5Page extends BaseStats {
             { type: "string", key: "prefix", displayer: "Prefix", value: "" },
             { type: "string", key: "value", displayer: "Value", value: "98" },
             { type: "string", key: "suffix", displayer: "Suffix", value: "" },
-            { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
-            { type: "string", key: "title", displayer: "Title", value: "" },
-            { type: "string", key: "description", displayer: "Description", value: "Services" },
+            { type: "string", key: "stat_subtitle", displayer: "Subtitle", value: "" },
+            { type: "string", key: "stat_title", displayer: "Title", value: "" },
+            { type: "string", key: "stat_description", displayer: "Description", value: "Services" },
           ],
         },
         {
@@ -73,9 +73,9 @@ class Stats5Page extends BaseStats {
             { type: "string", key: "prefix", displayer: "Prefix", value: "" },
             { type: "string", key: "value", displayer: "Value", value: "65" },
             { type: "string", key: "suffix", displayer: "Suffix", value: "" },
-            { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
-            { type: "string", key: "title", displayer: "Title", value: "" },
-            { type: "string", key: "description", displayer: "Description", value: "Technicians" },
+            { type: "string", key: "stat_subtitle", displayer: "Subtitle", value: "" },
+            { type: "string", key: "stat_title", displayer: "Title", value: "" },
+            { type: "string", key: "stat_description", displayer: "Description", value: "Technicians" },
           ],
         },
         {
@@ -86,9 +86,9 @@ class Stats5Page extends BaseStats {
             { type: "string", key: "prefix", displayer: "Prefix", value: "" },
             { type: "string", key: "value", displayer: "Value", value: "7" },
             { type: "string", key: "suffix", displayer: "Suffix", value: "" },
-            { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
-            { type: "string", key: "title", displayer: "Title", value: "" },
-            { type: "string", key: "description", displayer: "Description", value: "Days a Week" },
+            { type: "string", key: "stat_subtitle", displayer: "Subtitle", value: "" },
+            { type: "string", key: "stat_title", displayer: "Title", value: "" },
+            { type: "string", key: "stat_description", displayer: "Description", value: "Days a Week" },
           ],
         },
         {
@@ -99,9 +99,9 @@ class Stats5Page extends BaseStats {
             { type: "string", key: "prefix", displayer: "Prefix", value: "" },
             { type: "string", key: "value", displayer: "Value", value: "10" },
             { type: "string", key: "suffix", displayer: "Suffix", value: "" },
-            { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
-            { type: "string", key: "title", displayer: "Title", value: "" },
-            { type: "string", key: "description", displayer: "Description", value: "Offices" },
+            { type: "string", key: "stat_subtitle", displayer: "Subtitle", value: "" },
+            { type: "string", key: "stat_title", displayer: "Title", value: "" },
+            { type: "string", key: "stat_description", displayer: "Description", value: "Offices" },
           ],
         },
       ],
@@ -247,9 +247,9 @@ class Stats5Page extends BaseStats {
 
       const prefixExist = this.castToString(card.prefix);
       const suffixExist = this.castToString(card.suffix);
-      const subtitleExist = this.castToString(card.subtitle);
-      const titleExist = this.castToString(card.title);
-      const descriptionExist = this.castToString(card.description);
+      const subtitleExist = this.castToString(card.stat_subtitle);
+      const titleExist = this.castToString(card.stat_title);
+      const descriptionExist = this.castToString(card.stat_description);
 
       const hasValue = !!display || prefixExist || suffixExist;
       const hasText = subtitleExist || titleExist || descriptionExist;
@@ -259,17 +259,17 @@ class Stats5Page extends BaseStats {
       return (
         <div ref={ref} className={className}>
           {hasValue && (
-            <Base.SectionTitle className={this.decorateCSS("card-data-title")}>
+            <Base.H2 className={this.decorateCSS("card-data-title")}>
               {prefixExist && <span className={this.decorateCSS("card-data-prefix")}>{card.prefix}</span>}
               {!!display && <span className={this.decorateCSS("card-data-number")}>{animatable ? display : card.value}</span>}
               {suffixExist && <span className={this.decorateCSS("card-data-suffix")}>{card.suffix}</span>}
-            </Base.SectionTitle>
+            </Base.H2>
           )}
           {hasText && (
             <div className={`${this.decorateCSS("card-text")} ${hasValue ? this.decorateCSS("card-text-overlay") : ""}`}>
-              {subtitleExist && <Base.P className={this.decorateCSS("card-data-subtitle")}>{card.subtitle}</Base.P>}
-              {titleExist && <Base.H5 className={this.decorateCSS("card-data-heading")}>{card.title}</Base.H5>}
-              {descriptionExist && <Base.SectionDescription className={this.decorateCSS("card-data-description")}>{card.description}</Base.SectionDescription>}
+              {subtitleExist && <Base.P className={this.decorateCSS("card-data-subtitle")}>{card.stat_subtitle}</Base.P>}
+              {titleExist && <Base.H5 className={this.decorateCSS("card-data-heading")}>{card.stat_title}</Base.H5>}
+              {descriptionExist && <Base.SectionDescription className={this.decorateCSS("card-data-description")}>{card.stat_description}</Base.SectionDescription>}
             </div>
           )}
         </div>

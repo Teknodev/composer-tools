@@ -7,9 +7,9 @@ type CardData = {
   prefix: React.JSX.Element;
   value: React.JSX.Element;
   suffix: React.JSX.Element;
-  subtitle: React.JSX.Element;
-  title: React.JSX.Element;
-  description: React.JSX.Element;
+  stat_subtitle: React.JSX.Element;
+  stat_title: React.JSX.Element;
+  stat_description: React.JSX.Element;
 };
 
 class Stats8Page extends BaseStats {
@@ -91,9 +91,9 @@ class Stats8Page extends BaseStats {
             { type: "string", key: "prefix", displayer: "Prefix", value: "" },
             { type: "string", key: "value", displayer: "Value", value: "37" },
             { type: "string", key: "suffix", displayer: "Suffix", value: "" },
-            { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
-            { type: "string", key: "title", displayer: "Title", value: "" },
-            { type: "string", key: "description", displayer: "Description", value: "Business Partner" },
+            { type: "string", key: "stat_subtitle", displayer: "Subtitle", value: "" },
+            { type: "string", key: "stat_title", displayer: "Title", value: "" },
+            { type: "string", key: "stat_description", displayer: "Description", value: "Business Partner" },
           ],
         },
         {
@@ -104,9 +104,9 @@ class Stats8Page extends BaseStats {
             { type: "string", key: "prefix", displayer: "Prefix", value: "" },
             { type: "string", key: "value", displayer: "Value", value: "19" },
             { type: "string", key: "suffix", displayer: "Suffix", value: "" },
-            { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
-            { type: "string", key: "title", displayer: "Title", value: "" },
-            { type: "string", key: "description", displayer: "Description", value: "Satisfied Customers" },
+            { type: "string", key: "stat_subtitle", displayer: "Subtitle", value: "" },
+            { type: "string", key: "stat_title", displayer: "Title", value: "" },
+            { type: "string", key: "stat_description", displayer: "Description", value: "Satisfied Customers" },
           ],
         },
       ],
@@ -321,9 +321,9 @@ class Stats8Page extends BaseStats {
                         const counterExist = (this.castToString(statData.value) as string) || "";
                         const prefixExist = this.castToString(statData.prefix);
                         const suffixExist = this.castToString(statData.suffix);
-                        const subtitleExist = this.castToString(statData.subtitle);
-                        const titleExist = this.castToString(statData.title);
-                        const descriptionExist = this.castToString(statData.description);
+                        const subtitleExist = this.castToString(statData.stat_subtitle);
+                        const titleExist = this.castToString(statData.stat_title);
+                        const descriptionExist = this.castToString(statData.stat_description);
                         const hasValue = !!counterExist || prefixExist || suffixExist;
                         return (
                           (hasValue || subtitleExist || titleExist || descriptionExist) && (
@@ -336,9 +336,9 @@ class Stats8Page extends BaseStats {
                                     {suffixExist && <span className={this.decorateCSS("stat-suffix")}>{statData.suffix}</span>}
                                   </div>
                                 )}
-                                {subtitleExist && <Base.P className={this.decorateCSS("stat-subtitle")}>{statData.subtitle}</Base.P>}
-                                {titleExist && <Base.H5 className={this.decorateCSS("stat-title")}>{statData.title}</Base.H5>}
-                                {descriptionExist && <Base.P className={this.decorateCSS("stat-description")}>{statData.description}</Base.P>}
+                                {subtitleExist && <Base.P className={this.decorateCSS("stat-subtitle")}>{statData.stat_subtitle}</Base.P>}
+                                {titleExist && <Base.H5 className={this.decorateCSS("stat-title")}>{statData.stat_title}</Base.H5>}
+                                {descriptionExist && <Base.P className={this.decorateCSS("stat-description")}>{statData.stat_description}</Base.P>}
                               </div>
                             </div>
                           )

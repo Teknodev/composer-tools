@@ -10,8 +10,8 @@ type ProgressItem = {
   prefix: React.JSX.Element;
   value: React.JSX.Element;
   suffix: React.JSX.Element;
-  subtitle: React.JSX.Element;
-  title: React.JSX.Element;
+  stat_subtitle: React.JSX.Element;
+  stat_title: React.JSX.Element;
   description: React.JSX.Element;
   progress: number;
 };
@@ -108,8 +108,8 @@ class Stats10 extends BaseStats {
             { type: "string", key: "prefix", displayer: "Prefix", value: "" },
             { type: "string", key: "value", displayer: "Value", value: "90%" },
             { type: "string", key: "suffix", displayer: "Suffix", value: "" },
-            { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
-            { type: "string", key: "title", displayer: "Description", value: "Confidentiality" },
+            { type: "string", key: "stat_subtitle", displayer: "Subtitle", value: "" },
+            { type: "string", key: "stat_title", displayer: "Description", value: "Confidentiality" },
             {
               type: "number",
               key: "progress",
@@ -126,8 +126,8 @@ class Stats10 extends BaseStats {
             { type: "string", key: "prefix", displayer: "Prefix", value: "" },
             { type: "string", key: "value", displayer: "Value", value: "95%" },
             { type: "string", key: "suffix", displayer: "Suffix", value: "" },
-            { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
-            { type: "string", key: "title", displayer: "Description", value: "Consumer Satisfaction" },
+            { type: "string", key: "stat_subtitle", displayer: "Subtitle", value: "" },
+            { type: "string", key: "stat_title", displayer: "Description", value: "Consumer Satisfaction" },
             {
               type: "number",
               key: "progress",
@@ -144,8 +144,8 @@ class Stats10 extends BaseStats {
             { type: "string", key: "prefix", displayer: "Prefix", value: "" },
             { type: "string", key: "value", displayer: "Value", value: "98%" },
             { type: "string", key: "suffix", displayer: "Suffix", value: "" },
-            { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
-            { type: "string", key: "title", displayer: "Description", value: "Therapy" },
+            { type: "string", key: "stat_subtitle", displayer: "Subtitle", value: "" },
+            { type: "string", key: "stat_title", displayer: "Description", value: "Therapy" },
             {
               type: "number",
               key: "progress",
@@ -162,8 +162,8 @@ class Stats10 extends BaseStats {
             { type: "string", key: "prefix", displayer: "Prefix", value: "" },
             { type: "string", key: "value", displayer: "Value", value: "85%" },
             { type: "string", key: "suffix", displayer: "Suffix", value: "" },
-            { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
-            { type: "string", key: "title", displayer: "Description", value: "Counseling" },
+            { type: "string", key: "stat_subtitle", displayer: "Subtitle", value: "" },
+            { type: "string", key: "stat_title", displayer: "Description", value: "Counseling" },
             {
               type: "number",
               key: "progress",
@@ -303,8 +303,8 @@ class Stats10 extends BaseStats {
         };
       }, [rawNumber, animatable, animationDuration, target]);
 
-      const titleExist = this.castToString(item.title);
-      const subtitleExist = this.castToString(item.subtitle);
+      const titleExist = this.castToString(item.stat_title);
+      const subtitleExist = this.castToString(item.stat_subtitle);
       const prefixExist = this.castToString(item.prefix);
       const suffixExist = this.castToString(item.suffix);
       const textExist = !!rawNumber || prefixExist || suffixExist;
@@ -324,12 +324,12 @@ class Stats10 extends BaseStats {
                     <div className={this.decorateCSS("progress-title-text")}>
                       {subtitleExist && (
                         <div className={this.decorateCSS("progress-subtitle")}>
-                          {item.subtitle}
+                          {item.stat_subtitle}
                         </div>
                       )}
                       {titleExist && (
                         <div className={this.decorateCSS("progress-title")}>
-                          {item.title}
+                          {item.stat_title}
                         </div>
                       )}
                     </div>

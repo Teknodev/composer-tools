@@ -6,8 +6,13 @@ import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "../../../custom-hooks/input-templates";
 
 interface Logo {
-  image: TypeMediaInputValue;
-  navigateTo: string;
+  // `defaultLogo` keeps the original keys; `absoluteLogo` was made unique with a
+  // prefix by the unique-prop-key rename. currentLogo can be either, so it holds
+  // both shapes (optional) and is normalized before use.
+  image?: TypeMediaInputValue;
+  navigateTo?: string;
+  absoluteLogo_image?: TypeMediaInputValue;
+  absoluteLogo_navigateTo?: string;
 }
 
 interface Language {
@@ -164,7 +169,7 @@ class Navbar5 extends BaseNavigator {
       value: [
         {
           type: "media",
-          key: "image",
+          key: "absoluteLogo_image",
           displayer: "Image",
           additionalParams: {
             availableTypes: ["image"],
@@ -176,7 +181,7 @@ class Navbar5 extends BaseNavigator {
         },
         {
           type: "page",
-          key: "navigateTo",
+          key: "absoluteLogo_navigateTo",
           value: "",
           displayer: "Navigate To",
         },
@@ -472,7 +477,9 @@ class Navbar5 extends BaseNavigator {
       (isStickyTransparent && !isScrolled) || isAbsolute;
 
     const currentLogo =
-      transparentBackground && !navActive ? absoluteLogo : defaultLogo;
+      transparentBackground && !navActive
+        ? { image: absoluteLogo.absoluteLogo_image, navigateTo: absoluteLogo.absoluteLogo_navigateTo }
+        : { image: defaultLogo.image, navigateTo: defaultLogo.navigateTo };
 
     const social = this.castToObject<any[]>("social");
     const listItems = this.castToObject<any[]>("listItems");

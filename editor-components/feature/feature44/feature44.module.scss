@@ -26,6 +26,14 @@
       width: 100%;
       gap: var(--composer-gap-lg);
 
+      .card-shell {
+        display: flex;
+        flex-direction: column;
+        > * {
+          flex: 1 1 auto;
+        }
+      }
+
       .service-card {
         width: 100%;
         color: var(--composer-font-color-primary);

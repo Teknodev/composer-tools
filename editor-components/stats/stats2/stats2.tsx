@@ -11,9 +11,9 @@ type Card = {
   prefix: React.JSX.Element;
   value: React.JSX.Element;
   suffix: React.JSX.Element;
-  subtitle: React.JSX.Element;
-  title: React.JSX.Element;
-  description: React.JSX.Element;
+  stat_subtitle: React.JSX.Element;
+  stat_title: React.JSX.Element;
+  stat_description: React.JSX.Element;
 };
 
 class Stats2Page extends BaseStats {
@@ -66,9 +66,9 @@ class Stats2Page extends BaseStats {
             { type: "string", key: "prefix", displayer: "Prefix", value: "" },
             { type: "string", key: "value", displayer: "Value", value: "8500" },
             { type: "string", key: "suffix", displayer: "Suffix", value: "" },
-            { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
-            { type: "string", key: "title", displayer: "Title", value: "" },
-            { type: "string", key: "description", displayer: "Description", value: "Users on marketplaces we've created in 2023." },
+            { type: "string", key: "stat_subtitle", displayer: "Subtitle", value: "" },
+            { type: "string", key: "stat_title", displayer: "Title", value: "" },
+            { type: "string", key: "stat_description", displayer: "Description", value: "Users on marketplaces we've created in 2023." },
           ],
         },
         {
@@ -86,9 +86,9 @@ class Stats2Page extends BaseStats {
             { type: "string", key: "prefix", displayer: "Prefix", value: "" },
             { type: "string", key: "value", displayer: "Value", value: "660" },
             { type: "string", key: "suffix", displayer: "Suffix", value: "" },
-            { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
-            { type: "string", key: "title", displayer: "Title", value: "" },
-            { type: "string", key: "description", displayer: "Description", value: "Successfully finished projects with creativity." },
+            { type: "string", key: "stat_subtitle", displayer: "Subtitle", value: "" },
+            { type: "string", key: "stat_title", displayer: "Title", value: "" },
+            { type: "string", key: "stat_description", displayer: "Description", value: "Successfully finished projects with creativity." },
           ],
         },
         {
@@ -106,9 +106,9 @@ class Stats2Page extends BaseStats {
             { type: "string", key: "prefix", displayer: "Prefix", value: "" },
             { type: "string", key: "value", displayer: "Value", value: "6834" },
             { type: "string", key: "suffix", displayer: "Suffix", value: "" },
-            { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
-            { type: "string", key: "title", displayer: "Title", value: "" },
-            { type: "string", key: "description", displayer: "Description", value: "Monthly visitors on our e-Commerce platform." },
+            { type: "string", key: "stat_subtitle", displayer: "Subtitle", value: "" },
+            { type: "string", key: "stat_title", displayer: "Title", value: "" },
+            { type: "string", key: "stat_description", displayer: "Description", value: "Monthly visitors on our e-Commerce platform." },
           ],
         },
         {
@@ -126,9 +126,9 @@ class Stats2Page extends BaseStats {
             { type: "string", key: "prefix", displayer: "Prefix", value: "" },
             { type: "string", key: "value", displayer: "Value", value: "300" },
             { type: "string", key: "suffix", displayer: "Suffix", value: "" },
-            { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
-            { type: "string", key: "title", displayer: "Title", value: "" },
-            { type: "string", key: "description", displayer: "Description", value: "Onboarding conversions growth increased." },
+            { type: "string", key: "stat_subtitle", displayer: "Subtitle", value: "" },
+            { type: "string", key: "stat_title", displayer: "Title", value: "" },
+            { type: "string", key: "stat_description", displayer: "Description", value: "Onboarding conversions growth increased." },
           ],
         },
       ],
@@ -165,6 +165,20 @@ class Stats2Page extends BaseStats {
 
   static getName(): string {
     return "Stats 2";
+  }
+
+  private hasCardContent(card: Card): boolean {
+    const icon: any = card.icon;
+    const iconExists = typeof icon === "object" ? icon?.name || icon?.url : icon;
+    return !!(
+      this.castToString(card.stat_description) ||
+      this.castToString(card.stat_subtitle) ||
+      this.castToString(card.stat_title) ||
+      this.castToString(card.prefix) ||
+      this.castToString(card.value) ||
+      this.castToString(card.suffix) ||
+      iconExists
+    );
   }
 
   render() {
@@ -263,9 +277,9 @@ class Stats2Page extends BaseStats {
         };
       }, [rawNumber, animatable, animationDuration, target]);
 
-      const isTextExist = this.castToString(card.description);
-      const subtitleExist = this.castToString(card.subtitle);
-      const titleExist = this.castToString(card.title);
+      const isTextExist = this.castToString(card.stat_description);
+      const subtitleExist = this.castToString(card.stat_subtitle);
+      const titleExist = this.castToString(card.stat_title);
       const prefixExist = this.castToString(card.prefix);
       const suffixExist = this.castToString(card.suffix);
       const iconExist = mediaExists(card.icon);
@@ -281,9 +295,9 @@ class Stats2Page extends BaseStats {
         <div ref={ref} className={classes}>
           {hasText && (
             <div className={this.decorateCSS("card-text-container")}>
-              {subtitleExist && <Base.P className={this.decorateCSS("card-subtitle")}>{card.subtitle}</Base.P>}
-              {titleExist && <Base.H5 className={this.decorateCSS("card-title")}>{card.title}</Base.H5>}
-              {isTextExist && <Base.P className={this.decorateCSS("card-text")}>{card.description}</Base.P>}
+              {subtitleExist && <Base.P className={this.decorateCSS("card-subtitle")}>{card.stat_subtitle}</Base.P>}
+              {titleExist && <Base.H5 className={this.decorateCSS("card-title")}>{card.stat_title}</Base.H5>}
+              {isTextExist && <Base.P className={this.decorateCSS("card-text")}>{card.stat_description}</Base.P>}
             </div>
           )}
           {hasAmountRow && (
@@ -331,7 +345,7 @@ class Stats2Page extends BaseStats {
               <Base.ListGrid gridCount={{ pc: itemCount, tablet: 2, phone: 1 }} className={this.decorateCSS("cards-container")}>
                 {cards.map((card, index) => {
                   const currentRow = Math.floor(index / itemCount) + 1;
-                  return <AnimatedCard key={index} card={card} isFirstRow={currentRow === 1} isLastRow={currentRow === totalRows} />;
+                  return this.hasCardContent(card) && <AnimatedCard key={index} card={card} isFirstRow={currentRow === 1} isLastRow={currentRow === totalRows} />;
                 })}
               </Base.ListGrid>
             )}

@@ -36,7 +36,7 @@ type mapSettings = {
 };
 
 type ButtomType = {
-  description: string;
+  buttonRow_description: string;
   phoneNumber: string;
   path: string;
 };
@@ -311,7 +311,7 @@ class Location1 extends Location {
       value: [
         {
           type: "string",
-          key: "description",
+          key: "buttonRow_description",
           displayer: "Description",
           value: "Have any questions about booking?",
         },
@@ -323,7 +323,7 @@ class Location1 extends Location {
         },
         {
           type: "page",
-          key: "navigateTo",
+          key: "buttonRow_navigateTo",
           displayer: "Navigate To",
           value: "",
         },
@@ -447,7 +447,7 @@ class Location1 extends Location {
     const icons = this.getPropValue("icons");
     const line = this.getPropValue("line");
 
-    const description = buttom.description;
+    const description = buttom.buttonRow_description;
     const phone = buttom.phoneNumber;
 
     const mapSettings = this.castToObject<mapSettings>("mapSettings");
@@ -513,7 +513,7 @@ class Location1 extends Location {
           </section>
           {((typeof description === "string" && description.trim()) || (typeof phone === "string" && phone.trim())) && (
             <div className={`${this.decorateCSS("bottom-container")} ${alignment === "center" && this.decorateCSS("center")} ${alignment === "left" && this.decorateCSS("left")}`}>
-              {typeof description === "string" && description.trim() && <Base.H5 className={this.decorateCSS("bottom-title")}>{buttom.description}</Base.H5>}
+              {typeof description === "string" && description.trim() && <Base.H5 className={this.decorateCSS("bottom-title")}>{buttom.buttonRow_description}</Base.H5>}
               {typeof phone === "string" && phone.trim() && (
                 <Base.VerticalContent>
                   <ComposerLink path={buttom.path}>

@@ -45,11 +45,17 @@
             }
             .card-container{
                 width: 100%;
+                .card-shell {
+                    display: flex;
+                    flex-direction: column;
+
+                    > * {
+                        flex: 1 1 auto;
+                    }
+                }
                 .card{
                     display: flex;
                     flex-direction: column;
-                    background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);                    border-radius: var(--composer-border-radius-sm);
-                    padding: var(--composer-gap-lg);
                     gap: var(--composer-gap-lg);
                     .icon-wrapper{
                         background-color: var(--composer-primary-color);

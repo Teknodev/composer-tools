@@ -8,9 +8,9 @@ interface FeatureItem {
   prefix: React.JSX.Element;
   value: React.JSX.Element;
   suffix: React.JSX.Element;
-  subtitle: React.JSX.Element;
-  title: React.JSX.Element;
-  description: React.JSX.Element;
+  stat_subtitle: React.JSX.Element;
+  stat_title: React.JSX.Element;
+  stat_description: React.JSX.Element;
 }
 
 class Stats12 extends BaseStats {
@@ -51,9 +51,9 @@ class Stats12 extends BaseStats {
             { type: "string", key: "prefix", displayer: "Prefix", value: "" },
             { type: "string", key: "value", displayer: "Value", value: "" },
             { type: "string", key: "suffix", displayer: "Suffix", value: "" },
-            { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
-            { type: "string", key: "title", displayer: "Title", value: "90 Days Return" },
-            { type: "string", key: "description", displayer: "Description", value: "If goods have problems, consectetur adipiscing elit." },
+            { type: "string", key: "stat_subtitle", displayer: "Subtitle", value: "" },
+            { type: "string", key: "stat_title", displayer: "Title", value: "90 Days Return" },
+            { type: "string", key: "stat_description", displayer: "Description", value: "If goods have problems, consectetur adipiscing elit." },
           ],
         },
         {
@@ -65,9 +65,9 @@ class Stats12 extends BaseStats {
             { type: "string", key: "prefix", displayer: "Prefix", value: "" },
             { type: "string", key: "value", displayer: "Value", value: "" },
             { type: "string", key: "suffix", displayer: "Suffix", value: "" },
-            { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
-            { type: "string", key: "title", displayer: "Title", value: "Free Delivery" },
-            { type: "string", key: "description", displayer: "Description", value: "For all orders over $50, consectetur adipim scing elit." },
+            { type: "string", key: "stat_subtitle", displayer: "Subtitle", value: "" },
+            { type: "string", key: "stat_title", displayer: "Title", value: "Free Delivery" },
+            { type: "string", key: "stat_description", displayer: "Description", value: "For all orders over $50, consectetur adipim scing elit." },
           ],
         },
         {
@@ -79,9 +79,9 @@ class Stats12 extends BaseStats {
             { type: "string", key: "prefix", displayer: "Prefix", value: "" },
             { type: "string", key: "value", displayer: "Value", value: "" },
             { type: "string", key: "suffix", displayer: "Suffix", value: "" },
-            { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
-            { type: "string", key: "title", displayer: "Title", value: "Secure Payment" },
-            { type: "string", key: "description", displayer: "Description", value: "100% secure payment, consectetur adipim scing elit." },
+            { type: "string", key: "stat_subtitle", displayer: "Subtitle", value: "" },
+            { type: "string", key: "stat_title", displayer: "Title", value: "Secure Payment" },
+            { type: "string", key: "stat_description", displayer: "Description", value: "100% secure payment, consectetur adipim scing elit." },
           ],
         },
       ],
@@ -130,9 +130,9 @@ class Stats12 extends BaseStats {
             const prefixExist = this.castToString(feat.prefix);
             const numberExist = this.castToString(feat.value);
             const suffixExist = this.castToString(feat.suffix);
-            const subtitleExist = this.castToString(feat.subtitle);
-            const titleExist = this.castToString(feat.title);
-            const descriptionExist = this.castToString(feat.description);
+            const subtitleExist = this.castToString(feat.stat_subtitle);
+            const titleExist = this.castToString(feat.stat_title);
+            const descriptionExist = this.castToString(feat.stat_description);
             const hasValue = prefixExist || numberExist || suffixExist;
             if (!iconExist && !hasValue && !subtitleExist && !titleExist && !descriptionExist) return null;
             return (
@@ -152,17 +152,17 @@ class Stats12 extends BaseStats {
                       )}
                       {subtitleExist && (
                         <Base.P className={this.decorateCSS("stat-subtitle")}>
-                          {feat.subtitle}
+                          {feat.stat_subtitle}
                         </Base.P>
                       )}
                       {titleExist && (
                         <Base.SectionTitle className={this.decorateCSS("title")}>
-                          {feat.title}
+                          {feat.stat_title}
                         </Base.SectionTitle>
                       )}
                       {descriptionExist && (
                         <Base.SectionDescription className={this.decorateCSS("description")}>
-                          {feat.description}
+                          {feat.stat_description}
                         </Base.SectionDescription>
                       )}
                     </div>

@@ -14,7 +14,7 @@ type FeatureItem = {
 };
 
 type CheckmarkFeature = {
-  icon: TypeMediaInputValue;
+  checkmarkItem_icon: TypeMediaInputValue;
   label: React.JSX.Element;
 };
 
@@ -299,7 +299,7 @@ class PricingTable15 extends BasePricingTable {
               value: [
                 {
                   type: "media",
-                  key: "icon",
+                  key: "checkmarkItem_icon",
                   displayer: "Icon",
                   additionalParams: {
                     availableTypes: ["image", "icon"],
@@ -324,7 +324,7 @@ class PricingTable15 extends BasePricingTable {
               value: [
                 {
                   type: "media",
-                  key: "icon",
+                  key: "checkmarkItem_icon",
                   displayer: "Icon",
                   additionalParams: {
                     availableTypes: ["image", "icon"],
@@ -349,7 +349,7 @@ class PricingTable15 extends BasePricingTable {
               value: [
                 {
                   type: "media",
-                  key: "icon",
+                  key: "checkmarkItem_icon",
                   displayer: "Icon",
                   additionalParams: {
                     availableTypes: ["image", "icon"],
@@ -374,7 +374,7 @@ class PricingTable15 extends BasePricingTable {
               value: [
                 {
                   type: "media",
-                  key: "icon",
+                  key: "checkmarkItem_icon",
                   displayer: "Icon",
                   additionalParams: {
                     availableTypes: ["image", "icon"],
@@ -399,7 +399,7 @@ class PricingTable15 extends BasePricingTable {
               value: [
                 {
                   type: "media",
-                  key: "icon",
+                  key: "checkmarkItem_icon",
                   displayer: "Icon",
                   additionalParams: {
                     availableTypes: ["image", "icon"],
@@ -424,7 +424,7 @@ class PricingTable15 extends BasePricingTable {
               value: [
                 {
                   type: "media",
-                  key: "icon",
+                  key: "checkmarkItem_icon",
                   displayer: "Icon",
                   additionalParams: {
                     availableTypes: ["image", "icon"],
@@ -542,7 +542,7 @@ class PricingTable15 extends BasePricingTable {
     const rightItemCount = this.getPropValue("rightItemCount", { parent_object: rightProps }) || 2;
 
     const rightCheckmarkFeatures: RightSection["rightCheckmarkFeatures"] = (this.getPropValue("rightCheckmarkFeatures", { parent_object: rightProps }) || []).map((item: TypeUsableComponentProps) => ({
-      icon: this.getPropValue("icon", { parent_object: item.value }),
+      checkmarkItem_icon: this.getPropValue("checkmarkItem_icon", { parent_object: item.value }),
       label: this.getPropValue("label", { parent_object: item.value }),
     }));
 
@@ -729,12 +729,12 @@ class PricingTable15 extends BasePricingTable {
                     >
                       {rightCheckmarkFeatures.map((item: CheckmarkFeature, idx: number) => {
                         const itemLabelExist = this.castToString(item.label);
-                        return (itemLabelExist || item.icon) && (
+                        return (itemLabelExist || item.checkmarkItem_icon) && (
                           <div key={idx} className={this.decorateCSS("checkmark-item")}>
-                            {item.icon && (
+                            {item.checkmarkItem_icon && (
                               <Base.Media
-                                value={item.icon}
-                                className={`${this.decorateCSS("checkmark-icon")} ${item.icon.type === "image" && this.decorateCSS("checkmark-has-image")}`}
+                                value={item.checkmarkItem_icon}
+                                className={`${this.decorateCSS("checkmark-icon")} ${item.checkmarkItem_icon.type === "image" && this.decorateCSS("checkmark-has-image")}`}
                               />
                             )}
                             {itemLabelExist && (

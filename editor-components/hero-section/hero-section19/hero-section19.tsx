@@ -67,31 +67,31 @@ class HeroSection19 extends BaseHeroSection {
         {
           type: "boolean",
           displayer: "Visibility",
-          key: "visibility",
+          key: "item_right_top_visibility",
           value: true,
         },
         {
           type: "string",
           displayer: "Subtitle",
-          key: "subtitle",
+          key: "item_right_top_subtitle",
           value: "SEMPER",
         },
         {
           type: "string",
           displayer: "Title",
-          key: "title",
+          key: "item_right_top_title",
           value: "Feugiat Scelerisque Imperdiet",
         },
         {
           type: "string",
           displayer: "Description",
-          key: "description",
+          key: "item_right_top_description",
           value: "",
         },
         {
           type: "media",
           displayer: "Media",
-          key: "image",
+          key: "item_right_top_image",
           additionalParams: {
             availableTypes: ["image", "video"],
           },
@@ -103,7 +103,7 @@ class HeroSection19 extends BaseHeroSection {
         {
           type: "boolean",
           displayer: "Overlay",
-          key: "overlay",
+          key: "item_right_top_overlay",
           value: false,
         },
         INPUTS.BUTTON("button", "Button", "READ MORE", "", null, null, "Primary")
@@ -118,31 +118,31 @@ class HeroSection19 extends BaseHeroSection {
         {
           type: "boolean",
           displayer: "Visibility",
-          key: "visibility",
+          key: "item_right_bottom_left_visibility",
           value: true,
         },
         {
           type: "string",
           displayer: "Subtitle",
-          key: "subtitle",
+          key: "item_right_bottom_left_subtitle",
           value: "SEMPER",
         },
         {
           type: "string",
           displayer: "Title",
-          key: "title",
+          key: "item_right_bottom_left_title",
           value: "Adipiscing Sodales",
         },
         {
           type: "string",
           displayer: "Description",
-          key: "description",
+          key: "item_right_bottom_left_description",
           value: "",
         },
         {
           type: "media",
           displayer: "Media",
-          key: "image",
+          key: "item_right_bottom_left_image",
           additionalParams: {
             availableTypes: ["image", "video"],
           },
@@ -154,7 +154,7 @@ class HeroSection19 extends BaseHeroSection {
         {
           type: "boolean",
           displayer: "Overlay",
-          key: "overlay",
+          key: "item_right_bottom_left_overlay",
           value: false,
         },
        INPUTS.BUTTON("button", "Button", "READ MORE", "", null, null, "Primary")
@@ -169,31 +169,31 @@ class HeroSection19 extends BaseHeroSection {
         {
           type: "boolean",
           displayer: "Visibility",
-          key: "visibility",
+          key: "item_right_bottom_right_visibility",
           value: true,
         },
         {
           type: "string",
           displayer: "Subtitle",
-          key: "subtitle",
+          key: "item_right_bottom_right_subtitle",
           value: "",
         },
         {
           type: "string",
           displayer: "Title",
-          key: "title",
+          key: "item_right_bottom_right_title",
           value: "",
         },
         {
           type: "string",
           displayer: "Description",
-          key: "description",
+          key: "item_right_bottom_right_description",
           value: "",
         },
         {
           type: "media",
           displayer: "Media",
-          key: "image",
+          key: "item_right_bottom_right_image",
           additionalParams: {
             availableTypes: ["image", "video"],
           },
@@ -205,7 +205,7 @@ class HeroSection19 extends BaseHeroSection {
         {
           type: "boolean",
           displayer: "Overlay",
-          key: "overlay",
+          key: "item_right_bottom_right_overlay",
           value: false,
         },
        INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary")
@@ -291,22 +291,22 @@ class HeroSection19 extends BaseHeroSection {
             </div>
           )}
 
-          {(itemRightTop.visibility || itemBottomLeft.visibility || itemBottomRight.visibility) && (
+          {(itemRightTop.item_right_top_visibility || itemBottomLeft.item_right_bottom_left_visibility || itemBottomRight.item_right_bottom_right_visibility) && (
             <div className={this.decorateCSS("right")}>
-              {itemRightTop.visibility && (
+              {itemRightTop.item_right_top_visibility && (
                 <div className={this.decorateCSS("top")}>
                   <div className={this.decorateCSS("item")}>
-                    {itemRightTop.image && (
+                    {itemRightTop.item_right_top_image && (
                       <div className={this.decorateCSS("background-image")}>
-                        <Base.Media value={itemRightTop.image} className={this.decorateCSS("image")} autoPlay muted loop playsInline />
-                        {itemRightTop.overlay && <div className={this.decorateCSS("overlay")} />}
+                        <Base.Media value={itemRightTop.item_right_top_image} className={this.decorateCSS("image")} autoPlay muted loop playsInline />
+                        {itemRightTop.item_right_top_overlay && <div className={this.decorateCSS("overlay")} />}
                       </div>
                     )}
                     {isContentVisibleRightTop && (
-                      <div className={`${this.decorateCSS("content")} ${!itemRightTop.image && this.decorateCSS("no-bg-img")}`}>
-                        {this.castToString(itemRightTop.subtitle) && <div className={this.decorateCSS("subtitle")}>{itemRightTop.subtitle}</div>}
-                        {this.castToString(itemRightTop.title) && <div className={this.decorateCSS("title")}>{itemRightTop.title}</div>}
-                        {this.castToString(itemRightTop.description) && <div className={this.decorateCSS("description")}>{itemRightTop.description}</div>}
+                      <div className={`${this.decorateCSS("content")} ${!itemRightTop.item_right_top_image && this.decorateCSS("no-bg-img")}`}>
+                        {this.castToString(itemRightTop.item_right_top_subtitle) && <div className={this.decorateCSS("subtitle")}>{itemRightTop.item_right_top_subtitle}</div>}
+                        {this.castToString(itemRightTop.item_right_top_title) && <div className={this.decorateCSS("title")}>{itemRightTop.item_right_top_title}</div>}
+                        {this.castToString(itemRightTop.item_right_top_description) && <div className={this.decorateCSS("description")}>{itemRightTop.item_right_top_description}</div>}
                         {this.castToString(buttonRightTop.text) && (
                           <ComposerLink path={buttonRightTop.url}>
                             <Base.Button buttonType={buttonRightTop.type} className={this.decorateCSS("button")}>
@@ -320,21 +320,21 @@ class HeroSection19 extends BaseHeroSection {
                 </div>
               )}
 
-              {(itemBottomLeft.visibility || itemBottomRight.visibility) && (
+              {(itemBottomLeft.item_right_bottom_left_visibility || itemBottomRight.item_right_bottom_right_visibility) && (
                 <div className={this.decorateCSS("bottom")}>
-                  {itemBottomLeft.visibility && (
+                  {itemBottomLeft.item_right_bottom_left_visibility && (
                     <div className={`${this.decorateCSS("item")} ${this.decorateCSS("bottom-left")}`}>
-                      {itemBottomLeft.image && (
+                      {itemBottomLeft.item_right_bottom_left_image && (
                         <div className={this.decorateCSS("background-image")}>
-                          <Base.Media value={itemBottomLeft.image} className={this.decorateCSS("image")} autoPlay loop />
-                          {itemBottomLeft.overlay && <div className={this.decorateCSS("overlay")} />}
+                          <Base.Media value={itemBottomLeft.item_right_bottom_left_image} className={this.decorateCSS("image")} autoPlay loop />
+                          {itemBottomLeft.item_right_bottom_left_overlay && <div className={this.decorateCSS("overlay")} />}
                         </div>
                       )}
                       {isContentVisibleBottomLeft && (
-                        <div className={`${this.decorateCSS("content")} ${!itemBottomLeft.image && this.decorateCSS("no-bg-img")}`}>
-                          {this.castToString(itemBottomLeft.subtitle) && <div className={this.decorateCSS("subtitle")}>{itemBottomLeft.subtitle}</div>}
-                          {this.castToString(itemBottomLeft.title) && <div className={this.decorateCSS("title")}>{itemBottomLeft.title}</div>}
-                          {this.castToString(itemBottomLeft.description) && <div className={this.decorateCSS("description")}>{itemBottomLeft.description}</div>}
+                        <div className={`${this.decorateCSS("content")} ${!itemBottomLeft.item_right_bottom_left_image && this.decorateCSS("no-bg-img")}`}>
+                          {this.castToString(itemBottomLeft.item_right_bottom_left_subtitle) && <div className={this.decorateCSS("subtitle")}>{itemBottomLeft.item_right_bottom_left_subtitle}</div>}
+                          {this.castToString(itemBottomLeft.item_right_bottom_left_title) && <div className={this.decorateCSS("title")}>{itemBottomLeft.item_right_bottom_left_title}</div>}
+                          {this.castToString(itemBottomLeft.item_right_bottom_left_description) && <div className={this.decorateCSS("description")}>{itemBottomLeft.item_right_bottom_left_description}</div>}
                           {this.castToString(buttonBottomLeft.text) && (
                             <ComposerLink path={buttonBottomLeft.url}>
                               <Base.Button buttonType={buttonBottomLeft.type} className={this.decorateCSS("button")}>
@@ -346,19 +346,19 @@ class HeroSection19 extends BaseHeroSection {
                       )}
                     </div>
                   )}
-                  {itemBottomRight.visibility && (
+                  {itemBottomRight.item_right_bottom_right_visibility && (
                     <div className={`${this.decorateCSS("item")} ${this.decorateCSS("bottom-right")}`}>
-                      {itemBottomRight.image && (
+                      {itemBottomRight.item_right_bottom_right_image && (
                         <div className={this.decorateCSS("background-image")}>
-                          <Base.Media value={itemBottomRight.image} className={this.decorateCSS("image")} autoPlay loop />
-                          {itemBottomRight.overlay && <div className={this.decorateCSS("overlay")} />}
+                          <Base.Media value={itemBottomRight.item_right_bottom_right_image} className={this.decorateCSS("image")} autoPlay loop />
+                          {itemBottomRight.item_right_bottom_right_overlay && <div className={this.decorateCSS("overlay")} />}
                         </div>
                       )}
                       {isContentVisibleBottomRight && (
-                        <div className={`${this.decorateCSS("content")} ${!itemBottomRight.image && this.decorateCSS("no-bg-img")}`}>
-                          {this.castToString(itemBottomRight.subtitle) && <div className={this.decorateCSS("subtitle")}>{itemBottomRight.subtitle}</div>}
-                          {this.castToString(itemBottomRight.title) && <div className={this.decorateCSS("title")}>{itemBottomRight.title}</div>}
-                          {this.castToString(itemBottomRight.description) && <div className={this.decorateCSS("description")}>{itemBottomRight.description}</div>}
+                        <div className={`${this.decorateCSS("content")} ${!itemBottomRight.item_right_bottom_right_image && this.decorateCSS("no-bg-img")}`}>
+                          {this.castToString(itemBottomRight.item_right_bottom_right_subtitle) && <div className={this.decorateCSS("subtitle")}>{itemBottomRight.item_right_bottom_right_subtitle}</div>}
+                          {this.castToString(itemBottomRight.item_right_bottom_right_title) && <div className={this.decorateCSS("title")}>{itemBottomRight.item_right_bottom_right_title}</div>}
+                          {this.castToString(itemBottomRight.item_right_bottom_right_description) && <div className={this.decorateCSS("description")}>{itemBottomRight.item_right_bottom_right_description}</div>}
                           {this.castToString(buttonBottomRight.text) && (
                             <ComposerLink path={buttonBottomRight.url}>
                               <Base.Button buttonType={buttonBottomRight.type} className={this.decorateCSS("button")}>

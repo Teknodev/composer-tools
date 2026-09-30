@@ -9,9 +9,9 @@ type CardData = {
   prefix: React.JSX.Element;
   value: React.JSX.Element;
   suffix: React.JSX.Element;
-  subtitle: React.JSX.Element;
-  title: React.JSX.Element;
-  description: React.JSX.Element;
+  stat_subtitle: React.JSX.Element;
+  stat_title: React.JSX.Element;
+  stat_description: React.JSX.Element;
 };
 
 class Stats1Page extends BaseStats {
@@ -59,9 +59,9 @@ class Stats1Page extends BaseStats {
             { type: "string", key: "prefix", displayer: "Prefix", value: "" },
             { type: "string", key: "value", displayer: "Value", value: "1002" },
             { type: "string", key: "suffix", displayer: "Suffix", value: "" },
-            { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
-            { type: "string", key: "title", displayer: "Title", value: "Active Users" },
-            { type: "string", key: "description", displayer: "Description", value: "" },
+            { type: "string", key: "stat_subtitle", displayer: "Subtitle", value: "" },
+            { type: "string", key: "stat_title", displayer: "Title", value: "Active Users" },
+            { type: "string", key: "stat_description", displayer: "Description", value: "" },
           ],
         },
         {
@@ -72,9 +72,9 @@ class Stats1Page extends BaseStats {
             { type: "string", key: "prefix", displayer: "Prefix", value: "" },
             { type: "string", key: "value", displayer: "Value", value: "2999" },
             { type: "string", key: "suffix", displayer: "Suffix", value: "" },
-            { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
-            { type: "string", key: "title", displayer: "Title", value: "Articles" },
-            { type: "string", key: "description", displayer: "Description", value: "" },
+            { type: "string", key: "stat_subtitle", displayer: "Subtitle", value: "" },
+            { type: "string", key: "stat_title", displayer: "Title", value: "Articles" },
+            { type: "string", key: "stat_description", displayer: "Description", value: "" },
           ],
         },
         {
@@ -85,9 +85,9 @@ class Stats1Page extends BaseStats {
             { type: "string", key: "prefix", displayer: "Prefix", value: "" },
             { type: "string", key: "value", displayer: "Value", value: "97" },
             { type: "string", key: "suffix", displayer: "Suffix", value: "" },
-            { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
-            { type: "string", key: "title", displayer: "Title", value: "Authors" },
-            { type: "string", key: "description", displayer: "Description", value: "" },
+            { type: "string", key: "stat_subtitle", displayer: "Subtitle", value: "" },
+            { type: "string", key: "stat_title", displayer: "Title", value: "Authors" },
+            { type: "string", key: "stat_description", displayer: "Description", value: "" },
           ],
         },
       ],
@@ -249,9 +249,9 @@ class Stats1Page extends BaseStats {
                     const numberStr = (this.castToString(cardData.value) as string) || "";
                     const isPrefixExist = this.castToString(cardData.prefix);
                     const isSuffixExist = this.castToString(cardData.suffix);
-                    const isCardSubtitleExist = this.castToString(cardData.subtitle);
-                    const isCardTitleExist = this.castToString(cardData.title);
-                    const isCardDescExist = this.castToString(cardData.description);
+                    const isCardSubtitleExist = this.castToString(cardData.stat_subtitle);
+                    const isCardTitleExist = this.castToString(cardData.stat_title);
+                    const isCardDescExist = this.castToString(cardData.stat_description);
                     const isValueExist = !!numberStr || isPrefixExist || isSuffixExist;
 
                     if (!isValueExist && !isCardSubtitleExist && !isCardTitleExist && !isCardDescExist) return null;
@@ -267,9 +267,9 @@ class Stats1Page extends BaseStats {
                             {isSuffixExist && <span className={this.decorateCSS("counter-suffix")}>{cardData.suffix}</span>}
                           </Base.H5>
                         )}
-                        {isCardSubtitleExist && <Base.P className={this.decorateCSS("counter-subtitle")}>{cardData.subtitle}</Base.P>}
-                        {isCardTitleExist && <Base.P className={this.decorateCSS("counter-title")}>{cardData.title}</Base.P>}
-                        {isCardDescExist && <Base.P className={this.decorateCSS("counter-description")}>{cardData.description}</Base.P>}
+                        {isCardSubtitleExist && <Base.P className={this.decorateCSS("counter-subtitle")}>{cardData.stat_subtitle}</Base.P>}
+                        {isCardTitleExist && <Base.P className={this.decorateCSS("counter-title")}>{cardData.stat_title}</Base.P>}
+                        {isCardDescExist && <Base.P className={this.decorateCSS("counter-description")}>{cardData.stat_description}</Base.P>}
                       </div>
                     );
                   })}

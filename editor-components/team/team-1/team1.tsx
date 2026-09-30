@@ -14,7 +14,7 @@ type Card = {
   image: TypeMediaInputValue;
   name: string;
   position: string;
-  description: string;
+  item_description: string;
   platforms: { icon: string; url: string }[];
 };
 
@@ -155,7 +155,7 @@ class Team1 extends Team {
             },
             {
               type: "string",
-              key: "description",
+              key: "item_description",
               displayer: "Description",
               value: "We are a group of experienced professionals with diverse backgrounds and skill sets, working together to achieve common goals.",
             },
@@ -198,7 +198,7 @@ class Team1 extends Team {
             },
             {
               type: "string",
-              key: "description",
+              key: "item_description",
               displayer: "Description",
               value: "Their design skills are truly exceptional, and they have a keen eye for aesthetics that sets them apart from others in the field.",
             },
@@ -241,52 +241,9 @@ class Team1 extends Team {
             },
             {
               type: "string",
-              key: "description",
+              key: "item_description",
               displayer: "Description",
               value: "An online learning platform can provide access to educational content from anywhere with an internet connection.",
-            },
-            {
-              type: "array",
-              key: "platforms",
-              displayer: "Sosial Medias",
-              value: [facebook, twitter, instagram, linkedin],
-            },
-          ],
-        },
-        {
-          type: "object",
-          key: "item",
-          displayer: "Items",
-          value: [
-            {
-              type: "media",
-              key: "profileImage",
-              displayer: "Image",
-              additionalParams: {
-                availableTypes: ["image"],
-              },
-              value: {
-                type: "image",
-                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6437064b68c3c2002cd30781?alt=media&timestamp=1719483639146",
-              },
-            },
-            {
-              type: "string",
-              key: "name",
-              displayer: "Person Name",
-              value: "Candyce Jeannine",
-            },
-            {
-              type: "string",
-              key: "position",
-              displayer: "Position",
-              value: "Ceo/Founder",
-            },
-            {
-              type: "string",
-              key: "description",
-              displayer: "Description",
-              value: "A personal finance website can be incredibly helpful for people looking to improve their financial literacy and manage their money better.",
             },
             {
               type: "array",
@@ -303,7 +260,7 @@ class Team1 extends Team {
       type: "number",
       key: "itemCount",
       displayer: "Item count in a row",
-      value: 4,
+      value: 3,
     });
 
     this.addProp({
@@ -345,7 +302,7 @@ class Team1 extends Team {
           <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount"), tablet: 2, phone: 1 }} className={this.decorateCSS("down-page")}>
             {this.castToObject<Card[]>("items").map((card: any, indexItems: number) => {
               return (
-                <div key={indexItems} className={`${this.decorateCSS("all-card")} ${Base.getContentAlignment() === "left" && this.decorateCSS("left")}`} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
+                <Base.Card key={indexItems} className={`${this.decorateCSS("all-card")} ${Base.getContentAlignment() === "left" && this.decorateCSS("left")}`} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
                   <Base.VerticalContent className={this.decorateCSS("card")}>
                     <div className={this.decorateCSS("top")}>
                       {card.profileImage && <Base.Media value={card.profileImage} className={this.decorateCSS("image")} data-animation={this.getPropValue("hoverAnimation").join(" ")} />}
@@ -369,7 +326,7 @@ class Team1 extends Team {
                       })}
                     </Base.Row>
                   </Base.VerticalContent>
-                </div>
+                </Base.Card>
               );
             })}
           </Base.ListGrid>

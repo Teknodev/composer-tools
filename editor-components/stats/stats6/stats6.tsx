@@ -9,9 +9,9 @@ type CardData = {
   prefix: React.JSX.Element;
   value: React.JSX.Element;
   suffix: React.JSX.Element;
-  subtitle: React.JSX.Element;
-  title: React.JSX.Element;
-  description: React.JSX.Element;
+  stat_subtitle: React.JSX.Element;
+  stat_title: React.JSX.Element;
+  stat_description: React.JSX.Element;
 };
 
 class Stats6Page extends BaseStats {
@@ -61,9 +61,9 @@ class Stats6Page extends BaseStats {
             { type: "string", key: "prefix", displayer: "Prefix", value: "" },
             { type: "string", key: "value", displayer: "Value", value: "400" },
             { type: "string", key: "suffix", displayer: "Suffix", value: "" },
-            { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
-            { type: "string", key: "title", displayer: "Title", value: "" },
-            { type: "string", key: "description", displayer: "Description", value: "Customers are satisfied with our professional support" },
+            { type: "string", key: "stat_subtitle", displayer: "Subtitle", value: "" },
+            { type: "string", key: "stat_title", displayer: "Title", value: "" },
+            { type: "string", key: "stat_description", displayer: "Description", value: "Customers are satisfied with our professional support" },
           ],
         },
         {
@@ -74,9 +74,9 @@ class Stats6Page extends BaseStats {
             { type: "string", key: "prefix", displayer: "Prefix", value: "" },
             { type: "string", key: "value", displayer: "Value", value: "1000" },
             { type: "string", key: "suffix", displayer: "Suffix", value: "" },
-            { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
-            { type: "string", key: "title", displayer: "Title", value: "" },
-            { type: "string", key: "description", displayer: "Description", value: "Amazing preset options to be mixed an combined" },
+            { type: "string", key: "stat_subtitle", displayer: "Subtitle", value: "" },
+            { type: "string", key: "stat_title", displayer: "Title", value: "" },
+            { type: "string", key: "stat_description", displayer: "Description", value: "Amazing preset options to be mixed an combined" },
           ],
         },
         {
@@ -87,9 +87,9 @@ class Stats6Page extends BaseStats {
             { type: "string", key: "prefix", displayer: "Prefix", value: "" },
             { type: "string", key: "value", displayer: "Value", value: "8000" },
             { type: "string", key: "suffix", displayer: "Suffix", value: "" },
-            { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
-            { type: "string", key: "title", displayer: "Title", value: "" },
-            { type: "string", key: "description", displayer: "Description", value: "Average response time on live chat support channel" },
+            { type: "string", key: "stat_subtitle", displayer: "Subtitle", value: "" },
+            { type: "string", key: "stat_title", displayer: "Title", value: "" },
+            { type: "string", key: "stat_description", displayer: "Description", value: "Average response time on live chat support channel" },
           ],
         },
       ],
@@ -220,9 +220,9 @@ class Stats6Page extends BaseStats {
 
       const prefixExist = this.castToString(card.prefix);
       const suffixExist = this.castToString(card.suffix);
-      const subtitleExist = this.castToString(card.subtitle);
-      const titleExist = this.castToString(card.title);
-      const isDescExist = this.castToString(card.description);
+      const subtitleExist = this.castToString(card.stat_subtitle);
+      const titleExist = this.castToString(card.stat_title);
+      const isDescExist = this.castToString(card.stat_description);
 
       const hasValue = !!display || prefixExist || suffixExist;
 
@@ -238,9 +238,9 @@ class Stats6Page extends BaseStats {
                 {suffixExist && <span className={this.decorateCSS("data-card-suffix")}>{card.suffix}</span>}
               </Base.P>
             )}
-            {subtitleExist && <Base.P className={this.decorateCSS("data-card-subtitle")}>{card.subtitle}</Base.P>}
-            {titleExist && <Base.H5 className={this.decorateCSS("data-card-heading")}>{card.title}</Base.H5>}
-            {isDescExist && <Base.P className={this.decorateCSS("data-card-description")}>{card.description}</Base.P>}
+            {subtitleExist && <Base.P className={this.decorateCSS("data-card-subtitle")}>{card.stat_subtitle}</Base.P>}
+            {titleExist && <Base.H5 className={this.decorateCSS("data-card-heading")}>{card.stat_title}</Base.H5>}
+            {isDescExist && <Base.P className={this.decorateCSS("data-card-description")}>{card.stat_description}</Base.P>}
           </Base.VerticalContent>
         </div>
       );

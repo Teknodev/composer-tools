@@ -13,7 +13,7 @@ type ButtonTypeObj = {
 }
 
 interface ListItem {
-  title: React.JSX.Element;
+  item_title: React.JSX.Element;
   cardSubTitle: React.JSX.Element;
   cardTitle: React.JSX.Element;
   text1: React.JSX.Element;
@@ -59,7 +59,7 @@ class Feature42 extends BaseFeature {
           value: [
             {
               type: "string",
-              key: "title",
+              key: "item_title",
               displayer: "Title",
               value: "Design"
             },
@@ -106,7 +106,7 @@ class Feature42 extends BaseFeature {
           value: [
             {
               type: "string",
-              key: "title",
+              key: "item_title",
               displayer: "Title",
               value: "Analytics"
             },
@@ -153,7 +153,7 @@ class Feature42 extends BaseFeature {
           value: [
             {
               type: "string",
-              key: "title",
+              key: "item_title",
               displayer: "Title",
               value: "Marketing"
             },
@@ -245,7 +245,7 @@ class Feature42 extends BaseFeature {
     const items = this.castToObject<ListItem[]>("items");
     const activeIndex = this.getComponentState("activeIndex");
     const effectiveIndex = activeIndex === undefined ? 0 : activeIndex;
-    const hasItems = items.some((item: ListItem) => this.castToString(item.title));
+    const hasItems = items.some((item: ListItem) => this.castToString(item.item_title));
     const buttons = this.castToObject<ButtonTypeObj[]>("buttons") || [];
     const visibleButtons = buttons.filter(btn => this.castToString(btn.text));
     const hasContent = subtitleExist || titleExist || descriptionExist;
@@ -273,7 +273,7 @@ class Feature42 extends BaseFeature {
             {hasItems && (
               <div className={this.decorateCSS("items-wrapper")}>
                 {items.map((item: ListItem, index: number) => {
-                  const menuTitle = item.title;
+                  const menuTitle = item.item_title;
                   const isActive = effectiveIndex === index;
                   return this.castToString(menuTitle) && (
                     <Base.H5
@@ -310,7 +310,7 @@ class Feature42 extends BaseFeature {
                       this.setComponentState("activeIndex", newIndex);
                     }}
                   >
-                    <Base.H3 className={`${this.decorateCSS("mobile-title")} ${isActive && this.decorateCSS("active")}`}>{item.title}</Base.H3>
+                    <Base.H3 className={`${this.decorateCSS("mobile-title")} ${isActive && this.decorateCSS("active")}`}>{item.item_title}</Base.H3>
                     <div className={`${this.decorateCSS("arrow-icon")} ${isActive && this.decorateCSS("active")}`}>
                       {mobileIcon && (<Base.Media value={mobileIcon} className={`${mobileIcon.type === "image" && this.decorateCSS("is-image")}`} />)}
                     </div>

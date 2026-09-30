@@ -1,150 +1,251 @@
 @use '../../../composer-base-components/base/utitilities/viewports.module.scss' as *;
+
 .container {
   .max-content {
-    .page {
-      display: flex;
-      gap: var(--composer-gap-xl);
-      .left-page {
-        flex: 1;
-        .subtitle, .title, .description {
-          content: "";
+    display: flex;
+    gap: var(--composer-gap-lg);
+
+    .vertical-content {
+      flex: 1;
+
+      .subtitle,
+      .title,
+      .description {
+        margin-left: 0;
+        text-align: left;
+      }
+
+      .left-buttons {
+        display: flex;
+        justify-content: flex-start !important;
+        gap: var(--composer-gap-sm);
+        flex-wrap: wrap;
+        width: 100%;
+
+        .button {
+          .button-text {
+            content: "";
+          }
         }
       }
-      .right-page{
-        flex: 1;
+    }
+
+    .right-page {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: var(--composer-gap-md);
+
+      .section-wrapper {
+        display: flex;
+        gap: var(--composer-gap-md);
+        margin: 0;
+        border-bottom: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.5);
+        justify-content: flex-start;
+        flex-wrap: wrap;
+
+        .section {
+          border-bottom: 1px solid transparent;
+          color: var(--composer-font-color-primary);
+          opacity: 0.7;
+          padding-bottom: var(--composer-gap-sm);
+          transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+          margin: 0 !important;
+          width: fit-content;
+          text-align: left !important;
+
+          &.active {
+            border-bottom: 2px solid var(--composer-primary-color);
+            opacity: 1;
+          }
+
+        }
+      }
+
+      .bottom-wrapper {
+        display: flex;
+        width: 100%;
         display: flex;
         flex-direction: column;
         gap: var(--composer-gap-md);
-        .section-wrapper{
-          display: flex;
-          gap: var(--composer-gap-md);
-          border-bottom: 1px solid color-mix(
-            in srgb,
-            var(--composer-html-background),
-            var(--composer-font-color-primary) 5%
-          );
-          flex-wrap: wrap;
-          .section{
-            border-bottom: 1px solid transparent;
-            color: var(--composer-font-color-primary);
-            opacity: 0.7;
-            padding-bottom: var(--composer-gap-sm);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            width: fit-content;
-            &.active{
-              border-bottom: 1px solid var(--composer-font-color-primary);
-              opacity: 1;
-              font-weight: bold;
-            }
-            
-          }
-        }
-        .bottom-wrapper {
-          display: flex;
+
+        .card {
           width: 100%;
           display: flex;
           flex-direction: column;
-          gap: var(--composer-gap-md);
-            
-          .card {
-              width: 100%;
+          justify-content: center;
+          align-items: flex-start;
+          border-radius: var(--composer-border-radius-sm);
+          background-color: color-mix(in srgb,
+              var(--composer-html-background),
+              var(--composer-font-color-primary) 5%);
+          padding: var(--composer-gap-md);
+
+          .little-container {
+            width: 100%;
+            display: flex;
+            gap: var(--composer-gap-md);
+            align-items: center;
+
+            .card-index {
               display: flex;
-              flex-direction: column;
-              justify-content: center;
               align-items: center;
-              border-radius: var(--composer-border-radius-sm);
-              background-color: color-mix(
-                in srgb,
-                var(--composer-html-background),
-                var(--composer-font-color-primary) 5%
-              );
-              padding: var(--composer-gap-md);
-              .little-container {
-                width: 100%;
+              justify-content: center;
+              background-color: var(--composer-html-background);
+              width: 32px;
+              height: 32px;
+              flex-shrink: 0;
+              transition: background-color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+              border-radius: var(--composer-gap-xs);
+
+              .index {
+                color: var(--composer-font-color-primary);
+                transition: color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+                margin: 0 !important;
                 display: flex;
-                gap: var(--composer-gap-md);
                 align-items: center;
-                .card-index{
-                  display: flex;
-                  padding: var(--composer-gap-xs) var(--composer-gap-sm);
-                  background-color: var(--composer-html-background);
-                  height: fit-content;
-                  transition: background-color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-                  border-radius: var(--composer-gap-xs);
-                  .index{
-                    color: var(--composer-font-color-primary);
-                    transition: color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-                  }
-                  &.active{
-                    background-color: var(--composer-primary-color);
-                    .index{
-                      color: var(--composer-font-color-secondary);
-                    }
-                  }
-                }
-
-                .card-title {
-                  flex: 1;
-                  color: var(--composer-font-color-primary);
-                }
-                .icon-wrapper{
-                  display: flex;
-                  align-items: center;
-                  justify-content: center;
-                  .icon {
-                    width: 25px;
-                    height: 25px;
-                    font-size: 2rem;
-                    color: var(--composer-font-color-primary);
-                  }
-                }
-
-              }
-              .text-wrapper{
+                justify-content: center;
                 width: 100%;
-                overflow: hidden;
-                max-height: 0px;
-                transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), padding 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-                padding:0px var(--composer-gap-xl);
-                .text{
-                  opacity: 0;
-                  transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-                  color: var(--composer-tertiary-color);
-                  &.active{
-                    opacity: 1;
-                  }
-                }
-                &.active {
-                  padding: var(--composer-gap-md) var(--composer-gap-xl) 0px var(--composer-gap-xl);
-                  max-height: 150px;
+                height: 100%;
+                text-align: center;
+                line-height: 1;
+              }
+
+              &.active {
+                background-color: var(--composer-primary-color);
+
+                .index {
+                  color: var(--composer-font-color-secondary);
                 }
               }
-           }
-        }
-      }
+            }
 
-    }
+            .card-title {
+              flex: 1;
+              color: var(--composer-font-color-primary);
+              text-align: left;
 
-  }
-}
-@container (max-width: #{$composer-tablet-width}){
-  .container{
-    .max-content{
-      .page{
-        .right-page{
-          .section-wrapper{
-            border-bottom: none;
+              &.active {
+                font-weight: 800;
+              }
+            }
+
+            .icon-wrapper {
+              display: flex;
+              align-items: center;
+              justify-content: center;
+
+              .icon {
+                width: 25px;
+                height: 25px;
+                font-size: 2rem;
+                object-fit: contain;
+                color: var(--composer-font-color-primary);
+              }
+            }
+
+          }
+
+          .text-wrapper {
+            width: 100%;
+            overflow: hidden;
+            max-height: 0px;
+            transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), padding 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            padding: 0px var(--composer-gap-xl);
+
+            .text {
+              opacity: 0;
+              transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+              color: var(--composer-tertiary-color);
+              text-align: left;
+
+              &.active {
+                opacity: 1;
+              }
+            }
+
+            .buttons-wrapper {
+              display: flex;
+              justify-content: flex-start;
+              gap: var(--composer-gap-sm);
+              flex-wrap: wrap;
+              margin-top: var(--composer-gap-md);
+
+              .button {
+                .button-text {
+                  content: "";
+                }
+              }
+            }
+
+            &.active {
+              padding: var(--composer-gap-md) var(--composer-gap-xl) var(--composer-gap-md) var(--composer-gap-xl);
+              max-height: 500px;
+            }
           }
         }
       }
     }
   }
 }
-@container (max-width: #{$composer-phone-width}){
-  .container{
-    .max-content{
-      .page{
-        flex-direction: column;
+
+@container (max-width: #{$composer-tablet-width}) {
+  .container {
+    .max-content {
+      .right-page {
+        .section-wrapper {
+          border-bottom: none;
+        }
+
+        .bottom-wrapper {
+          .card {
+            .little-container {
+              .icon-wrapper {
+                .icon {
+                  width: 22px;
+                  height: 22px;
+                  font-size: 1.75rem;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+  .container {
+    .max-content {
+      flex-direction: column;
+
+      .vertical-content {
+
+        .subtitle,
+        .title,
+        .description {
+          text-align: var(--composer-content-alignment) !important;
+          margin-right: 0 !important;
+        }
+
+        .left-buttons {
+          justify-content: var(--composer-content-alignment) !important;
+        }
+      }
+
+      .right-page {
+        .bottom-wrapper {
+          .card {
+            .little-container {
+              .icon-wrapper {
+                .icon {
+                  font-size: 1.5rem;
+                }
+              }
+            }
+          }
+        }
       }
     }
   }

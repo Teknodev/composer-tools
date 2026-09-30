@@ -10,7 +10,7 @@ interface GalleryItem {
     images: ImageItem[],
 }
 interface ImageItem {
-    image: TypeMediaInputValue,
+    image_image: TypeMediaInputValue,
     badge: React.JSX.Element,
     title: React.JSX.Element,
     description: React.JSX.Element,
@@ -78,7 +78,7 @@ class ImageGallery6 extends BaseImageGallery {
                                     value: [
                                         {
                                             type: "media",
-                                            key: "image",
+                                            key: "image_image",
                                             displayer: "Image",
                                             value: {
                                                 type: "image",
@@ -139,7 +139,7 @@ class ImageGallery6 extends BaseImageGallery {
                                     value: [
                                         {
                                             type: "media",
-                                            key: "image",
+                                            key: "image_image",
                                             displayer: "Image",
                                             value: {
                                                 type: "image",
@@ -200,7 +200,7 @@ class ImageGallery6 extends BaseImageGallery {
                                     value: [
                                         {
                                             type: "media",
-                                            key: "image",
+                                            key: "image_image",
                                             displayer: "Image",
                                             value: {
                                                 type: "image",
@@ -283,7 +283,7 @@ class ImageGallery6 extends BaseImageGallery {
                                     value: [
                                         {
                                             type: "media",
-                                            key: "image",
+                                            key: "image_image",
                                             displayer: "Image",
                                             value: {
                                                 type: "image",
@@ -344,7 +344,7 @@ class ImageGallery6 extends BaseImageGallery {
                                     value: [
                                         {
                                             type: "media",
-                                            key: "image",
+                                            key: "image_image",
                                             displayer: "Image",
                                             value: {
                                                 type: "image",
@@ -405,7 +405,7 @@ class ImageGallery6 extends BaseImageGallery {
                                     value: [
                                         {
                                             type: "media",
-                                            key: "image",
+                                            key: "image_image",
                                             displayer: "Image",
                                             value: {
                                                 type: "image",
@@ -466,7 +466,7 @@ class ImageGallery6 extends BaseImageGallery {
                                     value: [
                                         {
                                             type: "media",
-                                            key: "image",
+                                            key: "image_image",
                                             displayer: "Image",
                                             value: {
                                                 type: "image",
@@ -547,7 +547,7 @@ class ImageGallery6 extends BaseImageGallery {
                                     value: [
                                         {
                                             type: "media",
-                                            key: "image",
+                                            key: "image_image",
                                             displayer: "Image",
                                             value: {
                                                 type: "image",
@@ -700,8 +700,8 @@ class ImageGallery6 extends BaseImageGallery {
                                             <div className={`${this.decorateCSS("images")} ${imageClass} ${item.active ? this.decorateCSS("active") : ""}`}>
 
                                                 <div className={this.decorateCSS("image-wrapper")}>
-                                                    {item.image && (
-                                                        <Base.Media value={item.image} className={this.decorateCSS("image")} />
+                                                    {item.image_image && (
+                                                        <Base.Media value={item.image_image} className={this.decorateCSS("image")} />
                                                     )}
                                                     {this.castToString(item.badge) && (
                                                         <div className={this.decorateCSS("badge")}>
@@ -762,8 +762,8 @@ class ImageGallery6 extends BaseImageGallery {
                                         <ComposerLink path={item.url}>
                                             <div className={`${this.decorateCSS("images")} ${imageClass} ${item.active ? this.decorateCSS("active") : ""}`}>
                                                 <div className={this.decorateCSS("image-wrapper")}>
-                                                    {item.image && (
-                                                        <Base.Media value={item.image} className={this.decorateCSS("image")} />
+                                                    {item.image_image && (
+                                                        <Base.Media value={item.image_image} className={this.decorateCSS("image")} />
                                                     )}
                                                     {this.castToString(item.badge) && (
                                                         <div className={this.decorateCSS("badge")}>

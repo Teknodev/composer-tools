@@ -9,9 +9,9 @@ type CardData = {
     prefix: React.JSX.Element;
     value: React.JSX.Element;
     suffix: React.JSX.Element;
-    subtitle: React.JSX.Element;
-    title: React.JSX.Element;
-    description: React.JSX.Element;
+    stat_subtitle: React.JSX.Element;
+    stat_title: React.JSX.Element;
+    stat_description: React.JSX.Element;
 };
 
 class Stats18Page extends BaseStats {
@@ -61,9 +61,9 @@ class Stats18Page extends BaseStats {
                         { type: "string", key: "prefix", displayer: "Prefix", value: "$" },
                         { type: "string", key: "value", displayer: "Value", value: "50" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "M+" },
-                        { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
-                        { type: "string", key: "title", displayer: "Title", value: "Total investment in 2022" },
-                        { type: "string", key: "description", displayer: "Description", value: "" },
+                        { type: "string", key: "stat_subtitle", displayer: "Subtitle", value: "" },
+                        { type: "string", key: "stat_title", displayer: "Title", value: "Total investment in 2022" },
+                        { type: "string", key: "stat_description", displayer: "Description", value: "" },
                     ],
                 },
                 {
@@ -74,9 +74,9 @@ class Stats18Page extends BaseStats {
                         { type: "string", key: "prefix", displayer: "Prefix", value: "" },
                         { type: "string", key: "value", displayer: "Value", value: "5000" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "+" },
-                        { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
-                        { type: "string", key: "title", displayer: "Title", value: "Employees" },
-                        { type: "string", key: "description", displayer: "Description", value: "" },
+                        { type: "string", key: "stat_subtitle", displayer: "Subtitle", value: "" },
+                        { type: "string", key: "stat_title", displayer: "Title", value: "Employees" },
+                        { type: "string", key: "stat_description", displayer: "Description", value: "" },
                     ],
                 },
                 {
@@ -87,9 +87,9 @@ class Stats18Page extends BaseStats {
                         { type: "string", key: "prefix", displayer: "Prefix", value: "" },
                         { type: "string", key: "value", displayer: "Value", value: "12" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "x" },
-                        { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
-                        { type: "string", key: "title", displayer: "Title", value: "Increased website traffic" },
-                        { type: "string", key: "description", displayer: "Description", value: "" },
+                        { type: "string", key: "stat_subtitle", displayer: "Subtitle", value: "" },
+                        { type: "string", key: "stat_title", displayer: "Title", value: "Increased website traffic" },
+                        { type: "string", key: "stat_description", displayer: "Description", value: "" },
                     ],
                 },
                 {
@@ -100,9 +100,9 @@ class Stats18Page extends BaseStats {
                         { type: "string", key: "prefix", displayer: "Prefix", value: "" },
                         { type: "string", key: "value", displayer: "Value", value: "99" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "%" },
-                        { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
-                        { type: "string", key: "title", displayer: "Title", value: "Client Satisfaction" },
-                        { type: "string", key: "description", displayer: "Description", value: "" },
+                        { type: "string", key: "stat_subtitle", displayer: "Subtitle", value: "" },
+                        { type: "string", key: "stat_title", displayer: "Title", value: "Client Satisfaction" },
+                        { type: "string", key: "stat_description", displayer: "Description", value: "" },
                     ],
                 },
             ],
@@ -162,6 +162,14 @@ class Stats18Page extends BaseStats {
         const itemCount = this.getPropValue("itemCount") ?? 4;
 
         const hasTopSection = subtitleExist || titleExist || descriptionExist || hasValidButtons;
+
+        const hasCardContent = (card: CardData): boolean =>
+            !!this.castToString(card.value) ||
+            !!this.castToString(card.prefix) ||
+            !!this.castToString(card.suffix) ||
+            !!this.castToString(card.stat_title) ||
+            !!this.castToString(card.stat_subtitle) ||
+            !!this.castToString(card.stat_description);
 
         const AnimatedCard = ({ card }: { card: CardData }) => {
             const ref = React.useRef<HTMLDivElement>(null);
@@ -238,9 +246,9 @@ class Stats18Page extends BaseStats {
 
             const prefixExist = this.castToString(card.prefix);
             const suffixExist = this.castToString(card.suffix);
-            const titleTextExist = this.castToString(card.title);
-            const subtitleTextExist = this.castToString(card.subtitle);
-            const descriptionTextExist = this.castToString(card.description);
+            const titleTextExist = this.castToString(card.stat_title);
+            const subtitleTextExist = this.castToString(card.stat_subtitle);
+            const descriptionTextExist = this.castToString(card.stat_description);
             const valueExist = !!display;
 
             if (!valueExist && !prefixExist && !suffixExist && !titleTextExist && !subtitleTextExist && !descriptionTextExist) return null;
@@ -269,17 +277,17 @@ class Stats18Page extends BaseStats {
                     {showLine && <div className={this.decorateCSS("line")}></div>}
                     {subtitleTextExist && (
                         <Base.H6 className={this.decorateCSS("card-subtitle")}>
-                            {card.subtitle}
+                            {card.stat_subtitle}
                         </Base.H6>
                     )}
                     {titleTextExist && (
                         <Base.H5 className={this.decorateCSS("card-title")}>
-                            {card.title}
+                            {card.stat_title}
                         </Base.H5>
                     )}
                     {descriptionTextExist && (
                         <Base.P className={this.decorateCSS("card-description")}>
-                            {card.description}
+                            {card.stat_description}
                         </Base.P>
                     )}
                 </Base.VerticalContent>
@@ -334,8 +342,10 @@ class Stats18Page extends BaseStats {
                             gridCount={{ pc: itemCount, tablet: 4, phone: 1 }}
                             className={this.decorateCSS("cards-grid")}
                         >
-                            {cards.map((card: CardData, index: number) => (
-                                <AnimatedCard key={`stat18-${index}`} card={card} />
+                            {cards.map((card: CardData, index: number) => hasCardContent(card) && (
+                                <Base.Card key={`stat18-${index}`} className={this.decorateCSS("card-shell")}>
+                                    <AnimatedCard card={card} />
+                                </Base.Card>
                             ))}
                         </Base.ListGrid>
                     )}

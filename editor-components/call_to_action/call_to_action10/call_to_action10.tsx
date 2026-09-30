@@ -202,23 +202,25 @@ class CallToAction10Page extends BaseCallToAction {
             {(cardItem.length > 0) && (
               <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount") }} className={this.decorateCSS("card-container")}>
                 {cardItem.map((item: CardItem, index: number) => (
-                  <Base.VerticalContent className={this.decorateCSS("card")}>
-                    {item.cardIcon && (
-                      <div className={this.decorateCSS("icon-wrapper")}>
-                        <Base.Media value={item.cardIcon} className={this.decorateCSS("icon")} />
-                      </div>
-                    )}
-                    {this.castToString(item.cardTitle) && (
-                      <Base.H3 className={this.decorateCSS("card-title")}>
-                        {item.cardTitle}
-                      </Base.H3>
-                    )}
-                    {this.castToString(item.cardDescription) && (
-                      <Base.P className={this.decorateCSS("card-description")}>
-                        {item.cardDescription}
-                      </Base.P>
-                    )}
-                  </Base.VerticalContent>
+                  <Base.Card key={index} className={this.decorateCSS("card-shell")}>
+                    <Base.VerticalContent className={this.decorateCSS("card")}>
+                      {item.cardIcon && (
+                        <div className={this.decorateCSS("icon-wrapper")}>
+                          <Base.Media value={item.cardIcon} className={this.decorateCSS("icon")} />
+                        </div>
+                      )}
+                      {this.castToString(item.cardTitle) && (
+                        <Base.H3 className={this.decorateCSS("card-title")}>
+                          {item.cardTitle}
+                        </Base.H3>
+                      )}
+                      {this.castToString(item.cardDescription) && (
+                        <Base.P className={this.decorateCSS("card-description")}>
+                          {item.cardDescription}
+                        </Base.P>
+                      )}
+                    </Base.VerticalContent>
+                  </Base.Card>
                 ))}
               </Base.ListGrid>
             )}

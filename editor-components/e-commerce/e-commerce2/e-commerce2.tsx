@@ -23,7 +23,7 @@ interface PopupSettings {
 }
 
 interface Image {
-    title: React.JSX.Element;
+    media_title: React.JSX.Element;
     cardImage: TypeMediaInputValue;
     price: { value: string, currency: string };
     leftText: React.JSX.Element;
@@ -124,7 +124,7 @@ class ECommerce2 extends BaseECommerce {
                                         },
                                         {
                                             type: "string",
-                                            key: "title",
+                                            key: "media_title",
                                             displayer: "Title",
                                             value: "BASKET WITH HANDLES",
                                         },
@@ -305,7 +305,7 @@ class ECommerce2 extends BaseECommerce {
                                         },
                                         {
                                             type: "string",
-                                            key: "title",
+                                            key: "media_title",
                                             displayer: "Title",
                                             value: "DEPO ACCESSORY",
                                         },
@@ -486,7 +486,7 @@ class ECommerce2 extends BaseECommerce {
                                         },
                                         {
                                             type: "string",
-                                            key: "title",
+                                            key: "media_title",
                                             displayer: "Title",
                                             value: "FLOWER VASE",
                                         },
@@ -667,7 +667,7 @@ class ECommerce2 extends BaseECommerce {
                                         },
                                         {
                                             type: "string",
-                                            key: "title",
+                                            key: "media_title",
                                             displayer: "Title",
                                             value: "WALL CLOCK",
                                         },
@@ -848,7 +848,7 @@ class ECommerce2 extends BaseECommerce {
                                         },
                                         {
                                             type: "string",
-                                            key: "title",
+                                            key: "media_title",
                                             displayer: "Title",
                                             value: "NEWSPAPER STORAGE",
                                         },
@@ -1029,7 +1029,7 @@ class ECommerce2 extends BaseECommerce {
                                         },
                                         {
                                             type: "string",
-                                            key: "title",
+                                            key: "media_title",
                                             displayer: "Title",
                                             value: "POTTERY VASE",
                                         },
@@ -1210,7 +1210,7 @@ class ECommerce2 extends BaseECommerce {
                                         },
                                         {
                                             type: "string",
-                                            key: "title",
+                                            key: "media_title",
                                             displayer: "Title",
                                             value: "ROSE HOLDBACK",
                                         },
@@ -1391,7 +1391,7 @@ class ECommerce2 extends BaseECommerce {
                                         },
                                         {
                                             type: "string",
-                                            key: "title",
+                                            key: "media_title",
                                             displayer: "Title",
                                             value: "TABLE LAMP",
                                         },
@@ -1592,7 +1592,7 @@ class ECommerce2 extends BaseECommerce {
                                         },
                                         {
                                             type: "string",
-                                            key: "title",
+                                            key: "media_title",
                                             displayer: "Title",
                                             value: "TABLE LAMP",
                                         },
@@ -1793,7 +1793,7 @@ class ECommerce2 extends BaseECommerce {
                                         },
                                         {
                                             type: "string",
-                                            key: "title",
+                                            key: "media_title",
                                             displayer: "Title",
                                             value: "BASKET WITH HANDLES",
                                         },
@@ -1974,7 +1974,7 @@ class ECommerce2 extends BaseECommerce {
                                         },
                                         {
                                             type: "string",
-                                            key: "title",
+                                            key: "media_title",
                                             displayer: "Title",
                                             value: "ROSE HOLDBACK",
                                         },
@@ -2175,7 +2175,7 @@ class ECommerce2 extends BaseECommerce {
                                         },
                                         {
                                             type: "string",
-                                            key: "title",
+                                            key: "media_title",
                                             displayer: "Title",
                                             value: "POTTERY VASE",
                                         },
@@ -2356,7 +2356,7 @@ class ECommerce2 extends BaseECommerce {
                                         },
                                         {
                                             type: "string",
-                                            key: "title",
+                                            key: "media_title",
                                             displayer: "Title",
                                             value: "FLOWER VASE",
                                         },
@@ -2557,7 +2557,7 @@ class ECommerce2 extends BaseECommerce {
                                         },
                                         {
                                             type: "string",
-                                            key: "title",
+                                            key: "media_title",
                                             displayer: "Title",
                                             value: "DECO ACCESSORY",
                                         },
@@ -2738,7 +2738,7 @@ class ECommerce2 extends BaseECommerce {
                                         },
                                         {
                                             type: "string",
-                                            key: "title",
+                                            key: "media_title",
                                             displayer: "Title",
                                             value: "WALL CLOCK",
                                         },
@@ -2919,7 +2919,7 @@ class ECommerce2 extends BaseECommerce {
                                         },
                                         {
                                             type: "string",
-                                            key: "title",
+                                            key: "media_title",
                                             displayer: "Title",
                                             value: "NEWSPAPER STORAGE",
                                         },
@@ -3384,7 +3384,7 @@ class ECommerce2 extends BaseECommerce {
                     <Base.ListGrid gridCount={{ pc: itemCount, tablet: 4}} className={this.decorateCSS("grid")}>
                         {filteredImages.map((image, imgIndex) => {
                             const shouldRenderCard =
-                                this.castToString(image.title) ||
+                                this.castToString(image.media_title) ||
                                 image.price?.value ||
                                 this.castToString(image.subTitle) ||
                                 (image.cardImage as { url?: string })?.url ||
@@ -3437,9 +3437,9 @@ class ECommerce2 extends BaseECommerce {
                                             </div>
                                         </ComposerLink>
                                         <Base.VerticalContent className={this.decorateCSS("text-container")}>
-                                            {this.castToString(image.title) && (
+                                            {this.castToString(image.media_title) && (
                                                 <Base.P className={this.decorateCSS("title")}>
-                                                    {image.title}
+                                                    {image.media_title}
                                                 </Base.P>
                                             )}
                                             {image.price?.value && (

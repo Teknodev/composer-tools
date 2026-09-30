@@ -11,7 +11,7 @@ interface Platform {
 }
 
 interface Game {
-  title: string;
+  game_title: string;
   titlePage: string;
   genreBadge: string;
   image: TypeMediaInputValue;
@@ -80,7 +80,7 @@ class Portfolio2 extends BasePortfolio {
           value: [
             {
               type: "string",
-              key: "title",
+              key: "game_title",
               displayer: "Game Title",
               value: "Abyss of the Unseen Oracle",
             },
@@ -198,7 +198,7 @@ class Portfolio2 extends BasePortfolio {
           value: [
             {
               type: "string",
-              key: "title",
+              key: "game_title",
               displayer: "Game Title",
               value: "Spires of the Forgotten Era",
             },
@@ -315,7 +315,7 @@ class Portfolio2 extends BasePortfolio {
           value: [
             {
               type: "string",
-              key: "title",
+              key: "game_title",
               displayer: "Game Title",
               value: "Warriors of the Twilight Veil",
             },
@@ -432,7 +432,7 @@ class Portfolio2 extends BasePortfolio {
           value: [
             {
               type: "string",
-              key: "title",
+              key: "game_title",
               displayer: "Game Title",
               value: "Specters of the Fallen City",
             },
@@ -722,7 +722,7 @@ class Portfolio2 extends BasePortfolio {
             <Base.MaxContent className={this.decorateCSS("max-content")}>
               <div className={this.decorateCSS("games-section")}>
                 {games.map((game: Game, index: number) => {
-                  const title = game?.title;
+                  const title = game.game_title;
                   const titlePage = game?.titlePage;
                   const image = game?.image;
                   const badge = game?.genreBadge;

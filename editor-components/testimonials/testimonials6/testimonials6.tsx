@@ -349,7 +349,7 @@ class Testimonials6Page extends Testimonials {
           {this.castToString(this.getPropValue("title")) && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
           <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount"), tablet: 2, phone: 1 }} className={this.decorateCSS("cardContainer")}>
             {card.map((item: any, index: number) => (
-              <div className={this.decorateCSS("card")}>
+              <Base.Card className={this.decorateCSS("card")}>
                 {this.castToString(item.description) && <Base.P className={this.decorateCSS("description")}>{item.description}</Base.P>}
                 {item.line && <div className={this.decorateCSS("line")}></div>}
                 {(item.profileImage || this.castToString(item.name) || this.castToString(item.personTitle) || item.star > 0) && (
@@ -368,7 +368,7 @@ class Testimonials6Page extends Testimonials {
                     )}
                   </div>
                 )}
-              </div>
+              </Base.Card>
             ))}
           </Base.ListGrid>
         </Base.MaxContent>

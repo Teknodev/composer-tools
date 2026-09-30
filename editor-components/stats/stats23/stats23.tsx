@@ -9,9 +9,9 @@ type Stat = {
     prefix: React.JSX.Element;
     value: React.JSX.Element;
     suffix: React.JSX.Element;
-    title: React.JSX.Element;
-    subtitle: React.JSX.Element;
-    description: React.JSX.Element;
+    stat_title: React.JSX.Element;
+    stat_subtitle: React.JSX.Element;
+    stat_description: React.JSX.Element;
 };
 
 class Stats23 extends BaseStats {
@@ -61,9 +61,9 @@ class Stats23 extends BaseStats {
                         { type: "string", key: "prefix", displayer: "Prefix", value: "" },
                         { type: "string", key: "value", displayer: "Value", value: "2018" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "" },
-                        { type: "string", key: "subtitle", displayer: "Subtitle", value: "FOUNDED" },
-                        { type: "string", key: "title", displayer: "Title", value: "" },
-                        { type: "string", key: "description", displayer: "Description", value: "Leverage agile frameworks to provide a robust synopsis for high level overviews" },
+                        { type: "string", key: "stat_subtitle", displayer: "Subtitle", value: "FOUNDED" },
+                        { type: "string", key: "stat_title", displayer: "Title", value: "" },
+                        { type: "string", key: "stat_description", displayer: "Description", value: "Leverage agile frameworks to provide a robust synopsis for high level overviews" },
                     ],
                 },
                 {
@@ -74,9 +74,9 @@ class Stats23 extends BaseStats {
                         { type: "string", key: "prefix", displayer: "Prefix", value: "$" },
                         { type: "string", key: "value", displayer: "Value", value: "171" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "M" },
-                        { type: "string", key: "subtitle", displayer: "Subtitle", value: "FUNDING" },
-                        { type: "string", key: "title", displayer: "Title", value: "" },
-                        { type: "string", key: "description", displayer: "Description", value: "Organically grow the holistic world view of disruptive innovation via workplace" },
+                        { type: "string", key: "stat_subtitle", displayer: "Subtitle", value: "FUNDING" },
+                        { type: "string", key: "stat_title", displayer: "Title", value: "" },
+                        { type: "string", key: "stat_description", displayer: "Description", value: "Organically grow the holistic world view of disruptive innovation via workplace" },
                     ],
                 },
                 {
@@ -87,9 +87,9 @@ class Stats23 extends BaseStats {
                         { type: "string", key: "prefix", displayer: "Prefix", value: "" },
                         { type: "string", key: "value", displayer: "Value", value: "300" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "+" },
-                        { type: "string", key: "subtitle", displayer: "Subtitle", value: "PEOPLE" },
-                        { type: "string", key: "title", displayer: "Title", value: "" },
-                        { type: "string", key: "description", displayer: "Description", value: "Bring to the table win-win survival strategies to ensure proactive domination" },
+                        { type: "string", key: "stat_subtitle", displayer: "Subtitle", value: "PEOPLE" },
+                        { type: "string", key: "stat_title", displayer: "Title", value: "" },
+                        { type: "string", key: "stat_description", displayer: "Description", value: "Bring to the table win-win survival strategies to ensure proactive domination" },
                     ],
                 },
                 {
@@ -100,9 +100,9 @@ class Stats23 extends BaseStats {
                         { type: "string", key: "prefix", displayer: "Prefix", value: "" },
                         { type: "string", key: "value", displayer: "Value", value: "4.500" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "+" },
-                        { type: "string", key: "subtitle", displayer: "Subtitle", value: "SQUARE FEET" },
-                        { type: "string", key: "title", displayer: "Title", value: "" },
-                        { type: "string", key: "description", displayer: "Description", value: "Capitalize on low hanging fruit to identify a ballpark value added activity" },
+                        { type: "string", key: "stat_subtitle", displayer: "Subtitle", value: "SQUARE FEET" },
+                        { type: "string", key: "stat_title", displayer: "Title", value: "" },
+                        { type: "string", key: "stat_description", displayer: "Description", value: "Capitalize on low hanging fruit to identify a ballpark value added activity" },
                     ],
                 },
             ],
@@ -219,9 +219,9 @@ class Stats23 extends BaseStats {
                 };
             }, [rawNumber, animatable, animationDuration, target]);
 
-            const titleTextExist = this.castToString(stat.title);
-            const subtitleTextExist = this.castToString(stat.subtitle);
-            const descriptionTextExist = this.castToString(stat.description);
+            const titleTextExist = this.castToString(stat.stat_title);
+            const subtitleTextExist = this.castToString(stat.stat_subtitle);
+            const descriptionTextExist = this.castToString(stat.stat_description);
             const prefixExist = this.castToString(stat.prefix);
             const suffixExist = this.castToString(stat.suffix);
             const valueExist = !!rawNumber;
@@ -232,12 +232,12 @@ class Stats23 extends BaseStats {
                 <Base.VerticalContent className={this.decorateCSS("stat-item")}>
                     {subtitleTextExist && (
                         <Base.P className={this.decorateCSS("stat-subtitle")}>
-                            {stat.subtitle}
+                            {stat.stat_subtitle}
                         </Base.P>
                     )}
                     {titleTextExist && (
                         <Base.H5 className={this.decorateCSS("stat-title")}>
-                            {stat.title}
+                            {stat.stat_title}
                         </Base.H5>
                     )}
                     {(valueExist || suffixExist) && (
@@ -259,7 +259,7 @@ class Stats23 extends BaseStats {
                     )}
                     {descriptionTextExist && (
                         <Base.H6 className={this.decorateCSS("stat-description")}>
-                            {stat.description}
+                            {stat.stat_description}
                         </Base.H6>
                     )}
                 </Base.VerticalContent>

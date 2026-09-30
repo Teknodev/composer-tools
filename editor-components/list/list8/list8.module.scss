@@ -50,15 +50,10 @@
           background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
           border-radius: var(--composer-border-radius-sm);
           position: relative;
-          padding: var(--composer-gap-lg);
           display: flex;
           flex-direction: column;
           align-items: center;
           transition: all var(--composer-transition-duration-slow) ease-out;
-
-          &[data-animation~="animate1"]:hover {
-            box-shadow: var(--composer-box-shadow-lg);
-          }
 
           &[data-animation~="animate2"]:hover .number-badge {
             animation: swing 1s ease-in-out;
@@ -199,10 +194,6 @@
 @container (max-width: #{$composer-phone-width}) {
   .container .max-content .content {
     gap: calc(var(--composer-gap-md) * 2);
-
-    .items-wrapper .list-item {
-      padding: var(--composer-gap-xl);
-    }
 
     .items-wrapper .list-item .item-container {
       .number-badge {

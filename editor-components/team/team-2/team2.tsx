@@ -12,7 +12,7 @@ type Platform = {
 
 type TeamCardMember = {
   name: string;
-  description: string;
+  team_description: string;
   image: TypeMediaInputValue;
   platforms: { icon: string; url: string }[];
 };
@@ -116,7 +116,7 @@ class Team2 extends Team {
             },
             {
               type: "string",
-              key: "description",
+              key: "team_description",
               value: "Their design skills are truly exceptional, and they have a keen eye for aesthetics that sets them apart from others in the field.",
               displayer: "Description",
             },
@@ -159,7 +159,7 @@ class Team2 extends Team {
             },
             {
               type: "string",
-              key: "description",
+              key: "team_description",
               value: "We are a group of experienced professionals with diverse backgrounds and skill sets, working together to achieve.",
               displayer: "Description",
             },
@@ -202,7 +202,7 @@ class Team2 extends Team {
             },
             {
               type: "string",
-              key: "description",
+              key: "team_description",
               value: "An online learning platform can provide access to educational content from anywhere with an internet connection.",
               displayer: "Description",
             },
@@ -245,7 +245,7 @@ class Team2 extends Team {
             },
             {
               type: "string",
-              key: "description",
+              key: "team_description",
               value: "Their design skills are truly exceptional, and they have a keen eye for aesthetics that sets them apart from others in the field.",
               displayer: "Description",
             },
@@ -288,7 +288,7 @@ class Team2 extends Team {
             },
             {
               type: "string",
-              key: "description",
+              key: "team_description",
               value: "We are a group of experienced professionals with diverse backgrounds and skill sets, working together to achieve.",
               displayer: "Description",
             },
@@ -331,7 +331,7 @@ class Team2 extends Team {
             },
             {
               type: "string",
-              key: "description",
+              key: "team_description",
               value: "An online learning platform can provide access to educational content from anywhere with an internet connection.",
               displayer: "Description",
             },
@@ -369,7 +369,7 @@ class Team2 extends Team {
       displayer: "Hover Animation Style",
       value: ["animate1"],
       additionalParams: {
-        selectItems: ["animate1", "animate2", "animate3", "animate4", "animate5", "animate6"]
+        selectItems: ["animate1", "animate2", "animate4", "animate5", "animate6"]
       }
     });
   }
@@ -401,26 +401,32 @@ class Team2 extends Team {
               const description = this.castToString(team.description);
 
               return (
-                <Base.VerticalContent className={`${this.decorateCSS("team")}`} key={index} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
-                  {team.profileImage && <Base.Media value={team.profileImage} className={this.decorateCSS("image")} />}
-                  {name && <Base.H3 className={this.decorateCSS("title")}>{team.name}</Base.H3>}
-                  {position && <Base.H4 className={this.decorateCSS("position")}>{team.position}</Base.H4>}
-                  {description && <Base.P className={this.decorateCSS("long-text")}>{team.description}</Base.P>}
-                  <div className={this.decorateCSS("icon-group")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
-                    {team.platforms &&
-                      team.platforms.map((item: Platform, indexPlatforms: number) => (
-                        <ComposerLink key={indexPlatforms} path={item.url}>
-                          <Base.Icon
-                            name={item.icon}
-                            propsIcon={{
-                              className: this.decorateCSS("icon"),
-                              style: { "--icon-index": indexPlatforms } as React.CSSProperties
-                            }}
-                          />
-                        </ComposerLink>
-                      ))}
-                  </div>
-                </Base.VerticalContent>
+                <Base.Card
+                  key={index}
+                  className={this.decorateCSS("card-shell")}
+                  data-animation={this.getPropValue("hoverAnimation").join(" ")}
+                >
+                  <Base.VerticalContent className={`${this.decorateCSS("team")}`}>
+                    {team.profileImage && <Base.Media value={team.profileImage} className={this.decorateCSS("image")} />}
+                    {name && <Base.H3 className={this.decorateCSS("title")}>{team.name}</Base.H3>}
+                    {position && <Base.H4 className={this.decorateCSS("position")}>{team.position}</Base.H4>}
+                    {description && <Base.P className={this.decorateCSS("long-text")}>{team.description}</Base.P>}
+                    <div className={this.decorateCSS("icon-group")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
+                      {team.platforms &&
+                        team.platforms.map((item: Platform, indexPlatforms: number) => (
+                          <ComposerLink key={indexPlatforms} path={item.url}>
+                            <Base.Icon
+                              name={item.icon}
+                              propsIcon={{
+                                className: this.decorateCSS("icon"),
+                                style: { "--icon-index": indexPlatforms } as React.CSSProperties
+                              }}
+                            />
+                          </ComposerLink>
+                        ))}
+                    </div>
+                  </Base.VerticalContent>
+                </Base.Card>
               );
             })}
           </Base.ListGrid>

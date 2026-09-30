@@ -9,9 +9,9 @@ type Item = {
   prefix: React.JSX.Element;
   value: React.JSX.Element;
   suffix: React.JSX.Element;
-  subtitle: React.JSX.Element;
-  title: React.JSX.Element;
-  description: React.JSX.Element;
+  stat_subtitle: React.JSX.Element;
+  stat_title: React.JSX.Element;
+  stat_description: React.JSX.Element;
   progress: number;
 };
 
@@ -60,9 +60,9 @@ class Stats7Page extends BaseStats {
             { type: "string", key: "prefix", displayer: "Prefix", value: "" },
             { type: "string", key: "value", displayer: "Value", value: "75%" },
             { type: "string", key: "suffix", displayer: "Suffix", value: "" },
-            { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
-            { type: "string", key: "title", displayer: "Title", value: "Design" },
-            { type: "string", key: "description", displayer: "Description", value: "" },
+            { type: "string", key: "stat_subtitle", displayer: "Subtitle", value: "" },
+            { type: "string", key: "stat_title", displayer: "Title", value: "Design" },
+            { type: "string", key: "stat_description", displayer: "Description", value: "" },
             {
               type: "number",
               key: "progress",
@@ -79,9 +79,9 @@ class Stats7Page extends BaseStats {
             { type: "string", key: "prefix", displayer: "Prefix", value: "" },
             { type: "string", key: "value", displayer: "Value", value: "57%" },
             { type: "string", key: "suffix", displayer: "Suffix", value: "" },
-            { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
-            { type: "string", key: "title", displayer: "Title", value: "Brand Identity" },
-            { type: "string", key: "description", displayer: "Description", value: "" },
+            { type: "string", key: "stat_subtitle", displayer: "Subtitle", value: "" },
+            { type: "string", key: "stat_title", displayer: "Title", value: "Brand Identity" },
+            { type: "string", key: "stat_description", displayer: "Description", value: "" },
             {
               type: "number",
               key: "progress",
@@ -98,9 +98,9 @@ class Stats7Page extends BaseStats {
             { type: "string", key: "prefix", displayer: "Prefix", value: "" },
             { type: "string", key: "value", displayer: "Value", value: "84%" },
             { type: "string", key: "suffix", displayer: "Suffix", value: "" },
-            { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
-            { type: "string", key: "title", displayer: "Title", value: "Sketch" },
-            { type: "string", key: "description", displayer: "Description", value: "" },
+            { type: "string", key: "stat_subtitle", displayer: "Subtitle", value: "" },
+            { type: "string", key: "stat_title", displayer: "Title", value: "Sketch" },
+            { type: "string", key: "stat_description", displayer: "Description", value: "" },
             {
               type: "number",
               key: "progress",
@@ -226,9 +226,9 @@ class Stats7Page extends BaseStats {
                 const prefixExist = this.castToString(item.prefix);
                 const numberExist = this.castToString(item.value);
                 const suffixExist = this.castToString(item.suffix);
-                const subtitleExist = this.castToString(item.subtitle);
-                const titleExist = this.castToString(item.title);
-                const descriptionExist = this.castToString(item.description);
+                const subtitleExist = this.castToString(item.stat_subtitle);
+                const titleExist = this.castToString(item.stat_title);
+                const descriptionExist = this.castToString(item.stat_description);
 
                 const hasValue = prefixExist || numberExist || suffixExist;
 
@@ -242,8 +242,8 @@ class Stats7Page extends BaseStats {
                   <div className={this.decorateCSS("item")} key={index}>
                     <div className={this.decorateCSS("progress-title")}>
                       <div className={this.decorateCSS("progress-title-text")}>
-                        {subtitleExist && <div className={this.decorateCSS("progress-subtitle")}>{item.subtitle}</div>}
-                        {titleExist && <div className={this.decorateCSS("progress-heading")}>{item.title}</div>}
+                        {subtitleExist && <div className={this.decorateCSS("progress-subtitle")}>{item.stat_subtitle}</div>}
+                        {titleExist && <div className={this.decorateCSS("progress-heading")}>{item.stat_title}</div>}
                       </div>
                       {hasValue && (
                         <div className={this.decorateCSS("progress-percent")}>
@@ -257,7 +257,7 @@ class Stats7Page extends BaseStats {
                     </div>
                     {hasProgress && <AnimatedBar percent={barWidth} />}
                     {descriptionExist && (
-                      <div className={this.decorateCSS("progress-description")}>{item.description}</div>
+                      <div className={this.decorateCSS("progress-description")}>{item.stat_description}</div>
                     )}
                   </div>
                 );

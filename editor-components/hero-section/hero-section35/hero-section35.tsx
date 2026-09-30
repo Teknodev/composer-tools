@@ -149,7 +149,7 @@ class HeroSection35 extends BaseHeroSection {
                                     value: [
                                         {
                                             type: "media",
-                                            key: "image",
+                                            key: "customerImage_image",
                                             displayer: "Image",
                                             additionalParams: { availableTypes: ["image"] },
                                             value: {
@@ -166,7 +166,7 @@ class HeroSection35 extends BaseHeroSection {
                                     value: [
                                         {
                                             type: "media",
-                                            key: "image",
+                                            key: "customerImage_image",
                                             displayer: "Image",
                                             additionalParams: { availableTypes: ["image"] },
                                             value: {
@@ -183,7 +183,7 @@ class HeroSection35 extends BaseHeroSection {
                                     value: [
                                         {
                                             type: "media",
-                                            key: "image",
+                                            key: "customerImage_image",
                                             displayer: "Image",
                                             additionalParams: { availableTypes: ["image"] },
                                             value: {

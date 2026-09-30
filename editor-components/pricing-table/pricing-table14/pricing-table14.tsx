@@ -460,7 +460,7 @@ class PricingTable14 extends BasePricingTable {
                 const cardButtons = card.cardButtons || [];
 
                  return (
-                  <div key={`card-${index}`} className={this.decorateCSS("card")}>
+                  <Base.Card key={`card-${index}`} className={this.decorateCSS("card")}>
                     {(cardSubtitleExist || cardTitleExist || cardDescriptionExist) && (
                       <Base.VerticalContent className={this.decorateCSS("card-header")}>
                         {cardSubtitleExist && (
@@ -543,7 +543,7 @@ class PricingTable14 extends BasePricingTable {
                         )}
                       </div>
                     </div>
-                  </div>
+                  </Base.Card>
                 );
               })}
             </Base.ListGrid>

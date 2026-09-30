@@ -91,9 +91,9 @@ class Stats35 extends BaseStats {
                         { type: "string", key: "prefix", displayer: "Prefix", value: "" },
                         { type: "string", key: "value", displayer: "Value", value: "2018" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "" },
-                        { type: "string", key: "subtitle", displayer: "Subtitle", value: "Year of foundation" },
-                        { type: "string", key: "title", displayer: "Title", value: "" },
-                        { type: "string", key: "description", displayer: "Description", value: "" },
+                        { type: "string", key: "stat_subtitle", displayer: "Subtitle", value: "Year of foundation" },
+                        { type: "string", key: "stat_title", displayer: "Title", value: "" },
+                        { type: "string", key: "stat_description", displayer: "Description", value: "" },
                     ],
                 },
                 {
@@ -104,9 +104,9 @@ class Stats35 extends BaseStats {
                         { type: "string", key: "prefix", displayer: "Prefix", value: "$" },
                         { type: "string", key: "value", displayer: "Value", value: "171" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "M" },
-                        { type: "string", key: "subtitle", displayer: "Subtitle", value: "Across ten total funds" },
-                        { type: "string", key: "title", displayer: "Title", value: "" },
-                        { type: "string", key: "description", displayer: "Description", value: "" },
+                        { type: "string", key: "stat_subtitle", displayer: "Subtitle", value: "Across ten total funds" },
+                        { type: "string", key: "stat_title", displayer: "Title", value: "" },
+                        { type: "string", key: "stat_description", displayer: "Description", value: "" },
                     ],
                 },
                 {
@@ -117,9 +117,9 @@ class Stats35 extends BaseStats {
                         { type: "string", key: "prefix", displayer: "Prefix", value: "" },
                         { type: "string", key: "value", displayer: "Value", value: "400" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "+" },
-                        { type: "string", key: "subtitle", displayer: "Subtitle", value: "Companies invested in" },
-                        { type: "string", key: "title", displayer: "Title", value: "" },
-                        { type: "string", key: "description", displayer: "Description", value: "" },
+                        { type: "string", key: "stat_subtitle", displayer: "Subtitle", value: "Companies invested in" },
+                        { type: "string", key: "stat_title", displayer: "Title", value: "" },
+                        { type: "string", key: "stat_description", displayer: "Description", value: "" },
                     ],
                 },
             ],
@@ -157,6 +157,14 @@ class Stats35 extends BaseStats {
         return "Stats 35";
     }
 
+    private hasStatContent(stat: StatItem): boolean {
+        const valueExist = !!this.castToString(stat.value);
+        const subtitleExist = !!this.castToString(stat.subtitle);
+        const titleExist = !!this.castToString(stat.title);
+        const descriptionExist = !!this.castToString(stat.description);
+        return valueExist || !!stat.prefix || !!stat.suffix || subtitleExist || titleExist || descriptionExist;
+    }
+
     render() {
         const subtitleExist = this.castToString(this.getPropValue("subtitle"));
         const titleExist = this.castToString(this.getPropValue("title"));
@@ -170,9 +178,9 @@ class Stats35 extends BaseStats {
             prefix: JSX.Element;
             value: JSX.Element;
             suffix: JSX.Element;
-            subtitle: JSX.Element;
-            title: JSX.Element;
-            description: JSX.Element;
+            stat_subtitle: JSX.Element;
+            stat_title: JSX.Element;
+            stat_description: JSX.Element;
         }[]>("stats");
 
         const stats: StatItem[] = statsItems.map((item) => ({
@@ -181,12 +189,12 @@ class Stats35 extends BaseStats {
             value: this.castToString(item.value) || "",
             suffix: this.castToString(item.suffix) || "",
             suffixElement: item.suffix,
-            subtitle: this.castToString(item.subtitle) || "",
-            subtitleElement: item.subtitle,
-            title: this.castToString(item.title) || "",
-            titleElement: item.title,
-            description: this.castToString(item.description) || "",
-            descriptionElement: item.description,
+            subtitle: this.castToString(item.stat_subtitle) || "",
+            subtitleElement: item.stat_subtitle,
+            title: this.castToString(item.stat_title) || "",
+            titleElement: item.stat_title,
+            description: this.castToString(item.stat_description) || "",
+            descriptionElement: item.stat_description,
         }));
 
         const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
@@ -199,7 +207,7 @@ class Stats35 extends BaseStats {
 
         const alignment = Base.getContentAlignment();
         const hasLeftSection = subtitleExist || titleExist || descriptionExist || hasValidButtons;
-        const hasVisibleStats = stats.some(stat => stat.value || stat.prefix || stat.suffix || stat.subtitle || stat.title || stat.description);
+        const hasVisibleStats = stats.some(stat => this.hasStatContent(stat));
         const hasRightSection = hasVisibleStats || hasMedia;
 
         const mediaOnly = hasMedia && !hasLeftSection && !hasVisibleStats;
@@ -399,7 +407,7 @@ class Stats35 extends BaseStats {
                                     {hasVisibleStats && (
                                         <div className={this.decorateCSS("stats-inner")}>
                                             <Base.ListGrid gridCount={{ pc: itemCount, tablet: 1, phone: 1 }} className={this.decorateCSS("stats-list")}>
-                                                {stats.map((stat, index) => (
+                                                {stats.map((stat, index) => this.hasStatContent(stat) && (
                                                     <AnimatedStat key={`stat35-${index}`} stat={stat} />
                                                 ))}
                                             </Base.ListGrid>

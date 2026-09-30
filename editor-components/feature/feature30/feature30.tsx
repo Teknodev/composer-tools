@@ -7,8 +7,8 @@ import ComposerLink from "../../../composer-base-components/Link/ComposerLinkPro
 
 interface FeatureCardType {
     media?: TypeMediaInputValue;
-    title: React.JSX.Element;
-    description: React.JSX.Element;
+    feature_title: React.JSX.Element;
+    feature_description: React.JSX.Element;
 }
 
 
@@ -56,13 +56,13 @@ class Feature30 extends BaseFeature {
                         },
                         {
                             type: "string",
-                            key: "title",
+                            key: "feature_title",
                             displayer: "Title",
                             value: "Smooth Start",
                         },
                         {
                             type: "string",
-                            key: "description",
+                            key: "feature_description",
                             displayer: "Description",
                             value: "",
                         },
@@ -82,13 +82,13 @@ class Feature30 extends BaseFeature {
                         },
                         {
                             type: "string",
-                            key: "title",
+                            key: "feature_title",
                             displayer: "Title",
                             value: "24/7 Support",
                         },
                         {
                             type: "string",
-                            key: "description",
+                            key: "feature_description",
                             displayer: "Description",
                             value: "",
                         },
@@ -108,13 +108,13 @@ class Feature30 extends BaseFeature {
                         },
                         {
                             type: "string",
-                            key: "title",
+                            key: "feature_title",
                             displayer: "Title",
                             value: "Low Prices",
                         },
                         {
                             type: "string",
-                            key: "description",
+                            key: "feature_description",
                             displayer: "Description",
                             value: "",
                         },
@@ -134,13 +134,13 @@ class Feature30 extends BaseFeature {
                         },
                         {
                             type: "string",
-                            key: "title",
+                            key: "feature_title",
                             displayer: "Title",
                             value: "Strong Defence",
                         },
                         {
                             type: "string",
-                            key: "description",
+                            key: "feature_description",
                             displayer: "Description",
                             value: "",
                         },
@@ -160,13 +160,13 @@ class Feature30 extends BaseFeature {
                         },
                         {
                             type: "string",
-                            key: "title",
+                            key: "feature_title",
                             displayer: "Title",
                             value: "Free Vacation",
                         },
                         {
                             type: "string",
-                            key: "description",
+                            key: "feature_description",
                             displayer: "Description",
                             value: "",
                         },
@@ -219,8 +219,8 @@ class Feature30 extends BaseFeature {
         const alignment = Base.getContentAlignment();
 
         const filteredFeatures = features.filter((feature: FeatureCardType) => {
-            const hasTitle = this.castToString(feature.title);
-            const hasDescription = this.castToString(feature.description);
+            const hasTitle = this.castToString(feature.feature_title);
+            const hasDescription = this.castToString(feature.feature_description);
             const hasMedia = (feature.media as any)?.name || (feature.media as any)?.url;
             return hasTitle || hasDescription || hasMedia;
         });
@@ -250,8 +250,8 @@ class Feature30 extends BaseFeature {
                             className={gridClass}
                         >
                             {filteredFeatures.map((feature: FeatureCardType, index: number) => {
-                                const featureTitleExist = this.castToString(feature.title);
-                                const featureDescExist = this.castToString(feature.description);
+                                const featureTitleExist = this.castToString(feature.feature_title);
+                                const featureDescExist = this.castToString(feature.feature_description);
                                 const media = feature.media;
                                 return (
                                     <div
@@ -275,12 +275,12 @@ class Feature30 extends BaseFeature {
                                             >
                                                 {featureTitleExist && (
                                                     <Base.H5 className={this.decorateCSS("features-title")}>
-                                                        {feature.title}
+                                                        {feature.feature_title}
                                                     </Base.H5>
                                                 )}
                                                 {featureDescExist && (
                                                     <Base.P className={this.decorateCSS("features-description")}>
-                                                        {feature.description}
+                                                        {feature.feature_description}
                                                     </Base.P>
                                                 )}
                                             </Base.VerticalContent>

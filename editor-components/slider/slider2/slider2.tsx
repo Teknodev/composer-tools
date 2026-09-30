@@ -15,8 +15,8 @@ type SliderItem = {
 };
 
 type SliderControls = {
-  title: React.JSX.Element;
-  description: React.JSX.Element;
+  controls_title: React.JSX.Element;
+  controls_description: React.JSX.Element;
   button: TypeUsableComponentProps[];
   previousArrow: TypeMediaInputValue;
   nextArrow: TypeMediaInputValue;
@@ -54,13 +54,13 @@ class Slider2 extends BaseSlider {
       value: [
         {
           type: "string",
-          key: "title",
+          key: "controls_title",
           displayer: "Title",
           value: "Grow faster with pro's help",
         },
         {
           type: "string",
-          key: "description",
+          key: "controls_description",
           displayer: "Description",
           value: "Experience top-notch features with our services",
         },
@@ -400,8 +400,8 @@ class Slider2 extends BaseSlider {
     const description = this.castToString(this.getPropValue("description"));
     const hasHeader = title || subtitle || description;
     const controls = this.castToObject<SliderControls>("controls");
-    const controlTitle = controls.title;
-    const controlDescription = controls.description;
+    const controlTitle = controls.controls_title;
+    const controlDescription = controls.controls_description;
     const nextArrow = controls.nextArrow;
     const previousArrow = controls.previousArrow;
 

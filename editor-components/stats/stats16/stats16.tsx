@@ -52,9 +52,9 @@ class Stats16 extends BaseStats {
             { type: "string", key: "prefix", displayer: "Prefix", value: "" },
             { type: "string", key: "value", displayer: "Value", value: "100" },
             { type: "string", key: "suffix", displayer: "Suffix", value: "%" },
-            { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
-            { type: "string", key: "title", displayer: "Title", value: "Satisfaction" },
-            { type: "string", key: "description", displayer: "Description", value: "" },
+            { type: "string", key: "stat_subtitle", displayer: "Subtitle", value: "" },
+            { type: "string", key: "stat_title", displayer: "Title", value: "Satisfaction" },
+            { type: "string", key: "stat_description", displayer: "Description", value: "" },
           ],
         },
         {
@@ -65,9 +65,9 @@ class Stats16 extends BaseStats {
             { type: "string", key: "prefix", displayer: "Prefix", value: "" },
             { type: "string", key: "value", displayer: "Value", value: "75" },
             { type: "string", key: "suffix", displayer: "Suffix", value: "K" },
-            { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
-            { type: "string", key: "title", displayer: "Title", value: "Happy Users" },
-            { type: "string", key: "description", displayer: "Description", value: "" },
+            { type: "string", key: "stat_subtitle", displayer: "Subtitle", value: "" },
+            { type: "string", key: "stat_title", displayer: "Title", value: "Happy Users" },
+            { type: "string", key: "stat_description", displayer: "Description", value: "" },
           ],
         },
         {
@@ -78,9 +78,9 @@ class Stats16 extends BaseStats {
             { type: "string", key: "prefix", displayer: "Prefix", value: "" },
             { type: "string", key: "value", displayer: "Value", value: "125" },
             { type: "string", key: "suffix", displayer: "Suffix", value: "k+" },
-            { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
-            { type: "string", key: "title", displayer: "Title", value: "Downloads" },
-            { type: "string", key: "description", displayer: "Description", value: "" },
+            { type: "string", key: "stat_subtitle", displayer: "Subtitle", value: "" },
+            { type: "string", key: "stat_title", displayer: "Title", value: "Downloads" },
+            { type: "string", key: "stat_description", displayer: "Description", value: "" },
           ],
         },
       ],
@@ -131,9 +131,9 @@ class Stats16 extends BaseStats {
     const description = this.castToString(this.getPropValue("description"));
     const statItemsProp = this.getPropValue("statItems");
     const statItems: StatItem[] = statItemsProp.map((item: any) => {
-      const subtitle = item.getPropValue("subtitle");
-      const itemTitle = item.getPropValue("title");
-      const itemDescription = item.getPropValue("description");
+      const subtitle = item.getPropValue("stat_subtitle");
+      const itemTitle = item.getPropValue("stat_title");
+      const itemDescription = item.getPropValue("stat_description");
       const number = this.castToString(item.getPropValue("value")) || "";
       const prefix = this.castToString(item.getPropValue("prefix")) || "";
       const suffix = this.castToString(item.getPropValue("suffix")) || "";
@@ -148,6 +148,13 @@ class Stats16 extends BaseStats {
     const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
     const hasValidButtons = buttons.some((btn) => this.castToString(btn.text));
     const hasHeader = subtitle || title || description;
+
+    const hasStatContent = (stat: StatItem): boolean => {
+      const hasTitle = !!(stat.title && this.castToString(stat.title as React.JSX.Element));
+      const hasPrefix = !!(stat.prefix && stat.prefix.trim() !== "");
+      const hasSuffix = !!(stat.suffix && stat.suffix.trim() !== "");
+      return !!stat.value || hasPrefix || hasSuffix || hasTitle;
+    };
 
     const AnimatedStat = ({ stat }: { stat: StatItem }) => {
       const ref = React.useRef<HTMLDivElement>(null);
@@ -305,7 +312,7 @@ class Stats16 extends BaseStats {
                 gridCount={{ pc: itemCount, tablet: 3, phone: 1 }}
                 className={this.decorateCSS("stats-grid")}
               >
-                {statItems.map((item, index) => (
+                {statItems.map((item, index) => hasStatContent(item) && (
                   <AnimatedStat key={index} stat={item} />
                 ))}
               </Base.ListGrid>

@@ -22,23 +22,16 @@ type StatItem = {
 
 type RawStatItem = {
     prefix?: JSX.Element;
-    number?: JSX.Element;
+    value?: JSX.Element;
     suffix?: JSX.Element;
-    title?: JSX.Element;
-    subtitle?: JSX.Element;
-    description?: JSX.Element;
+    stat_title?: JSX.Element;
+    stat_subtitle?: JSX.Element;
+    stat_description?: JSX.Element;
 };
 
 export class Stats30 extends BaseStats {
     constructor(props?: any) {
         super(props, styles);
-
-        this.addProp({
-            type: "boolean",
-            key: "coloredBackground",
-            displayer: "Colored Background",
-            value: true,
-        });
 
         this.addProp({
             type: "string",
@@ -74,9 +67,9 @@ export class Stats30 extends BaseStats {
                         { type: "string", key: "prefix", displayer: "Prefix", value: "" },
                         { type: "string", key: "value", displayer: "Value", value: "56" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "" },
-                        { type: "string", key: "subtitle", displayer: "Subtitle", value: "Teamwork" },
-                        { type: "string", key: "title", displayer: "Title", value: "Experienced team members" },
-                        { type: "string", key: "description", displayer: "Description", value: "" },
+                        { type: "string", key: "stat_subtitle", displayer: "Subtitle", value: "Teamwork" },
+                        { type: "string", key: "stat_title", displayer: "Title", value: "Experienced team members" },
+                        { type: "string", key: "stat_description", displayer: "Description", value: "" },
                     ],
                 },
                 {
@@ -87,9 +80,9 @@ export class Stats30 extends BaseStats {
                         { type: "string", key: "prefix", displayer: "Prefix", value: "" },
                         { type: "string", key: "value", displayer: "Value", value: "87" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "" },
-                        { type: "string", key: "subtitle", displayer: "Subtitle", value: "Process" },
-                        { type: "string", key: "title", displayer: "Title", value: "Days of product development" },
-                        { type: "string", key: "description", displayer: "Description", value: "" },
+                        { type: "string", key: "stat_subtitle", displayer: "Subtitle", value: "Process" },
+                        { type: "string", key: "stat_title", displayer: "Title", value: "Days of product development" },
+                        { type: "string", key: "stat_description", displayer: "Description", value: "" },
                     ],
                 },
 
@@ -127,10 +120,6 @@ export class Stats30 extends BaseStats {
         return "Stats 30";
     }
 
-    getColoredBackground() {
-        return this.getPropValue("coloredBackground") ? this.decorateCSS("colored-background") : "";
-    }
-
     render() {
         const subtitleExist = this.castToString(this.getPropValue("subtitle"));
         const titleExist = this.castToString(this.getPropValue("title"));
@@ -158,16 +147,18 @@ export class Stats30 extends BaseStats {
                 value: this.castToString(cardData.value) || "",
                 suffix: this.castToString(cardData.suffix) || "",
                 suffixElement: cardData.suffix,
-                subtitle: this.castToString(cardData.subtitle) || "",
-                subtitleElement: cardData.subtitle,
-                title: this.castToString(cardData.title) || "",
-                titleElement: cardData.title,
-                description: this.castToString(cardData.description) || "",
-                descriptionElement: cardData.description,
+                subtitle: this.castToString(cardData.stat_subtitle) || "",
+                subtitleElement: cardData.stat_subtitle,
+                title: this.castToString(cardData.stat_title) || "",
+                titleElement: cardData.stat_title,
+                description: this.castToString(cardData.stat_description) || "",
+                descriptionElement: cardData.stat_description,
             };
         });
 
-        const AnimatedCard = ({ stat, coloredBackgroundClass }: { stat: StatItem; coloredBackgroundClass: string }) => {
+        const hasCardContent = (stat: StatItem) => !!(stat.subtitle || stat.title || stat.description || stat.value || stat.suffix || stat.prefix);
+
+        const AnimatedCard = ({ stat }: { stat: StatItem }) => {
             const ref = React.useRef<HTMLSpanElement>(null);
             const intervalRef = React.useRef<ReturnType<typeof setInterval> | null>(null);
 
@@ -251,7 +242,7 @@ export class Stats30 extends BaseStats {
             if (!hasAnyContent) return null;
 
             return (
-                <Base.VerticalContent className={`${this.decorateCSS("stat-item")}${coloredBackgroundClass ? ` ${coloredBackgroundClass}` : ""}`}>
+                <Base.VerticalContent className={this.decorateCSS("stat-item")}>
                     {subtitleExist && (
                         <Base.H6 className={this.decorateCSS("stat-subtitle")}>
                             {stat.subtitleElement}
@@ -316,17 +307,15 @@ export class Stats30 extends BaseStats {
                             </Base.VerticalContent>
                         )}
 
-                        {cards.length > 0 && (
+                        {cards.some(hasCardContent) && (
                             <Base.ListGrid
                                 gridCount={{ pc: itemCount, tablet: 2, phone: 1 }}
                                 className={this.decorateCSS("stats-container")}
                             >
-                                {cards.map((stat: StatItem, index: number) => (
-                                    <AnimatedCard
-                                        key={index}
-                                        stat={stat}
-                                        coloredBackgroundClass={this.getColoredBackground()}
-                                    />
+                                {cards.map((stat: StatItem, index: number) => hasCardContent(stat) && (
+                                    <Base.Card key={index} className={this.decorateCSS("card-shell")}>
+                                        <AnimatedCard stat={stat} />
+                                    </Base.Card>
                                 ))}
                             </Base.ListGrid>
                         )}

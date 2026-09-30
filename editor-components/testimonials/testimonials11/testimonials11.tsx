@@ -5,7 +5,7 @@ import { Base } from "../../../composer-base-components/base/base";
 
 interface CardItem {
   profileImage: TypeMediaInputValue;
-  title: React.JSX.Element;
+  item_title: React.JSX.Element;
   subtitle: React.JSX.Element;
   description: React.JSX.Element;
 }
@@ -49,7 +49,7 @@ class Testimonials11Page extends Testimonials {
             },
             {
               type: "string",
-              key: "title",
+              key: "item_title",
               displayer: "Author Name",
               value: "Sarah Lewin",
             },
@@ -86,7 +86,7 @@ class Testimonials11Page extends Testimonials {
             },
             {
               type: "string",
-              key: "title",
+              key: "item_title",
               displayer: "Author Name",
               value: "Gregory Tabot",
             },
@@ -123,7 +123,7 @@ class Testimonials11Page extends Testimonials {
             },
             {
               type: "string",
-              key: "title",
+              key: "item_title",
               displayer: "Author Name",
               value: "Jess Simpson",
             },
@@ -160,7 +160,7 @@ class Testimonials11Page extends Testimonials {
             },
             {
               type: "string",
-              key: "title",
+              key: "item_title",
               displayer: "Author Name",
               value: "Jess Simpson",
             },
@@ -197,7 +197,7 @@ class Testimonials11Page extends Testimonials {
             },
             {
               type: "string",
-              key: "title",
+              key: "item_title",
               displayer: "Author Name",
               value: "Jess Simpson",
             },
@@ -234,7 +234,7 @@ class Testimonials11Page extends Testimonials {
             },
             {
               type: "string",
-              key: "title",
+              key: "item_title",
               displayer: "Author Name",
               value: "Jess Simpson",
             },
@@ -266,7 +266,6 @@ class Testimonials11Page extends Testimonials {
   }
 
   render() {
-    const coverImage = this.getPropValue("componentBackground");
     const cardList = this.castToObject<CardItem[]>("items");
     return (
       <Base.Container
@@ -281,7 +280,7 @@ class Testimonials11Page extends Testimonials {
 
             <Base.ListGrid gridCount={{ phone: 1, tablet: 2, pc: this.getPropValue("itemCount") }} className={this.decorateCSS("content")}>
               {cardList.map((item: any, index: number) => (
-                <div className={`${this.decorateCSS("cards")} ${!coverImage && this.decorateCSS("cards-no-background")} `}>
+                <Base.Card className={this.decorateCSS("cards")}>
                   <div className={this.decorateCSS("card-top")}>
                     {item.profileImage && <Base.Media value={item.profileImage} className={this.decorateCSS("card-image")} />}
                     <div className={this.decorateCSS("card-top-right")}>
@@ -290,7 +289,7 @@ class Testimonials11Page extends Testimonials {
                     </div>
                   </div>
                   <Base.P className={this.decorateCSS("card-description")}>{item.description}</Base.P>
-                </div>
+                </Base.Card>
               ))}
             </Base.ListGrid>
           </div>

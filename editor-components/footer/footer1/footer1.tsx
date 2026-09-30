@@ -1,15 +1,34 @@
+import * as React from "react";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 import { BaseFooter, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./footer1.module.scss";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import { Base } from "../../../composer-base-components/base/base";
-
 import { INPUTS } from "../../../custom-hooks/input-templates";
 
 type IconsValues = {
   socialIcon: TypeMediaInputValue;
   socialLink: string;
+};
+
+type MenuItem = {
+  text: React.JSX.Element;
+  pageLink: string;
+  media: TypeMediaInputValue;
+};
+
+type Column = {
+  categoryTitle: React.JSX.Element;
+  categoryTitleLink: string;
+  categoryTitleMedia: TypeMediaInputValue;
+  menuItems: MenuItem[];
+};
+
+const hasMedia = (media?: TypeMediaInputValue | null): boolean => {
+  if (!media) return false;
+  if (media.type === "icon") return !!media.name;
+  return !!media.url;
 };
 
 class Footer1Page extends BaseFooter {
@@ -30,7 +49,7 @@ class Footer1Page extends BaseFooter {
       type: "string",
       key: "subtitle",
       displayer: "Subtitle",
-      value: "Subscribe to our newsletter",
+      value: "",
     });
 
     this.addProp({
@@ -48,20 +67,33 @@ class Footer1Page extends BaseFooter {
     });
 
     this.addProp({
-      type: "string",
-      key: "subscriptionPlaceholder",
-      displayer: "Placeholder",
-      value: "Type your e-mail",
+      type: "object",
+      key: "form",
+      displayer: "Form",
+      value: [
+        {
+          type: "string",
+          key: "subscriptionPlaceholder",
+          displayer: "Placeholder",
+          value: "Type your e-mail",
+        },
+        {
+          type: "string",
+          key: "submitText",
+          displayer: "Submit Text",
+          value: "Form successfully submitted!",
+        },
+      ],
     });
 
     this.addProp({
-      type: "string",
-      key: "submitText",
-      displayer: "Submit Text",
-      value: "Form successfully submitted!",
+      type: "array",
+      key: "buttons",
+      displayer: "Buttons",
+      value: [
+        INPUTS.BUTTON("button", "Button", "Subscribe", "", null, null, "Link"),
+      ],
     });
-
-    this.addProp(INPUTS.BUTTON("button", "Button", "Subscribe", null, null, null, "Primary"));
 
     this.addProp({
       type: "boolean",
@@ -72,15 +104,15 @@ class Footer1Page extends BaseFooter {
 
     this.addProp({
       type: "string",
-      key: "copyright",
-      displayer: "Copyright",
-      value: "Copyright © Blinkpage. All rights reserved.",
+      key: "footerText",
+      displayer: "Footer Text",
+      value: 'Copyright © <span style="font-weight: 800;">Blinkpage</span>. All rights reserved.',
     });
 
     this.addProp({
       type: "array",
-      key: "social",
-      displayer: "Social",
+      key: "socials",
+      displayer: "Social Media Items",
       value: [
         {
           type: "object",
@@ -92,7 +124,7 @@ class Footer1Page extends BaseFooter {
               key: "socialIcon",
               displayer: "Icon",
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon", "image"],
               },
               value: {
                 type: "icon",
@@ -117,7 +149,7 @@ class Footer1Page extends BaseFooter {
               key: "socialIcon",
               displayer: "Icon",
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon", "image"],
               },
               value: {
                 type: "icon",
@@ -142,7 +174,7 @@ class Footer1Page extends BaseFooter {
               key: "socialIcon",
               displayer: "Icon",
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon", "image"],
               },
               value: {
                 type: "icon",
@@ -167,7 +199,7 @@ class Footer1Page extends BaseFooter {
               key: "socialIcon",
               displayer: "Icon",
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon", "image"],
               },
               value: {
                 type: "icon",
@@ -192,7 +224,7 @@ class Footer1Page extends BaseFooter {
               key: "socialIcon",
               displayer: "Icon",
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon", "image"],
               },
               value: {
                 type: "icon",
@@ -212,100 +244,503 @@ class Footer1Page extends BaseFooter {
 
     this.addProp({
       type: "array",
-      key: "pages",
-      displayer: "Pages",
+      key: "footer",
+      displayer: "Footer",
       value: [
         {
           type: "object",
-          key: "page",
-          displayer: "Item",
+          key: "footer-column",
+          displayer: "Footer",
           value: [
             {
               type: "string",
-              key: "pageTitle",
-              displayer: "Title",
+              key: "categoryTitle",
+              displayer: "Menu Item",
               value: "About us",
             },
             {
               type: "page",
-              key: "pageLink",
+              key: "categoryTitleLink",
               displayer: "Navigate To",
               value: "",
+            },
+            {
+              type: "media",
+              key: "categoryTitleMedia",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["icon", "image"],
+              },
+              value: {
+                type: "icon",
+                name: "",
+              },
+            },
+            {
+              type: "array",
+              key: "menuItems",
+              displayer: "Menu Subitem",
+              value: [
+                {
+                  type: "object",
+                  key: "menu-item",
+                  displayer: "Item",
+                  value: [
+                    { type: "string", key: "text", displayer: "Text", value: "" },
+                    { type: "page", key: "pageLink", displayer: "Navigate To", value: "" },
+                    {
+                      type: "media",
+                      key: "media",
+                      displayer: "Media",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "",
+                      },
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "menu-item",
+                  displayer: "Item",
+                  value: [
+                    { type: "string", key: "text", displayer: "Text", value: "" },
+                    { type: "page", key: "pageLink", displayer: "Navigate To", value: "" },
+                    {
+                      type: "media",
+                      key: "media",
+                      displayer: "Media",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "",
+                      },
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "menu-item",
+                  displayer: "Item",
+                  value: [
+                    { type: "string", key: "text", displayer: "Text", value: "" },
+                    { type: "page", key: "pageLink", displayer: "Navigate To", value: "" },
+                    {
+                      type: "media",
+                      key: "media",
+                      displayer: "Media",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "",
+                      },
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "menu-item",
+                  displayer: "Item",
+                  value: [
+                    { type: "string", key: "text", displayer: "Text", value: "" },
+                    { type: "page", key: "pageLink", displayer: "Navigate To", value: "" },
+                    {
+                      type: "media",
+                      key: "media",
+                      displayer: "Media",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "",
+                      },
+                    },
+                  ],
+                },
+              ],
             },
           ],
         },
         {
           type: "object",
-          key: "page",
-          displayer: "Item",
+          key: "footer-column",
+          displayer: "Footer",
           value: [
             {
               type: "string",
-              key: "pageTitle",
-              displayer: "Title",
+              key: "categoryTitle",
+              displayer: "Menu Item",
               value: "Blog",
             },
             {
               type: "page",
-              key: "pageLink",
+              key: "categoryTitleLink",
               displayer: "Navigate To",
               value: "",
+            },
+            {
+              type: "media",
+              key: "categoryTitleMedia",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["icon", "image"],
+              },
+              value: {
+                type: "icon",
+                name: "",
+              },
+            },
+            {
+              type: "array",
+              key: "menuItems",
+              displayer: "Menu Subitem",
+              value: [
+                {
+                  type: "object",
+                  key: "menu-item",
+                  displayer: "Item",
+                  value: [
+                    { type: "string", key: "text", displayer: "Text", value: "" },
+                    { type: "page", key: "pageLink", displayer: "Navigate To", value: "" },
+                    {
+                      type: "media",
+                      key: "media",
+                      displayer: "Media",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "",
+                      },
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "menu-item",
+                  displayer: "Item",
+                  value: [
+                    { type: "string", key: "text", displayer: "Text", value: "" },
+                    { type: "page", key: "pageLink", displayer: "Navigate To", value: "" },
+                    {
+                      type: "media",
+                      key: "media",
+                      displayer: "Media",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "",
+                      },
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "menu-item",
+                  displayer: "Item",
+                  value: [
+                    { type: "string", key: "text", displayer: "Text", value: "" },
+                    { type: "page", key: "pageLink", displayer: "Navigate To", value: "" },
+                    {
+                      type: "media",
+                      key: "media",
+                      displayer: "Media",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "",
+                      },
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "menu-item",
+                  displayer: "Item",
+                  value: [
+                    { type: "string", key: "text", displayer: "Text", value: "" },
+                    { type: "page", key: "pageLink", displayer: "Navigate To", value: "" },
+                    {
+                      type: "media",
+                      key: "media",
+                      displayer: "Media",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "",
+                      },
+                    },
+                  ],
+                },
+              ],
             },
           ],
         },
         {
           type: "object",
-          key: "page",
-          displayer: "Item",
+          key: "footer-column",
+          displayer: "Footer",
           value: [
             {
               type: "string",
-              key: "pageTitle",
-              displayer: "Title",
+              key: "categoryTitle",
+              displayer: "Menu Item",
               value: "FAQs",
             },
             {
               type: "page",
-              key: "pageLink",
+              key: "categoryTitleLink",
               displayer: "Navigate To",
               value: "",
+            },
+            {
+              type: "media",
+              key: "categoryTitleMedia",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["icon", "image"],
+              },
+              value: {
+                type: "icon",
+                name: "",
+              },
+            },
+            {
+              type: "array",
+              key: "menuItems",
+              displayer: "Menu Subitem",
+              value: [
+                {
+                  type: "object",
+                  key: "menu-item",
+                  displayer: "Item",
+                  value: [
+                    { type: "string", key: "text", displayer: "Text", value: "" },
+                    { type: "page", key: "pageLink", displayer: "Navigate To", value: "" },
+                    {
+                      type: "media",
+                      key: "media",
+                      displayer: "Media",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "",
+                      },
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "menu-item",
+                  displayer: "Item",
+                  value: [
+                    { type: "string", key: "text", displayer: "Text", value: "" },
+                    { type: "page", key: "pageLink", displayer: "Navigate To", value: "" },
+                    {
+                      type: "media",
+                      key: "media",
+                      displayer: "Media",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "",
+                      },
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "menu-item",
+                  displayer: "Item",
+                  value: [
+                    { type: "string", key: "text", displayer: "Text", value: "" },
+                    { type: "page", key: "pageLink", displayer: "Navigate To", value: "" },
+                    {
+                      type: "media",
+                      key: "media",
+                      displayer: "Media",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "",
+                      },
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "menu-item",
+                  displayer: "Item",
+                  value: [
+                    { type: "string", key: "text", displayer: "Text", value: "" },
+                    { type: "page", key: "pageLink", displayer: "Navigate To", value: "" },
+                    {
+                      type: "media",
+                      key: "media",
+                      displayer: "Media",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "",
+                      },
+                    },
+                  ],
+                },
+              ],
             },
           ],
         },
         {
           type: "object",
-          key: "page",
-          displayer: "Item",
+          key: "footer-column",
+          displayer: "Footer",
           value: [
             {
               type: "string",
-              key: "pageTitle",
-              displayer: "Title",
+              key: "categoryTitle",
+              displayer: "Menu Item",
               value: "Contact",
             },
             {
               type: "page",
-              key: "pageLink",
+              key: "categoryTitleLink",
               displayer: "Navigate To",
               value: "",
+            },
+            {
+              type: "media",
+              key: "categoryTitleMedia",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["icon", "image"],
+              },
+              value: {
+                type: "icon",
+                name: "",
+              },
+            },
+            {
+              type: "array",
+              key: "menuItems",
+              displayer: "Menu Subitem",
+              value: [
+                {
+                  type: "object",
+                  key: "menu-item",
+                  displayer: "Item",
+                  value: [
+                    { type: "string", key: "text", displayer: "Text", value: "" },
+                    { type: "page", key: "pageLink", displayer: "Navigate To", value: "" },
+                    {
+                      type: "media",
+                      key: "media",
+                      displayer: "Media",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "",
+                      },
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "menu-item",
+                  displayer: "Item",
+                  value: [
+                    { type: "string", key: "text", displayer: "Text", value: "" },
+                    { type: "page", key: "pageLink", displayer: "Navigate To", value: "" },
+                    {
+                      type: "media",
+                      key: "media",
+                      displayer: "Media",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "",
+                      },
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "menu-item",
+                  displayer: "Item",
+                  value: [
+                    { type: "string", key: "text", displayer: "Text", value: "" },
+                    { type: "page", key: "pageLink", displayer: "Navigate To", value: "" },
+                    {
+                      type: "media",
+                      key: "media",
+                      displayer: "Media",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "",
+                      },
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "menu-item",
+                  displayer: "Item",
+                  value: [
+                    { type: "string", key: "text", displayer: "Text", value: "" },
+                    { type: "page", key: "pageLink", displayer: "Navigate To", value: "" },
+                    {
+                      type: "media",
+                      key: "media",
+                      displayer: "Media",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "",
+                      },
+                    },
+                  ],
+                },
+              ],
             },
           ],
         },
       ],
     });
 
-    this.addProp({
-      type: "multiSelect",
-      key: "hoverAnimation",
-      displayer: "Hover Animation Style",
-      value: ["animate1"],
-      additionalParams: {
-        selectItems: ["animate1", "animate2", "animate3", "animate4", "animate5"]
-      }
-    });
 
-    this.setComponentState("placeholderText", this.castToString(this.getPropValue("subscriptionPlaceholder")));
 
+    this.setComponentState("placeholderText", "Type your e-mail");
   }
 
   validationSchema = Yup.object().shape({
@@ -327,144 +762,174 @@ class Footer1Page extends BaseFooter {
     const titleExist = this.castToString(title);
     const descriptionExist = this.castToString(description);
 
-    const placeholderExist = this.castToString(this.getPropValue("subscriptionPlaceholder"));
+    const formProps = this.castToObject<any>("form");
+    const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
+    const submitText = this.castToString(formProps?.submitText);
+    const placeholderExist = this.castToString(formProps?.subscriptionPlaceholder);
 
-    const submitText = this.castToString(this.getPropValue("submitText"));
-
-    const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
-
-    const upperExist = titleExist || descriptionExist || subtitleExist || (placeholderExist && this.castToString(button.text));
+    const upperExist = titleExist || descriptionExist || subtitleExist || placeholderExist;
 
     const line = this.getPropValue("line");
-
     const alignmentValue = Base.getContentAlignment();
 
-    const pages = this.castToObject<any[]>("pages");
-    const social = this.castToObject<any[]>("social");
-    const copyright = this.getPropValue("copyright");
-    const copyrightExist = this.castToString(copyright);
+    const footerData = this.castToObject<Column[]>("footer");
+    const socials = this.castToObject<IconsValues[]>("socials");
+    const footerText = this.getPropValue("footerText");
+    const footerTextExist = this.castToString(footerText);
 
-    const footerBottomExist = pages.length > 0 || social.length > 0 || copyrightExist;
-
-
+    const columnsExist = footerData.some((column: Column) => {
+      const menuItems: MenuItem[] = column.menuItems || [];
+      const categoryTitleExist = this.castToString(column.categoryTitle);
+      const hasItems = menuItems.some((item: MenuItem) => this.castToString(item.text) || hasMedia(item.media));
+      return !!(categoryTitleExist || hasMedia(column.categoryTitleMedia) || hasItems);
+    });
+    const footerBottomExist = socials.length > 0 || footerTextExist || columnsExist;
     const position = this.getPropValue("position");
 
     return (
-      <div className={`${this.decorateCSS("container")} ${position === "Absolute" ? this.decorateCSS("absolute") : ""}`}>
-        <div className={this.decorateCSS("max-content")}>
-          {upperExist && <Base.Container className={this.decorateCSS("first-container")}>
-            <Base.MaxContent className={this.decorateCSS("first-max-content")}>
-              {upperExist && (
-                <div className={this.decorateCSS("footer-upper")}>
-                  {(titleExist || descriptionExist || subtitleExist) && (
-                    <Base.VerticalContent className={`${this.decorateCSS("header")} ${alignmentValue === "center" ? this.decorateCSS("center-alignment") : ""}`}>
-                      {subtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
-                      {titleExist &&<Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
-                      {descriptionExist && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
-                    </Base.VerticalContent>
-                  )}
-                  {placeholderExist && this.castToString(button.text) && (
-                    <div className={this.decorateCSS("subscribe")}>
-                      <Formik
-                        initialValues={{ email: "" }}
-                        validationSchema={this.validationSchema}
-                        onSubmit={(data, { resetForm }) => {
-                          this.setComponentState("placeholderText", submitText);
+      <div className={`${this.decorateCSS("container")} ${position === "Absolute" ? this.decorateCSS("absolute") : ""} ${alignmentValue === "center" ? this.decorateCSS("center-alignment") : ""}`}>
+        <Base.Container className={this.decorateCSS("footer-wrapper")}>
+          <Base.MaxContent className={this.decorateCSS("max-content")}>
+            {upperExist && (
+              <div className={this.decorateCSS("footer-upper")}>
+                {(titleExist || descriptionExist || subtitleExist) && (
+                  <Base.VerticalContent className={`${this.decorateCSS("header")} ${alignmentValue === "center" ? this.decorateCSS("center-alignment") : ""}`}>
+                    {subtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
+                    {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
+                    {descriptionExist && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
+                  </Base.VerticalContent>
+                )}
+                {placeholderExist && (
+                  <div className={this.decorateCSS("subscribe")}>
+                    <Formik
+                      initialValues={{ email: "" }}
+                      validationSchema={this.validationSchema}
+                      onSubmit={(data, { resetForm }) => {
+                        this.setComponentState("placeholderText", submitText);
 
-                          setTimeout(() => {
-                            const defaultPlaceholder = this.castToString(this.getPropValue("subscriptionPlaceholder"));
-                            this.setComponentState("placeholderText", defaultPlaceholder);
-                          }, 2000);
+                        setTimeout(() => {
+                          const form = this.castToObject<any>("form");
+                          const defaultPlaceholder = this.castToString(form?.subscriptionPlaceholder);
+                          this.setComponentState("placeholderText", defaultPlaceholder);
+                        }, 2000);
 
-                          this.insertForm("Footer 1 - NewsletterForm", data);
-                          resetForm();
-                        }}
-                      >
-                        {({ handleSubmit, handleChange, values, errors, touched }) => (
-                          <Form className={this.decorateCSS("form")} onSubmit={handleSubmit}>
-                            {this.castToString(this.getPropValue("subscriptionPlaceholder")) && (
-                              <div className={this.decorateCSS("input-element")}>
-                                <input
-                                  className={this.decorateCSS("input")}
-                                  type="text"
-                                  placeholder={this.getComponentState("placeholderText") || this.castToString(this.getPropValue("subscriptionPlaceholder")) || ""}
-                                  name="email"
-                                  value={values.email}
-                                  onChange={handleChange}
-                                />
-                                {errors.email && touched.email && <div className={this.decorateCSS("error")}>{errors.email}</div>}
-                              </div>
-                            )}
-                            {this.castToString(button.text) && (
-                              <Base.Button buttonType={button.type}
-                                className={this.decorateCSS("button")}>
-                                  <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
-                              </Base.Button>
-                            )}
-                          </Form>
-                        )}
-                      </Formik>
-                    </div>
-                  )}
-                </div>
-              )}
-            </Base.MaxContent>
-          </Base.Container>}
-          {line && <div className={this.decorateCSS("line")} />}
-
-          <Base.Container className={this.decorateCSS("second-container")}>
-            <Base.MaxContent className={this.decorateCSS("second-max-content")} >
-              {footerBottomExist && (
-                <div className={`${this.decorateCSS("footer-bottom")} ${alignmentValue === "center" ? this.decorateCSS("center-alignment") : ""}`}>
-                  {copyrightExist && (
-                    <div className={this.decorateCSS("copyright-container")}>
-                      <Base.P className={this.decorateCSS("copyright-text")}>{this.getPropValue("copyright")}</Base.P>
-                    </div>
-                  )}
-                  {social.length > 0 && (
-                    <div className={this.decorateCSS("social")}>
-                      {social.map(
-                        (item: IconsValues, indexSocial: number) =>
-                          item.socialIcon && (
-                            <ComposerLink key={indexSocial} path={item.socialLink}>
-                              <div 
-                                className={this.decorateCSS("icon-wrapper")}
-                                data-animation={item.socialLink ? this.getPropValue("hoverAnimation").join(" ") : ""}
-                              >
-                                <Base.Media 
-                                  value={item.socialIcon}
-                                  className={this.decorateCSS("icon")} 
-                                />
-                              </div>
-                            </ComposerLink>
-                          )
+                        this.insertForm("Footer 1 - NewsletterForm", data);
+                        resetForm();
+                      }}
+                    >
+                      {({ handleSubmit, handleChange, values, errors, touched }) => (
+                        <Form className={this.decorateCSS("form")} onSubmit={handleSubmit}>
+                          {placeholderExist && (
+                            <div className={this.decorateCSS("input-element")}>
+                              <input
+                                className={this.decorateCSS("input")}
+                                type="text"
+                                placeholder={this.getComponentState("placeholderText") || placeholderExist || ""}
+                                name="email"
+                                value={values.email}
+                                onChange={handleChange}
+                              />
+                              {errors.email && touched.email && <div className={this.decorateCSS("error")}>{errors.email}</div>}
+                            </div>
+                          )}
+                          {buttons.some((btn) => this.castToString(btn?.text)) && (
+                            <div className={this.decorateCSS("buttons")}>
+                              {buttons.map((btn: INPUTS.CastedButton, btnIndex: number) =>
+                                this.castToString(btn?.text) ? (
+                                  <ComposerLink key={btnIndex} path={btn.url}>
+                                    <Base.Button buttonType={btn.type} className={this.decorateCSS("button")}>
+                                      <Base.P className={this.decorateCSS("button-text")}>{btn.text}</Base.P>
+                                    </Base.Button>
+                                  </ComposerLink>
+                                ) : null
+                              )}
+                            </div>
+                          )}
+                        </Form>
                       )}
-                    </div>
-                  )}
-                  {pages.length > 0 && (
-                    <div className={this.decorateCSS("pages")}>
-                      {pages.map((item: any, indexSocial: number) => {
-                        const pageTitleExist = this.castToString(item.pageTitle);
-                        return (
-                          pageTitleExist && (
-                            <ComposerLink key={indexSocial} path={item.pageLink}>
-                              <Base.P 
-                                className={this.decorateCSS("text")}
-                                data-animation={item.pageLink ? this.getPropValue("hoverAnimation").join(" ") : ""}
-                              >
-                                {item.pageTitle}
-                              </Base.P>
+                    </Formik>
+                  </div>
+                )}
+              </div>
+            )}
+            {line && <div className={this.decorateCSS("line")} />}
+            {footerBottomExist && (
+              <div className={`${this.decorateCSS("footer-bottom")} ${alignmentValue === "center" ? this.decorateCSS("center-alignment") : ""}`}>
+                {footerTextExist && (
+                  <div className={this.decorateCSS("copyright-container")}>
+                    <Base.P className={this.decorateCSS("copyright-text")}>{this.getPropValue("footerText")}</Base.P>
+                  </div>
+                )}
+                {socials.length > 0 && (
+                  <div className={this.decorateCSS("social")}>
+                    {socials.map(
+                      (item: IconsValues, indexSocial: number) =>
+                        item.socialIcon && (
+                          <ComposerLink key={indexSocial} path={item.socialLink}>
+                            <div className={this.decorateCSS("icon-wrapper")}>
+                              <Base.Media
+                                value={item.socialIcon}
+                                className={this.decorateCSS("icon")}
+                              />
+                            </div>
+                          </ComposerLink>
+                        )
+                    )}
+                  </div>
+                )}
+                {columnsExist && (
+                  <div className={this.decorateCSS("columns-section")}>
+                    {footerData.map((column: Column, colIndex: number) => {
+                      const menuItems: MenuItem[] = column.menuItems || [];
+                      const categoryTitleExist = this.castToString(column.categoryTitle);
+                      const categoryMediaExist = hasMedia(column.categoryTitleMedia);
+                      const hasItems = menuItems.some((item: MenuItem) => this.castToString(item.text) || hasMedia(item.media));
+                      if (!categoryTitleExist && !categoryMediaExist && !hasItems) return null;
+                      return (
+                        <div key={colIndex} className={this.decorateCSS("column")}>
+                          {(categoryTitleExist || categoryMediaExist) && (
+                            <ComposerLink path={column.categoryTitleLink}>
+                              <div className={this.decorateCSS("menu-media-wrapper")}>
+                                {categoryMediaExist && (
+                                  <Base.Media value={column.categoryTitleMedia} className={this.decorateCSS("menu-title-media")} />
+                                )}
+                                {categoryTitleExist && (
+                                  <Base.P className={this.decorateCSS("column-title")}>{column.categoryTitle}</Base.P>
+                                )}
+                              </div>
                             </ComposerLink>
-                          )
-                        );
-                      })}
-                    </div>
-                  )}
-                </div>
-              )}
-            </Base.MaxContent>
-          </Base.Container>
-        </div>
+                          )}
+                          {hasItems && (
+                            <div className={this.decorateCSS("column-items")}>
+                              {menuItems.map((item: MenuItem, itemIndex: number) => {
+                                const textExist = this.castToString(item.text);
+                                const mediaExist = hasMedia(item.media);
+                                return textExist || mediaExist ? (
+                                  <ComposerLink key={itemIndex} path={item.pageLink}>
+                                    <div className={this.decorateCSS("menu-media-wrapper")}>
+                                      {mediaExist && (
+                                        <Base.Media value={item.media} className={this.decorateCSS("menu-item-media")} />
+                                      )}
+                                      {textExist && (
+                                        <Base.P className={this.decorateCSS("text")}>
+                                          {item.text}
+                                        </Base.P>
+                                      )}
+                                    </div>
+                                  </ComposerLink>
+                                ) : null;
+                              })}
+                            </div>
+                          )}
+                        </div>
+                      );
+                    })}
+                  </div>
+                )}
+              </div>
+            )}
+          </Base.MaxContent>
+        </Base.Container>
       </div>
     );
   }

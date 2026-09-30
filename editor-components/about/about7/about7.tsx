@@ -7,11 +7,11 @@ import ComposerLink from "../../../composer-base-components/Link/ComposerLinkPro
 
 type ItemType = {
     media: TypeMediaInputValue;
-    overlay: boolean;
+    item_overlay: boolean;
     year: string;
-    subtitle: string;
-    title: string;
-    description: string;
+    item_subtitle: string;
+    item_title: string;
+    item_description: string;
     rowReverse: boolean;
     middleLineActive: boolean;
     lineActive: boolean;
@@ -106,7 +106,7 @@ class About7 extends BaseAbout {
                         },
                         {
                             type: "boolean",
-                            key: "overlay",
+                            key: "item_overlay",
                             displayer: "Overlay",
                             value: false,
                         },
@@ -118,19 +118,19 @@ class About7 extends BaseAbout {
                         },
                         {
                             type: "string",
-                            key: "subtitle",
+                            key: "item_subtitle",
                             displayer: "Subtitle",
                             value: "CHOCO HISTORY",
                         },
                         {
                             type: "string",
-                            key: "title",
+                            key: "item_title",
                             displayer: "Title",
                             value: "EARLY BEGGINING",
                         },
                         {
                             type: "string",
-                            key: "description",
+                            key: "item_description",
                             displayer: "Description",
                             value: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco",
                         },
@@ -179,7 +179,7 @@ class About7 extends BaseAbout {
                         },
                         {
                             type: "boolean",
-                            key: "overlay",
+                            key: "item_overlay",
                             displayer: "Overlay",
                             value: false,
                         },
@@ -191,19 +191,19 @@ class About7 extends BaseAbout {
                         },
                         {
                             type: "string",
-                            key: "subtitle",
+                            key: "item_subtitle",
                             displayer: "Subtitle",
                             value: "THE PROGRESS",
                         },
                         {
                             type: "string",
-                            key: "title",
+                            key: "item_title",
                             displayer: "Title",
                             value: "FACTORY ESTABLISHED",
                         },
                         {
                             type: "string",
-                            key: "description",
+                            key: "item_description",
                             displayer: "Description",
                             value: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco",
                         },
@@ -311,7 +311,7 @@ class About7 extends BaseAbout {
                                                     value={item.media}
                                                     className={this.decorateCSS("image")}
                                                 />
-                                                {item.overlay && (
+                                                {item.item_overlay && (
                                                     <div className={this.decorateCSS("overlay")} />
                                                 )}
                                             </div>
@@ -335,11 +335,11 @@ class About7 extends BaseAbout {
                                             )}
                                         </div>
                                     )}
-                                    {(this.castToString(item.subtitle) || this.castToString(item.title) || this.castToString(item.description)) && (
+                                    {(this.castToString(item.item_subtitle) || this.castToString(item.item_title) || this.castToString(item.item_description)) && (
                                         <Base.VerticalContent className={`${this.decorateCSS("right-container")} ${item.rowReverse ? this.decorateCSS("row-reverse") : ""}`}>
-                                            {this.castToString(item.subtitle) && (<Base.P className={`${this.decorateCSS("item-subtitle")} ${isBackgroundImageExist && this.decorateCSS("with-image")}`}>{item.subtitle}</Base.P>)}
-                                            {this.castToString(item.title) && (<Base.H3 className={`${this.decorateCSS("item-title")} ${isBackgroundImageExist && this.decorateCSS("with-image")}`}>{item.title}</Base.H3>)}
-                                            {this.castToString(item.description) && (<Base.SectionDescription className={`${this.decorateCSS("item-description")} ${isBackgroundImageExist && this.decorateCSS("with-image")}`}>{item.description}</Base.SectionDescription>)}
+                                            {this.castToString(item.item_subtitle) && (<Base.P className={`${this.decorateCSS("item-subtitle")} ${isBackgroundImageExist && this.decorateCSS("with-image")}`}>{item.item_subtitle}</Base.P>)}
+                                            {this.castToString(item.item_title) && (<Base.H3 className={`${this.decorateCSS("item-title")} ${isBackgroundImageExist && this.decorateCSS("with-image")}`}>{item.item_title}</Base.H3>)}
+                                            {this.castToString(item.item_description) && (<Base.SectionDescription className={`${this.decorateCSS("item-description")} ${isBackgroundImageExist && this.decorateCSS("with-image")}`}>{item.item_description}</Base.SectionDescription>)}
                                         </Base.VerticalContent>
                                     )}
                                 </div>

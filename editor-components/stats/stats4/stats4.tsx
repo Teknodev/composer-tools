@@ -7,7 +7,7 @@ import ComposerLink from "../../../composer-base-components/Link/ComposerLinkPro
 import { INPUTS } from "../../../custom-hooks/input-templates";
 
 type Faq = {
-  title: React.JSX.Element;
+  faqItem_title: React.JSX.Element;
   content: React.JSX.Element;
 };
 
@@ -15,9 +15,9 @@ type Stat = {
   prefix: React.JSX.Element;
   value: React.JSX.Element;
   suffix: React.JSX.Element;
-  subtitle: React.JSX.Element;
-  title: React.JSX.Element;
-  description: React.JSX.Element;
+  stat_subtitle: React.JSX.Element;
+  stat_title: React.JSX.Element;
+  stat_description: React.JSX.Element;
 };
 
 class Stats4Page extends BaseStats {
@@ -69,7 +69,7 @@ class Stats4Page extends BaseStats {
           value: [
             {
               type: "string",
-              key: "title",
+              key: "faqItem_title",
               displayer: "Title",
               value: "Research and strategy",
             },
@@ -88,7 +88,7 @@ class Stats4Page extends BaseStats {
           value: [
             {
               type: "string",
-              key: "title",
+              key: "faqItem_title",
               displayer: "Title",
               value: "Wireframes and design",
             },
@@ -107,7 +107,7 @@ class Stats4Page extends BaseStats {
           value: [
             {
               type: "string",
-              key: "title",
+              key: "faqItem_title",
               displayer: "Title",
               value: "Maintenance and support",
             },
@@ -135,9 +135,9 @@ class Stats4Page extends BaseStats {
             { type: "string", key: "prefix", displayer: "Prefix", value: "" },
             { type: "string", key: "value", displayer: "Value", value: "300" },
             { type: "string", key: "suffix", displayer: "Suffix", value: "+" },
-            { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
-            { type: "string", key: "title", displayer: "Title", value: "Days of experience." },
-            { type: "string", key: "description", displayer: "Description", value: "We have crafted beautiful and engaging web solutions." },
+            { type: "string", key: "stat_subtitle", displayer: "Subtitle", value: "" },
+            { type: "string", key: "stat_title", displayer: "Title", value: "Days of experience." },
+            { type: "string", key: "stat_description", displayer: "Description", value: "We have crafted beautiful and engaging web solutions." },
           ],
         },
         {
@@ -148,9 +148,9 @@ class Stats4Page extends BaseStats {
             { type: "string", key: "prefix", displayer: "Prefix", value: "" },
             { type: "string", key: "value", displayer: "Value", value: "500" },
             { type: "string", key: "suffix", displayer: "Suffix", value: "+" },
-            { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
-            { type: "string", key: "title", displayer: "Title", value: "Valuable happy clients." },
-            { type: "string", key: "description", displayer: "Description", value: "We have crafted beautiful and engaging web solutions." },
+            { type: "string", key: "stat_subtitle", displayer: "Subtitle", value: "" },
+            { type: "string", key: "stat_title", displayer: "Title", value: "Valuable happy clients." },
+            { type: "string", key: "stat_description", displayer: "Description", value: "We have crafted beautiful and engaging web solutions." },
           ],
         },
         {
@@ -161,9 +161,9 @@ class Stats4Page extends BaseStats {
             { type: "string", key: "prefix", displayer: "Prefix", value: "" },
             { type: "string", key: "value", displayer: "Value", value: "750" },
             { type: "string", key: "suffix", displayer: "Suffix", value: "+" },
-            { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
-            { type: "string", key: "title", displayer: "Title", value: "Presence in countries." },
-            { type: "string", key: "description", displayer: "Description", value: "We have crafted beautiful and engaging web solutions." },
+            { type: "string", key: "stat_subtitle", displayer: "Subtitle", value: "" },
+            { type: "string", key: "stat_title", displayer: "Title", value: "Presence in countries." },
+            { type: "string", key: "stat_description", displayer: "Description", value: "We have crafted beautiful and engaging web solutions." },
           ],
         },
         {
@@ -174,9 +174,9 @@ class Stats4Page extends BaseStats {
             { type: "string", key: "prefix", displayer: "Prefix", value: "" },
             { type: "string", key: "value", displayer: "Value", value: "856" },
             { type: "string", key: "suffix", displayer: "Suffix", value: "+" },
-            { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
-            { type: "string", key: "title", displayer: "Title", value: "Worldwide projects." },
-            { type: "string", key: "description", displayer: "Description", value: "We have crafted beautiful and engaging web solutions." },
+            { type: "string", key: "stat_subtitle", displayer: "Subtitle", value: "" },
+            { type: "string", key: "stat_title", displayer: "Title", value: "Worldwide projects." },
+            { type: "string", key: "stat_description", displayer: "Description", value: "We have crafted beautiful and engaging web solutions." },
           ],
         },
       ],
@@ -335,9 +335,9 @@ class Stats4Page extends BaseStats {
         };
       }, [rawNumber, animatable, animationDuration, target]);
 
-      const subtitleExist = this.castToString(item.subtitle);
-      const titleExist = this.castToString(item.title);
-      const descriptionExist = this.castToString(item.description);
+      const subtitleExist = this.castToString(item.stat_subtitle);
+      const titleExist = this.castToString(item.stat_title);
+      const descriptionExist = this.castToString(item.stat_description);
       const prefixExist = this.castToString(item.prefix);
       const suffixExist = this.castToString(item.suffix);
 
@@ -350,9 +350,9 @@ class Stats4Page extends BaseStats {
         <article ref={ref} className={this.decorateCSS("stat-item")}>
           {hasText && (
             <>
-              {subtitleExist && <Base.P className={this.decorateCSS("stat-item-subtitle")}>{item.subtitle}</Base.P>}
-              {titleExist && <Base.P className={this.decorateCSS("stat-item-title")}>{item.title}</Base.P>}
-              {descriptionExist && <Base.P className={this.decorateCSS("stat-item-content")}>{item.description}</Base.P>}
+              {subtitleExist && <Base.P className={this.decorateCSS("stat-item-subtitle")}>{item.stat_subtitle}</Base.P>}
+              {titleExist && <Base.P className={this.decorateCSS("stat-item-title")}>{item.stat_title}</Base.P>}
+              {descriptionExist && <Base.P className={this.decorateCSS("stat-item-content")}>{item.stat_description}</Base.P>}
               {showLine && <div className={this.decorateCSS("stat-line")} />}
             </>
           )}
@@ -393,7 +393,7 @@ class Stats4Page extends BaseStats {
               {faqs?.length > 0 && (
                 <div className={this.decorateCSS("faq")}>
                   {faqs.map((item: any, index: number) => {
-                    const titleExist = this.castToString(item.title);
+                    const titleExist = this.castToString(item.faqItem_title);
                     const contentExist = this.castToString(item.content);
                     const expandIconExist = typeof expandIcon === "object" ? (expandIcon?.name || expandIcon?.url) : expandIcon;
                     const collapseIconExist = typeof collapseIcon === "object" ? (collapseIcon?.name || collapseIcon?.url) : collapseIcon;
@@ -405,7 +405,7 @@ class Stats4Page extends BaseStats {
                         <div className={this.decorateCSS("faq-item")} key={index}>
                           {(titleExist || toggleIconExist) && (
                             <header className={this.decorateCSS("faq-item-header")}>
-                              {titleExist && <Base.H6 className={this.decorateCSS("faq-item-title")}>{item.title}</Base.H6>}
+                              {titleExist && <Base.H6 className={this.decorateCSS("faq-item-title")}>{item.faqItem_title}</Base.H6>}
                               {toggleIconExist && (
                                 <button
                                   className={this.decorateCSS("faq-item-button")}

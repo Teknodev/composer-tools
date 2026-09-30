@@ -11,9 +11,9 @@ type Stat = {
   prefix: React.JSX.Element;
   value: React.JSX.Element;
   suffix: React.JSX.Element;
-  subtitle: React.JSX.Element;
-  title: React.JSX.Element;
-  description: React.JSX.Element;
+  stat_subtitle: React.JSX.Element;
+  stat_title: React.JSX.Element;
+  stat_description: React.JSX.Element;
 };
 
 class Stats3Page extends BaseStats {
@@ -94,9 +94,9 @@ class Stats3Page extends BaseStats {
             { type: "string", key: "prefix", displayer: "Prefix", value: "" },
             { type: "string", key: "value", displayer: "Value", value: "12 th" },
             { type: "string", key: "suffix", displayer: "Suffix", value: "" },
-            { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
-            { type: "string", key: "title", displayer: "Title", value: "" },
-            { type: "string", key: "description", displayer: "Description", value: "Years Experience" },
+            { type: "string", key: "stat_subtitle", displayer: "Subtitle", value: "" },
+            { type: "string", key: "stat_title", displayer: "Title", value: "" },
+            { type: "string", key: "stat_description", displayer: "Description", value: "Years Experience" },
           ],
         },
         {
@@ -114,9 +114,9 @@ class Stats3Page extends BaseStats {
             { type: "string", key: "prefix", displayer: "Prefix", value: "" },
             { type: "string", key: "value", displayer: "Value", value: "800 +" },
             { type: "string", key: "suffix", displayer: "Suffix", value: "" },
-            { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
-            { type: "string", key: "title", displayer: "Title", value: "" },
-            { type: "string", key: "description", displayer: "Description", value: "Happy Clients" },
+            { type: "string", key: "stat_subtitle", displayer: "Subtitle", value: "" },
+            { type: "string", key: "stat_title", displayer: "Title", value: "" },
+            { type: "string", key: "stat_description", displayer: "Description", value: "Happy Clients" },
           ],
         },
         {
@@ -134,9 +134,9 @@ class Stats3Page extends BaseStats {
             { type: "string", key: "prefix", displayer: "Prefix", value: "" },
             { type: "string", key: "value", displayer: "Value", value: "100 +" },
             { type: "string", key: "suffix", displayer: "Suffix", value: "" },
-            { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
-            { type: "string", key: "title", displayer: "Title", value: "" },
-            { type: "string", key: "description", displayer: "Description", value: "Psycologist" },
+            { type: "string", key: "stat_subtitle", displayer: "Subtitle", value: "" },
+            { type: "string", key: "stat_title", displayer: "Title", value: "" },
+            { type: "string", key: "stat_description", displayer: "Description", value: "Psycologist" },
           ],
         },
       ],
@@ -222,9 +222,9 @@ class Stats3Page extends BaseStats {
                         const prefixExist = this.castToString(item.prefix);
                         const numberExist = this.castToString(item.value);
                         const suffixExist = this.castToString(item.suffix);
-                        const subtitleExist = this.castToString(item.subtitle);
-                        const titleExist = this.castToString(item.title);
-                        const descriptionExist = this.castToString(item.description);
+                        const subtitleExist = this.castToString(item.stat_subtitle);
+                        const titleExist = this.castToString(item.stat_title);
+                        const descriptionExist = this.castToString(item.stat_description);
                         const hasValue = prefixExist || numberExist || suffixExist;
                         if (!(iconExist || hasValue || subtitleExist || titleExist || descriptionExist)) return null;
                         return (
@@ -240,9 +240,9 @@ class Stats3Page extends BaseStats {
                                       {suffixExist && <span className={this.decorateCSS("suffix")}>{item.suffix}</span>}
                                     </Base.H5>
                                   )}
-                                  {subtitleExist && <Base.P className={this.decorateCSS("stat-subtitle")}>{item.subtitle}</Base.P>}
-                                  {titleExist && <Base.H6 className={this.decorateCSS("stat-title")}>{item.title}</Base.H6>}
-                                  {descriptionExist && <Base.P className={this.decorateCSS("right-text")}>{item.description}</Base.P>}
+                                  {subtitleExist && <Base.P className={this.decorateCSS("stat-subtitle")}>{item.stat_subtitle}</Base.P>}
+                                  {titleExist && <Base.H6 className={this.decorateCSS("stat-title")}>{item.stat_title}</Base.H6>}
+                                  {descriptionExist && <Base.P className={this.decorateCSS("right-text")}>{item.stat_description}</Base.P>}
                                 </Base.VerticalContent>
                               </div>
                             </div>

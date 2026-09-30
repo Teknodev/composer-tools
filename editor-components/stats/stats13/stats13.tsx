@@ -7,16 +7,16 @@ import ComposerLink from "../../../composer-base-components/Link/ComposerLinkPro
 import { useState, useEffect } from "react";
 
 type RatingItemType = {
-    icon: TypeMediaInputValue;
+    icon_icon: TypeMediaInputValue;
 }
 
 type StatItemType = {
     prefix: React.JSX.Element;
     value: React.JSX.Element;
     suffix: React.JSX.Element;
-    subtitle: React.JSX.Element;
-    title: React.JSX.Element;
-    description: React.JSX.Element;
+    stat_subtitle: React.JSX.Element;
+    stat_title: React.JSX.Element;
+    stat_description: React.JSX.Element;
 }
 
 class Stats13 extends BaseStats {
@@ -94,7 +94,7 @@ class Stats13 extends BaseStats {
                     value: [
                         {
                             type: "media",
-                            key: "icon",
+                            key: "icon_icon",
                             displayer: "Icon",
                             additionalParams: {
                                 availableTypes: ["image", "icon"]
@@ -113,7 +113,7 @@ class Stats13 extends BaseStats {
                     value: [
                         {
                             type: "media",
-                            key: "icon",
+                            key: "icon_icon",
                             displayer: "Icon",
                             additionalParams: {
                                 availableTypes: ["image", "icon"]
@@ -132,7 +132,7 @@ class Stats13 extends BaseStats {
                     value: [
                         {
                             type: "media",
-                            key: "icon",
+                            key: "icon_icon",
                             displayer: "Icon",
                             additionalParams: {
                                 availableTypes: ["image", "icon"]
@@ -151,7 +151,7 @@ class Stats13 extends BaseStats {
                     value: [
                         {
                             type: "media",
-                            key: "icon",
+                            key: "icon_icon",
                             displayer: "Icon",
                             additionalParams: {
                                 availableTypes: ["image", "icon"]
@@ -170,7 +170,7 @@ class Stats13 extends BaseStats {
                     value: [
                         {
                             type: "media",
-                            key: "icon",
+                            key: "icon_icon",
                             displayer: "Icon",
                             additionalParams: {
                                 availableTypes: ["image", "icon"]
@@ -208,9 +208,9 @@ class Stats13 extends BaseStats {
                         { type: "string", key: "prefix", displayer: "Prefix", value: "" },
                         { type: "string", key: "value", displayer: "Value", value: "90" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "k+" },
-                        { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
-                        { type: "string", key: "title", displayer: "Title", value: "" },
-                        { type: "string", key: "description", displayer: "Description", value: "People Trust Impreza" }
+                        { type: "string", key: "stat_subtitle", displayer: "Subtitle", value: "" },
+                        { type: "string", key: "stat_title", displayer: "Title", value: "" },
+                        { type: "string", key: "stat_description", displayer: "Description", value: "People Trust Impreza" }
                     ],
                 },
                 {
@@ -221,9 +221,9 @@ class Stats13 extends BaseStats {
                         { type: "string", key: "prefix", displayer: "Prefix", value: "" },
                         { type: "string", key: "value", displayer: "Value", value: "2.4" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "k+" },
-                        { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
-                        { type: "string", key: "title", displayer: "Title", value: "" },
-                        { type: "string", key: "description", displayer: "Description", value: "Average 5-Star Reviews" }
+                        { type: "string", key: "stat_subtitle", displayer: "Subtitle", value: "" },
+                        { type: "string", key: "stat_title", displayer: "Title", value: "" },
+                        { type: "string", key: "stat_description", displayer: "Description", value: "Average 5-Star Reviews" }
                     ],
                 },
             ],
@@ -382,11 +382,11 @@ class Stats13 extends BaseStats {
                 };
             }, [rawNumber, animatable, animationDuration, target]);
 
-            const description = item.description;
+            const description = item.stat_description;
             const prefixExist = this.castToString(item.prefix);
             const suffixExist = this.castToString(item.suffix);
-            const subtitleExist = this.castToString(item.subtitle);
-            const titleExist = this.castToString(item.title);
+            const subtitleExist = this.castToString(item.stat_subtitle);
+            const titleExist = this.castToString(item.stat_title);
             const descriptionExist = this.castToString(description);
 
             const hasValue = !!display || prefixExist || suffixExist;
@@ -402,8 +402,8 @@ class Stats13 extends BaseStats {
                             {suffixExist && <span className={this.decorateCSS("stat-suffix")}>{item.suffix}</span>}
                         </Base.H2>
                     )}
-                    {subtitleExist && <Base.P className={this.decorateCSS("stat-subtitle")}>{item.subtitle}</Base.P>}
-                    {titleExist && <Base.H5 className={this.decorateCSS("stat-title")}>{item.title}</Base.H5>}
+                    {subtitleExist && <Base.P className={this.decorateCSS("stat-subtitle")}>{item.stat_subtitle}</Base.P>}
+                    {titleExist && <Base.H5 className={this.decorateCSS("stat-title")}>{item.stat_title}</Base.H5>}
                     {descriptionExist && <Base.SectionDescription className={this.decorateCSS("stat-description")}>{description}</Base.SectionDescription>}
                 </div>
             );
@@ -421,12 +421,12 @@ class Stats13 extends BaseStats {
                                     {(ratingItems.length > 0 || ratingNumberExist) && (
                                         <Base.Row className={this.decorateCSS("rating-container")}>
                                             {ratingItems.map((item: RatingItemType, index: number) => {
-                                                const iconExist = item.icon?.name || item.icon?.url;
+                                                const iconExist = item.icon_icon?.name || item.icon_icon?.url;
                                                 if (!iconExist) return null;
                                                 return (
                                                     <div key={index} className={this.decorateCSS("rating-content")}>
                                                         <Base.Media
-                                                            value={item.icon}
+                                                            value={item.icon_icon}
                                                             className={this.decorateCSS("icon")}
                                                         />
                                                     </div>

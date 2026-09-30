@@ -8,9 +8,9 @@ import ComposerLink from "../../../composer-base-components/Link/ComposerLinkPro
 
 type SliderItem = {
   media: TypeMediaInputValue;
-  subtitle: React.JSX.Element;
-  title: React.JSX.Element;
-  description: React.JSX.Element;
+  item_subtitle: React.JSX.Element;
+  item_title: React.JSX.Element;
+  item_description: React.JSX.Element;
   path: string;
 };
 
@@ -58,19 +58,19 @@ class Slider1 extends BaseSlider {
           value: [
             {
               type: "string",
-              key: "subtitle",
+              key: "item_subtitle",
               displayer: "Subtitle",
               value: "",
             },
             {
               type: "string",
-              key: "title",
+              key: "item_title",
               displayer: "Title",
               value: "Boost Your Productivity",
             },
             {
               type: "string",
-              key: "description",
+              key: "item_description",
               displayer: "Description",
               value: "Enhance your workflow and maximize efficiency with our user-friendly tools. Take the first step toward success now.",
             },
@@ -101,19 +101,19 @@ class Slider1 extends BaseSlider {
           value: [
             {
               type: "string",
-              key: "subtitle",
+              key: "item_subtitle",
               displayer: "Subtitle",
               value: "",
             },
             {
               type: "string",
-              key: "title",
+              key: "item_title",
               displayer: "Title",
               value: "Effortless Collaboration",
             },
             {
               type: "string",
-              key: "description",
+              key: "item_description",
               displayer: "Description",
               value: "Seamlessly connect with your team and achieve milestones faster with our innovative platform. Experience the change today!",
             },
@@ -144,19 +144,19 @@ class Slider1 extends BaseSlider {
           value: [
             {
               type: "string",
-              key: "subtitle",
+              key: "item_subtitle",
               displayer: "Subtitle",
               value: "",
             },
             {
               type: "string",
-              key: "title",
+              key: "item_title",
               displayer: "Title",
               value: "Quick problem-solving contact",
             },
             {
               type: "string",
-              key: "description",
+              key: "item_description",
               displayer: "Description",
               value: "With this tool, you will get much better results at work and develop new skills. Will you take the risk of trying the latest version of out application",
             },
@@ -343,12 +343,12 @@ class Slider1 extends BaseSlider {
                       {item.media && (<Base.Media value={item.media} className={`${this.decorateCSS("image")} ${this.getPropValue("hoverAnimation") && this.decorateCSS("hover-active")}`} />)}
                       {isOverlayActive && item.media && <div className={this.decorateCSS("overlay")}></div>}
                     </div>
-                    {(this.castToString(item.subtitle) || this.castToString(item.title) || this.castToString(item.description)) && (
+                    {(this.castToString(item.item_subtitle) || this.castToString(item.item_title) || this.castToString(item.item_description)) && (
                       <Base.VerticalContent className={`${this.decorateCSS("content-container")} 
                       ${this.getComponentState("centerSlide") === index && this.decorateCSS("active")}`}>
-                        {this.castToString(item.subtitle) && <Base.H5 className={this.decorateCSS("slider-subtitle")}>{item.subtitle}</Base.H5>}
-                        {this.castToString(item.title) && <Base.H4 className={this.decorateCSS("slider-title")}>{item.title}</Base.H4>}
-                        {this.castToString(item.description) && <Base.P className={this.decorateCSS("slider-description")}>{item.description}</Base.P>}
+                        {this.castToString(item.item_subtitle) && <Base.H5 className={this.decorateCSS("slider-subtitle")}>{item.item_subtitle}</Base.H5>}
+                        {this.castToString(item.item_title) && <Base.H4 className={this.decorateCSS("slider-title")}>{item.item_title}</Base.H4>}
+                        {this.castToString(item.item_description) && <Base.P className={this.decorateCSS("slider-description")}>{item.item_description}</Base.P>}
                       </Base.VerticalContent>
                     )}
                   </div>

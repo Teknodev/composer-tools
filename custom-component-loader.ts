@@ -4,6 +4,10 @@ import ComponentsRegistery, { CustomComponentLoadFailure } from "./editor-compon
 import { CATEGORIES, Component } from "./editor-components/EditorComponent";
 import * as _EditorComponents from "./editor-components/EditorComponent";
 import * as _BaseModule from "./composer-base-components/base/base";
+import ComposerLink, {
+  setComposerLink,
+  getComposerLink,
+} from "./composer-base-components/Link/ComposerLinkProvider";
 import { logger } from "classes/Logger";
 
 export interface CustomComponentMeta {
@@ -34,7 +38,19 @@ if (typeof window !== "undefined") {
   }
   window.React = React;
   window.ReactDOM = ReactDOM;
-  window.ComposerTools = { ..._EditorComponents, ..._BaseModule };
+  // Custom-component bundles resolve `@blinkpage/composer-tools` to this global
+  // (component-studio externalises the package), so anything they import must be
+  // spread here. ComposerLink is listed explicitly because it is a default
+  // export — spreading its module would land it under `default`, not the name
+  // the bundles actually look up. Without it every custom component that links
+  // somewhere renders `undefined` and React throws #130.
+  window.ComposerTools = {
+    ..._EditorComponents,
+    ..._BaseModule,
+    ComposerLink,
+    setComposerLink,
+    getComposerLink,
+  };
 }
 
 function execScript(code: string, label: string): void {

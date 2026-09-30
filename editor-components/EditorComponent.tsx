@@ -345,6 +345,7 @@ export type TypeUsableComponentProps = {
     availableTypes?: MediaType[];
   };
   max?: number;
+  malformed?: boolean;
 } & AvailablePropTypes & {
   getPropValue?: (
     propName: string,
@@ -403,6 +404,17 @@ export abstract class Component
   extends React.Component<{}, { states: any; componentProps: any }>
   implements iComponent {
   private shadowProps: TypeUsableComponentProps[] = [];
+  // Default-language props, injected only when rendering a non-default language.
+  // Used as a display-only fallback so untranslated (empty) strings show the
+  // default language's text on the canvas without ever touching the stored
+  // (empty) value. Empty for the default language and on save/localization reads.
+  private fallbackProps: TypeUsableComponentProps[] = [];
+  // Lazily-built map from this instance's (random) string-prop ids to the
+  // default-language value at the SAME structural position. Prop ids are random
+  // per instance (generateId uses Math.random), so they never match across
+  // languages — matching the fallback by position instead prevents repeated
+  // array items (FAQ/feature lists) from all inheriting the first item's text.
+  private _fallbackByPosition: Map<string, string> | null = null;
   private styles: any;
   public id: string;
   public globalComponentId: string | undefined;
@@ -514,6 +526,9 @@ export abstract class Component
     const nextHash = this._computeStructuralHash();
     if (nextHash !== this._lastStructuralEmitHash) {
       this._lastStructuralEmitHash = nextHash;
+      // Props tree changed shape → the positional fallback map may no longer
+      // align with it; drop it so the next fallback lookup rebuilds it.
+      this._fallbackByPosition = null;
       EventEmitter.emit(EVENTS.COMPONENT_DID_UPDATE, { data: this });
     }
   }
@@ -554,6 +569,7 @@ export abstract class Component
     this.styles = styles;
     this.id = props?.id || generateComponentId();
     this.globalComponentId = props?.globalComponentId;
+    this.fallbackProps = props?.fallbackProps || [];
 
     const originalRender = this.render.bind(this);
 
@@ -674,9 +690,14 @@ export abstract class Component
         );
       }
 
+      const isValueArray = Array.isArray(propInState.value);
+      if (isComplexType && !isValueArray) {
+        propInState.malformed = true;
+      }
+
       const isMatchingValue =
         (!isComplexType && propInState.value === value) ||
-        (isComplexType && propInState.value.every((item) => item.getPropValue) && propInState.value === value);
+        (isComplexType && isValueArray && propInState.value.every((item) => item.getPropValue) && propInState.value === value);
 
       if (isMatchingValue) return;
 
@@ -782,12 +803,115 @@ export abstract class Component
       return prop?.value;
     }
 
+    // Language fallback (display only): an untranslated string — an empty value
+    // in a non-default language — renders the default language's authored text.
+    // The stored prop stays empty, so getProps()/save and the localization table
+    // still treat it as untranslated. fallbackProps is injected by
+    // PageBuilder.render() only for non-default languages, so this never fires
+    // on the default language.
+    if (
+      prop &&
+      prop.type === "string" &&
+      (prop.value === "" || prop.value == null) &&
+      this.fallbackProps.length
+    ) {
+      const fallbackValue = this.getLanguageFallbackValue(prop);
+      if (fallbackValue) {
+        // _isFallback is a display-only marker (never persisted — getProps still
+        // returns the stored empty prop) used to tag the rendered node for the
+        // editor's "highlight fallbacks" overlay.
+        prop = { ...prop, value: fallbackValue, _isFallback: true } as any;
+      }
+    }
+
     const isStringMustBeElement =
       prop?.type == "string" && !properties?.as_string;
 
     return isStringMustBeElement
       ? this.getPropValueAsElement(prop, properties)
       : prop?.value;
+  }
+
+  /**
+   * Resolves the default-language display value for an untranslated string prop.
+   * Prefers an id match (precise across repeated array items) and falls back to
+   * a key match for content whose prop ids differ across languages.
+   */
+  private getLanguageFallbackValue(prop: TypeUsableComponentProps): string | null {
+    // Primary: match by STRUCTURAL POSITION. The new language was cloned from
+    // the default, so the two prop trees share the same shape; walking them in
+    // lockstep maps each current string prop to the correct default value —
+    // unlike an id match (ids are random per instance) or a key match (which
+    // collapses every repeated array item onto the first one, duplicating text).
+    const propId = (prop as any)?.id;
+    if (propId) {
+      if (!this._fallbackByPosition) {
+        this._fallbackByPosition = this.buildFallbackByPosition();
+      }
+      const byPosition = this._fallbackByPosition.get(propId);
+      if (byPosition) return byPosition;
+    }
+    // Fallbacks for content whose structure has since diverged from the default.
+    const byId = this.findFallbackStringById(propId, this.fallbackProps);
+    if (byId) return byId;
+    const byKey = this.findShadowPropByKey(prop.key, this.fallbackProps);
+    if (byKey && byKey.type === "string" && typeof byKey.value === "string" && byKey.value) {
+      return byKey.value;
+    }
+    return null;
+  }
+
+  /**
+   * Walks this instance's props and the injected default-language fallbackProps
+   * in lockstep (by array index, recursing into array/object containers) and
+   * records, per current string-prop id, the default value at the same position.
+   * Only aligns nodes whose type + key match, so it degrades safely if the two
+   * trees have drifted apart.
+   */
+  private buildFallbackByPosition(): Map<string, string> {
+    const map = new Map<string, string>();
+    const walk = (
+      current: TypeUsableComponentProps[],
+      fallback: TypeUsableComponentProps[]
+    ): void => {
+      if (!Array.isArray(current) || !Array.isArray(fallback)) return;
+      const length = Math.min(current.length, fallback.length);
+      for (let i = 0; i < length; i++) {
+        const cur = current[i] as any;
+        const fb = fallback[i] as any;
+        if (!cur || !fb || cur.type !== fb.type || cur.key !== fb.key) continue;
+        if (cur.type === "string") {
+          if (cur.id && typeof fb.value === "string" && fb.value) {
+            map.set(cur.id, fb.value);
+          }
+        } else if (
+          (cur.type === "array" || cur.type === "object") &&
+          Array.isArray(cur.value) &&
+          Array.isArray(fb.value)
+        ) {
+          walk(cur.value as TypeUsableComponentProps[], fb.value as TypeUsableComponentProps[]);
+        }
+      }
+    };
+    walk(this.state?.componentProps?.props || [], this.fallbackProps || []);
+    return map;
+  }
+
+  private findFallbackStringById(
+    propId: string | undefined,
+    props: TypeUsableComponentProps[]
+  ): string | null {
+    if (!propId) return null;
+    for (const p of props) {
+      if (p.type === "string" && (p as any).id === propId && typeof p.value === "string" && p.value) {
+        return p.value;
+      }
+      if ((p.type === "array" || p.type === "object") && Array.isArray(p.value)) {
+        const found = this.findFallbackStringById(propId, p.value as TypeUsableComponentProps[]);
+        if (found) return found;
+      }
+    }
+    return null;
   }
 
   removeSuffixesAndPrefixes(htmlString: any) {
@@ -868,6 +992,7 @@ export abstract class Component
             sanitizedHtml={sanitizedHtml}
             componentId={componentInstance.id}
             cmsInlineReadOnly={!!currentProperties?.cmsInlineReadOnly}
+            isFallback={!!(currentProp as any)?._isFallback}
           />
         );
       };
@@ -897,9 +1022,13 @@ export abstract class Component
   private attachPropId(_prop: TypeUsableComponentProps) {
     _prop.id = generateId(_prop.key);
     if (_prop.type == "array" || _prop.type == "object") {
-      (_prop.value as TypeUsableComponentProps[]).forEach(
-        (v: TypeUsableComponentProps) => this.attachPropId(v)
-      );
+      if (Array.isArray(_prop.value)) {
+        (_prop.value as TypeUsableComponentProps[]).forEach(
+          (v: TypeUsableComponentProps) => this.attachPropId(v)
+        );
+      } else {
+        _prop.malformed = true;
+      }
     }
 
     return _prop;
@@ -924,6 +1053,8 @@ export abstract class Component
   }
 
   private syncComplexValue(source: TypeUsableComponentProps[], target: TypeUsableComponentProps[]): void {
+    if (!Array.isArray(source) || !Array.isArray(target)) return;
+
     source.forEach(sourceProp => {
       const targetIndex = target.findIndex(prop => prop.key === sourceProp.key);
       if (targetIndex === -1) return;
@@ -940,6 +1071,10 @@ export abstract class Component
       }
 
       if (isComplexType) {
+        if (!Array.isArray(targetProp.value)) {
+          targetProp.malformed = true;
+          return;
+        }
         this.syncComplexValue(
           sourceProp.value as TypeUsableComponentProps[],
           targetProp.value as TypeUsableComponentProps[]
@@ -956,10 +1091,16 @@ export abstract class Component
     const prop: TypeUsableComponentProps = this.state.componentProps.props[i];
 
     const isInvalidIndex = i === -1;
+    const isComplexType = prop.type === "array" || prop.type === "object";
+    const isValueMalformed = isComplexType && !Array.isArray(prop.value);
+    if (isValueMalformed) {
+      prop.malformed = true;
+    }
     const isMatchingSimpleValue =
-      prop.type !== "array" && prop.type !== "object" && prop.value === value;
+      !isComplexType && prop.value === value;
     const isMatchingComplexValue =
-      (prop.type === "array" || prop.type === "object") &&
+      isComplexType &&
+      !isValueMalformed &&
       prop.value.every((item) => item.getPropValue) &&
       prop.value === value;
 
@@ -1002,11 +1143,11 @@ export abstract class Component
     let cssClass = [this.styles[section]];
 
     let cssManuplations = Object.entries(this.getCSSClasses()).filter(
-      ([p, v]) => v.length > 0
+      ([p, v]) => Array.isArray(v) && v.length > 0
     );
 
     cssManuplations.forEach(([key, value]: any) => {
-      if (key === section) {
+      if (key === section && Array.isArray(value)) {
         value.forEach((el: any) => {
           cssClass.push(el.class);
         });
@@ -1065,9 +1206,20 @@ export abstract class Component
   }
 
   private castingProcess(object: any) {
+    if (!Array.isArray(object.value)) {
+      if (object.type === "array" || object.type === "object") {
+        object.malformed = true;
+      }
+      return object.type === "object" ? {} : [];
+    }
+
     let casted = object.value.map((propValue: any) => {
       let clonedPropValue = { ...propValue };
       if (clonedPropValue.hasOwnProperty("getPropValue")) {
+        if (!Array.isArray(clonedPropValue.value)) {
+          clonedPropValue.malformed = true;
+          return clonedPropValue;
+        }
         clonedPropValue.value.forEach((nestedObject: any, index: number) => {
           clonedPropValue[nestedObject.key] = clonedPropValue.getPropValue(
             nestedObject.key
@@ -1102,9 +1254,11 @@ export abstract class Component
         let value: any = {};
 
         if (initialProp.type == "object" && isObjectContainsAnotherObject) {
-          initialProp.value.forEach((propVal: any) => {
-            value[propVal.key] = initialProp[propVal.key];
-          });
+          if (Array.isArray(initialProp.value)) {
+            initialProp.value.forEach((propVal: any) => {
+              value[propVal.key] = initialProp[propVal.key];
+            });
+          }
         } else {
           value = manipulatedValue.value;
         }

@@ -7,7 +7,7 @@ import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "../../../custom-hooks/input-templates";
 
 interface ListItem {
-  description: React.JSX.Element;
+  listItem_description: React.JSX.Element;
 }
 
 type Button = INPUTS.CastedButton;
@@ -64,7 +64,7 @@ class CallToAction4Page extends BaseCallToAction {
           value: [
             {
               type: "string",
-              key: "description",
+              key: "listItem_description",
               displayer: "Description",
               value: "Unlimited update and project",
             },
@@ -77,7 +77,7 @@ class CallToAction4Page extends BaseCallToAction {
           value: [
             {
               type: "string",
-              key: "description",
+              key: "listItem_description",
               displayer: "Description",
               value: "24+7 service",
             },
@@ -90,7 +90,7 @@ class CallToAction4Page extends BaseCallToAction {
           value: [
             {
               type: "string",
-              key: "description",
+              key: "listItem_description",
               displayer: "Description",
               value: "Chat support",
             },
@@ -103,7 +103,7 @@ class CallToAction4Page extends BaseCallToAction {
           value: [
             {
               type: "string",
-              key: "description",
+              key: "listItem_description",
               displayer: "Description",
               value: "Analytic and chart",
             },
@@ -116,7 +116,7 @@ class CallToAction4Page extends BaseCallToAction {
           value: [
             {
               type: "string",
-              key: "description",
+              key: "listItem_description",
               displayer: "Description",
               value: "Darks light mode",
             },
@@ -129,7 +129,7 @@ class CallToAction4Page extends BaseCallToAction {
           value: [
             {
               type: "string",
-              key: "description",
+              key: "listItem_description",
               displayer: "Description",
               value: "Library of our specialist",
             },
@@ -142,7 +142,7 @@ class CallToAction4Page extends BaseCallToAction {
           value: [
             {
               type: "string",
-              key: "description",
+              key: "listItem_description",
               displayer: "Description",
               value: "Own analytic platfrom",
             },
@@ -155,7 +155,7 @@ class CallToAction4Page extends BaseCallToAction {
           value: [
             {
               type: "string",
-              key: "description",
+              key: "listItem_description",
               displayer: "Description",
               value: "Unlimited advice",
             },
@@ -216,7 +216,7 @@ class CallToAction4Page extends BaseCallToAction {
                             <Base.Media value={this.getPropValue("icon")} className={this.decorateCSS("icon")} />
                           </div>
                         )}
-                        {this.castToString(item.description) && <Base.P className={this.decorateCSS("description")}>{item.description}</Base.P>}
+                        {this.castToString(item.listItem_description) && <Base.P className={this.decorateCSS("description")}>{item.listItem_description}</Base.P>}
                       </div>
                     ))}
                   </Base.ListGrid>

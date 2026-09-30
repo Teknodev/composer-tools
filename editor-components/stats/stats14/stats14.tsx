@@ -9,9 +9,9 @@ type featuresItem = {
   prefix: React.JSX.Element;
   value: React.JSX.Element;
   suffix: React.JSX.Element;
-  subtitle: React.JSX.Element;
-  title: React.JSX.Element;
-  description: React.JSX.Element;
+  stat_subtitle: React.JSX.Element;
+  stat_title: React.JSX.Element;
+  stat_description: React.JSX.Element;
 };
 
 class Stats14 extends BaseStats {
@@ -52,9 +52,9 @@ class Stats14 extends BaseStats {
             { type: "string", key: "prefix", displayer: "Prefix", value: "" },
             { type: "string", key: "value", displayer: "Value", value: "From 20 days" },
             { type: "string", key: "suffix", displayer: "Suffix", value: "" },
-            { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
-            { type: "string", key: "title", displayer: "Title", value: "" },
-            { type: "string", key: "description", displayer: "Description", value: "minimal period" },
+            { type: "string", key: "stat_subtitle", displayer: "Subtitle", value: "" },
+            { type: "string", key: "stat_title", displayer: "Title", value: "" },
+            { type: "string", key: "stat_description", displayer: "Description", value: "minimal period" },
           ],
         },
         {
@@ -65,9 +65,9 @@ class Stats14 extends BaseStats {
             { type: "string", key: "prefix", displayer: "Prefix", value: "" },
             { type: "string", key: "value", displayer: "Value", value: "Up to 7.5%" },
             { type: "string", key: "suffix", displayer: "Suffix", value: "" },
-            { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
-            { type: "string", key: "title", displayer: "Title", value: "" },
-            { type: "string", key: "description", displayer: "Description", value: "yearly income" },
+            { type: "string", key: "stat_subtitle", displayer: "Subtitle", value: "" },
+            { type: "string", key: "stat_title", displayer: "Title", value: "" },
+            { type: "string", key: "stat_description", displayer: "Description", value: "yearly income" },
           ],
         },
         {
@@ -78,9 +78,9 @@ class Stats14 extends BaseStats {
             { type: "string", key: "prefix", displayer: "Prefix", value: "" },
             { type: "string", key: "value", displayer: "Value", value: "From $1,000" },
             { type: "string", key: "suffix", displayer: "Suffix", value: "" },
-            { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
-            { type: "string", key: "title", displayer: "Title", value: "" },
-            { type: "string", key: "description", displayer: "Description", value: "minimal deposit" },
+            { type: "string", key: "stat_subtitle", displayer: "Subtitle", value: "" },
+            { type: "string", key: "stat_title", displayer: "Title", value: "" },
+            { type: "string", key: "stat_description", displayer: "Description", value: "minimal deposit" },
           ],
         },
       ],
@@ -181,9 +181,9 @@ class Stats14 extends BaseStats {
                       const prefixExist = this.castToString(item.prefix);
                       const numberExist = this.castToString(item.value);
                       const suffixExist = this.castToString(item.suffix);
-                      const subtitleExist = this.castToString(item.subtitle);
-                      const titleExist = this.castToString(item.title);
-                      const descriptionExist = this.castToString(item.description);
+                      const subtitleExist = this.castToString(item.stat_subtitle);
+                      const titleExist = this.castToString(item.stat_title);
+                      const descriptionExist = this.castToString(item.stat_description);
                       const hasValue = prefixExist || numberExist || suffixExist;
                       if (!hasValue && !subtitleExist && !titleExist && !descriptionExist) return null;
                       return (
@@ -197,17 +197,17 @@ class Stats14 extends BaseStats {
                           )}
                           {subtitleExist && (
                             <Base.P className={this.decorateCSS("subText")}>
-                              {item.subtitle}
+                              {item.stat_subtitle}
                             </Base.P>
                           )}
                           {titleExist && (
                             <Base.H5 className={this.decorateCSS("titleText")}>
-                              {item.title}
+                              {item.stat_title}
                             </Base.H5>
                           )}
                           {descriptionExist && (
                             <Base.P className={this.decorateCSS("bottomText")}>
-                              {item.description}
+                              {item.stat_description}
                             </Base.P>
                           )}
                         </div>

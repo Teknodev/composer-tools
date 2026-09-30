@@ -8,7 +8,7 @@ interface StatItem {
   prefix: React.JSX.Element;
   value: React.JSX.Element;
   suffix: React.JSX.Element;
-  subtitle: React.JSX.Element;
+  stat_subtitle: React.JSX.Element;
   title: React.JSX.Element;
   description: React.JSX.Element;
 }
@@ -57,7 +57,7 @@ class Stats11 extends BaseStats {
             { type: "string", key: "prefix", displayer: "Prefix", value: "" },
             { type: "string", key: "value", displayer: "Value", value: "12" },
             { type: "string", key: "suffix", displayer: "Suffix", value: "" },
-            { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
+            { type: "string", key: "stat_subtitle", displayer: "Subtitle", value: "" },
             { type: "string", key: "description", displayer: "Title", value: "Years" },
           ],
         },
@@ -69,7 +69,7 @@ class Stats11 extends BaseStats {
             { type: "string", key: "prefix", displayer: "Prefix", value: "" },
             { type: "string", key: "value", displayer: "Value", value: "68" },
             { type: "string", key: "suffix", displayer: "Suffix", value: "" },
-            { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
+            { type: "string", key: "stat_subtitle", displayer: "Subtitle", value: "" },
             { type: "string", key: "description", displayer: "Title", value: "Projects" },
           ],
         },
@@ -81,7 +81,7 @@ class Stats11 extends BaseStats {
             { type: "string", key: "prefix", displayer: "Prefix", value: "" },
             { type: "string", key: "value", displayer: "Value", value: "16" },
             { type: "string", key: "suffix", displayer: "Suffix", value: "" },
-            { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
+            { type: "string", key: "stat_subtitle", displayer: "Subtitle", value: "" },
             { type: "string", key: "description", displayer: "Title", value: "Award" },
           ],
         },
@@ -169,7 +169,7 @@ class Stats11 extends BaseStats {
                     const prefixExist = this.castToString(item.prefix);
                     const numberExist = this.castToString(item.value);
                     const suffixExist = this.castToString(item.suffix);
-                    const subtitleExist = this.castToString(item.subtitle);
+                    const subtitleExist = this.castToString(item.stat_subtitle);
                     const descriptionExist = this.castToString(item.description);
                     const hasValue = prefixExist || numberExist || suffixExist;
                     const hasText = subtitleExist || descriptionExist;
@@ -187,7 +187,7 @@ class Stats11 extends BaseStats {
                           <div className={this.decorateCSS("stat-text")}>
                             {subtitleExist && (
                               <Base.P className={this.decorateCSS("stat-subtitle")}>
-                                {item.subtitle}
+                                {item.stat_subtitle}
                               </Base.P>
                             )}
                             {descriptionExist && (

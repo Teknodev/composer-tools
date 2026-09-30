@@ -15,8 +15,8 @@ type SliderItem = {
 };
 
 type SocialItem = {
-  media: TypeMediaInputValue;
-  path: string;
+  social_media: TypeMediaInputValue;
+  social_path: string;
 };
 
 class HeroSection37 extends BaseHeroSection {
@@ -274,7 +274,7 @@ class HeroSection37 extends BaseHeroSection {
           value: [
             {
               type: "media",
-              key: "media",
+              key: "social_media",
               displayer: "Media",
               additionalParams: {
                 availableTypes: ["image", "icon"],
@@ -286,7 +286,7 @@ class HeroSection37 extends BaseHeroSection {
             },
             {
               type: "page",
-              key: "path",
+              key: "social_path",
               displayer: "Navigate To",
               value: "",
             },
@@ -299,7 +299,7 @@ class HeroSection37 extends BaseHeroSection {
           value: [
             {
               type: "media",
-              key: "media",
+              key: "social_media",
               displayer: "Media",
               additionalParams: {
                 availableTypes: ["image", "icon"],
@@ -311,7 +311,7 @@ class HeroSection37 extends BaseHeroSection {
             },
             {
               type: "page",
-              key: "path",
+              key: "social_path",
               displayer: "Navigate To",
               value: "",
             },
@@ -324,7 +324,7 @@ class HeroSection37 extends BaseHeroSection {
           value: [
             {
               type: "media",
-              key: "media",
+              key: "social_media",
               displayer: "Media",
               additionalParams: {
                 availableTypes: ["image", "icon"],
@@ -336,7 +336,7 @@ class HeroSection37 extends BaseHeroSection {
             },
             {
               type: "page",
-              key: "path",
+              key: "social_path",
               displayer: "Navigate To",
               value: "",
             },
@@ -496,9 +496,9 @@ class HeroSection37 extends BaseHeroSection {
                   {icons && (
                     <div className={this.decorateCSS("social-icons")}>
                       {icons.map((social: SocialItem, index: number) => (
-                        social.media && (
-                          <ComposerLink key={index} path={social.path}>
-                            <Base.Media value={social.media} className={this.decorateCSS("social-icon")} />
+                        social.social_media && (
+                          <ComposerLink key={index} path={social.social_path}>
+                            <Base.Media value={social.social_media} className={this.decorateCSS("social-icon")} />
                           </ComposerLink>
                         )
                       ))}

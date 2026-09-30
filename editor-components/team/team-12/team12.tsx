@@ -291,7 +291,7 @@ class Team12 extends Team {
               const hasItem = nameExist || professionExist || descriptionExist || teamMember.profileImage || teamMember.platforms.length > 0;
               return (
                 hasItem && (
-                  <div className={this.decorateCSS("member")} data-animation={this.getPropValue("hoverAnimation").join(" ")}> 
+                  <Base.Card className={this.decorateCSS("member")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
                     {teamMember.profileImage && <Base.Media value={teamMember.getPropValue("profileImage")} className={this.decorateCSS("image")} />}
                     <Base.VerticalContent className={this.decorateCSS("info")}>
                       {nameExist && <Base.H2 className={this.decorateCSS("name")}>{teamMember.getPropValue("name")}</Base.H2>}
@@ -315,7 +315,7 @@ class Team12 extends Team {
                         </Base.Row>
                       )}
                     </Base.VerticalContent>
-                  </div>
+                  </Base.Card>
                 )
               );
             })}

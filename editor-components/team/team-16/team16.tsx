@@ -9,7 +9,7 @@ type Card = {
   profileImage: TypeMediaInputValue;
   name: React.JSX.Element;
   job: React.JSX.Element;
-  description: React.JSX.Element;
+  card_description: React.JSX.Element;
 };
 
 class Team16 extends Team {
@@ -62,7 +62,7 @@ class Team16 extends Team {
             },
             {
               type: "string",
-              key: "description",
+              key: "card_description",
               displayer: "Description",
               value: "The inception of this venture has not only been fulfilling but has also marked a significant milestone in my journey.",
             },
@@ -99,7 +99,7 @@ class Team16 extends Team {
             },
             {
               type: "string",
-              key: "description",
+              key: "card_description",
               displayer: "Description",
               value: "PageDone remains steadfast in its commitment to innovation and growth. With each step forward, we embrace.",
             },
@@ -136,7 +136,7 @@ class Team16 extends Team {
             },
             {
               type: "string",
-              key: "description",
+              key: "card_description",
               displayer: "Description",
               value: "The inception of this venture has been an immensely rewarding experience, representing a pivotal milestone in my personal.",
             },
@@ -195,7 +195,7 @@ class Team16 extends Team {
               {this.castToObject<Card[]>("cards").map((card: Card, indexCards: number) => {
                 const nameExist = this.castToString(card.name);
                 const jobExist = this.castToString(card.job);
-                const descriptionExist = this.castToString(card.description);
+                const descriptionExist = this.castToString(card.card_description);
 
                 const cardExist = nameExist || jobExist || descriptionExist || card.profileImage;
                 return (
@@ -211,7 +211,7 @@ class Team16 extends Team {
                           {nameExist && <Base.H3 className={this.decorateCSS("name")}>{card.name}</Base.H3>}
                           {jobExist && <Base.H3 className={this.decorateCSS("job")}>{card.job}</Base.H3>}
                         </div>
-                        {descriptionExist && <Base.P className={this.decorateCSS("description")}>{card.description}</Base.P>}
+                        {descriptionExist && <Base.P className={this.decorateCSS("description")}>{card.card_description}</Base.P>}
                       </div>
                     </div>
                   )

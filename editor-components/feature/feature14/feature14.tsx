@@ -8,7 +8,7 @@ import { INPUTS } from "../../../custom-hooks/input-templates";
 
 type CardItem = {
   icon: TypeMediaInputValue,
-  title: string,
+  cardItem_title: string,
   description: string,
 };
 
@@ -66,7 +66,7 @@ class Feature14 extends BaseFeature {
             },
             {
               type: "string",
-              key: "title",
+              key: "cardItem_title",
               displayer: "Card Title",
               value: "Best price guaranteed",
             },
@@ -97,7 +97,7 @@ class Feature14 extends BaseFeature {
             },
             {
               type: "string",
-              key: "title",
+              key: "cardItem_title",
               displayer: "Card Title",
               value: "Great communication",
             },
@@ -128,7 +128,7 @@ class Feature14 extends BaseFeature {
             },
             {
               type: "string",
-              key: "title",
+              key: "cardItem_title",
               displayer: "Card Title",
               value: "We provide high standards",
             },
@@ -159,7 +159,7 @@ class Feature14 extends BaseFeature {
             },
             {
               type: "string",
-              key: "title",
+              key: "cardItem_title",
               displayer: "Card Title",
               value: "We worked with many big companies",
             },
@@ -255,22 +255,24 @@ class Feature14 extends BaseFeature {
             <Base.ListGrid className={this.decorateCSS("cards")} gridCount={{ pc: this.getPropValue("itemCount") }}>
               {cardItems.map((item: any, index: number) => {
                 return (
-                  <Base.VerticalContent className={this.decorateCSS("card")}>
-                    {item.icon && (
-                      <div className={this.decorateCSS("icon-box")}>
-                        <Base.Media value={item.icon} className={this.decorateCSS("icon")} />
-                      </div>
-                    )}
+                  <Base.Card className={this.decorateCSS("card-shell")}>
+                    <Base.VerticalContent className={this.decorateCSS("card")}>
+                      {item.icon && (
+                        <div className={this.decorateCSS("icon-box")}>
+                          <Base.Media value={item.icon} className={this.decorateCSS("icon")} />
+                        </div>
+                      )}
 
-                    <div className={this.decorateCSS("card-content")}>
-                      {this.castToString(item.title) && (
-                        <Base.H3 className={this.decorateCSS("card-title")}>{item.title}</Base.H3>
-                      )}
-                      {this.castToString(item.description) && (
-                        <Base.P className={this.decorateCSS("card-description")}>{item.description}</Base.P>
-                      )}
-                    </div>
-                  </Base.VerticalContent>
+                      <div className={this.decorateCSS("card-content")}>
+                        {this.castToString(item.title) && (
+                          <Base.H3 className={this.decorateCSS("card-title")}>{item.title}</Base.H3>
+                        )}
+                        {this.castToString(item.description) && (
+                          <Base.P className={this.decorateCSS("card-description")}>{item.description}</Base.P>
+                        )}
+                      </div>
+                    </Base.VerticalContent>
+                  </Base.Card>
                 );
               })}
             </Base.ListGrid>

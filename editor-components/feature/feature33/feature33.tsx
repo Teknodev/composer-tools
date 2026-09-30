@@ -60,7 +60,7 @@ class Feature33 extends BaseFeature {
                     value: [
                         {
                             type: "string",
-                            key: "title",
+                            key: "feature_title",
                             displayer: "Feature Title",
                             value: "Performance"
                         },
@@ -79,7 +79,7 @@ class Feature33 extends BaseFeature {
                     value: [
                         {
                             type: "string",
-                            key: "title",
+                            key: "feature_title",
                             displayer: "Feature Title",
                             value: "Interaction"
                         },
@@ -120,7 +120,7 @@ class Feature33 extends BaseFeature {
 
         const rawFeatures = (this.castToObject<any[]>("features") || []).filter(Boolean);
         const features = rawFeatures.map((feature) => ({
-            title: feature?.title,
+            title: feature.feature_title,
             text: feature?.text,
         })).filter((item) => this.castToString(item.title) || this.castToString(item.text));
 
@@ -180,7 +180,7 @@ class Feature33 extends BaseFeature {
                                     className={this.decorateCSS("features-grid")}
                                 >
                                     {features.map((feature, index) => (
-                                        <div key={index} className={this.decorateCSS("feature-item")}>
+                                        <Base.Card key={index} className={this.decorateCSS("feature-item")}>
                                             {this.castToString(feature.title) && (
                                                 <Base.H5 className={this.decorateCSS("feature-title")}>
                                                     {feature.title}
@@ -191,7 +191,7 @@ class Feature33 extends BaseFeature {
                                                     {feature.text}
                                                 </Base.P>
                                             )}
-                                        </div>
+                                        </Base.Card>
                                     ))}
                                 </Base.ListGrid>
                             )}

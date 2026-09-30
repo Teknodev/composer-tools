@@ -58,9 +58,9 @@ class Stats32 extends BaseStats {
                         { type: "string", key: "prefix", displayer: "Prefix", value: "" },
                         { type: "string", key: "value", displayer: "Value", value: "500" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "+" },
-                        { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
-                        { type: "string", key: "title", displayer: "Title", value: "Clip Editing" },
-                        { type: "string", key: "description", displayer: "Description", value: "" },
+                        { type: "string", key: "stat_subtitle", displayer: "Subtitle", value: "" },
+                        { type: "string", key: "stat_title", displayer: "Title", value: "Clip Editing" },
+                        { type: "string", key: "stat_description", displayer: "Description", value: "" },
                     ],
                 },
                 {
@@ -71,9 +71,9 @@ class Stats32 extends BaseStats {
                         { type: "string", key: "prefix", displayer: "Prefix", value: "" },
                         { type: "string", key: "value", displayer: "Value", value: "75" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "+" },
-                        { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
-                        { type: "string", key: "title", displayer: "Title", value: "Camera Work" },
-                        { type: "string", key: "description", displayer: "Description", value: "" },
+                        { type: "string", key: "stat_subtitle", displayer: "Subtitle", value: "" },
+                        { type: "string", key: "stat_title", displayer: "Title", value: "Camera Work" },
+                        { type: "string", key: "stat_description", displayer: "Description", value: "" },
                     ],
                 },
                 {
@@ -84,9 +84,9 @@ class Stats32 extends BaseStats {
                         { type: "string", key: "prefix", displayer: "Prefix", value: "" },
                         { type: "string", key: "value", displayer: "Value", value: "980" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "+" },
-                        { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
-                        { type: "string", key: "title", displayer: "Title", value: "Commercial Projects" },
-                        { type: "string", key: "description", displayer: "Description", value: "" },
+                        { type: "string", key: "stat_subtitle", displayer: "Subtitle", value: "" },
+                        { type: "string", key: "stat_title", displayer: "Title", value: "Commercial Projects" },
+                        { type: "string", key: "stat_description", displayer: "Description", value: "" },
                     ],
                 },
             ],
@@ -132,15 +132,15 @@ class Stats32 extends BaseStats {
         const hasLeftSection = subtitleExist || titleExist || descriptionExist || hasValidButtons;
         const showDivider = this.getPropValue("line") !== false;
 
-        const statsItems = this.castToObject<{ prefix: JSX.Element; number: JSX.Element; suffix: JSX.Element; title: JSX.Element; subtitle: JSX.Element; description: JSX.Element }[]>("stats");
+        const statsItems = this.castToObject<{ prefix: JSX.Element; value: JSX.Element; suffix: JSX.Element; stat_title: JSX.Element; stat_subtitle: JSX.Element; stat_description: JSX.Element }[]>("stats");
         const stats: StatItem[] = statsItems.map((item) => {
             const prefix = this.castToString(item.prefix) || "";
             const number = this.castToString(item.value);
             const suffix = this.castToString(item.suffix) || "";
-            const title = this.castToString(item.title) || "";
-            const subtitle = this.castToString(item.subtitle) || "";
-            const description = this.castToString(item.description) || "";
-            return { prefix, numberElement: item.value, prefixElement: item.prefix, value: number, suffix, suffixElement: item.suffix, title, titleElement: item.title, subtitle, subtitleElement: item.subtitle, description, descriptionElement: item.description };
+            const title = this.castToString(item.stat_title) || "";
+            const subtitle = this.castToString(item.stat_subtitle) || "";
+            const description = this.castToString(item.stat_description) || "";
+            return { prefix, numberElement: item.value, prefixElement: item.prefix, value: number, suffix, suffixElement: item.suffix, title, titleElement: item.stat_title, subtitle, subtitleElement: item.stat_subtitle, description, descriptionElement: item.stat_description };
         });
 
         const settings = this.castToObject<any>("settings");

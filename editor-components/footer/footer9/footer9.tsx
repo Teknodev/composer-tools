@@ -13,14 +13,20 @@ type link = {
 };
 
 type icon = {
-  title: string;
+  socials_item_title: string;
   page: string;
   icon: TypeMediaInputValue;
 };
 
 type page = {
-  title: string;
-  page: string;
+  links_item_title: string;
+  item_page: string;
+};
+
+const hasMedia = (media?: TypeMediaInputValue | null): boolean => {
+  if (!media) return false;
+  if (media.type === "icon") return !!media.name;
+  return !!media.url;
 };
 
 class Footer9Page extends BaseFooter {
@@ -44,10 +50,10 @@ class Footer9Page extends BaseFooter {
       value: [
         {
           type: "media",
-          key: "logo",
+          key: "logo_logo",
           displayer: "Logo",
           additionalParams: {
-            availableTypes: ["image"],
+            availableTypes: ["image", "icon"],
           },
           value: {
             type: "image",
@@ -83,162 +89,303 @@ class Footer9Page extends BaseFooter {
       value: "During this phase to design is developed to meet the reuired technical standards",
     });
 
-    this.addProp(INPUTS.BUTTON("button", "Button", "Subscribe", "", null, null, "Primary"));
+    this.addProp({
+      type: "array",
+      key: "buttons",
+      displayer: "Buttons",
+      value: [
+        INPUTS.BUTTON("button", "Button", "Subscribe", "", null, null, "Primary"),
+      ],
+    });
 
     this.addProp({
       type: "array",
-      key: "links",
-      displayer: "Links",
+      key: "footer",
+      displayer: "Footer",
       value: [
         {
           type: "object",
-          key: "item",
-          displayer: "Item",
+          key: "footer-title",
+          displayer: "Footer",
           value: [
             {
               type: "string",
-              key: "title",
-              displayer: "Title",
-              value: "Contact",
+              key: "footerTitle",
+              displayer: "Menu Item",
+              value: "About",
             },
             {
               type: "page",
-              key: "page",
+              key: "footerTitleLink",
               displayer: "Navigate To",
               value: "",
             },
-          ],
-        },
-        {
-          type: "object",
-          key: "item",
-          displayer: "Item",
-          value: [
             {
-              type: "string",
-              key: "title",
-              displayer: "Title",
-              value: "Blog",
+              type: "media",
+              key: "footerTitleMedia",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["icon", "image"],
+              },
+              value: {
+                type: "icon",
+                name: "",
+              },
             },
             {
-              type: "page",
-              key: "page",
-              displayer: "Navigate To",
-              value: "",
-            },
-          ],
-        },
-        {
-          type: "object",
-          key: "item",
-          displayer: "Item",
-          value: [
-            {
-              type: "string",
-              key: "title",
-              displayer: "Title",
-              value: "Our Story",
-            },
-            {
-              type: "page",
-              key: "page",
-              displayer: "Navigate To",
-              value: "",
-            },
-          ],
-        },
-        {
-          type: "object",
-          key: "item",
-          displayer: "Item",
-          value: [
-            {
-              type: "string",
-              key: "title",
-              displayer: "Title",
-              value: "Help centre",
-            },
-            {
-              type: "page",
-              key: "page",
-              displayer: "Navigate To",
-              value: "",
-            },
-          ],
-        },
-        {
-          type: "object",
-          key: "item",
-          displayer: "Item",
-          value: [
-            {
-              type: "string",
-              key: "title",
-              displayer: "Title",
-              value: "Careers",
-            },
-            {
-              type: "page",
-              key: "page",
-              displayer: "Navigate To",
-              value: "",
-            },
-          ],
-        },
-        {
-          type: "object",
-          key: "item",
-          displayer: "Item",
-          value: [
-            {
-              type: "string",
-              key: "title",
-              displayer: "Title",
-              value: "Changelong",
-            },
-            {
-              type: "page",
-              key: "page",
-              displayer: "Navigate To",
-              value: "",
-            },
-          ],
-        },
-        {
-          type: "object",
-          key: "item",
-          displayer: "Item",
-          value: [
-            {
-              type: "string",
-              key: "title",
-              displayer: "Title",
-              value: "Community",
-            },
-            {
-              type: "page",
-              key: "page",
-              displayer: "Navigate To",
-              value: "",
-            },
-          ],
-        },
-        {
-          type: "object",
-          key: "item",
-          displayer: "Item",
-          value: [
-            {
-              type: "string",
-              key: "title",
-              displayer: "Title",
-              value: "Guidelines",
-            },
-            {
-              type: "page",
-              key: "page",
-              displayer: "Navigate To",
-              value: "",
+              type: "array",
+              key: "footer_title_footerText",
+              displayer: "Menu Subitem",
+              value: [
+                {
+                  type: "object",
+                  key: "footer-text",
+                  displayer: "Text Values",
+                  value: [
+                    {
+                      type: "string",
+                      key: "navTitle",
+                      displayer: "Text",
+                      value: "Contact",
+                    },
+                    {
+                      type: "page",
+                      key: "navNavigateTo",
+                      displayer: "Navigate To",
+                      value: "",
+                    },
+                    {
+                      type: "media",
+                      key: "navMedia",
+                      displayer: "Media",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "",
+                      },
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "footer-text",
+                  displayer: "Text Values",
+                  value: [
+                    {
+                      type: "string",
+                      key: "navTitle",
+                      displayer: "Text",
+                      value: "Blog",
+                    },
+                    {
+                      type: "page",
+                      key: "navNavigateTo",
+                      displayer: "Navigate To",
+                      value: "",
+                    },
+                    {
+                      type: "media",
+                      key: "navMedia",
+                      displayer: "Media",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "",
+                      },
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "footer-text",
+                  displayer: "Text Values",
+                  value: [
+                    {
+                      type: "string",
+                      key: "navTitle",
+                      displayer: "Text",
+                      value: "Our Story",
+                    },
+                    {
+                      type: "page",
+                      key: "navNavigateTo",
+                      displayer: "Navigate To",
+                      value: "",
+                    },
+                    {
+                      type: "media",
+                      key: "navMedia",
+                      displayer: "Media",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "",
+                      },
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "footer-text",
+                  displayer: "Text Values",
+                  value: [
+                    {
+                      type: "string",
+                      key: "navTitle",
+                      displayer: "Text",
+                      value: "Help centre",
+                    },
+                    {
+                      type: "page",
+                      key: "navNavigateTo",
+                      displayer: "Navigate To",
+                      value: "",
+                    },
+                    {
+                      type: "media",
+                      key: "navMedia",
+                      displayer: "Media",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "",
+                      },
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "footer-text",
+                  displayer: "Text Values",
+                  value: [
+                    {
+                      type: "string",
+                      key: "navTitle",
+                      displayer: "Text",
+                      value: "Careers",
+                    },
+                    {
+                      type: "page",
+                      key: "navNavigateTo",
+                      displayer: "Navigate To",
+                      value: "",
+                    },
+                    {
+                      type: "media",
+                      key: "navMedia",
+                      displayer: "Media",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "",
+                      },
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "footer-text",
+                  displayer: "Text Values",
+                  value: [
+                    {
+                      type: "string",
+                      key: "navTitle",
+                      displayer: "Text",
+                      value: "Changelong",
+                    },
+                    {
+                      type: "page",
+                      key: "navNavigateTo",
+                      displayer: "Navigate To",
+                      value: "",
+                    },
+                    {
+                      type: "media",
+                      key: "navMedia",
+                      displayer: "Media",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "",
+                      },
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "footer-text",
+                  displayer: "Text Values",
+                  value: [
+                    {
+                      type: "string",
+                      key: "navTitle",
+                      displayer: "Text",
+                      value: "Community",
+                    },
+                    {
+                      type: "page",
+                      key: "navNavigateTo",
+                      displayer: "Navigate To",
+                      value: "",
+                    },
+                    {
+                      type: "media",
+                      key: "navMedia",
+                      displayer: "Media",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "",
+                      },
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "footer-text",
+                  displayer: "Text Values",
+                  value: [
+                    {
+                      type: "string",
+                      key: "navTitle",
+                      displayer: "Text",
+                      value: "Guidelines",
+                    },
+                    {
+                      type: "page",
+                      key: "navNavigateTo",
+                      displayer: "Navigate To",
+                      value: "",
+                    },
+                    {
+                      type: "media",
+                      key: "navMedia",
+                      displayer: "Media",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: {
+                        type: "icon",
+                        name: "",
+                      },
+                    },
+                  ],
+                },
+              ],
             },
           ],
         },
@@ -247,8 +394,8 @@ class Footer9Page extends BaseFooter {
 
     this.addProp({
       type: "array",
-      key: "icons",
-      displayer: "Icons",
+      key: "socials",
+      displayer: "Social Media Items",
       value: [
         {
           type: "object",
@@ -257,7 +404,7 @@ class Footer9Page extends BaseFooter {
           value: [
             {
               type: "string",
-              key: "title",
+              key: "socials_item_title",
               displayer: "Title",
               value: "Twitter",
             },
@@ -272,7 +419,7 @@ class Footer9Page extends BaseFooter {
               key: "icon",
               displayer: "Icon",
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon", "image"],
               },
               value: {
                 type: "icon",
@@ -288,7 +435,7 @@ class Footer9Page extends BaseFooter {
           value: [
             {
               type: "string",
-              key: "title",
+              key: "socials_item_title",
               displayer: "Title",
               value: "Instagram",
             },
@@ -303,7 +450,7 @@ class Footer9Page extends BaseFooter {
               key: "icon",
               displayer: "Icon",
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon", "image"],
               },
               value: {
                 type: "icon",
@@ -319,7 +466,7 @@ class Footer9Page extends BaseFooter {
           value: [
             {
               type: "string",
-              key: "title",
+              key: "socials_item_title",
               displayer: "Title",
               value: "Linkedin",
             },
@@ -334,7 +481,7 @@ class Footer9Page extends BaseFooter {
               key: "icon",
               displayer: "Icon",
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon", "image"],
               },
               value: {
                 type: "icon",
@@ -355,23 +502,23 @@ class Footer9Page extends BaseFooter {
 
     this.addProp({
       type: "array",
-      key: "pages",
-      displayer: "Policies",
+      key: "links",
+      displayer: "Footer Links",
       value: [
         {
           type: "object",
-          key: "item",
+          key: "links_item",
           displayer: "Item",
           value: [
             {
               type: "string",
-              key: "title",
+              key: "links_item_title",
               displayer: "Title",
               value: "Terms of Use",
             },
             {
               type: "page",
-              key: "page",
+              key: "item_page",
               displayer: "Navigate To",
               value: "",
             },
@@ -379,18 +526,18 @@ class Footer9Page extends BaseFooter {
         },
         {
           type: "object",
-          key: "item",
+          key: "links_item",
           displayer: "Item",
           value: [
             {
               type: "string",
-              key: "title",
+              key: "links_item_title",
               displayer: "Title",
               value: "Privacy Policy",
             },
             {
               type: "page",
-              key: "page",
+              key: "item_page",
               displayer: "Navigate To",
               value: "",
             },
@@ -414,21 +561,20 @@ class Footer9Page extends BaseFooter {
   }
 
   render() {
-    const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
+    const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
 
     const logoObject = this.castToObject<any>("logo");
-    const logo = logoObject?.logo;
+    const logo = logoObject.logo_logo;
     const logoUrl = logoObject?.logoUrl;
     const subtitleExist = this.castToString(this.getPropValue("subtitle"));
     const titleExist = this.castToString(this.getPropValue("title"));
     const descriptionExist = this.castToString(this.getPropValue("description"));
-    const buttonTextExist = this.castToString(button.text);
+    const buttonTextExist = buttons.some((b) => this.castToString(b.text));
     const footerTextExist = this.castToString(this.getPropValue("footerText"));
 
-    const links = this.castToObject<link[]>("links");
-    const icons = this.castToObject<icon[]>("icons");
-    const pages = this.castToObject<page[]>("pages");
-
+    const footer = this.castToObject<any[]>("footer");
+    const socials = this.castToObject<icon[]>("socials");
+    const links = this.castToObject<page[]>("links");
 
     const position = this.getPropValue("position");
 
@@ -436,50 +582,99 @@ class Footer9Page extends BaseFooter {
       <Base.Container className={`${this.decorateCSS("container")} ${position === "Absolute" ? this.decorateCSS("absolute") : ""}`}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("header")}>
-            {logo?.url && 
-            <ComposerLink path={logoUrl}>
-              <Base.Media value={logo} className={this.decorateCSS("logo")} />
-            </ComposerLink>
-            }
             <Base.VerticalContent className={this.decorateCSS("content")}>
+              {(logo?.url || logo?.name) && (
+                <ComposerLink path={logoUrl}>
+                  <Base.Media value={logo} className={`${this.decorateCSS("logo")} ${logo?.type === "icon" ? this.decorateCSS("is-icon") : ""}`} />
+                </ComposerLink>
+              )}
               {subtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
               {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
               {descriptionExist && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
               {buttonTextExist && (
-                <ComposerLink path={button.url}>
-                  <Base.Button className={this.decorateCSS("button")} buttonType={button.type}>
-                    <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
-                  </Base.Button>
-                </ComposerLink>
+                <Base.Row className={this.decorateCSS("buttons")}>
+                  {buttons.map((button: INPUTS.CastedButton, index: number) => (
+                    this.castToString(button.text) && (
+                      <ComposerLink key={index} path={button.url}>
+                        <Base.Button className={this.decorateCSS("button")} buttonType={button.type}>
+                          <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
+                        </Base.Button>
+                      </ComposerLink>
+                    )
+                  ))}
+                </Base.Row>
               )}
             </Base.VerticalContent>
           </div>
 
-          {links.length > 0 && (
-            <div className={this.decorateCSS("list-group")}>
-              {links.map((item: link) => {
+          {footer.length > 0 && (
+            <div className={this.decorateCSS("footer-columns")}>
+              {footer.map((item: any, indexFooter: number) => {
+                const footerTitleExist = this.castToString(item.footerTitle);
+                const footerTitleMediaExist = hasMedia(item.footerTitleMedia);
+                const footerTextExist = item.footer_title_footerText?.length > 0;
+                const listExist = footerTitleExist || footerTitleMediaExist || footerTextExist;
                 return (
-                  <ComposerLink path={item.page}>
-                    <Base.P className={this.decorateCSS("text")} data-animation={item.page ? this.getPropValue("hoverAnimation").join(" ") : ""}>
-                      {item.title}
-                    </Base.P>
-                  </ComposerLink>
+                  listExist && (
+                    <div key={indexFooter} className={this.decorateCSS("list-group")}>
+                      {(footerTitleExist || footerTitleMediaExist) && (
+                        <ComposerLink path={item.footerTitleLink}>
+                          <div className={this.decorateCSS("menu-media-wrapper")}>
+                            {footerTitleMediaExist && (
+                              <Base.Media value={item.footerTitleMedia} className={this.decorateCSS("menu-title-media")} />
+                            )}
+                            {footerTitleExist && <Base.H6 className={this.decorateCSS("column-title")}>{item.footerTitle}</Base.H6>}
+                          </div>
+                        </ComposerLink>
+                      )}
+                      {footerTextExist && (
+                        <div className={this.decorateCSS("text-container")}>
+                          {item.footer_title_footerText.map((v: any, indexFooterText: number) => {
+                            const textExist = this.castToString(v.navTitle);
+                            const navMediaExist = hasMedia(v.navMedia);
+                            return (
+                              (textExist || navMediaExist) && (
+                                <ComposerLink key={indexFooterText} path={v.navNavigateTo}>
+                                  <div className={this.decorateCSS("menu-media-wrapper")}>
+                                    {navMediaExist && (
+                                      <Base.Media value={v.navMedia} className={this.decorateCSS("menu-item-media")} />
+                                    )}
+                                    {textExist && (
+                                      <Base.P
+                                        className={this.decorateCSS("text")}
+                                        data-animation={v.navNavigateTo ? this.getPropValue("hoverAnimation").join(" ") : ""}
+                                      >
+                                        {v.navTitle}
+                                      </Base.P>
+                                    )}
+                                  </div>
+                                </ComposerLink>
+                              )
+                            );
+                          })}
+                        </div>
+                      )}
+                    </div>
+                  )
                 );
               })}
             </div>
           )}
 
-          {icons.length > 0 && (
+          {socials.length > 0 && (
             <div className={this.decorateCSS("icon-container")}>
-              {icons.map((item: icon) => {
+              {socials.map((item: icon) => {
                 return (
                   <ComposerLink path={item.page}>
                     <div 
                       className={this.decorateCSS("icon-element")}
                       data-animation={item.page ? this.getPropValue("hoverAnimation").join(" ") : ""}
                     >
-                      <Base.Media value={item.icon} className={this.decorateCSS("icon")} />
-                      <Base.P className={this.decorateCSS("icon-text")}>{item.title}</Base.P>
+                      <Base.Media
+                        value={item.icon}
+                        className={`${this.decorateCSS("icon")} ${item.icon?.type === "icon" ? this.decorateCSS("is-icon") : ""}`}
+                      />
+                      <Base.P className={this.decorateCSS("icon-text")}>{item.socials_item_title}</Base.P>
                     </div>
                   </ComposerLink>
                 );
@@ -488,16 +683,16 @@ class Footer9Page extends BaseFooter {
           )}
           <div className={this.decorateCSS("bottom")}>
             {footerTextExist && <Base.P className={this.decorateCSS("bottom-text")}>{this.getPropValue("footerText")}</Base.P>}
-            {pages.length > 0 && (
+            {links.length > 0 && (
               <Base.Row className={this.decorateCSS("list")}>
-                {pages.map((item: page,) => {
+                {links.map((item: page,) => {
                   return (
-                    <ComposerLink path={item.page}>
+                    <ComposerLink path={item.item_page}>
                       <Base.P 
                         className={this.decorateCSS("item")}
-                        data-animation={item.page ? this.getPropValue("hoverAnimation").join(" ") : ""}
+                        data-animation={item.item_page ? this.getPropValue("hoverAnimation").join(" ") : ""}
                       >
-                        {item.title}
+                        {item.links_item_title}
                       </Base.P>
                     </ComposerLink>
                   );

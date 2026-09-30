@@ -6,8 +6,8 @@ import { INPUTS } from "../../../custom-hooks/input-templates";
 import { Base } from "../../../composer-base-components/base/base";
 
 type PostItem = {
-  title: React.JSX.Element,
-  description: React.JSX.Element,
+  post_title: React.JSX.Element,
+  post_description: React.JSX.Element,
   media: TypeMediaInputValue,
   overlay: boolean;
 }
@@ -16,8 +16,8 @@ type Interaction = {
   text: React.JSX.Element
 }
 type Social = {
-  icon: TypeMediaInputValue,
-  text: React.JSX.Element,
+  social_icon: TypeMediaInputValue,
+  social_text: React.JSX.Element,
   url: string
 }
 
@@ -104,13 +104,13 @@ class Social3 extends BaseSocial {
       value: [
         {
           type: "string",
-          key: "title",
+          key: "post_title",
           displayer: "Title",
           value: "Broadway Canyon of Heroes"
         },
         {
           type: "string",
-          key: "description",
+          key: "post_description",
           displayer: "Description",
           value: "One's destination is never place, but a new way of seeing things."
         },
@@ -228,7 +228,7 @@ class Social3 extends BaseSocial {
             value: [
               {
                 type: "media",
-                key: "icon",
+                key: "social_icon",
                 displayer: "Icon",
                 value: {
                   type: "icon",
@@ -240,7 +240,7 @@ class Social3 extends BaseSocial {
               },
               {
                 type: "string",
-                key: "text",
+                key: "social_text",
                 displayer: "Text",
                 value: "Facebook"
               },
@@ -259,7 +259,7 @@ class Social3 extends BaseSocial {
             value: [
               {
                 type: "media",
-                key: "icon",
+                key: "social_icon",
                 displayer: "Icon",
                 value: {
                   type: "icon",
@@ -271,7 +271,7 @@ class Social3 extends BaseSocial {
               },
               {
                 type: "string",
-                key: "text",
+                key: "social_text",
                 displayer: "Text",
                 value: "Twitter"
               },
@@ -290,7 +290,7 @@ class Social3 extends BaseSocial {
             value: [
               {
                 type: "media",
-                key: "icon",
+                key: "social_icon",
                 displayer: "Icon",
                 value: {
                   type: "icon",
@@ -302,7 +302,7 @@ class Social3 extends BaseSocial {
               },
               {
                 type: "string",
-                key: "text",
+                key: "social_text",
                 displayer: "Text",
                 value: "Linkedin"
               },
@@ -444,14 +444,14 @@ class Social3 extends BaseSocial {
                     )}
                 </div>
               )}
-            {this.castToString(post.title) && (
+            {this.castToString(post.post_title) && (
               <Base.H5 className={this.decorateCSS("post-title")}>
-                {post.title}
+                {post.post_title}
               </Base.H5>
             )}
-            {this.castToString(post.description) && (
+            {this.castToString(post.post_description) && (
               <Base.P className={this.decorateCSS("post-description")}>
-                {post.description}
+                {post.post_description}
               </Base.P>
             )}
             {post.media && (
@@ -495,19 +495,19 @@ class Social3 extends BaseSocial {
                       {isShare && socials.length > 0 && (
                         <div className={this.decorateCSS("socials")}>
                           {socials.map((social, sIndex: number) => {
-                            if (!social.icon && !this.castToString(social.text)) return null;
+                            if (!social.social_icon && !this.castToString(social.social_text)) return null;
                             return (
                               <ComposerLink path={social.url} key={sIndex}>
                                 <div className={this.decorateCSS("social")}>
-                                  {social.icon && (
+                                  {social.social_icon && (
                                     <Base.Media
-                                      value={social.icon}
-                                      className={`${this.decorateCSS("social-icon")} ${social.icon.type === "icon" ? this.decorateCSS("is-icon") : ""}`}
+                                      value={social.social_icon}
+                                      className={`${this.decorateCSS("social-icon")} ${social.social_icon.type === "icon" ? this.decorateCSS("is-icon") : ""}`}
                                     />
                                   )}
-                                  {this.castToString(social.text) && (
+                                  {this.castToString(social.social_text) && (
                                     <Base.P className={this.decorateCSS("social-text")}>
-                                      {social.text}
+                                      {social.social_text}
                                     </Base.P>
                                   )}
                                 </div>

@@ -69,11 +69,11 @@ class Stats29 extends BaseStats {
             { type: "string", key: "prefix", displayer: "Prefix", value: "" },
             { type: "string", key: "value", displayer: "Value", value: "50" },
             { type: "string", key: "suffix", displayer: "Suffix", value: "%" },
-            { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
-            { type: "string", key: "title", displayer: "Title", value: "OF BUYERS" },
+            { type: "string", key: "stat_subtitle", displayer: "Subtitle", value: "" },
+            { type: "string", key: "stat_title", displayer: "Title", value: "OF BUYERS" },
             {
               type: "string",
-              key: "description",
+              key: "stat_description",
               displayer: "Description",
               value: "bring to the table win-win survival strategies to ensure proactive domination. At the end of the day a new normal generation.",
             },
@@ -87,12 +87,12 @@ class Stats29 extends BaseStats {
             { type: "string", key: "prefix", displayer: "Prefix", value: "" },
             { type: "string", key: "value", displayer: "Value", value: "85" },
             { type: "string", key: "suffix", displayer: "Suffix", value: "%" },
-            { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
-            { type: "string", key: "title", displayer: "Title", value: "OF BUYERS" },
+            { type: "string", key: "stat_subtitle", displayer: "Subtitle", value: "" },
+            { type: "string", key: "stat_title", displayer: "Title", value: "OF BUYERS" },
 
             {
               type: "string",
-              key: "description",
+              key: "stat_description",
               displayer: "Description",
               value: "bring to the table win-win survival strategies to ensure proactive domination. At the end of the day a new normal generation.",
             },
@@ -152,10 +152,10 @@ class Stats29 extends BaseStats {
       const prefix = this.castToString(item.prefix) || "";
       const number = this.castToString(item.value) || "";
       const suffix = this.castToString(item.suffix) || "";
-      const subtitle = this.castToString(item.subtitle) || "";
-      const title = this.castToString(item.title) || "";
-      const description = this.castToString(item.description) || "";
-      return { prefix, prefixElement: item.prefix, value: number, numberElement: item.value, suffix, suffixElement: item.suffix, subtitle, subtitleElement: item.subtitle, title, titleElement: item.title, description, descriptionElement: item.description };
+      const subtitle = this.castToString(item.stat_subtitle) || "";
+      const title = this.castToString(item.stat_title) || "";
+      const description = this.castToString(item.stat_description) || "";
+      return { prefix, prefixElement: item.prefix, value: number, numberElement: item.value, suffix, suffixElement: item.suffix, subtitle, subtitleElement: item.stat_subtitle, title, titleElement: item.stat_title, description, descriptionElement: item.stat_description };
     });
 
     const settings = this.castToObject<any>("settings");
