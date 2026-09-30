@@ -43,10 +43,13 @@
 
           .topText {
             color: var(--composer-font-color-primary);
-            text-align: left;
+            text-align: left !important;
             display: flex;
             flex-wrap: wrap;
             align-items: baseline;
+            justify-content: flex-start !important;
+            margin-left: 0 !important;
+            margin-right: auto !important;
 
             .prefix,
             .suffix {
@@ -161,11 +164,6 @@
 
             .features-list-item {
               align-items: center;
-
-              .topText {
-                text-align: center;
-                justify-content: center;
-              }
 
               .subText,
               .titleText,
