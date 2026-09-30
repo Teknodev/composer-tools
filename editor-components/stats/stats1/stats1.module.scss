@@ -1,5 +1,27 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
+@mixin centered-left-container {
+  align-items: center !important;
+  text-align: center;
+
+  .subtitle {
+    text-align: center !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  .title,
+  .description {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .button-container {
+    justify-content: center;
+  }
+}
+
 .container {
   .max-content {
     padding-bottom: 1.5rem;
@@ -7,15 +29,27 @@
     .stats1-page {
       width: 100%;
       display: flex;
+      flex-wrap: wrap;
       justify-content: space-between;
       align-items: center;
       gap: var(--composer-gap-xl);
       flex: 1 1;
 
       .left-container {
-        max-width: 100%;
+        flex: 1 1 280px;
+        max-width: 45%;
+        min-width: 0;
         align-items: flex-start !important;
         text-align: left;
+
+        &.full-width {
+          flex-basis: 100%;
+          max-width: 100%;
+
+          &.alignment-center {
+            @include centered-left-container;
+          }
+        }
 
         .subtitle {
           text-align: left !important;
@@ -51,17 +85,19 @@
       }
 
       .right-container {
-        padding: var(--composer-gap-xl);
-        margin: var(--composer-gap-xs) 0;
+        --card-size: 150px;
+        --ring-radius: 210px;
+        flex: 0 0 auto;
+        padding: calc(var(--card-size) / 2);
+        margin: 0 auto;
         display: flex;
         justify-content: center;
         align-items: center;
 
         .content-div {
-          --ring-radius: 210px;
           position: relative;
-          width: 420px;
-          height: 420px;
+          width: calc(var(--ring-radius) * 2);
+          height: calc(var(--ring-radius) * 2);
           display: flex;
           justify-content: center;
           align-items: center;
@@ -82,12 +118,8 @@
 
           .card {
             position: absolute;
-            width: 100%;
-            max-width: 150px;
-            min-width: 100px;
-            aspect-ratio: 1;
-            max-height: 150px;
-            min-height: 100px;
+            width: var(--card-size);
+            height: var(--card-size);
             overflow: hidden;
             padding: var(--composer-gap-md);
             background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-primary-color) 5%);
@@ -101,8 +133,6 @@
             transform: rotate(var(--angle)) translate(var(--ring-radius)) rotate(calc(-1 * var(--angle)));
 
             .counter-value {
-              font-size: 2rem;
-              font-weight: 800;
               margin: 0;
               max-width: 100%;
               display: flex;
@@ -138,19 +168,17 @@
       .stats1-page {
         gap: var(--composer-gap-lg);
 
+        .left-container {
+          max-width: none;
+        }
+
         .right-container {
-          padding: var(--composer-gap-md);
+          --card-size: 120px;
+          --ring-radius: 140px;
 
           .content-div {
-            --ring-radius: 160px;
-            width: 320px;
-            height: 320px;
-
             .card {
-              max-width: 120px;
-              min-width: 80px;
-              max-height: 120px;
-              min-height: 80px;
+              padding: var(--composer-gap-xs);
             }
           }
         }
@@ -170,53 +198,14 @@
           max-width: 100%;
 
           &.alignment-center {
-            align-items: center !important;
-            text-align: center;
-
-            .subtitle {
-              text-align: center !important;
-              margin-left: auto !important;
-              margin-right: auto !important;
-            }
-
-            .title,
-            .description {
-              text-align: center;
-              margin-left: auto;
-              margin-right: auto;
-            }
-
-            .button-container {
-              justify-content: center;
-            }
+            @include centered-left-container;
           }
         }
 
         .right-container {
-          padding: 0;
-          margin: var(--composer-gap-sm) auto;
+          --card-size: 110px;
+          --ring-radius: 105px;
           width: 100%;
-          justify-content: center;
-
-          .content-div {
-            --ring-radius: 120px;
-            width: 250px;
-            height: 250px;
-            max-width: 100%;
-
-            .card {
-              max-width: 100px;
-              min-width: 60px;
-              max-height: 100px;
-              min-height: 60px;
-              padding: var(--composer-gap-xs);
-
-              .counter-value {
-                margin: 0;
-                font-size: 1rem !important;
-              }
-            }
-          }
         }
       }
     }

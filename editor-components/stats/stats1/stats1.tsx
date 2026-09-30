@@ -137,6 +137,16 @@ class Stats1Page extends BaseStats {
 
     const alignment = Base.getContentAlignment();
 
+    const hasVisibleStats = cardList.some(
+      (card) =>
+        this.castToString(card.value) ||
+        this.castToString(card.prefix) ||
+        this.castToString(card.suffix) ||
+        this.castToString(card.stat_subtitle) ||
+        this.castToString(card.stat_title) ||
+        this.castToString(card.stat_description)
+    );
+
     const badgeColors = ["var(--composer-primary-color)", "var(--composer-secondary-color)", "var(--composer-tertiary-color)"];
 
     const AnimatedNumber = ({ value, node, className }: { value: string; node?: React.JSX.Element; className: string }) => {
@@ -219,7 +229,7 @@ class Stats1Page extends BaseStats {
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("stats1-page")}>
             {(isSubtitleExist || isTitleExist || isDescExist || hasVisibleButtons) && (
-              <Base.VerticalContent className={`${this.decorateCSS("left-container")} ${alignment === "center" ? this.decorateCSS("alignment-center") : ""}`}>
+              <Base.VerticalContent className={`${this.decorateCSS("left-container")} ${alignment === "center" ? this.decorateCSS("alignment-center") : ""} ${!hasVisibleStats ? this.decorateCSS("full-width") : ""}`}>
                 {isSubtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{subtitle}</Base.SectionSubTitle>}
                 {isTitleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>}
                 {isDescExist && <Base.SectionDescription className={this.decorateCSS("description")}>{description}</Base.SectionDescription>}
@@ -237,7 +247,7 @@ class Stats1Page extends BaseStats {
               </Base.VerticalContent>
             )}
 
-            {cardList.length > 0 && (
+            {hasVisibleStats && (
               <div className={this.decorateCSS("right-container")}>
                 <div className={this.decorateCSS("content-div")}>
                   {[...Array(5)].map((_, index) => (
@@ -261,11 +271,11 @@ class Stats1Page extends BaseStats {
                     return (
                       <div key={indexCard} className={this.decorateCSS("card")} style={{ "--angle": `${angle}deg` } as Record<string, any>}>
                         {isValueExist && (
-                          <Base.H5 className={this.decorateCSS("counter-value")} style={{ color }}>
+                          <Base.H2 className={this.decorateCSS("counter-value")} style={{ color }}>
                             {isPrefixExist && <span className={this.decorateCSS("counter-prefix")}>{cardData.prefix}</span>}
                             {!!numberStr && <AnimatedNumber value={numberStr} node={cardData.value} className={this.decorateCSS("counter-value-inner")} />}
                             {isSuffixExist && <span className={this.decorateCSS("counter-suffix")}>{cardData.suffix}</span>}
-                          </Base.H5>
+                          </Base.H2>
                         )}
                         {isCardSubtitleExist && <Base.P className={this.decorateCSS("counter-subtitle")}>{cardData.stat_subtitle}</Base.P>}
                         {isCardTitleExist && <Base.P className={this.decorateCSS("counter-title")}>{cardData.stat_title}</Base.P>}
