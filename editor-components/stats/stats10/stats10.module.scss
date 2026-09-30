@@ -154,10 +154,12 @@
             align-items: center;
             justify-content: center;
             .play-icon{
-              width: 55px;
-              height: 55px;
+              width: 65px;
+              height: 65px;
+              font-size: 65px;
               cursor: pointer;
               color: var(--composer-font-color-secondary);
+              opacity: 0.8;
             }
           }
         }
@@ -405,12 +407,6 @@
             .overlay {
               inset: 0;
               border-radius: var(--composer-border-radius-sm);
-            }
-            .icon-container{
-              .play-icon{
-                width: 30px;
-                height: 30px;
-              }
             }
           }
           .without-image1{
