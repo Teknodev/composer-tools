@@ -37,7 +37,7 @@ const VIDEO_STYLES: Partial<CSSStyleDeclaration> = {
   width: "100%",
   height: "100%",
   objectFit: "cover",
-  zIndex: "0",
+  zIndex: "-1",
   pointerEvents: "none",
 };
 
@@ -54,12 +54,22 @@ function ensurePositioningContext(el: HTMLElement, computed: CSSStyleDeclaration
     el.style.position = "relative";
     el.dataset.videoBgPositioned = "true";
   }
+
+  if (computed.isolation !== "isolate") {
+    el.style.isolation = "isolate";
+    el.dataset.videoBgIsolated = "true";
+  }
 }
 
 function restorePositioningContext(el: HTMLElement): void {
   if (el.dataset.videoBgPositioned === "true") {
     el.style.removeProperty("position");
     delete el.dataset.videoBgPositioned;
+  }
+
+  if (el.dataset.videoBgIsolated === "true") {
+    el.style.removeProperty("isolation");
+    delete el.dataset.videoBgIsolated;
   }
 }
 
