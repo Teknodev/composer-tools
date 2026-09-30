@@ -6,7 +6,7 @@
   .max-content {
     display: flex;
     flex-direction: column;
-    gap: var(--composer-gap-xl);
+    gap: var(--composer-gap-md);
 
     .banner {
       align-items: center !important;
@@ -16,6 +16,9 @@
         text-align: center;
         color: var(--composer-font-color-secondary);
         transform: none !important;
+        background: transparent;
+        padding: 0;
+        border-radius: 0;
         &::before {
           display: none !important;
         }
