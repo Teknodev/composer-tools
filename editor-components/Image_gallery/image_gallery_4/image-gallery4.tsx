@@ -51,17 +51,17 @@ class ImageGallery4 extends BaseImageGallery {
             {
               type: "array",
               key: "images",
-              displayer: "Images",
+              displayer: "Media",
               value: [
                 {
                   type: "object",
                   key: "image-item",
-                  displayer: "Image",
+                  displayer: "Media Item",
                   value: [
                     {
                       type: "media",
                       key: "image",
-                      displayer: "Image",
+                      displayer: "Media",
                       value: {
                         type: "image",
                         url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66c35b8f07399d002cb493dd?alt=media",
@@ -93,17 +93,17 @@ class ImageGallery4 extends BaseImageGallery {
                     {
                       type: "array",
                       key: "images",
-                      displayer: "Images",
+                      displayer: "Media",
                       value: [
                         {
                           type: "object",
                           key: "image-item",
-                          displayer: "Image",
+                          displayer: "Media Item",
                           value: [
                             {
                               type: "media",
                               key: "image_item_image",
-                              displayer: "Image",
+                              displayer: "Media",
                               value: {
                                 type: "image",
                                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66c35bc507399d002cb49422?alt=media",
@@ -117,12 +117,12 @@ class ImageGallery4 extends BaseImageGallery {
                         {
                           type: "object",
                           key: "image-item",
-                          displayer: "Image",
+                          displayer: "Media Item",
                           value: [
                             {
                               type: "media",
                               key: "image_item_image",
-                              displayer: "Image",
+                              displayer: "Media",
                               value: {
                                 type: "image",
                                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66c35bea07399d002cb4942e?alt=media",
@@ -151,17 +151,17 @@ class ImageGallery4 extends BaseImageGallery {
                     {
                       type: "array",
                       key: "images",
-                      displayer: "Images",
+                      displayer: "Media",
                       value: [
                         {
                           type: "object",
                           key: "image-item",
-                          displayer: "Image",
+                          displayer: "Media Item",
                           value: [
                             {
                               type: "media",
                               key: "image_item_image",
-                              displayer: "Image",
+                              displayer: "Media",
                               value: {
                                 type: "image",
                                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66c35c0607399d002cb4943b?alt=media",
@@ -175,12 +175,12 @@ class ImageGallery4 extends BaseImageGallery {
                         {
                           type: "object",
                           key: "image-item",
-                          displayer: "Image",
+                          displayer: "Media Item",
                           value: [
                             {
                               type: "media",
                               key: "image_item_image",
-                              displayer: "Image",
+                              displayer: "Media",
                               value: {
                                 type: "image",
                                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66c35c5a07399d002cb49448?alt=media",
@@ -209,17 +209,17 @@ class ImageGallery4 extends BaseImageGallery {
                     {
                       type: "array",
                       key: "images",
-                      displayer: "Images",
+                      displayer: "Media",
                       value: [
                         {
                           type: "object",
                           key: "image-item",
-                          displayer: "Image",
+                          displayer: "Media Item",
                           value: [
                             {
                               type: "media",
                               key: "image_item_image",
-                              displayer: "Image",
+                              displayer: "Media",
                               value: {
                                 type: "image",
                                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66c35c8007399d002cb49454?alt=media",
@@ -233,12 +233,12 @@ class ImageGallery4 extends BaseImageGallery {
                         {
                           type: "object",
                           key: "image-item",
-                          displayer: "Image",
+                          displayer: "Media Item",
                           value: [
                             {
                               type: "media",
                               key: "image_item_image",
-                              displayer: "Image",
+                              displayer: "Media",
                               value: {
                                 type: "image",
                                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66c35c9e07399d002cb49466?alt=media",
@@ -277,17 +277,17 @@ class ImageGallery4 extends BaseImageGallery {
             {
               type: "array",
               key: "images",
-              displayer: "Images",
+              displayer: "Media",
               value: [
                 {
                   type: "object",
                   key: "image-item",
-                  displayer: "Image",
+                  displayer: "Media Item",
                   value: [
                     {
                       type: "media",
                       key: "image",
-                      displayer: "Image",
+                      displayer: "Media",
                       value: {
                         type: "image",
                         url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66c35cc307399d002cb49472?alt=media",
@@ -319,17 +319,17 @@ class ImageGallery4 extends BaseImageGallery {
                     {
                       type: "array",
                       key: "images",
-                      displayer: "Images",
+                      displayer: "Media",
                       value: [
                         {
                           type: "object",
                           key: "image-item",
-                          displayer: "Image",
+                          displayer: "Media Item",
                           value: [
                             {
                               type: "media",
                               key: "image_item_image",
-                              displayer: "Image",
+                              displayer: "Media",
                               value: {
                                 type: "image",
                                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66c35cea07399d002cb49488?alt=media",
@@ -343,12 +343,12 @@ class ImageGallery4 extends BaseImageGallery {
                         {
                           type: "object",
                           key: "image-item",
-                          displayer: "Image",
+                          displayer: "Media Item",
                           value: [
                             {
                               type: "media",
                               key: "image_item_image",
-                              displayer: "Image",
+                              displayer: "Media",
                               value: {
                                 type: "image",
                                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66c35d1107399d002cb494a8?alt=media",
@@ -377,17 +377,17 @@ class ImageGallery4 extends BaseImageGallery {
                     {
                       type: "array",
                       key: "images",
-                      displayer: "Images",
+                      displayer: "Media",
                       value: [
                         {
                           type: "object",
                           key: "image-item",
-                          displayer: "Image",
+                          displayer: "Media Item",
                           value: [
                             {
                               type: "media",
                               key: "image_item_image",
-                              displayer: "Image",
+                              displayer: "Media",
                               value: {
                                 type: "image",
                                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66c35d4007399d002cb49503?alt=media",
@@ -401,12 +401,12 @@ class ImageGallery4 extends BaseImageGallery {
                         {
                           type: "object",
                           key: "image-item",
-                          displayer: "Image",
+                          displayer: "Media Item",
                           value: [
                             {
                               type: "media",
                               key: "image_item_image",
-                              displayer: "Image",
+                              displayer: "Media",
                               value: {
                                 type: "image",
                                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66c35d4e07399d002cb49516?alt=media",
@@ -429,24 +429,31 @@ class ImageGallery4 extends BaseImageGallery {
     });
 
     this.addProp({
-      type: "number",
-      key: "itemsPerRow",
-      displayer: "Item Count in a Row",
-      value: 3,
-      max: 4,
+      type: "object",
+      key: "countSettings",
+      displayer: "Count Settings",
+      value: [
+        {
+          type: "number",
+          key: "imageCountInitial",
+          displayer: "Media Count Initial",
+          value: 3
+        },
+        {
+          type: "number",
+          key: "imageCount",
+          displayer: "More Media Count",
+          value: 3
+        },
+        {
+          type: "number",
+          key: "itemsPerRow",
+          displayer: "Item Count in a Row",
+          value: 3,
+          max: 4,
+        },
+      ]
     });
-    this.addProp({
-      type: "number",
-      key: "imageCountInitial",
-      displayer: "Image Count Initial",
-      value: 3
-    })
-    this.addProp({
-      type: "number",
-      key: "imageCount",
-      displayer: "More Image Count",
-      value: 3
-    })
 
     this.addProp(INPUTS.BUTTON("button", "Button", "Load More", null, null, null, "Primary"));
 
@@ -470,7 +477,7 @@ class ImageGallery4 extends BaseImageGallery {
         {
           type: "media",
           key: "imageIcon",
-          displayer: "Image Icon",
+          displayer: "Media Icon",
           value: {
             type: "icon",
             name: "IoSearchOutline",
@@ -520,6 +527,9 @@ class ImageGallery4 extends BaseImageGallery {
   static getName(): string {
     return "Image Gallery 4";
   }
+  getCountSettings(): { imageCountInitial: number; imageCount: number; itemsPerRow: number } {
+    return this.castToObject<{ imageCountInitial: number; imageCount: number; itemsPerRow: number }>("countSettings");
+  }
   handleKeyDown = (event: KeyboardEvent) => {
     switch (event.key) {
       case "ArrowLeft":
@@ -539,12 +549,12 @@ class ImageGallery4 extends BaseImageGallery {
   handleSectionClick(index: number): void {
     this.setComponentState("activeNav", index);
     this.setComponentState("activeSubnav", null);
-    this.setComponentState("imageCount", this.getPropValue("imageCountInitial"));
+    this.setComponentState("imageCount", this.getCountSettings().imageCountInitial);
     this.setComponentState("moreImages", 0);
   }
   handleSubSectionClick(index: number): void {
     this.setComponentState("activeSubnav", index);
-    this.setComponentState("imageCount", this.getPropValue("imageCountInitial"));
+    this.setComponentState("imageCount", this.getCountSettings().imageCountInitial);
     this.setComponentState("moreImages", 0);
   }
 
@@ -612,19 +622,19 @@ class ImageGallery4 extends BaseImageGallery {
   };
 
   handleButtonClick = () => {
-    this.setComponentState("moreImages", this.getComponentState("moreImages") + this.getPropValue("imageCount"))
+    this.setComponentState("moreImages", this.getComponentState("moreImages") + this.getCountSettings().imageCount)
 
   };
   render() {
-    const itemsPerRow: number = this.getPropValue("itemsPerRow");
+    const itemsPerRow: number = this.getCountSettings().itemsPerRow;
     const activeNav: number = this.getComponentState("activeNav");
     const activeSubnav: number = this.getComponentState("activeSubnav");
     const navItems = this.castToObject<NavItem[]>("navItems");
     const subnavItems = navItems[activeNav]?.subnavItems;
     const showActiveNavSubnavs = navItems[activeNav]?.hasSubnav;
     const galleryItems = this.getImages();
-    if (this.getComponentState("imageCount") != this.getPropValue("imageCountInitial") + this.getComponentState("moreImages"))
-      this.setComponentState("imageCount", this.getPropValue("imageCountInitial") + this.getComponentState("moreImages"));
+    if (this.getComponentState("imageCount") != this.getCountSettings().imageCountInitial + this.getComponentState("moreImages"))
+      this.setComponentState("imageCount", this.getCountSettings().imageCountInitial + this.getComponentState("moreImages"));
 
     const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
     const icons = this.castToObject<any>("icons");
@@ -647,14 +657,14 @@ class ImageGallery4 extends BaseImageGallery {
                           className={this.decorateCSS("list-item")}
                         >
                           {this.castToString(item.title) && (
-                            <Base.H5
+                            <Base.H6
                               className={`${this.decorateCSS("button")} ${activeNav === index ? this.decorateCSS("active") : ""}`}
                               onClick={() => {
                                 this.handleSectionClick(index);
                               }}
                             >
                               {item.title}
-                            </Base.H5>
+                            </Base.H6>
                           )}
                         </div>
                       );
@@ -674,14 +684,14 @@ class ImageGallery4 extends BaseImageGallery {
                             className={this.decorateCSS("list-item")}
                           >
                             {this.castToString(item.subnavItem_title) && (
-                              <Base.H5
+                              <Base.H6
                                 className={`${this.decorateCSS("button")} ${activeSubnav === index ? this.decorateCSS("active") : ""}`}
                                 onClick={() => {
                                   this.handleSubSectionClick(index);
                                 }}
                               >
                                 {item.subnavItem_title}
-                              </Base.H5>
+                              </Base.H6>
                             )}
                           </div>
                         );

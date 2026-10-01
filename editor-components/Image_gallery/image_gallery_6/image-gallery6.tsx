@@ -26,22 +26,29 @@ class ImageGallery6 extends BaseImageGallery {
             {
                 type: "boolean",
                 key: "showAll",
-                displayer: "Show All",
+                displayer: "All Category",
                 value: true
             }
         )
         this.addProp({
-            type: "number",
-            key: "imageCountInitial",
-            displayer: "Image Count Initial",
-            value: 3
-        })
-        this.addProp({
-            type: "number",
-            key: "imageCount",
-            displayer: "More Image Count",
-            value: 3
-        })
+            type: "object",
+            key: "countSettings",
+            displayer: "Count Settings",
+            value: [
+                {
+                    type: "number",
+                    key: "imageCountInitial",
+                    displayer: "Media Count Initial",
+                    value: 3
+                },
+                {
+                    type: "number",
+                    key: "imageCount",
+                    displayer: "More Media Count",
+                    value: 3
+                },
+            ]
+        });
         this.addProp(INPUTS.BUTTON("button", "Button", "Load More", null, null, null, "Primary"));
         this.addProp({
             type: "string",
@@ -69,17 +76,17 @@ class ImageGallery6 extends BaseImageGallery {
                         {
                             type: "array",
                             key: "images",
-                            displayer: "Images",
+                            displayer: "Media",
                             value: [
                                 {
                                     type: "object",
                                     key: "image",
-                                    displayer: "Image",
+                                    displayer: "Media Item",
                                     value: [
                                         {
                                             type: "media",
                                             key: "image_image",
-                                            displayer: "Image",
+                                            displayer: "Media",
                                             value: {
                                                 type: "image",
                                                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/671618cab4a116002cfc6451?alt=media",
@@ -135,12 +142,12 @@ class ImageGallery6 extends BaseImageGallery {
                                 {
                                     type: "object",
                                     key: "image",
-                                    displayer: "Image",
+                                    displayer: "Media Item",
                                     value: [
                                         {
                                             type: "media",
                                             key: "image_image",
-                                            displayer: "Image",
+                                            displayer: "Media",
                                             value: {
                                                 type: "image",
                                                 url: "https://ruizarch-react.vercel.app/img/covers/2.jpg",
@@ -196,12 +203,12 @@ class ImageGallery6 extends BaseImageGallery {
                                 {
                                     type: "object",
                                     key: "image",
-                                    displayer: "Image",
+                                    displayer: "Media Item",
                                     value: [
                                         {
                                             type: "media",
                                             key: "image_image",
-                                            displayer: "Image",
+                                            displayer: "Media",
                                             value: {
                                                 type: "image",
                                                 url: "https://ruizarch-react.vercel.app/img/covers/3.jpg",
@@ -274,17 +281,17 @@ class ImageGallery6 extends BaseImageGallery {
                         {
                             type: "array",
                             key: "images",
-                            displayer: "Images",
+                            displayer: "Media",
                             value: [
                                 {
                                     type: "object",
                                     key: "image",
-                                    displayer: "Image",
+                                    displayer: "Media Item",
                                     value: [
                                         {
                                             type: "media",
                                             key: "image_image",
-                                            displayer: "Image",
+                                            displayer: "Media",
                                             value: {
                                                 type: "image",
                                                 url: "https://ruizarch-react.vercel.app/img/covers/5.jpg",
@@ -340,12 +347,12 @@ class ImageGallery6 extends BaseImageGallery {
                                 {
                                     type: "object",
                                     key: "image",
-                                    displayer: "Image",
+                                    displayer: "Media Item",
                                     value: [
                                         {
                                             type: "media",
                                             key: "image_image",
-                                            displayer: "Image",
+                                            displayer: "Media",
                                             value: {
                                                 type: "image",
                                                 url: "https://ruizarch-react.vercel.app/img/covers/6.jpg",
@@ -401,12 +408,12 @@ class ImageGallery6 extends BaseImageGallery {
                                 {
                                     type: "object",
                                     key: "image",
-                                    displayer: "Image",
+                                    displayer: "Media Item",
                                     value: [
                                         {
                                             type: "media",
                                             key: "image_image",
-                                            displayer: "Image",
+                                            displayer: "Media",
                                             value: {
                                                 type: "image",
                                                 url: "https://ruizarch-react.vercel.app/img/covers/8.jpg",
@@ -462,12 +469,12 @@ class ImageGallery6 extends BaseImageGallery {
                                 {
                                     type: "object",
                                     key: "image",
-                                    displayer: "Image",
+                                    displayer: "Media Item",
                                     value: [
                                         {
                                             type: "media",
                                             key: "image_image",
-                                            displayer: "Image",
+                                            displayer: "Media",
                                             value: {
                                                 type: "image",
                                                 url: "https://ruizarch-react.vercel.app/img/covers/7.jpg",
@@ -538,17 +545,17 @@ class ImageGallery6 extends BaseImageGallery {
                         {
                             type: "array",
                             key: "images",
-                            displayer: "Images",
+                            displayer: "Media",
                             value: [
                                 {
                                     type: "object",
                                     key: "image",
-                                    displayer: "Image",
+                                    displayer: "Media Item",
                                     value: [
                                         {
                                             type: "media",
                                             key: "image_image",
-                                            displayer: "Image",
+                                            displayer: "Media",
                                             value: {
                                                 type: "image",
                                                 url: "https://ruizarch-react.vercel.app/img/covers/4.jpg",
@@ -615,6 +622,9 @@ class ImageGallery6 extends BaseImageGallery {
     static getName(): string {
         return "Image Gallery 6";
     }
+    getCountSettings(): { imageCountInitial: number; imageCount: number } {
+        return this.castToObject<{ imageCountInitial: number; imageCount: number }>("countSettings");
+    }
     getCurrentGallery() {
         const galleryCollection = this.castToObject<GalleryItem[]>("galleries");
         const selectedSection = this.getComponentState("selectedSection");
@@ -630,17 +640,17 @@ class ImageGallery6 extends BaseImageGallery {
     }
     handleSectionClickAll(): void {
         this.setComponentState("selectedSection", this.castToString(this.getPropValue("allText")));
-        this.setComponentState("imageCount", this.getPropValue("imageCountInitial"));
+        this.setComponentState("imageCount", this.getCountSettings().imageCountInitial);
         this.setComponentState("moreImages", 0);
     }
     handleSectionClick(element: any): void {
         this.setComponentState("selectedSection", this.castToString(element.sectionTitle))
-        this.setComponentState("imageCount", this.getPropValue("imageCountInitial"));
+        this.setComponentState("imageCount", this.getCountSettings().imageCountInitial);
         this.setComponentState("moreImages", 0);
     }
 
     handleButtonClick = () => {
-        this.setComponentState("moreImages", this.getComponentState("moreImages") + this.getPropValue("imageCount"))
+        this.setComponentState("moreImages", this.getComponentState("moreImages") + this.getCountSettings().imageCount)
 
     };
 
@@ -648,8 +658,8 @@ class ImageGallery6 extends BaseImageGallery {
         const galleries = this.castToObject<GalleryItem[]>("galleries");
         const currentGallery = this.getCurrentGallery();
         const selectedSection = this.getComponentState("selectedSection");
-        if (this.getComponentState("imageCount") != this.getPropValue("imageCountInitial") + this.getComponentState("moreImages"))
-            this.setComponentState("imageCount", this.getPropValue("imageCountInitial") + this.getComponentState("moreImages"));
+        if (this.getComponentState("imageCount") != this.getCountSettings().imageCountInitial + this.getComponentState("moreImages"))
+            this.setComponentState("imageCount", this.getCountSettings().imageCountInitial + this.getComponentState("moreImages"));
 
         const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
 
@@ -714,16 +724,16 @@ class ImageGallery6 extends BaseImageGallery {
                                                         <div className={this.decorateCSS("badge-container")}>
                                                             <div className={this.decorateCSS("text-container")}>
                                                                 {this.castToString(item.title) && (
-                                                                    <Base.H3 className={this.decorateCSS("title")}>
+                                                                    <Base.H5 className={this.decorateCSS("title")}>
                                                                         {item.title}
-                                                                    </Base.H3>
+                                                                    </Base.H5>
                                                                 )}
                                                                 {(this.castToString(item.description) || item.nextArrow) && (
                                                                     <div className={this.decorateCSS("bottom-container")}>
                                                                         {this.castToString(item.description) && (
-                                                                            <Base.H4 className={this.decorateCSS("description")}>
+                                                                            <Base.P className={this.decorateCSS("description")}>
                                                                                 {item.description}
-                                                                            </Base.H4>
+                                                                            </Base.P>
                                                                         )}
                                                                         {item.nextArrow && (
                                                                             <div className={this.decorateCSS("button")}>
@@ -776,16 +786,16 @@ class ImageGallery6 extends BaseImageGallery {
                                                         <div className={this.decorateCSS("badge-container")}>
                                                             <div className={this.decorateCSS("text-container")}>
                                                                 {this.castToString(item.title) && (
-                                                                    <Base.H3 className={this.decorateCSS("title")}>
+                                                                    <Base.H5 className={this.decorateCSS("title")}>
                                                                         {item.title}
-                                                                    </Base.H3>
+                                                                    </Base.H5>
                                                                 )}
                                                                 {(this.castToString(item.description) || item.nextArrow) && (
                                                                     <div className={this.decorateCSS("bottom-container")}>
                                                                         {this.castToString(item.description) && (
-                                                                            <Base.H4 className={this.decorateCSS("description")}>
+                                                                            <Base.P className={this.decorateCSS("description")}>
                                                                                 {item.description}
-                                                                            </Base.H4>
+                                                                            </Base.P>
                                                                         )}
                                                                         {item.nextArrow && (
 

@@ -7,19 +7,21 @@
       gap: var(--composer-gap-lg);
       width: 100%;
         .tab-container {
+          margin-bottom: var(--composer-gap-md);
           display: flex;
           gap: var(--composer-gap-xl);
           flex-wrap: wrap;
           width: 100%;
           .tab {
             display: flex;
-            color: var(--composer-font-color-primary);
+            color: var(--composer-tertiary-color);
             cursor: pointer;
             transition: color 0.3s ease;
             width: fit-content;
             margin: 0;
             &:hover,
             &.active-tab {
+              color: var(--composer-font-color-primary);
               font-weight: bold;
               text-decoration: underline;
               text-underline-offset: var(--composer-gap-xs);
@@ -34,7 +36,7 @@
             overflow: hidden;
             transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
             opacity: 1;
-            border-radius: var(--composer-border-radius-md);
+            border-radius: var(--composer-border-radius-sm);
             .image-container {
               width: 100%;
               position: relative;

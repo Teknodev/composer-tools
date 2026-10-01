@@ -24,12 +24,12 @@ class ImageGallery5 extends BaseImageGallery {
         {
           type: "object",
           key: "imageGallery",
-          displayer: "Image Gallery",
+          displayer: "Media Item",
           value: [
             {
               type: "media",
               key: "image",
-              displayer: "Image",
+              displayer: "Media",
               value: {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a20b8c2f8a5b002ce65828?alt=media",
@@ -49,12 +49,12 @@ class ImageGallery5 extends BaseImageGallery {
         {
           type: "object",
           key: "imageGallery",
-          displayer: "Image Gallery",
+          displayer: "Media Item",
           value: [
             {
               type: "media",
               key: "image",
-              displayer: "Image",
+              displayer: "Media",
               value: {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a20c6a2f8a5b002ce65834?alt=media",
@@ -74,12 +74,12 @@ class ImageGallery5 extends BaseImageGallery {
         {
           type: "object",
           key: "imageGallery",
-          displayer: "Image Gallery",
+          displayer: "Media Item",
           value: [
             {
               type: "media",
               key: "image",
-              displayer: "Image",
+              displayer: "Media",
               value: {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a20c962f8a5b002ce65840?alt=media",
@@ -99,12 +99,12 @@ class ImageGallery5 extends BaseImageGallery {
         {
           type: "object",
           key: "imageGallery",
-          displayer: "Image Gallery",
+          displayer: "Media Item",
           value: [
             {
               type: "media",
               key: "image",
-              displayer: "Image",
+              displayer: "Media",
               value: {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a20cbc2f8a5b002ce6584c?alt=media",
@@ -124,12 +124,12 @@ class ImageGallery5 extends BaseImageGallery {
         {
           type: "object",
           key: "imageGallery",
-          displayer: "Image Gallery",
+          displayer: "Media Item",
           value: [
             {
               type: "media",
               key: "image",
-              displayer: "Image",
+              displayer: "Media",
               value: {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a20cd82f8a5b002ce65858?alt=media",
@@ -149,12 +149,12 @@ class ImageGallery5 extends BaseImageGallery {
         {
           type: "object",
           key: "imageGallery",
-          displayer: "Image Gallery",
+          displayer: "Media Item",
           value: [
             {
               type: "media",
               key: "image",
-              displayer: "Image",
+              displayer: "Media",
               value: {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a20cee2f8a5b002ce6586d?alt=media",
@@ -175,10 +175,29 @@ class ImageGallery5 extends BaseImageGallery {
     });
 
     this.addProp({
-      type: "number",
-      key: "itemCount",
-      displayer: "Item Count in a Row",
-      value: 3,
+        type: "object",
+        key: "countSettings",
+        displayer: "Count Settings",
+        value: [
+            {
+                type: "number",
+                key: "imageCountInitial",
+                displayer: "Media Count Initial",
+                value: 3
+            },
+            {
+                type: "number",
+                key: "imageCount",
+                displayer: "More Media Count",
+                value: 3
+            },
+            {
+                type: "number",
+                key: "itemCount",
+                displayer: "Item Count in a Row",
+                value: 3
+            },
+        ]
     });
 
     this.addProp({
@@ -189,7 +208,7 @@ class ImageGallery5 extends BaseImageGallery {
         {
           type: "media",
           key: "closeIcon",
-          displayer: "Close Button Icon",
+          displayer: "Close Icon",
           value: {
             type: "icon",
             name: "RxCross1",
@@ -201,7 +220,7 @@ class ImageGallery5 extends BaseImageGallery {
         {
           type: "media",
           key: "nextIcon",
-          displayer: "Next Button Icon",
+          displayer: "Next Icon",
           value: {
             type: "icon",
             name: "GrCaretNext",
@@ -213,7 +232,7 @@ class ImageGallery5 extends BaseImageGallery {
         {
           type: "media",
           key: "prevIcon",
-          displayer: "Previous Button Icon",
+          displayer: "Previous Icon",
           value: {
             type: "icon",
             name: "GrCaretPrevious",
@@ -225,23 +244,11 @@ class ImageGallery5 extends BaseImageGallery {
         {
           type: "boolean",
           key: "imageIndex",
-          displayer: "Image Index",
+          displayer: "Show Page Number",
           value: true,
         },
       ],
     });
-    this.addProp({
-      type: "number",
-      key: "imageCountInitial",
-      displayer: "Image Count Initial",
-      value: 3
-    })
-    this.addProp({
-      type: "number",
-      key: "imageCount",
-      displayer: "More Image Count",
-      value: 3
-    })
     this.addProp(INPUTS.BUTTON("button", "Button", "Load More", null, null, null, "Primary"));
 
     this.setComponentState("is_image_clicked", false);
@@ -251,6 +258,9 @@ class ImageGallery5 extends BaseImageGallery {
 
   static getName(): string {
     return "Image Gallery 5";
+  }
+  getCountSettings(): { imageCountInitial: number; imageCount: number; itemCount: number } {
+      return this.castToObject<{ imageCountInitial: number; imageCount: number; itemCount: number }>("countSettings");
   }
 
   handleImageClick = (index: number) => {
@@ -301,7 +311,7 @@ class ImageGallery5 extends BaseImageGallery {
     }
   }
   handleButtonClick = () => {
-    this.setComponentState("moreImages", this.getComponentState("moreImages") + this.getPropValue("imageCount"))
+    this.setComponentState("moreImages", this.getComponentState("moreImages") + this.getCountSettings().imageCount)
 
   };
   render() {
@@ -313,8 +323,8 @@ class ImageGallery5 extends BaseImageGallery {
     const prevIcon = modal.prevIcon;
     const imageIndex = modal.imageIndex;
     const closeIcon = modal.closeIcon;
-    if (this.getComponentState("imageCount") != this.getPropValue("imageCountInitial") + this.getComponentState("moreImages"))
-      this.setComponentState("imageCount", this.getPropValue("imageCountInitial") + this.getComponentState("moreImages"));
+    if (this.getComponentState("imageCount") != this.getCountSettings().imageCountInitial + this.getComponentState("moreImages"))
+      this.setComponentState("imageCount", this.getCountSettings().imageCountInitial + this.getComponentState("moreImages"));
 
     const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
 
@@ -328,7 +338,7 @@ class ImageGallery5 extends BaseImageGallery {
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <Base.ListGrid
             className={this.decorateCSS("images")}
-            gridCount={{ pc: this.getPropValue("itemCount"), tablet: 3 }}
+            gridCount={{ pc: this.getCountSettings().itemCount, tablet: 3 }}
           >
             {galleries.slice(0, this.getComponentState("imageCount")).map((galleryItem: any, index: number) => {
               return (

@@ -10,6 +10,12 @@ type ImageType = {
     imageTitle: React.JSX.Element;
 };
 
+type CountSettings = {
+    imageCountInitial: number;
+    imageCount: number;
+    itemCount: number;
+};
+
 type sectionType = {
     title: string;
     imageGallery: ImageType[];
@@ -21,26 +27,33 @@ class ImageGallery2 extends BaseImageGallery {
         this.addProp({
             type: "boolean",
             key: "showAll",
-            displayer: "Show All Category",
+            displayer: "All Category",
             value: true,
         });
         this.addProp({
-            type: "number",
-            key: "imageCountInitial",
-            displayer: "Image Count Initial",
-            value: 3
-        })
-        this.addProp({
-            type: "number",
-            key: "imageCount",
-            displayer: "More Image Count",
-            value: 3
-        })
-        this.addProp({
-            type: "number",
-            key: "itemCount",
-            displayer: "Item Count in a Row",
-            value: 3,
+            type: "object",
+            key: "countSettings",
+            displayer: "Count Settings",
+            value: [
+                {
+                    type: "number",
+                    key: "imageCountInitial",
+                    displayer: "Media Count Initial",
+                    value: 3
+                },
+                {
+                    type: "number",
+                    key: "imageCount",
+                    displayer: "More Media Count",
+                    value: 3
+                },
+                {
+                    type: "number",
+                    key: "itemCount",
+                    displayer: "Item Count in a Row",
+                    value: 3
+                },
+            ]
         });
         this.addProp({
             type: "string",
@@ -51,7 +64,7 @@ class ImageGallery2 extends BaseImageGallery {
         this.addProp({
             type: "array",
             key: "gallery",
-            displayer: "gallery",
+            displayer: "Gallery",
             value: [
                 {
                     type: "object",
@@ -67,17 +80,17 @@ class ImageGallery2 extends BaseImageGallery {
                         {
                             type: "array",
                             key: "imageGallery",
-                            displayer: "Image Gallery",
+                            displayer: "Media",
                             value: [
                                 {
                                     type: "object",
                                     key: "imageGallery_section",
-                                    displayer: "Section",
+                                    displayer: "Media Item",
                                     value: [
                                         {
                                             type: "media",
                                             key: "image",
-                                            displayer: "Image",
+                                            displayer: "Media",
                                             value: {
                                                 type: "image",
                                                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66db15cc343034002c4597b8?alt=media",
@@ -89,7 +102,7 @@ class ImageGallery2 extends BaseImageGallery {
                                         {
                                             type: "string",
                                             key: "imageTitle",
-                                            displayer: "Image Title",
+                                            displayer: "Title",
                                             value: "Nonveg Image",
                                         },
                                     ],
@@ -97,12 +110,12 @@ class ImageGallery2 extends BaseImageGallery {
                                 {
                                     type: "object",
                                     key: "imageGallery_section",
-                                    displayer: "Section",
+                                    displayer: "Media Item",
                                     value: [
                                         {
                                             type: "media",
                                             key: "image",
-                                            displayer: "Image",
+                                            displayer: "Media",
                                             value: {
                                                 type: "image",
                                                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66db161b343034002c4597d7?alt=media",
@@ -114,7 +127,7 @@ class ImageGallery2 extends BaseImageGallery {
                                         {
                                             type: "string",
                                             key: "imageTitle",
-                                            displayer: "Image Title",
+                                            displayer: "Title",
                                             value: "Nonveg Image",
                                         },
                                     ],
@@ -122,12 +135,12 @@ class ImageGallery2 extends BaseImageGallery {
                                 {
                                     type: "object",
                                     key: "imageGallery_section",
-                                    displayer: "Section",
+                                    displayer: "Media Item",
                                     value: [
                                         {
                                             type: "media",
                                             key: "image",
-                                            displayer: "Image",
+                                            displayer: "Media",
                                             value: {
                                                 type: "image",
                                                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66e060a8343034002c466d8f?alt=media",
@@ -139,7 +152,7 @@ class ImageGallery2 extends BaseImageGallery {
                                         {
                                             type: "string",
                                             key: "imageTitle",
-                                            displayer: "Image Title",
+                                            displayer: "Title",
                                             value: "Nonveg Image",
                                         },
                                     ],
@@ -147,12 +160,12 @@ class ImageGallery2 extends BaseImageGallery {
                                 {
                                     type: "object",
                                     key: "imageGallery_section",
-                                    displayer: "Section",
+                                    displayer: "Media Item",
                                     value: [
                                         {
                                             type: "media",
                                             key: "image",
-                                            displayer: "Image",
+                                            displayer: "Media",
                                             value: {
                                                 type: "image",
                                                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66e060e1343034002c466db5?alt=media",
@@ -164,7 +177,7 @@ class ImageGallery2 extends BaseImageGallery {
                                         {
                                             type: "string",
                                             key: "imageTitle",
-                                            displayer: "Image Title",
+                                            displayer: "Title",
                                             value: "Nonveg Image",
                                         },
                                     ],
@@ -172,12 +185,12 @@ class ImageGallery2 extends BaseImageGallery {
                                 {
                                     type: "object",
                                     key: "imageGallery_section",
-                                    displayer: "Section",
+                                    displayer: "Media Item",
                                     value: [
                                         {
                                             type: "media",
                                             key: "image",
-                                            displayer: "Image",
+                                            displayer: "Media",
                                             value: {
                                                 type: "image",
                                                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66e065c4343034002c46704f?alt=media",
@@ -189,7 +202,7 @@ class ImageGallery2 extends BaseImageGallery {
                                         {
                                             type: "string",
                                             key: "imageTitle",
-                                            displayer: "Image Title",
+                                            displayer: "Title",
                                             value: "Nonveg Image",
                                         },
                                     ],
@@ -197,12 +210,12 @@ class ImageGallery2 extends BaseImageGallery {
                                 {
                                     type: "object",
                                     key: "imageGallery_section",
-                                    displayer: "Section",
+                                    displayer: "Media Item",
                                     value: [
                                         {
                                             type: "media",
                                             key: "image",
-                                            displayer: "Image",
+                                            displayer: "Media",
                                             value: {
                                                 type: "image",
                                                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/668fcded9e8fb8002c915338?alt=media",
@@ -214,7 +227,7 @@ class ImageGallery2 extends BaseImageGallery {
                                         {
                                             type: "string",
                                             key: "imageTitle",
-                                            displayer: "Image Title",
+                                            displayer: "Title",
                                             value: "Nonveg Image",
                                         },
                                     ],
@@ -237,17 +250,17 @@ class ImageGallery2 extends BaseImageGallery {
                         {
                             type: "array",
                             key: "imageGallery",
-                            displayer: "Image Gallery",
+                            displayer: "Media",
                             value: [
                                 {
                                     type: "object",
                                     key: "imageGallery_section",
-                                    displayer: "Section",
+                                    displayer: "Media Item",
                                     value: [
                                         {
                                             type: "media",
                                             key: "image",
-                                            displayer: "Image",
+                                            displayer: "Media",
                                             value: {
                                                 type: "image",
                                                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66dec9e1343034002c45cd6b?alt=media",
@@ -259,7 +272,7 @@ class ImageGallery2 extends BaseImageGallery {
                                         {
                                             type: "string",
                                             key: "imageTitle",
-                                            displayer: "Image Title",
+                                            displayer: "Title",
                                             value: "Vegetarian Image",
                                         },
                                     ],
@@ -267,12 +280,12 @@ class ImageGallery2 extends BaseImageGallery {
                                 {
                                     type: "object",
                                     key: "imageGallery_section",
-                                    displayer: "Section",
+                                    displayer: "Media Item",
                                     value: [
                                         {
                                             type: "media",
                                             key: "image",
-                                            displayer: "Image",
+                                            displayer: "Media",
                                             value: {
                                                 type: "image",
                                                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66deca37343034002c45cd7a?alt=media",
@@ -284,7 +297,7 @@ class ImageGallery2 extends BaseImageGallery {
                                         {
                                             type: "string",
                                             key: "imageTitle",
-                                            displayer: "Image Title",
+                                            displayer: "Title",
                                             value: "Vegetarian Image",
                                         },
                                     ],
@@ -292,12 +305,12 @@ class ImageGallery2 extends BaseImageGallery {
                                 {
                                     type: "object",
                                     key: "imageGallery_section",
-                                    displayer: "Section",
+                                    displayer: "Media Item",
                                     value: [
                                         {
                                             type: "media",
                                             key: "image",
-                                            displayer: "Image",
+                                            displayer: "Media",
                                             value: {
                                                 type: "image",
                                                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66e064db343034002c466fad?alt=media",
@@ -309,7 +322,7 @@ class ImageGallery2 extends BaseImageGallery {
                                         {
                                             type: "string",
                                             key: "imageTitle",
-                                            displayer: "Image Title",
+                                            displayer: "Title",
                                             value: "Vegetarian Image",
                                         },
                                     ],
@@ -317,12 +330,12 @@ class ImageGallery2 extends BaseImageGallery {
                                 {
                                     type: "object",
                                     key: "imageGallery_section",
-                                    displayer: "Section",
+                                    displayer: "Media Item",
                                     value: [
                                         {
                                             type: "media",
                                             key: "image",
-                                            displayer: "Image",
+                                            displayer: "Media",
                                             value: {
                                                 type: "image",
                                                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66e06518343034002c466fc5?alt=media",
@@ -334,7 +347,7 @@ class ImageGallery2 extends BaseImageGallery {
                                         {
                                             type: "string",
                                             key: "imageTitle",
-                                            displayer: "Image Title",
+                                            displayer: "Title",
                                             value: "Vegetarian Image",
                                         },
                                     ],
@@ -342,12 +355,12 @@ class ImageGallery2 extends BaseImageGallery {
                                 {
                                     type: "object",
                                     key: "imageGallery_section",
-                                    displayer: "Section",
+                                    displayer: "Media Item",
                                     value: [
                                         {
                                             type: "media",
                                             key: "image",
-                                            displayer: "Image",
+                                            displayer: "Media",
                                             value: {
                                                 type: "image",
                                                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66decb45343034002c45ce26?alt=media",
@@ -359,7 +372,7 @@ class ImageGallery2 extends BaseImageGallery {
                                         {
                                             type: "string",
                                             key: "imageTitle",
-                                            displayer: "Image Title",
+                                            displayer: "Title",
                                             value: "Vegetarian Image",
                                         },
                                     ],
@@ -367,12 +380,12 @@ class ImageGallery2 extends BaseImageGallery {
                                 {
                                     type: "object",
                                     key: "imageGallery_section",
-                                    displayer: "Section",
+                                    displayer: "Media Item",
                                     value: [
                                         {
                                             type: "media",
                                             key: "image",
-                                            displayer: "Image",
+                                            displayer: "Media",
                                             value: {
                                                 type: "image",
                                                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66e06576343034002c466fff?alt=media",
@@ -384,7 +397,7 @@ class ImageGallery2 extends BaseImageGallery {
                                         {
                                             type: "string",
                                             key: "imageTitle",
-                                            displayer: "Image Title",
+                                            displayer: "Title",
                                             value: "Vegetarian Image",
                                         },
                                     ],
@@ -407,17 +420,17 @@ class ImageGallery2 extends BaseImageGallery {
                         {
                             type: "array",
                             key: "imageGallery",
-                            displayer: "Image Gallery",
+                            displayer: "Media",
                             value: [
                                 {
                                     type: "object",
                                     key: "imageGallery_section",
-                                    displayer: "Section",
+                                    displayer: "Media Item",
                                     value: [
                                         {
                                             type: "media",
                                             key: "image",
-                                            displayer: "Image",
+                                            displayer: "Media",
                                             value: {
                                                 type: "image",
                                                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66decbec343034002c45ced2?alt=media",
@@ -429,7 +442,7 @@ class ImageGallery2 extends BaseImageGallery {
                                         {
                                             type: "string",
                                             key: "imageTitle",
-                                            displayer: "Image Title",
+                                            displayer: "Title",
                                             value: "Dessert Image",
                                         },
                                     ],
@@ -437,12 +450,12 @@ class ImageGallery2 extends BaseImageGallery {
                                 {
                                     type: "object",
                                     key: "imageGallery_section",
-                                    displayer: "Section",
+                                    displayer: "Media Item",
                                     value: [
                                         {
                                             type: "media",
                                             key: "image",
-                                            displayer: "Image",
+                                            displayer: "Media",
                                             value: {
                                                 type: "image",
                                                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66e05f8e343034002c466d17?alt=media",
@@ -454,7 +467,7 @@ class ImageGallery2 extends BaseImageGallery {
                                         {
                                             type: "string",
                                             key: "imageTitle",
-                                            displayer: "Image Title",
+                                            displayer: "Title",
                                             value: "Dessert Image",
                                         },
                                     ],
@@ -462,12 +475,12 @@ class ImageGallery2 extends BaseImageGallery {
                                 {
                                     type: "object",
                                     key: "imageGallery_section",
-                                    displayer: "Section",
+                                    displayer: "Media Item",
                                     value: [
                                         {
                                             type: "media",
                                             key: "image",
-                                            displayer: "Image",
+                                            displayer: "Media",
                                             value: {
                                                 type: "image",
                                                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66decc48343034002c45cf57?alt=media",
@@ -479,7 +492,7 @@ class ImageGallery2 extends BaseImageGallery {
                                         {
                                             type: "string",
                                             key: "imageTitle",
-                                            displayer: "Image Title",
+                                            displayer: "Title",
                                             value: "Dessert Image",
                                         },
                                     ],
@@ -487,12 +500,12 @@ class ImageGallery2 extends BaseImageGallery {
                                 {
                                     type: "object",
                                     key: "imageGallery_section",
-                                    displayer: "Section",
+                                    displayer: "Media Item",
                                     value: [
                                         {
                                             type: "media",
                                             key: "image",
-                                            displayer: "Image",
+                                            displayer: "Media",
                                             value: {
                                                 type: "image",
                                                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66decc61343034002c45cf65?alt=media",
@@ -504,7 +517,7 @@ class ImageGallery2 extends BaseImageGallery {
                                         {
                                             type: "string",
                                             key: "imageTitle",
-                                            displayer: "Image Title",
+                                            displayer: "Title",
                                             value: "Dessert Image",
                                         },
                                     ],
@@ -512,12 +525,12 @@ class ImageGallery2 extends BaseImageGallery {
                                 {
                                     type: "object",
                                     key: "imageGallery_section",
-                                    displayer: "Section",
+                                    displayer: "Media Item",
                                     value: [
                                         {
                                             type: "media",
                                             key: "image",
-                                            displayer: "Image",
+                                            displayer: "Media",
                                             value: {
                                                 type: "image",
                                                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66decc7c343034002c45cf7c?alt=media",
@@ -529,7 +542,7 @@ class ImageGallery2 extends BaseImageGallery {
                                         {
                                             type: "string",
                                             key: "imageTitle",
-                                            displayer: "Image Title",
+                                            displayer: "Title",
                                             value: "Dessert Image",
                                         },
                                     ],
@@ -537,12 +550,12 @@ class ImageGallery2 extends BaseImageGallery {
                                 {
                                     type: "object",
                                     key: "imageGallery_section",
-                                    displayer: "Section",
+                                    displayer: "Media Item",
                                     value: [
                                         {
                                             type: "media",
                                             key: "image",
-                                            displayer: "Image",
+                                            displayer: "Media",
                                             value: {
                                                 type: "image",
                                                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66e05fc0343034002c466d32?alt=media",
@@ -554,7 +567,7 @@ class ImageGallery2 extends BaseImageGallery {
                                         {
                                             type: "string",
                                             key: "imageTitle",
-                                            displayer: "Image Title",
+                                            displayer: "Title",
                                             value: "Dessert Image",
                                         },
                                     ],
@@ -577,17 +590,17 @@ class ImageGallery2 extends BaseImageGallery {
                         {
                             type: "array",
                             key: "imageGallery",
-                            displayer: "Image Gallery",
+                            displayer: "Media",
                             value: [
                                 {
                                     type: "object",
                                     key: "imageGallery_section",
-                                    displayer: "Section",
+                                    displayer: "Media Item",
                                     value: [
                                         {
                                             type: "media",
                                             key: "image",
-                                            displayer: "Image",
+                                            displayer: "Media",
                                             value: {
                                                 type: "image",
                                                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66e0624e343034002c466e5a?alt=media",
@@ -599,7 +612,7 @@ class ImageGallery2 extends BaseImageGallery {
                                         {
                                             type: "string",
                                             key: "imageTitle",
-                                            displayer: "Image Title",
+                                            displayer: "Title",
                                             value: "Drinks Image",
                                         },
                                     ],
@@ -607,12 +620,12 @@ class ImageGallery2 extends BaseImageGallery {
                                 {
                                     type: "object",
                                     key: "imageGallery_section",
-                                    displayer: "Section",
+                                    displayer: "Media Item",
                                     value: [
                                         {
                                             type: "media",
                                             key: "image",
-                                            displayer: "Image",
+                                            displayer: "Media",
                                             value: {
                                                 type: "image",
                                                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66e06274343034002c466e66?alt=media",
@@ -624,7 +637,7 @@ class ImageGallery2 extends BaseImageGallery {
                                         {
                                             type: "string",
                                             key: "imageTitle",
-                                            displayer: "Image Title",
+                                            displayer: "Title",
                                             value: "Drinks Image",
                                         },
                                     ],
@@ -632,12 +645,12 @@ class ImageGallery2 extends BaseImageGallery {
                                 {
                                     type: "object",
                                     key: "imageGallery_section",
-                                    displayer: "Section",
+                                    displayer: "Media Item",
                                     value: [
                                         {
                                             type: "media",
                                             key: "image",
-                                            displayer: "Image",
+                                            displayer: "Media",
                                             value: {
                                                 type: "image",
                                                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66e062b5343034002c466e83?alt=media",
@@ -649,7 +662,7 @@ class ImageGallery2 extends BaseImageGallery {
                                         {
                                             type: "string",
                                             key: "imageTitle",
-                                            displayer: "Image Title",
+                                            displayer: "Title",
                                             value: "Drinks Image",
                                         },
                                     ],
@@ -657,12 +670,12 @@ class ImageGallery2 extends BaseImageGallery {
                                 {
                                     type: "object",
                                     key: "imageGallery_section",
-                                    displayer: "Section",
+                                    displayer: "Media Item",
                                     value: [
                                         {
                                             type: "media",
                                             key: "image",
-                                            displayer: "Image",
+                                            displayer: "Media",
                                             value: {
                                                 type: "image",
                                                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66e062cf343034002c466ea6?alt=media",
@@ -674,7 +687,7 @@ class ImageGallery2 extends BaseImageGallery {
                                         {
                                             type: "string",
                                             key: "imageTitle",
-                                            displayer: "Image Title",
+                                            displayer: "Title",
                                             value: "Drinks Image",
                                         },
                                     ],
@@ -682,12 +695,12 @@ class ImageGallery2 extends BaseImageGallery {
                                 {
                                     type: "object",
                                     key: "imageGallery_section",
-                                    displayer: "Section",
+                                    displayer: "Media Item",
                                     value: [
                                         {
                                             type: "media",
                                             key: "image",
-                                            displayer: "Image",
+                                            displayer: "Media",
                                             value: {
                                                 type: "image",
                                                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66e06383343034002c466f1f?alt=media",
@@ -699,7 +712,7 @@ class ImageGallery2 extends BaseImageGallery {
                                         {
                                             type: "string",
                                             key: "imageTitle",
-                                            displayer: "Image Title",
+                                            displayer: "Title",
                                             value: "Drinks Image",
                                         },
                                     ],
@@ -707,12 +720,12 @@ class ImageGallery2 extends BaseImageGallery {
                                 {
                                     type: "object",
                                     key: "imageGallery_section",
-                                    displayer: "Section",
+                                    displayer: "Media Item",
                                     value: [
                                         {
                                             type: "media",
                                             key: "image",
-                                            displayer: "Image",
+                                            displayer: "Media",
                                             value: {
                                                 type: "image",
                                                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66e0639b343034002c466f35?alt=media",
@@ -724,7 +737,7 @@ class ImageGallery2 extends BaseImageGallery {
                                         {
                                             type: "string",
                                             key: "imageTitle",
-                                            displayer: "Image Title",
+                                            displayer: "Title",
                                             value: "Drinks Image",
                                         },
                                     ],
@@ -756,7 +769,7 @@ class ImageGallery2 extends BaseImageGallery {
                 {
                     type: "media",
                     key: "nextIcon",
-                    displayer: "Next Image Icon",
+                    displayer: "Next Icon",
                     value: {
                         type: "icon",
                         name: "FaArrowRight",
@@ -768,7 +781,7 @@ class ImageGallery2 extends BaseImageGallery {
                 {
                     type: "media",
                     key: "previousIcon",
-                    displayer: "Previous Image Icon",
+                    displayer: "Previous Icon",
                     value: {
                         type: "icon",
                         name: "FaArrowLeft",
@@ -792,7 +805,7 @@ class ImageGallery2 extends BaseImageGallery {
                 {
                     type: "boolean",
                     key: "showImageCounter",
-                    displayer: "Show Image Page Number",
+                    displayer: "Show Page Number",
                     value: true,
                 },
             ],
@@ -876,17 +889,20 @@ class ImageGallery2 extends BaseImageGallery {
     static getName(): string {
         return "Image Gallery 2";
     }
+    getCountSettings(): CountSettings {
+        return this.castToObject<CountSettings>("countSettings");
+    }
     handleLoadMoreButton = () => {
-        this.setComponentState("moreImages", this.getComponentState("moreImages") + this.getPropValue("imageCount"))
+        this.setComponentState("moreImages", this.getComponentState("moreImages") + this.getCountSettings().imageCount)
     };
     handleSectionClick(index: number): void {
         this.setComponentState("default", index)
-        this.setComponentState("imageCount", this.getPropValue("imageCountInitial"));
+        this.setComponentState("imageCount", this.getCountSettings().imageCountInitial);
         this.setComponentState("moreImages", 0);
     }
     render() {
-        if (this.getComponentState("imageCount") != this.getPropValue("imageCountInitial") + this.getComponentState("moreImages"))
-            this.setComponentState("imageCount", this.getPropValue("imageCountInitial") + this.getComponentState("moreImages"));
+        if (this.getComponentState("imageCount") != this.getCountSettings().imageCountInitial + this.getComponentState("moreImages"))
+            this.setComponentState("imageCount", this.getCountSettings().imageCountInitial + this.getComponentState("moreImages"));
 
         const galleryCollection = this.getPropValue("gallery");
         const currentIndex = this.getComponentState("default");
@@ -909,25 +925,25 @@ class ImageGallery2 extends BaseImageGallery {
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
                     <Base.Row className={this.decorateCSS("tab-container")}>
                         {showAll && (
-                            <Base.H5
+                            <Base.H6
                                 className={`${this.decorateCSS("tab")} ${currentIndex === -1 ? this.decorateCSS("active-tab") : ""
                                     }`}
                                 onClick={() => this.handleSectionClick(-1)}
                             >
                                 {this.getPropValue("allText")}
-                            </Base.H5>
+                            </Base.H6>
                         )}
                         {galleryCollection.map((element: any, index: number) => (
-                            <Base.H5
+                            <Base.H6
                                 className={`${this.decorateCSS("tab")} ${index === currentIndex ? this.decorateCSS("active-tab") : ""
                                     }`}
                                 onClick={() => this.handleSectionClick(index)}
                             >
                                 {element.getPropValue("title")}
-                            </Base.H5>
+                            </Base.H6>
                         ))}
                     </Base.Row>
-                    <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount"), tablet: 3 }} className={this.decorateCSS("gallery-container")}>
+                    <Base.ListGrid gridCount={{ pc: this.getCountSettings().itemCount, tablet: 3 }} className={this.decorateCSS("gallery-container")}>
                         {currentGallery.slice(0, this.getComponentState("imageCount")).map((section: ImageType, imageIndex: number) => {
                             if (!section.image) return null;
                             return (

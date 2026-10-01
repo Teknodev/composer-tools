@@ -27,6 +27,10 @@
 .container {
     padding: 0 !important;
 
+    &.container.container {
+        padding: 0 !important;
+    }
+
     .max-content {
         .gallery-container {
             display: grid;

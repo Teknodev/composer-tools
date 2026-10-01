@@ -22,7 +22,7 @@ class ImageGallery8 extends BaseImageGallery {
                 {
                     type: "object",
                     key: "card",
-                    displayer: "card",
+                    displayer: "Card",
                     value: [
                         {
                             type: "page",
@@ -39,7 +39,7 @@ class ImageGallery8 extends BaseImageGallery {
                         {
                             type: "media",
                             key: "image",
-                            displayer: "Image",
+                            displayer: "Media",
                             value: {
                                 type: "image",
                                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661c243bd2970002c628c76?alt=media&timestamp=1719564433797",
@@ -76,7 +76,7 @@ class ImageGallery8 extends BaseImageGallery {
                         {
                             type: "media",
                             key: "image",
-                            displayer: "Image",
+                            displayer: "Media",
                             value: {
                                 type: "image",
                                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661c243bd2970002c628c79?alt=media&timestamp=1719564433797",
@@ -113,7 +113,7 @@ class ImageGallery8 extends BaseImageGallery {
                         {
                             type: "media",
                             key: "image",
-                            displayer: "Image",
+                            displayer: "Media",
                             value: {
                                 type: "image",
                                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661c243bd2970002c628c75?alt=media&timestamp=1719564433797",
@@ -150,7 +150,7 @@ class ImageGallery8 extends BaseImageGallery {
                         {
                             type: "media",
                             key: "image",
-                            displayer: "Image",
+                            displayer: "Media",
                             value: {
                                 type: "image",
                                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661c243bd2970002c628c75?alt=media&timestamp=1719564433797",
@@ -187,7 +187,7 @@ class ImageGallery8 extends BaseImageGallery {
                         {
                             type: "media",
                             key: "image",
-                            displayer: "Image",
+                            displayer: "Media",
                             value: {
                                 type: "image",
                                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661c243bd2970002c628c75?alt=media&timestamp=1719564433797",
@@ -224,7 +224,7 @@ class ImageGallery8 extends BaseImageGallery {
                         {
                             type: "media",
                             key: "image",
-                            displayer: "Image",
+                            displayer: "Media",
                             value: {
                                 type: "image",
                                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661c243bd2970002c628c72?alt=media&timestamp=1719564433797",
@@ -261,7 +261,7 @@ class ImageGallery8 extends BaseImageGallery {
                         {
                             type: "media",
                             key: "image",
-                            displayer: "Image",
+                            displayer: "Media",
                             value: {
                                 type: "image",
                                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661c243bd2970002c628c74?alt=media&timestamp=1719564433797",
@@ -298,7 +298,7 @@ class ImageGallery8 extends BaseImageGallery {
                         {
                             type: "media",
                             key: "image",
-                            displayer: "Image",
+                            displayer: "Media",
                             value: {
                                 type: "image",
                                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661c243bd2970002c628c78?alt=media&timestamp=1719564433797",
@@ -335,7 +335,7 @@ class ImageGallery8 extends BaseImageGallery {
                         {
                             type: "media",
                             key: "image",
-                            displayer: "Image",
+                            displayer: "Media",
                             value: {
                                 type: "image",
                                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661c243bd2970002c628c71?alt=media&timestamp=1719564433797",
@@ -372,7 +372,7 @@ class ImageGallery8 extends BaseImageGallery {
                         {
                             type: "media",
                             key: "image",
-                            displayer: "Image",
+                            displayer: "Media",
                             value: {
                                 type: "image",
                                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661c243bd2970002c628c70?alt=media&timestamp=1719564433797",
@@ -392,16 +392,26 @@ class ImageGallery8 extends BaseImageGallery {
             ],
         });
         this.addProp({
-            type: "number",
-            key: "itemCount",
-            displayer: "Item Count in a Row",
-            value: 4,
-            max: 5,
+            type: "object",
+            key: "countSettings",
+            displayer: "Count Settings",
+            value: [
+                {
+                    type: "number",
+                    key: "itemCount",
+                    displayer: "Item Count in a Row",
+                    value: 4,
+                    max: 5,
+                },
+            ]
         });
     }
 
     static getName(): string {
         return "Image Gallery 8";
+    }
+    getCountSettings(): { itemCount: number } {
+        return this.castToObject<{ itemCount: number }>("countSettings");
     }
 
     render() {
@@ -409,7 +419,7 @@ class ImageGallery8 extends BaseImageGallery {
             <Base.Container className={this.decorateCSS("container")}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
                     <Base.ListGrid
-                        gridCount={{ pc: this.getPropValue("itemCount"), tablet: 3 }}
+                        gridCount={{ pc: this.getCountSettings().itemCount, tablet: 3 }}
                         className={this.decorateCSS("image-container")}
                     >
                         {this.castToObject<Card[]>("cards").map(
@@ -424,9 +434,9 @@ class ImageGallery8 extends BaseImageGallery {
                                                 className={`${this.decorateCSS("category")} ${!item.image && this.decorateCSS("text-visible")
                                                     }`}
                                             >
-                                                <Base.H3 className={this.decorateCSS("title")}>
+                                                <Base.H4 className={this.decorateCSS("title")}>
                                                     {item.title}
-                                                </Base.H3>
+                                                </Base.H4>
                                             </div>
                                         </ComposerLink>
                                     </div>

@@ -9,18 +9,20 @@
       gap: var(--composer-gap-lg);
 
       .gallery-nav {
+        margin-bottom: var(--composer-gap-md);
+
         .nav-list,
         .subnav-list {
           display: flex;
           align-items: center;
           width: 100%;
-          gap: var(--composer-gap-md);
+          gap: var(--composer-gap-xl);
           flex-wrap: wrap;
 
           .list-item {
             .button {
               width: fit-content;
-              padding: var(--composer-gap-sm) var(--composer-gap-md);
+              padding: 0 0 var(--composer-gap-xs);
               color: var(--composer-font-color-primary);
               border-bottom: 2px solid transparent;
               display: flex;

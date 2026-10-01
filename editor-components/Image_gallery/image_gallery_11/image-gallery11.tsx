@@ -82,6 +82,25 @@ class ImageGallery11 extends BaseImageGallery {
   constructor(props?: unknown) {
     super(props, styles);
 
+    this.addProp({
+      type: "object",
+      key: "backgroundMedia",
+      displayer: "Background Media",
+      value: [
+        {
+          type: "media",
+          key: "background",
+          displayer: "Media",
+          value: {
+            type: "image",
+            url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/689af25436675f002db98b79?alt=media",
+          },
+          additionalParams: { availableTypes: ["image", "video"] },
+        },
+        { type: "boolean", key: "backgroundOverlay", displayer: "Overlay", value: true },
+      ],
+    });
+
     this.addProp({ type: "string", key: "subtitle", displayer: "Subtitle", value: "" });
     this.setComponentState("imagePopupZoomed", false);
 
@@ -95,19 +114,7 @@ class ImageGallery11 extends BaseImageGallery {
         "As the studio continues to grow, our artists grow alongside it. We may be small, but everyone here is a jack-of-all-trades.",
     });
 
-    this.addProp({
-      type: "media",
-      key: "background",
-      displayer: "Background Media",
-      value: {
-        type: "image",
-        url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/689af25436675f002db98b79?alt=media",
-      },
-      additionalParams: { availableTypes: ["image", "video"] },
-    });
-
-    this.addProp({ type: "boolean", key: "backgroundOverlay", displayer: "Background Overlay", value: true });
-    this.addProp({ type: "boolean", key: "imageOverlay", displayer: "Overlay", value: false });
+    this.addProp({ type: "boolean", key: "imageOverlay", displayer: "Media Overlay", value: false });
 
     this.addProp({
       type: "array",
@@ -248,27 +255,32 @@ class ImageGallery11 extends BaseImageGallery {
     });
 
     this.addProp({
-      type: "media",
-      key: "popupLeftIcon",
-      displayer: "Left Icon",
-      value: { type: "icon", name: "IoMdArrowDropleft" },
-      additionalParams: { availableTypes: ["image", "icon"] },
-    });
-
-    this.addProp({
-      type: "media",
-      key: "popupRightIcon",
-      displayer: "Right Icon",
-      value: { type: "icon", name: "IoMdArrowDropright" },
-      additionalParams: { availableTypes: ["image", "icon"] },
-    });
-
-    this.addProp({
-      type: "media",
-      key: "popupCloseIcon",
-      displayer: "Close Icon",
-      value: { type: "icon", name: "MdClose" },
-      additionalParams: { availableTypes: ["image", "icon"] },
+      type: "object",
+      key: "icons",
+      displayer: "Icons",
+      value: [
+        {
+          type: "media",
+          key: "popupLeftIcon",
+          displayer: "Previous Icon",
+          value: { type: "icon", name: "IoMdArrowDropleft" },
+          additionalParams: { availableTypes: ["image", "icon"] },
+        },
+        {
+          type: "media",
+          key: "popupRightIcon",
+          displayer: "Next Icon",
+          value: { type: "icon", name: "IoMdArrowDropright" },
+          additionalParams: { availableTypes: ["image", "icon"] },
+        },
+        {
+          type: "media",
+          key: "popupCloseIcon",
+          displayer: "Close Icon",
+          value: { type: "icon", name: "MdClose" },
+          additionalParams: { availableTypes: ["image", "icon"] },
+        },
+      ],
     });
   }
 
@@ -447,9 +459,11 @@ class ImageGallery11 extends BaseImageGallery {
     const descriptionText = this.castToString(description);
     const hasTextContent = subtitleText || titleText || !!descriptionText;
 
-    const backgroundMedia = this.getPropValue("background") as TypeMediaInputValue | undefined;
+    const backgroundObject = this.castToObject<{ background?: TypeMediaInputValue; backgroundOverlay?: boolean }>("backgroundMedia");
+    const icons = this.castToObject<{ popupLeftIcon: TypeMediaInputValue; popupRightIcon: TypeMediaInputValue; popupCloseIcon: TypeMediaInputValue }>("icons");
+    const backgroundMedia = backgroundObject.background;
     const hasBackgroundMedia = !!backgroundMedia;
-    const showOverlay = this.getPropValue("backgroundOverlay") && hasBackgroundMedia;
+    const showOverlay = backgroundObject.backgroundOverlay && hasBackgroundMedia;
     const showImageOverlay = !!this.getPropValue("imageOverlay");
 
     const alignment = Base.getContentAlignment();
@@ -552,7 +566,7 @@ class ImageGallery11 extends BaseImageGallery {
             <div className={this.decorateCSS("modal-wrapper")} onClick={(e) => e.stopPropagation()}>
               <div className={this.decorateCSS("modal-content")}>
                 <div className={this.decorateCSS("close")} onClick={() => this.closePopup(rows)}>
-                  <Base.Media value={this.getPropValue("popupCloseIcon")} className={this.decorateCSS("icon")} />
+                  <Base.Media value={icons.popupCloseIcon} className={this.decorateCSS("icon")} />
                 </div>
 
                 <div
@@ -573,7 +587,7 @@ class ImageGallery11 extends BaseImageGallery {
                 this.navigatePopup(rows, "prev");
               }}
             >
-              <Base.Media value={this.getPropValue("popupLeftIcon")} className={this.decorateCSS("icon")} />
+              <Base.Media value={icons.popupLeftIcon} className={this.decorateCSS("icon")} />
             </div>
 
             <div
@@ -583,7 +597,7 @@ class ImageGallery11 extends BaseImageGallery {
                 this.navigatePopup(rows, "next");
               }}
             >
-              <Base.Media value={this.getPropValue("popupRightIcon")} className={this.decorateCSS("icon")} />
+              <Base.Media value={icons.popupRightIcon} className={this.decorateCSS("icon")} />
             </div>
           </Base.Overlay>
         )}

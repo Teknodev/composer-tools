@@ -13,17 +13,24 @@ class ImageGallery7 extends BaseImageGallery {
     constructor(props?: any) {
         super(props, styles);
         this.addProp({
-            type: "number",
-            key: "imageCountInitial",
-            displayer: "Image Count Initial",
-            value: 8
-        })
-        this.addProp({
-            type: "number",
-            key: "imageCount",
-            displayer: "More Image Count",
-            value: 4
-        })
+            type: "object",
+            key: "countSettings",
+            displayer: "Count Settings",
+            value: [
+                {
+                    type: "number",
+                    key: "imageCountInitial",
+                    displayer: "Media Count Initial",
+                    value: 8
+                },
+                {
+                    type: "number",
+                    key: "imageCount",
+                    displayer: "More Media Count",
+                    value: 4
+                },
+            ]
+        });
         this.addProp({
             type: "array",
             key: "gallery",
@@ -38,7 +45,7 @@ class ImageGallery7 extends BaseImageGallery {
                             {
                                 type: "media",
                                 key: "image",
-                                displayer: "Image",
+                                displayer: "Media",
                                 value: {
                                     type: "image",
                                     url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/669dfff22f8a5b002ce60115?alt=media",
@@ -69,7 +76,7 @@ class ImageGallery7 extends BaseImageGallery {
                             {
                                 type: "media",
                                 key: "image",
-                                displayer: "Image",
+                                displayer: "Media",
                                 value: {
                                     type: "image",
                                     url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/669e00122f8a5b002ce60121?alt=media",
@@ -100,7 +107,7 @@ class ImageGallery7 extends BaseImageGallery {
                             {
                                 type: "media",
                                 key: "image",
-                                displayer: "Image",
+                                displayer: "Media",
                                 value: {
                                     type: "image",
                                     url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/669e003a2f8a5b002ce6012d?alt=media",
@@ -131,7 +138,7 @@ class ImageGallery7 extends BaseImageGallery {
                             {
                                 type: "media",
                                 key: "image",
-                                displayer: "Image",
+                                displayer: "Media",
                                 value: {
                                     type: "image",
                                     url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/669e005b2f8a5b002ce60139?alt=media",
@@ -162,7 +169,7 @@ class ImageGallery7 extends BaseImageGallery {
                             {
                                 type: "media",
                                 key: "image",
-                                displayer: "Image",
+                                displayer: "Media",
                                 value: {
                                     type: "image",
                                     url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/669e00772f8a5b002ce60145?alt=media",
@@ -193,7 +200,7 @@ class ImageGallery7 extends BaseImageGallery {
                             {
                                 type: "media",
                                 key: "image",
-                                displayer: "Image",
+                                displayer: "Media",
                                 value: {
                                     type: "image",
                                     url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/669e00952f8a5b002ce60151?alt=media",
@@ -225,7 +232,7 @@ class ImageGallery7 extends BaseImageGallery {
                             {
                                 type: "media",
                                 key: "image",
-                                displayer: "Image",
+                                displayer: "Media",
                                 value: {
                                     type: "image",
                                     url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/669e00ba2f8a5b002ce6015d?alt=media",
@@ -256,7 +263,7 @@ class ImageGallery7 extends BaseImageGallery {
                             {
                                 type: "media",
                                 key: "image",
-                                displayer: "Image",
+                                displayer: "Media",
                                 value: {
                                     type: "image",
                                     url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/669e00d52f8a5b002ce60169?alt=media",
@@ -287,7 +294,7 @@ class ImageGallery7 extends BaseImageGallery {
                             {
                                 type: "media",
                                 key: "image",
-                                displayer: "Image",
+                                displayer: "Media",
                                 value: {
                                     type: "image",
                                     url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/669e00f72f8a5b002ce60175?alt=media",
@@ -320,7 +327,7 @@ class ImageGallery7 extends BaseImageGallery {
                             {
                                 type: "media",
                                 key: "image",
-                                displayer: "Image",
+                                displayer: "Media",
                                 value: {
                                     type: "image",
                                     url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/669e01132f8a5b002ce60181?alt=media",
@@ -352,7 +359,7 @@ class ImageGallery7 extends BaseImageGallery {
                             {
                                 type: "media",
                                 key: "image",
-                                displayer: "Image",
+                                displayer: "Media",
                                 value: {
                                     type: "image",
                                     url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/669e00122f8a5b002ce60121?alt=media",
@@ -384,7 +391,7 @@ class ImageGallery7 extends BaseImageGallery {
                             {
                                 type: "media",
                                 key: "image",
-                                displayer: "Image",
+                                displayer: "Media",
                                 value: {
                                     type: "image",
                                     url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/669e01732f8a5b002ce6018d?alt=media",
@@ -419,6 +426,9 @@ class ImageGallery7 extends BaseImageGallery {
 
     static getName(): string {
         return "Image Gallery 7";
+    }
+    getCountSettings(): { imageCountInitial: number; imageCount: number } {
+        return this.castToObject<{ imageCountInitial: number; imageCount: number }>("countSettings");
     }
     private timeoutId: NodeJS.Timeout | null = null;
     private scrollOffset: number = 0;
@@ -455,21 +465,21 @@ class ImageGallery7 extends BaseImageGallery {
 
     debouncedHandleScroll = this.debounce(this.handleScroll, 12);
     handleButtonClick = () => {
-        this.setComponentState("moreImages", this.getComponentState("moreImages") + this.getPropValue("imageCount"))
+        this.setComponentState("moreImages", this.getComponentState("moreImages") + this.getCountSettings().imageCount)
 
     };
 
     render() {
         const gallery = this.castToObject<CardItemType[]>("gallery");
-        if (this.getComponentState("imageCount") != this.getPropValue("imageCountInitial") + this.getComponentState("moreImages"))
-            this.setComponentState("imageCount", this.getPropValue("imageCountInitial") + this.getComponentState("moreImages"));
+        if (this.getComponentState("imageCount") != this.getCountSettings().imageCountInitial + this.getComponentState("moreImages"))
+            this.setComponentState("imageCount", this.getCountSettings().imageCountInitial + this.getComponentState("moreImages"));
 
         const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
 
         return (
             <Base.Container className={this.decorateCSS("container")} onScroll={this.debouncedHandleScroll}>
                 <Base.MaxContent className={this.decorateCSS("maxContent")}>
-                    <Base.ListGrid gridCount={{ pc: 4, tablet: 2, phone: 1 }} className={this.decorateCSS("gridContainer")} >
+                    <Base.ListGrid gridCount={{ pc: 4, tablet: 4, phone: 1 }} className={this.decorateCSS("gridContainer")} >
                         {gallery.slice(0, this.getComponentState("imageCount")).map((cards: CardItemType, columnIndex: number) => {
                             const isEven = (columnIndex) % 2 !== 0;
                             const columnClass = isEven ? "columnEven" : "columnOdd";
@@ -486,7 +496,7 @@ class ImageGallery7 extends BaseImageGallery {
                                                 {(this.castToString(cards.title) || this.castToString(cards.subtitle)) && (
                                                     <div className={this.decorateCSS("textContainer")}>
                                                         {this.castToString(cards.title) && (
-                                                            <Base.H4 className={this.decorateCSS("title")}>{cards.title}</Base.H4>
+                                                            <Base.H6 className={this.decorateCSS("title")}>{cards.title}</Base.H6>
                                                         )}
                                                         {this.castToString(cards.subtitle) && (
                                                             <Base.P className={this.decorateCSS("subtitle")}>{cards.subtitle}</Base.P>

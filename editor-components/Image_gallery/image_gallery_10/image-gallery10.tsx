@@ -2,6 +2,7 @@ import * as React from "react";
 import styles from "./image-gallery10.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import { BaseImageGallery } from "../../EditorComponent";
+import { INPUTS } from "../../../custom-hooks/input-templates";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 
 type CardType = {
@@ -35,6 +36,20 @@ class ImageGallery10 extends BaseImageGallery {
             key: "title",
             displayer: "Title",
             value: "We are creative agency that specializes in making customers",
+        });
+        this.addProp({
+            type: "string",
+            key: "description",
+            displayer: "Description",
+            value: "",
+        });
+        this.addProp({
+            type: "array",
+            key: "buttons",
+            displayer: "Buttons",
+            value: [
+                INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+            ],
         });
         this.addProp({
             type: "boolean",
@@ -537,10 +552,17 @@ class ImageGallery10 extends BaseImageGallery {
             ],
         });
         this.addProp({
-            type: "number",
-            key: "itemCount",
-            displayer: "Item Count in a Row",
-            value: 3,
+            type: "object",
+            key: "countSettings",
+            displayer: "Count Settings",
+            value: [
+                {
+                    type: "number",
+                    key: "itemCount",
+                    displayer: "Item Count in a Row",
+                    value: 3
+                },
+            ]
         });
 
         this.setComponentState("texts", []);
@@ -607,18 +629,24 @@ class ImageGallery10 extends BaseImageGallery {
     static getName(): string {
         return "Image Gallery 10";
     }
+    getCountSettings(): { itemCount: number } {
+        return this.castToObject<{ itemCount: number }>("countSettings");
+    }
 
     render() {
         const cardList = this.castToObject<CardType[]>("card-items");
         const title = this.castToString(this.getPropValue("title"));
         const currentText = this.getComponentState("currentText");
         const showAnimateText = this.getPropValue("showAnimateText");
+        const description = this.castToString(this.getPropValue("description"));
+        const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons") || [];
+        const hasButtons = buttons.some((button: INPUTS.CastedButton) => this.castToString(button.text));
 
         return (
             <Base.Container
                 className={this.decorateCSS("container")}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
-                    {(title || this.castToString(this.getPropValue("subtitle"))) && (
+                    {(title || this.castToString(this.getPropValue("subtitle")) || description || hasButtons) && (
                         <Base.VerticalContent className={this.decorateCSS("header-wrapper")}>
                             {this.castToString(this.getPropValue("subtitle")) && (
                                 <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
@@ -635,13 +663,29 @@ class ImageGallery10 extends BaseImageGallery {
                                     </div>
                                 )}
                             </Base.SectionTitle>}
+                            {description && (
+                                <Base.SectionDescription className={this.decorateCSS("description")}>
+                                    {this.getPropValue("description")}
+                                </Base.SectionDescription>
+                            )}
+                            {hasButtons && (
+                                <div className={this.decorateCSS("button-container")}>
+                                    {buttons.map((button: INPUTS.CastedButton, index: number) => this.castToString(button.text) && (
+                                        <ComposerLink key={index} path={button.url}>
+                                            <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
+                                                <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
+                                            </Base.Button>
+                                        </ComposerLink>
+                                    ))}
+                                </div>
+                            )}
                         </Base.VerticalContent>
                     )}
                     {
                         cardList.length > 0 && (
                             <Base.ListGrid
                                 className={this.decorateCSS("grid")}
-                                gridCount={{ pc: this.getPropValue("itemCount"), tablet: 3 }}>
+                                gridCount={{ pc: this.getCountSettings().itemCount, tablet: 3 }}>
                                 {cardList.map((cardItem: any, index: number) => (
                                     <ComposerLink path={cardItem.cardLink} isFullWidth={true}>
                                         <div className={this.decorateCSS("item-box")} key={index}>
@@ -650,19 +694,19 @@ class ImageGallery10 extends BaseImageGallery {
                                                     <Base.Media value={cardItem.image} className={this.decorateCSS("background-media-element")} />
                                                 </div>
                                                 <div className={`${this.decorateCSS("overlay-content")} ${cardItem.active ? this.decorateCSS("active") : ""}`}>
-                                                    {this.castToString(cardItem.title) && (
-                                                        <Base.H4
+                                                    {this.castToString(cardItem.card_item_title) && (
+                                                        <Base.H6
                                                             className={this.decorateCSS("card-title")}>
-                                                            {cardItem.title}
-                                                        </Base.H4>
+                                                            {cardItem.card_item_title}
+                                                        </Base.H6>
                                                     )}
                                                     {this.castToString(cardItem.text) && (
                                                         <ComposerLink
                                                             path={cardItem.link}>
-                                                            <Base.H3
+                                                            <Base.H5
                                                                 className={this.decorateCSS("card-text")}>
                                                                 {cardItem.text}
-                                                            </Base.H3>
+                                                            </Base.H5>
                                                         </ComposerLink>
                                                     )}
                                                 </div>

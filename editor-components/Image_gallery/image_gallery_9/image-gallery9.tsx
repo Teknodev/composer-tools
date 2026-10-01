@@ -23,12 +23,12 @@ class ImageGallery9 extends BaseImageGallery {
         {
           type: "object",
           key: "card",
-          displayer: "card",
+          displayer: "Card",
           value: [
             {
               type: "media",
               key: "image",
-              displayer: "Image",
+              displayer: "Media",
               value: {
                 type: "image",
                 url: "https://gradastudio.com/ozark/wp-content/uploads/sites/4/2020/07/portfolio-list-img-16.jpg",
@@ -71,7 +71,7 @@ class ImageGallery9 extends BaseImageGallery {
             {
               type: "media",
               key: "image",
-              displayer: "Image",
+              displayer: "Media",
               value: {
                 type: "image",
                 url: "https://gradastudio.com/ozark/wp-content/uploads/sites/4/2020/07/portfolio-list-img-17.jpg",
@@ -114,7 +114,7 @@ class ImageGallery9 extends BaseImageGallery {
             {
               type: "media",
               key: "image",
-              displayer: "Image",
+              displayer: "Media",
               value: {
                 type: "image",
                 url: "https://gradastudio.com/ozark/wp-content/uploads/sites/4/2020/07/portfolio-list-img-21.jpg",
@@ -157,7 +157,7 @@ class ImageGallery9 extends BaseImageGallery {
             {
               type: "media",
               key: "image",
-              displayer: "Image",
+              displayer: "Media",
               value: {
                 type: "image",
                 url: "https://gradastudio.com/ozark/wp-content/uploads/sites/4/2020/07/portfolio-list-img-19.jpg",
@@ -200,7 +200,7 @@ class ImageGallery9 extends BaseImageGallery {
             {
               type: "media",
               key: "image",
-              displayer: "Image",
+              displayer: "Media",
               value: {
                 type: "image",
                 url: "https://gradastudio.com/ozark/wp-content/uploads/sites/4/2020/07/portfolio-list-img-20.jpg",
@@ -243,7 +243,7 @@ class ImageGallery9 extends BaseImageGallery {
             {
               type: "media",
               key: "image",
-              displayer: "Image",
+              displayer: "Media",
               value: {
                 type: "image",
                 url: "https://gradastudio.com/ozark/wp-content/uploads/sites/4/2020/07/portfolio-list-img-24.jpg",
@@ -286,7 +286,7 @@ class ImageGallery9 extends BaseImageGallery {
             {
               type: "media",
               key: "image",
-              displayer: "Image",
+              displayer: "Media",
               value: {
                 type: "image",
                 url: "https://gradastudio.com/ozark/wp-content/uploads/sites/4/2020/07/portfolio-list-img-22.jpg",
@@ -329,7 +329,7 @@ class ImageGallery9 extends BaseImageGallery {
             {
               type: "media",
               key: "image",
-              displayer: "Image",
+              displayer: "Media",
               value: {
                 type: "image",
                 url: "https://gradastudio.com/ozark/wp-content/uploads/sites/4/2020/07/portfolio-list-img-23.jpg",
@@ -372,7 +372,7 @@ class ImageGallery9 extends BaseImageGallery {
             {
               type: "media",
               key: "image",
-              displayer: "Image",
+              displayer: "Media",
               value: {
                 type: "image",
                 url: "https://gradastudio.com/ozark/wp-content/uploads/sites/4/2020/07/portfolio-list-img-18.jpg",
@@ -415,7 +415,7 @@ class ImageGallery9 extends BaseImageGallery {
             {
               type: "media",
               key: "image",
-              displayer: "Image",
+              displayer: "Media",
               value: {
                 type: "image",
                 url: "https://gradastudio.com/ozark/wp-content/uploads/sites/4/2020/07/portfolio-list-img-25.jpg",
@@ -458,7 +458,7 @@ class ImageGallery9 extends BaseImageGallery {
             {
               type: "media",
               key: "image",
-              displayer: "Image",
+              displayer: "Media",
               value: {
                 type: "image",
                 url: "https://gradastudio.com/ozark/wp-content/uploads/sites/4/2020/07/portfolio-list-img-26.jpg",
@@ -501,7 +501,7 @@ class ImageGallery9 extends BaseImageGallery {
             {
               type: "media",
               key: "image",
-              displayer: "Image",
+              displayer: "Media",
               value: {
                 type: "image",
                 url: "https://gradastudio.com/ozark/wp-content/uploads/sites/4/2020/07/portfolio-list-img-27.jpg",
@@ -597,15 +597,15 @@ class ImageGallery9 extends BaseImageGallery {
                             this.castToString(item.subtitle)) && (
                             <div className={this.decorateCSS("category")}>
                               {this.castToString(item.title) && (
-                                <Base.P className={this.decorateCSS("title")}>
+                                <Base.H6 className={this.decorateCSS("title")}>
                                   {item.title}
-                                </Base.P>
+                                </Base.H6>
                               )}
                               <ComposerLink path={item.url}>
                                 {this.castToString(item.subtitle) && (
-                                  <Base.H4 className={this.decorateCSS("subtitle")}>
+                                  <Base.H5 className={this.decorateCSS("subtitle")}>
                                     {item.subtitle}
-                                  </Base.H4>
+                                  </Base.H5>
                                 )}
                               </ComposerLink>
                             </div>
