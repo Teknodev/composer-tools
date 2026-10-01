@@ -17,6 +17,13 @@ class ImageGallery5 extends BaseImageGallery {
     this.imageGalleryRef = React.createRef();
 
     this.addProp({
+      type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "",
+    });
+
+    this.addProp({
       type: "array",
       key: "gallery",
       displayer: "Gallery",
@@ -214,7 +221,7 @@ class ImageGallery5 extends BaseImageGallery {
             name: "RxCross1",
           },
           additionalParams: {
-            availableTypes: ["icon"],
+            availableTypes: ["icon", "image"],
           },
         },
         {
@@ -226,7 +233,7 @@ class ImageGallery5 extends BaseImageGallery {
             name: "GrCaretNext",
           },
           additionalParams: {
-            availableTypes: ["icon"],
+            availableTypes: ["icon", "image"],
           },
         },
         {
@@ -238,7 +245,7 @@ class ImageGallery5 extends BaseImageGallery {
             name: "GrCaretPrevious",
           },
           additionalParams: {
-            availableTypes: ["icon"],
+            availableTypes: ["icon", "image"],
           },
         },
         {
@@ -336,19 +343,25 @@ class ImageGallery5 extends BaseImageGallery {
         onKeyDown={this.handleKeyPress}
       >
         <Base.MaxContent className={this.decorateCSS("max-content")}>
+          {this.castToString(this.getPropValue("subtitle")) && (
+            <Base.VerticalContent className={this.decorateCSS("heading")}>
+              <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                {this.getPropValue("subtitle")}
+              </Base.SectionSubTitle>
+            </Base.VerticalContent>
+          )}
           <Base.ListGrid
             className={this.decorateCSS("images")}
             gridCount={{ pc: this.getCountSettings().itemCount, tablet: 3 }}
           >
             {galleries.slice(0, this.getComponentState("imageCount")).map((galleryItem: any, index: number) => {
+              if (!galleryItem.image) return null;
               return (
-                <div className={this.decorateCSS("image-container")} onClick={() => this.handleImageClick(index)}>
-                  {galleryItem.image && (
-                    <Base.Media
-                      value={galleryItem.image}
-                      className={this.decorateCSS("image")}
-                    />
-                  )}
+                <div key={index} className={this.decorateCSS("image-container")} onClick={() => this.handleImageClick(index)}>
+                  <Base.Media
+                    value={galleryItem.image}
+                    className={this.decorateCSS("image")}
+                  />
                 </div>
               );
             })}
@@ -380,13 +393,15 @@ class ImageGallery5 extends BaseImageGallery {
                   )}
                   
                   <div className={this.decorateCSS("image-info")}>
-                    <div className={this.decorateCSS("image-caption")}>
-                      {galleries[clickedImageIndex].caption}
-                    </div>
+                    {this.castToString(galleries[clickedImageIndex].caption) && (
+                      <Base.P className={this.decorateCSS("image-caption")}>
+                        {galleries[clickedImageIndex].caption}
+                      </Base.P>
+                    )}
                     {imageIndex && (
-                      <div className={this.decorateCSS("image-count")}>
+                      <Base.P className={this.decorateCSS("image-count")}>
                         {clickedImageIndex + 1} of {galleries.length}
-                      </div>
+                      </Base.P>
                     )}
                   </div>
                 </div>

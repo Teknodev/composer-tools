@@ -8,6 +8,14 @@
       width: 100%;
       gap: var(--composer-gap-lg);
 
+      .heading {
+        width: 100%;
+
+        .subtitle {
+          content: "";
+        }
+      }
+
       .gallery-nav {
         margin-bottom: var(--composer-gap-md);
 
@@ -35,7 +43,6 @@
             }
 
             .button.active {
-              font-weight: bold;
               border-bottom: 2px solid var(--composer-font-color-primary);
             }
           }

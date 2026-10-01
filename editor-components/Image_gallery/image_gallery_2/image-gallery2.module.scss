@@ -6,6 +6,12 @@
       justify-content: center;
       gap: var(--composer-gap-lg);
       width: 100%;
+        .heading {
+          width: 100%;
+          .subtitle {
+            content: "";
+          }
+        }
         .tab-container {
           margin-bottom: var(--composer-gap-md);
           display: flex;
@@ -22,7 +28,6 @@
             &:hover,
             &.active-tab {
               color: var(--composer-font-color-primary);
-              font-weight: bold;
               text-decoration: underline;
               text-underline-offset: var(--composer-gap-xs);
               opacity: 1;
@@ -162,7 +167,7 @@
           height: 100%;
           aspect-ratio: 4 / 3;
           overflow: hidden;
-          border-radius: var(--composer-border-radius-xs);
+          border-radius: var(--composer-border-radius-sm);
           .modal-image {
             object-fit: cover;
             width: 600px;

@@ -16,6 +16,12 @@ class ImageGallery9 extends BaseImageGallery {
     super(props, styles);
 
     this.addProp({
+      type: "string",
+      key: "sectionSubtitle",
+      displayer: "Subtitle",
+      value: "",
+    });
+    this.addProp({
       type: "array",
       key: "cards",
       displayer: "Cards",
@@ -558,6 +564,13 @@ class ImageGallery9 extends BaseImageGallery {
     return (
       <Base.Container className={this.decorateCSS("container")} isFull="true">
         <Base.MaxContent className={this.decorateCSS("max-content")}>
+          {this.castToString(this.getPropValue("sectionSubtitle")) && (
+            <Base.VerticalContent className={this.decorateCSS("heading")}>
+              <Base.SectionSubTitle className={this.decorateCSS("subtitle-heading")}>
+                {this.getPropValue("sectionSubtitle")}
+              </Base.SectionSubTitle>
+            </Base.VerticalContent>
+          )}
           <div className={this.decorateCSS("gallery-container")}>
             {this.castToObject<Card[]>("cards").map(
               (item: Card, indexCards: number) => {
@@ -603,9 +616,12 @@ class ImageGallery9 extends BaseImageGallery {
                               )}
                               <ComposerLink path={item.url}>
                                 {this.castToString(item.subtitle) && (
-                                  <Base.H5 className={this.decorateCSS("subtitle")}>
-                                    {item.subtitle}
-                                  </Base.H5>
+                                  <div className={this.decorateCSS("subtitle-wrapper")}>
+                                    <Base.H5 className={this.decorateCSS("subtitle")}>
+                                      {item.subtitle}
+                                    </Base.H5>
+                                    <div className={this.decorateCSS("subtitle-line")} />
+                                  </div>
                                 )}
                               </ComposerLink>
                             </div>

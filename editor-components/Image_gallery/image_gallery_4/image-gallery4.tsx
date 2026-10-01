@@ -26,26 +26,33 @@ class ImageGallery4 extends BaseImageGallery {
     super(props, styles);
 
     this.addProp({
+      type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "",
+    });
+
+    this.addProp({
       type: "array",
       key: "navItems",
       additionalParams: { maxElementCount: 7 },
-      displayer: "Nav Items",
+      displayer: "Navigation Items",
       value: [
         {
           type: "object",
           key: "nav-item",
-          displayer: "Nav Item",
+          displayer: "Navigation Item",
           value: [
             {
               type: "string",
               key: "title",
-              displayer: "Nav Title",
+              displayer: "Title",
               value: "Meat",
             },
             {
               type: "boolean",
               key: "hasSubnav",
-              displayer: "Show Sub Navs?",
+              displayer: "Sub Navigation",
               value: true,
             },
             {
@@ -77,12 +84,12 @@ class ImageGallery4 extends BaseImageGallery {
             {
               type: "array",
               key: "subnavItems",
-              displayer: "Sub Items",
+              displayer: "Sub Navigation Items",
               value: [
                 {
                   type: "object",
                   key: "subnavItem",
-                  displayer: "Subnav Item",
+                  displayer: "Sub Navigation Item",
                   value: [
                     {
                       type: "string",
@@ -140,7 +147,7 @@ class ImageGallery4 extends BaseImageGallery {
                 {
                   type: "object",
                   key: "subnavItem",
-                  displayer: "Subnav Item",
+                  displayer: "Sub Navigation Item",
                   value: [
                     {
                       type: "string",
@@ -198,7 +205,7 @@ class ImageGallery4 extends BaseImageGallery {
                 {
                   type: "object",
                   key: "subnavItem",
-                  displayer: "Subnav Item",
+                  displayer: "Sub Navigation Item",
                   value: [
                     {
                       type: "string",
@@ -260,18 +267,18 @@ class ImageGallery4 extends BaseImageGallery {
         {
           type: "object",
           key: "nav-item",
-          displayer: "Nav Item",
+          displayer: "Navigation Item",
           value: [
             {
               type: "string",
               key: "title",
-              displayer: "Nav Title",
+              displayer: "Title",
               value: "Seafood",
             },
             {
               type: "boolean",
               key: "hasSubnav",
-              displayer: "Show Sub Navs?",
+              displayer: "Sub Navigation",
               value: true,
             },
             {
@@ -303,12 +310,12 @@ class ImageGallery4 extends BaseImageGallery {
             {
               type: "array",
               key: "subnavItems",
-              displayer: "Sub Items",
+              displayer: "Sub Navigation Items",
               value: [
                 {
                   type: "object",
                   key: "subnavItem",
-                  displayer: "Subnav Item",
+                  displayer: "Sub Navigation Item",
                   value: [
                     {
                       type: "string",
@@ -366,7 +373,7 @@ class ImageGallery4 extends BaseImageGallery {
                 {
                   type: "object",
                   key: "subnavItem",
-                  displayer: "Subnav Item",
+                  displayer: "Sub Navigation Item",
                   value: [
                     {
                       type: "string",
@@ -471,7 +478,7 @@ class ImageGallery4 extends BaseImageGallery {
             name: "RxCross1",
           },
           additionalParams: {
-            availableTypes: ["icon"],
+            availableTypes: ["icon", "image"],
           },
         },
         {
@@ -483,7 +490,7 @@ class ImageGallery4 extends BaseImageGallery {
             name: "IoSearchOutline",
           },
           additionalParams: {
-            availableTypes: ["icon"],
+            availableTypes: ["icon", "image"],
           },
         },
         {
@@ -495,19 +502,19 @@ class ImageGallery4 extends BaseImageGallery {
             name: "HiArrowRight",
           },
           additionalParams: {
-            availableTypes: ["icon"],
+            availableTypes: ["icon", "image"],
           },
         },
         {
           type: "media",
           key: "prevIcon",
-          displayer: "Prev Icon",
+          displayer: "Previous Icon",
           value: {
             type: "icon",
             name: "HiArrowLeft",
           },
           additionalParams: {
-            availableTypes: ["icon"],
+            availableTypes: ["icon", "image"],
           },
         },
       ],
@@ -643,6 +650,13 @@ class ImageGallery4 extends BaseImageGallery {
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("gallery-wrapper")}>
+            {this.castToString(this.getPropValue("subtitle")) && (
+              <Base.VerticalContent className={this.decorateCSS("heading")}>
+                <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                  {this.getPropValue("subtitle")}
+                </Base.SectionSubTitle>
+              </Base.VerticalContent>
+            )}
             {(navItems?.length > 0 || subnavItems?.length > 0) && (
               <Base.VerticalContent className={this.decorateCSS("gallery-nav")}>
                 {navItems?.length > 0 && (
@@ -779,7 +793,7 @@ class ImageGallery4 extends BaseImageGallery {
                     />
                   )}
                   {icons.closeIcon && (
-                    <button
+                    <div
                       onClick={() => {
                         this.closeFocus();
                       }}
@@ -789,7 +803,7 @@ class ImageGallery4 extends BaseImageGallery {
                         value={icons.closeIcon}
                         className={this.decorateCSS("close-icon")}
                       />
-                    </button>
+                    </div>
                   )}
                 </div>
               </div>

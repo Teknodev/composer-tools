@@ -10,7 +10,19 @@
     flex-direction: column;
     gap: var(--composer-gap-lg);
 
+    .heading {
+      width: 100%;
+      position: relative;
+      z-index: 1;
+
+      .subtitle {
+        content: "";
+      }
+    }
+
     .gridContainer {
+      overflow: hidden;
+
       .column {
         height: 100%;
         overflow: hidden;

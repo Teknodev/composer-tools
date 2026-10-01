@@ -16,6 +16,11 @@ type CountSettings = {
     itemCount: number;
 };
 
+type AllCategory = {
+    showAll: boolean;
+    allText: React.JSX.Element;
+};
+
 type sectionType = {
     title: string;
     imageGallery: ImageType[];
@@ -25,10 +30,29 @@ class ImageGallery2 extends BaseImageGallery {
     constructor(props?: any) {
         super(props, styles);
         this.addProp({
-            type: "boolean",
-            key: "showAll",
+            type: "string",
+            key: "subtitle",
+            displayer: "Subtitle",
+            value: "",
+        });
+        this.addProp({
+            type: "object",
+            key: "allCategory",
             displayer: "All Category",
-            value: true,
+            value: [
+                {
+                    type: "boolean",
+                    key: "showAll",
+                    displayer: "Show",
+                    value: true,
+                },
+                {
+                    type: "string",
+                    key: "allText",
+                    displayer: "Text",
+                    value: "All",
+                },
+            ],
         });
         this.addProp({
             type: "object",
@@ -55,12 +79,7 @@ class ImageGallery2 extends BaseImageGallery {
                 },
             ]
         });
-        this.addProp({
-            type: "string",
-            key: "allText",
-            displayer: "All Button Text",
-            value: "All",
-        })
+
         this.addProp({
             type: "array",
             key: "gallery",
@@ -763,7 +782,7 @@ class ImageGallery2 extends BaseImageGallery {
                         name: "IoSearchOutline",
                     },
                     additionalParams: {
-                        availableTypes: ["icon"],
+                        availableTypes: ["icon", "image"],
                     },
                 },
                 {
@@ -775,7 +794,7 @@ class ImageGallery2 extends BaseImageGallery {
                         name: "FaArrowRight",
                     },
                     additionalParams: {
-                        availableTypes: ["icon"],
+                        availableTypes: ["icon", "image"],
                     },
                 },
                 {
@@ -787,7 +806,7 @@ class ImageGallery2 extends BaseImageGallery {
                         name: "FaArrowLeft",
                     },
                     additionalParams: {
-                        availableTypes: ["icon"],
+                        availableTypes: ["icon", "image"],
                     },
                 },
                 {
@@ -799,7 +818,7 @@ class ImageGallery2 extends BaseImageGallery {
                         name: "IoCloseOutline",
                     },
                     additionalParams: {
-                        availableTypes: ["icon"],
+                        availableTypes: ["icon", "image"],
                     },
                 },
                 {
@@ -880,7 +899,7 @@ class ImageGallery2 extends BaseImageGallery {
         const galleryCollection = this.castToObject<sectionType[]>("gallery");
         const currentIndex: number = this.getComponentState("default");
 
-        if (this.getPropValue("showAll") && currentIndex === -1) {
+        if (this.getAllCategory().showAll && currentIndex === -1) {
             return galleryCollection.flatMap((section) => section.imageGallery) || [];
         }
         return galleryCollection[currentIndex]?.imageGallery || [];
@@ -888,6 +907,9 @@ class ImageGallery2 extends BaseImageGallery {
 
     static getName(): string {
         return "Image Gallery 2";
+    }
+    getAllCategory(): AllCategory {
+        return this.castToObject<AllCategory>("allCategory");
     }
     getCountSettings(): CountSettings {
         return this.castToObject<CountSettings>("countSettings");
@@ -917,24 +939,32 @@ class ImageGallery2 extends BaseImageGallery {
         const magnifierIcon = modal.hoverIcon;
         const imgCounter = modal.showImageCounter;
         const imgCount = `${currentImageIndex + 1} of ${currentGallery.length}`;
-        const showAll = this.getPropValue("showAll");
+        const showAll = this.getAllCategory().showAll;
         const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
 
         return (
             <Base.Container className={`${this.decorateCSS("container")}${modalOpen && this.decorateCSS("with-overlay")}`}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
+                    {this.castToString(this.getPropValue("subtitle")) && (
+                        <Base.VerticalContent className={this.decorateCSS("heading")}>
+                            <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                                {this.getPropValue("subtitle")}
+                            </Base.SectionSubTitle>
+                        </Base.VerticalContent>
+                    )}
                     <Base.Row className={this.decorateCSS("tab-container")}>
-                        {showAll && (
+                        {showAll && this.castToString(this.getAllCategory().allText) && (
                             <Base.H6
                                 className={`${this.decorateCSS("tab")} ${currentIndex === -1 ? this.decorateCSS("active-tab") : ""
                                     }`}
                                 onClick={() => this.handleSectionClick(-1)}
                             >
-                                {this.getPropValue("allText")}
+                                {this.getAllCategory().allText}
                             </Base.H6>
                         )}
-                        {galleryCollection.map((element: any, index: number) => (
+                        {galleryCollection.map((element: any, index: number) => this.castToString(element.getPropValue("title")) && (
                             <Base.H6
+                                key={index}
                                 className={`${this.decorateCSS("tab")} ${index === currentIndex ? this.decorateCSS("active-tab") : ""
                                     }`}
                                 onClick={() => this.handleSectionClick(index)}
@@ -958,12 +988,14 @@ class ImageGallery2 extends BaseImageGallery {
                                             className={this.decorateCSS("image")}
                                         />
                                         <div className={this.decorateCSS("overlay")} />
-                                        <div className={this.decorateCSS("icon-wrapper")}>
-                                            <Base.Media
-                                                value={magnifierIcon}
-                                                className={this.decorateCSS("icon")}
-                                            />
-                                        </div>
+                                        {magnifierIcon && (
+                                            <div className={this.decorateCSS("icon-wrapper")}>
+                                                <Base.Media
+                                                    value={magnifierIcon}
+                                                    className={this.decorateCSS("icon")}
+                                                />
+                                            </div>
+                                        )}
                                     </div>
                                 </div>
                             );
@@ -984,15 +1016,17 @@ class ImageGallery2 extends BaseImageGallery {
                                     className={this.decorateCSS("modal-content")}
                                     onClick={(e) => e.stopPropagation()}
                                 >
-                                    <div
-                                        className={this.decorateCSS("close")}
-                                        onClick={this.closeModal}
-                                    >
-                                        <Base.Media
-                                            value={closeModalIcon}
-                                            className={this.decorateCSS("icon")}
-                                        />
-                                    </div>
+                                    {closeModalIcon && (
+                                        <div
+                                            className={this.decorateCSS("close")}
+                                            onClick={this.closeModal}
+                                        >
+                                            <Base.Media
+                                                value={closeModalIcon}
+                                                className={this.decorateCSS("icon")}
+                                            />
+                                        </div>
+                                    )}
 
                                     <div className={this.decorateCSS("image-container")}>
                                         <Base.Media
@@ -1001,13 +1035,15 @@ class ImageGallery2 extends BaseImageGallery {
                                         />
                                     </div>
                                     <div className={this.decorateCSS("image-info")}>
-                                        <div className={this.decorateCSS("image-title")}>
-                                            {currentImage.imageTitle}
-                                        </div>
+                                        {this.castToString(currentImage.imageTitle) && (
+                                            <Base.P className={this.decorateCSS("image-title")}>
+                                                {currentImage.imageTitle}
+                                            </Base.P>
+                                        )}
                                         {imgCounter && (
-                                            <div className={this.decorateCSS("image-count")}>
+                                            <Base.P className={this.decorateCSS("image-count")}>
                                                 {imgCount}
-                                            </div>
+                                            </Base.P>
                                         )}
                                     </div>
                                 </div>
@@ -1015,24 +1051,28 @@ class ImageGallery2 extends BaseImageGallery {
 
                             {currentImage && (
                                 <>
-                                    <div
-                                        className={this.decorateCSS("prev")}
-                                        onClick={this.prevImage}
-                                    >
-                                        <Base.Media
-                                            value={previousImageIcon}
-                                            className={this.decorateCSS("icon")}
-                                        />
-                                    </div>
-                                    <div
-                                        className={this.decorateCSS("next")}
-                                        onClick={this.nextImage}
-                                    >
-                                        <Base.Media
-                                            value={nextImageIcon}
-                                            className={this.decorateCSS("icon")}
-                                        />
-                                    </div>
+                                    {previousImageIcon && (
+                                        <div
+                                            className={this.decorateCSS("prev")}
+                                            onClick={this.prevImage}
+                                        >
+                                            <Base.Media
+                                                value={previousImageIcon}
+                                                className={this.decorateCSS("icon")}
+                                            />
+                                        </div>
+                                    )}
+                                    {nextImageIcon && (
+                                        <div
+                                            className={this.decorateCSS("next")}
+                                            onClick={this.nextImage}
+                                        >
+                                            <Base.Media
+                                                value={nextImageIcon}
+                                                className={this.decorateCSS("icon")}
+                                            />
+                                        </div>
+                                    )}
                                 </>
                             )}
                         </Base.Overlay>

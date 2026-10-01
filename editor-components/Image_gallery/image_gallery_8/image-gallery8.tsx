@@ -15,6 +15,13 @@ class ImageGallery8 extends BaseImageGallery {
         super(props, styles);
 
         this.addProp({
+            type: "string",
+            key: "subtitle",
+            displayer: "Subtitle",
+            value: "",
+        });
+
+        this.addProp({
             type: "array",
             key: "cards",
             displayer: "Cards",
@@ -418,26 +425,37 @@ class ImageGallery8 extends BaseImageGallery {
         return (
             <Base.Container className={this.decorateCSS("container")}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
-                    <Base.ListGrid
+                {this.castToString(this.getPropValue("subtitle")) && (
+                  <Base.VerticalContent className={this.decorateCSS("heading")}>
+                    <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                      {this.getPropValue("subtitle")}
+                    </Base.SectionSubTitle>
+                  </Base.VerticalContent>
+                )}
+                <Base.ListGrid
                         gridCount={{ pc: this.getCountSettings().itemCount, tablet: 3 }}
                         className={this.decorateCSS("image-container")}
                     >
                         {this.castToObject<Card[]>("cards").map(
                             (item: Card, indexCards: number) => {
-                                return (
+                            const titleExist = this.castToString(item.title);
+                            if (!item.image && !titleExist) return null;
+                            return (
                                     <div key={indexCards} className={`${this.decorateCSS("card")} ${item.active ? this.decorateCSS("active") : ""}`}>
                                         <ComposerLink path={item.url} isFullWidth={true}>
                                             {item.image && (
                                                 <Base.Media value={item.image} className={this.decorateCSS("image")} />
                                             )}
+                                            {titleExist && (
                                             <div
-                                                className={`${this.decorateCSS("category")} ${!item.image && this.decorateCSS("text-visible")
-                                                    }`}
+                                            className={`${this.decorateCSS("category")} ${!item.image && this.decorateCSS("text-visible")
+                                            }`}
                                             >
-                                                <Base.H4 className={this.decorateCSS("title")}>
-                                                    {item.title}
-                                                </Base.H4>
+                                            <Base.H4 className={this.decorateCSS("title")}>
+                                            {item.title}
+                                            </Base.H4>
                                             </div>
+                                            )}
                                         </ComposerLink>
                                     </div>
                                 );

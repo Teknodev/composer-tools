@@ -3,15 +3,23 @@ import { BaseImageGallery, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./image-gallery7.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "../../../custom-hooks/input-templates";
+import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 
 type CardItemType = {
     image: TypeMediaInputValue;
     title: React.JSX.Element;
     subtitle: React.JSX.Element;
+    url: string;
 };
 class ImageGallery7 extends BaseImageGallery {
     constructor(props?: any) {
         super(props, styles);
+        this.addProp({
+            type: "string",
+            key: "sectionSubtitle",
+            displayer: "Subtitle",
+            value: "",
+        });
         this.addProp({
             type: "object",
             key: "countSettings",
@@ -65,6 +73,12 @@ class ImageGallery7 extends BaseImageGallery {
                                 key: "subtitle",
                                 displayer: "Subtitle",
                                 value: "Summer, Fashion"
+                            },
+                            {
+                                type: "page",
+                                key: "url",
+                                displayer: "Navigate To",
+                                value: ""
                             }
                         ]
                     },
@@ -97,6 +111,12 @@ class ImageGallery7 extends BaseImageGallery {
                                 displayer: "Subtitle",
                                 value: "Architecture"
                             },
+                            {
+                                type: "page",
+                                key: "url",
+                                displayer: "Navigate To",
+                                value: ""
+                            },
                         ]
                     },
                     {
@@ -127,6 +147,12 @@ class ImageGallery7 extends BaseImageGallery {
                                 key: "subtitle",
                                 displayer: "Subtitle",
                                 value: "Portraits, Summer"
+                            },
+                            {
+                                type: "page",
+                                key: "url",
+                                displayer: "Navigate To",
+                                value: ""
                             },
                         ]
                     },
@@ -159,6 +185,12 @@ class ImageGallery7 extends BaseImageGallery {
                                 displayer: "Subtitle",
                                 value: "Architecture, Interior"
                             },
+                            {
+                                type: "page",
+                                key: "url",
+                                displayer: "Navigate To",
+                                value: ""
+                            },
                         ]
                     },
                     {
@@ -190,6 +222,12 @@ class ImageGallery7 extends BaseImageGallery {
                                 displayer: "Subtitle",
                                 value: "Architecture, Interior"
                             },
+                            {
+                                type: "page",
+                                key: "url",
+                                displayer: "Navigate To",
+                                value: ""
+                            },
                         ]
                     },
                     {
@@ -220,6 +258,12 @@ class ImageGallery7 extends BaseImageGallery {
                                 key: "subtitle",
                                 displayer: "Subtitle",
                                 value: "Architecture, Interior"
+                            },
+                            {
+                                type: "page",
+                                key: "url",
+                                displayer: "Navigate To",
+                                value: ""
                             }
                         ]
                     }
@@ -252,6 +296,12 @@ class ImageGallery7 extends BaseImageGallery {
                                 key: "subtitle",
                                 displayer: "Subtitle",
                                 value: "Brutalism, Portraits"
+                            },
+                            {
+                                type: "page",
+                                key: "url",
+                                displayer: "Navigate To",
+                                value: ""
                             }
                         ]
                     },
@@ -283,6 +333,12 @@ class ImageGallery7 extends BaseImageGallery {
                                 key: "subtitle",
                                 displayer: "Subtitle",
                                 value: "Portraits Summer"
+                            },
+                            {
+                                type: "page",
+                                key: "url",
+                                displayer: "Navigate To",
+                                value: ""
                             }
                         ]
                     },
@@ -314,6 +370,12 @@ class ImageGallery7 extends BaseImageGallery {
                                 key: "subtitle",
                                 displayer: "Subtitle",
                                 value: "Brutalism, Portraits"
+                            },
+                            {
+                                type: "page",
+                                key: "url",
+                                displayer: "Navigate To",
+                                value: ""
                             },
 
 
@@ -348,6 +410,12 @@ class ImageGallery7 extends BaseImageGallery {
                                 displayer: "Subtitle",
                                 value: "Summer, Fashion"
                             },
+                            {
+                                type: "page",
+                                key: "url",
+                                displayer: "Navigate To",
+                                value: ""
+                            },
 
                         ]
                     },
@@ -380,6 +448,12 @@ class ImageGallery7 extends BaseImageGallery {
                                 displayer: "Subtitle",
                                 value: "Summer, Fashion"
                             },
+                            {
+                                type: "page",
+                                key: "url",
+                                displayer: "Navigate To",
+                                value: ""
+                            },
 
                         ]
                     },
@@ -411,6 +485,12 @@ class ImageGallery7 extends BaseImageGallery {
                                 key: "subtitle",
                                 displayer: "Subtitle",
                                 value: "Brutalism, Portraits"
+                            },
+                            {
+                                type: "page",
+                                key: "url",
+                                displayer: "Navigate To",
+                                value: ""
                             }
                         ]
                     }
@@ -479,6 +559,13 @@ class ImageGallery7 extends BaseImageGallery {
         return (
             <Base.Container className={this.decorateCSS("container")} onScroll={this.debouncedHandleScroll}>
                 <Base.MaxContent className={this.decorateCSS("maxContent")}>
+                    {this.castToString(this.getPropValue("sectionSubtitle")) && (
+                        <Base.VerticalContent className={this.decorateCSS("heading")}>
+                            <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                                {this.getPropValue("sectionSubtitle")}
+                            </Base.SectionSubTitle>
+                        </Base.VerticalContent>
+                    )}
                     <Base.ListGrid gridCount={{ pc: 4, tablet: 4, phone: 1 }} className={this.decorateCSS("gridContainer")} >
                         {gallery.slice(0, this.getComponentState("imageCount")).map((cards: CardItemType, columnIndex: number) => {
                             const isEven = (columnIndex) % 2 !== 0;
@@ -489,6 +576,7 @@ class ImageGallery7 extends BaseImageGallery {
                                     style={style as React.CSSProperties}>
                                     <div className={this.decorateCSS("wrapper")}>
                                         {(this.castToString(cards.title) || this.castToString(cards.subtitle) || cards.image) &&
+                                            <ComposerLink path={cards.url} isFullWidth>
                                             <div className={this.decorateCSS("card")}>
                                                 {cards.image && (
                                                     <Base.Media value={cards.image} className={this.decorateCSS("image")} />
@@ -504,6 +592,7 @@ class ImageGallery7 extends BaseImageGallery {
                                                     </div>
                                                 )}
                                             </div>
+                                            </ComposerLink>
                                         }
                                     </div>
                                 </div>

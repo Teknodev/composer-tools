@@ -2,9 +2,17 @@
 
 .container {
     .max-content {
-        display: flex;
-        flex-direction: column;
-        gap: var(--composer-gap-lg);
+            display: flex;
+            flex-direction: column;
+            gap: var(--composer-gap-lg);
+
+            .heading {
+                width: 100%;
+
+                .subtitle {
+                    content: "";
+                }
+            }
 
         .section-container {
             gap: var(--composer-gap-xl);

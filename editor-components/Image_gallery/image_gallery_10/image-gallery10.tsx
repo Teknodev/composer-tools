@@ -10,7 +10,8 @@ type CardType = {
     image: string;
     text: string;
     link: string;
-    cardLink: string;
+    url: string;
+    textUrl: string;
 };
 
 type AnimateTexts = {
@@ -52,70 +53,77 @@ class ImageGallery10 extends BaseImageGallery {
             ],
         });
         this.addProp({
-            type: "boolean",
-            key: "showAnimateText",
-            displayer: "Show Animate Text",
-            value: true,
-        })
-        this.addProp({
-            type: "array",
-            key: "animate-texts",
-            displayer: "Animate Texts",
+            type: "object",
+            key: "animatedText",
+            displayer: "Animated Text",
             value: [
                 {
-                    type: "object",
-                    key: "animate-text",
-                    displayer: "Animate Text",
-                    value: [
-                        {
-                            type: "string",
-                            key: "animateText",
-                            displayer: "Animate Text",
-                            value: "feel safe",
-                        },
-                    ]
+                    type: "boolean",
+                    key: "showAnimateText",
+                    displayer: "Show",
+                    value: true,
                 },
                 {
-                    type: "object",
-                    key: "animate-text",
-                    displayer: "Animate Text",
+                    type: "array",
+                    key: "animate-texts",
+                    displayer: "Texts",
                     value: [
                         {
-                            type: "string",
-                            key: "animateText",
-                            displayer: "Animate Text",
-                            value: "passionate",
+                            type: "object",
+                            key: "animate-text",
+                            displayer: "Text",
+                            value: [
+                                {
+                                    type: "string",
+                                    key: "animateText",
+                                    displayer: "Text",
+                                    value: "Feel safe",
+                                },
+                            ]
                         },
-                    ]
+                        {
+                            type: "object",
+                            key: "animate-text",
+                            displayer: "Text",
+                            value: [
+                                {
+                                    type: "string",
+                                    key: "animateText",
+                                    displayer: "Text",
+                                    value: "Passionate",
+                                },
+                            ]
+                        },
+                        {
+                            type: "object",
+                            key: "animate-text",
+                            displayer: "Text",
+                            value: [
+                                {
+                                    type: "string",
+                                    key: "animateText",
+                                    displayer: "Text",
+                                    value: "Delighted",
+                                },
+                            ]
+                        }
+                    ],
                 },
-                {
-                    type: "object",
-                    key: "animate-text",
-                    displayer: "Animate Text",
-                    value: [
-                        {
-                            type: "string",
-                            key: "animateText",
-                            displayer: "Animate Text",
-                            value: "delighted",
-                        },
-                    ]
-                }
             ],
         });
         this.addProp({
             type: "array",
             key: "card-items",
-            displayer: "Card Items",
+            displayer: "Cards",
             value: [
                 {
                     type: "object",
                     key: "card-item",
-                    displayer: "Card Item",
+                    displayer: "Card",
                     value: [
                         {
                             type: "page",
-                            key: "cardLink",
+                            key: "url",
                             displayer: "Navigate To",
                             value: "",
                         },
@@ -133,7 +141,7 @@ class ImageGallery10 extends BaseImageGallery {
                         },
                         {
                             type: "page",
-                            key: "link",
+                            key: "textUrl",
                             displayer: "Navigate To",
                             value: "",
                         },
@@ -160,11 +168,11 @@ class ImageGallery10 extends BaseImageGallery {
                 {
                     type: "object",
                     key: "card-item",
-                    displayer: "Card Item",
+                    displayer: "Card",
                     value: [
                         {
                             type: "page",
-                            key: "cardLink",
+                            key: "url",
                             displayer: "Navigate To",
                             value: "",
                         },
@@ -182,7 +190,7 @@ class ImageGallery10 extends BaseImageGallery {
                         },
                         {
                             type: "page",
-                            key: "link",
+                            key: "textUrl",
                             displayer: "Navigate To",
                             value: "",
                         },
@@ -209,11 +217,11 @@ class ImageGallery10 extends BaseImageGallery {
                 {
                     type: "object",
                     key: "card-item",
-                    displayer: "Card Item",
+                    displayer: "Card",
                     value: [
                         {
                             type: "page",
-                            key: "cardLink",
+                            key: "url",
                             displayer: "Navigate To",
                             value: "",
                         },
@@ -231,7 +239,7 @@ class ImageGallery10 extends BaseImageGallery {
                         },
                         {
                             type: "page",
-                            key: "link",
+                            key: "textUrl",
                             displayer: "Navigate To",
                             value: "",
                         },
@@ -258,11 +266,11 @@ class ImageGallery10 extends BaseImageGallery {
                 {
                     type: "object",
                     key: "card-item",
-                    displayer: "Card Item",
+                    displayer: "Card",
                     value: [
                         {
                             type: "page",
-                            key: "cardLink",
+                            key: "url",
                             displayer: "Navigate To",
                             value: "",
                         },
@@ -280,7 +288,7 @@ class ImageGallery10 extends BaseImageGallery {
                         },
                         {
                             type: "page",
-                            key: "link",
+                            key: "textUrl",
                             displayer: "Navigate To",
                             value: "",
                         },
@@ -307,11 +315,11 @@ class ImageGallery10 extends BaseImageGallery {
                 {
                     type: "object",
                     key: "card-item",
-                    displayer: "Card Item",
+                    displayer: "Card",
                     value: [
                         {
                             type: "page",
-                            key: "cardLink",
+                            key: "url",
                             displayer: "Navigate To",
                             value: "",
                         },
@@ -329,7 +337,7 @@ class ImageGallery10 extends BaseImageGallery {
                         },
                         {
                             type: "page",
-                            key: "link",
+                            key: "textUrl",
                             displayer: "Navigate To",
                             value: "",
                         },
@@ -356,11 +364,11 @@ class ImageGallery10 extends BaseImageGallery {
                 {
                     type: "object",
                     key: "card-item",
-                    displayer: "Card Item",
+                    displayer: "Card",
                     value: [
                         {
                             type: "page",
-                            key: "cardLink",
+                            key: "url",
                             displayer: "Navigate To",
                             value: "",
                         },
@@ -378,7 +386,7 @@ class ImageGallery10 extends BaseImageGallery {
                         },
                         {
                             type: "page",
-                            key: "link",
+                            key: "textUrl",
                             displayer: "Navigate To",
                             value: "",
                         },
@@ -405,11 +413,11 @@ class ImageGallery10 extends BaseImageGallery {
                 {
                     type: "object",
                     key: "card-item",
-                    displayer: "Card Item",
+                    displayer: "Card",
                     value: [
                         {
                             type: "page",
-                            key: "cardLink",
+                            key: "url",
                             displayer: "Navigate To",
                             value: "",
                         },
@@ -427,7 +435,7 @@ class ImageGallery10 extends BaseImageGallery {
                         },
                         {
                             type: "page",
-                            key: "link",
+                            key: "textUrl",
                             displayer: "Navigate To",
                             value: "",
                         },
@@ -454,11 +462,11 @@ class ImageGallery10 extends BaseImageGallery {
                 {
                     type: "object",
                     key: "card-item",
-                    displayer: "Card Item",
+                    displayer: "Card",
                     value: [
                         {
                             type: "page",
-                            key: "cardLink",
+                            key: "url",
                             displayer: "Navigate To",
                             value: "",
                         },
@@ -476,7 +484,7 @@ class ImageGallery10 extends BaseImageGallery {
                         },
                         {
                             type: "page",
-                            key: "link",
+                            key: "textUrl",
                             displayer: "Navigate To",
                             value: "",
                         },
@@ -503,11 +511,11 @@ class ImageGallery10 extends BaseImageGallery {
                 {
                     type: "object",
                     key: "card-item",
-                    displayer: "Card Item",
+                    displayer: "Card",
                     value: [
                         {
                             type: "page",
-                            key: "cardLink",
+                            key: "url",
                             displayer: "Navigate To",
                             value: "",
                         },
@@ -525,7 +533,7 @@ class ImageGallery10 extends BaseImageGallery {
                         },
                         {
                             type: "page",
-                            key: "link",
+                            key: "textUrl",
                             displayer: "Navigate To",
                             value: "",
                         },
@@ -593,8 +601,7 @@ class ImageGallery10 extends BaseImageGallery {
     }
 
     componentDidMount() {
-        const animateTexts = this.castToObject<AnimateTexts[]>("animate-texts");
-        const texts = animateTexts?.map((item: AnimateTexts) => item.animateText) || [];
+        const texts = this.getAnimateTexts();
 
         this.setComponentState("texts", texts);
         this.setComponentState("currentIndex", 0);
@@ -603,11 +610,11 @@ class ImageGallery10 extends BaseImageGallery {
     }
 
     onComponentDidUpdate() {
-        const animateTexts = this.castToObject<AnimateTexts[]>("animate-texts");
-        const newTexts = animateTexts?.map((item: AnimateTexts) => item.animateText) || [];
+        const newTexts = this.getAnimateTexts();
         const currentTexts = this.getComponentState("texts") as string[];
 
-        const textsChanged = JSON.stringify(newTexts) !== JSON.stringify(currentTexts);
+        const toPlain = (list: any[]) => (list || []).map((text: any) => this.castToString(text));
+        const textsChanged = JSON.stringify(toPlain(newTexts)) !== JSON.stringify(toPlain(currentTexts));
 
         if (textsChanged) {
             this.clearAnimationInterval();
@@ -629,6 +636,15 @@ class ImageGallery10 extends BaseImageGallery {
     static getName(): string {
         return "Image Gallery 10";
     }
+    getAnimatedText(): { showAnimateText: boolean; "animate-texts": AnimateTexts[] } {
+        return this.castToObject<{ showAnimateText: boolean; "animate-texts": AnimateTexts[] }>("animatedText");
+    }
+    getAnimateTexts() {
+        const items = (this.getAnimatedText()["animate-texts"] || []) as any[];
+        return items
+            .map((item: any) => (typeof item?.getPropValue === "function" ? item.getPropValue("animateText") : item?.animateText))
+            .filter((text: any) => this.castToString(text));
+    }
     getCountSettings(): { itemCount: number } {
         return this.castToObject<{ itemCount: number }>("countSettings");
     }
@@ -637,7 +653,7 @@ class ImageGallery10 extends BaseImageGallery {
         const cardList = this.castToObject<CardType[]>("card-items");
         const title = this.castToString(this.getPropValue("title"));
         const currentText = this.getComponentState("currentText");
-        const showAnimateText = this.getPropValue("showAnimateText");
+        const showAnimateText = this.getAnimatedText().showAnimateText;
         const description = this.castToString(this.getPropValue("description"));
         const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons") || [];
         const hasButtons = buttons.some((button: INPUTS.CastedButton) => this.castToString(button.text));
@@ -659,7 +675,7 @@ class ImageGallery10 extends BaseImageGallery {
                                 </div>
                                 {showAnimateText && currentText && (
                                     <div className={this.decorateCSS("animated-text")}>
-                                        {this.castToString(currentText)}
+                                        {currentText}
                                     </div>
                                 )}
                             </Base.SectionTitle>}
@@ -687,11 +703,13 @@ class ImageGallery10 extends BaseImageGallery {
                                 className={this.decorateCSS("grid")}
                                 gridCount={{ pc: this.getCountSettings().itemCount, tablet: 3 }}>
                                 {cardList.map((cardItem: any, index: number) => (
-                                    <ComposerLink path={cardItem.cardLink} isFullWidth={true}>
+                                    <ComposerLink path={cardItem.url} isFullWidth={true}>
                                         <div className={this.decorateCSS("item-box")} key={index}>
                                             <div className={this.decorateCSS("item-container")}>
                                                 <div className={this.decorateCSS("background-media")}>
-                                                    <Base.Media value={cardItem.image} className={this.decorateCSS("background-media-element")} />
+                                                    <div className={this.decorateCSS("background-media-inner")}>
+                                                        <Base.Media value={cardItem.image} className={this.decorateCSS("background-media-element")} />
+                                                    </div>
                                                 </div>
                                                 <div className={`${this.decorateCSS("overlay-content")} ${cardItem.active ? this.decorateCSS("active") : ""}`}>
                                                     {this.castToString(cardItem.card_item_title) && (
@@ -702,11 +720,14 @@ class ImageGallery10 extends BaseImageGallery {
                                                     )}
                                                     {this.castToString(cardItem.text) && (
                                                         <ComposerLink
-                                                            path={cardItem.link}>
-                                                            <Base.H5
-                                                                className={this.decorateCSS("card-text")}>
-                                                                {cardItem.text}
-                                                            </Base.H5>
+                                                            path={cardItem.textUrl}>
+                                                            <div className={this.decorateCSS("card-text-wrapper")}>
+                                                                <Base.H5
+                                                                    className={this.decorateCSS("card-text")}>
+                                                                    {cardItem.text}
+                                                                </Base.H5>
+                                                                <div className={this.decorateCSS("card-text-line")} />
+                                                            </div>
                                                         </ComposerLink>
                                                     )}
                                                 </div>

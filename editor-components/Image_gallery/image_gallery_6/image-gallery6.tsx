@@ -9,6 +9,10 @@ interface GalleryItem {
     sectionTitle: React.JSX.Element,
     images: ImageItem[],
 }
+interface AllCategory {
+    showAll: boolean,
+    allText: React.JSX.Element,
+}
 interface ImageItem {
     image_image: TypeMediaInputValue,
     badge: React.JSX.Element,
@@ -22,14 +26,31 @@ interface ImageItem {
 class ImageGallery6 extends BaseImageGallery {
     constructor(props?: any) {
         super(props, styles);
-        this.addProp(
-            {
-                type: "boolean",
-                key: "showAll",
-                displayer: "All Category",
-                value: true
-            }
-        )
+        this.addProp({
+            type: "string",
+            key: "subtitle",
+            displayer: "Subtitle",
+            value: "",
+        });
+        this.addProp({
+            type: "object",
+            key: "allCategory",
+            displayer: "All Category",
+            value: [
+                {
+                    type: "boolean",
+                    key: "showAll",
+                    displayer: "Show",
+                    value: true
+                },
+                {
+                    type: "string",
+                    key: "allText",
+                    displayer: "Text",
+                    value: "ALL",
+                },
+            ]
+        });
         this.addProp({
             type: "object",
             key: "countSettings",
@@ -50,12 +71,7 @@ class ImageGallery6 extends BaseImageGallery {
             ]
         });
         this.addProp(INPUTS.BUTTON("button", "Button", "Load More", null, null, null, "Primary"));
-        this.addProp({
-            type: "string",
-            key: "allText",
-            displayer: "All Button Text",
-            value: "ALL",
-        })
+
 
         this.addProp({
             type: "array",
@@ -122,13 +138,13 @@ class ImageGallery6 extends BaseImageGallery {
                                         {
                                             type: "media",
                                             key: "nextArrow",
-                                            displayer: "Next Arrow",
+                                            displayer: "Icon",
                                             value: {
                                                 type: "icon",
                                                 name: "FaArrowRightLong",
                                             },
                                             additionalParams: {
-                                                availableTypes: ["icon"],
+                                                availableTypes: ["icon", "image"],
                                             },
                                         },
                                         {
@@ -183,13 +199,13 @@ class ImageGallery6 extends BaseImageGallery {
                                         {
                                             type: "media",
                                             key: "nextArrow",
-                                            displayer: "Next Arrow",
+                                            displayer: "Icon",
                                             value: {
                                                 type: "icon",
                                                 name: "FaArrowRightLong",
                                             },
                                             additionalParams: {
-                                                availableTypes: ["icon"],
+                                                availableTypes: ["icon", "image"],
                                             },
                                         },
                                         {
@@ -244,13 +260,13 @@ class ImageGallery6 extends BaseImageGallery {
                                         {
                                             type: "media",
                                             key: "nextArrow",
-                                            displayer: "Next Arrow",
+                                            displayer: "Icon",
                                             value: {
                                                 type: "icon",
                                                 name: "FaArrowRightLong",
                                             },
                                             additionalParams: {
-                                                availableTypes: ["icon"],
+                                                availableTypes: ["icon", "image"],
                                             },
                                         },
 
@@ -327,13 +343,13 @@ class ImageGallery6 extends BaseImageGallery {
                                         {
                                             type: "media",
                                             key: "nextArrow",
-                                            displayer: "Next Arrow",
+                                            displayer: "Icon",
                                             value: {
                                                 type: "icon",
                                                 name: "FaArrowRightLong",
                                             },
                                             additionalParams: {
-                                                availableTypes: ["icon"],
+                                                availableTypes: ["icon", "image"],
                                             },
                                         },
                                         {
@@ -388,13 +404,13 @@ class ImageGallery6 extends BaseImageGallery {
                                         {
                                             type: "media",
                                             key: "nextArrow",
-                                            displayer: "Next Arrow",
+                                            displayer: "Icon",
                                             value: {
                                                 type: "icon",
                                                 name: "FaArrowRightLong",
                                             },
                                             additionalParams: {
-                                                availableTypes: ["icon"],
+                                                availableTypes: ["icon", "image"],
                                             },
                                         },
                                         {
@@ -449,13 +465,13 @@ class ImageGallery6 extends BaseImageGallery {
                                         {
                                             type: "media",
                                             key: "nextArrow",
-                                            displayer: "Next Arrow",
+                                            displayer: "Icon",
                                             value: {
                                                 type: "icon",
                                                 name: "FaArrowRightLong",
                                             },
                                             additionalParams: {
-                                                availableTypes: ["icon"],
+                                                availableTypes: ["icon", "image"],
                                             },
                                         },
                                         {
@@ -510,13 +526,13 @@ class ImageGallery6 extends BaseImageGallery {
                                         {
                                             type: "media",
                                             key: "nextArrow",
-                                            displayer: "Next Arrow",
+                                            displayer: "Icon",
                                             value: {
                                                 type: "icon",
                                                 name: "FaArrowRightLong",
                                             },
                                             additionalParams: {
-                                                availableTypes: ["icon"],
+                                                availableTypes: ["icon", "image"],
                                             },
                                         },
                                         {
@@ -591,13 +607,13 @@ class ImageGallery6 extends BaseImageGallery {
                                         {
                                             type: "media",
                                             key: "nextArrow",
-                                            displayer: "Next Arrow",
+                                            displayer: "Icon",
                                             value: {
                                                 type: "icon",
                                                 name: "FaArrowRightLong",
                                             },
                                             additionalParams: {
-                                                availableTypes: ["icon"],
+                                                availableTypes: ["icon", "image"],
                                             },
                                         },
                                         {
@@ -615,7 +631,7 @@ class ImageGallery6 extends BaseImageGallery {
                 }
             ],
         });
-        this.setComponentState("selectedSection", this.castToString(this.getPropValue("allText")));
+        this.setComponentState("selectedSection", this.castToString(this.getAllCategory().allText));
         this.setComponentState("moreImages", 0);
     }
 
@@ -625,11 +641,23 @@ class ImageGallery6 extends BaseImageGallery {
     getCountSettings(): { imageCountInitial: number; imageCount: number } {
         return this.castToObject<{ imageCountInitial: number; imageCount: number }>("countSettings");
     }
+    getAllCategory(): AllCategory {
+        return this.castToObject<AllCategory>("allCategory");
+    }
+    getSelectedSection() {
+        const selectedSection = this.getComponentState("selectedSection");
+        const allText = this.castToString(this.getAllCategory().allText);
+        if (!this.getAllCategory().showAll && (!selectedSection || selectedSection === allText)) {
+            const galleries = this.castToObject<GalleryItem[]>("galleries");
+            return galleries.length > 0 ? this.castToString(galleries[0].sectionTitle) : selectedSection;
+        }
+        return selectedSection;
+    }
     getCurrentGallery() {
         const galleryCollection = this.castToObject<GalleryItem[]>("galleries");
-        const selectedSection = this.getComponentState("selectedSection");
+        const selectedSection = this.getSelectedSection();
 
-        if (selectedSection === this.castToString(this.getPropValue("allText"))) {
+        if (selectedSection === this.castToString(this.getAllCategory().allText)) {
             return galleryCollection.flatMap(gallery => gallery.images);
         } else {
             const currentGallery = galleryCollection.find(
@@ -639,7 +667,7 @@ class ImageGallery6 extends BaseImageGallery {
         }
     }
     handleSectionClickAll(): void {
-        this.setComponentState("selectedSection", this.castToString(this.getPropValue("allText")));
+        this.setComponentState("selectedSection", this.castToString(this.getAllCategory().allText));
         this.setComponentState("imageCount", this.getCountSettings().imageCountInitial);
         this.setComponentState("moreImages", 0);
     }
@@ -657,7 +685,7 @@ class ImageGallery6 extends BaseImageGallery {
     render() {
         const galleries = this.castToObject<GalleryItem[]>("galleries");
         const currentGallery = this.getCurrentGallery();
-        const selectedSection = this.getComponentState("selectedSection");
+        const selectedSection = this.getSelectedSection();
         if (this.getComponentState("imageCount") != this.getCountSettings().imageCountInitial + this.getComponentState("moreImages"))
             this.setComponentState("imageCount", this.getCountSettings().imageCountInitial + this.getComponentState("moreImages"));
 
@@ -667,31 +695,39 @@ class ImageGallery6 extends BaseImageGallery {
 
             <Base.Container className={this.decorateCSS("container")}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
-                    <Base.Row className={this.decorateCSS("section-container")}>
-                        {this.getPropValue("showAll") && (
-                            <Base.H5
-                                className={`${this.decorateCSS("section-text")} ${(selectedSection === this.castToString(this.getPropValue("allText")) || !selectedSection) ? this.decorateCSS("active") : ""
+                {this.castToString(this.getPropValue("subtitle")) && (
+                    <Base.VerticalContent className={this.decorateCSS("heading")}>
+                        <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                            {this.getPropValue("subtitle")}
+                        </Base.SectionSubTitle>
+                    </Base.VerticalContent>
+                )}
+                <Base.Row className={this.decorateCSS("section-container")}>
+                {this.getAllCategory().showAll && this.castToString(this.getAllCategory().allText) && (
+                    <Base.H6
+                                className={`${this.decorateCSS("section-text")} ${(selectedSection === this.castToString(this.getAllCategory().allText) || !selectedSection) ? this.decorateCSS("active") : ""
                                     }`}
                                 onClick={() => this.handleSectionClickAll()}
                             >
-                                {this.getPropValue("allText")}
-                            </Base.H5>
+                                {this.getAllCategory().allText}
+                            </Base.H6>
                         )}
-
-                        {galleries.map((element: any) => (
-                            <Base.H5
-                                className={`${this.decorateCSS("section-text")} ${this.castToString(element.sectionTitle) === this.getComponentState("selectedSection") ? this.decorateCSS("active") : ""
+                        {galleries.map((element: any, index: number) => this.castToString(element.sectionTitle) && (
+                            <Base.H6
+                                key={index}
+                                className={`${this.decorateCSS("section-text")} ${this.castToString(element.sectionTitle) === selectedSection ? this.decorateCSS("active") : ""
                                     }`}
                                 onClick={() => this.handleSectionClick(element)}
                             >
                                 {element.getPropValue("sectionTitle")}
-                            </Base.H5>
+                            </Base.H6>
                         ))}
                     </Base.Row>
                     <div className={this.decorateCSS("content")}>
                         <div className={this.decorateCSS("left-container")}>
                             {currentGallery.slice(0, this.getComponentState("imageCount")).map((item: ImageItem, index: number) => {
                                 if (index % 2 === 0) {
+                                    if (!item.image_image && !this.castToString(item.badge) && !this.castToString(item.title) && !this.castToString(item.description)) return null;
                                     if (this.getComponentState("imageCount") <= 3) {
                                         var imageClass = index === 0 || index === 2
                                             ? this.decorateCSS("normal-image")
@@ -756,6 +792,7 @@ class ImageGallery6 extends BaseImageGallery {
                         <div className={this.decorateCSS("right-container")}>
                             {currentGallery.slice(0, this.getComponentState("imageCount")).map((item: ImageItem, index: number) => {
                                 if (index % 2 === 1) {
+                                    if (!item.image_image && !this.castToString(item.badge) && !this.castToString(item.title) && !this.castToString(item.description)) return null;
                                     if (this.getComponentState("imageCount") <= 3) {
                                         var imageClass = index === 1
                                             ? this.decorateCSS("normal-image")
@@ -799,9 +836,9 @@ class ImageGallery6 extends BaseImageGallery {
                                                                         )}
                                                                         {item.nextArrow && (
 
-                                                                            <button className={this.decorateCSS("button")}>
+                                                                            <div className={this.decorateCSS("button")}>
                                                                                 <Base.Media value={item.nextArrow} className={this.decorateCSS("icon")} />
-                                                                            </button>
+                                                                            </div>
 
                                                                         )}
                                                                     </div>

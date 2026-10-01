@@ -115,6 +115,7 @@ class ImageGallery11 extends BaseImageGallery {
     });
 
     this.addProp({ type: "boolean", key: "imageOverlay", displayer: "Media Overlay", value: false });
+    this.addProp({ type: "boolean", key: "animation", displayer: "Animation", value: true });
 
     this.addProp({
       type: "array",
@@ -351,7 +352,7 @@ class ImageGallery11 extends BaseImageGallery {
       last = ts;
       for (let i = 0; i < this.rowStates.length; i++) {
         const s = this.rowStates[i];
-        if (!s || s.paused || s.dragging) continue;
+        if (!s || s.paused || s.dragging || this.getPropValue("animation") === false) continue;
         s.offset += s.speed * s.dir * dt;
         this.setOffset(i);
       }
@@ -474,7 +475,9 @@ class ImageGallery11 extends BaseImageGallery {
       <Base.Container isFull className={this.decorateCSS("container")}>
         {backgroundMedia && (
           <div className={this.decorateCSS("background-media")}>
-            <Base.Media value={backgroundMedia} className={this.decorateCSS("background-media-content")} />
+            <div className={this.decorateCSS("background-media-inner")}>
+              <Base.Media value={backgroundMedia} className={this.decorateCSS("background-media-content")} />
+            </div>
           </div>
         )}
 
@@ -483,19 +486,17 @@ class ImageGallery11 extends BaseImageGallery {
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           {hasTextContent && (
             <div className={this.decorateCSS("content")}>
-              <div className={this.decorateCSS("text-wrapper")}>
-                <Base.VerticalContent className={headingClasses} {...headingProps}>
-                  {subtitleText && (
-                    <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{subtitle}</Base.SectionSubTitle>
-                  )}
-                  {titleText && <Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>}
-                  {descriptionText && (
-                    <Base.SectionDescription className={this.decorateCSS("description")}>
-                      {description}
-                    </Base.SectionDescription>
-                  )}
-                </Base.VerticalContent>
-              </div>
+              <Base.VerticalContent className={headingClasses} {...headingProps}>
+                {subtitleText && (
+                  <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{subtitle}</Base.SectionSubTitle>
+                )}
+                {titleText && <Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>}
+                {descriptionText && (
+                  <Base.SectionDescription className={this.decorateCSS("description")}>
+                    {description}
+                  </Base.SectionDescription>
+                )}
+              </Base.VerticalContent>
             </div>
           )}
         </Base.MaxContent>
@@ -565,9 +566,11 @@ class ImageGallery11 extends BaseImageGallery {
           <Base.Overlay isVisible className={this.decorateCSS("overlay")} onClick={() => this.closePopup(rows)}>
             <div className={this.decorateCSS("modal-wrapper")} onClick={(e) => e.stopPropagation()}>
               <div className={this.decorateCSS("modal-content")}>
-                <div className={this.decorateCSS("close")} onClick={() => this.closePopup(rows)}>
-                  <Base.Media value={icons.popupCloseIcon} className={this.decorateCSS("icon")} />
-                </div>
+                {icons.popupCloseIcon && (
+                  <div className={this.decorateCSS("close")} onClick={() => this.closePopup(rows)}>
+                    <Base.Media value={icons.popupCloseIcon} className={this.decorateCSS("icon")} />
+                  </div>
+                )}
 
                 <div
                   className={this.decorateCSS("image-container")}
@@ -580,25 +583,29 @@ class ImageGallery11 extends BaseImageGallery {
               </div>
             </div>
 
-            <div
-              className={`${this.decorateCSS("nav")} ${this.decorateCSS("prev")}`}
-              onClick={(e) => {
-                e.stopPropagation();
-                this.navigatePopup(rows, "prev");
-              }}
-            >
-              <Base.Media value={icons.popupLeftIcon} className={this.decorateCSS("icon")} />
-            </div>
+            {icons.popupLeftIcon && (
+              <div
+                className={`${this.decorateCSS("nav")} ${this.decorateCSS("prev")}`}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  this.navigatePopup(rows, "prev");
+                }}
+              >
+                <Base.Media value={icons.popupLeftIcon} className={this.decorateCSS("icon")} />
+              </div>
+            )}
 
-            <div
-              className={`${this.decorateCSS("nav")} ${this.decorateCSS("next")}`}
-              onClick={(e) => {
-                e.stopPropagation();
-                this.navigatePopup(rows, "next");
-              }}
-            >
-              <Base.Media value={icons.popupRightIcon} className={this.decorateCSS("icon")} />
-            </div>
+            {icons.popupRightIcon && (
+              <div
+                className={`${this.decorateCSS("nav")} ${this.decorateCSS("next")}`}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  this.navigatePopup(rows, "next");
+                }}
+              >
+                <Base.Media value={icons.popupRightIcon} className={this.decorateCSS("icon")} />
+              </div>
+            )}
           </Base.Overlay>
         )}
       </Base.Container>

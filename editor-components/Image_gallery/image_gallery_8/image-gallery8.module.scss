@@ -2,6 +2,18 @@
 
 .container {
   .max-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--composer-gap-lg);
+
+    .heading {
+      width: 100%;
+
+      .subtitle {
+        content: "";
+      }
+    }
+
     .image-container {
       .card {
         width: 100%;
