@@ -349,7 +349,7 @@ class Feature14 extends BaseFeature {
           }
 
           <div className={this.decorateCSS("section")}>
-            <Base.ListGrid className={this.decorateCSS("cards")} gridCount={{ pc: this.getPropValue("itemCount"), tablet: 4 }}>
+            <Base.ListGrid className={this.decorateCSS("cards")} gridCount={{ pc: this.getPropValue("itemCount"), tablet: 2 }}>
               {cardItems.map((item: CardItem, index: number) => {
                 const subtitleExist = !!this.castToString(item.cardItem_subtitle);
                 const cardButtons = item.cardItem_buttons || [];
