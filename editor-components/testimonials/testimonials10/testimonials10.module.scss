@@ -125,6 +125,7 @@
             left: 0;
             right: -100vw;
             background: var(--composer-primary-color);
+            border-radius: var(--composer-border-radius-md) 0 0 var(--composer-border-radius-md);
             z-index: -1;
           }
           .slider-style {

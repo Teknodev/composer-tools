@@ -124,7 +124,7 @@ class Testimonials16 extends Testimonials {
             {
               type: "media",
               key: "image",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: { availableTypes: ["image"] },
               value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/69147acd3596a1002b256950?alt=media" },
             },
@@ -161,7 +161,7 @@ class Testimonials16 extends Testimonials {
             {
               type: "media",
               key: "image",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: { availableTypes: ["image"] },
               value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/69147ab13596a1002b256929?alt=media" },
             },
@@ -198,7 +198,7 @@ class Testimonials16 extends Testimonials {
             {
               type: "media",
               key: "image",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: { availableTypes: ["image"] },
               value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/69147a873596a1002b2568ec?alt=media" },
             },
@@ -225,7 +225,6 @@ class Testimonials16 extends Testimonials {
 
     this.addProp({ type: "boolean", key: "backgroundOverlay", displayer: "Background Overlay", value: true });
     this.addProp({ type: "boolean", key: "mediaOverlay", displayer: "Overlay", value: false });
-    this.addProp({ type: "boolean", key: "autoplay", displayer: "Autoplay", value: true });
     this.addProp({ type: "boolean", key: "divider", displayer: "Divider", value: true });
 
     this.addProp({
@@ -310,7 +309,6 @@ class Testimonials16 extends Testimonials {
     const dividerEnabled = this.getPropValue("divider") !== false;
     const showMediaOverlay = this.getPropValue("mediaOverlay") !== false;
     const showBackgroundOverlay = this.getPropValue("backgroundOverlay");
-    const autoplayEnabled = this.getPropValue("autoplay") !== false;
     const activeItemImage = filteredTestimonials[activeIndex]?.image;
     const activePortrait = activeItemImage && activeItemImage.type === "image" && activeItemImage.url ? activeItemImage : null;
     const subtitleType = Base.getSectionSubTitleType();
@@ -324,7 +322,7 @@ class Testimonials16 extends Testimonials {
       arrows: false,
       dots: false,
       infinite: filteredTestimonials.length > 1,
-      autoplay: autoplayEnabled && filteredTestimonials.length > 1,
+      autoplay: sliderSettings.autoplay !== false && filteredTestimonials.length > 1,
       beforeChange: (_current: number, next: number) => {
         const img = filteredTestimonials[_current]?.image;
         this.setComponentState("prevBackground", img && img.type === "image" && img.url ? img : null);
