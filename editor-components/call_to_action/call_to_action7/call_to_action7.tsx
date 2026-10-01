@@ -24,7 +24,7 @@ class CallToAction7Page extends BaseCallToAction {
       type: "string",
       key: "subtitle",
       displayer: "Subtitle",
-      value: "Get your free e-book",
+      value: "",
     });
     this.addProp({
       type: "string",
@@ -84,15 +84,13 @@ class CallToAction7Page extends BaseCallToAction {
       ],
     });
 
-    this.addProp(
-      INPUTS.BUTTON("button", "Button", "Get your FREE copy", "", null, null, "Primary")
-    );
-
     this.addProp({
-      type: "boolean",
-      key: "animation",
-      displayer: "Animation",
-      value: true,
+      type: "array",
+      key: "buttons",
+      displayer: "Buttons",
+      value: [
+        INPUTS.BUTTON("button", "Button", "Get your FREE copy", "", null, null, "Primary"),
+      ],
     });
 
     const inputData = this.castToObject<InputData>("inputData");
@@ -133,9 +131,9 @@ class CallToAction7Page extends BaseCallToAction {
     const placeholder = this.castToString(inputData.placeholder);
     const submitText = this.castToString(inputData.submitText);
 
-    const button = this.castToObject<INPUTS.CastedButton>("button");
-    const buttonText = this.castToString(button?.text);
-    const hasButton = !!buttonText;
+    const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons") || [];
+    const validButtons = buttons.filter((button: INPUTS.CastedButton) => this.castToString(button?.text));
+    const hasButton = validButtons.length > 0;
 
     const hasRightContent = subtitle || title || description || placeholder;
     const onlyImage = image && !hasRightContent;
@@ -206,11 +204,13 @@ class CallToAction7Page extends BaseCallToAction {
                             )}
                             {hasButton && (
                               <div className={this.decorateCSS("button-container")}>
-                                <ComposerLink path={button?.url} isFullWidth>
-                                  <Base.Button buttonType={button?.type} className={this.decorateCSS("button")}>
-                                    <Base.P className={this.decorateCSS("button-text")}>{button?.text}</Base.P>
-                                  </Base.Button>
-                                </ComposerLink>
+                                {validButtons.map((button: INPUTS.CastedButton, index: number) => (
+                                  <ComposerLink key={index} path={button?.url} isFullWidth>
+                                    <Base.Button buttonType={button?.type} className={this.decorateCSS("button")}>
+                                      <Base.P className={this.decorateCSS("button-text")}>{button?.text}</Base.P>
+                                    </Base.Button>
+                                  </ComposerLink>
+                                ))}
                               </div>
                             )}
                           </Form>
@@ -220,11 +220,13 @@ class CallToAction7Page extends BaseCallToAction {
                   }
                   {!placeholder && hasButton && (
                     <div className={this.decorateCSS("button-container")}>
-                      <ComposerLink path={button?.url}>
-                        <Base.Button buttonType={button?.type} className={this.decorateCSS("button")}>
-                          <Base.P className={this.decorateCSS("button-text")}>{button?.text}</Base.P>
-                        </Base.Button>
-                      </ComposerLink>
+                      {validButtons.map((button: INPUTS.CastedButton, index: number) => (
+                        <ComposerLink key={index} path={button?.url}>
+                          <Base.Button buttonType={button?.type} className={this.decorateCSS("button")}>
+                            <Base.P className={this.decorateCSS("button-text")}>{button?.text}</Base.P>
+                          </Base.Button>
+                        </ComposerLink>
+                      ))}
                     </div>
                   )}
                 </Base.VerticalContent>

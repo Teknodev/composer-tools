@@ -125,6 +125,22 @@ class CallToAction2Page extends BaseCallToAction {
     const subtitleExist = this.castToString(this.getPropValue("subtitle"));
     const descriptionExist = this.castToString(this.getPropValue("description"));
     const description = this.getPropValue("description");
+    const isCenter = alignment === "center";
+
+    const buttonContainer = buttons?.length > 0 && (
+      <div className={this.decorateCSS("button-container")}>
+        {buttons.map((button: INPUTS.CastedButton, index: number) => {
+
+          return this.castToString(button.text) && (
+            <ComposerLink path={button.url}>
+              <Base.Button className={this.decorateCSS("button")} buttonType={button.type}>
+                <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
+              </Base.Button>
+            </ComposerLink>
+          )
+        })}
+      </div>
+    );
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
@@ -133,9 +149,9 @@ class CallToAction2Page extends BaseCallToAction {
           <div className={this.decorateCSS("wrapper")}>
             {(titleExist || subtitleExist || descriptionExist || (buttons.length > 0)) && (
               <div
-                className={`${this.decorateCSS("header")} ${alignment === "center" && this.decorateCSS("center")}`}
+                className={`${this.decorateCSS("header")} ${isCenter && this.decorateCSS("center")}`}
               >
-                {(titleExist || subtitleExist || descriptionExist) && (
+                {(titleExist || subtitleExist || descriptionExist || (isCenter && buttonContainer)) && (
                   <Base.VerticalContent className={this.decorateCSS("vertical-content")}>
                     {subtitleExist && (
                       <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
@@ -152,22 +168,10 @@ class CallToAction2Page extends BaseCallToAction {
                         {description}
                       </Base.SectionDescription>
                     )}
+                    {isCenter && buttonContainer}
                   </Base.VerticalContent>
                 )}
-                {buttons?.length > 0 && (
-                  <div className={this.decorateCSS("button-container")}>
-                    {buttons.map((button: INPUTS.CastedButton, index: number) => {
-
-                      return this.castToString(button.text) && (
-                        <ComposerLink path={button.url}>
-                          <Base.Button className={this.decorateCSS("button")} buttonType={button.type}>
-                            <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
-                          </Base.Button>
-                        </ComposerLink>
-                      )
-                    })}
-                  </div>
-                )}
+                {!isCenter && buttonContainer}
               </div>
             )}
             {image && (

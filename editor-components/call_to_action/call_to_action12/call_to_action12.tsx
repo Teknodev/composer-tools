@@ -18,7 +18,7 @@ class CallToAction12Page extends BaseCallToAction {
       type: "string",
       key: "subtitle",
       displayer: "Subtitle",
-      value: "Newsletter",
+      value: "",
     });
     this.addProp({
       type: "string",

@@ -21,36 +21,44 @@
     }
   }
 
-  &.overlay-active {
-    &::before {
-      position: absolute;
-      content: "";
-      background: var(--composer-overlay-color);
-      width: 100%;
-      height: 100%;
-      left: 0px;
-      top: 0px;
-      z-index: 1;
-    }
-  }
-
-  .background {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    z-index: 0;
-  }
-
   .max-content {
     position: relative;
-    z-index: 1;
-    display: flex;
-    flex-direction: column;
-    gap: var(--composer-gap-lg);
     z-index: 2;
+
+    .box {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: var(--composer-gap-lg);
+
+      &.box-with-media {
+        isolation: isolate;
+        overflow: hidden;
+        border-radius: var(--composer-border-radius-md);
+        padding: calc(var(--composer-gap-xl) * 2) var(--composer-gap-xl);
+      }
+
+      .background {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: -1;
+      }
+
+      .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: var(--composer-overlay-color);
+        pointer-events: none;
+        z-index: -1;
+      }
+    }
 
     .header {
       align-items: center;
@@ -172,6 +180,12 @@
 @container (max-width: #{$composer-phone-width}) {
   .container {
     .max-content {
+      .box {
+        &.box-with-media {
+          padding: var(--composer-gap-xl) var(--composer-gap-md);
+        }
+      }
+
       .header {
         align-items: var(--composer-content-alignment);
 

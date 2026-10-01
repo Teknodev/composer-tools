@@ -87,6 +87,19 @@
       .content {
         gap: var(--composer-gap-md);
 
+        .image-container {
+          .image-wrapper {
+            .image,
+            .video {
+              height: calc(var(--composer-gap-lg) * 0.8);
+            }
+
+            .image {
+              font-size: calc(var(--composer-gap-lg) * 0.8);
+            }
+          }
+        }
+
         &.left {
           align-items: flex-start;
 

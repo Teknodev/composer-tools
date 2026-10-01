@@ -29,7 +29,7 @@
 
         .form {
           .bottom-container {
-            .comment {
+            .text {
               color: #ffffff;
             }
           }
@@ -201,7 +201,7 @@
           gap: var(--composer-gap-sm);
           align-items: center;
 
-          .comment {
+          .text {
             text-align: center;
             color: var(--composer-font-color-primary);
           }
@@ -215,6 +215,12 @@
             .button {
               .button-text {
                 content: "";
+              }
+
+              .button-icon {
+                display: flex;
+                align-items: center;
+                justify-content: center;
               }
             }
           }
@@ -230,7 +236,7 @@
       .content {
         .space-container {
           .space {
-            width: 50%;
+            width: 25%;
           }
         }
 
@@ -258,7 +264,7 @@
 
         .space-container {
           .space {
-            width: 100%;
+            width: 35%;
           }
         }
 

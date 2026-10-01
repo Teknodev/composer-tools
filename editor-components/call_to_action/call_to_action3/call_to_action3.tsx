@@ -8,6 +8,7 @@ import { INPUTS } from "../../../custom-hooks/input-templates";
 type MediaObject = {
   image: TypeMediaInputValue;
   overlay: boolean;
+  baseOverlay: boolean;
 };
 
 class CallToAction3Page extends BaseCallToAction {
@@ -35,6 +36,12 @@ class CallToAction3Page extends BaseCallToAction {
           type: "boolean",
           key: "overlay",
           displayer: "Overlay",
+          value: false,
+        },
+        {
+          type: "boolean",
+          key: "baseOverlay",
+          displayer: "Colorful Overlay",
           value: true,
         },
       ],
@@ -43,7 +50,7 @@ class CallToAction3Page extends BaseCallToAction {
     this.addProp({
       type: "string",
       key: "subtitle",
-      value: "Our Services",
+      value: "",
       displayer: "Subtitle",
     });
 
@@ -79,6 +86,7 @@ class CallToAction3Page extends BaseCallToAction {
     const mediaObject = this.castToObject<MediaObject>("mediaObject");
     const image = mediaObject.image;
     const overlay = mediaObject.overlay;
+    const baseOverlay = mediaObject.baseOverlay;
 
     return (
       <Base.Container
@@ -89,6 +97,7 @@ class CallToAction3Page extends BaseCallToAction {
             className={this.decorateCSS("image")}
           />
         )}
+        {image && baseOverlay && <div className={this.decorateCSS("color-mix-layer")} />}
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <Base.VerticalContent className={this.decorateCSS("content-container")}>
             {this.castToString(this.getPropValue("subtitle")) && (

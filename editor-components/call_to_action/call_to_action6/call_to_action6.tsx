@@ -103,11 +103,17 @@ class CallToAction6Page extends BaseCallToAction {
     });
 
     this.addProp({
+      type: "string",
+      key: "text",
+      displayer: "Text",
+      value: "* We promise we will never spam your account. *",
+    });
+    this.addProp({
       type: "array",
       key: "buttons",
       displayer: "Buttons",
       value: [
-        INPUTS.BUTTON("button", "Button", "Subscribe", "", null, null, "Primary"),
+        INPUTS.BUTTON("button", "Button", "Subscribe", "", "FaArrowRight", null, "Primary"),
       ],
     });
 
@@ -152,9 +158,9 @@ class CallToAction6Page extends BaseCallToAction {
     const submitText = this.castToString(inputData.submitText);
     
     const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons") || [];
-    const hasButton = buttons.some((btn) => btn && this.castToString(btn.text));
+    const hasButton = buttons.some((btn) => btn && (this.castToString(btn.text) || (btn.icon as any)?.name));
 
-    const commentExist = this.castToString(this.getPropValue("comment"));
+    const textExist = this.castToString(this.getPropValue("text"));
     const descriptionExist = this.castToString(this.getPropValue("description"));
     const description = this.getPropValue("description");
 
@@ -188,7 +194,7 @@ class CallToAction6Page extends BaseCallToAction {
                 <div className={this.decorateCSS("space")} />
               </div>
             )}
-            {(commentExist || hasButton) &&
+            {(textExist || hasButton) &&
               <Formik
                 initialValues={{ email: "" }}
                 validationSchema={this.validationSchema}
@@ -236,21 +242,23 @@ class CallToAction6Page extends BaseCallToAction {
                         )}
                       </div>}
 
-                    {(commentExist || hasButton) && (
+                    {(textExist || hasButton) && (
                       <div className={this.decorateCSS("bottom-container")}>
-                        {commentExist && (
-                          <Base.P className={this.decorateCSS("comment")}>
-                            {this.getPropValue("comment")}
+                        {textExist && (
+                          <Base.P className={this.decorateCSS("text")}>
+                            {this.getPropValue("text")}
                           </Base.P>
                         )}
                         {hasButton && (
                           <div className={this.decorateCSS("button-container")}>
                             {buttons.map((button: INPUTS.CastedButton, index: number) => {
                               const buttonText = this.castToString(button?.text);
-                              return buttonText && (
+                              const iconExist = !!(button?.icon as any)?.name;
+                              return (buttonText || iconExist) && (
                                 <ComposerLink key={index} path={button?.url}>
                                   <Base.Button buttonType={button?.type} className={this.decorateCSS("button")}>
-                                    <Base.P className={this.decorateCSS("button-text")}>{button?.text}</Base.P>
+                                    {buttonText && <Base.P className={this.decorateCSS("button-text")}>{button?.text}</Base.P>}
+                                    {iconExist && <Base.Media value={button.icon as any} className={this.decorateCSS("button-icon")} />}
                                   </Base.Button>
                                 </ComposerLink>
                               );

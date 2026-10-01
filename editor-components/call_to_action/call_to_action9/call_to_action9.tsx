@@ -16,7 +16,7 @@ class CallToAction9Page extends BaseCallToAction {
       type: "string",
       key: "subtitle",
       displayer: "Subtitle",
-      value: "Our Features",
+      value: "",
     });
 
     this.addProp({
@@ -45,7 +45,7 @@ class CallToAction9Page extends BaseCallToAction {
     this.addProp({
       type: "string",
       key: "itemDescription",
-      displayer: "Item Description",
+      displayer: "Text",
       value: "Trusted by 100+ development team",
     });
     this.addProp({

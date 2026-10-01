@@ -49,7 +49,7 @@ class CallToAction5Page extends BaseCallToAction {
       type: "string",
       key: "subtitle",
       displayer: "Subtitle",
-      value: "Subscribe for now",
+      value: "",
     });
     this.addProp({
       type: "string",
@@ -62,7 +62,7 @@ class CallToAction5Page extends BaseCallToAction {
       type: "string",
       key: "description",
       displayer: "Description",
-      value: "Get immediate and full access to our solution for 10 days completely free. Onlt $19 per month afterwards.",
+      value: "Get immediate and full access to our solution for 10 days completely free. Only <span style='font-weight: bold; text-decoration: underline; text-decoration-color: var(--composer-primary-color); text-decoration-thickness: 2px; text-underline-offset: 4px'>$19 per month</span> afterwards.",
     });
 
     this.addProp({
@@ -128,9 +128,11 @@ class CallToAction5Page extends BaseCallToAction {
     const hasButton = !!buttonText;
 
     return (
-      <Base.Container className={`${this.decorateCSS("container")} ${overlay && background && this.decorateCSS("overlay-active")} ${background && this.decorateCSS("has-background")}`}>
-        {background && (<Base.Media value={background} className={this.decorateCSS("background")} />)}
+      <Base.Container className={`${this.decorateCSS("container")} ${background && this.decorateCSS("has-background")}`}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
+          <div className={`${this.decorateCSS("box")} ${background ? this.decorateCSS("box-with-media") : ""}`}>
+          {background && (<Base.Media value={background} className={this.decorateCSS("background")} />)}
+          {background && overlay && <div className={this.decorateCSS("overlay")} />}
           {(titleExist || descriptionExist || subtitleExist) && (
             <Base.VerticalContent className={this.decorateCSS("header")}>
               {subtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
@@ -191,6 +193,7 @@ class CallToAction5Page extends BaseCallToAction {
               </ComposerLink>
             </div>
           )}
+          </div>
         </Base.MaxContent>
       </Base.Container>
     );

@@ -25,7 +25,7 @@ class CallToAction8Page extends BaseCallToAction {
       type: "string",
       key: "subtitle",
       displayer: "Subtitle",
-      value: "Our Features",
+      value: "",
     });
 
     this.addProp({

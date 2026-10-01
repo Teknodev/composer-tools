@@ -183,6 +183,13 @@ class CallToAction4Page extends BaseCallToAction {
     });
 
     this.addProp({
+      type: "number",
+      key: "itemCount",
+      displayer: "Item Count in a Row",
+      value: 2,
+    });
+
+    this.addProp({
       type: "object",
       key: "mediaObject",
       displayer: "Media",
@@ -212,14 +219,7 @@ class CallToAction4Page extends BaseCallToAction {
       type: "array",
       key: "buttons",
       displayer: "Buttons",
-      value: [INPUTS.BUTTON("button", "Button", "Learn More", "", null, null, "Primary"), INPUTS.BUTTON("button", "Button", "Enroll Now", "", null, null, "Primary")],
-    });
-
-    this.addProp({
-      type: "number",
-      key: "itemCount",
-      displayer: "Item Count in a Row",
-      value: 2,
+      value: [INPUTS.BUTTON("button", "Button", "Learn More", "", null, null, "Primary"), INPUTS.BUTTON("button", "Button", "Enroll Now", "", null, null, "White")],
     });
   }
 

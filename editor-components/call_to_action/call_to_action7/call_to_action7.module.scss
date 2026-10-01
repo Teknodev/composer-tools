@@ -49,10 +49,6 @@
             border-radius: var(--composer-border-radius-sm);
             object-fit: cover;
             animation: fadeInFromRight 1s ease-out forwards;
-
-            &.no-animation {
-              animation: unset;
-            }
           }
 
           .overlay {
@@ -125,6 +121,7 @@
               .button-container {
                 display: flex;
                 align-items: stretch;
+                gap: var(--composer-gap-sm);
 
                 .button {
                   margin-top: 0;
