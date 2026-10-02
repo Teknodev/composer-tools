@@ -33,6 +33,32 @@ class ImageGallery6 extends BaseImageGallery {
             value: "",
         });
         this.addProp({
+            type: "string",
+            key: "header_title",
+            displayer: "Title",
+            value: "",
+        });
+        this.addProp({
+            type: "string",
+            key: "header_description",
+            displayer: "Description",
+            value: "",
+        });
+        this.addProp({
+            type: "array",
+            key: "headerButtons",
+            displayer: "Buttons",
+            value: [
+                INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+            ],
+        });
+        this.addProp({
+            type: "boolean",
+            key: "categoryLine",
+            displayer: "Line",
+            value: true,
+        });
+        this.addProp({
             type: "object",
             key: "allCategory",
             displayer: "All Category",
@@ -70,18 +96,25 @@ class ImageGallery6 extends BaseImageGallery {
                 },
             ]
         });
-        this.addProp(INPUTS.BUTTON("button", "Button", "Load More", null, null, null, "Primary"));
+        this.addProp({
+            type: "array",
+            key: "buttons",
+            displayer: "Load More",
+            value: [
+                INPUTS.BUTTON("button", "Button", "Load More", "", null, null, "Primary"),
+            ],
+        });
 
 
         this.addProp({
             type: "array",
             key: "galleries",
-            displayer: "Galleries",
+            displayer: "Gallery",
             value: [
                 {
                     type: "object",
                     key: "gallery",
-                    displayer: "Gallery",
+                    displayer: "Category",
                     value: [
                         {
                             type: "string",
@@ -114,7 +147,7 @@ class ImageGallery6 extends BaseImageGallery {
                                         {
                                             type: "string",
                                             key: "badge",
-                                            displayer: "Badge",
+                                            displayer: "Subtitle",
                                             value: "ARCHITECTURE",
                                         },
                                         {
@@ -175,7 +208,7 @@ class ImageGallery6 extends BaseImageGallery {
                                         {
                                             type: "string",
                                             key: "badge",
-                                            displayer: "Badge",
+                                            displayer: "Subtitle",
                                             value: "ARCHITECTURE",
                                         },
                                         {
@@ -236,7 +269,7 @@ class ImageGallery6 extends BaseImageGallery {
                                         {
                                             type: "string",
                                             key: "badge",
-                                            displayer: "Badge",
+                                            displayer: "Subtitle",
                                             value: "ARCHITECTURE",
                                         },
                                         {
@@ -286,7 +319,7 @@ class ImageGallery6 extends BaseImageGallery {
                 {
                     type: "object",
                     key: "gallery",
-                    displayer: "Gallery",
+                    displayer: "Category",
                     value: [
                         {
                             type: "string",
@@ -319,7 +352,7 @@ class ImageGallery6 extends BaseImageGallery {
                                         {
                                             type: "string",
                                             key: "badge",
-                                            displayer: "Badge",
+                                            displayer: "Subtitle",
                                             value: "INTERIOR",
                                         },
                                         {
@@ -380,7 +413,7 @@ class ImageGallery6 extends BaseImageGallery {
                                         {
                                             type: "string",
                                             key: "badge",
-                                            displayer: "Badge",
+                                            displayer: "Subtitle",
                                             value: "INTERIOR",
                                         },
                                         {
@@ -441,7 +474,7 @@ class ImageGallery6 extends BaseImageGallery {
                                         {
                                             type: "string",
                                             key: "badge",
-                                            displayer: "Badge",
+                                            displayer: "Subtitle",
                                             value: "INTERIOR",
                                         },
                                         {
@@ -502,7 +535,7 @@ class ImageGallery6 extends BaseImageGallery {
                                         {
                                             type: "string",
                                             key: "badge",
-                                            displayer: "Badge",
+                                            displayer: "Subtitle",
                                             value: "INTERIOR",
                                         },
                                         {
@@ -550,7 +583,7 @@ class ImageGallery6 extends BaseImageGallery {
                 {
                     type: "object",
                     key: "gallery",
-                    displayer: "Gallery",
+                    displayer: "Category",
                     value: [
                         {
                             type: "string",
@@ -583,7 +616,7 @@ class ImageGallery6 extends BaseImageGallery {
                                         {
                                             type: "string",
                                             key: "badge",
-                                            displayer: "Badge",
+                                            displayer: "Subtitle",
                                             value: "INTERIOR",
                                         },
                                         {
@@ -689,19 +722,51 @@ class ImageGallery6 extends BaseImageGallery {
         if (this.getComponentState("imageCount") != this.getCountSettings().imageCountInitial + this.getComponentState("moreImages"))
             this.setComponentState("imageCount", this.getCountSettings().imageCountInitial + this.getComponentState("moreImages"));
 
-        const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
+        const headerButtons = this.castToObject<INPUTS.CastedButton[]>("headerButtons") || [];
+        const hasHeaderButtons = headerButtons.some((button: INPUTS.CastedButton) => this.castToString(button.text));
+        const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons") || [];
+        const hasButtons = buttons.some((button: INPUTS.CastedButton) => this.castToString(button.text));
+        const subtitleExist = this.castToString(this.getPropValue("subtitle"));
+        const titleExist = this.castToString(this.getPropValue("header_title"));
+        const descriptionExist = this.castToString(this.getPropValue("header_description"));
+        const categoryLine = this.getPropValue("categoryLine");
 
         return (
 
             <Base.Container className={this.decorateCSS("container")}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
-                {this.castToString(this.getPropValue("subtitle")) && (
+                {(subtitleExist || titleExist || descriptionExist || hasHeaderButtons) && (
                     <Base.VerticalContent className={this.decorateCSS("heading")}>
-                        <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
-                            {this.getPropValue("subtitle")}
-                        </Base.SectionSubTitle>
+                        {subtitleExist && (
+                            <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                                {this.getPropValue("subtitle")}
+                            </Base.SectionSubTitle>
+                        )}
+                        {titleExist && (
+                            <Base.SectionTitle className={this.decorateCSS("heading-title")}>
+                                {this.getPropValue("header_title")}
+                            </Base.SectionTitle>
+                        )}
+                        {descriptionExist && (
+                            <Base.SectionDescription className={this.decorateCSS("heading-description")}>
+                                {this.getPropValue("header_description")}
+                            </Base.SectionDescription>
+                        )}
+                        {hasHeaderButtons && (
+                            <div className={this.decorateCSS("button-container")}>
+                                {headerButtons.map((button: INPUTS.CastedButton, index: number) => this.castToString(button.text) && (
+                                    <ComposerLink key={index} path={button.url}>
+                                        <Base.Button buttonType={button.type} className={this.decorateCSS("header-button")}>
+                                            <Base.P className={this.decorateCSS("header-button-text")}>{button.text}</Base.P>
+                                        </Base.Button>
+                                    </ComposerLink>
+                                ))}
+                            </div>
+                        )}
                     </Base.VerticalContent>
                 )}
+                <div className={this.decorateCSS("category-wrapper")}>
+                {categoryLine && <div className={this.decorateCSS("category-line")} />}
                 <Base.Row className={this.decorateCSS("section-container")}>
                 {this.getAllCategory().showAll && this.castToString(this.getAllCategory().allText) && (
                     <Base.H6
@@ -723,6 +788,8 @@ class ImageGallery6 extends BaseImageGallery {
                             </Base.H6>
                         ))}
                     </Base.Row>
+                {categoryLine && <div className={this.decorateCSS("category-line")} />}
+                </div>
                     <div className={this.decorateCSS("content")}>
                         <div className={this.decorateCSS("left-container")}>
                             {currentGallery.slice(0, this.getComponentState("imageCount")).map((item: ImageItem, index: number) => {
@@ -760,16 +827,16 @@ class ImageGallery6 extends BaseImageGallery {
                                                         <div className={this.decorateCSS("badge-container")}>
                                                             <div className={this.decorateCSS("text-container")}>
                                                                 {this.castToString(item.title) && (
-                                                                    <Base.H5 className={this.decorateCSS("title")}>
+                                                                    <Base.H4 className={this.decorateCSS("card-title")}>
                                                                         {item.title}
-                                                                    </Base.H5>
+                                                                    </Base.H4>
                                                                 )}
                                                                 {(this.castToString(item.description) || item.nextArrow) && (
                                                                     <div className={this.decorateCSS("bottom-container")}>
                                                                         {this.castToString(item.description) && (
-                                                                            <Base.P className={this.decorateCSS("description")}>
+                                                                            <Base.H6 className={this.decorateCSS("card-description")}>
                                                                                 {item.description}
-                                                                            </Base.P>
+                                                                            </Base.H6>
                                                                         )}
                                                                         {item.nextArrow && (
                                                                             <div className={this.decorateCSS("button")}>
@@ -823,16 +890,16 @@ class ImageGallery6 extends BaseImageGallery {
                                                         <div className={this.decorateCSS("badge-container")}>
                                                             <div className={this.decorateCSS("text-container")}>
                                                                 {this.castToString(item.title) && (
-                                                                    <Base.H5 className={this.decorateCSS("title")}>
+                                                                    <Base.H4 className={this.decorateCSS("card-title")}>
                                                                         {item.title}
-                                                                    </Base.H5>
+                                                                    </Base.H4>
                                                                 )}
                                                                 {(this.castToString(item.description) || item.nextArrow) && (
                                                                     <div className={this.decorateCSS("bottom-container")}>
                                                                         {this.castToString(item.description) && (
-                                                                            <Base.P className={this.decorateCSS("description")}>
+                                                                            <Base.H6 className={this.decorateCSS("card-description")}>
                                                                                 {item.description}
-                                                                            </Base.P>
+                                                                            </Base.H6>
                                                                         )}
                                                                         {item.nextArrow && (
 
@@ -855,11 +922,15 @@ class ImageGallery6 extends BaseImageGallery {
                             })}
                         </div>
                     </div>
-                    {(this.getComponentState("imageCount") < currentGallery.length) && this.castToString(button.text) && (
+                    {(this.getComponentState("imageCount") < currentGallery.length) && hasButtons && (
                         <div className={this.decorateCSS("button-wrapper")}>
-                            <Base.Button className={this.decorateCSS("button")} buttonType={button.type} onClick={this.handleButtonClick} >
-                                <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
-                            </Base.Button>
+                            {buttons.map((button: INPUTS.CastedButton, index: number) => this.castToString(button.text) && (
+                                <ComposerLink key={index} path={button.url}>
+                                    <Base.Button className={this.decorateCSS("button")} buttonType={button.type} onClick={this.handleButtonClick} >
+                                        <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
+                                    </Base.Button>
+                                </ComposerLink>
+                            ))}
                         </div>
                     )}
                 </Base.MaxContent>

@@ -121,6 +121,13 @@
               display: block;
               object-fit: cover;
             }
+
+            .media-overlay {
+              position: absolute;
+              inset: 0;
+              background: var(--composer-overlay-color);
+              pointer-events: none;
+            }
           }
 
           .overlay-content {
@@ -142,6 +149,7 @@
             .home-link {
               content: "";
             }
+            .card-subtitle,
             .card-title,
             .card-text {
               opacity: 0;
@@ -152,6 +160,7 @@
             &:hover,
             &.active {
               background-color: var(--composer-font-color-primary);
+              .card-subtitle,
               .card-title,
               .card-text {
                 opacity: 1;
@@ -162,6 +171,7 @@
           }
         }
 
+        .card-subtitle,
         .card-title {
           text-align: center !important;
         }

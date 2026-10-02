@@ -11,8 +11,23 @@
       .heading {
         width: 100%;
 
-        .subtitle {
+        .subtitle,
+        .heading-title,
+        .description {
           content: "";
+        }
+
+        .header-buttons {
+          display: flex;
+          flex-wrap: wrap;
+          gap: var(--composer-gap-sm);
+          justify-content: var(--composer-content-alignment);
+
+          .header-button {
+            .header-button-text {
+              content: "";
+            }
+          }
         }
       }
 
@@ -124,6 +139,8 @@
         display: flex;
         align-items: center;
         justify-content: center;
+        flex-wrap: wrap;
+        gap: var(--composer-gap-sm);
 
         .button {
           .button-text {

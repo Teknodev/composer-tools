@@ -4,6 +4,7 @@ import { BaseImageGallery, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./image-gallery5.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "../../../custom-hooks/input-templates";
+import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 
 interface GalleryItem {
   image: TypeMediaInputValue;
@@ -21,6 +22,29 @@ class ImageGallery5 extends BaseImageGallery {
       key: "subtitle",
       displayer: "Subtitle",
       value: "",
+    });
+
+    this.addProp({
+      type: "string",
+      key: "title",
+      displayer: "Title",
+      value: "",
+    });
+
+    this.addProp({
+      type: "string",
+      key: "description",
+      displayer: "Description",
+      value: "",
+    });
+
+    this.addProp({
+      type: "array",
+      key: "headerButtons",
+      displayer: "Buttons",
+      value: [
+        INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+      ],
     });
 
     this.addProp({
@@ -48,7 +72,7 @@ class ImageGallery5 extends BaseImageGallery {
             {
               type: "string",
               key: "caption",
-              displayer: "Caption",
+              displayer: "Text",
               value: "Gallery Image 1 Caption",
             },
           ],
@@ -73,7 +97,7 @@ class ImageGallery5 extends BaseImageGallery {
             {
               type: "string",
               key: "caption",
-              displayer: "Caption",
+              displayer: "Text",
               value: "Gallery Image 2 Caption",
             },
           ],
@@ -98,7 +122,7 @@ class ImageGallery5 extends BaseImageGallery {
             {
               type: "string",
               key: "caption",
-              displayer: "Caption",
+              displayer: "Text",
               value: "Gallery Image 3 Caption",
             },
           ],
@@ -123,7 +147,7 @@ class ImageGallery5 extends BaseImageGallery {
             {
               type: "string",
               key: "caption",
-              displayer: "Caption",
+              displayer: "Text",
               value: "Gallery Image 4 Caption",
             },
           ],
@@ -148,7 +172,7 @@ class ImageGallery5 extends BaseImageGallery {
             {
               type: "string",
               key: "caption",
-              displayer: "Caption",
+              displayer: "Text",
               value: "Gallery Image 5 Caption",
             },
           ],
@@ -173,7 +197,7 @@ class ImageGallery5 extends BaseImageGallery {
             {
               type: "string",
               key: "caption",
-              displayer: "Caption",
+              displayer: "Text",
               value: "Gallery Image 6 Caption",
             },
           ],
@@ -251,12 +275,19 @@ class ImageGallery5 extends BaseImageGallery {
         {
           type: "boolean",
           key: "imageIndex",
-          displayer: "Show Page Number",
+          displayer: "Page Number",
           value: true,
         },
       ],
     });
-    this.addProp(INPUTS.BUTTON("button", "Button", "Load More", null, null, null, "Primary"));
+    this.addProp({
+      type: "array",
+      key: "buttons",
+      displayer: "Load More",
+      value: [
+        INPUTS.BUTTON("button", "Button", "Load More", "", null, null, "Primary"),
+      ],
+    });
 
     this.setComponentState("is_image_clicked", false);
     this.setComponentState("clicked_image_index", 0);
@@ -333,7 +364,13 @@ class ImageGallery5 extends BaseImageGallery {
     if (this.getComponentState("imageCount") != this.getCountSettings().imageCountInitial + this.getComponentState("moreImages"))
       this.setComponentState("imageCount", this.getCountSettings().imageCountInitial + this.getComponentState("moreImages"));
 
-    const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
+    const headerButtons = this.castToObject<INPUTS.CastedButton[]>("headerButtons") || [];
+    const hasHeaderButtons = headerButtons.some((button: INPUTS.CastedButton) => this.castToString(button.text));
+    const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons") || [];
+    const hasButtons = buttons.some((button: INPUTS.CastedButton) => this.castToString(button.text));
+    const subtitleExist = this.castToString(this.getPropValue("subtitle"));
+    const titleExist = this.castToString(this.getPropValue("title"));
+    const descriptionExist = this.castToString(this.getPropValue("description"));
 
     return (
       <Base.Container
@@ -343,11 +380,34 @@ class ImageGallery5 extends BaseImageGallery {
         onKeyDown={this.handleKeyPress}
       >
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          {this.castToString(this.getPropValue("subtitle")) && (
+          {(subtitleExist || titleExist || descriptionExist || hasHeaderButtons) && (
             <Base.VerticalContent className={this.decorateCSS("heading")}>
-              <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
-                {this.getPropValue("subtitle")}
-              </Base.SectionSubTitle>
+              {subtitleExist && (
+                <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                  {this.getPropValue("subtitle")}
+                </Base.SectionSubTitle>
+              )}
+              {titleExist && (
+                <Base.SectionTitle className={this.decorateCSS("title")}>
+                  {this.getPropValue("title")}
+                </Base.SectionTitle>
+              )}
+              {descriptionExist && (
+                <Base.SectionDescription className={this.decorateCSS("description")}>
+                  {this.getPropValue("description")}
+                </Base.SectionDescription>
+              )}
+              {hasHeaderButtons && (
+                <div className={this.decorateCSS("button-container")}>
+                  {headerButtons.map((button: INPUTS.CastedButton, index: number) => this.castToString(button.text) && (
+                    <ComposerLink key={index} path={button.url}>
+                      <Base.Button buttonType={button.type} className={this.decorateCSS("header-button")}>
+                        <Base.P className={this.decorateCSS("header-button-text")}>{button.text}</Base.P>
+                      </Base.Button>
+                    </ComposerLink>
+                  ))}
+                </div>
+              )}
             </Base.VerticalContent>
           )}
           <Base.ListGrid
@@ -366,11 +426,15 @@ class ImageGallery5 extends BaseImageGallery {
               );
             })}
           </Base.ListGrid>
-          {(galleries.length > this.getComponentState("imageCount")) && this.castToString(button.text) && (
+          {(galleries.length > this.getComponentState("imageCount")) && hasButtons && (
             <div className={this.decorateCSS("button-wrapper")}>
-              <Base.Button className={this.decorateCSS("button")} buttonType={button.type} onClick={this.handleButtonClick} >
-                <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
-              </Base.Button>
+              {buttons.map((button: INPUTS.CastedButton, index: number) => this.castToString(button.text) && (
+                <ComposerLink key={index} path={button.url}>
+                  <Base.Button className={this.decorateCSS("button")} buttonType={button.type} onClick={this.handleButtonClick} >
+                    <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
+                  </Base.Button>
+                </ComposerLink>
+              ))}
             </div>
           )}
           {isImageClicked && galleries[clickedImageIndex] && (

@@ -48,7 +48,7 @@ class ImageGallery3 extends BaseImageGallery {
         this.addProp({
             type: "array",
             key: "headerButtons",
-            displayer: "Header Buttons",
+            displayer: "Buttons",
             value: [
                 INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
             ],
@@ -195,7 +195,14 @@ class ImageGallery3 extends BaseImageGallery {
             ]
         });
 
-        this.addProp(INPUTS.BUTTON("button", "Button", "Load More", null, null, null, "Primary"));
+        this.addProp({
+            type: "array",
+            key: "buttons",
+            displayer: "Load More",
+            value: [
+                INPUTS.BUTTON("button", "Button", "Load More", "", null, null, "Primary"),
+            ],
+        });
         
         this.setComponentState("patternCount", 1);
         this.setComponentState("showPattern", false);
@@ -229,7 +236,19 @@ class ImageGallery3 extends BaseImageGallery {
         const images = this.castToObject<ImageItem[]>("images");
         const headerImageCount = type === "Header One Image" ? 1 : 2;
         const remainingImages = images.slice(headerImageCount);
-        const buttonType: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
+        const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons") || [];
+        const hasButtons = buttons.some((button: INPUTS.CastedButton) => this.castToString(button.text));
+        const renderButtons = (onClick: () => void) => (
+            <div className={this.decorateCSS("button-wrapper")}>
+                {buttons.map((button: INPUTS.CastedButton, index: number) => this.castToString(button.text) && (
+                    <ComposerLink key={index} path={button.url}>
+                        <Base.Button buttonType={button.type} className={this.decorateCSS("button")} onClick={onClick}>
+                            <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
+                        </Base.Button>
+                    </ComposerLink>
+                ))}
+            </div>
+        );
 
         const pattern = [3, 2, 1];
         const imagesPerPattern = pattern.reduce((a, b) => a + b, 0);
@@ -286,13 +305,7 @@ class ImageGallery3 extends BaseImageGallery {
                     )}
                 </Base.MaxContent>
 
-                {remainingImages.length > 0 && !this.getComponentState("showPattern") && this.castToString(buttonType.text) && (
-                    <div className={this.decorateCSS("button-wrapper")}>
-                        <Base.Button buttonType={buttonType.type} className={this.decorateCSS("button")} onClick={this.handlePatternButtonClick}>
-                            <Base.P className={this.decorateCSS("button-text")}>{buttonType.text}</Base.P>
-                        </Base.Button>
-                    </div>
-                )}
+                {remainingImages.length > 0 && !this.getComponentState("showPattern") && hasButtons && renderButtons(this.handlePatternButtonClick)}
 
                 {this.getComponentState("showPattern") && visibleImages.length > 0 && (
                     <div className={this.decorateCSS("remaining-images")}>
@@ -338,13 +351,7 @@ class ImageGallery3 extends BaseImageGallery {
                     </div>
                 )}
 
-                {this.getComponentState("showPattern") && maxImages < remainingImages.length && this.castToString(buttonType.text) && (
-                    <div className={this.decorateCSS("button-wrapper")}>
-                        <Base.Button buttonType={buttonType.type} className={this.decorateCSS("button")} onClick={this.handleButtonClick}>
-                            <Base.P className={this.decorateCSS("button-text")}>{buttonType.text}</Base.P>
-                        </Base.Button>
-                    </div>
-                )}
+                {this.getComponentState("showPattern") && maxImages < remainingImages.length && hasButtons && renderButtons(this.handleButtonClick)}
             </Base.Container>
         );
     }

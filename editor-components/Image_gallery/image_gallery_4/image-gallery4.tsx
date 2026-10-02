@@ -4,6 +4,7 @@ import styles from "./image-gallery4.module.scss";
 
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "../../../custom-hooks/input-templates";
+import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 
 type NavItem = {
   title: React.JSX.Element;
@@ -33,15 +34,38 @@ class ImageGallery4 extends BaseImageGallery {
     });
 
     this.addProp({
+      type: "string",
+      key: "header_title",
+      displayer: "Title",
+      value: "",
+    });
+
+    this.addProp({
+      type: "string",
+      key: "description",
+      displayer: "Description",
+      value: "",
+    });
+
+    this.addProp({
+      type: "array",
+      key: "headerButtons",
+      displayer: "Buttons",
+      value: [
+        INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+      ],
+    });
+
+    this.addProp({
       type: "array",
       key: "navItems",
       additionalParams: { maxElementCount: 7 },
-      displayer: "Navigation Items",
+      displayer: "Gallery",
       value: [
         {
           type: "object",
           key: "nav-item",
-          displayer: "Navigation Item",
+          displayer: "Gallery",
           value: [
             {
               type: "string",
@@ -267,7 +291,7 @@ class ImageGallery4 extends BaseImageGallery {
         {
           type: "object",
           key: "nav-item",
-          displayer: "Navigation Item",
+          displayer: "Gallery",
           value: [
             {
               type: "string",
@@ -462,7 +486,14 @@ class ImageGallery4 extends BaseImageGallery {
       ]
     });
 
-    this.addProp(INPUTS.BUTTON("button", "Button", "Load More", null, null, null, "Primary"));
+    this.addProp({
+        type: "array",
+        key: "buttons",
+        displayer: "Load More",
+        value: [
+            INPUTS.BUTTON("button", "Button", "Load More", "", null, null, "Primary"),
+        ],
+    });
 
     this.addProp({
       type: "object",
@@ -643,18 +674,47 @@ class ImageGallery4 extends BaseImageGallery {
     if (this.getComponentState("imageCount") != this.getCountSettings().imageCountInitial + this.getComponentState("moreImages"))
       this.setComponentState("imageCount", this.getCountSettings().imageCountInitial + this.getComponentState("moreImages"));
 
-    const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
+    const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons") || [];
+    const hasButtons = buttons.some((item: INPUTS.CastedButton) => this.castToString(item.text));
     const icons = this.castToObject<any>("icons");
+    const subtitleExist = this.castToString(this.getPropValue("subtitle"));
+    const titleExist = this.castToString(this.getPropValue("header_title"));
+    const descriptionExist = this.castToString(this.getPropValue("description"));
+    const headerButtons = this.castToObject<INPUTS.CastedButton[]>("headerButtons") || [];
+    const hasHeaderButtons = headerButtons.some((item: INPUTS.CastedButton) => this.castToString(item.text));
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("gallery-wrapper")}>
-            {this.castToString(this.getPropValue("subtitle")) && (
+            {(subtitleExist || titleExist || descriptionExist || hasHeaderButtons) && (
               <Base.VerticalContent className={this.decorateCSS("heading")}>
-                <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
-                  {this.getPropValue("subtitle")}
-                </Base.SectionSubTitle>
+                {subtitleExist && (
+                  <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                    {this.getPropValue("subtitle")}
+                  </Base.SectionSubTitle>
+                )}
+                {titleExist && (
+                  <Base.SectionTitle className={this.decorateCSS("heading-title")}>
+                    {this.getPropValue("header_title")}
+                  </Base.SectionTitle>
+                )}
+                {descriptionExist && (
+                  <Base.SectionDescription className={this.decorateCSS("description")}>
+                    {this.getPropValue("description")}
+                  </Base.SectionDescription>
+                )}
+                {hasHeaderButtons && (
+                  <div className={this.decorateCSS("header-buttons")}>
+                    {headerButtons.map((item: INPUTS.CastedButton, index: number) => this.castToString(item.text) && (
+                      <ComposerLink key={index} path={item.url}>
+                        <Base.Button buttonType={item.type} className={this.decorateCSS("header-button")}>
+                          <Base.P className={this.decorateCSS("header-button-text")}>{item.text}</Base.P>
+                        </Base.Button>
+                      </ComposerLink>
+                    ))}
+                  </div>
+                )}
               </Base.VerticalContent>
             )}
             {(navItems?.length > 0 || subnavItems?.length > 0) && (
@@ -753,13 +813,17 @@ class ImageGallery4 extends BaseImageGallery {
                 })}
               </Base.ListGrid>
             )}
-            {(this.getComponentState("imageCount") < galleryItems.length) && this.castToString(button.text) && (
+            {(this.getComponentState("imageCount") < galleryItems.length) && hasButtons && (
               <div className={this.decorateCSS("button-wrapper")}>
-                <Base.Button className={this.decorateCSS("button")}
-                  buttonType={button.type}
-                  onClick={this.handleButtonClick}>
-                  <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
-                </Base.Button>
+                {buttons.map((item: INPUTS.CastedButton, index: number) => this.castToString(item.text) && (
+                  <ComposerLink key={index} path={item.url}>
+                    <Base.Button className={this.decorateCSS("button")}
+                      buttonType={item.type}
+                      onClick={this.handleButtonClick}>
+                      <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>
+                    </Base.Button>
+                  </ComposerLink>
+                ))}
               </div>
             )}
 

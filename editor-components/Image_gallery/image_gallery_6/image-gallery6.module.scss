@@ -9,15 +9,45 @@
             .heading {
                 width: 100%;
 
-                .subtitle {
+                .subtitle,
+                .heading-title,
+                .heading-description {
                     content: "";
                 }
+
+                .button-container {
+                    display: flex;
+                    flex-wrap: wrap;
+                    gap: var(--composer-gap-sm);
+
+                    .header-button {
+                        .header-button-text {
+                            content: "";
+                        }
+                    }
+                }
             }
+
+        .category-wrapper {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            gap: var(--composer-gap-md);
+
+            .category-line {
+                flex: 1;
+                min-width: var(--composer-gap-md);
+                height: var(--composer-gap-xs);
+                background-color: rgba(var(--composer-font-color-primary-rgb), 0.1);
+            }
+        }
 
         .section-container {
             gap: var(--composer-gap-xl);
             flex-wrap: wrap;
-            width: 100%;
+            width: auto;
+            justify-content: center !important;
+            align-items: center;
 
             .section-text {
                 width: fit-content;
@@ -128,10 +158,12 @@
                                     opacity: 0;
                                     transition: opacity 2s ease;
 
-                                    .title {
+                                    .card-title {
                                         opacity: 0;
                                         transition: opacity 2s ease;
-                                        text-align: left;
+                                        text-align: left !important;
+                                        margin-left: 0 !important;
+                                        margin-right: auto !important;
                                     }
 
                                     .bottom-container {
@@ -140,11 +172,14 @@
                                         opacity: 0;
                                         transition: opacity 2s ease;
 
-                                        .description {
+                                        .card-description {
                                             display: flex;
-                                            justify-content: flex-start;
+                                            justify-content: flex-start !important;
                                             align-items: center;
                                             width: fit-content;
+                                            text-align: left !important;
+                                            margin-left: 0 !important;
+                                            margin-right: auto !important;
                                         }
 
                                         .button {
@@ -184,7 +219,7 @@
                                     .text-container {
                                         opacity: 1;
 
-                                        .title {
+                                        .card-title {
                                             opacity: 1;
                                             color: var(--composer-html-background);
                                         }
@@ -192,7 +227,7 @@
                                         .bottom-container {
                                             opacity: 1;
 
-                                            .description {
+                                            .card-description {
                                                 color: var(--composer-html-background);
                                             }
 
@@ -230,7 +265,7 @@
                             .text-container {
                                 opacity: 1 !important;
 
-                                .title {
+                                .card-title {
                                     opacity: 1 !important;
                                     color: var(--composer-html-background) !important;
                                 }
@@ -238,7 +273,7 @@
                                 .bottom-container {
                                     opacity: 1 !important;
 
-                                    .description {
+                                    .card-description {
                                         color: var(--composer-html-background) !important;
                                     }
 
@@ -347,6 +382,14 @@
 @container (max-width: #{$composer-phone-width}) {
     .container {
         .max-content {
+            .category-wrapper {
+                align-items: flex-start;
+
+                .category-line {
+                    margin-top: var(--composer-gap-md);
+                }
+            }
+
             .section-container {
                 flex-direction: column;
                 gap: var(--composer-gap-sm);

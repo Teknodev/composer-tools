@@ -6,10 +6,12 @@ import { INPUTS } from "../../../custom-hooks/input-templates";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 
 type CardType = {
+    card_subtitle: React.ReactNode;
     card_item_title: React.ReactNode;
     image: string;
     text: string;
     link: string;
+    overlay: boolean;
     url: string;
     textUrl: string;
 };
@@ -129,6 +131,12 @@ class ImageGallery10 extends BaseImageGallery {
                         },
                         {
                             type: "string",
+                            key: "card_subtitle",
+                            displayer: "Subtitle",
+                            value: "",
+                        },
+                        {
+                            type: "string",
                             key: "card_item_title",
                             displayer: "Title",
                             value: "Drawing",
@@ -136,7 +144,7 @@ class ImageGallery10 extends BaseImageGallery {
                         {
                             type: "string",
                             key: "text",
-                            displayer: "Text",
+                            displayer: "Description",
                             value: "Lorem Ipsum Dolor",
                         },
                         {
@@ -148,7 +156,7 @@ class ImageGallery10 extends BaseImageGallery {
                         {
                             type: "media",
                             key: "image",
-                            displayer: "Background Media",
+                            displayer: "Media",
                             value: {
                                 type: "image",
                                 url: "https://gradastudio.com/ozark/wp-content/uploads/sites/4/2020/07/portfolio-list-img-16-768x768.jpg",
@@ -159,6 +167,12 @@ class ImageGallery10 extends BaseImageGallery {
                         },
                         {
                             type: "boolean",
+                            key: "overlay",
+                            displayer: "Overlay",
+                            value: false,
+                        },
+                        {
+                            type: "boolean",
                             key: "active",
                             displayer: "Active",
                             value: false,
@@ -178,6 +192,12 @@ class ImageGallery10 extends BaseImageGallery {
                         },
                         {
                             type: "string",
+                            key: "card_subtitle",
+                            displayer: "Subtitle",
+                            value: "",
+                        },
+                        {
+                            type: "string",
                             key: "card_item_title",
                             displayer: "Title",
                             value: "Drawing",
@@ -185,7 +205,7 @@ class ImageGallery10 extends BaseImageGallery {
                         {
                             type: "string",
                             key: "text",
-                            displayer: "Text",
+                            displayer: "Description",
                             value: "Lorem Ipsum Dolor",
                         },
                         {
@@ -197,7 +217,7 @@ class ImageGallery10 extends BaseImageGallery {
                         {
                             type: "media",
                             key: "image",
-                            displayer: "Background Media",
+                            displayer: "Media",
                             value: {
                                 type: "image",
                                 url: "https://gradastudio.com/ozark/wp-content/uploads/sites/4/2020/07/portfolio-list-img-21-768x768.jpg",
@@ -208,6 +228,12 @@ class ImageGallery10 extends BaseImageGallery {
                         },
                         {
                             type: "boolean",
+                            key: "overlay",
+                            displayer: "Overlay",
+                            value: false,
+                        },
+                        {
+                            type: "boolean",
                             key: "active",
                             displayer: "Active",
                             value: false,
@@ -227,6 +253,12 @@ class ImageGallery10 extends BaseImageGallery {
                         },
                         {
                             type: "string",
+                            key: "card_subtitle",
+                            displayer: "Subtitle",
+                            value: "",
+                        },
+                        {
+                            type: "string",
                             key: "card_item_title",
                             displayer: "Title",
                             value: "Drawing",
@@ -234,7 +266,7 @@ class ImageGallery10 extends BaseImageGallery {
                         {
                             type: "string",
                             key: "text",
-                            displayer: "Text",
+                            displayer: "Description",
                             value: "Lorem Ipsum Dolor",
                         },
                         {
@@ -246,7 +278,7 @@ class ImageGallery10 extends BaseImageGallery {
                         {
                             type: "media",
                             key: "image",
-                            displayer: "Background Media",
+                            displayer: "Media",
                             value: {
                                 type: "image",
                                 url: "https://gradastudio.com/ozark/wp-content/uploads/sites/4/2020/07/portfolio-list-img-27-768x768.jpg",
@@ -257,6 +289,12 @@ class ImageGallery10 extends BaseImageGallery {
                         },
                         {
                             type: "boolean",
+                            key: "overlay",
+                            displayer: "Overlay",
+                            value: false,
+                        },
+                        {
+                            type: "boolean",
                             key: "active",
                             displayer: "Active",
                             value: false,
@@ -276,6 +314,12 @@ class ImageGallery10 extends BaseImageGallery {
                         },
                         {
                             type: "string",
+                            key: "card_subtitle",
+                            displayer: "Subtitle",
+                            value: "",
+                        },
+                        {
+                            type: "string",
                             key: "card_item_title",
                             displayer: "Title",
                             value: "Drawing",
@@ -283,7 +327,7 @@ class ImageGallery10 extends BaseImageGallery {
                         {
                             type: "string",
                             key: "text",
-                            displayer: "Text",
+                            displayer: "Description",
                             value: "Lorem Ipsum Dolor",
                         },
                         {
@@ -295,7 +339,7 @@ class ImageGallery10 extends BaseImageGallery {
                         {
                             type: "media",
                             key: "image",
-                            displayer: "Background Media",
+                            displayer: "Media",
                             value: {
                                 type: "image",
                                 url: "https://gradastudio.com/ozark/wp-content/uploads/sites/4/2020/07/portfolio-list-img-18-768x768.jpg",
@@ -306,6 +350,12 @@ class ImageGallery10 extends BaseImageGallery {
                         },
                         {
                             type: "boolean",
+                            key: "overlay",
+                            displayer: "Overlay",
+                            value: false,
+                        },
+                        {
+                            type: "boolean",
                             key: "active",
                             displayer: "Active",
                             value: false,
@@ -325,6 +375,12 @@ class ImageGallery10 extends BaseImageGallery {
                         },
                         {
                             type: "string",
+                            key: "card_subtitle",
+                            displayer: "Subtitle",
+                            value: "",
+                        },
+                        {
+                            type: "string",
                             key: "card_item_title",
                             displayer: "Title",
                             value: "Drawing",
@@ -332,7 +388,7 @@ class ImageGallery10 extends BaseImageGallery {
                         {
                             type: "string",
                             key: "text",
-                            displayer: "Text",
+                            displayer: "Description",
                             value: "Lorem Ipsum Dolor",
                         },
                         {
@@ -344,7 +400,7 @@ class ImageGallery10 extends BaseImageGallery {
                         {
                             type: "media",
                             key: "image",
-                            displayer: "Background Media",
+                            displayer: "Media",
                             value: {
                                 type: "image",
                                 url: "https://gradastudio.com/ozark/wp-content/uploads/sites/4/2020/07/portfolio-list-img-23-768x768.jpg",
@@ -355,6 +411,12 @@ class ImageGallery10 extends BaseImageGallery {
                         },
                         {
                             type: "boolean",
+                            key: "overlay",
+                            displayer: "Overlay",
+                            value: false,
+                        },
+                        {
+                            type: "boolean",
                             key: "active",
                             displayer: "Active",
                             value: false,
@@ -374,6 +436,12 @@ class ImageGallery10 extends BaseImageGallery {
                         },
                         {
                             type: "string",
+                            key: "card_subtitle",
+                            displayer: "Subtitle",
+                            value: "",
+                        },
+                        {
+                            type: "string",
                             key: "card_item_title",
                             displayer: "Title",
                             value: "Drawing",
@@ -381,7 +449,7 @@ class ImageGallery10 extends BaseImageGallery {
                         {
                             type: "string",
                             key: "text",
-                            displayer: "Text",
+                            displayer: "Description",
                             value: "Lorem Ipsum Dolor",
                         },
                         {
@@ -393,7 +461,7 @@ class ImageGallery10 extends BaseImageGallery {
                         {
                             type: "media",
                             key: "image",
-                            displayer: "Background Media",
+                            displayer: "Media",
                             value: {
                                 type: "image",
                                 url: "https://gradastudio.com/ozark/wp-content/uploads/sites/4/2020/07/portfolio-list-img-25-768x768.jpg",
@@ -404,6 +472,12 @@ class ImageGallery10 extends BaseImageGallery {
                         },
                         {
                             type: "boolean",
+                            key: "overlay",
+                            displayer: "Overlay",
+                            value: false,
+                        },
+                        {
+                            type: "boolean",
                             key: "active",
                             displayer: "Active",
                             value: false,
@@ -423,6 +497,12 @@ class ImageGallery10 extends BaseImageGallery {
                         },
                         {
                             type: "string",
+                            key: "card_subtitle",
+                            displayer: "Subtitle",
+                            value: "",
+                        },
+                        {
+                            type: "string",
                             key: "card_item_title",
                             displayer: "Title",
                             value: "Drawing",
@@ -430,7 +510,7 @@ class ImageGallery10 extends BaseImageGallery {
                         {
                             type: "string",
                             key: "text",
-                            displayer: "Text",
+                            displayer: "Description",
                             value: "Lorem Ipsum Dolor",
                         },
                         {
@@ -442,7 +522,7 @@ class ImageGallery10 extends BaseImageGallery {
                         {
                             type: "media",
                             key: "image",
-                            displayer: "Background Media",
+                            displayer: "Media",
                             value: {
                                 type: "image",
                                 url: "https://gradastudio.com/ozark/wp-content/uploads/sites/4/2020/07/portfolio-list-img-6-1000x1000.jpg",
@@ -453,52 +533,9 @@ class ImageGallery10 extends BaseImageGallery {
                         },
                         {
                             type: "boolean",
-                            key: "active",
-                            displayer: "Active",
+                            key: "overlay",
+                            displayer: "Overlay",
                             value: false,
-                        },
-                    ],
-                },
-                {
-                    type: "object",
-                    key: "card-item",
-                    displayer: "Card",
-                    value: [
-                        {
-                            type: "page",
-                            key: "url",
-                            displayer: "Navigate To",
-                            value: "",
-                        },
-                        {
-                            type: "string",
-                            key: "card_item_title",
-                            displayer: "Title",
-                            value: "Drawing",
-                        },
-                        {
-                            type: "string",
-                            key: "text",
-                            displayer: "Text",
-                            value: "Lorem Ipsum Dolor",
-                        },
-                        {
-                            type: "page",
-                            key: "textUrl",
-                            displayer: "Navigate To",
-                            value: "",
-                        },
-                        {
-                            type: "media",
-                            key: "image",
-                            displayer: "Background Media",
-                            value: {
-                                type: "image",
-                                url: "https://gradastudio.com/ozark/wp-content/uploads/sites/4/2020/07/portfolio-list-img-19-768x768.jpg",
-                            },
-                            additionalParams: {
-                                availableTypes: ["image", "video"],
-                            },
                         },
                         {
                             type: "boolean",
@@ -521,6 +558,12 @@ class ImageGallery10 extends BaseImageGallery {
                         },
                         {
                             type: "string",
+                            key: "card_subtitle",
+                            displayer: "Subtitle",
+                            value: "",
+                        },
+                        {
+                            type: "string",
                             key: "card_item_title",
                             displayer: "Title",
                             value: "Drawing",
@@ -528,7 +571,7 @@ class ImageGallery10 extends BaseImageGallery {
                         {
                             type: "string",
                             key: "text",
-                            displayer: "Text",
+                            displayer: "Description",
                             value: "Lorem Ipsum Dolor",
                         },
                         {
@@ -540,7 +583,68 @@ class ImageGallery10 extends BaseImageGallery {
                         {
                             type: "media",
                             key: "image",
-                            displayer: "Background Media",
+                            displayer: "Media",
+                            value: {
+                                type: "image",
+                                url: "https://gradastudio.com/ozark/wp-content/uploads/sites/4/2020/07/portfolio-list-img-19-768x768.jpg",
+                            },
+                            additionalParams: {
+                                availableTypes: ["image", "video"],
+                            },
+                        },
+                        {
+                            type: "boolean",
+                            key: "overlay",
+                            displayer: "Overlay",
+                            value: false,
+                        },
+                        {
+                            type: "boolean",
+                            key: "active",
+                            displayer: "Active",
+                            value: false,
+                        },
+                    ],
+                },
+                {
+                    type: "object",
+                    key: "card-item",
+                    displayer: "Card",
+                    value: [
+                        {
+                            type: "page",
+                            key: "url",
+                            displayer: "Navigate To",
+                            value: "",
+                        },
+                        {
+                            type: "string",
+                            key: "card_subtitle",
+                            displayer: "Subtitle",
+                            value: "",
+                        },
+                        {
+                            type: "string",
+                            key: "card_item_title",
+                            displayer: "Title",
+                            value: "Drawing",
+                        },
+                        {
+                            type: "string",
+                            key: "text",
+                            displayer: "Description",
+                            value: "Lorem Ipsum Dolor",
+                        },
+                        {
+                            type: "page",
+                            key: "textUrl",
+                            displayer: "Navigate To",
+                            value: "",
+                        },
+                        {
+                            type: "media",
+                            key: "image",
+                            displayer: "Media",
                             value: {
                                 type: "image",
                                 url: "https://gradastudio.com/ozark/wp-content/uploads/sites/4/2020/07/portfolio-list-img-22-768x768.jpg",
@@ -548,6 +652,12 @@ class ImageGallery10 extends BaseImageGallery {
                             additionalParams: {
                                 availableTypes: ["image", "video"],
                             },
+                        },
+                        {
+                            type: "boolean",
+                            key: "overlay",
+                            displayer: "Overlay",
+                            value: false,
                         },
                         {
                             type: "boolean",
@@ -710,8 +820,14 @@ class ImageGallery10 extends BaseImageGallery {
                                                     <div className={this.decorateCSS("background-media-inner")}>
                                                         <Base.Media value={cardItem.image} className={this.decorateCSS("background-media-element")} />
                                                     </div>
+                                                    {cardItem.overlay && <div className={this.decorateCSS("media-overlay")} />}
                                                 </div>
                                                 <div className={`${this.decorateCSS("overlay-content")} ${cardItem.active ? this.decorateCSS("active") : ""}`}>
+                                                    {this.castToString(cardItem.card_subtitle) && (
+                                                        <Base.P className={this.decorateCSS("card-subtitle")}>
+                                                            {cardItem.card_subtitle}
+                                                        </Base.P>
+                                                    )}
                                                     {this.castToString(cardItem.card_item_title) && (
                                                         <Base.H6
                                                             className={this.decorateCSS("card-title")}>

@@ -8,8 +8,21 @@
       width: 100%;
         .heading {
           width: 100%;
-          .subtitle {
+          .subtitle,
+          .heading-title,
+          .description {
             content: "";
+          }
+          .header-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--composer-gap-sm);
+            justify-content: var(--composer-content-alignment);
+            .header-button {
+              .header-button-text {
+                content: "";
+              }
+            }
           }
         }
         .tab-container {
@@ -17,6 +30,7 @@
           display: flex;
           gap: var(--composer-gap-xl);
           flex-wrap: wrap;
+          justify-content: center !important;
           width: 100%;
           .tab {
             display: flex;
@@ -107,6 +121,8 @@
           display: flex;
           align-items: center;
           justify-content: center;
+          flex-wrap: wrap;
+          gap: var(--composer-gap-sm);
           .button{
             .button-text{
               content: "";
@@ -204,6 +220,9 @@
         .gallery-container{
           .gallery-item{
             .image-container {
+              .icon-wrapper {
+                transform: translate(-50%, -50%) scale(1.5);
+              }
               .modal-image {
                 min-width: 500px;
                 min-height: 500px;
@@ -235,6 +254,7 @@
         gap: var(--composer-gap-lg);
         .tab-container {
           flex-direction: column;
+          align-items: center;
           gap: var(--composer-gap-sm);
           .tab{
             text-align: center;
@@ -244,6 +264,9 @@
           .gallery-item{
             .image-container{
               min-width: 325px;
+              .icon-wrapper {
+                transform: translate(-50%, -50%) scale(1.25);
+              }
             }
           }
         }

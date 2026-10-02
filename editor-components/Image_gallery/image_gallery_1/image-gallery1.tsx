@@ -36,6 +36,18 @@ class ImageGallery1 extends BaseImageGallery {
       value: ""
     })
     this.addProp({
+      type: "string",
+      key: "header_title",
+      displayer: "Title",
+      value: ""
+    })
+    this.addProp({
+      type: "string",
+      key: "description",
+      displayer: "Description",
+      value: ""
+    })
+    this.addProp({
       type: "boolean",
       key: "lineActive",
       displayer: "Line",
@@ -88,7 +100,7 @@ class ImageGallery1 extends BaseImageGallery {
     this.addProp({
       type: "array",
       key: "headerButtons",
-      displayer: "Header Buttons",
+      displayer: "Buttons",
       value: [
         INPUTS.BUTTON("button", "Button", "Explore More", "", "FiArrowRight", null, "Link"),
       ],
@@ -96,7 +108,7 @@ class ImageGallery1 extends BaseImageGallery {
     this.addProp({
       type: "array",
       key: "imageGalleries",
-      displayer: "Galleries",
+      displayer: "Gallery",
       value: [
         {
           type: "object",
@@ -600,7 +612,7 @@ class ImageGallery1 extends BaseImageGallery {
     this.addProp({
       type: "array",
       key: "buttons",
-      displayer: "Buttons",
+      displayer: "Load More",
       value: [
         INPUTS.BUTTON("button", "Button", "Load More", "", null, null, "Primary"),
       ],
@@ -664,38 +676,53 @@ class ImageGallery1 extends BaseImageGallery {
     const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons") || [];
     const headerButtons = this.castToObject<INPUTS.CastedButton[]>("headerButtons") || [];
     const hasButtons = buttons.some((button: INPUTS.CastedButton) => this.castToString(button.text));
+    const subtitleExist = this.castToString(this.getPropValue("subtitle"));
+    const titleExist = this.castToString(this.getPropValue("header_title"));
+    const descriptionExist = this.castToString(this.getPropValue("description"));
     const hasHeaderButtons = headerButtons.some((button: INPUTS.CastedButton) => this.castToString(button.text) || (button.icon as unknown as TypeMediaInputValue)?.name);
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          {this.castToString(this.getPropValue("subtitle")) && (
+          {(subtitleExist || titleExist || descriptionExist) && (
             <Base.VerticalContent className={this.decorateCSS("heading")}>
-              <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
-                {this.getPropValue("subtitle")}
-              </Base.SectionSubTitle>
+              {subtitleExist && (
+                <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                  {this.getPropValue("subtitle")}
+                </Base.SectionSubTitle>
+              )}
+              {titleExist && (
+                <Base.SectionTitle className={this.decorateCSS("heading-title")}>
+                  {this.getPropValue("header_title")}
+                </Base.SectionTitle>
+              )}
+              {descriptionExist && (
+                <Base.SectionDescription className={this.decorateCSS("heading-description")}>
+                  {this.getPropValue("description")}
+                </Base.SectionDescription>
+              )}
             </Base.VerticalContent>
           )}
           {(imageGallery.length > 0 || this.castToString(this.getAllCategory().allText) || hasHeaderButtons) && (
             <div className={this.decorateCSS("header")}>
               {(imageGallery.length > 0 || (showAll && this.castToString(this.getAllCategory().allText))) && (<Base.Row className={this.decorateCSS("tab-container")}>
                 {showAll && this.castToString(this.getAllCategory().allText) && (
-                  <Base.H6
+                  <Base.P
                     className={`${this.decorateCSS("tab")} ${selectedSection === this.castToString(this.getAllCategory().allText) ? this.decorateCSS("active-tab") : ""}`}
                     onClick={() => this.handleSectionClickAll()}
                   >
                     {this.getAllCategory().allText}
-                  </Base.H6>
+                  </Base.P>
                 )}
                 {imageGallery.length > 0 && (
                   imageGallery.map((item: ImageGallery, index: number) => this.castToString(item.sectionTitle) && (
-                    <Base.H6
+                    <Base.P
                       key={index}
                       className={`${this.decorateCSS("tab")} ${this.castToString(item.sectionTitle) === selectedSection ? this.decorateCSS("active-tab") : ""}`}
                       onClick={() => this.handleSectionClick(item.sectionTitle, index)}
                     >
                       {item.sectionTitle}
-                    </Base.H6>
+                    </Base.P>
                   ))
                 )}
               </Base.Row>)}
@@ -717,7 +744,7 @@ class ImageGallery1 extends BaseImageGallery {
               )}
             </div>
           )}
-          <Base.ListGrid gridCount={{ pc: this.getCountSettings().itemCount, tablet: 3 }}>
+          <Base.ListGrid gridCount={{ pc: this.getCountSettings().itemCount, tablet: 3 }} className={this.decorateCSS("gallery-grid")}>
             {imageGallery
               .filter(
                 (item: ImageGallery) =>

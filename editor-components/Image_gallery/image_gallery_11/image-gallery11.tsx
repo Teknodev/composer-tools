@@ -2,6 +2,8 @@ import { BaseImageGallery, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./image-gallery11.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
+import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
+import { INPUTS } from "../../../custom-hooks/input-templates";
 
 type GalleryImageItem = { media: TypeMediaInputValue };
 
@@ -48,8 +50,6 @@ const BASE_SETTINGS = {
 class ImageGallery11 extends BaseImageGallery {
   private sliderRefs: Array<{ innerSlider?: any } | null> = [];
   private rowWrapperRefs: Array<HTMLDivElement | null> = [];
-
-  private animationDuration = 420000;
 
   private rafId: number | null = null;
 
@@ -114,8 +114,28 @@ class ImageGallery11 extends BaseImageGallery {
         "As the studio continues to grow, our artists grow alongside it. We may be small, but everyone here is a jack-of-all-trades.",
     });
 
-    this.addProp({ type: "boolean", key: "imageOverlay", displayer: "Media Overlay", value: false });
-    this.addProp({ type: "boolean", key: "animation", displayer: "Animation", value: true });
+    this.addProp({
+      type: "array",
+      key: "headerButtons",
+      displayer: "Buttons",
+      value: [INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary")],
+    });
+
+    this.addProp({ type: "boolean", key: "imageOverlay", displayer: "Overlay", value: false });
+
+    this.addProp(
+      INPUTS.SLIDER_SETTINGS("settings", "Slider Settings", {
+        dots: false,
+        arrows: false,
+        infinite: true,
+        speed: 70000,
+        autoplay: true,
+        autoplaySpeed: 3000,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        adaptiveHeight: false,
+      })
+    );
 
     this.addProp({
       type: "array",
@@ -289,6 +309,14 @@ class ImageGallery11 extends BaseImageGallery {
     return "Image Gallery 11";
   }
 
+  private getSliderSettings(): INPUTS.TYPE_SLIDER_SETTINGS {
+    const flatObject: Record<string, any> = {};
+    ((this.getPropValue("settings") || []) as any[]).forEach((prop: any) => {
+      flatObject[prop.key] = prop.value;
+    });
+    return flatObject;
+  }
+
   componentDidMount() {
     this.refreshRows();
     this.startRaf();
@@ -332,13 +360,16 @@ class ImageGallery11 extends BaseImageGallery {
       const track: any = this.sliderRefs[i]?.innerSlider?.list?.querySelector(".slick-track");
       const width = track ? track.scrollWidth / REPEAT_COUNT : 0;
       if (!width) continue;
+      const slideCount = track.querySelectorAll(".slick-slide").length;
+      const itemWidth = slideCount ? track.scrollWidth / slideCount : width;
+      const itemDuration = Math.max(Number(this.getSliderSettings().speed) || 0, 1000);
       const dir = i % 2 ? 1 : -1;
       const start = dir === 1 ? -width : 0;
       const existing = this.rowStates[i];
       const s: RowState = existing ?? { offset: start, startOffset: start, startX: 0, moved: false, paused: false, dragging: false, width, speed: 0, dir };
       s.width = width;
       s.dir = dir;
-      s.speed = (width / this.animationDuration) * (row.speed || 1);
+      s.speed = (itemWidth / itemDuration) * (row.speed || 1);
       this.rowStates[i] = s;
       if (!s.dragging) this.setOffset(i);
     }
@@ -352,7 +383,7 @@ class ImageGallery11 extends BaseImageGallery {
       last = ts;
       for (let i = 0; i < this.rowStates.length; i++) {
         const s = this.rowStates[i];
-        if (!s || s.paused || s.dragging || this.getPropValue("animation") === false) continue;
+        if (!s || s.paused || s.dragging || this.getSliderSettings().autoplay === false) continue;
         s.offset += s.speed * s.dir * dt;
         this.setOffset(i);
       }
@@ -458,7 +489,9 @@ class ImageGallery11 extends BaseImageGallery {
     const subtitleText = this.castToString(subtitle);
     const titleText = this.castToString(title);
     const descriptionText = this.castToString(description);
-    const hasTextContent = subtitleText || titleText || !!descriptionText;
+    const headerButtons = this.castToObject<INPUTS.CastedButton[]>("headerButtons") || [];
+    const hasHeaderButtons = headerButtons.some((button: INPUTS.CastedButton) => this.castToString(button.text));
+    const hasTextContent = subtitleText || titleText || !!descriptionText || hasHeaderButtons;
 
     const backgroundObject = this.castToObject<{ background?: TypeMediaInputValue; backgroundOverlay?: boolean }>("backgroundMedia");
     const icons = this.castToObject<{ popupLeftIcon: TypeMediaInputValue; popupRightIcon: TypeMediaInputValue; popupCloseIcon: TypeMediaInputValue }>("icons");
@@ -495,6 +528,19 @@ class ImageGallery11 extends BaseImageGallery {
                   <Base.SectionDescription className={this.decorateCSS("description")}>
                     {description}
                   </Base.SectionDescription>
+                )}
+                {hasHeaderButtons && (
+                  <div className={this.decorateCSS("button-container")}>
+                    {headerButtons.map((button: INPUTS.CastedButton, index: number) =>
+                      this.castToString(button.text) && (
+                        <ComposerLink key={`ig11-btn-${index}`} path={button.url}>
+                          <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
+                            <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
+                          </Base.Button>
+                        </ComposerLink>
+                      )
+                    )}
+                  </div>
                 )}
               </Base.VerticalContent>
             </div>

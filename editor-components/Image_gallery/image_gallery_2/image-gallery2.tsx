@@ -4,6 +4,7 @@ import styles from "./image-gallery2.module.scss";
 
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "../../../custom-hooks/input-templates";
+import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 
 type ImageType = {
     image: TypeMediaInputValue;
@@ -34,6 +35,26 @@ class ImageGallery2 extends BaseImageGallery {
             key: "subtitle",
             displayer: "Subtitle",
             value: "",
+        });
+        this.addProp({
+            type: "string",
+            key: "header_title",
+            displayer: "Title",
+            value: "",
+        });
+        this.addProp({
+            type: "string",
+            key: "description",
+            displayer: "Description",
+            value: "",
+        });
+        this.addProp({
+            type: "array",
+            key: "headerButtons",
+            displayer: "Buttons",
+            value: [
+                INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+            ],
         });
         this.addProp({
             type: "object",
@@ -831,7 +852,14 @@ class ImageGallery2 extends BaseImageGallery {
         });
 
 
-        this.addProp(INPUTS.BUTTON("button", "Button", "Load More", null, null, null, "Primary"));
+        this.addProp({
+            type: "array",
+            key: "buttons",
+            displayer: "Load More",
+            value: [
+                INPUTS.BUTTON("button", "Button", "Load More", "", null, null, "Primary"),
+            ],
+        });
 
         if (typeof document !== "undefined") {
             document.addEventListener("keydown", this.handleKeyDown);
@@ -940,37 +968,66 @@ class ImageGallery2 extends BaseImageGallery {
         const imgCounter = modal.showImageCounter;
         const imgCount = `${currentImageIndex + 1} of ${currentGallery.length}`;
         const showAll = this.getAllCategory().showAll;
-        const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
+        const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons") || [];
+        const hasButtons = buttons.some((item: INPUTS.CastedButton) => this.castToString(item.text));
+        const subtitleExist = this.castToString(this.getPropValue("subtitle"));
+        const titleExist = this.castToString(this.getPropValue("header_title"));
+        const descriptionExist = this.castToString(this.getPropValue("description"));
+        const headerButtons = this.castToObject<INPUTS.CastedButton[]>("headerButtons") || [];
+        const hasHeaderButtons = headerButtons.some((item: INPUTS.CastedButton) => this.castToString(item.text));
 
         return (
             <Base.Container className={`${this.decorateCSS("container")}${modalOpen && this.decorateCSS("with-overlay")}`}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
-                    {this.castToString(this.getPropValue("subtitle")) && (
+                    {(subtitleExist || titleExist || descriptionExist || hasHeaderButtons) && (
                         <Base.VerticalContent className={this.decorateCSS("heading")}>
-                            <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
-                                {this.getPropValue("subtitle")}
-                            </Base.SectionSubTitle>
+                            {subtitleExist && (
+                                <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                                    {this.getPropValue("subtitle")}
+                                </Base.SectionSubTitle>
+                            )}
+                            {titleExist && (
+                                <Base.SectionTitle className={this.decorateCSS("heading-title")}>
+                                    {this.getPropValue("header_title")}
+                                </Base.SectionTitle>
+                            )}
+                            {descriptionExist && (
+                                <Base.SectionDescription className={this.decorateCSS("description")}>
+                                    {this.getPropValue("description")}
+                                </Base.SectionDescription>
+                            )}
+                            {hasHeaderButtons && (
+                                <div className={this.decorateCSS("header-buttons")}>
+                                    {headerButtons.map((item: INPUTS.CastedButton, index: number) => this.castToString(item.text) && (
+                                        <ComposerLink key={index} path={item.url}>
+                                            <Base.Button buttonType={item.type} className={this.decorateCSS("header-button")}>
+                                                <Base.P className={this.decorateCSS("header-button-text")}>{item.text}</Base.P>
+                                            </Base.Button>
+                                        </ComposerLink>
+                                    ))}
+                                </div>
+                            )}
                         </Base.VerticalContent>
                     )}
                     <Base.Row className={this.decorateCSS("tab-container")}>
                         {showAll && this.castToString(this.getAllCategory().allText) && (
-                            <Base.H6
+                            <Base.P
                                 className={`${this.decorateCSS("tab")} ${currentIndex === -1 ? this.decorateCSS("active-tab") : ""
                                     }`}
                                 onClick={() => this.handleSectionClick(-1)}
                             >
                                 {this.getAllCategory().allText}
-                            </Base.H6>
+                            </Base.P>
                         )}
                         {galleryCollection.map((element: any, index: number) => this.castToString(element.getPropValue("title")) && (
-                            <Base.H6
+                            <Base.P
                                 key={index}
                                 className={`${this.decorateCSS("tab")} ${index === currentIndex ? this.decorateCSS("active-tab") : ""
                                     }`}
                                 onClick={() => this.handleSectionClick(index)}
                             >
                                 {element.getPropValue("title")}
-                            </Base.H6>
+                            </Base.P>
                         ))}
                     </Base.Row>
                     <Base.ListGrid gridCount={{ pc: this.getCountSettings().itemCount, tablet: 3 }} className={this.decorateCSS("gallery-container")}>
@@ -1001,11 +1058,15 @@ class ImageGallery2 extends BaseImageGallery {
                             );
                         })}
                     </Base.ListGrid>
-                    {(currentGallery.length > this.getComponentState("imageCount")) && this.castToString(button.text) && (
+                    {(currentGallery.length > this.getComponentState("imageCount")) && hasButtons && (
                         <div className={this.decorateCSS("button-wrapper")}>
-                            <Base.Button className={this.decorateCSS("button")} buttonType={button.type} onClick={this.handleLoadMoreButton}>
-                                <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
-                            </Base.Button>
+                            {buttons.map((item: INPUTS.CastedButton, index: number) => this.castToString(item.text) && (
+                                <ComposerLink key={index} path={item.url}>
+                                    <Base.Button className={this.decorateCSS("button")} buttonType={item.type} onClick={this.handleLoadMoreButton}>
+                                        <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>
+                                    </Base.Button>
+                                </ComposerLink>
+                            ))}
                         </div>
                     )}
                     {modalOpen && currentImage && (

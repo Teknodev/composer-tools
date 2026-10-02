@@ -3,10 +3,13 @@ import styles from "./image-gallery8.module.scss";
 import { BaseImageGallery, TypeMediaInputValue } from "../../EditorComponent";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 import { Base } from "../../../composer-base-components/base/base";
+import { INPUTS } from "../../../custom-hooks/input-templates";
 
 interface Card {
     image: TypeMediaInputValue;
+    cardSubtitle: React.JSX.Element;
     title: React.JSX.Element;
+    description: React.JSX.Element;
     url: string;
     active: boolean;
 }
@@ -19,6 +22,29 @@ class ImageGallery8 extends BaseImageGallery {
             key: "subtitle",
             displayer: "Subtitle",
             value: "",
+        });
+
+        this.addProp({
+            type: "string",
+            key: "header_title",
+            displayer: "Title",
+            value: "",
+        });
+
+        this.addProp({
+            type: "string",
+            key: "header_description",
+            displayer: "Description",
+            value: "",
+        });
+
+        this.addProp({
+            type: "array",
+            key: "headerButtons",
+            displayer: "Buttons",
+            value: [
+                INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+            ],
         });
 
         this.addProp({
@@ -39,9 +65,21 @@ class ImageGallery8 extends BaseImageGallery {
                         },
                         {
                             type: "string",
+                            key: "cardSubtitle",
+                            displayer: "Subtitle",
+                            value: "",
+                        },
+                        {
+                            type: "string",
                             key: "title",
                             displayer: "Title",
                             value: "PORTRAIT",
+                        },
+                        {
+                            type: "string",
+                            key: "description",
+                            displayer: "Description",
+                            value: "",
                         },
                         {
                             type: "media",
@@ -76,9 +114,21 @@ class ImageGallery8 extends BaseImageGallery {
                         },
                         {
                             type: "string",
+                            key: "cardSubtitle",
+                            displayer: "Subtitle",
+                            value: "",
+                        },
+                        {
+                            type: "string",
                             key: "title",
                             displayer: "Title",
                             value: "ARCHITECTURE",
+                        },
+                        {
+                            type: "string",
+                            key: "description",
+                            displayer: "Description",
+                            value: "",
                         },
                         {
                             type: "media",
@@ -113,9 +163,21 @@ class ImageGallery8 extends BaseImageGallery {
                         },
                         {
                             type: "string",
+                            key: "cardSubtitle",
+                            displayer: "Subtitle",
+                            value: "",
+                        },
+                        {
+                            type: "string",
                             key: "title",
                             displayer: "Title",
                             value: "COMMERCIAL",
+                        },
+                        {
+                            type: "string",
+                            key: "description",
+                            displayer: "Description",
+                            value: "",
                         },
                         {
                             type: "media",
@@ -146,6 +208,12 @@ class ImageGallery8 extends BaseImageGallery {
                             type: "page",
                             key: "url",
                             displayer: "Navigate To",
+                            value: "",
+                        },
+                        {
+                            type: "string",
+                            key: "cardSubtitle",
+                            displayer: "Subtitle",
                             value: "",
                         },
                         {
@@ -155,6 +223,12 @@ class ImageGallery8 extends BaseImageGallery {
                             value: "WEDDING",
                         },
                         {
+                            type: "string",
+                            key: "description",
+                            displayer: "Description",
+                            value: "",
+                        },
+                        {
                             type: "media",
                             key: "image",
                             displayer: "Media",
@@ -183,6 +257,12 @@ class ImageGallery8 extends BaseImageGallery {
                             type: "page",
                             key: "url",
                             displayer: "Navigate To",
+                            value: "",
+                        },
+                        {
+                            type: "string",
+                            key: "cardSubtitle",
+                            displayer: "Subtitle",
                             value: "",
                         },
                         {
@@ -192,6 +272,12 @@ class ImageGallery8 extends BaseImageGallery {
                             value: "EDITORIAL",
                         },
                         {
+                            type: "string",
+                            key: "description",
+                            displayer: "Description",
+                            value: "",
+                        },
+                        {
                             type: "media",
                             key: "image",
                             displayer: "Media",
@@ -224,9 +310,21 @@ class ImageGallery8 extends BaseImageGallery {
                         },
                         {
                             type: "string",
+                            key: "cardSubtitle",
+                            displayer: "Subtitle",
+                            value: "",
+                        },
+                        {
+                            type: "string",
                             key: "title",
                             displayer: "Title",
                             value: "FOOD&BEVERAGE",
+                        },
+                        {
+                            type: "string",
+                            key: "description",
+                            displayer: "Description",
+                            value: "",
                         },
                         {
                             type: "media",
@@ -261,9 +359,21 @@ class ImageGallery8 extends BaseImageGallery {
                         },
                         {
                             type: "string",
+                            key: "cardSubtitle",
+                            displayer: "Subtitle",
+                            value: "",
+                        },
+                        {
+                            type: "string",
                             key: "title",
                             displayer: "Title",
                             value: "EVENTS",
+                        },
+                        {
+                            type: "string",
+                            key: "description",
+                            displayer: "Description",
+                            value: "",
                         },
                         {
                             type: "media",
@@ -298,9 +408,21 @@ class ImageGallery8 extends BaseImageGallery {
                         },
                         {
                             type: "string",
+                            key: "cardSubtitle",
+                            displayer: "Subtitle",
+                            value: "",
+                        },
+                        {
+                            type: "string",
                             key: "title",
                             displayer: "Title",
                             value: "CELEBRITY",
+                        },
+                        {
+                            type: "string",
+                            key: "description",
+                            displayer: "Description",
+                            value: "",
                         },
                         {
                             type: "media",
@@ -335,9 +457,21 @@ class ImageGallery8 extends BaseImageGallery {
                         },
                         {
                             type: "string",
+                            key: "cardSubtitle",
+                            displayer: "Subtitle",
+                            value: "",
+                        },
+                        {
+                            type: "string",
                             key: "title",
                             displayer: "Title",
                             value: "FASHION",
+                        },
+                        {
+                            type: "string",
+                            key: "description",
+                            displayer: "Description",
+                            value: "",
                         },
                         {
                             type: "media",
@@ -372,9 +506,21 @@ class ImageGallery8 extends BaseImageGallery {
                         },
                         {
                             type: "string",
+                            key: "cardSubtitle",
+                            displayer: "Subtitle",
+                            value: "",
+                        },
+                        {
+                            type: "string",
                             key: "title",
                             displayer: "Title",
                             value: "DESIGN",
+                        },
+                        {
+                            type: "string",
+                            key: "description",
+                            displayer: "Description",
+                            value: "",
                         },
                         {
                             type: "media",
@@ -399,62 +545,86 @@ class ImageGallery8 extends BaseImageGallery {
             ],
         });
         this.addProp({
-            type: "object",
-            key: "countSettings",
-            displayer: "Count Settings",
-            value: [
-                {
-                    type: "number",
-                    key: "itemCount",
-                    displayer: "Item Count in a Row",
-                    value: 4,
-                    max: 5,
-                },
-            ]
+            type: "number",
+            key: "itemCount",
+            displayer: "Item Count in a Row",
+            value: 4,
+            max: 5,
         });
     }
 
     static getName(): string {
         return "Image Gallery 8";
     }
-    getCountSettings(): { itemCount: number } {
-        return this.castToObject<{ itemCount: number }>("countSettings");
-    }
-
     render() {
+        const subtitleExist = this.castToString(this.getPropValue("subtitle"));
+        const titleExist = this.castToString(this.getPropValue("header_title"));
+        const descriptionExist = this.castToString(this.getPropValue("header_description"));
+        const buttons = this.castToObject<INPUTS.CastedButton[]>("headerButtons") || [];
+        const hasButtons = buttons.some((button: INPUTS.CastedButton) => this.castToString(button.text));
+
         return (
             <Base.Container className={this.decorateCSS("container")}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
-                {this.castToString(this.getPropValue("subtitle")) && (
+                {(subtitleExist || titleExist || descriptionExist || hasButtons) && (
                   <Base.VerticalContent className={this.decorateCSS("heading")}>
-                    <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
-                      {this.getPropValue("subtitle")}
-                    </Base.SectionSubTitle>
+                    {subtitleExist && (
+                      <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                        {this.getPropValue("subtitle")}
+                      </Base.SectionSubTitle>
+                    )}
+                    {titleExist && (
+                      <Base.SectionTitle className={this.decorateCSS("heading-title")}>
+                        {this.getPropValue("header_title")}
+                      </Base.SectionTitle>
+                    )}
+                    {descriptionExist && (
+                      <Base.SectionDescription className={this.decorateCSS("heading-description")}>
+                        {this.getPropValue("header_description")}
+                      </Base.SectionDescription>
+                    )}
+                    {hasButtons && (
+                      <div className={this.decorateCSS("button-container")}>
+                        {buttons.map((button: INPUTS.CastedButton, index: number) => this.castToString(button.text) && (
+                          <ComposerLink key={index} path={button.url}>
+                            <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
+                              <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
+                            </Base.Button>
+                          </ComposerLink>
+                        ))}
+                      </div>
+                    )}
                   </Base.VerticalContent>
                 )}
                 <Base.ListGrid
-                        gridCount={{ pc: this.getCountSettings().itemCount, tablet: 3 }}
+                        gridCount={{ pc: this.getPropValue("itemCount"), tablet: 3 }}
                         className={this.decorateCSS("image-container")}
                     >
                         {this.castToObject<Card[]>("cards").map(
                             (item: Card, indexCards: number) => {
-                            const titleExist = this.castToString(item.title);
-                            if (!item.image && !titleExist) return null;
+                            const cardSubtitleExist = this.castToString(item.cardSubtitle);
+                            const cardTitleExist = this.castToString(item.title);
+                            const cardDescriptionExist = this.castToString(item.description);
+                            const textExist = cardSubtitleExist || cardTitleExist || cardDescriptionExist;
+                            if (!item.image && !textExist) return null;
                             return (
                                     <div key={indexCards} className={`${this.decorateCSS("card")} ${item.active ? this.decorateCSS("active") : ""}`}>
                                         <ComposerLink path={item.url} isFullWidth={true}>
                                             {item.image && (
                                                 <Base.Media value={item.image} className={this.decorateCSS("image")} />
                                             )}
-                                            {titleExist && (
-                                            <div
-                                            className={`${this.decorateCSS("category")} ${!item.image && this.decorateCSS("text-visible")
-                                            }`}
-                                            >
-                                            <Base.H4 className={this.decorateCSS("title")}>
-                                            {item.title}
-                                            </Base.H4>
-                                            </div>
+                                            {textExist && (
+                                                <div className={`${this.decorateCSS("category")} ${!item.image ? this.decorateCSS("text-visible") : ""}`}>
+                                                    {cardSubtitleExist && (
+                                                        <Base.P className={this.decorateCSS("card-subtitle")}>{item.cardSubtitle}</Base.P>
+                                                    )}
+                                                    {cardTitleExist && (
+                                                        <Base.H4 className={this.decorateCSS("title")}>{item.title}</Base.H4>
+                                                    )}
+                                                    {cardDescriptionExist && (
+                                                        <Base.P className={this.decorateCSS("card-description")}>{item.description}</Base.P>
+                                                    )}
+                                                </div>
                                             )}
                                         </ComposerLink>
                                     </div>
