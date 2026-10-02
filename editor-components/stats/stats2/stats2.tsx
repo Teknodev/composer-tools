@@ -36,7 +36,7 @@ class Stats2Page extends BaseStats {
       type: "string",
       key: "description",
       displayer: "Description",
-      value: "We combine human empathy and intelligent data to provide the <span style='font-weight: 800;'>highest level of satisfaction</span>.",
+      value: "We combine human empathy and intelligent data to provide the <span style='font-weight: 800; border-bottom: 1px solid;'>highest level of satisfaction</span>.",
     });
 
     this.addProp({
@@ -135,6 +135,13 @@ class Stats2Page extends BaseStats {
     });
 
     this.addProp({
+      type: "boolean",
+      key: "showLine",
+      displayer: "Line",
+      value: true,
+    });
+
+    this.addProp({
       type: "number",
       key: "itemCount",
       displayer: "Item Count in a Row",
@@ -196,6 +203,7 @@ class Stats2Page extends BaseStats {
     const shouldAnimate = settings?.shouldAnimate ?? true;
     const animationDuration = (settings?.animationDuration ?? 2000) as number;
     const itemCount = this.getPropValue("itemCount") ?? 2;
+    const showLine = this.getPropValue("showLine");
 
     const mediaExists = (m?: TypeMediaInputValue | string) => (typeof m === "object" ? m?.name || m?.url : m);
 
@@ -343,7 +351,7 @@ class Stats2Page extends BaseStats {
             )}
 
             {cardLength > 0 && (
-              <Base.ListGrid gridCount={{ pc: itemCount, tablet: 2, phone: 1 }} className={this.decorateCSS("cards-container")}>
+              <Base.ListGrid gridCount={{ pc: itemCount, tablet: 2, phone: 1 }} className={`${this.decorateCSS("cards-container")} ${!showLine ? this.decorateCSS("no-line") : ""}`}>
                 {cards.map((card, index) => {
                   const currentRow = Math.floor(index / itemCount) + 1;
                   return this.hasCardContent(card) && <AnimatedCard key={index} card={card} isFirstRow={currentRow === 1} isLastRow={currentRow === totalRows} />;

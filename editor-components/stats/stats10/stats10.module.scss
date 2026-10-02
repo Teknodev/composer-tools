@@ -338,39 +338,6 @@
           position: static !important;
 
         }
-        .left-page {
-          flex: auto !important;
-          width: 100% !important;
-          margin-left: 0 !important;
-          position: relative !important;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          min-height: 400px !important;
-          .up-image{
-            width: 100% !important;
-            height: 70% !important;
-            .image1{
-              width: 100% !important;
-              object-fit: cover;
-            }
-            .overlay{
-              width: 100% !important;
-            }
-          }
-          .down-image,.without-image1{
-            position: absolute;
-            width: 70% !important;
-            right: auto;
-            .image2{
-              height: 100% !important;
-            }
-          }
-          .without-image1{
-            margin-top: 0px !important;
-            width: 100% !important;
-          }
-        }
       }
     }
   }
@@ -385,32 +352,41 @@
         width: 100%;
 
         .left-page {
-          display: flex;
-          flex-direction: column;
-          width: 100%;
-          gap: 10px;
-          min-height: 300px !important;
+          flex: auto !important;
+          display: grid;
+          width: 100% !important;
+          min-height: auto !important;
+          max-height: none;
+          margin-left: 0 !important;
+
           .up-image {
-            .image1 {
-              content: "";
-            }
-          }
-          .down-image {
-            margin-top: 0px !important;
-            width: 100% !important;
-            position:  relative !important;
-            border-radius: var(--composer-border-radius-sm);
-            .image2 {
-              border:none !important;
-              border-radius: var(--composer-border-radius-sm) !important;
-            }
+            grid-area: 1 / 1;
+            width: 100%;
+            height: auto;
+            aspect-ratio: 1 / 1;
+            margin-top: var(--composer-gap-xl);
+
+            .image1,
             .overlay {
-              inset: 0;
-              border-radius: var(--composer-border-radius-sm);
+              width: 100%;
+            }
+
+            &.without-image2 {
+              margin-top: 0;
             }
           }
-          .without-image1{
-            width: 100% !important;
+
+          .down-image {
+            grid-area: 1 / 1;
+            position: relative;
+            align-self: start;
+            width: 100%;
+            height: auto;
+            aspect-ratio: 3 / 2;
+
+            &.without-image1 {
+              aspect-ratio: 1 / 1;
+            }
           }
         }
 

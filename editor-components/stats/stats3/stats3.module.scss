@@ -49,6 +49,8 @@
 
         &.right-container-without-image {
           height: 100%;
+          min-height: auto;
+          justify-content: center;
         }
 
         .image-container {
@@ -56,7 +58,7 @@
           width: 85%;
 
           .image {
-            border-radius: var(--composer-border-radius-xl);
+            border-radius: var(--composer-border-radius-sm);
             width: 100%;
             object-fit: cover;
             display: block;
@@ -67,7 +69,7 @@
             position: absolute;
             inset: 0;
             z-index: 1;
-            border-radius: var(--composer-border-radius-xl);
+            border-radius: var(--composer-border-radius-sm);
             background-color: var(--composer-overlay-color);
           }
         }
@@ -81,11 +83,14 @@
           margin-top: calc(-1 * var(--composer-gap-xl));
 
           &.card-container-without-image {
-            height: 100%;
+            height: auto;
+            min-height: auto;
+            margin-top: 0;
             align-items: center;
             display: flex;
 
             .card {
+              position: relative;
               bottom: auto;
               width: 100%;
             }
@@ -94,13 +99,13 @@
           .card {
             position: absolute;
             bottom: 0;
-            width: 90%;
+            width: 100%;
             display: flex;
             flex-direction: row;
-            align-items: flex-start;
-            border-radius: var(--composer-border-radius-xl);
+            align-items: center !important;
+            border-radius: var(--composer-border-radius-sm);
             border: 8px solid var(--composer-html-background);
-            padding: var(--composer-gap-lg);
+            padding: var(--composer-gap-lg) 0;
             max-width: 100%;
             background-color: var(--composer-primary-color);
 
@@ -110,9 +115,9 @@
               color: var(--composer-font-color-secondary);
               flex-direction: row;
               position: relative;
-              justify-content: flex-start;
-              align-items: flex-start;
-              padding: var(--composer-gap-sm);
+              justify-content: center;
+              align-items: center;
+              padding: var(--composer-gap-sm) var(--composer-gap-xs);
               border-right: 1px solid var(--composer-font-color-secondary);
             }
 
@@ -129,7 +134,8 @@
 
             .content .inner-content .first-container {
               display: flex;
-              gap: var(--composer-gap-md);
+              align-items: center;
+              gap: var(--composer-gap-sm);
 
               .text {
                 align-items: flex-start !important;
@@ -146,16 +152,15 @@
             }
 
             .content .inner-content .first-container .icon {
-              width: var(--composer-gap-lg);
-              height: var(--composer-gap-lg);
-              min-width: var(--composer-gap-lg);
-              font-size: 40px;
+              width: calc(2.1875 * var(--composer-font-size-md));
+              height: calc(2.1875 * var(--composer-font-size-md));
+              min-width: calc(2.1875 * var(--composer-font-size-md));
+              font-size: calc(2.1875 * var(--composer-font-size-md));
               color: var(--composer-font-color-secondary);
             }
 
             .content .inner-content .first-container .text .number {
               max-width: 300px;
-              font-size: 2.5rem;
               font-weight: 800;
               color: var(--composer-font-color-secondary);
               display: flex;
@@ -190,7 +195,6 @@
 
             .content .inner-content .first-container .text .right-text {
               max-width: 300px;
-              font-size: 1rem;
               color: var(--composer-font-color-secondary);
             }
           }
@@ -262,8 +266,8 @@
                 justify-content: center;
               }
 
-              .content .inner-content .first-container .text .number {
-                font-size: 1.75rem !important;
+              .content .inner-content .first-container .text .right-text {
+                font-size: var(--composer-font-size-md) !important;
               }
             }
           }
@@ -323,17 +327,7 @@
                 .inner-content {
                   .first-container {
                     flex-direction: column;
-                    .icon {
-                      width: var(--composer-gap-md);
-                      height: var(--composer-gap-md);
-                      font-size: 20px;
-                    }
-
                     .text {
-                      .number {
-                        font-size: 2rem !important;
-                      }
-
                       .stat-title {
                         font-size: 1.2rem !important;
                       }
@@ -343,7 +337,7 @@
                       }
 
                       .right-text {
-                        font-size: 1rem !important;
+                        font-size: var(--composer-font-size-md) !important;
                       }
                     }
                   }

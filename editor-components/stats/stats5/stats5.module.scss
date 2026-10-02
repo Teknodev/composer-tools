@@ -166,6 +166,8 @@
       }
 
       .bottom-child {
+        gap: var(--composer-gap-sm) !important;
+
         .card {
           height: auto;
           width: 100%;
@@ -193,7 +195,7 @@
           }
 
           .card-data-description {
-            font-size: 1.5rem !important;
+            font-size: calc(1.125 * var(--composer-font-size-md)) !important;
             width: 100%;
             text-align: center !important;
           }

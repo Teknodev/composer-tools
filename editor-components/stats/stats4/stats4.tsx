@@ -52,8 +52,8 @@ class Stats4Page extends BaseStats {
 
     this.addProp({
       type: "boolean",
-      key: "showLine",
-      displayer: "Line",
+      key: "showFaqLine",
+      displayer: "FAQ Line",
       value: true,
     });
 
@@ -123,6 +123,13 @@ class Stats4Page extends BaseStats {
     });
 
     this.addProp({
+      type: "boolean",
+      key: "showLine",
+      displayer: "Stats Line",
+      value: true,
+    });
+
+    this.addProp({
       type: "array",
       key: "stats",
       displayer: "Stats",
@@ -189,7 +196,7 @@ class Stats4Page extends BaseStats {
       max: 4,
     });
 
-    this.state["componentProps"]["selectedFaqIndex"] = null;
+    this.setComponentState("selectedFaqIndex", 0);
 
     this.addProp({
       type: "media",
@@ -249,6 +256,7 @@ class Stats4Page extends BaseStats {
     const description = this.castToString(this.getPropValue("description"));
     const faqs = this.castToObject<Faq[]>("faqItems");
     const showLine = this.getPropValue("showLine");
+    const showFaqLine = this.getPropValue("showFaqLine");
     const statItems = this.castToObject<Stat[]>("stats");
     const expandIcon = this.getPropValue("expandIcon");
     const collapseIcon = this.getPropValue("collapseIcon");
@@ -350,9 +358,11 @@ class Stats4Page extends BaseStats {
         <article ref={ref} className={this.decorateCSS("stat-item")}>
           {hasText && (
             <>
-              {subtitleExist && <Base.P className={this.decorateCSS("stat-item-subtitle")}>{item.stat_subtitle}</Base.P>}
-              {titleExist && <Base.P className={this.decorateCSS("stat-item-title")}>{item.stat_title}</Base.P>}
-              {descriptionExist && <Base.P className={this.decorateCSS("stat-item-content")}>{item.stat_description}</Base.P>}
+              <Base.VerticalContent className={this.decorateCSS("stat-item-text")}>
+                {subtitleExist && <Base.P className={this.decorateCSS("stat-item-subtitle")}>{item.stat_subtitle}</Base.P>}
+                {titleExist && <Base.P className={this.decorateCSS("stat-item-title")}>{item.stat_title}</Base.P>}
+                {descriptionExist && <Base.P className={this.decorateCSS("stat-item-content")}>{item.stat_description}</Base.P>}
+              </Base.VerticalContent>
               {showLine && <div className={this.decorateCSS("stat-line")} />}
             </>
           )}
@@ -433,7 +443,7 @@ class Stats4Page extends BaseStats {
                               <Base.P className={this.decorateCSS("faq-text")}>{item.content}</Base.P>
                             </div>
                           )}
-                          {showLine && <hr className={this.decorateCSS("bottom-line")} />}
+                          {showFaqLine && <hr className={this.decorateCSS("bottom-line")} />}
                         </div>
                       );
                     return null;
@@ -443,7 +453,7 @@ class Stats4Page extends BaseStats {
             </Base.ContainerGrid>
             {statItems?.length > 0 && (
               <Base.VerticalContent className={this.decorateCSS("bottom-container")}>
-                <Base.ListGrid gridCount={{ pc: itemCount, tablet: 2, phone: 1 }} className={this.decorateCSS("stats")}>
+                <Base.ListGrid gridCount={{ pc: itemCount, tablet: itemCount, phone: 1 }} className={this.decorateCSS("stats")}>
                   {statItems.map((item: Stat, index: number) => (
                     <AnimatedStat key={index} item={item} />
                   ))}

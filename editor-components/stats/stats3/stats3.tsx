@@ -234,11 +234,11 @@ class Stats3Page extends BaseStats {
                                 {iconExist && <Base.Media value={typeof item.icon === "object" ? item.icon : { type: "icon", name: item.icon }} className={this.decorateCSS("icon")} />}
                                 <Base.VerticalContent className={this.decorateCSS("text")}>
                                   {hasValue && (
-                                    <Base.H5 className={this.decorateCSS("number")}>
+                                    <Base.H4 className={this.decorateCSS("number")}>
                                       {prefixExist && <span className={this.decorateCSS("prefix")}>{item.prefix}</span>}
                                       {numberExist && <span className={this.decorateCSS("value")}>{item.value}</span>}
                                       {suffixExist && <span className={this.decorateCSS("suffix")}>{item.suffix}</span>}
-                                    </Base.H5>
+                                    </Base.H4>
                                   )}
                                   {subtitleExist && <Base.P className={this.decorateCSS("stat-subtitle")}>{item.stat_subtitle}</Base.P>}
                                   {titleExist && <Base.H6 className={this.decorateCSS("stat-title")}>{item.stat_title}</Base.H6>}

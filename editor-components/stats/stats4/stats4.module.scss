@@ -9,7 +9,7 @@
       width: 100%;
       display: flex;
       flex-direction: column;
-      gap: var(--composer-gap-lg);
+      gap: calc(var(--composer-gap-xl) + var(--composer-gap-md));
 
       .upper-container {
         display: flex;
@@ -51,16 +51,17 @@
           color: var(--composer-font-color-primary);
           display: flex;
           flex-direction: column;
-          gap: var(--composer-gap-md);
 
           .faq-item {
             .bottom-line {
               height: 1px;
               width: 100%;
+              margin: 0;
               background-color: var(--composer-font-color-primary);
             }
 
             .faq-item-header {
+              padding: calc(var(--composer-gap-xs) + var(--composer-gap-sm)) 0;
               display: flex;
               justify-content: space-between;
               align-items: center;
@@ -94,7 +95,7 @@
 
               &.show-faq-item {
                 max-height: 400px;
-                padding: var(--composer-gap-xs) 0 var(--composer-gap-md) 0;
+                padding: 0 0 calc(var(--composer-gap-sm) + var(--composer-gap-md)) 0;
                 opacity: 1;
               }
 
@@ -115,7 +116,15 @@
       .stats {
 
         .stat-item {
+          display: flex;
+          flex-direction: column;
+          height: 100%;
           align-items: flex-start !important;
+
+          .stat-item-text {
+            align-items: stretch;
+            flex-grow: 1;
+          }
 
           .stat-line {
             background-color: rgba(var(--composer-font-color-primary-rgb), 0.2);
@@ -186,6 +195,8 @@
   .container {
     .max-content {
       .stats-container {
+        gap: var(--composer-gap-xl);
+
         .upper-container {
           flex-direction: column !important;
           gap: var(--composer-gap-lg);

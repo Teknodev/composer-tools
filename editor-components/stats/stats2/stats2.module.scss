@@ -175,6 +175,12 @@
             border-bottom: none;
           }
         }
+
+        &.no-line {
+          .listed {
+            border: none;
+          }
+        }
       }
     }
   }

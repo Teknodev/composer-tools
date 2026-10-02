@@ -85,8 +85,8 @@
       }
 
       .right-container {
-        --card-size: 150px;
-        --ring-radius: 210px;
+        --card-size: 170px;
+        --ring-radius: 220px;
         flex: 0 0 auto;
         padding: calc(var(--card-size) / 2);
         margin: 0 auto;
@@ -135,6 +135,7 @@
             .counter-value {
               margin: 0;
               max-width: 100%;
+              font-size: calc(3 * var(--composer-font-size-md));
               display: flex;
               justify-content: center;
               align-items: baseline;
@@ -145,6 +146,7 @@
             .counter-title,
             .counter-description {
               margin: 0;
+              font-size: calc(1.125 * var(--composer-font-size-md));
               color: var(--composer-font-color-primary);
               max-width: 100%;
               text-align: center;
@@ -173,12 +175,22 @@
         }
 
         .right-container {
-          --card-size: 120px;
-          --ring-radius: 140px;
+          --card-size: 130px;
+          --ring-radius: 145px;
 
           .content-div {
             .card {
               padding: var(--composer-gap-xs);
+
+              .counter-value {
+                font-size: calc(2.5 * var(--composer-font-size-md)) !important;
+              }
+
+              .counter-subtitle,
+              .counter-title,
+              .counter-description {
+                font-size: calc(0.9375 * var(--composer-font-size-md)) !important;
+              }
             }
           }
         }
@@ -203,8 +215,8 @@
         }
 
         .right-container {
-          --card-size: 110px;
-          --ring-radius: 105px;
+          --card-size: 120px;
+          --ring-radius: 100px;
           width: 100%;
         }
       }

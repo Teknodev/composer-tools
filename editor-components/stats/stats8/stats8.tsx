@@ -195,7 +195,6 @@ class Stats8Page extends BaseStats {
     const badgeNumberRaw = (this.castToString(media?.badgeNumber) as string) || "";
     const showBackground = this.getPropValue("showBackground");
     const isContentPresent = isSubtitleExist || isTitleExist || isDescription1Exist || isDesExist || isPersonNameExist || isPositionExist || statsData.length > 0;
-    const alignment = Base.getContentAlignment();
 
     const settings = this.castToObject<any>("settings");
     const shouldAnimate = settings?.shouldAnimate ?? true;
@@ -288,7 +287,7 @@ class Stats8Page extends BaseStats {
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           {isContentPresent && (
             <div className={this.decorateCSS("stats8-page")}>
-              <div className={`${this.decorateCSS("content")} ${alignment === "center" ? this.decorateCSS("alignment-center") : ""}`}>
+              <div className={this.decorateCSS("content")}>
                 {(isSubtitleExist || isTitleExist || isDescription1Exist) && (
                   <Base.VerticalContent className={this.decorateCSS("header-container")}>
                     {isSubtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{subtitle}</Base.SectionSubTitle>}

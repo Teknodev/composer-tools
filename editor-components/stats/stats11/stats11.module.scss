@@ -66,7 +66,7 @@
             text-align: left !important;
           }
           .stat-label {
-            font-size: 3.75rem;
+            font-size: 3rem;
             font-weight: 800;
             margin: 0;
             color: var(--composer-font-color-primary);
@@ -79,6 +79,8 @@
         margin-top: var(--composer-gap-md);
         width: fit-content;
         align-self: flex-start !important;
+        border-radius: var(--composer-border-radius-sm);
+        overflow: hidden;
 
         .image {
           display: block;
@@ -163,7 +165,7 @@
               font-size: 3.75rem !important;
             }
             .stat-label {
-              font-size: 3.75rem !important;
+              font-size: 2.5rem !important;
             }
           }
         }
@@ -197,7 +199,7 @@
               font-size: 2.5rem !important;
             }
             .stat-label {
-              font-size: 2.5rem !important;
+              font-size: 1.75rem !important;
             }
           }
         }

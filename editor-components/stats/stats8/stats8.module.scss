@@ -56,6 +56,10 @@ $font-color-primary: var(--composer-font-color-primary);
           align-items: flex-start;
         }
 
+        .stats-container {
+          margin-top: var(--composer-gap-sm);
+        }
+
         .header-container {
           .subtitle,
           .title,
@@ -203,6 +207,8 @@ $font-color-primary: var(--composer-font-color-primary);
                 word-break: break-word;
                 text-overflow: clip;
                 color: $font-color-primary;
+                text-align: left;
+                justify-content: flex-start;
               }
             }
           }
@@ -279,6 +285,8 @@ $font-color-primary: var(--composer-font-color-primary);
               color: white;
               word-break: break-word;
               margin: 0;
+              text-align: left;
+              justify-content: flex-start;
               @include threeDots;
             }
           }
@@ -299,8 +307,14 @@ $font-color-primary: var(--composer-font-color-primary);
             }
 
             .stat-badge {
+              max-height: none;
+              margin: var(--composer-gap-md);
+              padding: var(--composer-gap-md);
+
               .number {
-                font-size: 3.5rem;
+                font-size: min(8rem, 12cqw);
+                white-space: nowrap;
+                word-break: normal;
               }
             }
           }
@@ -345,48 +359,6 @@ $font-color-primary: var(--composer-font-color-primary);
 
       .stats8-page {
         .content {
-          &.alignment-center {
-            .header-container,
-            .author-container,
-            .stats-container {
-              align-items: center;
-            }
-
-            .header-container {
-              .subtitle,
-              .title,
-              .description {
-                text-align: center;
-                margin-left: auto;
-                margin-right: auto;
-              }
-            }
-
-            .author-container {
-              .description,
-              .author {
-                text-align: center;
-                margin-left: auto;
-                margin-right: auto;
-              }
-
-              .author-role-container {
-                justify-content: center;
-              }
-            }
-
-            .stats {
-              justify-content: center !important;
-              align-items: center !important;
-
-              .stat-border {
-                .stat {
-                  justify-content: center;
-                }
-              }
-            }
-          }
-
           .stats {
             max-width: 100% !important;
             grid-template-columns: 1fr;
@@ -408,7 +380,7 @@ $font-color-primary: var(--composer-font-color-primary);
               padding: var(--composer-gap-sm);
 
               .number {
-                font-size: 3.5rem;
+                font-size: min(8rem, 22cqw);
               }
             }
           }
