@@ -88,6 +88,14 @@
                     }
                 }
             }
+
+            .info-text-container {
+                &.left {
+                    .info-text {
+                        text-align: left;
+                    }
+                }
+            }
         }
     }
 }

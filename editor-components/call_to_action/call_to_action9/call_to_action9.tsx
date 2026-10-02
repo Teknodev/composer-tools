@@ -232,7 +232,7 @@ class CallToAction9Page extends BaseCallToAction {
             )}
             {images.length > 0 && (
               <Base.ListGrid
-                gridCount={{ pc: this.getPropValue("itemCount"), tablet: 3 }}
+                gridCount={{ pc: this.getPropValue("itemCount"), tablet: 3, phone: 2 }}
                 className={this.decorateCSS("image-container")}
               >
                 {images.map((item: ImageItem, index: number) => (

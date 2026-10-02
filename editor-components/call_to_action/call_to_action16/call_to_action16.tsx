@@ -84,7 +84,7 @@ class CallToAction16 extends BaseCallToAction {
                         )}
                     </div>
                     {infoTextExist && (
-                        <div className={this.decorateCSS("info-text-container")}>
+                        <div className={`${this.decorateCSS("info-text-container")} ${isLeft ? this.decorateCSS("left") : ""}`}>
                             <Base.P className={this.decorateCSS("info-text")}>{this.getPropValue("infoText")}</Base.P>
                         </div>
                     )}
