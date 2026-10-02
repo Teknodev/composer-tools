@@ -12,27 +12,27 @@
         height: auto;
         width: 100%;
         flex: 1;
-        gap: var(--composer-gap-sm);
-        padding-top: var(--composer-gap-xl);
+        align-items: flex-start !important;
+        justify-content: center;
 
         &.left-page-without-image {
           padding-top: 0;
         }
 
-        .title {
-          content: "";
-        }
-        .subTitle {
-          content: "";
-        }
+        .title,
+        .subtitle,
         .description {
-          content: "";
+          text-align: left !important;
+          margin-left: 0 !important;
+          margin-right: auto !important;
         }
 
         .button-container {
           display: flex;
           align-items: center;
-          gap: var(--composer-gap-md);
+          flex-wrap: wrap;
+          gap: var(--composer-gap-sm);
+          justify-content: flex-start !important;
 
           .button {
             content: "";
@@ -49,30 +49,48 @@
 
         &.right-container-without-image {
           height: 100%;
+          min-height: auto;
+          justify-content: center;
         }
 
-        .image {
-          border-radius: var(--composer-border-radius-xl);
+        .image-container {
+          position: relative;
           width: 85%;
-          object-fit: cover;
-          display: flex;
-          max-height: 700px;
+
+          .image {
+            border-radius: var(--composer-border-radius-sm);
+            width: 100%;
+            object-fit: cover;
+            display: block;
+            max-height: 700px;
+          }
+
+          .overlay {
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            border-radius: var(--composer-border-radius-sm);
+            background-color: var(--composer-overlay-color);
+          }
         }
 
         .card-container {
           width: 100%;
           height: 100%;
           position: relative;
+          z-index: 2;
           min-height: 150px;
           margin-top: calc(-1 * var(--composer-gap-xl));
 
           &.card-container-without-image {
+            height: auto;
+            min-height: auto;
             margin-top: 0;
-            height: 100%;
             align-items: center;
             display: flex;
 
             .card {
+              position: relative;
               bottom: auto;
               width: 100%;
             }
@@ -81,24 +99,26 @@
           .card {
             position: absolute;
             bottom: 0;
-            width: 90%;
+            width: 100%;
             display: flex;
-            border-radius: var(--composer-border-radius-xl);
+            flex-direction: row;
+            align-items: center !important;
+            border-radius: var(--composer-border-radius-sm);
             border: 8px solid var(--composer-html-background);
-            padding: var(--composer-gap-lg);
+            padding: var(--composer-gap-lg) 0;
             max-width: 100%;
-            background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+            background-color: var(--composer-primary-color);
 
             .content {
               flex: 1;
               display: flex;
-              color: var(--composer-font-color-primary);
+              color: var(--composer-font-color-secondary);
               flex-direction: row;
               position: relative;
               justify-content: center;
-              align-items: flex-start;
-              padding: var(--composer-gap-sm);
-              border-right: 1px solid var(--composer-font-color-primary);
+              align-items: center;
+              padding: var(--composer-gap-sm) var(--composer-gap-xs);
+              border-right: 1px solid var(--composer-font-color-secondary);
             }
 
             .content:last-child {
@@ -109,37 +129,92 @@
               display: flex;
               flex-direction: row;
               align-items: center;
-              justify-content: center;
+              justify-content: flex-start;
             }
 
-            .content .inner-content .text-container .first-container {
+            .content .inner-content .first-container {
               display: flex;
-              gap: var(--composer-gap-md);
+              align-items: center;
+              gap: var(--composer-gap-sm);
+
+              .text {
+                align-items: flex-start !important;
+
+                .number,
+                .stat-subtitle,
+                .stat-title,
+                .right-text {
+                  text-align: left !important;
+                  margin-left: 0 !important;
+                  margin-right: auto !important;
+                }
+              }
             }
 
-            .content .inner-content .text-container .first-container .icon {
-              width: var(--composer-gap-lg);
-              height: var(--composer-gap-lg);
-              min-width: var(--composer-gap-lg);
-              color: var(--composer-font-color-primary);
+            .content .inner-content .first-container .icon {
+              width: calc(2.1875 * var(--composer-font-size-md));
+              height: calc(2.1875 * var(--composer-font-size-md));
+              min-width: calc(2.1875 * var(--composer-font-size-md));
+              font-size: calc(2.1875 * var(--composer-font-size-md));
+              color: var(--composer-font-color-secondary);
             }
 
-            .content .inner-content .text-container .first-container .text .number {
+            .content .inner-content .first-container .text .number {
               max-width: 300px;
-              font-size: 1rem;
-              color: var(--composer-font-color-primary);
+              font-weight: 800;
+              color: var(--composer-font-color-secondary);
+              display: flex;
+              flex-wrap: wrap;
+              align-items: baseline;
+              justify-content: flex-start;
+
+              .prefix,
+              .suffix {
+                font-size: 0.6em;
+              }
             }
 
-            .content .inner-content .text-container .first-container .text .number > blinkpage > p,
-            .content .inner-content .text-container .first-container .text .right-text > blinkpage > p {
+            .content .inner-content .first-container .text .stat-subtitle {
+              max-width: 300px;
+              font-size: 0.9rem;
+              color: var(--composer-font-color-secondary);
+            }
+
+            .content .inner-content .first-container .text .stat-title {
+              max-width: 300px;
+              font-size: 1.4rem;
+              font-weight: 800;
+              color: var(--composer-font-color-secondary);
+            }
+
+            .content .inner-content .first-container .text .number > blinkpage > p,
+            .content .inner-content .first-container .text .right-text > blinkpage > p {
               flex-wrap: wrap;
               word-break: break-word;
             }
 
-            .content .inner-content .text-container .first-container .text .right-text {
+            .content .inner-content .first-container .text .right-text {
               max-width: 300px;
-              font-size: 1rem;
-              color: var(--composer-font-color-primary);
+              color: var(--composer-font-color-secondary);
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// Stats sit in a row above phone width; the Vertical Content item spacing only applies once they stack.
+@container (width > #{$composer-phone-width}) {
+  .container {
+    .max-content {
+      .page {
+        .right-container {
+          .card-container {
+            .card {
+              .content {
+                margin-bottom: 0;
+              }
             }
           }
         }
@@ -152,7 +227,61 @@
   .container {
     .max-content {
       .page {
-        flex-direction: column;
+        flex-direction: column !important;
+        flex-wrap: nowrap;
+
+        .left-page {
+          flex: auto;
+        }
+
+        .right-container {
+          flex: auto;
+          align-items: stretch;
+
+          &.right-container-without-image {
+            height: auto;
+          }
+
+          .image-container {
+            width: 100%;
+          }
+
+          .card-container {
+            height: auto;
+            min-height: auto;
+
+            &.card-container-without-image {
+              height: auto;
+              margin-top: 0;
+            }
+
+            .card {
+              position: relative;
+              bottom: auto;
+              width: 100%;
+              padding: var(--composer-gap-md);
+              flex-wrap: nowrap;
+
+              .content {
+                justify-content: center;
+              }
+
+              .content .inner-content .first-container .text .right-text {
+                font-size: var(--composer-font-size-md) !important;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+  .container {
+    .max-content {
+      .page {
+        flex-direction: column !important;
         flex-wrap: nowrap;
 
         .left-page {
@@ -162,6 +291,7 @@
           .button-container {
             display: flex;
             flex-direction: row !important;
+            flex-wrap: wrap;
           }
         }
 
@@ -173,7 +303,7 @@
             min-height: fit-content;
           }
 
-          .image {
+          .image-container {
             width: 100%;
           }
 
@@ -195,22 +325,19 @@
 
               .content {
                 .inner-content {
-                  .text-container {
-                    .first-container {
-                      flex-direction: column;
-                      .icon {
-                        width: var(--composer-gap-md);
-                        height: var(--composer-gap-md);
+                  .first-container {
+                    flex-direction: column;
+                    .text {
+                      .stat-title {
+                        font-size: 1.2rem !important;
                       }
 
-                      .text {
-                        .number {
-                          font-size: 1rem !important;
-                        }
+                      .stat-subtitle {
+                        font-size: 0.85rem !important;
+                      }
 
-                        .right-text {
-                          font-size: 1rem !important;
-                        }
+                      .right-text {
+                        font-size: var(--composer-font-size-md) !important;
                       }
                     }
                   }
@@ -228,18 +355,38 @@
   .container {
     .max-content {
       .page {
+        &.alignment-center {
+          .left-page {
+            align-items: center !important;
+
+            .subtitle,
+            .title,
+            .description {
+              text-align: center !important;
+              margin-left: auto !important;
+              margin-right: auto !important;
+            }
+
+            .button-container {
+              justify-content: center !important;
+            }
+          }
+
+        }
+
         .left-page {
           height: fit-content;
 
           .button-container {
-            flex-direction: column !important;
+            flex-direction: row !important;
+            flex-wrap: wrap;
           }
         }
 
         .right-container {
           gap: var(--composer-gap-md);
 
-          .image {
+          .image-container {
             margin: 0px;
           }
 
@@ -248,24 +395,16 @@
               position: relative;
               flex-direction: column !important;
               max-width: 100%;
-              gap: var(--composer-gap-md);
 
               .content {
                 flex-direction: column;
                 width: 100%;
                 border: 0;
 
-                .inner-content {
-                  flex-direction: column;
-                  width: 100%;
-                  align-items: center;
-
-                  .text-container {
+                  .inner-content {
+                    flex-direction: column;
                     width: 100%;
                     align-items: center;
-                    display: flex;
-                    flex-direction: column;
-                    margin: 0;
 
                     .first-container {
                       display: flex;
@@ -277,8 +416,18 @@
 
                       .text {
                         height: 100%;
-                        align-items: center;
+                        align-items: center !important;
                         gap: var(--composer-gap-sm);
+
+                        .number,
+                        .stat-subtitle,
+                        .stat-title,
+                        .right-text {
+                          text-align: center !important;
+                          justify-content: center;
+                          margin-left: auto !important;
+                          margin-right: auto !important;
+                        }
 
                         .right-text {
                           font-size: 1.5rem;
@@ -287,7 +436,6 @@
                       }
                     }
                   }
-                }
 
                 &::after {
                   display: none;

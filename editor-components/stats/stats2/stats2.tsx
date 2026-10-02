@@ -1,5 +1,5 @@
 import * as React from "react";
-import { BaseStats } from "../../EditorComponent";
+import { BaseStats, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./stats2.module.scss";
 
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
@@ -7,10 +7,13 @@ import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "../../../custom-hooks/input-templates";
 
 type Card = {
-  amount: number;
-  text: React.JSX.Element;
-  icon?: string;
-  secondIcon?: string;
+  icon?: TypeMediaInputValue | string;
+  prefix: React.JSX.Element;
+  value: React.JSX.Element;
+  suffix: React.JSX.Element;
+  stat_subtitle: React.JSX.Element;
+  stat_title: React.JSX.Element;
+  stat_description: React.JSX.Element;
 };
 
 class Stats2Page extends BaseStats {
@@ -18,160 +21,126 @@ class Stats2Page extends BaseStats {
     super(props, styles);
 
     this.addProp({
-      type: "number",
-      key: "animation-duration",
-      displayer: "Number Animation Duration (ms)",
-      value: 2000,
+      type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "",
     });
-
     this.addProp({
       type: "string",
-      key: "header",
+      key: "title",
       displayer: "Title",
       value: "Intuition and strategy integrate the research methodology that we also apply to traditional media.",
     });
-
     this.addProp({
       type: "string",
-      key: "subHeader",
+      key: "description",
       displayer: "Description",
-      value: "We combine human empathy and intelligent data to provide the highest level of satisfaction.",
+      value: "We combine human empathy and intelligent data to provide the <span style='font-weight: 800; border-bottom: 1px solid;'>highest level of satisfaction</span>.",
     });
-
-    this.addProp(INPUTS.BUTTON("button", "Button", "LET'S TALK NOW", "", null, null, "Primary"));
 
     this.addProp({
       type: "array",
-      key: "cards",
-      displayer: "cards",
-      additionalParams: { maxElementCount: 10 },
+      key: "buttons",
+      displayer: "Buttons",
+      value: [INPUTS.BUTTON("button", "Button", "LET'S TALK NOW", "", "FaRegEnvelope", null, "Primary")],
+    });
+
+    this.addProp({
+      type: "array",
+      key: "stats",
+      displayer: "Stats",
       value: [
         {
           type: "object",
-          key: "card",
-          displayer: "card",
+          key: "stat",
+          displayer: "Stat",
           value: [
             {
-              type: "string",
-              key: "text",
-              displayer: "Title",
-              value: "Users on marketplaces we've created in 2023.",
-            },
-            {
-              type: "number",
-              key: "amount",
-              displayer: "Amount",
-              value: 8500,
-            },
-            {
-              type: "icon",
+              type: "media",
               key: "icon",
               displayer: "Icon",
-              value: "IoMdArrowUp",
+              additionalParams: { availableTypes: ["image", "icon"] },
+              value: { type: "icon", name: "FiArrowUp" },
             },
-            {
-              type: "icon",
-              key: "secondIcon",
-              displayer: "Icon After Amount",
-              value: "FaPlus",
-            },
+            { type: "string", key: "prefix", displayer: "Prefix", value: "" },
+            { type: "string", key: "value", displayer: "Value", value: "8500" },
+            { type: "string", key: "suffix", displayer: "Suffix", value: "+" },
+            { type: "string", key: "stat_subtitle", displayer: "Subtitle", value: "" },
+            { type: "string", key: "stat_title", displayer: "Title", value: "" },
+            { type: "string", key: "stat_description", displayer: "Description", value: "Users on marketplaces we've created in 2023." },
           ],
         },
         {
           type: "object",
-          key: "card",
-          displayer: "card",
+          key: "stat",
+          displayer: "Stat",
           value: [
             {
-              type: "string",
-              key: "text",
-              displayer: "Title",
-              value: "Successfully finished projects with creativity.",
-            },
-            {
-              type: "number",
-              key: "amount",
-              displayer: "Amount",
-              value: 660,
-            },
-            {
-              type: "icon",
+              type: "media",
               key: "icon",
               displayer: "Icon",
-              value: "IoMdArrowUp",
+              additionalParams: { availableTypes: ["image", "icon"] },
+              value: { type: "icon", name: "FiArrowUp" },
             },
-            {
-              type: "icon",
-              key: "secondIcon",
-              displayer: "Icon After Amount",
-              value: "FaPlus",
-            },
+            { type: "string", key: "prefix", displayer: "Prefix", value: "" },
+            { type: "string", key: "value", displayer: "Value", value: "660" },
+            { type: "string", key: "suffix", displayer: "Suffix", value: "+" },
+            { type: "string", key: "stat_subtitle", displayer: "Subtitle", value: "" },
+            { type: "string", key: "stat_title", displayer: "Title", value: "" },
+            { type: "string", key: "stat_description", displayer: "Description", value: "Successfully finished projects with creativity." },
           ],
         },
         {
           type: "object",
-          key: "card",
-          displayer: "card",
+          key: "stat",
+          displayer: "Stat",
           value: [
             {
-              type: "string",
-              key: "text",
-              displayer: "Title",
-              value: "Monthly visitors on our e-Commerce platform.",
-            },
-            {
-              type: "number",
-              key: "amount",
-              displayer: "Amount",
-              value: 6834,
-            },
-            {
-              type: "icon",
+              type: "media",
               key: "icon",
               displayer: "Icon",
-              value: "IoMdArrowUp",
+              additionalParams: { availableTypes: ["image", "icon"] },
+              value: { type: "icon", name: "FiArrowUp" },
             },
-            {
-              type: "icon",
-              key: "secondIcon",
-              displayer: "Icon After Amount",
-              value: "FaPlus",
-            },
+            { type: "string", key: "prefix", displayer: "Prefix", value: "" },
+            { type: "string", key: "value", displayer: "Value", value: "6834" },
+            { type: "string", key: "suffix", displayer: "Suffix", value: "+" },
+            { type: "string", key: "stat_subtitle", displayer: "Subtitle", value: "" },
+            { type: "string", key: "stat_title", displayer: "Title", value: "" },
+            { type: "string", key: "stat_description", displayer: "Description", value: "Monthly visitors on our e-Commerce platform." },
           ],
         },
         {
           type: "object",
-          key: "card",
-          displayer: "card",
+          key: "stat",
+          displayer: "Stat",
           value: [
             {
-              type: "string",
-              key: "text",
-              displayer: "Title",
-              value: "Onboarding conversions growth increased.",
-            },
-            {
-              type: "number",
-              key: "amount",
-              displayer: "Amount",
-              value: 300,
-            },
-            {
-              type: "icon",
+              type: "media",
               key: "icon",
               displayer: "Icon",
-              value: "IoMdArrowUp",
+              additionalParams: { availableTypes: ["image", "icon"] },
+              value: { type: "icon", name: "FiArrowUp" },
             },
-            {
-              type: "icon",
-              key: "secondIcon",
-              displayer: "Icon After Amount",
-              value: "FaPlus",
-            },
+            { type: "string", key: "prefix", displayer: "Prefix", value: "" },
+            { type: "string", key: "value", displayer: "Value", value: "300" },
+            { type: "string", key: "suffix", displayer: "Suffix", value: "%" },
+            { type: "string", key: "stat_subtitle", displayer: "Subtitle", value: "" },
+            { type: "string", key: "stat_title", displayer: "Title", value: "" },
+            { type: "string", key: "stat_description", displayer: "Description", value: "Onboarding conversions growth increased." },
           ],
         },
       ],
     });
+
+    this.addProp({
+      type: "boolean",
+      key: "showLine",
+      displayer: "Line",
+      value: true,
+    });
+
     this.addProp({
       type: "number",
       key: "itemCount",
@@ -179,160 +148,213 @@ class Stats2Page extends BaseStats {
       value: 2,
       max: 4,
     });
+
+    this.addProp({
+      type: "object",
+      key: "settings",
+      displayer: "Settings",
+      value: [
+        {
+          type: "boolean",
+          key: "shouldAnimate",
+          displayer: "Animate Numbers",
+          value: true,
+        },
+        {
+          type: "number",
+          key: "animationDuration",
+          displayer: "Animation Duration (ms)",
+          value: 2000,
+        },
+      ],
+    });
   }
 
   static getName(): string {
     return "Stats 2";
   }
 
-  private hasCardContent(card: any): boolean {
-    const textExist = !!this.castToString(card.text);
-    const amountExist =
-      card.amount !== undefined &&
-      card.amount !== null &&
-      card.amount !== "" &&
-      !isNaN(parseFloat(String(card.amount)));
-    return textExist || amountExist || !!card.icon || !!card.secondIcon;
+  private hasCardContent(card: Card): boolean {
+    const icon: any = card.icon;
+    const iconExists = typeof icon === "object" ? icon?.name || icon?.url : icon;
+    return !!(
+      this.castToString(card.stat_description) ||
+      this.castToString(card.stat_subtitle) ||
+      this.castToString(card.stat_title) ||
+      this.castToString(card.prefix) ||
+      this.castToString(card.value) ||
+      this.castToString(card.suffix) ||
+      iconExists
+    );
   }
 
   render() {
-    const cards = this.castToObject<Card[]>("cards");
+    const cards = this.castToObject<Card[]>("stats");
     const cardLength = cards.length;
-    const animationDuration = this.getPropValue("animation-duration") as number;
 
-    const itemCount = this.getPropValue("itemCount");
+    const subtitle = this.getPropValue("subtitle");
+    const isSubtitleExist = this.castToString(subtitle);
+    const title = this.getPropValue("title");
+    const isTitleExist = this.castToString(title);
+    const description = this.getPropValue("description");
+    const isDescExist = this.castToString(description);
 
-    const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
+    const settings = this.castToObject<any>("settings");
+    const shouldAnimate = settings?.shouldAnimate ?? true;
+    const animationDuration = (settings?.animationDuration ?? 2000) as number;
+    const itemCount = this.getPropValue("itemCount") ?? 2;
+    const showLine = this.getPropValue("showLine");
+
+    const mediaExists = (m?: TypeMediaInputValue | string) => (typeof m === "object" ? m?.name || m?.url : m);
+
+    const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons") || [];
+    const visibleButtons = buttons.filter((btn) => this.castToString(btn.text) || mediaExists(btn.icon as unknown as TypeMediaInputValue));
 
     const totalRows = Math.ceil(cards.length / itemCount);
 
-    const AnimatedCard = ({ card, animationDuration, isTextExist, isFirstRow, isLastRow }: { card: Card; animationDuration: number; isTextExist: string; isFirstRow: boolean; isLastRow: boolean }) => {
-      const [amount, setAmount] = React.useState<string | null>(null);
-      const [showDecimals, setShowDecimals] = React.useState(false);
+    const AnimatedCard = ({ card, isFirstRow, isLastRow }: { card: Card; isFirstRow: boolean; isLastRow: boolean }) => {
       const ref = React.useRef<HTMLDivElement>(null);
-      const intervalRef = React.useRef<NodeJS.Timeout | null>(null);
+      const intervalRef = React.useRef<ReturnType<typeof setInterval> | null>(null);
+
+      const rawNumber = (this.castToString(card.value) as string) || "";
+      const prefix = rawNumber.match(/^[^\d]*/)?.[0] ?? "";
+      const suffix = rawNumber.match(/[^\d]*$/)?.[0] ?? "";
+      const core = rawNumber.slice(prefix.length, rawNumber.length - suffix.length);
+      const isNumeric = /\d/.test(core);
+      const target = isNumeric ? parseFloat(core.replace(/,/g, "")) : NaN;
+      const decimals = core.includes(".") ? core.split(".")[1]?.length ?? 0 : 0;
+      const useGrouping = /,/.test(core);
+      const reduceMotion = typeof window !== "undefined" && !!window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
+      const animatable = shouldAnimate && isNumeric && !reduceMotion;
+
+      const format = (n: number) => prefix + n.toLocaleString("en-US", { minimumFractionDigits: decimals, maximumFractionDigits: decimals, useGrouping }) + suffix;
+
+      const [display, setDisplay] = React.useState<string>(() => (rawNumber ? (animatable ? format(0) : rawNumber) : ""));
 
       React.useEffect(() => {
+        if (!rawNumber) {
+          setDisplay("");
+          return;
+        }
+        if (!animatable) {
+          setDisplay(rawNumber);
+          return;
+        }
+        const node = ref.current;
+        if (!node || typeof IntersectionObserver === "undefined") {
+          setDisplay(rawNumber);
+          return;
+        }
+        const clear = () => {
+          if (intervalRef.current) {
+            clearInterval(intervalRef.current);
+            intervalRef.current = null;
+          }
+        };
+        const run = () => {
+          clear();
+          setDisplay(format(0));
+          const steps = Math.max(1, Math.round(animationDuration / 30));
+          const increment = target / steps;
+          let current = 0;
+          intervalRef.current = setInterval(() => {
+            current += increment;
+            if (current >= target) {
+              clear();
+              setDisplay(rawNumber);
+              return;
+            }
+            setDisplay(format(current));
+          }, 30);
+        };
         const observer = new IntersectionObserver(
           (entries) => {
             entries.forEach((entry) => {
               if (entry.isIntersecting) {
-                animateDigits();
+                run();
                 observer.unobserve(entry.target);
               }
             });
           },
-          { threshold: 0.5 }
+          { threshold: 0.4 }
         );
-
-        if (ref.current) {
-          observer.observe(ref.current);
-        }
-
+        observer.observe(node);
         return () => {
-          if (ref.current) {
-            observer.unobserve(ref.current);
-          }
-          if (intervalRef.current) {
-            clearInterval(intervalRef.current);
-          }
+          observer.disconnect();
+          clear();
         };
-      }, [card.amount]);
+      }, [rawNumber, animatable, animationDuration, target]);
 
-      const animateDigits = () => {
-        if (intervalRef.current) {
-          clearInterval(intervalRef.current);
-        }
+      const isTextExist = this.castToString(card.stat_description);
+      const subtitleExist = this.castToString(card.stat_subtitle);
+      const titleExist = this.castToString(card.stat_title);
+      const prefixExist = this.castToString(card.prefix);
+      const suffixExist = this.castToString(card.suffix);
+      const iconExist = mediaExists(card.icon);
+      const hasAmountRow = !!display || prefixExist || suffixExist || !!iconExist;
+      const hasText = isTextExist || subtitleExist || titleExist;
 
-        const finalAmount = card.amount?.toString();
-        if (finalAmount === null || finalAmount === undefined) {
-          setAmount(null);
-          return;
-        }
-
-        const steps = animationDuration / 30;
-        let currentAmount = amount ? parseFloat(amount) : 0;
-        const increment = (parseFloat(finalAmount) - currentAmount) / steps;
-
-        intervalRef.current = setInterval(() => {
-          currentAmount += increment;
-
-          if ((increment > 0 && currentAmount >= parseFloat(finalAmount)) || (increment < 0 && currentAmount <= parseFloat(finalAmount))) {
-            currentAmount = parseFloat(finalAmount);
-            clearInterval(intervalRef.current);
-            setShowDecimals(true);
-          }
-
-          setAmount(currentAmount.toString());
-        }, 30);
-      };
-
-      const integerPart = amount ? Math.floor(parseFloat(amount)) : null;
-      const decimalPart = amount ? amount.split(".")[1] || "" : "";
+      if (!hasText && !hasAmountRow) return null;
 
       const conditionalClasses = [isFirstRow ? this.decorateCSS("border-top-none") : "", isLastRow ? this.decorateCSS("border-bottom-none") : ""].filter(Boolean).join(" ");
-
       const classes = `${this.decorateCSS("listed")} ${conditionalClasses}`.trim();
 
       return (
-        this.hasCardContent(card) && (
-          <div ref={ref} className={classes}>
-            {isTextExist && <Base.P className={this.decorateCSS("card-text")}>{card.text}</Base.P>}
-            {(amount !== null || card.icon || card.secondIcon) && (
-              <div className={this.decorateCSS("card-amount-container")}>
-                {card.icon && <Base.Icon propsIcon={{ className: this.decorateCSS("card-icon") }} name={card.icon} />}
-                {amount !== null && amount !== "NaN" && (
-                  <div className={this.decorateCSS("card-amount")}>
-                    {integerPart}
-                    {showDecimals && decimalPart && <span>.{decimalPart}</span>}
-                  </div>
-                )}
-                {card.secondIcon && <Base.Icon propsIcon={{ className: this.decorateCSS("card-icon-after") }} name={card.secondIcon} />}
-              </div>
-            )}
-          </div>
-        )
+        <div ref={ref} className={classes}>
+          {hasText && (
+            <div className={this.decorateCSS("card-text-container")}>
+              {subtitleExist && <Base.P className={this.decorateCSS("card-subtitle")}>{card.stat_subtitle}</Base.P>}
+              {titleExist && <Base.H5 className={this.decorateCSS("card-title")}>{card.stat_title}</Base.H5>}
+              {isTextExist && <Base.P className={this.decorateCSS("card-text")}>{card.stat_description}</Base.P>}
+            </div>
+          )}
+          {hasAmountRow && (
+            <div className={this.decorateCSS("card-amount-container")}>
+              {iconExist && <Base.Media value={typeof card.icon === "object" ? card.icon : { type: "icon", name: card.icon }} className={this.decorateCSS("suffix-icon")} />}
+              {prefixExist && <div className={this.decorateCSS("card-prefix")}>{card.prefix}</div>}
+              {!!display && <div className={this.decorateCSS("card-amount")}>{animatable ? display : card.value}</div>}
+              {suffixExist && <div className={this.decorateCSS("card-suffix")}>{card.suffix}</div>}
+            </div>
+          )}
+        </div>
       );
     };
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          {this.castToString(this.getPropValue("header")) && (
+          {(isSubtitleExist || isTitleExist) && (
             <Base.VerticalContent className={`${this.decorateCSS("header-wrapper")} ${cardLength <= 0 ? this.decorateCSS("full-width") : ""}`}>
-              <Base.SectionTitle className={this.decorateCSS("header")}>{this.getPropValue("header")}</Base.SectionTitle>
+              {isSubtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{subtitle}</Base.SectionSubTitle>}
+              {isTitleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>}
             </Base.VerticalContent>
           )}
 
           <Base.ContainerGrid className={this.decorateCSS("bottom-content")}>
-            {this.castToString(this.getPropValue("subHeader")) && (
-              <div className={`${this.decorateCSS("subHeader")} ${cardLength <= 0 ? this.decorateCSS("full-width") : ""}  ${!this.castToString(this.getPropValue("header")) && this.decorateCSS("no-title")}`}>
-                {this.castToString(this.getPropValue("subHeader")) && <Base.SectionDescription className={`${this.decorateCSS("description")} ${cardLength <= 0 ? this.decorateCSS("full-width") : ""}`}>{this.getPropValue("subHeader")}</Base.SectionDescription>}
+            {(isDescExist || visibleButtons.length > 0) && (
+              <Base.VerticalContent className={`${this.decorateCSS("description-column")} ${cardLength <= 0 ? this.decorateCSS("full-width") : ""} ${!isTitleExist ? this.decorateCSS("no-title") : ""}`}>
+                {isDescExist && <Base.SectionDescription className={`${this.decorateCSS("description")} ${cardLength <= 0 ? this.decorateCSS("full-width") : ""}`}>{description}</Base.SectionDescription>}
 
-                {this.castToString(button.text) && (
+                {visibleButtons.length > 0 && (
                   <div className={this.decorateCSS("button-content")}>
-                    <ComposerLink path={button.url}>
-                      <Base.Button buttonType={button.type} className={`${this.decorateCSS("contact-button")} ${cardLength <= 0 ? this.decorateCSS("button-full-width") : ""}`}>
-                        {button.text}
-                      </Base.Button>
-                    </ComposerLink>
+                    {visibleButtons.map((btn, index) => (
+                      <ComposerLink key={index} path={btn.url}>
+                        <Base.Button buttonType={btn.type} className={`${this.decorateCSS("contact-button")} ${cardLength <= 0 ? this.decorateCSS("button-full-width") : ""}`}>
+                          {this.castToString(btn.text) && <Base.P className={this.decorateCSS("button-text")}>{btn.text}</Base.P>}
+                          {mediaExists(btn.icon as unknown as TypeMediaInputValue) && <Base.Media value={btn.icon as unknown as TypeMediaInputValue} className={this.decorateCSS("button-icon")} />}
+                        </Base.Button>
+                      </ComposerLink>
+                    ))}
                   </div>
                 )}
-              </div>
+              </Base.VerticalContent>
             )}
 
-            {cards.length > 0 && (
-              <Base.ListGrid gridCount={{ pc: itemCount, tablet: 2, phone: 1 }} className={this.decorateCSS("cards-container")}>
+            {cardLength > 0 && (
+              <Base.ListGrid gridCount={{ pc: itemCount, tablet: 2, phone: 1 }} className={`${this.decorateCSS("cards-container")} ${!showLine ? this.decorateCSS("no-line") : ""}`}>
                 {cards.map((card, index) => {
                   const currentRow = Math.floor(index / itemCount) + 1;
-                  const isFirstRow = currentRow === 1;
-                  const isLastRow = currentRow === totalRows;
-
-                  const isTextExist = this.castToString(card.text);
-
-                  return this.hasCardContent(card) && (
-                    <AnimatedCard key={index} card={card} animationDuration={animationDuration} isTextExist={isTextExist} isFirstRow={isFirstRow} isLastRow={isLastRow} />
-                  );
+                  return this.hasCardContent(card) && <AnimatedCard key={index} card={card} isFirstRow={currentRow === 1} isLastRow={currentRow === totalRows} />;
                 })}
               </Base.ListGrid>
             )}

@@ -27,6 +27,7 @@
                     justify-content: flex-start;
 
                     .button {
+                      content: "";
                         .button-text {
                             content: "";
                         }
@@ -49,7 +50,8 @@
                     .stat-number,
                     .stat-suffix {
                         color: inherit;
-                    }
+                        font-weight: 800;
+                      }
                 }
 
                 .stat-title,
@@ -68,7 +70,8 @@
     .container .max-content {
         .stats-grid .stat-item .stat-value {
             font-size: 4rem;
-        }
+            font-weight: 800;
+          }
     }
 }
 
@@ -77,9 +80,41 @@
         .stats-grid {
             gap: var(--composer-gap-lg);
 
+            &.alignment-center {
+                .header-item {
+                    align-items: center;
+
+                    .title,
+                    .subtitle,
+                    .description {
+                        text-align: center;
+                    }
+
+                    .subtitle {
+                        margin-left: auto;
+                        margin-right: auto;
+                    }
+
+                    .button-container {
+                        justify-content: center;
+                    }
+                }
+
+                .stat-item {
+                    align-items: center;
+
+                    .stat-title,
+                    .stat-subtitle,
+                    .stat-description {
+                        text-align: center;
+                    }
+                }
+            }
+
             .stat-item .stat-value {
                 font-size: 4rem;
-            }
+                font-weight: 800;
+              }
         }
     }
 }

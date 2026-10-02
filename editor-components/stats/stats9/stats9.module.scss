@@ -26,6 +26,11 @@
         flex-direction: column;
         gap: var(--composer-gap-xl);
 
+        .subtitle {
+          text-align: left;
+          margin: 0;
+        }
+
         .title-section {
           .main-title {
             font-size: 3rem;
@@ -41,15 +46,28 @@
           gap: var(--composer-gap-lg);
 
           .image-container {
-            width: 270px;
-            height:350px;
+            position: relative;
+            width: 245px;
+            height: auto;
+            align-self: flex-start;
             flex-shrink: 0;
 
             .content-image {
-              aspect-ratio: 10/11;
-              border-radius: var(--composer-border-radius-lg);
+              display: block;
+              width: 100%;
+              height: auto;
+              aspect-ratio: 245/260;
+              border-radius: var(--composer-border-radius-sm);
               overflow: hidden;
               object-fit: cover;
+            }
+
+            .overlay {
+              position: absolute;
+              inset: 0;
+              z-index: 1;
+              border-radius: var(--composer-border-radius-sm);
+              background-color: var(--composer-overlay-color);
             }
           }
 
@@ -66,24 +84,17 @@
               text-align: left;
             }
 
-            .button-wrapper {
-              .more-button {
-                padding: var(--composer-gap-sm) 0;
-                display: inline-flex;
-                align-items: center;
-                gap: var(--composer-gap-xs);
+            .button-container {
+              display: flex;
+              flex-wrap: wrap;
+              gap: var(--composer-gap-sm);
 
+              .button {
                 .button-text {
-                  font-size: 1rem;
-                  text-transform: uppercase;
+                  content: "";
                 }
 
                 .button-icon {
-                  font-size: 1.5rem;
-                  color: var(--composer-font-color-primary);
-                }
-
-                &:hover {
                   color: var(--composer-primary-color);
                 }
               }
@@ -118,6 +129,16 @@
                 stroke:var(--composer-primary-color);
             }
 
+            .stat-prefix {
+              font-size: 8rem;
+              font-weight: 800;
+              color: var(--composer-html-background);
+                -webkit-text-stroke-width: 2px;
+                stroke-width: 2px;
+                -webkit-text-stroke-color: var(--composer-primary-color);
+                stroke:var(--composer-primary-color);
+            }
+
             .stat-suffix {
               font-size: 8rem;
               font-weight: 800;
@@ -129,14 +150,34 @@
             }
           }
 
+          .stat-subtitle,
+          .stat-title,
           .stat-description {
-            font-size: 1.5rem;
             color: var(--composer-font-color-primary);
             margin: 0;
-            margin-top:-1.5rem;
             background-color: var(--composer-html-background);
-            padding-top: var(--composer-gap-sm);
             text-align: left;
+          }
+
+          .stat-number-container + .stat-subtitle,
+          .stat-number-container + .stat-title,
+          .stat-number-container + .stat-description {
+            margin-top: -1.5rem;
+            padding-top: var(--composer-gap-sm);
+          }
+
+          .stat-subtitle {
+            font-size: 1.1rem;
+            color: var(--composer-font-color-primary);
+          }
+
+          .stat-title {
+            font-size: 2rem;
+            font-weight: 800;
+          }
+
+          .stat-description {
+            font-size: 1.5rem;
           }
         }
       }
@@ -163,6 +204,7 @@
         }
         .main-content {
           gap: var(--composer-gap-xl);
+          align-items: center;
           .left-content {
             .title-section {
               .main-title {
@@ -174,20 +216,10 @@
               gap: var(--composer-gap-md);
               .image-container {
                 width: 200px;
-                height: auto;
-                .content-image {
-                  width: 200px;
-                  height: auto;
-                }
               }
               .text-content {
                 .description {
                   margin: 0 0 var(--composer-gap-md) 0;
-                }
-                .button-wrapper {
-                  .more-button {
-                    padding: var(--composer-gap-sm);
-                  }
                 }
               }
             }
@@ -225,8 +257,8 @@
             flex-direction: column;
 
             .image-container {
-              height: auto;
-              width: auto;
+              width: 245px;
+              max-width: 100%;
             }
 
             .text-content {
@@ -235,16 +267,8 @@
                 margin-bottom: 0;
               }
 
-              .button-wrapper {
-                .more-button {
-                  font-size: 1rem;
-                  padding: 0;
-                  margin-top: var(--composer-gap-md);
-
-                  .button-icon {
-                    font-size: 1rem;
-                  }
-                }
+              .button-container {
+                margin-top: var(--composer-gap-md);
               }
             }
           }

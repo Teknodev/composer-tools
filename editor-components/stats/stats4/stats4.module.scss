@@ -1,21 +1,15 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
-  .card-shell {
-    display: flex;
-    flex-direction: column;
-
-    > * {
-      flex: 1 1 auto;
-    }
-  }
-
   .max-content {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
 
     .stats-container {
       width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: calc(var(--composer-gap-xl) + var(--composer-gap-md));
 
       .upper-container {
         display: flex;
@@ -27,21 +21,47 @@
 
         .upper-container-main {
           width: 100%;
+          align-items: flex-start !important;
+
+          .subtitle,
+          .title,
+          .description {
+            text-align: left !important;
+            margin-left: 0 !important;
+            margin-right: auto !important;
+          }
+
+          .button-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--composer-gap-sm);
+            margin-top: var(--composer-gap-sm);
+
+            .button {
+              content: "";
+              .button-text {
+                content: "";
+              }
+            }
+          }
         }
 
         .faq {
           width: 100%;
           color: var(--composer-font-color-primary);
+          display: flex;
+          flex-direction: column;
 
           .faq-item {
             .bottom-line {
               height: 1px;
               width: 100%;
-              background-color: var(--composer-font-color-primary);
               margin: 0;
+              background-color: var(--composer-font-color-primary);
             }
 
             .faq-item-header {
+              padding: calc(var(--composer-gap-xs) + var(--composer-gap-sm)) 0;
               display: flex;
               justify-content: space-between;
               align-items: center;
@@ -49,8 +69,9 @@
               .faq-item-title {
                 color: var(--composer-font-color-primary);
                 content: "";
-                margin-left: 0;
                 text-align: left;
+                font-size: 1.25rem;
+                font-weight: 800;
               }
 
               .faq-item-button {
@@ -74,7 +95,7 @@
 
               &.show-faq-item {
                 max-height: 400px;
-                padding: var(--composer-gap-xs) 0 var(--composer-gap-md) 0;
+                padding: 0 0 calc(var(--composer-gap-sm) + var(--composer-gap-md)) 0;
                 opacity: 1;
               }
 
@@ -87,41 +108,69 @@
         }
       }
 
+      .bottom-container {
+        width: 100%;
+        align-items: flex-start !important;
+      }
+
       .stats {
-        margin-top: var(--composer-gap-lg);
 
         .stat-item {
+          display: flex;
+          flex-direction: column;
+          height: 100%;
+          align-items: flex-start !important;
+
+          .stat-item-text {
+            align-items: stretch;
+            flex-grow: 1;
+          }
+
           .stat-line {
             background-color: rgba(var(--composer-font-color-primary-rgb), 0.2);
             width: 100%;
             height: 1px;
-            margin-bottom: var(--composer-gap-sm);
+            margin-top: var(--composer-gap-md);
+            margin-bottom: var(--composer-gap-md);
+          }
+
+          .stat-item-subtitle {
+            color: var(--composer-font-color-primary);
+            font-size: 1rem;
+            overflow-wrap: break-word;
+            text-align: left !important;
           }
 
           .stat-item-title {
             color: var(--composer-font-color-primary);
-            margin-top: 0;
             overflow-wrap: break-word;
+            text-align: left !important;
+            font-size: 1.25rem;
+            font-weight: 800;
           }
 
           .stat-item-content {
             color: var(--composer-font-color-primary);
-            margin-top: 0;
             overflow-wrap: break-word;
+            text-align: left !important;
+            font-size: 1rem;
           }
 
           .stat-item-stat-value {
             color: var(--composer-font-color-primary);
-            margin-top: 0;
-            margin-bottom: 0;
-            font-size: 3rem;
+            font-size: 3rem !important;
+            font-weight: 800;
+            text-align: left !important;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
 
-            .stat-value-icon {
-            .stat-icon {
-              color: var(--composer-font-color-primary);
+            .stat-value-prefix {
+              font-size: 1.75rem;
             }
-              font-size: 1.5rem;
-              vertical-align: middle;
+
+            .stat-value-suffix {
+              font-size: 2.5rem;
             }
           }
         }
@@ -135,12 +184,88 @@
     .max-content {
       .stats-container {
         .upper-container {
-          flex-direction: column;
-          gap: 0;
+          flex-direction: row !important;
+        }
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+  .container {
+    .max-content {
+      .stats-container {
+        gap: var(--composer-gap-xl);
+
+        .upper-container {
+          flex-direction: column !important;
+          gap: var(--composer-gap-lg);
 
           .upper-container-main {
-            .main-description {
+            .title {
               width: 100%;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+  .container {
+    .max-content {
+      .stats-container {
+        &.alignment-center {
+          align-items: center !important;
+
+          .upper-container-main {
+            align-items: center !important;
+
+            .subtitle,
+            .title,
+            .description {
+              text-align: center !important;
+              margin-left: auto !important;
+              margin-right: auto !important;
+            }
+
+            .button-container {
+              justify-content: center !important;
+            }
+          }
+
+          .faq {
+            .faq-item-title {
+              text-align: center !important;
+            }
+            .faq-text {
+              text-align: center !important;
+            }
+          }
+
+          .bottom-container {
+            align-items: center !important;
+          }
+
+        }
+
+        // Like the original, stat items are always centered on mobile, whatever the alignment.
+        .stats {
+          .stat-item {
+            align-items: center !important;
+
+            .stat-item-subtitle,
+            .stat-item-title,
+            .stat-item-content,
+            .stat-item-stat-value {
+              text-align: center !important;
+              margin-left: auto !important;
+              margin-right: auto !important;
+            }
+
+            .stat-item-stat-value {
+              justify-content: center;
             }
           }
         }

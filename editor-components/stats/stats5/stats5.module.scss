@@ -2,7 +2,46 @@
 
 .container {
   .max-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--composer-gap-xl);
+
+    .header-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center !important;
+      text-align: center;
+      width: 100%;
+
+      .subtitle {
+        text-align: center;
+        transform: none !important;
+        &::before {
+          display: none !important;
+        }
+      }
+      .title {
+        text-align: center;
+      }
+      .description {
+        text-align: center;
+        max-width: 800px;
+      }
+      .button-container {
+        display: flex;
+        gap: var(--composer-gap-sm);
+        flex-wrap: wrap;
+        justify-content: center;
+
+        .button {
+          content: "";
+        }
+      }
+    }
+
     .bottom-child {
+      gap: 0 !important;
+
       .card {
         display: flex;
         justify-content: center;
@@ -12,7 +51,6 @@
         min-height: 100px;
         width: 100%;
         position: relative;
-        padding: var(--composer-gap-md);
 
         &.stick {
           &:not(:last-child)::after {
@@ -22,7 +60,7 @@
             top: 35%;
             bottom: 35%;
             width: 1px;
-            background-color: var(--composer-font-color-primary);
+            background-color: var(--composer-tertiary-color);
           }
         }
 
@@ -34,15 +72,53 @@
           white-space: normal;
           word-break: break-word;
           overflow-wrap: break-word;
+          text-align: center !important;
+          justify-content: center !important;
+          display: flex;
+          flex-wrap: wrap;
+          align-items: baseline;
+
+          .card-data-prefix,
+          .card-data-suffix {
+            font-size: 0.5em;
+          }
+        }
+
+        .card-text {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: var(--composer-gap-xs);
+          width: 100%;
+
+          &.card-text-overlay {
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+          }
+        }
+
+        .card-data-subtitle {
+          font-size: 1.5rem;
+          color: var(--composer-font-color-primary);
+          margin: 0;
+          text-align: center !important;
+        }
+
+        .card-data-heading {
+          font-size: 2.5rem;
+          color: var(--composer-font-color-primary);
+          margin: 0;
+          text-align: center !important;
         }
 
         .card-data-description {
           font-size: 2rem;
+          color: var(--composer-font-color-primary);
           margin: 0;
-          position: absolute;
-          left: 50%;
-          top: 50%;
-          transform: translate(-50%, -50%);
+          text-align: center !important;
         }
       }
     }
@@ -54,21 +130,20 @@
     .max-content {
       .bottom-child {
         .card {
-          padding: 0 !important;
-          margin: 0px !important;
-
-          &.stick {
-            &:nth-child(2n)::after {
-              display: none !important;
-            }
+          .card-data-title {
+            font-size: 10rem !important;
           }
 
-          .card-data-title {
-            font-size: 5rem !important;
+          .card-data-subtitle {
+            font-size: 1.25rem !important;
+          }
+
+          .card-data-heading {
+            font-size: 2rem !important;
           }
 
           .card-data-description {
-            font-size: 1.5rem !important;
+            font-size: 1.75rem !important;
           }
         }
       }
@@ -79,23 +154,50 @@
 @container (max-width: #{$composer-phone-width}) {
   .container {
     .max-content {
+      .header-wrapper {
+        align-items: center !important;
+        text-align: center !important;
+
+        .subtitle,
+        .title,
+        .description {
+          text-align: center !important;
+        }
+      }
+
       .bottom-child {
+        gap: var(--composer-gap-sm) !important;
+
         .card {
           height: auto;
           width: 100%;
+          padding: 0 !important;
+          margin: 0 !important;
 
           &::after {
-            display: none;
+            display: none !important;
           }
 
           .card-data-title {
-            font-size: 7rem;
+            font-size: 7rem !important;
+          }
+
+          .card-data-subtitle {
+            font-size: 1.25rem !important;
+            width: 100%;
+            text-align: center !important;
+          }
+
+          .card-data-heading {
+            font-size: 1.75rem !important;
+            width: 100%;
+            text-align: center !important;
           }
 
           .card-data-description {
-            font-size: 1.5rem;
+            font-size: calc(1.125 * var(--composer-font-size-md)) !important;
             width: 100%;
-            text-align: center;
+            text-align: center !important;
           }
         }
       }

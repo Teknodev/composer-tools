@@ -8,7 +8,7 @@ import ComposerLink from "../../../composer-base-components/Link/ComposerLinkPro
 type StatItem = {
     prefix: string;
     prefixElement: JSX.Element;
-    number: string;
+    value: string;
     suffix: string;
     suffixElement: JSX.Element;
     title: string;
@@ -56,7 +56,7 @@ class Stats31 extends BaseStats {
                     displayer: "Stat",
                     value: [
                         { type: "string", key: "prefix", displayer: "Prefix", value: "" },
-                        { type: "string", key: "number", displayer: "Value", value: "50" },
+                        { type: "string", key: "value", displayer: "Value", value: "50" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "" },
                         { type: "string", key: "stat_subtitle", displayer: "Subtitle", value: "" },
                         { type: "string", key: "stat_title", displayer: "Title", value: "promotion tools" },
@@ -69,7 +69,7 @@ class Stats31 extends BaseStats {
                     displayer: "Stat",
                     value: [
                         { type: "string", key: "prefix", displayer: "Prefix", value: "$" },
-                        { type: "string", key: "number", displayer: "Value", value: "75000" },
+                        { type: "string", key: "value", displayer: "Value", value: "75000" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "" },
                         { type: "string", key: "stat_subtitle", displayer: "Subtitle", value: "" },
                         { type: "string", key: "stat_title", displayer: "Title", value: "total net profit every month" },
@@ -82,7 +82,7 @@ class Stats31 extends BaseStats {
                     displayer: "Stat",
                     value: [
                         { type: "string", key: "prefix", displayer: "Prefix", value: "" },
-                        { type: "string", key: "number", displayer: "Value", value: "35" },
+                        { type: "string", key: "value", displayer: "Value", value: "35" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "k" },
                         { type: "string", key: "stat_subtitle", displayer: "Subtitle", value: "" },
                         { type: "string", key: "stat_title", displayer: "Title", value: "of satisfied customers!" },
@@ -95,7 +95,7 @@ class Stats31 extends BaseStats {
                     displayer: "Stat",
                     value: [
                         { type: "string", key: "prefix", displayer: "Prefix", value: "" },
-                        { type: "string", key: "number", displayer: "Value", value: "8" },
+                        { type: "string", key: "value", displayer: "Value", value: "8" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "" },
                         { type: "string", key: "stat_subtitle", displayer: "Subtitle", value: "" },
                         { type: "string", key: "stat_title", displayer: "Title", value: "years of successful experience" },
@@ -137,14 +137,19 @@ class Stats31 extends BaseStats {
     }
 
     private AnimatedStat = ({ stat, animationDuration = 2000, statsAnimation }: { stat: StatItem; animationDuration?: number; statsAnimation: boolean }) => {
-        const originalString = stat.number;
-        const targetNumber = parseFloat(originalString) || 0;
+        const originalString = stat.value;
+        const numberPrefix = originalString.match(/^[^\d]*/)?.[0] ?? "";
+        const numberSuffix = originalString.match(/[^\d]*$/)?.[0] ?? "";
+        const core = originalString.slice(numberPrefix.length, originalString.length - numberSuffix.length);
+        const isNumeric = /\d/.test(core);
+        const targetNumber = isNumeric ? parseFloat(core.replace(/,/g, "")) : NaN;
+        const animatable = statsAnimation && isNumeric;
 
-        const [animatedNumber, setAnimatedNumber] = React.useState<number>(statsAnimation ? 0 : targetNumber);
+        const [animatedNumber, setAnimatedNumber] = React.useState<number>(animatable ? 0 : targetNumber);
         const intervalRef = React.useRef<NodeJS.Timeout | null>(null);
 
         React.useEffect(() => {
-            if (!statsAnimation) {
+            if (!animatable) {
                 setAnimatedNumber(targetNumber);
                 return;
             }
@@ -167,14 +172,18 @@ class Stats31 extends BaseStats {
                     clearInterval(intervalRef.current);
                 }
             };
-        }, [targetNumber, statsAnimation, animationDuration, originalString]);
+        }, [targetNumber, animatable, animationDuration, originalString]);
 
         const formatNumber = (num: number): string => {
-            const decimals = originalString.includes(".") ? (originalString.split(".")[1]?.length || 0) : 0;
-            return decimals > 0 ? num.toFixed(decimals) : Math.floor(num).toString();
+            const decimals = core.includes(".") ? (core.split(".")[1]?.length || 0) : 0;
+            const useGrouping = /,/.test(core);
+            const body = decimals > 0
+                ? num.toLocaleString("en-US", { minimumFractionDigits: decimals, maximumFractionDigits: decimals, useGrouping })
+                : Math.floor(num).toLocaleString("en-US", { useGrouping });
+            return numberPrefix + body + numberSuffix;
         };
 
-        const formattedNumber = statsAnimation ? formatNumber(animatedNumber) : formatNumber(targetNumber);
+        const formattedNumber = isNumeric ? formatNumber(animatedNumber) : originalString;
         const titleExist = !!stat.title;
         const subtitleExist = !!stat.subtitle;
         const descriptionExist = !!stat.description;
@@ -231,10 +240,10 @@ class Stats31 extends BaseStats {
         const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
         const itemCount = this.getPropValue("itemCount");
 
-        const statsItems = this.castToObject<{ prefix: JSX.Element; number: JSX.Element; suffix: JSX.Element; stat_title: JSX.Element; stat_subtitle: JSX.Element; stat_description: JSX.Element }[]>("stats");
+        const statsItems = this.castToObject<{ prefix: JSX.Element; value: JSX.Element; suffix: JSX.Element; stat_title: JSX.Element; stat_subtitle: JSX.Element; stat_description: JSX.Element }[]>("stats");
         const stats: StatItem[] = statsItems.map((item) => {
             const prefix = this.castToString(item.prefix) || "";
-            const number = this.castToString(item.number) || "";
+            const number = this.castToString(item.value) || "";
             const suffix = this.castToString(item.suffix) || "";
             const title = this.castToString(item.stat_title) || "";
             const subtitle = this.castToString(item.stat_subtitle) || "";
@@ -242,7 +251,7 @@ class Stats31 extends BaseStats {
             return {
                 prefix,
                 prefixElement: item.prefix,
-                number,
+                value: number,
                 suffix,
                 suffixElement: item.suffix,
                 title,
@@ -258,7 +267,7 @@ class Stats31 extends BaseStats {
 
         const visibleStats = stats.filter(
             (stat) =>
-                (stat.number && stat.number !== "") ||
+                (stat.value && stat.value !== "") ||
                 (stat.prefix && stat.prefix !== "") ||
                 (stat.suffix && stat.suffix !== "") ||
                 (stat.title && stat.title !== "") ||

@@ -1,12 +1,16 @@
 import * as React from "react";
-import { BaseStats } from "../../EditorComponent";
+import { BaseStats, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./stats11.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 import { INPUTS } from "../../../custom-hooks/input-templates";
 interface StatItem {
+  prefix: React.JSX.Element;
   value: React.JSX.Element;
-  label: React.JSX.Element;
+  suffix: React.JSX.Element;
+  stat_subtitle: React.JSX.Element;
+  title: React.JSX.Element;
+  description: React.JSX.Element;
 }
 
 class Stats11 extends BaseStats {
@@ -14,72 +18,8 @@ class Stats11 extends BaseStats {
     super(props, styles);
 
     this.addProp({
-      type: "array",
-      key: "statItems",
-      displayer: "Stat Items",
-      value: [
-        {
-          type: "object",
-          key: "statItem",
-          displayer: "Stat Item",
-          value: [
-            { type: "string", key: "value", displayer: "Value", value: "12" },
-            {
-              type: "string",
-              key: "label",
-              displayer: "Label",
-              value: "Years",
-            },
-          ],
-        },
-        {
-          type: "object",
-          key: "statItem",
-          displayer: "Stat Item",
-          value: [
-            { type: "string", key: "value", displayer: "Value", value: "68" },
-            {
-              type: "string",
-              key: "label",
-              displayer: "Label",
-              value: "Projects",
-            },
-          ],
-        },
-        {
-          type: "object",
-          key: "statItem",
-          displayer: "Stat Item",
-          value: [
-            { type: "string", key: "value", displayer: "Value", value: "16" },
-            {
-              type: "string",
-              key: "label",
-              displayer: "Label",
-              value: "Award",
-            },
-          ],
-        },
-      ],
-    });
-
-    this.addProp({
-      type: "image",
-      key: "image",
-      displayer: "Image",
-      value:
-        "https://woodmart.xtemos.com/wp-content/uploads/2023/03/w-architecture-image.jpg.webp",
-    });
-    this.addProp({
-      type: "boolean",
-      key: "faintLine",
-      displayer: "Faint Line",
-      value: true,
-    });
-
-    this.addProp({
       type: "string",
-      key: "subTitle",
+      key: "subtitle",
       displayer: "Subtitle",
       value: "Our services",
     });
@@ -105,16 +45,77 @@ class Stats11 extends BaseStats {
     });
 
     this.addProp({
-      type: "string",
-      key: "buttonText",
-      displayer: "Button Text",
-      value: "Send Request",
+      type: "array",
+      key: "stats",
+      displayer: "Stats",
+      value: [
+        {
+          type: "object",
+          key: "stat",
+          displayer: "Stat",
+          value: [
+            { type: "string", key: "prefix", displayer: "Prefix", value: "" },
+            { type: "string", key: "value", displayer: "Value", value: "12" },
+            { type: "string", key: "suffix", displayer: "Suffix", value: "" },
+            { type: "string", key: "stat_subtitle", displayer: "Subtitle", value: "" },
+            { type: "string", key: "description", displayer: "Title", value: "Years" },
+          ],
+        },
+        {
+          type: "object",
+          key: "stat",
+          displayer: "Stat",
+          value: [
+            { type: "string", key: "prefix", displayer: "Prefix", value: "" },
+            { type: "string", key: "value", displayer: "Value", value: "68" },
+            { type: "string", key: "suffix", displayer: "Suffix", value: "" },
+            { type: "string", key: "stat_subtitle", displayer: "Subtitle", value: "" },
+            { type: "string", key: "description", displayer: "Title", value: "Projects" },
+          ],
+        },
+        {
+          type: "object",
+          key: "stat",
+          displayer: "Stat",
+          value: [
+            { type: "string", key: "prefix", displayer: "Prefix", value: "" },
+            { type: "string", key: "value", displayer: "Value", value: "16" },
+            { type: "string", key: "suffix", displayer: "Suffix", value: "" },
+            { type: "string", key: "stat_subtitle", displayer: "Subtitle", value: "" },
+            { type: "string", key: "description", displayer: "Title", value: "Award" },
+          ],
+        },
+      ],
+    });
+
+    this.addProp({
+      type: "object",
+      key: "media",
+      displayer: "Media",
+      value: [
+        {
+          type: "media",
+          key: "source",
+          displayer: "Media",
+          additionalParams: { availableTypes: ["image", "video"] },
+          value: {
+            type: "image",
+            url: "https://woodmart.xtemos.com/wp-content/uploads/2023/03/w-architecture-image.jpg.webp",
+          },
+        },
+        {
+          type: "boolean",
+          key: "overlay",
+          displayer: "Overlay",
+          value: false,
+        },
+      ],
     });
     this.addProp({
-      type: "page",
-      key: "buttonLink",
-      displayer: "Button Link",
-      value: "",
+      type: "boolean",
+      key: "faintLine",
+      displayer: "Line",
+      value: true,
     });
 
     this.addProp({
@@ -140,15 +141,18 @@ class Stats11 extends BaseStats {
   }
 
   render() {
-    const statItems = this.castToObject<StatItem[]>("statItems");
-    const image = this.getPropValue("image");
-    const subTitle = this.getPropValue("subTitle");
+    const statItems = this.castToObject<StatItem[]>("stats");
+    const media = this.castToObject<any>("media");
+    const image = media?.source as TypeMediaInputValue;
+    const showOverlay = media?.overlay;
+    const subtitle = this.getPropValue("subtitle");
     const title = this.getPropValue("title");
     const text1 = this.getPropValue("text1");
     const text2 = this.getPropValue("text2");
     const alignment = Base.getContentAlignment();
     const faintLine = this.getPropValue("faintLine");
     const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
+    const hasValidButtons = buttons.some((b) => this.castToString(b.text));
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
@@ -159,28 +163,54 @@ class Stats11 extends BaseStats {
                 alignment === "center" && this.decorateCSS("center")
               }`}
             >
-              <div className={this.decorateCSS("stats-list")}>
-                {statItems.map((item, idx) => (
-                  <div className={this.decorateCSS("stat-item")} key={idx}>
-                    {this.castToString(item.value) && (
-                      <Base.P className={this.decorateCSS("stat-value")}>
-                        {item.value}
-                      </Base.P>
-                    )}
-                    {this.castToString(item.label) && (
-                      <Base.P className={this.decorateCSS("stat-label")}>
-                        {item.label}
-                      </Base.P>
-                    )}
-                  </div>
-                ))}
-              </div>
-              {image && (
+              {statItems.length > 0 && (
+                <div className={this.decorateCSS("stats-list")}>
+                  {statItems.map((item, idx) => {
+                    const prefixExist = this.castToString(item.prefix);
+                    const numberExist = this.castToString(item.value);
+                    const suffixExist = this.castToString(item.suffix);
+                    const subtitleExist = this.castToString(item.stat_subtitle);
+                    const descriptionExist = this.castToString(item.description);
+                    const hasValue = prefixExist || numberExist || suffixExist;
+                    const hasText = subtitleExist || descriptionExist;
+                    if (!hasValue && !hasText) return null;
+                    return (
+                      <div className={this.decorateCSS("stat-item")} key={idx}>
+                        {hasValue && (
+                          <Base.P className={this.decorateCSS("stat-value")}>
+                            {prefixExist && <span className={this.decorateCSS("stat-prefix")}>{item.prefix}</span>}
+                            {numberExist && <span className={this.decorateCSS("stat-number")}>{item.value}</span>}
+                            {suffixExist && <span className={this.decorateCSS("stat-suffix")}>{item.suffix}</span>}
+                          </Base.P>
+                        )}
+                        {hasText && (
+                          <div className={this.decorateCSS("stat-text")}>
+                            {subtitleExist && (
+                              <Base.P className={this.decorateCSS("stat-subtitle")}>
+                                {item.stat_subtitle}
+                              </Base.P>
+                            )}
+                            {descriptionExist && (
+                              <Base.P className={this.decorateCSS("stat-label")}>
+                                {item.description}
+                              </Base.P>
+                            )}
+                          </div>
+                        )}
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
+              {image?.url && (
                 <div className={this.decorateCSS("image-box")}>
                   <Base.Media
                     className={this.decorateCSS("image")}
-                    value={{ type: "image", url: image }}
+                    value={image}
                   />
+                  {showOverlay && (
+                    <div className={this.decorateCSS("overlay")}></div>
+                  )}
                 </div>
               )}
             </Base.GridCell>
@@ -190,9 +220,9 @@ class Stats11 extends BaseStats {
                 alignment === "center" && this.decorateCSS("center")
               }`}
             >
-              {this.castToString(subTitle) && (
-                <Base.SectionSubTitle className={this.decorateCSS("subTitle")}>
-                  {subTitle}
+              {this.castToString(subtitle) && (
+                <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                  {subtitle}
                 </Base.SectionSubTitle>
               )}
               {this.castToString(title) && (
@@ -200,35 +230,32 @@ class Stats11 extends BaseStats {
                   {title}
                 </Base.SectionTitle>
               )}
-              {text1 && (
+              {this.castToString(text1) && (
                 <Base.SectionDescription className={this.decorateCSS("text")}>
                   {text1}
                 </Base.SectionDescription>
               )}
-              {text2 && (
+              {this.castToString(text2) && (
                 <Base.SectionDescription className={this.decorateCSS("text")}>
                   {text2}
                 </Base.SectionDescription>
               )}
 
-              {buttons.length > 0 && (
+              {hasValidButtons && (
                 <div className={this.decorateCSS("button-container")}>
-                  {buttons.map((item: INPUTS.CastedButton, index: number) => {
-                    return (
-                      <div>
-                        {this.castToString(item.text) && (
-                          <ComposerLink path={item.url}>
-                            <Base.Button
-                              buttonType={item.type}
-                              className={this.decorateCSS("button")}
-                            >
-                              {item.text}
-                            </Base.Button>
-                          </ComposerLink>
-                        )}
-                      </div>
-                    );
-                  })}
+                  {buttons.map(
+                    (item: INPUTS.CastedButton, index: number) =>
+                      this.castToString(item.text) && (
+                        <ComposerLink key={index} path={item.url}>
+                          <Base.Button
+                            buttonType={item.type}
+                            className={this.decorateCSS("button")}
+                          >
+                            {item.text}
+                          </Base.Button>
+                        </ComposerLink>
+                      )
+                  )}
                 </div>
               )}
             </Base.GridCell>
