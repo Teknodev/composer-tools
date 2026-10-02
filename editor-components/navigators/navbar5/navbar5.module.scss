@@ -159,29 +159,36 @@
   .up {
     display: flex;
     align-items: center;
-    gap: var(--composer-gap-md);
-    justify-content: center;
+    gap: calc(var(--composer-gap-xl) * 2);
+    justify-content: space-between;
     margin: 0 calc(var(--composer-gap-xl) * 2);
     flex: 1 1 auto;
     min-height: 0;
     overflow-y: auto;
 
     .leftPage {
+      flex: 8 1 0;
+
       .title {
-        font-size: 7rem;
-        letter-spacing: var(--composer-gap-xs);
+        font-size: 12.5rem;
         color: var(--composer-tertiary-color);
         line-height: normal;
+        text-align: left;
       }
     }
 
     .rightPage {
+      flex: 3 1 0;
       display: flex;
       flex-direction: column;
-      align-items: center;
+      align-items: flex-start;
       justify-content: center;
 
       .items {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+
         .item-title {
           color: var(--composer-font-color-primary);
           opacity: 0;
@@ -190,7 +197,8 @@
           transition: color 0.3s;
           cursor: pointer;
           line-height: normal;
-          font-size: 3.5rem;
+          font-size: 5rem;
+          text-align: left;
           &.animation1{
             &:hover {
               color: var(--composer-tertiary-color);
@@ -200,10 +208,6 @@
       }
     }
 
-    .leftPage,
-    .rightPage {
-      flex: 1 1;
-    }
   }
 
   .line {
@@ -225,12 +229,13 @@
     .text {
       color: var(--composer-font-color-primary);
       flex: 0 1 auto;
+      font-size: 1.375rem;
     }
 
     .divider {
       flex-shrink: 0;
       flex-grow: 0;
-      width: 100px;
+      width: 70px;
       height: 1px;
       border-bottom: 1px solid rgb(var(--composer-font-color-primary-rgb), 0.2);
     }
@@ -339,29 +344,28 @@
 
   }
   .dropdownMenu {
-    justify-content: center;
     .up {
       gap: var(--composer-gap-xl);
       margin: 0 var(--composer-gap-lg);
 
       .leftPage {
         .title {
-          font-size: 5rem !important;
-          line-height: normal !important;
+          font-size: 9.375rem !important;
         }
       }
 
       .rightPage {
-        width: 100%;
-        text-align: left;
-
         .items {
           .item-title {
-            text-align: left !important;
-            font-size: 2.5rem !important;
-            line-height: normal !important;
+            font-size: 3.75rem !important;
           }
         }
+      }
+    }
+
+    .down {
+      .text {
+        font-size: 1.125rem;
       }
     }
   }
@@ -393,16 +397,19 @@
       }
 
       .rightPage {
+        align-items: center;
+
         .items {
           display: flex;
           flex-direction: column;
           align-items: center;
           justify-content: center;
-          gap: var(--composer-gap-lg);
+          gap: var(--composer-gap-md);
 
           .item-title {
             margin: 0;
-            font-size: 2rem !important;
+            text-align: center;
+            font-size: 3.125rem !important;
           }
         }
       }

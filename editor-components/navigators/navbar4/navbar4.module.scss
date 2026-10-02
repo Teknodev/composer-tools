@@ -26,8 +26,8 @@
       gap: var(--composer-gap-sm);
 
       .informationImageContainer {
-        width: 65px;
-        height: 65px;
+        width: 56px;
+        height: 56px;
         border-radius: var(--composer-border-radius-xs);
         overflow: hidden;
 
@@ -45,11 +45,13 @@
         .informationTitle {
           color: var(--composer-font-color-primary);
           text-align: left;
+          font-size: calc(0.875 * var(--composer-font-size-md));
         }
         .informationDescription {
           max-width: 200px;
           color: var(--composer-font-color-primary);
           text-align: left;
+          font-size: calc(0.875 * var(--composer-font-size-md));
         }
       }
     }
@@ -58,7 +60,7 @@
       gap: var(--composer-gap-sm);
 
       .icon {
-        font-size: calc(1.5 * var(--composer-font-size-md));
+        font-size: calc(1.25 * var(--composer-font-size-md));
         color: var(--composer-font-color-primary);
       }
     }
