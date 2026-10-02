@@ -1,4 +1,4 @@
-import * as React from "react";
+﻿import * as React from "react";
 import styles from "./feature50.module.scss";
 import { BaseFeature, TypeMediaInputValue } from "../../EditorComponent";
 import { Base, TypeButton } from "../../../composer-base-components/base/base";

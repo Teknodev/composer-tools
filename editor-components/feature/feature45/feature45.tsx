@@ -1,4 +1,4 @@
-import { BaseFeature } from "../../EditorComponent";
+﻿import { BaseFeature } from "../../EditorComponent";
 import styles from "./feature45.module.scss";
 import {
   Base,
@@ -262,9 +262,11 @@ class Feature45 extends BaseFeature {
               className={this.decorateCSS("cards-list")}
             >
               {cards?.map((card: any, index: number) => {
-                // Title field uses `title` in the original schema, but newer
-                // bucket entries use `content` (HTML allowed) — fall back.
-                const cardTitle = card.title || card.content;
+                // #1275 renamed the card keys to `card_*`; older bucket entries may
+                // still carry `title`/`content`, so fall back to those.
+                const cardTitle = card.card_title || card.title || card.content;
+                const cardSubtitle = card.card_subtitle || card.subtitle;
+                const cardDescription = card.card_description || card.description;
                 // Each card can carry a singular `button` (object) OR a
                 // `buttons` array. Normalize to an array for rendering.
                 const cardButtons: PrimaryButton[] = Array.isArray(card.buttons)
@@ -286,9 +288,9 @@ class Feature45 extends BaseFeature {
                         className={this.decorateCSS("card-icon")}
                       />
                     )}
-                    {this.castToString(card.subtitle) && (
+                    {this.castToString(cardSubtitle) && (
                       <Base.H6 className={this.decorateCSS("card-subtitle")}>
-                        {card.subtitle}
+                        {cardSubtitle}
                       </Base.H6>
                     )}
                     {this.castToString(cardTitle) && (
@@ -296,9 +298,9 @@ class Feature45 extends BaseFeature {
                         {cardTitle}
                       </Base.H3>
                     )}
-                    {this.castToString(card.description) && (
+                    {this.castToString(cardDescription) && (
                       <Base.P className={this.decorateCSS("card-description")}>
-                        {card.description}
+                        {cardDescription}
                       </Base.P>
                     )}
                     <div className={this.decorateCSS("card-buttons-wrapper")}>

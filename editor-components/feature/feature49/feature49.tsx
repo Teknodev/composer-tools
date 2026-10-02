@@ -3,7 +3,7 @@ import {
     BaseFeature,
     TypeMediaInputValue,
 } from "composer-tools/editor-components/EditorComponent";
-import styles from "./feature51.module.scss";
+import styles from "./feature49.module.scss";
 import {
     Base,
     TypeButton,
@@ -18,7 +18,7 @@ type Item = {
     itemIconClosed?: TypeMediaInputValue;
 };
 
-class Feature51 extends BaseFeature {
+class Feature49 extends BaseFeature {
     private containerRef = React.createRef<HTMLDivElement>();
 
     constructor(props?: any) {
@@ -263,7 +263,7 @@ class Feature51 extends BaseFeature {
     }
 
     static getName(): string {
-        return "Feature 51";
+        return "Feature 49";
     }
 
     onComponentDidMount() {
@@ -514,4 +514,4 @@ class Feature51 extends BaseFeature {
     }
 }
 
-export default Feature51;
+export default Feature49;
