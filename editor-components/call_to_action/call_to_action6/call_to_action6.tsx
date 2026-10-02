@@ -1,40 +1,71 @@
 import * as React from "react";
-import { BaseCallToAction } from "../../EditorComponent";
+import { BaseCallToAction, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./call_to_action6.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
+import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 import { INPUTS } from "../../../custom-hooks/input-templates";
 import { Form, Formik } from "formik";
 import * as Yup from "yup";
+
+type MediaObject = {
+  backgroundImage: TypeMediaInputValue;
+  overlay: boolean;
+};
+
+type InputData = {
+  placeholder: string;
+  submitText: string;
+};
 
 class CallToAction6Page extends BaseCallToAction {
   constructor(props?: any) {
     super(props, styles);
 
     this.addProp({
-      type: "media",
-      key: "componentBackground",
+      type: "object",
+      key: "mediaObject",
       displayer: "Background Media",
-      additionalParams: {
-        availableTypes: ["image", "video"],
-      },
-      value: {
-        type: "image",
-        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66bdaa2707399d002cb4130f?alt=media",
-      },
+      value: [
+        {
+          type: "media",
+          key: "backgroundImage",
+          displayer: "Background Media",
+          additionalParams: {
+            availableTypes: ["image", "video"],
+          },
+          value: {
+            type: "image",
+            url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66bdaa2707399d002cb4130f?alt=media",
+          },
+        },
+        {
+          type: "boolean",
+          key: "overlay",
+          displayer: "Overlay",
+          value: true,
+        },
+      ],
+    });
+
+    this.addProp({
+      type: "boolean",
+      key: "contentBackground",
+      displayer: "Content Background",
+      value: true,
     });
 
     this.addProp({
       type: "string",
       key: "subtitle",
       displayer: "Subtitle",
-      value: "Subscribe for now",
+      value: "",
     });
 
     this.addProp({
       type: "string",
       key: "title",
       displayer: "Title",
-      value: "Get notified on latest updates and new releases.",
+      value: "Get notified on latest. updates and new releases.",
     });
 
     this.addProp({
@@ -45,52 +76,57 @@ class CallToAction6Page extends BaseCallToAction {
     });
 
     this.addProp({
-      type: "string",
-      key: "placeholder",
-      displayer: "Placeholder",
-      value: "Enter E-mail Address",
-    });
-
-    this.addProp({
-      type: "string",
-      key: "submitText",
-      displayer: "Submit Text",
-      value: "Form successfully submitted!",
-    });
-
-    this.addProp({
-      type: "string",
-      key: "comment",
-      displayer: "Comment",
-      value: "* We promise we will never spam your account. *",
-    });
-
-    this.addProp(INPUTS.BUTTON("button", "Button", "Subscribe", null, null, null, "Primary"));
-
-
-
-    this.addProp({
       type: "boolean",
       key: "spaceLine",
-      displayer: "Space Line",
+      displayer: "Line",
       value: true,
     });
 
     this.addProp({
-      type: "boolean",
-      key: "overlay",
-      displayer: "Overlay",
-      value: true,
+      type: "object",
+      key: "inputData",
+      displayer: "Input",
+      value: [
+        {
+          type: "string",
+          key: "placeholder",
+          displayer: "Placeholder",
+          value: "Enter E-mail Address",
+        },
+        {
+          type: "string",
+          key: "submitText",
+          displayer: "Submit Text",
+          value: "Form successfully submitted!",
+        },
+      ],
     });
 
+    this.addProp({
+      type: "string",
+      key: "text",
+      displayer: "Text",
+      value: "* We promise we will never spam your account. *",
+    });
+    this.addProp({
+      type: "array",
+      key: "buttons",
+      displayer: "Buttons",
+      value: [
+        INPUTS.BUTTON("button", "Button", "Subscribe", "", "FaArrowRight", null, "Primary"),
+      ],
+    });
+
+    const inputData = this.castToObject<InputData>("inputData");
     this.setComponentState(
       "placeholderText",
-      this.castToString(this.getPropValue("placeholder"))
+      this.castToString(inputData.placeholder)
     );
   }
 
   onComponentDidUpdate() {
-    const currentPlaceholder = this.castToString(this.getPropValue("placeholder"));
+    const inputData = this.castToObject<InputData>("inputData");
+    const currentPlaceholder = this.castToString(inputData.placeholder);
     const prevPlaceholder = this.getComponentState("placeholderText");
 
     if (currentPlaceholder !== prevPlaceholder) {
@@ -109,53 +145,56 @@ class CallToAction6Page extends BaseCallToAction {
   }
 
   render() {
+    const mediaObject = this.castToObject<MediaObject>("mediaObject");
+    const backgroundImage = mediaObject.backgroundImage;
+    const overlay = mediaObject.overlay;
+    const viewType = Base.getViewType();
+    const contentBackground = this.getPropValue("contentBackground");
     const spaceLineExist = this.getPropValue("spaceLine");
     const subtitleExist = this.castToString(this.getPropValue("subtitle"));
     const titleExist = this.castToString(this.getPropValue("title"));
-    const placeholderExist = this.castToString(this.getPropValue("placeholder"));
-    const commentExist = this.castToString(this.getPropValue("comment"));
+    const inputData = this.castToObject<InputData>("inputData");
+    const placeholderExist = this.castToString(inputData.placeholder);
+    const submitText = this.castToString(inputData.submitText);
+    
+    const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons") || [];
+    const hasButton = buttons.some((btn) => btn && (this.castToString(btn.text) || (btn.icon as any)?.name));
+
+    const textExist = this.castToString(this.getPropValue("text"));
     const descriptionExist = this.castToString(this.getPropValue("description"));
     const description = this.getPropValue("description");
 
-    const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
-
-    const submitText = this.castToString(this.getPropValue("submitText"));
+    const renderTitle = () => {
+      const text = this.castToString(this.getPropValue("title")) || "";
+      const splitWord = "latest.";
+      const index = text.indexOf(splitWord);
+      if (index !== -1) {
+        const part1 = text.slice(0, index + splitWord.length);
+        const part2 = text.slice(index + splitWord.length).trim();
+        return (
+          <>
+            {part1}
+            {part2 && <span className={this.decorateCSS("primary-title")}>{part2}</span>}
+          </>
+        );
+      }
+      return text;
+    };
 
     return (
-      <Base.Container
-        className={`${this.decorateCSS("container")}
-        ${this.getPropValue("overlay") && this.getPropValue("componentBackground") ? this.decorateCSS("overlay-active") : ""}`}
-      >
-        {this.getPropValue("componentBackground") && (
-          <Base.Media
-            value={this.getPropValue("componentBackground")}
-            className={this.decorateCSS("background-image")}
-          />
-        )}
-        <Base.MaxContent className={this.decorateCSS("max-content")}>
+      <Base.Container className={`${this.decorateCSS("container")} ${this.decorateCSS(viewType)} ${overlay && backgroundImage && this.decorateCSS("overlay-active")} ${backgroundImage && this.decorateCSS("has-background")}`}>
+        {backgroundImage && (<Base.Media value={backgroundImage} className={this.decorateCSS("background-image")} />)}
+        <Base.MaxContent className={`${this.decorateCSS("max-content")} ${contentBackground ? this.decorateCSS("content-background") : ""}`}>
           <Base.VerticalContent className={this.decorateCSS("content")}>
-            {subtitleExist && (
-              <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
-                {this.getPropValue("subtitle")}
-              </Base.SectionSubTitle>
-            )}
-            {titleExist && (
-              <Base.SectionTitle className={this.decorateCSS("title")}>
-                {this.getPropValue("title")}
-              </Base.SectionTitle>
-            )}  
-            {descriptionExist && (
-              <Base.SectionDescription className={this.decorateCSS("description")}>
-                {description}
-              </Base.SectionDescription>
-            )}
+            {subtitleExist && (<Base.SectionSubTitle className={`${this.decorateCSS("subtitle")}`}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>)}
+            {titleExist && (<Base.SectionTitle className={this.decorateCSS("title")}>{renderTitle()}</Base.SectionTitle>)}
+            {descriptionExist && (<Base.SectionDescription className={this.decorateCSS("description")}>{description}</Base.SectionDescription>)}
             {spaceLineExist && (
               <div className={this.decorateCSS("space-container")}>
                 <div className={this.decorateCSS("space")} />
               </div>
             )}
-
-            {(commentExist || this.castToString(button.text)) &&
+            {(textExist || hasButton) &&
               <Formik
                 initialValues={{ email: "" }}
                 validationSchema={this.validationSchema}
@@ -163,7 +202,7 @@ class CallToAction6Page extends BaseCallToAction {
                   this.setComponentState("placeholderText", submitText);
                   this.insertForm("CTA6 – NewsletterForm", data);
                   setTimeout(() => {
-                    const defaultPlaceholder = this.castToString(this.getPropValue("placeholder"));
+                    const defaultPlaceholder = this.castToString(inputData.placeholder);
                     this.setComponentState(
                       "placeholderText",
                       defaultPlaceholder
@@ -183,7 +222,7 @@ class CallToAction6Page extends BaseCallToAction {
                     className={this.decorateCSS("form")}
                     onSubmit={handleSubmit}
                   >
-                    {this.castToString(button.text) &&
+                    {hasButton &&
                       <div className={this.decorateCSS("input-container")}>
                         <input
                           placeholder={
@@ -191,7 +230,7 @@ class CallToAction6Page extends BaseCallToAction {
                             placeholderExist
                           }
                           onChange={handleChange}
-                          className={this.decorateCSS("placeholder")}
+                          className={`${this.decorateCSS("placeholder")} ${!backgroundImage && this.decorateCSS("no-image")}`}
                           type="text"
                           name="email"
                           value={values.email}
@@ -203,17 +242,28 @@ class CallToAction6Page extends BaseCallToAction {
                         )}
                       </div>}
 
-                    {(commentExist || this.castToString(button.text)) && (
+                    {(textExist || hasButton) && (
                       <div className={this.decorateCSS("bottom-container")}>
-                        {commentExist && (
-                          <Base.P className={this.decorateCSS("comment")}>
-                            {this.getPropValue("comment")}
+                        {textExist && (
+                          <Base.P className={this.decorateCSS("text")}>
+                            {this.getPropValue("text")}
                           </Base.P>
                         )}
-                        {this.castToString(button.text) && (
-                          <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
-                            <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
-                          </Base.Button>
+                        {hasButton && (
+                          <div className={this.decorateCSS("button-container")}>
+                            {buttons.map((button: INPUTS.CastedButton, index: number) => {
+                              const buttonText = this.castToString(button?.text);
+                              const iconExist = !!(button?.icon as any)?.name;
+                              return (buttonText || iconExist) && (
+                                <ComposerLink key={index} path={button?.url}>
+                                  <Base.Button buttonType={button?.type} className={this.decorateCSS("button")}>
+                                    {buttonText && <Base.P className={this.decorateCSS("button-text")}>{button?.text}</Base.P>}
+                                    {iconExist && <Base.Media value={button.icon as any} className={this.decorateCSS("button-icon")} />}
+                                  </Base.Button>
+                                </ComposerLink>
+                              );
+                            })}
+                          </div>
                         )}
                       </div>
                     )}

@@ -51,14 +51,16 @@ class CallToAction20 extends BaseCallToAction {
     const subtitleExist = this.castToString(this.getPropValue("subtitle"));
     const titleExist = this.castToString(this.getPropValue("title"));
     const descriptionExist = this.castToString(this.getPropValue("description"));
+    const alignment = Base.getContentAlignment();
+    const isLeft = alignment === "left";
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
-        <Base.MaxContent className={this.decorateCSS("max-content")}>
+        <Base.MaxContent className={`${this.decorateCSS("max-content")} ${isLeft ? this.decorateCSS("left") : ""}`}>
           {(subtitleExist || titleExist || descriptionExist) && (
             <Base.VerticalContent className={this.decorateCSS("header")}>
               {subtitleExist && (
-                <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                <Base.SectionSubTitle className={`${this.decorateCSS("subtitle")} ${Base.getSectionSubTitleType() !== "line" ? this.decorateCSS("subtitle-no-line") : ""}`}>
                   {this.getPropValue("subtitle")}
                 </Base.SectionSubTitle>
               )}
