@@ -67,8 +67,11 @@
 
           .image {
             height: var(--composer-gap-lg);
-            font-size: var(--composer-gap-lg);
             object-fit: cover;
+          }
+
+          .icon {
+            font-size: 2.75rem;
           }
 
           .video {
@@ -94,8 +97,8 @@
               height: calc(var(--composer-gap-lg) * 0.8);
             }
 
-            .image {
-              font-size: calc(var(--composer-gap-lg) * 0.8);
+            .icon {
+              font-size: 2.25rem;
             }
           }
         }

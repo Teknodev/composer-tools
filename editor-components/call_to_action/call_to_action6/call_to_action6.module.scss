@@ -138,8 +138,8 @@
         display: flex;
         width: 100%;
         justify-content: center;
-        margin-top: 20px;
-        margin-bottom: 40px;
+        margin-top: var(--composer-gap-md);
+        margin-bottom: var(--composer-gap-lg);
 
         .space {
           content: "";
@@ -151,7 +151,7 @@
 
       .placeholder {
         min-width: 500px;
-        color: var(--color-black);
+        color: var(--composer-font-color-primary);
         width: 30%;
         padding: var(--composer-gap-md) var(--composer-gap-md);
         border-radius: var(--composer-border-radius-sm);
@@ -169,7 +169,7 @@
         }
 
         &::placeholder {
-          color: var(--color-black);
+          color: var(--composer-tertiary-color);
         }
       }
 

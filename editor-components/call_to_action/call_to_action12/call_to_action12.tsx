@@ -89,7 +89,8 @@ class CallToAction12Page extends BaseCallToAction {
 
     const inputDataProp = this.getProp("inputData");
     const buttonProp = inputDataProp?.value?.find((item: any) => item.key === "button");
-    const buttonText = buttonProp ? this.castToString(this.getPropValue("text", { parent_object: buttonProp.value })) : "";
+    const buttonTextValue = buttonProp ? this.getPropValue("text", { parent_object: buttonProp.value }) : "";
+    const buttonText = this.castToString(buttonTextValue);
     const buttonType = buttonProp ? this.getPropValue("type", { parent_object: buttonProp.value }) : "Black";
 
     return (
@@ -136,7 +137,7 @@ class CallToAction12Page extends BaseCallToAction {
                     )}
                     {buttonText && (
                       <Base.Button className={this.decorateCSS("submit-button")} buttonType={buttonType}>
-                        <Base.P className={this.decorateCSS("button-text")}>{buttonText}</Base.P>
+                        <Base.P className={this.decorateCSS("button-text")}>{buttonTextValue}</Base.P>
                       </Base.Button>
                     )}
                   </Form>
