@@ -32,6 +32,28 @@
         width: 1px;
         background: var(--composer-primary-color);
       }
+
+      .description {
+        color: var(--composer-font-color-primary);
+        text-align: center;
+        padding: 0 var(--composer-gap-md);
+      }
+
+      .header-button-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: var(--composer-gap-sm);
+        margin-top: var(--composer-gap-sm);
+
+        .header-button {
+          content: "";
+
+          .header-button-text {
+            content: "";
+          }
+        }
+      }
     }
 
     .image-box {
@@ -118,7 +140,9 @@
 
   .button-wrapper {
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
+    gap: var(--composer-gap-sm);
     
     .button {
       .button-text{

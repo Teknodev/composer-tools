@@ -2,14 +2,18 @@ import * as React from "react";
 import styles from "./image-gallery10.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import { BaseImageGallery } from "../../EditorComponent";
+import { INPUTS } from "../../../custom-hooks/input-templates";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 
 type CardType = {
+    card_subtitle: React.ReactNode;
     card_item_title: React.ReactNode;
     image: string;
     text: string;
     link: string;
-    cardLink: string;
+    overlay: boolean;
+    url: string;
+    textUrl: string;
 };
 
 type AnimateTexts = {
@@ -37,71 +41,98 @@ class ImageGallery10 extends BaseImageGallery {
             value: "We are creative agency that specializes in making customers",
         });
         this.addProp({
-            type: "boolean",
-            key: "showAnimateText",
-            displayer: "Show Animate Text",
-            value: true,
-        })
+            type: "string",
+            key: "description",
+            displayer: "Description",
+            value: "",
+        });
         this.addProp({
             type: "array",
-            key: "animate-texts",
-            displayer: "Animate Texts",
+            key: "buttons",
+            displayer: "Buttons",
+            value: [
+                INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+            ],
+        });
+        this.addProp({
+            type: "object",
+            key: "animatedText",
+            displayer: "Animated Text",
             value: [
                 {
-                    type: "object",
-                    key: "animate-text",
-                    displayer: "Animate Text",
-                    value: [
-                        {
-                            type: "string",
-                            key: "animateText",
-                            displayer: "Animate Text",
-                            value: "feel safe",
-                        },
-                    ]
+                    type: "boolean",
+                    key: "showAnimateText",
+                    displayer: "Show",
+                    value: true,
                 },
                 {
-                    type: "object",
-                    key: "animate-text",
-                    displayer: "Animate Text",
+                    type: "array",
+                    key: "animate-texts",
+                    displayer: "Texts",
                     value: [
                         {
-                            type: "string",
-                            key: "animateText",
-                            displayer: "Animate Text",
-                            value: "passionate",
+                            type: "object",
+                            key: "animate-text",
+                            displayer: "Text",
+                            value: [
+                                {
+                                    type: "string",
+                                    key: "animateText",
+                                    displayer: "Text",
+                                    value: "Feel safe",
+                                },
+                            ]
                         },
-                    ]
+                        {
+                            type: "object",
+                            key: "animate-text",
+                            displayer: "Text",
+                            value: [
+                                {
+                                    type: "string",
+                                    key: "animateText",
+                                    displayer: "Text",
+                                    value: "Passionate",
+                                },
+                            ]
+                        },
+                        {
+                            type: "object",
+                            key: "animate-text",
+                            displayer: "Text",
+                            value: [
+                                {
+                                    type: "string",
+                                    key: "animateText",
+                                    displayer: "Text",
+                                    value: "Delighted",
+                                },
+                            ]
+                        }
+                    ],
                 },
-                {
-                    type: "object",
-                    key: "animate-text",
-                    displayer: "Animate Text",
-                    value: [
-                        {
-                            type: "string",
-                            key: "animateText",
-                            displayer: "Animate Text",
-                            value: "delighted",
-                        },
-                    ]
-                }
             ],
         });
         this.addProp({
             type: "array",
             key: "card-items",
-            displayer: "Card Items",
+            displayer: "Cards",
             value: [
                 {
                     type: "object",
                     key: "card-item",
-                    displayer: "Card Item",
+                    displayer: "Card",
                     value: [
                         {
                             type: "page",
-                            key: "cardLink",
+                            key: "url",
                             displayer: "Navigate To",
+                            value: "",
+                        },
+                        {
+                            type: "string",
+                            key: "card_subtitle",
+                            displayer: "Subtitle",
                             value: "",
                         },
                         {
@@ -113,19 +144,19 @@ class ImageGallery10 extends BaseImageGallery {
                         {
                             type: "string",
                             key: "text",
-                            displayer: "Text",
+                            displayer: "Description",
                             value: "Lorem Ipsum Dolor",
                         },
                         {
                             type: "page",
-                            key: "link",
+                            key: "textUrl",
                             displayer: "Navigate To",
                             value: "",
                         },
                         {
                             type: "media",
                             key: "image",
-                            displayer: "Background Media",
+                            displayer: "Media",
                             value: {
                                 type: "image",
                                 url: "https://gradastudio.com/ozark/wp-content/uploads/sites/4/2020/07/portfolio-list-img-16-768x768.jpg",
@@ -136,6 +167,12 @@ class ImageGallery10 extends BaseImageGallery {
                         },
                         {
                             type: "boolean",
+                            key: "overlay",
+                            displayer: "Overlay",
+                            value: false,
+                        },
+                        {
+                            type: "boolean",
                             key: "active",
                             displayer: "Active",
                             value: false,
@@ -145,12 +182,18 @@ class ImageGallery10 extends BaseImageGallery {
                 {
                     type: "object",
                     key: "card-item",
-                    displayer: "Card Item",
+                    displayer: "Card",
                     value: [
                         {
                             type: "page",
-                            key: "cardLink",
+                            key: "url",
                             displayer: "Navigate To",
+                            value: "",
+                        },
+                        {
+                            type: "string",
+                            key: "card_subtitle",
+                            displayer: "Subtitle",
                             value: "",
                         },
                         {
@@ -162,19 +205,19 @@ class ImageGallery10 extends BaseImageGallery {
                         {
                             type: "string",
                             key: "text",
-                            displayer: "Text",
+                            displayer: "Description",
                             value: "Lorem Ipsum Dolor",
                         },
                         {
                             type: "page",
-                            key: "link",
+                            key: "textUrl",
                             displayer: "Navigate To",
                             value: "",
                         },
                         {
                             type: "media",
                             key: "image",
-                            displayer: "Background Media",
+                            displayer: "Media",
                             value: {
                                 type: "image",
                                 url: "https://gradastudio.com/ozark/wp-content/uploads/sites/4/2020/07/portfolio-list-img-21-768x768.jpg",
@@ -185,6 +228,12 @@ class ImageGallery10 extends BaseImageGallery {
                         },
                         {
                             type: "boolean",
+                            key: "overlay",
+                            displayer: "Overlay",
+                            value: false,
+                        },
+                        {
+                            type: "boolean",
                             key: "active",
                             displayer: "Active",
                             value: false,
@@ -194,12 +243,18 @@ class ImageGallery10 extends BaseImageGallery {
                 {
                     type: "object",
                     key: "card-item",
-                    displayer: "Card Item",
+                    displayer: "Card",
                     value: [
                         {
                             type: "page",
-                            key: "cardLink",
+                            key: "url",
                             displayer: "Navigate To",
+                            value: "",
+                        },
+                        {
+                            type: "string",
+                            key: "card_subtitle",
+                            displayer: "Subtitle",
                             value: "",
                         },
                         {
@@ -211,19 +266,19 @@ class ImageGallery10 extends BaseImageGallery {
                         {
                             type: "string",
                             key: "text",
-                            displayer: "Text",
+                            displayer: "Description",
                             value: "Lorem Ipsum Dolor",
                         },
                         {
                             type: "page",
-                            key: "link",
+                            key: "textUrl",
                             displayer: "Navigate To",
                             value: "",
                         },
                         {
                             type: "media",
                             key: "image",
-                            displayer: "Background Media",
+                            displayer: "Media",
                             value: {
                                 type: "image",
                                 url: "https://gradastudio.com/ozark/wp-content/uploads/sites/4/2020/07/portfolio-list-img-27-768x768.jpg",
@@ -234,6 +289,12 @@ class ImageGallery10 extends BaseImageGallery {
                         },
                         {
                             type: "boolean",
+                            key: "overlay",
+                            displayer: "Overlay",
+                            value: false,
+                        },
+                        {
+                            type: "boolean",
                             key: "active",
                             displayer: "Active",
                             value: false,
@@ -243,12 +304,18 @@ class ImageGallery10 extends BaseImageGallery {
                 {
                     type: "object",
                     key: "card-item",
-                    displayer: "Card Item",
+                    displayer: "Card",
                     value: [
                         {
                             type: "page",
-                            key: "cardLink",
+                            key: "url",
                             displayer: "Navigate To",
+                            value: "",
+                        },
+                        {
+                            type: "string",
+                            key: "card_subtitle",
+                            displayer: "Subtitle",
                             value: "",
                         },
                         {
@@ -260,19 +327,19 @@ class ImageGallery10 extends BaseImageGallery {
                         {
                             type: "string",
                             key: "text",
-                            displayer: "Text",
+                            displayer: "Description",
                             value: "Lorem Ipsum Dolor",
                         },
                         {
                             type: "page",
-                            key: "link",
+                            key: "textUrl",
                             displayer: "Navigate To",
                             value: "",
                         },
                         {
                             type: "media",
                             key: "image",
-                            displayer: "Background Media",
+                            displayer: "Media",
                             value: {
                                 type: "image",
                                 url: "https://gradastudio.com/ozark/wp-content/uploads/sites/4/2020/07/portfolio-list-img-18-768x768.jpg",
@@ -283,6 +350,12 @@ class ImageGallery10 extends BaseImageGallery {
                         },
                         {
                             type: "boolean",
+                            key: "overlay",
+                            displayer: "Overlay",
+                            value: false,
+                        },
+                        {
+                            type: "boolean",
                             key: "active",
                             displayer: "Active",
                             value: false,
@@ -292,12 +365,18 @@ class ImageGallery10 extends BaseImageGallery {
                 {
                     type: "object",
                     key: "card-item",
-                    displayer: "Card Item",
+                    displayer: "Card",
                     value: [
                         {
                             type: "page",
-                            key: "cardLink",
+                            key: "url",
                             displayer: "Navigate To",
+                            value: "",
+                        },
+                        {
+                            type: "string",
+                            key: "card_subtitle",
+                            displayer: "Subtitle",
                             value: "",
                         },
                         {
@@ -309,19 +388,19 @@ class ImageGallery10 extends BaseImageGallery {
                         {
                             type: "string",
                             key: "text",
-                            displayer: "Text",
+                            displayer: "Description",
                             value: "Lorem Ipsum Dolor",
                         },
                         {
                             type: "page",
-                            key: "link",
+                            key: "textUrl",
                             displayer: "Navigate To",
                             value: "",
                         },
                         {
                             type: "media",
                             key: "image",
-                            displayer: "Background Media",
+                            displayer: "Media",
                             value: {
                                 type: "image",
                                 url: "https://gradastudio.com/ozark/wp-content/uploads/sites/4/2020/07/portfolio-list-img-23-768x768.jpg",
@@ -332,6 +411,12 @@ class ImageGallery10 extends BaseImageGallery {
                         },
                         {
                             type: "boolean",
+                            key: "overlay",
+                            displayer: "Overlay",
+                            value: false,
+                        },
+                        {
+                            type: "boolean",
                             key: "active",
                             displayer: "Active",
                             value: false,
@@ -341,12 +426,18 @@ class ImageGallery10 extends BaseImageGallery {
                 {
                     type: "object",
                     key: "card-item",
-                    displayer: "Card Item",
+                    displayer: "Card",
                     value: [
                         {
                             type: "page",
-                            key: "cardLink",
+                            key: "url",
                             displayer: "Navigate To",
+                            value: "",
+                        },
+                        {
+                            type: "string",
+                            key: "card_subtitle",
+                            displayer: "Subtitle",
                             value: "",
                         },
                         {
@@ -358,19 +449,19 @@ class ImageGallery10 extends BaseImageGallery {
                         {
                             type: "string",
                             key: "text",
-                            displayer: "Text",
+                            displayer: "Description",
                             value: "Lorem Ipsum Dolor",
                         },
                         {
                             type: "page",
-                            key: "link",
+                            key: "textUrl",
                             displayer: "Navigate To",
                             value: "",
                         },
                         {
                             type: "media",
                             key: "image",
-                            displayer: "Background Media",
+                            displayer: "Media",
                             value: {
                                 type: "image",
                                 url: "https://gradastudio.com/ozark/wp-content/uploads/sites/4/2020/07/portfolio-list-img-25-768x768.jpg",
@@ -381,6 +472,12 @@ class ImageGallery10 extends BaseImageGallery {
                         },
                         {
                             type: "boolean",
+                            key: "overlay",
+                            displayer: "Overlay",
+                            value: false,
+                        },
+                        {
+                            type: "boolean",
                             key: "active",
                             displayer: "Active",
                             value: false,
@@ -390,12 +487,18 @@ class ImageGallery10 extends BaseImageGallery {
                 {
                     type: "object",
                     key: "card-item",
-                    displayer: "Card Item",
+                    displayer: "Card",
                     value: [
                         {
                             type: "page",
-                            key: "cardLink",
+                            key: "url",
                             displayer: "Navigate To",
+                            value: "",
+                        },
+                        {
+                            type: "string",
+                            key: "card_subtitle",
+                            displayer: "Subtitle",
                             value: "",
                         },
                         {
@@ -407,19 +510,19 @@ class ImageGallery10 extends BaseImageGallery {
                         {
                             type: "string",
                             key: "text",
-                            displayer: "Text",
+                            displayer: "Description",
                             value: "Lorem Ipsum Dolor",
                         },
                         {
                             type: "page",
-                            key: "link",
+                            key: "textUrl",
                             displayer: "Navigate To",
                             value: "",
                         },
                         {
                             type: "media",
                             key: "image",
-                            displayer: "Background Media",
+                            displayer: "Media",
                             value: {
                                 type: "image",
                                 url: "https://gradastudio.com/ozark/wp-content/uploads/sites/4/2020/07/portfolio-list-img-6-1000x1000.jpg",
@@ -430,52 +533,9 @@ class ImageGallery10 extends BaseImageGallery {
                         },
                         {
                             type: "boolean",
-                            key: "active",
-                            displayer: "Active",
+                            key: "overlay",
+                            displayer: "Overlay",
                             value: false,
-                        },
-                    ],
-                },
-                {
-                    type: "object",
-                    key: "card-item",
-                    displayer: "Card Item",
-                    value: [
-                        {
-                            type: "page",
-                            key: "cardLink",
-                            displayer: "Navigate To",
-                            value: "",
-                        },
-                        {
-                            type: "string",
-                            key: "card_item_title",
-                            displayer: "Title",
-                            value: "Drawing",
-                        },
-                        {
-                            type: "string",
-                            key: "text",
-                            displayer: "Text",
-                            value: "Lorem Ipsum Dolor",
-                        },
-                        {
-                            type: "page",
-                            key: "link",
-                            displayer: "Navigate To",
-                            value: "",
-                        },
-                        {
-                            type: "media",
-                            key: "image",
-                            displayer: "Background Media",
-                            value: {
-                                type: "image",
-                                url: "https://gradastudio.com/ozark/wp-content/uploads/sites/4/2020/07/portfolio-list-img-19-768x768.jpg",
-                            },
-                            additionalParams: {
-                                availableTypes: ["image", "video"],
-                            },
                         },
                         {
                             type: "boolean",
@@ -488,12 +548,18 @@ class ImageGallery10 extends BaseImageGallery {
                 {
                     type: "object",
                     key: "card-item",
-                    displayer: "Card Item",
+                    displayer: "Card",
                     value: [
                         {
                             type: "page",
-                            key: "cardLink",
+                            key: "url",
                             displayer: "Navigate To",
+                            value: "",
+                        },
+                        {
+                            type: "string",
+                            key: "card_subtitle",
+                            displayer: "Subtitle",
                             value: "",
                         },
                         {
@@ -505,19 +571,80 @@ class ImageGallery10 extends BaseImageGallery {
                         {
                             type: "string",
                             key: "text",
-                            displayer: "Text",
+                            displayer: "Description",
                             value: "Lorem Ipsum Dolor",
                         },
                         {
                             type: "page",
-                            key: "link",
+                            key: "textUrl",
                             displayer: "Navigate To",
                             value: "",
                         },
                         {
                             type: "media",
                             key: "image",
-                            displayer: "Background Media",
+                            displayer: "Media",
+                            value: {
+                                type: "image",
+                                url: "https://gradastudio.com/ozark/wp-content/uploads/sites/4/2020/07/portfolio-list-img-19-768x768.jpg",
+                            },
+                            additionalParams: {
+                                availableTypes: ["image", "video"],
+                            },
+                        },
+                        {
+                            type: "boolean",
+                            key: "overlay",
+                            displayer: "Overlay",
+                            value: false,
+                        },
+                        {
+                            type: "boolean",
+                            key: "active",
+                            displayer: "Active",
+                            value: false,
+                        },
+                    ],
+                },
+                {
+                    type: "object",
+                    key: "card-item",
+                    displayer: "Card",
+                    value: [
+                        {
+                            type: "page",
+                            key: "url",
+                            displayer: "Navigate To",
+                            value: "",
+                        },
+                        {
+                            type: "string",
+                            key: "card_subtitle",
+                            displayer: "Subtitle",
+                            value: "",
+                        },
+                        {
+                            type: "string",
+                            key: "card_item_title",
+                            displayer: "Title",
+                            value: "Drawing",
+                        },
+                        {
+                            type: "string",
+                            key: "text",
+                            displayer: "Description",
+                            value: "Lorem Ipsum Dolor",
+                        },
+                        {
+                            type: "page",
+                            key: "textUrl",
+                            displayer: "Navigate To",
+                            value: "",
+                        },
+                        {
+                            type: "media",
+                            key: "image",
+                            displayer: "Media",
                             value: {
                                 type: "image",
                                 url: "https://gradastudio.com/ozark/wp-content/uploads/sites/4/2020/07/portfolio-list-img-22-768x768.jpg",
@@ -525,6 +652,12 @@ class ImageGallery10 extends BaseImageGallery {
                             additionalParams: {
                                 availableTypes: ["image", "video"],
                             },
+                        },
+                        {
+                            type: "boolean",
+                            key: "overlay",
+                            displayer: "Overlay",
+                            value: false,
                         },
                         {
                             type: "boolean",
@@ -537,10 +670,17 @@ class ImageGallery10 extends BaseImageGallery {
             ],
         });
         this.addProp({
-            type: "number",
-            key: "itemCount",
-            displayer: "Item Count in a Row",
-            value: 3,
+            type: "object",
+            key: "countSettings",
+            displayer: "Count Settings",
+            value: [
+                {
+                    type: "number",
+                    key: "itemCount",
+                    displayer: "Item Count in a Row",
+                    value: 3
+                },
+            ]
         });
 
         this.setComponentState("texts", []);
@@ -571,8 +711,7 @@ class ImageGallery10 extends BaseImageGallery {
     }
 
     componentDidMount() {
-        const animateTexts = this.castToObject<AnimateTexts[]>("animate-texts");
-        const texts = animateTexts?.map((item: AnimateTexts) => item.animateText) || [];
+        const texts = this.getAnimateTexts();
 
         this.setComponentState("texts", texts);
         this.setComponentState("currentIndex", 0);
@@ -581,11 +720,11 @@ class ImageGallery10 extends BaseImageGallery {
     }
 
     onComponentDidUpdate() {
-        const animateTexts = this.castToObject<AnimateTexts[]>("animate-texts");
-        const newTexts = animateTexts?.map((item: AnimateTexts) => item.animateText) || [];
+        const newTexts = this.getAnimateTexts();
         const currentTexts = this.getComponentState("texts") as string[];
 
-        const textsChanged = JSON.stringify(newTexts) !== JSON.stringify(currentTexts);
+        const toPlain = (list: any[]) => (list || []).map((text: any) => this.castToString(text));
+        const textsChanged = JSON.stringify(toPlain(newTexts)) !== JSON.stringify(toPlain(currentTexts));
 
         if (textsChanged) {
             this.clearAnimationInterval();
@@ -607,18 +746,33 @@ class ImageGallery10 extends BaseImageGallery {
     static getName(): string {
         return "Image Gallery 10";
     }
+    getAnimatedText(): { showAnimateText: boolean; "animate-texts": AnimateTexts[] } {
+        return this.castToObject<{ showAnimateText: boolean; "animate-texts": AnimateTexts[] }>("animatedText");
+    }
+    getAnimateTexts() {
+        const items = (this.getAnimatedText()["animate-texts"] || []) as any[];
+        return items
+            .map((item: any) => (typeof item?.getPropValue === "function" ? item.getPropValue("animateText") : item?.animateText))
+            .filter((text: any) => this.castToString(text));
+    }
+    getCountSettings(): { itemCount: number } {
+        return this.castToObject<{ itemCount: number }>("countSettings");
+    }
 
     render() {
         const cardList = this.castToObject<CardType[]>("card-items");
         const title = this.castToString(this.getPropValue("title"));
         const currentText = this.getComponentState("currentText");
-        const showAnimateText = this.getPropValue("showAnimateText");
+        const showAnimateText = this.getAnimatedText().showAnimateText;
+        const description = this.castToString(this.getPropValue("description"));
+        const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons") || [];
+        const hasButtons = buttons.some((button: INPUTS.CastedButton) => this.castToString(button.text));
 
         return (
             <Base.Container
                 className={this.decorateCSS("container")}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
-                    {(title || this.castToString(this.getPropValue("subtitle"))) && (
+                    {(title || this.castToString(this.getPropValue("subtitle")) || description || hasButtons) && (
                         <Base.VerticalContent className={this.decorateCSS("header-wrapper")}>
                             {this.castToString(this.getPropValue("subtitle")) && (
                                 <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
@@ -631,38 +785,65 @@ class ImageGallery10 extends BaseImageGallery {
                                 </div>
                                 {showAnimateText && currentText && (
                                     <div className={this.decorateCSS("animated-text")}>
-                                        {this.castToString(currentText)}
+                                        {currentText}
                                     </div>
                                 )}
                             </Base.SectionTitle>}
+                            {description && (
+                                <Base.SectionDescription className={this.decorateCSS("description")}>
+                                    {this.getPropValue("description")}
+                                </Base.SectionDescription>
+                            )}
+                            {hasButtons && (
+                                <div className={this.decorateCSS("button-container")}>
+                                    {buttons.map((button: INPUTS.CastedButton, index: number) => this.castToString(button.text) && (
+                                        <ComposerLink key={index} path={button.url}>
+                                            <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
+                                                <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
+                                            </Base.Button>
+                                        </ComposerLink>
+                                    ))}
+                                </div>
+                            )}
                         </Base.VerticalContent>
                     )}
                     {
                         cardList.length > 0 && (
                             <Base.ListGrid
                                 className={this.decorateCSS("grid")}
-                                gridCount={{ pc: this.getPropValue("itemCount"), tablet: 3 }}>
+                                gridCount={{ pc: this.getCountSettings().itemCount, tablet: 3 }}>
                                 {cardList.map((cardItem: any, index: number) => (
-                                    <ComposerLink path={cardItem.cardLink} isFullWidth={true}>
+                                    <ComposerLink path={cardItem.url} isFullWidth={true}>
                                         <div className={this.decorateCSS("item-box")} key={index}>
                                             <div className={this.decorateCSS("item-container")}>
                                                 <div className={this.decorateCSS("background-media")}>
-                                                    <Base.Media value={cardItem.image} className={this.decorateCSS("background-media-element")} />
+                                                    <div className={this.decorateCSS("background-media-inner")}>
+                                                        <Base.Media value={cardItem.image} className={this.decorateCSS("background-media-element")} />
+                                                    </div>
+                                                    {cardItem.overlay && <div className={this.decorateCSS("media-overlay")} />}
                                                 </div>
                                                 <div className={`${this.decorateCSS("overlay-content")} ${cardItem.active ? this.decorateCSS("active") : ""}`}>
-                                                    {this.castToString(cardItem.title) && (
-                                                        <Base.H4
+                                                    {this.castToString(cardItem.card_subtitle) && (
+                                                        <Base.P className={this.decorateCSS("card-subtitle")}>
+                                                            {cardItem.card_subtitle}
+                                                        </Base.P>
+                                                    )}
+                                                    {this.castToString(cardItem.card_item_title) && (
+                                                        <Base.H6
                                                             className={this.decorateCSS("card-title")}>
-                                                            {cardItem.title}
-                                                        </Base.H4>
+                                                            {cardItem.card_item_title}
+                                                        </Base.H6>
                                                     )}
                                                     {this.castToString(cardItem.text) && (
                                                         <ComposerLink
-                                                            path={cardItem.link}>
-                                                            <Base.H3
-                                                                className={this.decorateCSS("card-text")}>
-                                                                {cardItem.text}
-                                                            </Base.H3>
+                                                            path={cardItem.textUrl}>
+                                                            <div className={this.decorateCSS("card-text-wrapper")}>
+                                                                <Base.H5
+                                                                    className={this.decorateCSS("card-text")}>
+                                                                    {cardItem.text}
+                                                                </Base.H5>
+                                                                <div className={this.decorateCSS("card-text-line")} />
+                                                            </div>
                                                         </ComposerLink>
                                                     )}
                                                 </div>

@@ -4,6 +4,7 @@ import { BaseImageGallery, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./image-gallery5.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "../../../custom-hooks/input-templates";
+import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 
 interface GalleryItem {
   image: TypeMediaInputValue;
@@ -17,6 +18,36 @@ class ImageGallery5 extends BaseImageGallery {
     this.imageGalleryRef = React.createRef();
 
     this.addProp({
+      type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "",
+    });
+
+    this.addProp({
+      type: "string",
+      key: "title",
+      displayer: "Title",
+      value: "",
+    });
+
+    this.addProp({
+      type: "string",
+      key: "description",
+      displayer: "Description",
+      value: "",
+    });
+
+    this.addProp({
+      type: "array",
+      key: "headerButtons",
+      displayer: "Buttons",
+      value: [
+        INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+      ],
+    });
+
+    this.addProp({
       type: "array",
       key: "gallery",
       displayer: "Gallery",
@@ -24,12 +55,12 @@ class ImageGallery5 extends BaseImageGallery {
         {
           type: "object",
           key: "imageGallery",
-          displayer: "Image Gallery",
+          displayer: "Media Item",
           value: [
             {
               type: "media",
               key: "image",
-              displayer: "Image",
+              displayer: "Media",
               value: {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a20b8c2f8a5b002ce65828?alt=media",
@@ -41,7 +72,7 @@ class ImageGallery5 extends BaseImageGallery {
             {
               type: "string",
               key: "caption",
-              displayer: "Caption",
+              displayer: "Text",
               value: "Gallery Image 1 Caption",
             },
           ],
@@ -49,12 +80,12 @@ class ImageGallery5 extends BaseImageGallery {
         {
           type: "object",
           key: "imageGallery",
-          displayer: "Image Gallery",
+          displayer: "Media Item",
           value: [
             {
               type: "media",
               key: "image",
-              displayer: "Image",
+              displayer: "Media",
               value: {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a20c6a2f8a5b002ce65834?alt=media",
@@ -66,7 +97,7 @@ class ImageGallery5 extends BaseImageGallery {
             {
               type: "string",
               key: "caption",
-              displayer: "Caption",
+              displayer: "Text",
               value: "Gallery Image 2 Caption",
             },
           ],
@@ -74,12 +105,12 @@ class ImageGallery5 extends BaseImageGallery {
         {
           type: "object",
           key: "imageGallery",
-          displayer: "Image Gallery",
+          displayer: "Media Item",
           value: [
             {
               type: "media",
               key: "image",
-              displayer: "Image",
+              displayer: "Media",
               value: {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a20c962f8a5b002ce65840?alt=media",
@@ -91,7 +122,7 @@ class ImageGallery5 extends BaseImageGallery {
             {
               type: "string",
               key: "caption",
-              displayer: "Caption",
+              displayer: "Text",
               value: "Gallery Image 3 Caption",
             },
           ],
@@ -99,12 +130,12 @@ class ImageGallery5 extends BaseImageGallery {
         {
           type: "object",
           key: "imageGallery",
-          displayer: "Image Gallery",
+          displayer: "Media Item",
           value: [
             {
               type: "media",
               key: "image",
-              displayer: "Image",
+              displayer: "Media",
               value: {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a20cbc2f8a5b002ce6584c?alt=media",
@@ -116,7 +147,7 @@ class ImageGallery5 extends BaseImageGallery {
             {
               type: "string",
               key: "caption",
-              displayer: "Caption",
+              displayer: "Text",
               value: "Gallery Image 4 Caption",
             },
           ],
@@ -124,12 +155,12 @@ class ImageGallery5 extends BaseImageGallery {
         {
           type: "object",
           key: "imageGallery",
-          displayer: "Image Gallery",
+          displayer: "Media Item",
           value: [
             {
               type: "media",
               key: "image",
-              displayer: "Image",
+              displayer: "Media",
               value: {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a20cd82f8a5b002ce65858?alt=media",
@@ -141,7 +172,7 @@ class ImageGallery5 extends BaseImageGallery {
             {
               type: "string",
               key: "caption",
-              displayer: "Caption",
+              displayer: "Text",
               value: "Gallery Image 5 Caption",
             },
           ],
@@ -149,12 +180,12 @@ class ImageGallery5 extends BaseImageGallery {
         {
           type: "object",
           key: "imageGallery",
-          displayer: "Image Gallery",
+          displayer: "Media Item",
           value: [
             {
               type: "media",
               key: "image",
-              displayer: "Image",
+              displayer: "Media",
               value: {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a20cee2f8a5b002ce6586d?alt=media",
@@ -166,7 +197,7 @@ class ImageGallery5 extends BaseImageGallery {
             {
               type: "string",
               key: "caption",
-              displayer: "Caption",
+              displayer: "Text",
               value: "Gallery Image 6 Caption",
             },
           ],
@@ -175,10 +206,29 @@ class ImageGallery5 extends BaseImageGallery {
     });
 
     this.addProp({
-      type: "number",
-      key: "itemCount",
-      displayer: "Item Count in a Row",
-      value: 3,
+        type: "object",
+        key: "countSettings",
+        displayer: "Count Settings",
+        value: [
+            {
+                type: "number",
+                key: "imageCountInitial",
+                displayer: "Media Count Initial",
+                value: 3
+            },
+            {
+                type: "number",
+                key: "imageCount",
+                displayer: "More Media Count",
+                value: 3
+            },
+            {
+                type: "number",
+                key: "itemCount",
+                displayer: "Item Count in a Row",
+                value: 3
+            },
+        ]
     });
 
     this.addProp({
@@ -189,60 +239,55 @@ class ImageGallery5 extends BaseImageGallery {
         {
           type: "media",
           key: "closeIcon",
-          displayer: "Close Button Icon",
+          displayer: "Close Icon",
           value: {
             type: "icon",
             name: "RxCross1",
           },
           additionalParams: {
-            availableTypes: ["icon"],
+            availableTypes: ["icon", "image"],
           },
         },
         {
           type: "media",
           key: "nextIcon",
-          displayer: "Next Button Icon",
+          displayer: "Next Icon",
           value: {
             type: "icon",
             name: "GrCaretNext",
           },
           additionalParams: {
-            availableTypes: ["icon"],
+            availableTypes: ["icon", "image"],
           },
         },
         {
           type: "media",
           key: "prevIcon",
-          displayer: "Previous Button Icon",
+          displayer: "Previous Icon",
           value: {
             type: "icon",
             name: "GrCaretPrevious",
           },
           additionalParams: {
-            availableTypes: ["icon"],
+            availableTypes: ["icon", "image"],
           },
         },
         {
           type: "boolean",
           key: "imageIndex",
-          displayer: "Image Index",
+          displayer: "Page Number",
           value: true,
         },
       ],
     });
     this.addProp({
-      type: "number",
-      key: "imageCountInitial",
-      displayer: "Image Count Initial",
-      value: 3
-    })
-    this.addProp({
-      type: "number",
-      key: "imageCount",
-      displayer: "More Image Count",
-      value: 3
-    })
-    this.addProp(INPUTS.BUTTON("button", "Button", "Load More", null, null, null, "Primary"));
+      type: "array",
+      key: "buttons",
+      displayer: "Load More",
+      value: [
+        INPUTS.BUTTON("button", "Button", "Load More", "", null, null, "Primary"),
+      ],
+    });
 
     this.setComponentState("is_image_clicked", false);
     this.setComponentState("clicked_image_index", 0);
@@ -251,6 +296,9 @@ class ImageGallery5 extends BaseImageGallery {
 
   static getName(): string {
     return "Image Gallery 5";
+  }
+  getCountSettings(): { imageCountInitial: number; imageCount: number; itemCount: number } {
+      return this.castToObject<{ imageCountInitial: number; imageCount: number; itemCount: number }>("countSettings");
   }
 
   handleImageClick = (index: number) => {
@@ -301,7 +349,7 @@ class ImageGallery5 extends BaseImageGallery {
     }
   }
   handleButtonClick = () => {
-    this.setComponentState("moreImages", this.getComponentState("moreImages") + this.getPropValue("imageCount"))
+    this.setComponentState("moreImages", this.getComponentState("moreImages") + this.getCountSettings().imageCount)
 
   };
   render() {
@@ -313,10 +361,16 @@ class ImageGallery5 extends BaseImageGallery {
     const prevIcon = modal.prevIcon;
     const imageIndex = modal.imageIndex;
     const closeIcon = modal.closeIcon;
-    if (this.getComponentState("imageCount") != this.getPropValue("imageCountInitial") + this.getComponentState("moreImages"))
-      this.setComponentState("imageCount", this.getPropValue("imageCountInitial") + this.getComponentState("moreImages"));
+    if (this.getComponentState("imageCount") != this.getCountSettings().imageCountInitial + this.getComponentState("moreImages"))
+      this.setComponentState("imageCount", this.getCountSettings().imageCountInitial + this.getComponentState("moreImages"));
 
-    const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
+    const headerButtons = this.castToObject<INPUTS.CastedButton[]>("headerButtons") || [];
+    const hasHeaderButtons = headerButtons.some((button: INPUTS.CastedButton) => this.castToString(button.text));
+    const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons") || [];
+    const hasButtons = buttons.some((button: INPUTS.CastedButton) => this.castToString(button.text));
+    const subtitleExist = this.castToString(this.getPropValue("subtitle"));
+    const titleExist = this.castToString(this.getPropValue("title"));
+    const descriptionExist = this.castToString(this.getPropValue("description"));
 
     return (
       <Base.Container
@@ -326,28 +380,61 @@ class ImageGallery5 extends BaseImageGallery {
         onKeyDown={this.handleKeyPress}
       >
         <Base.MaxContent className={this.decorateCSS("max-content")}>
+          {(subtitleExist || titleExist || descriptionExist || hasHeaderButtons) && (
+            <Base.VerticalContent className={this.decorateCSS("heading")}>
+              {subtitleExist && (
+                <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                  {this.getPropValue("subtitle")}
+                </Base.SectionSubTitle>
+              )}
+              {titleExist && (
+                <Base.SectionTitle className={this.decorateCSS("title")}>
+                  {this.getPropValue("title")}
+                </Base.SectionTitle>
+              )}
+              {descriptionExist && (
+                <Base.SectionDescription className={this.decorateCSS("description")}>
+                  {this.getPropValue("description")}
+                </Base.SectionDescription>
+              )}
+              {hasHeaderButtons && (
+                <div className={this.decorateCSS("button-container")}>
+                  {headerButtons.map((button: INPUTS.CastedButton, index: number) => this.castToString(button.text) && (
+                    <ComposerLink key={index} path={button.url}>
+                      <Base.Button buttonType={button.type} className={this.decorateCSS("header-button")}>
+                        <Base.P className={this.decorateCSS("header-button-text")}>{button.text}</Base.P>
+                      </Base.Button>
+                    </ComposerLink>
+                  ))}
+                </div>
+              )}
+            </Base.VerticalContent>
+          )}
           <Base.ListGrid
             className={this.decorateCSS("images")}
-            gridCount={{ pc: this.getPropValue("itemCount"), tablet: 3 }}
+            gridCount={{ pc: this.getCountSettings().itemCount, tablet: 3 }}
           >
             {galleries.slice(0, this.getComponentState("imageCount")).map((galleryItem: any, index: number) => {
+              if (!galleryItem.image) return null;
               return (
-                <div className={this.decorateCSS("image-container")} onClick={() => this.handleImageClick(index)}>
-                  {galleryItem.image && (
-                    <Base.Media
-                      value={galleryItem.image}
-                      className={this.decorateCSS("image")}
-                    />
-                  )}
+                <div key={index} className={this.decorateCSS("image-container")} onClick={() => this.handleImageClick(index)}>
+                  <Base.Media
+                    value={galleryItem.image}
+                    className={this.decorateCSS("image")}
+                  />
                 </div>
               );
             })}
           </Base.ListGrid>
-          {(galleries.length > this.getComponentState("imageCount")) && this.castToString(button.text) && (
+          {(galleries.length > this.getComponentState("imageCount")) && hasButtons && (
             <div className={this.decorateCSS("button-wrapper")}>
-              <Base.Button className={this.decorateCSS("button")} buttonType={button.type} onClick={this.handleButtonClick} >
-                <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
-              </Base.Button>
+              {buttons.map((button: INPUTS.CastedButton, index: number) => this.castToString(button.text) && (
+                <ComposerLink key={index} path={button.url}>
+                  <Base.Button className={this.decorateCSS("button")} buttonType={button.type} onClick={this.handleButtonClick} >
+                    <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
+                  </Base.Button>
+                </ComposerLink>
+              ))}
             </div>
           )}
           {isImageClicked && galleries[clickedImageIndex] && (
@@ -370,13 +457,15 @@ class ImageGallery5 extends BaseImageGallery {
                   )}
                   
                   <div className={this.decorateCSS("image-info")}>
-                    <div className={this.decorateCSS("image-caption")}>
-                      {galleries[clickedImageIndex].caption}
-                    </div>
+                    {this.castToString(galleries[clickedImageIndex].caption) && (
+                      <Base.P className={this.decorateCSS("image-caption")}>
+                        {galleries[clickedImageIndex].caption}
+                      </Base.P>
+                    )}
                     {imageIndex && (
-                      <div className={this.decorateCSS("image-count")}>
+                      <Base.P className={this.decorateCSS("image-count")}>
                         {clickedImageIndex + 1} of {galleries.length}
-                      </div>
+                      </Base.P>
                     )}
                   </div>
                 </div>

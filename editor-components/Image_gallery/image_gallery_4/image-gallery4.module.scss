@@ -8,19 +8,44 @@
       width: 100%;
       gap: var(--composer-gap-lg);
 
+      .heading {
+        width: 100%;
+
+        .subtitle,
+        .heading-title,
+        .description {
+          content: "";
+        }
+
+        .header-buttons {
+          display: flex;
+          flex-wrap: wrap;
+          gap: var(--composer-gap-sm);
+          justify-content: var(--composer-content-alignment);
+
+          .header-button {
+            .header-button-text {
+              content: "";
+            }
+          }
+        }
+      }
+
       .gallery-nav {
+        margin-bottom: var(--composer-gap-md);
+
         .nav-list,
         .subnav-list {
           display: flex;
           align-items: center;
           width: 100%;
-          gap: var(--composer-gap-md);
+          gap: var(--composer-gap-xl);
           flex-wrap: wrap;
 
           .list-item {
             .button {
               width: fit-content;
-              padding: var(--composer-gap-sm) var(--composer-gap-md);
+              padding: 0 0 var(--composer-gap-xs);
               color: var(--composer-font-color-primary);
               border-bottom: 2px solid transparent;
               display: flex;
@@ -33,7 +58,6 @@
             }
 
             .button.active {
-              font-weight: bold;
               border-bottom: 2px solid var(--composer-font-color-primary);
             }
           }
@@ -115,6 +139,8 @@
         display: flex;
         align-items: center;
         justify-content: center;
+        flex-wrap: wrap;
+        gap: var(--composer-gap-sm);
 
         .button {
           .button-text {

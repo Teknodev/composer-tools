@@ -4,12 +4,47 @@
     display: flex;
     flex-direction: column;
     gap: var(--composer-gap-lg);
+    .heading{
+      width: 100%;
+      .subtitle,
+      .heading-title,
+      .heading-description{
+        content: "";
+      }
+    }
+    .gallery-grid{
+      row-gap: calc(var(--composer-gap-xl) + var(--composer-gap-sm));
+    }
+    .header{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: var(--composer-gap-md);
+      width: 100%;
+    }
+    .header-button-container{
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--composer-gap-sm);
+      margin-left: auto;
+      .header-button{
+        content: "";
+        .header-button-text{
+          content: "";
+        }
+        .header-button-icon{
+          display: flex;
+          align-items: center;
+        }
+      }
+    }
     .tab-container{
-      width: fit-content;
       display: flex;
       gap: var(--composer-gap-xl);
       flex-wrap: wrap;
-      width: 100%;
+      flex: 1;
+      justify-content: flex-start;
       .tab{
         text-align: start;
         width: fit-content;
@@ -18,7 +53,6 @@
         transition: opacity 0.3s ease, border-bottom 0.1s ease;
         color: var(--composer-font-color-primary);
         &.active-tab{
-          font-weight: bold;
           border-bottom: 2px solid var(--composer-font-color-primary);
           opacity: 1;
         }
@@ -27,16 +61,15 @@
     .card-container{
       display: flex;
       flex-direction: column;
-      gap: var(--composer-gap-md);    
+      gap: calc(var(--composer-gap-sm) + var(--composer-gap-md));
       .image-container{
         flex-grow: 10;
         overflow:hidden;  
-        border-radius: var(--composer-border-radius-md); 
-        min-height: 450px;    
-        max-height: 450px;
+        border-radius: var(--composer-border-radius-sm); 
+        height: 450px;
         position: relative;
         .image{
-          border-radius: var(--composer-border-radius-md);
+          border-radius: var(--composer-border-radius-sm);
           width: 100%;
           transition: all 0.4s ease;
           transform-origin: 50% 50%;
@@ -51,7 +84,7 @@
           width: 100%;
           height: 100%;
           background-color: var(--composer-overlay-color);
-          border-radius: var(--composer-border-radius-md);
+          border-radius: var(--composer-border-radius-sm);
         }
       }
       .text-container{
@@ -62,6 +95,7 @@
         justify-content: center;
         .title{
           color: var(--composer-font-color-primary);
+          font-size: var(--composer-font-size-md);
           max-width: 40%;
           width: fit-content;
           margin: 0;
@@ -83,10 +117,10 @@
       }
       &:hover {
         .image-container{
-          border-radius: var(--composer-border-radius-md); 
+          border-radius: var(--composer-border-radius-sm); 
           .image{
             transform: scale(1.1);
-            border-radius: var(--composer-border-radius-md); 
+            border-radius: var(--composer-border-radius-sm); 
           }
         }
 
@@ -94,6 +128,8 @@
     }
     .button-wrapper{
       display: flex;
+      flex-wrap: wrap;
+      gap: var(--composer-gap-sm);
       align-items: center;
       justify-content: center;
       .button{
@@ -110,8 +146,12 @@
     .max-content{
       .card-container{
         .image-container{
-          max-height: 250px;
-          min-height: 250px;
+          height: 250px;
+        }
+        .text-container{
+          .title{
+            font-size: var(--composer-font-size-md) !important;
+          }
         }
       }
     }
@@ -121,9 +161,22 @@
   .container{
     .max-content{
       gap: var(--composer-gap-md);
+      .header{
+        flex-direction: column;
+        align-items: center;
+      }
       .tab-container{
         flex-direction: column;
+        align-items: center;
         gap: var(--composer-gap-sm);
+        .tab{
+          text-align: center;
+          margin: 0 !important;
+        }
+      }
+      .header-button-container{
+        margin-left: 0;
+        justify-content: center;
       }
     }
   }

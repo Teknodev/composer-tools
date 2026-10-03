@@ -4,6 +4,7 @@ import styles from "./image-gallery4.module.scss";
 
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "../../../custom-hooks/input-templates";
+import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 
 type NavItem = {
   title: React.JSX.Element;
@@ -26,42 +27,72 @@ class ImageGallery4 extends BaseImageGallery {
     super(props, styles);
 
     this.addProp({
+      type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "",
+    });
+
+    this.addProp({
+      type: "string",
+      key: "header_title",
+      displayer: "Title",
+      value: "",
+    });
+
+    this.addProp({
+      type: "string",
+      key: "description",
+      displayer: "Description",
+      value: "",
+    });
+
+    this.addProp({
+      type: "array",
+      key: "headerButtons",
+      displayer: "Buttons",
+      value: [
+        INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+      ],
+    });
+
+    this.addProp({
       type: "array",
       key: "navItems",
       additionalParams: { maxElementCount: 7 },
-      displayer: "Nav Items",
+      displayer: "Gallery",
       value: [
         {
           type: "object",
           key: "nav-item",
-          displayer: "Nav Item",
+          displayer: "Gallery",
           value: [
             {
               type: "string",
               key: "title",
-              displayer: "Nav Title",
+              displayer: "Title",
               value: "Meat",
             },
             {
               type: "boolean",
               key: "hasSubnav",
-              displayer: "Show Sub Navs?",
+              displayer: "Sub Navigation",
               value: true,
             },
             {
               type: "array",
               key: "images",
-              displayer: "Images",
+              displayer: "Media",
               value: [
                 {
                   type: "object",
                   key: "image-item",
-                  displayer: "Image",
+                  displayer: "Media Item",
                   value: [
                     {
                       type: "media",
                       key: "image",
-                      displayer: "Image",
+                      displayer: "Media",
                       value: {
                         type: "image",
                         url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66c35b8f07399d002cb493dd?alt=media",
@@ -77,12 +108,12 @@ class ImageGallery4 extends BaseImageGallery {
             {
               type: "array",
               key: "subnavItems",
-              displayer: "Sub Items",
+              displayer: "Sub Navigation Items",
               value: [
                 {
                   type: "object",
                   key: "subnavItem",
-                  displayer: "Subnav Item",
+                  displayer: "Sub Navigation Item",
                   value: [
                     {
                       type: "string",
@@ -93,17 +124,17 @@ class ImageGallery4 extends BaseImageGallery {
                     {
                       type: "array",
                       key: "images",
-                      displayer: "Images",
+                      displayer: "Media",
                       value: [
                         {
                           type: "object",
                           key: "image-item",
-                          displayer: "Image",
+                          displayer: "Media Item",
                           value: [
                             {
                               type: "media",
                               key: "image_item_image",
-                              displayer: "Image",
+                              displayer: "Media",
                               value: {
                                 type: "image",
                                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66c35bc507399d002cb49422?alt=media",
@@ -117,12 +148,12 @@ class ImageGallery4 extends BaseImageGallery {
                         {
                           type: "object",
                           key: "image-item",
-                          displayer: "Image",
+                          displayer: "Media Item",
                           value: [
                             {
                               type: "media",
                               key: "image_item_image",
-                              displayer: "Image",
+                              displayer: "Media",
                               value: {
                                 type: "image",
                                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66c35bea07399d002cb4942e?alt=media",
@@ -140,7 +171,7 @@ class ImageGallery4 extends BaseImageGallery {
                 {
                   type: "object",
                   key: "subnavItem",
-                  displayer: "Subnav Item",
+                  displayer: "Sub Navigation Item",
                   value: [
                     {
                       type: "string",
@@ -151,17 +182,17 @@ class ImageGallery4 extends BaseImageGallery {
                     {
                       type: "array",
                       key: "images",
-                      displayer: "Images",
+                      displayer: "Media",
                       value: [
                         {
                           type: "object",
                           key: "image-item",
-                          displayer: "Image",
+                          displayer: "Media Item",
                           value: [
                             {
                               type: "media",
                               key: "image_item_image",
-                              displayer: "Image",
+                              displayer: "Media",
                               value: {
                                 type: "image",
                                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66c35c0607399d002cb4943b?alt=media",
@@ -175,12 +206,12 @@ class ImageGallery4 extends BaseImageGallery {
                         {
                           type: "object",
                           key: "image-item",
-                          displayer: "Image",
+                          displayer: "Media Item",
                           value: [
                             {
                               type: "media",
                               key: "image_item_image",
-                              displayer: "Image",
+                              displayer: "Media",
                               value: {
                                 type: "image",
                                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66c35c5a07399d002cb49448?alt=media",
@@ -198,7 +229,7 @@ class ImageGallery4 extends BaseImageGallery {
                 {
                   type: "object",
                   key: "subnavItem",
-                  displayer: "Subnav Item",
+                  displayer: "Sub Navigation Item",
                   value: [
                     {
                       type: "string",
@@ -209,17 +240,17 @@ class ImageGallery4 extends BaseImageGallery {
                     {
                       type: "array",
                       key: "images",
-                      displayer: "Images",
+                      displayer: "Media",
                       value: [
                         {
                           type: "object",
                           key: "image-item",
-                          displayer: "Image",
+                          displayer: "Media Item",
                           value: [
                             {
                               type: "media",
                               key: "image_item_image",
-                              displayer: "Image",
+                              displayer: "Media",
                               value: {
                                 type: "image",
                                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66c35c8007399d002cb49454?alt=media",
@@ -233,12 +264,12 @@ class ImageGallery4 extends BaseImageGallery {
                         {
                           type: "object",
                           key: "image-item",
-                          displayer: "Image",
+                          displayer: "Media Item",
                           value: [
                             {
                               type: "media",
                               key: "image_item_image",
-                              displayer: "Image",
+                              displayer: "Media",
                               value: {
                                 type: "image",
                                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66c35c9e07399d002cb49466?alt=media",
@@ -260,34 +291,34 @@ class ImageGallery4 extends BaseImageGallery {
         {
           type: "object",
           key: "nav-item",
-          displayer: "Nav Item",
+          displayer: "Gallery",
           value: [
             {
               type: "string",
               key: "title",
-              displayer: "Nav Title",
+              displayer: "Title",
               value: "Seafood",
             },
             {
               type: "boolean",
               key: "hasSubnav",
-              displayer: "Show Sub Navs?",
+              displayer: "Sub Navigation",
               value: true,
             },
             {
               type: "array",
               key: "images",
-              displayer: "Images",
+              displayer: "Media",
               value: [
                 {
                   type: "object",
                   key: "image-item",
-                  displayer: "Image",
+                  displayer: "Media Item",
                   value: [
                     {
                       type: "media",
                       key: "image",
-                      displayer: "Image",
+                      displayer: "Media",
                       value: {
                         type: "image",
                         url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66c35cc307399d002cb49472?alt=media",
@@ -303,12 +334,12 @@ class ImageGallery4 extends BaseImageGallery {
             {
               type: "array",
               key: "subnavItems",
-              displayer: "Sub Items",
+              displayer: "Sub Navigation Items",
               value: [
                 {
                   type: "object",
                   key: "subnavItem",
-                  displayer: "Subnav Item",
+                  displayer: "Sub Navigation Item",
                   value: [
                     {
                       type: "string",
@@ -319,17 +350,17 @@ class ImageGallery4 extends BaseImageGallery {
                     {
                       type: "array",
                       key: "images",
-                      displayer: "Images",
+                      displayer: "Media",
                       value: [
                         {
                           type: "object",
                           key: "image-item",
-                          displayer: "Image",
+                          displayer: "Media Item",
                           value: [
                             {
                               type: "media",
                               key: "image_item_image",
-                              displayer: "Image",
+                              displayer: "Media",
                               value: {
                                 type: "image",
                                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66c35cea07399d002cb49488?alt=media",
@@ -343,12 +374,12 @@ class ImageGallery4 extends BaseImageGallery {
                         {
                           type: "object",
                           key: "image-item",
-                          displayer: "Image",
+                          displayer: "Media Item",
                           value: [
                             {
                               type: "media",
                               key: "image_item_image",
-                              displayer: "Image",
+                              displayer: "Media",
                               value: {
                                 type: "image",
                                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66c35d1107399d002cb494a8?alt=media",
@@ -366,7 +397,7 @@ class ImageGallery4 extends BaseImageGallery {
                 {
                   type: "object",
                   key: "subnavItem",
-                  displayer: "Subnav Item",
+                  displayer: "Sub Navigation Item",
                   value: [
                     {
                       type: "string",
@@ -377,17 +408,17 @@ class ImageGallery4 extends BaseImageGallery {
                     {
                       type: "array",
                       key: "images",
-                      displayer: "Images",
+                      displayer: "Media",
                       value: [
                         {
                           type: "object",
                           key: "image-item",
-                          displayer: "Image",
+                          displayer: "Media Item",
                           value: [
                             {
                               type: "media",
                               key: "image_item_image",
-                              displayer: "Image",
+                              displayer: "Media",
                               value: {
                                 type: "image",
                                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66c35d4007399d002cb49503?alt=media",
@@ -401,12 +432,12 @@ class ImageGallery4 extends BaseImageGallery {
                         {
                           type: "object",
                           key: "image-item",
-                          displayer: "Image",
+                          displayer: "Media Item",
                           value: [
                             {
                               type: "media",
                               key: "image_item_image",
-                              displayer: "Image",
+                              displayer: "Media",
                               value: {
                                 type: "image",
                                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66c35d4e07399d002cb49516?alt=media",
@@ -429,26 +460,40 @@ class ImageGallery4 extends BaseImageGallery {
     });
 
     this.addProp({
-      type: "number",
-      key: "itemsPerRow",
-      displayer: "Item Count in a Row",
-      value: 3,
-      max: 4,
+      type: "object",
+      key: "countSettings",
+      displayer: "Count Settings",
+      value: [
+        {
+          type: "number",
+          key: "imageCountInitial",
+          displayer: "Media Count Initial",
+          value: 3
+        },
+        {
+          type: "number",
+          key: "imageCount",
+          displayer: "More Media Count",
+          value: 3
+        },
+        {
+          type: "number",
+          key: "itemsPerRow",
+          displayer: "Item Count in a Row",
+          value: 3,
+          max: 4,
+        },
+      ]
     });
-    this.addProp({
-      type: "number",
-      key: "imageCountInitial",
-      displayer: "Image Count Initial",
-      value: 3
-    })
-    this.addProp({
-      type: "number",
-      key: "imageCount",
-      displayer: "More Image Count",
-      value: 3
-    })
 
-    this.addProp(INPUTS.BUTTON("button", "Button", "Load More", null, null, null, "Primary"));
+    this.addProp({
+        type: "array",
+        key: "buttons",
+        displayer: "Load More",
+        value: [
+            INPUTS.BUTTON("button", "Button", "Load More", "", null, null, "Primary"),
+        ],
+    });
 
     this.addProp({
       type: "object",
@@ -464,19 +509,19 @@ class ImageGallery4 extends BaseImageGallery {
             name: "RxCross1",
           },
           additionalParams: {
-            availableTypes: ["icon"],
+            availableTypes: ["icon", "image"],
           },
         },
         {
           type: "media",
           key: "imageIcon",
-          displayer: "Image Icon",
+          displayer: "Media Icon",
           value: {
             type: "icon",
             name: "IoSearchOutline",
           },
           additionalParams: {
-            availableTypes: ["icon"],
+            availableTypes: ["icon", "image"],
           },
         },
         {
@@ -488,19 +533,19 @@ class ImageGallery4 extends BaseImageGallery {
             name: "HiArrowRight",
           },
           additionalParams: {
-            availableTypes: ["icon"],
+            availableTypes: ["icon", "image"],
           },
         },
         {
           type: "media",
           key: "prevIcon",
-          displayer: "Prev Icon",
+          displayer: "Previous Icon",
           value: {
             type: "icon",
             name: "HiArrowLeft",
           },
           additionalParams: {
-            availableTypes: ["icon"],
+            availableTypes: ["icon", "image"],
           },
         },
       ],
@@ -519,6 +564,9 @@ class ImageGallery4 extends BaseImageGallery {
 
   static getName(): string {
     return "Image Gallery 4";
+  }
+  getCountSettings(): { imageCountInitial: number; imageCount: number; itemsPerRow: number } {
+    return this.castToObject<{ imageCountInitial: number; imageCount: number; itemsPerRow: number }>("countSettings");
   }
   handleKeyDown = (event: KeyboardEvent) => {
     switch (event.key) {
@@ -539,12 +587,12 @@ class ImageGallery4 extends BaseImageGallery {
   handleSectionClick(index: number): void {
     this.setComponentState("activeNav", index);
     this.setComponentState("activeSubnav", null);
-    this.setComponentState("imageCount", this.getPropValue("imageCountInitial"));
+    this.setComponentState("imageCount", this.getCountSettings().imageCountInitial);
     this.setComponentState("moreImages", 0);
   }
   handleSubSectionClick(index: number): void {
     this.setComponentState("activeSubnav", index);
-    this.setComponentState("imageCount", this.getPropValue("imageCountInitial"));
+    this.setComponentState("imageCount", this.getCountSettings().imageCountInitial);
     this.setComponentState("moreImages", 0);
   }
 
@@ -612,27 +660,63 @@ class ImageGallery4 extends BaseImageGallery {
   };
 
   handleButtonClick = () => {
-    this.setComponentState("moreImages", this.getComponentState("moreImages") + this.getPropValue("imageCount"))
+    this.setComponentState("moreImages", this.getComponentState("moreImages") + this.getCountSettings().imageCount)
 
   };
   render() {
-    const itemsPerRow: number = this.getPropValue("itemsPerRow");
+    const itemsPerRow: number = this.getCountSettings().itemsPerRow;
     const activeNav: number = this.getComponentState("activeNav");
     const activeSubnav: number = this.getComponentState("activeSubnav");
     const navItems = this.castToObject<NavItem[]>("navItems");
     const subnavItems = navItems[activeNav]?.subnavItems;
     const showActiveNavSubnavs = navItems[activeNav]?.hasSubnav;
     const galleryItems = this.getImages();
-    if (this.getComponentState("imageCount") != this.getPropValue("imageCountInitial") + this.getComponentState("moreImages"))
-      this.setComponentState("imageCount", this.getPropValue("imageCountInitial") + this.getComponentState("moreImages"));
+    if (this.getComponentState("imageCount") != this.getCountSettings().imageCountInitial + this.getComponentState("moreImages"))
+      this.setComponentState("imageCount", this.getCountSettings().imageCountInitial + this.getComponentState("moreImages"));
 
-    const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
+    const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons") || [];
+    const hasButtons = buttons.some((item: INPUTS.CastedButton) => this.castToString(item.text));
     const icons = this.castToObject<any>("icons");
+    const subtitleExist = this.castToString(this.getPropValue("subtitle"));
+    const titleExist = this.castToString(this.getPropValue("header_title"));
+    const descriptionExist = this.castToString(this.getPropValue("description"));
+    const headerButtons = this.castToObject<INPUTS.CastedButton[]>("headerButtons") || [];
+    const hasHeaderButtons = headerButtons.some((item: INPUTS.CastedButton) => this.castToString(item.text));
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("gallery-wrapper")}>
+            {(subtitleExist || titleExist || descriptionExist || hasHeaderButtons) && (
+              <Base.VerticalContent className={this.decorateCSS("heading")}>
+                {subtitleExist && (
+                  <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                    {this.getPropValue("subtitle")}
+                  </Base.SectionSubTitle>
+                )}
+                {titleExist && (
+                  <Base.SectionTitle className={this.decorateCSS("heading-title")}>
+                    {this.getPropValue("header_title")}
+                  </Base.SectionTitle>
+                )}
+                {descriptionExist && (
+                  <Base.SectionDescription className={this.decorateCSS("description")}>
+                    {this.getPropValue("description")}
+                  </Base.SectionDescription>
+                )}
+                {hasHeaderButtons && (
+                  <div className={this.decorateCSS("header-buttons")}>
+                    {headerButtons.map((item: INPUTS.CastedButton, index: number) => this.castToString(item.text) && (
+                      <ComposerLink key={index} path={item.url}>
+                        <Base.Button buttonType={item.type} className={this.decorateCSS("header-button")}>
+                          <Base.P className={this.decorateCSS("header-button-text")}>{item.text}</Base.P>
+                        </Base.Button>
+                      </ComposerLink>
+                    ))}
+                  </div>
+                )}
+              </Base.VerticalContent>
+            )}
             {(navItems?.length > 0 || subnavItems?.length > 0) && (
               <Base.VerticalContent className={this.decorateCSS("gallery-nav")}>
                 {navItems?.length > 0 && (
@@ -647,14 +731,14 @@ class ImageGallery4 extends BaseImageGallery {
                           className={this.decorateCSS("list-item")}
                         >
                           {this.castToString(item.title) && (
-                            <Base.H5
+                            <Base.H6
                               className={`${this.decorateCSS("button")} ${activeNav === index ? this.decorateCSS("active") : ""}`}
                               onClick={() => {
                                 this.handleSectionClick(index);
                               }}
                             >
                               {item.title}
-                            </Base.H5>
+                            </Base.H6>
                           )}
                         </div>
                       );
@@ -674,14 +758,14 @@ class ImageGallery4 extends BaseImageGallery {
                             className={this.decorateCSS("list-item")}
                           >
                             {this.castToString(item.subnavItem_title) && (
-                              <Base.H5
+                              <Base.H6
                                 className={`${this.decorateCSS("button")} ${activeSubnav === index ? this.decorateCSS("active") : ""}`}
                                 onClick={() => {
                                   this.handleSubSectionClick(index);
                                 }}
                               >
                                 {item.subnavItem_title}
-                              </Base.H5>
+                              </Base.H6>
                             )}
                           </div>
                         );
@@ -729,13 +813,17 @@ class ImageGallery4 extends BaseImageGallery {
                 })}
               </Base.ListGrid>
             )}
-            {(this.getComponentState("imageCount") < galleryItems.length) && this.castToString(button.text) && (
+            {(this.getComponentState("imageCount") < galleryItems.length) && hasButtons && (
               <div className={this.decorateCSS("button-wrapper")}>
-                <Base.Button className={this.decorateCSS("button")}
-                  buttonType={button.type}
-                  onClick={this.handleButtonClick}>
-                  <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
-                </Base.Button>
+                {buttons.map((item: INPUTS.CastedButton, index: number) => this.castToString(item.text) && (
+                  <ComposerLink key={index} path={item.url}>
+                    <Base.Button className={this.decorateCSS("button")}
+                      buttonType={item.type}
+                      onClick={this.handleButtonClick}>
+                      <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>
+                    </Base.Button>
+                  </ComposerLink>
+                ))}
               </div>
             )}
 
@@ -769,7 +857,7 @@ class ImageGallery4 extends BaseImageGallery {
                     />
                   )}
                   {icons.closeIcon && (
-                    <button
+                    <div
                       onClick={() => {
                         this.closeFocus();
                       }}
@@ -779,7 +867,7 @@ class ImageGallery4 extends BaseImageGallery {
                         value={icons.closeIcon}
                         className={this.decorateCSS("close-icon")}
                       />
-                    </button>
+                    </div>
                   )}
                 </div>
               </div>

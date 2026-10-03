@@ -3,21 +3,50 @@ import { BaseImageGallery, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./image-gallery1.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "../../../custom-hooks/input-templates";
+import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 
 interface ImageGallery {
   sectionTitle: React.JSX.Element;
   images: Image[];
+}
+interface CountSettings {
+  imageCountInitial: number;
+  imageCount: number;
+  itemCount: number;
 }
 interface Image {
   title: React.JSX.Element;
   cardImage: TypeMediaInputValue;
   section: React.JSX.Element;
   overlay: boolean;
+  url: string;
+}
+interface AllCategory {
+  showAll: boolean;
+  allText: React.JSX.Element;
 }
 
 class ImageGallery1 extends BaseImageGallery {
   constructor(props?: any) {
     super(props, styles);
+    this.addProp({
+      type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: ""
+    })
+    this.addProp({
+      type: "string",
+      key: "header_title",
+      displayer: "Title",
+      value: ""
+    })
+    this.addProp({
+      type: "string",
+      key: "description",
+      displayer: "Description",
+      value: ""
+    })
     this.addProp({
       type: "boolean",
       key: "lineActive",
@@ -25,38 +54,66 @@ class ImageGallery1 extends BaseImageGallery {
       value: true
     })
     this.addProp({
-      type: "number",
-      key: "imageCountInitial",
-      displayer: "Image Count Initial",
-      value: 3
+      type: "object",
+      key: "allCategory",
+      displayer: "All Category",
+      value: [
+        {
+          type: "boolean",
+          key: "showAll",
+          displayer: "Show",
+          value: true
+        },
+        {
+          type: "string",
+          key: "allText",
+          displayer: "Text",
+          value: "All",
+        },
+      ]
     })
     this.addProp({
-      type: "number",
-      key: "imageCount",
-      displayer: "More Image Count",
-      value: 3
+      type: "object",
+      key: "countSettings",
+      displayer: "Count Settings",
+      value: [
+        {
+          type: "number",
+          key: "imageCountInitial",
+          displayer: "Media Count Initial",
+          value: 3
+        },
+        {
+          type: "number",
+          key: "imageCount",
+          displayer: "More Media Count",
+          value: 3
+        },
+        {
+          type: "number",
+          key: "itemCount",
+          displayer: "Item Count in a Row",
+          value: 3
+        },
+      ]
     })
     this.addProp({
-      type: "number",
-      key: "itemCount",
-      displayer: "Item Count in a Row",
-      value: 3,
-    })
-    this.addProp({
-      type: "string",
-      key: "allText",
-      displayer: "All Button Text",
-      value: "All",
+      type: "array",
+      key: "headerButtons",
+      displayer: "Buttons",
+      value: [
+        INPUTS.BUTTON("button", "Button", "Explore More", "", "FiArrowRight", null, "Link"),
+      ],
     })
     this.addProp({
       type: "array",
       key: "imageGalleries",
-      displayer: "Image Galleries",
+      displayer: "Gallery",
       value: [
         {
           type: "object",
           key: "imageGallery",
-          displayer: "Image Gallery",
+          displayer: "Gallery",
           value: [
             {
               type: "string",
@@ -67,17 +124,17 @@ class ImageGallery1 extends BaseImageGallery {
             {
               type: "array",
               key: "images",
-              displayer: "Images",
+              displayer: "Media",
               value: [
                 {
                   type: "object",
                   key: "image",
-                  displayer: "Image",
+                  displayer: "Media Item",
                   value: [
                     {
                       type: "media",
                       key: "cardImage",
-                      displayer: "Image",
+                      displayer: "Media",
                       additionalParams: {
                         availableTypes: ["image", "video"],
                       },
@@ -95,26 +152,32 @@ class ImageGallery1 extends BaseImageGallery {
                     {
                       type: "string",
                       key: "title",
-                      displayer: "Title 1",
+                      displayer: "Title",
                       value: "Design Blast"
                     },
                     {
                       type: "string",
                       key: "section",
-                      displayer: "Title 2",
+                      displayer: "Subtitle",
                       value: "Photography"
+                    },
+                    {
+                      type: "page",
+                      key: "url",
+                      displayer: "Navigate To",
+                      value: ""
                     },
                   ]
                 },
                 {
                   type: "object",
                   key: "image",
-                  displayer: "Image",
+                  displayer: "Media Item",
                   value: [
                     {
                       type: "media",
                       key: "cardImage",
-                      displayer: "Image",
+                      displayer: "Media",
                       additionalParams: {
                         availableTypes: ["image", "video"],
                       },
@@ -132,26 +195,32 @@ class ImageGallery1 extends BaseImageGallery {
                     {
                       type: "string",
                       key: "title",
-                      displayer: "Title 1",
+                      displayer: "Title",
                       value: "Cropo Identity"
                     },
                     {
                       type: "string",
                       key: "section",
-                      displayer: "Title 2",
+                      displayer: "Subtitle",
                       value: "Packaging"
+                    },
+                    {
+                      type: "page",
+                      key: "url",
+                      displayer: "Navigate To",
+                      value: ""
                     },
                   ]
                 },
                 {
                   type: "object",
                   key: "image",
-                  displayer: "Image",
+                  displayer: "Media Item",
                   value: [
                     {
                       type: "media",
                       key: "cardImage",
-                      displayer: "Image",
+                      displayer: "Media",
                       additionalParams: {
                         availableTypes: ["image", "video"],
                       },
@@ -169,14 +238,20 @@ class ImageGallery1 extends BaseImageGallery {
                     {
                       type: "string",
                       key: "title",
-                      displayer: "Title 1",
+                      displayer: "Title",
                       value: "Harddot Stone"
                     },
                     {
                       type: "string",
                       key: "section",
-                      displayer: "Title 2",
+                      displayer: "Subtitle",
                       value: "Graphics"
+                    },
+                    {
+                      type: "page",
+                      key: "url",
+                      displayer: "Navigate To",
+                      value: ""
                     },
                   ]
                 }
@@ -189,7 +264,7 @@ class ImageGallery1 extends BaseImageGallery {
         {
           type: "object",
           key: "imageGallery",
-          displayer: "Image Gallery",
+          displayer: "Gallery",
           value: [
             {
               type: "string",
@@ -200,17 +275,17 @@ class ImageGallery1 extends BaseImageGallery {
             {
               type: "array",
               key: "images",
-              displayer: "Images",
+              displayer: "Media",
               value: [
                 {
                   type: "object",
                   key: "image",
-                  displayer: "Image",
+                  displayer: "Media Item",
                   value: [
                     {
                       type: "media",
                       key: "cardImage",
-                      displayer: "Image",
+                      displayer: "Media",
                       additionalParams: {
                         availableTypes: ["image", "video"],
                       },
@@ -228,26 +303,32 @@ class ImageGallery1 extends BaseImageGallery {
                     {
                       type: "string",
                       key: "title",
-                      displayer: "Title 1",
+                      displayer: "Title",
                       value: "Tailoring Inteo"
                     },
                     {
                       type: "string",
                       key: "section",
-                      displayer: "Title 2",
+                      displayer: "Subtitle",
                       value: "Branding"
+                    },
+                    {
+                      type: "page",
+                      key: "url",
+                      displayer: "Navigate To",
+                      value: ""
                     },
                   ]
                 },
                 {
                   type: "object",
                   key: "image",
-                  displayer: "Image",
+                  displayer: "Media Item",
                   value: [
                     {
                       type: "media",
                       key: "cardImage",
-                      displayer: "Image",
+                      displayer: "Media",
                       additionalParams: {
                         availableTypes: ["image", "video"],
                       },
@@ -265,26 +346,32 @@ class ImageGallery1 extends BaseImageGallery {
                     {
                       type: "string",
                       key: "title",
-                      displayer: "Title 1",
+                      displayer: "Title",
                       value: "Herbal Beauty"
                     },
                     {
                       type: "string",
                       key: "section",
-                      displayer: "Title 2",
+                      displayer: "Subtitle",
                       value: "Application"
+                    },
+                    {
+                      type: "page",
+                      key: "url",
+                      displayer: "Navigate To",
+                      value: ""
                     },
                   ]
                 },
                 {
                   type: "object",
                   key: "image",
-                  displayer: "Image",
+                  displayer: "Media Item",
                   value: [
                     {
                       type: "media",
                       key: "cardImage",
-                      displayer: "Image",
+                      displayer: "Media",
                       additionalParams: {
                         availableTypes: ["image", "video"],
                       },
@@ -302,14 +389,20 @@ class ImageGallery1 extends BaseImageGallery {
                     {
                       type: "string",
                       key: "title",
-                      displayer: "Title 1",
+                      displayer: "Title",
                       value: "Harddot Stone"
                     },
                     {
                       type: "string",
                       key: "section",
-                      displayer: "Title 2",
+                      displayer: "Subtitle",
                       value: "Graphics"
+                    },
+                    {
+                      type: "page",
+                      key: "url",
+                      displayer: "Navigate To",
+                      value: ""
                     },
                   ]
                 }
@@ -320,7 +413,7 @@ class ImageGallery1 extends BaseImageGallery {
         {
           type: "object",
           key: "imageGallery",
-          displayer: "Image Gallery",
+          displayer: "Gallery",
           value: [
             {
               type: "string",
@@ -331,17 +424,17 @@ class ImageGallery1 extends BaseImageGallery {
             {
               type: "array",
               key: "images",
-              displayer: "Images",
+              displayer: "Media",
               value: [
                 {
                   type: "object",
                   key: "image",
-                  displayer: "Image",
+                  displayer: "Media Item",
                   value: [
                     {
                       type: "media",
                       key: "cardImage",
-                      displayer: "Image",
+                      displayer: "Media",
                       additionalParams: {
                         availableTypes: ["image", "video"],
                       },
@@ -360,26 +453,32 @@ class ImageGallery1 extends BaseImageGallery {
                     {
                       type: "string",
                       key: "title",
-                      displayer: "Title 1",
+                      displayer: "Title",
                       value: "Design Blast"
                     },
                     {
                       type: "string",
                       key: "section",
-                      displayer: "Title 2",
+                      displayer: "Subtitle",
                       value: "Photograhy"
+                    },
+                    {
+                      type: "page",
+                      key: "url",
+                      displayer: "Navigate To",
+                      value: ""
                     },
                   ]
                 },
                 {
                   type: "object",
                   key: "image",
-                  displayer: "Image",
+                  displayer: "Media Item",
                   value: [
                     {
                       type: "media",
                       key: "cardImage",
-                      displayer: "Image",
+                      displayer: "Media",
                       additionalParams: {
                         availableTypes: ["image", "video"],
                       },
@@ -398,26 +497,32 @@ class ImageGallery1 extends BaseImageGallery {
                     {
                       type: "string",
                       key: "title",
-                      displayer: "Title 1",
+                      displayer: "Title",
                       value: "Herbal Beauty"
                     },
                     {
                       type: "string",
                       key: "section",
-                      displayer: "Title 2",
+                      displayer: "Subtitle",
                       value: "Application"
+                    },
+                    {
+                      type: "page",
+                      key: "url",
+                      displayer: "Navigate To",
+                      value: ""
                     },
                   ]
                 },
                 {
                   type: "object",
                   key: "image",
-                  displayer: "Image",
+                  displayer: "Media Item",
                   value: [
                     {
                       type: "media",
                       key: "cardImage",
-                      displayer: "Image",
+                      displayer: "Media",
                       additionalParams: {
                         availableTypes: ["image", "video"],
                       },
@@ -436,26 +541,32 @@ class ImageGallery1 extends BaseImageGallery {
                     {
                       type: "string",
                       key: "title",
-                      displayer: "Title 1",
+                      displayer: "Title",
                       value: "Harddot Stone"
                     },
                     {
                       type: "string",
                       key: "section",
-                      displayer: "Title 2",
+                      displayer: "Subtitle",
                       value: "Graphics"
+                    },
+                    {
+                      type: "page",
+                      key: "url",
+                      displayer: "Navigate To",
+                      value: ""
                     },
                   ]
                 },
                 {
                   type: "object",
                   key: "image",
-                  displayer: "Image",
+                  displayer: "Media Item",
                   value: [
                     {
                       type: "media",
                       key: "cardImage",
-                      displayer: "Image",
+                      displayer: "Media",
                       additionalParams: {
                         availableTypes: ["image", "video"],
                       },
@@ -474,14 +585,20 @@ class ImageGallery1 extends BaseImageGallery {
                     {
                       type: "string",
                       key: "title",
-                      displayer: "Title 1",
+                      displayer: "Title",
                       value: "Harddot Stone"
                     },
                     {
                       type: "string",
                       key: "section",
-                      displayer: "Title 2",
+                      displayer: "Subtitle",
                       value: "Graphics"
+                    },
+                    {
+                      type: "page",
+                      key: "url",
+                      displayer: "Navigate To",
+                      value: ""
                     },
                   ]
                 }
@@ -492,9 +609,16 @@ class ImageGallery1 extends BaseImageGallery {
       ]
     });
 
-    this.addProp(INPUTS.BUTTON("button", "Button", "Load More", null, null, null, "Primary"));
+    this.addProp({
+      type: "array",
+      key: "buttons",
+      displayer: "Load More",
+      value: [
+        INPUTS.BUTTON("button", "Button", "Load More", "", null, null, "Primary"),
+      ],
+    });
 
-    this.setComponentState("selectedSection", this.castToString(this.getPropValue("allText")));
+    this.setComponentState("selectedSection", this.castToString(this.getAllCategory().allText));
     this.setComponentState("selectedIndex", -1);
     this.setComponentState("moreImages", 0);
   }
@@ -502,28 +626,40 @@ class ImageGallery1 extends BaseImageGallery {
   static getName(): string {
     return "Image Gallery 1";
   }
+  getAllCategory(): AllCategory {
+    return this.castToObject<AllCategory>("allCategory");
+  }
+  getCountSettings(): CountSettings {
+    return this.castToObject<CountSettings>("countSettings");
+  }
   handleSectionClick(sectionTitle: React.JSX.Element, index: number): void {
     this.setComponentState("selectedSection", this.castToString(sectionTitle));
     this.setComponentState("selectedIndex", index)
-    this.setComponentState("imageCount", this.getPropValue("imageCountInitial"));
+    this.setComponentState("imageCount", this.getCountSettings().imageCountInitial);
     this.setComponentState("moreImages", 0);
   }
   handleSectionClickAll(): void {
-    this.setComponentState("selectedSection", this.castToString(this.getPropValue("allText")));
+    this.setComponentState("selectedSection", this.castToString(this.getAllCategory().allText));
     this.setComponentState("selectedIndex", -1)
-    this.setComponentState("imageCount", this.getPropValue("imageCountInitial"));
+    this.setComponentState("imageCount", this.getCountSettings().imageCountInitial);
     this.setComponentState("moreImages", 0);
   }
 
   handleButtonClick = () => {
-    this.setComponentState("moreImages", this.getComponentState("moreImages") + this.getPropValue("imageCount"))
+    this.setComponentState("moreImages", this.getComponentState("moreImages") + this.getCountSettings().imageCount)
   };
 
   render() {
-    if (this.getComponentState("imageCount") != this.getPropValue("imageCountInitial") + this.getComponentState("moreImages"))
-      this.setComponentState("imageCount", this.getPropValue("imageCountInitial") + this.getComponentState("moreImages"));
+    if (this.getComponentState("imageCount") != this.getCountSettings().imageCountInitial + this.getComponentState("moreImages"))
+      this.setComponentState("imageCount", this.getCountSettings().imageCountInitial + this.getComponentState("moreImages"));
     const imageGallery = this.castToObject<ImageGallery[]>("imageGalleries");
-    const selectedSection = this.getComponentState("selectedSection");
+    const showAll = this.getAllCategory().showAll;
+    let selectedSection = this.getComponentState("selectedSection");
+    let selectedIndex = this.getComponentState("selectedIndex");
+    if (!showAll && selectedIndex == -1 && imageGallery.length > 0) {
+      selectedIndex = 0;
+      selectedSection = this.castToString(imageGallery[0].sectionTitle);
+    }
     const allImages = imageGallery.reduce((acc: Image[], gallery: ImageGallery) => {
       gallery.images.forEach((image) => {
         if (!acc.some((img) => img.cardImage === image.cardImage)) {
@@ -532,42 +668,87 @@ class ImageGallery1 extends BaseImageGallery {
       });
       return acc;
     }, []);
-    const sectionImage = (this.getComponentState("selectedIndex") != -1) ? imageGallery[this.getComponentState("selectedIndex")].images : "";
+    const sectionImage = (selectedIndex != -1) ? imageGallery[selectedIndex].images : "";
     const selectedImageGallery =
-      this.getComponentState("selectedIndex") == -1 ? allImages
+      selectedIndex == -1 ? allImages
         : sectionImage;
 
-    const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
+    const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons") || [];
+    const headerButtons = this.castToObject<INPUTS.CastedButton[]>("headerButtons") || [];
+    const hasButtons = buttons.some((button: INPUTS.CastedButton) => this.castToString(button.text));
+    const subtitleExist = this.castToString(this.getPropValue("subtitle"));
+    const titleExist = this.castToString(this.getPropValue("header_title"));
+    const descriptionExist = this.castToString(this.getPropValue("description"));
+    const hasHeaderButtons = headerButtons.some((button: INPUTS.CastedButton) => this.castToString(button.text) || (button.icon as unknown as TypeMediaInputValue)?.name);
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          {(imageGallery.length > 0 || this.castToString(this.getPropValue("allText"))) && (<Base.Row className={this.decorateCSS("tab-container")}>
-            { this.castToString(this.getPropValue("allText")) && (
-              <Base.H5
-                className={`${this.decorateCSS("tab")} ${selectedSection === this.castToString(this.getPropValue("allText")) ? this.decorateCSS("active-tab") : ""}`}
-                onClick={() => this.handleSectionClickAll()}
-              >
-                {this.getPropValue("allText")}
-              </Base.H5>
-            )}
-            {imageGallery.length > 0 && (
-              imageGallery.map((item: ImageGallery, index: number) => this.castToString(item.sectionTitle) && (
-                <Base.H5
-                  key={index}
-                  className={`${this.decorateCSS("tab")} ${this.castToString(item.sectionTitle) === selectedSection ? this.decorateCSS("active-tab") : ""}`}
-                  onClick={() => this.handleSectionClick(item.sectionTitle, index)}
-                >
-                  {item.sectionTitle}
-                </Base.H5>
-              ))
-            )}
-          </Base.Row>)}
-          <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount"), tablet: 3 }}>
+          {(subtitleExist || titleExist || descriptionExist) && (
+            <Base.VerticalContent className={this.decorateCSS("heading")}>
+              {subtitleExist && (
+                <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                  {this.getPropValue("subtitle")}
+                </Base.SectionSubTitle>
+              )}
+              {titleExist && (
+                <Base.SectionTitle className={this.decorateCSS("heading-title")}>
+                  {this.getPropValue("header_title")}
+                </Base.SectionTitle>
+              )}
+              {descriptionExist && (
+                <Base.SectionDescription className={this.decorateCSS("heading-description")}>
+                  {this.getPropValue("description")}
+                </Base.SectionDescription>
+              )}
+            </Base.VerticalContent>
+          )}
+          {(imageGallery.length > 0 || this.castToString(this.getAllCategory().allText) || hasHeaderButtons) && (
+            <div className={this.decorateCSS("header")}>
+              {(imageGallery.length > 0 || (showAll && this.castToString(this.getAllCategory().allText))) && (<Base.Row className={this.decorateCSS("tab-container")}>
+                {showAll && this.castToString(this.getAllCategory().allText) && (
+                  <Base.P
+                    className={`${this.decorateCSS("tab")} ${selectedSection === this.castToString(this.getAllCategory().allText) ? this.decorateCSS("active-tab") : ""}`}
+                    onClick={() => this.handleSectionClickAll()}
+                  >
+                    {this.getAllCategory().allText}
+                  </Base.P>
+                )}
+                {imageGallery.length > 0 && (
+                  imageGallery.map((item: ImageGallery, index: number) => this.castToString(item.sectionTitle) && (
+                    <Base.P
+                      key={index}
+                      className={`${this.decorateCSS("tab")} ${this.castToString(item.sectionTitle) === selectedSection ? this.decorateCSS("active-tab") : ""}`}
+                      onClick={() => this.handleSectionClick(item.sectionTitle, index)}
+                    >
+                      {item.sectionTitle}
+                    </Base.P>
+                  ))
+                )}
+              </Base.Row>)}
+              {hasHeaderButtons && (
+                <div className={this.decorateCSS("header-button-container")}>
+                  {headerButtons.map((button: INPUTS.CastedButton, index: number) => {
+                    const buttonIcon = button.icon as unknown as TypeMediaInputValue;
+                    const iconExist = buttonIcon && (buttonIcon.type === "icon" ? buttonIcon.name : buttonIcon.url);
+                    return (this.castToString(button.text) || iconExist) && (
+                      <ComposerLink key={index} path={button.url}>
+                        <Base.Button buttonType={button.type} className={this.decorateCSS("header-button")}>
+                          {this.castToString(button.text) && <Base.P className={this.decorateCSS("header-button-text")}>{button.text}</Base.P>}
+                          {iconExist && <Base.Media value={buttonIcon} className={this.decorateCSS("header-button-icon")} />}
+                        </Base.Button>
+                      </ComposerLink>
+                    );
+                  })}
+                </div>
+              )}
+            </div>
+          )}
+          <Base.ListGrid gridCount={{ pc: this.getCountSettings().itemCount, tablet: 3 }} className={this.decorateCSS("gallery-grid")}>
             {imageGallery
               .filter(
                 (item: ImageGallery) =>
-                  selectedSection == this.castToString(this.getPropValue("allText")) ||
+                  selectedSection == this.castToString(this.getAllCategory().allText) ||
                   (item.sectionTitle &&
                     selectedSection &&
                     this.castToString(item.sectionTitle) === selectedSection)
@@ -578,7 +759,8 @@ class ImageGallery1 extends BaseImageGallery {
               }, [])
               .slice(0, this.getComponentState("imageCount"))
               .map((image: Image, imgIndex: number) => (image.cardImage || this.castToString(image.title) || this.castToString(image.section)) && (
-                <div key={imgIndex} className={this.decorateCSS("card-container")}>
+                <ComposerLink key={imgIndex} path={image.url} isFullWidth>
+                <div className={this.decorateCSS("card-container")}>
                   {image.cardImage && (
                     <div className={this.decorateCSS("image-container")}>
                     <Base.Media
@@ -591,7 +773,7 @@ class ImageGallery1 extends BaseImageGallery {
                     </div>)}
                   <div className={this.decorateCSS("text-container")}>
                     {this.castToString(image.title) && (
-                      <Base.P className={this.decorateCSS("title")}>{image.title}</Base.P>
+                      <Base.H6 className={this.decorateCSS("title")}>{image.title}</Base.H6>
                     )}
                     {this.getPropValue("lineActive")  && (
                       <div className={this.decorateCSS("line")}></div>
@@ -601,13 +783,18 @@ class ImageGallery1 extends BaseImageGallery {
                     )}
                   </div>
                 </div>
+                </ComposerLink>
               ))}
           </Base.ListGrid>
-          {(this.getComponentState("imageCount") < selectedImageGallery.length) && this.castToString(button.text) && (
+          {(this.getComponentState("imageCount") < selectedImageGallery.length) && hasButtons && (
             <div className={this.decorateCSS("button-wrapper")}>
-              <Base.Button buttonType={button.type} className={this.decorateCSS("button")} onClick={this.handleButtonClick} >
-                <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
-              </Base.Button>
+              {buttons.map((button: INPUTS.CastedButton, index: number) => this.castToString(button.text) && (
+                <ComposerLink key={index} path={button.url}>
+                  <Base.Button buttonType={button.type} className={this.decorateCSS("button")} onClick={this.handleButtonClick} >
+                    <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
+                  </Base.Button>
+                </ComposerLink>
+              ))}
             </div>
           )}
         </Base.MaxContent>

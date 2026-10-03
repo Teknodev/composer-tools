@@ -3,27 +3,63 @@ import { BaseImageGallery, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./image-gallery7.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "../../../custom-hooks/input-templates";
+import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 
 type CardItemType = {
     image: TypeMediaInputValue;
     title: React.JSX.Element;
     subtitle: React.JSX.Element;
+    description: React.JSX.Element;
+    url: string;
 };
 class ImageGallery7 extends BaseImageGallery {
     constructor(props?: any) {
         super(props, styles);
         this.addProp({
-            type: "number",
-            key: "imageCountInitial",
-            displayer: "Image Count Initial",
-            value: 8
-        })
+            type: "string",
+            key: "sectionSubtitle",
+            displayer: "Subtitle",
+            value: "",
+        });
         this.addProp({
-            type: "number",
-            key: "imageCount",
-            displayer: "More Image Count",
-            value: 4
-        })
+            type: "string",
+            key: "header_title",
+            displayer: "Title",
+            value: "",
+        });
+        this.addProp({
+            type: "string",
+            key: "header_description",
+            displayer: "Description",
+            value: "",
+        });
+        this.addProp({
+            type: "array",
+            key: "headerButtons",
+            displayer: "Buttons",
+            value: [
+                INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+            ],
+        });
+        this.addProp({
+            type: "object",
+            key: "countSettings",
+            displayer: "Count Settings",
+            value: [
+                {
+                    type: "number",
+                    key: "imageCountInitial",
+                    displayer: "Media Count Initial",
+                    value: 8
+                },
+                {
+                    type: "number",
+                    key: "imageCount",
+                    displayer: "More Media Count",
+                    value: 4
+                },
+            ]
+        });
         this.addProp({
             type: "array",
             key: "gallery",
@@ -38,7 +74,7 @@ class ImageGallery7 extends BaseImageGallery {
                             {
                                 type: "media",
                                 key: "image",
-                                displayer: "Image",
+                                displayer: "Media",
                                 value: {
                                     type: "image",
                                     url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/669dfff22f8a5b002ce60115?alt=media",
@@ -49,15 +85,27 @@ class ImageGallery7 extends BaseImageGallery {
                             },
                             {
                                 type: "string",
+                                key: "subtitle",
+                                displayer: "Subtitle",
+                                value: "Summer, Fashion"
+                            },
+                            {
+                                type: "string",
                                 key: "title",
                                 displayer: "Title",
                                 value: "Dubai",
                             },
                             {
                                 type: "string",
-                                key: "subtitle",
-                                displayer: "Subtitle",
-                                value: "Summer, Fashion"
+                                key: "description",
+                                displayer: "Description",
+                                value: "",
+                            },
+                            {
+                                type: "page",
+                                key: "url",
+                                displayer: "Navigate To",
+                                value: ""
                             }
                         ]
                     },
@@ -69,7 +117,7 @@ class ImageGallery7 extends BaseImageGallery {
                             {
                                 type: "media",
                                 key: "image",
-                                displayer: "Image",
+                                displayer: "Media",
                                 value: {
                                     type: "image",
                                     url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/669e00122f8a5b002ce60121?alt=media",
@@ -80,15 +128,27 @@ class ImageGallery7 extends BaseImageGallery {
                             },
                             {
                                 type: "string",
+                                key: "subtitle",
+                                displayer: "Subtitle",
+                                value: "Architecture"
+                            },
+                            {
+                                type: "string",
                                 key: "title",
                                 displayer: "Title",
                                 value: "Cosmoso",
                             },
                             {
                                 type: "string",
-                                key: "subtitle",
-                                displayer: "Subtitle",
-                                value: "Architecture"
+                                key: "description",
+                                displayer: "Description",
+                                value: "",
+                            },
+                            {
+                                type: "page",
+                                key: "url",
+                                displayer: "Navigate To",
+                                value: ""
                             },
                         ]
                     },
@@ -100,7 +160,7 @@ class ImageGallery7 extends BaseImageGallery {
                             {
                                 type: "media",
                                 key: "image",
-                                displayer: "Image",
+                                displayer: "Media",
                                 value: {
                                     type: "image",
                                     url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/669e003a2f8a5b002ce6012d?alt=media",
@@ -111,15 +171,27 @@ class ImageGallery7 extends BaseImageGallery {
                             },
                             {
                                 type: "string",
+                                key: "subtitle",
+                                displayer: "Subtitle",
+                                value: "Portraits, Summer"
+                            },
+                            {
+                                type: "string",
                                 key: "title",
                                 displayer: "Title",
                                 value: "Ron Mcclenny",
                             },
                             {
                                 type: "string",
-                                key: "subtitle",
-                                displayer: "Subtitle",
-                                value: "Portraits, Summer"
+                                key: "description",
+                                displayer: "Description",
+                                value: "",
+                            },
+                            {
+                                type: "page",
+                                key: "url",
+                                displayer: "Navigate To",
+                                value: ""
                             },
                         ]
                     },
@@ -131,7 +203,7 @@ class ImageGallery7 extends BaseImageGallery {
                             {
                                 type: "media",
                                 key: "image",
-                                displayer: "Image",
+                                displayer: "Media",
                                 value: {
                                     type: "image",
                                     url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/669e005b2f8a5b002ce60139?alt=media",
@@ -142,15 +214,27 @@ class ImageGallery7 extends BaseImageGallery {
                             },
                             {
                                 type: "string",
+                                key: "subtitle",
+                                displayer: "Subtitle",
+                                value: "Architecture, Interior"
+                            },
+                            {
+                                type: "string",
                                 key: "title",
                                 displayer: "Title",
                                 value: "Curitiba Brasil",
                             },
                             {
                                 type: "string",
-                                key: "subtitle",
-                                displayer: "Subtitle",
-                                value: "Architecture, Interior"
+                                key: "description",
+                                displayer: "Description",
+                                value: "",
+                            },
+                            {
+                                type: "page",
+                                key: "url",
+                                displayer: "Navigate To",
+                                value: ""
                             },
                         ]
                     },
@@ -162,7 +246,7 @@ class ImageGallery7 extends BaseImageGallery {
                             {
                                 type: "media",
                                 key: "image",
-                                displayer: "Image",
+                                displayer: "Media",
                                 value: {
                                     type: "image",
                                     url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/669e00772f8a5b002ce60145?alt=media",
@@ -173,15 +257,27 @@ class ImageGallery7 extends BaseImageGallery {
                             },
                             {
                                 type: "string",
+                                key: "subtitle",
+                                displayer: "Subtitle",
+                                value: "Architecture, Interior"
+                            },
+                            {
+                                type: "string",
                                 key: "title",
                                 displayer: "Title",
                                 value: "John Doe",
                             },
                             {
                                 type: "string",
-                                key: "subtitle",
-                                displayer: "Subtitle",
-                                value: "Architecture, Interior"
+                                key: "description",
+                                displayer: "Description",
+                                value: "",
+                            },
+                            {
+                                type: "page",
+                                key: "url",
+                                displayer: "Navigate To",
+                                value: ""
                             },
                         ]
                     },
@@ -193,7 +289,7 @@ class ImageGallery7 extends BaseImageGallery {
                             {
                                 type: "media",
                                 key: "image",
-                                displayer: "Image",
+                                displayer: "Media",
                                 value: {
                                     type: "image",
                                     url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/669e00952f8a5b002ce60151?alt=media",
@@ -204,15 +300,27 @@ class ImageGallery7 extends BaseImageGallery {
                             },
                             {
                                 type: "string",
+                                key: "subtitle",
+                                displayer: "Subtitle",
+                                value: "Architecture, Interior"
+                            },
+                            {
+                                type: "string",
                                 key: "title",
                                 displayer: "Title",
                                 value: "Creme",
                             },
                             {
                                 type: "string",
-                                key: "subtitle",
-                                displayer: "Subtitle",
-                                value: "Architecture, Interior"
+                                key: "description",
+                                displayer: "Description",
+                                value: "",
+                            },
+                            {
+                                type: "page",
+                                key: "url",
+                                displayer: "Navigate To",
+                                value: ""
                             }
                         ]
                     }
@@ -225,7 +333,7 @@ class ImageGallery7 extends BaseImageGallery {
                             {
                                 type: "media",
                                 key: "image",
-                                displayer: "Image",
+                                displayer: "Media",
                                 value: {
                                     type: "image",
                                     url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/669e00ba2f8a5b002ce6015d?alt=media",
@@ -236,15 +344,27 @@ class ImageGallery7 extends BaseImageGallery {
                             },
                             {
                                 type: "string",
+                                key: "subtitle",
+                                displayer: "Subtitle",
+                                value: "Brutalism, Portraits"
+                            },
+                            {
+                                type: "string",
                                 key: "title",
                                 displayer: "Title",
                                 value: "Dublin",
                             },
                             {
                                 type: "string",
-                                key: "subtitle",
-                                displayer: "Subtitle",
-                                value: "Brutalism, Portraits"
+                                key: "description",
+                                displayer: "Description",
+                                value: "",
+                            },
+                            {
+                                type: "page",
+                                key: "url",
+                                displayer: "Navigate To",
+                                value: ""
                             }
                         ]
                     },
@@ -256,7 +376,7 @@ class ImageGallery7 extends BaseImageGallery {
                             {
                                 type: "media",
                                 key: "image",
-                                displayer: "Image",
+                                displayer: "Media",
                                 value: {
                                     type: "image",
                                     url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/669e00d52f8a5b002ce60169?alt=media",
@@ -267,15 +387,27 @@ class ImageGallery7 extends BaseImageGallery {
                             },
                             {
                                 type: "string",
+                                key: "subtitle",
+                                displayer: "Subtitle",
+                                value: "Portraits Summer"
+                            },
+                            {
+                                type: "string",
                                 key: "title",
                                 displayer: "Title",
                                 value: "Annie Spratt",
                             },
                             {
                                 type: "string",
-                                key: "subtitle",
-                                displayer: "Subtitle",
-                                value: "Portraits Summer"
+                                key: "description",
+                                displayer: "Description",
+                                value: "",
+                            },
+                            {
+                                type: "page",
+                                key: "url",
+                                displayer: "Navigate To",
+                                value: ""
                             }
                         ]
                     },
@@ -287,7 +419,7 @@ class ImageGallery7 extends BaseImageGallery {
                             {
                                 type: "media",
                                 key: "image",
-                                displayer: "Image",
+                                displayer: "Media",
                                 value: {
                                     type: "image",
                                     url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/669e00f72f8a5b002ce60175?alt=media",
@@ -298,15 +430,27 @@ class ImageGallery7 extends BaseImageGallery {
                             },
                             {
                                 type: "string",
+                                key: "subtitle",
+                                displayer: "Subtitle",
+                                value: "Brutalism, Portraits"
+                            },
+                            {
+                                type: "string",
                                 key: "title",
                                 displayer: "Title",
                                 value: "Ulitsa",
                             },
                             {
                                 type: "string",
-                                key: "subtitle",
-                                displayer: "Subtitle",
-                                value: "Brutalism, Portraits"
+                                key: "description",
+                                displayer: "Description",
+                                value: "",
+                            },
+                            {
+                                type: "page",
+                                key: "url",
+                                displayer: "Navigate To",
+                                value: ""
                             },
 
 
@@ -320,7 +464,7 @@ class ImageGallery7 extends BaseImageGallery {
                             {
                                 type: "media",
                                 key: "image",
-                                displayer: "Image",
+                                displayer: "Media",
                                 value: {
                                     type: "image",
                                     url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/669e01132f8a5b002ce60181?alt=media",
@@ -331,15 +475,27 @@ class ImageGallery7 extends BaseImageGallery {
                             },
                             {
                                 type: "string",
+                                key: "subtitle",
+                                displayer: "Subtitle",
+                                value: "Summer, Fashion"
+                            },
+                            {
+                                type: "string",
                                 key: "title",
                                 displayer: "Title",
                                 value: "Brabant",
                             },
                             {
                                 type: "string",
-                                key: "subtitle",
-                                displayer: "Subtitle",
-                                value: "Summer, Fashion"
+                                key: "description",
+                                displayer: "Description",
+                                value: "",
+                            },
+                            {
+                                type: "page",
+                                key: "url",
+                                displayer: "Navigate To",
+                                value: ""
                             },
 
                         ]
@@ -352,7 +508,7 @@ class ImageGallery7 extends BaseImageGallery {
                             {
                                 type: "media",
                                 key: "image",
-                                displayer: "Image",
+                                displayer: "Media",
                                 value: {
                                     type: "image",
                                     url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/669e00122f8a5b002ce60121?alt=media",
@@ -363,15 +519,27 @@ class ImageGallery7 extends BaseImageGallery {
                             },
                             {
                                 type: "string",
+                                key: "subtitle",
+                                displayer: "Subtitle",
+                                value: "Summer, Fashion"
+                            },
+                            {
+                                type: "string",
                                 key: "title",
                                 displayer: "Title",
                                 value: "Snowy Swiss Alps",
                             },
                             {
                                 type: "string",
-                                key: "subtitle",
-                                displayer: "Subtitle",
-                                value: "Summer, Fashion"
+                                key: "description",
+                                displayer: "Description",
+                                value: "",
+                            },
+                            {
+                                type: "page",
+                                key: "url",
+                                displayer: "Navigate To",
+                                value: ""
                             },
 
                         ]
@@ -384,7 +552,7 @@ class ImageGallery7 extends BaseImageGallery {
                             {
                                 type: "media",
                                 key: "image",
-                                displayer: "Image",
+                                displayer: "Media",
                                 value: {
                                     type: "image",
                                     url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/669e01732f8a5b002ce6018d?alt=media",
@@ -395,21 +563,40 @@ class ImageGallery7 extends BaseImageGallery {
                             },
                             {
                                 type: "string",
+                                key: "subtitle",
+                                displayer: "Subtitle",
+                                value: "Brutalism, Portraits"
+                            },
+                            {
+                                type: "string",
                                 key: "title",
                                 displayer: "Title",
                                 value: "National Aquarium Dubai",
                             },
                             {
                                 type: "string",
-                                key: "subtitle",
-                                displayer: "Subtitle",
-                                value: "Brutalism, Portraits"
+                                key: "description",
+                                displayer: "Description",
+                                value: "",
+                            },
+                            {
+                                type: "page",
+                                key: "url",
+                                displayer: "Navigate To",
+                                value: ""
                             }
                         ]
                     }
                 ]
         });
-        this.addProp(INPUTS.BUTTON("button", "Button", "Load More", null, null, null, "Primary"));
+        this.addProp({
+            type: "array",
+            key: "buttons",
+            displayer: "Load More",
+            value: [
+                INPUTS.BUTTON("button", "Button", "Load More", "", null, null, "Primary"),
+            ],
+        });
 
         this.setComponentState("scroll", 0);
         this.handleScroll = this.handleScroll.bind(this);
@@ -419,6 +606,9 @@ class ImageGallery7 extends BaseImageGallery {
 
     static getName(): string {
         return "Image Gallery 7";
+    }
+    getCountSettings(): { imageCountInitial: number; imageCount: number } {
+        return this.castToObject<{ imageCountInitial: number; imageCount: number }>("countSettings");
     }
     private timeoutId: NodeJS.Timeout | null = null;
     private scrollOffset: number = 0;
@@ -455,21 +645,57 @@ class ImageGallery7 extends BaseImageGallery {
 
     debouncedHandleScroll = this.debounce(this.handleScroll, 12);
     handleButtonClick = () => {
-        this.setComponentState("moreImages", this.getComponentState("moreImages") + this.getPropValue("imageCount"))
+        this.setComponentState("moreImages", this.getComponentState("moreImages") + this.getCountSettings().imageCount)
 
     };
 
     render() {
         const gallery = this.castToObject<CardItemType[]>("gallery");
-        if (this.getComponentState("imageCount") != this.getPropValue("imageCountInitial") + this.getComponentState("moreImages"))
-            this.setComponentState("imageCount", this.getPropValue("imageCountInitial") + this.getComponentState("moreImages"));
+        if (this.getComponentState("imageCount") != this.getCountSettings().imageCountInitial + this.getComponentState("moreImages"))
+            this.setComponentState("imageCount", this.getCountSettings().imageCountInitial + this.getComponentState("moreImages"));
 
-        const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
+        const subtitleExist = this.castToString(this.getPropValue("sectionSubtitle"));
+        const titleExist = this.castToString(this.getPropValue("header_title"));
+        const descriptionExist = this.castToString(this.getPropValue("header_description"));
+        const buttons = this.castToObject<INPUTS.CastedButton[]>("headerButtons") || [];
+        const hasButtons = buttons.some((button: INPUTS.CastedButton) => this.castToString(button.text));
+        const loadMoreButtons = this.castToObject<INPUTS.CastedButton[]>("buttons") || [];
+        const hasLoadMoreButtons = loadMoreButtons.some((button: INPUTS.CastedButton) => this.castToString(button.text));
 
         return (
             <Base.Container className={this.decorateCSS("container")} onScroll={this.debouncedHandleScroll}>
                 <Base.MaxContent className={this.decorateCSS("maxContent")}>
-                    <Base.ListGrid gridCount={{ pc: 4, tablet: 2, phone: 1 }} className={this.decorateCSS("gridContainer")} >
+                    {(subtitleExist || titleExist || descriptionExist || hasButtons) && (
+                        <Base.VerticalContent className={this.decorateCSS("heading")}>
+                            {subtitleExist && (
+                                <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                                    {this.getPropValue("sectionSubtitle")}
+                                </Base.SectionSubTitle>
+                            )}
+                            {titleExist && (
+                                <Base.SectionTitle className={this.decorateCSS("heading-title")}>
+                                    {this.getPropValue("header_title")}
+                                </Base.SectionTitle>
+                            )}
+                            {descriptionExist && (
+                                <Base.SectionDescription className={this.decorateCSS("heading-description")}>
+                                    {this.getPropValue("header_description")}
+                                </Base.SectionDescription>
+                            )}
+                            {hasButtons && (
+                                <div className={this.decorateCSS("header-button-container")}>
+                                    {buttons.map((button: INPUTS.CastedButton, index: number) => this.castToString(button.text) && (
+                                        <ComposerLink key={index} path={button.url}>
+                                            <Base.Button buttonType={button.type} className={this.decorateCSS("header-button")}>
+                                                <Base.P className={this.decorateCSS("header-button-text")}>{button.text}</Base.P>
+                                            </Base.Button>
+                                        </ComposerLink>
+                                    ))}
+                                </div>
+                            )}
+                        </Base.VerticalContent>
+                    )}
+                    <Base.ListGrid gridCount={{ pc: 4, tablet: 4, phone: 1 }} className={this.decorateCSS("gridContainer")} >
                         {gallery.slice(0, this.getComponentState("imageCount")).map((cards: CardItemType, columnIndex: number) => {
                             const isEven = (columnIndex) % 2 !== 0;
                             const columnClass = isEven ? "columnEven" : "columnOdd";
@@ -478,33 +704,42 @@ class ImageGallery7 extends BaseImageGallery {
                                 <div className={`${this.decorateCSS("column")} ${this.decorateCSS(columnClass)}`}
                                     style={style as React.CSSProperties}>
                                     <div className={this.decorateCSS("wrapper")}>
-                                        {(this.castToString(cards.title) || this.castToString(cards.subtitle) || cards.image) &&
+                                        {(this.castToString(cards.title) || this.castToString(cards.subtitle) || this.castToString(cards.description) || cards.image) &&
+                                            <ComposerLink path={cards.url} isFullWidth>
                                             <div className={this.decorateCSS("card")}>
                                                 {cards.image && (
                                                     <Base.Media value={cards.image} className={this.decorateCSS("image")} />
                                                 )}
-                                                {(this.castToString(cards.title) || this.castToString(cards.subtitle)) && (
+                                                {(this.castToString(cards.title) || this.castToString(cards.subtitle) || this.castToString(cards.description)) && (
                                                     <div className={this.decorateCSS("textContainer")}>
                                                         {this.castToString(cards.title) && (
-                                                            <Base.H4 className={this.decorateCSS("title")}>{cards.title}</Base.H4>
+                                                            <Base.H6 className={this.decorateCSS("title")}>{cards.title}</Base.H6>
                                                         )}
                                                         {this.castToString(cards.subtitle) && (
                                                             <Base.P className={this.decorateCSS("subtitle")}>{cards.subtitle}</Base.P>
                                                         )}
+                                                        {this.castToString(cards.description) && (
+                                                            <Base.P className={this.decorateCSS("description")}>{cards.description}</Base.P>
+                                                        )}
                                                     </div>
                                                 )}
                                             </div>
+                                            </ComposerLink>
                                         }
                                     </div>
                                 </div>
                             );
                         })}
                     </Base.ListGrid>
-                    {(this.getComponentState("imageCount") < gallery.length) && this.castToString(button.text) && (
+                    {(this.getComponentState("imageCount") < gallery.length) && hasLoadMoreButtons && (
                         <div className={this.decorateCSS("button-wrapper")}>
-                            <Base.Button className={this.decorateCSS("button")} buttonType={button.type} onClick={this.handleButtonClick}>
-                                <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
-                            </Base.Button>
+                            {loadMoreButtons.map((button: INPUTS.CastedButton, index: number) => this.castToString(button.text) && (
+                                <ComposerLink key={index} path={button.url}>
+                                    <Base.Button className={this.decorateCSS("button")} buttonType={button.type} onClick={this.handleButtonClick}>
+                                        <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
+                                    </Base.Button>
+                                </ComposerLink>
+                            ))}
                         </div>
                     )}
                 </Base.MaxContent>
