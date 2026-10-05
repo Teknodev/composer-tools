@@ -106,7 +106,7 @@
     &:not(.no-card) {
         .max-content {
             padding: calc(var(--composer-gap-lg) * 2) var(--composer-gap-xl);
-            background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+            background-color: var(--composer-html-background);
             border-radius: var(--composer-border-radius-md);
         }
     }
