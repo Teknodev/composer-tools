@@ -75,6 +75,15 @@ $font-color-primary: var(--composer-font-color-primary);
         }
 
         .author-container {
+          display: flex;
+          flex-direction: column;
+          gap: calc(var(--composer-gap-md) + var(--composer-gap-sm));
+
+          .person {
+            width: 100%;
+            align-items: flex-start;
+          }
+
           .description,
           .author {
             text-align: left;
@@ -377,10 +386,18 @@ $font-color-primary: var(--composer-font-color-primary);
         .image-container {
           .image-container-border {
             .stat-badge {
-              padding: var(--composer-gap-sm);
+              left: calc(2 * var(--composer-gap-md));
+              right: 0;
+              bottom: calc(2 * var(--composer-gap-md));
+              margin: 0;
+              padding: var(--composer-gap-md);
 
               .number {
-                font-size: min(8rem, 22cqw);
+                font-size: min(8rem, 34cqw);
+              }
+
+              .description {
+                font-size: calc(1 * var(--composer-font-size-md)) !important;
               }
             }
           }

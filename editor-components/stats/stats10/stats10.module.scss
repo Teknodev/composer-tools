@@ -361,7 +361,10 @@
 
           .up-image {
             grid-area: 1 / 1;
-            width: 100%;
+            // Like the original mobile view, the large image runs edge to edge under the video card
+            // (30px = Base.Container's phone side padding, base.module.scss .container).
+            width: calc(100% + 60px);
+            margin-left: -30px;
             height: auto;
             aspect-ratio: 1 / 1;
             margin-top: var(--composer-gap-xl);

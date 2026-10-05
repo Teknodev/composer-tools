@@ -84,12 +84,12 @@ class Stats9 extends BaseStats {
         this.addProp({
             type: "array",
             key: "stats",
-            displayer: "Statistics",
+            displayer: "Stats",
             value: [
                 {
                     type: "object",
                     key: "stat",
-                    displayer: "Statistic",
+                    displayer: "Stat",
                     value: [
                         {
                             type: "string",
@@ -132,7 +132,7 @@ class Stats9 extends BaseStats {
                 {
                     type: "object",
                     key: "stat",
-                    displayer: "Statistic",
+                    displayer: "Stat",
                     value: [
                         {
                             type: "string",
@@ -175,7 +175,7 @@ class Stats9 extends BaseStats {
                 {
                     type: "object",
                     key: "stat",
-                    displayer: "Statistic",
+                    displayer: "Stat",
                     value: [
                         {
                             type: "string",
@@ -407,17 +407,19 @@ class Stats9 extends BaseStats {
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
                     <div className={mainContentClass}>
                         {leftContentexist && <div className={this.decorateCSS("left-content")}>
-                            {subtitleExist && (
-                                <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
-                                    {subtitle}
-                                </Base.SectionSubTitle>
-                            )}
-                            {(this.castToString(title)) && (
-                                <div className={this.decorateCSS("title-section")}>
-                                    <Base.SectionTitle className={this.decorateCSS("main-title")}>
-                                        {this.getPropValue("title")}
-                                    </Base.SectionTitle>
-                                </div>
+                            {(subtitleExist || this.castToString(title)) && (
+                                <Base.VerticalContent className={this.decorateCSS("header")}>
+                                    {subtitleExist && (
+                                        <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                                            {subtitle}
+                                        </Base.SectionSubTitle>
+                                    )}
+                                    {this.castToString(title) && (
+                                        <Base.SectionTitle className={this.decorateCSS("main-title")}>
+                                            {title}
+                                        </Base.SectionTitle>
+                                    )}
+                                </Base.VerticalContent>
                             )}
 
                             <div className={this.decorateCSS("content-section")}>

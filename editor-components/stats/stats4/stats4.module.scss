@@ -186,6 +186,19 @@
         .upper-container {
           flex-direction: row !important;
         }
+
+        // Base text sizes are !important on tablet/mobile; keep the stat title and text at their desktop size.
+        .stats {
+          .stat-item {
+            .stat-item-title {
+              font-size: 1.25rem !important;
+            }
+
+            .stat-item-content {
+              font-size: 1rem !important;
+            }
+          }
+        }
       }
     }
   }

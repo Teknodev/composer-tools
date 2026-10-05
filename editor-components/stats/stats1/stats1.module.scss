@@ -216,8 +216,20 @@
 
         .right-container {
           --card-size: 120px;
-          --ring-radius: 100px;
+          --ring-radius: 50cqw;
+          --orbit-x: calc(50cqw - var(--card-size) / 2);
+          --orbit-y: 50cqw;
           width: 100%;
+          padding: calc(var(--card-size) / 2) 0;
+
+          .content-div {
+            .card {
+              transform: translate(
+                calc(cos(var(--angle) - 90deg) * var(--orbit-x)),
+                calc(sin(var(--angle) - 90deg) * var(--orbit-y))
+              );
+            }
+          }
         }
       }
     }

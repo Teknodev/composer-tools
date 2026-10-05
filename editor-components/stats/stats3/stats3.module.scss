@@ -55,7 +55,7 @@
 
         .image-container {
           position: relative;
-          width: 85%;
+          width: 90%;
 
           .image {
             border-radius: var(--composer-border-radius-sm);
@@ -75,16 +75,14 @@
         }
 
         .card-container {
-          width: 100%;
-          height: 100%;
+          width: 92%;
+          align-self: flex-start;
           position: relative;
           z-index: 2;
-          min-height: 150px;
-          margin-top: calc(-1 * var(--composer-gap-xl));
+          margin-top: calc(-1 * (var(--composer-gap-xl) + var(--composer-gap-md)));
 
           &.card-container-without-image {
-            height: auto;
-            min-height: auto;
+            width: 100%;
             margin-top: 0;
             align-items: center;
             display: flex;
@@ -97,15 +95,14 @@
           }
 
           .card {
-            position: absolute;
-            bottom: 0;
+            position: relative;
             width: 100%;
             display: flex;
             flex-direction: row;
             align-items: center !important;
             border-radius: var(--composer-border-radius-sm);
             border: 8px solid var(--composer-html-background);
-            padding: var(--composer-gap-lg) 0;
+            padding: var(--composer-gap-md) 0;
             max-width: 100%;
             background-color: var(--composer-primary-color);
 
@@ -227,43 +224,27 @@
   .container {
     .max-content {
       .page {
-        flex-direction: column !important;
+        // Base.ContainerGrid stacks at tablet; this component keeps the desktop side-by-side layout there.
+        flex-direction: row !important;
         flex-wrap: nowrap;
 
-        .left-page {
-          flex: auto;
-        }
-
         .right-container {
-          flex: auto;
-          align-items: stretch;
-
-          &.right-container-without-image {
-            height: auto;
-          }
-
-          .image-container {
-            width: 100%;
-          }
-
           .card-container {
-            height: auto;
-            min-height: auto;
-
-            &.card-container-without-image {
-              height: auto;
-              margin-top: 0;
-            }
-
             .card {
-              position: relative;
-              bottom: auto;
-              width: 100%;
-              padding: var(--composer-gap-md);
-              flex-wrap: nowrap;
+              align-items: flex-start !important;
 
               .content {
-                justify-content: center;
+                min-width: 0;
+              }
+
+              .content .inner-content .first-container {
+                flex-direction: column;
+                align-items: flex-start;
+              }
+
+              .content .inner-content .first-container .text .number {
+                flex-wrap: nowrap;
+                white-space: nowrap;
               }
 
               .content .inner-content .first-container .text .right-text {
@@ -297,7 +278,7 @@
 
         .right-container {
           flex: auto;
-          gap: var(--composer-gap-sm);
+          align-items: stretch;
 
           &.right-container-without-image {
             min-height: fit-content;
@@ -308,6 +289,7 @@
           }
 
           .card-container {
+            width: 100%;
             margin-top: 0;
             position: static;
 
@@ -384,12 +366,6 @@
         }
 
         .right-container {
-          gap: var(--composer-gap-md);
-
-          .image-container {
-            margin: 0px;
-          }
-
           .card-container {
             .card {
               position: relative;
@@ -400,6 +376,7 @@
                 flex-direction: column;
                 width: 100%;
                 border: 0;
+                padding: 0;
 
                   .inner-content {
                     flex-direction: column;
@@ -417,7 +394,6 @@
                       .text {
                         height: 100%;
                         align-items: center !important;
-                        gap: var(--composer-gap-sm);
 
                         .number,
                         .stat-subtitle,

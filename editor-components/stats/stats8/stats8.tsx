@@ -299,18 +299,22 @@ class Stats8Page extends BaseStats {
                 {(isTitleExist || isDescription1Exist) && this.getPropValue("showLine") && <hr className={this.decorateCSS("line")} />}
 
                 {(isDesExist || isPersonNameExist || isPositionExist) && (
-                  <Base.VerticalContent className={this.decorateCSS("author-container")}>
+                  <div className={this.decorateCSS("author-container")}>
                     {isDesExist && <Base.SectionDescription className={this.decorateCSS("description")}>{description}</Base.SectionDescription>}
-                    {isPersonNameExist && <Base.P className={this.decorateCSS("author")}>{personName}</Base.P>}
-                    {isPositionExist && (
-                      <Base.Row className={this.decorateCSS("author-role-container")}>
-                        <Base.P className={this.decorateCSS("author-role")}>
-                          {showBackground && <span className={this.decorateCSS("author-role-background")}></span>}
-                          {position}
-                        </Base.P>
-                      </Base.Row>
+                    {(isPersonNameExist || isPositionExist) && (
+                      <Base.VerticalContent className={this.decorateCSS("person")}>
+                        {isPersonNameExist && <Base.P className={this.decorateCSS("author")}>{personName}</Base.P>}
+                        {isPositionExist && (
+                          <Base.Row className={this.decorateCSS("author-role-container")}>
+                            <Base.P className={this.decorateCSS("author-role")}>
+                              {showBackground && <span className={this.decorateCSS("author-role-background")}></span>}
+                              {position}
+                            </Base.P>
+                          </Base.Row>
+                        )}
+                      </Base.VerticalContent>
                     )}
-                  </Base.VerticalContent>
+                  </div>
                 )}
 
                 {statsData.length > 0 && (

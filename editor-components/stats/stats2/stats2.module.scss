@@ -92,7 +92,7 @@
           display: flex;
           flex-direction: column;
           border: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.2);
-          padding: var(--composer-gap-md) var(--composer-gap-lg);
+          padding: var(--composer-gap-lg) var(--composer-gap-lg) calc(var(--composer-gap-md) + var(--composer-gap-sm));
           gap: var(--composer-gap-xl);
 
           .card-text-container {
@@ -202,7 +202,7 @@
 
           .listed {
             min-width: 0;
-            padding: var(--composer-gap-md) var(--composer-gap-sm);
+            padding: calc(var(--composer-gap-md) + var(--composer-gap-sm)) var(--composer-gap-sm);
 
             .card-amount-container {
               flex-wrap: wrap;
@@ -301,7 +301,11 @@
 
         .cards-container {
           .listed {
-            padding: var(--composer-gap-md) var(--composer-gap-lg);
+            padding: calc(var(--composer-gap-md) + var(--composer-gap-sm)) var(--composer-gap-lg);
+
+            .card-text {
+              font-size: 1.25rem !important;
+            }
 
             .card-amount-container {
               font-size: 3rem;
@@ -311,7 +315,7 @@
               }
 
               .suffix-icon {
-                font-size: 1.5rem;
+                font-size: 2rem;
               }
             }
           }
