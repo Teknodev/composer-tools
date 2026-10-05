@@ -1167,7 +1167,7 @@ class Navbar1 extends BaseNavigator {
         {
           type: "boolean",
           key: "showLanguage",
-          displayer: "Show Language",
+          displayer: "Language",
           value: true,
         },
         {

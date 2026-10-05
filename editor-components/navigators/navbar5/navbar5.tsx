@@ -22,6 +22,12 @@ interface Language {
   showDivider: boolean;
 }
 
+interface Bottom {
+  bottomText: React.JSX.Element;
+  divider: boolean;
+  bottomText2: React.JSX.Element;
+}
+
 class Navbar5 extends BaseNavigator {
   constructor(props?: any) {
     super(props, styles);
@@ -217,8 +223,8 @@ class Navbar5 extends BaseNavigator {
         {
           type: "boolean",
           key: "showLanguage",
-          displayer: "Show Language",
-          value: true,
+          displayer: "Language",
+          value: false,
         },
         {
           type: "boolean",
@@ -373,24 +379,29 @@ class Navbar5 extends BaseNavigator {
     });
 
     this.addProp({
-      type: "string",
-      key: "bottomText",
-      displayer: "Bottom Text",
-      value: "Let's build something great together",
-    });
-
-    this.addProp({
-      type: "string",
-      key: "bottomText2",
-      displayer: "Bottom Text 2",
-      value: "support@blinkpage.app",
-    });
-
-    this.addProp({
-      type: "boolean",
-      key: "divider",
-      displayer: "Divider",
-      value: true,
+      type: "object",
+      key: "bottom",
+      displayer: "Bottom",
+      value: [
+        {
+          type: "string",
+          key: "bottomText",
+          displayer: "Bottom Text",
+          value: "Let's build something great together",
+        },
+        {
+          type: "boolean",
+          key: "divider",
+          displayer: "Divider",
+          value: true,
+        },
+        {
+          type: "string",
+          key: "bottomText2",
+          displayer: "Bottom Text 2",
+          value: "support@blinkpage.app",
+        },
+      ],
     });
 
     this.addProp({
@@ -491,12 +502,11 @@ class Navbar5 extends BaseNavigator {
     const language = this.castToObject<Language>("language");
 
     const line = this.getPropValue("line");
-    const divider = this.getPropValue("divider");
+    const bottom = this.castToObject<Bottom>("bottom");
+    const divider = bottom?.divider;
 
-    const bottomTextExist = this.castToString(this.getPropValue("bottomText"));
-    const bottomText2Exist = this.castToString(
-      this.getPropValue("bottomText2")
-    );
+    const bottomTextExist = this.castToString(bottom?.bottomText);
+    const bottomText2Exist = this.castToString(bottom?.bottomText2);
 
     const hamburgerIcon = this.getPropValue("hamburger-icon");
     const crossIcon = this.getPropValue("cross-icon");
@@ -627,9 +637,9 @@ class Navbar5 extends BaseNavigator {
 
           {(bottomTextExist || bottomText2Exist) && (
             <div className={this.decorateCSS("down")}>
-              {bottomTextExist && <Base.P className={`${this.decorateCSS("text")} animate__animated ${this.getComponentState("footerLeftTextAnimationClass")}`}>{this.getPropValue("bottomText")}</Base.P>}
+              {bottomTextExist && <Base.P className={`${this.decorateCSS("text")} animate__animated ${this.getComponentState("footerLeftTextAnimationClass")}`}>{bottom.bottomText}</Base.P>}
               {divider && <div className={this.decorateCSS("divider")}></div>}
-              {bottomText2Exist && <Base.P className={`${this.decorateCSS("text")} animate__animated ${this.getComponentState("footerRightTextAnimationClass")}`}> {this.getPropValue("bottomText2")}</Base.P>}
+              {bottomText2Exist && <Base.P className={`${this.decorateCSS("text")} animate__animated ${this.getComponentState("footerRightTextAnimationClass")}`}>{bottom.bottomText2}</Base.P>}
             </div>
           )}
         </div>

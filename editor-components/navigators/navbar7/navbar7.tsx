@@ -4354,7 +4354,7 @@ class Navbar7 extends BaseNavigator {
         {
           type: "boolean",
           key: "showLanguage",
-          displayer: "Show Language",
+          displayer: "Language",
           value: true,
         },
         {
@@ -4553,7 +4553,7 @@ class Navbar7 extends BaseNavigator {
                 {menuItems.map((item: any, index: any) => (
                   <div
                     key={index}
-                    className={`${this.decorateCSS("menuItemContainer")} ${animations}`}
+                    className={`${this.decorateCSS("menuItemContainer")} ${item.menuType === "Mega" ? this.decorateCSS("megaMenuItem") : ""} ${animations}`}
                   >
                     <ComposerLink path={item.navigate_to}>
                       <div className={this.decorateCSS("menuItem")}>
@@ -4672,9 +4672,16 @@ class Navbar7 extends BaseNavigator {
                           const columnLinks = (column.sub_items || []).filter((link: MenuItem) =>
                             this.castToString(link.title)
                           );
+                          const mediaLinks = columnLinks.filter((link: MenuItem) => this.hasMedia(link.sub_sub_item_media));
+                          const columnLayout =
+                            mediaLinks.length === 0
+                              ? ""
+                              : mediaLinks.some((link: MenuItem) => this.castToString(link.sub_sub_item_description))
+                                ? this.decorateCSS("listCardsColumn")
+                                : this.decorateCSS("gridCardsColumn");
                           return (
                             (columnTitleExist || columnLinks.length > 0) && (
-                              <div key={columnIndex} className={this.decorateCSS("megaMenuColumn")}>
+                              <div key={columnIndex} className={`${this.decorateCSS("megaMenuColumn")} ${columnLayout}`}>
                                 {columnTitleExist && (
                                   <ComposerLink path={column.navigate_to}>
                                     <div className={this.decorateCSS("megaMenuColumnHeader")}>

@@ -13,7 +13,7 @@
     in srgb,
     var(--composer-html-background),
     var(--composer-font-color-primary) 5%);
-    padding: var(--composer-gap-md) var(--composer-gap-xl) !important;
+    padding: var(--composer-gap-sm) var(--composer-gap-xl) !important;
     
 
   .lane {
@@ -138,7 +138,24 @@
     .mobileRight {
       display: flex;
       align-items: center;
-      gap: var(--composer-gap-sm);
+      gap: var(--composer-gap-md);
+    }
+
+    .mobileIcons {
+      display: flex;
+      align-items: center;
+      gap: var(--composer-gap-md);
+
+      .icon-element {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: calc(1.125 * var(--composer-font-size-md));
+
+        .icon {
+          color: var(--composer-tertiary-color);
+        }
+      }
     }
 
   }
@@ -191,7 +208,7 @@
         transition: all 0.3s ease;
         &.animation1{
           &:hover{
-            font-weight: bold;
+            text-shadow: 0 0 0.5px currentColor, 0 0 0.5px currentColor;
           }
         }
       }
@@ -205,10 +222,6 @@
       }
 
       &:hover {
-        .dropdownIcon {
-          transform: rotate(180deg);
-        }
-
         .dropdown,
         .megaMenu {
           opacity: 1;
@@ -433,7 +446,7 @@
   }
   
   .icons {
-    gap: var(--composer-gap-sm);
+    gap: calc(var(--composer-gap-md) + var(--composer-gap-xs));
     .icon-element {
       font-size: calc(1.5 * var(--composer-font-size-md));
       display: flex;
@@ -509,6 +522,13 @@
   }
   .hamburgerIcon {
     color: white !important;
+  }
+  .mobileIcons {
+    .icon-element {
+      .icon {
+        color: white !important;
+      }
+    }
   }
 }
 
@@ -653,17 +673,13 @@
   }
 
   .laneContainer {
-    .loacalizationContainer {
-      display: none !important;
-    }
-    .laneNews {
-      justify-content: flex-end !important;
-    }
+    display: none !important;
   }
 
   .smallDeviceNavbarContainer{
     display: block;
     .maxContent{
+      position: static;
       .mobileRight{
         display: flex;
         align-items: center;
@@ -703,8 +719,14 @@
 }
 
 @container (max-width: #{$composer-phone-width}) {
-  .laneContainer {
-    display: none !important;
+  .smallDeviceNavbarContainer {
+    .maxContent {
+      .mobileIcons {
+        .icon-element {
+          font-size: var(--composer-font-size-md);
+        }
+      }
+    }
   }
   .hamburgerNav{
     .hamburgerNavContainer{

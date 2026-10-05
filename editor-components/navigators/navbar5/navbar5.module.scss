@@ -168,8 +168,10 @@
 
     .leftPage {
       flex: 8 1 0;
+      min-width: 0;
 
       .title {
+        overflow-wrap: anywhere;
         font-size: 12.5rem;
         color: var(--composer-tertiary-color);
         line-height: normal;
@@ -179,6 +181,7 @@
 
     .rightPage {
       flex: 3 1 0;
+      min-width: 0;
       display: flex;
       flex-direction: column;
       align-items: flex-start;
@@ -190,6 +193,7 @@
         align-items: flex-start;
 
         .item-title {
+          overflow-wrap: anywhere;
           color: var(--composer-font-color-primary);
           opacity: 0;
           transform: translateY(-100px);
@@ -229,6 +233,8 @@
     .text {
       color: var(--composer-font-color-primary);
       flex: 0 1 auto;
+      min-width: 0;
+      overflow-wrap: anywhere;
       font-size: 1.375rem;
     }
 
@@ -347,6 +353,11 @@
     .up {
       gap: var(--composer-gap-xl);
       margin: 0 var(--composer-gap-lg);
+
+      .leftPage,
+      .rightPage {
+        flex: 1 1 0;
+      }
 
       .leftPage {
         .title {

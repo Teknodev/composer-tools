@@ -2614,7 +2614,7 @@ class Navbar6 extends BaseNavigator {
         {
           type: "boolean",
           key: "showLanguage",
-          displayer: "Show Language",
+          displayer: "Language",
           value: true,
         },
         {
@@ -2805,6 +2805,14 @@ class Navbar6 extends BaseNavigator {
                 : ""
             }`}
           >
+            <div className={this.decorateCSS("mobileLeft")}>
+              <div className={this.decorateCSS("hamburgerButton")} onClick={() => this.handleOpenMenu()}>
+                <Base.Media
+                  value={navigationIcons?.hamburgerIcon}
+                  className={this.decorateCSS("hamburgerIcon")}
+                />
+              </div>
+            </div>
             <div className={this.decorateCSS("pcNavbarContainer")}>
               {menuItems.length > 0 && (
                 <nav className={this.decorateCSS("pcNavbar")}>
@@ -2946,9 +2954,9 @@ class Navbar6 extends BaseNavigator {
                                       {columnTitleExist && (
                                         <ComposerLink path={column.navigate_to}>
                                           <div className={this.decorateCSS("megaMenuColumnHeader")}>
-                                            <Base.P className={this.decorateCSS("megaMenuColumnTitle")}>
+                                            <Base.H6 className={this.decorateCSS("megaMenuColumnTitle")}>
                                               {column.title}
-                                            </Base.P>
+                                            </Base.H6>
                                             {this.castToString(column.sub_item_badge) && (
                                               <Base.P className={this.decorateCSS("badge")}>
                                                 {column.sub_item_badge}
@@ -3087,28 +3095,28 @@ class Navbar6 extends BaseNavigator {
                       divider={language.showDivider}
                     />
                   )}
-            {hamburgerNavActive ? (
-              <div onClick={() => this.handleCloseMenu()}>
-                <Base.Media
-                  value={navigationIcons?.closeIcon}
-                  className={this.decorateCSS("closeIcon")}
-                />
-              </div>
-            ) : (
-              <div onClick={() => this.handleOpenMenu()}>
-                <Base.Media
-                  value={navigationIcons?.hamburgerIcon}
-                  className={this.decorateCSS("hamburgerIcon")}
-                />
-              </div>
-            )}
             </div>
+              <Base.Overlay
+                className={this.decorateCSS("overlay")}
+                onClick={() => this.handleCloseMenu()}
+                isVisible={isVisible}
+              />
               <div
                 className={`${this.decorateCSS("mobileMenu")} ${
                   hamburgerNavActive ? this.decorateCSS("open") : ""
                 } ${this.getComponentState("navbarOverflowShow") ? this.decorateCSS("overflowShow") : ""}`}
                 onClick={(e) => e.stopPropagation()}
               >
+                {this.hasMedia(navigationIcons?.closeIcon) && (
+                  <div className={this.decorateCSS("mobileMenuHeader")}>
+                    <div className={this.decorateCSS("closeButton")} onClick={() => this.handleCloseMenu()}>
+                      <Base.Media
+                        value={navigationIcons?.closeIcon}
+                        className={this.decorateCSS("closeIcon")}
+                      />
+                    </div>
+                  </div>
+                )}
                 <nav className={this.decorateCSS("hamburgerMenu")}>
                   {menuItems.map((item: any, index: number) => (
                     <div
@@ -3283,11 +3291,6 @@ class Navbar6 extends BaseNavigator {
 
           </Base.MaxContent>
         </Base.Navigator.Container>
-        <Base.Overlay
-          className={this.decorateCSS("overlay")}
-          onClick={() => this.handleCloseMenu()}
-          isVisible={isVisible}
-        />
       </div>
     );
   }

@@ -62,7 +62,7 @@ class Navbar2 extends BaseNavigator {
               type: "select",
               key: "menuType",
               displayer: "Type",
-              value: "Dropdown",
+              value: "Normal",
               additionalParams: { selectItems: ["Dropdown", "Normal"] },
             },
             {
@@ -79,7 +79,7 @@ class Navbar2 extends BaseNavigator {
                       type: "string",
                       key: "nav_title",
                       displayer: "Title",
-                      value: "Fashion Home",
+                      value: "",
                     },
                     {
                       type: "page",
@@ -545,7 +545,7 @@ class Navbar2 extends BaseNavigator {
     this.addProp({
       type: "boolean",
       key: "divider",
-      displayer: "Divider",
+      displayer: "Line",
       value: true,
     });
 
@@ -584,13 +584,13 @@ class Navbar2 extends BaseNavigator {
         {
           type: "boolean",
           key: "showLanguage",
-          displayer: "Show Language",
-          value: true,
+          displayer: "Language",
+          value: false,
         },
         {
           type: "boolean",
           key: "showDivider",
-          displayer: "Divider",
+          displayer: "Line",
           value: false,
         },
       ],
@@ -680,6 +680,7 @@ class Navbar2 extends BaseNavigator {
         positionContainer={`${this.decorateCSS("navbarContainer")} ${changeBackground ? this.decorateCSS("filledBackground") : ""}`}
         setIsBigScreen={(value) => this.setComponentState("isBigScreen", value)}
         setIsScrolled={(value) => this.setComponentState("isScrolled", value)}
+        screenSize={641}
         className={this.decorateCSS("filledBackground")}
       >
         <Base.MaxContent

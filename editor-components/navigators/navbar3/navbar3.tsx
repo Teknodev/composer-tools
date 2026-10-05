@@ -100,7 +100,7 @@ class Navbar3 extends BaseNavigator {
         {
           type: "boolean",
           key: "showLanguage",
-          displayer: "Show Language",
+          displayer: "Language",
           value: true,
         },  
         {
@@ -2612,27 +2612,6 @@ class Navbar3 extends BaseNavigator {
               </div>
             )}
             <div className={this.decorateCSS("mobileRight")}>
-            {(language.showLocalizationAlways && language.showLanguage) && 
-              <div className={this.decorateCSS("loacalizationContainer")}>
-                <Base.Language
-                  type="dropdown"
-                  title={language.label}
-                  icon={language.icon && typeof language.icon === "object" && language.icon.type === "icon" ? language.icon.name : "GrLanguage"}
-                  dropdownButtonClassName={`${this.decorateCSS(
-                    "localization"
-                  )}`}
-                  dropdownLabelClassName={`${this.decorateCSS(
-                    "localizationLabel"
-                  )}`}
-                  iconClassName={this.decorateCSS("languageIcon")}
-                  dropdownItemClassName={this.decorateCSS("localizationItem")}
-                  dropdownContentClassName={this.decorateCSS(
-                    "localizationContent"
-                  )}
-                  divider={language.showDivider}
-                />
-              </div>            
-            }            
             {hamburgerNavActive ? (
               <div onClick={() => this.handleCloseMenu()}>
                 <Base.Media
@@ -2647,7 +2626,23 @@ class Navbar3 extends BaseNavigator {
                   className={this.decorateCSS("hamburgerIcon")}
                 />
               </div>
-            )}            
+            )}
+            {icons?.length > 0 && (
+              <div className={this.decorateCSS("mobileIcons")}>
+                {icons?.map((item: any, index: number) =>
+                  item.item_icon && (
+                    <ComposerLink key={index} path={item.page}>
+                      <div className={this.decorateCSS("icon-element")}>
+                        <Base.Media
+                          value={item.item_icon}
+                          className={this.decorateCSS("icon")}
+                        />
+                      </div>
+                    </ComposerLink>
+                  )
+                )}
+              </div>
+            )}
             </div>
 
 
@@ -2834,17 +2829,6 @@ class Navbar3 extends BaseNavigator {
                             </div>
                           )
                       )}
-
-                        {(language.showLanguage && !language.showLocalizationAlways) && (
-                          <Base.Language
-                            type="accordion"
-                            title={language.label}
-                            headerClassName={`${this.decorateCSS("localization")}`}
-                            itemClassName={`${this.decorateCSS("localizationItem")} ${animations}`}
-                            titleClassName={`${this.decorateCSS("localizationItemTitle")} ${animations}`}
-                            accordionIconClassName={this.decorateCSS("accordionIcon")}
-                          />
-                        )}
 
                     </nav>
                   )}
