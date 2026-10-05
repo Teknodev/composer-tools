@@ -1,37 +1,130 @@
 import * as React from "react";
-import { BaseHeroSection } from "../../EditorComponent";
+import { BaseHeroSection, TypeMediaInputValue, TypeUsableComponentProps } from "../../EditorComponent";
 import styles from "./hero-section1.module.scss";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import { Base } from "../../../composer-base-components/base/base";
+import { INPUTS } from "../../../custom-hooks/input-templates";
+
+type SliderItem = {
+  logo: TypeMediaInputValue;
+  subtitle: React.JSX.Element;
+  title: React.JSX.Element;
+  description: React.JSX.Element;
+  backgroundTitle: React.JSX.Element;
+  number: React.JSX.Element;
+  media: TypeMediaInputValue;
+  overlay: boolean;
+};
+
+type Background = {
+  media: TypeMediaInputValue;
+  overlay: boolean;
+};
+
+const slide = (title: string, subtitle: string, number: string, mediaUrl: string): TypeUsableComponentProps => ({
+  type: "object",
+  key: "slider",
+  displayer: "Slider",
+  value: [
+    {
+      type: "media",
+      key: "logo",
+      displayer: "Logo",
+      additionalParams: {
+        availableTypes: ["image", "icon"],
+      },
+      value: {
+        type: "icon",
+        name: "",
+      },
+    },
+    {
+      type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: subtitle,
+    },
+    {
+      type: "string",
+      key: "title",
+      displayer: "Title",
+      value: title,
+    },
+    {
+      type: "string",
+      key: "description",
+      displayer: "Description",
+      value: "",
+    },
+    {
+      type: "string",
+      key: "backgroundTitle",
+      displayer: "Background Title",
+      value: title,
+    },
+    {
+      type: "string",
+      key: "number",
+      displayer: "Number",
+      value: number,
+    },
+    {
+      type: "media",
+      key: "media",
+      displayer: "Media",
+      additionalParams: {
+        availableTypes: ["image", "video"],
+      },
+      value: {
+        type: "image",
+        url: mediaUrl,
+      },
+    },
+    {
+      type: "boolean",
+      key: "overlay",
+      displayer: "Overlay",
+      value: false,
+    },
+  ],
+});
+
 class HeroSection1 extends BaseHeroSection {
   sliderRef: React.RefObject<any>;
 
   constructor(props?: any) {
     super(props, styles);
     this.addProp({
+      type: "object",
+      key: "background",
+      displayer: "Background",
+      value: [
+        {
+          type: "media",
+          key: "media",
+          displayer: "Background Media",
+          additionalParams: {
+            availableTypes: ["image", "video"],
+          },
+          value: {
+            type: "image",
+            url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617d8fbd2970002c6243d7?alt=media&timestamp=1719483639150",
+          },
+        },
+        {
+          type: "boolean",
+          key: "overlay",
+          displayer: "Overlay",
+          value: false,
+        },
+      ],
+    });
+    this.addProp({
       type: "media",
-      key: "background-layout",
-      displayer: "Background Media",
+      key: "animatedMedia",
+      displayer: "Animated Media",
       additionalParams: {
         availableTypes: ["image", "video"],
-      },
-      value: {
-        type: "image",
-        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617d8fbd2970002c6243d7?alt=media&timestamp=1719483639150",
-      },
-    });
-    this.addProp({
-      type: "boolean",
-      key: "backgroundOverlay",
-      displayer: "Background Overlay",
-      value: false,
-    });
-    this.addProp({
-      type: "media",
-      key: "sun",
-      displayer: "Animated Visual Element",
-      additionalParams: {
-        availableTypes: ["image"],
       },
       value: {
         type: "image",
@@ -46,13 +139,6 @@ class HeroSection1 extends BaseHeroSection {
     });
     this.addProp({
       type: "boolean",
-      key: "autoplay",
-      displayer: "Autoplay",
-      value: true,
-    });
-  
-    this.addProp({
-      type: "boolean",
       key: "animation",
       displayer: "Animation",
       value: true,
@@ -63,308 +149,72 @@ class HeroSection1 extends BaseHeroSection {
       key: "sliders",
       displayer: "Sliders",
       value: [
-        {
-          type: "object",
-          key: "slider",
-          displayer: "Slider",
-          value: [
-            {
-              type: "string",
-              key: "title",
-              displayer: "Title",
-              value: "FORWARD",
-            },
-            {
-              type: "string",
-              key: "subtitle",
-              displayer: "Subtitle",
-              value: "BRANDING AND IDENTITY",
-            },
-            {
-              type: "string",
-              key: "backgroundTitle",
-              displayer: "Background Title",
-              value: "FORWARD",
-            },
-            {
-              type: "number",
-              key: "sliderNumber",
-              displayer: "Slider Number",
-              value: 1,
-            },
-            {
-              type: "media",
-              key: "image",
-              displayer: "Media",
-              additionalParams: {
-                availableTypes: ["image", "video"],
-              },
-              value: {
-                type: "image",
-                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617d8fbd2970002c6243d8?alt=media&timestamp=1719483639150",
-              },
-            },
-            {
-              type: "boolean",
-              key: "overlay",
-              displayer: "Overlay",
-              value: false,
-            },
-          ],
-        },
-        {
-          type: "object",
-          key: "slider",
-          displayer: "Slider",
-          value: [
-            {
-              type: "string",
-              key: "title",
-              displayer: "Title",
-              value: "PIXFLOW",
-            },
-            {
-              type: "string",
-              key: "subtitle",
-              displayer: "Subtitle",
-              value: "WEB AND APPLICATION",
-            },
-            {
-              type: "string",
-              key: "backgroundTitle",
-              displayer: "Background Title",
-              value: "PIXFLOW",
-            },
-            {
-              type: "number",
-              key: "sliderNumber",
-              displayer: "Slider Number",
-              value: 2,
-            },
-            {
-              type: "media",
-              key: "image",
-              displayer: "Media",
-              additionalParams: {
-                availableTypes: ["image", "video"],
-              },
-              value: {
-                type: "image",
-                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617d8fbd2970002c6243d9?alt=media&timestamp=1719483639150",
-              },
-            },
-          ],
-        },
-        {
-          type: "object",
-          key: "slider",
-          displayer: "Slider",
-          value: [
-            {
-              type: "string",
-              key: "title",
-              displayer: "Title",
-              value: "HARDDOT",
-            },
-            {
-              type: "string",
-              key: "subtitle",
-              displayer: "Subtitle",
-              value: "GRAPHICS AND IDENTITY",
-            },
-            {
-              type: "string",
-              key: "backgroundTitle",
-              displayer: "Background Title",
-              value: "HARDDOT",
-            },
-            {
-              type: "number",
-              key: "sliderNumber",
-              displayer: "Slider Number",
-              value: 3,
-            },
-            {
-              type: "media",
-              key: "image",
-              displayer: "Media",
-              additionalParams: {
-                availableTypes: ["image", "video"],
-              },
-              value: {
-                type: "image",
-                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617d8fbd2970002c6243da?alt=media&timestamp=1719483639150",
-              },
-            },
-            {
-              type: "boolean",
-              key: "overlay",
-              displayer: "Overlay",
-              value: false,
-            },
-          ],
-        },
-        {
-          type: "object",
-          key: "slider",
-          displayer: "Slider",
-          value: [
-            {
-              type: "string",
-              key: "title",
-              displayer: "Title",
-              value: "TRAVELIO",
-            },
-            {
-              type: "string",
-              key: "subtitle",
-              displayer: "Subtitle",
-              value: "PACKAGING AND WEB",
-            },
-            {
-              type: "string",
-              key: "backgroundTitle",
-              displayer: "Background Title",
-              value: "TRAVELIO",
-            },
-            {
-              type: "number",
-              key: "sliderNumber",
-              displayer: "Slider Number",
-              value: 4,
-            },
-            {
-              type: "media",
-              key: "image",
-              displayer: "Media",
-              additionalParams: {
-                availableTypes: ["image", "video"],
-              },
-              value: {
-                type: "image",
-                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617d8fbd2970002c6243db?alt=media&timestamp=1719483639150",
-              },
-            },
-            {
-              type: "boolean",
-              key: "overlay",
-              displayer: "Overlay",
-              value: false,
-            },
-          ],
-        },
-        {
-          type: "object",
-          key: "slider",
-          displayer: "Slider",
-          value: [
-            {
-              type: "string",
-              key: "title",
-              displayer: "Title",
-              value: "CROPOES",
-            },
-            {
-              type: "string",
-              key: "subtitle",
-              displayer: "Subtitle",
-              value: "DESIGN AND IDENTITY",
-            },
-            {
-              type: "string",
-              key: "backgroundTitle",
-              displayer: "Background Title",
-              value: "CROPOES",
-            },
-            {
-              type: "number",
-              key: "sliderNumber",
-              displayer: "Slider Number",
-              value: 5,
-            },
-            {
-              type: "media",
-              key: "image",
-              displayer: "Media",
-              additionalParams: {
-                availableTypes: ["image", "video"],
-              },
-              value: {
-                type: "image",
-                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617d8fbd2970002c6243dc?alt=media&timestamp=1719483639150",
-              },
-            },
-            {
-              type: "boolean",
-              key: "overlay",
-              displayer: "Overlay",
-              value: false,
-            },
-          ],
-        },
+        slide("FORWARD", "BRANDING AND IDENTITY", "01", "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617d8fbd2970002c6243d8?alt=media&timestamp=1719483639150"),
+        slide("PIXFLOW", "WEB AND APPLICATION", "02", "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617d8fbd2970002c6243d9?alt=media&timestamp=1719483639150"),
+        slide("HARDDOT", "GRAPHICS AND IDENTITY", "03", "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617d8fbd2970002c6243da?alt=media&timestamp=1719483639150"),
+        slide("TRAVELIO", "PACKAGING AND WEB", "04", "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617d8fbd2970002c6243db?alt=media&timestamp=1719483639150"),
+        slide("CROPOES", "DESIGN AND IDENTITY", "05", "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617d8fbd2970002c6243dc?alt=media&timestamp=1719483639150"),
       ],
     });
+
+    this.addProp(
+      INPUTS.SLIDER_SETTINGS("settings", "Slider Settings", {
+        dots: true,
+        arrows: false,
+        infinite: true,
+        speed: 1500,
+        autoplay: true,
+        autoplaySpeed: 3500,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        adaptiveHeight: true,
+      })
+    );
 
     this.sliderRef = React.createRef();
     this.setActiveTab(0);
     this.setComponentState("animation", true);
-    this.setComponentState("animationDuration", 20);
   }
 
   static getName(): string {
     return "Hero Section 1";
   }
+
   setActiveTab(activeTabIndex: number) {
     this.setComponentState("activeTab", activeTabIndex);
-    setTimeout(() => {
-      this.setComponentState("startedIndex", activeTabIndex);
-    }, 20);
   }
 
-  handleUpClick = () => {
-    const currentIndex = this.getComponentState("activeTab");
-    const sliders = this.castToObject<[]>("sliders");
-    const newIndex = currentIndex > 0 ? currentIndex - 1 : sliders.length - 1;
+  hasMedia(media?: TypeMediaInputValue) {
+    return !!(media && ((media as any).url || (media as any).name));
+  }
 
-    this.setActiveTab(newIndex);
-    if (this.sliderRef.current) {
-      this.sliderRef.current.slickGoTo(newIndex);
-    }
-  };
-
-  handleDownClick = () => {
-    const currentIndex = this.getComponentState("activeTab");
-    const sliders = this.castToObject<[]>("sliders");
-    const newIndex = currentIndex < sliders.length - 1 ? currentIndex + 1 : 0;
-
-    this.setActiveTab(newIndex);
-    if (this.sliderRef.current) {
-      this.sliderRef.current.slickGoTo(newIndex);
-    }
-  };
+  withVideoSettings(media: TypeMediaInputValue) {
+    return media?.type === "video"
+      ? { ...media, settings: { autoplay: true, loop: true, muted: true, controls: false } }
+      : media;
+  }
 
   render() {
-    const autoplay = this.getPropValue("autoplay");
+    const background = this.castToObject<Background>("background");
+    const backgroundMedia = background?.media;
+    const hasBackground = this.hasMedia(backgroundMedia);
+    const animatedMedia = this.getPropValue("animatedMedia");
+    const hasAnimatedMedia = this.hasMedia(animatedMedia);
+    const isLineActive = this.getPropValue("numberLine");
+    const animationEnabled = this.getPropValue("animation");
+    const animation = this.getComponentState("animation");
+    const activeTab = this.getComponentState("activeTab");
+    const sliders = this.castToObject<SliderItem[]>("sliders");
+
     const settings = {
-      dots: true,
-      infinite: true,
-      speed: 1500,
-      autoplay: autoplay,
-      autoplaySpeed: 3500,
-      slidesToShow: 1,
-      slidesToScroll: 1,
-      centerMode: false,
+      ...this.transformSliderValues(this.getPropValue("settings")),
       vertical: true,
       verticalSwiping: true,
-      adaptiveHeight: true,
-      customPaging: (i: any) => (
-        <div
-          className={`${this.decorateCSS("dot")} ${this.getComponentState("activeTab") == i &&
-            this.decorateCSS("activeDot")
-          }`}></div>
+      customPaging: (i: number) => (
+        <div className={`${this.decorateCSS("dot")} ${activeTab === i ? this.decorateCSS("activeDot") : ""}`}></div>
       ),
-      dotsClass: `${this.decorateCSS("dots")} ${!this.getPropValue("background-layout") && this.decorateCSS("dark")}`,
-      beforeChange: (current: number, next: number) => {
+      dotsClass: `${this.decorateCSS("dots")} ${!hasBackground ? this.decorateCSS("dark") : ""}`,
+      beforeChange: (_current: number, next: number) => {
         this.setActiveTab(next);
         this.setComponentState("animation", false);
         setTimeout(() => {
@@ -372,111 +222,87 @@ class HeroSection1 extends BaseHeroSection {
         }, 1000);
       },
     };
-    const isLineActive = this.getPropValue("numberLine");
-    const backgroundLayout = this.getPropValue("background-layout");
-    const backgroundOverlay = this.getPropValue("backgroundOverlay");
-    const animationEnabled = this.getPropValue("animation");
-    const animation = this.getComponentState("animation");
-
-    const backgroundWithSettings = backgroundLayout?.type === "video" ? {
-      ...backgroundLayout,
-      settings: {
-        autoplay: true,
-        loop: true,
-        muted: true,
-        controls: false
-      }
-    } : backgroundLayout;
 
     return (
-      <Base.Container className={this.decorateCSS("container")}>
-        {backgroundLayout && (backgroundLayout.type === "image" || backgroundLayout.type === "video") && backgroundLayout.url && (
+      <Base.Container
+        className={`${this.decorateCSS("container")} ${!animationEnabled ? this.decorateCSS("no-animation") : ""}`}
+      >
+        {hasBackground && (
           <>
-            <Base.Media
-              value={backgroundWithSettings}
-              className={this.decorateCSS("background-layout")}
-            />
-            {backgroundOverlay && <div className={this.decorateCSS("background-overlay")} />}
+            <Base.Media value={this.withVideoSettings(backgroundMedia)} className={this.decorateCSS("background-media")} />
+            {background.overlay && <div className={this.decorateCSS("background-overlay")} />}
           </>
         )}
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <Base.Media
-            className={this.decorateCSS("image-container-2")}
-            value={this.getPropValue("sun")}
-          />
-          <Base.Media
-            value={this.getPropValue("sun")}
-            className={this.decorateCSS("image-container-3")}
-          />
+          {hasAnimatedMedia && (
+            <>
+              <Base.Media value={this.withVideoSettings(animatedMedia)} className={this.decorateCSS("animated-media-top")} />
+              <Base.Media value={this.withVideoSettings(animatedMedia)} className={this.decorateCSS("animated-media-bottom")} />
+            </>
+          )}
           <div className={this.decorateCSS("wrapper")}>
-            <ComposerSlider ref={this.sliderRef} {...settings}>
-              {this.castToObject<[]>("sliders").map((item: any, index: number) => {
-                const isActive = this.getComponentState("activeTab") === index;
-                const titleText = this.castToString(item.title);
-                const imageWithSettings = item.image?.type === "video" ? {
-                  ...item.image,
-                  settings: {
-                    autoplay: true,
-                    loop: true,
-                    muted: true,
-                    controls: false
-                  }
-                } : item.image;
+            <ComposerSlider ref={this.sliderRef} {...settings} className={this.decorateCSS("slider")}>
+              {sliders.map((item: SliderItem, index: number) => {
+                const isActive = activeTab === index;
+                const hasLogo = this.hasMedia(item.logo);
+                const hasItemMedia = this.hasMedia(item.media);
+                const isSubtitleExist = this.castToString(item.subtitle);
+                const isTitleExist = this.castToString(item.title);
+                const isDescriptionExist = this.castToString(item.description);
+                const isBackgroundTitleExist = this.castToString(item.backgroundTitle);
+                const isNumberExist = this.castToString(item.number);
+                const textColorClass = !hasBackground && hasItemMedia ? this.decorateCSS("dark") : "";
+                const textBlockColorClass = !hasBackground && !hasItemMedia ? this.decorateCSS("dark") : "";
                 return (
                   <div
-                    className={`${this.decorateCSS("return-container")} ${animation && this.decorateCSS("animation")
-                      }`}
+                    className={`${this.decorateCSS("return-container")} ${animation ? this.decorateCSS("animation") : ""}`}
                     key={index}
                   >
-                    <div className={this.decorateCSS("background-container")}>
-                      <div
-                        className={`${this.decorateCSS("background-text")} ${isActive && this.decorateCSS("active-text")
-                          }`}
-                      >
-                        {item.backgroundTitle}
+                    {isBackgroundTitleExist && (
+                      <div className={this.decorateCSS("background-container")}>
+                        <Base.P className={`${this.decorateCSS("background-text")} ${isActive ? this.decorateCSS("active-text") : ""}`}>
+                          {item.backgroundTitle}
+                        </Base.P>
                       </div>
-                    </div>
+                    )}
 
                     <div className={this.decorateCSS("content-container")}>
-                      <div
-                        className={`${this.decorateCSS("image-wrapper")} ${!item.image && this.decorateCSS("without-image")} ${item.overlay ? this.decorateCSS("with-overlay") : ""}`}
-                      >
-                        <h1
-                          className={`${this.decorateCSS("subtitle")} ${!backgroundLayout && this.decorateCSS("dark")}`}
-                        >
-                          {item.subtitle}
-                        </h1>
-                        <Base.Media
-                          value={imageWithSettings}
-                          className={`${this.decorateCSS("image")} ${isActive && this.decorateCSS("active-image")}`}
-                        />
-                        {item.title && (
-                          <h1
-                            className={`${this.decorateCSS("title")}
-                          ${(backgroundLayout && !item.image) && this.decorateCSS("without-image")}
-                          ${(!backgroundLayout && item.image) && this.decorateCSS("dark")}
-                          ${(!backgroundLayout && !item.image) && this.decorateCSS("dark-without-image")}`}
-                          >
-                            {animationEnabled && titleText ? titleText.split('').map((char: string, charIndex: number) => (
-                              <span
-                                key={charIndex}
-                                className={this.decorateCSS("title-char")}
-                                style={{animationDelay: `${charIndex * 0.05}s`}}
-                              >
-                                {char}
-                              </span>
-                            )) : item.title}
-                          </h1>
+                      <div className={`${this.decorateCSS("media-wrapper")} ${!hasItemMedia ? this.decorateCSS("without-media") : ""}`}>
+                        {(hasLogo || isSubtitleExist) && (
+                          <div className={this.decorateCSS("side")}>
+                            {hasLogo && (
+                              <Base.Media value={item.logo} className={`${this.decorateCSS("logo")} ${!hasBackground ? this.decorateCSS("dark") : ""}`} />
+                            )}
+                            {isSubtitleExist && (
+                              <Base.SectionSubTitle className={`${this.decorateCSS("subtitle")} ${!hasBackground ? this.decorateCSS("dark") : ""}`}>
+                                {item.subtitle}
+                              </Base.SectionSubTitle>
+                            )}
+                          </div>
                         )}
-
-                        <h1 className={this.decorateCSS("sliderNumber")}>
-                          {isLineActive && (
-                            <span className={`${this.decorateCSS("line")} ${!backgroundLayout && this.decorateCSS("dark")}`}></span>
+                        <div className={this.decorateCSS("media-box")}>
+                          {hasItemMedia && (
+                            <Base.Media
+                              value={this.withVideoSettings(item.media)}
+                              className={`${this.decorateCSS("media")} ${isActive ? this.decorateCSS("active-media") : ""}`}
+                            />
                           )}
-                          <span className={`${this.decorateCSS("slider-number")} ${!backgroundLayout && this.decorateCSS("dark")}`}>
-                            {item.sliderNumber}
-                          </span>
-                        </h1>
+                          {hasItemMedia && item.overlay && <div className={this.decorateCSS("media-overlay")} />}
+                          {(isTitleExist || isDescriptionExist) && (
+                            <Base.VerticalContent className={`${this.decorateCSS("text-block")} ${textColorClass} ${textBlockColorClass}`}>
+                              {isTitleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{item.title}</Base.SectionTitle>}
+                              {isDescriptionExist && (
+                                <Base.SectionDescription className={this.decorateCSS("description")}>{item.description}</Base.SectionDescription>
+                              )}
+                            </Base.VerticalContent>
+                          )}
+                          {(isNumberExist || isLineActive) && (
+                            <div className={`${this.decorateCSS("number-wrapper")} ${!hasBackground ? this.decorateCSS("dark") : ""}`}>
+                              {isLineActive && <div className={this.decorateCSS("line")}></div>}
+                              {isNumberExist && <Base.P className={this.decorateCSS("number")}>{item.number}</Base.P>}
+                            </div>
+                          )}
+                        </div>
                       </div>
                     </div>
                   </div>
