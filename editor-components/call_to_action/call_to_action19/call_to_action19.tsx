@@ -172,13 +172,15 @@ class CallToAction19 extends BaseCallToAction {
         const itemCountInARow = this.getPropValue("itemCountInARow");
         const cardBackground = this.getPropValue("cardBackground");
         const hasHeader = subtitle || title || description;
+        const alignment = Base.getContentAlignment();
+        const isCenter = alignment === "center";
 
         return (
             <Base.Container className={`${this.decorateCSS("container")} ${cardBackground ? this.decorateCSS("has-card-background") : ""}`}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
                     <div className={this.decorateCSS("content")}>
                         {(hasHeader || buttons.some((b: Button) => this.castToString(b?.text)) || this.castToString(ratingValue) || this.castToString(ratingText)) && (
-                            <div className={this.decorateCSS("left-section")}>
+                            <div className={`${this.decorateCSS("left-section")} ${isCenter ? this.decorateCSS("center") : ""}`}>
                                 <Base.VerticalContent className={this.decorateCSS("header")}>
                                     {subtitle && (<Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>)}
                                     {title && (<Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>)}

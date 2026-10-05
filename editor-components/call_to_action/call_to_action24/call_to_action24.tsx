@@ -57,6 +57,9 @@ class CallToAction24 extends BaseCallToAction {
         const description = this.castToString(this.getPropValue("description"));
         const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
         const enable_card = this.getPropValue("enable_card");
+        const alignment = Base.getContentAlignment();
+        const subtitleType = Base.getSectionSubTitleType();
+        const isLeft = alignment === "left";
 
         return (
             <Base.Container className={this.decorateCSS("container")}>
@@ -66,9 +69,9 @@ class CallToAction24 extends BaseCallToAction {
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
                     <div className={this.decorateCSS("card-container")}>
                         <div className={`${this.decorateCSS("card")} ${enable_card && this.decorateCSS("has-background")}`}>
-                            <Base.VerticalContent className={this.decorateCSS("card-content")}>
+                            <Base.VerticalContent className={`${this.decorateCSS("card-content")} ${isLeft ? this.decorateCSS("left") : ""}`}>
                                 {subtitle && (
-                                    <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                                    <Base.SectionSubTitle className={`${this.decorateCSS("subtitle")} ${subtitleType === "line" ? this.decorateCSS("subtitle-line") : ""}`}>
                                         {this.getPropValue("subtitle")}
                                     </Base.SectionSubTitle>
                                 )}
