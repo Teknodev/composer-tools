@@ -1,25 +1,20 @@
 import * as React from "react";
 import styles from "./hero-section33.module.scss";
 import { BaseHeroSection, TypeMediaInputValue } from "../../EditorComponent";
+import { INPUTS } from "../../../custom-hooks/input-templates";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 import { Base } from "../../../composer-base-components/base/base";
 
 type Slide = {
   centered: boolean;
-  backgroundImage: TypeMediaInputValue;
-  image: TypeMediaInputValue;
-  subtitle?: React.JSX.Element;
+  media: TypeMediaInputValue;
+  logo: TypeMediaInputValue;
+  overlay: boolean;
+  subtitle: React.JSX.Element;
   title: React.JSX.Element;
-  description?: React.JSX.Element;
-  rotate_icon: string;
-  rotate_text: React.JSX.Element;
-  buttons: Button[];
-};
-
-type Button = {
-  button_text: React.JSX.Element;
-  button_link: string;
+  description: React.JSX.Element;
+  buttons: INPUTS.CastedButton[];
 };
 
 class HeroSection33 extends BaseHeroSection {
@@ -30,13 +25,6 @@ class HeroSection33 extends BaseHeroSection {
       type: "boolean",
       key: "animation",
       displayer: "Animation",
-      value: true,
-    });
-
-    this.addProp({
-      type: "boolean",
-      key: "autoplay",
-      displayer: "Autoplay",
       value: true,
     });
 
@@ -65,7 +53,7 @@ class HeroSection33 extends BaseHeroSection {
             },
             {
               type: "media",
-              key: "backgroundImage",
+              key: "media",
               displayer: "Background Media",
               value: {
                 type: "image",
@@ -75,8 +63,8 @@ class HeroSection33 extends BaseHeroSection {
             },
             {
               type: "media",
-              key: "image",
-              displayer: "Media",
+              key: "logo",
+              displayer: "Logo",
               value: {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66c89648e0b009002c3725f0?alt=media",
@@ -112,25 +100,7 @@ class HeroSection33 extends BaseHeroSection {
               key: "buttons",
               displayer: "Buttons",
               value: [
-                {
-                  type: "object",
-                  key: "button",
-                  displayer: "Button",
-                  value: [
-                    {
-                      type: "string",
-                      key: "button_text",
-                      displayer: "Button Text",
-                      value: "Shop Now",
-                    },
-                    {
-                      type: "page",
-                      key: "button_link",
-                      displayer: "Navigate To",
-                      value: "",
-                    },
-                  ],
-                },
+                INPUTS.BUTTON("button", "Button", "Shop Now", "", null, null, "Link"),
               ],
             },
           ],
@@ -148,7 +118,7 @@ class HeroSection33 extends BaseHeroSection {
             },
             {
               type: "media",
-              key: "backgroundImage",
+              key: "media",
               displayer: "Background Media",
               value: {
                 type: "image",
@@ -158,8 +128,8 @@ class HeroSection33 extends BaseHeroSection {
             },
             {
               type: "media",
-              key: "image",
-              displayer: "Media",
+              key: "logo",
+              displayer: "Logo",
               value: {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66c89648e0b009002c3725f0?alt=media",
@@ -195,25 +165,7 @@ class HeroSection33 extends BaseHeroSection {
               key: "buttons",
               displayer: "Buttons",
               value: [
-                {
-                  type: "object",
-                  key: "button",
-                  displayer: "Button",
-                  value: [
-                    {
-                      type: "string",
-                      key: "button_text",
-                      displayer: "Button Text",
-                      value: "Shop Now",
-                    },
-                    {
-                      type: "page",
-                      key: "button_link",
-                      displayer: "Navigate To",
-                      value: "",
-                    },
-                  ],
-                },
+                INPUTS.BUTTON("button", "Button", "Shop Now", "", null, null, "Link"),
               ],
             },
           ],
@@ -231,7 +183,7 @@ class HeroSection33 extends BaseHeroSection {
             },
             {
               type: "media",
-              key: "backgroundImage",
+              key: "media",
               displayer: "Background Media",
               value: {
                 type: "image",
@@ -241,8 +193,8 @@ class HeroSection33 extends BaseHeroSection {
             },
             {
               type: "media",
-              key: "image",
-              displayer: "Media",
+              key: "logo",
+              displayer: "Logo",
               value: {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66c89648e0b009002c3725f0?alt=media",
@@ -278,31 +230,27 @@ class HeroSection33 extends BaseHeroSection {
               key: "buttons",
               displayer: "Buttons",
               value: [
-                {
-                  type: "object",
-                  key: "button",
-                  displayer: "Button",
-                  value: [
-                    {
-                      type: "string",
-                      key: "button_text",
-                      displayer: "Button Text",
-                      value: "Shop Now",
-                    },
-                    {
-                      type: "page",
-                      key: "button_link",
-                      displayer: "Navigate To",
-                      value: "",
-                    },
-                  ],
-                },
+                INPUTS.BUTTON("button", "Button", "Shop Now", "", null, null, "Link"),
               ],
             },
           ],
         },
       ],
     });
+
+    this.addProp(
+      INPUTS.SLIDER_SETTINGS("settings", "Slider Settings", {
+        dots: true,
+        arrows: false,
+        infinite: true,
+        speed: 500,
+        autoplay: true,
+        autoplaySpeed: 3000,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        adaptiveHeight: false,
+      })
+    );
 
     this.setComponentState("activeSlide", 0);
     this.setComponentState("slider-ref", React.createRef());
@@ -312,39 +260,25 @@ class HeroSection33 extends BaseHeroSection {
     return "Hero Section 33";
   }
 
-  render() {
+  hasMedia(media?: TypeMediaInputValue) {
+    return !!(media && ((media as any).url || (media as any).name));
+  }
 
+  render() {
     const slides = this.castToObject<Slide[]>("slider") || [];
     const activeSlide: number = this.getComponentState("activeSlide");
-    const currentSlide: Slide = slides[activeSlide] || {
-      centered: false,
-      backgroundImage: { type: "image", url: "" },
-      image: { type: "image", url: "" },
-      title: <></>,
-      description: <></>,
-      rotate_icon: "",
-      rotate_text: <></>,
-      buttons: []
-    };
+    const currentSlideHasMedia = this.hasMedia(slides[activeSlide]?.media);
 
     const settings = {
-      dots: true,
-      arrows: false,
-      infinite: true,
+      ...this.transformSliderValues(this.getPropValue("settings")),
       accessibility: false,
-      speed: 500,
-      autoplay: this.getPropValue("autoplay"),
-      autoplaySpeed: 3000,
-      slidesToShow: 1,
-      slidesToScroll: 1,
-      beforeChange: (current9: number, next: number) => {
+      beforeChange: (_current: number, next: number) => {
         if (slides.length > 0) {
           this.setComponentState("activeSlide", next);
         }
       },
       dotsClass: this.decorateCSS("dotContainer"),
       appendDots: (dots: any[]) => (
-        slides.length > 0 && (
           <div className={this.decorateCSS("dotContainer")}>
             {dots.map((dot, index) => (
               <div
@@ -352,13 +286,13 @@ class HeroSection33 extends BaseHeroSection {
                 className={`
                 ${this.decorateCSS("dotBullet")} 
               ${activeSlide == index && this.decorateCSS("withCenterDot")}
-              ${!currentSlide.backgroundImage?.url && this.decorateCSS("primaryBackground")}
+              ${!currentSlideHasMedia ? this.decorateCSS("primaryBackground") : ""}
               `}
               >
-                <div>{dot}</div>
+                <div className={this.decorateCSS("dot")}>{dot}</div>
               </div>
             ))}
-          </div>)
+          </div>
       ),
     };
 
@@ -375,87 +309,67 @@ class HeroSection33 extends BaseHeroSection {
               className={this.decorateCSS("carousel")}
             >
               {slides.map((item: Slide, index: number) => {
-                const buttons = item.buttons;
+                const buttons = (item.buttons || []).filter((button) => this.castToString(button.text));
+                const hasItemMedia = this.hasMedia(item.media);
+                const hasLogo = this.hasMedia(item.logo);
+                const isSubtitleExist = this.castToString(item.subtitle);
                 const titleExist = this.castToString(item.title);
-                const render = buttons?.length > 0 || titleExist || item.image?.url;
+                const isDescriptionExist = this.castToString(item.description);
+                const hasContent = hasLogo || isSubtitleExist || titleExist || isDescriptionExist || buttons.length > 0;
+                const blackColorClass = hasItemMedia ? this.decorateCSS("blackColor") : "";
 
-                if (!render) return null;
+                if (!hasContent && !hasItemMedia) return null;
                 return (
                   <div className={this.decorateCSS("content")} key={index}>
-                    {item.backgroundImage?.url && (
+                    {hasItemMedia && (
                       <div className={this.decorateCSS("background-wrapper")}>
-                        <Base.Media
-                          value={item.backgroundImage}
-                          className={this.decorateCSS("background-image")}
-                        />
+                        <Base.Media value={item.media} className={this.decorateCSS("background-image")} />
                         {item.overlay && <div className={this.decorateCSS("background-overlay")} />}
                       </div>
                     )}
-                    <div className={this.decorateCSS("carousel-content-div")}>
-                      <Base.VerticalContent
-                        className={`
-                            ${this.decorateCSS("carousel-content")}
-                            ${animation && this.decorateCSS("with-transition")
-                          }
-                            ${activeSlide === index && this.decorateCSS("fix-location")
-                          }
-                            ${item.centered && this.decorateCSS("centered")}
-                          `}
-                      >
-                        {item.image && (() => {
-                          const isIcon = item.image?.type === "icon";
-                          return (
-                            <div className={`${this.decorateCSS(isIcon ? "icon-wrapper" : "circle")} ${!isIcon && rotateActive ? this.decorateCSS("rotate") : ""}`}>
-                              <Base.Media
-                                value={item.image}
-                                className={`${this.decorateCSS(isIcon ? "icon-media" : "circle-image")} ${item.backgroundImage && this.decorateCSS("blackColor")}`}
-                              />
-                            </div>
-                          );
-                        })()}
-                        {this.castToString(item.subtitle) && (
-                          <Base.SectionSubTitle className={`${this.decorateCSS("content-subtitle")} ${item.backgroundImage?.url && this.decorateCSS("blackColor")} ${item.backgroundImage?.url && this.decorateCSS("subtitle-has-bg")}`}>
-                            {item.subtitle}
-                          </Base.SectionSubTitle>
-                        )}
-                        {titleExist && (
-                          <Base.SectionTitle
-                            className={`${this.decorateCSS("content-title")} ${item.backgroundImage?.url &&
-                              this.decorateCSS("blackColor")
-                              }`}
-                          >
-                            {item.title}
-                          </Base.SectionTitle>
-                        )}
-                        {this.castToString(item.description) && (
-                          <Base.SectionDescription className={`${this.decorateCSS("content-description")} ${item.backgroundImage?.url && this.decorateCSS("blackColor")}`}>
-                            {item.description}
-                          </Base.SectionDescription>
-                        )}
-                        {buttons?.length > 0 && (
-                          <div className={this.decorateCSS("buttons-div")}>
-                            {buttons.map((button: Button, index: number) => {
-                              if (!this.castToString(button.button_text))
-                                return null;
-                              return (
-                                <ComposerLink
-                                  key={index}
-                                  path={button.button_link}
-                                >
-                                  <button
-                                    className={`${this.decorateCSS("button")} ${item.backgroundImage?.url &&
-                                      this.decorateCSS("blackColor")
-                                      }`}
-                                  >
-                                    <Base.P className={this.decorateCSS("button-text")}>{button.button_text}</Base.P>
-                                  </button>
+                    {hasContent && (
+                      <div className={this.decorateCSS("carousel-content-div")}>
+                        <Base.VerticalContent
+                          className={`${this.decorateCSS("carousel-content")} ${animation ? this.decorateCSS("with-transition") : ""} ${activeSlide === index ? this.decorateCSS("fix-location") : ""} ${item.centered ? this.decorateCSS("centered") : ""}`}
+                        >
+                          {hasLogo && (() => {
+                            const isIcon = item.logo?.type === "icon";
+                            return (
+                              <div className={`${this.decorateCSS(isIcon ? "icon-wrapper" : "circle")} ${!isIcon && rotateActive ? this.decorateCSS("rotate") : ""}`}>
+                                <Base.Media
+                                  value={item.logo}
+                                  className={`${this.decorateCSS(isIcon ? "icon-media" : "circle-image")} ${blackColorClass}`}
+                                />
+                              </div>
+                            );
+                          })()}
+                          {isSubtitleExist && (
+                            <Base.SectionSubTitle className={`${this.decorateCSS("content-subtitle")} ${blackColorClass} ${hasItemMedia ? this.decorateCSS("subtitle-has-bg") : ""}`}>
+                              {item.subtitle}
+                            </Base.SectionSubTitle>
+                          )}
+                          {titleExist && (
+                            <Base.SectionTitle className={`${this.decorateCSS("content-title")} ${blackColorClass}`}>{item.title}</Base.SectionTitle>
+                          )}
+                          {isDescriptionExist && (
+                            <Base.SectionDescription className={`${this.decorateCSS("content-description")} ${blackColorClass}`}>
+                              {item.description}
+                            </Base.SectionDescription>
+                          )}
+                          {buttons.length > 0 && (
+                            <div className={this.decorateCSS("buttons-div")}>
+                              {buttons.map((button: INPUTS.CastedButton, buttonIndex: number) => (
+                                <ComposerLink key={buttonIndex} path={button.url}>
+                                  <Base.Button buttonType={button.type} className={`${this.decorateCSS("button")} ${blackColorClass}`}>
+                                    <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
+                                  </Base.Button>
                                 </ComposerLink>
-                              );
-                            })}
-                          </div>
-                        )}
-                      </Base.VerticalContent>
-                    </div>
+                              ))}
+                            </div>
+                          )}
+                        </Base.VerticalContent>
+                      </div>
+                    )}
                   </div>
                 );
               })}

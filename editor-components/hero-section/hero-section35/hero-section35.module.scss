@@ -65,7 +65,6 @@
                         .title{
                             text-align: left;
                             font-size: 4.5rem;
-                            line-height: 1;
                             color: var(--composer-font-color-secondary);
                         }
                         .logo-wrapper{
@@ -130,6 +129,7 @@
                                 }
                                 .description{
                                     font-size: 1.5rem;
+                                    width: 100%;
                                     color: var(--composer-font-color-secondary);
                                     margin-left: var(--composer-gap-md);
                                 }
@@ -171,6 +171,7 @@
                     .scroll-text{
                         color: var(--composer-font-color-secondary);
                         font-size: 1.25rem;
+                        margin: 0;
                     }
                     .scroll-icon-container{
                         display: flex;
@@ -307,7 +308,7 @@
                             height: auto;
                             width: 100%;
                             background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
-                            border-radius: var(--composer-border-radius-md);
+                            border-radius: var(--composer-border-radius-sm);
                             padding: calc(1.5 * var(--composer-gap-md));
                             display: flex;
                             flex-direction: column;
@@ -352,7 +353,6 @@
                             .customer-info {
                                 .customer-number {
                                     font-size: 4rem;
-                                    font-weight: bold;
                                     color: var(--composer-font-color-primary);
                                     margin-bottom: var(--composer-gap-sm);
                                 }
@@ -360,7 +360,6 @@
                                 .customer-desc {
                                     font-size: 1rem;
                                     color: var(--composer-font-color-primary);
-                                    line-height: 1.5;
                                 }
                             }
                         }
@@ -387,7 +386,7 @@
                             max-width: 720px;
                             margin: 0 auto;
                             .title{
-                                font-size: 3.5rem;
+                                font-size: 3.5rem !important;
                                 margin-bottom: var(--composer-gap-md);
                             }
                             .main-info-wrapper{
@@ -397,6 +396,9 @@
                                         .main-icon{
                                             font-size: 5rem;
                                         }
+                                    }
+                                    .description{
+                                        font-size: 1.5rem !important;
                                     }
                                 }
                             }
@@ -412,6 +414,9 @@
                     .image-container{
                         .image-spacer{
                             height: 300px;
+                        }
+                        .box-area .customer-box .customer-info .customer-number{
+                            font-size: 4rem !important;
                         }
 
                         &.has-customer-box {
@@ -442,7 +447,7 @@
                             margin: 0 auto;
                             padding: 30px var(--composer-gap-md);
                             .title{
-                                font-size: 2.5rem;
+                                font-size: 2.5rem !important;
                                 margin-bottom: var(--composer-gap-md);
                             }
                             .main-info-wrapper{
@@ -459,7 +464,7 @@
                                         }
                                     }
                                     .description{
-                                        font-size: 1rem;
+                                        font-size: 1rem !important;
                                     }
                                 }
                             }
@@ -506,7 +511,7 @@
                                 }
                                 .customer-info{
                                     .customer-number{
-                                        font-size: 3rem;
+                                        font-size: 3rem !important;
                                     }
                                 }
                             }

@@ -9,13 +9,13 @@ import { INPUTS } from "../../../custom-hooks/input-templates";
 
 type ISliderData = {
   logo?: TypeMediaInputValue;
-  rightImage: TypeMediaInputValue;
-  leftImage: TypeMediaInputValue;
+  media: TypeMediaInputValue;
+  thumbnail: TypeMediaInputValue;
   subtitle: React.JSX.Element;
   title: React.JSX.Element;
   description: React.JSX.Element;
-  sliderNumber: number;
-  actions: INPUTS.CastedButton[];
+  number: React.JSX.Element;
+  buttons: INPUTS.CastedButton[];
 };
 interface IAnimationProps {
   animationState: string;
@@ -23,9 +23,15 @@ interface IAnimationProps {
   endingAnimation: string;
 }
 interface Icon {
-  iconItem: string;
-  iconUrl: string;
+  icon: TypeMediaInputValue;
+  url: string;
 }
+
+type NavigationIcons = {
+  prevIcon: TypeMediaInputValue;
+  nextIcon: TypeMediaInputValue;
+  social_icon: TypeMediaInputValue;
+};
 
 class HeroSection31 extends BaseHeroSection {
   constructor(props?: any) {
@@ -46,13 +52,6 @@ class HeroSection31 extends BaseHeroSection {
     });
 
     this.addProp({
-      type: "boolean",
-      key: "autoplay",
-      displayer: "Autoplay",
-      value: true,
-    });
-
-    this.addProp({
       type: "array",
       key: "slider",
       displayer: "Slider",
@@ -64,15 +63,15 @@ class HeroSection31 extends BaseHeroSection {
           value: [
             {
               type: "media",
-              displayer: "Right Media",
-              key: "rightImage",
+              displayer: "Background Media",
+              key: "media",
               additionalParams: { availableTypes: ["image", "video"] },
               value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b22dbc03b007002cc7d5c8?alt=media" },
             },
             {
               type: "media",
-              displayer: "Left Media",
-              key: "leftImage",
+              displayer: "Thumbnail",
+              key: "thumbnail",
               additionalParams: { availableTypes: ["image", "video"] },
               value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b22dd303b007002cc7d5e1?alt=media" },
             },
@@ -104,13 +103,13 @@ class HeroSection31 extends BaseHeroSection {
             },
             {
               type: "string",
-              key: "sliderNumber",
-              displayer: "Slider Number",
+              key: "number",
+              displayer: "Number",
               value: "01",
             },
             {
               type: "array",
-              key: "actions",
+              key: "buttons",
               displayer: "Buttons",
               value: [
                 INPUTS.BUTTON("button", "Button", "VIEW CASE", "", "GrFormNext", null, "White"),
@@ -125,15 +124,15 @@ class HeroSection31 extends BaseHeroSection {
           value: [
             {
               type: "media",
-              displayer: "Right Media",
-              key: "rightImage",
+              displayer: "Background Media",
+              key: "media",
               additionalParams: { availableTypes: ["image", "video"] },
               value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b22e0c03b007002cc7d5f0?alt=media" },
             },
             {
               type: "media",
-              displayer: "Left Media",
-              key: "leftImage",
+              displayer: "Thumbnail",
+              key: "thumbnail",
               additionalParams: { availableTypes: ["image", "video"] },
               value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b22e2003b007002cc7d60d?alt=media" },
             },
@@ -165,19 +164,13 @@ class HeroSection31 extends BaseHeroSection {
             },
             {
               type: "string",
-              key: "sliderNumber",
-              displayer: "Slider Number",
+              key: "number",
+              displayer: "Number",
               value: "02",
             },
             {
-              type: "boolean",
-              displayer: "Overlay",
-              key: "item_overlay",
-              value: true,
-            },
-            {
               type: "array",
-              key: "actions",
+              key: "buttons",
               displayer: "Buttons",
               value: [
                 INPUTS.BUTTON("button", "Button", "VIEW CASE", "", "GrFormNext", null, "White"),
@@ -192,15 +185,15 @@ class HeroSection31 extends BaseHeroSection {
           value: [
             {
               type: "media",
-              displayer: "Right Media",
-              key: "rightImage",
+              displayer: "Background Media",
+              key: "media",
               additionalParams: { availableTypes: ["image", "video"] },
               value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b22e5603b007002cc7d623?alt=media" },
             },
             {
               type: "media",
-              displayer: "Left Media",
-              key: "leftImage",
+              displayer: "Thumbnail",
+              key: "thumbnail",
               additionalParams: { availableTypes: ["image", "video"] },
               value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b22e5c03b007002cc7d632?alt=media" },
             },
@@ -232,13 +225,13 @@ class HeroSection31 extends BaseHeroSection {
             },
             {
               type: "string",
-              key: "sliderNumber",
-              displayer: "Slider Number",
+              key: "number",
+              displayer: "Number",
               value: "03",
             },
             {
               type: "array",
-              key: "actions",
+              key: "buttons",
               displayer: "Buttons",
               value: [
                 INPUTS.BUTTON("button", "Button", "VIEW CASE", "", "GrFormNext", null, "White"),
@@ -253,15 +246,15 @@ class HeroSection31 extends BaseHeroSection {
           value: [
             {
               type: "media",
-              displayer: "Right Media",
-              key: "rightImage",
+              displayer: "Background Media",
+              key: "media",
               additionalParams: { availableTypes: ["image", "video"] },
               value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b22e9903b007002cc7d653?alt=media" },
             },
             {
               type: "media",
-              displayer: "Left Media",
-              key: "leftImage",
+              displayer: "Thumbnail",
+              key: "thumbnail",
               additionalParams: { availableTypes: ["image", "video"] },
               value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b22e9f03b007002cc7d65a?alt=media" },
             },
@@ -293,13 +286,13 @@ class HeroSection31 extends BaseHeroSection {
             },
             {
               type: "string",
-              key: "sliderNumber",
-              displayer: "Slider Number",
+              key: "number",
+              displayer: "Number",
               value: "04",
             },
             {
               type: "array",
-              key: "actions",
+              key: "buttons",
               displayer: "Buttons",
               value: [
                 INPUTS.BUTTON("button", "Button", "VIEW CASE", "", "GrFormNext", null, "White"),
@@ -314,15 +307,15 @@ class HeroSection31 extends BaseHeroSection {
           value: [
             {
               type: "media",
-              displayer: "Right Media",
-              key: "rightImage",
+              displayer: "Background Media",
+              key: "media",
               additionalParams: { availableTypes: ["image", "video"] },
               value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b22ecb03b007002cc7d667?alt=media" },
             },
             {
               type: "media",
-              displayer: "Left Media",
-              key: "leftImage",
+              displayer: "Thumbnail",
+              key: "thumbnail",
               additionalParams: { availableTypes: ["image", "video"] },
               value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b22ed103b007002cc7d66e?alt=media" },
             },
@@ -354,13 +347,13 @@ class HeroSection31 extends BaseHeroSection {
             },
             {
               type: "string",
-              key: "sliderNumber",
-              displayer: "Slider Number",
+              key: "number",
+              displayer: "Number",
               value: "05",
             },
             {
               type: "array",
-              key: "actions",
+              key: "buttons",
               displayer: "Buttons",
               value: [
                 INPUTS.BUTTON("button", "Button", "VIEW CASE", "", "GrFormNext", null, "White"),
@@ -375,15 +368,15 @@ class HeroSection31 extends BaseHeroSection {
           value: [
             {
               type: "media",
-              displayer: "Right Media",
-              key: "rightImage",
+              displayer: "Background Media",
+              key: "media",
               additionalParams: { availableTypes: ["image", "video"] },
               value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b22f0003b007002cc7d67a?alt=media" },
             },
             {
               type: "media",
-              displayer: "Left Media",
-              key: "leftImage",
+              displayer: "Thumbnail",
+              key: "thumbnail",
               additionalParams: { availableTypes: ["image", "video"] },
               value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b22f0e03b007002cc7d681?alt=media" },
             },
@@ -414,13 +407,13 @@ class HeroSection31 extends BaseHeroSection {
             },
             {
               type: "string",
-              key: "sliderNumber",
-              displayer: "Slider Number",
+              key: "number",
+              displayer: "Number",
               value: "06",
             },
             {
               type: "array",
-              key: "actions",
+              key: "buttons",
               displayer: "Buttons",
               value: [
                 INPUTS.BUTTON("button", "Button", "VIEW CASE", "", "GrFormNext", null, "White"),
@@ -435,15 +428,15 @@ class HeroSection31 extends BaseHeroSection {
           value: [
             {
               type: "media",
-              displayer: "Right Media",
-              key: "rightImage",
+              displayer: "Background Media",
+              key: "media",
               additionalParams: { availableTypes: ["image", "video"] },
               value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b22f4003b007002cc7d6a7?alt=media" },
             },
             {
               type: "media",
-              displayer: "Left Media",
-              key: "leftImage",
+              displayer: "Thumbnail",
+              key: "thumbnail",
               additionalParams: { availableTypes: ["image", "video"] },
               value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b22f4503b007002cc7d6b2?alt=media" },
             },
@@ -475,13 +468,13 @@ class HeroSection31 extends BaseHeroSection {
             },
             {
               type: "string",
-              key: "sliderNumber",
-              displayer: "Slider Number",
+              key: "number",
+              displayer: "Number",
               value: "07",
             },
             {
               type: "array",
-              key: "actions",
+              key: "buttons",
               displayer: "Buttons",
               value: [
                 INPUTS.BUTTON("button", "Button", "VIEW CASE", "", "GrFormNext", null, "White"),
@@ -496,15 +489,15 @@ class HeroSection31 extends BaseHeroSection {
           value: [
             {
               type: "media",
-              displayer: "Right Media",
-              key: "rightImage",
+              displayer: "Background Media",
+              key: "media",
               additionalParams: { availableTypes: ["image", "video"] },
               value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b22f7403b007002cc7d6c5?alt=media" },
             },
             {
               type: "media",
-              displayer: "Left Media",
-              key: "leftImage",
+              displayer: "Thumbnail",
+              key: "thumbnail",
               additionalParams: { availableTypes: ["image", "video"] },
               value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b22f7b03b007002cc7d6cc?alt=media" },
             },
@@ -536,13 +529,13 @@ class HeroSection31 extends BaseHeroSection {
             },
             {
               type: "string",
-              key: "sliderNumber",
-              displayer: "Slider Number",
+              key: "number",
+              displayer: "Number",
               value: "08",
             },
             {
               type: "array",
-              key: "actions",
+              key: "buttons",
               displayer: "Buttons",
               value: [
                 INPUTS.BUTTON("button", "Button", "VIEW CASE", "", "GrFormNext", null, "White"),
@@ -557,15 +550,15 @@ class HeroSection31 extends BaseHeroSection {
           value: [
             {
               type: "media",
-              displayer: "Right Media",
-              key: "rightImage",
+              displayer: "Background Media",
+              key: "media",
               additionalParams: { availableTypes: ["image", "video"] },
               value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b22fcc03b007002cc7d709?alt=media" },
             },
             {
               type: "media",
-              displayer: "Left Media",
-              key: "leftImage",
+              displayer: "Thumbnail",
+              key: "thumbnail",
               additionalParams: { availableTypes: ["image", "video"] },
               value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b22fd303b007002cc7d714?alt=media" },
             },
@@ -596,20 +589,14 @@ class HeroSection31 extends BaseHeroSection {
                 "Cal was first. The first public university in the great state of California. They are the pioneers.",
             },
             {
-              type: "boolean",
-              displayer: "Overlay",
-              key: "item_overlay",
-              value: true,
-            },
-            {
               type: "string",
-              key: "sliderNumber",
-              displayer: "Slider Number",
+              key: "number",
+              displayer: "Number",
               value: "09",
             },
             {
               type: "array",
-              key: "actions",
+              key: "buttons",
               displayer: "Buttons",
               value: [
                 INPUTS.BUTTON("button", "Button", "VIEW CASE", "", "GrFormNext", null, "White"),
@@ -621,19 +608,19 @@ class HeroSection31 extends BaseHeroSection {
     });
     this.addProp({
       type: "object",
-      key: "navigation_icons",
-      displayer: "Icons",
+      key: "arrows",
+      displayer: "Arrows",
       value: [
         {
           type: "media",
-          key: "prev_icon",
+          key: "prevIcon",
           displayer: "Prev Icon",
           additionalParams: { availableTypes: ["icon", "image"] },
           value: { type: "icon", name: "GrFormPrevious" },
         },
         {
           type: "media",
-          key: "next_icon",
+          key: "nextIcon",
           displayer: "Next Icon",
           additionalParams: { availableTypes: ["icon", "image"] },
           value: { type: "icon", name: "GrFormNext" },
@@ -659,14 +646,14 @@ class HeroSection31 extends BaseHeroSection {
           value: [
             {
               type: "media",
-              key: "iconItem",
-              displayer: "Icon Item",
+              key: "icon",
+              displayer: "Icon",
               additionalParams: { availableTypes: ["icon", "image"] },
               value: { type: "icon", name: "FaFacebookF" }
             },
             {
               type: "page",
-              key: "iconUrl",
+              key: "url",
               displayer: "Navigate To",
               value: ""
             },
@@ -679,14 +666,14 @@ class HeroSection31 extends BaseHeroSection {
           value: [
             {
               type: "media",
-              key: "iconItem",
-              displayer: "Icon Item",
+              key: "icon",
+              displayer: "Icon",
               additionalParams: { availableTypes: ["icon", "image"] },
               value: { type: "icon", name: "FaXTwitter" }
             },
             {
               type: "page",
-              key: "iconUrl",
+              key: "url",
               displayer: "Navigate To",
               value: ""
             },
@@ -699,14 +686,14 @@ class HeroSection31 extends BaseHeroSection {
           value: [
             {
               type: "media",
-              key: "iconItem",
-              displayer: "Icon Item",
+              key: "icon",
+              displayer: "Icon",
               additionalParams: { availableTypes: ["icon", "image"] },
               value: { type: "icon", name: "FaInstagram" }
             },
             {
               type: "page",
-              key: "iconUrl",
+              key: "url",
               displayer: "Navigate To",
               value: ""
             },
@@ -719,14 +706,14 @@ class HeroSection31 extends BaseHeroSection {
           value: [
             {
               type: "media",
-              key: "iconItem",
-              displayer: "Icon Item",
+              key: "icon",
+              displayer: "Icon",
               additionalParams: { availableTypes: ["icon", "image"] },
               value: { type: "icon", name: "FaLinkedinIn" }
             },
             {
               type: "page",
-              key: "iconUrl",
+              key: "url",
               displayer: "Navigate To",
               value: ""
             },
@@ -735,9 +722,21 @@ class HeroSection31 extends BaseHeroSection {
       ],
     });
 
-    this.setComponentState("animation-active", false);
+    this.addProp(
+      INPUTS.SLIDER_SETTINGS("settings", "Slider Settings", {
+        dots: false,
+        arrows: false,
+        infinite: true,
+        speed: 1500,
+        autoplay: true,
+        autoplaySpeed: 4000,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        adaptiveHeight: false,
+      })
+    );
+
     this.setComponentState("active-index", 0);
-    this.setComponentState("display-none", true);
     this.setComponentState("slider-ref", React.createRef());
     this.setComponentState("second-slider-ref", React.createRef());
     this.setComponentState("subtitleAnimationClass", "animate__fadeIn");
@@ -748,6 +747,10 @@ class HeroSection31 extends BaseHeroSection {
   static getName(): string {
     return "Hero Section 31";
   }
+  hasMedia(media?: TypeMediaInputValue) {
+    return !!(media && ((media as any).url || (media as any).name));
+  }
+
   handleAnimationEnd = ({
     animationState,
     startingAnimation,
@@ -758,20 +761,19 @@ class HeroSection31 extends BaseHeroSection {
     }
   };
   render() {
-    const slider = this.castToObject<any>("slider");
+    const slider = this.castToObject<ISliderData[]>("slider");
     const conditionalInfinite = slider.length > 2;
+    const sliderSettings = this.transformSliderValues(this.getPropValue("settings"));
 
     const settings = {
+      ...sliderSettings,
       arrows: false,
       dots: false,
-      infinite: conditionalInfinite,
+      infinite: sliderSettings.infinite && conditionalInfinite,
       accessibility: false,
-      speed: 1500,
-      autoplay: this.getPropValue("autoplay"),
-      autoplaySpeed: 4000,
       slidesToShow: 1,
+      slidesToScroll: 1,
       draggable: false,
-      dotsClass: this.decorateCSS("dots"),
 
       beforeChange: (oldIndex: number, newIndex: number) => {
         if (oldIndex == newIndex) return;
@@ -800,16 +802,24 @@ class HeroSection31 extends BaseHeroSection {
     };
 
     const activeIndex = this.getComponentState("active-index");
-    const activeSlideObj = slider[activeIndex] || {};
+    const activeSlideObj = (slider[activeIndex] || {}) as ISliderData;
+    const activeHasMedia = this.hasMedia(activeSlideObj.media);
+    const activeButtons = (activeSlideObj.buttons || []).filter(
+      (button: INPUTS.CastedButton) => this.castToString(button.text) || this.hasMedia(button.icon as any)
+    );
+    const isNumberExist = this.castToString(activeSlideObj.number);
     const textAnimationEnabled = this.getPropValue("textAnimation");
     const overlay = this.getPropValue("overlay");
 
-    const icons = this.castToObject<Icon[]>("icons");
+    const icons = this.castToObject<Icon[]>("icons").filter((icon: Icon) => this.hasMedia(icon.icon));
+    const navigationIcons = this.castToObject<NavigationIcons>("arrows");
+    const hasPrevIcon = this.hasMedia(navigationIcons?.prevIcon);
+    const hasNextIcon = this.hasMedia(navigationIcons?.nextIcon);
+    const hasSocialIcon = this.hasMedia(navigationIcons?.social_icon);
 
     return (
       <Base.Container
-        className={`${this.decorateCSS("container")} ${!activeSlideObj.rightImage && this.decorateCSS("no-image")
-          }`}>
+        className={`${this.decorateCSS("container")} ${!activeHasMedia ? this.decorateCSS("no-image") : ""}`}>
         <div className={this.decorateCSS("max-content")}>
           {slider?.length > 0 && (
             <>
@@ -822,13 +832,13 @@ class HeroSection31 extends BaseHeroSection {
                   {slider?.map((item: ISliderData, index: number) => (
                     <div key={index} className={this.decorateCSS("wrapper")}>
                       <div className={this.decorateCSS("right-slider")}>
-                        {item?.rightImage && (
+                        {this.hasMedia(item.media) && (
                           <Base.Media
-                            value={item.rightImage}
+                            value={item.media}
                             className={this.decorateCSS("background-right")}
                           />
                         )}
-                        {(overlay && item.rightImage) && <div className={this.decorateCSS("overlay")}></div>}
+                        {overlay && this.hasMedia(item.media) && <div className={this.decorateCSS("overlay")}></div>}
                       </div>
                     </div>
                   ))}
@@ -849,7 +859,7 @@ class HeroSection31 extends BaseHeroSection {
                     className={this.decorateCSS("carousel")}
                   >
                     {slider.map((item: ISliderData, index: number) => {
-                      if (item.leftImage)
+                      if (this.hasMedia(item.thumbnail))
                         return (
                           <div
                             key={index}
@@ -863,19 +873,15 @@ class HeroSection31 extends BaseHeroSection {
                               ).current.slickGoTo(index);
                             }}
                           >
-                            {activeIndex === index && (
+                            {activeIndex === index && isNumberExist && (
                               <div className={this.decorateCSS("content")}>
-                                <span
-                                  className={this.decorateCSS(
-                                    "sliderNumber-left"
-                                  )}
-                                >
-                                  {activeSlideObj.sliderNumber}
-                                </span>
+                                <Base.P className={this.decorateCSS("sliderNumber-left")}>
+                                  {activeSlideObj.number}
+                                </Base.P>
                               </div>
                             )}
                             <Base.Media
-                              value={item.leftImage}
+                              value={item.thumbnail}
                               className={`${this.decorateCSS(
                                   "background-left"
                                 )} ${this.decorateCSS("slick-image")} ${activeIndex === index
@@ -890,7 +896,7 @@ class HeroSection31 extends BaseHeroSection {
 
 
                   <Base.VerticalContent className={this.decorateCSS("slider-inner")}>
-                        {activeSlideObj.logo && (
+                        {this.hasMedia(activeSlideObj.logo) && (
                           <Base.Media
                             value={activeSlideObj.logo}
                             className={`${this.decorateCSS("logo")} ${textAnimationEnabled ? `animate__animated ${this.getComponentState("subtitleAnimationClass")}` : ""}`}
@@ -901,7 +907,7 @@ class HeroSection31 extends BaseHeroSection {
                       <Base.SectionSubTitle
                         className={`${this.decorateCSS("subtitle")} ${textAnimationEnabled ? `animate__animated ${this.getComponentState(
                           "subtitleAnimationClass"
-                        )}` : ""} ${activeSlideObj.rightImage ? this.decorateCSS("subtitle-transparent") : ""} ${activeSlideObj.rightImage ? this.decorateCSS("subtitle-with-image") : ""}`}
+                        )}` : ""} ${activeHasMedia ? this.decorateCSS("subtitle-transparent") : ""} ${activeHasMedia ? this.decorateCSS("subtitle-with-image") : ""}`}
                         onAnimationEnd={() => {
                           this.handleAnimationEnd({
                             animationState: "subtitleAnimationClass",
@@ -915,13 +921,12 @@ class HeroSection31 extends BaseHeroSection {
                     )}
 
                     {this.castToString(activeSlideObj.title) && (() => {
-                      const titleStr = this.castToString(activeSlideObj.title) as string;
                       const titleState = this.getComponentState("titleAnimationClass");
                       const isTitleAnimatingIn = titleState === "animate__fadeInRight";
                       const isTitleAnimatingOut = titleState && (titleState === "letter-out" || titleState.indexOf("fadeOut") > -1);
                       return (
                         <Base.SectionTitle
-                          className={`${this.decorateCSS("title")} ${textAnimationEnabled ? "animate__animated" : ""} ${textAnimationEnabled && titleState === "letter-out" ? this.decorateCSS("letter-animate-out") : ""} ${textAnimationEnabled && isTitleAnimatingOut && titleState !== "letter-out" ? titleState : ""} ${textAnimationEnabled && isTitleAnimatingIn ? this.decorateCSS("letter-animate") : ""} ${activeSlideObj.rightImage ? this.decorateCSS("title-with-image") : ""}`}
+                          className={`${this.decorateCSS("title")} ${textAnimationEnabled ? "animate__animated" : ""} ${textAnimationEnabled && titleState === "letter-out" ? this.decorateCSS("letter-animate-out") : ""} ${textAnimationEnabled && isTitleAnimatingOut && titleState !== "letter-out" ? titleState : ""} ${textAnimationEnabled && isTitleAnimatingIn ? this.decorateCSS("letter-animate") : ""} ${activeHasMedia ? this.decorateCSS("title-with-image") : ""}`}
                           onAnimationEnd={() => {
                             this.handleAnimationEnd({
                               animationState: "titleAnimationClass",
@@ -930,15 +935,7 @@ class HeroSection31 extends BaseHeroSection {
                             });
                           }}
                         >
-                          {Array.from(titleStr).map((ch, i) => (
-                            <span
-                              key={i}
-                              className={this.decorateCSS("char")}
-                              style={{ animationDelay: `${i * 60}ms` }}
-                            >
-                              {ch}
-                            </span>
-                          ))}
+                          {activeSlideObj.title}
                         </Base.SectionTitle>
                       );
                     })()}
@@ -959,117 +956,83 @@ class HeroSection31 extends BaseHeroSection {
                       </Base.SectionDescription>
                     )}
                   
-                  <div className={this.decorateCSS("button-box")}>
-                    {activeSlideObj.actions.length > 0 &&
-                      activeSlideObj.actions.map((buttonItem: INPUTS.CastedButton) => (this.castToString(buttonItem.text) || buttonItem.icon) && (
-                          <ComposerLink path={buttonItem.url}>
-                            <Base.Button buttonType={buttonItem.type}
-                              className={`${this.decorateCSS("button")} ${textAnimationEnabled ? `animate__animated ${this.getComponentState(
-                                  "buttonAnimationClass"
-                                )}` : ""}`}
-                              onAnimationEnd={() => {
-                                this.handleAnimationEnd({
-                                  animationState: "buttonAnimationClass",
-                                  startingAnimation: "animate__fadeInUp",
-                                  endingAnimation: "animate__fadeOutDown",
-                                });
-                              }}
-                            >
-                              {buttonItem.icon && (
-                                <Base.Media value={buttonItem.icon} className={this.decorateCSS("button-icon")} />
-                              )}
-                              {this.castToString(buttonItem.text) && <Base.P className={this.decorateCSS("button-text")}>{buttonItem.text}</Base.P>}
-                            </Base.Button>
-                          </ComposerLink>
-                      ))
-                    }
-                  </div>
+                  {activeButtons.length > 0 && (
+                    <div className={this.decorateCSS("button-box")}>
+                      {activeButtons.map((buttonItem: INPUTS.CastedButton, buttonIndex: number) => (
+                        <ComposerLink key={buttonIndex} path={buttonItem.url}>
+                          <Base.Button
+                            buttonType={buttonItem.type}
+                            className={`${this.decorateCSS("button")} ${textAnimationEnabled ? `animate__animated ${this.getComponentState("buttonAnimationClass")}` : ""}`}
+                            onAnimationEnd={() => {
+                              this.handleAnimationEnd({
+                                animationState: "buttonAnimationClass",
+                                startingAnimation: "animate__fadeInUp",
+                                endingAnimation: "animate__fadeOutDown",
+                              });
+                            }}
+                          >
+                            {this.hasMedia(buttonItem.icon as any) && (
+                              <Base.Media value={buttonItem.icon as any} className={this.decorateCSS("button-icon")} />
+                            )}
+                            {this.castToString(buttonItem.text) && <Base.P className={this.decorateCSS("button-text")}>{buttonItem.text}</Base.P>}
+                          </Base.Button>
+                        </ComposerLink>
+                      ))}
+                    </div>
+                  )}
 
                   </Base.VerticalContent>
                 </div>
-                <div className={this.decorateCSS("main-social")}>
-                  {this.castToObject<any>("navigation_icons")?.social_icon && (
-                    <Base.Media
-                      value={this.castToObject<any>("navigation_icons")?.social_icon}
-                      className={this.decorateCSS("social-icon")}
-                    />
-                  )}
-                  <div className={this.decorateCSS("icon-stick")}></div>
-                  {(icons?.length > 0) && (
-                    <div className={this.decorateCSS("icon-list-container")}>
-                      {icons.map((icon: Icon, indexIcons: number) => {
-                        if (icon.iconItem)
-                          return (
-                            <div
-                              key={indexIcons}
-                              className={this.decorateCSS("icon-item")}
-                            >
-                              <ComposerLink path={icon.iconUrl}>
-                                <Base.Media
-                                  value={icon.iconItem}
-                                  className={this.decorateCSS("icon")}
-                                />
-                              </ComposerLink>
-                            </div>
-                          );
-                      })}
-                    </div>
-                  )}
-                </div>
-                {(this.castToObject<any>("navigation_icons")?.prev_icon ||
-                  this.castToObject<any>("navigation_icons")?.next_icon) && (
-                    <div className={this.decorateCSS("control-nav")}>
-                      {this.castToObject<any>("navigation_icons")?.prev_icon && (
-                        <div
-                          className={`${this.decorateCSS(
-                            "prev-icon"
-                          )} ${this.decorateCSS("arrow")} ${!this.getComponentState("display-none") &&
-                          this.decorateCSS("un-visible")
-                            }`}
-                          onClick={() => {
-                            this.getComponentState(
-                              "slider-ref"
-                            ).current.slickPrev();
-                            this.getComponentState(
-                              "second-slider-ref"
-                            ).current.slickPrev();
-                          }}
-                        >
-                          <Base.Media
-                            value={this.castToObject<any>("navigation_icons")?.prev_icon}
-                            className={this.decorateCSS("icon-image")}
-                          />
-                        </div>
-                      )}
-                      {this.castToObject<any>("navigation_icons")?.next_icon && (
-                        <div
-                          className={`${this.decorateCSS(
-                            "next-icon"
-                          )} ${this.decorateCSS("arrow")} ${!this.getComponentState("display-none") &&
-                          this.decorateCSS("un-visible")
-                            }`}
-                          onClick={() => {
-                            this.getComponentState(
-                              "slider-ref"
-                            ).current.slickNext();
-                            this.getComponentState(
-                              "second-slider-ref"
-                            ).current.slickNext();
-                          }}
-                        >
-                          <Base.Media
-                            value={this.castToObject<any>("navigation_icons")?.next_icon}
-                            className={this.decorateCSS("icon-image")}
-                          />
-                        </div>
-                      )}
-                    </div>
-                  )}
-                <div className={this.decorateCSS("control-num")}>
-                  <span className={this.decorateCSS("sliderNumber")}>
-                    {activeSlideObj.sliderNumber}
-                  </span>
-                </div>
+                {(hasSocialIcon || icons.length > 0) && (
+                  <div className={this.decorateCSS("main-social")}>
+                    {hasSocialIcon && (
+                      <Base.Media value={navigationIcons.social_icon} className={this.decorateCSS("social-icon")} />
+                    )}
+                    {hasSocialIcon && icons.length > 0 && <div className={this.decorateCSS("icon-stick")}></div>}
+                    {icons.length > 0 && (
+                      <div className={this.decorateCSS("icon-list-container")}>
+                        {icons.map((icon: Icon, indexIcons: number) => (
+                          <div key={indexIcons} className={this.decorateCSS("icon-item")}>
+                            <ComposerLink path={icon.url}>
+                              <Base.Media value={icon.icon} className={this.decorateCSS("icon")} />
+                            </ComposerLink>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                )}
+                {(hasPrevIcon || hasNextIcon) && (
+                  <div className={this.decorateCSS("control-nav")}>
+                    {hasPrevIcon && (
+                      <div
+                        className={`${this.decorateCSS("prev-icon")} ${this.decorateCSS("arrow")}`}
+                        onClick={() => {
+                          this.getComponentState("slider-ref").current.slickPrev();
+                          this.getComponentState("second-slider-ref").current.slickPrev();
+                        }}
+                      >
+                        <Base.Media value={navigationIcons.prevIcon} className={this.decorateCSS("icon-image")} />
+                      </div>
+                    )}
+                    {hasNextIcon && (
+                      <div
+                        className={`${this.decorateCSS("next-icon")} ${this.decorateCSS("arrow")}`}
+                        onClick={() => {
+                          this.getComponentState("slider-ref").current.slickNext();
+                          this.getComponentState("second-slider-ref").current.slickNext();
+                        }}
+                      >
+                        <Base.Media value={navigationIcons.nextIcon} className={this.decorateCSS("icon-image")} />
+                      </div>
+                    )}
+                  </div>
+                )}
+                {isNumberExist && (
+                  <div className={this.decorateCSS("control-num")}>
+                    <Base.P className={this.decorateCSS("sliderNumber")}>{activeSlideObj.number}</Base.P>
+                  </div>
+                )}
               </div>
             </>
           )}

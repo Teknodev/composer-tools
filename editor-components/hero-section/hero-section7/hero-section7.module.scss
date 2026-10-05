@@ -34,6 +34,17 @@
         }
       }
 
+      &.no-animation {
+        .items {
+          .text {
+            transition: none;
+            &::before {
+              transition: none;
+            }
+          }
+        }
+      }
+
       .items {
         position: relative;
         z-index: 2;
@@ -42,6 +53,19 @@
         flex-direction: column;
         justify-content: center;
         padding: 0 10%;
+        .header {
+          width: 100%;
+          margin-bottom: var(--composer-gap-md);
+          .logo {
+            font-size: 3rem;
+            color: var(--composer-font-color-primary);
+          }
+          .subtitle,
+          .title,
+          .description {
+            color: var(--composer-font-color-primary);
+          }
+        }
         .text {
           color: black;
           width: fit-content;

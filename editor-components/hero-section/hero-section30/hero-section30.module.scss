@@ -47,6 +47,10 @@
       flex-wrap: wrap;
       margin: auto 0;
 
+      &.no-animation {
+        animation: none;
+      }
+
       
         .logo {
           font-size: 2rem;
@@ -61,27 +65,22 @@
           }
         }
 
-        .up-text {
-          display: flex;
-          align-items: center;
-          gap: var(--composer-gap-sm);
-          .subtitle {
-            color: white;
-            width: fit-content;
-          }
-          .subtitle-transparent {
-            background: transparent !important;
-            padding: 0;
-          }
-          .subtitle-transparent::before {
-            background: white !important;
-          }
+        .subtitle {
+          color: white;
+          width: fit-content;
+        }
+        .subtitle-transparent {
+          background: transparent !important;
+          padding: 0;
+        }
+        .subtitle-transparent::before {
+          background: white !important;
         }
 
       .titles {
         font-size: 12.5rem;
-        font-weight: bolder;
         margin: 0;
+        color: inherit;
       }
 
       .first-title {
@@ -95,7 +94,6 @@
         stroke-width: 2px;
         -webkit-text-stroke-color: #fff;
         stroke: #fff;
-        font-weight: 400;
         white-space: nowrap;
         overflow: hidden;
 
@@ -117,7 +115,7 @@
             max-width: 370px;
             width: 370px;
             height: 180px;
-            border-radius: var(--composer-border-radius-xl);
+            border-radius: var(--composer-border-radius-sm);
             overflow: hidden;
             object-fit: cover;
             display: block;
@@ -128,13 +126,14 @@
             inset: 0;
             background: var(--composer-overlay-color);
             pointer-events: none;
-            border-radius: var(--composer-border-radius-xl);
+            border-radius: var(--composer-border-radius-sm);
             z-index: 2;
           }
         }
       }
 
       .description {
+        color: inherit;
         max-width: 640px;
         text-align: left;
         margin-left: 0;
@@ -144,7 +143,6 @@
         display: flex;
         flex-wrap: wrap;
         gap: var(--composer-gap-sm);
-        margin-top: var(--composer-gap-md);
 
         .button {
           .button-text {
@@ -166,7 +164,7 @@
     .max-content {
       .content {
         .titles {
-          font-size: 6rem;
+          font-size: 6rem !important;
         }
 
         .second-title {
@@ -184,10 +182,6 @@
             object-fit: cover;
           }
         }
-
-        .buttons {
-          margin-top: var(--composer-gap-sm);
-        }
       }
     }
   }
@@ -198,11 +192,7 @@
     .max-content {
       .content {
         .titles {
-          font-size: 4rem;
-        }
-
-        .first-title {
-          margin-bottom: var(--composer-gap-sm);
+          font-size: 4rem !important;
         }
 
         .title-with-image {

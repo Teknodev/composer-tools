@@ -4,15 +4,22 @@ import styles from "./hero-section36.module.scss";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import { Base } from "../../../composer-base-components/base/base";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
+import { INPUTS } from "../../../custom-hooks/input-templates";
 import Slider from "react-slick";
  
 
 type SlideItem = {
-  image: TypeMediaInputValue;
-  name: React.JSX.Element;
-  navigateTo: string;
-  subtitle?: string;
-  description?: string;
+  logo: TypeMediaInputValue;
+  media: TypeMediaInputValue;
+  title: React.JSX.Element;
+  url: string;
+  subtitle?: React.JSX.Element;
+  description?: React.JSX.Element;
+};
+
+type Arrows = {
+  prevIcon: TypeMediaInputValue;
+  nextIcon: TypeMediaInputValue;
 };
 
 class HeroSection36 extends BaseHeroSection {
@@ -33,14 +40,26 @@ class HeroSection36 extends BaseHeroSection {
           value: [
             {
               type: "media",
-              key: "image",
-               displayer: "Media",
+              key: "media",
+              displayer: "Media",
               value: {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/691344f83596a1002b2472ab?alt=media",
               },
               additionalParams: {
                 availableTypes: ["image","video"],
+              },
+            },
+            {
+              type: "media",
+              key: "logo",
+              displayer: "Logo",
+              additionalParams: {
+                availableTypes: ["image", "icon"],
+              },
+              value: {
+                type: "icon",
+                name: "",
               },
             },
             {
@@ -51,7 +70,7 @@ class HeroSection36 extends BaseHeroSection {
             },
             {
               type: "string",
-              key: "name",
+              key: "title",
               displayer: "Title",
               value: "Curitiba Brasil",
             },
@@ -63,7 +82,7 @@ class HeroSection36 extends BaseHeroSection {
             },
             {
               type: "page",
-              key: "navigateTo",
+              key: "url",
               displayer: "Navigate To",
               value: "",
             },
@@ -76,14 +95,26 @@ class HeroSection36 extends BaseHeroSection {
           value: [
             {
               type: "media",
-              key: "image",
-               displayer: "Media",
+              key: "media",
+              displayer: "Media",
               value: {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6913448f3596a1002b24721e?alt=media",
               },
               additionalParams: {
                 availableTypes: ["image" , "video"],
+              },
+            },
+            {
+              type: "media",
+              key: "logo",
+              displayer: "Logo",
+              additionalParams: {
+                availableTypes: ["image", "icon"],
+              },
+              value: {
+                type: "icon",
+                name: "",
               },
             },
             {
@@ -94,7 +125,7 @@ class HeroSection36 extends BaseHeroSection {
             },
             {
               type: "string",
-              key: "name",
+              key: "title",
               displayer: "Title",
               value: "Ron Mccleny",
             },
@@ -106,7 +137,7 @@ class HeroSection36 extends BaseHeroSection {
             },
             {
               type: "page",
-              key: "navigateTo",
+              key: "url",
               displayer: "Navigate To",
               value: "",
             },
@@ -119,14 +150,26 @@ class HeroSection36 extends BaseHeroSection {
           value: [
             {
               type: "media",
-              key: "image",
-               displayer: "Media",
+              key: "media",
+              displayer: "Media",
               value: {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/691344393596a1002b247169?alt=media",
               },
               additionalParams: {
                 availableTypes: ["image" , "video"],
+              },
+            },
+            {
+              type: "media",
+              key: "logo",
+              displayer: "Logo",
+              additionalParams: {
+                availableTypes: ["image", "icon"],
+              },
+              value: {
+                type: "icon",
+                name: "",
               },
             },
             {
@@ -137,7 +180,7 @@ class HeroSection36 extends BaseHeroSection {
             },
             {
               type: "string",
-              key: "name",
+              key: "title",
               displayer: "Title",
               value: "National Aquarium Denmark",
             },
@@ -149,7 +192,7 @@ class HeroSection36 extends BaseHeroSection {
             },
             {
               type: "page",
-              key: "navigateTo",
+              key: "url",
               displayer: "Navigate To",
               value: "",
             },
@@ -162,14 +205,26 @@ class HeroSection36 extends BaseHeroSection {
           value: [
             {
               type: "media",
-              key: "image",
-               displayer: "Media",
+              key: "media",
+              displayer: "Media",
               value: {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/691343ec3596a1002b24710d?alt=media",
               },
               additionalParams: {
                 availableTypes: ["image" , "video"],
+              },
+            },
+            {
+              type: "media",
+              key: "logo",
+              displayer: "Logo",
+              additionalParams: {
+                availableTypes: ["image", "icon"],
+              },
+              value: {
+                type: "icon",
+                name: "",
               },
             },
             {
@@ -180,7 +235,7 @@ class HeroSection36 extends BaseHeroSection {
             },
             {
               type: "string",
-              key: "name",
+              key: "title",
               displayer: "Title",
               value: "Seceda",
             },
@@ -192,7 +247,7 @@ class HeroSection36 extends BaseHeroSection {
             },
             {
               type: "page",
-              key: "navigateTo",
+              key: "url",
               displayer: "Navigate To",
               value: "",
             },
@@ -216,37 +271,50 @@ class HeroSection36 extends BaseHeroSection {
     });
 
     this.addProp({
-      type: "media",
-      key: "previousArrow",
-      displayer: "Previous Arrow",
-      additionalParams: {
-        availableTypes: ["icon", "image"],
-      },
-      value: {
-        type: "icon",
-        name: "FiArrowLeft",
-      },
+      type: "object",
+      key: "arrows",
+      displayer: "Arrows",
+      value: [
+        {
+          type: "media",
+          key: "prevIcon",
+          displayer: "Previous Arrow",
+          additionalParams: {
+            availableTypes: ["icon", "image"],
+          },
+          value: {
+            type: "icon",
+            name: "FiArrowLeft",
+          },
+        },
+        {
+          type: "media",
+          key: "nextIcon",
+          displayer: "Next Arrow",
+          additionalParams: {
+            availableTypes: ["icon", "image"],
+          },
+          value: {
+            type: "icon",
+            name: "FiArrowRight",
+          },
+        },
+      ],
     });
 
-    this.addProp({
-      type: "media",
-      key: "nextArrow",
-      displayer: "Next Arrow",
-      additionalParams: {
-        availableTypes: ["icon", "image"],
-      },
-      value: {
-        type: "icon",
-        name: "FiArrowRight",
-      },
-    });
-    
-    this.addProp({
-      type: "boolean",
-      key: "autoplay",
-      displayer: "Autoplay",
-      value: false,
-    });
+    this.addProp(
+      INPUTS.SLIDER_SETTINGS("settings", "Slider Settings", {
+        dots: true,
+        arrows: true,
+        infinite: true,
+        speed: 1000,
+        autoplay: false,
+        autoplaySpeed: 5000,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        adaptiveHeight: false,
+      })
+    );
 
     this.sliderRef = React.createRef();
     this.setComponentState("active-index", 1);
@@ -257,17 +325,17 @@ class HeroSection36 extends BaseHeroSection {
     return "Hero Section 36";
   }
 
-  private hasImage = (image?: TypeMediaInputValue) => {
-    const media = image as { url?: string; value?: { url?: string } };
-    return !!(media?.url ?? media?.value?.url);
+  private hasMedia = (media?: TypeMediaInputValue) => {
+    const value = media as { url?: string; name?: string };
+    return !!(value?.url || value?.name);
   };
 
   private getValidSlides = () => {
     const slidesRaw = this.castToObject<SlideItem[]>("slides");
     return slidesRaw.filter((item: SlideItem) => {
-      const imageExist = this.hasImage(item.image);
-      const nameExist = this.castToString(item.name);
-      return imageExist || nameExist;
+      const mediaExist = this.hasMedia(item.media);
+      const titleExist = this.castToString(item.title);
+      return mediaExist || titleExist;
     });
   };
 
@@ -312,17 +380,19 @@ class HeroSection36 extends BaseHeroSection {
     const overlay = !!this.getPropValue("overlay");
     const animation = !!this.getPropValue("animation");
     const isSingleSlide = slides.length === 1;
+    const sliderSettings = this.transformSliderValues(this.getPropValue("settings"));
+    const arrows = this.castToObject<Arrows>("arrows");
+    const showArrows = !!sliderSettings.arrows;
+    const showDots = !!sliderSettings.dots;
     const settings = {
+      ...sliderSettings,
       dots: false,
-      infinite: slides.length > 1,
-      autoplaySpeed: 5000,
-      speed: 1000,
-      autoplay: !!this.getPropValue("autoplay"),
+      arrows: false,
+      infinite: !!sliderSettings.infinite && slides.length > 1,
       slidesToShow: isSingleSlide ? 1 : 1.2,
       slidesToScroll: 1,
       centerMode: !isSingleSlide,
       centerPadding: "0px",
-      arrows: false,
       variableWidth: !isSingleSlide,
       initialSlide: isSingleSlide ? 0 : 1,
       beforeChange: (_prev: number, next: number) => {
@@ -363,12 +433,13 @@ class HeroSection36 extends BaseHeroSection {
                 {slides.map((item: SlideItem, index: number) => {
                   const scaledIndex = this.getComponentState("scaled-index");
                   const isScaled = animation && scaledIndex === index;
-                  const navigateTo = item.navigateTo;
-                  const liveName = this.getPropValue(`slides.${index}.name`) ?? item.name;
+                  const url = item.url;
+                  const liveName = this.getPropValue(`slides.${index}.title`) ?? item.title;
                   const slideSubtitle = this.getPropValue(`slides.${index}.subtitle`) ?? item.subtitle;
                   const slideDescription = this.getPropValue(`slides.${index}.description`) ?? item.description;
-                  const imageValue = (this.getPropValue(`slides.${index}.image`) as TypeMediaInputValue | undefined) ?? item.image;
-                  const imageExists = this.hasImage(imageValue);
+                  const imageValue = (this.getPropValue(`slides.${index}.media`) as TypeMediaInputValue | undefined) ?? item.media;
+                  const imageExists = this.hasMedia(imageValue);
+                  const hasLogo = this.hasMedia(item.logo);
                   const isVideoMedia = imageValue?.type === "video";
                   const titleExists = this.castToString(liveName);
                   const hasSubtitle = this.castToString(slideSubtitle);
@@ -381,7 +452,7 @@ class HeroSection36 extends BaseHeroSection {
                   const slideClass = `${this.decorateCSS("slide-item")} ${!imageExists && titleExists && this.decorateCSS("no-image")} ${isScaled && this.decorateCSS("active-slide")}`;
                   
                   const slideContent = (
-                    <ComposerLink path={navigateTo}>
+                    <ComposerLink path={url}>
                       <div className={this.decorateCSS("image-wrapper")}>
                         {imageExists && (
                           <>
@@ -395,6 +466,7 @@ class HeroSection36 extends BaseHeroSection {
                         <Base.VerticalContent
                           className={`${this.decorateCSS("content-overlay")} ${imageExists && this.decorateCSS("has-image")}`}
                         >
+                          {hasLogo && <Base.Media value={item.logo} className={this.decorateCSS("logo")} />}
                           {hasSubtitle && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{slideSubtitle}</Base.SectionSubTitle>}
                           {titleExists && <Base.SectionTitle className={this.decorateCSS("title")}>{liveName}</Base.SectionTitle>}
                           {hasDescription && <Base.SectionDescription className={this.decorateCSS("description")}>{slideDescription}</Base.SectionDescription>}
@@ -410,20 +482,20 @@ class HeroSection36 extends BaseHeroSection {
                   );
                 })}
               </ComposerSlider>
-              {slides.length > 1 && (
+              {slides.length > 1 && (showArrows || showDots) && (
                 <div className={this.decorateCSS("navigation-wrapper")}>
-                  {this.getPropValue("previousArrow") && (
+                  {showArrows && this.hasMedia(arrows?.prevIcon) && (
                     <div
                       className={this.decorateCSS("arrow-button")}
                       onClick={this.handlePrevClick}
                     >
                       <Base.Media
-                        value={this.getPropValue("previousArrow")}
+                        value={arrows.prevIcon}
                         className={`${this.decorateCSS("arrow-icon")} ${this.decorateCSS("arrow-icon-media")}`}
                       />
                     </div>
                   )}
-                    <div className={this.decorateCSS("pagination")}>
+                    {showDots && <div className={this.decorateCSS("pagination")}>
                       {slides.map((_, index: number) => (
                         <Base.Button
                           key={`pagination-dot-${index}`}
@@ -433,14 +505,14 @@ class HeroSection36 extends BaseHeroSection {
                           <div className={`${this.decorateCSS("dot-icon")} ${this.decorateCSS("dot-icon-media")}`} />
                         </Base.Button>
                       ))}
-                    </div>
-                  {this.getPropValue("nextArrow") && (
+                    </div>}
+                  {showArrows && this.hasMedia(arrows?.nextIcon) && (
                     <div
                       className={this.decorateCSS("arrow-button")}
                       onClick={this.handleNextClick}
                     >
                       <Base.Media
-                        value={this.getPropValue("nextArrow")}
+                        value={arrows.nextIcon}
                         className={`${this.decorateCSS("arrow-icon")} ${this.decorateCSS("arrow-icon-media")}`}
                       />
                     </div>

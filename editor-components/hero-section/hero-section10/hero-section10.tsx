@@ -6,129 +6,186 @@ import ComposerLink from "../../../composer-base-components/Link/ComposerLinkPro
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "../../../custom-hooks/input-templates";
 
-type SliderObject = {
-  logo: TypeMediaInputValue;
+type Social = {
+  icon: TypeMediaInputValue;
+  url: string;
+};
+
+type Cta = {
   title: React.JSX.Element;
   description: React.JSX.Element;
-  imageTitle: React.JSX.Element;
-  image: TypeMediaInputValue;
-  subtitle: React.JSX.Element;
-  ctaTitle: React.JSX.Element;
-  description1: React.JSX.Element;
-  icons: { icon: string; url: string }[];
-  button: INPUTS.CastedButton[];
 };
+
+type SliderObject = {
+  logo: TypeMediaInputValue;
+  subtitle: React.JSX.Element;
+  title: React.JSX.Element;
+  highlightedTitle: React.JSX.Element;
+  description: React.JSX.Element;
+  media: TypeMediaInputValue;
+  buttons: INPUTS.CastedButton[];
+  cta: Cta;
+  socials: Social[];
+};
+
+type Arrows = {
+  prevIcon: TypeMediaInputValue;
+  nextIcon: TypeMediaInputValue;
+};
+
+const social = (icon: string): TypeUsableComponentProps => ({
+  type: "object",
+  key: "social",
+  displayer: "Platform",
+  value: [
+    {
+      type: "media",
+      key: "icon",
+      displayer: "Platform Icon",
+      additionalParams: {
+        availableTypes: ["icon", "image"],
+      },
+      value: {
+        type: "icon",
+        name: icon,
+      },
+    },
+    {
+      type: "page",
+      key: "url",
+      displayer: "Navigate To",
+      value: "",
+    },
+  ],
+});
+
+const slide = (mediaUrl: string): TypeUsableComponentProps => ({
+  type: "object",
+  key: "slide",
+  displayer: "Slide",
+  value: [
+    {
+      type: "media",
+      key: "logo",
+      displayer: "Logo",
+      additionalParams: {
+        availableTypes: ["image", "icon"],
+      },
+      value: {
+        type: "icon",
+        name: "",
+      },
+    },
+    {
+      type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "",
+    },
+    {
+      type: "string",
+      key: "title",
+      displayer: "Title",
+      value: "Magnificent",
+    },
+    {
+      type: "string",
+      key: "highlightedTitle",
+      displayer: "Highlighted Title",
+      value: "Structures",
+    },
+    {
+      type: "string",
+      key: "description",
+      displayer: "Description",
+      value:
+        "We make structures, dams, bridges, scyscrapers and much more. Resistance, design, flexibility and usability are the main factors that we keep in mind in every project.",
+    },
+    {
+      type: "media",
+      key: "media",
+      displayer: "Media",
+      additionalParams: {
+        availableTypes: ["image", "video"],
+      },
+      value: {
+        type: "image",
+        url: mediaUrl,
+      },
+    },
+    {
+      type: "array",
+      key: "buttons",
+      displayer: "Buttons",
+      value: [INPUTS.BUTTON("button", "Button", "Get a quote", "", null, null, "Link")],
+    },
+    {
+      type: "object",
+      key: "cta",
+      displayer: "CTA",
+      value: [
+        {
+          type: "string",
+          key: "title",
+          displayer: "Title",
+          value: "Stay Tuned",
+        },
+        {
+          type: "string",
+          key: "description",
+          displayer: "Description",
+          value: "We are 24/7 available through our social media. Follow us to stay up to date",
+        },
+      ],
+    },
+    {
+      type: "array",
+      key: "socials",
+      displayer: "Social Media Platforms",
+      value: [social("FaTwitter"), social("FaFacebookF"), social("FaInstagram")],
+    },
+  ],
+});
 
 class HeroSection10 extends BaseHeroSection {
   constructor(props?: any) {
     super(props, styles);
 
-    let twitter: TypeUsableComponentProps = {
-      type: "object",
-      key: "twitter",
-      displayer: "Twitter",
-      value: [
-        {
-          type: "media",
-          key: "icon",
-          displayer: "Platform Icon",
-          additionalParams: {
-            availableTypes: ["icon", "image"],
-          },
-          value: {
-            type: "icon",
-            name: "FaTwitter",
-          },
-        },
-        {
-          type: "page",
-          key: "url",
-          displayer: "Navigate To",
-          value: "",
-        },
-      ],
-    };
-
-    let facebook: TypeUsableComponentProps = {
-      type: "object",
-      key: "facebook",
-      displayer: "Platform",
-      value: [
-        {
-          type: "media",
-          key: "icon",
-          displayer: "Platform Icon",
-          additionalParams: {
-            availableTypes: ["icon", "image"],
-          },
-          value: {
-            type: "icon",
-            name: "FaFacebookF",
-          },
-        },
-        {
-          type: "page",
-          key: "url",
-          displayer: "Navigate To",
-          value: "",
-        },
-      ],
-    };
-
-    let instagram: TypeUsableComponentProps = {
-      type: "object",
-      key: "instagram",
-      displayer: "Platform",
-      value: [
-        {
-          type: "media",
-          key: "icon",
-          displayer: "Platform Icon",
-          additionalParams: {
-            availableTypes: ["icon", "image"],
-          },
-          value: {
-            type: "icon",
-            name: "FaInstagram",
-          },
-        },
-        {
-          type: "page",
-          key: "url",
-          displayer: "Navigate To",
-          value: "",
-        },
-      ],
-    };
-
     this.addProp({
-      type: "media",
-      key: "nextIcon",
-      displayer: "Next Icon",
-      additionalParams: {
-        availableTypes: ["icon", "image"],
-      },
-      value: {
-        type: "icon",
-        name: "MdArrowRight",
-      },
+      type: "object",
+      key: "arrows",
+      displayer: "Arrows",
+      value: [
+        {
+          type: "media",
+          key: "prevIcon",
+          displayer: "Previous Icon",
+          additionalParams: {
+            availableTypes: ["icon", "image"],
+          },
+          value: {
+            type: "icon",
+            name: "MdArrowLeft",
+          },
+        },
+        {
+          type: "media",
+          key: "nextIcon",
+          displayer: "Next Icon",
+          additionalParams: {
+            availableTypes: ["icon", "image"],
+          },
+          value: {
+            type: "icon",
+            name: "MdArrowRight",
+          },
+        },
+      ],
     });
     this.addProp({
       type: "media",
-      key: "prevIcon",
-      displayer: "Prev Icon",
-      additionalParams: {
-        availableTypes: ["icon", "image"],
-      },
-      value: {
-        type: "icon",
-        name: "MdArrowLeft",
-      },
-    });
-    this.addProp({
-      type: "media",
-      key: "ampersandIcon",
-      displayer: "Ampersand Icon",
+      key: "backgroundIcon",
+      displayer: "Background Icon",
       additionalParams: {
         availableTypes: ["icon", "image"],
       },
@@ -140,16 +197,16 @@ class HeroSection10 extends BaseHeroSection {
 
     this.addProp({
       type: "boolean",
-      key: 'index',
-      displayer: "Index Active",
-      value: true
-    })
+      key: "slideNumber",
+      displayer: "Slide Number",
+      value: true,
+    });
     this.addProp({
       type: "boolean",
-      key: 'lineActive',
-      displayer: "Line Active",
-      value: true
-    })
+      key: "line",
+      displayer: "Line",
+      value: true,
+    });
 
     this.addProp({
       type: "boolean",
@@ -159,193 +216,28 @@ class HeroSection10 extends BaseHeroSection {
     });
 
     this.addProp({
-      type: "boolean",
-      key: "autoplay",
-      displayer: "Autoplay",
-      value: true,
-    });
-
-    this.addProp({
       type: "array",
       key: "slider",
       displayer: "Slider",
       value: [
-        {
-          type: "object",
-          key: "sliderObject",
-          displayer: "Slider Object",
-          value: [
-            {
-              type: "media",
-              key: "logo",
-              displayer: "Logo",
-              additionalParams: {
-                availableTypes: ["image", "icon"],
-              },
-              value: {
-                type: "icon",
-                name: "",
-              },
-            },
-            {
-              type: "string",
-              key: "subtitle",
-              displayer: "Subtitle",
-              value: "",
-            },
-            {
-              type: "string",
-              key: "title",
-              displayer: "Title",
-              value: "Magnificent ",
-            },
-            {
-              type: "string",
-              key: "description",
-              displayer: "Description",
-              value:
-                "We make structures, dams, bridges, scyscrapers and much more. Resistance, design, flexibility and usability are the main factors that we keep in mind in every project.",
-            },
-            {
-              type: "string",
-              key: "imageTitle",
-              displayer: "Image Title",
-              value: "Structures ",
-            },
-            {
-              type: "media",
-              key: "image",
-              displayer: "Media",
-              additionalParams: {
-                availableTypes: ["image", "video"],
-              },
-              value: {
-                type: "image",
-                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a754582f8a5b002ce6cce6?alt=media",
-              },
-            },
-            {
-              type: "string",
-              key: "ctaTitle",
-              displayer: "CTA Title",
-              value: "Stay Tuned",
-            },
-            {
-              type: "string",
-              key: "description1",
-              displayer: "CTA Description",
-              value:
-                "We are 24/7 available through our social media. Follow us to stay up to date",
-            },
-            {
-              type: "array",
-              key: "button",
-              displayer: "Buttons",
-              value: [
-                INPUTS.BUTTON("button", "Button", "Get a quote", "", null, null, "Link")
-              ],
-            },
-            {
-              type: "array",
-              key: "icons",
-              displayer: "Social Media Platforms",
-              value: [
-                JSON.parse(JSON.stringify(twitter)),
-                JSON.parse(JSON.stringify(facebook)),
-                JSON.parse(JSON.stringify(instagram)),
-              ],
-            },
-          ],
-        },
-        {
-          type: "object",
-          key: "sliderObject",
-          displayer: "Slider Item",
-          value: [
-            {
-              type: "media",
-              key: "logo",
-              displayer: "Logo",
-              additionalParams: {
-                availableTypes: ["image", "icon"],
-              },
-              value: {
-                type: "icon",
-                name: "",
-              },
-            },
-            {
-              type: "string",
-              key: "subtitle",
-              displayer: "Subtitle",
-              value: "",
-            },
-            {
-              type: "string",
-              key: "title",
-              displayer: "Title",
-              value: "Magnificent ",
-            },
-            {
-              type: "string",
-              key: "description",
-              displayer: "Description",
-              value:
-                "We make structures, dams, bridges, scyscrapers and much more. Resistance, design, flexibility and usability are the main factors that we keep in mind in every project.",
-            },
-            {
-              type: "string",
-              key: "imageTitle",
-              displayer: "Image Title",
-              value: "Structures ",
-            },
-            {
-              type: "media",
-              key: "image",
-              displayer: "Media",
-              additionalParams: {
-                availableTypes: ["image", "video"],
-              },
-              value: {
-                type: "image",
-                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a754bb2f8a5b002ce6cd14?alt=media",
-              },
-            },
-            {
-              type: "string",
-              key: "ctaTitle",
-              displayer: "CTA Title",
-              value: "Stay Tuned",
-            },
-            {
-              type: "string",
-              key: "description1",
-              displayer: "CTA Description",
-              value:
-                "We are 24/7 available through our social media. Follow us to stay up to date",
-            },
-            {
-              type: "array",
-              key: "button",
-              displayer: "Buttons",
-              value: [
-                INPUTS.BUTTON("button", "Button", "Get a quote", "", null, null, "Link")
-              ],
-            },
-            {
-              type: "array",
-              key: "icons",
-              displayer: "Social Media Platforms",
-              value: [
-                JSON.parse(JSON.stringify(twitter)),
-                JSON.parse(JSON.stringify(facebook)),
-                JSON.parse(JSON.stringify(instagram)),
-              ],
-            },
-          ],
-        },
+        slide("https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a754582f8a5b002ce6cce6?alt=media"),
+        slide("https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a754bb2f8a5b002ce6cd14?alt=media"),
       ],
     });
+
+    this.addProp(
+      INPUTS.SLIDER_SETTINGS("settings", "Slider Settings", {
+        dots: false,
+        arrows: false,
+        infinite: true,
+        speed: 2500,
+        autoplay: true,
+        autoplaySpeed: 2500,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        adaptiveHeight: false,
+      })
+    );
     this.setComponentState("slider-ref", React.createRef());
   }
 
@@ -353,247 +245,151 @@ class HeroSection10 extends BaseHeroSection {
     return "Hero Section 10";
   }
 
+  hasMedia(media?: TypeMediaInputValue) {
+    return !!(media && ((media as any).url || (media as any).name));
+  }
+
+  withVideoSettings(media: TypeMediaInputValue) {
+    return media?.type === "video"
+      ? { ...media, settings: { autoplay: true, loop: true, muted: true, controls: false } }
+      : media;
+  }
+
   render() {
-    const autoplay = this.getPropValue("autoplay");
-    const settings = {
-      dots: false,
-      infinite: true,
-      speed: 2500,
-      autoplay: autoplay,
-      autoplaySpeed: 2500,
-      slidesToShow: 1,
-      slidesToScroll: 1,
-    };
+    const settings = this.transformSliderValues(this.getPropValue("settings"));
 
     const slider = this.castToObject<SliderObject[]>("slider");
-    const nextIcon = this.getPropValue("nextIcon");
-    const prevIcon = this.getPropValue("prevIcon");
-    const ampersandIcon = this.getPropValue("ampersandIcon");
-    const index = this.getPropValue("index");
+    const arrows = this.castToObject<Arrows>("arrows");
+    const hasPrev = this.hasMedia(arrows?.prevIcon);
+    const hasNext = this.hasMedia(arrows?.nextIcon);
+    const backgroundIcon = this.getPropValue("backgroundIcon");
+    const hasBackgroundIcon = this.hasMedia(backgroundIcon);
+    const showSlideNumber = this.getPropValue("slideNumber");
+    const showNav = slider.length > 1 && (showSlideNumber || hasPrev || hasNext);
+    const sliderRef = this.getComponentState("slider-ref");
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <ComposerSlider
-            {...settings}
-            ref={this.getComponentState("slider-ref")}
-            className={this.decorateCSS("carousel")}
-          >
+          <ComposerSlider {...settings} ref={sliderRef} className={this.decorateCSS("carousel")}>
             {slider.map((item: SliderObject, indexSlider: number) => {
-              const title = this.castToString(item.title);
-              const description = this.castToString(item.description);
-              const imageTitle = this.castToString(item.imageTitle);
-              const image = item.image;
-              const imageWithSettings = image?.type === "video" ? {
-                ...image,
-                settings: {
-                  autoplay: true,
-                  loop: true,
-                  muted: true,
-                  controls: false
-                }
-              } : image;
-              const topSubtitle = this.castToString(item.subtitle);
-              const ctaTitle = this.castToString(item.ctaTitle);
-              const description1 = this.castToString(item.description1);
-              const leftPage =
-                title ||
-                description ||
-                item.button.length ||
-                nextIcon ||
-                prevIcon;
-              const rightPage = !!(
-                ctaTitle ||
-                description1 ||
-                item.icons.length > 0 ||
-                ampersandIcon
-              );
+              const hasLogo = this.hasMedia(item.logo);
+              const isSubtitleExist = this.castToString(item.subtitle);
+              const isTitleExist = this.castToString(item.title);
+              const isHighlightedTitleExist = this.castToString(item.highlightedTitle);
+              const isDescriptionExist = this.castToString(item.description);
+              const hasImage = this.hasMedia(item.media);
+              const isCtaTitleExist = this.castToString(item.cta?.title);
+              const isCtaDescriptionExist = this.castToString(item.cta?.description);
+              const buttons = (item.buttons || []).filter((buttonItem: INPUTS.CastedButton) => this.castToString(buttonItem.text));
+              const socials = (item.socials || []).filter((socialItem: Social) => this.hasMedia(socialItem.icon));
+              const hasLeftContent = isDescriptionExist || showNav || buttons.length > 0;
+              const leftPage = hasLogo || isSubtitleExist || isTitleExist || isHighlightedTitleExist || hasLeftContent;
+              const hasRightContent = isCtaTitleExist || isCtaDescriptionExist || socials.length > 0;
+              const rightPage = hasRightContent || hasBackgroundIcon;
 
               return (
                 <div
-                  className={
-                    this.decorateCSS("content") +
-                    " " +
-                    (!image ? this.decorateCSS("column-content") : "")
-                  }
+                  className={`${this.decorateCSS("content")} ${!hasImage ? this.decorateCSS("column-content") : ""}`}
                   key={indexSlider}
                 >
                   {leftPage && (
                     <div className={this.decorateCSS("left")}>
-                      <div className={this.decorateCSS("left-container")}>
-                          {item.logo && (
-                            <Base.Media
-                              value={item.logo}
-                              className={this.decorateCSS("logo")}
-                            />
+                      <Base.VerticalContent className={this.decorateCSS("left-container")}>
+                          {hasLogo && <Base.Media value={item.logo} className={this.decorateCSS("logo")} />}
+                          {isSubtitleExist && (
+                            <Base.SectionSubTitle className={this.decorateCSS("subtitleTop")}>{item.subtitle}</Base.SectionSubTitle>
                           )}
-                          {topSubtitle && (
-                            <h5 className={this.decorateCSS("subtitleTop")}>
-                              {item.subtitle}
-                            </h5>
+                          {(isTitleExist || isHighlightedTitleExist) && (
+                            <div className={this.decorateCSS("title-wrapper")}>
+                              {isTitleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{item.title}</Base.SectionTitle>}
+                              {isHighlightedTitleExist && (
+                                <Base.H1
+                                  className={`${this.decorateCSS("imagetitle")} ${hasImage ? this.decorateCSS("imagetitleWhite") : ""}`}
+                                >
+                                  {item.highlightedTitle}
+                                </Base.H1>
+                              )}
+                            </div>
                           )}
-                          {(title || imageTitle) && (
-                        <div className={this.decorateCSS("title-wrapper")}>
-                          {title && (
-                            <h1 className={this.decorateCSS("title")}>
-                              {item.title}
-                            </h1>
+                      {hasLeftContent && (
+                        <div
+                          className={`${this.decorateCSS("left-page-content")} ${
+                            !hasImage ? this.decorateCSS("column-left-page-content") : ""
+                          }`}
+                        >
+                          {isDescriptionExist && (
+                            <Base.SectionDescription className={this.decorateCSS("description")}>{item.description}</Base.SectionDescription>
                           )}
-                          {imageTitle && (
-                            <h1 className={`${this.decorateCSS("imagetitle")} ${image && this.decorateCSS("imagetitleWhite")}`}>
-                              {item.imageTitle}
-                            </h1>
+                          {showNav && (
+                            <div className={this.decorateCSS("nav-buttons")}>
+                              {showSlideNumber && (
+                                <Base.P className={this.decorateCSS("slide_number")}>{String(indexSlider + 1).padStart(2, "0")}</Base.P>
+                              )}
+                              {(hasPrev || hasNext) && (
+                                <div className={this.decorateCSS("iconsSection")}>
+                                  {hasPrev && (
+                                    <div className={this.decorateCSS("prev_icon_wrapper")} onClick={() => sliderRef.current?.slickPrev()}>
+                                      <Base.Media value={arrows.prevIcon} className={this.decorateCSS("prev_icon")} />
+                                    </div>
+                                  )}
+                                  {hasNext && (
+                                    <div className={this.decorateCSS("next_icon_wrapper")} onClick={() => sliderRef.current?.slickNext()}>
+                                      <Base.Media value={arrows.nextIcon} className={this.decorateCSS("next_icon")} />
+                                    </div>
+                                  )}
+                                </div>
+                              )}
+                            </div>
                           )}
+                          {buttons.map((buttonItem: INPUTS.CastedButton, buttonIndex: number) => (
+                            <div key={buttonIndex} className={this.decorateCSS("button-section")}>
+                              {this.getPropValue("line") && <div className={this.decorateCSS("line")} />}
+                              <ComposerLink path={buttonItem.url}>
+                                <Base.Button buttonType={buttonItem.type} className={this.decorateCSS("button")}>
+                                  <Base.P className={this.decorateCSS("button-text")}>{buttonItem.text}</Base.P>
+                                </Base.Button>
+                              </ComposerLink>
+                            </div>
+                          ))}
                         </div>
                       )}
-                      <div
-                        className={
-                          this.decorateCSS("left-page-content") +
-                          " " +
-                          (!image
-                            ? this.decorateCSS("column-left-page-content")
-                            : "")
-                        }
-                      >
-                        {description && (
-                          <p className={this.decorateCSS("description")}>
-                            {item.description}
-                          </p>
-                        )}
-                        {slider.length > 1 && (
-                          <div className={this.decorateCSS("nav-buttons")}>
-                            {index &&
-                              (<div className={this.decorateCSS("slide_number")}>
-                                {String(indexSlider + 1).padStart(2, "0")}
-                              </div>)
-                            }
-                            {(this.getPropValue("prevIcon") || this.getPropValue("nextIcon")) && (
-                              <div className={this.decorateCSS("iconsSection")}>
-                                {this.getPropValue("prevIcon") && (
-                                  <div 
-                                    className={this.decorateCSS("prev_icon_wrapper")}
-                                    onClick={() => {
-                                      this.getComponentState(
-                                        "slider-ref"
-                                      ).current.slickPrev();
-                                    }}
-                                  >
-                                    <Base.Media
-                                      value={this.getPropValue("prevIcon")}
-                                      className={`${this.decorateCSS("prev_icon")}`}
-                                    />
-                                  </div>
-                                )}
-                                {this.getPropValue("nextIcon") && (
-                                  <div 
-                                    className={this.decorateCSS("next_icon_wrapper")}
-                                    onClick={() => {
-                                      this.getComponentState(
-                                        "slider-ref"
-                                      ).current.slickNext();
-                                    }}
-                                  >
-                                    <Base.Media
-                                      value={this.getPropValue("nextIcon")}
-                                      className={`${this.decorateCSS("next_icon")}`}
-                                    />
-                                  </div>
-                                )}
-                              </div>
-                            )}
-                          </div>
-                        )}
-                        {item.button.map(
-                          (buttonItem: INPUTS.CastedButton) => {
-                            const buttonText = this.castToString(
-                              buttonItem.text
-                            );
-                            if (buttonText)
-                              return (
-                                <div
-                                  className={this.decorateCSS(
-                                    "button-section"
-                                  )}
-                                >
-                                  {this.getPropValue("lineActive") && (
-                                    <div
-                                      className={this.decorateCSS("line")}
-                                    />
-                                  )}
-                                  <ComposerLink path={buttonItem.url}>
-                                    <Base.Button buttonType={buttonItem.type}
-                                      className={this.decorateCSS("button")}
-                                    >
-                                      <Base.P className={this.decorateCSS("button-text")}>{buttonItem.text}</Base.P>
-                                    </Base.Button>
-                                  </ComposerLink>
-                                </div>
-                              );
-                          }
-                        )}
-                      </div>
-                    </div>
-                        
+                      </Base.VerticalContent>
                     </div>
                   )}
-                  {image && (
+                  {hasImage && (
                     <div className={this.decorateCSS("middle")}>
-                      {image && (
-                        <div className={this.decorateCSS("image-wrapper")}>
-                          <Base.Media
-                            className={this.decorateCSS("image")}
-                            value={imageWithSettings}
-                          />
-                          {this.getPropValue("overlay") && image && (image.type === "image" || image.type === "video") && image.url && (
-                            <div className={this.decorateCSS("overlay")} />
-                          )}
-                        </div>
-                      )}
+                      <div className={this.decorateCSS("image-wrapper")}>
+                        <Base.Media className={this.decorateCSS("image")} value={this.withVideoSettings(item.media)} />
+                        {this.getPropValue("overlay") && <div className={this.decorateCSS("overlay")} />}
+                      </div>
                     </div>
                   )}
                   {rightPage && (
                     <div className={this.decorateCSS("right")}>
-                      {
-                        <div className={this.decorateCSS("icon")}>
-                          <Base.Media
-                            value={this.getPropValue("ampersandIcon")}
-                            className={this.decorateCSS("ampersand-icon")}
-                          />
+                      {hasBackgroundIcon && (
+                        <div className={this.decorateCSS("background-icon-wrapper")}>
+                          <Base.Media value={backgroundIcon} className={this.decorateCSS("ampersand-icon")} />
                         </div>
-                      }
+                      )}
 
-                      {(ctaTitle || description1 || item.icons.length > 0) && (
+                      {hasRightContent && (
                         <div
-                          className={
-                            this.decorateCSS("right-page-content") +
-                            " " +
-                            (!image
-                              ? this.decorateCSS("column-right-page-content")
-                              : "")
-                          }
+                          className={`${this.decorateCSS("right-page-content")} ${
+                            !hasImage ? this.decorateCSS("column-right-page-content") : ""
+                          }`}
                         >
-                          {ctaTitle && (
-                            <h2 className={this.decorateCSS("rightSubtitle")}>
-                              {item.ctaTitle}
-                            </h2>
-                          )}
-                          {description1 && (
-                            <p className={this.decorateCSS("description1")}>
-                              {item.description1}
-                            </p>
-                          )}
-                          <div className={this.decorateCSS("icon-group")}>
-                            {item.icons.map(
-                              (item: any) => (
-                                <ComposerLink key={item.getPropValue("url")} path={item.getPropValue("url")}>
-                                  <Base.Media
-                                    value={item.getPropValue("icon")}
-                                    className={this.decorateCSS("icon")}
-                                  />
+                          {isCtaTitleExist && <Base.H3 className={this.decorateCSS("rightSubtitle")}>{item.cta.title}</Base.H3>}
+                          {isCtaDescriptionExist && <Base.P className={this.decorateCSS("description1")}>{item.cta.description}</Base.P>}
+                          {socials.length > 0 && (
+                            <div className={this.decorateCSS("icon-group")}>
+                              {socials.map((socialItem: Social, socialIndex: number) => (
+                                <ComposerLink key={socialIndex} path={socialItem.url}>
+                                  <Base.Media value={socialItem.icon} className={this.decorateCSS("social-icon")} />
                                 </ComposerLink>
-                              )
-                            )}
-                          </div>
+                              ))}
+                            </div>
+                          )}
                         </div>
                       )}
                     </div>

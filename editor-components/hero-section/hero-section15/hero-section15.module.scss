@@ -29,10 +29,7 @@
     display: flex;
     position: relative;
     z-index: 2;
-    .wrapper {
-      display: flex;
-      height: 100%;
-      max-width: 100%;
+    max-width: 100%;
       
       .left {
         display: flex;
@@ -49,21 +46,15 @@
           .content {
             align-items: baseline;
 
-            .logo-wrapper {
-              margin-bottom: var(--composer-gap-md);
-              width: auto;
+            .logo {
               max-width: 200px;
-
-              .logo {
-                width: 100%;
-                height: auto;
-                display: block;
-                object-fit: contain;
-                font-size: 2rem;
-                color: var(--composer-font-color-primary);
-                &.logo-with-image {
-                  color: black;
-                }
+              height: auto;
+              display: block;
+              object-fit: contain;
+              font-size: 2rem;
+              color: var(--composer-font-color-primary);
+              &.logo-with-image {
+                color: black;
               }
             }
 
@@ -189,22 +180,13 @@
         align-items: center;
         justify-content: center;
         max-width: 50%;
-        
-        .image-wrapper {
+
+        .image {
           width: 100%;
           height: 100%;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          
-          .image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-          }
+          object-fit: cover;
         }
       }
-    }
   }
 
   &.no-image {
@@ -222,7 +204,6 @@
     height: fit-content !important;
     .max-content {
       height: 100% !important;
-      .wrapper {
         align-items: stretch;
         .left {
           padding: 0;
@@ -250,18 +231,11 @@
           display: flex;
           align-items: stretch;
           overflow: hidden;
-          .image-wrapper {
-            padding: 0;
+          .image {
+            max-height: 100%;
             height: 100%;
-            display: flex;
-            align-items: stretch;
-            .image {
-              max-height: 100%;
-              height: 100%;
-            }
           }
         }
-      }
     }
   }
 }
@@ -269,7 +243,6 @@
   .container {
     .max-content {
       height: auto;
-      .wrapper {
         flex-direction: column;
         
         .left {
@@ -308,23 +281,15 @@
         
         .right {
           max-width: 100%;
-          .image-wrapper {
+          overflow: hidden;
+
+          .image {
             width: 100%;
             height: auto;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-
-            .image {
-              width: 100%;
-              height: auto;
-              object-fit: cover;
-              max-height: 40vh;
-            }
+            object-fit: cover;
+            max-height: 40vh;
           }
         }
-      }
     }
   }
 }

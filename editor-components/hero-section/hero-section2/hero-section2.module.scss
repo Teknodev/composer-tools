@@ -103,8 +103,11 @@
             border-radius: var(--composer-border-radius-md);
           }
 
+          .card-content {
+            width: 100%;
+          }
+
           .logo {
-            margin-bottom: var(--composer-gap-sm);
             font-size: 3rem;
             color: var(--composer-font-color-primary);
             aspect-ratio: 3/1;
@@ -113,7 +116,7 @@
           }
 
           .category {
-            border-radius: var(--composer-border-radius-md);
+            border-radius: var(--composer-border-radius-sm);
             background-color: var(--composer-primary-color);
             color: var(--composer-font-color-secondary);
             position: absolute;
@@ -126,15 +129,19 @@
             width: fit-content;
             @include textEllipsis(1);
           }
+          .subtitle {
+            max-width: 100%;
+          }
           .title {
             max-width: 100%;
-            margin-bottom: var(--composer-gap-xs);
+            font-size: calc(1.5 * var(--composer-font-size-md));
             color: var(--composer-font-color-primary);
             @include textEllipsis(3);
             text-align: left;
           }
           .description {
             width: 100%;
+            font-size: var(--composer-font-size-md);
             color: var(--composer-font-color-primary);
             max-width: 100%;
             @include textEllipsis(5);
@@ -154,9 +161,12 @@
               margin: 0;
               font-size: 0.75rem;
             }
-            .dot::before {
-              content: "•";
-              font-size: 1.25rem;
+            .dot-separator {
+              width: 4px;
+              height: 4px;
+              flex-shrink: 0;
+              border-radius: 50%;
+              background-color: currentColor;
             }
             .date {
               text-transform: uppercase;
@@ -294,6 +304,12 @@
             max-width: 50%;
             width: 50%;
 
+            .title {
+              font-size: calc(1.25 * var(--composer-font-size-md)) !important;
+            }
+            .description {
+              font-size: calc(0.85 * var(--composer-font-size-md)) !important;
+            }
             .date-author {
               .author,
               .date {
@@ -373,8 +389,11 @@
             left: unset !important;
             top: unset !important;
           }
-          .title {
-            @include textEllipsis(2, !important);
+          .card {
+            .title {
+              font-size: calc(1.125 * var(--composer-font-size-md)) !important;
+              @include textEllipsis(2, !important);
+            }
           }
         }
       }

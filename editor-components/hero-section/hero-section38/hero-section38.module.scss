@@ -33,8 +33,7 @@
     flex-direction: column;
     gap: var(--composer-gap-md);
 
-    .top,
-    .bottom {
+    .row {
       flex: 1 1 50%;
       display: flex;
       gap: var(--composer-gap-md);
@@ -116,6 +115,7 @@
   .background-media~.content {
     color: white !important;
 
+    .logo,
     .subtitle,
     .title,
     .description,
@@ -141,7 +141,7 @@
     transition: transform 0.6s cubic-bezier(0.61, 1, 0.88, 1);
   }
 
-  &[data-animation~="animate1"] {
+  .item[data-animation~="Animate1"] {
     .background-media .media-element {
       transform: translateX(-6px);
     }
@@ -157,7 +157,7 @@
     }
   }
 
-  &[data-animation~="animate2"] {
+  .item[data-animation~="Animate2"] {
     .background-media .media-element {
       transform: scale(1);
     }
@@ -187,6 +187,13 @@
 
     .vertical-content {
       align-items: flex-start !important;
+    }
+
+    .logo {
+      font-size: 2.5rem;
+      max-width: 6rem;
+      max-height: 4rem;
+      object-fit: contain;
     }
 
     .action-buttons {
@@ -285,8 +292,7 @@
         gap: var(--composer-gap-md);
         height: auto;
 
-        .top,
-        .bottom {
+        .row {
           gap: var(--composer-gap-md);
         }
       }
@@ -315,8 +321,7 @@
         flex-direction: column;
       }
 
-      .right .top,
-      .right .bottom {
+      .right .row {
         flex-direction: column;
       }
 

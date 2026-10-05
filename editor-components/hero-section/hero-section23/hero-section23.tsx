@@ -1,20 +1,108 @@
 import * as React from "react";
 import styles from "./hero-section23.module.scss";
-import { BaseHeroSection, TypeMediaInputValue } from "../../EditorComponent";
+import { BaseHeroSection, TypeMediaInputValue, TypeUsableComponentProps } from "../../EditorComponent";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import { Base } from "../../../composer-base-components/base/base";
+import { INPUTS } from "../../../custom-hooks/input-templates";
 
-
-type SliderItem = {
-  topImage: TypeMediaInputValue;
-  upperText: React.JSX.Element;
-  bottomText: React.JSX.Element;
+type Backgrounds = {
   background1: TypeMediaInputValue;
   background2: TypeMediaInputValue;
   background3: TypeMediaInputValue;
   background4: TypeMediaInputValue;
+};
+
+type SliderItem = {
+  logo: TypeMediaInputValue;
+  subtitle: React.JSX.Element;
+  title: React.JSX.Element;
+  secondaryTitle: React.JSX.Element;
+  description: React.JSX.Element;
+  topMedia: TypeMediaInputValue;
+  backgrounds: Backgrounds;
   baseColor: string;
 };
+
+type Navigation = {
+  prevIcon: TypeMediaInputValue;
+  nextIcon: TypeMediaInputValue;
+};
+
+const media = (key: string, displayer: string, url: string): TypeUsableComponentProps => ({
+  type: "media",
+  key,
+  displayer,
+  additionalParams: {
+    availableTypes: ["image", "video"],
+  },
+  value: {
+    type: "image",
+    url,
+  },
+});
+
+const slide = (
+  title: string,
+  secondaryTitle: string,
+  topMedia: string,
+  backgrounds: string[],
+  baseColor: string
+): TypeUsableComponentProps => ({
+  type: "object",
+  key: "item",
+  displayer: "Item",
+  value: [
+    {
+      type: "media",
+      key: "logo",
+      displayer: "Logo",
+      additionalParams: {
+        availableTypes: ["image", "icon"],
+      },
+      value: {
+        type: "icon",
+        name: "",
+      },
+    },
+    {
+      type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "",
+    },
+    {
+      type: "string",
+      key: "title",
+      displayer: "Title",
+      value: title,
+    },
+    {
+      type: "string",
+      key: "secondaryTitle",
+      displayer: "Secondary Title",
+      value: secondaryTitle,
+    },
+    {
+      type: "string",
+      key: "description",
+      displayer: "Description",
+      value: "",
+    },
+    media("topMedia", "Top Media", topMedia),
+    {
+      type: "object",
+      key: "backgrounds",
+      displayer: "Backgrounds",
+      value: backgrounds.map((url, index) => media(`background${index + 1}`, `Background ${index + 1}`, url)),
+    },
+    {
+      type: "color",
+      key: "baseColor",
+      displayer: "Color",
+      value: baseColor,
+    },
+  ],
+});
 
 class HeroSection23 extends BaseHeroSection {
   constructor(props?: any) {
@@ -25,261 +113,24 @@ class HeroSection23 extends BaseHeroSection {
       displayer: "Slider",
       key: "slider",
       value: [
-        {
-          type: "object",
-          displayer: "Item",
-          key: "item",
-          value: [
-            {
-              type: "media",
-              displayer: "Top Media",
-              key: "topImage",
-              additionalParams: {
-                availableTypes: ["image", "video"],
-              },
-              value: {
-                type: "image",
-                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619e2fbd2970002c6266cc?alt=media&timestamp=1719483639150",
-              },
-            },
-            {
-              type: "string",
-              displayer: "Upper Text",
-              key: "upperText",
-              value: "ALMOND",
-            },
-            {
-              type: "string",
-              displayer: "Bottom Text",
-              key: "bottomText",
-              value: "MUFFINS",
-            },
-            {
-              type: "media",
-              displayer: "Background 1",
-              key: "background1",
-              additionalParams: {
-                availableTypes: ["image", "video"],
-              },
-              value: {
-                type: "image",
-                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619e2fbd2970002c6266cd?alt=media&timestamp=1719483639150",
-              },
-            },
-            {
-              type: "media",
-              displayer: "Background 2",
-              key: "background2",
-              additionalParams: {
-                availableTypes: ["image", "video"],
-              },
-              value: {
-                type: "image",
-                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619e2fbd2970002c6266ce?alt=media&timestamp=1719483639150",
-              },
-            },
-            {
-              type: "media",
-              displayer: "Background 3",
-              key: "background3",
-              additionalParams: {
-                availableTypes: ["image", "video"],
-              },
-              value: {
-                type: "image",
-                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619e2fbd2970002c6266d0?alt=media&timestamp=1719483639150",
-              },
-            },
-            {
-              type: "media",
-              displayer: "Background 4",
-              key: "background4",
-              additionalParams: {
-                availableTypes: ["image", "video"],
-              },
-              value: {
-                type: "image",
-                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619e2fbd2970002c6266cf?alt=media&timestamp=1719483639150",
-              },
-            },
-            {
-              type: "color",
-              key: "baseColor",
-              displayer: "Color",
-              value: "rgba(186, 226, 255, 0.8)",
-            },
-          ],
-        },
-        {
-          type: "object",
-          displayer: "Item",
-          key: "item",
-          value: [
-            {
-              type: "media",
-              displayer: "Top Media",
-              key: "topImage",
-              additionalParams: {
-                availableTypes: ["image"],
-              },
-              value: {
-                type: "image",
-                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619e2fbd2970002c6266c7?alt=media&timestamp=1719483639150",
-              },
-            },
-            {
-              type: "string",
-              displayer: "Upper Text",
-              key: "upperText",
-              value: "SWEET",
-            },
-            {
-              type: "string",
-              displayer: "Bottom Text",
-              key: "bottomText",
-              value: "DONUTS",
-            },
-            {
-              type: "media",
-              displayer: "Background 1",
-              key: "background1",
-              additionalParams: {
-                availableTypes: ["image"],
-              },
-              value: {
-                type: "image",
-                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619e2fbd2970002c6266c8?alt=media&timestamp=1719483639150",
-              },
-            },
-            {
-              type: "media",
-              displayer: "Background 2",
-              key: "background2",
-              additionalParams: {
-                availableTypes: ["image"],
-              },
-              value: {
-                type: "image",
-                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619e2fbd2970002c6266c8?alt=media&timestamp=1719483639150",
-              },
-            },
-            {
-              type: "media",
-              displayer: "Background 3",
-              key: "background3",
-              additionalParams: {
-                availableTypes: ["image"],
-              },
-              value: {
-                type: "image",
-                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619e2fbd2970002c6266c8?alt=media&timestamp=1719483639150",
-              },
-            },
-            {
-              type: "media",
-              displayer: "Background 4",
-              key: "background4",
-              additionalParams: {
-                availableTypes: ["image"],
-              },
-              value: {
-                type: "image",
-                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619e2fbd2970002c6266cb?alt=media&timestamp=1719483639150",
-              },
-            },
-            {
-              type: "color",
-              key: "baseColor",
-              displayer: "Color",
-              value: "rgba(255, 162, 173, 0.8)",
-            },
-          ],
-        },
-        {
-          type: "object",
-          displayer: "Item",
-          key: "item",
-          value: [
-            {
-              type: "media",
-              displayer: "Top Media",
-              key: "topImage",
-              additionalParams: {
-                availableTypes: ["image"],
-              },
-              value: {
-                type: "image",
-                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619e2fbd2970002c6266d3?alt=media&timestamp=1719483639150",
-              },
-            },
-            {
-              type: "string",
-              displayer: "Upper Text",
-              key: "upperText",
-              value: "BELGIAN",
-            },
-            {
-              type: "string",
-              displayer: "Bottom Text",
-              key: "bottomText",
-              value: "WAFFLES",
-            },
-            {
-              type: "media",
-              displayer: "Background 1",
-              key: "background1",
-              additionalParams: {
-                availableTypes: ["image"],
-              },
-              value: {
-                type: "image",
-                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619e2fbd2970002c6266d4?alt=media&timestamp=1719483639150",
-              },
-            },
-            {
-              type: "media",
-              displayer: "Background 2",
-              key: "background2",
-              additionalParams: {
-                availableTypes: ["image"],
-              },
-              value: {
-                type: "image",
-                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619e2fbd2970002c6266d2?alt=media&timestamp=1719483639150",
-              },
-            },
-            {
-              type: "media",
-              displayer: "Background 3",
-              key: "background3",
-              additionalParams: {
-                availableTypes: ["image"],
-              },
-              value: {
-                type: "image",
-                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619e2fbd2970002c6266d1?alt=media&timestamp=1719483639150",
-              },
-            },
-            {
-              type: "media",
-              displayer: "Background 4",
-              key: "background4",
-              additionalParams: {
-                availableTypes: ["image"],
-              },
-              value: {
-                type: "image",
-                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/69381480875e15002c5f6d55?alt=media",
-              },
-            },
-            {
-              type: "color",
-              key: "baseColor",
-              displayer: "Color",
-              value: "rgba(255, 190, 162, 0.8)",
-            },
-          ],
-        },
+        slide("ALMOND", "MUFFINS", "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619e2fbd2970002c6266cc?alt=media&timestamp=1719483639150", [
+          "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619e2fbd2970002c6266cd?alt=media&timestamp=1719483639150",
+          "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619e2fbd2970002c6266ce?alt=media&timestamp=1719483639150",
+          "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619e2fbd2970002c6266d0?alt=media&timestamp=1719483639150",
+          "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619e2fbd2970002c6266cf?alt=media&timestamp=1719483639150",
+        ], "rgba(186, 226, 255, 0.8)"),
+        slide("SWEET", "DONUTS", "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619e2fbd2970002c6266c7?alt=media&timestamp=1719483639150", [
+          "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619e2fbd2970002c6266c8?alt=media&timestamp=1719483639150",
+          "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619e2fbd2970002c6266c8?alt=media&timestamp=1719483639150",
+          "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619e2fbd2970002c6266c8?alt=media&timestamp=1719483639150",
+          "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619e2fbd2970002c6266cb?alt=media&timestamp=1719483639150",
+        ], "rgba(255, 162, 173, 0.8)"),
+        slide("BELGIAN", "WAFFLES", "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619e2fbd2970002c6266d3?alt=media&timestamp=1719483639150", [
+          "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619e2fbd2970002c6266d4?alt=media&timestamp=1719483639150",
+          "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619e2fbd2970002c6266d2?alt=media&timestamp=1719483639150",
+          "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619e2fbd2970002c6266d1?alt=media&timestamp=1719483639150",
+          "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/69381480875e15002c5f6d55?alt=media",
+        ], "rgba(255, 190, 162, 0.8)"),
       ],
     });
     this.addProp({
@@ -301,43 +152,55 @@ class HeroSection23 extends BaseHeroSection {
       value: true,
     });
     this.addProp({
-      type: "media",
-      key: "previousArrow",
-      displayer: "Previous Icon",
-      additionalParams: {
-        availableTypes: ["icon", "image"],
-      },
-      value: {
-        type: "icon",
-        name: "IoIosArrowBack",
-      },
+      type: "object",
+      key: "arrows",
+      displayer: "Arrows",
+      value: [
+        {
+          type: "media",
+          key: "prevIcon",
+          displayer: "Previous Icon",
+          additionalParams: {
+            availableTypes: ["icon", "image"],
+          },
+          value: {
+            type: "icon",
+            name: "IoIosArrowBack",
+          },
+        },
+        {
+          type: "media",
+          key: "nextIcon",
+          displayer: "Next Icon",
+          additionalParams: {
+            availableTypes: ["icon", "image"],
+          },
+          value: {
+            type: "icon",
+            name: "IoIosArrowForward",
+          },
+        },
+      ],
     });
-    this.addProp({
-      type: "media",
-      key: "nextArrow",
-      displayer: "Next Icon",
-      additionalParams: {
-        availableTypes: ["icon", "image"],
-      },
-      value: {
-        type: "icon",
-        name: "IoIosArrowForward",
-      },
-    });
-
-    this.addProp({
-      type: "boolean",
-      key: "autoplay",
-      displayer: "Autoplay",
-      value: true,
-    });
-
     this.addProp({
       type: "boolean",
       displayer: "Wave",
       key: "wave",
       value: true,
-    })
+    });
+    this.addProp(
+      INPUTS.SLIDER_SETTINGS("settings", "Slider Settings", {
+        dots: true,
+        arrows: true,
+        infinite: true,
+        speed: 440,
+        autoplay: true,
+        autoplaySpeed: 5000,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        adaptiveHeight: false,
+      })
+    );
 
     this.setComponentState("active", 0);
     this.setComponentState("slider-ref", React.createRef());
@@ -406,16 +269,22 @@ class HeroSection23 extends BaseHeroSection {
     return "Hero Section 23";
   }
 
+  hasMedia(media?: unknown) {
+    return !!(media && ((media as any).url || (media as any).name));
+  }
+
+  withVideoSettings(media: TypeMediaInputValue) {
+    return media?.type === "video"
+      ? { ...media, settings: { autoplay: true, loop: true, muted: true, controls: false } }
+      : media;
+  }
+
   render() {
+    const sliderSettings = this.transformSliderValues(this.getPropValue("settings"));
     const settings = {
-      arrows: true,
+      ...sliderSettings,
+      arrows: false,
       dots: false,
-      infinite: true,
-      speed: 440,
-      autoplay: this.getPropValue("autoplay"),
-      autoplaySpeed: 5000,
-      slidesToShow: 1,
-      slidesToScroll: 1,
       beforeChange: (_current: number, next: number) => {
         if (this.getComponentState("active") !== next) {
           this.setComponentState("active", next);
@@ -427,14 +296,14 @@ class HeroSection23 extends BaseHeroSection {
     const activeSlide = this.getComponentState("active");
     const sliderRef = this.getComponentState("slider-ref");
 
-    const isVideo = (m?: TypeMediaInputValue) => !!(m && m.type === "video");
-
-    const nextArrow = this.getPropValue("nextArrow") as TypeMediaInputValue | undefined;
-    const previousArrow = this.getPropValue("previousArrow") as TypeMediaInputValue | undefined;
+    const navigation = this.castToObject<Navigation>("arrows");
+    const showArrows = sliderSettings.arrows && slider.length > 1;
+    const showDots = sliderSettings.dots && slider.length > 1;
 
     const mouseMoveActive = this.getPropValue("mouseMoveActivation");
     const animateActive = this.getPropValue("animateActivation");
     const waveActive = this.getPropValue("wave");
+    const animateClass = (isActive: boolean) => (isActive && animateActive ? this.decorateCSS("animate") : "");
 
     return (
       <div
@@ -443,35 +312,35 @@ class HeroSection23 extends BaseHeroSection {
       >
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("wrapper")}>
-            {slider.length > 1 && previousArrow && (
+            {showArrows && this.hasMedia(navigation?.prevIcon) && (
               <div
                 className={this.decorateCSS("prevArrow")}
                 onClick={() => {
                   sliderRef.current.slickPrev();
                 }}
               >
-                <Base.Media className={this.decorateCSS("icon")} value={previousArrow} />
+                <Base.Media className={this.decorateCSS("icon")} value={navigation.prevIcon} />
               </div>
             )}
-            {slider.length > 1 && nextArrow && (
+            {showArrows && this.hasMedia(navigation?.nextIcon) && (
               <div
                 className={this.decorateCSS("nextArrow")}
                 onClick={() => {
                   sliderRef.current.slickNext();
                 }}
               >
-                <Base.Media className={this.decorateCSS("icon")} value={nextArrow} />
+                <Base.Media className={this.decorateCSS("icon")} value={navigation.nextIcon} />
               </div>
             )}
-            {slider.length > 1 && (
+            {showDots && (
               <ul className={this.decorateCSS("dots")}>
                 {slider.map((_, index) => (
                   <li
                     key={`dot-${index}`}
-                    className={activeSlide === index ? this.decorateCSS("slick-active") : undefined}
+                    className={`${this.decorateCSS("dot-item")} ${activeSlide === index ? this.decorateCSS("slick-active") : ""}`}
                     onClick={() => sliderRef.current.slickGoTo(index)}
                   >
-                    <button />
+                    <div className={this.decorateCSS("dot")} />
                   </li>
                 ))}
               </ul>
@@ -485,87 +354,89 @@ class HeroSection23 extends BaseHeroSection {
                     ? item.baseColor
                     : "rgba(186, 226, 255, 0.8)";
                 const colors = this.getColorVariations(baseColor);
+                const backgrounds = item.backgrounds || ({} as Backgrounds);
+                const logoExist = this.hasMedia(item.logo);
+                const subtitleExist = this.castToString(item.subtitle);
+                const titleExist = this.castToString(item.title);
+                const secondaryTitleExist = this.castToString(item.secondaryTitle);
+                const descriptionExist = this.castToString(item.description);
 
                 return (
                   <div className={this.decorateCSS("items")} key={`key${index}`}>
-                    <div 
+                    <div
                       className={this.decorateCSS("wrapper-slick")}
                       style={{ backgroundColor: colors.section }}
                     >
-                      {item.background1 && (
+                      {this.hasMedia(backgrounds.background1) && (
                         <div className={this.decorateCSS("header23-background1-wrapper")}>
                           <Base.Media
-                            value={item.background1}
-                            className={`${this.decorateCSS("background1")} ${isActive && animateActive && this.decorateCSS("animate")}`}
-                            {...(isVideo(item.background1) ? { autoPlay: true, muted: true, loop: true, playsInline: true } : {})}
+                            value={this.withVideoSettings(backgrounds.background1)}
+                            className={`${this.decorateCSS("background1")} ${animateClass(isActive)}`}
                           />
                         </div>
                       )}
 
-                      {item.background3 && (
+                      {this.hasMedia(backgrounds.background3) && (
                         <div className={this.decorateCSS("header23-background3-wrapper")}>
                           <Base.Media
-                            value={item.background3}
-                            className={`${this.decorateCSS("background3")} ${isActive && animateActive && this.decorateCSS("animate")}`}
-                            {...(isVideo(item.background3) ? { autoPlay: true, muted: true, loop: true, playsInline: true } : {})}
+                            value={this.withVideoSettings(backgrounds.background3)}
+                            className={`${this.decorateCSS("background3")} ${animateClass(isActive)}`}
                           />
                         </div>
                       )}
-                      {item.topImage && (
+                      {this.hasMedia(item.topMedia) && (
                         <div className={this.decorateCSS("header23-wrapper-topImg")}>
                           <Base.Media
-                            value={item.topImage}
-                            className={`${this.decorateCSS("top-img")} ${isActive && animateActive && this.decorateCSS("animate")}`}
-                            {...(isVideo(item.topImage) ? { autoPlay: true, muted: true, loop: true, playsInline: true, controls: false } : {})}
+                            value={this.withVideoSettings(item.topMedia)}
+                            className={`${this.decorateCSS("top-img")} ${animateClass(isActive)}`}
                           />
                         </div>
                       )}
-                      {item.background2 && (
+                      {this.hasMedia(backgrounds.background2) && (
                         <div className={this.decorateCSS("header23-background2-wrapper")}>
                           <Base.Media
-                            value={item.background2}
-                            className={`${this.decorateCSS("background2")} ${isActive && animateActive && this.decorateCSS("animate")}`}
-                            {...(isVideo(item.background2) ? { autoPlay: true, muted: true, loop: true, playsInline: true, controls: false } : {})}
+                            value={this.withVideoSettings(backgrounds.background2)}
+                            className={`${this.decorateCSS("background2")} ${animateClass(isActive)}`}
                           />
                         </div>
                       )}
-                      {item.background4 && (
+                      {this.hasMedia(backgrounds.background4) && (
                         <div className={this.decorateCSS("header23-img-bg")}>
                           <Base.Media
-                            value={item.background4}
-                            className={`${this.decorateCSS("img-background")} ${isActive && animateActive && this.decorateCSS("animate")}`}
-                            {...(isVideo(item.background4) ? { autoPlay: true, muted: true, loop: true, playsInline: true, controls: false } : {})}
+                            value={this.withVideoSettings(backgrounds.background4)}
+                            className={`${this.decorateCSS("img-background")} ${animateClass(isActive)}`}
                           />
                         </div>
                       )}
 
-                      {this.castToString(item.upperText) && (
+                      {(logoExist || subtitleExist || titleExist) && (
                         <div className={this.decorateCSS("header23-wrapper-upperText")}>
-                          <div
-                            className={`${this.decorateCSS("upper-text")} 
-                          ${isActive && animateActive && this.decorateCSS("animate")}`}
-                          >
-                            {item.upperText}
-                          </div>
+                          <Base.VerticalContent className={`${this.decorateCSS("upper-content")} ${animateClass(isActive)}`}>
+                            {logoExist && <Base.Media value={item.logo} className={this.decorateCSS("logo")} />}
+                            {subtitleExist && (
+                              <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{item.subtitle}</Base.SectionSubTitle>
+                            )}
+                            {titleExist && <Base.SectionTitle className={this.decorateCSS("upper-text")}>{item.title}</Base.SectionTitle>}
+                          </Base.VerticalContent>
                         </div>
                       )}
 
-                      {this.castToString(item.bottomText) && (
+                      {(secondaryTitleExist || descriptionExist) && (
                         <div className={this.decorateCSS("header23-wrapper-lowerText")}>
-                          <div
-                            className={`${this.decorateCSS("lower-text")} 
-                          ${isActive && animateActive && this.decorateCSS("animate")}`}
-                          >
-                            {item.bottomText}
-                          </div>
+                          <Base.VerticalContent className={`${this.decorateCSS("lower-content")} ${animateClass(isActive)}`}>
+                            {secondaryTitleExist && <Base.H1 className={this.decorateCSS("lower-text")}>{item.secondaryTitle}</Base.H1>}
+                            {descriptionExist && (
+                              <Base.SectionDescription className={this.decorateCSS("description")}>{item.description}</Base.SectionDescription>
+                            )}
+                          </Base.VerticalContent>
                         </div>
                       )}
                       {this.getPropValue("circleActivation") && (
                         <div
-                          className={`${this.decorateCSS("circle")} ${isActive && animateActive && this.decorateCSS("animate")}`}
+                          className={`${this.decorateCSS("circle")} ${animateClass(isActive)}`}
                           style={{ backgroundColor: colors.circle }}
                         >
-                          <div 
+                          <div
                             className={this.decorateCSS("innerCircle")}
                             style={{ backgroundColor: colors.innerCircle }}
                           ></div>
@@ -589,4 +460,3 @@ class HeroSection23 extends BaseHeroSection {
 }
 
 export default HeroSection23;
-

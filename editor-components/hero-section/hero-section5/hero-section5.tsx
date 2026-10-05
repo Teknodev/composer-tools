@@ -46,8 +46,8 @@ class HeroSection5 extends BaseHeroSection {
     });
     this.addProp({
       type: "media",
-      key: "backgroundImage",
-      displayer: "Media",
+      key: "backgroundMedia",
+      displayer: "Background Media",
       additionalParams: {
         availableTypes: ["image", "video"],
       },
@@ -77,11 +77,13 @@ class HeroSection5 extends BaseHeroSection {
     const title = this.getPropValue("title");
     const description = this.getPropValue("description");
     const overlay = this.getPropValue("overlay");
-    const backgroundImage = this.getPropValue("backgroundImage");
+    const backgroundImage = this.getPropValue("backgroundMedia");
     const logo = this.getPropValue("logo");
     const isTitleExist = this.castToString(title);
     const isDescriptionExist = this.castToString(description);
     const isSubtitleExist = this.castToString(subtitle);
+    const hasLogo = !!(logo?.url || logo?.name);
+    const hasButtons = buttons.some((item: INPUTS.CastedButton) => this.castToString(item.text));
 
     const backgroundWithSettings = backgroundImage?.type === "video" ? {
       ...backgroundImage,
@@ -99,18 +101,17 @@ class HeroSection5 extends BaseHeroSection {
       <Base.Container className={`${this.decorateCSS("container")} ${hasBackground ? this.decorateCSS("with-background") : ""}`}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div
-            className={`${this.decorateCSS("background-layer")} ${backgroundImage && this.decorateCSS("with-image")
-              }`}
+            className={`${this.decorateCSS("background-layer")} ${hasBackground ? this.decorateCSS("with-image") : ""}`}
           >
-            {backgroundImage && (backgroundImage.type === "image" || backgroundImage.type === "video") && backgroundImage.url && (
+            {hasBackground && (
               <Base.Media 
                 value={backgroundWithSettings} 
                 className={this.decorateCSS("background-image")}
               />
             )}
-            {overlay && backgroundImage && (backgroundImage.type === "image" || backgroundImage.type === "video") && backgroundImage.url && <div className={this.decorateCSS("overlay")} />}
+            {overlay && hasBackground && <div className={this.decorateCSS("overlay")} />}
             <Base.VerticalContent className={this.decorateCSS("content")}>
-              {logo && (
+              {hasLogo && (
                 <Base.Media 
                   value={logo} 
                   className={`${this.decorateCSS("logo")} ${logo?.type === "image" ? this.decorateCSS("logo-image") : this.decorateCSS("logo-icon")} ${backgroundImage?.url ? this.decorateCSS("with-background") : ""}`} 
@@ -131,7 +132,7 @@ class HeroSection5 extends BaseHeroSection {
                   {description}
                 </Base.SectionDescription>
               )}
-              {buttons.length > 0 && <div className={this.decorateCSS("button-container")}>
+              {hasButtons && <div className={this.decorateCSS("button-container")}>
                 {buttons.map((item: INPUTS.CastedButton, index: number) => {
                     const buttonTextExist = this.castToString(item.text);
                     const isTertiaryWithImage = item.type === "Tertiary" && backgroundImage?.url;

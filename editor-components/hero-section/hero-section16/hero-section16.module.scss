@@ -107,17 +107,15 @@
             }
           }
 
-          .logo-wrapper {
-            margin-bottom: 20px;
-            width: auto;
+          .logo {
             max-width: 200px;
-
-            .logo {
-              width: 100%;
-              height: auto;
-              display: block;
-              object-fit: contain;
-              font-size: 2rem;
+            height: auto;
+            display: block;
+            object-fit: contain;
+            font-size: 2rem;
+            color: white;
+            &.logo-no-image {
+              color: var(--composer-font-color-primary);
             }
           }
         }
@@ -127,8 +125,6 @@
           color: white;
           text-align: center;
           width: fit-content;
-          line-height: normal;
-
           &.subtitle-no-image {
             color: var(--composer-font-color-primary);
           }
@@ -139,8 +135,6 @@
           color: white;
           text-align: center;
           width: fit-content;
-          line-height: normal;
-
           &.title-no-image {
             color: var(--composer-font-color-primary);
           }
@@ -150,8 +144,6 @@
           color: white;
           width: fit-content;
           text-align: center;
-          line-height: normal;
-
           &.description-no-image {
             color: var(--composer-font-color-primary);
           }
@@ -193,7 +185,6 @@
         .number {
           font-size: 1.5rem;
           color: white;
-          font-weight: bold;
           width: fit-content;
 
           &.number-with-image {
@@ -290,7 +281,6 @@
 
           .title {
             font-size: 2.5rem !important;
-            line-height: normal !important;
           }
         }
       }

@@ -1,16 +1,26 @@
 import * as React from "react";
 import styles from "./hero-section29.module.scss";
-import { BaseHeroSection } from "../../EditorComponent";
+import { BaseHeroSection, TypeMediaInputValue } from "../../EditorComponent";
 import { Base } from "../../../composer-base-components/base/base";
 import { Form, Formik } from "formik";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 import * as Yup from "yup";
 import { INPUTS } from "../../../custom-hooks/input-templates";
 
-interface ServiceItem {
-  title: string;
-  description: string;
-  icon: string;
+interface CardItem {
+  title: React.JSX.Element;
+  description: React.JSX.Element;
+  icon: TypeMediaInputValue;
+}
+
+interface MediaGroup {
+  image: TypeMediaInputValue;
+  overlay: boolean;
+}
+
+interface FormGroup {
+  placeholder: React.JSX.Element;
+  submitText: React.JSX.Element;
 }
 
 class HeroSection29 extends BaseHeroSection {
@@ -34,13 +44,13 @@ class HeroSection29 extends BaseHeroSection {
 
     this.addProp({
       type: "string",
-      key: "mainTitle",
+      key: "title",
       displayer: "Title",
       value: "Real <span style='color: var(--composer-secondary-color)'>Estate</span> Investments"
     });
     this.addProp({
       type: "string",
-      key: "mainDescription",
+      key: "description",
       displayer: "Description",
       value:
         "We offer a range of amenities that raise the standard of the property and thus potentially increase rental income",
@@ -48,48 +58,67 @@ class HeroSection29 extends BaseHeroSection {
 
     this.addProp({
       type: "boolean",
-      key: "reverser",
+      key: "reverse",
       displayer: "Reverse Direction",
       value: false,
     });
     this.addProp(INPUTS.BUTTON("button", "Button", "CALL ME BACK", null, null, null, "Primary"));
 
     this.addProp({
-      type: "string",
-      key: "placeholder",
-      displayer: "Placeholder Text",
-      value: "Your phone number",
+      type: "object",
+      key: "form",
+      displayer: "Form",
+      value: [
+        {
+          type: "string",
+          key: "placeholder",
+          displayer: "Placeholder Text",
+          value: "Your phone number",
+        },
+        {
+          type: "string",
+          key: "submitText",
+          displayer: "Submit Text",
+          value: "Form successfully submitted!",
+        },
+      ],
     });
 
     this.addProp({
-      type: "media",
-      key: "image",
+      type: "object",
+      key: "media",
       displayer: "Media",
-      value: {
-        type: "image",
-        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661a253bd2970002c626aa7?alt=media&timestamp=1719483639151",
-      },
-      additionalParams: {
-        availableTypes: ["image", "video"],
-      },
-    });
-
-    this.addProp({
-      type: "boolean",
-      key: "overlay",
-      displayer: "Overlay",
-      value: false,
+      value: [
+        {
+          type: "media",
+          key: "image",
+          displayer: "Media",
+          value: {
+            type: "image",
+            url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661a253bd2970002c626aa7?alt=media&timestamp=1719483639151",
+          },
+          additionalParams: {
+            availableTypes: ["image", "video"],
+          },
+        },
+        {
+          type: "boolean",
+          key: "overlay",
+          displayer: "Overlay",
+          value: false,
+        },
+      ],
     });
 
     this.addProp({
       type: "array",
-      key: "serviceItems",
-      displayer: "Service Items",
+      key: "cards",
+      displayer: "Cards",
       value: [
         {
           type: "object",
-          key: "cardItem",
-          displayer: "Card Item",
+          key: "card",
+          displayer: "Card",
           value: [
             {
               type: "string",
@@ -120,8 +149,8 @@ class HeroSection29 extends BaseHeroSection {
         },
         {
           type: "object",
-          key: "cardItem",
-          displayer: "Card Item",
+          key: "card",
+          displayer: "Card",
           value: [
             {
               type: "string",
@@ -153,16 +182,9 @@ class HeroSection29 extends BaseHeroSection {
       ],
     });
 
-    this.addProp({
-      type: "string",
-      key: "submitText",
-      displayer: "Submit Text",
-      value: "Form successfully submitted!",
-    });
-
     this.setComponentState(
       "placeholderText",
-      this.castToString(this.getPropValue("placeholder"))
+      this.castToString(this.castToObject<FormGroup>("form")?.placeholder)
     );
     this.addProp({
       type: "number",
@@ -180,42 +202,56 @@ class HeroSection29 extends BaseHeroSection {
     return "Hero Section 29";
   }
 
+  hasMedia(media?: TypeMediaInputValue) {
+    return !!(media && ((media as any).url || (media as any).name));
+  }
+
+  withVideoSettings(media: TypeMediaInputValue) {
+    return media?.type === "video"
+      ? { ...media, settings: { autoplay: true, loop: true, muted: true, controls: false } }
+      : media;
+  }
+
   render() {
     const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
 
     const subtitleExist = this.castToString(this.getPropValue("subtitle"));
     const logo = this.getPropValue("logo");
-    const titleExist = this.castToString(this.getPropValue("mainTitle"));
-    const descriptionExist = this.castToString(this.getPropValue("mainDescription"));
+    const hasLogo = this.hasMedia(logo);
+    const titleExist = this.castToString(this.getPropValue("title"));
+    const descriptionExist = this.castToString(this.getPropValue("description"));
 
-    const serviceItems = this.castToObject<ServiceItem[]>("serviceItems");
-    const image = this.getPropValue("image");
-    const placeholder = this.castToString(this.getPropValue("placeholder"));
+    const cards = (this.castToObject<CardItem[]>("cards") || []).filter(
+      (item: CardItem) => this.hasMedia(item.icon) || this.castToString(item.title) || this.castToString(item.description)
+    );
+    const media = this.castToObject<MediaGroup>("media");
+    const image = media?.image;
+    const hasImage = this.hasMedia(image);
+    const form = this.castToObject<FormGroup>("form");
+    const placeholder = this.castToString(form?.placeholder);
     const buttonTextExist = this.castToString(button.text);
-    const showContent = logo || subtitleExist || titleExist || descriptionExist || serviceItems.length > 0;
+    const showContent = hasLogo || subtitleExist || titleExist || descriptionExist || buttonTextExist || cards.length > 0;
 
-    const submitText = this.getPropValue("submitText");
+    const submitText = form?.submitText;
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div
-            className={`${this.decorateCSS("wrapper")} ${this.getPropValue("reverser") &&
-              this.decorateCSS("wrapper-reverse")
-              } ${!showContent || !image ? this.decorateCSS("center") : ""} ${image ? this.decorateCSS("with-image") : ""}`}
+            className={`${this.decorateCSS("wrapper")} ${this.getPropValue("reverse") ? this.decorateCSS("wrapper-reverse") : ""} ${!showContent || !hasImage ? this.decorateCSS("center") : ""} ${hasImage ? this.decorateCSS("with-image") : ""}`}
           >
             {showContent && (
               <Base.VerticalContent className={this.decorateCSS("content")}>
-                {(titleExist || descriptionExist || subtitleExist || logo) &&
+                {(titleExist || descriptionExist || subtitleExist || hasLogo) &&
                   <Base.VerticalContent className={this.decorateCSS("header")}>
-                    {this.getPropValue("logo") && (
+                    {hasLogo && (
                       <Base.Media
-                        value={this.getPropValue("logo")}
+                        value={logo}
                         className={this.decorateCSS("logo")}
                       />
                     )}
 
-                    {this.castToString(this.getPropValue("subtitle")) && (
+                    {subtitleExist && (
                       <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
                         {this.getPropValue("subtitle")}
                       </Base.SectionSubTitle>
@@ -223,12 +259,12 @@ class HeroSection29 extends BaseHeroSection {
 
                     {titleExist && (
                       <Base.SectionTitle className={this.decorateCSS("title")}>
-                        {this.getPropValue("mainTitle")}
+                        {this.getPropValue("title")}
                       </Base.SectionTitle>
                     )}
                     {descriptionExist && (
                       <Base.SectionDescription className={this.decorateCSS("description")}>
-                        {this.getPropValue("mainDescription")}
+                        {this.getPropValue("description")}
                       </Base.SectionDescription>
                     )}
                   </Base.VerticalContent>}
@@ -241,10 +277,9 @@ class HeroSection29 extends BaseHeroSection {
                       this.setComponentState("placeholderText", this.castToString(submitText));
                       this.insertForm("HS9 - NewsletterForm", data);
                       setTimeout(() => {
-                        const defaultPlaceholder = this.getPropValue("placeholder");
                         this.setComponentState(
                           "placeholderText",
-                          this.castToString(defaultPlaceholder)
+                          this.castToString(this.castToObject<FormGroup>("form")?.placeholder)
                         );
                       }, 2000);
                       resetForm();
@@ -274,9 +309,9 @@ class HeroSection29 extends BaseHeroSection {
                             value={values.phone}
                           />
                           {errors.phone && touched.phone && (
-                            <div className={this.decorateCSS("error")}>
+                            <Base.P className={this.decorateCSS("error")}>
                               {errors.phone}
-                            </div>
+                            </Base.P>
                           )}
                         </div>
 
@@ -296,20 +331,26 @@ class HeroSection29 extends BaseHeroSection {
                   </ComposerLink>
                 ))}
 
-                {serviceItems && (
+                {cards.length > 0 && (
                   <Base.ListGrid className={this.decorateCSS("service-card-list")} gridCount={{ pc: this.getPropValue("itemCount"), tablet: 2, phone: 1 }}>
-                    {serviceItems.map((item: any, index: number) => (
+                    {cards.map((item: CardItem, index: number) => (
                       <Base.Card key={index} className={this.decorateCSS("card-shell")}>
                         <Base.VerticalContent className={this.decorateCSS("service-card")}>
-                          <div className={this.decorateCSS("service-svg")}>
-                            <Base.Media className={this.decorateCSS("icon")} value={item.icon} />
-                          </div>
-                          <Base.H4 className={this.decorateCSS("service-title")}>
-                            {item.title}
-                          </Base.H4>
-                          <Base.P className={this.decorateCSS("service-description")}>
-                            {item.description}
-                          </Base.P>
+                          {this.hasMedia(item.icon) && (
+                            <div className={this.decorateCSS("service-svg")}>
+                              <Base.Media className={this.decorateCSS("icon")} value={item.icon} />
+                            </div>
+                          )}
+                          {this.castToString(item.title) && (
+                            <Base.H4 className={this.decorateCSS("service-title")}>
+                              {item.title}
+                            </Base.H4>
+                          )}
+                          {this.castToString(item.description) && (
+                            <Base.P className={this.decorateCSS("service-description")}>
+                              {item.description}
+                            </Base.P>
+                          )}
                         </Base.VerticalContent>
                       </Base.Card>
                     ))}
@@ -317,10 +358,10 @@ class HeroSection29 extends BaseHeroSection {
                 )}
               </Base.VerticalContent>
             )}
-            {image && (
+            {hasImage && (
               <div className={this.decorateCSS("image-container")}>
-                <Base.Media className={this.decorateCSS("image")} value={this.getPropValue("image")} />
-                {this.getPropValue("overlay") && (
+                <Base.Media className={this.decorateCSS("image")} value={this.withVideoSettings(image)} />
+                {media?.overlay && (
                   <div className={this.decorateCSS("image-overlay")} />
                 )}
               </div>

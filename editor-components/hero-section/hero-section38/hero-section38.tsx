@@ -1,419 +1,133 @@
 import styles from "./hero-section38.module.scss";
-import { BaseHeroSection, TypeMediaInputValue } from "../../EditorComponent";
+import { BaseHeroSection, TypeMediaInputValue, TypeUsableComponentProps } from "../../EditorComponent";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "../../../custom-hooks/input-templates";
 
-interface PortfolioItem {
+interface CardItem {
   visibility: boolean;
   url: string;
-  subtitle: string;
-  title: string;
-  description: string;
+  logo: TypeMediaInputValue;
+  subtitle: React.JSX.Element;
+  title: React.JSX.Element;
+  description: React.JSX.Element;
   icon: TypeMediaInputValue;
-  icon2: TypeMediaInputValue;
-  buttons: INPUTS.CastedButton[];
+  secondaryIcon: TypeMediaInputValue;
+  buttons: any[];
   media: TypeMediaInputValue;
   overlay: boolean;
 }
+
+type CardButton = {
+  text: React.JSX.Element;
+  type: string;
+  url: string;
+  media: TypeMediaInputValue | null;
+};
+
+const card = (title: string, iconName: string, secondaryIconName: string, mediaUrl: string): TypeUsableComponentProps => ({
+  type: "object",
+  key: "card",
+  displayer: "Card",
+  value: [
+    {
+      type: "boolean",
+      key: "visibility",
+      displayer: "Visibility",
+      value: true,
+    },
+    {
+      type: "page",
+      key: "url",
+      displayer: "Navigate To",
+      value: "",
+    },
+    {
+      type: "media",
+      key: "logo",
+      displayer: "Logo",
+      additionalParams: { availableTypes: ["icon", "image"] },
+      value: { type: "icon", name: "" },
+    },
+    {
+      type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "",
+    },
+    {
+      type: "string",
+      key: "title",
+      displayer: "Title",
+      value: title,
+    },
+    {
+      type: "string",
+      key: "description",
+      displayer: "Description",
+      value: "",
+    },
+    {
+      type: "media",
+      key: "icon",
+      displayer: "Icon",
+      additionalParams: { availableTypes: ["icon", "image"] },
+      value: { type: "icon", name: iconName },
+    },
+    {
+      type: "media",
+      key: "secondaryIcon",
+      displayer: "Secondary Icon",
+      additionalParams: { availableTypes: ["icon", "image"] },
+      value: { type: "icon", name: secondaryIconName },
+    },
+    {
+      type: "array",
+      key: "buttons",
+      displayer: "Buttons",
+      value: [INPUTS.BUTTON("button", "Button", "", "", "", null, "Primary")],
+    },
+    {
+      type: "media",
+      key: "media",
+      displayer: "Media",
+      additionalParams: { availableTypes: ["image", "video"] },
+      value: {
+        type: "image",
+        url: mediaUrl,
+      },
+    },
+    {
+      type: "boolean",
+      key: "overlay",
+      displayer: "Overlay",
+      value: false,
+    },
+  ],
+});
 
 class HeroSection38 extends BaseHeroSection {
   constructor(props?: any) {
     super(props, styles);
     this.addProp({
-      type: "object",
-      key: "leftSideCard",
-      displayer: "Left Side Card",
+      type: "array",
+      key: "cards",
+      displayer: "Cards",
       value: [
-        {
-          type: "boolean",
-          key: "visibility",
-          displayer: "Visibility",
-          value: true,
-        },
-        {
-          type: "page",
-          key: "url",
-          displayer: "Navigate To",
-          value: "",
-        },
-        {
-          type: "string",
-          key: "subtitle",
-          displayer: "Subtitle",
-          value: "",
-        },
-        {
-          type: "string",
-          key: "title",
-          displayer: "Title",
-          value: "",
-        },
-        {
-          type: "string",
-          key: "description",
-          displayer: "Description",
-          value: "",
-        },
-        {
-          type: "media",
-          key: "icon",
-          displayer: "Icon",
-          additionalParams: { availableTypes: ["icon", "image"] },
-          value: { type: "icon", name: "" },
-        },
-        {
-          type: "media",
-          key: "icon2",
-          displayer: "Icon2",
-          additionalParams: { availableTypes: ["icon", "image"] },
-          value: { type: "icon", name: "" },
-        },
-        {
-          type: "array",
-          key: "buttons",
-          displayer: "Buttons",
-          value: [
-            INPUTS.BUTTON("button", "Button", "", "", "", null, "Primary"),
-          ],
-        },
-        {
-          type: "media",
-          key: "media",
-          displayer: "Media",
-          additionalParams: { availableTypes: ["image", "video"] },
-          value: {
-            type: "image",
-            url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/694e3662f959f6002d79b56d?alt=media",
-          },
-        },
-        {
-          type: "boolean",
-          key: "overlay",
-          displayer: "Overlay",
-          value: false,
-        },
-      ],
-    });
-    this.addProp({
-      type: "object",
-      displayer: "Right Side Top Left Card",
-      key: "rightSideTopLeftCard",
-      value: [
-        {
-          type: "boolean",
-          key: "visibility",
-          displayer: "Visibility",
-          value: true,
-        },
-        {
-          type: "page",
-          key: "url",
-          displayer: "Navigate To",
-          value: "",
-        },
-        {
-          type: "string",
-          key: "subtitle",
-          displayer: "Subtitle",
-          value: "",
-        },
-        {
-          type: "string",
-          key: "title",
-          displayer: "Title",
-          value: "",
-        },
-        {
-          type: "string",
-          key: "description",
-          displayer: "Description",
-          value: "",
-        },
-        {
-          type: "media",
-          key: "icon",
-          displayer: "Icon",
-          additionalParams: { availableTypes: ["icon", "image"] },
-          value: { type: "icon", name: "" },
-        },
-        {
-          type: "media",
-          key: "icon2",
-          displayer: "Icon2",
-          additionalParams: { availableTypes: ["icon", "image"] },
-          value: { type: "icon", name: "" },
-        },
-        {
-          type: "array",
-          key: "buttons",
-          displayer: "Buttons",
-          value: [
-            INPUTS.BUTTON("button", "Button", "", "", "", "", "Primary"),
-          ],
-        },
-        {
-          type: "media",
-          key: "media",
-          displayer: "Media",
-          additionalParams: { availableTypes: ["image", "video"] },
-          value: {
-            type: "image",
-            url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/694e3672f959f6002d79b58a?alt=media",
-          },
-        },
-        {
-          type: "boolean",
-          key: "overlay",
-          displayer: "Overlay",
-          value: false,
-        },
-      ],
-    });
-    this.addProp({
-      type: "object",
-      displayer: "Right Side Top Right Card",
-      key: "rightSideTopRightCard",
-      value: [
-        {
-          type: "boolean",
-          key: "visibility",
-          displayer: "Visibility",
-          value: true,
-        },
-        {
-          type: "page",
-          key: "url",
-          displayer: "Navigate To",
-          value: "",
-        },
-        {
-          type: "string",
-          key: "subtitle",
-          displayer: "Subtitle",
-          value: "",
-        },
-        {
-          type: "string",
-          key: "title",
-          displayer: "Title",
-          value: "Start business with mentors",
-        },
-        {
-          type: "string",
-          key: "description",
-          displayer: "Description",
-          value: "",
-        },
-        {
-          type: "media",
-          key: "icon",
-          displayer: "Icon",
-          additionalParams: { availableTypes: ["icon", "image"] },
-          value: {
-            type: "icon",
-            name: "RxDividerVertical",
-          },
-        },
-        {
-          type: "media",
-          key: "icon2",
-          displayer: "Icon2",
-          additionalParams: { availableTypes: ["icon", "image"] },
-          value: {
-            type: "icon",
-            name: "LuChevronRight",
-          },
-        },
-        {
-          type: "array",
-          key: "buttons",
-          displayer: "Buttons",
-          value: [
-            INPUTS.BUTTON("button", "Button", "", "", "", "", "Primary"),
-          ],
-        },
-        {
-          type: "media",
-          key: "media",
-          displayer: "Media",
-          additionalParams: { availableTypes: ["image", "video"] },
-          value: {
-            type: "image",
-            url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/694e3680f959f6002d79b5a4?alt=media",
-          },
-        },
-        {
-          type: "boolean",
-          key: "overlay",
-          displayer: "Overlay",
-          value: false,
-        },
-      ],
-    });
-    this.addProp({
-      type: "object",
-      displayer: "Right Side Bottom Left Card",
-      key: "rightSideBottomLeftCard",
-      value: [
-        {
-          type: "boolean",
-          key: "visibility",
-          displayer: "Visibility",
-          value: true,
-        },
-        {
-          type: "page",
-          key: "url",
-          displayer: "Navigate To",
-          value: "",
-        },
-        {
-          type: "string",
-          key: "subtitle",
-          displayer: "Subtitle",
-          value: "",
-        },
-        {
-          type: "string",
-          key: "title",
-          displayer: "Title",
-          value: "Achieve goals & coach fast",
-        },
-        {
-          type: "string",
-          key: "description",
-          displayer: "Description",
-          value: "",
-        },
-        {
-          type: "media",
-          key: "icon",
-          displayer: "Icon",
-          additionalParams: { availableTypes: ["icon", "image"] },
-          value: {
-            type: "icon",
-            name: "RxDividerVertical",
-          },
-        },
-        {
-          type: "media",
-          key: "icon2",
-          displayer: "Icon2",
-          additionalParams: { availableTypes: ["icon", "image"] },
-          value: {
-            type: "icon",
-            name: "LuChevronRight",
-          },
-        },
-        {
-          type: "array",
-          key: "buttons",
-          displayer: "Buttons",
-          value: [
-            INPUTS.BUTTON("button", "Button", "", "", "", null, "Primary"),
-          ],
-        },
-        {
-          type: "media",
-          key: "media",
-          displayer: "Media",
-          additionalParams: { availableTypes: ["image", "video"] },
-          value: {
-            type: "image",
-            url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/694e368df959f6002d79b5be?alt=media",
-          },
-        },
-        {
-          type: "boolean",
-          key: "overlay",
-          displayer: "Overlay",
-          value: false,
-        },
-      ],
-    });
-    this.addProp({
-      type: "object",
-      displayer: "Right Side Bottom Right Card",
-      key: "rightSideBottomRightCard",
-      value: [
-        {
-          type: "boolean",
-          key: "visibility",
-          displayer: "Visibility",
-          value: true,
-        },
-        {
-          type: "page",
-          key: "url",
-          displayer: "Navigate To",
-          value: "",
-        },
-        {
-          type: "string",
-          key: "subtitle",
-          displayer: "Subtitle",
-          value: "",
-        },
-        {
-          type: "string",
-          key: "title",
-          displayer: "Title",
-          value: "",
-        },
-        {
-          type: "string",
-          key: "description",
-          displayer: "Description",
-          value: "",
-        },
-        {
-          type: "media",
-          key: "icon",
-          displayer: "Icon",
-          additionalParams: { availableTypes: ["icon", "image"] },
-          value: { type: "icon", name: "" },
-        },
-        {
-          type: "media",
-          key: "icon2",
-          displayer: "Icon2",
-          additionalParams: { availableTypes: ["icon", "image"] },
-          value: { type: "icon", name: "" },
-        },
-        {
-          type: "array",
-          key: "buttons",
-          displayer: "Buttons",
-          value: [
-            INPUTS.BUTTON("button", "Button", "", "", "", null, "Primary"),
-          ],
-        },
-        {
-          type: "media",
-          key: "media",
-          displayer: "Media",
-          additionalParams: { availableTypes: ["image", "video"] },
-          value: {
-            type: "image",
-            url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/694e36a0f959f6002d79b610?alt=media",
-          },
-        },
-        {
-          type: "boolean",
-          key: "overlay",
-          displayer: "Overlay",
-          value: false,
-        },
+        card("", "", "", "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/694e3662f959f6002d79b56d?alt=media"),
+        card("", "", "", "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/694e3672f959f6002d79b58a?alt=media"),
+        card("Start business with mentors", "RxDividerVertical", "LuChevronRight", "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/694e3680f959f6002d79b5a4?alt=media"),
+        card("Achieve goals & coach fast", "RxDividerVertical", "LuChevronRight", "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/694e368df959f6002d79b5be?alt=media"),
+        card("", "", "", "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/694e36a0f959f6002d79b610?alt=media"),
       ],
     });
     this.addProp({
       type: "multiSelect",
       key: "hoverAnimation",
       displayer: "Animation",
-      value: ["animate1"],
+      value: ["Animate1"],
       additionalParams: {
-        selectItems: ["animate1", "animate2"],
+        selectItems: ["Animate1", "Animate2"],
       },
     });
   }
@@ -421,389 +135,167 @@ class HeroSection38 extends BaseHeroSection {
     return "Hero Section 38";
   }
 
-  render() {
-    const itemLeft = this.castToObject<PortfolioItem>("leftSideCard");
-    const itemTopRight = this.castToObject<PortfolioItem>(
-      "rightSideTopRightCard"
-    );
-    const itemTopLeft = this.castToObject<PortfolioItem>(
-      "rightSideTopLeftCard"
-    );
-    const itemBottomLeft = this.castToObject<PortfolioItem>(
-      "rightSideBottomLeftCard"
-    );
-    const itemBottomRight = this.castToObject<PortfolioItem>(
-      "rightSideBottomRightCard"
-    );
+  hasMedia(media?: TypeMediaInputValue | null) {
+    return !!(media && ((media as any).url || (media as any).name));
+  }
 
-    const getButtonsFromItem = (item: PortfolioItem) => {
-      const buttonsArray = item?.buttons;
-      if (!Array.isArray(buttonsArray)) return [];
+  getButtons(item: CardItem): CardButton[] {
+    const buttonsArray = item?.buttons;
+    if (!Array.isArray(buttonsArray)) return [];
 
-      return buttonsArray.map((btn: any) => {
-        const parent = btn?.value ?? btn;
-        const icon = this.getPropValue("icon", { parent_object: parent });
-        const media = icon || null;
+    return buttonsArray.map((btn: any) => {
+      if (Array.isArray(btn?.value)) {
+        const parent = btn.value;
         return {
           text: this.getPropValue("text", { parent_object: parent }),
           type: this.getPropValue("type", { parent_object: parent }),
           url: this.getPropValue("url", { parent_object: parent }),
-          media,
+          media: this.getPropValue("icon", { parent_object: parent }) || null,
         };
-      });
-    };
-
-    const hasAnyButtonInItem = (
-      buttons: any[]
-    ) => {
-      return buttons.some(
-        (b: any) =>
-          b?.text || b?.media?.name || b?.media?.url
-      );
-    };
-
-    const hasContentInItem = (item: PortfolioItem) => {
-      const buttons = getButtonsFromItem(item);
-      const subtitle = item?.subtitle;
-      const title = item?.title;
-      const description = item?.description;
-      const media = item?.media;
-      const icon = item?.icon;
-      const icon2 = item?.icon2;
-
-      const hasSubtitle = this.castToString(subtitle);
-      const hasTitle = this.castToString(title);
-      const hasDescription = this.castToString(description);
-      const hasMedia = media;
-
-      const hasAnyButton = hasAnyButtonInItem(buttons);
-
-      return !!(
-        hasSubtitle ||
-        hasTitle ||
-        hasDescription ||
-        hasMedia ||
-        icon ||
-        icon2 ||
-        hasAnyButton
-      );
-    };
-
-    const itemHasContent = (item: PortfolioItem) =>
-      !!(item && item.visibility && hasContentInItem(item));
-
-    const renderRight =
-      itemHasContent(itemTopLeft) ||
-      itemHasContent(itemTopRight) ||
-      itemHasContent(itemBottomLeft) ||
-      itemHasContent(itemBottomRight);
-
-
-
-    const hasLeftSection = itemHasContent(itemLeft);
-
-    const getRightSideBorderClasses = (position: 'topLeft' | 'topRight' | 'bottomLeft' | 'bottomRight'): string => {
-      const classes: string[] = [];
-
-      const hasTopLeft = itemHasContent(itemTopLeft);
-      const hasTopRight = itemHasContent(itemTopRight);
-      const hasBottomLeft = itemHasContent(itemBottomLeft);
-      const hasBottomRight = itemHasContent(itemBottomRight);
-
-      const isLeft = position === "topLeft" || position === "bottomLeft";
-      const isTop = position === "topLeft" || position === "topRight";
-
-      const hasRowPartner = isTop
-        ? hasTopLeft && hasTopRight
-        : hasBottomLeft && hasBottomRight;
-
-      if (hasRowPartner) {
-        classes.push(this.decorateCSS(isLeft ? "inner-right" : "inner-left"));
       }
+      return { text: btn?.text, type: btn?.type, url: btn?.url, media: btn?.icon || null };
+    });
+  }
 
-      const isLeftMost =
-        (position === "topLeft") ||
-        (position === "bottomLeft") ||
-        (position === "topRight" && !hasTopLeft) ||
-        (position === "bottomRight" && !hasBottomLeft);
+  hasContent(item: CardItem) {
+    if (!item || !item.visibility) return false;
+    const hasAnyButton = this.getButtons(item).some((button) => this.castToString(button.text) || this.hasMedia(button.media));
+    return !!(
+      this.castToString(item.subtitle) ||
+      this.castToString(item.title) ||
+      this.castToString(item.description) ||
+      this.hasMedia(item.media) ||
+      this.hasMedia(item.logo) ||
+      this.hasMedia(item.icon) ||
+      this.hasMedia(item.secondaryIcon) ||
+      hasAnyButton
+    );
+  }
 
-      if (hasLeftSection && isLeftMost) {
-        classes.push(this.decorateCSS("left-edge"));
-      }
-
-      return classes.join(" ");
-    };
-
-    const renderItemContent = (item: PortfolioItem) => {
-      const buttons = getButtonsFromItem(item);
-      const subtitle = item?.subtitle;
-      const title = item?.title;
-      const description = item?.description;
-      const icon = item?.icon;
-      const icon2 = item?.icon2;
-
-      const hasSubtitle = this.castToString(subtitle);
-      const hasTitle = this.castToString(title);
-      const hasDescription = this.castToString(description);
-      const hasAnyButton = hasAnyButtonInItem(buttons);
-
-      if (!hasContentInItem(item)) {
-        return null;
-      }
-
-      return (
-        <div className={this.decorateCSS("content")}>
-          <Base.VerticalContent
-            className={this.decorateCSS("vertical-content")}
-          >
-            {hasSubtitle && (
-              <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
-                {subtitle}
-              </Base.SectionSubTitle>
-            )}
-
-            {(hasTitle || icon || icon2) && (
-              <div className={this.decorateCSS("title-row")}>
-                {hasTitle && (
-                  <Base.H2 className={this.decorateCSS("title")}>
-                    {title}
-                  </Base.H2>
-                )}
-
-                {(icon || icon2) && (
-                  <div className={this.decorateCSS("icons-wrapper")}>
-                    {icon && (
-                      <Base.Media
-                        value={icon}
-                        className={this.decorateCSS("icon1")}
-                      />
-                    )}
-                    {icon2 && (
-                      <Base.Media
-                        value={icon2}
-                        className={this.decorateCSS("icon2")}
-                      />
-                    )}
-                  </div>
-                )}
-              </div>
-            )}
-
-            {hasDescription && (
-              <Base.SectionDescription
-                className={this.decorateCSS("description")}
-              >
-                {description}
-              </Base.SectionDescription>
-            )}
-
-            {hasAnyButton && (
-              <div className={this.decorateCSS("action-buttons")}>
-                {buttons.map((btn, index: number) => {
-                  const buttonText = btn.text;
-                  const buttonMedia = btn.media as any;
-                  const buttonUrl = btn.url || "#";
-                  const buttonType = btn.type;
-
-                  const btnTextExist = this.castToString(buttonText);
-                  const buttonMediaExist =
-                    buttonMedia && (buttonMedia.name || buttonMedia.url);
-
-                  if (!btnTextExist && !buttonMediaExist) return null;
-
-                  return (
-                    <ComposerLink
-                      path={buttonUrl}
-                      key={`portfolio-btn-${index}`}
-                    >
-                      <Base.Button
-                        buttonType={buttonType as any}
-                        className={this.decorateCSS("button")}
-                      >
-                        {buttonMediaExist && (
-                          <Base.Media
-                            value={buttonMedia}
-                            className={this.decorateCSS("button-icon")}
-                          />
-                        )}
-                        {btnTextExist && (
-                          <Base.P className={this.decorateCSS("button-text")}>
-                            {buttonText}
-                          </Base.P>
-                        )}
-                      </Base.Button>
-                    </ComposerLink>
-                  );
-                })}
-              </div>
-            )}
-          </Base.VerticalContent>
-        </div>
-      );
-    };
+  renderItemContent(item: CardItem) {
+    const buttons = this.getButtons(item);
+    const hasLogo = this.hasMedia(item.logo);
+    const hasIcon = this.hasMedia(item.icon);
+    const hasSecondaryIcon = this.hasMedia(item.secondaryIcon);
+    const hasSubtitle = this.castToString(item.subtitle);
+    const hasTitle = this.castToString(item.title);
+    const hasDescription = this.castToString(item.description);
+    const visibleButtons = buttons.filter((button) => this.castToString(button.text) || this.hasMedia(button.media));
 
     return (
-      <Base.Container
-        isFull={true}
-        className={this.decorateCSS("container")}
-      >
-        <Base.MaxContent className={this.decorateCSS("max-content")}>
-          {itemHasContent(itemLeft) && (
-            <div className={this.decorateCSS("left")}>
-              <ComposerLink path={itemLeft.url} isFullWidth={true}>
-                <div
-                  className={`${this.decorateCSS("item")} ${(!itemLeft.media || !itemLeft.media.url) &&
-                    this.decorateCSS("no-media")
-                    } ${renderRight ? this.decorateCSS("right-edge") : ""}`}
-                  data-animation={this.getPropValue("hoverAnimation").join(" ")}
-                >
-                  {itemLeft.media && itemLeft.media.url && (
-                    <div className={this.decorateCSS("background-media")}>
-                      <Base.Media
-                        value={itemLeft.media}
-                        className={this.decorateCSS("media-element")}
-                      />
-                      {itemLeft.overlay && (
-                        <div
-                          className={this.decorateCSS("thumbnail-overlay")}
-                        />
-                      )}
-                    </div>
-                  )}
-                  {renderItemContent(itemLeft)}
+      <div className={this.decorateCSS("content")}>
+        <Base.VerticalContent className={this.decorateCSS("vertical-content")}>
+          {hasLogo && <Base.Media value={item.logo} className={this.decorateCSS("logo")} />}
+          {hasSubtitle && (
+            <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+              {item.subtitle}
+            </Base.SectionSubTitle>
+          )}
+
+          {(hasTitle || hasIcon || hasSecondaryIcon) && (
+            <div className={this.decorateCSS("title-row")}>
+              {hasTitle && (
+                <Base.H2 className={this.decorateCSS("title")}>
+                  {item.title}
+                </Base.H2>
+              )}
+
+              {(hasIcon || hasSecondaryIcon) && (
+                <div className={this.decorateCSS("icons-wrapper")}>
+                  {hasIcon && <Base.Media value={item.icon} className={this.decorateCSS("icon1")} />}
+                  {hasSecondaryIcon && <Base.Media value={item.secondaryIcon} className={this.decorateCSS("icon2")} />}
                 </div>
-              </ComposerLink>
+              )}
+            </div>
+          )}
+
+          {hasDescription && (
+            <Base.SectionDescription className={this.decorateCSS("description")}>
+              {item.description}
+            </Base.SectionDescription>
+          )}
+
+          {visibleButtons.length > 0 && (
+            <div className={this.decorateCSS("action-buttons")}>
+              {visibleButtons.map((button, index: number) => {
+                const btnTextExist = this.castToString(button.text);
+                const buttonMediaExist = this.hasMedia(button.media);
+                return (
+                  <ComposerLink path={button.url} key={`card-btn-${index}`}>
+                    <Base.Button buttonType={button.type as any} className={this.decorateCSS("button")}>
+                      {buttonMediaExist && <Base.Media value={button.media as TypeMediaInputValue} className={this.decorateCSS("button-icon")} />}
+                      {btnTextExist && <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>}
+                    </Base.Button>
+                  </ComposerLink>
+                );
+              })}
+            </div>
+          )}
+        </Base.VerticalContent>
+      </div>
+    );
+  }
+
+  renderItem(item: CardItem, key: string | number, extraClassName: string) {
+    const hasItemMedia = this.hasMedia(item.media);
+    return (
+      <ComposerLink key={key} path={item.url} isFullWidth={true}>
+        <div
+          className={`${this.decorateCSS("item")} ${!hasItemMedia ? this.decorateCSS("no-media") : ""} ${extraClassName}`}
+          data-animation={this.getPropValue("hoverAnimation").join(" ")}
+        >
+          {hasItemMedia && (
+            <div className={this.decorateCSS("background-media")}>
+              <Base.Media value={item.media} className={this.decorateCSS("media-element")} />
+              {item.overlay && <div className={this.decorateCSS("thumbnail-overlay")} />}
+            </div>
+          )}
+          {this.renderItemContent(item)}
+        </div>
+      </ComposerLink>
+    );
+  }
+
+  render() {
+    const cards = this.castToObject<CardItem[]>("cards");
+    const leftItem = cards[0];
+    const hasLeftSection = this.hasContent(leftItem);
+
+    const rows: CardItem[][] = [];
+    cards.slice(1).forEach((item: CardItem, index: number) => {
+      if (index % 2 === 0) rows.push([]);
+      rows[rows.length - 1].push(item);
+    });
+    const visibleRows = rows
+      .map((row) => row.filter((item) => this.hasContent(item)))
+      .filter((row) => row.length > 0);
+    const renderRight = visibleRows.length > 0;
+
+    return (
+      <Base.Container isFull={true} className={this.decorateCSS("container")}>
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
+          {hasLeftSection && (
+            <div className={this.decorateCSS("left")}>
+              {this.renderItem(leftItem, "left", renderRight ? this.decorateCSS("right-edge") : "")}
             </div>
           )}
 
           {renderRight && (
             <div className={this.decorateCSS("right")}>
-              {(itemHasContent(itemTopLeft) ||
-                itemHasContent(itemTopRight)) && (
-                  <div className={this.decorateCSS("top")}>
-                    {itemHasContent(itemTopLeft) && (
-                      <ComposerLink path={itemTopLeft.url} isFullWidth={true}>
-                        <div
-                          className={`${this.decorateCSS("item")} ${(!itemTopLeft.media || !itemTopLeft.media.url) &&
-                            this.decorateCSS("no-media")
-                            } ${getRightSideBorderClasses('topLeft')}`}
-                          data-animation={this.getPropValue(
-                            "hoverAnimation"
-                          ).join(" ")}
-                        >
-                          {itemTopLeft.media && itemTopLeft.media.url && (
-                            <div className={this.decorateCSS("background-media")}>
-                              <Base.Media
-                                value={itemTopLeft.media}
-                                className={this.decorateCSS("media-element")}
-                              />
-                              {itemTopLeft.overlay && (
-                                <div
-                                  className={this.decorateCSS(
-                                    "thumbnail-overlay"
-                                  )}
-                                />
-                              )}
-                            </div>
-                          )}
-                          {renderItemContent(itemTopLeft)}
-                        </div>
-                      </ComposerLink>
-                    )}
-                    {itemHasContent(itemTopRight) && (
-                      <ComposerLink path={itemTopRight.url} isFullWidth={true}>
-                        <div
-                          className={`${this.decorateCSS("item")} ${(!itemTopRight.media || !itemTopRight.media.url) &&
-                            this.decorateCSS("no-media")
-                            } ${getRightSideBorderClasses('topRight')}`}
-                          data-animation={this.getPropValue(
-                            "hoverAnimation"
-                          ).join(" ")}
-                        >
-                          {itemTopRight.media && itemTopRight.media.url && (
-                            <div className={this.decorateCSS("background-media")}>
-                              <Base.Media
-                                value={itemTopRight.media}
-                                className={this.decorateCSS("media-element")}
-                              />
-                              {itemTopRight.overlay && (
-                                <div
-                                  className={this.decorateCSS(
-                                    "thumbnail-overlay"
-                                  )}
-                                />
-                              )}
-                            </div>
-                          )}
-                          {renderItemContent(itemTopRight)}
-                        </div>
-                      </ComposerLink>
-                    )}
-                  </div>
-                )}
-              {(itemHasContent(itemBottomLeft) ||
-                itemHasContent(itemBottomRight)) && (
-                  <div className={this.decorateCSS("bottom")}>
-                    {itemHasContent(itemBottomLeft) && (
-                      <ComposerLink path={itemBottomLeft.url} isFullWidth={true}>
-                        <div
-                          className={`${this.decorateCSS("item")} ${(!itemBottomLeft.media || !itemBottomLeft.media.url) &&
-                            this.decorateCSS("no-media")
-                            } ${getRightSideBorderClasses('bottomLeft')}`}
-                          data-animation={this.getPropValue(
-                            "hoverAnimation"
-                          ).join(" ")}
-                        >
-                          {itemBottomLeft.media && itemBottomLeft.media.url && (
-                            <div className={this.decorateCSS("background-media")}>
-                              <Base.Media
-                                value={itemBottomLeft.media}
-                                className={this.decorateCSS("media-element")}
-                              />
-                              {itemBottomLeft.overlay && (
-                                <div
-                                  className={this.decorateCSS(
-                                    "thumbnail-overlay"
-                                  )}
-                                />
-                              )}
-                            </div>
-                          )}
-                          {renderItemContent(itemBottomLeft)}
-                        </div>
-                      </ComposerLink>
-                    )}
-                    {itemHasContent(itemBottomRight) && (
-                      <ComposerLink path={itemBottomRight.url} isFullWidth={true}>
-                        <div
-                          className={`${this.decorateCSS("item")} ${(!itemBottomRight.media || !itemBottomRight.media.url) &&
-                            this.decorateCSS("no-media")
-                            } ${getRightSideBorderClasses('bottomRight')}`}
-                          data-animation={this.getPropValue(
-                            "hoverAnimation"
-                          ).join(" ")}
-                        >
-                          {itemBottomRight.media && itemBottomRight.media.url && (
-                            <div className={this.decorateCSS("background-media")}>
-                              <Base.Media
-                                value={itemBottomRight.media}
-                                className={this.decorateCSS("media-element")}
-                              />
-                              {itemBottomRight.overlay && (
-                                <div
-                                  className={this.decorateCSS(
-                                    "thumbnail-overlay"
-                                  )}
-                                />
-                              )}
-                            </div>
-                          )}
-                          {renderItemContent(itemBottomRight)}
-                        </div>
-                      </ComposerLink>
-                    )}
-                  </div>
-                )}
+              {visibleRows.map((row, rowIndex: number) => (
+                <div key={rowIndex} className={this.decorateCSS("row")}>
+                  {row.map((item, itemIndex: number) => {
+                    const classes: string[] = [];
+                    if (row.length > 1) {
+                      classes.push(this.decorateCSS(itemIndex === 0 ? "inner-right" : "inner-left"));
+                    }
+                    if (hasLeftSection && itemIndex === 0) {
+                      classes.push(this.decorateCSS("left-edge"));
+                    }
+                    return this.renderItem(item, itemIndex, classes.join(" "));
+                  })}
+                </div>
+              ))}
             </div>
           )}
         </Base.MaxContent>

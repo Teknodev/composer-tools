@@ -11,7 +11,7 @@ type Slides = {
   title: React.JSX.Element;
   subtitle: React.JSX.Element;
   description: React.JSX.Element;
-  image: TypeMediaInputValue;
+  media: TypeMediaInputValue;
   buttons: Array<Buttons>;
   overlay: boolean;
 };
@@ -26,13 +26,6 @@ class HeroSection14 extends BaseHeroSection {
       type: "boolean",
       key: "animation",
       displayer: "Animation",
-      value: true,
-    });
-
-    this.addProp({
-      type: "boolean",
-      key: "autoplay",
-      displayer: "Autoplay",
       value: true,
     });
 
@@ -79,7 +72,7 @@ class HeroSection14 extends BaseHeroSection {
             {
               type: "media",
               displayer: "Media",
-              key: "image",
+              key: "media",
               additionalParams: {
                 availableTypes: ["image", "video"],
               },
@@ -141,7 +134,7 @@ class HeroSection14 extends BaseHeroSection {
             {
               type: "media",
               displayer: "Media",
-              key: "image",
+              key: "media",
               additionalParams: {
                 availableTypes: ["image", "video"],
               },
@@ -202,7 +195,7 @@ class HeroSection14 extends BaseHeroSection {
             {
               type: "media",
               displayer: "Media",
-              key: "image",
+              key: "media",
               additionalParams: {
                 availableTypes: ["image", "video"],
               },
@@ -227,6 +220,19 @@ class HeroSection14 extends BaseHeroSection {
         },
       ],
     });
+    this.addProp(
+      INPUTS.SLIDER_SETTINGS("settings", "Slider Settings", {
+        dots: true,
+        arrows: false,
+        infinite: true,
+        speed: 2000,
+        autoplay: true,
+        autoplaySpeed: 3000,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        adaptiveHeight: false,
+      })
+    );
     this.setComponentState("slider-ref", React.createRef());
     this.setComponentState("activeSlide", 0);
   }
@@ -235,19 +241,23 @@ class HeroSection14 extends BaseHeroSection {
     return "Hero Section 14";
   }
 
+  hasMedia(media?: TypeMediaInputValue) {
+    return !!(media && ((media as any).url || (media as any).name));
+  }
+
+  withVideoSettings(media: TypeMediaInputValue) {
+    return media?.type === "video"
+      ? { ...media, settings: { autoplay: true, loop: true, muted: true, controls: false } }
+      : media;
+  }
+
   render() {
     const slides = this.castToObject<Slides[]>("slides");
     const activeSlideIndex = this.getComponentState("activeSlide");
     const activeSlide = slides[activeSlideIndex];
-    const isImagePresent = activeSlide?.image ? true : false;
+    const isImagePresent = this.hasMedia(activeSlide?.media);
     const settings = {
-      dots: true,
-      arrows: false,
-      infinite: true,
-      autoplay: this.getPropValue("autoplay"),
-      speed: 2000,
-      slidesToShow: 1,
-      slidesToScroll: 1,
+      ...this.transformSliderValues(this.getPropValue("settings")),
       dotsClass: `slick-dots ${this.decorateCSS("customDots")} ${!isImagePresent && this.decorateCSS("noDots-img")}`,
       beforeChange: (_: number, newIndex: number) => {
         if (this.getComponentState("activeSlide") !== newIndex) {
@@ -266,11 +276,11 @@ class HeroSection14 extends BaseHeroSection {
         <div className={this.decorateCSS("max-content")}>
           <ComposerSlider {...settings} className={this.decorateCSS("carousel")} ref={this.getComponentState("slider-ref")}>
             {slides.map((item: Slides, index: number) => {
-                const image = item.image;
+                const image = this.hasMedia(item.media);
                 const title = this.castToString(item.title);
                 const subtitle = this.castToString(item.subtitle);
                 const description = this.castToString(item.description);
-                const logo = item.logo;
+                const logo = this.hasMedia(item.logo);
               const isActive = this.getComponentState("activeSlide") === index;
               const containerClass = this.decorateCSS("content");
 
@@ -280,22 +290,20 @@ class HeroSection14 extends BaseHeroSection {
                 <div className={this.decorateCSS("slide")} key={`header14-${index}`}>
                   {image && (
                     <>
-                      <Base.Media value={item.image} className={this.decorateCSS("bg-img")} autoPlay muted loop playsInline />
+                      <Base.Media value={this.withVideoSettings(item.media)} className={this.decorateCSS("bg-img")} />
                       {item.overlay && <div className={this.decorateCSS("overlay")} />}
                     </>
                   )}
                   <div className={`${this.decorateCSS("content-wrapper")} ${isActive && isAnimation && this.decorateCSS("fade-in")}`}>
                     <Base.VerticalContent className={`${containerClass} ${noBgClass}`}>
                       {logo && (
-                        <div className={this.decorateCSS("logo-wrapper")}>
-                          <Base.Media value={item.logo} className={`${this.decorateCSS("logo")} ${image && this.decorateCSS("logo-with-image")}`} />
-                        </div>
+                        <Base.Media value={item.logo} className={`${this.decorateCSS("logo")} ${image ? this.decorateCSS("logo-with-image") : ""}`} />
                       )}
                       {subtitle && (
                         <Base.SectionSubTitle
                           className={`${this.decorateCSS("subtitle")} ${image && this.decorateCSS("subtitle-with-image")} ${subtitleAlignemnt === "badge" && image ? this.decorateCSS("subtitle-badge-with-image") : ""}`}
                         >
-                          {subtitle}
+                          {item.subtitle}
                         </Base.SectionSubTitle>
                       )}
                       {title && <Base.SectionTitle className={`${this.decorateCSS("title")} ${image && this.decorateCSS("title-with-image")}`}>{item.title}</Base.SectionTitle>}
@@ -307,8 +315,8 @@ class HeroSection14 extends BaseHeroSection {
                             const buttonText = this.castToString(buttonItem.text);
                             return (
                               buttonText && (
-                                <ComposerLink path={buttonItem.url}>
-                                  <Base.Button buttonType={buttonItem.type} key={indexButton} className={this.decorateCSS("button")}>
+                                <ComposerLink key={indexButton} path={buttonItem.url}>
+                                  <Base.Button buttonType={buttonItem.type} className={this.decorateCSS("button")}>
                                     <Base.P className={this.decorateCSS("button-text")}>{buttonItem.text}</Base.P>
                                   </Base.Button>
                                 </ComposerLink>

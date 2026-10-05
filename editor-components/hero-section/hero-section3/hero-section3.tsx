@@ -15,8 +15,9 @@ type ISliderData = {
   button: INPUTS.CastedButton;
   logo: TypeMediaInputValue;
   overlay: boolean;
-  backgroundImage?: TypeMediaInputValue;
-  item_animation?: boolean;
+  backgroundMedia?: TypeMediaInputValue;
+  backgroundOverlay?: boolean;
+  backgroundAnimation?: boolean;
   line?: boolean;
 };
 
@@ -77,17 +78,23 @@ class HeroSection3 extends BaseHeroSection {
             },
             {
               type: "media",
-              key: "background-image",
-              displayer: "Background Image",
-              value:  {type: "image", url: "https://livewp.site/wp/md/wizestore/wp-content/uploads/sites/17/revslider/home-store-01/home_01_img1.png"},
+              key: "backgroundMedia",
+              displayer: "Background Media",
+              value: { type: "image", url: "https://livewp.site/wp/md/wizestore/wp-content/uploads/sites/17/revslider/home-store-01/home_01_img1.png" },
               additionalParams: {
-                selectItems: ["image"],
+                availableTypes: ["image", "video"],
               },
             },
             {
               type: "boolean",
-              key: "item_animation",
-              displayer: "Animation",
+              key: "backgroundOverlay",
+              displayer: "Background Overlay",
+              value: false,
+            },
+            {
+              type: "boolean",
+              key: "backgroundAnimation",
+              displayer: "Background Animation",
               value: true,
             },
             {
@@ -163,17 +170,23 @@ class HeroSection3 extends BaseHeroSection {
             },
             {
               type: "media",
-              key: "background-image",
-              displayer: "Background Image",
-              value:  {type: "image", url: ""},
+              key: "backgroundMedia",
+              displayer: "Background Media",
+              value: { type: "image", url: "" },
               additionalParams: {
-                selectItems: ["image"],
+                availableTypes: ["image", "video"],
               },
             },
             {
               type: "boolean",
-              key: "item_animation",
-              displayer: "Animation",
+              key: "backgroundOverlay",
+              displayer: "Background Overlay",
+              value: false,
+            },
+            {
+              type: "boolean",
+              key: "backgroundAnimation",
+              displayer: "Background Animation",
               value: true,
             },
             {
@@ -250,17 +263,23 @@ class HeroSection3 extends BaseHeroSection {
             },
             {
               type: "media",
-              key: "background-image",
-              displayer: "Background Image",
-              value:  {type: "image", url: ""},
+              key: "backgroundMedia",
+              displayer: "Background Media",
+              value: { type: "image", url: "" },
               additionalParams: {
-                selectItems: ["image"],
+                availableTypes: ["image", "video"],
               },
             },
             {
               type: "boolean",
-              key: "item_animation",
-              displayer: "Animation",
+              key: "backgroundOverlay",
+              displayer: "Background Overlay",
+              value: false,
+            },
+            {
+              type: "boolean",
+              key: "backgroundAnimation",
+              displayer: "Background Animation",
               value: true,
             },
             {
@@ -296,12 +315,19 @@ class HeroSection3 extends BaseHeroSection {
       value: true,
     });
 
-    this.addProp({
-      type: "boolean",
-      key: "autoplay",
-      displayer: "Autoplay",
-      value: true,
-    });
+    this.addProp(
+      INPUTS.SLIDER_SETTINGS("settings", "Slider Settings", {
+        dots: false,
+        arrows: false,
+        infinite: true,
+        speed: 500,
+        autoplay: true,
+        autoplaySpeed: 3000,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        adaptiveHeight: false,
+      })
+    );
 
     this.setComponentState("sliderRef", React.createRef());
     this.setComponentState("activeSlide", 0);
@@ -311,6 +337,12 @@ class HeroSection3 extends BaseHeroSection {
     return "Hero Section 3";
   }
 
+  withVideoSettings(media?: TypeMediaInputValue) {
+    return media?.type === "video"
+      ? { ...media, settings: { autoplay: true, loop: true, muted: true, controls: false } }
+      : media;
+  }
+
   handleSlideChange(index: number) {
     if (this.getComponentState("sliderRef")) {
       this.getComponentState("sliderRef").current.slickGoTo(index);
@@ -318,16 +350,9 @@ class HeroSection3 extends BaseHeroSection {
   }
 
   render() {
-    const autoplay = this.getPropValue("autoplay");
     const settings = {
-      dots: false,
+      ...this.transformSliderValues(this.getPropValue("settings")),
       fade: true,
-      infinite: true,
-      slidesToShow: 1,
-      slidesToScroll: 1,
-      arrows: false,
-      autoplay: autoplay,
-      autoplaySpeed: 3000,
       beforeChange: (current: number, next: number) => {
         setTimeout(() => {
           this.setComponentState("activeSlide", next);
@@ -353,17 +378,11 @@ class HeroSection3 extends BaseHeroSection {
               const description = this.castToString(item.description);
               const subtitle = this.castToString(item.subtitle);
               const buttonText = this.castToString(item.button.text);
-              const showContent = title || description || buttonText;
+              const hasLogo = !!((item.logo as any)?.url || (item.logo as any)?.name);
+              const hasImage = !!(item.image as any)?.url;
+              const showContent = hasLogo || subtitle || title || description || buttonText;
               
-              const imageWithSettings = item.image?.type === "video" ? {
-                ...item.image,
-                settings: {
-                  autoplay: true,
-                  loop: true,
-                  muted: true,
-                  controls: false
-                }
-              } : item.image;
+              const imageWithSettings = this.withVideoSettings(item.image);
               
               const typeClassMap: { [key: string]: string } = {
                 "Left Image Layout": "2",
@@ -372,23 +391,26 @@ class HeroSection3 extends BaseHeroSection {
               };
               const typeClass = typeClassMap[item.type] || "1";
 
-              const slideBg = item["background-image"] ?? item.backgroundImage;
-              const slideBgAnim = item["item_animation"] ?? item.item_animation ?? false;
-              const showLine = item["line"] ?? item.line ?? true;
+              const slideBg = item.backgroundMedia;
+              const hasSlideBg = !!(slideBg as any)?.url;
+              const slideBgAnim = item.backgroundAnimation ?? false;
+              const showLine = item.line ?? true;
 
               return (
                 <div
+                  key={index}
                   className={`${this.decorateCSS("wrapper")} ${this.decorateCSS(
                     `type-${typeClass}`
-                  )} ${index === activeSlide && this.decorateCSS("active-slide")}
-                  ${!item.image && this.decorateCSS("full-text-container")}
-                  ${!showContent && this.decorateCSS("full-image")}
-                  ${item.image && this.decorateCSS("has-image")}
+                  )} ${index === activeSlide ? this.decorateCSS("active-slide") : ""}
+                  ${!hasImage ? this.decorateCSS("full-text-container") : ""}
+                  ${!showContent ? this.decorateCSS("full-image") : ""}
+                  ${hasImage ? this.decorateCSS("has-image") : ""}
                   `}
                 >
-                  {slideBg && (
+                  {hasSlideBg && (
                     <div className={this.decorateCSS("slide-bg")}>
-                      <Base.Media value={slideBg} className={`${this.decorateCSS("slide-bg-image")} ${slideBgAnim ? this.decorateCSS("slide-bg-image-animated") : ""}`} />
+                      <Base.Media value={this.withVideoSettings(slideBg)} className={`${this.decorateCSS("slide-bg-image")} ${slideBgAnim ? this.decorateCSS("slide-bg-image-animated") : ""}`} />
+                      {item.backgroundOverlay && <div className={this.decorateCSS("slide-bg-overlay")} />}
                     </div>
                   )}
 
@@ -399,7 +421,7 @@ class HeroSection3 extends BaseHeroSection {
                   <div className={this.decorateCSS("content")}>
                     {showContent && (
                       <Base.VerticalContent className={this.decorateCSS("text-container")}>
-                        {item.logo && (
+                        {hasLogo && (
                          <div className={this.decorateCSS("logo-container")}> 
                           <Base.Media 
                             value={item.logo} 
@@ -407,15 +429,15 @@ class HeroSection3 extends BaseHeroSection {
                           />
                         </div> 
                         )}
-                        {subtitle && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{subtitle}</Base.SectionSubTitle>}
+                        {subtitle && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{item.subtitle}</Base.SectionSubTitle>}
                         {title && <Base.SectionTitle className={this.decorateCSS("title")}>{item.title}</Base.SectionTitle>}
                         {description && (
                             <div className={this.decorateCSS("description-with-line")}>
-                              {(showLine && (typeClass === "1" || typeClass === "3")) && <Base.P className={this.decorateCSS("desc-line")} />}
+                              {(showLine && (typeClass === "1" || typeClass === "3")) && <div className={this.decorateCSS("desc-line")} />}
                               <Base.SectionDescription className={this.decorateCSS("description")}>
                                 {item.description}
                               </Base.SectionDescription>
-                              {(showLine && typeClass === "2") && <Base.P className={this.decorateCSS("desc-line")} />}
+                              {(showLine && typeClass === "2") && <div className={this.decorateCSS("desc-line")} />}
                           </div>
                         )}
                         {buttonText && (
@@ -429,14 +451,14 @@ class HeroSection3 extends BaseHeroSection {
                         )}
                       </Base.VerticalContent>
                     )}
-                    {item.image && (
+                    {hasImage && (
                       <div className={this.decorateCSS("image-container")}>
                         <div className={this.decorateCSS("image")}>
                           <Base.Media
                             className={this.decorateCSS("image-element")}
                             value={imageWithSettings}
                           />
-                          {item.overlay && imageWithSettings && (imageWithSettings.type === "image" || imageWithSettings.type === "video") && imageWithSettings.url && (
+                          {item.overlay && (
                             <div className={this.decorateCSS("overlay")} />
                           )}
                         </div>
@@ -450,6 +472,7 @@ class HeroSection3 extends BaseHeroSection {
           <div className={this.decorateCSS("pagination")}>
             {this.castToObject<ISliderData[]>("slider").map((slider: ISliderData, index) => (
               <Base.P
+                key={index}
                 className={`${this.decorateCSS("page-number")} ${activeSlide === index && this.decorateCSS("active")
                   }`}
                 onClick={() => this.handleSlideChange(index)}

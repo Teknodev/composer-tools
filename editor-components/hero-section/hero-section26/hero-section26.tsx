@@ -1,9 +1,10 @@
 import * as React from "react";
 import styles from "./hero-section26.module.scss";
-import { BaseHeroSection, TypeMediaInputValue } from "../../EditorComponent";
+import { BaseHeroSection, TypeMediaInputValue, TypeUsableComponentProps } from "../../EditorComponent";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 import { Base } from "../../../composer-base-components/base/base";
+import { INPUTS } from "../../../custom-hooks/input-templates";
 
 type Slide = {
   title: React.JSX.Element;
@@ -15,6 +16,66 @@ type Slide = {
   overlay: boolean;
 };
 
+type Arrows = {
+  upIcon: TypeMediaInputValue;
+  downIcon: TypeMediaInputValue;
+};
+
+const slide = (title: string, description: string, mediaUrl: string): TypeUsableComponentProps => ({
+  type: "object",
+  key: "slider",
+  displayer: "Slider",
+  value: [
+    {
+      type: "media",
+      key: "logo",
+      displayer: "Logo",
+      additionalParams: { availableTypes: ["icon", "image"] },
+      value: { type: "icon", name: "" },
+    },
+    {
+      type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "",
+    },
+    {
+      type: "string",
+      key: "title",
+      displayer: "Title",
+      value: title,
+    },
+    {
+      type: "string",
+      key: "description",
+      displayer: "Description",
+      value: description,
+    },
+    {
+      type: "page",
+      key: "url",
+      displayer: "Navigate To",
+      value: "",
+    },
+    {
+      type: "media",
+      key: "image",
+      displayer: "Media",
+      value: {
+        type: "image",
+        url: mediaUrl,
+      },
+      additionalParams: { availableTypes: ["image", "video"] },
+    },
+    {
+      type: "boolean",
+      key: "overlay",
+      displayer: "Overlay",
+      value: false,
+    },
+  ],
+});
+
 class HeroSection26 extends BaseHeroSection {
   constructor(props?: any) {
     super(props, styles);
@@ -24,260 +85,62 @@ class HeroSection26 extends BaseHeroSection {
       key: "sliders",
       displayer: "Sliders",
       value: [
+        slide("FOR THE ROAD", "3D Visualization", "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667c25984fe95d002b35f611?alt=media&timestamp=1719412135932"),
+        slide("FALLING IN LOVE", "New illustrations", "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667c25984fe95d002b35f612?alt=media&timestamp=1719412135932"),
+        slide("ROCK ON ROCK", "Design trends", "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667c25984fe95d002b35f613?alt=media&timestamp=1719412135932"),
+        slide("JUST ONE MORE", "Photography", "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667c25984fe95d002b35f614?alt=media&timestamp=1719412135932"),
+      ],
+    });
+
+    this.addProp({
+      type: "object",
+      key: "arrows",
+      displayer: "Arrows",
+      value: [
         {
-          type: "object",
-          key: "slider",
-          displayer: "Slider",
-          value: [
-            {
-              type: "media",
-              key: "logo",
-              displayer: "Logo",
-              additionalParams: { availableTypes: ["icon", "image"] },
-              value: { type: "icon", name: "" },
-            },
-            {
-              type: "string",
-              key: "subtitle",
-              displayer: "Subtitle",
-              value: "",
-            },
-            {
-              type: "string",
-              key: "title",
-              displayer: "Title",
-              value: "FOR THE ROAD",
-            },
-            {
-              type: "string",
-              key: "description",
-              displayer: "Description",
-              value: "3D Visualization",
-            },
-            {
-              type: "page",
-              key: "url",
-              displayer: "Navigate To",
-              value: "",
-            },
-            {
-              type: "media",
-              key: "image",
-              displayer: "Media",
-              value: {
-                type: "image",
-                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667c25984fe95d002b35f611?alt=media&timestamp=1719412135932",
-              },
-              additionalParams: { availableTypes: ["image", "video"] },
-            },
-            {
-              type: "boolean",
-              key: "overlay",
-              displayer: "Overlay",
-              value: false,
-            },
-          ],
+          type: "media",
+          key: "upIcon",
+          displayer: "Up Icon",
+          value: { type: "icon", name: "IoIosArrowUp" },
+          additionalParams: { availableTypes: ["icon", "image"] },
         },
         {
-          type: "object",
-          key: "slider",
-          displayer: "Slider",
-          value: [
-            {
-              type: "media",
-              key: "logo",
-              displayer: "Logo",
-              additionalParams: { availableTypes: ["icon", "image"] },
-              value: { type: "icon", name: "" },
-            },
-            {
-              type: "string",
-              key: "subtitle",
-              displayer: "Subtitle",
-              value: "",
-            },
-            {
-              type: "string",
-              key: "title",
-              displayer: "Title",
-              value: "FALLING IN LOVE",
-            },
-            {
-              type: "string",
-              key: "description",
-              displayer: "Description",
-              value: "New illustrations",
-            },
-            {
-              type: "page",
-              key: "url",
-              displayer: "Navigate To",
-              value: "",
-            },
-            {
-              type: "media",
-              key: "image",
-              displayer: "Media",
-              value: {
-                type: "image",
-                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667c25984fe95d002b35f612?alt=media&timestamp=1719412135932",
-              },
-              additionalParams: { availableTypes: ["image", "video"] },
-            },
-            {
-              type: "boolean",
-              key: "overlay",
-              displayer: "Overlay",
-              value: false,
-            },
-          ],
-        },
-        {
-          type: "object",
-          key: "slider",
-          displayer: "Slider",
-          value: [
-            {
-              type: "media",
-              key: "logo",
-              displayer: "Logo",
-              additionalParams: { availableTypes: ["icon", "image"] },
-              value: { type: "icon", name: "" },
-            },
-            {
-              type: "string",
-              key: "subtitle",
-              displayer: "Subtitle",
-              value: "",
-            },
-            {
-              type: "string",
-              key: "title",
-              displayer: "Title",
-              value: "ROCK ON ROCK",
-            },
-            {
-              type: "string",
-              key: "description",
-              displayer: "Description",
-              value: "Design trends",
-            },
-            {
-              type: "page",
-              key: "url",
-              displayer: "Navigate To",
-              value: "",
-            },
-            {
-              type: "media",
-              key: "image",
-              displayer: "Media",
-              value: {
-                type: "image",
-                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667c25984fe95d002b35f613?alt=media&timestamp=1719412135932",
-              },
-              additionalParams: { availableTypes: ["image", "video"] },
-            },
-            {
-              type: "boolean",
-              key: "overlay",
-              displayer: "Overlay",
-              value: false,
-            },
-          ],
-        },
-        {
-          type: "object",
-          key: "slider",
-          displayer: "Slider",
-          value: [
-            {
-              type: "media",
-              key: "logo",
-              displayer: "Logo",
-              additionalParams: { availableTypes: ["icon", "image"] },
-              value: { type: "icon", name: "" },
-            },
-            {
-              type: "string",
-              key: "subtitle",
-              displayer: "Subtitle",
-              value: "",
-            },
-            {
-              type: "string",
-              key: "title",
-              displayer: "Title",
-              value: "JUST ONE MORE",
-            },
-            {
-              type: "string",
-              key: "description",
-              displayer: "Description",
-              value: "Photography",
-            },
-            {
-              type: "page",
-              key: "url",
-              displayer: "Navigate To",
-              value: "",
-            },
-            {
-              type: "media",
-              key: "image",
-              displayer: "Media",
-              value: {
-                type: "image",
-                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667c25984fe95d002b35f614?alt=media&timestamp=1719412135932",
-              },
-              additionalParams: { availableTypes: ["image", "video"] },
-            },
-            {
-              type: "boolean",
-              key: "overlay",
-              displayer: "Overlay",
-              value: false,
-            },
-          ],
+          type: "media",
+          key: "downIcon",
+          displayer: "Down Icon",
+          value: { type: "icon", name: "IoIosArrowDown" },
+          additionalParams: { availableTypes: ["icon", "image"] },
         },
       ],
     });
 
     this.addProp({
       type: "boolean",
-      key: "autoplay",
-      displayer: "Autoplay",
+      key: "line",
+      displayer: "Line",
       value: true,
     });
 
     this.addProp({
-      type: "media",
-      key: "up_icon",
-      displayer: "Up Icon",
-      value: { type: "icon", name: "IoIosArrowUp" },
-      additionalParams: { availableTypes: ["icon", "image"] },
-    });
-    this.addProp({
-      type: "media",
-      key: "down_icon",
-      displayer: "Down Icon",
-      value: { type: "icon", name: "IoIosArrowDown" },
-      additionalParams: { availableTypes: ["icon", "image"] },
-    });
-
-    this.addProp({
       type: "boolean",
-      key: "enable_line",
-      displayer: "Line",
-      value: true
-    })
-
-    this.addProp({
-      type: "boolean",
-      key: "enable_slider_animation",
+      key: "animation",
       displayer: "Animation",
-    value: true
-    })
+      value: true,
+    });
+
+    this.addProp(
+      INPUTS.SLIDER_SETTINGS("settings", "Slider Settings", {
+        dots: false,
+        arrows: false,
+        infinite: true,
+        speed: 500,
+        autoplay: true,
+        autoplaySpeed: 3000,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        adaptiveHeight: false,
+      })
+    );
 
     this.setComponentState("sliderRef", React.createRef());
     this.setComponentState("next", null);
@@ -285,6 +148,16 @@ class HeroSection26 extends BaseHeroSection {
 
   static getName(): string {
     return "Hero Section 26";
+  }
+
+  hasMedia(media?: TypeMediaInputValue) {
+    return !!(media && ((media as any).url || (media as any).name));
+  }
+
+  withVideoSettings(media: TypeMediaInputValue) {
+    return media?.type === "video"
+      ? { ...media, settings: { autoplay: true, loop: true, muted: true, controls: false } }
+      : media;
   }
 
   render() {
@@ -301,14 +174,7 @@ class HeroSection26 extends BaseHeroSection {
     };
 
     const settings = {
-      dots: false,
-      arrows: false,
-      infinite: true,
-      speed: 500,
-      autoplay: this.getPropValue("autoplay"),
-      autoplaySpeed: 3000,
-      slidesToShow: 1,
-      slidesToScroll: 1,
+      ...this.transformSliderValues(this.getPropValue("settings")),
       swipeToSlide: true,
       draggable: true,
       vertical: true,
@@ -325,8 +191,11 @@ class HeroSection26 extends BaseHeroSection {
     };
 
     const slides = this.castToObject<Slide[]>("sliders");
-    const enableLine = this.getPropValue("enable_line");
-    const enableSliderAnimation = this.getPropValue("enable_slider_animation");
+    const enableLine = this.getPropValue("line");
+    const enableSliderAnimation = this.getPropValue("animation");
+    const arrows = this.castToObject<Arrows>("arrows");
+    const hasUpIcon = this.hasMedia(arrows?.upIcon);
+    const hasDownIcon = this.hasMedia(arrows?.downIcon);
 
     const slidesLength = slides.length;
 
@@ -334,15 +203,16 @@ class HeroSection26 extends BaseHeroSection {
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
           {slides?.length > 0 && (
-            <ComposerSlider {...settings} ref={sliderRef}>
+            <ComposerSlider {...settings} ref={sliderRef} className={this.decorateCSS("slider-wrapper")}>
               {slides.map((item: Slide, index: number) => {
                 const titleExist = this.castToString(item.title);
                 const subtitleExist = this.castToString(item.subtitle);
-                const logoExist = item.logo;
+                const logoExist = this.hasMedia(item.logo);
+                const imageExist = this.hasMedia(item.image);
                 const descriptionExist = this.castToString(item.description);
                 const stickToBottomCondition =
-                  (item.image && !(titleExist || descriptionExist)) ||
-                    (!item.image && (titleExist || descriptionExist))
+                  (imageExist && !(titleExist || descriptionExist)) ||
+                    (!imageExist && (titleExist || descriptionExist))
                     ? this.decorateCSS("stick-to-bottom")
                     : "";
 
@@ -359,14 +229,14 @@ class HeroSection26 extends BaseHeroSection {
                   >
                     <div className={this.decorateCSS("slider")}>
                       {(logoExist|| subtitleExist || titleExist || descriptionExist) && (
-                        <div className={`${this.decorateCSS("left-side")} ${!item.image && this.decorateCSS("no-image")}`}>
+                        <div className={`${this.decorateCSS("left-side")} ${!imageExist ? this.decorateCSS("no-image") : ""}`}>
                           <Base.VerticalContent
                             className={this.decorateCSS("left-side-content")}
                           >
                             {logoExist && (
                               <Base.Media
                                 value={item.logo}
-                                className={`${this.decorateCSS("logo")} ${item.logo.type === "image" && this.decorateCSS("logo-image")}`}
+                                className={`${this.decorateCSS("logo")} ${item.logo.type === "image" ? this.decorateCSS("logo-image") : ""}`}
                               />
                             )}
                              {subtitleExist && (
@@ -382,7 +252,7 @@ class HeroSection26 extends BaseHeroSection {
                               </ComposerLink>
                             )}
                             {enableLine && (
-                              <span className={this.decorateCSS("line")} />
+                              <div className={this.decorateCSS("line")} />
                             )}
                             {descriptionExist && (
                               <Base.SectionDescription className={this.decorateCSS("description")}>
@@ -392,37 +262,38 @@ class HeroSection26 extends BaseHeroSection {
                           </Base.VerticalContent>
                         </div>
                       )}
-                      {item.image && (
+                      {imageExist && (
                         <div className={this.decorateCSS("right-side")}>
                           <Base.Media
-                            autoPlay
-                            loop
-                            muted
                             className={this.decorateCSS("image")}
-                            value={item.image}
-                            />
+                            value={this.withVideoSettings(item.image)}
+                          />
                           {item.overlay && (
                             <div className={this.decorateCSS("overlay")} />
                           )}
                         </div>
                       )}
                       {
-                        slidesLength > 1 && <div
+                        slidesLength > 1 && (hasUpIcon || hasDownIcon) && <div
                           className={`${this.decorateCSS("arrows")}
                         ${stickToBottomCondition}`}
                         >
-                          <div
-                            className={this.decorateCSS("up-arrow")}
-                            onClick={handlePrevClick}
-                          >
-                            <Base.Media value={this.getPropValue("up_icon")} className={this.decorateCSS("icon")} />
-                          </div>
-                          <div
-                            className={this.decorateCSS("down-arrow")}
-                            onClick={handleNextClick}
-                          >
-                            <Base.Media value={this.getPropValue("down_icon")} className={this.decorateCSS("icon")} />
-                          </div>
+                          {hasUpIcon && (
+                            <div
+                              className={this.decorateCSS("up-arrow")}
+                              onClick={handlePrevClick}
+                            >
+                              <Base.Media value={arrows.upIcon} className={this.decorateCSS("icon")} />
+                            </div>
+                          )}
+                          {hasDownIcon && (
+                            <div
+                              className={this.decorateCSS("down-arrow")}
+                              onClick={handleNextClick}
+                            >
+                              <Base.Media value={arrows.downIcon} className={this.decorateCSS("icon")} />
+                            </div>
+                          )}
                         </div>
                       }
                     </div>

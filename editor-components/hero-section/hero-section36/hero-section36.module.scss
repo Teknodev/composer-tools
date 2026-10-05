@@ -99,6 +99,15 @@
               pointer-events: auto;
             }
 
+            .logo {
+              font-size: 2.5rem;
+              width: auto;
+              max-width: 6rem;
+              max-height: 4rem;
+              object-fit: contain;
+              color: var(--composer-font-color-primary);
+            }
+
             .subtitle {
               text-align: center;
               transform: translateX(0);
@@ -116,6 +125,7 @@
             }
             
             .content-overlay.has-image {
+              .logo,
               .subtitle,
               .title,
               .description {

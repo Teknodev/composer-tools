@@ -16,8 +16,8 @@ class HeroSection35 extends BaseHeroSection {
             value: [
                 {
                     type: "media",
-                    key: "pattern",
-                    displayer: "Media",
+                    key: "backgroundMedia",
+                    displayer: "Background Media",
                     additionalParams: { availableTypes: ["image", "video"] },
                     value: {
                         type: "image",
@@ -35,7 +35,7 @@ class HeroSection35 extends BaseHeroSection {
                     type: "string",
                     key: "subtitle",
                     displayer: "Subtitle",
-                    value: "recognized for excellence",
+                    value: "Recognized for excellence",
                },
                {
                     type: "string",
@@ -45,8 +45,8 @@ class HeroSection35 extends BaseHeroSection {
                },
                {
                     type: "media",
-                    key: "mainIcon",
-                    displayer: "Main Icon",
+                    key: "icon",
+                    displayer: "Icon",
                     additionalParams: { availableTypes: ["icon", "image"] },
                     value: {
                         type: "icon",
@@ -55,7 +55,7 @@ class HeroSection35 extends BaseHeroSection {
                },
                {
                     type: "page",
-                    key: "page",
+                    key: "url",
                     displayer: "Navigate To",
                     value: "",
                },
@@ -66,15 +66,40 @@ class HeroSection35 extends BaseHeroSection {
                     value: "Represents growth, expansion, and modern business solution present growth, expansion.",
                },
                {
+                    type: "object",
+                    key: "dividers",
+                    displayer: "Dividers",
+                    value: [
+                        {
+                            type: "boolean",
+                            key: "top",
+                            displayer: "Divider Top",
+                            value: true,
+                        },
+                        {
+                            type: "boolean",
+                            key: "middle",
+                            displayer: "Divider Middle",
+                            value: true,
+                        },
+                        {
+                            type: "boolean",
+                            key: "bottom",
+                            displayer: "Divider Bottom",
+                            value: true,
+                        },
+                    ],
+               },
+               {
                     type: "string",
-                    key: "text",
-                    displayer: "Text",
+                    key: "scrollText",
+                    displayer: "Scroll Text",
                     value: "Scroll Down",
                },
                {
                     type: "media",
-                    key: "smallIcon",
-                    displayer: "Icon",
+                    key: "scrollIcon",
+                    displayer: "Scroll Icon",
                     additionalParams: { availableTypes: ["icon", "image"] },
                     value: {
                         type: "icon",
@@ -85,34 +110,13 @@ class HeroSection35 extends BaseHeroSection {
         });
         
         this.addProp({
-            type: "boolean",
-            key: "dividerTop",
-            displayer: "Divider Top",
-            value: true,
-        });
-        
-        this.addProp({
-            type: "boolean",
-            key: "dividerMiddle",
-            displayer: "Divider Middle",
-            value: true,
-        });
-
-        this.addProp({
-            type: "boolean",
-            key: "dividerBottom",
-            displayer: "Divider Bottom",
-            value: true,
-        });
-        
-        this.addProp({
             type: "object",
             key: "rightCard",
             displayer: "Right Card",
             value: [
                 {
                     type: "media",
-                    key: "image",
+                    key: "media",
                     displayer: "Media",
                     additionalParams: { availableTypes: ["image", "video"] },
                     value: {
@@ -139,19 +143,19 @@ class HeroSection35 extends BaseHeroSection {
                         },
                         {
                             type: "array",
-                            key: "customerImages",
-                            displayer: "Customer Images",
+                            key: "images",
+                            displayer: "Images",
                             value: [
                                 {
                                     type: "object",
-                                    key: "customerImage",
-                                    displayer: "Customer Image",
+                                    key: "item",
+                                    displayer: "Item",
                                     value: [
                                         {
                                             type: "media",
-                                            key: "customerImage_image",
+                                            key: "image",
                                             displayer: "Image",
-                                            additionalParams: { availableTypes: ["image"] },
+                                            additionalParams: { availableTypes: ["image", "video"] },
                                             value: {
                                                 type: "image",
                                                 url: "https://bexon.themejunction.net/wp-content/uploads/2025/07/client-1.webp",
@@ -161,14 +165,14 @@ class HeroSection35 extends BaseHeroSection {
                                 },
                                 {
                                     type: "object",
-                                    key: "customerImage",
-                                    displayer: "Customer Image",
+                                    key: "item",
+                                    displayer: "Item",
                                     value: [
                                         {
                                             type: "media",
-                                            key: "customerImage_image",
+                                            key: "image",
                                             displayer: "Image",
-                                            additionalParams: { availableTypes: ["image"] },
+                                            additionalParams: { availableTypes: ["image", "video"] },
                                             value: {
                                                 type: "image",
                                                 url: "https://bexon.themejunction.net/wp-content/uploads/2025/07/client-2.webp",
@@ -178,14 +182,14 @@ class HeroSection35 extends BaseHeroSection {
                                 },
                                 {
                                     type: "object",
-                                    key: "customerImage",
-                                    displayer: "Customer Image",
+                                    key: "item",
+                                    displayer: "Item",
                                     value: [
                                         {
                                             type: "media",
-                                            key: "customerImage_image",
+                                            key: "image",
                                             displayer: "Image",
-                                            additionalParams: { availableTypes: ["image"] },
+                                            additionalParams: { availableTypes: ["image", "video"] },
                                             value: {
                                                 type: "image",
                                                 url: "https://bexon.themejunction.net/wp-content/uploads/2025/07/client-3.webp",
@@ -197,7 +201,7 @@ class HeroSection35 extends BaseHeroSection {
                         },
                         {
                             type: "media",
-                            key: "customerIcon",
+                            key: "icon",
                             displayer: "Icon",
                             additionalParams: { availableTypes: ["icon", "image"] },
                             value: {
@@ -207,14 +211,14 @@ class HeroSection35 extends BaseHeroSection {
                         },
                         {
                             type: "string",
-                            key: "customerNumber",
-                            displayer: "Customer Number",
+                            key: "number",
+                            displayer: "Number",
                             value: "30K"
                         },
                         {
                             type: "string",
-                            key: "customerDesc",
-                            displayer: "Customer Box Description",
+                            key: "description",
+                            displayer: "Description",
                             value: "Happy customer we have world-wide.",
                         },
                     ],
@@ -244,52 +248,63 @@ class HeroSection35 extends BaseHeroSection {
     }
 
     render() {
-        const leftCard = this.castToObject("leftCard") || {};
-        const rightCard = this.castToObject("rightCard") || {};
+        const leftCard = this.castToObject<any>("leftCard") || {};
+        const rightCard = this.castToObject<any>("rightCard") || {};
         const customerBox = rightCard?.customerBox || {};
-        const page = leftCard?.page;
+        const dividers = leftCard?.dividers || {};
+        const url = leftCard?.url;
+        const hasMedia = (m: { name?: string; url?: string } | null | undefined) => Boolean(m && (m.name || m.url));
 
         const leftCardSubtitleExist = this.castToString(leftCard.subtitle);
         const leftCardTitleExist = this.castToString(leftCard.title);
         const leftCardDescriptionExist = this.castToString(leftCard.description);
-        const leftCardTextExist = this.castToString(leftCard.text);
+        const leftCardScrollTextExist = this.castToString(leftCard.scrollText);
+        const hasBackgroundMedia = hasMedia(leftCard.backgroundMedia);
+        const hasLogo = hasMedia(leftCard.logo);
+        const hasIcon = hasMedia(leftCard.icon);
+        const hasScrollIcon = hasMedia(leftCard.scrollIcon);
+        const hasRightMedia = hasMedia(rightCard.media);
 
-        const customerBoxDescriptionExist = this.castToString(customerBox.customerDesc);
-        const customerBoxImageExist = (customerBox.customerImages && customerBox.customerImages.length > 0) || customerBox.customerIcon;
-        const customerBoxNumberExist = this.castToString(customerBox.customerNumber);
-        const hasMedia = (m: { name?: string; url?: string } | null | undefined) => Boolean(m && (m.name || m.url));
-        const leftCardExist = leftCard.pattern || hasMedia(leftCard.logo) || leftCardSubtitleExist || leftCardTitleExist || leftCardDescriptionExist || leftCardTextExist || hasMedia(leftCard.smallIcon) || hasMedia(leftCard.mainIcon);
+        const getImage = (item: any) => (Array.isArray(item?.value) ? item.value.find((field: any) => field.key === "image")?.value : item?.image);
+        const customerImages = (customerBox.images || []).map(getImage).filter((image: any) => hasMedia(image));
+        const hasCustomerIcon = hasMedia(customerBox.icon);
+        const customerBoxDescriptionExist = this.castToString(customerBox.description);
+        const customerBoxNumberExist = this.castToString(customerBox.number);
+        const customerBoxImageExist = customerImages.length > 0 || hasCustomerIcon;
+        const leftCardExist = hasBackgroundMedia || hasLogo || leftCardSubtitleExist || leftCardTitleExist || leftCardDescriptionExist || leftCardScrollTextExist || hasScrollIcon || hasIcon;
         const customerBoxExist = customerBoxImageExist || customerBoxDescriptionExist || customerBoxNumberExist;
-        const rightCardExist = rightCard.image || (customerBoxExist && customerBox.visibility);
         const showCustomerBox = customerBoxExist && customerBox.visibility;
+        const rightCardExist = hasRightMedia || showCustomerBox;
         const htmlBg = (typeof document !== "undefined" ? getComputedStyle(document.documentElement).getPropertyValue('--composer-html-background') : "") || '#fff';
+
+        const icon = <Base.Media value={leftCard.icon} className={this.decorateCSS("main-icon")} />;
 
         return(
             <Base.Container ref={this.containerRef} className={this.decorateCSS("container")}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
                     <div className={this.decorateCSS("content")}>
-                        {leftCardExist && Object.keys(leftCard).length > 0 && (
+                        {leftCardExist && (
                             <div className={this.decorateCSS("left-card")}>
-                                {leftCard.pattern && (
+                                {hasBackgroundMedia && (
                                     <div className={this.decorateCSS("pattern-bg")}>
                                         <Base.Media
-                                            value={leftCard.pattern}
+                                            value={leftCard.backgroundMedia}
                                             className={this.decorateCSS("pattern-image")}
                                         />
                                     </div>
                                 )}
                                 <div className={this.decorateCSS("left-content-wrapper")}>
-                                    {(leftCard?.logo || leftCardSubtitleExist || leftCardTitleExist || leftCardDescriptionExist || leftCard.mainIcon) && <Base.VerticalContent className={`${this.decorateCSS("left-content")} ${!rightCardExist ? this.decorateCSS("full-width") : ""}`}>
-                                        {(leftCard?.logo?.url || leftCard?.logo?.name) && (
+                                    {(hasLogo || leftCardSubtitleExist || leftCardTitleExist || leftCardDescriptionExist || hasIcon) && <Base.VerticalContent className={`${this.decorateCSS("left-content")} ${!rightCardExist ? this.decorateCSS("full-width") : ""}`}>
+                                        {hasLogo && (
                                         <div className={this.decorateCSS("logo-wrapper")}>
                                             <Base.Media
                                                 value={leftCard.logo}
-                                                className={`${this.decorateCSS("logo")} ${leftCard.logo.type == "image" && this.decorateCSS("logo-image")}`}
+                                                className={`${this.decorateCSS("logo")} ${leftCard.logo.type == "image" ? this.decorateCSS("logo-image") : ""}`}
                                             />
                                         </div>
                                         )}
                                         {leftCardSubtitleExist && (
-                                            <Base.SectionSubTitle className={`${this.decorateCSS("subtitle")} ${leftCard.pattern && this.decorateCSS("subtitle-has-image")}`}>
+                                            <Base.SectionSubTitle className={`${this.decorateCSS("subtitle")} ${hasBackgroundMedia ? this.decorateCSS("subtitle-has-image") : ""}`}>
                                                 {leftCard.subtitle}
                                             </Base.SectionSubTitle>
                                         )}
@@ -298,82 +313,70 @@ class HeroSection35 extends BaseHeroSection {
                                                 {leftCard.title}
                                             </Base.SectionTitle>
                                         )}
-                                        {(leftCard.mainIcon || leftCardDescriptionExist) && (
+                                        {(hasIcon || leftCardDescriptionExist) && (
                                                 <div className={`${this.decorateCSS("main-info-wrapper")} ${!rightCardExist ? this.decorateCSS("center-wrapper") : ""}`}>
-                                                {this.getPropValue("dividerTop") && (
+                                                {dividers.top && (
                                                     <div className={this.decorateCSS("divider-top")}></div>
                                                 )}
                                                 <div className={this.decorateCSS("main-info")}>
-                                                    {leftCard.mainIcon && (
+                                                    {hasIcon && (
                                                         <div className={this.decorateCSS("main-icon-container")}>
-                                                            {page ? (
-                                                                <ComposerLink path={page}>
-                                                                    <Base.Media 
-                                                                        value={leftCard.mainIcon} 
-                                                                        className={this.decorateCSS("main-icon")}
-                                                                    />
-                                                                </ComposerLink>
-                                                            ) : (
-                                                                <Base.Media 
-                                                                    value={leftCard.mainIcon} 
-                                                                    className={this.decorateCSS("main-icon")}
-                                                                />
-                                                            )}
+                                                            {url ? <ComposerLink path={url}>{icon}</ComposerLink> : icon}
                                                         </div>
                                                     )}
-                                                    {this.getPropValue("dividerMiddle") && (
+                                                    {dividers.middle && (
                                                         <div className={this.decorateCSS("divider-middle")}></div>
                                                     )}
                                                     {leftCardDescriptionExist && (
-                                                        <div className={this.decorateCSS("description")}>
+                                                        <Base.SectionDescription className={this.decorateCSS("description")}>
                                                             {leftCard.description}
-                                                        </div>
+                                                        </Base.SectionDescription>
                                                     )}
                                                 </div>
-                                                {this.getPropValue("dividerBottom") && (
+                                                {dividers.bottom && (
                                                     <div className={this.decorateCSS("divider-bottom")}></div>
                                                 )}
                                             </div>
                                         )}
                                     </Base.VerticalContent>}
                                 </div>
-                                {(leftCardTextExist || leftCard.smallIcon) && (
-                                    <div 
+                                {(leftCardScrollTextExist || hasScrollIcon) && (
+                                    <div
                                     className={this.decorateCSS("scroll-section")}
                                     onClick={this.scrollToNextViewport}
                                     >
-                                        {leftCardTextExist && (
-                                            <span className={this.decorateCSS("scroll-text")}>
-                                                {leftCard.text}
-                                            </span>
+                                        {leftCardScrollTextExist && (
+                                            <Base.P className={this.decorateCSS("scroll-text")}>
+                                                {leftCard.scrollText}
+                                            </Base.P>
                                         )}
-                                        <div className={this.decorateCSS("scroll-icon-container")}>
-                                            {leftCard.smallIcon && (
+                                        {hasScrollIcon && (
+                                            <div className={this.decorateCSS("scroll-icon-container")}>
                                                 <Base.Media
-                                                    value={leftCard.smallIcon}
+                                                    value={leftCard.scrollIcon}
                                                     className={this.decorateCSS("scroll-icon")}
                                                 />
-                                            )}
-                                        </div>
+                                            </div>
+                                        )}
                                     </div>
                                 )}
                             </div>
                         )}
                         {rightCardExist && (
                             <div className={leftCardExist ? this.decorateCSS("right-card") : this.decorateCSS("right-card-no-left-card")}>
-                                <div className={`${this.decorateCSS("image-container")} ${showCustomerBox && this.decorateCSS("has-customer-box")}`}>
-                                    {rightCard.image && <div className={this.decorateCSS("image-spacer")} />}
-                                    {rightCard.image && (
+                                <div className={`${this.decorateCSS("image-container")} ${showCustomerBox ? this.decorateCSS("has-customer-box") : ""}`}>
+                                    {hasRightMedia && <div className={this.decorateCSS("image-spacer")} />}
+                                    {hasRightMedia && (
                                         <div className={this.decorateCSS("image-wrapper")}>
                                             <Base.Media
-                                                value={rightCard.image}
+                                                value={rightCard.media}
                                                 className={this.decorateCSS("image")}
                                             />
                                             {rightCard.overlay && <div className={this.decorateCSS("image-overlay")} />}
                                         </div>
                                     )}
                                     {showCustomerBox && (
-                                        <div className={this.decorateCSS("box-area") + (!rightCard.image ? ` ${this.decorateCSS("full-size")}` : "")}>
+                                        <div className={this.decorateCSS("box-area") + (!hasRightMedia ? ` ${this.decorateCSS("full-size")}` : "")}>
                                             <svg className={this.decorateCSS("box-corner-left")}>
                                                 <defs>
                                                     <mask id="cutout-topleft">
@@ -392,38 +395,34 @@ class HeroSection35 extends BaseHeroSection {
                                                 </defs>
                                                 <rect width="25" height="25" fill={htmlBg} mask="url(#cutout-bottomright)" />
                                             </svg>
-                                            <div className={this.decorateCSS("customer-box")}> 
+                                            <div className={this.decorateCSS("customer-box")}>
                                                 {customerBoxImageExist && <div className={this.decorateCSS("customer-images")}>
-                                                    {customerBox.customerImages && customerBox.customerImages.map((item: any, idx: number) => {
-                                                        const mediaField = Array.isArray(item?.value) ? item.value.find((v: any) => v.type === 'media' || v.key === 'image') : item?.value;
-                                                        const mediaValue = mediaField?.value ?? mediaField ?? item;
-                                                        return (
-                                                            <Base.Media
-                                                                key={idx}
-                                                                value={mediaValue}
-                                                                className={this.decorateCSS("customer-img")}
-                                                            />
-                                                        );
-                                                    })}
-                                                    {customerBox.customerIcon && (
+                                                    {customerImages.map((image: any, idx: number) => (
+                                                        <Base.Media
+                                                            key={idx}
+                                                            value={image}
+                                                            className={this.decorateCSS("customer-img")}
+                                                        />
+                                                    ))}
+                                                    {hasCustomerIcon && (
                                                         <div className={this.decorateCSS("customer-icon-container")}>
-                                                            <Base.Media 
-                                                                value={customerBox.customerIcon} 
+                                                            <Base.Media
+                                                                value={customerBox.icon}
                                                                 className={this.decorateCSS("customer-icon")}
                                                             />
                                                         </div>
-                                                    )}  
+                                                    )}
                                                 </div>}
-                                                {(customerBoxDescriptionExist || customerBox.customerNumber) && <div className={this.decorateCSS("customer-info")}>
+                                                {(customerBoxDescriptionExist || customerBoxNumberExist) && <div className={this.decorateCSS("customer-info")}>
                                                     {customerBoxNumberExist && (
-                                                        <div className={this.decorateCSS("customer-number")}>
-                                                            {customerBox.customerNumber}
-                                                        </div>
+                                                        <Base.P className={this.decorateCSS("customer-number")}>
+                                                            {customerBox.number}
+                                                        </Base.P>
                                                     )}
                                                     {customerBoxDescriptionExist && (
-                                                        <div className={this.decorateCSS("customer-desc")}>
-                                                            {customerBox.customerDesc}
-                                                        </div>
+                                                        <Base.P className={this.decorateCSS("customer-desc")}>
+                                                            {customerBox.description}
+                                                        </Base.P>
                                                     )}
                                                 </div>}
                                             </div>

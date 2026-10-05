@@ -4,19 +4,32 @@ import { BaseHeroSection, TypeMediaInputValue } from "../../EditorComponent";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import { Base } from "../../../composer-base-components/base/base";
+import { INPUTS } from "../../../custom-hooks/input-templates";
 
 type Slide = {
+  logo: TypeMediaInputValue;
   title: React.JSX.Element;
   subtitle: React.JSX.Element;
   description: React.JSX.Element;
   description_title: React.JSX.Element;
-  image: TypeMediaInputValue;
-  item_overlay: boolean;
+  media: TypeMediaInputValue;
+  overlay: boolean;
 };
 
 type Social = {
   url: string;
-  text: string;
+  text: React.JSX.Element;
+  icon: TypeMediaInputValue;
+};
+
+type Background = {
+  media: TypeMediaInputValue;
+  overlay: boolean;
+};
+
+type Arrows = {
+  prevIcon: TypeMediaInputValue;
+  nextIcon: TypeMediaInputValue;
 };
 
 class HeroSection18 extends BaseHeroSection {
@@ -24,37 +37,29 @@ class HeroSection18 extends BaseHeroSection {
     super(props, styles);
 
     this.addProp({
-      type: "media",
-      key: "cover",
-      displayer: "Background Media",
-      additionalParams: {
-        availableTypes: ["image", "video"],
-      },
-      value: {
-        type: "image",
-        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666194c2bd2970002c625e7e?alt=media&timestamp=1719483639150",
-      },
-    });
-
-    this.addProp({
-      type: "boolean",
-      key: "overlay",
-      displayer: "Overlay",
-      value: false,
-    });
-
-    this.addProp({
-      type: "boolean",
-      key: "showPagination",
-      displayer: "Show Pagination",
-      value: true,
-    });
-    
-    this.addProp({
-      type: "boolean",
-      key: "autoplay",
-      displayer: "Autoplay",
-      value: true,
+      type: "object",
+      key: "background",
+      displayer: "Background",
+      value: [
+        {
+          type: "media",
+          key: "media",
+          displayer: "Background Media",
+          additionalParams: {
+            availableTypes: ["image", "video"],
+          },
+          value: {
+            type: "image",
+            url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666194c2bd2970002c625e7e?alt=media&timestamp=1719483639150",
+          },
+        },
+        {
+          type: "boolean",
+          key: "overlay",
+          displayer: "Overlay",
+          value: false,
+        },
+      ],
     });
 
     this.addProp({
@@ -68,10 +73,22 @@ class HeroSection18 extends BaseHeroSection {
           key: "item",
           value: [
             {
+              type: "media",
+              key: "logo",
+              displayer: "Logo",
+              additionalParams: {
+                availableTypes: ["image", "icon"],
+              },
+              value: {
+                type: "icon",
+                name: "",
+              },
+            },
+            {
               type: "string",
               displayer: "Subtitle",
               key: "subtitle",
-              value: "visual art forms",
+              value: "Visual art forms",
             },
             {
               type: "string",
@@ -94,7 +111,7 @@ class HeroSection18 extends BaseHeroSection {
             {
               type: "media",
               displayer: "Media",
-              key: "image",
+              key: "media",
               additionalParams: {
                 availableTypes: ["image", "video"],
               },
@@ -106,7 +123,7 @@ class HeroSection18 extends BaseHeroSection {
             {
               type: "boolean",
               displayer: "Overlay",
-              key: "item_overlay",
+              key: "overlay",
               value: false,
             },
           ],
@@ -118,10 +135,22 @@ class HeroSection18 extends BaseHeroSection {
           key: "item",
           value: [
             {
+              type: "media",
+              key: "logo",
+              displayer: "Logo",
+              additionalParams: {
+                availableTypes: ["image", "icon"],
+              },
+              value: {
+                type: "icon",
+                name: "",
+              },
+            },
+            {
               type: "string",
-              displayer: "Subitle",
+              displayer: "Subtitle",
               key: "subtitle",
-              value: "visual art forms",
+              value: "Visual art forms",
             },
             {
               type: "string",
@@ -145,7 +174,7 @@ class HeroSection18 extends BaseHeroSection {
             {
               type: "media",
               displayer: "Media",
-              key: "image",
+              key: "media",
               additionalParams: {
                 availableTypes: ["image", "video"],
               },
@@ -157,7 +186,7 @@ class HeroSection18 extends BaseHeroSection {
             {              
               type: "boolean",
               displayer: "Overlay",
-              key: "item_overlay",
+              key: "overlay",
               value: false,
             },
           ],
@@ -168,10 +197,22 @@ class HeroSection18 extends BaseHeroSection {
           key: "item",
           value: [
             {
+              type: "media",
+              key: "logo",
+              displayer: "Logo",
+              additionalParams: {
+                availableTypes: ["image", "icon"],
+              },
+              value: {
+                type: "icon",
+                name: "",
+              },
+            },
+            {
               type: "string",
-              displayer: "Subitle",
+              displayer: "Subtitle",
               key: "subtitle",
-              value: "visual art forms",
+              value: "Visual art forms",
             },
             {
               type: "string",
@@ -195,7 +236,7 @@ class HeroSection18 extends BaseHeroSection {
             {
               type: "media",
               displayer: "Media",
-              key: "image",
+              key: "media",
               additionalParams: {
                 availableTypes: ["image", "video"],
               },
@@ -207,7 +248,7 @@ class HeroSection18 extends BaseHeroSection {
             {
               type: "boolean",
               displayer: "Overlay",
-              key: "item_overlay",
+              key: "overlay",
               value: false,
             }
           ],
@@ -218,10 +259,22 @@ class HeroSection18 extends BaseHeroSection {
           key: "item",
           value: [
             {
+              type: "media",
+              key: "logo",
+              displayer: "Logo",
+              additionalParams: {
+                availableTypes: ["image", "icon"],
+              },
+              value: {
+                type: "icon",
+                name: "",
+              },
+            },
+            {
               type: "string",
-              displayer: "Subitle",
+              displayer: "Subtitle",
               key: "subtitle",
-              value: "visual art forms",
+              value: "Visual art forms",
             },
             {
               type: "string",
@@ -245,7 +298,7 @@ class HeroSection18 extends BaseHeroSection {
             {
               type: "media",
               displayer: "Media",
-              key: "image",
+              key: "media",
               additionalParams: {
                 availableTypes: ["image", "video"],
               },
@@ -257,7 +310,7 @@ class HeroSection18 extends BaseHeroSection {
             {
               type: "boolean",
               displayer: "Overlay",
-              key: "item_overlay",
+              key: "overlay",
               value: false,
             }
           ],
@@ -268,10 +321,22 @@ class HeroSection18 extends BaseHeroSection {
           key: "item",
           value: [
             {
+              type: "media",
+              key: "logo",
+              displayer: "Logo",
+              additionalParams: {
+                availableTypes: ["image", "icon"],
+              },
+              value: {
+                type: "icon",
+                name: "",
+              },
+            },
+            {
               type: "string",
-              displayer: "Subitle",
+              displayer: "Subtitle",
               key: "subtitle",
-              value: "visual art forms",
+              value: "Visual art forms",
             },
             {
               type: "string",
@@ -295,7 +360,7 @@ class HeroSection18 extends BaseHeroSection {
             {
               type: "media",
               displayer: "Media",
-              key: "image",
+              key: "media",
               additionalParams: {
                 availableTypes: ["image", "video"],
               },
@@ -307,7 +372,7 @@ class HeroSection18 extends BaseHeroSection {
             {
               type: "boolean",
               displayer: "Overlay",
-              key: "item_overlay",
+              key: "overlay",
               value: false,
             }
           ],
@@ -322,8 +387,8 @@ class HeroSection18 extends BaseHeroSection {
       value: [
         {
           type: "object",
-          key: "icon",
-          displayer: "Item",
+          key: "social",
+          displayer: "Social",
           value: [
             {
               type: "page",
@@ -335,11 +400,11 @@ class HeroSection18 extends BaseHeroSection {
               type: "string",
               key: "text",
               displayer: "Text",
-              value: "facebook",
+              value: "Facebook",
             },
             {
               type: "media",
-              key: "icon_icon",
+              key: "icon",
               displayer: "Icon",
               additionalParams: { availableTypes: ["icon", "image"] },
               value: { type: "icon", name: "FaFacebook" },
@@ -348,8 +413,8 @@ class HeroSection18 extends BaseHeroSection {
         },
         {
           type: "object",
-          key: "icon",
-          displayer: "Item",
+          key: "social",
+          displayer: "Social",
           value: [
             {
               type: "page",
@@ -361,11 +426,11 @@ class HeroSection18 extends BaseHeroSection {
               type: "string",
               key: "text",
               displayer: "Text",
-              value: "instagram",
+              value: "Instagram",
             },
             {
               type: "media",
-              key: "icon_icon",
+              key: "icon",
               displayer: "Icon",
               additionalParams: { availableTypes: ["icon", "image"] },
               value: { type: "icon", name: "FaInstagram" },
@@ -374,8 +439,8 @@ class HeroSection18 extends BaseHeroSection {
         },
         {
           type: "object",
-          key: "icon",
-          displayer: "Item",
+          key: "social",
+          displayer: "Social",
           value: [
             {
               type: "page",
@@ -387,11 +452,11 @@ class HeroSection18 extends BaseHeroSection {
               type: "string",
               key: "text",
               displayer: "Text",
-              value: "dribbble",
+              value: "Dribbble",
             },
             {
               type: "media",
-              key: "icon_icon",
+              key: "icon",
               displayer: "Icon",
               additionalParams: { availableTypes: ["icon", "image"] },
               value: { type: "icon", name: "FaDribbble" },
@@ -402,29 +467,50 @@ class HeroSection18 extends BaseHeroSection {
     });
 
     this.addProp({
-      type: "media",
-      key: "prev_icon",
-      displayer: "Prev Icon",
-      additionalParams: {
-        availableTypes: ["icon", "image"],
-      },
-      value: {
-        type: "icon",
-        name: "BsArrowLeft",
-      },
+      type: "object",
+      key: "arrows",
+      displayer: "Arrows",
+      value: [
+        {
+          type: "media",
+          key: "prevIcon",
+          displayer: "Previous Icon",
+          additionalParams: {
+            availableTypes: ["icon", "image"],
+          },
+          value: {
+            type: "icon",
+            name: "BsArrowLeft",
+          },
+        },
+        {
+          type: "media",
+          key: "nextIcon",
+          displayer: "Next Icon",
+          additionalParams: {
+            availableTypes: ["icon", "image"],
+          },
+          value: {
+            type: "icon",
+            name: "BsArrowRight",
+          },
+        },
+      ],
     });
-    this.addProp({
-      type: "media",
-      key: "next_icon",
-      displayer: "Next Icon",
-      additionalParams: {
-        availableTypes: ["icon", "image"],
-      },
-      value: {
-        type: "icon",
-        name: "BsArrowRight",
-      },
-    });
+
+    this.addProp(
+      INPUTS.SLIDER_SETTINGS("settings", "Slider Settings", {
+        dots: true,
+        arrows: false,
+        infinite: true,
+        speed: 2000,
+        autoplay: true,
+        autoplaySpeed: 5000,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        adaptiveHeight: false,
+      })
+    );
 
     this.setComponentState("slider-ref", React.createRef());
     this.setComponentState("active-index", 0);
@@ -434,16 +520,22 @@ class HeroSection18 extends BaseHeroSection {
     return "Hero Section 18";
   }
 
+  hasMedia(media?: TypeMediaInputValue) {
+    return !!(media && ((media as any).url || (media as any).name));
+  }
+
+  withVideoSettings(media: TypeMediaInputValue) {
+    return media?.type === "video"
+      ? { ...media, settings: { autoplay: true, loop: true, muted: true, controls: false } }
+      : media;
+  }
+
   render() {
+    const sliderSettings = this.transformSliderValues(this.getPropValue("settings"));
     const settings = {
+      ...sliderSettings,
       dots: false,
-      infinite: true,
       arrows: false,
-      speed: 2000,
-      autoplay: this.getPropValue("autoplay"),
-      autoplaySpeed: 5000,
-      slidesToShow: 1,
-      slidesToScroll: 1,
       beforeChange: (oldIndex: number, index: number) => {
         if (oldIndex === index) return;
         setTimeout(() => {
@@ -456,31 +548,36 @@ class HeroSection18 extends BaseHeroSection {
     const sliderCount = slides?.length;
     const progressPercentage = ((this.getComponentState("active-index") + 1) / sliderCount) * 100;
 
-    const socials = this.castToObject<any[]>("socials");
+    const socials = this.castToObject<Social[]>("socials").filter(
+      (item: Social) => this.castToString(item.text) || this.hasMedia(item.icon)
+    );
 
-    const prevIcon = this.getPropValue("prev_icon") as TypeMediaInputValue | undefined;
-    const nextIcon = this.getPropValue("next_icon") as TypeMediaInputValue | undefined;
+    const arrows = this.castToObject<Arrows>("arrows");
+    const prevIcon = arrows?.prevIcon;
+    const nextIcon = arrows?.nextIcon;
 
-    const prevIconExist = !!prevIcon;
-    const nextIconExist = !!nextIcon;
+    const prevIconExist = this.hasMedia(prevIcon);
+    const nextIconExist = this.hasMedia(nextIcon);
 
     const renderBottomPage = socials?.length > 0 || prevIconExist || nextIconExist;
 
-    const coverValue = this.getPropValue("cover") as TypeMediaInputValue | undefined;
-    const cover = coverValue;
-    const overlay = !!this.getPropValue("overlay");
+    const background = this.castToObject<Background>("background");
+    const coverValue = background?.media;
+    const cover = this.hasMedia(coverValue);
+    const overlay = !!background?.overlay;
 
-    const showPagination = !!this.getPropValue("showPagination");
+    const showPagination = !!sliderSettings.dots;
     const sliderRef = this.getComponentState("slider-ref");
 
     return (
       <Base.Container isFull={true} className={this.decorateCSS("container")}>
-        {cover && <Base.Media value={cover} className={this.decorateCSS("background-image")} autoPlay muted loop playsInline />}
+        {cover && <Base.Media value={this.withVideoSettings(coverValue)} className={this.decorateCSS("background-image")} />}
         {cover && overlay && <div className={this.decorateCSS("overlay")} />}
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           {slides?.length > 0 && (
             <ComposerSlider {...settings} ref={sliderRef} className={this.decorateCSS("slider")}>
               {slides.map((item: Slide, index: number) => {
+                const logoExist = this.hasMedia(item.logo);
                 const titleExist = this.castToString(item.title);
                 const subtitleExist = this.castToString(item.subtitle);
 
@@ -492,11 +589,12 @@ class HeroSection18 extends BaseHeroSection {
                     <div className={this.decorateCSS("card")}>
                       <div className={this.decorateCSS("content")}>
                         <div className={this.decorateCSS("text-content")}>
-                          {(titleExist || subtitleExist) && (
-                            <div className={this.decorateCSS("text-content")}>
-                              {subtitleExist && <Base.H5 className={`${this.decorateCSS("subtitle")} ${!cover && this.decorateCSS("subtitle-no-image")}`}>{item.subtitle}</Base.H5>}
-                              {titleExist && <Base.H2 className={`${this.decorateCSS("title")} ${!cover && this.decorateCSS("title-no-image")}`}>{item.title}</Base.H2>}
-                            </div>
+                          {(logoExist || titleExist || subtitleExist) && (
+                            <Base.VerticalContent className={this.decorateCSS("heading")}>
+                              {logoExist && <Base.Media value={item.logo} className={`${this.decorateCSS("logo")} ${!cover ? this.decorateCSS("logo-no-image") : ""}`} />}
+                              {subtitleExist && <Base.SectionSubTitle className={`${this.decorateCSS("subtitle")} ${!cover ? this.decorateCSS("subtitle-no-image") : ""}`}>{item.subtitle}</Base.SectionSubTitle>}
+                              {titleExist && <Base.SectionTitle className={`${this.decorateCSS("title")} ${!cover ? this.decorateCSS("title-no-image") : ""}`}>{item.title}</Base.SectionTitle>}
+                            </Base.VerticalContent>
                           )}
                           {showPagination && slides.length > 1 && (
                             <div className={`${this.decorateCSS("pagination")} ${!cover && this.decorateCSS("pagination-no-image")}`}>
@@ -509,10 +607,10 @@ class HeroSection18 extends BaseHeroSection {
                           )}
                         </div>
                       </div>
-                      {!!item.image && (
+                      {this.hasMedia(item.media) && (
                         <div className={this.decorateCSS("image-wrapper")}>
-                          <Base.Media value={item.image} className={this.decorateCSS("image")} autoPlay muted loop playsInline />
-                          {item.item_overlay && <div className={this.decorateCSS("slide-overlay")} />}
+                          <Base.Media value={this.withVideoSettings(item.media)} className={this.decorateCSS("image")} />
+                          {item.overlay && <div className={this.decorateCSS("slide-overlay")} />}
                         </div>
                       )}
                       {(descTitleExist || descExist) && (
@@ -531,12 +629,14 @@ class HeroSection18 extends BaseHeroSection {
             <div className={this.decorateCSS("page-bottom")}>
               {socials?.length > 0 && (
                 <div className={this.decorateCSS("socials")}> 
-                  {socials.map((item: any, index: number) => (
+                  {socials.map((item: Social, index: number) => (
                     <ComposerLink path={item.url} key={index}>
-                        <div className={this.decorateCSS("social-item")}>
-                          <Base.H6 className={`${this.decorateCSS("name")} ${!cover && this.decorateCSS("name-no-image")}`}>{item.text}</Base.H6>
-                          {item.icon_icon && <Base.Media value={item.icon_icon} className={this.decorateCSS("social-icon")}/>} 
-                        </div>
+                      <div className={this.decorateCSS("social-item")}>
+                        {this.castToString(item.text) && (
+                          <Base.H6 className={`${this.decorateCSS("name")} ${!cover ? this.decorateCSS("name-no-image") : ""}`}>{item.text}</Base.H6>
+                        )}
+                        {this.hasMedia(item.icon) && <Base.Media value={item.icon} className={this.decorateCSS("social-icon")} />}
+                      </div>
                     </ComposerLink>
                   ))}
                 </div>

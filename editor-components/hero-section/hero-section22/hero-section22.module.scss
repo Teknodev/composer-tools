@@ -89,6 +89,7 @@
                 width: 100%;
                 object-fit: cover;
                 background: transparent;
+                border-radius: var(--composer-border-radius-sm);
               }
               .left-animation {
                 animation: scaleUpDown 1s ease-in-out;
@@ -133,19 +134,12 @@
                   height: 2px;
                 }
 
-                .logo-wrapper {
-                  width: 100%;
-                  display: flex;
-                  justify-content: flex-start;
-                  align-items: center;
-
-                  .logo {
-                    max-width: 150px;
-                    aspect-ratio: 3 / 1;
-                    object-fit: cover;
-                    font-size: 2rem;
-                    color: var(--composer-font-color-primary);
-                  }
+                .logo {
+                  max-width: 150px;
+                  aspect-ratio: 3 / 1;
+                  object-fit: cover;
+                  font-size: 2rem;
+                  color: var(--composer-font-color-primary);
                 }
 
               
@@ -174,6 +168,10 @@
                   text-align: left;
                 }
 
+                .description {
+                  text-align: left;
+                }
+
               }
             }
 
@@ -191,6 +189,7 @@
                 width: 80%;
                 object-fit: cover;
                 background: transparent;
+                border-radius: var(--composer-border-radius-sm);
               }
             }
           }
@@ -205,6 +204,8 @@
       gap: var(--composer-gap-md);
       z-index: 1;
       .nav-buttons {
+        cursor: pointer;
+        display: flex;
         background-color: transparent;
         border: none;
         padding: 0px;

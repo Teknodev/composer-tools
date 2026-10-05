@@ -25,6 +25,10 @@
                 left: 20%;
             }
 
+            .wrapper {
+                content: "";
+            }
+
             .right-slider {
                 position: relative;
                 height: 100%;
@@ -64,7 +68,7 @@
                 display: flex;
                 color: white;
                 font-size: 1.5rem;
-                gap: var(--compoer-gap-md);
+                gap: var(--composer-gap-md);
                 align-items: center;
                 cursor: pointer;
 
@@ -91,6 +95,10 @@
                     overflow-x: hidden;
                     transition: width 0.5s ease, opacity 1s ease;
                     margin-left: var(--composer-gap-md);
+
+                    .icon-item {
+                        content: "";
+                    }
 
                     .icon {
                         font-size: 1rem;
@@ -123,6 +131,10 @@
                 cursor: pointer;
                 font-size: 2rem;
 
+                .arrow {
+                    content: "";
+                }
+
                 .prev-icon, .next-icon {
                     .icon-image {
                         width: 30px;
@@ -146,6 +158,12 @@
                 z-index: 4;
                 right: 20px;
                 font-size: 17rem;
+
+                .sliderNumber {
+                    font-size: inherit !important;
+                    color: inherit;
+                    margin: 0;
+                }
             }
 
             .slider-container {
@@ -164,6 +182,12 @@
                     color: rgba(255, 255, 255, 0.03);
                     -webkit-text-stroke: 1px rgba(255, 255, 255, 0.11);
                     font-size: 2rem;
+
+                    .sliderNumber-left {
+                        font-size: inherit !important;
+                        color: inherit;
+                        margin: 0;
+                    }
                 }
 
                 .carousel {
@@ -181,7 +205,7 @@
                             height: 100%;
                             object-fit: cover;
                             transition: 0.3s;
-                            border-radius: 0 var(--composer-border-radius-xs) var(--composer-border-radius-xs) 0;
+                            border-radius: 0 var(--composer-border-radius-sm) var(--composer-border-radius-sm) 0;
 
                             &.active,
                             &:hover {
@@ -226,40 +250,27 @@
                     .title {
                         font-size: 5rem;
                         overflow: hidden;
-                        line-height: normal;
                         text-align: left;
+                        display: -webkit-box;
+                        -webkit-box-orient: vertical;
+                        -webkit-line-clamp: 3;
 
                         &.title-with-image {
                             color: white !important;
                         }
 
                         &.letter-animate {
-                            .char {
-                                opacity: 0;
-                                transform: translateX(-12px);
-                                display: inline-block;
-                                animation-name: letterIn;
-                                animation-duration: 420ms;
-                                animation-fill-mode: forwards;
-                                animation-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1);
-                            }
+                            animation-name: letterIn;
+                            animation-duration: 420ms;
+                            animation-fill-mode: forwards;
+                            animation-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1);
                         }
 
                         &.letter-animate-out {
-                            .char {
-                                opacity: 1;
-                                transform: translateX(0);
-                                display: inline-block;
-                                animation-name: letterOut;
-                                animation-duration: 420ms;
-                                animation-fill-mode: forwards;
-                                animation-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1);
-                            }
-                        }
-
-                        .char {
-                            display: inline-block;
-                            white-space: pre-wrap;
+                            animation-name: letterOut;
+                            animation-duration: 420ms;
+                            animation-fill-mode: forwards;
+                            animation-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1);
                         }
                     }
 
@@ -396,6 +407,10 @@
                     .slider-inner {
                         width: 100%;
                         padding-left: var(--composer-gap-xl);
+
+                        .title {
+                            font-size: 5rem !important;
+                        }
                     }
                 }
 
@@ -445,7 +460,7 @@
                         padding: 20px;
 
                         .title {
-                            font-size: 3rem;
+                            font-size: 3rem !important;
                         }
                     }
                 }

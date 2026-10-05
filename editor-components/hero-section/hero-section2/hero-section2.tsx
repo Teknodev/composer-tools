@@ -9,6 +9,7 @@ import { INPUTS } from "../../../custom-hooks/input-templates";
 type SliderItemType = {
   image: TypeMediaInputValue;
   logo: TypeMediaInputValue;
+  subtitle: React.JSX.Element;
   category: React.JSX.Element;
   title: React.JSX.Element;
   author: React.JSX.Element;
@@ -60,6 +61,12 @@ class HeroSection2 extends BaseHeroSection {
             },
             {
               type: "string",
+              key: "subtitle",
+              value: "",
+              displayer: "Subtitle",
+            },
+            {
+              type: "string",
               key: "category",
               value: "Culture",
               displayer: "Category",
@@ -73,7 +80,7 @@ class HeroSection2 extends BaseHeroSection {
             {
               type: "string",
               key: "author",
-              value: "by John Doe",
+              value: "By John Doe",
               displayer: "Author",
             },
             {
@@ -127,6 +134,12 @@ class HeroSection2 extends BaseHeroSection {
             },
             {
               type: "string",
+              key: "subtitle",
+              value: "",
+              displayer: "Subtitle",
+            },
+            {
+              type: "string",
               key: "category",
               value: "Culture",
               displayer: "Category",
@@ -140,7 +153,7 @@ class HeroSection2 extends BaseHeroSection {
             {
               type: "string",
               key: "author",
-              value: "by John Doe",
+              value: "By John Doe",
               displayer: "Author",
             },
             {
@@ -194,6 +207,12 @@ class HeroSection2 extends BaseHeroSection {
             },
             {
               type: "string",
+              key: "subtitle",
+              value: "",
+              displayer: "Subtitle",
+            },
+            {
+              type: "string",
               key: "category",
               value: "Culture",
               displayer: "Category",
@@ -207,7 +226,7 @@ class HeroSection2 extends BaseHeroSection {
             {
               type: "string",
               key: "author",
-              value: "by John Doe",
+              value: "By John Doe",
               displayer: "Author",
             },
             {
@@ -242,12 +261,19 @@ class HeroSection2 extends BaseHeroSection {
       value: false,
     });
 
-    this.addProp({
-      type: "boolean",
-      key: "autoplay",
-      displayer: "Autoplay",
-      value: true,
-    });
+    this.addProp(
+      INPUTS.SLIDER_SETTINGS("settings", "Slider Settings", {
+        dots: true,
+        arrows: false,
+        infinite: true,
+        speed: 500,
+        autoplay: true,
+        autoplaySpeed: 5000,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        adaptiveHeight: false,
+      })
+    );
   }
 
   static getName(): string {
@@ -255,15 +281,8 @@ class HeroSection2 extends BaseHeroSection {
   }
 
   render() {
-    const autoplay = this.getPropValue("autoplay");
     const settings = {
-      dots: true,
-      infinite: true,
-      speed: 500,
-      autoplay: autoplay,
-      autoplaySpeed: 5000,
-      slidesToShow: 1,
-      slidesToScroll: 1,
+      ...this.transformSliderValues(this.getPropValue("settings")),
       customPaging: (i: number) => {
         const isActive = this.getComponentState("activeTab") === i;
         return (
@@ -287,6 +306,7 @@ class HeroSection2 extends BaseHeroSection {
             {sliderItems.length > 0 && (
               <ComposerSlider {...settings}>
                 {sliderItems.map((item: SliderItemType, idx: number) => {
+                  const isSubtitleExist = this.castToString(item.subtitle);
                   const isCategoryExist = this.castToString(item.category);
                   const isTitleExist = this.castToString(item.title);
                   const isAuthorExist = this.castToString(item.author);
@@ -294,7 +314,13 @@ class HeroSection2 extends BaseHeroSection {
                   const isDescExist = this.castToString(item.description);
                   const isLinkTextExist = this.castToString(item.button.text);
 
+                  const hasLogo = !!((item.logo as any)?.url || (item.logo as any)?.name);
+                  const hasImage = !!(item.image as any)?.url;
+                  const hasButtonIcon = !!(item.button.icon && (typeof item.button.icon === "string" ? item.button.icon : (item.button.icon as any)?.name || (item.button.icon as any)?.url));
+
                   const cardValues =
+                    hasLogo ||
+                    isSubtitleExist ||
                     isLinkTextExist ||
                     isDescExist ||
                     isDateExist ||
@@ -315,56 +341,61 @@ class HeroSection2 extends BaseHeroSection {
                   return (
                     <div className={this.decorateCSS("slider-item")} key={idx}>
                       <div className={this.decorateCSS("slider-item-container")}>
-                        {item.image && (item.image.type === "image" || item.image.type === "video") && item.image.url && (
+                        {hasImage && (
                           <Base.Media 
                             value={imageWithSettings} 
                             className={this.decorateCSS("background-image")}
                           />
                         )}
-                        {this.getPropValue("overlay") && item.image && (item.image.type === "image" || item.image.type === "video") && item.image.url && (
+                        {this.getPropValue("overlay") && hasImage && (
                           <div className={this.decorateCSS("overlay")} />
                         )}
                         <div className={this.decorateCSS("content-max-width")}>
                           {cardValues && (
                             <div className={this.decorateCSS("card")}>
-                              {(item.logo?.url || item.logo?.name) && (
-                                <Base.Media 
-                                  value={item.logo} 
-                                  className={this.decorateCSS("logo")} 
-                                />
-                              )}
                               {isCategoryExist && (
                                 <Base.P className={this.decorateCSS("category")}>{item.category}</Base.P>
                               )}
-                              {isTitleExist && (
-                                <Base.H5 className={this.decorateCSS("title")}>{item.title}</Base.H5>
-                              )}
-                              {(isAuthorExist || isDateExist) && (
-                                <div className={this.decorateCSS("date-author")}>
-                                  {isAuthorExist && (
-                                    <Base.P className={this.decorateCSS("author")}>
-                                      {item.author}
-                                    </Base.P>
-                                  )}
-                                  {isAuthorExist && isDateExist && item.dot && (
-                                    <span className={this.decorateCSS("dot")}>{item.dot}</span>
-                                  )}
-                                  {isDateExist && (
-                                    <Base.P className={this.decorateCSS("date")}>{item.date}</Base.P>
-                                  )}
-                                </div>
-                              )}
-                              {isDescExist && (
-                                <Base.P className={this.decorateCSS("description")}>
-                                  {item.description}
-                                </Base.P>
-                              )}
+                              <Base.VerticalContent className={this.decorateCSS("card-content")}>
+                                {hasLogo && (
+                                  <Base.Media
+                                    value={item.logo}
+                                    className={this.decorateCSS("logo")}
+                                  />
+                                )}
+                                {isSubtitleExist && (
+                                  <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{item.subtitle}</Base.SectionSubTitle>
+                                )}
+                                {isTitleExist && (
+                                  <Base.SectionTitle className={this.decorateCSS("title")}>{item.title}</Base.SectionTitle>
+                                )}
+                                {(isAuthorExist || isDateExist) && (
+                                  <div className={this.decorateCSS("date-author")}>
+                                    {isAuthorExist && (
+                                      <Base.P className={this.decorateCSS("author")}>
+                                        {item.author}
+                                      </Base.P>
+                                    )}
+                                    {isAuthorExist && isDateExist && item.dot && (
+                                      <div className={this.decorateCSS("dot-separator")}></div>
+                                    )}
+                                    {isDateExist && (
+                                      <Base.P className={this.decorateCSS("date")}>{item.date}</Base.P>
+                                    )}
+                                  </div>
+                                )}
+                                {isDescExist && (
+                                  <Base.SectionDescription className={this.decorateCSS("description")}>
+                                    {item.description}
+                                  </Base.SectionDescription>
+                                )}
+                              </Base.VerticalContent>
                               {isLinkTextExist && (
                                 <div className={this.decorateCSS("button-container")}>
                                   <ComposerLink path={item.button.url}>
                                     <Base.Button buttonType={item.button.type} className={this.decorateCSS("button")}>
                                       <Base.P className={this.decorateCSS("button-text")}>{item.button.text}</Base.P>
-                                      {item.button.icon && 
+                                      {hasButtonIcon && 
                                       <Base.Media
                                         value={typeof item.button.icon === "string" ? { type: "icon", name: item.button.icon } : item.button.icon}
                                         className={this.decorateCSS("button-icon")}
