@@ -22,7 +22,7 @@ export class NavigateActionHandler {
       const url = NavigateActionHandler.formatUrl(config.url);
 
       if (config.target === "_blank") {
-        window.open(url, "_blank", "noopener,noreferrer");
+        NavigateActionHandler.openInNewTab(url);
       } else {
         // For same-tab navigation
         if (url.startsWith("#")) {
@@ -41,6 +41,31 @@ export class NavigateActionHandler {
       setTimeout(doNavigate, config.delay);
     } else {
       doNavigate();
+    }
+  }
+
+  /**
+   * Open the URL in a new tab, leaving the current one where it is.
+   *
+   * `window.open(url, "_blank", "noopener,noreferrer")` passes a features
+   * string, and a non-empty features string makes some browsers (Safari,
+   * older Firefox) treat the call as a popup window — which their blockers
+   * refuse, so nothing opened. Following a real `target="_blank"` link is a
+   * plain new-tab navigation everywhere and keeps the same noopener /
+   * noreferrer protection. window.open is only the fallback.
+   */
+  private static openInNewTab(url: string): void {
+    try {
+      const link = document.createElement("a");
+      link.href = url;
+      link.target = "_blank";
+      link.rel = "noopener noreferrer";
+      link.style.display = "none";
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+    } catch {
+      window.open(url, "_blank", "noopener,noreferrer");
     }
   }
 

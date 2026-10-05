@@ -249,14 +249,21 @@ export class AnimateCssAdapter {
 
       registry.set(interactionId, entry);
 
+      // Both events arrive asynchronously. By then a replay of the same
+      // interaction may have registered a new entry under this id, and acting
+      // on it would cancel the animation that replaced this one — the element
+      // jumped straight to its end state. Only touch the entry if it is still
+      // this animation's.
+      const ownsEntry = () => registry.get(interactionId)?.animation === animation;
+
       const onFinish = () => {
-        this.removeEntry(element, interactionId, false);
+        if (ownsEntry()) this.removeEntry(element, interactionId, false);
       };
 
       animation.addEventListener("finish", onFinish, { once: true });
       animation.addEventListener("cancel", () => {
         // If cancelled externally (not through our cancel()), clean up
-        if (registry.has(interactionId)) {
+        if (ownsEntry()) {
           this.removeEntry(element, interactionId, true);
         }
       }, { once: true });
