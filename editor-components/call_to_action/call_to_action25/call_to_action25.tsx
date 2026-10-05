@@ -43,11 +43,13 @@ class CallToAction25Page extends BaseCallToAction {
         return "Call To Action 25";
     }
     render() {
+        const alignment = Base.getContentAlignment();
+        const isLeft = alignment === "left";
 
         return (
             <Base.Container className={this.decorateCSS("container")}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
-                    <Base.VerticalContent className={this.decorateCSS("content")}>
+                    <Base.VerticalContent className={`${this.decorateCSS("content")} ${isLeft ? this.decorateCSS("left") : ""}`}>
 
 
                         {this.castToString(this.getPropValue("subtitle")) && (
