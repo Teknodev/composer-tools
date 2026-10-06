@@ -54,16 +54,29 @@ class Testimonials15Page extends Testimonials {
     });
 
     this.addProp({
-      type: "media",
-      key: "media",
+      type: "object",
+      key: "mainMedia",
       displayer: "Media",
-      additionalParams: {
-        availableTypes: ["image", "video"],
-      },
-      value: {
-        type: "image",
-        url: "https://bexon.themejunction.net/wp-content/uploads/2025/07/about-1.webp",
-      },
+      value: [
+        {
+          type: "media",
+          key: "media",
+          displayer: "Media",
+          additionalParams: {
+            availableTypes: ["image", "video"],
+          },
+          value: {
+            type: "image",
+            url: "https://bexon.themejunction.net/wp-content/uploads/2025/07/about-1.webp",
+          },
+        },
+        {
+          type: "boolean",
+          key: "overlay",
+          displayer: "Overlay",
+          value: false,
+        },
+      ],
     });
 
     this.addProp({
@@ -229,16 +242,29 @@ class Testimonials15Page extends Testimonials {
           },
         },
         {
-          type: "media",
-          key: "media",
+          type: "object",
+          key: "coverMedia",
           displayer: "Media",
-          additionalParams: {
-            availableTypes: ["image", "video"],
-          },
-          value: {
-            type: "image",
-            url: "https://bexon.themejunction.net/wp-content/uploads/2025/07/about-2.webp",
-          },
+          value: [
+            {
+              type: "media",
+              key: "media",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["image", "video"],
+              },
+              value: {
+                type: "image",
+                url: "https://bexon.themejunction.net/wp-content/uploads/2025/07/about-2.webp",
+              },
+            },
+            {
+              type: "boolean",
+              key: "overlay",
+              displayer: "Overlay",
+              value: false,
+            },
+          ],
         },
         {
           type: "media",
@@ -323,7 +349,8 @@ class Testimonials15Page extends Testimonials {
 
     const renderRightSide = visibleCount > 0;
 
-    const mediaProp = this.getPropValue("media") as TypeMediaInputValue;
+    const mainMedia = this.castToObject<{ media: TypeMediaInputValue; overlay: boolean }>("mainMedia");
+    const mediaProp = mainMedia?.media as TypeMediaInputValue;
     const isImageExist = Boolean(mediaProp && (mediaProp.url || mediaProp.name));
 
     const leftExist = isImageExist || (bottomLeftBox.visibility && (this.castToString(bottomLeftBox.title) || this.castToString(bottomLeftBox.subtitle) || bottomLeftBox.number));
@@ -340,6 +367,7 @@ class Testimonials15Page extends Testimonials {
     const starIconExist = bottomRightBox.starIcon && (bottomRightBox.starIcon.type === "icon" ? bottomRightBox.starIcon.name : bottomRightBox.starIcon.url);
     const quoteIconExist = bottomRightBox.quoteIcon && (bottomRightBox.quoteIcon.type === "icon" ? bottomRightBox.quoteIcon.name : bottomRightBox.quoteIcon.url);
     const playIconExist = videoBox.playIcon && (videoBox.playIcon.type === "icon" ? videoBox.playIcon.name : videoBox.playIcon.url);
+    const coverExist = Boolean(videoBox.coverMedia?.media && (videoBox.coverMedia.media.url || videoBox.coverMedia.media.name));
     const closeIconExist = videoBox.closeIcon && (videoBox.closeIcon.type === "icon" ? videoBox.closeIcon.name : videoBox.closeIcon.url);
 
     return (
@@ -355,6 +383,7 @@ class Testimonials15Page extends Testimonials {
                       className={this.decorateCSS("main-image")}
                     />
                   )}
+                  {isImageExist && mainMedia?.overlay && <div className={this.decorateCSS("media-overlay")} />}
                   {bottomLeftBox.visibility && (
                     <div className={this.decorateCSS("box-area")}>
                       <div className={this.decorateCSS("experience-card")}>
@@ -483,12 +512,13 @@ class Testimonials15Page extends Testimonials {
                             className={this.decorateCSS("video-container")}
                             onClick={() => this.setComponentState("isVideoVisible", true)}
                           >
-                            {videoBox.media && (
+                            {coverExist && (
                               <Base.Media
-                                value={videoBox.media}
+                                value={videoBox.coverMedia.media}
                                 className={this.decorateCSS("video-cover")}
                               />
                             )}
+                            {coverExist && videoBox.coverMedia.overlay && <div className={this.decorateCSS("media-overlay")} />}
                             {playIconExist && (
                               <div className={this.decorateCSS("play-button")}>
                                 <Base.Media

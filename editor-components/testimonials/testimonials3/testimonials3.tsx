@@ -27,11 +27,24 @@ class Testimonials3Page extends Testimonials {
   constructor(props?: any) {
     super(props, styles);
     this.addProp({
-      type: "media",
-      key: "componentBackground",
+      type: "object",
+      key: "backgroundMedia",
       displayer: "Background Media",
-      additionalParams: { availableTypes: ["image", "video"] },
-      value: null,
+      value: [
+        {
+          type: "media",
+          key: "media",
+          displayer: "Media",
+          additionalParams: { availableTypes: ["image", "video"] },
+          value: null,
+        },
+        {
+          type: "boolean",
+          key: "overlay",
+          displayer: "Overlay",
+          value: false,
+        },
+      ],
     });
     this.addProp({
       type: "string",
@@ -235,7 +248,8 @@ class Testimonials3Page extends Testimonials {
     const card = this.castToObject<Item[]>("card-items");
     const starIcon = this.getPropValue("starIcon") as TypeMediaInputValue;
     const starIconExist = starIcon && (starIcon.type === "icon" ? starIcon.name : starIcon.url);
-    const componentBackground = this.getPropValue("componentBackground") as TypeMediaInputValue;
+    const backgroundMedia = this.castToObject<{ media: TypeMediaInputValue; overlay: boolean }>("backgroundMedia");
+    const componentBackground = backgroundMedia?.media as TypeMediaInputValue;
     const componentBgExist = componentBackground && (componentBackground.type === "icon" ? componentBackground.name : componentBackground.url);
 
     return (
@@ -246,7 +260,7 @@ class Testimonials3Page extends Testimonials {
             className={this.decorateCSS("component-background")}
           />
         )}
-        {componentBgExist && <div className={this.decorateCSS("overlay")} />}
+        {componentBgExist && backgroundMedia?.overlay && <div className={this.decorateCSS("overlay")} />}
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           {hasAnyTopContent && (
             <Base.VerticalContent className={this.decorateCSS("top-content")}>

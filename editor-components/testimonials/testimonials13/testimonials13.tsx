@@ -191,14 +191,27 @@ class Testimonials13Page extends Testimonials {
       ],
     });
     this.addProp({
-      type: "media",
-      key: "image",
+      type: "object",
+      key: "sideMedia",
       displayer: "Media",
-      additionalParams: { availableTypes: ["image", "video"] },
-      value: {
-        type: "image",
-        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661792ebd2970002c623f3e?alt=media&timestamp=1719483639150",
-      },
+      value: [
+        {
+          type: "media",
+          key: "media",
+          displayer: "Media",
+          additionalParams: { availableTypes: ["image", "video"] },
+          value: {
+            type: "image",
+            url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661792ebd2970002c623f3e?alt=media&timestamp=1719483639150",
+          },
+        },
+        {
+          type: "boolean",
+          key: "overlay",
+          displayer: "Overlay",
+          value: false,
+        },
+      ],
     });
     this.addProp({
       type: "object",
@@ -319,7 +332,8 @@ class Testimonials13Page extends Testimonials {
     const sliderIcon = this.getPropValue("sliderIcon") as TypeMediaInputValue;
     const sliderIconExist = sliderIcon && (sliderIcon.type === "icon" ? sliderIcon.name : sliderIcon.url);
 
-    const sideImage = this.getPropValue("image") as TypeMediaInputValue;
+    const sideMedia = this.castToObject<{ media: TypeMediaInputValue; overlay: boolean }>("sideMedia");
+    const sideImage = sideMedia?.media as TypeMediaInputValue;
     const sideImageExist = sideImage && sideImage.url;
 
     const rawSettings = this.getPropValue("slider-settings");
@@ -453,6 +467,7 @@ class Testimonials13Page extends Testimonials {
                   {sideImageExist && (
                     <Base.GridCell className={this.decorateCSS("flexItem2")}>
                       <Base.Media value={sideImage} className={this.decorateCSS("side-image")} />
+                      {sideMedia?.overlay && <div className={this.decorateCSS("media-overlay")} />}
                     </Base.GridCell>
                   )}
                   {(this.castToString(rightSection.boxHeader) || box.length > 0) && (

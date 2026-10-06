@@ -117,7 +117,7 @@ class Testimonials16 extends Testimonials {
             {
               type: "media",
               key: "logoImage",
-              displayer: "Logo Image",
+              displayer: "Logo Media",
               additionalParams: { availableTypes: ["image"] },
               value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/69147f283596a1002b25733b?alt=media" },
             },
@@ -154,7 +154,7 @@ class Testimonials16 extends Testimonials {
             {
               type: "media",
               key: "logoImage",
-              displayer: "Logo Image",
+              displayer: "Logo Media",
               additionalParams: { availableTypes: ["image"] },
               value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/69147ef33596a1002b257280?alt=media" },
             },
@@ -191,7 +191,7 @@ class Testimonials16 extends Testimonials {
             {
               type: "media",
               key: "logoImage",
-              displayer: "Logo Image",
+              displayer: "Logo Media",
               additionalParams: { availableTypes: ["image"] },
               value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/69147e9f3596a1002b257167?alt=media" },
             },
