@@ -151,15 +151,15 @@ class ImageGallery1 extends BaseImageGallery {
                     },
                     {
                       type: "string",
-                      key: "title",
-                      displayer: "Title",
-                      value: "Design Blast"
-                    },
-                    {
-                      type: "string",
                       key: "section",
                       displayer: "Subtitle",
                       value: "Photography"
+                    },
+                    {
+                      type: "string",
+                      key: "title",
+                      displayer: "Title",
+                      value: "Design Blast"
                     },
                     {
                       type: "page",
@@ -194,15 +194,15 @@ class ImageGallery1 extends BaseImageGallery {
                     },
                     {
                       type: "string",
-                      key: "title",
-                      displayer: "Title",
-                      value: "Cropo Identity"
-                    },
-                    {
-                      type: "string",
                       key: "section",
                       displayer: "Subtitle",
                       value: "Packaging"
+                    },
+                    {
+                      type: "string",
+                      key: "title",
+                      displayer: "Title",
+                      value: "Cropo Identity"
                     },
                     {
                       type: "page",
@@ -237,15 +237,15 @@ class ImageGallery1 extends BaseImageGallery {
                     },
                     {
                       type: "string",
-                      key: "title",
-                      displayer: "Title",
-                      value: "Harddot Stone"
-                    },
-                    {
-                      type: "string",
                       key: "section",
                       displayer: "Subtitle",
                       value: "Graphics"
+                    },
+                    {
+                      type: "string",
+                      key: "title",
+                      displayer: "Title",
+                      value: "Harddot Stone"
                     },
                     {
                       type: "page",
@@ -302,15 +302,15 @@ class ImageGallery1 extends BaseImageGallery {
                     },
                     {
                       type: "string",
-                      key: "title",
-                      displayer: "Title",
-                      value: "Tailoring Inteo"
-                    },
-                    {
-                      type: "string",
                       key: "section",
                       displayer: "Subtitle",
                       value: "Branding"
+                    },
+                    {
+                      type: "string",
+                      key: "title",
+                      displayer: "Title",
+                      value: "Tailoring Inteo"
                     },
                     {
                       type: "page",
@@ -345,15 +345,15 @@ class ImageGallery1 extends BaseImageGallery {
                     },
                     {
                       type: "string",
-                      key: "title",
-                      displayer: "Title",
-                      value: "Herbal Beauty"
-                    },
-                    {
-                      type: "string",
                       key: "section",
                       displayer: "Subtitle",
                       value: "Application"
+                    },
+                    {
+                      type: "string",
+                      key: "title",
+                      displayer: "Title",
+                      value: "Herbal Beauty"
                     },
                     {
                       type: "page",
@@ -388,15 +388,15 @@ class ImageGallery1 extends BaseImageGallery {
                     },
                     {
                       type: "string",
-                      key: "title",
-                      displayer: "Title",
-                      value: "Harddot Stone"
-                    },
-                    {
-                      type: "string",
                       key: "section",
                       displayer: "Subtitle",
                       value: "Graphics"
+                    },
+                    {
+                      type: "string",
+                      key: "title",
+                      displayer: "Title",
+                      value: "Harddot Stone"
                     },
                     {
                       type: "page",
@@ -452,15 +452,15 @@ class ImageGallery1 extends BaseImageGallery {
                     },
                     {
                       type: "string",
-                      key: "title",
-                      displayer: "Title",
-                      value: "Design Blast"
-                    },
-                    {
-                      type: "string",
                       key: "section",
                       displayer: "Subtitle",
                       value: "Photograhy"
+                    },
+                    {
+                      type: "string",
+                      key: "title",
+                      displayer: "Title",
+                      value: "Design Blast"
                     },
                     {
                       type: "page",
@@ -496,15 +496,15 @@ class ImageGallery1 extends BaseImageGallery {
                     },
                     {
                       type: "string",
-                      key: "title",
-                      displayer: "Title",
-                      value: "Herbal Beauty"
-                    },
-                    {
-                      type: "string",
                       key: "section",
                       displayer: "Subtitle",
                       value: "Application"
+                    },
+                    {
+                      type: "string",
+                      key: "title",
+                      displayer: "Title",
+                      value: "Herbal Beauty"
                     },
                     {
                       type: "page",
@@ -540,15 +540,15 @@ class ImageGallery1 extends BaseImageGallery {
                     },
                     {
                       type: "string",
-                      key: "title",
-                      displayer: "Title",
-                      value: "Harddot Stone"
-                    },
-                    {
-                      type: "string",
                       key: "section",
                       displayer: "Subtitle",
                       value: "Graphics"
+                    },
+                    {
+                      type: "string",
+                      key: "title",
+                      displayer: "Title",
+                      value: "Harddot Stone"
                     },
                     {
                       type: "page",
@@ -584,15 +584,15 @@ class ImageGallery1 extends BaseImageGallery {
                     },
                     {
                       type: "string",
-                      key: "title",
-                      displayer: "Title",
-                      value: "Harddot Stone"
-                    },
-                    {
-                      type: "string",
                       key: "section",
                       displayer: "Subtitle",
                       value: "Graphics"
+                    },
+                    {
+                      type: "string",
+                      key: "title",
+                      displayer: "Title",
+                      value: "Harddot Stone"
                     },
                     {
                       type: "page",
@@ -612,7 +612,7 @@ class ImageGallery1 extends BaseImageGallery {
     this.addProp({
       type: "array",
       key: "buttons",
-      displayer: "Load More",
+      displayer: "Buttons",
       value: [
         INPUTS.BUTTON("button", "Button", "Load More", "", null, null, "Primary"),
       ],

@@ -382,12 +382,9 @@
 @container (max-width: #{$composer-phone-width}) {
     .container {
         .max-content {
+            // Lines stay vertically centered next to the stacked tabs.
             .category-wrapper {
-                align-items: flex-start;
-
-                .category-line {
-                    margin-top: var(--composer-gap-md);
-                }
+                align-items: center;
             }
 
             .section-container {

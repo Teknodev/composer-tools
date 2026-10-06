@@ -198,7 +198,7 @@ class ImageGallery3 extends BaseImageGallery {
         this.addProp({
             type: "array",
             key: "buttons",
-            displayer: "Load More",
+            displayer: "Buttons",
             value: [
                 INPUTS.BUTTON("button", "Button", "Load More", "", null, null, "Primary"),
             ],
