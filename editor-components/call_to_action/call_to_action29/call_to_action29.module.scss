@@ -8,7 +8,7 @@
 
             &.active {
                 padding: 80px var(--composer-gap-xl);
-                background-color: var(--composer-html-background);
+                background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
                 border-radius: var(--composer-border-radius-md);
                 color: var(--composer-font-color-primary);
             }
@@ -84,6 +84,36 @@
             .right-column {
                 width: 100%;
                 flex: auto;
+            }
+
+            &.center {
+                align-items: center;
+
+                .left-column {
+                    text-align: center;
+
+                    .subtitle {
+                        text-align: center !important;
+                        margin-left: auto !important;
+                        margin-right: auto !important;
+                    }
+
+                    .title {
+                        text-align: center;
+                    }
+                }
+
+                .right-column {
+                    text-align: center;
+
+                    .description {
+                        text-align: center;
+                    }
+
+                    .button-container {
+                        justify-content: center;
+                    }
+                }
             }
         }
     }

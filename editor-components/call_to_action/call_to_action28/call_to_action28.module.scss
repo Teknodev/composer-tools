@@ -22,7 +22,7 @@
                 position: relative;
                 width: 300px;
                 height: 300px;
-                border-radius: 50%;
+                border-radius: var(--composer-border-radius-full);
                 overflow: hidden;
                 display: flex;
                 justify-content: center;

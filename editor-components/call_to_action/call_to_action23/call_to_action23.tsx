@@ -76,6 +76,8 @@ class CallToAction23Page extends BaseCallToAction {
     const infoText = this.castToString(this.getPropValue("infoText"));
     const coloredBackground = this.getPropValue("coloredBackground");
     const hasColoredBackground = !!coloredBackground;
+    const alignment = Base.getContentAlignment();
+    const isLeft = alignment === "left";
 
     return (
       <Base.Container
@@ -83,12 +85,12 @@ class CallToAction23Page extends BaseCallToAction {
       >
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("content")}>
-            <div className={this.decorateCSS("main-row")}>
+            <div className={`${this.decorateCSS("main-row")} ${isLeft ? this.decorateCSS("left") : ""}`}>
               {(subtitle || title || description) && (
                 <div className={this.decorateCSS("header-group")}>
                   <Base.VerticalContent className={this.decorateCSS("vertical-content")}>
                     {subtitle && (
-                      <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                      <Base.SectionSubTitle className={`${this.decorateCSS("subtitle")} ${Base.getSectionSubTitleType() !== "line" ? this.decorateCSS("subtitle-no-line") : ""}`}>
                         {this.getPropValue("subtitle")}
                       </Base.SectionSubTitle>
                     )}
