@@ -30,8 +30,11 @@
           width: 100%;
           align-items: flex-start;
 
+          // Base centers the inline-block subtitle with auto margins; it stays left in every alignment.
           .subtitle {
             text-align: left;
+            margin-left: 0;
+            margin-right: auto;
           }
 
           .main-title {

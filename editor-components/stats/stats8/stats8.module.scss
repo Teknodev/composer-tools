@@ -373,10 +373,14 @@ $font-color-primary: var(--composer-font-color-primary);
             grid-template-columns: 1fr;
             gap: var(--composer-gap-md);
 
+            // Original mobile: framed box with a 35px value right at the box padding.
             .stat-border {
+              padding: var(--composer-gap-sm);
+
               .stat {
                 .stat-counter {
-                  font-size: 3.5rem;
+                  font-size: 2.5rem;
+                  margin: 0 !important;
                 }
               }
             }
@@ -385,6 +389,13 @@ $font-color-primary: var(--composer-font-color-primary);
 
         .image-container {
           .image-container-border {
+            // Original mobile image is a tall portrait, so the badge sits on its lower part instead of covering it.
+            .image {
+              height: auto;
+              max-height: none;
+              aspect-ratio: 1 / 2;
+            }
+
             .stat-badge {
               left: calc(2 * var(--composer-gap-md));
               right: 0;

@@ -368,10 +368,12 @@
             height: auto;
             aspect-ratio: 1 / 1;
             margin-top: var(--composer-gap-xl);
+            border-radius: 0;
 
             .image1,
             .overlay {
               width: 100%;
+              border-radius: 0;
             }
 
             &.without-image2 {

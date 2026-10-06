@@ -228,25 +228,19 @@ class Stats3Page extends BaseStats {
                         const hasValue = prefixExist || numberExist || suffixExist;
                         if (!(iconExist || hasValue || subtitleExist || titleExist || descriptionExist)) return null;
                         return (
-                          <div key={index} className={this.decorateCSS("content")}>
-                            <div className={this.decorateCSS("inner-content")}>
-                              <div className={this.decorateCSS("first-container")}>
-                                {iconExist && <Base.Media value={typeof item.icon === "object" ? item.icon : { type: "icon", name: item.icon }} className={this.decorateCSS("icon")} />}
-                                <Base.VerticalContent className={this.decorateCSS("text")}>
-                                  {hasValue && (
-                                    <Base.H4 className={this.decorateCSS("number")}>
-                                      {prefixExist && <span className={this.decorateCSS("prefix")}>{item.prefix}</span>}
-                                      {numberExist && <span className={this.decorateCSS("value")}>{item.value}</span>}
-                                      {suffixExist && <span className={this.decorateCSS("suffix")}>{item.suffix}</span>}
-                                    </Base.H4>
-                                  )}
-                                  {subtitleExist && <Base.P className={this.decorateCSS("stat-subtitle")}>{item.stat_subtitle}</Base.P>}
-                                  {titleExist && <Base.H6 className={this.decorateCSS("stat-title")}>{item.stat_title}</Base.H6>}
-                                  {descriptionExist && <Base.P className={this.decorateCSS("right-text")}>{item.stat_description}</Base.P>}
-                                </Base.VerticalContent>
-                              </div>
-                            </div>
-                          </div>
+                          <Base.VerticalContent key={index} className={this.decorateCSS("content")}>
+                            {iconExist && <Base.Media value={typeof item.icon === "object" ? item.icon : { type: "icon", name: item.icon }} className={this.decorateCSS("icon")} />}
+                            {hasValue && (
+                              <Base.H4 className={this.decorateCSS("number")}>
+                                {prefixExist && <span className={this.decorateCSS("prefix")}>{item.prefix}</span>}
+                                {numberExist && <span className={this.decorateCSS("value")}>{item.value}</span>}
+                                {suffixExist && <span className={this.decorateCSS("suffix")}>{item.suffix}</span>}
+                              </Base.H4>
+                            )}
+                            {subtitleExist && <Base.P className={this.decorateCSS("stat-subtitle")}>{item.stat_subtitle}</Base.P>}
+                            {titleExist && <Base.H6 className={this.decorateCSS("stat-title")}>{item.stat_title}</Base.H6>}
+                            {descriptionExist && <Base.P className={this.decorateCSS("right-text")}>{item.stat_description}</Base.P>}
+                          </Base.VerticalContent>
                         );
                       })}
                     </Base.VerticalContent>
