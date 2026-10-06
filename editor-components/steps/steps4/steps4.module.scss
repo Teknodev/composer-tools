@@ -1,0 +1,205 @@
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+
+.container {
+  .max-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--composer-gap-xl);
+
+    .header {
+      width: 100%;
+
+      .subtitle,
+      .title,
+      .description {
+        content: "";
+      }
+    }
+
+    // Vertical tabs on the left, the active step's text on the right.
+    .steps {
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr);
+      column-gap: var(--composer-gap-lg);
+      width: 100%;
+
+      .tab-list {
+        display: flex;
+        flex-direction: column;
+        border-right: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.1);
+
+        .tab {
+          margin-right: -1px;
+          padding: var(--composer-gap-md) var(--composer-gap-xl) var(--composer-gap-md) 0;
+          border-right: 2px solid transparent;
+          cursor: pointer;
+          transition: border-color 0.3s ease;
+
+          .tab-label {
+            color: var(--composer-tertiary-color);
+            transition: color 0.3s ease;
+          }
+
+          &.active {
+            border-right-color: var(--composer-primary-color);
+
+            .tab-label {
+              color: var(--composer-primary-color);
+            }
+          }
+
+          &:hover .tab-label {
+            color: var(--composer-primary-color);
+          }
+        }
+      }
+
+      .sections {
+        width: 75%;
+        padding-top: var(--composer-gap-sm);
+
+        .section {
+          display: none;
+
+          &.active {
+            display: block;
+          }
+
+          .section-header {
+            display: none;
+          }
+
+          .section-content {
+            content: "";
+
+            .step-description {
+              color: var(--composer-font-color-primary);
+              text-align: left !important;
+              margin-left: 0 !important;
+            }
+          }
+        }
+      }
+    }
+
+    // Number and title are flex items: the inline editor swaps each text for a block-level box while editing,
+    // which would otherwise push the title onto its own line in the Content tab.
+    .tab-label,
+    .section-label {
+      display: flex !important;
+      align-items: baseline;
+      justify-content: flex-start !important;
+      column-gap: 0.3em;
+      margin-left: 0 !important;
+      text-align: left !important;
+
+      .step-number,
+      .step-title {
+        content: "";
+      }
+    }
+
+    .button-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--composer-gap-sm);
+
+      .button {
+        .button-text {
+          content: "";
+        }
+
+        .button-icon {
+          content: "";
+        }
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-tablet-width}) {
+  .container {
+    .max-content {
+      .steps {
+        .tab-list {
+          .tab {
+            padding-right: var(--composer-gap-lg);
+          }
+        }
+
+        .sections {
+          width: 100%;
+        }
+      }
+    }
+  }
+}
+
+// Phone: the tabs turn into an accordion, every step opens under its own header.
+@container (max-width: #{$composer-phone-width}) {
+  .container {
+    .max-content {
+      gap: var(--composer-gap-lg);
+
+      .steps {
+        display: block;
+
+        .tab-list {
+          display: none;
+        }
+
+        .sections {
+          padding-top: 0;
+          border-bottom: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.1);
+
+          .section {
+            display: block;
+            border-top: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.1);
+
+            .section-header {
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+              gap: var(--composer-gap-md);
+              padding: calc(var(--composer-gap-md) + var(--composer-gap-sm)) 0;
+              cursor: pointer;
+
+              .section-label {
+                color: var(--composer-font-color-primary);
+              }
+
+              .accordion-icon {
+                flex-shrink: 0;
+                font-size: 1.5rem;
+                color: var(--composer-font-color-primary);
+                transition: transform 0.3s ease;
+              }
+            }
+
+            .section-content {
+              display: none !important;
+              padding-bottom: var(--composer-gap-lg);
+            }
+
+            &.open {
+              .section-header {
+                .section-label,
+                .accordion-icon {
+                  color: var(--composer-primary-color);
+                }
+
+                .accordion-icon {
+                  transform: rotate(180deg);
+                }
+              }
+
+              .section-content {
+                display: flex !important;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
