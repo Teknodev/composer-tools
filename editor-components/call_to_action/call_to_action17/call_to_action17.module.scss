@@ -16,18 +16,20 @@
             .description {
                 text-align: left;
             }
-        }
 
-        .button-container {
-            display: flex;
-            flex-direction: row;
-            justify-content: flex-start;
-            flex-wrap: wrap;
-            gap: var(--composer-gap-sm);
+            .button-container {
+                display: flex;
+                flex-direction: row;
+                justify-content: flex-start;
+                flex-wrap: wrap;
+                gap: var(--composer-gap-sm);
+                width: 100%;
 
-            .button {
-                .button-text {
-                    content: "";
+
+                .button {
+                    .button-text {
+                        content: "";
+                    }
                 }
             }
         }
@@ -38,6 +40,27 @@
     .container {
         .max-content {
             gap: var(--composer-gap-sm);
+
+            .header {
+                &.center {
+                    align-items: center;
+
+                    .subtitle {
+                        margin-left: auto;
+                        margin-right: auto;
+                        text-align: center;
+                    }
+
+                    .title,
+                    .description {
+                        text-align: center;
+                    }
+
+                    .button-container {
+                        justify-content: center;
+                    }
+                }
+            }
         }
     }
 }

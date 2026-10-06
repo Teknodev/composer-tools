@@ -44,12 +44,15 @@ class CallToAction15 extends BaseCallToAction {
         const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
         const visibleButtons = buttons.filter(btn => this.castToString(btn.text));
         const titleValue = this.castToString(this.getPropValue("title"));
+        const alignment = Base.getContentAlignment();
+        const subtitleType = Base.getSectionSubTitleType();
+        const isLeft = alignment === "left";
         return (
             <Base.Container className={this.decorateCSS("container")}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
-                    <Base.VerticalContent className={this.decorateCSS("header")}>
+                    <Base.VerticalContent className={`${this.decorateCSS("header")} ${isLeft ? this.decorateCSS("left") : ""}`}>
                         {this.castToString(this.getPropValue("subtitle")) && (
-                            <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                            <Base.SectionSubTitle className={`${this.decorateCSS("subtitle")} ${subtitleType === "line" ? this.decorateCSS("subtitle-line") : ""}`}>
                                 {this.getPropValue("subtitle")}
                             </Base.SectionSubTitle>
                         )}
