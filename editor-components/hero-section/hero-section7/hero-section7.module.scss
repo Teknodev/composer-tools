@@ -134,8 +134,9 @@
   }
 }
 
+// Like the original, the page titles keep their desktop size on phone.
 @container (max-width : #{$composer-phone-width}){
   .text {
-    font-size: 1.5rem !important;
+    font-size: 2.5rem !important;
   }
 }

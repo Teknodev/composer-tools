@@ -34,7 +34,7 @@ class HeroSection37 extends BaseHeroSection {
     this.addProp({
       type: "array",
       key: "slider",
-      displayer: "Slider",
+      displayer: "Sliders",
       value: [
         {
           type: "object",
@@ -361,7 +361,7 @@ class HeroSection37 extends BaseHeroSection {
         {
           type: "boolean",
           key: "showPageNumbers",
-          displayer: "Page Numbers",
+          displayer: "Page Number",
           value: true,
         },
         {

@@ -13,6 +13,32 @@ class HeroSection4 extends BaseHeroSection {
     super(props, styles);
 
     this.addProp({
+      type: "object",
+      key: "backgroundMedia",
+      displayer: "Background Media",
+      value: [
+        {
+          type: "media",
+          key: "media",
+          displayer: "Media",
+          additionalParams: {
+            availableTypes: ["image", "video"],
+          },
+          value: {
+            type: "image",
+            url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617f0abd2970002c62451a?alt=media&timestamp=1719483639150",
+          },
+        },
+        {
+          type: "boolean",
+          key: "overlay",
+          displayer: "Overlay",
+          value: false,
+        },
+      ],
+    });
+
+    this.addProp({
       type: "media",
       key: "logo",
       displayer: "Logo",
@@ -65,26 +91,6 @@ class HeroSection4 extends BaseHeroSection {
       value: [
         INPUTS.BUTTON("button", "Button", "More Projects", "", "FaArrowRightLong", null, "Tertiary")
       ],
-    });
-
-    this.addProp({
-      type: "boolean",
-      key: "overlay",
-      displayer: "Overlay",
-      value: false,
-    });
-
-    this.addProp({
-      type: "media",
-      key: "media",
-      displayer: "Media",
-      additionalParams: {
-        availableTypes: ["image", "video"],
-      },
-      value: {
-        type: "image",
-        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617f0abd2970002c62451a?alt=media&timestamp=1719483639150",
-      },
     });
 
     this.addProp({
@@ -172,9 +178,10 @@ handleScroll = () => {
     const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
 
     const imageAnm = this.getPropValue("animation");
-    const media = this.getPropValue("media");
+    const backgroundMedia = this.castToObject<{ media: any; overlay: boolean }>("backgroundMedia");
+    const media = backgroundMedia?.media;
     const image = media?.url ? media : null;
-    const overlay = this.getPropValue("overlay");
+    const overlay = backgroundMedia?.overlay;
     const logo = this.getPropValue("logo");
     const subtitle = this.castToString(this.getPropValue("subtitle"));
     const title = this.castToString(this.getPropValue("title"));

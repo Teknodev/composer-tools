@@ -26,7 +26,7 @@ class HeroSection16 extends BaseHeroSection {
 
     this.addProp({
       type: "array",
-      displayer: "Slider",
+      displayer: "Sliders",
       key: "slider",
       value: [
         {

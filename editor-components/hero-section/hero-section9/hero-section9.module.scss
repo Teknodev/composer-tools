@@ -85,7 +85,8 @@
       .tab-buttons {
         width: fit-content;
         margin: 0 auto;
-        padding: var(--composer-gap-md) var(--composer-gap-xl) var(--composer-gap-md) calc(var(--composer-gap-xl) * 2.5);
+        // Bottom padding keeps clear space above the socials pinned to the bottom.
+        padding: var(--composer-gap-md) var(--composer-gap-xl) calc(var(--composer-gap-xl) * 2) calc(var(--composer-gap-xl) * 2.5);
         overflow: hidden;
         display: flex;
         justify-content: center;
@@ -225,13 +226,14 @@
   .container {
     .max-content {
       height: 100vh;
+      // Base.ContainerGrid stacks at tablet; this component keeps the desktop side-by-side layout there.
       .tabs {
         height: 100%;
+        flex-direction: row !important;
+        flex-wrap: nowrap;
+        .left-content,
         .right-content {
-          .media-wrapper {
-            position: relative;
-            inset: auto;
-          }
+          width: 50% !important;
         }
         .left-content {
           padding-block: 0 !important;
@@ -265,7 +267,11 @@
       min-height: auto;
       .tabs {
         min-height: auto;
-        flex-direction: column;
+        flex-direction: column !important;
+        .left-content,
+        .right-content {
+          width: 100% !important;
+        }
         .left-content {
           order: 1;
           height: auto;
@@ -298,6 +304,8 @@
 
         .right-content {
           .media-wrapper {
+            position: relative;
+            inset: auto;
             .media {
               height: 40vh;
               width: 100%;
@@ -306,7 +314,7 @@
         }
 
         .social {
-          padding: var(--composer-gap-md);
+          padding: var(--composer-gap-xl) var(--composer-gap-md) var(--composer-gap-md);
           height: auto;
           width: 100%;
           position: static;

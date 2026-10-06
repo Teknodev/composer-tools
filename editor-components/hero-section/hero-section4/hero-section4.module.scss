@@ -241,21 +241,25 @@
       padding: var(--composer-gap-xl) var(--composer-gap-md) !important;
     }
 
+    // Like the original mobile view, the image and the card share the height equally (each row 1fr).
     .max-content {
       position: static;
-      display: flex;
-      flex-direction: column;
+      display: grid;
+      grid-auto-rows: 1fr;
       height: auto;
-      
+
       .image-container {
-        height: 50vh;
+        height: auto;
+        min-height: 75cqw;
         position: relative;
         order: 1;
-          
+
         .image-element {
+          position: absolute;
+          inset: 0;
           width: 100%;
+          height: 100%;
           object-fit: cover;
-          height: 500px;
         }
       }
       
@@ -274,7 +278,7 @@
           width: 100%;
           max-width: 100%;
           padding: var(--composer-gap-md);
-          margin-top: var(--composer-gap-md);
+          margin-top: 0;
           border-radius: 0;
         }
       }

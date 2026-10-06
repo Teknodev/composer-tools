@@ -5,11 +5,11 @@ import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "../../../custom-hooks/input-templates";
 
 type Animations = {
-  title: boolean;
-  secondTitle: boolean;
-  description: boolean;
-  secondMedia: boolean;
-  button: boolean;
+  titleAnimation: boolean;
+  secondTitleAnimation: boolean;
+  descriptionAnimation: boolean;
+  secondMediaAnimation: boolean;
+  buttonAnimation: boolean;
 };
 
 class HeroSection6 extends BaseHeroSection {
@@ -69,23 +69,29 @@ class HeroSection6 extends BaseHeroSection {
     });
 
     this.addProp({
-      type: "media",
-      key: "media",
+      type: "object",
+      key: "mainMedia",
       displayer: "Media",
-      additionalParams: {
-        availableTypes: ["image", "video"],
-      },
-      value: {
-        type: "image",
-        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617f52bd2970002c624523?alt=media&timestamp=1719483639150",
-      },
-    });
-
-    this.addProp({
-      type: "boolean",
-      key: "overlay",
-      displayer: "Overlay",
-      value: false,
+      value: [
+        {
+          type: "media",
+          key: "media",
+          displayer: "Media",
+          additionalParams: {
+            availableTypes: ["image", "video"],
+          },
+          value: {
+            type: "image",
+            url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617f52bd2970002c624523?alt=media&timestamp=1719483639150",
+          },
+        },
+        {
+          type: "boolean",
+          key: "overlay",
+          displayer: "Overlay",
+          value: false,
+        },
+      ],
     });
 
     this.addProp({
@@ -108,31 +114,31 @@ class HeroSection6 extends BaseHeroSection {
       value: [
         {
           type: "boolean",
-          key: "title",
+          key: "titleAnimation",
           displayer: "Title Animation",
           value: true,
         },
         {
           type: "boolean",
-          key: "secondTitle",
+          key: "secondTitleAnimation",
           displayer: "Second Title Animation",
           value: true,
         },
         {
           type: "boolean",
-          key: "description",
+          key: "descriptionAnimation",
           displayer: "Description Animation",
           value: true,
         },
         {
           type: "boolean",
-          key: "secondMedia",
+          key: "secondMediaAnimation",
           displayer: "Second Media Animation",
           value: true,
         },
         {
           type: "boolean",
-          key: "button",
+          key: "buttonAnimation",
           displayer: "Button Animation",
           value: true,
         },
@@ -156,7 +162,8 @@ class HeroSection6 extends BaseHeroSection {
     const secondTitle = this.getPropValue("secondTitle");
     const description = this.getPropValue("description");
     const animations = this.castToObject<Animations>("animations");
-    const media = this.getPropValue("media");
+    const mainMedia = this.castToObject<{ media: any; overlay: boolean }>("mainMedia");
+    const media = mainMedia?.media;
     const secondMedia = this.getPropValue("secondMedia");
     const logo = this.getPropValue("logo");
     const subtitle = this.getPropValue("subtitle");
@@ -200,19 +207,19 @@ class HeroSection6 extends BaseHeroSection {
               {(isTitleExist || isSecondTitleExist) && (
                 <div className={this.decorateCSS("title-container")}>
                   {isTitleExist && (
-                    <Base.SectionTitle className={`${this.decorateCSS("title")} ${!animations?.title ? this.decorateCSS("noanimation") : ""}`}>
+                    <Base.SectionTitle className={`${this.decorateCSS("title")} ${!animations?.titleAnimation ? this.decorateCSS("noanimation") : ""}`}>
                       {title}
                     </Base.SectionTitle>
                   )}
                   {isSecondTitleExist && (
-                    <Base.H3 className={`${this.decorateCSS("title2")} ${!animations?.secondTitle ? this.decorateCSS("noanimation") : ""}`}>
+                    <Base.H3 className={`${this.decorateCSS("title2")} ${!animations?.secondTitleAnimation ? this.decorateCSS("noanimation") : ""}`}>
                       {secondTitle}
                     </Base.H3>
                   )}
                 </div>
               )}
               {isDescriptionExist && (
-                <Base.SectionDescription className={`${this.decorateCSS("description")} ${!animations?.description ? this.decorateCSS("noanimation") : ""}`}>
+                <Base.SectionDescription className={`${this.decorateCSS("description")} ${!animations?.descriptionAnimation ? this.decorateCSS("noanimation") : ""}`}>
                   {description}
                 </Base.SectionDescription>
               )}
@@ -221,7 +228,7 @@ class HeroSection6 extends BaseHeroSection {
                   {buttons.map((item: INPUTS.CastedButton, indexButtons: number) => this.castToString(item.text) && (
                     <ComposerLink path={item.url} key={indexButtons}>
                       <Base.Button buttonType={item.type}
-                        className={`${this.decorateCSS("button")} ${!animations?.button ? this.decorateCSS("noanimation") : ""}`}
+                        className={`${this.decorateCSS("button")} ${!animations?.buttonAnimation ? this.decorateCSS("noanimation") : ""}`}
                       >
                         <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>
                       </Base.Button>
@@ -239,7 +246,7 @@ class HeroSection6 extends BaseHeroSection {
                     value={this.withVideoSettings(media)}
                     className={this.decorateCSS("image1")}
                   />
-                  {this.getPropValue("overlay") && (
+                  {mainMedia?.overlay && (
                     <div className={this.decorateCSS("overlay")} />
                   )}
                 </div>
@@ -247,7 +254,7 @@ class HeroSection6 extends BaseHeroSection {
               {hasSecondMedia && (
                 <Base.Media
                   value={this.withVideoSettings(secondMedia)}
-                  className={`${this.decorateCSS("image2")} ${!animations?.secondMedia ? this.decorateCSS("noanimation") : ""} ${!hasMedia ? this.decorateCSS("without-image1") : ""}`}
+                  className={`${this.decorateCSS("image2")} ${!animations?.secondMediaAnimation ? this.decorateCSS("noanimation") : ""} ${!hasMedia ? this.decorateCSS("without-image1") : ""}`}
                 />
               )}
             </div>

@@ -135,6 +135,19 @@
         text-align: left;
       }
 
+      // The subtitle stays left in every alignment (Base centers the inline-block with auto margins).
+      .tag {
+        margin-left: 0 !important;
+        margin-right: auto !important;
+      }
+
+      // Over a background image the subtitle is plain text, the Badge look only applies without an image.
+      &:not(.no-image) .tag {
+        background: transparent !important;
+        padding: 0 !important;
+        border-radius: 0 !important;
+      }
+
       &.no-image {
         .tag, .title, .description {
           color: var(--composer-font-color-primary);
@@ -142,7 +155,9 @@
         }
       }
     
+      // Inside the left-aligned Vertical Content the line would shrink to 0 width without an explicit width.
       .line {
+        width: 100%;
         border-bottom: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.2)
       }
     }
@@ -165,16 +180,16 @@
       }
 
       .current-page {
-        font-size: 1.5rem;
+        font-size: var(--composer-font-size-md);
       }
 
       .slash {
         padding: 0px var(--composer-gap-sm);
-        font-size: 3rem;
+        font-size: calc(1.25 * var(--composer-font-size-md));
       }
 
       .total-page {
-        font-size: 2rem;
+        font-size: calc(1.25 * var(--composer-font-size-md));
       }
       
       &.no-image {
@@ -261,14 +276,13 @@
   .container{
     .arrow-wrapper{
         .pagination{
+          // Same size on every view like the original (Base.P shrinks below desktop).
           .current-page{
-            font-size: 1.25rem !important;
+            font-size: var(--composer-font-size-md) !important;
           }
-          .slash{
-            font-size: 1.5rem !important;
-          }
+          .slash,
           .total-page{
-            font-size: 1.5rem !important;
+            font-size: calc(1.25 * var(--composer-font-size-md)) !important;
           }
         }
         .arrow-prev-wrapper, .arrow-next-wrapper{

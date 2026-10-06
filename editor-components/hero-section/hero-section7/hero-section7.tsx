@@ -33,7 +33,7 @@ class HeroSection7 extends BaseHeroSection {
     });
     this.addProp({
       type: "string",
-      key: "title",
+      key: "header_title",
       displayer: "Title",
       value: "",
     });
@@ -267,7 +267,7 @@ class HeroSection7 extends BaseHeroSection {
     const logo = this.getPropValue("logo");
     const hasLogo = !!(logo?.url || logo?.name);
     const subtitle = this.getPropValue("subtitle");
-    const title = this.getPropValue("title");
+    const title = this.getPropValue("header_title");
     const description = this.getPropValue("description");
     const isSubtitleExist = this.castToString(subtitle);
     const isTitleExist = this.castToString(title);

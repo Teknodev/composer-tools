@@ -12,7 +12,7 @@ type ISliderData = {
   image: TypeMediaInputValue;
   description: React.JSX.Element;
   type: string;
-  button: INPUTS.CastedButton;
+  buttons: INPUTS.CastedButton[];
   logo: TypeMediaInputValue;
   overlay: boolean;
   backgroundMedia?: TypeMediaInputValue;
@@ -26,7 +26,7 @@ class HeroSection3 extends BaseHeroSection {
     super(props, styles);
     this.addProp({
       type: "array",
-      displayer: "Slider",
+      displayer: "Sliders",
       key: "slider",
       value: [
         {
@@ -118,7 +118,12 @@ class HeroSection3 extends BaseHeroSection {
                 selectItems: ["Right Image Layout", "Left Image Layout", "Overlay on Image"],
               },
             },
-            INPUTS.BUTTON("button", "Button", "Discover More", "", null, null, "Tertiary"),
+            {
+              type: "array",
+              key: "buttons",
+              displayer: "Buttons",
+              value: [INPUTS.BUTTON("button", "Button", "Discover More", "", null, null, "Tertiary")],
+            },
           ],
         },
         {
@@ -210,7 +215,12 @@ class HeroSection3 extends BaseHeroSection {
                 selectItems: ["Right Image Layout", "Left Image Layout", "Overlay on Image"],
               },
             },
-            INPUTS.BUTTON("button", "Button", "Discover More", "", null, null, "Tertiary"),
+            {
+              type: "array",
+              key: "buttons",
+              displayer: "Buttons",
+              value: [INPUTS.BUTTON("button", "Button", "Discover More", "", null, null, "Tertiary")],
+            },
           ],
         },
         {
@@ -303,7 +313,12 @@ class HeroSection3 extends BaseHeroSection {
                 selectItems: ["Right Image Layout", "Left Image Layout", "Overlay on Image"],
               },
             },
-            INPUTS.BUTTON("button", "Button", "Discover More", "", null, null, "Tertiary"),
+            {
+              type: "array",
+              key: "buttons",
+              displayer: "Buttons",
+              value: [INPUTS.BUTTON("button", "Button", "Discover More", "", null, null, "Tertiary")],
+            },
           ],
         },
       ],
@@ -377,7 +392,8 @@ class HeroSection3 extends BaseHeroSection {
               const title = this.castToString(item.title);
               const description = this.castToString(item.description);
               const subtitle = this.castToString(item.subtitle);
-              const buttonText = this.castToString(item.button.text);
+              const buttons = (item.buttons || []).filter((button: INPUTS.CastedButton) => this.castToString(button.text));
+              const buttonText = buttons.length > 0;
               const hasLogo = !!((item.logo as any)?.url || (item.logo as any)?.name);
               const hasImage = !!(item.image as any)?.url;
               const showContent = hasLogo || subtitle || title || description || buttonText;
@@ -442,11 +458,13 @@ class HeroSection3 extends BaseHeroSection {
                         )}
                         {buttonText && (
                           <div className={`${this.decorateCSS("button-container")} ${showLine ? this.decorateCSS("with-line") : ""}`}>
-                            <ComposerLink path={item.button.url}>
-                              <Base.Button buttonType={item.button.type} className={this.decorateCSS("button")}>
-                                <Base.P className={this.decorateCSS("button-text")}>{item.button.text}</Base.P>
-                              </Base.Button>
-                            </ComposerLink>
+                            {buttons.map((button: INPUTS.CastedButton, buttonIndex: number) => (
+                              <ComposerLink key={buttonIndex} path={button.url}>
+                                <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
+                                  <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
+                                </Base.Button>
+                              </ComposerLink>
+                            ))}
                           </div>
                         )}
                       </Base.VerticalContent>

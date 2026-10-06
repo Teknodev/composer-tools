@@ -31,7 +31,7 @@ class HeroSection14 extends BaseHeroSection {
 
     this.addProp({
       type: "array",
-      displayer: "Slider",
+      displayer: "Sliders",
       key: "slides",
       value: [
         {

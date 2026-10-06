@@ -107,6 +107,8 @@
           opacity: 0;
           animation: fade-in 1s ease-in-out 0.7s forwards;
           text-align: left;
+          // The two title lines sit tight together like the original.
+          margin-bottom: 0 !important;
           &.noanimation{
             opacity: 1 ;
             animation: none ;

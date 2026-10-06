@@ -436,7 +436,7 @@
 }
 
 @container (max-width: #{$composer-tablet-width}) {
-  @include titleSize(6rem !important);
+  @include titleSize(7.5rem !important);
 
   .container {
     .animated-media-top {

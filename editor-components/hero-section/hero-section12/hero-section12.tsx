@@ -100,7 +100,7 @@ class HeroSection12 extends BaseHeroSection {
     this.addProp({
       type: "array",
       key: "leftSliderItems",
-      displayer: "Left Slider",
+      displayer: "Left Sliders",
       value: [
         sliderItem("Autumn Stuff", "66618f99bd2970002c625904"),
         sliderItem("Breakfast", "66618f99bd2970002c625905"),
@@ -113,7 +113,7 @@ class HeroSection12 extends BaseHeroSection {
     this.addProp({
       type: "array",
       key: "rightSliderItems",
-      displayer: "Right Slider",
+      displayer: "Right Sliders",
       value: [
         sliderItem("Pumpkin Pie", "66618f99bd2970002c625900"),
         sliderItem("Coffee Time", "66618f99bd2970002c6258ff"),

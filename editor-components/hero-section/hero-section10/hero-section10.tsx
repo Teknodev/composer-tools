@@ -141,7 +141,7 @@ const slide = (mediaUrl: string): TypeUsableComponentProps => ({
     {
       type: "array",
       key: "socials",
-      displayer: "Social Media Platforms",
+      displayer: "Social Media",
       value: [social("FaTwitter"), social("FaFacebookF"), social("FaInstagram")],
     },
   ],
@@ -198,7 +198,7 @@ class HeroSection10 extends BaseHeroSection {
     this.addProp({
       type: "boolean",
       key: "slideNumber",
-      displayer: "Slide Number",
+      displayer: "Page Number",
       value: true,
     });
     this.addProp({
@@ -218,7 +218,7 @@ class HeroSection10 extends BaseHeroSection {
     this.addProp({
       type: "array",
       key: "slider",
-      displayer: "Slider",
+      displayer: "Sliders",
       value: [
         slide("https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a754582f8a5b002ce6cce6?alt=media"),
         slide("https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a754bb2f8a5b002ce6cd14?alt=media"),

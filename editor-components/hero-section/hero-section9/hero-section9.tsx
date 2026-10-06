@@ -113,7 +113,7 @@ class HeroSection9 extends BaseHeroSection {
     });
     this.addProp({
       type: "string",
-      key: "title",
+      key: "header_title",
       displayer: "Title",
       value: "",
     });
@@ -127,7 +127,7 @@ class HeroSection9 extends BaseHeroSection {
     this.addProp({
       type: "array",
       key: "socials",
-      displayer: "Socials",
+      displayer: "Social Media",
       value: [socialItem("Behance", "FaBehance"), socialItem("Instagram", "FaInstagram"), socialItem("Twitter", "FaTwitter")],
     });
 
@@ -156,7 +156,7 @@ class HeroSection9 extends BaseHeroSection {
     this.addProp({
       type: "object",
       key: "counter",
-      displayer: "Counter",
+      displayer: "Page Number",
       value: [
         {
           type: "string",
@@ -167,7 +167,7 @@ class HeroSection9 extends BaseHeroSection {
         {
           type: "boolean",
           key: "active",
-          displayer: "Show Counter",
+          displayer: "Show",
           value: true,
         },
       ],
@@ -204,7 +204,7 @@ class HeroSection9 extends BaseHeroSection {
   render() {
     const logo = this.getPropValue("logo");
     const subtitle = this.getPropValue("subtitle");
-    const title = this.getPropValue("title");
+    const title = this.getPropValue("header_title");
     const description = this.getPropValue("description");
     const hasLogo = this.hasMedia(logo);
     const isSubtitleExist = this.castToString(subtitle);

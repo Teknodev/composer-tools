@@ -97,12 +97,12 @@ class HeroSection1 extends BaseHeroSection {
     this.addProp({
       type: "object",
       key: "background",
-      displayer: "Background",
+      displayer: "Background Media",
       value: [
         {
           type: "media",
           key: "media",
-          displayer: "Background Media",
+          displayer: "Media",
           additionalParams: {
             availableTypes: ["image", "video"],
           },
@@ -134,7 +134,7 @@ class HeroSection1 extends BaseHeroSection {
     this.addProp({
       type: "boolean",
       key: "numberLine",
-      displayer: "Number Line",
+      displayer: "Number",
       value: true,
     });
     this.addProp({

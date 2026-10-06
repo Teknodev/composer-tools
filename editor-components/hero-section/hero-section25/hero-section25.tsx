@@ -89,7 +89,7 @@ class HeroSection25 extends BaseHeroSection {
     this.addProp({
       type: "array",
       key: "socials",
-      displayer: "Social Medias",
+      displayer: "Social Media",
       additionalParams: {
         maxElementCount: 5,
       },
@@ -201,7 +201,7 @@ class HeroSection25 extends BaseHeroSection {
 
     this.addProp({
       type: "array",
-      displayer: "Slider",
+      displayer: "Sliders",
       key: "slider",
       value: [
         {

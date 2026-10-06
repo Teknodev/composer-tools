@@ -117,7 +117,7 @@ class HeroSection8 extends BaseHeroSection {
     this.addProp({
       type: "array",
       key: "slider",
-      displayer: "Slider",
+      displayer: "Sliders",
       value: [
         slide(
           "PRODUCT, VOICE",

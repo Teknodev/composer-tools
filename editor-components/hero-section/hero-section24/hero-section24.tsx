@@ -28,7 +28,7 @@ class HeroSection24 extends BaseHeroSection {
     super(props, styles);
     this.addProp({
       type: "array",
-      displayer: "Slider",
+      displayer: "Sliders",
       key: "slider",
       value: [
         {

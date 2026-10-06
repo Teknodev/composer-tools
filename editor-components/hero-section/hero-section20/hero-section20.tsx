@@ -177,7 +177,7 @@ class HeroSection20 extends BaseHeroSection {
     this.addProp({
       type: "array",
       key: "slider",
-      displayer: "Slider",
+      displayer: "Sliders",
       value: [
         slide("SNEAKERS", "01", "Branding", "http://clapat.ro/themes/hervin-wordpress/wp-content/uploads/2019/05/01hero.jpg"),
         slide("EVEREST", "02", "Design", "http://clapat.ro/themes/hervin-wordpress/wp-content/uploads/2019/05/02hero.jpg"),
@@ -222,7 +222,7 @@ class HeroSection20 extends BaseHeroSection {
     this.addProp({
       type: "array",
       key: "socials",
-      displayer: "Social Icons",
+      displayer: "Social Media",
       value: [
         social("In"),
         social("Fb"),

@@ -99,7 +99,7 @@ class HeroSection28 extends BaseHeroSection {
     this.addProp({
       type: "array",
       key: "slider",
-      displayer: "Slider",
+      displayer: "Sliders",
       value: [
         slide("ACTION", "Dark Poison", "Official Season 1 Trailer", "https://viseo.progressionstudios.com/wp-content/uploads/2017/04/dark-poison-large-1400x700.jpg"),
         slide("ACTION", "Frontlines", "Official Season 1 Trailer", "https://viseo.progressionstudios.com/wp-content/uploads/2017/04/front-lines-1400x700.jpg"),

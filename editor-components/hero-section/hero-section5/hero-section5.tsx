@@ -8,6 +8,31 @@ class HeroSection5 extends BaseHeroSection {
   constructor(props?: any) {
     super(props, styles);
     this.addProp({
+      type: "object",
+      key: "background",
+      displayer: "Background Media",
+      value: [
+        {
+          type: "media",
+          key: "media",
+          displayer: "Media",
+          additionalParams: {
+            availableTypes: ["image", "video"],
+          },
+          value: {
+            type: "image",
+            url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a765ee2f8a5b002ce6d6a7?alt=media",
+          },
+        },
+        {
+          type: "boolean",
+          key: "overlay",
+          displayer: "Overlay",
+          value: true,
+        },
+      ],
+    });
+    this.addProp({
       type: "media",
       key: "logo",
       displayer: "Logo",
@@ -24,7 +49,7 @@ class HeroSection5 extends BaseHeroSection {
       type: "string",
       key: "subtitle",
       displayer: "Subtitle",
-      value: "Motivation",
+      value: "",
     });
     this.addProp({
       type: "string",
@@ -37,24 +62,6 @@ class HeroSection5 extends BaseHeroSection {
       key: "description",
       displayer: "Description",
       value: "PHOTOGRAPHY",
-    });
-    this.addProp({
-      type: "boolean",
-      key: "overlay",
-      displayer: "Overlay",
-      value: true,
-    });
-    this.addProp({
-      type: "media",
-      key: "backgroundMedia",
-      displayer: "Background Media",
-      additionalParams: {
-        availableTypes: ["image", "video"],
-      },
-      value: {
-        type: "image",
-        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a765ee2f8a5b002ce6d6a7?alt=media",
-      },
     });
 
     this.addProp({
@@ -76,8 +83,9 @@ class HeroSection5 extends BaseHeroSection {
     const subtitle = this.getPropValue("subtitle");
     const title = this.getPropValue("title");
     const description = this.getPropValue("description");
-    const overlay = this.getPropValue("overlay");
-    const backgroundImage = this.getPropValue("backgroundMedia");
+    const background = this.castToObject<{ media: any; overlay: boolean }>("background");
+    const overlay = background?.overlay;
+    const backgroundImage = background?.media;
     const logo = this.getPropValue("logo");
     const isTitleExist = this.castToString(title);
     const isDescriptionExist = this.castToString(description);

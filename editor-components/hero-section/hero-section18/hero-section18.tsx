@@ -64,7 +64,7 @@ class HeroSection18 extends BaseHeroSection {
 
     this.addProp({
       type: "array",
-      displayer: "Slider",
+      displayer: "Sliders",
       key: "slider",
       value: [
         {
@@ -383,7 +383,7 @@ class HeroSection18 extends BaseHeroSection {
     this.addProp({
       type: "array",
       key: "socials",
-      displayer: "Social Medias",
+      displayer: "Social Media",
       value: [
         {
           type: "object",

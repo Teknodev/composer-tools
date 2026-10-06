@@ -110,7 +110,7 @@ class HeroSection23 extends BaseHeroSection {
 
     this.addProp({
       type: "array",
-      displayer: "Slider",
+      displayer: "Sliders",
       key: "slider",
       value: [
         slide("ALMOND", "MUFFINS", "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619e2fbd2970002c6266cc?alt=media&timestamp=1719483639150", [
