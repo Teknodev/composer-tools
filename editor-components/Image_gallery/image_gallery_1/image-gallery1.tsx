@@ -102,7 +102,7 @@ class ImageGallery1 extends BaseImageGallery {
       key: "headerButtons",
       displayer: "Buttons",
       value: [
-        INPUTS.BUTTON("button", "Button", "Explore More", "", "FiArrowRight", null, "Link"),
+        INPUTS.BUTTON("button", "Button", "Explore More", "", "FiArrowRight", null, "Bare"),
       ],
     })
     this.addProp({

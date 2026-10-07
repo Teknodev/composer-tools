@@ -76,7 +76,7 @@ class ImageGallery4 extends BaseImageGallery {
             {
               type: "boolean",
               key: "hasSubnav",
-              displayer: "Sub Navigation",
+              displayer: "Category Items",
               value: true,
             },
             {
@@ -108,12 +108,12 @@ class ImageGallery4 extends BaseImageGallery {
             {
               type: "array",
               key: "subnavItems",
-              displayer: "Sub Navigation Items",
+              displayer: "Categories",
               value: [
                 {
                   type: "object",
                   key: "subnavItem",
-                  displayer: "Sub Navigation Item",
+                  displayer: "Category",
                   value: [
                     {
                       type: "string",
@@ -171,7 +171,7 @@ class ImageGallery4 extends BaseImageGallery {
                 {
                   type: "object",
                   key: "subnavItem",
-                  displayer: "Sub Navigation Item",
+                  displayer: "Category",
                   value: [
                     {
                       type: "string",
@@ -229,7 +229,7 @@ class ImageGallery4 extends BaseImageGallery {
                 {
                   type: "object",
                   key: "subnavItem",
-                  displayer: "Sub Navigation Item",
+                  displayer: "Category",
                   value: [
                     {
                       type: "string",
@@ -302,7 +302,7 @@ class ImageGallery4 extends BaseImageGallery {
             {
               type: "boolean",
               key: "hasSubnav",
-              displayer: "Sub Navigation",
+              displayer: "Category Items",
               value: true,
             },
             {
@@ -334,12 +334,12 @@ class ImageGallery4 extends BaseImageGallery {
             {
               type: "array",
               key: "subnavItems",
-              displayer: "Sub Navigation Items",
+              displayer: "Categories",
               value: [
                 {
                   type: "object",
                   key: "subnavItem",
-                  displayer: "Sub Navigation Item",
+                  displayer: "Category",
                   value: [
                     {
                       type: "string",
@@ -397,7 +397,7 @@ class ImageGallery4 extends BaseImageGallery {
                 {
                   type: "object",
                   key: "subnavItem",
-                  displayer: "Sub Navigation Item",
+                  displayer: "Category",
                   value: [
                     {
                       type: "string",
@@ -776,7 +776,7 @@ class ImageGallery4 extends BaseImageGallery {
               </Base.VerticalContent>
             )}
             {galleryItems?.length > 0 && (
-              <Base.ListGrid gridCount={{ pc: itemsPerRow }} className={this.decorateCSS("gallery-container")}>
+              <Base.ListGrid gridCount={{ pc: itemsPerRow, tablet: itemsPerRow }} className={this.decorateCSS("gallery-container")}>
                 {galleryItems.slice(0, this.getComponentState("imageCount")).map((item: Image, index: number) => {
                   if (!item.image_item_image) return null;
                   return (

@@ -73,19 +73,19 @@
           align-items: center;
           overflow: hidden;
           width: 100%;
-          height: 300px;
+          // Height follows the image ratio so the image is never cropped
+          height: auto;
           position: relative;
           z-index: 1;
           border-radius: var(--composer-border-radius-sm);
 
           .gallery-image-container {
-            height: 100%;
             width: 100%;
 
             .gallery-image {
-              height: 100%;
+              display: block;
+              height: auto;
               width: 100%;
-              object-fit: cover;
               border-radius: var(--composer-border-radius-sm);
               position: relative;
 
@@ -190,12 +190,12 @@
         .focused-image-container {
           position: relative;
           width: 40%;
-          height: 50%;
 
+          // The enlarged image keeps its own ratio, nothing is cropped
           .focused-image {
+            display: block;
             width: 100%;
-            height: 100%;
-            object-fit: cover;
+            height: auto;
           }
 
           .close-button {
@@ -243,12 +243,6 @@
         .fullscreen-container {
           .focused-image-container {
             width: 50%;
-
-            .focused-image {
-              width: 100%;
-              height: 100%;
-              object-fit: cover;
-            }
           }
         }
       }
@@ -271,13 +265,7 @@
         .fullscreen-container {
           .focused-image-container {
             width: 320px;
-            height: 320px;
-
-            .focused-image {
-              width: 100%;
-              height: 100%;
-              object-fit: cover;
-            }
+            max-width: 100%;
 
             .close-button {
               right: 0;

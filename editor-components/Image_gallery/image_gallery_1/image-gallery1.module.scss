@@ -90,7 +90,8 @@
       .text-container{
         flex-grow: 1;
         display: flex;
-        gap: var(--composer-gap-md);
+        // Original: ~15px between the title, the separator line and the section title
+        gap: calc(var(--composer-gap-sm) + var(--composer-gap-xs));
         align-items: center;
         justify-content: center;
         .title{
@@ -190,6 +191,10 @@
       .header-button-container{
         margin-left: 0;
         justify-content: center;
+      }
+      // The caption sits halfway between its image and the next card's image
+      .gallery-grid{
+        row-gap: calc(var(--composer-gap-sm) + var(--composer-gap-md));
       }
     }
   }

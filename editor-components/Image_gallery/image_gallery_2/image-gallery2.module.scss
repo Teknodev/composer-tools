@@ -200,15 +200,18 @@
           width: 100%;
           padding: var(--composer-gap-xs) 0px;
     
+          // Original lightbox: 12px title and counter on every screen size
           .image-title {
             text-align: left;
             width: 50%;
             overflow-wrap: break-word;
+            font-size: calc(0.75 * var(--composer-font-size-md)) !important;
           }
     
           .image-count {
             text-align: end;
             width: 50%;
+            font-size: calc(0.75 * var(--composer-font-size-md)) !important;
           }
         }
     }
@@ -264,8 +267,9 @@
           .gallery-item{
             .image-container{
               min-width: 325px;
+              // Original mobile hover icon is a 60px circle (35px base x 1.7)
               .icon-wrapper {
-                transform: translate(-50%, -50%) scale(1.25);
+                transform: translate(-50%, -50%) scale(1.7);
               }
             }
           }
