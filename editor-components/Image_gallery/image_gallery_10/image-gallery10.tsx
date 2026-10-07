@@ -116,7 +116,7 @@ class ImageGallery10 extends BaseImageGallery {
         this.addProp({
             type: "array",
             key: "card-items",
-            displayer: "Cards",
+            displayer: "Gallery",
             value: [
                 {
                     type: "object",

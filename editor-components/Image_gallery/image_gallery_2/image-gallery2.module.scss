@@ -299,3 +299,12 @@
       }
     }
   }
+
+// Optional overlay over a gallery media item (Overlay prop)
+.media-overlay {
+  position: absolute;
+  inset: 0;
+  background-color: var(--composer-overlay-color);
+  border-radius: inherit;
+  pointer-events: none;
+}

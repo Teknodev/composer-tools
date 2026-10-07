@@ -127,3 +127,14 @@
     }
   }
 }
+
+// Optional overlay over a gallery media item (Overlay prop)
+.media-overlay {
+  position: absolute;
+  inset: 0;
+  background-color: var(--composer-overlay-color);
+  border-radius: inherit;
+  pointer-events: none;
+  // The image has z-index 1 here, so the overlay needs it too (it comes later in the DOM)
+  z-index: 1;
+}

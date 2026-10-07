@@ -7,6 +7,7 @@ import ComposerLink from "../../../composer-base-components/Link/ComposerLinkPro
 
 type CardItemType = {
     image: TypeMediaInputValue;
+    overlay?: boolean;
     title: React.JSX.Element;
     subtitle: React.JSX.Element;
     description: React.JSX.Element;
@@ -84,6 +85,12 @@ class ImageGallery7 extends BaseImageGallery {
                                 },
                             },
                             {
+                                type: "boolean",
+                                key: "overlay",
+                                displayer: "Overlay",
+                                value: false,
+                            },
+                            {
                                 type: "string",
                                 key: "subtitle",
                                 displayer: "Subtitle",
@@ -125,6 +132,12 @@ class ImageGallery7 extends BaseImageGallery {
                                 additionalParams: {
                                     availableTypes: ["image", "video"],
                                 },
+                            },
+                            {
+                                type: "boolean",
+                                key: "overlay",
+                                displayer: "Overlay",
+                                value: false,
                             },
                             {
                                 type: "string",
@@ -170,6 +183,12 @@ class ImageGallery7 extends BaseImageGallery {
                                 },
                             },
                             {
+                                type: "boolean",
+                                key: "overlay",
+                                displayer: "Overlay",
+                                value: false,
+                            },
+                            {
                                 type: "string",
                                 key: "subtitle",
                                 displayer: "Subtitle",
@@ -211,6 +230,12 @@ class ImageGallery7 extends BaseImageGallery {
                                 additionalParams: {
                                     availableTypes: ["image", "video"],
                                 },
+                            },
+                            {
+                                type: "boolean",
+                                key: "overlay",
+                                displayer: "Overlay",
+                                value: false,
                             },
                             {
                                 type: "string",
@@ -256,6 +281,12 @@ class ImageGallery7 extends BaseImageGallery {
                                 },
                             },
                             {
+                                type: "boolean",
+                                key: "overlay",
+                                displayer: "Overlay",
+                                value: false,
+                            },
+                            {
                                 type: "string",
                                 key: "subtitle",
                                 displayer: "Subtitle",
@@ -297,6 +328,12 @@ class ImageGallery7 extends BaseImageGallery {
                                 additionalParams: {
                                     availableTypes: ["image", "video"],
                                 },
+                            },
+                            {
+                                type: "boolean",
+                                key: "overlay",
+                                displayer: "Overlay",
+                                value: false,
                             },
                             {
                                 type: "string",
@@ -343,6 +380,12 @@ class ImageGallery7 extends BaseImageGallery {
                                 },
                             },
                             {
+                                type: "boolean",
+                                key: "overlay",
+                                displayer: "Overlay",
+                                value: false,
+                            },
+                            {
                                 type: "string",
                                 key: "subtitle",
                                 displayer: "Subtitle",
@@ -386,6 +429,12 @@ class ImageGallery7 extends BaseImageGallery {
                                 },
                             },
                             {
+                                type: "boolean",
+                                key: "overlay",
+                                displayer: "Overlay",
+                                value: false,
+                            },
+                            {
                                 type: "string",
                                 key: "subtitle",
                                 displayer: "Subtitle",
@@ -427,6 +476,12 @@ class ImageGallery7 extends BaseImageGallery {
                                 additionalParams: {
                                     availableTypes: ["image", "video"],
                                 },
+                            },
+                            {
+                                type: "boolean",
+                                key: "overlay",
+                                displayer: "Overlay",
+                                value: false,
                             },
                             {
                                 type: "string",
@@ -474,6 +529,12 @@ class ImageGallery7 extends BaseImageGallery {
                                 },
                             },
                             {
+                                type: "boolean",
+                                key: "overlay",
+                                displayer: "Overlay",
+                                value: false,
+                            },
+                            {
                                 type: "string",
                                 key: "subtitle",
                                 displayer: "Subtitle",
@@ -518,6 +579,12 @@ class ImageGallery7 extends BaseImageGallery {
                                 },
                             },
                             {
+                                type: "boolean",
+                                key: "overlay",
+                                displayer: "Overlay",
+                                value: false,
+                            },
+                            {
                                 type: "string",
                                 key: "subtitle",
                                 displayer: "Subtitle",
@@ -560,6 +627,12 @@ class ImageGallery7 extends BaseImageGallery {
                                 additionalParams: {
                                     availableTypes: ["image", "video"],
                                 },
+                            },
+                            {
+                                type: "boolean",
+                                key: "overlay",
+                                displayer: "Overlay",
+                                value: false,
                             },
                             {
                                 type: "string",
@@ -710,6 +783,7 @@ class ImageGallery7 extends BaseImageGallery {
                                                 {cards.image && (
                                                     <Base.Media value={cards.image} className={this.decorateCSS("image")} />
                                                 )}
+                                                {cards.image && cards.overlay && <div className={this.decorateCSS("media-overlay")} />}
                                                 {(this.castToString(cards.title) || this.castToString(cards.subtitle) || this.castToString(cards.description)) && (
                                                     <div className={this.decorateCSS("textContainer")}>
                                                         {this.castToString(cards.title) && (

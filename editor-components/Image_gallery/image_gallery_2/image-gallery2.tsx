@@ -8,6 +8,7 @@ import ComposerLink from "../../../composer-base-components/Link/ComposerLinkPro
 
 type ImageType = {
     image: TypeMediaInputValue;
+    overlay?: boolean;
     imageTitle: React.JSX.Element;
 };
 
@@ -140,6 +141,12 @@ class ImageGallery2 extends BaseImageGallery {
                                             },
                                         },
                                         {
+                                            type: "boolean",
+                                            key: "overlay",
+                                            displayer: "Overlay",
+                                            value: false,
+                                        },
+                                        {
                                             type: "string",
                                             key: "imageTitle",
                                             displayer: "Title",
@@ -163,6 +170,12 @@ class ImageGallery2 extends BaseImageGallery {
                                             additionalParams: {
                                                 availableTypes: ["image", "video"],
                                             },
+                                        },
+                                        {
+                                            type: "boolean",
+                                            key: "overlay",
+                                            displayer: "Overlay",
+                                            value: false,
                                         },
                                         {
                                             type: "string",
@@ -190,6 +203,12 @@ class ImageGallery2 extends BaseImageGallery {
                                             },
                                         },
                                         {
+                                            type: "boolean",
+                                            key: "overlay",
+                                            displayer: "Overlay",
+                                            value: false,
+                                        },
+                                        {
                                             type: "string",
                                             key: "imageTitle",
                                             displayer: "Title",
@@ -213,6 +232,12 @@ class ImageGallery2 extends BaseImageGallery {
                                             additionalParams: {
                                                 availableTypes: ["image", "video"],
                                             },
+                                        },
+                                        {
+                                            type: "boolean",
+                                            key: "overlay",
+                                            displayer: "Overlay",
+                                            value: false,
                                         },
                                         {
                                             type: "string",
@@ -240,6 +265,12 @@ class ImageGallery2 extends BaseImageGallery {
                                             },
                                         },
                                         {
+                                            type: "boolean",
+                                            key: "overlay",
+                                            displayer: "Overlay",
+                                            value: false,
+                                        },
+                                        {
                                             type: "string",
                                             key: "imageTitle",
                                             displayer: "Title",
@@ -263,6 +294,12 @@ class ImageGallery2 extends BaseImageGallery {
                                             additionalParams: {
                                                 availableTypes: ["image", "video"],
                                             },
+                                        },
+                                        {
+                                            type: "boolean",
+                                            key: "overlay",
+                                            displayer: "Overlay",
+                                            value: false,
                                         },
                                         {
                                             type: "string",
@@ -310,6 +347,12 @@ class ImageGallery2 extends BaseImageGallery {
                                             },
                                         },
                                         {
+                                            type: "boolean",
+                                            key: "overlay",
+                                            displayer: "Overlay",
+                                            value: false,
+                                        },
+                                        {
                                             type: "string",
                                             key: "imageTitle",
                                             displayer: "Title",
@@ -333,6 +376,12 @@ class ImageGallery2 extends BaseImageGallery {
                                             additionalParams: {
                                                 availableTypes: ["image", "video"],
                                             },
+                                        },
+                                        {
+                                            type: "boolean",
+                                            key: "overlay",
+                                            displayer: "Overlay",
+                                            value: false,
                                         },
                                         {
                                             type: "string",
@@ -360,6 +409,12 @@ class ImageGallery2 extends BaseImageGallery {
                                             },
                                         },
                                         {
+                                            type: "boolean",
+                                            key: "overlay",
+                                            displayer: "Overlay",
+                                            value: false,
+                                        },
+                                        {
                                             type: "string",
                                             key: "imageTitle",
                                             displayer: "Title",
@@ -383,6 +438,12 @@ class ImageGallery2 extends BaseImageGallery {
                                             additionalParams: {
                                                 availableTypes: ["image", "video"],
                                             },
+                                        },
+                                        {
+                                            type: "boolean",
+                                            key: "overlay",
+                                            displayer: "Overlay",
+                                            value: false,
                                         },
                                         {
                                             type: "string",
@@ -410,6 +471,12 @@ class ImageGallery2 extends BaseImageGallery {
                                             },
                                         },
                                         {
+                                            type: "boolean",
+                                            key: "overlay",
+                                            displayer: "Overlay",
+                                            value: false,
+                                        },
+                                        {
                                             type: "string",
                                             key: "imageTitle",
                                             displayer: "Title",
@@ -433,6 +500,12 @@ class ImageGallery2 extends BaseImageGallery {
                                             additionalParams: {
                                                 availableTypes: ["image", "video"],
                                             },
+                                        },
+                                        {
+                                            type: "boolean",
+                                            key: "overlay",
+                                            displayer: "Overlay",
+                                            value: false,
                                         },
                                         {
                                             type: "string",
@@ -480,6 +553,12 @@ class ImageGallery2 extends BaseImageGallery {
                                             },
                                         },
                                         {
+                                            type: "boolean",
+                                            key: "overlay",
+                                            displayer: "Overlay",
+                                            value: false,
+                                        },
+                                        {
                                             type: "string",
                                             key: "imageTitle",
                                             displayer: "Title",
@@ -503,6 +582,12 @@ class ImageGallery2 extends BaseImageGallery {
                                             additionalParams: {
                                                 availableTypes: ["image", "video"],
                                             },
+                                        },
+                                        {
+                                            type: "boolean",
+                                            key: "overlay",
+                                            displayer: "Overlay",
+                                            value: false,
                                         },
                                         {
                                             type: "string",
@@ -530,6 +615,12 @@ class ImageGallery2 extends BaseImageGallery {
                                             },
                                         },
                                         {
+                                            type: "boolean",
+                                            key: "overlay",
+                                            displayer: "Overlay",
+                                            value: false,
+                                        },
+                                        {
                                             type: "string",
                                             key: "imageTitle",
                                             displayer: "Title",
@@ -553,6 +644,12 @@ class ImageGallery2 extends BaseImageGallery {
                                             additionalParams: {
                                                 availableTypes: ["image", "video"],
                                             },
+                                        },
+                                        {
+                                            type: "boolean",
+                                            key: "overlay",
+                                            displayer: "Overlay",
+                                            value: false,
                                         },
                                         {
                                             type: "string",
@@ -580,6 +677,12 @@ class ImageGallery2 extends BaseImageGallery {
                                             },
                                         },
                                         {
+                                            type: "boolean",
+                                            key: "overlay",
+                                            displayer: "Overlay",
+                                            value: false,
+                                        },
+                                        {
                                             type: "string",
                                             key: "imageTitle",
                                             displayer: "Title",
@@ -603,6 +706,12 @@ class ImageGallery2 extends BaseImageGallery {
                                             additionalParams: {
                                                 availableTypes: ["image", "video"],
                                             },
+                                        },
+                                        {
+                                            type: "boolean",
+                                            key: "overlay",
+                                            displayer: "Overlay",
+                                            value: false,
                                         },
                                         {
                                             type: "string",
@@ -650,6 +759,12 @@ class ImageGallery2 extends BaseImageGallery {
                                             },
                                         },
                                         {
+                                            type: "boolean",
+                                            key: "overlay",
+                                            displayer: "Overlay",
+                                            value: false,
+                                        },
+                                        {
                                             type: "string",
                                             key: "imageTitle",
                                             displayer: "Title",
@@ -673,6 +788,12 @@ class ImageGallery2 extends BaseImageGallery {
                                             additionalParams: {
                                                 availableTypes: ["image", "video"],
                                             },
+                                        },
+                                        {
+                                            type: "boolean",
+                                            key: "overlay",
+                                            displayer: "Overlay",
+                                            value: false,
                                         },
                                         {
                                             type: "string",
@@ -700,6 +821,12 @@ class ImageGallery2 extends BaseImageGallery {
                                             },
                                         },
                                         {
+                                            type: "boolean",
+                                            key: "overlay",
+                                            displayer: "Overlay",
+                                            value: false,
+                                        },
+                                        {
                                             type: "string",
                                             key: "imageTitle",
                                             displayer: "Title",
@@ -723,6 +850,12 @@ class ImageGallery2 extends BaseImageGallery {
                                             additionalParams: {
                                                 availableTypes: ["image", "video"],
                                             },
+                                        },
+                                        {
+                                            type: "boolean",
+                                            key: "overlay",
+                                            displayer: "Overlay",
+                                            value: false,
                                         },
                                         {
                                             type: "string",
@@ -750,6 +883,12 @@ class ImageGallery2 extends BaseImageGallery {
                                             },
                                         },
                                         {
+                                            type: "boolean",
+                                            key: "overlay",
+                                            displayer: "Overlay",
+                                            value: false,
+                                        },
+                                        {
                                             type: "string",
                                             key: "imageTitle",
                                             displayer: "Title",
@@ -773,6 +912,12 @@ class ImageGallery2 extends BaseImageGallery {
                                             additionalParams: {
                                                 availableTypes: ["image", "video"],
                                             },
+                                        },
+                                        {
+                                            type: "boolean",
+                                            key: "overlay",
+                                            displayer: "Overlay",
+                                            value: false,
                                         },
                                         {
                                             type: "string",
@@ -1044,6 +1189,7 @@ class ImageGallery2 extends BaseImageGallery {
                                             value={section.image}
                                             className={this.decorateCSS("image")}
                                         />
+                                        {section.overlay && <div className={this.decorateCSS("media-overlay")} />}
                                         <div className={this.decorateCSS("overlay")} />
                                         {magnifierIcon && (
                                             <div className={this.decorateCSS("icon-wrapper")}>

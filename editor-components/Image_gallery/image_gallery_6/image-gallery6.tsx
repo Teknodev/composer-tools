@@ -15,6 +15,7 @@ interface AllCategory {
 }
 interface ImageItem {
     image_image: TypeMediaInputValue,
+    overlay?: boolean,
     badge: React.JSX.Element,
     title: React.JSX.Element,
     description: React.JSX.Element,
@@ -145,6 +146,12 @@ class ImageGallery6 extends BaseImageGallery {
                                             },
                                         },
                                         {
+                                            type: "boolean",
+                                            key: "overlay",
+                                            displayer: "Overlay",
+                                            value: false,
+                                        },
+                                        {
                                             type: "string",
                                             key: "badge",
                                             displayer: "Subtitle",
@@ -206,6 +213,12 @@ class ImageGallery6 extends BaseImageGallery {
                                             },
                                         },
                                         {
+                                            type: "boolean",
+                                            key: "overlay",
+                                            displayer: "Overlay",
+                                            value: false,
+                                        },
+                                        {
                                             type: "string",
                                             key: "badge",
                                             displayer: "Subtitle",
@@ -265,6 +278,12 @@ class ImageGallery6 extends BaseImageGallery {
                                             additionalParams: {
                                                 availableTypes: ["image", "video"],
                                             },
+                                        },
+                                        {
+                                            type: "boolean",
+                                            key: "overlay",
+                                            displayer: "Overlay",
+                                            value: false,
                                         },
                                         {
                                             type: "string",
@@ -350,6 +369,12 @@ class ImageGallery6 extends BaseImageGallery {
                                             },
                                         },
                                         {
+                                            type: "boolean",
+                                            key: "overlay",
+                                            displayer: "Overlay",
+                                            value: false,
+                                        },
+                                        {
                                             type: "string",
                                             key: "badge",
                                             displayer: "Subtitle",
@@ -409,6 +434,12 @@ class ImageGallery6 extends BaseImageGallery {
                                             additionalParams: {
                                                 availableTypes: ["image", "video"],
                                             },
+                                        },
+                                        {
+                                            type: "boolean",
+                                            key: "overlay",
+                                            displayer: "Overlay",
+                                            value: false,
                                         },
                                         {
                                             type: "string",
@@ -472,6 +503,12 @@ class ImageGallery6 extends BaseImageGallery {
                                             },
                                         },
                                         {
+                                            type: "boolean",
+                                            key: "overlay",
+                                            displayer: "Overlay",
+                                            value: false,
+                                        },
+                                        {
                                             type: "string",
                                             key: "badge",
                                             displayer: "Subtitle",
@@ -531,6 +568,12 @@ class ImageGallery6 extends BaseImageGallery {
                                             additionalParams: {
                                                 availableTypes: ["image", "video"],
                                             },
+                                        },
+                                        {
+                                            type: "boolean",
+                                            key: "overlay",
+                                            displayer: "Overlay",
+                                            value: false,
                                         },
                                         {
                                             type: "string",
@@ -612,6 +655,12 @@ class ImageGallery6 extends BaseImageGallery {
                                             additionalParams: {
                                                 availableTypes: ["image", "video"],
                                             },
+                                        },
+                                        {
+                                            type: "boolean",
+                                            key: "overlay",
+                                            displayer: "Overlay",
+                                            value: false,
                                         },
                                         {
                                             type: "string",
@@ -816,6 +865,7 @@ class ImageGallery6 extends BaseImageGallery {
                                                     {item.image_image && (
                                                         <Base.Media value={item.image_image} className={this.decorateCSS("image")} />
                                                     )}
+                                                    {item.image_image && item.overlay && <div className={this.decorateCSS("media-overlay")} />}
                                                     {this.castToString(item.badge) && (
                                                         <div className={this.decorateCSS("badge")}>
                                                             <Base.P className={this.decorateCSS("badge-text")}>
@@ -879,6 +929,7 @@ class ImageGallery6 extends BaseImageGallery {
                                                     {item.image_image && (
                                                         <Base.Media value={item.image_image} className={this.decorateCSS("image")} />
                                                     )}
+                                                    {item.image_image && item.overlay && <div className={this.decorateCSS("media-overlay")} />}
                                                     {this.castToString(item.badge) && (
                                                         <div className={this.decorateCSS("badge")}>
                                                             <Base.P className={this.decorateCSS("badge-text")}>

@@ -43,6 +43,7 @@
 
         .wrapper {
           .card {
+            position: relative;
             min-height: 425px;
             width: 100%;
             cursor: pointer;
@@ -170,4 +171,16 @@
       }
     }
   }
+}
+
+// Optional overlay over a gallery media item (Overlay prop); covers only the 340px image, not the text below it
+.media-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 340px;
+  background-color: var(--composer-overlay-color);
+  border-radius: var(--composer-border-radius-sm);
+  pointer-events: none;
 }

@@ -70,6 +70,12 @@ class ImageGallery5 extends BaseImageGallery {
               },
             },
             {
+              type: "boolean",
+              key: "overlay",
+              displayer: "Overlay",
+              value: false,
+            },
+            {
               type: "string",
               key: "caption",
               displayer: "Text",
@@ -93,6 +99,12 @@ class ImageGallery5 extends BaseImageGallery {
               additionalParams: {
                 availableTypes: ["image", "video"],
               },
+            },
+            {
+              type: "boolean",
+              key: "overlay",
+              displayer: "Overlay",
+              value: false,
             },
             {
               type: "string",
@@ -120,6 +132,12 @@ class ImageGallery5 extends BaseImageGallery {
               },
             },
             {
+              type: "boolean",
+              key: "overlay",
+              displayer: "Overlay",
+              value: false,
+            },
+            {
               type: "string",
               key: "caption",
               displayer: "Text",
@@ -143,6 +161,12 @@ class ImageGallery5 extends BaseImageGallery {
               additionalParams: {
                 availableTypes: ["image", "video"],
               },
+            },
+            {
+              type: "boolean",
+              key: "overlay",
+              displayer: "Overlay",
+              value: false,
             },
             {
               type: "string",
@@ -170,6 +194,12 @@ class ImageGallery5 extends BaseImageGallery {
               },
             },
             {
+              type: "boolean",
+              key: "overlay",
+              displayer: "Overlay",
+              value: false,
+            },
+            {
               type: "string",
               key: "caption",
               displayer: "Text",
@@ -193,6 +223,12 @@ class ImageGallery5 extends BaseImageGallery {
               additionalParams: {
                 availableTypes: ["image", "video"],
               },
+            },
+            {
+              type: "boolean",
+              key: "overlay",
+              displayer: "Overlay",
+              value: false,
             },
             {
               type: "string",
@@ -422,6 +458,7 @@ class ImageGallery5 extends BaseImageGallery {
                     value={galleryItem.image}
                     className={this.decorateCSS("image")}
                   />
+                  {galleryItem.overlay && <div className={this.decorateCSS("media-overlay")} />}
                 </div>
               );
             })}

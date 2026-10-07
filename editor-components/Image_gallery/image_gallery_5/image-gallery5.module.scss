@@ -30,6 +30,7 @@
 
         .images {
             .image-container {
+                position: relative;
                 overflow: hidden;
                 cursor: pointer;
                 border-radius: var(--composer-border-radius-sm);
@@ -235,4 +236,13 @@
             }
         }
     }
+}
+
+// Optional overlay over a gallery media item (Overlay prop)
+.media-overlay {
+  position: absolute;
+  inset: 0;
+  background-color: var(--composer-overlay-color);
+  border-radius: inherit;
+  pointer-events: none;
 }

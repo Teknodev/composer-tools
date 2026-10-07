@@ -20,6 +20,7 @@ type SubnavItem = {
 
 type Image = {
   image_item_image: TypeMediaInputValue;
+  overlay?: boolean;
 };
 
 class ImageGallery4 extends BaseImageGallery {
@@ -101,6 +102,12 @@ class ImageGallery4 extends BaseImageGallery {
                         availableTypes: ["image", "video"],
                       },
                     },
+                    {
+                      type: "boolean",
+                      key: "overlay",
+                      displayer: "Overlay",
+                      value: false,
+                    },
                   ],
                 },
               ],
@@ -143,6 +150,12 @@ class ImageGallery4 extends BaseImageGallery {
                                 availableTypes: ["image", "video"],
                               },
                             },
+                            {
+                              type: "boolean",
+                              key: "overlay",
+                              displayer: "Overlay",
+                              value: false,
+                            },
                           ],
                         },
                         {
@@ -161,6 +174,12 @@ class ImageGallery4 extends BaseImageGallery {
                               additionalParams: {
                                 availableTypes: ["image", "video"],
                               },
+                            },
+                            {
+                              type: "boolean",
+                              key: "overlay",
+                              displayer: "Overlay",
+                              value: false,
                             },
                           ],
                         },
@@ -201,6 +220,12 @@ class ImageGallery4 extends BaseImageGallery {
                                 availableTypes: ["image", "video"],
                               },
                             },
+                            {
+                              type: "boolean",
+                              key: "overlay",
+                              displayer: "Overlay",
+                              value: false,
+                            },
                           ],
                         },
                         {
@@ -219,6 +244,12 @@ class ImageGallery4 extends BaseImageGallery {
                               additionalParams: {
                                 availableTypes: ["image", "video"],
                               },
+                            },
+                            {
+                              type: "boolean",
+                              key: "overlay",
+                              displayer: "Overlay",
+                              value: false,
                             },
                           ],
                         },
@@ -259,6 +290,12 @@ class ImageGallery4 extends BaseImageGallery {
                                 availableTypes: ["image", "video"],
                               },
                             },
+                            {
+                              type: "boolean",
+                              key: "overlay",
+                              displayer: "Overlay",
+                              value: false,
+                            },
                           ],
                         },
                         {
@@ -277,6 +314,12 @@ class ImageGallery4 extends BaseImageGallery {
                               additionalParams: {
                                 availableTypes: ["image", "video"],
                               },
+                            },
+                            {
+                              type: "boolean",
+                              key: "overlay",
+                              displayer: "Overlay",
+                              value: false,
                             },
                           ],
                         },
@@ -327,6 +370,12 @@ class ImageGallery4 extends BaseImageGallery {
                         availableTypes: ["image", "video"],
                       },
                     },
+                    {
+                      type: "boolean",
+                      key: "overlay",
+                      displayer: "Overlay",
+                      value: false,
+                    },
                   ],
                 },
               ],
@@ -369,6 +418,12 @@ class ImageGallery4 extends BaseImageGallery {
                                 availableTypes: ["image", "video"],
                               },
                             },
+                            {
+                              type: "boolean",
+                              key: "overlay",
+                              displayer: "Overlay",
+                              value: false,
+                            },
                           ],
                         },
                         {
@@ -387,6 +442,12 @@ class ImageGallery4 extends BaseImageGallery {
                               additionalParams: {
                                 availableTypes: ["image", "video"],
                               },
+                            },
+                            {
+                              type: "boolean",
+                              key: "overlay",
+                              displayer: "Overlay",
+                              value: false,
                             },
                           ],
                         },
@@ -427,6 +488,12 @@ class ImageGallery4 extends BaseImageGallery {
                                 availableTypes: ["image", "video"],
                               },
                             },
+                            {
+                              type: "boolean",
+                              key: "overlay",
+                              displayer: "Overlay",
+                              value: false,
+                            },
                           ],
                         },
                         {
@@ -445,6 +512,12 @@ class ImageGallery4 extends BaseImageGallery {
                               additionalParams: {
                                 availableTypes: ["image", "video"],
                               },
+                            },
+                            {
+                              type: "boolean",
+                              key: "overlay",
+                              displayer: "Overlay",
+                              value: false,
                             },
                           ],
                         },
@@ -791,6 +864,7 @@ class ImageGallery4 extends BaseImageGallery {
                             value={item.image_item_image}
                             className={this.decorateCSS("gallery-image")}
                           />
+                          {item.overlay && <div className={this.decorateCSS("media-overlay")} />}
                           <div className={this.decorateCSS("gallery-image-overlay")}
                             onClick={() => {
                               this.focusImage(index)

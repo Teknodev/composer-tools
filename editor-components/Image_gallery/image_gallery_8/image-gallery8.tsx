@@ -7,6 +7,7 @@ import { INPUTS } from "../../../custom-hooks/input-templates";
 
 interface Card {
     image: TypeMediaInputValue;
+    overlay?: boolean;
     cardSubtitle: React.JSX.Element;
     title: React.JSX.Element;
     description: React.JSX.Element;
@@ -50,7 +51,7 @@ class ImageGallery8 extends BaseImageGallery {
         this.addProp({
             type: "array",
             key: "cards",
-            displayer: "Cards",
+            displayer: "Gallery",
             value: [
                 {
                     type: "object",
@@ -92,6 +93,12 @@ class ImageGallery8 extends BaseImageGallery {
                             additionalParams: {
                                 availableTypes: ["image", "video"],
                             },
+                        },
+                        {
+                            type: "boolean",
+                            key: "overlay",
+                            displayer: "Overlay",
+                            value: false,
                         },
                         {
                             type: "boolean",
@@ -144,6 +151,12 @@ class ImageGallery8 extends BaseImageGallery {
                         },
                         {
                             type: "boolean",
+                            key: "overlay",
+                            displayer: "Overlay",
+                            value: false,
+                        },
+                        {
+                            type: "boolean",
                             key: "active",
                             displayer: "Active",
                             value: false,
@@ -190,6 +203,12 @@ class ImageGallery8 extends BaseImageGallery {
                             additionalParams: {
                                 availableTypes: ["image", "video"],
                             },
+                        },
+                        {
+                            type: "boolean",
+                            key: "overlay",
+                            displayer: "Overlay",
+                            value: false,
                         },
                         {
                             type: "boolean",
@@ -242,6 +261,12 @@ class ImageGallery8 extends BaseImageGallery {
                         },
                         {
                             type: "boolean",
+                            key: "overlay",
+                            displayer: "Overlay",
+                            value: false,
+                        },
+                        {
+                            type: "boolean",
                             key: "active",
                             displayer: "Active",
                             value: false,
@@ -288,6 +313,12 @@ class ImageGallery8 extends BaseImageGallery {
                             additionalParams: {
                                 availableTypes: ["image", "video"],
                             },
+                        },
+                        {
+                            type: "boolean",
+                            key: "overlay",
+                            displayer: "Overlay",
+                            value: false,
                         },
                         {
                             type: "boolean",
@@ -340,6 +371,12 @@ class ImageGallery8 extends BaseImageGallery {
                         },
                         {
                             type: "boolean",
+                            key: "overlay",
+                            displayer: "Overlay",
+                            value: false,
+                        },
+                        {
+                            type: "boolean",
                             key: "active",
                             displayer: "Active",
                             value: false,
@@ -386,6 +423,12 @@ class ImageGallery8 extends BaseImageGallery {
                             additionalParams: {
                                 availableTypes: ["image", "video"],
                             },
+                        },
+                        {
+                            type: "boolean",
+                            key: "overlay",
+                            displayer: "Overlay",
+                            value: false,
                         },
                         {
                             type: "boolean",
@@ -438,6 +481,12 @@ class ImageGallery8 extends BaseImageGallery {
                         },
                         {
                             type: "boolean",
+                            key: "overlay",
+                            displayer: "Overlay",
+                            value: false,
+                        },
+                        {
+                            type: "boolean",
                             key: "active",
                             displayer: "Active",
                             value: false,
@@ -487,6 +536,12 @@ class ImageGallery8 extends BaseImageGallery {
                         },
                         {
                             type: "boolean",
+                            key: "overlay",
+                            displayer: "Overlay",
+                            value: false,
+                        },
+                        {
+                            type: "boolean",
                             key: "active",
                             displayer: "Active",
                             value: false,
@@ -533,6 +588,12 @@ class ImageGallery8 extends BaseImageGallery {
                             additionalParams: {
                                 availableTypes: ["image", "video"],
                             },
+                        },
+                        {
+                            type: "boolean",
+                            key: "overlay",
+                            displayer: "Overlay",
+                            value: false,
                         },
                         {
                             type: "boolean",
@@ -613,6 +674,7 @@ class ImageGallery8 extends BaseImageGallery {
                                             {item.image && (
                                                 <Base.Media value={item.image} className={this.decorateCSS("image")} />
                                             )}
+                                            {item.image && item.overlay && <div className={this.decorateCSS("media-overlay")} />}
                                             {textExist && (
                                                 <div className={`${this.decorateCSS("category")} ${!item.image ? this.decorateCSS("text-visible") : ""}`}>
                                                     {cardSubtitleExist && (

@@ -42,8 +42,9 @@
             }
         }
 
+        // Original: 14px tab labels, ~20px apart
         .section-container {
-            gap: var(--composer-gap-xl);
+            gap: var(--composer-gap-md);
             flex-wrap: wrap;
             width: auto;
             justify-content: center !important;
@@ -52,7 +53,8 @@
             .section-text {
                 width: fit-content;
                 margin: 0;
-                padding: var(--composer-gap-sm);
+                padding: var(--composer-gap-xs) var(--composer-gap-sm);
+                font-size: calc(0.875 * var(--composer-font-size-md)) !important;
                 color: var(--composer-font-color-primary);
                 cursor: pointer;
 
@@ -90,7 +92,7 @@
 
                 .images {
                     position: relative;
-                    border-radius: var(--composer-border-radius-sm);
+                    border-radius: var(--composer-border-radius-md);
                     overflow: hidden;
                     width: 100%;
 
@@ -121,6 +123,7 @@
                                 width: 40px;
                                 bottom: 0px;
                                 left: var(--composer-gap-xl);
+                                border-radius: var(--composer-border-radius-sm) var(--composer-border-radius-sm) 0 0;
                                 display: flex;
                                 align-items: center;
                                 justify-content: center;
@@ -154,7 +157,8 @@
                                     flex-direction: column;
                                     justify-content: center;
                                     gap: calc(var(--composer-gap-md) * 1.5);
-                                    padding: calc(var(--composer-gap-xl) * 1.8) var(--composer-gap-xl) var(--composer-gap-xl) calc(var(--composer-gap-xl) * 2);
+                                    // Left padding = subtitle bar (left 50px + width 40px) + 40px, like the original
+                                    padding: calc(var(--composer-gap-xl) * 1.8) var(--composer-gap-xl) var(--composer-gap-xl) calc(var(--composer-gap-xl) * 2 + var(--composer-gap-md) + var(--composer-gap-sm));
                                     opacity: 0;
                                     transition: opacity 2s ease;
 
@@ -179,7 +183,7 @@
                                             width: fit-content;
                                             text-align: left !important;
                                             margin-left: 0 !important;
-                                            margin-right: auto !important;
+                                            margin-right: 0 !important;
                                         }
 
                                         .button {
@@ -422,4 +426,13 @@
             }
         }
     }
+}
+
+// Optional overlay over a gallery media item (Overlay prop)
+.media-overlay {
+  position: absolute;
+  inset: 0;
+  background-color: var(--composer-overlay-color);
+  border-radius: inherit;
+  pointer-events: none;
 }
