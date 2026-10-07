@@ -125,6 +125,7 @@ class Stats32 extends BaseStats {
 
     render() {
         const subtitleExist = this.castToString(this.getPropValue("subtitle"));
+        const subtitleType = Base.getSectionSubTitleType();
         const titleExist = this.castToString(this.getPropValue("title"));
         const descriptionExist = this.castToString(this.getPropValue("description"));
         const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
@@ -277,7 +278,7 @@ class Stats32 extends BaseStats {
                         {hasLeftSection && (
                             <Base.VerticalContent className={`${this.decorateCSS("left-column")} ${alignment === "center" ? this.decorateCSS("alignment-center") : ""}`}>
                                 {subtitleExist && (
-                                    <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                                    <Base.SectionSubTitle className={`${this.decorateCSS("subtitle")} ${subtitleType === "line" ? this.decorateCSS("subtitle-line") : ""}`}>
                                         {this.getPropValue("subtitle")}
                                     </Base.SectionSubTitle>
                                 )}

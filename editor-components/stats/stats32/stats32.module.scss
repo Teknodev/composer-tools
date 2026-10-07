@@ -25,8 +25,26 @@
                     padding: 0;
                     background: transparent;
 
+                    // The Line subtitle type's line follows the subtitle text color
                     &::before {
-                        background-color: var(--composer-font-color-secondary);
+                        background-color: currentColor;
+                    }
+
+                    // The header always stays left-aligned, so the Line type keeps its line on center alignment too
+                    // (Base draws it only on left alignment; same values as base.module.scss .sectionSubTitle.line).
+                    &.subtitle-line {
+                        transform: translateX(3rem);
+
+                        &::before {
+                            content: "";
+                            display: block;
+                            position: absolute;
+                            left: -3rem;
+                            top: 50%;
+                            transform: translateY(-50%);
+                            width: 2rem;
+                            height: 2px;
+                        }
                     }
                 }
 

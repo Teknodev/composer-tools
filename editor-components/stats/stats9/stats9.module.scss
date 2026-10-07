@@ -309,3 +309,29 @@
     }
   }
 }
+
+// The editor gives every third section an alternate color-mix background (utils/bg-audit.ts, blinkpage-alt-section-bg).
+// The outlined numbers are filled and the texts cover them with the section background, so both follow that color too.
+.container:global(.blinkpage-alt-section-bg) {
+  .max-content {
+    .main-content {
+      .stats-section {
+        .stat-item {
+          .stat-number-container {
+            .stat-number,
+            .stat-prefix,
+            .stat-suffix {
+              color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 8%);
+            }
+          }
+
+          .stat-subtitle,
+          .stat-title,
+          .stat-description {
+            background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 8%);
+          }
+        }
+      }
+    }
+  }
+}

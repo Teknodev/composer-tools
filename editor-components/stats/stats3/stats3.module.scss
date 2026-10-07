@@ -343,3 +343,17 @@
     }
   }
 }
+
+// The editor gives every third section an alternate color-mix background (utils/bg-audit.ts, blinkpage-alt-section-bg).
+// The frame around the card is painted with the section background, so it follows that color too.
+.container:global(.blinkpage-alt-section-bg) {
+  .max-content {
+    .page {
+      .right-container {
+        .card-container {
+          background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 8%);
+        }
+      }
+    }
+  }
+}
