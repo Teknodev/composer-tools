@@ -6,13 +6,6 @@ import ComposerLink from "../../../composer-base-components/Link/ComposerLinkPro
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "../../../custom-hooks/input-templates";
 
-type CardState = {
-  logo: TypeMediaInputValue;
-  subtitle: React.JSX.Element;
-  title: React.JSX.Element;
-  description: React.JSX.Element;
-};
-
 type Button = INPUTS.CastedButton;
 
 type VideoPlayer = {
@@ -30,41 +23,37 @@ class HeroSection21 extends BaseHeroSection {
     super(props, styles);
 
     this.addProp({
-      type: "object",
-      key: "card",
-      displayer: "Card",
-      value: [
-        {
-          type: "media",
-          key: "logo",
-          displayer: "Logo",
-          additionalParams: {
-            availableTypes: ["image", "icon"],
-          },
-          value: {
-            type: "icon",
-            name: "",
-          },
-        },
-        {
-          type: "string",
-          key: "subtitle",
-          displayer: "Subtitle",
-          value: "Quick parcel delivery, from.",
-        },
-        {
-          type: "string",
-          key: "title",
-          displayer: "Title",
-          value: "Get used to better entertaining",
-        },
-        {
-          type: "string",
-          key: "description",
-          displayer: "Description",
-          value: "Holiday shopping with 3% back in rewards. Offer expires 12/31/2024",
-        },
-      ],
+      type: "media",
+      key: "logo",
+      displayer: "Logo",
+      additionalParams: {
+        availableTypes: ["image", "icon"],
+      },
+      value: {
+        type: "icon",
+        name: "",
+      },
+    });
+
+    this.addProp({
+      type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "Quick parcel delivery, from.",
+    });
+
+    this.addProp({
+      type: "string",
+      key: "header_title",
+      displayer: "Title",
+      value: "Get used to better entertaining",
+    });
+
+    this.addProp({
+      type: "string",
+      key: "header_description",
+      displayer: "Description",
+      value: "Holiday shopping with 3% back in rewards. Offer expires 12/31/2024",
     });
 
     this.addProp({
@@ -75,16 +64,29 @@ class HeroSection21 extends BaseHeroSection {
     });
 
     this.addProp({
-      type: "media",
-      key: "media",
+      type: "object",
+      key: "mainMedia",
       displayer: "Media",
-      additionalParams: {
-        availableTypes: ["image", "video"],
-      },
-      value: {
-        type: "image",
-        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b08ed003b007002cc77884?alt=media",
-      },
+      value: [
+        {
+          type: "media",
+          key: "media",
+          displayer: "Media",
+          additionalParams: {
+            availableTypes: ["image", "video"],
+          },
+          value: {
+            type: "image",
+            url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b08ed003b007002cc77884?alt=media",
+          },
+        },
+        {
+          type: "boolean",
+          key: "overlay",
+          displayer: "Overlay",
+          value: false,
+        },
+      ],
     });
 
     this.addProp({
@@ -175,11 +177,17 @@ class HeroSection21 extends BaseHeroSection {
   }
 
   render() {
-    const card = this.castToObject<CardState>("card");
+    const card = {
+      logo: this.getPropValue("logo") as TypeMediaInputValue,
+      subtitle: this.getPropValue("subtitle"),
+      title: this.getPropValue("header_title"),
+      description: this.getPropValue("header_description"),
+    };
     const buttons = this.castToObject<Button[]>("buttons");
     const infoBox = this.castToObject<InfoBox>("infoBox");
     const videoPlayer = this.castToObject<VideoPlayer>("videoPlayer");
-    const media = this.getPropValue("media") as TypeMediaInputValue;
+    const mainMedia = this.castToObject<{ media: TypeMediaInputValue; overlay: boolean }>("mainMedia");
+    const media = mainMedia?.media as TypeMediaInputValue;
     const closeIcon = this.getPropValue("closeIcon") as TypeMediaInputValue;
     const animationEnabled = this.getPropValue("animation");
 
@@ -246,6 +254,7 @@ class HeroSection21 extends BaseHeroSection {
                   </div>
                 )}
                 <Base.Media value={this.withVideoSettings(media)} className={this.decorateCSS("image")} />
+                {mainMedia?.overlay && <div className={this.decorateCSS("overlay")} />}
                 {(infoTitleExist || infoDescExist) && (
                   <div className={this.decorateCSS("right-box")}>
                     {infoTitleExist && <Base.P className={this.decorateCSS("right-box-text")}>{infoBox.title}</Base.P>}

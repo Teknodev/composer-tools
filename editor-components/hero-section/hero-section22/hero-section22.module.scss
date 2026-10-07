@@ -94,6 +94,13 @@
               .left-animation {
                 animation: scaleUpDown 1s ease-in-out;
               }
+              .overlay {
+                position: absolute;
+                inset: 0;
+                border-radius: var(--composer-border-radius-sm);
+                background-color: var(--composer-overlay-color);
+                pointer-events: none;
+              }
             }
             .middle-content {
               flex: 1;
@@ -184,12 +191,25 @@
               .mid-right-animation {
                 animation: rightToLeft 2s ease;
               }
-              .right-image {
+              // The wrapper carries the 80% size so the overlay covers exactly the image.
+              .right-media {
+                position: relative;
                 height: 80%;
                 width: 80%;
-                object-fit: cover;
-                background: transparent;
-                border-radius: var(--composer-border-radius-sm);
+                .right-image {
+                  height: 100%;
+                  width: 100%;
+                  object-fit: cover;
+                  background: transparent;
+                  border-radius: var(--composer-border-radius-sm);
+                }
+                .overlay {
+                  position: absolute;
+                  inset: 0;
+                  border-radius: var(--composer-border-radius-sm);
+                  background-color: var(--composer-overlay-color);
+                  pointer-events: none;
+                }
               }
             }
           }
@@ -312,7 +332,7 @@
                 }
 
                 .right-content {
-                  .right-image {
+                  .right-media {
                     height: 60%;
                   }
                 }

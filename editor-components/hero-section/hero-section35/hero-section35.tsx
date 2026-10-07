@@ -144,7 +144,7 @@ class HeroSection35 extends BaseHeroSection {
                         {
                             type: "array",
                             key: "images",
-                            displayer: "Images",
+                            displayer: "Media",
                             value: [
                                 {
                                     type: "object",
@@ -154,7 +154,7 @@ class HeroSection35 extends BaseHeroSection {
                                         {
                                             type: "media",
                                             key: "image",
-                                            displayer: "Image",
+                                            displayer: "Media",
                                             additionalParams: { availableTypes: ["image", "video"] },
                                             value: {
                                                 type: "image",
@@ -171,7 +171,7 @@ class HeroSection35 extends BaseHeroSection {
                                         {
                                             type: "media",
                                             key: "image",
-                                            displayer: "Image",
+                                            displayer: "Media",
                                             additionalParams: { availableTypes: ["image", "video"] },
                                             value: {
                                                 type: "image",
@@ -188,7 +188,7 @@ class HeroSection35 extends BaseHeroSection {
                                         {
                                             type: "media",
                                             key: "image",
-                                            displayer: "Image",
+                                            displayer: "Media",
                                             additionalParams: { availableTypes: ["image", "video"] },
                                             value: {
                                                 type: "image",

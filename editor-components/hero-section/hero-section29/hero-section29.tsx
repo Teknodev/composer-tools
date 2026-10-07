@@ -8,6 +8,7 @@ import * as Yup from "yup";
 import { INPUTS } from "../../../custom-hooks/input-templates";
 
 interface CardItem {
+  card_subtitle: React.JSX.Element;
   title: React.JSX.Element;
   description: React.JSX.Element;
   icon: TypeMediaInputValue;
@@ -44,13 +45,13 @@ class HeroSection29 extends BaseHeroSection {
 
     this.addProp({
       type: "string",
-      key: "title",
+      key: "header_title",
       displayer: "Title",
       value: "Real <span style='color: var(--composer-secondary-color)'>Estate</span> Investments"
     });
     this.addProp({
       type: "string",
-      key: "description",
+      key: "header_description",
       displayer: "Description",
       value:
         "We offer a range of amenities that raise the standard of the property and thus potentially increase rental income",
@@ -122,6 +123,12 @@ class HeroSection29 extends BaseHeroSection {
           value: [
             {
               type: "string",
+              key: "card_subtitle",
+              displayer: "Subtitle",
+              value: "",
+            },
+            {
+              type: "string",
               key: "title",
               displayer: "Title",
               value: "Ease of Management",
@@ -152,6 +159,12 @@ class HeroSection29 extends BaseHeroSection {
           key: "card",
           displayer: "Card",
           value: [
+            {
+              type: "string",
+              key: "card_subtitle",
+              displayer: "Subtitle",
+              value: "",
+            },
             {
               type: "string",
               key: "title",
@@ -218,11 +231,11 @@ class HeroSection29 extends BaseHeroSection {
     const subtitleExist = this.castToString(this.getPropValue("subtitle"));
     const logo = this.getPropValue("logo");
     const hasLogo = this.hasMedia(logo);
-    const titleExist = this.castToString(this.getPropValue("title"));
-    const descriptionExist = this.castToString(this.getPropValue("description"));
+    const titleExist = this.castToString(this.getPropValue("header_title"));
+    const descriptionExist = this.castToString(this.getPropValue("header_description"));
 
     const cards = (this.castToObject<CardItem[]>("cards") || []).filter(
-      (item: CardItem) => this.hasMedia(item.icon) || this.castToString(item.title) || this.castToString(item.description)
+      (item: CardItem) => this.hasMedia(item.icon) || this.castToString(item.card_subtitle) || this.castToString(item.title) || this.castToString(item.description)
     );
     const media = this.castToObject<MediaGroup>("media");
     const image = media?.image;
@@ -259,12 +272,12 @@ class HeroSection29 extends BaseHeroSection {
 
                     {titleExist && (
                       <Base.SectionTitle className={this.decorateCSS("title")}>
-                        {this.getPropValue("title")}
+                        {this.getPropValue("header_title")}
                       </Base.SectionTitle>
                     )}
                     {descriptionExist && (
                       <Base.SectionDescription className={this.decorateCSS("description")}>
-                        {this.getPropValue("description")}
+                        {this.getPropValue("header_description")}
                       </Base.SectionDescription>
                     )}
                   </Base.VerticalContent>}
@@ -340,6 +353,11 @@ class HeroSection29 extends BaseHeroSection {
                             <div className={this.decorateCSS("service-svg")}>
                               <Base.Media className={this.decorateCSS("icon")} value={item.icon} />
                             </div>
+                          )}
+                          {this.castToString(item.card_subtitle) && (
+                            <Base.P className={this.decorateCSS("service-subtitle")}>
+                              {item.card_subtitle}
+                            </Base.P>
                           )}
                           {this.castToString(item.title) && (
                             <Base.H4 className={this.decorateCSS("service-title")}>

@@ -17,12 +17,12 @@ class HeroSection30 extends BaseHeroSection {
     this.addProp({
       type: "object",
       key: "background",
-      displayer: "Background",
+      displayer: "Background Media",
       value: [
         {
           type: "media",
           key: "media",
-          displayer: "Background Media",
+          displayer: "Media",
           additionalParams: { availableTypes: ["image", "video"] },
           value: {
             type: "video",
@@ -68,21 +68,27 @@ class HeroSection30 extends BaseHeroSection {
     });
 
     this.addProp({
-      type: "media",
-      key: "image",
+      type: "object",
+      key: "titleMedia",
       displayer: "Media",
-      additionalParams: { availableTypes: ["image", "video"] },
-      value: {
-        type: "image",
-        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661a311bd2970002c626c17?alt=media&timestamp=1719483639151",
-      },
-    });
-
-    this.addProp({
-      type: "boolean",
-      key: "overlay",
-      displayer: "Overlay",
-      value: false,
+      value: [
+        {
+          type: "media",
+          key: "media",
+          displayer: "Media",
+          additionalParams: { availableTypes: ["image", "video"] },
+          value: {
+            type: "image",
+            url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661a311bd2970002c626c17?alt=media&timestamp=1719483639151",
+          },
+        },
+        {
+          type: "boolean",
+          key: "overlay",
+          displayer: "Overlay",
+          value: false,
+        },
+      ],
     });
 
     this.addProp({
@@ -128,7 +134,8 @@ class HeroSection30 extends BaseHeroSection {
     const background = this.castToObject<Background>("background");
     const backgroundMedia = background?.media;
     const hasBackground = this.hasMedia(backgroundMedia);
-    const image = this.getPropValue("image");
+    const titleMedia = this.castToObject<{ media: any; overlay: boolean }>("titleMedia");
+    const image = titleMedia?.media;
     const hasImage = this.hasMedia(image);
     const logo = this.getPropValue("logo");
     const hasLogo = this.hasMedia(logo);
@@ -185,7 +192,7 @@ class HeroSection30 extends BaseHeroSection {
                       value={this.withVideoSettings(image)}
                       className={this.decorateCSS("title-image")}
                     />
-                    {this.getPropValue("overlay") && (
+                    {titleMedia?.overlay && (
                       <div className={this.decorateCSS("title-image-overlay")} />
                     )}
                   </div>

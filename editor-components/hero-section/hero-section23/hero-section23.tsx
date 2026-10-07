@@ -134,24 +134,6 @@ class HeroSection23 extends BaseHeroSection {
       ],
     });
     this.addProp({
-      type: "boolean",
-      displayer: "Circle Activation",
-      key: "circleActivation",
-      value: true,
-    });
-    this.addProp({
-      type: "boolean",
-      displayer: "Mouse Move Activation",
-      key: "mouseMoveActivation",
-      value: true,
-    });
-    this.addProp({
-      type: "boolean",
-      displayer: "Animate Activation",
-      key: "animateActivation",
-      value: true,
-    });
-    this.addProp({
       type: "object",
       key: "arrows",
       displayer: "Arrows",
@@ -183,10 +165,35 @@ class HeroSection23 extends BaseHeroSection {
       ],
     });
     this.addProp({
-      type: "boolean",
-      displayer: "Wave",
-      key: "wave",
-      value: true,
+      type: "object",
+      key: "animations",
+      displayer: "Animations",
+      value: [
+        {
+          type: "boolean",
+          displayer: "Circle Activation",
+          key: "circleActivation",
+          value: true,
+        },
+        {
+          type: "boolean",
+          displayer: "Mouse Move Activation",
+          key: "mouseMoveActivation",
+          value: true,
+        },
+        {
+          type: "boolean",
+          displayer: "Animate Activation",
+          key: "animateActivation",
+          value: true,
+        },
+        {
+          type: "boolean",
+          displayer: "Wave",
+          key: "wave",
+          value: true,
+        },
+      ],
     });
     this.addProp(
       INPUTS.SLIDER_SETTINGS("settings", "Slider Settings", {
@@ -300,9 +307,10 @@ class HeroSection23 extends BaseHeroSection {
     const showArrows = sliderSettings.arrows && slider.length > 1;
     const showDots = sliderSettings.dots && slider.length > 1;
 
-    const mouseMoveActive = this.getPropValue("mouseMoveActivation");
-    const animateActive = this.getPropValue("animateActivation");
-    const waveActive = this.getPropValue("wave");
+    const animations = this.castToObject<{ circleActivation: boolean; mouseMoveActivation: boolean; animateActivation: boolean; wave: boolean }>("animations");
+    const mouseMoveActive = animations?.mouseMoveActivation;
+    const animateActive = animations?.animateActivation;
+    const waveActive = animations?.wave;
     const animateClass = (isActive: boolean) => (isActive && animateActive ? this.decorateCSS("animate") : "");
 
     return (
@@ -431,7 +439,7 @@ class HeroSection23 extends BaseHeroSection {
                           </Base.VerticalContent>
                         </div>
                       )}
-                      {this.getPropValue("circleActivation") && (
+                      {animations?.circleActivation && (
                         <div
                           className={`${this.decorateCSS("circle")} ${animateClass(isActive)}`}
                           style={{ backgroundColor: colors.circle }}

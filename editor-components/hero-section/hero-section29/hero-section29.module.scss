@@ -45,6 +45,7 @@
                 text-align: left;
               }
 
+              .service-subtitle,
               .service-title {
                 text-align: left;
               }
@@ -120,8 +121,10 @@
           text-align: left;
         }
 
+        // The input and the button share the same height.
         .form {
           display: flex;
+          align-items: stretch;
           gap: var(--composer-gap-sm);
           width: auto;
 
@@ -154,6 +157,8 @@
           }
 
           .button {
+            height: auto;
+            margin-top: 0;
             .button-text{
               content: "";
             }
@@ -185,6 +190,12 @@
                 width: 40px;
                 height: 40px;
               }
+            }
+
+            .service-subtitle {
+              margin: 0;
+              text-align: left;
+              color: var(--composer-tertiary-color);
             }
 
             .service-title {

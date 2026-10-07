@@ -11,8 +11,8 @@ type SliderObject = {
   subtitle: React.JSX.Element;
   title: React.JSX.Element;
   description: React.JSX.Element;
-  rightMedia: TypeMediaInputValue;
-  leftMedia: TypeMediaInputValue;
+  right: { media: TypeMediaInputValue; overlay: boolean };
+  left: { media: TypeMediaInputValue; overlay: boolean };
   buttons: INPUTS.CastedButton[];
 };
 
@@ -66,28 +66,54 @@ class HeroSection22 extends BaseHeroSection {
               value: "",
             },
             {
-              type: "media",
-              key: "rightMedia",
+              type: "object",
+              key: "right",
               displayer: "Right Media",
-              additionalParams: {
-                availableTypes: ["image", "video"],
-              },
-              value: {
-                type: "image",
-                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619d5dbd2970002c62664e?alt=media&timestamp=1719483639150",
-              },
+              value: [
+                {
+                  type: "media",
+                  key: "media",
+                  displayer: "Media",
+                  additionalParams: {
+                    availableTypes: ["image", "video"],
+                  },
+                  value: {
+                    type: "image",
+                    url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619d5dbd2970002c62664e?alt=media&timestamp=1719483639150",
+                  },
+                },
+                {
+                  type: "boolean",
+                  key: "overlay",
+                  displayer: "Overlay",
+                  value: false,
+                },
+              ],
             },
             {
-              type: "media",
-              key: "leftMedia",
+              type: "object",
+              key: "left",
               displayer: "Left Media",
-              additionalParams: {
-                availableTypes: ["image", "video"],
-              },
-              value: {
-                type: "image",
-                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619d5dbd2970002c62664d?alt=media&timestamp=1719483639150",
-              },
+              value: [
+                {
+                  type: "media",
+                  key: "media",
+                  displayer: "Media",
+                  additionalParams: {
+                    availableTypes: ["image", "video"],
+                  },
+                  value: {
+                    type: "image",
+                    url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619d5dbd2970002c62664d?alt=media&timestamp=1719483639150",
+                  },
+                },
+                {
+                  type: "boolean",
+                  key: "overlay",
+                  displayer: "Overlay",
+                  value: false,
+                },
+              ],
             },
             {
               type: "array",
@@ -133,28 +159,54 @@ class HeroSection22 extends BaseHeroSection {
               value: "",
             },
             {
-              type: "media",
-              key: "rightMedia",
+              type: "object",
+              key: "right",
               displayer: "Right Media",
-              additionalParams: {
-                availableTypes: ["image", "video"],
-              },
-              value: {
-                type: "image",
-                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6703c7d1cf1798002cc82f40?alt=media",
-              },
+              value: [
+                {
+                  type: "media",
+                  key: "media",
+                  displayer: "Media",
+                  additionalParams: {
+                    availableTypes: ["image", "video"],
+                  },
+                  value: {
+                    type: "image",
+                    url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6703c7d1cf1798002cc82f40?alt=media",
+                  },
+                },
+                {
+                  type: "boolean",
+                  key: "overlay",
+                  displayer: "Overlay",
+                  value: false,
+                },
+              ],
             },
             {
-              type: "media",
-              key: "leftMedia",
+              type: "object",
+              key: "left",
               displayer: "Left Media",
-              additionalParams: {
-                availableTypes: ["image", "video"],
-              },
-              value: {
-                type: "image",
-                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6703c7a3cf1798002cc82f0f?alt=media",
-              },
+              value: [
+                {
+                  type: "media",
+                  key: "media",
+                  displayer: "Media",
+                  additionalParams: {
+                    availableTypes: ["image", "video"],
+                  },
+                  value: {
+                    type: "image",
+                    url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6703c7a3cf1798002cc82f0f?alt=media",
+                  },
+                },
+                {
+                  type: "boolean",
+                  key: "overlay",
+                  displayer: "Overlay",
+                  value: false,
+                },
+              ],
             },
             {
               type: "array",
@@ -200,28 +252,54 @@ class HeroSection22 extends BaseHeroSection {
               value: "",
             },
             {
-              type: "media",
-              key: "rightMedia",
+              type: "object",
+              key: "right",
               displayer: "Right Media",
-              additionalParams: {
-                availableTypes: ["image", "video"],
-              },
-              value: {
-                type: "image",
-                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/670526d9cf1798002cc89a4b?alt=media",
-              },
+              value: [
+                {
+                  type: "media",
+                  key: "media",
+                  displayer: "Media",
+                  additionalParams: {
+                    availableTypes: ["image", "video"],
+                  },
+                  value: {
+                    type: "image",
+                    url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/670526d9cf1798002cc89a4b?alt=media",
+                  },
+                },
+                {
+                  type: "boolean",
+                  key: "overlay",
+                  displayer: "Overlay",
+                  value: false,
+                },
+              ],
             },
             {
-              type: "media",
-              key: "leftMedia",
+              type: "object",
+              key: "left",
               displayer: "Left Media",
-              additionalParams: {
-                availableTypes: ["image", "video"],
-              },
-              value: {
-                type: "image",
-                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/670526f8cf1798002cc89a6d?alt=media",
-              },
+              value: [
+                {
+                  type: "media",
+                  key: "media",
+                  displayer: "Media",
+                  additionalParams: {
+                    availableTypes: ["image", "video"],
+                  },
+                  value: {
+                    type: "image",
+                    url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/670526f8cf1798002cc89a6d?alt=media",
+                  },
+                },
+                {
+                  type: "boolean",
+                  key: "overlay",
+                  displayer: "Overlay",
+                  value: false,
+                },
+              ],
             },
             {
               type: "array",
@@ -351,8 +429,8 @@ class HeroSection22 extends BaseHeroSection {
                 <ComposerSlider {...settings} className={this.decorateCSS("carousel")} ref={this.getComponentState("slider-ref")}>
                   {slider.map((item: SliderObject, index: number) => {
                     const isActive = this.getComponentState("activeSlide") === index;
-                    const leftImageExist = this.hasMedia(item.leftMedia);
-                    const rightImageExist = this.hasMedia(item.rightMedia);
+                    const leftImageExist = this.hasMedia(item.left?.media);
+                    const rightImageExist = this.hasMedia(item.right?.media);
                     const logoExist = this.hasMedia(item.logo);
                     const visibleButtons = (item.buttons || []).filter((buttonItem: INPUTS.CastedButton) => this.castToString(buttonItem.text));
                     return (
@@ -360,7 +438,8 @@ class HeroSection22 extends BaseHeroSection {
                         <div className={this.decorateCSS("slider")}>
                           {leftImageExist && (
                             <div className={this.decorateCSS("left-content")}>
-                              <Base.Media value={this.withVideoSettings(item.leftMedia)} className={`${this.decorateCSS("left-image")} ${animation && isActive ? this.decorateCSS("left-animation") : ""}  `} />
+                              <Base.Media value={this.withVideoSettings(item.left.media)} className={`${this.decorateCSS("left-image")} ${animation && isActive ? this.decorateCSS("left-animation") : ""}  `} />
+                              {item.left.overlay && <div className={this.decorateCSS("overlay")} />}
                             </div>
                           )}
 
@@ -397,7 +476,10 @@ class HeroSection22 extends BaseHeroSection {
                           </div>
                           {rightImageExist && (
                             <div className={`${this.decorateCSS("right-content")} ${animation && isActive ? this.decorateCSS("mid-right-animation") : ""}  `}>
-                              <Base.Media value={this.withVideoSettings(item.rightMedia)} className={this.decorateCSS("right-image")} />
+                              <div className={this.decorateCSS("right-media")}>
+                                <Base.Media value={this.withVideoSettings(item.right.media)} className={this.decorateCSS("right-image")} />
+                                {item.right.overlay && <div className={this.decorateCSS("overlay")} />}
+                              </div>
                             </div>
                           )}
                         </div>

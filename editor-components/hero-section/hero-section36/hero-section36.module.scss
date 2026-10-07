@@ -237,12 +237,16 @@
           }
         }
 
+        // Base.Button adds a top margin; without it the dots share the arrows' center line.
         .pagination {
           display: flex;
           justify-content: center;
           align-items: center;
           gap: var(--composer-gap-sm);
           padding: 0;
+          .pagination-dot {
+            margin-top: 0 !important;
+          }
           margin: 0;
 
           .pagination-dot {
