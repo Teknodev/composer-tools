@@ -60,12 +60,14 @@ class CallToAction29 extends BaseCallToAction {
 
         const hasLeftContent = subtitle || title;
         const hasRightContent = description || buttons.length > 0;
+        const alignment = Base.getContentAlignment();
+        const isCenter = alignment === "center";
 
         return (
             <Base.Container className={this.decorateCSS("container")}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
                     <div className={`${this.decorateCSS("card")} ${card_background ? this.decorateCSS("active") : ""}`}>
-                        <div className={this.decorateCSS("content-wrapper")}>
+                        <div className={`${this.decorateCSS("content-wrapper")} ${isCenter ? this.decorateCSS("center") : ""}`}>
                             {hasLeftContent && (
                                 <Base.VerticalContent className={this.decorateCSS("left-column")}>
                                     {subtitle && (
