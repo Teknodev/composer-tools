@@ -457,6 +457,7 @@ class Feature21 extends BaseFeature{
                                                             autoplay: true,
                                                             muted: true,
                                                             loop: true,
+                                                            controls: false,
                                                         }
                                                     }}
                                                     className={this.decorateCSS("card-video")}

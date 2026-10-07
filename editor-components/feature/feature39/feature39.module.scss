@@ -105,8 +105,8 @@
                         background-color: var(--composer-primary-color);
                         border-radius: var(--composer-border-radius-full);
                         padding: var(--composer-gap-md);
-                        height: 70px;
-                        width: 70px;
+                        height: 60px;
+                        width: 60px;
 
                         &.no-bg {
                             background-color: transparent;
@@ -121,7 +121,7 @@
                         }
 
                         .card-icon {
-                            font-size: 2.5rem;
+                            font-size: 2rem;
                             color: var(--composer-font-color-secondary);
                             display: flex;
 
@@ -167,11 +167,11 @@
 
                 .card-wrapper {
                     .icon-box {
-                        height: 60px;
-                        width: 60px;
+                        height: 52px;
+                        width: 52px;
 
                         .card-icon {
-                            font-size: 2rem;
+                            font-size: 1.75rem;
                         }
                     }
                 }
@@ -192,7 +192,7 @@
                         width: var(--composer-gap-xl);
 
                         .card-icon {
-                            font-size: 1.5rem;
+                            font-size: 1.25rem;
 
                             &.is-image {
                                 width: var(--composer-gap-md);
