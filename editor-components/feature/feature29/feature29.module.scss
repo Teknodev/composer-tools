@@ -82,3 +82,9 @@
     }
   }
 }
+
+@container (max-width: #{$composer-tablet-width}) {
+  .container .feature-card {
+    padding: var(--composer-gap-md);
+  }
+}

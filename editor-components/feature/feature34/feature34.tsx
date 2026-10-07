@@ -399,7 +399,7 @@ class Feature34 extends BaseFeature {
 
           {showFeatures && (
             <Base.ListGrid
-              gridCount={{ pc: itemCount, tablet: 4 }}
+              gridCount={{ pc: itemCount, tablet: 2 }}
               className={this.decorateCSS("features-grid")}
             >
               {features.map((feature, index) => {

@@ -24,11 +24,6 @@
       content: "";
 
       .card {
-        background-color: color-mix(
-          in srgb,
-          var(--composer-html-background),
-          var(--composer-font-color-primary) 5%
-        );
         border-radius: var(--composer-border-radius-md);
         height: 100%;
         text-align: left !important;
@@ -140,5 +135,11 @@
         }
       }
     }
+  }
+}
+
+@container (max-width: #{$composer-tablet-width}) {
+  .container .card {
+    padding: var(--composer-gap-md);
   }
 }

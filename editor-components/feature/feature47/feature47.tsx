@@ -260,7 +260,7 @@ class Feature47 extends BaseFeature {
                         </Base.VerticalContent>
                     )}
                     {cards?.length > 0 && (
-                        <Base.ListGrid className={this.decorateCSS("cards-container")} gridCount={{ pc: itemCount || 4, tablet: 4, phone: 1 }}>
+                        <Base.ListGrid className={this.decorateCSS("cards-container")} gridCount={{ pc: itemCount || 4, tablet: 2, phone: 1 }}>
                             {cards.map((card: Card, index: number) => {
                                 const cardSubtitleExist = this.castToString(card.card_subtitle);
                                 const titleExist = !!this.castToString(card.card_title);

@@ -38,7 +38,6 @@
 
             .right {
                 flex: 2;
-                gap: var(--composer-gap-lg);
 
                 .card-container {
                     .card-content {
@@ -134,8 +133,6 @@
 
                 .right {
                     width: 100%;
-                    gap: var(--composer-gap-md);
-                    row-gap: var(--composer-gap-md);
 
                     .card-container {
                         .icon-box {
@@ -151,4 +148,10 @@
             }
         }
     }
+}
+
+@container (max-width: #{$composer-tablet-width}) {
+  .container .card-container {
+    padding: var(--composer-gap-md);
+  }
 }

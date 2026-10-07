@@ -92,7 +92,6 @@
         }
 
         .card-container {
-            gap: var(--composer-gap-lg);
 
             .card-wrapper {
                 .card-content {
@@ -163,7 +162,6 @@
             gap: var(--composer-gap-md);
 
             .card-container {
-                gap: var(--composer-gap-md);
 
                 .card-wrapper {
                     .icon-box {
@@ -208,4 +206,10 @@
             }
         }
     }
+}
+
+@container (max-width: #{$composer-tablet-width}) {
+  .container .card-wrapper {
+    padding: var(--composer-gap-md);
+  }
 }

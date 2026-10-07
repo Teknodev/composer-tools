@@ -19,7 +19,6 @@
 
     .cards-grid {
       width: 100%;
-      gap: var(--composer-gap-sm);
 
       .card-shell {
         display: flex;
@@ -125,7 +124,6 @@
       gap: var(--composer-gap-md);
 
       .cards-grid {
-        gap: var(--composer-gap-md);
 
         .card {
           min-height: 200px;
@@ -157,5 +155,11 @@
         }
       }
     }
+  }
+}
+
+@container (max-width: #{$composer-tablet-width}) {
+  .container .card-shell {
+    padding: var(--composer-gap-md);
   }
 }
