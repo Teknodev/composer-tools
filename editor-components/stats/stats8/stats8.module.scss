@@ -389,22 +389,23 @@ $font-color-primary: var(--composer-font-color-primary);
 
         .image-container {
           .image-container-border {
-            // Original mobile image is a tall portrait, so the badge sits on its lower part instead of covering it.
+            // Original mobile image is a 3:4 portrait, the badge sits on its lower half.
             .image {
               height: auto;
               max-height: none;
-              aspect-ratio: 1 / 2;
+              aspect-ratio: 3 / 4;
             }
 
+            // The badge stays inside the image (inset from its right edge) so its border does not run over the frame padding.
             .stat-badge {
               left: calc(2 * var(--composer-gap-md));
-              right: 0;
+              right: calc(var(--composer-gap-md) + var(--composer-gap-sm));
               bottom: calc(2 * var(--composer-gap-md));
               margin: 0;
               padding: var(--composer-gap-md);
 
               .number {
-                font-size: min(8rem, 34cqw);
+                font-size: min(8rem, 29cqw);
               }
 
               .description {

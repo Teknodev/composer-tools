@@ -326,6 +326,69 @@
   }
 }
 
+@container (max-width: #{$composer-tablet-width}) {
+  .container {
+    .max-content {
+      .page {
+        // Like the original tablet view: text on top, images below
+        flex-direction: column-reverse;
+        gap: calc(var(--composer-gap-xl) * 2);
+
+        .left-page {
+          flex: none;
+          display: grid;
+          width: 100%;
+          min-height: auto;
+          max-height: none;
+          margin-left: 0;
+
+          .up-image {
+            grid-area: 1 / 1;
+            // The back image runs to the left edge (50px = Base.Container's tablet side padding, base.module.scss .container)
+            width: calc(70% + 50px);
+            margin-left: -50px;
+            margin-top: 17%;
+            height: auto;
+            aspect-ratio: 4 / 3;
+
+            .image1,
+            .overlay {
+              width: 100%;
+            }
+
+            &.without-image2 {
+              margin-top: 0;
+            }
+          }
+
+          .down-image {
+            grid-area: 1 / 1;
+            position: relative;
+            z-index: 1;
+            align-self: start;
+            justify-self: end;
+            width: 75%;
+            height: auto;
+            aspect-ratio: 3 / 2;
+            margin-right: var(--composer-gap-lg);
+
+            &.without-image1 {
+              justify-self: stretch;
+              width: 100%;
+              margin-right: 0;
+            }
+          }
+        }
+
+        .right-page {
+          flex: none;
+          width: 100%;
+        }
+      }
+    }
+  }
+}
+
 @container (max-width: #{$composer-phone-width}) {
   .container {
     .max-content {
@@ -388,6 +451,7 @@
             width: 100%;
             height: auto;
             aspect-ratio: 3 / 2;
+            margin-right: 0;
 
             &.without-image1 {
               aspect-ratio: 1 / 1;
