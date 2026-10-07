@@ -14,6 +14,20 @@
       .description {
         content: "";
       }
+
+      // Buttons sit right below the description
+      .button-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--composer-gap-sm);
+
+        .button {
+          .button-text,
+          .button-icon {
+            content: "";
+          }
+        }
+      }
     }
 
     .steps {
@@ -55,11 +69,24 @@
           column-gap: var(--composer-gap-lg);
           align-items: start;
 
-          .step-title {
+          // Subtitle above the title in the left column
+          .step-heading {
             grid-column: 1;
-            color: var(--composer-primary-color);
-            text-align: left !important;
-            margin: 0 !important;
+            display: flex;
+            flex-direction: column;
+            gap: var(--composer-gap-xs);
+
+            .step-subtitle {
+              color: var(--composer-tertiary-color);
+              text-align: left !important;
+              margin: 0 !important;
+            }
+
+            .step-title {
+              color: var(--composer-primary-color);
+              text-align: left !important;
+              margin: 0 !important;
+            }
           }
 
           .step-description {
@@ -72,18 +99,6 @@
       }
     }
 
-    .button-container {
-      display: flex;
-      flex-wrap: wrap;
-      gap: var(--composer-gap-sm);
-
-      .button {
-        .button-text,
-        .button-icon {
-          content: "";
-        }
-      }
-    }
   }
 }
 

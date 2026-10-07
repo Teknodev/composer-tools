@@ -7,6 +7,7 @@ import { INPUTS } from "../../../custom-hooks/input-templates";
 
 type Step = {
   icon: TypeMediaInputValue;
+  step_subtitle: React.JSX.Element;
   step_title: React.JSX.Element;
   step_description: React.JSX.Element;
 };
@@ -53,6 +54,7 @@ class Steps5 extends BaseSteps {
               additionalParams: { availableTypes: ["icon", "image"] },
               value: { type: "icon", name: "FaArrowDown" },
             },
+            { type: "string", key: "step_subtitle", displayer: "Subtitle", value: "" },
             { type: "string", key: "step_title", displayer: "Title", value: "Discover" },
             { type: "string", key: "step_description", displayer: "Description", value: "With over 25 years of experience, we have crafted thousands of strategic discovery process." },
           ],
@@ -69,6 +71,7 @@ class Steps5 extends BaseSteps {
               additionalParams: { availableTypes: ["icon", "image"] },
               value: { type: "icon", name: "FaArrowDown" },
             },
+            { type: "string", key: "step_subtitle", displayer: "Subtitle", value: "" },
             { type: "string", key: "step_title", displayer: "Title", value: "Prototype" },
             { type: "string", key: "step_description", displayer: "Description", value: "Imagination is more important than knowledge. Knowledge is limited. Imagination encircles the world." },
           ],
@@ -85,6 +88,7 @@ class Steps5 extends BaseSteps {
               additionalParams: { availableTypes: ["icon", "image"] },
               value: { type: "icon", name: "FaArrowDown" },
             },
+            { type: "string", key: "step_subtitle", displayer: "Subtitle", value: "" },
             { type: "string", key: "step_title", displayer: "Title", value: "Create" },
             { type: "string", key: "step_description", displayer: "Description", value: "Performing at the junction of minimalism and mathematics to craft experiences that go beyond design." },
           ],
@@ -101,6 +105,7 @@ class Steps5 extends BaseSteps {
               additionalParams: { availableTypes: ["icon", "image"] },
               value: { type: "icon", name: "FaArrowDown" },
             },
+            { type: "string", key: "step_subtitle", displayer: "Subtitle", value: "" },
             { type: "string", key: "step_title", displayer: "Title", value: "Sell Online" },
             { type: "string", key: "step_description", displayer: "Description", value: "Imagination is more important than knowledge. Knowledge is limited. Imagination encircles the world." },
           ],
@@ -136,7 +141,7 @@ class Steps5 extends BaseSteps {
 
     const mediaExist = (media?: TypeMediaInputValue) => media && (media.type === "icon" ? media.name : media.url);
     const steps = this.castToObject<Step[]>("steps").filter(
-      (step: Step) => mediaExist(step.icon) || this.castToString(step.step_title) || this.castToString(step.step_description)
+      (step: Step) => mediaExist(step.icon) || this.castToString(step.step_subtitle) || this.castToString(step.step_title) || this.castToString(step.step_description)
     );
     const visibleButtons = buttons.filter(
       (button: INPUTS.CastedButton) => this.castToString(button.text) || mediaExist(button.icon as unknown as TypeMediaInputValue)
@@ -145,11 +150,26 @@ class Steps5 extends BaseSteps {
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          {(subtitleExist || titleExist || descriptionExist) && (
+          {(subtitleExist || titleExist || descriptionExist || visibleButtons.length > 0) && (
             <Base.VerticalContent className={this.decorateCSS("header")}>
               {subtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
               {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
               {descriptionExist && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
+              {visibleButtons.length > 0 && (
+                <div className={this.decorateCSS("button-container")}>
+                  {visibleButtons.map((button: INPUTS.CastedButton, index: number) => {
+                    const buttonIcon = button.icon as unknown as TypeMediaInputValue;
+                    return (
+                      <ComposerLink key={index} path={button.url}>
+                        <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
+                          {this.castToString(button.text) && <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>}
+                          {mediaExist(buttonIcon) && <Base.Media value={buttonIcon} className={this.decorateCSS("button-icon")} />}
+                        </Base.Button>
+                      </ComposerLink>
+                    );
+                  })}
+                </div>
+              )}
             </Base.VerticalContent>
           )}
 
@@ -157,6 +177,7 @@ class Steps5 extends BaseSteps {
             <div className={this.decorateCSS("steps")}>
               {steps.map((step: Step, index: number) => {
                 const iconExist = mediaExist(step.icon);
+                const stepSubtitleExist = this.castToString(step.step_subtitle);
                 const stepTitleExist = this.castToString(step.step_title);
                 const stepDescriptionExist = this.castToString(step.step_description);
 
@@ -168,29 +189,18 @@ class Steps5 extends BaseSteps {
                         {showLine && <div className={this.decorateCSS("line")} />}
                       </div>
                     )}
-                    {(stepTitleExist || stepDescriptionExist) && (
+                    {(stepSubtitleExist || stepTitleExist || stepDescriptionExist) && (
                       <div className={this.decorateCSS("step-content")}>
-                        {stepTitleExist && <Base.H4 className={this.decorateCSS("step-title")}>{step.step_title}</Base.H4>}
+                        {(stepSubtitleExist || stepTitleExist) && (
+                          <div className={this.decorateCSS("step-heading")}>
+                            {stepSubtitleExist && <Base.H6 className={this.decorateCSS("step-subtitle")}>{step.step_subtitle}</Base.H6>}
+                            {stepTitleExist && <Base.H3 className={this.decorateCSS("step-title")}>{step.step_title}</Base.H3>}
+                          </div>
+                        )}
                         {stepDescriptionExist && <Base.P className={this.decorateCSS("step-description")}>{step.step_description}</Base.P>}
                       </div>
                     )}
                   </div>
-                );
-              })}
-            </div>
-          )}
-
-          {visibleButtons.length > 0 && (
-            <div className={this.decorateCSS("button-container")}>
-              {visibleButtons.map((button: INPUTS.CastedButton, index: number) => {
-                const buttonIcon = button.icon as unknown as TypeMediaInputValue;
-                return (
-                  <ComposerLink key={index} path={button.url}>
-                    <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
-                      {this.castToString(button.text) && <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>}
-                      {mediaExist(buttonIcon) && <Base.Media value={buttonIcon} className={this.decorateCSS("button-icon")} />}
-                    </Base.Button>
-                  </ComposerLink>
                 );
               })}
             </div>
