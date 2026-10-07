@@ -232,13 +232,15 @@
         .max-content {
             gap: var(--composer-gap-lg);
             .content-wrapper {
-                gap: var(--composer-gap-sm);
+                flex-direction: column;
+                gap: var(--composer-gap-lg);
                 .cards{
                     padding: var(--composer-gap-xl) var(--composer-gap-sm) var(--composer-gap-xl) 0px;
-                    margin-bottom: var(--composer-gap-lg);
+                    margin-bottom: 0;
                 }
                 .video-container{
-                    width: 60%;
+                    width: 100%;
+                    margin-top: 0;
                 }
             }
         }

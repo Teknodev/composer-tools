@@ -24,7 +24,6 @@
     }
 
     .features-grid {
-      gap: var(--composer-gap-lg);
 
       .feature-item {
         align-items: flex-start;
@@ -128,7 +127,6 @@
       gap: calc(var(--composer-gap-lg) * 1.5);
 
       .features-grid {
-        gap: var(--composer-gap-md);
 
         .feature-item {
           gap: var(--composer-gap-sm);
@@ -145,7 +143,6 @@
       gap: var(--composer-gap-lg);
 
       .features-grid {
-        gap: var(--composer-gap-md);
         justify-items: flex-start;
 
         .feature-item {
@@ -159,5 +156,11 @@
         }
       }
     }
+  }
+}
+
+@container (max-width: #{$composer-tablet-width}) {
+  .container .feature-item {
+    padding: var(--composer-gap-md);
   }
 }

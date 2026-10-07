@@ -30,7 +30,6 @@
         }
 
         .cards-container {
-            gap: var(--composer-gap-xl);
             padding-bottom: var(--composer-gap-xl);
             align-items: stretch;
             justify-items: stretch;
@@ -45,7 +44,6 @@
                 align-items: center;
                 border-radius: var(--composer-border-radius-sm);
                 padding: calc(var(--composer-gap-xl) * 2) var(--composer-gap-lg);
-                background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
                 box-sizing: border-box;
                 min-width: 0;
                 transform-origin: center center;
@@ -124,7 +122,6 @@
     .container {
         .max-content {
             .cards-container {
-                gap: var(--composer-gap-md);
                 padding-bottom: 0;
 
                 .card {
@@ -143,4 +140,10 @@
             }
         }
     }
+}
+
+@container (max-width: #{$composer-tablet-width}) {
+  .container .max-content .cards-container .card {
+    padding: var(--composer-gap-xl) var(--composer-gap-md);
+  }
 }

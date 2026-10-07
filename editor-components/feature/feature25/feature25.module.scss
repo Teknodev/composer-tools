@@ -140,6 +140,24 @@
   }
 }
 
+@container (max-width: #{$composer-tablet-width}) {
+  .container {
+    .max-content {
+      .tabs-wrapper {
+        .vertical-content {
+          .tab-content {
+            gap: var(--composer-gap-lg);
+
+            .image-wrapper {
+              width: 50%;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
 @container (max-width: #{$composer-phone-width}) {
   .container {
     .max-content {

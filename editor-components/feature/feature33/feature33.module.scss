@@ -148,3 +148,9 @@
 
     }
 }
+
+@container (max-width: #{$composer-tablet-width}) {
+  .container .feature-item {
+    padding: var(--composer-gap-md);
+  }
+}

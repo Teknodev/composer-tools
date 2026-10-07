@@ -25,13 +25,11 @@
             }
 
             .cards-container {
-                gap: var(--composer-gap-lg);
                 align-items: stretch;
                 justify-items: stretch;
 
                 .card {
                     border-radius: var(--composer-border-radius-md);
-                    background-color: var(--composer-html-background);
                     box-shadow: var(--box-shadow-active);
                     padding: var(--composer-gap-lg);
                     box-sizing: border-box;
@@ -79,10 +77,9 @@
             .content-wrapper {
                 .cards-container {
                     flex-direction: row;
-                    gap: var(--composer-gap-md);
 
                     .card {
-                        padding: 20px;
+                        padding: var(--composer-gap-md);
                     }
                 }
             }
@@ -100,7 +97,6 @@
 
                 .cards-container {
                     flex-direction: column;
-                    gap: var(--composer-gap-md);
 
                     .card {
                         padding: calc(var(--composer-gap-sm) * 3);
