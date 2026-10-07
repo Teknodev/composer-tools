@@ -21,12 +21,12 @@ class HeroSection15 extends BaseHeroSection {
     this.addProp({
       type: "object",
       key: "background",
-      displayer: "Background",
+      displayer: "Background Media",
       value: [
         {
           type: "media",
           key: "media",
-          displayer: "Background Media",
+          displayer: "Media",
           additionalParams: {
             availableTypes: ["image", "video"],
           },
@@ -45,16 +45,29 @@ class HeroSection15 extends BaseHeroSection {
     });
 
     this.addProp({
-      type: "media",
-      key: "media",
+      type: "object",
+      key: "mainMedia",
       displayer: "Media",
-      additionalParams: {
-        availableTypes: ["image", "video"],
-      },
-      value: {
-        type: "image",
-        url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6937d1d3875e15002c5eb3e2?alt=media",
-      },
+      value: [
+        {
+          type: "media",
+          key: "media",
+          displayer: "Media",
+          additionalParams: {
+            availableTypes: ["image", "video"],
+          },
+          value: {
+            type: "image",
+            url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6937d1d3875e15002c5eb3e2?alt=media",
+          },
+        },
+        {
+          type: "boolean",
+          key: "overlay",
+          displayer: "Overlay",
+          value: false,
+        },
+      ],
     });
 
     this.addProp({
@@ -151,7 +164,8 @@ class HeroSection15 extends BaseHeroSection {
     const background = this.castToObject<Background>("background");
     const backgroundImageValue = background?.media;
     const backgroundImageExist = this.hasMedia(backgroundImageValue);
-    const imageValue = this.getPropValue("media") as TypeMediaInputValue | undefined;
+    const mainMedia = this.castToObject<{ media: TypeMediaInputValue; overlay: boolean }>("mainMedia");
+    const imageValue = mainMedia?.media as TypeMediaInputValue | undefined;
     const imageExist = this.hasMedia(imageValue);
     const logoValue = this.getPropValue("logo") as TypeMediaInputValue | undefined;
     const logoExist = this.hasMedia(logoValue);
@@ -245,6 +259,7 @@ class HeroSection15 extends BaseHeroSection {
             {imageExist && (
               <div className={this.decorateCSS("right")}>
                 <Base.Media value={this.withVideoSettings(imageValue)} className={this.decorateCSS("image")} />
+                {mainMedia?.overlay && <div className={this.decorateCSS("media-overlay")} />}
               </div>
             )}
           </Base.MaxContent>

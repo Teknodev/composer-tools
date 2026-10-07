@@ -56,8 +56,10 @@
         gap: var(--composer-gap-lg);
       }
 
+      // The header stays left-aligned whatever the theme alignment is.
       .header {
         width: 100%;
+        align-items: flex-start !important;
         .logo {
           font-size: 3rem;
           width: auto;
@@ -68,6 +70,9 @@
         .title,
         .description {
           color: white;
+          text-align: left !important;
+          margin-left: 0 !important;
+          margin-right: auto !important;
         }
       }
 

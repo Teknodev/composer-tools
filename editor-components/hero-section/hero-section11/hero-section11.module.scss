@@ -80,7 +80,6 @@
         .subtitle {
           text-align: left;
           margin-left: 0;
-          font-size: 2.5rem;
         }
         .title {
           font-size: 5rem;
@@ -208,7 +207,6 @@
       .max-content {
         .content {
           padding: var(--composer-gap-md) 0px var(--composer-gap-md) var(--composer-gap-xl);
-          .subtitle { font-size: 2.5rem; }
           .title { font-size: 5rem; }
         }
       }
@@ -251,9 +249,6 @@
           padding: var(--composer-gap-xl) var(--composer-gap-md);
           &.no-image{
             padding: 0;
-          }
-          .subtitle {
-            font-size: 1.5rem;
           }
           .title {
             font-size: 3rem;

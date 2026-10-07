@@ -16,7 +16,7 @@ type ISliderData = {
   description: React.JSX.Element;
   media: TypeMediaInputValue;
   subtitle: React.JSX.Element;
-  button: INPUTS.CastedButton;
+  buttons: INPUTS.CastedButton[];
   overlay: boolean;
   logo: TypeMediaInputValue;
 };
@@ -82,7 +82,12 @@ class HeroSection16 extends BaseHeroSection {
               displayer: "Overlay",
               value: false,
             },
-            INPUTS.BUTTON("button", "Button", "Discuss The Wedding", "", null, null, "White"),
+            {
+              type: "array",
+              key: "buttons",
+              displayer: "Buttons",
+              value: [INPUTS.BUTTON("button", "Button", "Discuss The Wedding", "", null, null, "White")],
+            },
           ],
         },
         {
@@ -138,7 +143,12 @@ class HeroSection16 extends BaseHeroSection {
               displayer: "Overlay",
               value: false,
             },
-            INPUTS.BUTTON("button", "Button", "Online Request", "", null, null, "White"),
+            {
+              type: "array",
+              key: "buttons",
+              displayer: "Buttons",
+              value: [INPUTS.BUTTON("button", "Button", "Online Request", "", null, null, "White")],
+            },
           ],
         },
         {
@@ -195,7 +205,12 @@ class HeroSection16 extends BaseHeroSection {
               value: false,
             },
 
-            INPUTS.BUTTON("button", "Button", "View Details", "", null, null, "White"),
+            {
+              type: "array",
+              key: "buttons",
+              displayer: "Buttons",
+              value: [INPUTS.BUTTON("button", "Button", "View Details", "", null, null, "White")],
+            },
           ],
         },
       ],
@@ -313,7 +328,8 @@ class HeroSection16 extends BaseHeroSection {
               const subtitleExist = this.castToString(item.subtitle);
               const titleExist = this.castToString(item.title);
               const descriptonExist = this.castToString(item.description);
-              const buttonTextExist = this.castToString(item.button.text);
+              const buttons = (item.buttons || []).filter((button: INPUTS.CastedButton) => this.castToString(button.text));
+              const buttonTextExist = buttons.length > 0;
               const imageExist = this.hasMedia(item.media);
               const logoExist = this.hasMedia(item.logo);
 
@@ -344,11 +360,15 @@ class HeroSection16 extends BaseHeroSection {
                       {titleExist && <Base.SectionTitle className={`${this.decorateCSS("title")} ${!imageExist ? this.decorateCSS("title-no-image") : ""}`}>{item.title}</Base.SectionTitle>}
                       {descriptonExist && <Base.SectionDescription className={`${this.decorateCSS("description")} ${!imageExist ? this.decorateCSS("description-no-image") : ""}`}>{item.description}</Base.SectionDescription>}
                       {buttonTextExist && (
-                        <ComposerLink path={item.button.url}>
-                          <Base.Button buttonType={item.button.type} className={this.decorateCSS("button")}>
-                            <Base.P className={this.decorateCSS("button-text")}>{item.button.text}</Base.P>
-                          </Base.Button>
-                        </ComposerLink>
+                        <div className={this.decorateCSS("button-container")}>
+                          {buttons.map((button: INPUTS.CastedButton, buttonIndex: number) => (
+                            <ComposerLink key={buttonIndex} path={button.url}>
+                              <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
+                                <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
+                              </Base.Button>
+                            </ComposerLink>
+                          ))}
+                        </div>
                       )}
                     </Base.VerticalContent>
                   )}

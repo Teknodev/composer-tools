@@ -20,6 +20,31 @@ class HeroSection11 extends BaseHeroSection {
     super(props, styles);
 
     this.addProp({
+      type: "object",
+      key: "background",
+      displayer: "Media",
+      value: [
+        {
+          type: "media",
+          key: "media",
+          displayer: "Media",
+          additionalParams: {
+            availableTypes: ["image", "video"],
+          },
+          value: {
+            type: "image",
+            url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/675aa2fe0655f8002ca633bf?alt=media",
+          },
+        },
+        {
+          type: "boolean",
+          key: "overlay",
+          displayer: "Overlay",
+          value: false,
+        },
+      ],
+    });
+    this.addProp({
       type: "media",
       key: "logo",
       displayer: "Logo",
@@ -57,31 +82,6 @@ class HeroSection11 extends BaseHeroSection {
       key: "buttons",
       displayer: "Buttons",
       value: [INPUTS.BUTTON("button", "Button", "Get Started", "", null, null, "Primary")],
-    });
-    this.addProp({
-      type: "object",
-      key: "background",
-      displayer: "Background",
-      value: [
-        {
-          type: "media",
-          key: "media",
-          displayer: "Background Media",
-          additionalParams: {
-            availableTypes: ["image", "video"],
-          },
-          value: {
-            type: "image",
-            url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/675aa2fe0655f8002ca633bf?alt=media",
-          },
-        },
-        {
-          type: "boolean",
-          key: "overlay",
-          displayer: "Overlay",
-          value: false,
-        },
-      ],
     });
     this.addProp({
       type: "object",
