@@ -176,15 +176,11 @@
           }
 
           .service-card {
-            gap: var(--composer-gap-sm);
-            display: flex;
-            flex-direction: column;
             align-items: baseline;
 
             .service-svg {
               font-size: 2rem;
               color: var(--composer-primary-color);
-              margin: 0;
               
               .icon{
                 width: 40px;
@@ -193,14 +189,13 @@
             }
 
             .service-subtitle {
-              margin: 0;
               text-align: left;
               color: var(--composer-tertiary-color);
             }
 
             .service-title {
-              margin: 0;
               text-align: left;
+              font-size: 1.125rem !important;
               color: var(--composer-font-color-primary);
             }
 
@@ -244,12 +239,7 @@
           .service-card-list {
             margin-top: var(--composer-gap-md);
             .service-card {
-              gap: var(--composer-gap-sm);
               flex: 1;
-
-              .service-title {
-                font-size: 1.5rem;
-              }
 
               .service-description {
                 font-size: 1rem;
@@ -303,7 +293,6 @@
             margin-top: var(--composer-gap-md) !important;
             .service-card {
               max-width: 100%;
-              gap: var(--composer-gap-sm);
               align-items: left;
             }
           }

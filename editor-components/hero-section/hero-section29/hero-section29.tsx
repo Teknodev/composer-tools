@@ -360,9 +360,9 @@ class HeroSection29 extends BaseHeroSection {
                             </Base.P>
                           )}
                           {this.castToString(item.title) && (
-                            <Base.H4 className={this.decorateCSS("service-title")}>
+                            <Base.P className={this.decorateCSS("service-title")}>
                               {item.title}
-                            </Base.H4>
+                            </Base.P>
                           )}
                           {this.castToString(item.description) && (
                             <Base.P className={this.decorateCSS("service-description")}>
