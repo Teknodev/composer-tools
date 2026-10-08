@@ -229,6 +229,7 @@
                 }
                 .image-details {
                   display: flex;
+                  flex-direction: row;
                   justify-content: space-between;
                   align-items: start;
                   width: 50%;
@@ -237,6 +238,7 @@
                   bottom: -5px;
                   right: 0;
                   background-color: var(--composer-html-background);
+                  border-top-left-radius: var(--composer-border-radius-sm);
                   color: var(--composer-font-color-primary);
                   gap: var(--composer-gap-md);
                   min-height: calc(100px + (var(--composer-gap-md) * 2));
@@ -245,7 +247,9 @@
                     width: 100%;
                     font-size: 1rem;
                     text-align: start;
-                    margin: 0;
+                    margin-top: 0;
+                    margin-left: 0;
+                    margin-right: 0;
                     padding-left: var(--composer-gap-md);
                     opacity: 1;
                     color: var(--composer-font-color-primary);
@@ -358,6 +362,15 @@
     }
   }
 }
+@container (width > #{$composer-phone-width}) {
+  .container .max-content .wrapper .slider-parent .carousel .slide-inner .content .content-inner {
+    > *,
+    .image-details > * {
+      margin-bottom: 0;
+    }
+  }
+}
+
 @container (max-width: #{$composer-tablet-width}) {
   .container .max-content .wrapper .slider-parent .dots {
     bottom: 60px;
@@ -430,7 +443,6 @@
       transform: none;
       top: unset;
       left: unset;
-      margin-bottom: var(--composer-gap-sm);
       width: 100%;
       .imageTitle {
         font-size: 2.5rem !important;
@@ -450,15 +462,14 @@
       right: unset;
       background-color: transparent;
       color: white;
-      gap: var(--composer-gap-sm);
-      padding: var(--composer-gap-md) var(--composer-gap-sm);
+      gap: 0;
+      padding: 0 var(--composer-gap-sm);
       min-height: auto;
 
       .description {
         width: 100%;
         font-size: 1rem;
         text-align: center;
-        margin: 0;
         padding-left: 0;
         opacity: 1;
         color: white;
@@ -472,7 +483,6 @@
         width: 100%;
         display: flex;
         justify-content: center;
-        padding-top: var(--composer-gap-sm);
         padding-right: 0;
 
         .button {

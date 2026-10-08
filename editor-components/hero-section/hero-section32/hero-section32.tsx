@@ -256,7 +256,7 @@ class HeroSection32 extends BaseHeroSection {
                             />
                           )}
                           {hasItemMedia && enableBackgroundImageOverlay && <div className={this.decorateCSS("background-overlay")} />}
-                          <div className={this.decorateCSS("content-inner")}>
+                          <Base.VerticalContent className={this.decorateCSS("content-inner")}>
                             {enableOverlay && (
                               <div className={`${this.decorateCSS("slideShape")} ${isActive ? this.decorateCSS("shapeAnimate") : ""}`}></div>
                             )}
@@ -274,7 +274,7 @@ class HeroSection32 extends BaseHeroSection {
                             )}
 
                             {(isDescriptionExist || buttons.length > 0) && (
-                              <div className={`${this.decorateCSS("image-details")} ${primaryColorClass}`}>
+                              <Base.VerticalContent className={`${this.decorateCSS("image-details")} ${primaryColorClass}`}>
                                 {isDescriptionExist && (
                                   <Base.SectionDescription
                                     className={`${this.decorateCSS("description")} ${isActive ? this.decorateCSS("animate") : ""}`}
@@ -300,7 +300,7 @@ class HeroSection32 extends BaseHeroSection {
                                     ))}
                                   </div>
                                 )}
-                              </div>
+                              </Base.VerticalContent>
                             )}
 
                             {showNavButtons && (
@@ -323,7 +323,7 @@ class HeroSection32 extends BaseHeroSection {
                                 )}
                               </div>
                             )}
-                          </div>
+                          </Base.VerticalContent>
                         </div>
                       </div>
                     );
