@@ -14,6 +14,7 @@ type SliderItem = {
   title: React.JSX.Element;
   url: string;
   number: React.JSX.Element;
+  buttons: INPUTS.CastedButton[];
 };
 
 type SocialItem = {
@@ -79,6 +80,12 @@ class HeroSection37 extends BaseHeroSection {
               value: "Assumenda voluptatum eveniet possimus modi illo.",
             },
             {
+              type: "array",
+              key: "buttons",
+              displayer: "Buttons",
+              value: [INPUTS.BUTTON("button", "Button", "Discover More", "", null, null, "White")],
+            },
+            {
               type: "media",
               key: "media",
               displayer: "Media",
@@ -138,6 +145,12 @@ class HeroSection37 extends BaseHeroSection {
               key: "description",
               displayer: "Description",
               value: "Commodi necessitatibus perspiciatis quae labore!",
+            },
+            {
+              type: "array",
+              key: "buttons",
+              displayer: "Buttons",
+              value: [INPUTS.BUTTON("button", "Button", "Discover More", "", null, null, "White")],
             },
             {
               type: "media",
@@ -201,6 +214,12 @@ class HeroSection37 extends BaseHeroSection {
               value: "Commodi necessitatibus perspiciatis quae labore!",
             },
             {
+              type: "array",
+              key: "buttons",
+              displayer: "Buttons",
+              value: [INPUTS.BUTTON("button", "Button", "Discover More", "", null, null, "White")],
+            },
+            {
               type: "media",
               key: "media",
               displayer: "Media",
@@ -260,6 +279,12 @@ class HeroSection37 extends BaseHeroSection {
               key: "description",
               displayer: "Description",
               value: "Praesentium cumque saepe dignissimos incidunt.",
+            },
+            {
+              type: "array",
+              key: "buttons",
+              displayer: "Buttons",
+              value: [INPUTS.BUTTON("button", "Button", "Discover More", "", null, null, "White")],
             },
             {
               type: "media",
@@ -322,6 +347,12 @@ class HeroSection37 extends BaseHeroSection {
               key: "description",
               displayer: "Description",
               value: "Impedit ad animi quae nobis voluptate! Rerum, enim.",
+            },
+            {
+              type: "array",
+              key: "buttons",
+              displayer: "Buttons",
+              value: [INPUTS.BUTTON("button", "Button", "Discover More", "", null, null, "White")],
             },
             {
               type: "media",
@@ -541,6 +572,7 @@ class HeroSection37 extends BaseHeroSection {
     const hasTextLogo = hasMedia(textItem?.logo);
     const isTextSubtitleExist = this.castToString(textItem?.subtitle);
     const isTextDescriptionExist = this.castToString(textItem?.description);
+    const textButtons = (textItem?.buttons || []).filter((button: INPUTS.CastedButton) => this.castToString(button.text));
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
@@ -558,13 +590,24 @@ class HeroSection37 extends BaseHeroSection {
               </div>
             </div>
           )}
-          {(hasTextLogo || isTextSubtitleExist || isTextDescriptionExist) && (
+          {(hasTextLogo || isTextSubtitleExist || isTextDescriptionExist || textButtons.length > 0) && (
             <div className={this.decorateCSS("text-box")}>
               <div className={this.decorateCSS("decorator-line")}></div>
               <Base.VerticalContent className={`${this.decorateCSS("text")} ${this.getComponentState("text_visibility") ? this.decorateCSS("visible") : ""}`}>
                 {hasTextLogo && <Base.Media value={textItem.logo} className={this.decorateCSS("logo")} />}
                 {isTextSubtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{textItem.subtitle}</Base.SectionSubTitle>}
                 {isTextDescriptionExist && <Base.SectionDescription className={this.decorateCSS("description")}>{textItem.description}</Base.SectionDescription>}
+                {textButtons.length > 0 && (
+                  <div className={this.decorateCSS("button-container")}>
+                    {textButtons.map((button: INPUTS.CastedButton, buttonIndex: number) => (
+                      <ComposerLink key={buttonIndex} path={button.url}>
+                        <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
+                          <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
+                        </Base.Button>
+                      </ComposerLink>
+                    ))}
+                  </div>
+                )}
               </Base.VerticalContent>
             </div>
           )}
