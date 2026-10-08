@@ -119,7 +119,7 @@
                                 position: absolute;
                                 background-color: var(--composer-primary-color);
                                 color: var(--composer-font-color-secondary);
-                                height: 200px;
+                                height: 160px;
                                 width: 40px;
                                 bottom: 0px;
                                 left: var(--composer-gap-xl);
@@ -157,8 +157,9 @@
                                     flex-direction: column;
                                     justify-content: center;
                                     gap: calc(var(--composer-gap-md) * 1.5);
-                                    // Left padding = subtitle bar (left 50px + width 40px) + 40px, like the original
-                                    padding: calc(var(--composer-gap-xl) * 1.8) var(--composer-gap-xl) var(--composer-gap-xl) calc(var(--composer-gap-xl) * 2 + var(--composer-gap-md) + var(--composer-gap-sm));
+                                    // Original: 90px top, 60px right/bottom; left = subtitle bar (left 50px + width 40px) + 40px.
+                                    // With the 160px subtitle bar this puts the title on the bar's top edge.
+                                    padding: calc(var(--composer-gap-xl) * 1.8) calc(var(--composer-gap-lg) * 1.5) calc(var(--composer-gap-lg) * 1.5) calc(var(--composer-gap-xl) * 2 + var(--composer-gap-md) + var(--composer-gap-sm));
                                     opacity: 0;
                                     transition: opacity 2s ease;
 
@@ -190,12 +191,24 @@
                                             background-color: var(--composer-font-color-secondary);
                                             color: var(--composer-font-color-primary);
                                             border: none;
-                                            padding: var(--composer-gap-sm);
-                                            height: fit-content;
+                                            padding: 0;
+                                            width: var(--composer-gap-lg);
+                                            height: var(--composer-gap-lg);
+                                            display: flex;
+                                            align-items: center;
+                                            justify-content: center;
+                                            flex-shrink: 0;
 
                                             .icon {
                                                 font-size: 1.5rem;
                                                 color: var(--composer-font-color-primary);
+                                                display: flex;
+                                                align-items: center;
+                                                justify-content: center;
+
+                                                svg {
+                                                    display: block;
+                                                }
                                             }
                                         }
 
@@ -216,7 +229,7 @@
                                 }
 
                                 .badge-container {
-                                    padding: var(--composer-gap-md) 0px;
+                                    padding: 0;
                                     visibility: visible;
                                     max-height: 100%;
 
@@ -262,7 +275,7 @@
                         }
 
                         .badge-container {
-                            padding: var(--composer-gap-md) 0px !important;
+                            padding: 0 !important;
                             visibility: visible !important;
                             max-height: 100% !important;
 
