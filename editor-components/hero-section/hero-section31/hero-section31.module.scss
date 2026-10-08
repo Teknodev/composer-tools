@@ -157,7 +157,9 @@
                 bottom: 50px;
                 z-index: 4;
                 right: 20px;
-                font-size: 17rem;
+                font-size: 11cqw;
+                transform: scaleY(1.15);
+                transform-origin: bottom right;
 
                 .sliderNumber {
                     font-size: inherit !important;
@@ -234,6 +236,7 @@
                         text-align: left;
                         width: fit-content;
                         margin-left: 0;
+                        transform: none;
                         &.subtitle-transparent {
                             background: transparent !important;
                             padding: 0 !important;
@@ -424,7 +427,6 @@
                     bottom: calc(var(--composer-gap-xl) + var(--composer-gap-md));
                     right: 20px;
                     width: fit-content;
-                    font-size: 10rem;
                 }
 
                 .control-nav {
@@ -458,6 +460,11 @@
                     .slider-inner {
                         width: unset;
                         padding: 20px;
+
+                        .subtitle::before {
+                            left: calc(-1 * var(--composer-gap-md));
+                            width: var(--composer-gap-sm);
+                        }
 
                         .title {
                             font-size: 3rem !important;
