@@ -202,7 +202,7 @@
 
         .title {
           color: white;
-          font-size: 6.5rem;
+          font-size: 6.25rem;
           margin: 0;
         }
 
@@ -219,13 +219,13 @@
         }
 
         .sub_title {
-          font-size: 4rem;
+          font-size: 3.4375rem;
           color: var(--composer-tertiary-color);
           margin: 0;
         }
 
         .description {
-          font-size: 1.5rem;
+          font-size: 1.3125rem;
           text-transform: uppercase;
           color: var(--composer-tertiary-color);
           margin: 0;
@@ -233,7 +233,7 @@
 
         .tag {
           color: white;
-          font-size: 1.5rem;
+          font-size: 1.0625rem;
           display: inline-block;
           width: fit-content;
 
@@ -292,19 +292,19 @@
         .slide-content {
           padding: var(--composer-gap-md) var(--composer-gap-xl);
           .title {
-            font-size: 3.5rem !important;
+            font-size: 6.25rem !important;
           }
 
           .sub_title {
-            font-size: 2rem !important;
+            font-size: 1.875rem !important;
           }
 
           .description {
-            font-size: 1.5rem !important;
+            font-size: 1rem !important;
           }
 
           .tag {
-            font-size: 1.5rem !important;
+            font-size: 1rem !important;
           }
         }
       }
@@ -330,19 +330,19 @@
 
         .slide-content {
           .title {
-            font-size: 3rem !important;
+            font-size: 2.8125rem !important;
           }
 
           .sub_title {
-            font-size: 1.5rem !important;
+            font-size: 1.5625rem !important;
           }
 
           .description {
-            font-size: 1rem !important;
+            font-size: 0.875rem !important;
           }
 
           .tag {
-            font-size: 1rem !important;
+            font-size: 0.8125rem !important;
           }
         }
       }
