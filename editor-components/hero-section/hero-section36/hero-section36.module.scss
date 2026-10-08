@@ -228,6 +228,13 @@
             font-size: 2rem;
             width: 32px;
             height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            svg {
+              display: block;
+            }
           }
 
           .arrow-icon-media {
@@ -252,7 +259,7 @@
           .pagination-dot {
             border: none !important;
             background: transparent;
-            padding: 0;
+            padding: 0 !important;
             cursor: pointer;
             position: relative;
             display: flex;
@@ -425,7 +432,7 @@
 
         .navigation-wrapper {
           gap: var(--composer-gap-xs);
-          margin-top: var(--composer-gap-sm) !important;
+          margin-top: calc(var(--composer-gap-sm) + var(--composer-gap-md)) !important;
 
           .arrow-button {
             border: none !important;
@@ -554,6 +561,7 @@
 
         .navigation-wrapper {
           gap: var(--composer-gap-xs);
+          margin-top: var(--composer-gap-sm) !important;
 
           .arrow-button {
             width: 30px;
