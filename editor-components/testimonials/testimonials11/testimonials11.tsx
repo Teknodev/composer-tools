@@ -403,7 +403,7 @@ class Testimonials11Page extends Testimonials {
                 )}
               </Base.VerticalContent>
             )}
-            <div className={this.decorateCSS("content")}>
+            <div className={`${this.decorateCSS("content")}${bgQuoteStartExist ? ` ${this.decorateCSS("has-quote-start")}` : ""}${bgQuoteEndExist ? ` ${this.decorateCSS("has-quote-end")}` : ""}`}>
               {bgQuoteStartExist && (
                 <Base.Media value={bgQuoteStartVal} className={`${this.decorateCSS("bg-quote")} ${this.decorateCSS("bg-quote-start")}${coverMediaExist ? ` ${this.decorateCSS("bg-quote-with-image")}` : ""}`} />
               )}
