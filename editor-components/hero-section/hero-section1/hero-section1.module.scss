@@ -515,7 +515,7 @@
             opacity: 0 !important;
           }
           .content-container {
-            width: 100% !important;
+            width: 85% !important;
             .media-wrapper {
               width: 100%;
               .media-box {
@@ -569,5 +569,10 @@
     padding-bottom: var(--composer-gap-md) !important;
     max-height: 800px !important;
     top: 0px !important;
+  }
+  .container .max-content .wrapper .dots .dot {
+    width: 6px;
+    height: 6px;
+    margin: 6px;
   }
 }
