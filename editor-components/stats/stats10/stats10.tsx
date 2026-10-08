@@ -418,6 +418,12 @@ class Stats10 extends BaseStats {
 
                   </div>
                 )}
+                {image1?.url && image2?.url && (
+                  <>
+                    <div className={`${this.decorateCSS("corner-fillet")} ${this.decorateCSS("corner-fillet-start")}`} />
+                    <div className={`${this.decorateCSS("corner-fillet")} ${this.decorateCSS("corner-fillet-end")}`} />
+                  </>
+                )}
               </div>
             )}
 

@@ -144,6 +144,12 @@
           }
         }
 
+        // Rounds the corners the video card cuts out of the large image (tablet and mobile only).
+        // A section-background square with a transparent quarter circle; §5 forbids pseudo elements, so these are real divs.
+        .corner-fillet {
+          display: none;
+        }
+
         .player-container{
           .icon-container{
             width: 100%;
@@ -378,6 +384,31 @@
               margin-right: 0;
             }
           }
+
+          // Cut corners: where the large image's top edge meets the card's left edge,
+          // and where its right edge meets the card's bottom edge (card: 75% wide, 3:2, right-aligned with a gap-lg margin).
+          .corner-fillet {
+            display: block;
+            grid-area: 1 / 1;
+            align-self: start;
+            justify-self: start;
+            position: relative;
+            z-index: 1;
+            width: var(--composer-border-radius-sm);
+            height: var(--composer-border-radius-sm);
+            pointer-events: none;
+            background: radial-gradient(circle at 0 100%, transparent var(--composer-border-radius-sm), var(--composer-html-background) var(--composer-border-radius-sm));
+
+            &.corner-fillet-start {
+              margin-top: 17%;
+              margin-left: calc(25% - var(--composer-gap-lg) - var(--composer-border-radius-sm));
+            }
+
+            &.corner-fillet-end {
+              margin-top: 50%;
+              margin-left: calc(70% - var(--composer-border-radius-sm));
+            }
+          }
         }
 
         .right-page {
@@ -455,6 +486,22 @@
 
             &.without-image1 {
               aspect-ratio: 1 / 1;
+            }
+          }
+
+          // The full-width image starts gap-xl below the full-width card, so it is cut on both sides of the card.
+          .corner-fillet {
+            &.corner-fillet-start {
+              margin-top: var(--composer-gap-xl);
+              margin-left: calc(-1 * var(--composer-border-radius-sm));
+            }
+
+            &.corner-fillet-end {
+              justify-self: end;
+              margin-top: var(--composer-gap-xl);
+              margin-left: 0;
+              margin-right: calc(-1 * var(--composer-border-radius-sm));
+              background: radial-gradient(circle at 100% 100%, transparent var(--composer-border-radius-sm), var(--composer-html-background) var(--composer-border-radius-sm));
             }
           }
         }
