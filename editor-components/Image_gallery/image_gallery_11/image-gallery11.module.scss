@@ -29,8 +29,9 @@
     pointer-events: none;
   }
 
+  // Container is full width for the gallery rows; the header gets Base.Container's standard side padding (60/50/30px)
   .max-content {
-    padding: 0 var(--composer-gap-lg);
+    padding: 0 calc(var(--composer-gap-lg) * 1.5);
 
     .content {
       position: relative;
@@ -276,6 +277,10 @@
   .container {
     padding: 80px 0;
 
+    .max-content {
+      padding: 0 var(--composer-gap-xl);
+    }
+
     .gallery {
       .gallery-row {
         &.slider-wrapper {
@@ -346,7 +351,7 @@
     padding: var(--composer-gap-xl) 0;
 
     .max-content {
-      padding: 0 var(--composer-gap-md);
+      padding: 0 calc(var(--composer-gap-md) + var(--composer-gap-sm));
     }
 
     .gallery {
