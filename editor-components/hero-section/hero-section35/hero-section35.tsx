@@ -24,6 +24,12 @@ class HeroSection35 extends BaseHeroSection {
                         url: "https://bexon.themejunction.net/wp-content/uploads/2025/07/pattern-bg.webp",
                     } 
                 },
+                {
+                    type: "boolean",
+                    key: "overlay",
+                    displayer: "Overlay",
+                    value: false,
+                },
                {
                     type: "media",
                     key: "logo",
@@ -291,6 +297,7 @@ class HeroSection35 extends BaseHeroSection {
                                             value={leftCard.backgroundMedia}
                                             className={this.decorateCSS("pattern-image")}
                                         />
+                                        {leftCard.overlay && <div className={this.decorateCSS("pattern-overlay")} />}
                                     </div>
                                 )}
                                 <div className={this.decorateCSS("left-content-wrapper")}>
@@ -415,9 +422,9 @@ class HeroSection35 extends BaseHeroSection {
                                                 </div>}
                                                 {(customerBoxDescriptionExist || customerBoxNumberExist) && <div className={this.decorateCSS("customer-info")}>
                                                     {customerBoxNumberExist && (
-                                                        <Base.P className={this.decorateCSS("customer-number")}>
+                                                        <Base.H3 className={this.decorateCSS("customer-number")}>
                                                             {customerBox.number}
-                                                        </Base.P>
+                                                        </Base.H3>
                                                     )}
                                                     {customerBoxDescriptionExist && (
                                                         <Base.P className={this.decorateCSS("customer-desc")}>

@@ -22,9 +22,17 @@
                     position: absolute;
                     top: 0;
                     left: 0;
+                    border-radius: inherit;
                     .pattern-image{
                         height: 100%;
                         width: 100%;
+                    }
+                    .pattern-overlay{
+                        position: absolute;
+                        inset: 0;
+                        background-color: var(--composer-overlay-color);
+                        border-radius: inherit;
+                        pointer-events: none;
                     }
                 }
                 .left-content-wrapper{
@@ -37,6 +45,7 @@
                             max-width: 100%;
                             width: 100%;
                             margin-inline-start: auto;
+                            align-items: flex-start;
                             
                             &.full-width {
                                 max-width: 100%;
@@ -64,6 +73,8 @@
                         }
                         .title{
                             text-align: left;
+                            margin-left: 0;
+                            margin-right: 0;
                             font-size: 4.5rem;
                             color: var(--composer-font-color-secondary);
                         }
@@ -128,8 +139,8 @@
                                     border-left: 1px dashed var(--composer-tertiary-color);
                                 }
                                 .description{
-                                    font-size: 1.5rem;
                                     width: 100%;
+                                    text-align: left;
                                     color: var(--composer-font-color-secondary);
                                     margin-left: var(--composer-gap-md);
                                 }
@@ -248,7 +259,8 @@
                                 position: relative;
                                 height: auto;
                                 max-height: none;
-                                width: 40%;
+                                width: 100%;
+                                max-width: 18rem;
                                 background-color: var(--composer-html-background);
                                 padding: 15px 15px 0 0;
                                 border-top-right-radius: var(--composer-border-radius-md);
@@ -317,7 +329,7 @@
 
                             .customer-images {
                                 display: flex;
-                                flex-wrap: wrap;
+                                flex-wrap: nowrap;
                                 align-items: center;
                                 margin-bottom: var(--composer-gap-sm);
 
@@ -326,8 +338,13 @@
                                     height: 60px;
                                     border-radius: 50%;
                                     box-shadow: var(--composer-box-shadow-sm);
-                                    margin-right: -15px;
+                                    margin-left: -15px;
                                     object-fit: cover;
+                                    flex-shrink: 0;
+
+                                    &:first-child {
+                                        margin-left: 0;
+                                    }
                                 }
 
                                 .customer-icon-container {
@@ -338,8 +355,13 @@
                                     display: flex;
                                     align-items: center;
                                     justify-content: center;
-                                    margin-right: -15px;
+                                    margin-left: -15px;
+                                    flex-shrink: 0;
                                     box-shadow: var(--composer-box-shadow-sm);
+
+                                    &:first-child {
+                                        margin-left: 0;
+                                    }
 
                                     .customer-icon {
                                         font-size: 1.5rem;
@@ -351,6 +373,11 @@
                             }
 
                             .customer-info {
+                                .customer-number,
+                                .customer-desc {
+                                    text-align: left;
+                                }
+
                                 .customer-number {
                                     font-size: 4rem;
                                     color: var(--composer-font-color-primary);
@@ -381,12 +408,14 @@
                 .left-card{
                     order: 1;
                     .left-content-wrapper{
-                        padding: var(--composer-gap-lg) 0;
+                        padding: calc(1.5 * var(--composer-gap-lg)) 0;
                         .left-content{
                             max-width: 720px;
                             margin: 0 auto;
+                            padding: 0 calc(var(--composer-gap-sm) + var(--composer-gap-xs));
                             .title{
-                                font-size: 3.5rem !important;
+                                font-size: 2.75rem !important;
+                                max-width: 18ch;
                                 margin-bottom: var(--composer-gap-md);
                             }
                             .main-info-wrapper{
@@ -396,9 +425,6 @@
                                         .main-icon{
                                             font-size: 5rem;
                                         }
-                                    }
-                                    .description{
-                                        font-size: 1.5rem !important;
                                     }
                                 }
                             }
@@ -462,9 +488,6 @@
                                         .main-icon{
                                             font-size: 5rem;
                                         }
-                                    }
-                                    .description{
-                                        font-size: 1rem !important;
                                     }
                                 }
                             }
