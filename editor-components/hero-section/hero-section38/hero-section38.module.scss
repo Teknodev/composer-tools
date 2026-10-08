@@ -57,24 +57,24 @@
         var(--composer-font-color-primary) 5%);
 
     &.inner-left {
-      border-top-left-radius: var(--composer-border-radius-md);
-      border-bottom-left-radius: var(--composer-border-radius-md);
+      border-top-left-radius: var(--composer-border-radius-sm);
+      border-bottom-left-radius: var(--composer-border-radius-sm);
     }
 
     &.inner-right {
-      border-top-right-radius: var(--composer-border-radius-md);
-      border-bottom-right-radius: var(--composer-border-radius-md);
+      border-top-right-radius: var(--composer-border-radius-sm);
+      border-bottom-right-radius: var(--composer-border-radius-sm);
     }
 
     &.left-edge {
-      border-top-left-radius: var(--composer-border-radius-md);
-      border-bottom-left-radius: var(--composer-border-radius-md);
+      border-top-left-radius: var(--composer-border-radius-sm);
+      border-bottom-left-radius: var(--composer-border-radius-sm);
     }
 
     &.inner-right,
     &.right-edge {
-      border-top-right-radius: var(--composer-border-radius-md);
-      border-bottom-right-radius: var(--composer-border-radius-md);
+      border-top-right-radius: var(--composer-border-radius-sm);
+      border-bottom-right-radius: var(--composer-border-radius-sm);
     }
 
     &.no-media .content {
@@ -237,6 +237,10 @@
       gap: var(--composer-gap-sm);
       justify-content: space-between;
 
+      .title {
+        font-size: calc(1.75 * var(--composer-font-size-md));
+      }
+
       .icons-wrapper {
         display: flex;
         align-items: center;
@@ -297,6 +301,10 @@
         }
       }
 
+      .content .title-row .title {
+        font-size: calc(1.5 * var(--composer-font-size-md)) !important;
+      }
+
       .item {
         flex-direction: column;
         justify-content: flex-end;
@@ -319,6 +327,8 @@
     .container {
       .max-content {
         flex-direction: column;
+        padding-left: calc(var(--composer-gap-md) + var(--composer-gap-sm));
+        padding-right: calc(var(--composer-gap-md) + var(--composer-gap-sm));
       }
 
       .right .row {
@@ -329,9 +339,12 @@
       .item.inner-left,
       .item.inner-right,
       .item.left-edge,
-      .item.right-edge,
-      .item .background-media {
-        border-radius: 0 !important;
+      .item.right-edge {
+        border-radius: var(--composer-border-radius-sm) !important;
+      }
+
+      .max-content .content .title-row .title {
+        font-size: calc(1.375 * var(--composer-font-size-md)) !important;
       }
     }
   }

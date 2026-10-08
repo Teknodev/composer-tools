@@ -195,9 +195,9 @@ class HeroSection38 extends BaseHeroSection {
           {(hasTitle || hasIcon || hasSecondaryIcon) && (
             <div className={this.decorateCSS("title-row")}>
               {hasTitle && (
-                <Base.H2 className={this.decorateCSS("title")}>
+                <Base.P className={this.decorateCSS("title")}>
                   {item.title}
-                </Base.H2>
+                </Base.P>
               )}
 
               {(hasIcon || hasSecondaryIcon) && (
