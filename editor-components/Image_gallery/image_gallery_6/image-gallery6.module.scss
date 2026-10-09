@@ -71,7 +71,7 @@
         .content {
             display: flex;
             width: 100%;
-            align-items: stretch;
+            align-items: flex-start;
             gap: var(--composer-gap-md);
 
             .left-container,
@@ -96,10 +96,17 @@
                     overflow: hidden;
                     width: 100%;
 
-                    &.large-image,
-                    &.small-image,
+                    &.large-image {
+                        aspect-ratio: 1 / 1;
+                    }
+
+                    &.small-image {
+                        aspect-ratio: 100 / 65;
+                    }
+
                     &.normal-image {
-                        aspect-ratio: 2 / 1;
+                        aspect-ratio: 1 / 1;
+                    }
 
                         .image-wrapper {
                             display: flex;
@@ -139,15 +146,15 @@
                             }
 
                             .badge-container {
-                                padding: 0px;
-                                visibility: hidden;
-                                max-height: 0px;
                                 position: absolute;
                                 bottom: 0px;
+                                left: 0px;
                                 width: 100%;
                                 background-color: var(--composer-primary-color);
                                 color: var(--composer-font-color-secondary);
-                                transition: max-height 1.4s cubic-bezier(0, 0, .3642, 1), padding 0.4s cubic-bezier(0, 0, .3642, 1);
+                                transform: translateY(100%);
+                                opacity: 0;
+                                transition: transform 0.4s cubic-bezier(0, 0, .3642, 1), opacity 0.4s cubic-bezier(0, 0, .3642, 1);
                                 display: flex;
                                 align-items: center;
 
@@ -157,11 +164,12 @@
                                     flex-direction: column;
                                     justify-content: center;
                                     gap: calc(var(--composer-gap-md) * 1.5);
-                                    // Original: 90px top, 60px right/bottom; left = subtitle bar (left 50px + width 40px) + 40px.
+                                    // Original: 90px top, 60px right/bottom; left = subtitle bar (left 50px + width 40px) + 20px gap.
                                     // With the 160px subtitle bar this puts the title on the bar's top edge.
-                                    padding: calc(var(--composer-gap-xl) * 1.8) calc(var(--composer-gap-lg) * 1.5) calc(var(--composer-gap-lg) * 1.5) calc(var(--composer-gap-xl) * 2 + var(--composer-gap-md) + var(--composer-gap-sm));
+                                    padding: calc(var(--composer-gap-xl) * 1.8) calc(var(--composer-gap-lg) * 1.5) calc(var(--composer-gap-lg) * 1.5) calc(var(--composer-gap-xl) * 2 + var(--composer-gap-sm));
                                     opacity: 0;
-                                    transition: opacity 2s ease;
+                                    transition: opacity 0.4s cubic-bezier(0, 0, .3642, 1);
+                                    transition-delay: 0s;
 
                                     .card-title {
                                         opacity: 0;
@@ -229,12 +237,12 @@
                                 }
 
                                 .badge-container {
-                                    padding: 0;
-                                    visibility: visible;
-                                    max-height: 100%;
+                                    transform: translateY(0);
+                                    opacity: 1;
 
                                     .text-container {
                                         opacity: 1;
+                                        transition-delay: 0.2s;
 
                                         .card-title {
                                             opacity: 1;
@@ -259,9 +267,7 @@
                                     }
                                 }
                             }
-
                         }
-                    }
 
                     &.active {
                         .image {
@@ -275,9 +281,8 @@
                         }
 
                         .badge-container {
-                            padding: 0 !important;
-                            visibility: visible !important;
-                            max-height: 100% !important;
+                            transform: translateY(0) !important;
+                            opacity: 1 !important;
 
                             .text-container {
                                 opacity: 1 !important;
@@ -306,18 +311,7 @@
                         }
                     }
 
-                    &.large-image {
-                        height: 60%;
-                    }
 
-                    &.small-image {
-                        height: 40%;
-                    }
-
-                    &.normal-image {
-                        height: 100%;
-
-                    }
 
                     .button {
                         cursor: pointer;
@@ -429,11 +423,7 @@
                             }
                         }
 
-                        &.large-image,
-                        &.small-image,
-                        &.normal-image {
-                            min-height: 300px;
-                        }
+
                     }
                 }
             }

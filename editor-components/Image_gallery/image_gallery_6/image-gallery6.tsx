@@ -16,6 +16,7 @@ interface AllCategory {
 interface ImageItem {
     image_image: TypeMediaInputValue,
     overlay?: boolean,
+    active?: boolean,
     badge: React.JSX.Element,
     title: React.JSX.Element,
     description: React.JSX.Element,
@@ -87,7 +88,7 @@ class ImageGallery6 extends BaseImageGallery {
                     type: "number",
                     key: "imageCountInitial",
                     displayer: "Media Count Initial",
-                    value: 3
+                    value: 4
                 },
                 {
                     type: "number",
@@ -844,18 +845,10 @@ class ImageGallery6 extends BaseImageGallery {
                             {currentGallery.slice(0, this.getComponentState("imageCount")).map((item: ImageItem, index: number) => {
                                 if (index % 2 === 0) {
                                     if (!item.image_image && !this.castToString(item.badge) && !this.castToString(item.title) && !this.castToString(item.description)) return null;
-                                    if (this.getComponentState("imageCount") <= 3) {
-                                        var imageClass = index === 0 || index === 2
-                                            ? this.decorateCSS("normal-image")
-                                            : (index / 2) % 2 === 0
-                                                ? this.decorateCSS("large-image")
-                                                : this.decorateCSS("small-image");
-                                    } else {
-                                        var imageClass =
-                                            (index / 2) % 2 === 0
-                                                ? this.decorateCSS("large-image")
-                                                : this.decorateCSS("small-image");
-                                    }
+                                    var imageClass =
+                                        (index / 2) % 2 === 0
+                                            ? this.decorateCSS("large-image")
+                                            : this.decorateCSS("small-image");
 
                                     return (
                                         <ComposerLink path={item.url}>
@@ -910,18 +903,10 @@ class ImageGallery6 extends BaseImageGallery {
                             {currentGallery.slice(0, this.getComponentState("imageCount")).map((item: ImageItem, index: number) => {
                                 if (index % 2 === 1) {
                                     if (!item.image_image && !this.castToString(item.badge) && !this.castToString(item.title) && !this.castToString(item.description)) return null;
-                                    if (this.getComponentState("imageCount") <= 3) {
-                                        var imageClass = index === 1
-                                            ? this.decorateCSS("normal-image")
-                                            : ((index - 1) / 2) % 2 === 0
-                                                ? this.decorateCSS("small-image")
-                                                : this.decorateCSS("large-image");
-                                    } else {
-                                        var imageClass =
-                                            ((index - 1) / 2) % 2 === 0
-                                                ? this.decorateCSS("small-image")
-                                                : this.decorateCSS("large-image");
-                                    }
+                                    var imageClass =
+                                        ((index - 1) / 2) % 2 === 0
+                                            ? this.decorateCSS("small-image")
+                                            : this.decorateCSS("large-image");
                                     return (
                                         <ComposerLink path={item.url}>
                                             <div className={`${this.decorateCSS("images")} ${imageClass} ${item.active ? this.decorateCSS("active") : ""}`}>
