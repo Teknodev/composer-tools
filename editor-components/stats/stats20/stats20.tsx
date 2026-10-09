@@ -271,7 +271,7 @@ class Stats20 extends BaseStats {
                     <Base.VerticalContent className={`${this.decorateCSS("content-wrapper")} ${alignment === "center" ? this.decorateCSS("alignment-center") : ""}`}>
 
                         {hasLeftSection && (
-                            <div className={this.decorateCSS("left-card")}>
+                            <Base.Card className={this.decorateCSS("left-card")}>
                                 <Base.VerticalContent className={this.decorateCSS("left-container")}>
                                     {subtitleExist && (
                                         <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
@@ -312,7 +312,7 @@ class Stats20 extends BaseStats {
                                         </div>
                                     )}
                                 </Base.VerticalContent>
-                            </div>
+                            </Base.Card>
                         )}
 
                         {hasStats && (
