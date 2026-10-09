@@ -109,11 +109,10 @@
         .step {
           gap: var(--composer-gap-md);
 
-          // Like the original tablet and mobile views, the description drops under the title.
+          // Keep title and description side by side on tablet, with a balanced split.
           .step-content {
-            display: flex;
-            flex-direction: column;
-            gap: var(--composer-gap-lg);
+            grid-template-columns: 4fr 6fr;
+            column-gap: var(--composer-gap-md);
           }
         }
       }
@@ -133,6 +132,8 @@
           }
 
           .step-content {
+            display: flex;
+            flex-direction: column;
             gap: var(--composer-gap-md);
           }
         }
