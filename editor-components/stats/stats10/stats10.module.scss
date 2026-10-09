@@ -356,10 +356,14 @@
             margin-top: 17%;
             height: auto;
             aspect-ratio: 4 / 3;
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
 
             .image1,
             .overlay {
               width: 100%;
+              border-top-left-radius: 0;
+              border-bottom-left-radius: 0;
             }
 
             &.without-image2 {
