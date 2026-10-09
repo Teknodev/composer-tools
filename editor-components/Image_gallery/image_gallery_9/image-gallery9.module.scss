@@ -228,6 +228,7 @@
             .gallery-container {
                 display: grid;
                 grid-template-columns: repeat(1, 1fr);
+                border-radius: 0;
 
                 .card {
                     .card-wrapper {
