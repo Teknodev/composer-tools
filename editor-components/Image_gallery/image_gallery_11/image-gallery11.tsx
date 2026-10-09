@@ -140,7 +140,7 @@ class ImageGallery11 extends BaseImageGallery {
     this.addProp({
       type: "array",
       key: "galleryRows",
-      displayer: "Gallery Rows",
+      displayer: "Gallery",
       value: [
         {
           type: "object",
