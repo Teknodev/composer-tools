@@ -66,12 +66,14 @@
 
             .image {
               height: 340px;
-              border-radius: var(--composer-border-radius-sm);
+              border-radius: var(--composer-border-radius-sm)
+                var(--composer-border-radius-sm) 0 0;
             }
 
             .full-image {
               height: 100%;
-              border-radius: var(--composer-border-radius-sm);
+              border-radius: var(--composer-border-radius-sm)
+                var(--composer-border-radius-sm) 0 0;
             }
 
             .textContainer {
