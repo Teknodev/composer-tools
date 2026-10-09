@@ -123,19 +123,6 @@ class ImageGallery11 extends BaseImageGallery {
 
     this.addProp({ type: "boolean", key: "imageOverlay", displayer: "Overlay", value: false });
 
-    this.addProp(
-      INPUTS.SLIDER_SETTINGS("settings", "Slider Settings", {
-        dots: false,
-        arrows: false,
-        infinite: true,
-        speed: 70000,
-        autoplay: true,
-        autoplaySpeed: 3000,
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        adaptiveHeight: false,
-      })
-    );
 
     this.addProp({
       type: "array",
@@ -303,6 +290,20 @@ class ImageGallery11 extends BaseImageGallery {
         },
       ],
     });
+
+    this.addProp(
+      INPUTS.SLIDER_SETTINGS("settings", "Slider Settings", {
+        dots: false,
+        arrows: false,
+        infinite: true,
+        speed: 70000,
+        autoplay: true,
+        autoplaySpeed: 3000,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        adaptiveHeight: false,
+      })
+    );
   }
 
   static getName(): string {
