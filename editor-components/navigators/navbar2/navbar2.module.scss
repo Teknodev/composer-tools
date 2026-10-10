@@ -471,26 +471,27 @@
 @container (max-width: #{$composer-tablet-width}) {
   .navbarContainer {
     .maxContent {
-      .mobileRight{
-        display: flex;
-        gap: var(--composer-gap-sm);
-      }
       .logo {
         .image {
           width: fit-content;
           max-height: 50px;
         }
       }
+    }
+  }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+  .navbarContainer {
+    .maxContent {
+      position: static;
+
+      .mobileRight{
+        display: flex;
+        gap: var(--composer-gap-sm);
+      }
       .pcNavbar {
         display: none;
-
-        .menuItemContainer {
-          .menuItem {
-            .dropdownIcon {
-              font-size: calc(2 * var(--composer-font-size-md));
-            }
-          }
-        }
       }
       .localizationMobile{
         display: flex;
@@ -500,11 +501,49 @@
         display: block;
         font-size: 1.5rem;
       }
+      .closeIcon {
+        right: var(--composer-gap-md);
+      }
+      .logo {
+        .image {
+          max-height: 40px;
+        }
+      }
         .mobileMenu {
           display: flex;
           flex-direction: column;
-          .mobileMenuItems {
-            margin-top: calc(2 * var(--composer-gap-xl));
+          top: 0;
+          right: 0;
+          width: 100%;
+          padding-left: var(--composer-gap-md);
+          padding-right: var(--composer-gap-md);
+
+          .hamburgerMenu {
+            .hamburgerMenuItem {
+              .hamburgerMenuItemHeader {
+                padding: calc(var(--composer-gap-sm) + var(--composer-gap-xs)) 0;
+
+                .hamburgerMenuItemTitle {
+                  font-size: calc(1.125 * var(--composer-font-size-md)) !important;
+                }
+              }
+              .hamburgerSubmenu {
+                .hamburgerSubmenuItem {
+                  .hamburgerSubmenuItemHeader {
+                    .hamburgerMenuItemTitle {
+                      font-size: var(--composer-font-size-md) !important;
+                    }
+                  }
+                  .hamburgerSubSubmenu {
+                    .hamburgerSubSubmenuItem {
+                      .hamburgerSubSubmenuItemTitle {
+                        font-size: var(--composer-font-size-md) !important;
+                      }
+                    }
+                  }
+                }
+              }
+            }
           }
           .languageAccordionTitle {
             transition: all 0.3s ease;
@@ -528,7 +567,6 @@
             transition: transform 0.3s ease;
           }
         }
-   
     }
     .overlay {
       &.overlayActive {
@@ -536,27 +574,6 @@
         display: block;
         opacity: 1;
         visibility: visible;
-      }
-    }
-  }
-}
-
-@container (max-width: #{$composer-phone-width}) {
-  .navbarContainer {
-    .maxContent {
-        .mobileMenu {
-          padding-left: var(--composer-gap-md);
-          padding-right: var(--composer-gap-md);
-        }
-    
-      .logo {
-        .image {
-          max-height: 40px;
-        }
-      }
-
-      .closeIcon {
-        right: var(--composer-gap-md);
       }
     }
   }

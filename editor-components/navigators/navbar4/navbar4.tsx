@@ -21,7 +21,7 @@ interface Information {
 interface MenuItems {
   title: React.JSX.Element;
   navigate_to: string;
-  sub_item_menuType: string;
+  menuType: string;
   sub_items: MenuItems[];
 }
 
@@ -51,7 +51,7 @@ class Navbar4 extends BaseNavigator {
         {
           type: "media",
           key: "image",
-          displayer: "Image",
+          displayer: "Media",
           additionalParams: {
             availableTypes: ["image"],
           },
@@ -71,7 +71,7 @@ class Navbar4 extends BaseNavigator {
           key: "description",
           value:
             "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-          displayer: "Description Text",
+          displayer: "Text",
         },
       ],
     });
@@ -84,7 +84,7 @@ class Navbar4 extends BaseNavigator {
         {
           type: "media",
           key: "defaultLogo_image",
-          displayer: "Image",
+          displayer: "Media",
           additionalParams: {
             availableTypes: ["image"],
           },
@@ -110,7 +110,7 @@ class Navbar4 extends BaseNavigator {
         {
           type: "media",
           key: "absoluteLogo_image",
-          displayer: "Image",
+          displayer: "Media",
           additionalParams: {
             availableTypes: ["image"],
           },
@@ -279,232 +279,7 @@ class Navbar4 extends BaseNavigator {
                       type: "string",
                       key: "title",
                       displayer: "Title",
-                      value: "FASHION HOME",
-                    },
-                    {
-                      type: "page",
-                      key: "navigate_to",
-                      displayer: "Navigate To",
                       value: "",
-                    },
-                    {
-                      type: "array",
-                      key: "sub_items",
-                      displayer: "Sub Items",
-                      value: [
-                        {
-                          type: "object",
-                          key: "sub_item",
-                          displayer: "Sub Item",
-                          value: [
-                            {
-                              type: "string",
-                              key: "title",
-                              displayer: "Title",
-                              value: "",
-                            },
-                            {
-                              type: "page",
-                              key: "navigate_to",
-                              displayer: "Navigate To",
-                              value: "",
-                            },
-                          ],
-                        },
-                      ],
-                    },
-                  ],
-                },
-                {
-                  type: "object",
-                  key: "sub_item",
-                  displayer: "Sub Item",
-                  value: [
-                    {
-                      type: "string",
-                      key: "title",
-                      displayer: "Title",
-                      value: "WINERY HOME",
-                    },
-                    {
-                      type: "page",
-                      key: "navigate_to",
-                      displayer: "Navigate To",
-                      value: "",
-                    },
-                    {
-                      type: "array",
-                      key: "sub_items",
-                      displayer: "Sub Items",
-                      value: [
-                        {
-                          type: "object",
-                          key: "sub_item",
-                          displayer: "Sub Item",
-                          value: [
-                            {
-                              type: "string",
-                              key: "title",
-                              displayer: "Title",
-                              value: "",
-                            },
-                            {
-                              type: "page",
-                              key: "navigate_to",
-                              displayer: "Navigate To",
-                              value: "",
-                            },
-                          ],
-                        },
-                      ],
-                    },
-                  ],
-                },
-                {
-                  type: "object",
-                  key: "sub_item",
-                  displayer: "Sub Item",
-                  value: [
-                    {
-                      type: "string",
-                      key: "title",
-                      displayer: "Title",
-                      value: "NEW ARRIVALS",
-                    },
-                    {
-                      type: "page",
-                      key: "navigate_to",
-                      displayer: "Navigate To",
-                      value: "",
-                    },
-                    {
-                      type: "array",
-                      key: "sub_items",
-                      displayer: "Sub Items",
-                      value: [
-                        {
-                          type: "object",
-                          key: "sub_item",
-                          displayer: "Sub Item",
-                          value: [
-                            {
-                              type: "string",
-                              key: "title",
-                              displayer: "Title",
-                              value: "",
-                            },
-                            {
-                              type: "page",
-                              key: "navigate_to",
-                              displayer: "Navigate To",
-                              value: "",
-                            },
-                          ],
-                        },
-                      ],
-                    },
-                  ],
-                },
-                {
-                  type: "object",
-                  key: "sub_item",
-                  displayer: "Sub Item",
-                  value: [
-                    {
-                      type: "string",
-                      key: "title",
-                      displayer: "Title",
-                      value: "MEN & WOMEN",
-                    },
-                    {
-                      type: "page",
-                      key: "navigate_to",
-                      displayer: "Navigate To",
-                      value: "",
-                    },
-                    {
-                      type: "array",
-                      key: "sub_items",
-                      displayer: "Sub Items",
-                      value: [
-                        {
-                          type: "object",
-                          key: "sub_item",
-                          displayer: "Sub Item",
-                          value: [
-                            {
-                              type: "string",
-                              key: "title",
-                              displayer: "Title",
-                              value: "",
-                            },
-                            {
-                              type: "page",
-                              key: "navigate_to",
-                              displayer: "Navigate To",
-                              value: "",
-                            },
-                          ],
-                        },
-                      ],
-                    },
-                  ],
-                },
-                {
-                  type: "object",
-                  key: "sub_item",
-                  displayer: "Sub Item",
-                  value: [
-                    {
-                      type: "string",
-                      key: "title",
-                      displayer: "Title",
-                      value: "TREND COLLECTION",
-                    },
-                    {
-                      type: "page",
-                      key: "navigate_to",
-                      displayer: "Navigate To",
-                      value: "",
-                    },
-                    {
-                      type: "array",
-                      key: "sub_items",
-                      displayer: "Sub Items",
-                      value: [
-                        {
-                          type: "object",
-                          key: "sub_item",
-                          displayer: "Sub Item",
-                          value: [
-                            {
-                              type: "string",
-                              key: "title",
-                              displayer: "Title",
-                              value: "",
-                            },
-                            {
-                              type: "page",
-                              key: "navigate_to",
-                              displayer: "Navigate To",
-                              value: "",
-                            },
-                          ],
-                        },
-                      ],
-                    },
-                  ],
-                },
-                {
-                  type: "object",
-                  key: "sub_item",
-                  displayer: "Sub Item",
-                  value: [
-                    {
-                      type: "string",
-                      key: "title",
-                      displayer: "Title",
-                      value: "CREATIVE",
                     },
                     {
                       type: "page",
@@ -582,7 +357,7 @@ class Navbar4 extends BaseNavigator {
                       type: "string",
                       key: "title",
                       displayer: "Title",
-                      value: "SUB ITEM1",
+                      value: "",
                     },
                     {
                       type: "page",
@@ -660,232 +435,7 @@ class Navbar4 extends BaseNavigator {
                       type: "string",
                       key: "title",
                       displayer: "Title",
-                      value: "ABOUT US",
-                    },
-                    {
-                      type: "page",
-                      key: "navigate_to",
-                      displayer: "Navigate To",
                       value: "",
-                    },
-                    {
-                      type: "array",
-                      key: "sub_items",
-                      displayer: "Sub Items",
-                      value: [
-                        {
-                          type: "object",
-                          key: "sub_item",
-                          displayer: "Sub Item",
-                          value: [
-                            {
-                              type: "string",
-                              key: "title",
-                              displayer: "Title",
-                              value: "",
-                            },
-                            {
-                              type: "page",
-                              key: "navigate_to",
-                              displayer: "Navigate To",
-                              value: "",
-                            },
-                          ],
-                        },
-                      ],
-                    },
-                  ],
-                },
-                {
-                  type: "object",
-                  key: "sub_item",
-                  displayer: "Sub Item",
-                  value: [
-                    {
-                      type: "string",
-                      key: "title",
-                      displayer: "Title",
-                      value: "LOOKBOOK",
-                    },
-                    {
-                      type: "page",
-                      key: "navigate_to",
-                      displayer: "Navigate To",
-                      value: "",
-                    },
-                    {
-                      type: "array",
-                      key: "sub_items",
-                      displayer: "Sub Items",
-                      value: [
-                        {
-                          type: "object",
-                          key: "sub_item",
-                          displayer: "Sub Item",
-                          value: [
-                            {
-                              type: "string",
-                              key: "title",
-                              displayer: "Title",
-                              value: "",
-                            },
-                            {
-                              type: "page",
-                              key: "navigate_to",
-                              displayer: "Navigate To",
-                              value: "",
-                            },
-                          ],
-                        },
-                      ],
-                    },
-                  ],
-                },
-                {
-                  type: "object",
-                  key: "sub_item",
-                  displayer: "Sub Item",
-                  value: [
-                    {
-                      type: "string",
-                      key: "title",
-                      displayer: "Title",
-                      value: "TYPOGRAPHY",
-                    },
-                    {
-                      type: "page",
-                      key: "navigate_to",
-                      displayer: "Navigate To",
-                      value: "",
-                    },
-                    {
-                      type: "array",
-                      key: "sub_items",
-                      displayer: "Sub Items",
-                      value: [
-                        {
-                          type: "object",
-                          key: "sub_item",
-                          displayer: "Sub Item",
-                          value: [
-                            {
-                              type: "string",
-                              key: "title",
-                              displayer: "Title",
-                              value: "",
-                            },
-                            {
-                              type: "page",
-                              key: "navigate_to",
-                              displayer: "Navigate To",
-                              value: "",
-                            },
-                          ],
-                        },
-                      ],
-                    },
-                  ],
-                },
-                {
-                  type: "object",
-                  key: "sub_item",
-                  displayer: "Sub Item",
-                  value: [
-                    {
-                      type: "string",
-                      key: "title",
-                      displayer: "Title",
-                      value: "SHORTCODES",
-                    },
-                    {
-                      type: "page",
-                      key: "navigate_to",
-                      displayer: "Navigate To",
-                      value: "",
-                    },
-                    {
-                      type: "array",
-                      key: "sub_items",
-                      displayer: "Sub Items",
-                      value: [
-                        {
-                          type: "object",
-                          key: "sub_item",
-                          displayer: "Sub Item",
-                          value: [
-                            {
-                              type: "string",
-                              key: "title",
-                              displayer: "Title",
-                              value: "",
-                            },
-                            {
-                              type: "page",
-                              key: "navigate_to",
-                              displayer: "Navigate To",
-                              value: "",
-                            },
-                          ],
-                        },
-                      ],
-                    },
-                  ],
-                },
-                {
-                  type: "object",
-                  key: "sub_item",
-                  displayer: "Sub Item",
-                  value: [
-                    {
-                      type: "string",
-                      key: "title",
-                      displayer: "Title",
-                      value: "COMING SOON",
-                    },
-                    {
-                      type: "page",
-                      key: "navigate_to",
-                      displayer: "Navigate To",
-                      value: "",
-                    },
-                    {
-                      type: "array",
-                      key: "sub_items",
-                      displayer: "Sub Items",
-                      value: [
-                        {
-                          type: "object",
-                          key: "sub_item",
-                          displayer: "Sub Item",
-                          value: [
-                            {
-                              type: "string",
-                              key: "title",
-                              displayer: "Title",
-                              value: "",
-                            },
-                            {
-                              type: "page",
-                              key: "navigate_to",
-                              displayer: "Navigate To",
-                              value: "",
-                            },
-                          ],
-                        },
-                      ],
-                    },
-                  ],
-                },
-                {
-                  type: "object",
-                  key: "sub_item",
-                  displayer: "Sub Item",
-                  value: [
-                    {
-                      type: "string",
-                      key: "title",
-                      displayer: "Title",
-                      value: "PAGE 404",
                     },
                     {
                       type: "page",
@@ -963,65 +513,13 @@ class Navbar4 extends BaseNavigator {
                       type: "string",
                       key: "title",
                       displayer: "Title",
-                      value: "BLOG POSTS",
+                      value: "",
                     },
                     {
                       type: "page",
                       key: "navigate_to",
                       displayer: "Navigate To",
                       value: "",
-                    },
-                    {
-                      type: "array",
-                      key: "sub_items",
-                      displayer: "Sub Items",
-                      value: [
-                        {
-                          type: "object",
-                          key: "sub_item",
-                          displayer: "Sub Item",
-                          value: [
-                            {
-                              type: "string",
-                              key: "title",
-                              displayer: "Title",
-                              value: "",
-                            },
-                            {
-                              type: "page",
-                              key: "navigate_to",
-                              displayer: "Navigate To",
-                              value: "",
-                            },
-                          ],
-                        },
-                      ],
-                    },
-                  ],
-                },
-                {
-                  type: "object",
-                  key: "sub_item",
-                  displayer: "Sub Item",
-                  value: [
-                    {
-                      type: "string",
-                      key: "title",
-                      displayer: "Title",
-                      value: "MASONARY",
-                    },
-                    {
-                      type: "page",
-                      key: "navigate_to",
-                      displayer: "Navigate To",
-                      value: "",
-                    },
-                    {
-                      type: "select",
-                      key: "sub_item_menuType",
-                      displayer: "Type",
-                      value: "Normal",
-                      additionalParams: { selectItems: ["Dropdown", "Normal"] },
                     },
                     {
                       type: "array",
@@ -1093,7 +591,7 @@ class Navbar4 extends BaseNavigator {
                       type: "string",
                       key: "title",
                       displayer: "Title",
-                      value: "CONTACTS SUB ITEM",
+                      value: "",
                     },
                     {
                       type: "page",
@@ -1115,7 +613,7 @@ class Navbar4 extends BaseNavigator {
                               type: "string",
                               key: "title",
                               displayer: "Title",
-                              value: "CONTACTS SUB SUB ITEM ",
+                              value: "",
                             },
                             {
                               type: "page",
@@ -1249,8 +747,8 @@ class Navbar4 extends BaseNavigator {
         {
           type: "boolean",
           key: "showLanguage",
-          displayer: "Show Language",
-          value: true,
+          displayer: "Language",
+          value: false,
         },
         {
           type: "boolean",
@@ -1317,12 +815,6 @@ class Navbar4 extends BaseNavigator {
       ],
     });
 
-    this.addProp({
-      type: "string",
-      key: "hamburgerMenuTitle",
-      displayer: "Hamburger Menu Title",
-      value: "MENU",
-    });
     this.addProp({
       type:"multiSelect",
       key: "animations",
@@ -1395,7 +887,6 @@ class Navbar4 extends BaseNavigator {
     const defaultLogo = this.castToObject<Logo>("defaultLogo");
     const information = this.castToObject<Information>("information");
     const menuItems = this.castToObject<MenuItems[]>("menuItems");
-    const hamburgerMenuTitle: string = this.getPropValue("hamburgerMenuTitle");
     const navigationIcons = this.castToObject<{
       dropdownIcon?: TypeMediaInputValue;
       rightIcon?: TypeMediaInputValue;
@@ -1426,6 +917,9 @@ class Navbar4 extends BaseNavigator {
     
     const isVisible = isHamburgerActive && !isBigScreen;
 
+    const hasSubItems = (item: MenuItems) =>
+      item.sub_items?.some((subItem: MenuItems) => this.castToString(subItem.title));
+
     const animations = this.getPropValue("animations") && this.getPropValue("animations").map((animation:string) => this.decorateCSS(animation)).join(" ");
 
     return (
@@ -1449,13 +943,13 @@ class Navbar4 extends BaseNavigator {
                       </div>
                     )}
                     {informationTextContainer && (
-                      <div
+                      <Base.VerticalContent
                         className={this.decorateCSS("informationTextContainer")}
                       >
                         {informationTitle && (
-                          <Base.P className={this.decorateCSS("informationTitle")}>
+                          <Base.H6 className={this.decorateCSS("informationTitle")}>
                             {information.title}
-                          </Base.P>
+                          </Base.H6>
                         )}
                         {informationDescription && (
                           <Base.P
@@ -1466,7 +960,7 @@ class Navbar4 extends BaseNavigator {
                             {information.description}
                           </Base.P>
                         )}
-                      </div>
+                      </Base.VerticalContent>
                     )}
                   </div>
                 )}
@@ -1538,18 +1032,18 @@ class Navbar4 extends BaseNavigator {
                         >
                           <ComposerLink path={item.navigate_to}>
                             <div className={this.decorateCSS("menuItem")}>
-                              {item.menuType === "Dropdown" && (
+                              {item.menuType === "Dropdown" && hasSubItems(item) && (
                                 <Base.Media
                                   value={navigationIcons?.dropdownIcon}
                                   className={this.decorateCSS("dropdownIcon")}
                                 />
                               )}
-                              <Base.P className={`${this.decorateCSS("menuItemTitle")} ${animations}`}>
+                              <Base.H6 className={`${this.decorateCSS("menuItemTitle")} ${animations}`}>
                                 {item.title}
-                              </Base.P>
+                              </Base.H6>
                             </div>
                           </ComposerLink>
-                          {item.menuType === "Dropdown" && (
+                          {item.menuType === "Dropdown" && hasSubItems(item) && (
                             <div className={this.decorateCSS("dropdown")}>
                               {item.sub_items?.map(
                                 (subItem: any, subIndex: number) => this.castToString(subItem.title) && (
@@ -1668,9 +1162,6 @@ class Navbar4 extends BaseNavigator {
               </div>
 
               <div className={this.decorateCSS("hamburgerIconContainer")}>
-                <Base.P className={this.decorateCSS("hamburgerMenuTitle")}>
-                  {hamburgerMenuTitle}
-                </Base.P>
                 {isHamburgerActive ? (
                   <div onClick={this.handleCloseMenu}>
                     <Base.Media
@@ -1709,16 +1200,16 @@ class Navbar4 extends BaseNavigator {
                         onClick={() => this.navClick(index)}
                       >
                         <ComposerLink path={item.navigate_to}>
-                          <Base.P
+                          <Base.H6
                             className={`${this.decorateCSS(
                               "hamburgerMenuItemTitle"
                             )}`}
                             onClick={()=> this.handleCloseMenu()}
                           >
                             {item.title}
-                          </Base.P>
+                          </Base.H6>
                         </ComposerLink>
-                        {item.sub_item_menuType === "Dropdown" && (
+                        {item.menuType === "Dropdown" && hasSubItems(item) && (
                           <Base.Media
                             value={navigationIcons?.dropdownIcon}
                             className={`${this.decorateCSS("dropdownIcon")} ${
@@ -1730,7 +1221,7 @@ class Navbar4 extends BaseNavigator {
                           />
                         )}
                       </div>
-                      {item.sub_item_menuType === "Dropdown" && (
+                      {item.menuType === "Dropdown" && hasSubItems(item) && (
                         <div
                           className={`${this.decorateCSS("hamburgerSubmenu")} ${
                             this.getComponentState("subNavActiveIndex") ===

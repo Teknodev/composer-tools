@@ -103,7 +103,7 @@ class Navbar1 extends BaseNavigator {
               type: "string",
               key: "title",
               displayer: "Title",
-              value: "HOME",
+              value: "Home",
             },
             {
               type: "page",
@@ -132,7 +132,7 @@ class Navbar1 extends BaseNavigator {
                       type: "string",
                       key: "title",
                       displayer: "Title",
-                      value: "FASHION HOME",
+                      value: "Fashion Home",
                     },
                     {
                       type: "page",
@@ -177,7 +177,7 @@ class Navbar1 extends BaseNavigator {
                       type: "string",
                       key: "title",
                       displayer: "Title",
-                      value: "WINERY HOME",
+                      value: "Winery Home",
                     },
                     {
                       type: "page",
@@ -222,7 +222,7 @@ class Navbar1 extends BaseNavigator {
                       type: "string",
                       key: "title",
                       displayer: "Title",
-                      value: "NEW ARRIVALS",
+                      value: "New Arrivals",
                     },
                     {
                       type: "page",
@@ -267,7 +267,7 @@ class Navbar1 extends BaseNavigator {
                       type: "string",
                       key: "title",
                       displayer: "Title",
-                      value: "MEN & WOMEN",
+                      value: "Men & Women",
                     },
                     {
                       type: "page",
@@ -312,7 +312,7 @@ class Navbar1 extends BaseNavigator {
                       type: "string",
                       key: "title",
                       displayer: "Title",
-                      value: "TREND COLLECTION",
+                      value: "Trend Collection",
                     },
                     {
                       type: "page",
@@ -357,7 +357,7 @@ class Navbar1 extends BaseNavigator {
                       type: "string",
                       key: "title",
                       displayer: "Title",
-                      value: "CREATIVE",
+                      value: "Creative",
                     },
                     {
                       type: "page",
@@ -406,7 +406,7 @@ class Navbar1 extends BaseNavigator {
               type: "string",
               key: "title",
               displayer: "Title",
-              value: "FEATURES",
+              value: "Features",
             },
             {
               type: "page",
@@ -435,7 +435,7 @@ class Navbar1 extends BaseNavigator {
                       type: "string",
                       key: "title",
                       displayer: "Title",
-                      value: "SUB ITEM1",
+                      value: "Sub Item1",
                     },
                     {
                       type: "page",
@@ -484,7 +484,7 @@ class Navbar1 extends BaseNavigator {
               type: "string",
               key: "title",
               displayer: "Title",
-              value: "POST BLOCKS",
+              value: "Post Blocks",
             },
             {
               type: "page",
@@ -513,7 +513,7 @@ class Navbar1 extends BaseNavigator {
                       type: "string",
                       key: "title",
                       displayer: "Title",
-                      value: "ABOUT US",
+                      value: "About Us",
                     },
                     {
                       type: "page",
@@ -558,7 +558,7 @@ class Navbar1 extends BaseNavigator {
                       type: "string",
                       key: "title",
                       displayer: "Title",
-                      value: "LOOKBOOK",
+                      value: "Lookbook",
                     },
                     {
                       type: "page",
@@ -603,7 +603,7 @@ class Navbar1 extends BaseNavigator {
                       type: "string",
                       key: "title",
                       displayer: "Title",
-                      value: "TYPOGRAPHY",
+                      value: "Typography",
                     },
                     {
                       type: "page",
@@ -648,7 +648,7 @@ class Navbar1 extends BaseNavigator {
                       type: "string",
                       key: "title",
                       displayer: "Title",
-                      value: "SHORTCODES",
+                      value: "Shortcodes",
                     },
                     {
                       type: "page",
@@ -693,7 +693,7 @@ class Navbar1 extends BaseNavigator {
                       type: "string",
                       key: "title",
                       displayer: "Title",
-                      value: "COMING SOON",
+                      value: "Coming Soon",
                     },
                     {
                       type: "page",
@@ -738,7 +738,7 @@ class Navbar1 extends BaseNavigator {
                       type: "string",
                       key: "title",
                       displayer: "Title",
-                      value: "PAGE 404",
+                      value: "Page 404",
                     },
                     {
                       type: "page",
@@ -787,7 +787,7 @@ class Navbar1 extends BaseNavigator {
               type: "string",
               key: "title",
               displayer: "Title",
-              value: "NEWS",
+              value: "News",
             },
             {
               type: "page",
@@ -816,7 +816,7 @@ class Navbar1 extends BaseNavigator {
                       type: "string",
                       key: "title",
                       displayer: "Title",
-                      value: "BLOG POSTS",
+                      value: "Blog Posts",
                     },
                     {
                       type: "page",
@@ -861,7 +861,7 @@ class Navbar1 extends BaseNavigator {
                       type: "string",
                       key: "title",
                       displayer: "Title",
-                      value: "MASONARY",
+                      value: "Masonary",
                     },
                     {
                       type: "page",
@@ -917,7 +917,7 @@ class Navbar1 extends BaseNavigator {
               type: "string",
               key: "title",
               displayer: "Title",
-              value: "CONTACTS",
+              value: "Contacts",
             },
             {
               type: "page",
@@ -946,7 +946,7 @@ class Navbar1 extends BaseNavigator {
                       type: "string",
                       key: "title",
                       displayer: "Title",
-                      value: "CONTACTS SUB ITEM",
+                      value: "Contacts Sub Item",
                     },
                     {
                       type: "page",
@@ -968,7 +968,7 @@ class Navbar1 extends BaseNavigator {
                               type: "string",
                               key: "title",
                               displayer: "Title",
-                              value: "CONTACTS SUB SUB ITEM ",
+                              value: "Contacts Sub Sub Item ",
                             },
                             {
                               type: "page",
@@ -995,7 +995,7 @@ class Navbar1 extends BaseNavigator {
               type: "string",
               key: "title",
               displayer: "Title",
-              value: "BUY THEME",
+              value: "Buy Theme",
             },
             {
               type: "page",
@@ -1167,7 +1167,7 @@ class Navbar1 extends BaseNavigator {
         {
           type: "boolean",
           key: "showLanguage",
-          displayer: "Show Language",
+          displayer: "Language",
           value: true,
         },
         {

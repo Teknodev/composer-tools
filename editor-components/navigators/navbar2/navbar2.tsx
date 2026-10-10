@@ -50,85 +50,7 @@ class Navbar2 extends BaseNavigator {
               type: "string",
               key: "nav_title",
               displayer: "Title",
-              value: "HOME",
-            },
-            {
-              type: "page",
-              key: "nav_navigate_to",
-              displayer: "Navigate To",
-              value: "",
-            },
-            {
-              type: "select",
-              key: "menuType",
-              displayer: "Type",
-              value: "Dropdown",
-              additionalParams: { selectItems: ["Dropdown", "Normal"] },
-            },
-            {
-              type: "array",
-              key: "sub_items",
-              displayer: "Sub Items",
-              value: [
-                {
-                  type: "object",
-                  key: "sub_item",
-                  displayer: "Sub Item",
-                  value: [
-                    {
-                      type: "string",
-                      key: "nav_title",
-                      displayer: "Title",
-                      value: "FASHION HOME",
-                    },
-                    {
-                      type: "page",
-                      key: "nav_navigate_to",
-                      displayer: "Navigate To",
-                      value: "",
-                    },
-                    {
-                      type: "array",
-                      key: "sub_items",
-                      displayer: "Sub Items",
-                      value: [
-                        {
-                          type: "object",
-                          key: "sub_item",
-                          displayer: "Sub Item",
-                          value: [
-                            {
-                              type: "string",
-                              key: "nav_title",
-                              displayer: "Title",
-                              value: "",
-                            },
-                            {
-                              type: "page",
-                              key: "nav_navigate_to",
-                              displayer: "Navigate To",
-                              value: "",
-                            },
-                          ],
-                        },
-                      ],
-                    },
-                  ],
-                },
-              ],
-            },
-          ],
-        },
-        {
-          type: "object",
-          key: "nav_item",
-          displayer: "Item",
-          value: [
-            {
-              type: "string",
-              key: "nav_title",
-              displayer: "Title",
-              value: "FEATURES",
+              value: "Home",
             },
             {
               type: "page",
@@ -206,7 +128,7 @@ class Navbar2 extends BaseNavigator {
               type: "string",
               key: "nav_title",
               displayer: "Title",
-              value: "POST BLOCKS",
+              value: "Features",
             },
             {
               type: "page",
@@ -284,7 +206,7 @@ class Navbar2 extends BaseNavigator {
               type: "string",
               key: "nav_title",
               displayer: "Title",
-              value: "NEWS",
+              value: "Post Blocks",
             },
             {
               type: "page",
@@ -362,7 +284,85 @@ class Navbar2 extends BaseNavigator {
               type: "string",
               key: "nav_title",
               displayer: "Title",
-              value: "CONTACTS",
+              value: "News",
+            },
+            {
+              type: "page",
+              key: "nav_navigate_to",
+              displayer: "Navigate To",
+              value: "",
+            },
+            {
+              type: "select",
+              key: "menuType",
+              displayer: "Type",
+              value: "Normal",
+              additionalParams: { selectItems: ["Dropdown", "Normal"] },
+            },
+            {
+              type: "array",
+              key: "sub_items",
+              displayer: "Sub Items",
+              value: [
+                {
+                  type: "object",
+                  key: "sub_item",
+                  displayer: "Sub Item",
+                  value: [
+                    {
+                      type: "string",
+                      key: "nav_title",
+                      displayer: "Title",
+                      value: "",
+                    },
+                    {
+                      type: "page",
+                      key: "nav_navigate_to",
+                      displayer: "Navigate To",
+                      value: "",
+                    },
+                    {
+                      type: "array",
+                      key: "sub_items",
+                      displayer: "Sub Items",
+                      value: [
+                        {
+                          type: "object",
+                          key: "sub_item",
+                          displayer: "Sub Item",
+                          value: [
+                            {
+                              type: "string",
+                              key: "nav_title",
+                              displayer: "Title",
+                              value: "",
+                            },
+                            {
+                              type: "page",
+                              key: "nav_navigate_to",
+                              displayer: "Navigate To",
+                              value: "",
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "nav_item",
+          displayer: "Item",
+          value: [
+            {
+              type: "string",
+              key: "nav_title",
+              displayer: "Title",
+              value: "Contacts",
             },
             {
               type: "page",
@@ -545,7 +545,7 @@ class Navbar2 extends BaseNavigator {
     this.addProp({
       type: "boolean",
       key: "divider",
-      displayer: "Divider",
+      displayer: "Line",
       value: true,
     });
 
@@ -584,13 +584,13 @@ class Navbar2 extends BaseNavigator {
         {
           type: "boolean",
           key: "showLanguage",
-          displayer: "Show Language",
-          value: true,
+          displayer: "Language",
+          value: false,
         },
         {
           type: "boolean",
           key: "showDivider",
-          displayer: "Divider",
+          displayer: "Line",
           value: false,
         },
       ],
@@ -599,7 +599,7 @@ class Navbar2 extends BaseNavigator {
       type:"multiSelect",
       key: "animations",
       displayer: "Animations",
-      value: ["animation1","animation2"],
+      value: [],
       additionalParams:{
         selectItems:["animation1", "animation2"]
       }
@@ -680,6 +680,7 @@ class Navbar2 extends BaseNavigator {
         positionContainer={`${this.decorateCSS("navbarContainer")} ${changeBackground ? this.decorateCSS("filledBackground") : ""}`}
         setIsBigScreen={(value) => this.setComponentState("isBigScreen", value)}
         setIsScrolled={(value) => this.setComponentState("isScrolled", value)}
+        screenSize={641}
         className={this.decorateCSS("filledBackground")}
       >
         <Base.MaxContent
