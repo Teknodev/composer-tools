@@ -25,22 +25,25 @@
             }
 
             .cards-container {
-                gap: var(--composer-gap-lg);
                 align-items: stretch;
                 justify-items: stretch;
 
                 .card {
-                    display: flex;
-                    flex-direction: column;
-                    gap: var(--composer-gap-md);
+                    border-radius: var(--composer-border-radius-md);
+                    box-shadow: var(--box-shadow-active);
+                    padding: var(--composer-gap-lg);
                     box-sizing: border-box;
                     overflow: hidden;
+                    align-items: flex-start !important;
                     text-align: left !important;
 
+                    .card-subtitle,
                     .card-title,
                     .card-description {
                         color: var(--composer-font-color-primary);
                         text-align: left !important;
+                        margin-left: 0 !important;
+                        margin-right: 0 !important;
                     }
 
                     .card-button {
@@ -70,13 +73,14 @@
 
 @container (max-width: #{$composer-tablet-width}) {
     .container {
-        background: var(--composer-html-background);
-
         .max-content {
             .content-wrapper {
                 .cards-container {
                     flex-direction: row;
-                    gap: var(--composer-gap-md);
+
+                    .card {
+                        padding: var(--composer-gap-md);
+                    }
                 }
             }
         }
@@ -85,12 +89,18 @@
 
 @container (max-width: #{$composer-phone-width}) {
     .container {
+        background: var(--composer-html-background);
+
         .max-content {
             .content-wrapper {
                 gap: calc(var(--composer-gap-sm) * 3);
 
                 .cards-container {
                     flex-direction: column;
+
+                    .card {
+                        padding: calc(var(--composer-gap-sm) * 3);
+                    }
                 }
             }
         }

@@ -32,7 +32,6 @@
         }
 
         .cards-container {
-            gap: var(--composer-gap-lg);
 
             .card-shell {
                 display: flex;
@@ -59,6 +58,7 @@
                         content: "";
                     }
                 }
+                    .card-subtitle,
                     .card-title,
                     .card-description {
                         color: var(--composer-font-color-primary);
@@ -107,6 +107,7 @@
 
             .cards-container {
                 .card {
+                    padding: 20px;
                     .icon-container {
                         width: 70px;
                         height: 70px;
@@ -142,4 +143,10 @@
             }
         }
     }
+}
+
+@container (max-width: #{$composer-tablet-width}) {
+  .container .card-shell {
+    padding: var(--composer-gap-md);
+  }
 }

@@ -8,7 +8,7 @@ import { INPUTS } from "../../../custom-hooks/input-templates";
 type Card = {
   icon: TypeMediaInputValue;
   card_title: React.JSX.Element;
-  description: React.JSX.Element;
+  card_description: React.JSX.Element;
   num: React.JSX.Element;
 };
 
@@ -35,6 +35,22 @@ class Feature9 extends BaseFeature {
     });
 
     this.addProp({
+      type: "string",
+      key: "description",
+      displayer: "Description",
+      value: "",
+    });
+
+    this.addProp({
+      type: "array",
+      key: "buttons",
+      displayer: "Buttons",
+      value: [
+        INPUTS.BUTTON("button", "Button", "View our services", "", null, null, "Primary")
+      ]
+    });
+
+    this.addProp({
       type: "array",
       key: "cards",
       displayer: "Cards",
@@ -47,7 +63,7 @@ class Feature9 extends BaseFeature {
             {
               type: "string",
               key: "num",
-              displayer: "Card Number",
+              displayer: "Number",
               value: "1"
             },
             {
@@ -55,7 +71,7 @@ class Feature9 extends BaseFeature {
               key: "icon",
               displayer: "Icon",
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon", "image"],
               },
               value: {
                 type: "icon",
@@ -70,7 +86,7 @@ class Feature9 extends BaseFeature {
             },
             {
               type: "string",
-              key: "description",
+              key: "card_description",
               displayer: "Description",
               value: "The first thing we do is conduct comprehensive research to understand your business and users' goals. We also identify your competition's strengths and weaknesses and define a plan to use all of the findings in your favor. "
             }
@@ -84,7 +100,7 @@ class Feature9 extends BaseFeature {
             {
               type: "string",
               key: "num",
-              displayer: "Card Number",
+              displayer: "Number",
               value: "2"
             },
             {
@@ -92,7 +108,7 @@ class Feature9 extends BaseFeature {
               key: "icon",
               displayer: "Icon",
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon", "image"],
               },
               value: {
                 type: "icon",
@@ -107,7 +123,7 @@ class Feature9 extends BaseFeature {
             },
             {
               type: "string",
-              key: "description",
+              key: "card_description",
               displayer: "Description",
               value: "Based on research findings, we start setting up navigation and content hierarchy with the primary goal of making the whole experience as intuitive as possible. Next, we sharpen our pencils and lay out the ideas on paper. We believe in 'sketch twice, design once'!"
             }
@@ -121,7 +137,7 @@ class Feature9 extends BaseFeature {
             {
               type: "string",
               key: "num",
-              displayer: "Card Number",
+              displayer: "Number",
               value: "3"
             },
             {
@@ -129,7 +145,7 @@ class Feature9 extends BaseFeature {
               key: "icon",
               displayer: "Icon",
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon", "image"],
               },
               value: {
                 type: "icon",
@@ -144,7 +160,7 @@ class Feature9 extends BaseFeature {
             },
             {
               type: "string",
-              key: "description",
+              key: "card_description",
               displayer: "Description",
               value: "We create a digital version of the best ideas from previous phase and create a medium-fidelity prototype. By presenting the initial version of the product to your target audience, we can quickly validate the concept and iterate the design efficiently."
             }
@@ -158,7 +174,7 @@ class Feature9 extends BaseFeature {
             {
               type: "string",
               key: "num",
-              displayer: "Card Number",
+              displayer: "Number",
               value: "4"
             },
             {
@@ -166,7 +182,7 @@ class Feature9 extends BaseFeature {
               key: "icon",
               displayer: "Icon",
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon", "image"],
               },
               value: {
                 type: "icon",
@@ -181,7 +197,7 @@ class Feature9 extends BaseFeature {
             },
             {
               type: "string",
-              key: "description",
+              key: "card_description",
               displayer: "Description",
               value: "Our design process is about making simple but eye-catching experiences. The primary goal is to achieve the wow factor and set you apart with that premium look. We also take care of the smallest details and prepare a comprehensive design system for you to keep scaling and growing your business."
             }
@@ -195,7 +211,7 @@ class Feature9 extends BaseFeature {
             {
               type: "string",
               key: "num",
-              displayer: "Card Number",
+              displayer: "Number",
               value: "5"
             },
             {
@@ -203,7 +219,7 @@ class Feature9 extends BaseFeature {
               key: "icon",
               displayer: "Icon",
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon", "image"],
               },
               value: {
                 type: "icon",
@@ -218,21 +234,12 @@ class Feature9 extends BaseFeature {
             },
             {
               type: "string",
-              key: "description",
+              key: "card_description",
               displayer: "Description",
               value: "By leveraging the latest technologies, we share your brand and products with the world while focusing on a perfect visual output through stable and high-performing code. As a team with a user-centered design approach, it's crucial to ensure the end product remains the same as envisioned in previous phases."
             }
           ]
         },
-      ]
-    });
-
-    this.addProp({
-      type: "array",
-      key: "buttons",
-      displayer: "Buttons",
-      value: [
-        INPUTS.BUTTON("button", "Button", "View our services", "", null, null, "Primary")
       ]
     });
   }
@@ -241,7 +248,25 @@ class Feature9 extends BaseFeature {
     return "Feature 9";
   }
 
+  componentDidMount() {
+    this.setupObserver();
+  }
+
+  componentDidUpdate() {
+    const cards = this.castToObject<Card[]>("cards");
+    if (this.getComponentState("cardLength") !== cards.length) {
+      this.setupObserver();
+    }
+  }
+
+  componentWillUnmount() {
+    if (this.observer) {
+      this.observer.disconnect();
+    }
+  }
+
   setupObserver() {
+    if (typeof document === 'undefined') return;
     const cardElements = document.querySelectorAll("." + this.decorateCSS("card"));
 
     const callback = (entries: IntersectionObserverEntry[]) => {
@@ -270,6 +295,9 @@ class Feature9 extends BaseFeature {
     const cardElements = typeof document !== "undefined" ? document.querySelectorAll("." + this.decorateCSS("card")) : ([] as unknown as NodeListOf<Element>);
     const title = this.getPropValue("title");
     const subtitle = this.getPropValue("subtitle");
+    const description = this.getPropValue("description");
+
+    const hasValidButtons = buttons && buttons.some((button: INPUTS.CastedButton) => this.castToString(button.text));
 
     const cardsLengthIsChanged = this.getComponentState("cardLength") != cardElements.length;
 
@@ -277,13 +305,13 @@ class Feature9 extends BaseFeature {
       this.setupObserver();
     }
 
-    const wrapperExist = this.castToString(title) || this.castToString(subtitle) || cards?.length > 0;
+    const wrapperExist = this.castToString(title) || this.castToString(subtitle) || this.castToString(description) || hasValidButtons || cards?.length > 0;
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
         {wrapperExist && <div className={this.decorateCSS("wrapper")}>
-            {(this.castToString(title) || this.castToString(subtitle)) &&
+            {(this.castToString(title) || this.castToString(subtitle) || this.castToString(description) || hasValidButtons) &&
               <Base.VerticalContent className={this.decorateCSS("header")}>
                 {this.castToString(subtitle) &&
                   <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
@@ -295,13 +323,34 @@ class Feature9 extends BaseFeature {
                     {title}
                   </Base.SectionTitle>
                 }
+                {this.castToString(description) &&
+                  <Base.SectionDescription className={this.decorateCSS("description")}>
+                    {description}
+                  </Base.SectionDescription>
+                }
+                {hasValidButtons && (
+                  <div className={this.decorateCSS("buttons-container")}>
+                    {buttons.map((button: INPUTS.CastedButton, index: number) => {
+                      if (this.castToString(button.text)) {
+                        return (
+                          <ComposerLink key={index} path={button.url}>
+                            <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
+                              <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
+                            </Base.Button>
+                          </ComposerLink>
+                        );
+                      }
+                      return null;
+                    })}
+                  </div>
+                )}
               </Base.VerticalContent>
             }
             {cards?.length > 0 &&
               <div className={this.decorateCSS("cards-container")}>
                 {cards.map((card: Card, index: number) => {
                   const titleExist = !!this.castToString(card.card_title);
-                  const descExist = !!this.castToString(card.description);
+                  const descExist = !!this.castToString(card.card_description);
                   const numExist = !!this.castToString(card.num);
 
                   const render = titleExist || descExist || card.icon;
@@ -312,62 +361,41 @@ class Feature9 extends BaseFeature {
                       key={index}
                       className={this.decorateCSS("card")}
                     >
-                      <div className={this.decorateCSS("card-inner")}>
-                        {(card.icon || titleExist) &&
-                          <div className={this.decorateCSS("card-header")}>
-                            {card.icon &&
-                              <div className={this.decorateCSS("icon-container")}>
-                                <Base.Media
-                                  value={card.icon}
-                                  className={this.decorateCSS("icon")}
-                                />
-                              </div>
-                            }
-                            <div className={this.decorateCSS("card-title-container")}>
-                              {numExist &&
-                                <Base.H2 className={this.decorateCSS("card-number")}>
-                                  {card.num}
-                                </Base.H2>
-                              }
-                              {titleExist &&
-                                <Base.H2 className={this.decorateCSS("card-title")}>
-                                  {card.card_title}
-                                </Base.H2>
-                              }
-                            </div>
+                      <Base.VerticalContent className={this.decorateCSS("card-inner")}>
+                        {card.icon && (
+                          <div className={this.decorateCSS("icon-container")}>
+                            <Base.Media
+                              value={card.icon}
+                              className={this.decorateCSS("icon")}
+                            />
                           </div>
-                        }
-                        {descExist &&
-                          <div className={this.decorateCSS("description-container")}>
-                            <Base.H4 className={this.decorateCSS("description")}>
-                              {card.description}
-                            </Base.H4>
+                        )}
+                        {(numExist || titleExist) && (
+                          <div className={this.decorateCSS("card-title-container")}>
+                            {numExist && (
+                              <Base.H5 className={this.decorateCSS("card-number")}>
+                                {card.num}
+                              </Base.H5>
+                            )}
+                            {titleExist && (
+                              <Base.H5 className={this.decorateCSS("card-title")}>
+                                {card.card_title}
+                              </Base.H5>
+                            )}
                           </div>
-                        }
-                      </div>
+                        )}
+                        {descExist && (
+                          <Base.P className={this.decorateCSS("description")}>
+                            {card.card_description}
+                          </Base.P>
+                        )}
+                      </Base.VerticalContent>
                     </div>
                   );
                 })}
               </div>
             }
           </div>}
-          {(buttons?.length > 0) && (
-            <div className={this.decorateCSS("buttons-container")}>
-              {buttons.map((button: INPUTS.CastedButton, index: number) => {
-                if (this.castToString(button.text)) {
-                  return (
-                    <ComposerLink key={index} path={button.url}>
-                      <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
-                        <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
-                      </Base.Button>
-                    </ComposerLink>
-                  );
-                }
-                return null;
-              })}
-            </div>
-          )}
-
         </Base.MaxContent>
       </Base.Container>
     );
