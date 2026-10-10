@@ -2,19 +2,59 @@
 
 .container {
     .max-content {
-        display: flex;
-        flex-direction: column;
-        gap: var(--composer-gap-lg);
+            display: flex;
+            flex-direction: column;
+            gap: var(--composer-gap-lg);
 
-        .section-container {
-            gap: var(--composer-gap-xl);
-            flex-wrap: wrap;
+            .heading {
+                width: 100%;
+
+                .subtitle,
+                .heading-title,
+                .heading-description {
+                    content: "";
+                }
+
+                .button-container {
+                    display: flex;
+                    flex-wrap: wrap;
+                    gap: var(--composer-gap-sm);
+
+                    .header-button {
+                        .header-button-text {
+                            content: "";
+                        }
+                    }
+                }
+            }
+
+        .category-wrapper {
+            display: flex;
+            align-items: center;
             width: 100%;
+            gap: var(--composer-gap-md);
+
+            .category-line {
+                flex: 1;
+                min-width: var(--composer-gap-md);
+                height: var(--composer-gap-xs);
+                background-color: rgba(var(--composer-font-color-primary-rgb), 0.1);
+            }
+        }
+
+        // Original: 14px tab labels, ~20px apart
+        .section-container {
+            gap: var(--composer-gap-md);
+            flex-wrap: wrap;
+            width: auto;
+            justify-content: center !important;
+            align-items: center;
 
             .section-text {
                 width: fit-content;
                 margin: 0;
-                padding: var(--composer-gap-sm);
+                padding: var(--composer-gap-xs) var(--composer-gap-sm);
+                font-size: calc(0.875 * var(--composer-font-size-md)) !important;
                 color: var(--composer-font-color-primary);
                 cursor: pointer;
 
@@ -31,7 +71,7 @@
         .content {
             display: flex;
             width: 100%;
-            align-items: stretch;
+            align-items: flex-start;
             gap: var(--composer-gap-md);
 
             .left-container,
@@ -52,14 +92,21 @@
 
                 .images {
                     position: relative;
-                    border-radius: var(--composer-border-radius-sm);
+                    border-radius: var(--composer-border-radius-md);
                     overflow: hidden;
                     width: 100%;
 
-                    &.large-image,
-                    &.small-image,
+                    &.large-image {
+                        aspect-ratio: 1 / 1;
+                    }
+
+                    &.small-image {
+                        aspect-ratio: 100 / 65;
+                    }
+
                     &.normal-image {
-                        aspect-ratio: 2 / 1;
+                        aspect-ratio: 1 / 1;
+                    }
 
                         .image-wrapper {
                             display: flex;
@@ -79,10 +126,11 @@
                                 position: absolute;
                                 background-color: var(--composer-primary-color);
                                 color: var(--composer-font-color-secondary);
-                                height: 200px;
+                                height: 160px;
                                 width: 40px;
                                 bottom: 0px;
                                 left: var(--composer-gap-xl);
+                                border-radius: var(--composer-border-radius-sm) var(--composer-border-radius-sm) 0 0;
                                 display: flex;
                                 align-items: center;
                                 justify-content: center;
@@ -98,15 +146,15 @@
                             }
 
                             .badge-container {
-                                padding: 0px;
-                                visibility: hidden;
-                                max-height: 0px;
                                 position: absolute;
                                 bottom: 0px;
+                                left: 0px;
                                 width: 100%;
                                 background-color: var(--composer-primary-color);
                                 color: var(--composer-font-color-secondary);
-                                transition: max-height 1.4s cubic-bezier(0, 0, .3642, 1), padding 0.4s cubic-bezier(0, 0, .3642, 1);
+                                transform: translateY(100%);
+                                opacity: 0;
+                                transition: transform 0.4s cubic-bezier(0, 0, .3642, 1), opacity 0.4s cubic-bezier(0, 0, .3642, 1);
                                 display: flex;
                                 align-items: center;
 
@@ -115,15 +163,20 @@
                                     display: flex;
                                     flex-direction: column;
                                     justify-content: center;
-                                    gap: var(--composer-gap-md);
-                                    padding: var(--composer-gap-xl) var(--composer-gap-xl) var(--composer-gap-xl) calc(var(--composer-gap-xl) * 3); 
+                                    gap: calc(var(--composer-gap-md) * 1.5);
+                                    // Original: 90px top, 60px right/bottom; left = subtitle bar (left 50px + width 40px) + 20px gap.
+                                    // With the 160px subtitle bar this puts the title on the bar's top edge.
+                                    padding: calc(var(--composer-gap-xl) * 1.8) calc(var(--composer-gap-lg) * 1.5) calc(var(--composer-gap-lg) * 1.5) calc(var(--composer-gap-xl) * 2 + var(--composer-gap-sm));
                                     opacity: 0;
-                                    transition: opacity 2s ease;
+                                    transition: opacity 0.4s cubic-bezier(0, 0, .3642, 1);
+                                    transition-delay: 0s;
 
-                                    .title {
+                                    .card-title {
                                         opacity: 0;
                                         transition: opacity 2s ease;
-                                        text-align: left;
+                                        text-align: left !important;
+                                        margin-left: 0 !important;
+                                        margin-right: auto !important;
                                     }
 
                                     .bottom-container {
@@ -132,23 +185,38 @@
                                         opacity: 0;
                                         transition: opacity 2s ease;
 
-                                        .description {
+                                        .card-description {
                                             display: flex;
-                                            justify-content: flex-start;
+                                            justify-content: flex-start !important;
                                             align-items: center;
                                             width: fit-content;
+                                            text-align: left !important;
+                                            margin-left: 0 !important;
+                                            margin-right: 0 !important;
                                         }
 
                                         .button {
                                             background-color: var(--composer-font-color-secondary);
                                             color: var(--composer-font-color-primary);
                                             border: none;
-                                            padding: var(--composer-gap-sm);
-                                            height: fit-content;
+                                            padding: 0;
+                                            width: var(--composer-gap-lg);
+                                            height: var(--composer-gap-lg);
+                                            display: flex;
+                                            align-items: center;
+                                            justify-content: center;
+                                            flex-shrink: 0;
 
                                             .icon {
                                                 font-size: 1.5rem;
                                                 color: var(--composer-font-color-primary);
+                                                display: flex;
+                                                align-items: center;
+                                                justify-content: center;
+
+                                                svg {
+                                                    display: block;
+                                                }
                                             }
                                         }
 
@@ -163,36 +231,43 @@
                                 }
 
                                 .badge {
-                                    background-color: var(--composer-html-background);
-                                    color: var(--composer-font-color-primary);
+                                    background-color: var(--composer-font-color-primary);
+                                    color: var(--composer-html-background);
                                     z-index: 2;
                                 }
 
                                 .badge-container {
-                                    padding: var(--composer-gap-md) 0px;
-                                    visibility: visible;
-                                    max-height: 100%;
+                                    transform: translateY(0);
+                                    opacity: 1;
 
                                     .text-container {
                                         opacity: 1;
+                                        transition-delay: 0.2s;
 
-                                        .title {
+                                        .card-title {
                                             opacity: 1;
+                                            color: var(--composer-html-background);
                                         }
 
                                         .bottom-container {
                                             opacity: 1;
 
+                                            .card-description {
+                                                color: var(--composer-html-background);
+                                            }
+
                                             .button {
-                                                background-color: var(--composer-html-background);
+                                                background-color: var(--composer-font-color-primary);
+
+                                                .icon {
+                                                    color: var(--composer-html-background);
+                                                }
                                             }
                                         }
                                     }
                                 }
                             }
-
                         }
-                    }
 
                     &.active {
                         .image {
@@ -200,46 +275,43 @@
                         }
 
                         .badge {
-                            background-color: var(--composer-html-background) !important;
-                            color: var(--composer-font-color-primary) !important;
+                            background-color: var(--composer-font-color-primary) !important;
+                            color: var(--composer-html-background) !important;
                             z-index: 2;
                         }
 
                         .badge-container {
-                            padding: var(--composer-gap-md) 0px !important;
-                            visibility: visible !important;
-                            max-height: 100% !important;
+                            transform: translateY(0) !important;
+                            opacity: 1 !important;
 
                             .text-container {
                                 opacity: 1 !important;
 
-                                .title {
+                                .card-title {
                                     opacity: 1 !important;
+                                    color: var(--composer-html-background) !important;
                                 }
 
                                 .bottom-container {
                                     opacity: 1 !important;
 
+                                    .card-description {
+                                        color: var(--composer-html-background) !important;
+                                    }
+
                                     .button {
-                                        background-color: var(--composer-html-background) !important;
+                                        background-color: var(--composer-font-color-primary) !important;
+
+                                        .icon {
+                                            color: var(--composer-html-background) !important;
+                                        }
                                     }
                                 }
                             }
                         }
                     }
 
-                    &.large-image {
-                        height: 60%;
-                    }
 
-                    &.small-image {
-                        height: 40%;
-                    }
-
-                    &.normal-image {
-                        height: 100%;
-
-                    }
 
                     .button {
                         cursor: pointer;
@@ -287,8 +359,8 @@
                             &:hover,
                             &.active {
                                 .badge {
-                                    background-color: var(--composer-primary-color);
-                                    color: var(--composer-font-color-secondary);
+                                    background-color: var(--composer-font-color-primary);
+                                    color: var(--composer-html-background);
                                 }
 
                                 .badge-container {
@@ -298,8 +370,8 @@
 
                             &.active {
                                 .badge {
-                                    background-color: var(--composer-primary-color) !important;
-                                    color: var(--composer-font-color-secondary) !important;
+                                    background-color: var(--composer-font-color-primary) !important;
+                                    color: var(--composer-html-background) !important;
                                 }
 
                                 .badge-container {
@@ -321,6 +393,11 @@
 @container (max-width: #{$composer-phone-width}) {
     .container {
         .max-content {
+            // Lines stay vertically centered next to the stacked tabs.
+            .category-wrapper {
+                align-items: center;
+            }
+
             .section-container {
                 flex-direction: column;
                 gap: var(--composer-gap-sm);
@@ -346,14 +423,19 @@
                             }
                         }
 
-                        &.large-image,
-                        &.small-image,
-                        &.normal-image {
-                            min-height: 300px;
-                        }
+
                     }
                 }
             }
         }
     }
+}
+
+// Optional overlay over a gallery media item (Overlay prop)
+.media-overlay {
+  position: absolute;
+  inset: 0;
+  background-color: var(--composer-overlay-color);
+  border-radius: inherit;
+  pointer-events: none;
 }

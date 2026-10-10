@@ -6,21 +6,42 @@
       justify-content: center;
       gap: var(--composer-gap-lg);
       width: 100%;
+        .heading {
+          width: 100%;
+          .subtitle,
+          .heading-title,
+          .description {
+            content: "";
+          }
+          .header-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--composer-gap-sm);
+            justify-content: var(--composer-content-alignment);
+            .header-button {
+              .header-button-text {
+                content: "";
+              }
+            }
+          }
+        }
         .tab-container {
+          margin-bottom: var(--composer-gap-md);
           display: flex;
           gap: var(--composer-gap-xl);
           flex-wrap: wrap;
+          justify-content: center !important;
           width: 100%;
           .tab {
             display: flex;
-            color: var(--composer-font-color-primary);
+            color: var(--composer-tertiary-color);
             cursor: pointer;
             transition: color 0.3s ease;
             width: fit-content;
             margin: 0;
             &:hover,
             &.active-tab {
-              font-weight: bold;
+              color: var(--composer-font-color-primary);
               text-decoration: underline;
               text-underline-offset: var(--composer-gap-xs);
               opacity: 1;
@@ -34,7 +55,7 @@
             overflow: hidden;
             transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
             opacity: 1;
-            border-radius: var(--composer-border-radius-md);
+            border-radius: var(--composer-border-radius-sm);
             .image-container {
               width: 100%;
               position: relative;
@@ -100,6 +121,8 @@
           display: flex;
           align-items: center;
           justify-content: center;
+          flex-wrap: wrap;
+          gap: var(--composer-gap-sm);
           .button{
             .button-text{
               content: "";
@@ -160,7 +183,7 @@
           height: 100%;
           aspect-ratio: 4 / 3;
           overflow: hidden;
-          border-radius: var(--composer-border-radius-xs);
+          border-radius: var(--composer-border-radius-sm);
           .modal-image {
             object-fit: cover;
             width: 600px;
@@ -177,15 +200,18 @@
           width: 100%;
           padding: var(--composer-gap-xs) 0px;
     
+          // Original lightbox: 12px title and counter on every screen size
           .image-title {
             text-align: left;
             width: 50%;
             overflow-wrap: break-word;
+            font-size: calc(0.75 * var(--composer-font-size-md)) !important;
           }
     
           .image-count {
             text-align: end;
             width: 50%;
+            font-size: calc(0.75 * var(--composer-font-size-md)) !important;
           }
         }
     }
@@ -197,6 +223,9 @@
         .gallery-container{
           .gallery-item{
             .image-container {
+              .icon-wrapper {
+                transform: translate(-50%, -50%) scale(1.5);
+              }
               .modal-image {
                 min-width: 500px;
                 min-height: 500px;
@@ -228,6 +257,7 @@
         gap: var(--composer-gap-lg);
         .tab-container {
           flex-direction: column;
+          align-items: center;
           gap: var(--composer-gap-sm);
           .tab{
             text-align: center;
@@ -237,6 +267,10 @@
           .gallery-item{
             .image-container{
               min-width: 325px;
+              // Original mobile hover icon is a 60px circle (35px base x 1.7)
+              .icon-wrapper {
+                transform: translate(-50%, -50%) scale(1.7);
+              }
             }
           }
         }
@@ -265,3 +299,12 @@
       }
     }
   }
+
+// Optional overlay over a gallery media item (Overlay prop)
+.media-overlay {
+  position: absolute;
+  inset: 0;
+  background-color: var(--composer-overlay-color);
+  border-radius: inherit;
+  pointer-events: none;
+}

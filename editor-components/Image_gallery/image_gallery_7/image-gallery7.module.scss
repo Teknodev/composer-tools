@@ -10,14 +10,41 @@
     flex-direction: column;
     gap: var(--composer-gap-lg);
 
+    .heading {
+      width: 100%;
+      position: relative;
+      z-index: 1;
+
+      .subtitle,
+      .heading-title,
+      .heading-description {
+        content: "";
+      }
+
+      .header-button-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--composer-gap-sm);
+
+        .header-button {
+          .header-button-text {
+            content: "";
+          }
+        }
+      }
+    }
+
     .gridContainer {
+      overflow: hidden;
+
       .column {
         height: 100%;
         overflow: hidden;
 
         .wrapper {
           .card {
-            height: 425px;
+            position: relative;
+            min-height: 425px;
             width: 100%;
             cursor: pointer;
             overflow: hidden;
@@ -38,18 +65,24 @@
             }
 
             .image {
-              height: 80%;
+              height: 340px;
+              border-radius: var(--composer-border-radius-sm)
+                var(--composer-border-radius-sm) 0 0;
             }
 
             .full-image {
               height: 100%;
+              border-radius: var(--composer-border-radius-sm)
+                var(--composer-border-radius-sm) 0 0;
             }
 
             .textContainer {
               display: flex;
               flex-direction: column;
               width: 100%;
-              height: 20%;
+              min-height: 85px;
+              box-sizing: border-box;
+              padding: var(--composer-gap-sm);
               align-items: center;
               justify-content: center;
               background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
@@ -64,7 +97,8 @@
                 }
               }
 
-              .subtitle {
+              .subtitle,
+              .description {
                 color: var(--composer-font-color-primary);
                 text-align: center;
               }
@@ -139,4 +173,16 @@
       }
     }
   }
+}
+
+// Optional overlay over a gallery media item (Overlay prop); covers only the 340px image, not the text below it
+.media-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 340px;
+  background-color: var(--composer-overlay-color);
+  border-radius: var(--composer-border-radius-sm);
+  pointer-events: none;
 }

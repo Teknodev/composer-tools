@@ -3,6 +3,7 @@ import styles from "./image-gallery3.module.scss";
 import { BaseImageGallery, TypeMediaInputValue } from "../../EditorComponent";
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "../../../custom-hooks/input-templates";
+import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 
 interface ImageItem {
     image_image: TypeMediaInputValue;
@@ -25,6 +26,13 @@ class ImageGallery3 extends BaseImageGallery {
 
         this.addProp({
             type: "string",
+            key: "sub_title",
+            displayer: "Subtitle",
+            value: "Portfolio",
+        });
+
+        this.addProp({
+            type: "string",
             key: "title",
             displayer: "Title",
             value: "PORTRAIT",
@@ -32,32 +40,41 @@ class ImageGallery3 extends BaseImageGallery {
 
         this.addProp({
             type: "string",
-            key: "sub_title",
-            displayer: "Subtitle",
-            value: "Portfolio",
+            key: "description",
+            displayer: "Description",
+            value: "",
+        });
+
+        this.addProp({
+            type: "array",
+            key: "headerButtons",
+            displayer: "Buttons",
+            value: [
+                INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+            ],
         });
 
         this.addProp({
             type: "boolean",
             key: "is_line_visible",
-            displayer: "Line Visibility",
+            displayer: "Line",
             value: true,
         });
 
         this.addProp({
             type: "array",
             key: "images",
-            displayer: "Images",
+            displayer: "Media",
             value: [
                 {
                     type: "object",
                     key: "image",
-                    displayer: "Image",
+                    displayer: "Media Item",
                     value: [
                         {
                             type: "media",
                             key: "image_image",
-                            displayer: "Image",
+                            displayer: "Media",
                             value: {
                                 type: "image",
                                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661c2ffbd2970002c628d96?alt=media&timestamp=1719564433797"
@@ -77,12 +94,12 @@ class ImageGallery3 extends BaseImageGallery {
                 {
                     type: "object",
                     key: "image",
-                    displayer: "Image",
+                    displayer: "Media Item",
                     value: [
                         {
                             type: "media",
                             key: "image_image",
-                            displayer: "Image",
+                            displayer: "Media",
                             value: {
                                 type: "image",
                                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661c2ffbd2970002c628d95?alt=media&timestamp=1719564433797"
@@ -103,12 +120,12 @@ class ImageGallery3 extends BaseImageGallery {
                 {
                     type: "object",
                     key: "image",
-                    displayer: "Image",
+                    displayer: "Media Item",
                     value: [
                         {
                             type: "media",
                             key: "image_image",
-                            displayer: "Image",
+                            displayer: "Media",
                             value: {
                                 type: "image",
                                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6735ef51506a40002c2a58f4?alt=media&timestamp=1731587983245"
@@ -128,12 +145,12 @@ class ImageGallery3 extends BaseImageGallery {
                 {
                     type: "object",
                     key: "image",
-                    displayer: "Image",
+                    displayer: "Media Item",
                     value: [
                         {
                             type: "media",
                             key: "image_image",
-                            displayer: "Image",
+                            displayer: "Media",
                             value: {
                                 type: "image",
                                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6735ef51506a40002c2a58f3?alt=media&timestamp=1731587983245"
@@ -153,12 +170,12 @@ class ImageGallery3 extends BaseImageGallery {
                 {
                     type: "object",
                     key: "image",
-                    displayer: "Image",
+                    displayer: "Media Item",
                     value: [
                         {
                             type: "media",
                             key: "image_image",
-                            displayer: "Image",
+                            displayer: "Media",
                             value: {
                                 type: "image",
                                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667e65e00181a1002c334d64?alt=media&timestamp=1719559667575"
@@ -178,7 +195,14 @@ class ImageGallery3 extends BaseImageGallery {
             ]
         });
 
-        this.addProp(INPUTS.BUTTON("button", "Button", "Load More", null, null, null, "Primary"));
+        this.addProp({
+            type: "array",
+            key: "buttons",
+            displayer: "Buttons",
+            value: [
+                INPUTS.BUTTON("button", "Button", "Load More", "", null, null, "Primary"),
+            ],
+        });
         
         this.setComponentState("patternCount", 1);
         this.setComponentState("showPattern", false);
@@ -203,12 +227,28 @@ class ImageGallery3 extends BaseImageGallery {
         const isLineVisible = this.getPropValue("is_line_visible");
         const titleIsVisible = this.castToString(title);
         const subtitleIsVisible = this.castToString(subTitle);
-        const headerVisible = titleIsVisible || subtitleIsVisible;
+        const description = this.getPropValue("description");
+        const descriptionIsVisible = this.castToString(description);
+        const headerButtons = this.castToObject<INPUTS.CastedButton[]>("headerButtons") || [];
+        const hasHeaderButtons = headerButtons.some((button: INPUTS.CastedButton) => this.castToString(button.text));
+        const headerVisible = titleIsVisible || subtitleIsVisible || descriptionIsVisible || hasHeaderButtons;
 
         const images = this.castToObject<ImageItem[]>("images");
         const headerImageCount = type === "Header One Image" ? 1 : 2;
         const remainingImages = images.slice(headerImageCount);
-        const buttonType: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
+        const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons") || [];
+        const hasButtons = buttons.some((button: INPUTS.CastedButton) => this.castToString(button.text));
+        const renderButtons = (onClick: () => void) => (
+            <div className={this.decorateCSS("button-wrapper")}>
+                {buttons.map((button: INPUTS.CastedButton, index: number) => this.castToString(button.text) && (
+                    <ComposerLink key={index} path={button.url}>
+                        <Base.Button buttonType={button.type} className={this.decorateCSS("button")} onClick={onClick}>
+                            <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
+                        </Base.Button>
+                    </ComposerLink>
+                ))}
+            </div>
+        );
 
         const pattern = [3, 2, 1];
         const imagesPerPattern = pattern.reduce((a, b) => a + b, 0);
@@ -225,6 +265,18 @@ class ImageGallery3 extends BaseImageGallery {
                                 <div className={this.decorateCSS("line")}></div>
                             )}
                             {subtitleIsVisible && <Base.H3 className={this.decorateCSS("subtitle")}>{subTitle}</Base.H3>}
+                            {descriptionIsVisible && <Base.P className={this.decorateCSS("description")}>{description}</Base.P>}
+                            {hasHeaderButtons && (
+                                <div className={this.decorateCSS("header-button-container")}>
+                                    {headerButtons.map((button: INPUTS.CastedButton, index: number) => this.castToString(button.text) && (
+                                        <ComposerLink key={index} path={button.url}>
+                                            <Base.Button buttonType={button.type} className={this.decorateCSS("header-button")}>
+                                                <Base.P className={this.decorateCSS("header-button-text")}>{button.text}</Base.P>
+                                            </Base.Button>
+                                        </ComposerLink>
+                                    ))}
+                                </div>
+                            )}
                         </div>
                     )}
                     {type === "Header One Image" && images[0] && (
@@ -253,13 +305,7 @@ class ImageGallery3 extends BaseImageGallery {
                     )}
                 </Base.MaxContent>
 
-                {remainingImages.length > 0 && !this.getComponentState("showPattern") && this.castToString(buttonType.text) && (
-                    <div className={this.decorateCSS("button-wrapper")}>
-                        <Base.Button buttonType={buttonType.type} className={this.decorateCSS("button")} onClick={this.handlePatternButtonClick}>
-                            <Base.P className={this.decorateCSS("button-text")}>{buttonType.text}</Base.P>
-                        </Base.Button>
-                    </div>
-                )}
+                {remainingImages.length > 0 && !this.getComponentState("showPattern") && hasButtons && renderButtons(this.handlePatternButtonClick)}
 
                 {this.getComponentState("showPattern") && visibleImages.length > 0 && (
                     <div className={this.decorateCSS("remaining-images")}>
@@ -305,13 +351,7 @@ class ImageGallery3 extends BaseImageGallery {
                     </div>
                 )}
 
-                {this.getComponentState("showPattern") && maxImages < remainingImages.length && this.castToString(buttonType.text) && (
-                    <div className={this.decorateCSS("button-wrapper")}>
-                        <Base.Button buttonType={buttonType.type} className={this.decorateCSS("button")} onClick={this.handleButtonClick}>
-                            <Base.P className={this.decorateCSS("button-text")}>{buttonType.text}</Base.P>
-                        </Base.Button>
-                    </div>
-                )}
+                {this.getComponentState("showPattern") && maxImages < remainingImages.length && hasButtons && renderButtons(this.handleButtonClick)}
             </Base.Container>
         );
     }
