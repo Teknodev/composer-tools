@@ -61,30 +61,44 @@
   }
 
   &.with-background {
-    .header {
-      .header-text,
-      .title,
+    .top-content {
       .subtitle {
         color: white !important;
-      }
 
-      .subtitle {
         &::before {
           background: white !important;
         }
       }
 
+      .description {
+        color: white !important;
+      }
+
+      .button-text,
+      .button-icon {
+        color: white !important;
+      }
+    }
+
+    .header {
+
+      .header-text,
+      .title {
+        color: white !important;
+      }
+
       .links {
         .link-item {
-        .link-text,
-        .link-icon {
-          color: white !important;
-        }
 
-        .link-text {
-          text-align: left !important;
+          .link-text,
+          .link-icon {
+            color: white !important;
+          }
+
+          .link-text {
+            text-align: left !important;
+          }
         }
-      }
       }
     }
 
@@ -123,6 +137,7 @@
     }
 
     .slider-wrapper {
+
       .card-body,
       .quote,
       .author {
@@ -213,16 +228,21 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 0 var(--composer-gap-xs);
+      width: 100%;
 
       .header-text {
         content: "";
+      }
+
+      .title {
+        flex: 1;
       }
 
       .links {
         display: flex;
         gap: var(--composer-gap-lg);
         align-items: center;
+        flex-shrink: 0;
 
         .link-item {
           display: flex;
@@ -248,6 +268,25 @@
       }
     }
 
+    .top-content {
+      align-items: flex-start !important;
+
+      .description {
+        text-align: left !important;
+        justify-content: flex-start !important;
+        align-self: flex-start !important;
+      }
+
+      .button-container {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: var(--composer-gap-sm);
+        justify-content: flex-start !important;
+        align-self: flex-start !important;
+      }
+    }
+
     .subtitle,
     .title,
     .quote {
@@ -264,6 +303,8 @@
 
     .subtitle-badge-hidden {
       background: transparent !important;
+      padding: 0 !important;
+      border: none !important;
     }
 
     .slider-wrapper {
@@ -275,7 +316,7 @@
       }
 
       .slide {
-        padding: 0 calc(var(--composer-gap-sm) / 2);
+        padding: 0 var(--composer-gap-xs);
       }
     }
 
@@ -284,7 +325,6 @@
       align-items: center;
       justify-content: center;
       gap: var(--composer-gap-sm);
-      margin-top: var(--composer-gap-xs);
     }
   }
 }
@@ -337,6 +377,8 @@
       object-fit: cover;
       border-radius: inherit;
       display: block;
+
+      font-size: 3rem;
     }
 
     .media-overlay {
@@ -411,6 +453,7 @@
 
   .quote {
     color: var(--composer-font-color-primary) !important;
+    font-weight: 800;
   }
 
   .quote-row {
@@ -436,7 +479,7 @@
     text-align: left !important;
     justify-content: flex-start !important;
     align-self: flex-start !important;
-    line-height: 1;
+    font-weight: bold;
   }
 
   .author-block {
@@ -570,6 +613,7 @@
   from {
     opacity: 0;
   }
+
   to {
     opacity: 1;
   }
@@ -579,6 +623,7 @@
   from {
     opacity: 1;
   }
+
   to {
     opacity: 0;
   }
@@ -603,6 +648,7 @@
           padding: var(--composer-gap-lg);
         }
       }
+
       .header {
         .links {
           .link-text {
@@ -632,6 +678,7 @@
         gap: var(--composer-gap-sm);
         width: 100%;
       }
+
       .header {
         .links {
           flex-direction: column !important;
@@ -675,7 +722,7 @@
             width: 100%;
             align-items: flex-start !important;
             order: 2;
-          
+
             .link-text {
               text-align: left !important;
               margin-left: 0 !important;
@@ -709,8 +756,22 @@
             gap: var(--composer-gap-sm) !important;
             padding-top: var(--composer-gap-xs) !important;
 
+            .mobile-author-image {
+              width: 84px;
+              height: 108px;
+              flex: none;
+            }
+
             .mobile-author-info {
               margin-top: auto;
+              flex: 1;
+              min-width: 0;
+              gap: var(--composer-gap-xs);
+
+              .role {
+                display: block;
+                font-size: calc(0.875 * var(--composer-font-size-md)) !important;
+              }
             }
 
             &.mobile-author-row-no-image {
