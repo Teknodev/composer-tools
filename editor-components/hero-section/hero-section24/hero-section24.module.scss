@@ -144,10 +144,11 @@
 
                 .description {
                   @extend %text-animation;
-                  font-size: 2rem;
+                  font-size: 1.25rem;
                   color: #93646a;
                   width: 60%;
                   transition-delay: 0.3s;
+                  text-align: center;
 
                   &.description-no-image {
                     color: var(--composer-font-color-primary);
@@ -330,16 +331,20 @@
     z-index: 1;
     top: 0px;
     left: 0px;
-    .background-container{
+    overflow: hidden;
+    .background-image{
+      width: 100%;
       height: 100%;
-      .background-image-container{
-        height: 100%;
-        overflow: hidden;
-        .background-image{
-          height: 100%;
-          object-fit: cover;
-        }
-      }
+      object-fit: cover;
+    }
+    .background-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: var(--composer-overlay-color);
+      pointer-events: none;
     }
   }
 }
@@ -376,12 +381,12 @@
                 padding: 0;
                 .content {
                   .title {
-                    font-size: 3rem;
+                    font-size: 3rem !important;
                     padding: 0;
                   }
 
                   .description {
-                    font-size: 1.75rem;
+                    font-size: 1.25rem !important;
                     padding: 0;
                   }
                 }
@@ -454,12 +459,12 @@
                 padding: var(--composer-gap-md);
                 .content {
                   .title {
-                    font-size: 2rem;
+                    font-size: 2.5rem !important;
                     width: 100%;
                   }
 
                   .description {
-                    font-size: 1rem;
+                    font-size: 1.125rem !important;
                     width: 100%;
                   }
                 }
@@ -527,5 +532,14 @@
   }
   .line {
     width: 45px !important;
+  }
+}
+
+.container.with-overlay {
+  .logo,
+  .subtitle,
+  .title,
+  .description {
+    color: white !important;
   }
 }

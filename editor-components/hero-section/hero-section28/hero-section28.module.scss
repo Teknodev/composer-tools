@@ -196,15 +196,17 @@
         z-index: 2;
         margin-top: var(--composer-gap-xl);
 
+        .text-content {
+          width: 100%;
+        }
+
         .title {
           color: white;
-          font-size: 6.5rem;
-          margin: 0 0 var(--composer-gap-sm) 0;
-          line-height: normal;
+          font-size: 6.25rem;
+          margin: 0;
         }
 
         .logo {
-          margin-bottom: var(--composer-gap-sm);
           font-size: 2rem;
           aspect-ratio: 3 / 1;
           object-fit: cover;
@@ -217,32 +219,26 @@
         }
 
         .sub_title {
-          font-size: 4rem;
+          font-size: 3.4375rem;
           color: var(--composer-tertiary-color);
-          margin: 0 0 var(--composer-gap-md) 0;
-          line-height: normal;
+          margin: 0;
         }
 
         .description {
-          font-size: 1.5rem;
+          font-size: 1.3125rem;
           text-transform: uppercase;
-          font-weight: 400;
           color: var(--composer-tertiary-color);
-          margin: 0 0 var(--composer-gap-md) 0;
-          line-height: normal;
+          margin: 0;
         }
 
         .tag {
           color: white;
-          font-size: 1.5rem;
-          font-weight: 700;
+          font-size: 1.0625rem;
           display: inline-block;
-          line-height: normal;
           width: fit-content;
 
           &.hasLine {
             border-bottom: 3px solid var(--composer-primary-color);
-            margin-bottom: var(--composer-gap-sm);
           }
         }
 
@@ -296,19 +292,19 @@
         .slide-content {
           padding: var(--composer-gap-md) var(--composer-gap-xl);
           .title {
-            font-size: 3.5rem;
+            font-size: 6.25rem !important;
           }
 
           .sub_title {
-            font-size: 2rem;
+            font-size: 1.875rem !important;
           }
 
           .description {
-            font-size: 1.5rem;
+            font-size: 1rem !important;
           }
 
           .tag {
-            font-size: 1.5rem;
+            font-size: 1rem !important;
           }
         }
       }
@@ -334,19 +330,19 @@
 
         .slide-content {
           .title {
-            font-size: 3rem;
+            font-size: 2.8125rem !important;
           }
 
           .sub_title {
-            font-size: 1.5rem;
+            font-size: 1.5625rem !important;
           }
 
           .description {
-            font-size: 1rem;
+            font-size: 0.875rem !important;
           }
 
           .tag {
-            font-size: 1rem;
+            font-size: 0.8125rem !important;
           }
         }
       }

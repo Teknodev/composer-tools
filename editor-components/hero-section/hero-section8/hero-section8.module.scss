@@ -31,19 +31,14 @@
         height: 100%;
         width: 100%;
     
-        &::after {
-          content: "";
-          background-color: transparent;
+        .overlay {
           width: 100%;
           height: 100%;
           position: absolute;
           left: 0;
           top: 0;
-        }
-        &.overlay{
-          &::after {
-            background-color: var(--composer-overlay-color);
-          }
+          background-color: var(--composer-overlay-color);
+          pointer-events: none;
         }
       }
     
@@ -86,20 +81,22 @@
       }
     }
   }
-  .max-content{
+  .stage {
+    position: relative;
+    width: 100%;
+  }
+  .content-layer {
     width: 100%;
     position: absolute;
     bottom: 0px;
-    left: 50%;
-    transform: translateX(-50%);
+    left: 0;
+    z-index: 2;
+  }
+  .max-content{
+    width: 100%;
     padding: var(--composer-gap-md) var(--composer-gap-xl);
-    background-color: transparent;
     .info-box {
-      display: flex;
-      flex-direction: column;
-      gap: var(--composer-gap-md);
       color: white;
-      max-width: 100%;
 
       .logo {
         font-size: 3rem;
@@ -138,6 +135,19 @@
         text-align: left;
       }
 
+      // The subtitle stays left in every alignment (Base centers the inline-block with auto margins).
+      .tag {
+        margin-left: 0 !important;
+        margin-right: auto !important;
+      }
+
+      // Over a background image the subtitle is plain text, the Badge look only applies without an image.
+      &:not(.no-image) .tag {
+        background: transparent !important;
+        padding: 0 !important;
+        border-radius: 0 !important;
+      }
+
       &.no-image {
         .tag, .title, .description {
           color: var(--composer-font-color-primary);
@@ -145,7 +155,9 @@
         }
       }
     
+      // Inside the left-aligned Vertical Content the line would shrink to 0 width without an explicit width.
       .line {
+        width: 100%;
         border-bottom: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.2)
       }
     }
@@ -162,17 +174,22 @@
       align-items: center;
       color: white;
 
+      .current-page, .slash, .total-page {
+        color: inherit;
+        margin: 0;
+      }
+
       .current-page {
-        font-size: 1.5rem;
+        font-size: var(--composer-font-size-md);
       }
 
       .slash {
         padding: 0px var(--composer-gap-sm);
-        font-size: 3rem;
+        font-size: calc(1.25 * var(--composer-font-size-md));
       }
 
       .total-page {
-        font-size: 2rem;
+        font-size: calc(1.25 * var(--composer-font-size-md));
       }
       
       &.no-image {
@@ -259,14 +276,13 @@
   .container{
     .arrow-wrapper{
         .pagination{
+          // Same size on every view like the original (Base.P shrinks below desktop).
           .current-page{
-            font-size: 1.25rem !important;
+            font-size: var(--composer-font-size-md) !important;
           }
-          .slash{
-            font-size: 1.5rem !important;
-          }
+          .slash,
           .total-page{
-            font-size: 1.5rem !important;
+            font-size: calc(1.25 * var(--composer-font-size-md)) !important;
           }
         }
         .arrow-prev-wrapper, .arrow-next-wrapper{

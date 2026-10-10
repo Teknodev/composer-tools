@@ -7,9 +7,16 @@ import ComposerLink from "../../../composer-base-components/Link/ComposerLinkPro
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "../../../custom-hooks/input-templates";
 
+type Arrows = {
+  prevIcon: TypeMediaInputValue;
+  nextIcon: TypeMediaInputValue;
+};
+
 type ISliderData = {
+  logo: TypeMediaInputValue;
+  subtitle: React.JSX.Element;
   title: React.JSX.Element;
-  image: TypeMediaInputValue;
+  media: TypeMediaInputValue;
   description: React.JSX.Element;
   button: INPUTS.CastedButton;
   overlay: boolean;
@@ -19,41 +26,43 @@ class HeroSection17 extends BaseHeroSection {
   constructor(props?: any) {
     super(props, styles);
 
-    this.addProp({
-      type: "boolean",
-      key: "autoplay",
-      displayer: "Autoplay",
-      value: true,
-    });
+
 
     this.addProp({
-      type: "media",
-      key: "prev_icon",
-      displayer: "Prev Icon",
-      additionalParams: {
-        availableTypes: ["icon", "image"],
-      },
-      value: {
-        type: "icon",
-        name: "GrFormPrevious",
-      },
-    });
-    this.addProp({
-      type: "media",
-      key: "next_icon",
-      displayer: "Next Icon",
-      additionalParams: {
-        availableTypes: ["icon", "image"],
-      },
-      value: {
-        type: "icon",
-        name: "GrFormNext",
-      },
+      type: "object",
+      key: "arrows",
+      displayer: "Arrows",
+      value: [
+        {
+          type: "media",
+          key: "prevIcon",
+          displayer: "Previous Icon",
+          additionalParams: {
+            availableTypes: ["icon", "image"],
+          },
+          value: {
+            type: "icon",
+            name: "GrFormPrevious",
+          },
+        },
+        {
+          type: "media",
+          key: "nextIcon",
+          displayer: "Next Icon",
+          additionalParams: {
+            availableTypes: ["icon", "image"],
+          },
+          value: {
+            type: "icon",
+            name: "GrFormNext",
+          },
+        },
+      ],
     });
 
     this.addProp({
       type: "array",
-      displayer: "Slider",
+      displayer: "Sliders",
       key: "slider",
       value: [
         {
@@ -61,6 +70,24 @@ class HeroSection17 extends BaseHeroSection {
           displayer: "Item",
           key: "item",
           value: [
+            {
+              type: "media",
+              key: "logo",
+              displayer: "Logo",
+              additionalParams: {
+                availableTypes: ["image", "icon"],
+              },
+              value: {
+                type: "icon",
+                name: "",
+              },
+            },
+            {
+              type: "string",
+              key: "subtitle",
+              displayer: "Subtitle",
+              value: "",
+            },
             {
               type: "string",
               displayer: "Title",
@@ -75,8 +102,8 @@ class HeroSection17 extends BaseHeroSection {
             },
             {
               type: "media",
-              displayer: "Image",
-              key: "image",
+              displayer: "Media",
+              key: "media",
               additionalParams: {
                 availableTypes: ["image", "video"],
               },
@@ -100,6 +127,24 @@ class HeroSection17 extends BaseHeroSection {
           key: "item",
           value: [
             {
+              type: "media",
+              key: "logo",
+              displayer: "Logo",
+              additionalParams: {
+                availableTypes: ["image", "icon"],
+              },
+              value: {
+                type: "icon",
+                name: "",
+              },
+            },
+            {
+              type: "string",
+              key: "subtitle",
+              displayer: "Subtitle",
+              value: "",
+            },
+            {
               type: "string",
               displayer: "Title",
               key: "title",
@@ -113,8 +158,8 @@ class HeroSection17 extends BaseHeroSection {
             },
             {
               type: "media",
-              displayer: "Image",
-              key: "image",
+              displayer: "Media",
+              key: "media",
               additionalParams: {
                 availableTypes: ["image", "video"],
               },
@@ -138,6 +183,24 @@ class HeroSection17 extends BaseHeroSection {
           key: "item",
           value: [
             {
+              type: "media",
+              key: "logo",
+              displayer: "Logo",
+              additionalParams: {
+                availableTypes: ["image", "icon"],
+              },
+              value: {
+                type: "icon",
+                name: "",
+              },
+            },
+            {
+              type: "string",
+              key: "subtitle",
+              displayer: "Subtitle",
+              value: "",
+            },
+            {
               type: "string",
               displayer: "Title",
               key: "title",
@@ -151,8 +214,8 @@ class HeroSection17 extends BaseHeroSection {
             },
             {
               type: "media",
-              displayer: "Image",
-              key: "image",
+              displayer: "Media",
+              key: "media",
               additionalParams: {
                 availableTypes: ["image", "video"],
               },
@@ -173,6 +236,20 @@ class HeroSection17 extends BaseHeroSection {
       ],
     });
 
+    this.addProp(
+      INPUTS.SLIDER_SETTINGS("settings", "Slider Settings", {
+        dots: true,
+        arrows: false,
+        infinite: true,
+        speed: 1000,
+        autoplay: true,
+        autoplaySpeed: 5000,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        adaptiveHeight: false,
+      })
+    );
+
     this.setComponentState("slider-ref", React.createRef());
   }
 
@@ -180,73 +257,88 @@ class HeroSection17 extends BaseHeroSection {
     return "Hero Section 17";
   }
 
+  hasMedia(media?: TypeMediaInputValue) {
+    return !!(media && ((media as any).url || (media as any).name));
+  }
+
+  withVideoSettings(media: TypeMediaInputValue) {
+    return media?.type === "video"
+      ? { ...media, settings: { autoplay: true, loop: true, muted: true, controls: false } }
+      : media;
+  }
+
   render() {
     const slider = this.castToObject<ISliderData[]>("slider");
+    const sliderSettings = this.transformSliderValues(this.getPropValue("settings"));
+    const arrows = this.castToObject<Arrows>("arrows");
+    const hasPrevIcon = this.hasMedia(arrows?.prevIcon);
+    const hasNextIcon = this.hasMedia(arrows?.nextIcon);
 
     const settings = {
-      dots: slider.length > 1,
+      ...sliderSettings,
+      dots: sliderSettings.dots && slider.length > 1,
       dotsClass: this.decorateCSS("dots"),
-      infinite: true,
-      speed: 1000,
-      autoplay: this.getPropValue("autoplay"),
-      autoplaySpeed: 5000,
-      slidesToShow: 1,
-      slidesToScroll: 1,
-      arrows: false,
     };
     return (
       <div className={this.decorateCSS("container")}>
         <ComposerSlider {...settings} ref={this.getComponentState("slider-ref")} className={this.decorateCSS("carousel")}>
           {slider.map((item: ISliderData, index: number) => {
-            const image = item.image;
+            const image = this.hasMedia(item.media);
+            const logoExist = this.hasMedia(item.logo);
+            const subtitleExist = this.castToString(item.subtitle);
+            const titleExist = this.castToString(item.title);
+            const descriptionExist = this.castToString(item.description);
             const buttonExist = this.castToString(item.button.text);
-            const cardExist = !!(this.castToString(item.title) || this.castToString(item.description));
-            const sliderExist = !!(this.castToString(item.button.text) || this.castToString(item.title) || this.castToString(item.description) || image);
+            const cardExist = !!(logoExist || subtitleExist || titleExist || descriptionExist);
+            const sliderExist = !!(buttonExist || cardExist || image);
 
             return (
               sliderExist && (
                 <div className={this.decorateCSS("slider-content")} key={`key${index}`}>
-                  {image && <Base.Media value={item.image} className={this.decorateCSS("bg-img")} autoPlay muted loop playsInline />}
+                  {image && <Base.Media value={this.withVideoSettings(item.media)} className={this.decorateCSS("bg-img")} />}
                   {image && item.overlay && <div className={this.decorateCSS("overlay")} />}
                   <Base.Container className={this.decorateCSS("sub-container")}>
                     <Base.MaxContent className={this.decorateCSS("sub-content")}>
                       {cardExist && (
                         <div className={this.decorateCSS("card")}>
-                          <Base.H5 className={this.decorateCSS("title")}>{item.title}</Base.H5>
-                          <Base.H5 className={this.decorateCSS("description")}>{item.description}</Base.H5>
+                          <Base.VerticalContent className={this.decorateCSS("card-content")}>
+                            {logoExist && <Base.Media value={item.logo} className={this.decorateCSS("logo")} />}
+                            {subtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{item.subtitle}</Base.SectionSubTitle>}
+                            {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{item.title}</Base.SectionTitle>}
+                            {descriptionExist && <Base.SectionDescription className={this.decorateCSS("description")}>{item.description}</Base.SectionDescription>}
+                          </Base.VerticalContent>
                         </div>
                       )}
                       {buttonExist && (
                         <ComposerLink path={item.button.url}>
                           <Base.Button buttonType={item.button.type} className={this.decorateCSS("button")}>
                             <Base.P className={this.decorateCSS("button-text")}>{item.button.text}</Base.P>
-                            <Base.Media
-                              className={this.decorateCSS("button-icon")}
-                              value={item.button.icon}
-                            />
+                            {this.hasMedia(item.button.icon as any) && (
+                              <Base.Media className={this.decorateCSS("button-icon")} value={item.button.icon} />
+                            )}
                           </Base.Button>
                         </ComposerLink>
                       )}
                     </Base.MaxContent>
                   </Base.Container>
-                  {slider.length > 1 && (
+                  {slider.length > 1 && hasNextIcon && (
                     <div
-                      className={`${this.decorateCSS("next-icon")} ${!image && this.decorateCSS("slider-icon-without-image")}`}
+                      className={`${this.decorateCSS("next-icon")} ${!image ? this.decorateCSS("slider-icon-without-image") : ""}`}
                       onClick={() => {
                         this.getComponentState("slider-ref").current.slickNext();
                       }}
                     >
-                      <Base.Media className={this.decorateCSS("icon")} value={this.getPropValue("next_icon") as TypeMediaInputValue} />
+                      <Base.Media className={this.decorateCSS("icon")} value={arrows.nextIcon} />
                     </div>
                   )}
-                  {slider.length > 1 && (
+                  {slider.length > 1 && hasPrevIcon && (
                     <div
-                      className={`${this.decorateCSS("prev-icon")} ${!image && this.decorateCSS("slider-icon-without-image")}`}
+                      className={`${this.decorateCSS("prev-icon")} ${!image ? this.decorateCSS("slider-icon-without-image") : ""}`}
                       onClick={() => {
                         this.getComponentState("slider-ref").current.slickPrev();
                       }}
                     >
-                      <Base.Media className={this.decorateCSS("icon")} value={this.getPropValue("prev_icon") as TypeMediaInputValue} />
+                      <Base.Media className={this.decorateCSS("icon")} value={arrows.prevIcon} />
                     </div>
                   )}
                 </div>

@@ -99,6 +99,15 @@
               pointer-events: auto;
             }
 
+            .logo {
+              font-size: 2.5rem;
+              width: auto;
+              max-width: 6rem;
+              max-height: 4rem;
+              object-fit: contain;
+              color: var(--composer-font-color-primary);
+            }
+
             .subtitle {
               text-align: center;
               transform: translateX(0);
@@ -116,6 +125,7 @@
             }
             
             .content-overlay.has-image {
+              .logo,
               .subtitle,
               .title,
               .description {
@@ -218,6 +228,13 @@
             font-size: 2rem;
             width: 32px;
             height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            svg {
+              display: block;
+            }
           }
 
           .arrow-icon-media {
@@ -227,18 +244,22 @@
           }
         }
 
+        // Base.Button adds a top margin; without it the dots share the arrows' center line.
         .pagination {
           display: flex;
           justify-content: center;
           align-items: center;
           gap: var(--composer-gap-sm);
           padding: 0;
+          .pagination-dot {
+            margin-top: 0 !important;
+          }
           margin: 0;
 
           .pagination-dot {
             border: none !important;
             background: transparent;
-            padding: 0;
+            padding: 0 !important;
             cursor: pointer;
             position: relative;
             display: flex;
@@ -411,7 +432,7 @@
 
         .navigation-wrapper {
           gap: var(--composer-gap-xs);
-          margin-top: var(--composer-gap-sm) !important;
+          margin-top: calc(var(--composer-gap-sm) + var(--composer-gap-md)) !important;
 
           .arrow-button {
             border: none !important;
@@ -540,6 +561,7 @@
 
         .navigation-wrapper {
           gap: var(--composer-gap-xs);
+          margin-top: var(--composer-gap-sm) !important;
 
           .arrow-button {
             width: 30px;

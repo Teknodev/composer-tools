@@ -54,7 +54,7 @@
           .card {
             background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
             position: absolute;
-            border-radius: var(--border-radius-xs);
+            border-radius: var(--composer-border-radius-sm);
             min-width: 550px;
             height: 35%;
             width: 40%;
@@ -66,23 +66,33 @@
             flex-direction: column;
             justify-content: center;
             align-items: baseline;
-            gap: var(--composer-gap-md);
             height: auto;
             min-height: 40%;
+            .card-content {
+              width: 100%;
+              align-items: stretch;
+            }
+            .logo {
+              max-width: 200px;
+              height: auto;
+              object-fit: contain;
+              font-size: 2rem;
+              color: var(--composer-font-color-primary);
+            }
+            .subtitle {
+              margin-left: 0;
+            }
             .title {
               font-size: 4rem;
               height: fit-content;
               margin: 0;
               color: var(--composer-tertiary-color);
-              line-height: normal !important;
               text-align: left;
             }
-
             .description {
               margin: 0;
               font-size: 3rem;
               color: var(--composer-font-color-primary);
-              line-height: normal !important;
               text-align: left;
             }
           }
@@ -184,13 +194,14 @@
               width: 100%;
               min-width: auto;
 
+              // !important: the tablet sizes are !important too and would otherwise apply on phone.
               .title {
-                font-size: 2.5rem;
+                font-size: 2.75rem !important;
               }
 
               .description {
                 margin-bottom: var(--composer-gap-sm);
-                font-size: 1.5rem;
+                font-size: 1.5rem !important;
               }
             }
             .button {

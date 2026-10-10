@@ -81,6 +81,37 @@
         max-height: 100%;
         margin: 0;
         text-align: left;
+        align-items: flex-start;
+
+        .logo {
+          font-size: 2rem;
+          max-width: 6rem;
+          max-height: 3rem;
+          object-fit: contain;
+          color: var(--color-white);
+        }
+
+        .subtitle,
+        .description {
+          color: var(--color-white);
+          text-align: left;
+          margin: 0;
+        }
+
+        .description {
+          width: 100%;
+          font-size: 0.75rem !important;
+        }
+
+        .button-container {
+          display: flex;
+          flex-wrap: wrap;
+          gap: var(--composer-gap-sm);
+        }
+
+        .button-text {
+          content: "";
+        }
 
         &.visible {
           opacity: 1;
@@ -95,6 +126,10 @@
         width: 100%;
         text-align: center;
         margin: 0 auto;
+
+        :global(.slick-track) {
+          display: flex;
+        }
 
         :global(.slick-prev),
         :global(.slick-next) {
@@ -212,15 +247,16 @@
             align-self: flex-start;
             margin: 0;
             margin-top: var(--composer-gap-xs);
-            font-weight: 100;
           }
 
           .title-text {
             white-space: nowrap;
             flex-shrink: 0;
             width: max-content;
-            font-weight: 500;
             font-size: 6rem;
+            margin: 0;
+            color: inherit;
+            text-transform: inherit;
 
             &.active {
               color: var(--color-white);
@@ -247,6 +283,14 @@
         align-items: center;
         gap: var(--composer-gap-md);
 
+        .current,
+        .total {
+          font-size: 0.75rem !important;
+          margin: 0;
+          color: var(--color-white);
+          width: fit-content;
+        }
+
         .separator {
           width: var(--composer-gap-lg);
           height: auto;
@@ -269,7 +313,7 @@
         gap: var(--composer-gap-md);
 
         .follow-text {
-          content: "";
+          font-size: 0.75rem !important;
         }
 
         .social-icons {
@@ -365,7 +409,7 @@
             font-size: 3rem;
 
             .title-text {
-              font-size: 4.5rem;
+              font-size: 4.5rem !important;
             }
           }
         }
@@ -440,7 +484,7 @@
             margin-right: var(--composer-gap-xl) !important;
 
             .title-text {
-              font-size: 2.5rem;
+              font-size: 2.5rem !important;
             }
           }
         }

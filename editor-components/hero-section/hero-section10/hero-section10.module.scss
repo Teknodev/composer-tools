@@ -6,7 +6,6 @@
     max-width: 100%;
     .carousel {
       max-width: 100%;
-      max-height: 100vh;
       &>button{
         display: none !important;
       }
@@ -36,6 +35,9 @@
           justify-content: center;
           width: 100%;
           flex: 1;
+          min-width: 0;
+          position: relative;
+          z-index: 9;
           padding-right: var(--composer-gap-md);
           padding-top: 20px;
           padding-bottom: 20px;
@@ -55,28 +57,41 @@
           }
           
           .left-container {
-            position: absolute;
-            z-index: 9;
+            width: 100%;
           }
           
+          // Title and highlighted title share one baseline. The row is wider than the column (it reaches over the image),
+          // so it is pinned to the left in every alignment; centering it would push the title out of the slide.
           .title-wrapper {
             display: flex;
+            align-items: baseline;
+            align-self: flex-start;
+            justify-content: flex-start;
+            margin-left: 0 !important;
             gap: var(--composer-gap-md);
+            width: calc(250% + var(--composer-gap-md));
             
             .title {
               font-size: 5.5rem;
               color: var(--composer-font-color-primary);
               margin: 0px;
-              max-width: 27vw;
-              flex: 1;
+              flex: 0 0 calc((100% - var(--composer-gap-md)) / 2.5);
+              min-width: min-content;
+              text-align: left !important;
+              margin-left: 0 !important;
+              margin-right: 0 !important;
             }
             
             .imagetitle {
               font-size: 5.5rem;
               color: var(--composer-font-color-primary);
               margin: 0px;
-              flex: 1.5;
-              max-width: 40%;
+              flex: 1 1 0;
+              min-width: 0;
+              overflow-wrap: normal;
+              text-align: left !important;
+              margin-left: 0 !important;
+              margin-right: 0 !important;
               &.imagetitleWhite {
                 color: white !important;
               }
@@ -87,7 +102,7 @@
             display: flex;
             flex-direction: column;
             gap: var(--composer-gap-md);
-            max-width: 25%;
+            max-width: calc((350% + var(--composer-gap-md)) / 4);
             .description {
               width: 100%;
               font-size: 1.5rem;
@@ -101,6 +116,8 @@
               .slide_number {
                 color: var(--composer-tertiary-color);
                 font-size: 4.5rem;
+                width: auto;
+                margin: 0;
               }
               .iconsSection{
                 display: flex;
@@ -173,11 +190,10 @@
 
             .image {
               position: relative;
-              max-height: 100vh;
               width: 100%;
               object-fit: cover;
               z-index: 1;
-              border-radius: 0px;
+              border-radius: var(--composer-border-radius-sm);
               height: 100%;
               
               img,
@@ -196,6 +212,7 @@
               height: 100%;
               z-index: 1;
               background-color: var(--composer-overlay-color);
+              border-radius: var(--composer-border-radius-sm);
             }
           }
         }
@@ -210,7 +227,7 @@
           gap: var(--composer-gap-sm);
           flex: 1;
           padding: 20px 0px;
-          .icon {
+          .background-icon-wrapper {
             position: relative;
             max-height: 100%;
             width: 100%;
@@ -266,7 +283,7 @@
             gap: var(--composer-gap-md);
             font-size: 1.5rem;
             cursor: pointer;
-            .icon {
+            .social-icon {
               width: 24px;
               height: 24px;
               object-fit: contain;
@@ -284,14 +301,23 @@
         .left {
           padding: 0px;
           width: 100%;
+          .title-wrapper {
+            width: 100%;
+            flex-wrap: wrap;
+            .title,
+            .imagetitle {
+              flex: 0 1 auto;
+            }
+          }
           .left-page-content{
             width: 100%;
+            max-width: 100%;
           }
         }
         .right {
           width: 100%;
           height: 100%;
-          .icon {
+          .background-icon-wrapper {
             .ampersand-icon {
               transform: translateX(0);
             }
@@ -311,23 +337,22 @@
           .left {
             .title-wrapper {
               .title {
-                font-size: 2rem;
-                max-width: 30%;
+                font-size: min(3.5rem, 4.5cqw) !important;
               }
               .imagetitle {
-                font-size: 2rem;
-                max-width: 35%;
+                font-size: min(3.5rem, 4.5cqw) !important;
               }
             }
             
             .left-page-content {
+              max-width: 100%;
               .description {
-                font-size: 1rem;
+                font-size: 1rem !important;
               }
               .nav-buttons {
                 gap: var(--composer-gap-sm);
                 .slide_number {
-                  font-size: 2rem;
+                  font-size: 2rem !important;
                 }
                 .iconsSection {
                   gap: var(--composer-gap-sm);
@@ -349,7 +374,18 @@
             }
           }
 
+          // Same three columns as desktop; min-width 0 keeps the columns inside the slide width.
+          flex-wrap: nowrap;
+          height: auto;
+          min-width: 0;
+
+          .middle,
+          .right {
+            min-width: 0;
+          }
+
           .middle {
+            height: auto;
             .imagetitle {
               font-size: 2rem;
               .text {
@@ -359,12 +395,25 @@
           }
 
           .right {
+            height: auto;
+            justify-content: flex-end;
+            .background-icon-wrapper {
+              display: none;
+            }
             .right-page-content {
+              width: 100%;
+              padding: 0px;
               .right-title {
                 font-size: 1.5rem;
               }
               .right-description {
                 font-size: 0.875rem;
+              }
+              .rightSubtitle {
+                font-size: 1.5rem !important;
+              }
+              .description1 {
+                font-size: 1rem !important;
               }
             }
           }
@@ -382,6 +431,7 @@
         max-height: 100%;
         .content {
           flex-direction: column;
+          flex-wrap: nowrap;
           gap: var(--composer-gap-md);
           height: auto;
           
@@ -404,12 +454,13 @@
               gap: 0;
               
               .title {
-                font-size: 2rem;
+                font-size: 2rem !important;
                 width: 100%;
                 max-width: 100%;
+                flex: 1 1 auto;
               }
               .imagetitle {
-                font-size: 2rem;
+                font-size: 2rem !important;
                 width: 100%;
                 max-width: 100%;
 
@@ -456,16 +507,17 @@
             }
 
             .image-wrapper {
+              // The image spans the full width here, so it has no corner radius.
               .image {
                 height: 350px;
-                border-radius: var(--composer-border-radius-sm);
+                border-radius: 0;
                 
                 img,
                 video {
                   width: 100%;
                   height: 100%;
                   object-fit: cover;
-                  border-radius: var(--composer-border-radius-sm);
+                  border-radius: 0;
                 }
               }
             }
@@ -474,10 +526,11 @@
           .right {
             order: 2;
             z-index: 1;
+            flex-direction: column;
             align-items: start;
             padding: 0px;
             flex: auto;
-            .icon {
+            .background-icon-wrapper {
               display: none;
             }
             .right-page-content {

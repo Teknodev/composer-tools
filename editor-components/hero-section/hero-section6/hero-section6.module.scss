@@ -104,11 +104,11 @@
           @include textEllipsis(2);
           font-size: 8rem;
           color: var(--composer-font-color-primary);
-          line-height: 1.1;
-          font-weight: bold;
           opacity: 0;
           animation: fade-in 1s ease-in-out 0.7s forwards;
           text-align: left;
+          // The two title lines sit tight together like the original.
+          margin-bottom: 0 !important;
           &.noanimation{
             opacity: 1 ;
             animation: none ;
@@ -117,8 +117,6 @@
 
         .title2 {
           @include textEllipsis(2);
-          font-weight: 400;
-          line-height: 1.1;
           font-size: 8rem;
           color: transparent;
           -webkit-text-stroke: 1px var(--composer-font-color-primary);
@@ -134,7 +132,6 @@
       .description{
         @include textEllipsis(3);
         color: var(--composer-font-color-primary);
-        line-height: 1;
         opacity: 0;
         animation: fade-in 1s ease-in-out 1s forwards;
         text-align: left;
@@ -256,7 +253,6 @@
           .title,
           .title2 {
             font-size: 4rem !important;
-            line-height: 1.2 !important;
             @include textFull;
           }
         }
@@ -306,11 +302,7 @@
         .title2 {
           font-size: 3rem !important;
         }
-        .title {
-          line-height: 40px !important;
-        }
         .description {
-          line-height: 20px !important;
           z-index: 2;
         }
         .button-container {

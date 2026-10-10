@@ -1,27 +1,83 @@
 import * as React from "react";
-import { BaseHeroSection, TypeMediaInputValue } from "../../EditorComponent";
+import { BaseHeroSection, TypeMediaInputValue, TypeUsableComponentProps } from "../../EditorComponent";
 import styles from "./hero-section12.module.scss";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import { Base } from "../../../composer-base-components/base/base";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
+import { INPUTS } from "../../../custom-hooks/input-templates";
 
 type SliderItem = {
-  sliderItem_logo: TypeMediaInputValue;
-  sliderItem_title: React.JSX.Element;
-  sliderItem_subtitle: React.JSX.Element;
-  sliderItem_description: React.JSX.Element;
-  sliderItem_image: TypeMediaInputValue;
-  sliderItem_page?: string;
+  logo: TypeMediaInputValue;
+  subtitle: React.JSX.Element;
+  title: React.JSX.Element;
+  description: React.JSX.Element;
+  media: TypeMediaInputValue;
+  url?: string;
 };
 
-type LeftSliderItem = {
-  logo: TypeMediaInputValue;
-  title: React.JSX.Element;
-  subtitle: React.JSX.Element;
-  description: React.JSX.Element;
-  image: TypeMediaInputValue;
-  page?: string;
+type Arrows = {
+  leftIcon: TypeMediaInputValue;
+  rightIcon: TypeMediaInputValue;
 };
+
+const mediaUrl = (id: string) =>
+  `https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/${id}?alt=media&timestamp=1719483639150`;
+
+const sliderItem = (title: string, mediaId: string): TypeUsableComponentProps => ({
+  type: "object",
+  key: "sliderItem",
+  displayer: "Slider Item",
+  value: [
+    {
+      type: "media",
+      key: "logo",
+      displayer: "Logo",
+      additionalParams: {
+        availableTypes: ["image", "icon"],
+      },
+      value: {
+        type: "icon",
+        name: "",
+      },
+    },
+    {
+      type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "",
+    },
+    {
+      type: "string",
+      key: "title",
+      displayer: "Title",
+      value: title,
+    },
+    {
+      type: "string",
+      key: "description",
+      displayer: "Description",
+      value: "",
+    },
+    {
+      type: "media",
+      key: "media",
+      displayer: "Media",
+      additionalParams: {
+        availableTypes: ["image", "video"],
+      },
+      value: {
+        type: "image",
+        url: mediaUrl(mediaId),
+      },
+    },
+    {
+      type: "page",
+      key: "url",
+      displayer: "Navigate To",
+      value: "",
+    },
+  ],
+});
 
 class HeroSection12 extends BaseHeroSection {
   leftSliderRef: any;
@@ -29,7 +85,6 @@ class HeroSection12 extends BaseHeroSection {
   isPhone: boolean = false;
   containerRef: React.RefObject<HTMLDivElement | null>;
   resizeObserver: ResizeObserver | null = null;
-
 
   constructor(props?: any) {
     super(props, styles);
@@ -43,612 +98,85 @@ class HeroSection12 extends BaseHeroSection {
     });
 
     this.addProp({
-      type: "boolean",
-      key: "autoplay",
-      displayer: "Autoplay",
-      value: true,
-    });
-    this.addProp({
       type: "array",
       key: "leftSliderItems",
-      displayer: "Left Slider",
+      displayer: "Left Sliders",
       value: [
-        {
-          type: "object",
-          key: "sliderItem",
-          displayer: "Slider Item",
-          value: [
-            {
-              type: "media",
-              key: "image",
-              displayer: "Media",
-              additionalParams: {
-                availableTypes: ["image", "video"],
-              },
-              value: {
-                type: "image",
-                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66618f99bd2970002c625904?alt=media&timestamp=1719483639150",
-              },
-            },
-            {
-              type: "media",
-              key: "logo",
-              displayer: "Logo",
-              additionalParams: {
-                availableTypes: ["image", "icon"],
-              },
-              value: {
-                type: "icon",
-                name: "",
-              },
-            },
-            {
-              type: "string",
-              key: "subtitle",
-              displayer: "Subtitle",
-              value: "",
-            },
-            {
-              type: "string",
-              key: "title",
-              displayer: "Title",
-              value: "Autumn Stuff",
-            },
-            {
-              type: "string",
-              key: "description",
-              displayer: "Description",
-              value: "",
-            },
-            {
-              type: "page",
-              key: "page",
-              displayer: "Navigate To",
-              value: "",
-            }
-          ],
-        },
-        {
-          type: "object",
-          key: "sliderItem",
-          displayer: "Slider Item",
-          value: [
-            {
-              type: "media",
-              key: "image",
-              displayer: "Media",
-              additionalParams: {
-                availableTypes: ["image", "video"],
-              },
-              value: {
-                type: "image",
-                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66618f99bd2970002c625905?alt=media&timestamp=1719483639150",
-              },
-            },
-            {
-              type: "media",
-              key: "logo",
-              displayer: "Logo",
-              additionalParams: {
-                availableTypes: ["image", "icon"],
-              },
-              value: {
-                type: "icon",
-                name: "",
-              },
-            },
-            {
-              type: "string",
-              key: "subtitle",
-              displayer: "Subtitle",
-              value: "",
-            },
-            {
-              type: "string",
-              key: "title",
-              displayer: "Title",
-              value: "Breakfast",
-            },
-            {
-              type: "string",
-              key: "description",
-              displayer: "Description",
-              value: "",
-            },
-            {
-              type: "page",
-              key: "page",
-              displayer: "Navigate To",
-              value: "",
-            },
-          ],
-        },
-        {
-          type: "object",
-          key: "sliderItem",
-          displayer: "Slider Item",
-          value: [
-            {
-              type: "media",
-              key: "image",
-              displayer: "Media",
-              additionalParams: {
-                availableTypes: ["image", "video"],
-              },
-              value: {
-                type: "image",
-                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66618f99bd2970002c6258fe?alt=media&timestamp=1719483639150",
-              },
-            },
-            {
-              type: "media",
-              key: "logo",
-              displayer: "Logo",
-              additionalParams: {
-                availableTypes: ["image", "icon"],
-              },
-              value: {
-                type: "icon",
-                name: "",
-              },
-            },
-            {
-              type: "string",
-              key: "subtitle",
-              displayer: "Subtitle",
-              value: "",
-            },
-            {
-              type: "string",
-              key: "title",
-              displayer: "Title",
-              value: "The Notebook",
-            },
-            {
-              type: "string",
-              key: "description",
-              displayer: "Description",
-              value: "",
-            },
-            {
-              type: "page",
-              key: "page",
-              displayer: "Navigate To",
-              value: "",
-            },
-          ],
-        },
-        {
-          type: "object",
-          key: "sliderItem",
-          displayer: "Slider Item",
-          value: [
-            {
-              type: "media",
-              key: "image",
-              displayer: "Media",
-              additionalParams: {
-                availableTypes: ["image", "video"],
-              },
-              value: {
-                type: "image",
-                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66618f99bd2970002c625901?alt=media&timestamp=1719483639150",
-              },
-            },
-            {
-              type: "media",
-              key: "logo",
-              displayer: "Logo",
-              additionalParams: {
-                availableTypes: ["image", "icon"],
-              },
-              value: {
-                type: "icon",
-                name: "",
-              },
-            },
-            {
-              type: "string",
-              key: "subtitle",
-              displayer: "Subtitle",
-              value: "",
-            },
-            {
-              type: "string",
-              key: "title",
-              displayer: "Title",
-              value: "Little Pumpkin",
-            },
-            {
-              type: "string",
-              key: "description",
-              displayer: "Description",
-              value: "",
-            },
-            {
-              type: "page",
-              key: "page",
-              displayer: "Navigate To",
-              value: "",
-            },
-          ],
-        },
-        {
-          type: "object",
-          key: "sliderItem",
-          displayer: "Slider Item",
-          value: [
-            {
-              type: "media",
-              key: "image",
-              displayer: "Media",
-              additionalParams: {
-                availableTypes: ["image", "video"],
-              },
-              value: {
-                type: "image",
-                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66618f99bd2970002c625903?alt=media&timestamp=1719483639150",
-              },
-            },
-            {
-              type: "media",
-              key: "logo",
-              displayer: "Logo",
-              additionalParams: {
-                availableTypes: ["image", "icon"],
-              },
-              value: {
-                type: "icon",
-                name: "",
-              },
-            },
-            {
-              type: "string",
-              key: "subtitle",
-              displayer: "Subtitle",
-              value: "",
-            },
-            {
-              type: "string",
-              key: "title",
-              displayer: "Title",
-              value: "Autumn Evening",
-            },
-            {
-              type: "string",
-              key: "description",
-              displayer: "Description",
-              value: "",
-            },
-            {
-              type: "page",
-              key: "page",
-              displayer: "Navigate To",
-              value: "",
-            },
-          ],
-        },
+        sliderItem("Autumn Stuff", "66618f99bd2970002c625904"),
+        sliderItem("Breakfast", "66618f99bd2970002c625905"),
+        sliderItem("The Notebook", "66618f99bd2970002c6258fe"),
+        sliderItem("Little Pumpkin", "66618f99bd2970002c625901"),
+        sliderItem("Autumn Evening", "66618f99bd2970002c625903"),
       ],
     });
 
     this.addProp({
       type: "array",
       key: "rightSliderItems",
-      displayer: "Right Slider",
+      displayer: "Right Sliders",
       value: [
-        {
-          type: "object",
-          key: "rightSliderItems_sliderItem",
-          displayer: "Slider Item",
-          value: [
-            {
-              type: "media",
-              key: "sliderItem_image",
-              displayer: "Media",
-              additionalParams: {
-                availableTypes: ["image", "video"],
-              },
-              value: {
-                type: "image",
-                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66618f99bd2970002c625900?alt=media&timestamp=1719483639150",
-              },
-            },
-            {
-              type: "media",
-              key: "sliderItem_logo",
-              displayer: "Logo",
-              additionalParams: {
-                availableTypes: ["image", "icon"],
-              },
-              value: {
-                type: "icon",
-                name: "",
-              },
-            },
-            {
-              type: "string",
-              key: "sliderItem_subtitle",
-              displayer: "Subtitle",
-              value: "",
-            },
-            {
-              type: "string",
-              key: "sliderItem_title",
-              displayer: "Title",
-              value: "Pumpkin Pie",
-            },
-            {
-              type: "string",
-              key: "sliderItem_description",
-              displayer: "Description",
-              value: "",
-            },
-            {
-              type: "page",
-              key: "sliderItem_page",
-              displayer: "Navigate To",
-              value: "",
-            },
-          ],
-        },
-        {
-          type: "object",
-          key: "rightSliderItems_sliderItem",
-          displayer: "Slider Item",
-          value: [
-            {
-              type: "media",
-              key: "sliderItem_image",
-              displayer: "Media",
-              additionalParams: {
-                availableTypes: ["image", "video"],
-              },
-              value: {
-                type: "image",
-                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66618f99bd2970002c6258ff?alt=media&timestamp=1719483639150",
-              },
-            },
-            {
-              type: "media",
-              key: "sliderItem_logo",
-              displayer: "Logo",
-              additionalParams: {
-                availableTypes: ["image", "icon"],
-              },
-              value: {
-                type: "icon",
-                name: "",
-              },
-            },
-            {
-              type: "string",
-              key: "sliderItem_subtitle",
-              displayer: "Subtitle",
-              value: "",
-            },
-            {
-              type: "string",
-              key: "sliderItem_title",
-              displayer: "Title",
-              value: "Coffee Time",
-            },
-            {
-              type: "string",
-              key: "sliderItem_description",
-              displayer: "Description",
-              value: "",
-            },
-            {
-              type: "page",
-              key: "sliderItem_page",
-              displayer: "Navigate To",
-              value: "",
-            },
-          ],
-        },
-        {
-          type: "object",
-          key: "rightSliderItems_sliderItem",
-          displayer: "Slider Item",
-          value: [
-            {
-              type: "media",
-              key: "sliderItem_image",
-              displayer: "Media",
-              additionalParams: {
-                availableTypes: ["image", "video"],
-              },
-              value: {
-                type: "image",
-                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66618f99bd2970002c6258fd?alt=media&timestamp=1719483639150",
-              },
-            },
-            {
-              type: "media",
-              key: "sliderItem_logo",
-              displayer: "Logo",
-              additionalParams: {
-                availableTypes: ["image", "icon"],
-              },
-              value: {
-                type: "icon",
-                name: "",
-              },
-            },
-            {
-              type: "string",
-              key: "sliderItem_subtitle",
-              displayer: "Subtitle",
-              value: "",
-            },
-            {
-              type: "string",
-              key: "sliderItem_title",
-              displayer: "Title",
-              value: "Autumn Stories",
-            },
-            {
-              type: "string",
-              key: "sliderItem_description",
-              displayer: "Description",
-              value: "",
-            },
-            {
-              type: "page",
-              key: "sliderItem_page",
-              displayer: "Navigate To",
-              value: "",
-            },
-          ],
-        },
-        {
-          type: "object",
-          key: "rightSliderItems_sliderItem",
-          displayer: "Slider Item",
-          value: [
-            {
-              type: "media",
-              key: "sliderItem_image",
-              displayer: "Media",
-              additionalParams: {
-                availableTypes: ["image", "video"],
-              },
-              value: {
-                type: "image",
-                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66618f99bd2970002c625902?alt=media&timestamp=1719483639150",
-              },
-            },
-            {
-              type: "media",
-              key: "sliderItem_logo",
-              displayer: "Logo",
-              additionalParams: {
-                availableTypes: ["image", "icon"],
-              },
-              value: {
-                type: "icon",
-                name: "",
-              },
-            },
-            {
-              type: "string",
-              key: "sliderItem_subtitle",
-              displayer: "Subtitle",
-              value: "",
-            },
-            {
-              type: "string",
-              key: "sliderItem_title",
-              displayer: "Title",
-              value: "Still Life",
-            },
-            {
-              type: "string",
-              key: "sliderItem_description",
-              displayer: "Description",
-              value: "",
-            },
-            {
-              type: "page",
-              key: "sliderItem_page",
-              displayer: "Navigate To",
-              value: "",
-            },
-          ],
-        },
-        {
-          type: "object",
-          key: "rightSliderItems_sliderItem",
-          displayer: "Slider Item",
-          value: [
-            {
-              type: "media",
-              key: "sliderItem_image",
-              displayer: "Media",
-              additionalParams: {
-                availableTypes: ["image", "video"],
-              },
-              value: {
-                type: "image",
-                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66618f99bd2970002c625906?alt=media&timestamp=1719483639150",
-              },
-            },
-            {
-              type: "media",
-              key: "sliderItem_logo",
-              displayer: "Logo",
-              additionalParams: {
-                availableTypes: ["image", "icon"],
-              },
-              value: {
-                type: "icon",
-                name: "",
-              },
-            },
-            {
-              type: "string",
-              key: "sliderItem_subtitle",
-              displayer: "Subtitle",
-              value: "",
-            },
-            {
-              type: "string",
-              key: "sliderItem_title",
-              displayer: "Title",
-              value: "Boooo!",
-            },
-            {
-              type: "string",
-              key: "sliderItem_description",
-              displayer: "Description",
-              value: "",
-            },
-            {
-              type: "page",
-              key: "sliderItem_page",
-              displayer: "Navigate To",
-              value: "",
-            },
-          ],
-        },
+        sliderItem("Pumpkin Pie", "66618f99bd2970002c625900"),
+        sliderItem("Coffee Time", "66618f99bd2970002c6258ff"),
+        sliderItem("Autumn Stories", "66618f99bd2970002c6258fd"),
+        sliderItem("Still Life", "66618f99bd2970002c625902"),
+        sliderItem("Boooo!", "66618f99bd2970002c625906"),
       ],
     });
 
     this.addProp({
-      type: "media",
-      key: "leftSliderIcon",
-      displayer: "Left Slider Arrow Icon",
-      additionalParams: {
-        availableTypes: ["icon", "image"],
-      },
-      value: {
-        type: "icon",
-        name: "HiOutlineChevronDown",
-      },
+      type: "object",
+      key: "arrows",
+      displayer: "Arrows",
+      value: [
+        {
+          type: "media",
+          key: "leftIcon",
+          displayer: "Left Slider Arrow Icon",
+          additionalParams: {
+            availableTypes: ["icon", "image"],
+          },
+          value: {
+            type: "icon",
+            name: "HiOutlineChevronDown",
+          },
+        },
+        {
+          type: "media",
+          key: "rightIcon",
+          displayer: "Right Slider Arrow Icon",
+          additionalParams: {
+            availableTypes: ["icon", "image"],
+          },
+          value: {
+            type: "icon",
+            name: "HiOutlineChevronUp",
+          },
+        },
+      ],
     });
 
-    this.addProp({
-      type: "media",
-      key: "rightSliderIcon",
-      displayer: "Right Slider Arrow Icon",
-      additionalParams: {
-        availableTypes: ["icon", "image"],
-      },
-      value: {
-        type: "icon",
-        name: "HiOutlineChevronUp",
-      },
-    });
+    this.addProp(
+      INPUTS.SLIDER_SETTINGS("settings", "Slider Settings", {
+        dots: false,
+        arrows: true,
+        infinite: true,
+        speed: 500,
+        autoplay: true,
+        autoplaySpeed: 2500,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        adaptiveHeight: false,
+      })
+    );
 
     this.leftSliderRef = React.createRef();
     this.rightSliderRef = React.createRef();
     this.isPhone = false;
-
   }
-  
+
   componentDidMount() {
     super.componentDidMount?.();
-    
+
     if (this.containerRef.current) {
       this.resizeObserver = new ResizeObserver((entries) => {
         if (entries[0]) {
@@ -663,7 +191,7 @@ class HeroSection12 extends BaseHeroSection {
       this.resizeObserver.observe(this.containerRef.current);
     }
   }
-  
+
   componentWillUnmount() {
     super.componentWillUnmount?.();
     if (this.resizeObserver) {
@@ -675,34 +203,82 @@ class HeroSection12 extends BaseHeroSection {
     return "Hero Section 12";
   }
 
+  hasMedia(media?: TypeMediaInputValue) {
+    return !!(media && ((media as any).url || (media as any).name));
+  }
+
+  withVideoSettings(media: TypeMediaInputValue) {
+    return media?.type === "video"
+      ? { ...media, settings: { autoplay: true, loop: true, muted: true, controls: false } }
+      : media;
+  }
+
+  renderSliderItem(item: SliderItem, index: number, showOverlay: boolean) {
+    const hasImage = this.hasMedia(item.media);
+    const hasLogo = this.hasMedia(item.logo);
+    const isSubtitleExist = this.castToString(item.subtitle);
+    const isTitleExist = this.castToString(item.title);
+    const isDescriptionExist = this.castToString(item.description);
+    return (
+      <div key={index} className={this.decorateCSS("slider-item")}>
+        {hasImage && (
+          <div className={this.decorateCSS("image-overlay-container")}>
+            <Base.Media className={this.decorateCSS("slider-item-image")} value={this.withVideoSettings(item.media)} />
+            {showOverlay && <div className={this.decorateCSS("image-overlay")} />}
+          </div>
+        )}
+        {(hasLogo || isSubtitleExist || isTitleExist || isDescriptionExist) && (
+          <Base.VerticalContent
+            className={`${this.decorateCSS("slider-item-content")} ${!hasImage ? this.decorateCSS("no-image-text") : ""}`}
+          >
+            {hasLogo && (
+              <Base.Media
+                value={item.logo}
+                className={`${this.decorateCSS("logo")} ${item.logo.type == "image" ? this.decorateCSS("logo-image") : ""}`}
+              />
+            )}
+            {isSubtitleExist && (
+              <Base.SectionSubTitle className={this.decorateCSS("slider-item-subtitle")}>{item.subtitle}</Base.SectionSubTitle>
+            )}
+            {isTitleExist && (
+              <ComposerLink path={item.url}>
+                <Base.SectionTitle className={this.decorateCSS("slider-item-text")}>{item.title}</Base.SectionTitle>
+              </ComposerLink>
+            )}
+            {isDescriptionExist && (
+              <Base.SectionDescription className={this.decorateCSS("slider-item-description")}>
+                {item.description}
+              </Base.SectionDescription>
+            )}
+          </Base.VerticalContent>
+        )}
+      </div>
+    );
+  }
+
   render() {
-    const autoplay = this.getPropValue("autoplay");
     const isVertical = !this.isPhone;
-    
+    const arrows = this.castToObject<Arrows>("arrows");
+    const hasLeftIcon = this.hasMedia(arrows?.leftIcon);
+    const hasRightIcon = this.hasMedia(arrows?.rightIcon);
+    const sliderSettings = this.transformSliderValues(this.getPropValue("settings"));
+
     const settings = {
-      arrows: true,
-      dots: false,
-      infinite: true,
-      speed: 500,
-      autoplay: autoplay,
-      autoplaySpeed: 2500,
-      slidesToShow: 1,
-      slidesToScroll: 1,
+      ...sliderSettings,
       vertical: isVertical,
       verticalSwiping: isVertical,
       swipe: true,
-      switeToSlide: true,
     };
 
     const decorateIcon = { className: this.decorateCSS("icon") };
-    const leftSliderItems = this.castToObject<LeftSliderItem[]>("leftSliderItems");
-    const rightSliderItems =
-      this.castToObject<SliderItem[]>("rightSliderItems");
+    const leftSliderItems = this.castToObject<SliderItem[]>("leftSliderItems");
+    const rightSliderItems = this.castToObject<SliderItem[]>("rightSliderItems");
 
     const showOverlay = this.getPropValue("overlay");
 
     const leftSliderSettings = {
       ...settings,
+      arrows: !!sliderSettings.arrows && hasLeftIcon,
       beforeChange: () => {
         if (rightSliderItems.length > 0) {
           this.rightSliderRef.slickPrev();
@@ -717,7 +293,7 @@ class HeroSection12 extends BaseHeroSection {
             }
           }}
           decorateIcon={decorateIcon}
-          icon={this.getPropValue("leftSliderIcon")}
+          icon={arrows.leftIcon}
         />
       ),
       nextArrow: (
@@ -729,13 +305,14 @@ class HeroSection12 extends BaseHeroSection {
             }
           }}
           decorateIcon={decorateIcon}
-          icon={this.getPropValue("leftSliderIcon")}
+          icon={arrows.leftIcon}
         />
       ),
     };
 
     const rightSliderSettings = {
       ...settings,
+      arrows: !!sliderSettings.arrows && hasRightIcon,
       beforeChange: () => {
         if (leftSliderItems.length > 0) {
           this.leftSliderRef.slickPrev();
@@ -750,7 +327,7 @@ class HeroSection12 extends BaseHeroSection {
             }
           }}
           decorateIcon={decorateIcon}
-          icon={this.getPropValue("rightSliderIcon")}
+          icon={arrows.rightIcon}
         />
       ),
       nextArrow: (
@@ -762,7 +339,7 @@ class HeroSection12 extends BaseHeroSection {
             }
           }}
           decorateIcon={decorateIcon}
-          icon={this.getPropValue("rightSliderIcon")}
+          icon={arrows.rightIcon}
         />
       ),
     };
@@ -770,7 +347,7 @@ class HeroSection12 extends BaseHeroSection {
     return (
       <div className={this.decorateCSS("container")} ref={this.containerRef}>
         <div className={this.decorateCSS("max-content")}>
-          {this.isPhone && (
+          {this.isPhone && !!sliderSettings.arrows && (hasLeftIcon || hasRightIcon) && (
             <div className={this.decorateCSS("mobile-slider-buttons")}>
               <div
                 className={this.decorateCSS("left-slider-button")}
@@ -783,7 +360,7 @@ class HeroSection12 extends BaseHeroSection {
                   }
                 }}
               >
-                <Base.Media value={this.getPropValue("leftSliderIcon")} {...decorateIcon} />
+                {hasLeftIcon && <Base.Media value={arrows.leftIcon} {...decorateIcon} />}
               </div>
               <div
                 className={this.decorateCSS("right-slider-button")}
@@ -796,11 +373,11 @@ class HeroSection12 extends BaseHeroSection {
                   }
                 }}
               >
-                <Base.Media value={this.getPropValue("rightSliderIcon")} {...decorateIcon} />
+                {hasRightIcon && <Base.Media value={arrows.rightIcon} {...decorateIcon} />}
               </div>
             </div>
           )}
-          
+
           <div className={this.decorateCSS("slider-container")}>
 
             {leftSliderItems.length > 0 && (
@@ -814,61 +391,7 @@ class HeroSection12 extends BaseHeroSection {
                 ref={(slider: any) => (this.leftSliderRef = slider)}
                 {...leftSliderSettings}
               >
-                {leftSliderItems.map((item: LeftSliderItem, index: number) => {
-                  const imageWithSettings = item.image?.type === "video" ? {
-                    ...item.image,
-                    settings: {
-                      autoplay: true,
-                      loop: true,
-                      muted: true,
-                      controls: false
-                    }
-                  } : item.image;
-                  return (
-                  <div key={index} className={this.decorateCSS("slider-item")}>
-                    {item.image && (
-                      <div
-                        className={this.decorateCSS("image-overlay-container")}
-                      >
-                        <Base.Media
-                          className={this.decorateCSS("slider-item-image")}
-                          value={imageWithSettings}
-                        />
-                        {showOverlay && (item.image.type === "image" || item.image.type === "video") && item.image.url && (
-                          <div className={this.decorateCSS("image-overlay")} />
-                        )}
-                      </div>
-                    )}
-                    <Base.VerticalContent className={`${this.decorateCSS("slider-item-content")} ${
-                      !item.image && this.decorateCSS("no-image-text")
-                    }`}>
-                      {item.logo && (
-                        <Base.Media
-                          value={item.logo}
-                          className={`${this.decorateCSS("logo")} ${item.logo.type == "image" && this.decorateCSS("logo-image")}`}
-                        />
-                      )}
-                      {this.castToString(item.subtitle) && (
-                        <Base.H5 className={this.decorateCSS("slider-item-subtitle")}>
-                          {item.subtitle}
-                        </Base.H5>
-                      )}
-                      {this.castToString(item.title) && (
-                        <Base.H2 className={this.decorateCSS("slider-item-text")}>
-                          <ComposerLink path={item.page}>
-                            {item.title}
-                          </ComposerLink>
-                        </Base.H2>
-                      )}
-                      {this.castToString(item.description) && (
-                        <Base.P className={this.decorateCSS("slider-item-description")}>
-                          {item.description}
-                        </Base.P>
-                      )}
-                    </Base.VerticalContent>
-                  </div>
-                  );
-                })}
+                {leftSliderItems.map((item: SliderItem, index: number) => this.renderSliderItem(item, index, showOverlay))}
               </ComposerSlider>
             )}
 
@@ -883,61 +406,7 @@ class HeroSection12 extends BaseHeroSection {
                 ref={(slider: any) => (this.rightSliderRef = slider)}
                 {...rightSliderSettings}
               >
-                {rightSliderItems.map((item: SliderItem, index: number) => {
-                  const imageWithSettings = item.sliderItem_image?.type === "video" ? {
-                    ...item.sliderItem_image,
-                    settings: {
-                      autoplay: true,
-                      loop: true,
-                      muted: true,
-                      controls: false
-                    }
-                  } : item.sliderItem_image;
-                  return (
-                  <div key={index} className={this.decorateCSS("slider-item")}>
-                    {item.sliderItem_image && (
-                      <div
-                        className={this.decorateCSS("image-overlay-container")}
-                      >
-                        <Base.Media
-                          className={this.decorateCSS("slider-item-image")}
-                          value={imageWithSettings}
-                        />
-                        {showOverlay && (item.sliderItem_image.type === "image" || item.sliderItem_image.type === "video") && item.sliderItem_image.url && (
-                          <div className={this.decorateCSS("image-overlay")} />
-                        )}
-                      </div>
-                    )}
-                    <Base.VerticalContent className={`${this.decorateCSS("slider-item-content")} ${
-                      !item.sliderItem_image && this.decorateCSS("no-image-text")
-                    }`}>
-                      {item.sliderItem_logo && (
-                        <Base.Media
-                          value={item.sliderItem_logo}
-                          className={`${this.decorateCSS("logo")} ${item.sliderItem_logo.type == "image" && this.decorateCSS("logo-image")}`}
-                        />
-                      )}
-                      {this.castToString(item.sliderItem_subtitle) && (
-                        <Base.H5 className={this.decorateCSS("slider-item-subtitle")}>
-                          {item.sliderItem_subtitle}
-                        </Base.H5>
-                      )}
-                      {this.castToString(item.sliderItem_title) && (
-                        <ComposerLink path={item.sliderItem_page}>
-                          <Base.H2 className={this.decorateCSS("slider-item-text")}>
-                              {item.sliderItem_title}
-                          </Base.H2>
-                        </ComposerLink>
-                      )}
-                      {this.castToString(item.sliderItem_description) && (
-                        <Base.P className={this.decorateCSS("slider-item-description")}>
-                          {item.sliderItem_description}
-                        </Base.P>
-                      )}
-                    </Base.VerticalContent>
-                  </div>
-                  );
-                })}
+                {rightSliderItems.map((item: SliderItem, index: number) => this.renderSliderItem(item, index, showOverlay))}
               </ComposerSlider>
             )}
           </div>

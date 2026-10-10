@@ -238,7 +238,7 @@
           top: 50%;
           transform: translateY(-50%);
           width: calc(100% - 6vw);
-          height: 30vw;
+          height: 88.2%;
           left: -100%;
           border-radius: var(--composer-border-radius-md);
           background-color: color-mix(
@@ -264,6 +264,16 @@
             object-fit: cover;
             display: block;
           }
+
+          .slide-bg-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--composer-overlay-color);
+            pointer-events: none;
+          }
         }
 
         .slide-bg-image-animated {
@@ -279,7 +289,7 @@
 
         .content {
           width: 100%;
-          height: 34vw;
+          min-height: 34vw;
           display: flex;
           gap: var(--composer-gap-xl);
         }
@@ -288,8 +298,8 @@
           z-index: 1;
           flex: 1;
           @include flexCenter;
-          margin-left: var(--composer-gap-xl);
-          margin: 10%;
+          margin: var(--composer-gap-xl) 10%;
+          align-self: center;
           align-items: baseline;
 
           .logo-container {
@@ -372,6 +382,9 @@
 
           .button-container {
             @include transitionOpacity;
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--composer-gap-sm);
             width: 100%;
             position: relative;
             bottom: calc(-1 * 20vw);
@@ -387,6 +400,8 @@
 
         .image-container {
           flex: 1;
+          height: 34vw;
+          align-self: center;
           opacity: 0;
           right: -100%;
 
@@ -467,7 +482,7 @@
 
           .content-bg {
             right: 60% !important;
-            height: 27vw;
+            height: 79.4%;
           }
 
           .content .text-container {
@@ -517,6 +532,10 @@
       }
     }
   }
+}
+
+.slider:not(.with-animation) .wrapper .image-container .image {
+  animation: none !important;
 }
 
 @keyframes bounceAnimation {
@@ -574,7 +593,7 @@
           
           &.type-3 {
             .content-bg {
-              height: 23vw;
+              height: 67.6%;
             }
             .content .text-container {
               width: 100%;

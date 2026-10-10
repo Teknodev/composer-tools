@@ -61,21 +61,15 @@
               }
             }
 
-            .logo-wrapper {
-              margin-bottom: var(--composer-gap-md);
-              width: auto;
+            .logo {
               max-width: 200px;
-
-              .logo {
-                width: 100%;
-                height: auto;
-                display: block;
-                object-fit: contain;
-                font-size: 2rem;
-                color: var(--composer-font-color-primary);
-                &.logo-with-image {
-                  color: black;
-                }
+              height: auto;
+              display: block;
+              object-fit: contain;
+              font-size: 2rem;
+              color: var(--composer-font-color-primary);
+              &.logo-with-image {
+                color: black;
               }
             }
 
@@ -171,7 +165,7 @@
           .content-wrapper{
             .content {
               padding: var(--composer-gap-md);
-              .logo-wrapper {
+              .logo {
                 max-width: 150px;
                 margin: 0 auto;
               }

@@ -13,6 +13,45 @@ class HeroSection4 extends BaseHeroSection {
     super(props, styles);
 
     this.addProp({
+      type: "object",
+      key: "backgroundMedia",
+      displayer: "Background Media",
+      value: [
+        {
+          type: "media",
+          key: "media",
+          displayer: "Media",
+          additionalParams: {
+            availableTypes: ["image", "video"],
+          },
+          value: {
+            type: "image",
+            url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617f0abd2970002c62451a?alt=media&timestamp=1719483639150",
+          },
+        },
+        {
+          type: "boolean",
+          key: "overlay",
+          displayer: "Overlay",
+          value: false,
+        },
+      ],
+    });
+
+    this.addProp({
+      type: "media",
+      key: "logo",
+      displayer: "Logo",
+      additionalParams: {
+        availableTypes: ["image", "icon"],
+      },
+      value: {
+        type: "icon",
+        name: "",
+      },
+    });
+
+    this.addProp({
       type: "string",
       key: "subtitle",
       displayer: "Subtitle",
@@ -41,19 +80,6 @@ class HeroSection4 extends BaseHeroSection {
       value: "NOTE: Some details are very important.",
     });
 
-    
-    this.addProp({
-      type: "media",
-      key: "logo",
-      displayer: "Logo",
-      additionalParams: {
-        availableTypes: ["image", "icon"],
-      },
-      value: {
-        type: "icon",
-        name: "",
-      },
-    });
 
     this.addProp({
       type: "array",
@@ -69,27 +95,7 @@ class HeroSection4 extends BaseHeroSection {
 
     this.addProp({
       type: "boolean",
-      key: "overlay",
-      displayer: "Overlay",
-      value: false,
-    });
-
-    this.addProp({
-      type: "media",
-      key: "image",
-      displayer: "Media",
-      additionalParams: {
-        availableTypes: ["image", "video"],
-      },
-      value: {
-        type: "image",
-        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617f0abd2970002c62451a?alt=media&timestamp=1719483639150",
-      },
-    });
-
-    this.addProp({
-      type: "boolean",
-      key: "image-anm",
+      key: "animation",
       displayer: "Animation",
       value: true,
     });
@@ -171,16 +177,21 @@ handleScroll = () => {
   render() {
     const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
 
-    const imageAnm = this.getPropValue("image-anm");
-    const image = this.getPropValue("image");
-    const overlay = this.getPropValue("overlay");
+    const imageAnm = this.getPropValue("animation");
+    const backgroundMedia = this.castToObject<{ media: any; overlay: boolean }>("backgroundMedia");
+    const media = backgroundMedia?.media;
+    const image = media?.url ? media : null;
+    const overlay = backgroundMedia?.overlay;
     const logo = this.getPropValue("logo");
     const subtitle = this.castToString(this.getPropValue("subtitle"));
     const title = this.castToString(this.getPropValue("title"));
     const description = this.castToString(this.getPropValue("description"));
     const note = this.castToString(this.getPropValue("note"));
-    const hasButtons = buttons && buttons.length > 0 && buttons.some(btn => this.castToString(btn.text) || btn.icon);
-    const showCard = subtitle || title || description || hasButtons || note;
+    const hasLogo = !!(logo?.url || logo?.name);
+    const getIconValue = (icon: any) => (typeof icon === "string" ? { type: "icon" as const, name: icon } : icon);
+    const hasIcon = (icon: any) => !!(getIconValue(icon)?.name || getIconValue(icon)?.url);
+    const hasButtons = buttons && buttons.length > 0 && buttons.some(btn => this.castToString(btn.text) || hasIcon(btn.icon));
+    const showCard = hasLogo || subtitle || title || description || hasButtons || note;
     const alignment = Base.getContentAlignment();
 
 const getStyle = (direction: "up" | "down") => {
@@ -213,14 +224,14 @@ const getStyle = (direction: "up" | "down") => {
       <Base.Container
         ref={this.containerRef}
         className={`${this.decorateCSS("container")} ${
-          !imageAnm && this.decorateCSS("no-image-anm")
-        } ${!image && this.decorateCSS("no-background-image")} ${alignment === "center" && this.decorateCSS("center-alignment")}`}
+          !imageAnm ? this.decorateCSS("no-image-anm") : ""
+        } ${!image ? this.decorateCSS("no-background-image") : ""} ${alignment === "center" ? this.decorateCSS("center-alignment") : ""}`}
       >
-        <div className={`${this.decorateCSS("max-content")} ${!image && this.decorateCSS("no-image-wrapper")}`}>
+        <div className={`${this.decorateCSS("max-content")} ${!image ? this.decorateCSS("no-image-wrapper") : ""}`}>
           {image && (
             <div 
               ref={this.imageRef}
-              className={`${this.decorateCSS("image-container")} ${!imageAnm && this.decorateCSS("no-img-anm")}`}
+              className={`${this.decorateCSS("image-container")} ${!imageAnm ? this.decorateCSS("no-img-anm") : ""}`}
             >
               <Base.Media
                 className={this.decorateCSS("image-element")}
@@ -234,14 +245,14 @@ const getStyle = (direction: "up" | "down") => {
                   }
                 } : image}
               />
-              {overlay && image && (image.type === "image" || image.type === "video") && image.url && <div className={this.decorateCSS("overlay")} />}
+              {overlay && <div className={this.decorateCSS("overlay")} />}
             </div>
           )}
 
-         <div className={`${this.decorateCSS("card-container")} ${!image && this.decorateCSS("no-image")} ${!image ? this.decorateCSS("without-image") : ""}`}>
+         <div className={`${this.decorateCSS("card-container")} ${!image ? `${this.decorateCSS("no-image")} ${this.decorateCSS("without-image")}` : ""}`}>
           {showCard && (
               <Base.VerticalContent className={this.decorateCSS("card")} style={getStyle("down")}>
-                {logo && (
+                {hasLogo && (
                   <Base.Media 
                     value={logo} 
                     className={`${this.decorateCSS("logo")} ${logo?.type === "image" ? this.decorateCSS("logo-image") : this.decorateCSS("logo-icon")}`} 
@@ -258,21 +269,19 @@ const getStyle = (direction: "up" | "down") => {
                   <div className={this.decorateCSS("button-container")}>
                     {buttons.map((button: INPUTS.CastedButton, index: number) => {
                       const buttonText = this.castToString(button.text);
-                      if (!buttonText && !button.icon) return null;
+                      if (!buttonText && !hasIcon(button.icon)) return null;
                       return (
                         <ComposerLink key={index} path={button?.url || '#'}>
                           <Base.Button 
                             buttonType={button?.type || "Tertiary"} 
                             className={this.decorateCSS("button")}>
                             {buttonText && <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>}
-                            {button.icon && (() => {
-                              const iconValue = typeof button.icon === "string" ? { type: "icon" as const, name: button.icon } : button.icon;
-                              return iconValue.name && 
+                            {hasIcon(button.icon) && (
                               <Base.Media
-                                value={iconValue}
+                                value={getIconValue(button.icon)}
                                 className={this.decorateCSS("button-icon")}
-                              />;
-                            })()}
+                              />
+                            )}
                           </Base.Button>
                         </ComposerLink>
                       );

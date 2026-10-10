@@ -1,7 +1,7 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 .container {
   padding: 0 !important;
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   gap: var(--composer-gap-xl);
 
@@ -80,7 +80,6 @@
         .subtitle {
           text-align: left;
           margin-left: 0;
-          font-size: 2.5rem;
         }
         .title {
           font-size: 5rem;
@@ -89,6 +88,11 @@
         .description {
           font-size: 1.5rem;
           text-align: left;
+        }
+        .buttons {
+          display: flex;
+          flex-wrap: wrap;
+          gap: var(--composer-gap-sm);
         }
         .button{
           .button-text{
@@ -101,7 +105,7 @@
   }
   .right{
     flex: 2;
-    height: 100%;
+    align-self: stretch;
     position: relative;
     &.no-left{
       .icon-box {
@@ -129,33 +133,25 @@
       }
     }
     .icon-box {
-      width: fit-content;
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
       left: -40px;
       z-index: 2;
-      .icon-wrapper{
-        width: 80px;
-        height: 80px;
-        background-color: var(--composer-primary-color);
-        border-radius: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        .icon {
-          padding: var(--composer-gap-sm);
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          color: var(--composer-font-color-secondary);
-          .play-button {
-            width: 26px;
-            height: 32px;
-            font-size: 2.5rem;
-            object-fit: contain;
-          }
-        }
+      width: 80px;
+      height: 80px;
+      background-color: var(--composer-primary-color);
+      border-radius: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: var(--composer-font-color-secondary);
+      .play-button {
+        width: 26px;
+        height: 32px;
+        font-size: 2.5rem;
+        object-fit: contain;
       }
     }
   }
@@ -171,6 +167,7 @@
       .video-player {
           width: 100%;
           height: 100%;
+          border-radius: var(--composer-border-radius-sm);
       }
     }
 }
@@ -198,6 +195,7 @@
   .container{
     flex-direction: row;
     height: fit-content;
+    min-height: 0;
 
     &.no-background-image {
       height: 100%;
@@ -209,7 +207,6 @@
       .max-content {
         .content {
           padding: var(--composer-gap-md) 0px var(--composer-gap-md) var(--composer-gap-xl);
-          .subtitle { font-size: 2.5rem; }
           .title { font-size: 5rem; }
         }
       }
@@ -217,26 +214,19 @@
 
     .right{
       flex: 2;
-      height: 100%;
       position: relative;
       overflow: visible;
       .icon-box {
         top: 50%;
         left: -30px;
         transform: translateY(-50%);
-        .icon-wrapper {
-          width: 60px;
-          height: 60px;
-          .icon {
-            width: 25px;
-            height: 30px;
-            .play-button {
-              font-size: 2rem;
-              width: 25px;
-              height: 25px;
-              object-fit: contain;
-            }
-          }
+        width: 60px;
+        height: 60px;
+        .play-button {
+          font-size: 2rem;
+          width: 25px;
+          height: 25px;
+          object-fit: contain;
         }
       }
     }
@@ -260,9 +250,6 @@
           &.no-image{
             padding: 0;
           }
-          .subtitle {
-            font-size: 1.5rem;
-          }
           .title {
             font-size: 3rem;
           }
@@ -274,15 +261,11 @@
       .icon-box {
         left: 50%;
         transform: translate(-50%, -50%);
-        .icon-wrapper{
-          .icon {
-            font-size: 2rem;
-            .play-button {
-              width: 26px;
-              height: 26px;
-              object-fit: contain;
-            }
-          }
+        .play-button {
+          font-size: 2rem;
+          width: 26px;
+          height: 26px;
+          object-fit: contain;
         }
       }
     }

@@ -19,8 +19,8 @@
       }
 
       &.with-image {
-        border-bottom-left-radius: var(--composer-border-radius-sm);
-        border-bottom-right-radius: var(--composer-border-radius-sm);
+        border-bottom-left-radius: var(--composer-border-radius-md);
+        border-bottom-right-radius: var(--composer-border-radius-md);
         overflow: hidden;
 
         .subtitle,
@@ -94,17 +94,15 @@
       }
 
       .subtitle {
-        letter-spacing: 5px;
+        content: "";
       }
 
       .title {
         font-size: 5rem;
-        letter-spacing: var(--composer-gap-xs);
       }
 
       .description {
         font-size: 1.5rem;
-        letter-spacing: var(--composer-gap-xs);
       }
 
       .button-container {

@@ -1,35 +1,139 @@
 import * as React from "react";
 import styles from "./hero-section20.module.scss";
-import { BaseHeroSection, TypeMediaInputValue } from "../../EditorComponent";
+import { BaseHeroSection, TypeMediaInputValue, TypeUsableComponentProps } from "../../EditorComponent";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import { Base } from "../../../composer-base-components/base/base";
+import { INPUTS } from "../../../custom-hooks/input-templates";
 
 type SliderItem = {
-  title: string;
-  number: string;
-  image: TypeMediaInputValue;
-  link: string;
-  buttomRow: {
-    comment: React.JSX.Element;
-  };
+  logo: TypeMediaInputValue;
+  subtitle: React.JSX.Element;
+  title: React.JSX.Element;
+  description: React.JSX.Element;
+  number: React.JSX.Element;
+  media: TypeMediaInputValue;
+  url: string;
 };
 
-type SocialIcon = {
-  icon_text: React.JSX.Element;
-  icon_link: string;
+type SocialItem = {
+  icon: TypeMediaInputValue;
+  text: React.JSX.Element;
+  url: string;
 };
+
+type Follow = {
+  icon: TypeMediaInputValue;
+  text: React.JSX.Element;
+};
+
+type Navigation = {
+  upIcon: TypeMediaInputValue;
+  downIcon: TypeMediaInputValue;
+};
+
+const slide = (title: string, number: string, subtitle: string, mediaUrl: string): TypeUsableComponentProps => ({
+  type: "object",
+  key: "item",
+  displayer: "Item",
+  value: [
+    {
+      type: "media",
+      key: "logo",
+      displayer: "Logo",
+      additionalParams: {
+        availableTypes: ["image", "icon"],
+      },
+      value: {
+        type: "icon",
+        name: "",
+      },
+    },
+    {
+      type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: subtitle,
+    },
+    {
+      type: "string",
+      key: "title",
+      displayer: "Title",
+      value: title,
+    },
+    {
+      type: "string",
+      key: "description",
+      displayer: "Description",
+      value: "",
+    },
+    {
+      type: "string",
+      key: "number",
+      displayer: "Number",
+      value: number,
+    },
+    {
+      type: "media",
+      key: "media",
+      displayer: "Media",
+      additionalParams: {
+        availableTypes: ["image", "video"],
+      },
+      value: {
+        type: "image",
+        url: mediaUrl,
+      },
+    },
+    {
+      type: "page",
+      key: "url",
+      displayer: "Navigate To",
+      value: "",
+    },
+  ],
+});
+
+const social = (text: string): TypeUsableComponentProps => ({
+  type: "object",
+  key: "social",
+  displayer: "Social",
+  value: [
+    {
+      type: "media",
+      key: "icon",
+      displayer: "Icon",
+      additionalParams: {
+        availableTypes: ["icon", "image"],
+      },
+      value: {
+        type: "icon",
+        name: "",
+      },
+    },
+    {
+      type: "string",
+      key: "text",
+      displayer: "Text",
+      value: text,
+    },
+    {
+      type: "page",
+      key: "url",
+      displayer: "Navigate To",
+      value: "",
+    },
+  ],
+});
 
 class HeroSection20 extends BaseHeroSection {
   sliderRef: React.RefObject<any>;
   titleSliderRef: React.RefObject<any>;
-  commentSliderRef: React.RefObject<any>;
   constructor(props?: any) {
     super(props, styles);
 
     this.sliderRef = React.createRef();
     this.titleSliderRef = React.createRef();
-    this.commentSliderRef = React.createRef();
 
     this.addProp({
       type: "boolean",
@@ -39,599 +143,60 @@ class HeroSection20 extends BaseHeroSection {
     });
 
     this.addProp({
-      type: "boolean",
-      key: "autoplay",
-      displayer: "Autoplay",
-      value: true,
-    });
-
-    this.addProp({
-      type: "media",
-      key: "up_icon",
-      displayer: "Up Icon",
-      additionalParams: {
-        availableTypes: ["icon", "image"],
-      },
-      value: {
-        type: "icon",
-        name: "IoIosArrowUp",
-      },
-    });
-    this.addProp({
-      type: "media",
-      key: "down_icon",
-      displayer: "Down Icon",
-      additionalParams: {
-        availableTypes: ["icon", "image"],
-      },
-      value: {
-        type: "icon",
-        name: "IoIosArrowDown",
-      },
-    });
-
-    this.addProp({
-      type: "array",
-      key: "slider",
-      displayer: "Slider",
+      type: "object",
+      key: "arrows",
+      displayer: "Arrows",
       value: [
         {
-          type: "object",
-          key: "item",
-          displayer: "Item",
-          value: [
-            {
-              type: "string",
-              key: "title",
-              displayer: "Title",
-              value: "SNEAKERS",
-            },
-            {
-              type: "string",
-              key: "number",
-              displayer: "Number",
-              value: "01",
-            },
-            {
-              type: "media",
-              displayer: "Media",
-              key: "image",
-              additionalParams: {
-                availableTypes: ["image", "video"],
-              },
-              value: {
-                type: "image",
-                url: "http://clapat.ro/themes/hervin-wordpress/wp-content/uploads/2019/05/01hero.jpg",
-              },
-            },
-            {
-              type: "page",
-              key: "link",
-              displayer: "Navigate To",
-              value: "",
-            },
-            {
-              type: "object",
-              key: "buttomRow",
-              displayer: "Bottom Row",
-              value: [
-                {
-                  type: "string",
-                  key: "comment",
-                  displayer: "Comment",
-                  value: "Branding",
-                },
-              ],
-            },
-          ],
+          type: "media",
+          key: "upIcon",
+          displayer: "Up Icon",
+          additionalParams: {
+            availableTypes: ["icon", "image"],
+          },
+          value: {
+            type: "icon",
+            name: "IoIosArrowUp",
+          },
         },
         {
-          type: "object",
-          key: "item",
-          displayer: "Item",
-          value: [
-            {
-              type: "string",
-              key: "title",
-              displayer: "Title",
-              value: "EVEREST",
-            },
-            {
-              type: "string",
-              key: "number",
-              displayer: "Number",
-              value: "02",
-            },
-            {
-              type: "media",
-              displayer: "Media",
-              key: "image",
-              additionalParams: {
-                availableTypes: ["image", "video"],
-              },
-              value: {
-                type: "image",
-                url: "http://clapat.ro/themes/hervin-wordpress/wp-content/uploads/2019/05/02hero.jpg",
-              },
-            },
-            {
-              type: "page",
-              key: "link",
-              displayer: "Navigate To",
-              value: "",
-            },
-            {
-              type: "object",
-              key: "buttomRow",
-              displayer: "Bottom Row",
-              value: [
-                {
-                  type: "string",
-                  key: "comment",
-                  displayer: "Comment",
-                  value: "Design",
-                },
-              ],
-            },
-          ],
-        },
-        {
-          type: "object",
-          key: "item",
-          displayer: "Item",
-          value: [
-            {
-              type: "string",
-              key: "title",
-              displayer: "Title",
-              value: "RED ROOM",
-            },
-            {
-              type: "string",
-              key: "number",
-              displayer: "Number",
-              value: "03",
-            },
-            {
-              type: "media",
-              displayer: "Media",
-              key: "image",
-              additionalParams: {
-                availableTypes: ["image", "video"],
-              },
-              value: {
-                type: "image",
-                url: "http://clapat.ro/themes/hervin-wordpress/wp-content/uploads/2019/05/03hero.jpg",
-              },
-            },
-            {
-              type: "page",
-              key: "link",
-              displayer: "Navigate To",
-              value: "",
-            },
-            {
-              type: "object",
-              key: "buttomRow",
-              displayer: "Bottom Row",
-              value: [
-                {
-                  type: "string",
-                  key: "comment",
-                  displayer: "Comment",
-                  value: "Photography",
-                },
-              ],
-            },
-          ],
-        },
-        {
-          type: "object",
-          key: "item",
-          displayer: "Item",
-          value: [
-            {
-              type: "string",
-              key: "title",
-              displayer: "Title",
-              value: "ONLY DANCE",
-            },
-            {
-              type: "string",
-              key: "number",
-              displayer: "Number",
-              value: "04",
-            },
-            {
-              type: "media",
-              displayer: "Media",
-              key: "image",
-              additionalParams: {
-                availableTypes: ["image", "video"],
-              },
-              value: {
-                type: "image",
-                url: "http://clapat.ro/themes/hervin-wordpress/wp-content/uploads/2019/05/04hero.jpg",
-              },
-            },
-            {
-              type: "page",
-              key: "link",
-              displayer: "Navigate To",
-              value: "",
-            },
-            {
-              type: "object",
-              key: "buttomRow",
-              displayer: "Bottom Row",
-              value: [
-                {
-                  type: "string",
-                  key: "comment",
-                  displayer: "Comment",
-                  value: "Video",
-                },
-              ],
-            },
-          ],
-        },
-        {
-          type: "object",
-          key: "item",
-          displayer: "Item",
-          value: [
-            {
-              type: "string",
-              key: "title",
-              displayer: "Title",
-              value: "FOREST",
-            },
-            {
-              type: "string",
-              key: "number",
-              displayer: "Number",
-              value: "05",
-            },
-            {
-              type: "media",
-              displayer: "Media",
-              key: "image",
-              additionalParams: {
-                availableTypes: ["image", "video"],
-              },
-              value: {
-                type: "image",
-                url: "http://clapat.ro/themes/hervin-wordpress/wp-content/uploads/2019/05/05hero.jpg",
-              },
-            },
-            {
-              type: "page",
-              key: "link",
-              displayer: "Navigate To",
-              value: "",
-            },
-            {
-              type: "object",
-              key: "buttomRow",
-              displayer: "Bottom Row",
-              value: [
-                {
-                  type: "string",
-                  key: "comment",
-                  displayer: "Comment",
-                  value: "Photography",
-                },
-              ],
-            },
-          ],
-        },
-        {
-          type: "object",
-          key: "item",
-          displayer: "Item",
-          value: [
-            {
-              type: "string",
-              key: "title",
-              displayer: "Title",
-              value: "BLACK BOOK",
-            },
-            {
-              type: "string",
-              key: "number",
-              displayer: "Number",
-              value: "06",
-            },
-            {
-              type: "media",
-              displayer: "Media",
-              key: "image",
-              additionalParams: {
-                availableTypes: ["image", "video"],
-              },
-              value: {
-                type: "image",
-                url: "http://clapat.ro/themes/hervin-wordpress/wp-content/uploads/2019/05/06hero.jpg",
-              },
-            },
-            {
-              type: "page",
-              key: "link",
-              displayer: "Navigate To",
-              value: "",
-            },
-            {
-              type: "object",
-              key: "buttomRow",
-              displayer: "Bottom Row",
-              value: [
-                {
-                  type: "string",
-                  key: "comment",
-                  displayer: "Comment",
-                  value: "Branding",
-                },
-              ],
-            },
-          ],
-        },
-        {
-          type: "object",
-          key: "item",
-          displayer: "Item",
-          value: [
-            {
-              type: "string",
-              key: "title",
-              displayer: "Title",
-              value: "HANNAH",
-            },
-            {
-              type: "string",
-              key: "number",
-              displayer: "Number",
-              value: "07",
-            },
-            {
-              type: "media",
-              displayer: "Media",
-              key: "image",
-              additionalParams: {
-                availableTypes: ["image", "video"],
-              },
-              value: {
-                type: "image",
-                url: "http://clapat.ro/themes/hervin-wordpress/wp-content/uploads/2019/05/07hero.jpg",
-              },
-            },
-            {
-              type: "page",
-              key: "link",
-              displayer: "Navigate To",
-              value: "",
-            },
-            {
-              type: "object",
-              key: "buttomRow",
-              displayer: "Bottom Row",
-              value: [
-                {
-                  type: "string",
-                  key: "comment",
-                  displayer: "Comment",
-                  value: "Photography",
-                },
-              ],
-            },
-          ],
-        },
-        {
-          type: "object",
-          key: "item",
-          displayer: "Item",
-          value: [
-            {
-              type: "string",
-              key: "title",
-              displayer: "Title",
-              value: "CROSS BIKE",
-            },
-            {
-              type: "string",
-              key: "number",
-              displayer: "Number",
-              value: "08",
-            },
-            {
-              type: "media",
-              displayer: "Media",
-              key: "image",
-              additionalParams: {
-                availableTypes: ["image", "video"],
-              },
-              value: {
-                type: "image",
-                url: "http://clapat.ro/themes/hervin-wordpress/wp-content/uploads/2019/05/08hero.jpg",
-              },
-            },
-            {
-              type: "page",
-              key: "link",
-              displayer: "Navigate To",
-              value: "",
-            },
-            {
-              type: "object",
-              key: "buttomRow",
-              displayer: "Bottom Row",
-              value: [
-                {
-                  type: "string",
-                  key: "comment",
-                  displayer: "Comment",
-                  value: "Photography",
-                },
-              ],
-            },
-          ],
-        },
-        {
-          type: "object",
-          key: "item",
-          displayer: "Item",
-          value: [
-            {
-              type: "string",
-              key: "title",
-              displayer: "Title",
-              value: "ROBOT",
-            },
-            {
-              type: "string",
-              key: "number",
-              displayer: "Number",
-              value: "09",
-            },
-            {
-              type: "media",
-              displayer: "Media",
-              key: "image",
-              additionalParams: {
-                availableTypes: ["image", "video"],
-              },
-              value: {
-                type: "image",
-                url: "http://clapat.ro/themes/hervin-wordpress/wp-content/uploads/2019/05/09hero.jpg",
-              },
-            },
-            {
-              type: "page",
-              key: "link",
-              displayer: "Navigate To",
-              value: "",
-            },
-            {
-              type: "object",
-              key: "buttomRow",
-              displayer: "Bottom Row",
-              value: [
-                {
-                  type: "string",
-                  key: "comment",
-                  displayer: "Comment",
-                  value: "Design",
-                },
-              ],
-            },
-          ],
-        },
-        {
-          type: "object",
-          key: "item",
-          displayer: "Item",
-          value: [
-            {
-              type: "string",
-              key: "title",
-              displayer: "Title",
-              value: "COLOR DUST",
-            },
-            {
-              type: "string",
-              key: "number",
-              displayer: "Number",
-              value: "10",
-            },
-            {
-              type: "media",
-              displayer: "Media",
-              key: "image",
-              additionalParams: {
-                availableTypes: ["image", "video"],
-              },
-              value: {
-                type: "image",
-                url: "http://clapat.ro/themes/hervin-wordpress/wp-content/uploads/2019/05/10hero.jpg",
-              },
-            },
-            {
-              type: "page",
-              key: "link",
-              displayer: "Navigate To",
-              value: "",
-            },
-            {
-              type: "object",
-              key: "buttomRow",
-              displayer: "Bottom Row",
-              value: [
-                {
-                  type: "string",
-                  key: "comment",
-                  displayer: "Comment",
-                  value: "Design",
-                },
-              ],
-            },
-          ],
-        },
-        {
-          type: "object",
-          key: "item",
-          displayer: "Item",
-          value: [
-            {
-              type: "string",
-              key: "title",
-              displayer: "Title",
-              value: "KATYA",
-            },
-            {
-              type: "string",
-              key: "number",
-              displayer: "Number",
-              value: "11",
-            },
-            {
-              type: "media",
-              displayer: "Media",
-              key: "image",
-              additionalParams: {
-                availableTypes: ["image", "video"],
-              },
-              value: {
-                type: "image",
-                url: "http://clapat.ro/themes/hervin-wordpress/wp-content/uploads/2019/05/11hero.jpg",
-              },
-            },
-            {
-              type: "page",
-              key: "link",
-              displayer: "Navigate To",
-              value: "",
-            },
-            {
-              type: "object",
-              key: "buttomRow",
-              displayer: "Bottom Row",
-              value: [
-                {
-                  type: "string",
-                  key: "comment",
-                  displayer: "Comment",
-                  value: "Photography",
-                },
-              ],
-            },
-          ],
+          type: "media",
+          key: "downIcon",
+          displayer: "Down Icon",
+          additionalParams: {
+            availableTypes: ["icon", "image"],
+          },
+          value: {
+            type: "icon",
+            name: "IoIosArrowDown",
+          },
         },
       ],
     });
 
     this.addProp({
+      type: "array",
+      key: "slider",
+      displayer: "Sliders",
+      value: [
+        slide("SNEAKERS", "01", "Branding", "http://clapat.ro/themes/hervin-wordpress/wp-content/uploads/2019/05/01hero.jpg"),
+        slide("EVEREST", "02", "Design", "http://clapat.ro/themes/hervin-wordpress/wp-content/uploads/2019/05/02hero.jpg"),
+        slide("RED ROOM", "03", "Photography", "http://clapat.ro/themes/hervin-wordpress/wp-content/uploads/2019/05/03hero.jpg"),
+        slide("ONLY DANCE", "04", "Video", "http://clapat.ro/themes/hervin-wordpress/wp-content/uploads/2019/05/04hero.jpg"),
+        slide("FOREST", "05", "Photography", "http://clapat.ro/themes/hervin-wordpress/wp-content/uploads/2019/05/05hero.jpg"),
+        slide("BLACK BOOK", "06", "Branding", "http://clapat.ro/themes/hervin-wordpress/wp-content/uploads/2019/05/06hero.jpg"),
+        slide("HANNAH", "07", "Photography", "http://clapat.ro/themes/hervin-wordpress/wp-content/uploads/2019/05/07hero.jpg"),
+        slide("CROSS BIKE", "08", "Photography", "http://clapat.ro/themes/hervin-wordpress/wp-content/uploads/2019/05/08hero.jpg"),
+        slide("ROBOT", "09", "Design", "http://clapat.ro/themes/hervin-wordpress/wp-content/uploads/2019/05/09hero.jpg"),
+        slide("COLOR DUST", "10", "Design", "http://clapat.ro/themes/hervin-wordpress/wp-content/uploads/2019/05/10hero.jpg"),
+        slide("KATYA", "11", "Photography", "http://clapat.ro/themes/hervin-wordpress/wp-content/uploads/2019/05/11hero.jpg"),
+      ],
+    });
+
+    this.addProp({
       type: "object",
-      key: "iconsHeader",
-      displayer: "Icons Header",
+      key: "follow",
+      displayer: "Follow",
       value: [
         {
           type: "media",
@@ -647,8 +212,8 @@ class HeroSection20 extends BaseHeroSection {
         },
         {
           type: "string",
-          key: "iconText",
-          displayer: "Icon Text",
+          key: "text",
+          displayer: "Text",
           value: "Follow Us",
         },
       ],
@@ -656,114 +221,53 @@ class HeroSection20 extends BaseHeroSection {
 
     this.addProp({
       type: "array",
-      key: "social_icons",
-      displayer: "Social Icons",
+      key: "socials",
+      displayer: "Social Media",
       value: [
-        {
-          type: "object",
-          key: "social_icons_icon",
-          displayer: "Icon",
-          value: [
-            {
-              type: "string",
-              key: "icon_text",
-              displayer: "Icon Text",
-              value: "In",
-            },
-            {
-              type: "page",
-              key: "icon_link",
-              displayer: "Navigate To",
-              value: "",
-            },
-          ],
-        },
-        {
-          type: "object",
-          key: "social_icons_icon",
-          displayer: "Icon",
-          value: [
-            {
-              type: "string",
-              key: "icon_text",
-              displayer: "Icon Text",
-              value: "Fb",
-            },
-            {
-              type: "page",
-              key: "icon_link",
-              displayer: "Navigate To",
-              value: "",
-            },
-          ],
-        },
-        {
-          type: "object",
-          key: "social_icons_icon",
-          displayer: "Icon",
-          value: [
-            {
-              type: "string",
-              key: "icon_text",
-              displayer: "Icon Text",
-              value: "Be",
-            },
-            {
-              type: "page",
-              key: "icon_link",
-              displayer: "Navigate To",
-              value: "",
-            },
-          ],
-        },
-        {
-          type: "object",
-          key: "social_icons_icon",
-          displayer: "Icon",
-          value: [
-            {
-              type: "string",
-              key: "icon_text",
-              displayer: "Icon Text",
-              value: "Tw",
-            },
-            {
-              type: "page",
-              key: "icon_link",
-              displayer: "Navigate To",
-              value: "",
-            },
-          ],
-        },
-        {
-          type: "object",
-          key: "social_icons_icon",
-          displayer: "Icon",
-          value: [
-            {
-              type: "string",
-              key: "icon_text",
-              displayer: "Icon Text",
-              value: "Db",
-            },
-            {
-              type: "page",
-              key: "icon_link",
-              displayer: "Navigate To",
-              value: "",
-            },
-          ],
-        },
+        social("In"),
+        social("Fb"),
+        social("Be"),
+        social("Tw"),
+        social("Db"),
       ],
     });
 
+    this.addProp({
+      type: "boolean",
+      key: "animation",
+      displayer: "Animation",
+      value: true,
+    });
+
+    this.addProp(
+      INPUTS.SLIDER_SETTINGS("settings", "Slider Settings", {
+        dots: false,
+        arrows: true,
+        infinite: true,
+        speed: 500,
+        autoplay: true,
+        autoplaySpeed: 3000,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        adaptiveHeight: false,
+      })
+    );
+
     this.setComponentState("slider", 0);
-    this.setComponentState("titleSlider", 0);
-    this.setComponentState("commentSlider", 0);
   }
 
   static getName(): string {
     return "Hero Section 20";
+  }
+
+  hasMedia(media?: unknown) {
+    return !!(media && ((media as any).url || (media as any).name));
+  }
+
+  withVideoSettings(media: TypeMediaInputValue) {
+    return media?.type === "video"
+      ? { ...media, settings: { autoplay: true, loop: true, muted: true, controls: false } }
+      : media;
   }
 
   goToSlide = (nextSlide: number) => {
@@ -773,12 +277,7 @@ class HeroSection20 extends BaseHeroSection {
     if (this.titleSliderRef.current) {
       this.titleSliderRef.current.slickGoTo(nextSlide + 1);
     }
-    if (this.commentSliderRef.current) {
-      this.commentSliderRef.current.slickGoTo(nextSlide);
-    }
     this.setComponentState("slider", nextSlide);
-    this.setComponentState("titleSlider", nextSlide);
-    this.setComponentState("commentSlider", nextSlide);
   };
 
   handleUpClick = () => {
@@ -794,49 +293,48 @@ class HeroSection20 extends BaseHeroSection {
     this.goToSlide(nextSlide);
   };
 
-  getTitlesToShow = (index: number) => {
-    const slider = this.castToObject<SliderItem[]>("slider");
-    const totalSlides = slider.length;
-
-    return [
-      index > 0 ? { ...slider[index - 1], position: "previous" } : { title: "", number: "", position: "previous", isPlaceholder: true },
-      { ...slider[index], position: "current" },
-      index < totalSlides - 1 ? { ...slider[index + 1], position: "next" } : { title: "", number: "", position: "next", isPlaceholder: true },
-    ].map((title) => ({
-      ...title,
-      link: "link" in title ? title.link : undefined,
-    }));
-  };
+  renderTitle(slide: SliderItem) {
+    const titleExist = this.castToString(slide.title);
+    const numberExist = this.castToString(slide.number);
+    return (
+      <>
+        <div className={this.decorateCSS("title-stroke")}>
+          {titleExist && <Base.H2 className={this.decorateCSS("title-text")}>{slide.title}</Base.H2>}
+          {numberExist && <Base.P className={this.decorateCSS("number")}>{slide.number}</Base.P>}
+        </div>
+        <div className={this.decorateCSS("title-solid")}>
+          {titleExist && <Base.H2 className={this.decorateCSS("title-text")}>{slide.title}</Base.H2>}
+          {numberExist && <Base.P className={this.decorateCSS("number")}>{slide.number}</Base.P>}
+        </div>
+      </>
+    );
+  }
 
   render() {
     const currentSlide = this.getComponentState("slider");
+    const animation = this.getPropValue("animation");
+    const sliderSettings = this.transformSliderValues(this.getPropValue("settings"));
+    const slider = this.castToObject<SliderItem[]>("slider");
 
     const settings = {
+      ...sliderSettings,
       dots: false,
-      infinite: true,
-      vertical: true,
-      slidesToShow: 1,
-      slidesToScroll: 1,
       arrows: false,
+      vertical: true,
       verticalSwiping: true,
       swipeToSlide: true,
       draggable: true,
-      autoplay: this.getPropValue("autoplay"),
+      speed: animation ? sliderSettings.speed : 0,
       beforeChange: (current: number, next: number) => {
-        const maxSlide = this.castToObject<SliderItem[]>("slider").length - 1;
+        const maxSlide = slider.length - 1;
         const isLoopingForward = current === maxSlide && next === 0;
         const isLoopingBackward = current === 0 && next === maxSlide;
-        const skipAnimation = isLoopingForward || isLoopingBackward;
-        
+        const skipAnimation = isLoopingForward || isLoopingBackward || !animation;
+
         this.setComponentState("slider", next);
-        this.setComponentState("titleSlider", next);
-        this.setComponentState("commentSlider", next);
-        
+
         if (this.titleSliderRef.current) {
           this.titleSliderRef.current.slickGoTo(next + 1, skipAnimation);
-        }
-        if (this.commentSliderRef.current) {
-          this.commentSliderRef.current.slickGoTo(next);
         }
       },
     };
@@ -854,125 +352,127 @@ class HeroSection20 extends BaseHeroSection {
       draggable: false,
       centerMode: true,
       centerPadding: "0",
-      speed: 600,
+      speed: animation ? 600 : 0,
       cssEase: "cubic-bezier(0.25, 0.1, 0.25, 1)",
       initialSlide: 1,
     };
 
-    const slider = this.castToObject<SliderItem[]>("slider");
-    const up_icon = this.getPropValue("up_icon") as TypeMediaInputValue | undefined;
-    const down_icon = this.getPropValue("down_icon") as TypeMediaInputValue | undefined;
-    const icons = this.castToObject<SocialIcon[]>("social_icons");
+    const navigation = this.castToObject<Navigation>("arrows");
+    const upIconExist = sliderSettings.arrows && this.hasMedia(navigation?.upIcon);
+    const downIconExist = sliderSettings.arrows && this.hasMedia(navigation?.downIcon);
+    const socials = this.castToObject<SocialItem[]>("socials").filter(
+      (item: SocialItem) => this.castToString(item.text) || this.hasMedia(item.icon)
+    );
+    const follow = this.castToObject<Follow>("follow");
+    const followTextExist = this.castToString(follow?.text);
+    const followIconExist = this.hasMedia(follow?.icon);
 
-    const activeIndex = this.getComponentState("slider");
-    const imageless = !slider[activeIndex]?.image;
+    const activeItem = slider[currentSlide];
+    const imageless = !this.hasMedia(activeItem?.media);
     const overlay = this.getPropValue("overlay");
 
-    const iconText = this.castToObject<any>("iconsHeader");
+    const activeLogoExist = this.hasMedia(activeItem?.logo);
+    const activeSubtitleExist = this.castToString(activeItem?.subtitle);
+    const activeDescriptionExist = this.castToString(activeItem?.description);
+    const metaExist = activeLogoExist || activeSubtitleExist || activeDescriptionExist;
 
     return (
-      <div className={this.decorateCSS("container")}>
-        <ComposerSlider ref={this.sliderRef} {...settings}>
-          {slider.map((slide, index) => (
-            <div className={this.decorateCSS("image-container")} key={`title-key-${index}`}>
-              {slide.image && <Base.Media value={slide.image} className={this.decorateCSS("image")} autoPlay muted loop playsInline controls={false} />}
-              {overlay && !imageless && <div className={this.decorateCSS("overlay")} key={`title-key-${index}`}></div>}
-            </div>
-          ))}
+      <div className={`${this.decorateCSS("container")} ${!animation ? this.decorateCSS("no-animation") : ""}`}>
+        <ComposerSlider ref={this.sliderRef} {...settings} className={this.decorateCSS("media-slider")}>
+          {slider.map((item: SliderItem, index: number) => {
+            const mediaExist = this.hasMedia(item.media);
+            return (
+              <div className={this.decorateCSS("image-container")} key={`media-key-${index}`}>
+                {mediaExist && <Base.Media value={this.withVideoSettings(item.media)} className={this.decorateCSS("image")} />}
+                {overlay && mediaExist && <div className={this.decorateCSS("overlay")}></div>}
+              </div>
+            );
+          })}
         </ComposerSlider>
 
         {slider.length > 0 && (
           <div className={this.decorateCSS("max-content")}>
             <div className={this.decorateCSS("item")}>
-              <div className={`${this.decorateCSS("content-container")} ${imageless && this.decorateCSS("imageless")}`}>
+              <div className={`${this.decorateCSS("content-container")} ${imageless ? this.decorateCSS("imageless") : ""}`}>
                 <div className={this.decorateCSS("title-container")}>
-                  <ComposerSlider ref={this.titleSliderRef} {...titleSettings}>
-                    <div key="placeholder-start">
+                  <ComposerSlider ref={this.titleSliderRef} {...titleSettings} className={this.decorateCSS("title-slider")}>
+                    <div key="placeholder-start" className={this.decorateCSS("title-slide")}>
                       <div className={this.decorateCSS("title-wrapper")}>
-                        <h2 className={this.decorateCSS("title-stroke")}>&nbsp;</h2>
+                        <div className={this.decorateCSS("title-stroke")}>
+                          <Base.H2 className={this.decorateCSS("title-text")}>&nbsp;</Base.H2>
+                        </div>
                       </div>
                     </div>
-                    {slider.map((slide, index) => {
+                    {slider.map((item: SliderItem, index: number) => {
                       const isCurrent = index === currentSlide;
-                      const isImageless = !slide.image;
+                      const isImageless = !this.hasMedia(item.media);
+                      const wrapperClass = `${this.decorateCSS("title-wrapper")} ${isCurrent ? this.decorateCSS("current") : ""} ${isCurrent && isImageless ? this.decorateCSS("imageless-title") : ""}`;
                       return (
-                        <div key={`title-${index}`}>
-                          {slide.link && isCurrent ? (
-                            <ComposerLink path={slide.link} isFullWidth={true}>
-                              <div className={`${this.decorateCSS("title-wrapper")} ${isCurrent ? this.decorateCSS("current") : ""} ${isCurrent && isImageless && this.decorateCSS("imageless-title")}`}>
-                                <h2 className={this.decorateCSS("title-stroke")}> 
-                                  {slide.title}
-                                  <span className={this.decorateCSS("number")}>{slide.number}</span>
-                                </h2>
-                                <h2 className={this.decorateCSS("title-solid")}> 
-                                  {slide.title}
-                                  <span className={this.decorateCSS("number")}>{slide.number}</span>
-                                </h2>
-                              </div>
+                        <div key={`title-${index}`} className={this.decorateCSS("title-slide")}>
+                          {item.url && isCurrent ? (
+                            <ComposerLink path={item.url} isFullWidth={true}>
+                              <div className={wrapperClass}>{this.renderTitle(item)}</div>
                             </ComposerLink>
                           ) : (
-                            <div className={`${this.decorateCSS("title-wrapper")} ${isCurrent && this.decorateCSS("current")} ${isCurrent && isImageless && this.decorateCSS("imageless-title")}`}>
-                              <h2 className={this.decorateCSS("title-stroke")}> 
-                                {slide.title}
-                                <span className={this.decorateCSS("number")}>{slide.number}</span>
-                              </h2>
-                              <h2 className={this.decorateCSS("title-solid")}> 
-                                {slide.title}
-                                <span className={this.decorateCSS("number")}>{slide.number}</span>
-                              </h2>
-                            </div>
+                            <div className={wrapperClass}>{this.renderTitle(item)}</div>
                           )}
                         </div>
                       );
                     })}
-                    <div key="placeholder-end">
+                    <div key="placeholder-end" className={this.decorateCSS("title-slide")}>
                       <div className={this.decorateCSS("title-wrapper")}>
-                        <h2 className={this.decorateCSS("title-stroke")}>&nbsp;</h2>
+                        <div className={this.decorateCSS("title-stroke")}>
+                          <Base.H2 className={this.decorateCSS("title-text")}>&nbsp;</Base.H2>
+                        </div>
                       </div>
                     </div>
                   </ComposerSlider>
                 </div>
-                <div className={this.decorateCSS("buttomRow")}>
-                  {(this.castToString(slider[currentSlide].buttomRow.comment) || up_icon || down_icon) && (
+                <div className={this.decorateCSS("bottom-row")}>
+                  {(metaExist || upIconExist || downIconExist) && (
                     <div className={this.decorateCSS("left")}>
-                      {(up_icon || down_icon) && (
+                      {(upIconExist || downIconExist) && (
                         <div className={this.decorateCSS("navigation")}>
-                          {up_icon && (
-                            <div
-                              className={this.decorateCSS("icon")}
-                              onClick={this.handleUpClick}
-                            >
-                              <Base.Media className={this.decorateCSS("icon-element")} value={up_icon} />
+                          {upIconExist && (
+                            <div className={this.decorateCSS("icon")} onClick={this.handleUpClick}>
+                              <Base.Media className={this.decorateCSS("icon-element")} value={navigation.upIcon} />
                             </div>
                           )}
-                          {down_icon && (
-                            <div
-                              className={this.decorateCSS("icon")}
-                              onClick={this.handleDownClick}
-                            >
-                              <Base.Media className={this.decorateCSS("icon-element")} value={down_icon} />
+                          {downIconExist && (
+                            <div className={this.decorateCSS("icon")} onClick={this.handleDownClick}>
+                              <Base.Media className={this.decorateCSS("icon-element")} value={navigation.downIcon} />
                             </div>
                           )}
                         </div>
                       )}
-                      {this.castToString(slider[currentSlide].buttomRow.comment) && <div className={this.decorateCSS("comment")}>{slider[currentSlide].buttomRow.comment}</div>}
+                      {metaExist && (
+                        <Base.VerticalContent className={this.decorateCSS("comment")}>
+                          {activeLogoExist && <Base.Media value={activeItem.logo} className={this.decorateCSS("logo")} />}
+                          {activeSubtitleExist && (
+                            <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{activeItem.subtitle}</Base.SectionSubTitle>
+                          )}
+                          {activeDescriptionExist && (
+                            <Base.SectionDescription className={this.decorateCSS("description")}>{activeItem.description}</Base.SectionDescription>
+                          )}
+                        </Base.VerticalContent>
+                      )}
                     </div>
                   )}
-                  {(this.castToString(iconText.iconText) || iconText.icon || icons.length > 0) && (
+                  {(followTextExist || followIconExist || socials.length > 0) && (
                     <div className={this.decorateCSS("comment-and-icon-text-container")}>
                       <div className={this.decorateCSS("icon-text-container")}>
-                        {this.castToString(iconText.iconText) && <div className={this.decorateCSS("icon_text")}>{iconText.iconText}</div>}
-                        {iconText.icon && (
-                          <Base.Media
-                            value={iconText.icon as TypeMediaInputValue}
-                            className={this.decorateCSS("icon-next-to-text")}
-                          />
-                        )}
-                        {(!(this.castToString(iconText.iconText) && !iconText.icon) || icons.length > 0) && (
+                        {followTextExist && <Base.P className={this.decorateCSS("follow-text")}>{follow.text}</Base.P>}
+                        {followIconExist && <Base.Media value={follow.icon} className={this.decorateCSS("icon-next-to-text")} />}
+                        {socials.length > 0 && (
                           <div className={this.decorateCSS("social-icons")}>
-                            {icons.map((icon, i) => (
-                              <div className={this.decorateCSS("icon")}>
-                                <ComposerLink path={icon.icon_link}>{icon.icon_text}</ComposerLink>
+                            {socials.map((item: SocialItem, index: number) => (
+                              <div className={this.decorateCSS("icon")} key={index}>
+                                <ComposerLink path={item.url}>
+                                  <div className={this.decorateCSS("social-link")}>
+                                    {this.hasMedia(item.icon) && <Base.Media value={item.icon} className={this.decorateCSS("social-icon")} />}
+                                    {this.castToString(item.text) && <Base.P className={this.decorateCSS("social-text")}>{item.text}</Base.P>}
+                                  </div>
+                                </ComposerLink>
                               </div>
                             ))}
                           </div>
@@ -991,4 +491,3 @@ class HeroSection20 extends BaseHeroSection {
 }
 
 export default HeroSection20;
-

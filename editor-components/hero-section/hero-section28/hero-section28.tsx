@@ -1,41 +1,132 @@
 import * as React from "react";
-import { BaseHeroSection } from "../../EditorComponent";
+import { BaseHeroSection, TypeMediaInputValue, TypeUsableComponentProps } from "../../EditorComponent";
 import styles from "./hero-section28.module.scss";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "../../../custom-hooks/input-templates";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 
+type Slide = {
+  logo: TypeMediaInputValue;
+  subtitle: React.JSX.Element;
+  title: React.JSX.Element;
+  description: React.JSX.Element;
+  secondDescription: React.JSX.Element;
+  buttons: INPUTS.CastedButton[];
+  image: TypeMediaInputValue;
+  overlay: boolean;
+  video: TypeMediaInputValue;
+};
+
+type Icons = {
+  play_icon: TypeMediaInputValue;
+  close_icon: TypeMediaInputValue;
+};
+
+const VIDEO_URL = "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661a35bbd2970002c626c45?alt=media&timestamp=1719483639151";
+
+const slide = (subtitle: string, title: string, description: string, imageUrl: string): TypeUsableComponentProps => ({
+  type: "object",
+  key: "slide",
+  displayer: "Slide",
+  value: [
+    {
+      type: "media",
+      key: "logo",
+      displayer: "Logo",
+      additionalParams: { availableTypes: ["icon", "image"] },
+      value: { type: "icon", name: "" },
+    },
+    {
+      type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: subtitle,
+    },
+    {
+      type: "string",
+      key: "title",
+      displayer: "Title",
+      value: title,
+    },
+    {
+      type: "string",
+      key: "description",
+      displayer: "Description",
+      value: description,
+    },
+    {
+      type: "string",
+      key: "secondDescription",
+      displayer: "Second Description",
+      value: "NOW AVAILABLE ON STREAMING SERVICES",
+    },
+    {
+      type: "array",
+      key: "buttons",
+      displayer: "Buttons",
+      value: [
+        INPUTS.BUTTON("button", "Button", "", "", "", null, "Primary"),
+      ],
+    },
+    {
+      type: "media",
+      key: "image",
+      displayer: "Media",
+      value: { type: "image", url: imageUrl },
+      additionalParams: { availableTypes: ["image", "video"] },
+    },
+    {
+      type: "boolean",
+      key: "overlay",
+      displayer: "Overlay",
+      value: false,
+    },
+    {
+      type: "media",
+      key: "video",
+      displayer: "Video",
+      value: { type: "video", url: VIDEO_URL },
+      additionalParams: { availableTypes: ["video"] },
+    },
+  ],
+});
+
 class HeroSection28 extends BaseHeroSection {
   constructor(props?: any) {
     super(props, styles);
 
     this.addProp({
-      type: "media",
-      key: "play_icon",
-      displayer: "Play Icon",
-      value: { type: "icon", name: "IoPlay" },
-      additionalParams: { availableTypes: ["icon", "image"] },
-    });
-    this.addProp({
-      type: "media",
-      key: "close_icon",
-      displayer: "Close Icon",
-      value: { type: "icon", name: "IoCloseOutline" },
-      additionalParams: { availableTypes: ["icon", "image"] },
-    });
-    this.addProp({
-      type: "boolean",
-      key: "textAnimation",
-      displayer: "Animation",
-      value: true,
+      type: "array",
+      key: "slider",
+      displayer: "Sliders",
+      value: [
+        slide("ACTION", "Dark Poison", "Official Season 1 Trailer", "https://viseo.progressionstudios.com/wp-content/uploads/2017/04/dark-poison-large-1400x700.jpg"),
+        slide("ACTION", "Frontlines", "Official Season 1 Trailer", "https://viseo.progressionstudios.com/wp-content/uploads/2017/04/front-lines-1400x700.jpg"),
+        slide("TECHNOLOGY", "Deep Space", "Worldwide Premiere", "https://viseo.progressionstudios.com/wp-content/uploads/2017/04/dep-space-1400x700.jpg"),
+      ],
     });
 
     this.addProp({
-      type: "boolean",
-      key: "autoplay",
-      displayer: "Autoplay",
-      value: true,
+      type: "object",
+      key: "icons",
+      displayer: "Video Icons",
+      value: [
+        {
+          type: "media",
+          key: "play_icon",
+          displayer: "Play Icon",
+          value: { type: "icon", name: "IoPlay" },
+          additionalParams: { availableTypes: ["icon", "image"] },
+        },
+        {
+          type: "media",
+          key: "close_icon",
+          displayer: "Close Icon",
+          value: { type: "icon", name: "IoCloseOutline" },
+          additionalParams: { availableTypes: ["icon", "image"] },
+        },
+      ],
     });
 
     this.addProp({
@@ -46,225 +137,25 @@ class HeroSection28 extends BaseHeroSection {
     });
 
     this.addProp({
-      type: "media",
-      key: "prev_icon",
-      displayer: "Prev Icon",
-      value: { type: "icon", name: "IoChevronBack" },
-      additionalParams: { availableTypes: ["icon", "image"] },
-    });
-    this.addProp({
-      type: "media",
-      key: "next_icon",
-      displayer: "Next Icon",
-      value: { type: "icon", name: "IoChevronForward" },
-      additionalParams: { availableTypes: ["icon", "image"] },
+      type: "boolean",
+      key: "animation",
+      displayer: "Animation",
+      value: true,
     });
 
-    this.addProp({
-      type: "array",
-      key: "slider",
-      displayer: "Slider",
-      value: [
-        {
-          type: "object",
-          key: "slide",
-          displayer: "Slide",
-          value: [
-            {
-              type: "media",
-              key: "logo",
-              displayer: "Logo",
-              additionalParams: { availableTypes: ["icon", "image"] },
-              value: { type: "icon", name: "" },
-            },
-            {
-              type: "media",
-              key: "image",
-              displayer: "Media",
-              value: { type: "image", url: "https://viseo.progressionstudios.com/wp-content/uploads/2017/04/dark-poison-large-1400x700.jpg" },
-              additionalParams: { availableTypes: ["image", "video"] },
-            },
-            {
-              type: "boolean",
-              key: "overlay",
-              displayer: "Overlay",
-              value: false,
-            },
-            {
-              type: "media",
-              key: "video",
-              displayer: "Video",
-              value: { type: "video", url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661a35bbd2970002c626c45?alt=media&timestamp=1719483639151" },
-              additionalParams: { availableTypes: ["video"] },
-            },
-            {
-              type: "string",
-              key: "subtitle",
-              displayer: "Subtitle",
-              value: "ACTION",
-            },
-            {
-              type: "string",
-              key: "title",
-              displayer: "Title",
-              value: "Dark Poison",
-            },
-            {
-              type: "string",
-              key: "description",
-              displayer: "Description",
-              value: "Official Season 1 Trailer",
-            },
-            {
-              type: "string",
-              key: "text",
-              displayer: "Text",
-              value: "NOW AVAILABLE ON STREAMING SERVICES",
-            },
-            {
-            type: "array",
-            key: "buttons",
-            displayer: "Buttons",
-            value: [
-              INPUTS.BUTTON("button", "Button", "", "", "", null, "Primary"),
-            ]
-          }
-          ],
-        },
-        {
-          type: "object",
-          key: "slide",
-          displayer: "Slide",
-          value: [
-            {
-              type: "media",
-              key: "logo",
-              displayer: "Logo",
-              additionalParams: { availableTypes: ["icon", "image"] },
-              value: { type: "icon", name: "" },
-            },
-            {
-              type: "media",
-              key: "image",
-              displayer: "Media",
-              value: { type: "image", url: "https://viseo.progressionstudios.com/wp-content/uploads/2017/04/front-lines-1400x700.jpg" },
-              additionalParams: { availableTypes: ["image", "video"] },
-            },
-            {
-              type: "boolean",
-              key: "overlay",
-              displayer: "Overlay",
-              value: false,
-            },
-            {
-              type: "media",
-              key: "video",
-              displayer: "Video",
-              value: { type: "video", url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661a35bbd2970002c626c45?alt=media&timestamp=1719483639151" },
-              additionalParams: { availableTypes: ["video"] },
-            },
-            {
-              type: "string",
-              key: "subtitle",
-              displayer: "Subtitle",
-              value: "ACTION",
-            },
-            {
-              type: "string",
-              key: "title",
-              displayer: "Title",
-              value: "Frontlines",
-            },
-            {
-              type: "string",
-              key: "description",
-              displayer: "Description",
-              value: "Official Season 1 Trailer",
-            },
-            {
-              type: "string",
-              key: "text",
-              displayer: "Text",
-              value: "NOW AVAILABLE ON STREAMING SERVICES",
-            },
-            {
-            type: "array",
-            key: "buttons",
-            displayer: "Buttons",
-            value: [
-              INPUTS.BUTTON("button", "Button", "", "", "", null, "Primary"),
-            ]
-          }
-          ],
-        },
-        {
-          type: "object",
-          key: "slide",
-          displayer: "Slide",
-          value: [
-            {
-              type: "media",
-              key: "logo",
-              displayer: "Logo",
-              additionalParams: { availableTypes: ["icon", "image"] },
-              value: { type: "icon", name: "" },
-            },
-            {
-              type: "media",
-              key: "image",
-              displayer: "Media",
-              value: { type: "image", url: "https://viseo.progressionstudios.com/wp-content/uploads/2017/04/dep-space-1400x700.jpg" },
-              additionalParams: { availableTypes: ["image", "video"] },
-            },
-            {
-              type: "boolean",
-              key: "overlay",
-              displayer: "Overlay",
-              value: false,
-            },
-            {
-              type: "media",
-              key: "video",
-              displayer: "Video",
-              value: { type: "video", url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661a35bbd2970002c626c45?alt=media&timestamp=1719483639151" },
-              additionalParams: { availableTypes: ["video"] },
-            },
-            {
-              type: "string",
-              key: "subtitle",
-              displayer: "Subtitle",
-              value: "TECHNOLOGY",
-            },
-            {
-              type: "string",
-              key: "title",
-              displayer: "Title",
-              value: "Deep Space",
-            },
-            {
-              type: "string",
-              key: "description",
-              displayer: "Description",
-              value: "Worldwide Premiere",
-            },
-            {
-              type: "string",
-              key: "text",
-              displayer: "Text",
-              value: "NOW AVAILABLE ON STREAMING SERVICES",
-            },
-            {
-              type: "array",
-              key: "buttons",
-              displayer: "Buttons",
-              value: [
-                INPUTS.BUTTON("button", "Button", "", "", "", null, "Primary"),
-              ]
-            }
-          ],
-        },
-      ],
-    });
+    this.addProp(
+      INPUTS.SLIDER_SETTINGS("settings", "Slider Settings", {
+        dots: true,
+        arrows: false,
+        infinite: true,
+        speed: 800,
+        autoplay: true,
+        autoplaySpeed: 3000,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        adaptiveHeight: false,
+      })
+    );
 
     this.setComponentState("animation-active", false);
     this.setComponentState("active-index", 0);
@@ -275,34 +166,45 @@ class HeroSection28 extends BaseHeroSection {
     return "Hero Section 28";
   }
 
+  hasMedia(media?: TypeMediaInputValue) {
+    return !!(media && ((media as any).url || (media as any).name));
+  }
+
+  withVideoSettings(media: TypeMediaInputValue) {
+    return media?.type === "video"
+      ? { ...media, settings: { autoplay: true, loop: true, muted: true, controls: false } }
+      : media;
+  }
+
   render() {
-    const slides = this.getPropValue("slider");
+    const slides = this.castToObject<Slide[]>("slider");
+    const icons = this.castToObject<Icons>("icons");
+    const hasPlayIcon = this.hasMedia(icons?.play_icon);
+    const hasCloseIcon = this.hasMedia(icons?.close_icon);
+    const isLineActive = this.getPropValue("line");
+    const activeIndex = this.getComponentState("active-index");
+    const activeSlide = slides[activeIndex];
+    const playVideo = this.getComponentState("play-video");
+    const sliderSettings = this.transformSliderValues(this.getPropValue("settings"));
 
     const settings = {
-      arrows: false,
-      dots: true,
-      infinite: true,
+      ...sliderSettings,
+      autoplay: sliderSettings.autoplay && !playVideo,
       accessibility: true,
-      speed: 800,
-      autoplay: this.getPropValue("autoplay") && !this.getComponentState("play-video"),
-      autoplaySpeed: 3000,
-      slidesToShow: 1,
       draggable: false,
       dotsClass: `slick-dots ${this.decorateCSS("customDots")}`,
       fade: true,
       customPaging: (i: any) => (
         <div
-          className={`${this.decorateCSS("dot")} ${this.getComponentState("active-index") == i &&
-            this.decorateCSS("activeDot")
-            } ${slides[this.getComponentState("active-index")].getPropValue("image") && this.decorateCSS("withImageDot")}`}
+          className={`${this.decorateCSS("dot")} ${activeIndex == i ? this.decorateCSS("activeDot") : ""} ${this.hasMedia(activeSlide?.image) ? this.decorateCSS("withImageDot") : ""}`}
         />
       ),
-      afterChange: (index: number) => {
+      afterChange: () => {
         this.setComponentState("play-video", false);
       },
       beforeChange: (oldIndex: number, newIndex: number) => {
         if (oldIndex === newIndex) return;
-        if (this.getPropValue("textAnimation"))
+        if (this.getPropValue("animation"))
           this.setComponentState("animation-active", true);
         setTimeout(() => {
           this.setComponentState("animation-active", false);
@@ -315,154 +217,133 @@ class HeroSection28 extends BaseHeroSection {
     };
 
     return (
-      <div className={`${this.decorateCSS("container")} ${this.getComponentState("play-video") && this.decorateCSS("with-overlay")}`}>
+      <div className={`${this.decorateCSS("container")} ${playVideo ? this.decorateCSS("with-overlay") : ""}`}>
         <ComposerSlider
           {...settings}
           ref={this.getComponentState("sliderRef")}
           className={this.decorateCSS("carousel")}
         >
-          {slides.map((item: any, indexSlider: number) => (
-            <div className={this.decorateCSS("content")} key={indexSlider}>
-              {item.getPropValue("image") && (
-                <div className={this.decorateCSS("image-box")}>
-                  <Base.Media
-                    className={this.decorateCSS("bg-img")}
-                    value={item.getPropValue("image")}
-                  />
-                  {item.getPropValue("overlay") && (
-                    <div className={this.decorateCSS("image-overlay")} />
-                  )}
-                </div>
-              )}
+          {slides.map((item: Slide, indexSlider: number) => {
+            const hasImage = this.hasMedia(item.image);
+            const hasVideo = this.hasMedia(item.video);
+            const hasLogo = this.hasMedia(item.logo);
+            const isSubtitleExist = this.castToString(item.subtitle);
+            const isTitleExist = this.castToString(item.title);
+            const isDescriptionExist = this.castToString(item.description);
+            const isSecondDescriptionExist = this.castToString(item.secondDescription);
+            const buttons = (item.buttons || []).filter(
+              (button: INPUTS.CastedButton) => this.castToString(button.text) || this.hasMedia(button.icon as any)
+            );
+            const imageClass = hasImage ? this.decorateCSS("withImage") : this.decorateCSS("noImage");
+            const openVideo = hasVideo ? () => this.setComponentState("play-video", true) : () => { };
 
-              {this.getPropValue("play_icon") && (
-                <div
-                  className={`${this.decorateCSS("play-button")} ${item.getPropValue("image") && this.decorateCSS("withImage")
-                    }`}
-                  onClick={
-                    item.getPropValue("video")
-                      ? () => this.setComponentState("play-video", true)
-                      : () => { }
-                  }
-                >
-                  <Base.Media className={this.decorateCSS("play-button-icon")} value={this.getPropValue("play_icon")} />
-                </div>
-              )}
-              <div
-                className={`${this.decorateCSS("slide-content")}
-                ${!this.getComponentState("animation-active") &&
-                  this.decorateCSS("visible")
-                  }`}
-                onClick={
-                  item.getPropValue("video") ? () => this.setComponentState("play-video", true)
-                    : () => { }
-                }
-              >
-                {this.castToString(item.getPropValue("subtitle")) && (
-                  <>
-                    {item.getPropValue("logo") && (
-                      <Base.Media
-                        className={`${this.decorateCSS("logo")} ${!item.getPropValue("image") && this.decorateCSS("noImage")}`}
-                        value={item.getPropValue("logo")}
-                      />
+            return (
+              <div className={this.decorateCSS("content")} key={indexSlider}>
+                {hasImage && (
+                  <div className={this.decorateCSS("image-box")}>
+                    <Base.Media
+                      className={this.decorateCSS("bg-img")}
+                      value={this.withVideoSettings(item.image)}
+                    />
+                    {item.overlay && (
+                      <div className={this.decorateCSS("image-overlay")} />
                     )}
-                    <Base.H5
-                      className={`${this.decorateCSS("tag")} ${item.getPropValue("image") &&
-                        this.decorateCSS("withImage")
-                        } ${!item.getPropValue("image") && this.decorateCSS("noImage")} ${this.getPropValue("line") && this.decorateCSS("hasLine")}`}
-                    >
-                      {item.getPropValue("subtitle")}
-                    </Base.H5>
-                  </>
-                )}
-                {this.castToString(item.getPropValue("title")) && (
-                  <Base.H1
-                    className={`${this.decorateCSS("title")} ${item.getPropValue("image") &&
-                      this.decorateCSS("withImage")
-                      } ${!item.getPropValue("image") && this.decorateCSS("noImage")}`}
-                  >
-                    {item.getPropValue("title")}
-                  </Base.H1>
-                )}
-                {this.castToString(item.getPropValue("description")) && (
-                  <Base.H3
-                    className={`${this.decorateCSS("sub_title")} ${item.getPropValue("image") &&
-                      this.decorateCSS("withImage")
-                      } ${!item.getPropValue("image") && this.decorateCSS("noImage")}`}
-                  >
-                    {item.getPropValue("description")}
-                  </Base.H3>
-                )}
-                {this.castToString(item.getPropValue("text")) && (
-                  <Base.P
-                    className={`${this.decorateCSS("description")} ${item.getPropValue("image") &&
-                      this.decorateCSS("withImage")
-                      } ${!item.getPropValue("image") && this.decorateCSS("noImage")}`}
-                  >
-                    {item.getPropValue("text")}
-                  </Base.P>
-                )}
-                {item.getPropValue("buttons") && (
-                  <div className={this.decorateCSS("buttons-container")}>
-                    {item.getPropValue("buttons").map((button: any, index: number) => {
-                      const isDescriptor = !!button.getPropValue;
-
-                      const text = isDescriptor && button.getPropValue("text");
-                      const url = isDescriptor && button.getPropValue("url");
-                      const icon = isDescriptor && button.getPropValue("icon");
-                      const type = isDescriptor && button.getPropValue("type");
-
-                      const buttonTextExist = this.castToString(text);
-                      const iconExist = !!(icon && (icon.name || icon.url));
-
-                      if (!(buttonTextExist || iconExist)) return null;
-
-                      return (
-                        <div key={`hs-28-btn-${index}`} className={this.decorateCSS("button")}>
-                          <ComposerLink path={url}>
-                            <Base.Button buttonType={type} className={this.decorateCSS("button-element")}>
-                              {iconExist && (
-                                <Base.Media
-                                  value={icon}
-                                  className={this.decorateCSS("button-icon")}
-                                />
-                              )}
-                              {buttonTextExist && <Base.P className={this.decorateCSS("button-text")}>{text}</Base.P>}
-                            </Base.Button>
-                          </ComposerLink>
-                        </div>
-                      );
-                    })}
                   </div>
                 )}
+
+                {hasPlayIcon && hasVideo && (
+                  <div
+                    className={`${this.decorateCSS("play-button")} ${hasImage ? this.decorateCSS("withImage") : ""}`}
+                    onClick={openVideo}
+                  >
+                    <Base.Media className={this.decorateCSS("play-button-icon")} value={icons.play_icon} />
+                  </div>
+                )}
+                <div
+                  className={`${this.decorateCSS("slide-content")} ${!this.getComponentState("animation-active") ? this.decorateCSS("visible") : ""}`}
+                  onClick={openVideo}
+                >
+                  <Base.VerticalContent className={this.decorateCSS("text-content")}>
+                    {hasLogo && (
+                      <Base.Media
+                        className={`${this.decorateCSS("logo")} ${!hasImage ? this.decorateCSS("noImage") : ""}`}
+                        value={item.logo}
+                      />
+                    )}
+                    {isSubtitleExist && (
+                      <Base.SectionSubTitle
+                        className={`${this.decorateCSS("tag")} ${imageClass} ${isLineActive ? this.decorateCSS("hasLine") : ""}`}
+                      >
+                        {item.subtitle}
+                      </Base.SectionSubTitle>
+                    )}
+                    {isTitleExist && (
+                      <Base.SectionTitle className={`${this.decorateCSS("title")} ${imageClass}`}>
+                        {item.title}
+                      </Base.SectionTitle>
+                    )}
+                    {isDescriptionExist && (
+                      <Base.SectionDescription className={`${this.decorateCSS("sub_title")} ${imageClass}`}>
+                        {item.description}
+                      </Base.SectionDescription>
+                    )}
+                    {isSecondDescriptionExist && (
+                      <Base.P className={`${this.decorateCSS("description")} ${imageClass}`}>
+                        {item.secondDescription}
+                      </Base.P>
+                    )}
+                    {buttons.length > 0 && (
+                      <div className={this.decorateCSS("buttons-container")}>
+                        {buttons.map((button: INPUTS.CastedButton, index: number) => {
+                          const buttonTextExist = this.castToString(button.text);
+                          const iconExist = this.hasMedia(button.icon as any);
+                          return (
+                            <div key={`hs-28-btn-${index}`} className={this.decorateCSS("button")}>
+                              <ComposerLink path={button.url}>
+                                <Base.Button buttonType={button.type} className={this.decorateCSS("button-element")}>
+                                  {iconExist && (
+                                    <Base.Media
+                                      value={button.icon as any}
+                                      className={this.decorateCSS("button-icon")}
+                                    />
+                                  )}
+                                  {buttonTextExist && <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>}
+                                </Base.Button>
+                              </ComposerLink>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    )}
+                  </Base.VerticalContent>
+                </div>
               </div>
-            </div>         
-          ))}
+            );
+          })}
         </ComposerSlider>
-        {this.getComponentState("play-video") && slides[this.getComponentState("active-index")]?.getPropValue("video") && (
+        {playVideo && this.hasMedia(activeSlide?.video) && (
           <Base.Overlay
-            isVisible={this.getComponentState("play-video")}
+            isVisible={playVideo}
             onClick={() => this.setComponentState("play-video", false)}
             className={this.decorateCSS("overlay")}
           >
-            <div 
+            <div
               className={this.decorateCSS("video-container")}
               onClick={(e) => e.stopPropagation()}
             >
               <Base.Media
-                autoPlay
                 className={this.decorateCSS("video-iframe")}
-                value={slides[this.getComponentState("active-index")].getPropValue("video")}
+                value={{ ...activeSlide.video, settings: { autoplay: true, loop: false, muted: false, controls: true } } as any}
               />
             </div>
-            {this.getPropValue("close_icon") && (
+            {hasCloseIcon && (
               <div
                 className={this.decorateCSS("close-button")}
                 onClick={() => this.setComponentState("play-video", false)}
               >
                 <Base.Media
                   className={this.decorateCSS("close-button-icon")}
-                  value={this.getPropValue("close_icon")}
+                  value={icons.close_icon}
                 />
               </div>
             )}
@@ -474,4 +355,3 @@ class HeroSection28 extends BaseHeroSection {
 }
 
 export default HeroSection28;
-
