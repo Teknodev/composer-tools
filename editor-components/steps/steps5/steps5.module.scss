@@ -1,0 +1,143 @@
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+
+.container {
+  .max-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--composer-gap-lg);
+
+    .header {
+      width: 100%;
+
+      .subtitle,
+      .title,
+      .description {
+        content: "";
+      }
+
+      // Buttons sit right below the description
+      .button-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--composer-gap-sm);
+
+        .button {
+          .button-text,
+          .button-icon {
+            content: "";
+          }
+        }
+      }
+    }
+
+    .steps {
+      display: flex;
+      flex-direction: column;
+      gap: var(--composer-gap-lg);
+      width: 100%;
+
+      .step {
+        display: flex;
+        flex-direction: column;
+        gap: var(--composer-gap-lg);
+
+        // Arrow icon followed by a thin divider line.
+        .step-divider {
+          display: flex;
+          align-items: center;
+          gap: var(--composer-gap-md);
+
+          .step-icon {
+            flex-shrink: 0;
+            font-size: 2rem;
+            color: var(--composer-tertiary-color);
+            opacity: 0.4;
+          }
+
+          .line {
+            flex: 1;
+            height: 1px;
+            background-color: var(--composer-tertiary-color);
+            opacity: 0.3;
+          }
+        }
+
+        // Title on the left, description on the right.
+        .step-content {
+          display: grid;
+          grid-template-columns: 3fr 7fr;
+          column-gap: var(--composer-gap-lg);
+          align-items: start;
+
+          // Subtitle above the title in the left column
+          .step-heading {
+            grid-column: 1;
+            display: flex;
+            flex-direction: column;
+            gap: var(--composer-gap-xs);
+
+            .step-subtitle {
+              color: var(--composer-tertiary-color);
+              text-align: left !important;
+              margin: 0 !important;
+            }
+
+            .step-title {
+              color: var(--composer-primary-color);
+              text-align: left !important;
+              margin: 0 !important;
+            }
+          }
+
+          .step-description {
+            grid-column: 2;
+            color: var(--composer-font-color-primary);
+            text-align: left !important;
+            margin: 0 !important;
+          }
+        }
+      }
+    }
+
+  }
+}
+
+@container (max-width: #{$composer-tablet-width}) {
+  .container {
+    .max-content {
+      .steps {
+        .step {
+          gap: var(--composer-gap-md);
+
+          // Keep title and description side by side on tablet, with a balanced split.
+          .step-content {
+            grid-template-columns: 4fr 6fr;
+            column-gap: var(--composer-gap-md);
+          }
+        }
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+  .container {
+    .max-content {
+      .steps {
+        .step {
+          .step-divider {
+            .step-icon {
+              font-size: 1.5rem;
+            }
+          }
+
+          .step-content {
+            display: flex;
+            flex-direction: column;
+            gap: var(--composer-gap-md);
+          }
+        }
+      }
+    }
+  }
+}
