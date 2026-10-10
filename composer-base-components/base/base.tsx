@@ -194,7 +194,7 @@ export namespace Base {
 
   export function MaxContent({ className, children, ...props }: any) {
     return (
-      <div className={`${styles.maxContent} ${className}`} data-element-category={ELEMENT_CATEGORY.MAX_CONTENT} {...props}>
+      <div className={`${styles.maxContent} ${className}`} data-element-category={ELEMENT_CATEGORY.MAX_CONTENT} data-video-bg="" {...props}>
         {children}
       </div>
     );
@@ -202,7 +202,7 @@ export namespace Base {
 
   export function VerticalContent({ className, children, ...props }: any) {
     return (
-      <div className={`${styles.verticalContent} ${className}`} data-element-category={ELEMENT_CATEGORY.VERTICAL_CONTENT} {...props}>
+      <div className={`${styles.verticalContent} ${className}`} data-element-category={ELEMENT_CATEGORY.VERTICAL_CONTENT} data-video-bg="" {...props}>
         {children}
       </div>
     );
@@ -221,6 +221,7 @@ export namespace Base {
       <div
         className={`${styles.listGrid} ${className}`}
         data-element-category={ELEMENT_CATEGORY.LIST_GRID}
+        data-video-bg=""
         style={
           {
             "--composer-grid-count": gridCount["pc"] || 3,
@@ -237,7 +238,7 @@ export namespace Base {
 
   export function ContainerGrid({ className, children, ...props }: any) {
     return (
-      <div className={`${styles.containerGrid} ${className}`} data-element-category={ELEMENT_CATEGORY.CONTAINER_GRID} {...props}>
+      <div className={`${styles.containerGrid} ${className}`} data-element-category={ELEMENT_CATEGORY.CONTAINER_GRID} data-video-bg="" {...props}>
         {children}
       </div>
     );
@@ -245,7 +246,7 @@ export namespace Base {
 
   export function GridCell({ className, children, ...props }: any) {
     return (
-      <div className={`${styles.gridCell} ${className}`} data-element-category={ELEMENT_CATEGORY.GRID_CELL} {...props}>
+      <div className={`${styles.gridCell} ${className}`} data-element-category={ELEMENT_CATEGORY.GRID_CELL} data-video-bg="" {...props}>
         {children}
       </div>
     );
@@ -294,7 +295,7 @@ export namespace Base {
   }
 
   export function Row({ className, ...props }: any) {
-    return <div className={`${styles.row} ${className}`} data-element-category={ELEMENT_CATEGORY.ROW} {...props}></div>;
+    return <div className={`${styles.row} ${className}`} data-element-category={ELEMENT_CATEGORY.ROW} data-video-bg="" {...props}></div>;
   }
 
   export function Overlay({ className, isVisible, isModal=false, ...props}: any) {
@@ -687,7 +688,7 @@ export namespace Base {
     ...props 
   }: React.HTMLAttributes<HTMLDivElement>) {
     return (
-      <div className={`${styles.baseCard} ${className ?? ""}`} data-element-category={ELEMENT_CATEGORY.CARD} {...props}>
+      <div className={`${styles.baseCard} ${className ?? ""}`} data-element-category={ELEMENT_CATEGORY.CARD} data-video-bg="" {...props}>
         {children}
       </div>
     );
