@@ -40,6 +40,7 @@
                     gap: var(--composer-gap-sm);
 
                     .button {
+                      content: "";
                         .button-text {
                             content: "";
                         }
@@ -87,20 +88,11 @@
                 min-width: 0;
                 align-content: space-between;
 
-                .card-shell {
-                    display: flex;
-                    flex-direction: column;
-
-                    > * {
-                        flex: 1 1 auto;
-                    }
-                }
-
                 .stat-item {
                     align-items: flex-start;
 
                     .stat-value {
-                        color: var(--composer-font-color-secondary);
+                        color: var(--composer-font-color-primary);
                         display: flex;
                         align-items: center;
                         font-size: 5rem;
@@ -109,7 +101,8 @@
                         .stat-number,
                         .stat-suffix {
                             color: inherit;
-                        }
+                            font-weight: 800;
+                          }
                     }
 
                     .stat-title,
@@ -139,7 +132,8 @@
 
         .stats-grid .stat-item .stat-value {
             font-size: 4rem;
-        }
+            font-weight: 800;
+          }
     }
 }
 
@@ -202,7 +196,8 @@
             .stat-item {
                 .stat-value {
                     font-size: 4rem;
-                }
+                    font-weight: 800;
+                  }
             }
         }
     }

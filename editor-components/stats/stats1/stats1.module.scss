@@ -1,32 +1,103 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
+@mixin centered-left-container {
+  align-items: center !important;
+  text-align: center;
+
+  .subtitle {
+    text-align: center !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  .title,
+  .description {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .button-container {
+    justify-content: center;
+  }
+}
+
 .container {
   .max-content {
     padding-bottom: 1.5rem;
+
     .stats1-page {
       width: 100%;
       display: flex;
+      flex-wrap: wrap;
       justify-content: space-between;
       align-items: center;
-      gap: calc(5 * var(--composer-gap-xl));
+      gap: var(--composer-gap-xl);
       flex: 1 1;
+
       .left-container {
-        max-width: 100%;
-        
-        .subtitle,  .description,  .button-text-wrapper, .title {
+        flex: 1 1 280px;
+        max-width: 45%;
+        min-width: 0;
+        align-items: flex-start !important;
+        text-align: left;
+
+        &.full-width {
+          flex-basis: 100%;
+          max-width: 100%;
+
+          &.alignment-center {
+            @include centered-left-container;
+          }
+        }
+
+        .subtitle {
+          text-align: left !important;
+          margin-left: 0 !important;
+          margin-right: auto !important;
+          width: fit-content !important;
+        }
+
+        .title,
+        .description {
+          text-align: left;
+        }
+
+        .button-container {
+          display: flex;
+          gap: var(--composer-gap-sm);
+          flex-wrap: wrap;
+
+          .button {
+            content: "";
+
+            .button-text {
+              content: "";
+            }
+          }
+        }
+
+        .subtitle,
+        .description,
+        .title {
           content: "";
         }
       }
 
       .right-container {
-        margin-right: 1%;
-        padding: var(--composer-gap-xl);
-        margin: var(--composer-gap-xs) 0;
+        --card-size: 170px;
+        --ring-radius: 220px;
+        flex: 0 0 auto;
+        padding: calc(var(--card-size) / 2);
+        margin: 0 auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
 
         .content-div {
           position: relative;
-          width: 500px;
-          height: 500px;
+          width: calc(var(--ring-radius) * 2);
+          height: calc(var(--ring-radius) * 2);
           display: flex;
           justify-content: center;
           align-items: center;
@@ -47,12 +118,8 @@
 
           .card {
             position: absolute;
-            width: 100%;
-            max-width: 150px;
-            min-width: 100px;
-            aspect-ratio: 1;
-            max-height: 150px;
-            min-height: 100px;
+            width: var(--card-size);
+            height: var(--card-size);
             overflow: hidden;
             padding: var(--composer-gap-md);
             background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-primary-color) 5%);
@@ -63,17 +130,32 @@
             align-items: center;
             text-align: center;
             flex-direction: column;
-            transform: rotate(var(--angle)) translate(250px) rotate(calc(-1 * var(--angle)));
+            transform: rotate(var(--angle)) translate(var(--ring-radius)) rotate(calc(-1 * var(--angle)));
 
             .counter-value {
-              font-size: 2rem;
               margin: 0;
-              word-break: break-all;
+              max-width: 100%;
+              font-size: calc(3 * var(--composer-font-size-md));
+              display: flex;
+              justify-content: center;
+              align-items: baseline;
+              white-space: nowrap;
             }
 
-            .counter-label {
+            .counter-subtitle,
+            .counter-title,
+            .counter-description {
               margin: 0;
+              font-size: calc(1.125 * var(--composer-font-size-md));
               color: var(--composer-font-color-primary);
+              max-width: 100%;
+              text-align: center;
+              word-break: break-word;
+              overflow-wrap: anywhere;
+              display: -webkit-box;
+              -webkit-line-clamp: 2;
+              -webkit-box-orient: vertical;
+              overflow: hidden;
             }
           }
         }
@@ -86,38 +168,28 @@
   .container {
     .max-content {
       .stats1-page {
-        flex-direction: column;
         gap: var(--composer-gap-lg);
 
         .left-container {
-          max-width: 100%;
+          max-width: none;
         }
 
         .right-container {
-          padding: 0;
-          margin: var(--composer-gap-lg) 0;
+          --card-size: 130px;
+          --ring-radius: 145px;
 
           .content-div {
-            width: 500px !important;
-            height: 500px !important;
-
             .card {
-              max-width: 130px;
-              min-width: 100px;
-              max-height: 130px;
-              min-height: 100px;
-              transform: rotate(var(--angle)) translate(250px) rotate(calc(-1 * var(--angle)));
+              padding: var(--composer-gap-xs);
 
               .counter-value {
-                margin: 0;
-                font-size: 1rem !important;
-                text-align: center;
+                font-size: calc(2.5 * var(--composer-font-size-md)) !important;
               }
 
-              .counter-label {
-                margin: 0;
-                font-size: 1rem !important;
-                text-align: center;
+              .counter-subtitle,
+              .counter-title,
+              .counter-description {
+                font-size: calc(0.9375 * var(--composer-font-size-md)) !important;
               }
             }
           }
@@ -131,19 +203,31 @@
   .container {
     .max-content {
       .stats1-page {
-        .right-container {
-          margin-right: 5% !important;
-          margin: var(--composer-gap-sm) 0;
-          .content-div {
-            width: 250px !important;
-            height: 250px !important;
+        flex-direction: column;
+        gap: var(--composer-gap-lg);
 
+        .left-container {
+          max-width: 100%;
+
+          &.alignment-center {
+            @include centered-left-container;
+          }
+        }
+
+        .right-container {
+          --card-size: 120px;
+          --ring-radius: 50cqw;
+          --orbit-x: calc(50cqw - var(--card-size) / 2);
+          --orbit-y: 50cqw;
+          width: 100%;
+          padding: calc(var(--card-size) / 2) 0;
+
+          .content-div {
             .card {
-              max-width: 100px;
-              min-width: 60px;
-              max-height: 100px;
-              min-height: 60px;
-              transform: rotate(var(--angle)) translate(120px) rotate(calc(-1 * var(--angle)));
+              transform: translate(
+                calc(cos(var(--angle) - 90deg) * var(--orbit-x)),
+                calc(sin(var(--angle) - 90deg) * var(--orbit-y))
+              );
             }
           }
         }

@@ -6,46 +6,69 @@
       gap: calc(var(--composer-gap-xl) * 2);
       width: 100%;
       .left-page {
-        flex:1.5;
+        flex: 0 0 50vw;
         min-height: 50vh;
         max-height: 100vh;
-        width: 100%;
+        width: 50vw;
         position: relative;
+        margin-left: calc(50% - 50vw);
         .up-image{
+          position: relative;
           height: 80%;
           overflow: hidden;
+          border-radius: var(--composer-border-radius-sm);
 
           &[data-animation~="animate1"] {
-            .image1 {
+            .image1,
+            .overlay {
               transition: transform 0.5s ease;
             }
 
-            &:hover .image1 {
+            &:hover .image1,
+            &:hover .overlay {
               transform: scale(1.1);
             }
           }
 
           &[data-animation~="animate2"] {
-            .image1 {
+            .image1,
+            .overlay {
               transition: all 0.8s ease;
               transform-origin: center;
             }
 
-            &:hover .image1 {
+            &:hover .image1,
+            &:hover .overlay {
               transform: rotate(-3deg) scale(1.15);
+            }
+
+            &:hover .image1 {
               filter: saturate(1.3);
             }
           }
 
           .image1 {
+            display: block;
             width:90%;
             height: 100%;
             object-fit: cover;
-            border-radius: var(--composer-gap-sm);
+            border-radius: var(--composer-border-radius-sm);
+          }
+          .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 90%;
+            height: 100%;
+            border-radius: var(--composer-border-radius-sm);
+            background-color: var(--composer-overlay-color);
           }
           &.without-image2{
             height: 100% ;
             .image1{
+              width: 100%;
+            }
+            .overlay{
               width: 100%;
             }
           }
@@ -57,34 +80,49 @@
           right: 0px;
           bottom: 0px;
           overflow: hidden;
+          border-radius: calc(var(--composer-border-radius-sm) + 10px);
 
           &[data-animation~="animate1"] {
-            .image2 {
+            .image2,
+            .overlay {
               transition: transform 0.5s ease;
             }
 
-            &:not(.video-active):hover .image2 {
+            &:not(.video-active):hover .image2,
+            &:not(.video-active):hover .overlay {
               transform: scale(1.1);
             }
           }
 
           &[data-animation~="animate2"] {
-            .image2 {
+            .image2,
+            .overlay {
               transition: all 0.8s ease;
               transform-origin: center;
             }
 
-            &:not(.video-active):hover .image2 {
+            &:not(.video-active):hover .image2,
+            &:not(.video-active):hover .overlay {
               transform: rotate(3deg) scale(1.15);
+            }
+
+            &:not(.video-active):hover .image2 {
               filter: saturate(1.3);
             }
           }
           .image2 {
+            display: block;
             width: 100%;
             height: 100%;
             border: 10px solid var(--composer-html-background);
-            border-radius: 20px !important;
+            border-radius: calc(var(--composer-border-radius-sm) + 10px) !important;
             object-fit: cover;
+          }
+          .overlay {
+            position: absolute;
+            inset: 10px;
+            border-radius: var(--composer-border-radius-sm);
+            background-color: var(--composer-overlay-color);
           }
           .player{
             position: absolute;
@@ -95,10 +133,21 @@
           &.without-image1{
             height: 100%;
             width: 100%;
+            border-radius: var(--composer-border-radius-sm);
             .image2{
               border: none !important;
+              border-radius: var(--composer-border-radius-sm) !important;
+            }
+            .overlay{
+              inset: 0;
             }
           }
+        }
+
+        // Rounds the corners the video card cuts out of the large image (tablet and mobile only).
+        // A section-background square with a transparent quarter circle; §5 forbids pseudo elements, so these are real divs.
+        .corner-fillet {
+          display: none;
         }
 
         .player-container{
@@ -111,18 +160,41 @@
             align-items: center;
             justify-content: center;
             .play-icon{
-              width: 50px;
-              height: 50px;
+              width: 65px;
+              height: 65px;
+              font-size: 65px;
               cursor: pointer;
-              color: var(--composer-font-color-primary);
+              color: var(--composer-font-color-secondary);
+              opacity: 0.8;
             }
           }
         }
       }
 
+      
       .right-page {
         flex:1;
-        .badge {
+        display: flex;
+        flex-direction: column;
+        gap: var(--composer-gap-lg);
+
+        .top-section {
+          align-items: flex-start !important;
+
+          .subtitle,
+          .title,
+          .description {
+            text-align: left !important;
+            margin-left: 0 !important;
+            margin-right: auto !important;
+          }
+        }
+
+        .middle-section {
+          width: 100%;
+        }
+
+        .subtitle {
           content: "";
         }
         .title {
@@ -136,11 +208,13 @@
           flex-direction: column;
           gap: 20px;
           width: 100%;
+
           .item {
             transition: 0.3s;
             gap:10px;
             display: flex;
             flex-direction: column;
+            width: 100%;
             &[data-animation~="animate1"] {
               &:hover {
                 .progress-bar-container {
@@ -187,9 +261,25 @@
                 .progress-title-icon {
                   display: flex;
                   align-items: center;
+
+                  .icon {
+                    width: 1.5rem;
+                    height: 1.5rem;
+                    object-fit: contain;
+                    flex-shrink: 0;
+                  }
+                }
+                .progress-title-text {
+                  display: flex;
+                  flex-direction: column;
+                }
+                .progress-subtitle {
+                  font-size: 0.9rem;
+                  color: var(--composer-tertiary-color);
                 }
                 .progress-title{
-                  font-size:1.5rem;
+                  font-size: 1.25rem;
+                  color: var(--composer-tertiary-color);
                 }
                 .icon {
                   color: var(--composer-font-color-primary);
@@ -201,8 +291,16 @@
                 align-items:flex-end;
                 display: flex;
                 .progress-text{
-                  font-size:1.5rem;
-                  color: var(--composer-font-color-primary);                
+                  font-size: 1.25rem;
+                  color: var(--composer-tertiary-color);
+                  display: flex;
+                  align-items: baseline;
+                  gap: 0.1em;
+
+                  .progress-prefix,
+                  .progress-suffix {
+                    font-size: 0.8em;
+                  }
                 }
               }
             }
@@ -211,7 +309,7 @@
               .progress-bar {
                 width: 100%;
                 background-color: #f0f0f0;
-                border-radius: 10px;
+                border-radius: var(--composer-border-radius-sm);
                 overflow: hidden;
                 .progress {
                   height: 8px;
@@ -220,6 +318,12 @@
                   transition: width 1.5s ease-in-out;
                 }
               }
+            }
+
+            .progress-description {
+              font-size: 1rem;
+              color: var(--composer-tertiary-color);
+              margin-top: var(--composer-gap-xs);
             }
           }
         }
@@ -232,6 +336,98 @@
   .container {
     .max-content {
       .page {
+        // Like the original tablet view: text on top, images below
+        flex-direction: column-reverse;
+        gap: calc(var(--composer-gap-xl) * 2);
+
+        .left-page {
+          flex: none;
+          display: grid;
+          width: 100%;
+          min-height: auto;
+          max-height: none;
+          margin-left: 0;
+
+          .up-image {
+            grid-area: 1 / 1;
+            // The back image runs to the left edge (50px = Base.Container's tablet side padding, base.module.scss .container)
+            width: calc(70% + 50px);
+            margin-left: -50px;
+            margin-top: 17%;
+            height: auto;
+            aspect-ratio: 4 / 3;
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+
+            .image1,
+            .overlay {
+              width: 100%;
+              border-top-left-radius: 0;
+              border-bottom-left-radius: 0;
+            }
+
+            &.without-image2 {
+              margin-top: 0;
+            }
+          }
+
+          .down-image {
+            grid-area: 1 / 1;
+            position: relative;
+            z-index: 1;
+            align-self: start;
+            justify-self: end;
+            width: 75%;
+            height: auto;
+            aspect-ratio: 3 / 2;
+            margin-right: var(--composer-gap-lg);
+
+            &.without-image1 {
+              justify-self: stretch;
+              width: 100%;
+              margin-right: 0;
+            }
+          }
+
+          // Cut corners: where the large image's top edge meets the card's left edge,
+          // and where its right edge meets the card's bottom edge (card: 75% wide, 3:2, right-aligned with a gap-lg margin).
+          .corner-fillet {
+            display: block;
+            grid-area: 1 / 1;
+            align-self: start;
+            justify-self: start;
+            position: relative;
+            z-index: 1;
+            width: var(--composer-border-radius-sm);
+            height: var(--composer-border-radius-sm);
+            pointer-events: none;
+            background: radial-gradient(circle at 0 100%, transparent var(--composer-border-radius-sm), var(--composer-html-background) var(--composer-border-radius-sm));
+
+            &.corner-fillet-start {
+              margin-top: 17%;
+              margin-left: calc(25% - var(--composer-gap-lg) - var(--composer-border-radius-sm));
+            }
+
+            &.corner-fillet-end {
+              margin-top: 50%;
+              margin-left: calc(70% - var(--composer-border-radius-sm));
+            }
+          }
+        }
+
+        .right-page {
+          flex: none;
+          width: 100%;
+        }
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+  .container {
+    .max-content {
+      .page {
         flex-direction: column !important;
         flex-direction: column-reverse !important;
         gap:50px;
@@ -239,34 +435,6 @@
           flex: auto !important;
           position: static !important;
 
-        }
-        .left-page {
-          flex: auto !important;
-          position: relative !important;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          min-height: 400px !important;
-          .up-image{
-            width: 100% !important;
-            height: 70% !important;
-            .image1{
-              width: 100% !important;
-              object-fit: cover;
-            }
-          }
-          .down-image,.without-image1{
-            position: absolute;
-            width: 70% !important;
-            right: auto;
-            .image2{
-              height: 100% !important;
-            }
-          }
-          .without-image1{
-            margin-top: 0px !important;
-            width: 100% !important;
-          }
         }
       }
     }
@@ -282,40 +450,83 @@
         width: 100%;
 
         .left-page {
-          display: flex;
-          flex-direction: column;
-          width: 100%;
-          gap: 10px;
-          min-height: 300px !important;
+          flex: auto !important;
+          display: grid;
+          width: 100% !important;
+          min-height: auto !important;
+          max-height: none;
+          margin-left: 0 !important;
+
           .up-image {
-            .image1 {
-              content: "";
+            grid-area: 1 / 1;
+            // Like the original mobile view, the large image runs edge to edge under the video card
+            // (30px = Base.Container's phone side padding, base.module.scss .container).
+            width: calc(100% + 60px);
+            margin-left: -30px;
+            height: auto;
+            aspect-ratio: 1 / 1;
+            margin-top: var(--composer-gap-xl);
+            border-radius: 0;
+
+            .image1,
+            .overlay {
+              width: 100%;
+              border-radius: 0;
+            }
+
+            &.without-image2 {
+              margin-top: 0;
             }
           }
+
           .down-image {
-            margin-top: 0px !important;
-            width: 100% !important;
-            position:  relative !important;
-            .image2 {
-              border:none !important;
-              border-radius: 10px !important;
-            }
-            .icon-container{
-              .play-icon{
-                width: 30px;
-                height: 30px;
-              }
+            grid-area: 1 / 1;
+            position: relative;
+            align-self: start;
+            width: 100%;
+            height: auto;
+            aspect-ratio: 3 / 2;
+            margin-right: 0;
+
+            &.without-image1 {
+              aspect-ratio: 1 / 1;
             }
           }
-          .without-image1{
-            width: 100% !important;
+
+          // The full-width image starts gap-xl below the full-width card, so it is cut on both sides of the card.
+          .corner-fillet {
+            &.corner-fillet-start {
+              margin-top: var(--composer-gap-xl);
+              margin-left: calc(-1 * var(--composer-border-radius-sm));
+            }
+
+            &.corner-fillet-end {
+              justify-self: end;
+              margin-top: var(--composer-gap-xl);
+              margin-left: 0;
+              margin-right: calc(-1 * var(--composer-border-radius-sm));
+              background: radial-gradient(circle at 100% 100%, transparent var(--composer-border-radius-sm), var(--composer-html-background) var(--composer-border-radius-sm));
+            }
           }
         }
 
         .right-page {
-
           width: 100% !important;
-          .badge{
+
+          &.alignment-center {
+            .top-section {
+              align-items: center !important;
+
+              .subtitle,
+              .title,
+              .description {
+                text-align: center !important;
+                margin-left: auto !important;
+                margin-right: auto !important;
+              }
+            }
+          }
+          .subtitle{
             font-size:1.3rem ;
           }
           .title {

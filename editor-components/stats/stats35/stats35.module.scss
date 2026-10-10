@@ -17,14 +17,6 @@
     &.has-media {
         .max-content {
             padding-right: 0;
-
-            .right-column {
-                .stats-list {
-                    .card-shell {
-                        background: transparent;
-                    }
-                }
-            }
         }
     }
 
@@ -52,7 +44,7 @@
             object-fit: cover;
         }
 
-        .overlay {
+        .media-overlay {
             position: absolute;
             inset: 0;
             background: var(--composer-overlay-color);
@@ -78,7 +70,7 @@
             object-fit: cover;
         }
 
-        .overlay {
+        .media-overlay {
             position: absolute;
             inset: 0;
             background: var(--composer-overlay-color);
@@ -120,6 +112,7 @@
             align-items: center;
 
             .button {
+              content: "";
                 .button-text {
                     content: "";
                 }
@@ -168,15 +161,6 @@
             width: 100%;
             align-items: flex-start;
 
-            .card-shell {
-                display: flex;
-                flex-direction: column;
-
-                > * {
-                    flex: 1 1 auto;
-                }
-            }
-
             .stat-item {
                 display: flex;
                 flex-direction: column;
@@ -196,7 +180,7 @@
                         color: inherit;
                         font-size: inherit;
                         text-align: left;
-                    }
+                      }
                 }
 
                 .stat-title,
@@ -222,7 +206,7 @@
                 .stat-item {
                     .stat-value {
                         font-size: 5rem;
-                    }
+                      }
                 }
             }
         }
@@ -292,7 +276,7 @@
                             .stat-number,
                             .stat-suffix {
                                 text-align: center;
-                            }
+                              }
                         }
 
                         .stat-title,
@@ -314,7 +298,7 @@
                 padding-right: unset;
             }
             .content-wrapper {
-                gap: var(--composer-gap-xl);
+                gap: var(--composer-gap-lg);
             }
             .right-column {
                 min-height: 500px;

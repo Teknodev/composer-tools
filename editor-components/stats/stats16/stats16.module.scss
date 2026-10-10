@@ -1,14 +1,5 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
-.card-shell {
-  display: flex;
-  flex-direction: column;
-
-  > * {
-    flex: 1 1 auto;
-  }
-}
-
 .container {
 
   .max-content {
@@ -56,7 +47,8 @@
             .stat-number,
             .stat-suffix {
               font-size: 5rem;
-              color: var(--composer-font-color-secondary);
+              font-weight: 800;
+              color: var(--composer-font-color-primary);
             }
           }
 
@@ -88,9 +80,12 @@
         gap: var(--composer-gap-sm);
         justify-content: center;
 
-        .button,
-        .button-text {
+        .button {
           content: "";
+
+          .button-text {
+            content: "";
+          }
         }
       }
     }
