@@ -252,9 +252,16 @@
           gap: var(--composer-gap-xs);
           width: fit-content;
   
+          // Spaced out like the original; the icons below spread to the same width.
           .socialMediaLinksTitle {
             color: var(--composer-font-color-primary);
             font-weight: 400;
+            font-size: calc(1.25 * var(--composer-font-size-md)) !important;
+            letter-spacing: 0.4em;
+            // Drops the spacing after the last letter, so the icons end where the text ends.
+            margin-right: -0.4em;
+            white-space: nowrap;
+            align-self: flex-start;
           }
           .socialMediaLinksList {
             display: flex;
@@ -266,8 +273,9 @@
               .socialMediaIconContainer{
                 display: flex;
                 transition: all 0.3s ease;
+                // The icons spread over the width of the "Follow Me" text, as in the original.
                 .socialMediaIcon {
-                  font-size: calc(1.25 * var(--composer-font-size-md));
+                  font-size: calc(1.75 * var(--composer-font-size-md));
                   color: var(--composer-font-color-primary);
                 }
                 &.animation2{
@@ -372,7 +380,7 @@
               .socialMediaLink {
                 .socialMediaIconContainer {
                   .socialMediaIcon {
-                    font-size: var(--composer-font-size-md);
+                    font-size: calc(1.375 * var(--composer-font-size-md));
                   }
                 }
               }
@@ -429,7 +437,7 @@
                 .socialMediaLink{
                   .socialMediaIconContainer{
                     .socialMediaIcon {
-                      font-size: var(--composer-font-size-md);
+                      font-size: calc(1.375 * var(--composer-font-size-md));
                     }
                   }
                 }
@@ -448,6 +456,13 @@
     }
 
 
+}
+
+// Smaller "Follow Me" on tablet, so the spaced text stays as wide as the smaller icons.
+@container (max-width: #{$composer-tablet-width}) {
+  .dropdownMenuContainer .dropdownMenuContent .dropdownItemList .socialMediaWrapper .socialMediaLinks .socialMediaLinksTitle {
+    font-size: var(--composer-font-size-md) !important;
+  }
 }
 
 // Slightly larger menu texts on mobile.
