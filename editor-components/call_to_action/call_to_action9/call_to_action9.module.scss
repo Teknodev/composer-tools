@@ -1,11 +1,14 @@
-@use "../../../composer-base-components/base/utitilities/viewports.module.scss"
-  as *;
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+
 .container {
   .max-content {
     .content {
       gap: var(--composer-gap-lg);
       align-items: center;
+
       .header {
+        align-items: center;
+
         .title,
         .subtitle,
         .description {
@@ -13,31 +16,41 @@
         }
 
         .subtitle {
-          width: 100%;
+          width: fit-content;
           transform: translateX(0);
+
           &::before {
             display: none;
           }
         }
-      }
 
-      .button {
-        content: "";
+        .button-container {
+          display: flex;
+          gap: var(--composer-gap-sm);
+          flex-wrap: wrap;
+          justify-content: center;
 
-        .button-text {
-          content: "";
-          margin: 0;
-          color: var(--composer-font-color-primary);
+          .button {
+            content: "";
+
+            .button-text {
+              content: "";
+              margin: 0;
+            }
+          }
         }
       }
+
       .description {
         content: "";
         text-align: center;
       }
+
       .item-description {
         content: "";
         text-align: center;
       }
+
       .image-container {
         width: fit-content;
         container-type: normal;
@@ -48,10 +61,21 @@
           display: flex;
           align-items: center;
           justify-content: center;
+          overflow: hidden;
+          aspect-ratio: 3 / 1;
           width: 100%;
 
           .image {
-            height: 100%;
+            height: var(--composer-gap-lg);
+            object-fit: cover;
+          }
+
+          .icon {
+            font-size: 2.75rem;
+          }
+
+          .video {
+            height: var(--composer-gap-lg);
             object-fit: cover;
           }
         }
@@ -65,6 +89,57 @@
     .max-content {
       .content {
         gap: var(--composer-gap-md);
+
+        .image-container {
+          .image-wrapper {
+            .image,
+            .video {
+              height: calc(var(--composer-gap-lg) * 0.8);
+            }
+
+            .icon {
+              font-size: 2.25rem;
+            }
+          }
+        }
+
+        &.left {
+          align-items: flex-start;
+
+          .header {
+            align-items: flex-start;
+
+            .subtitle {
+              transform: translateX(3rem) !important;
+              &.subtitle-no-line {
+                transform: none !important;
+              }
+
+              text-align: left;
+
+              &::before {
+                display: block !important;
+              }
+            }
+
+            .title,
+            .description {
+              text-align: left;
+            }
+
+            .button-container {
+              justify-content: flex-start;
+            }
+          }
+
+          .item-description {
+            text-align: left;
+          }
+
+          .image-container {
+            justify-content: flex-start;
+          }
+        }
       }
     }
   }
