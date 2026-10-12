@@ -486,8 +486,9 @@
               overflow-y: hidden;
               transition: all 0.3s ease;
 
+              // Large enough for the longest submenu (Platform with its image), so nothing is cut off.
               &.active {
-                max-height: 1000px;
+                max-height: 5000px;
                 transition: all 1s ease;
               }
 
@@ -829,9 +830,49 @@
       }
     }
 
+    // As in the original: the opened menu fills the screen below the navbar, buttons at the bottom,
+    // and the header call-to-action steps aside while it is open.
     .hamburgerNav {
       display: flex;
+      flex-direction: column;
       background-color: var(--composer-html-background);
+      height: calc(100vh - 100%);
+
+      &.active {
+        max-height: calc(100vh - 100%);
+      }
+
+      .hamburgerNavContainer {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+
+        .hamburgerNavMaxContent {
+          flex: 1;
+          display: flex;
+          flex-direction: column;
+
+          .hamburgerButtons {
+            margin-top: auto;
+          }
+        }
+      }
+
+      .hamburgerMenuItemHeader {
+        padding: var(--composer-gap-sm) 0;
+      }
+
+      .hamburgerMenu .hamburgerMenuItem {
+        margin-bottom: var(--composer-gap-sm);
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
+
+    &.hamburgerActive .rightSide .buttons {
+      display: none !important;
     }
 
     &.filledBackground {

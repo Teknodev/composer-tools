@@ -525,12 +525,14 @@
       object-fit: cover;
     }
 
+    // The opened menu covers the whole navbar width, as in the original.
     .mobileMenu {
       position: absolute;
       top: 100%;
-      left: 0;
+      left: 50%;
+      transform: translateX(-50%);
       height: 0;
-      width: 100%;
+      width: 100cqw;
       overflow: hidden;
       transition: height 0.3s ease;
       &.open {
@@ -568,14 +570,16 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: var(--composer-gap-sm) 0;
+            padding: var(--composer-gap-xs) 0;
             color: var(--composer-font-color-primary);
             cursor: pointer;
 
+            // Regular 16px menu titles, as in the original.
             .hamburgerMenuItemTitle {
               color: var(--composer-font-color-primary);
               margin: 0;
-              font-weight: bold;
+              font-size: var(--composer-font-size-md) !important;
+              font-weight: 400;
               transition: all 0.5s ease;
             }
 
