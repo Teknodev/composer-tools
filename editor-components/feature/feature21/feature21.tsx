@@ -56,12 +56,12 @@ class Feature21 extends BaseFeature{
         this.addProp({
             type: "array",
             key: "cards",
-            displayer: "Cards",
+            displayer: "Features",
             value: [
                 {
                     type: "object",
                     key: "card",
-                    displayer: "Card",
+                    displayer: "Feature",
                     value: [
                         {
                             type: "media",
@@ -124,7 +124,7 @@ class Feature21 extends BaseFeature{
                 {
                     type: "object",
                     key: "card",
-                    displayer: "Card",
+                    displayer: "Feature",
                     value: [
                         {
                             type: "media",
@@ -187,7 +187,7 @@ class Feature21 extends BaseFeature{
                 {
                     type: "object",
                     key: "card",
-                    displayer: "Card",
+                    displayer: "Feature",
                     value: [
                         {
                             type: "media",
@@ -250,7 +250,7 @@ class Feature21 extends BaseFeature{
                 {
                     type: "object",
                     key: "card",
-                    displayer: "Card",
+                    displayer: "Feature",
                     value: [
                         {
                             type: "media",
@@ -373,7 +373,6 @@ class Feature21 extends BaseFeature{
         });
         const hasAnyTopContent = subtitleExist || titleExist || descriptionExist || hasValidTopButtons;
 
-        const alignment = Base.getContentAlignment();
 
         return(
             <Base.Container className={this.decorateCSS("container")}>
@@ -446,7 +445,7 @@ class Feature21 extends BaseFeature{
                                     onMouseLeave={this.handleCardLeave}
                                     onClick={() => this.handleCardClick(index)}
                                 >
-                                    <div className={this.decorateCSS("card-content")}>
+                                    <Base.VerticalContent className={this.decorateCSS("card-content")}>
                                         {cardImageExist && <div className={this.decorateCSS("media-container")}>
                                             {hoveredIndex === index && cardVideo && cardVideo.url ? (
                                                 <Base.Media
@@ -488,34 +487,34 @@ class Feature21 extends BaseFeature{
                                                         {cardDescription}
                                                     </Base.P>
                                                 )}
+                                                {hasValidButtons && <div className={this.decorateCSS("right-side")}>
+                                                    <div className={this.decorateCSS("button-container")}>
+                                                        {buttons.map((btn: Button, btnIndex: number) => {
+                                                            const btnText = this.castToString(btn.text);
+                                                            const iconExist = btn.icon && (btn.icon.type === "icon" ? btn.icon.name : btn.icon.url);
+                                                            if (!btnText && !iconExist) return null;
+                                                            return (
+                                                                <ComposerLink key={btnIndex} path={btn.url || "#"}>
+                                                                    <Base.Button
+                                                                        buttonType={btn.type || "Tertiary"}
+                                                                        className={this.decorateCSS("card-button")}
+                                                                    >
+                                                                        {btnText && (
+                                                                            <Base.P className={this.decorateCSS("button-text")}>{btn.text}</Base.P>
+                                                                        )}
+                                                                        {iconExist && (
+                                                                            <Base.Media value={btn.icon} className={this.decorateCSS("button-icon")} />
+                                                                        )}
+                                                                    </Base.Button>
+                                                                </ComposerLink>
+                                                            );
+                                                        })}
+                                                    </div>
+                                                </div>}
                                             </Base.VerticalContent>}
-                                            {hasValidButtons && <div className={`${this.decorateCSS("right-side")} ${alignment === "center" ? this.decorateCSS("center-alignment") : ""}`}>
-                                                <div className={this.decorateCSS("button-container")}>
-                                                    {buttons.map((btn: Button, btnIndex: number) => {
-                                                        const btnText = this.castToString(btn.text);
-                                                        const iconExist = btn.icon && (btn.icon.type === "icon" ? btn.icon.name : btn.icon.url);
-                                                        if (!btnText && !iconExist) return null;
-                                                        return (
-                                                            <ComposerLink key={btnIndex} path={btn.url || "#"}>
-                                                                <Base.Button
-                                                                    buttonType={btn.type || "Tertiary"}
-                                                                    className={this.decorateCSS("card-button")}
-                                                                >
-                                                                    {btnText && (
-                                                                        <Base.P className={this.decorateCSS("button-text")}>{btn.text}</Base.P>
-                                                                    )}
-                                                                    {iconExist && (
-                                                                        <Base.Media value={btn.icon} className={this.decorateCSS("button-icon")} />
-                                                                    )}
-                                                                </Base.Button>
-                                                            </ComposerLink>
-                                                        );
-                                                    })}
-                                                </div>
-                                            </div>}
                                         </div>
                                         }
-                                    </div>
+                                    </Base.VerticalContent>
                                 </div>
                             );
                         })}

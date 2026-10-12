@@ -23,21 +23,27 @@ class Feature39 extends BaseFeature {
         super(props, styles);
 
         this.addProp({
-            type: "media",
-            key: "componentBackground",
+            type: "object",
+            key: "media",
             displayer: "Media",
-            value: {
-                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/69678d578ea13f002cf936cd?alt=media",
-                type: "image",
-            },
-            additionalParams: { availableTypes: ["image", "video"] }
-        })
-
-        this.addProp({
-            type: "boolean",
-            key: "overlay",
-            displayer: "Overlay",
-            value: false,
+            value: [
+                {
+                    type: "media",
+                    key: "componentBackground",
+                    displayer: "Media",
+                    value: {
+                        url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/69678d578ea13f002cf936cd?alt=media",
+                        type: "image",
+                    },
+                    additionalParams: { availableTypes: ["image", "video"] }
+                },
+                {
+                    type: "boolean",
+                    key: "overlay",
+                    displayer: "Overlay",
+                    value: false,
+                },
+            ],
         });
 
         this.addProp({
@@ -71,12 +77,12 @@ class Feature39 extends BaseFeature {
         this.addProp({
             type: "array",
             key: "cards",
-            displayer: "Cards",
+            displayer: "Features",
             value: [
                 {
                     type: "object",
                     key: "card",
-                    displayer: "Card",
+                    displayer: "Feature",
                     value: [
                         {
                             type: "media",
@@ -113,7 +119,7 @@ class Feature39 extends BaseFeature {
                 {
                     type: "object",
                     key: "card",
-                    displayer: "Card",
+                    displayer: "Feature",
                     value: [
                         {
                             type: "media",
@@ -150,7 +156,7 @@ class Feature39 extends BaseFeature {
                 {
                     type: "object",
                     key: "card",
-                    displayer: "Card",
+                    displayer: "Feature",
                     value: [
                         {
                             type: "media",
@@ -187,7 +193,7 @@ class Feature39 extends BaseFeature {
                 {
                     type: "object",
                     key: "card",
-                    displayer: "Card",
+                    displayer: "Feature",
                     value: [
                         {
                             type: "media",
@@ -224,7 +230,7 @@ class Feature39 extends BaseFeature {
                 {
                     type: "object",
                     key: "card",
-                    displayer: "Card",
+                    displayer: "Feature",
                     value: [
                         {
                             type: "media",
@@ -261,7 +267,7 @@ class Feature39 extends BaseFeature {
                 {
                     type: "object",
                     key: "card",
-                    displayer: "Card",
+                    displayer: "Feature",
                     value: [
                         {
                             type: "media",
@@ -298,7 +304,7 @@ class Feature39 extends BaseFeature {
                 {
                     type: "object",
                     key: "card",
-                    displayer: "Card",
+                    displayer: "Feature",
                     value: [
                         {
                             type: "media",
@@ -335,7 +341,7 @@ class Feature39 extends BaseFeature {
                 {
                     type: "object",
                     key: "card",
-                    displayer: "Card",
+                    displayer: "Feature",
                     value: [
                         {
                             type: "media",
@@ -392,9 +398,10 @@ class Feature39 extends BaseFeature {
     }
 
     render() {
-        const coverImage = this.getPropValue("componentBackground");
+        const mediaGroup = this.castToObject<{ componentBackground: TypeMediaInputValue; overlay: boolean }>("media");
+        const coverImage = mediaGroup?.componentBackground;
         const hasMedia = !!coverImage?.url;
-        const enableOverlay = hasMedia && this.getPropValue("overlay");
+        const enableOverlay = hasMedia && mediaGroup?.overlay;
         const cards = this.castToObject<Card[]>("cards");
         const buttons = this.castToObject<ButtonTypeObj[]>("buttons") || [];
         const visibleButtons = buttons.filter(btn => this.castToString(btn.text));

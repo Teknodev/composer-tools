@@ -195,12 +195,12 @@ class Feature13 extends BaseFeature {
     this.addProp({
       type: "array",
       key: "tab-items",
-      displayer: "Tabs",
+      displayer: "Features",
       value: [
         {
           type: "object",
           key: "tab-item",
-          displayer: "Tab Item",
+          displayer: "Feature",
           value: [
             {
               type: "string",
@@ -302,7 +302,7 @@ class Feature13 extends BaseFeature {
         {
           type: "object",
           key: "tab-item",
-          displayer: "Tab Item",
+          displayer: "Feature",
           value: [
             {
               type: "string",
@@ -379,7 +379,7 @@ class Feature13 extends BaseFeature {
         {
           type: "object",
           key: "tab-item",
-          displayer: "Tab Item",
+          displayer: "Feature",
           value: [
             {
               type: "string",

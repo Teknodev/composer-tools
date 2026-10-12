@@ -57,12 +57,12 @@ class Feature41 extends BaseFeature {
         this.addProp({
             type: "array",
             key: "cards",
-            displayer: "Cards",
+            displayer: "Features",
             value: [
                 {
                     type: "object",
                     key: "card",
-                    displayer: "Card",
+                    displayer: "Feature",
                     value: [
                         {
                             type: "media",
@@ -110,7 +110,7 @@ class Feature41 extends BaseFeature {
                 {
                     type: "object",
                     key: "card",
-                    displayer: "Card",
+                    displayer: "Feature",
                     value: [
                         {
                             type: "media",
@@ -158,7 +158,7 @@ class Feature41 extends BaseFeature {
                 {
                     type: "object",
                     key: "card",
-                    displayer: "Card",
+                    displayer: "Feature",
                     value: [
                         {
                             type: "media",

@@ -33,7 +33,7 @@ class Feature22 extends BaseFeature{
             return {
                 type: "object",
                 key: "tab",
-                displayer: "Tab",
+                displayer: "Feature",
                 value: [
                     {
                         type: "string",
@@ -85,7 +85,7 @@ class Feature22 extends BaseFeature{
         this.addProp({
             type: "array",
             key: "tabs",
-            displayer: "Tabs",
+            displayer: "Features",
             value: [
                 dummyData(
                     "Payments",

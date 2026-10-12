@@ -65,7 +65,7 @@ class Feature8 extends BaseFeature {
     this.addProp({
       type: "array",
       key: "cards",
-      displayer: "Cards",
+      displayer: "Features",
       additionalParams: {
         maxElementCount: 3
       },
@@ -73,7 +73,7 @@ class Feature8 extends BaseFeature {
         {
           type: "object",
           key: "card",
-          displayer: "Card",
+          displayer: "Feature",
           value: [
             {
               type: "media",
@@ -111,7 +111,7 @@ class Feature8 extends BaseFeature {
         {
           type: "object",
           key: "card",
-          displayer: "Card",
+          displayer: "Feature",
           value: [
             {
               type: "media",
@@ -149,7 +149,7 @@ class Feature8 extends BaseFeature {
         {
           type: "object",
           key: "card",
-          displayer: "Card",
+          displayer: "Feature",
           value: [
             {
               type: "media",

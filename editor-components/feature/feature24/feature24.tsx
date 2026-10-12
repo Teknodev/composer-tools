@@ -43,7 +43,7 @@ class Feature24 extends BaseFeature {
         {
           type: "object",
           key: "card",
-          displayer: "Card",
+          displayer: "Feature",
           value: [
             {
               type: "media",
@@ -63,7 +63,7 @@ class Feature24 extends BaseFeature {
         {
           type: "object",
           key: "card",
-          displayer: "Card",
+          displayer: "Feature",
           value: [
             {
               type: "media",
@@ -83,7 +83,7 @@ class Feature24 extends BaseFeature {
         {
           type: "object",
           key: "card",
-          displayer: "Card",
+          displayer: "Feature",
           value: [
             {
               type: "media",
@@ -103,7 +103,7 @@ class Feature24 extends BaseFeature {
         {
           type: "object",
           key: "card",
-          displayer: "Card",
+          displayer: "Feature",
           value: [
             {
               type: "media",
@@ -123,7 +123,7 @@ class Feature24 extends BaseFeature {
         {
           type: "object",
           key: "card",
-          displayer: "Card",
+          displayer: "Feature",
           value: [
             {
               type: "media",
@@ -143,7 +143,7 @@ class Feature24 extends BaseFeature {
         {
           type: "object",
           key: "card",
-          displayer: "Card",
+          displayer: "Feature",
           value: [
             {
               type: "media",
@@ -163,7 +163,7 @@ class Feature24 extends BaseFeature {
         {
           type: "object",
           key: "card",
-          displayer: "Card",
+          displayer: "Feature",
           value: [
             {
               type: "media",
@@ -183,7 +183,7 @@ class Feature24 extends BaseFeature {
         {
           type: "object",
           key: "card",
-          displayer: "Card",
+          displayer: "Feature",
           value: [
             {
               type: "media",
@@ -203,7 +203,7 @@ class Feature24 extends BaseFeature {
         {
           type: "object",
           key: "card",
-          displayer: "Card",
+          displayer: "Feature",
           value: [
             {
               type: "media",
@@ -223,7 +223,7 @@ class Feature24 extends BaseFeature {
         {
           type: "object",
           key: "card",
-          displayer: "Card",
+          displayer: "Feature",
           value: [
             {
               type: "media",
@@ -243,7 +243,7 @@ class Feature24 extends BaseFeature {
         {
           type: "object",
           key: "card",
-          displayer: "Card",
+          displayer: "Feature",
           value: [
             {
               type: "media",
@@ -263,7 +263,7 @@ class Feature24 extends BaseFeature {
         {
           type: "object",
           key: "card",
-          displayer: "Card",
+          displayer: "Feature",
           value: [
             {
               type: "media",

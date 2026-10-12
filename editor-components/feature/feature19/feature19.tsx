@@ -72,12 +72,12 @@ class Feature19 extends BaseFeature {
     this.addProp({
       type: "array",
       key: "items",
-      displayer: "Items",
+      displayer: "Features",
       value: [
         {
           type: "object",
           key: "item",
-          displayer: "Item",
+          displayer: "Feature",
           value: [
             {
               type: "string",
@@ -109,7 +109,7 @@ class Feature19 extends BaseFeature {
         {
           type: "object",
           key: "item",
-          displayer: "Item",
+          displayer: "Feature",
           value: [
             {
               type: "string",

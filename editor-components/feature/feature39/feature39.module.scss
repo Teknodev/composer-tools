@@ -94,6 +94,8 @@
         .card-container {
 
             .card-wrapper {
+                padding: 0;
+
                 .card-content {
                     align-items: flex-start;
 
@@ -206,10 +208,4 @@
             }
         }
     }
-}
-
-@container (max-width: #{$composer-tablet-width}) {
-  .container .card-wrapper {
-    padding: var(--composer-gap-md);
-  }
 }

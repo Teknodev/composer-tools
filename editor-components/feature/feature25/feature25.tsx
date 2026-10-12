@@ -29,12 +29,12 @@ class Feature25 extends BaseFeature {
     this.addProp({
       type: "array",
       key: "tabs",
-      displayer: "Tabs",
+      displayer: "Features",
       value: [
         {
           type: "object",
           key: "tab",
-          displayer: "Tab Text",
+          displayer: "Feature",
           value: [
             {
               type: "string",
@@ -100,7 +100,7 @@ class Feature25 extends BaseFeature {
         {
           type: "object",
           key: "tab",
-          displayer: "Tab Text",
+          displayer: "Feature",
           value: [
             {
               type: "string",
@@ -175,7 +175,7 @@ class Feature25 extends BaseFeature {
         {
           type: "object",
           key: "tab",
-          displayer: "Tab Text",
+          displayer: "Feature",
           value: [
             {
               type: "string",

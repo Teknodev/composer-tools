@@ -52,12 +52,12 @@ class Feature44 extends BaseFeature {
         this.addProp({
             type: "array",
             key: "services",
-            displayer: "Services",
+            displayer: "Features",
             value: [
                 {
                     type: "object",
                     key: "service",
-                    displayer: "Service",
+                    displayer: "Feature",
                     value: [
                         {
                             type: "string",
@@ -108,7 +108,7 @@ class Feature44 extends BaseFeature {
                 {
                     type: "object",
                     key: "service",
-                    displayer: "Service",
+                    displayer: "Feature",
                     value: [
                         {
                             type: "string",
@@ -159,7 +159,7 @@ class Feature44 extends BaseFeature {
                 {
                     type: "object",
                     key: "service",
-                    displayer: "Service",
+                    displayer: "Feature",
                     value: [
                         {
                             type: "string",

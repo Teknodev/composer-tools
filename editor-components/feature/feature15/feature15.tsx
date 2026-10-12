@@ -115,13 +115,13 @@ class Feature15 extends BaseFeature {
         });
         this.addProp({
             type: "array",
-            displayer: "Cards",
+            displayer: "Features",
             key: "cards",
             value: [
                 {
                     type: "object",
                     key: "card",
-                    displayer: "Card",
+                    displayer: "Feature",
                     value: [
                         {
                             type: "media",
@@ -154,13 +154,13 @@ class Feature15 extends BaseFeature {
                             value:
                                 "Nostra netus porttitor cursus Imperdiet proin. Vestibulum malesuada faucibus. Quam vivamus eu consectetuer praesent phasellus sapien dis natoque dignissim imperdiet morbi.",
                         },
-                        INPUTS.BUTTON("button", "", "", "", null, null, "White"),
+                        INPUTS.BUTTON("button", "Button", "", "", null, null, "White"),
                     ],
                 },
                 {
                     type: "object",
                     key: "card",
-                    displayer: "Card",
+                    displayer: "Feature",
                     value: [
                         {
                             type: "media",
@@ -199,7 +199,7 @@ class Feature15 extends BaseFeature {
                 {
                     type: "object",
                     key: "card",
-                    displayer: "Card",
+                    displayer: "Feature",
                     value: [
                         {
                             type: "media",
@@ -238,7 +238,7 @@ class Feature15 extends BaseFeature {
                 {
                     type: "object",
                     key: "card",
-                    displayer: "Card",
+                    displayer: "Feature",
                     value: [
                         {
                             type: "media",

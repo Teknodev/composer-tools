@@ -24,7 +24,7 @@ class Feature1 extends BaseFeature {
         this.addProp({
             type: "array",
             key: "sections",
-            displayer: "Sections",
+            displayer: "Features",
             additionalParams: {
                 maxElementCount: 4,
             },
@@ -32,7 +32,7 @@ class Feature1 extends BaseFeature {
                 {
                     type: "object",
                     key: "section",
-                    displayer: "Section",
+                    displayer: "Feature",
                     value: [
                         {
                             type: "string",
@@ -57,7 +57,7 @@ class Feature1 extends BaseFeature {
                 {
                     type: "object",
                     key: "section",
-                    displayer: "Section",
+                    displayer: "Feature",
                     value: [
                         {
                             type: "string",

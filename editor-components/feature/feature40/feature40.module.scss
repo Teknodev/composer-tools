@@ -9,7 +9,7 @@
         .card-container-section {
             display: flex;
             flex-direction: column;
-            gap: calc(var(--composer-gap-lg) * 2);
+            gap: var(--composer-gap-xl);
 
             .text-content {
 
@@ -22,7 +22,7 @@
 
             .card-container {
                 background: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
-                border-radius: var(--composer-border-radius-md);
+                border-radius: var(--composer-border-radius-sm);
                 overflow: hidden;
                 gap: 0;
 
@@ -101,7 +101,7 @@
             flex-direction: column;
 
             .card-container-section {
-                gap: calc(var(--composer-gap-lg) * 1.5);
+                gap: var(--composer-gap-lg);
 
                 .card-container {
                     .card-wrapper {
@@ -129,7 +129,7 @@
             gap: var(--composer-gap-md);
 
             .card-container-section {
-                gap: var(--composer-gap-lg);
+                gap: var(--composer-gap-md);
 
                 .card-container {
                     .card-wrapper {

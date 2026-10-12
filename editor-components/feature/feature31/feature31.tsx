@@ -45,7 +45,7 @@ class Feature31 extends BaseFeature {
                 {
                     type: "object",
                     key: "card",
-                    displayer: "Card",
+                    displayer: "Feature",
                     value: [
                         {
                             type: "media",
@@ -77,7 +77,7 @@ class Feature31 extends BaseFeature {
                 {
                     type: "object",
                     key: "card",
-                    displayer: "Card",
+                    displayer: "Feature",
                     value: [
                         {
                             type: "media",
@@ -109,7 +109,7 @@ class Feature31 extends BaseFeature {
                 {
                     type: "object",
                     key: "card",
-                    displayer: "Card",
+                    displayer: "Feature",
                     value: [
                         {
                             type: "media",

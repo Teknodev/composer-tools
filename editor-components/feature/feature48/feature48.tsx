@@ -66,12 +66,12 @@ class Feature48 extends BaseFeature {
         this.addProp({
             type: "array",
             key: "services",
-            displayer: "Services",
+            displayer: "Features",
             value: [
                 {
                     type: "object",
                     key: "service",
-                    displayer: "Service",
+                    displayer: "Feature",
                     value: [
                         {
                             type: "media",
@@ -103,7 +103,7 @@ class Feature48 extends BaseFeature {
                 {
                     type: "object",
                     key: "service",
-                    displayer: "Service",
+                    displayer: "Feature",
                     value: [
                         {
                             type: "media",
@@ -135,7 +135,7 @@ class Feature48 extends BaseFeature {
                 {
                     type: "object",
                     key: "service",
-                    displayer: "Service",
+                    displayer: "Feature",
                     value: [
                         {
                             type: "media",
@@ -167,7 +167,7 @@ class Feature48 extends BaseFeature {
                 {
                     type: "object",
                     key: "service",
-                    displayer: "Service",
+                    displayer: "Feature",
                     value: [
                         {
                             type: "media",
