@@ -73,6 +73,7 @@
             content: "";
 
             .step-description {
+              font-size: calc(1.25 * var(--composer-font-size-md)) !important;
               color: var(--composer-font-color-primary);
               text-align: left !important;
               margin-left: 0 !important;
@@ -84,8 +85,10 @@
 
     // Number and title are flex items: the inline editor swaps each text for a block-level box while editing,
     // which would otherwise push the title onto its own line in the Content tab.
+    // Step titles and descriptions keep the original sizes (about 26px / 20px) on every view.
     .tab-label,
     .section-label {
+      font-size: calc(1.625 * var(--composer-font-size-md)) !important;
       display: flex !important;
       align-items: baseline;
       justify-content: flex-start !important;
@@ -168,11 +171,14 @@
                 color: var(--composer-font-color-primary);
               }
 
+              // Icons and images share the standard icon size.
               .accordion-icon {
                 flex-shrink: 0;
+                width: 24px;
+                height: 24px;
                 font-size: 1.5rem;
+                object-fit: contain;
                 color: var(--composer-font-color-primary);
-                transition: transform 0.3s ease;
               }
             }
 
@@ -188,9 +194,6 @@
                   color: var(--composer-primary-color);
                 }
 
-                .accordion-icon {
-                  transform: rotate(180deg);
-                }
               }
 
               .section-content {
@@ -200,6 +203,16 @@
           }
         }
       }
+    }
+  }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+  .container .max-content .steps.no-mobile-line .sections {
+    border-bottom: none;
+
+    .section {
+      border-top: none;
     }
   }
 }

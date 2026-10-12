@@ -51,7 +51,7 @@ class Steps4 extends BaseSteps {
             {
               type: "array",
               key: "paragraphs",
-              displayer: "Paragraphs",
+              displayer: "Description",
               value: [
                 {
                   type: "object",
@@ -85,7 +85,7 @@ class Steps4 extends BaseSteps {
             {
               type: "array",
               key: "paragraphs",
-              displayer: "Paragraphs",
+              displayer: "Description",
               value: [
                 {
                   type: "object",
@@ -119,7 +119,7 @@ class Steps4 extends BaseSteps {
             {
               type: "array",
               key: "paragraphs",
-              displayer: "Paragraphs",
+              displayer: "Description",
               value: [
                 {
                   type: "object",
@@ -147,7 +147,7 @@ class Steps4 extends BaseSteps {
             {
               type: "array",
               key: "paragraphs",
-              displayer: "Paragraphs",
+              displayer: "Description",
               value: [
                 {
                   type: "object",
@@ -176,10 +176,25 @@ class Steps4 extends BaseSteps {
 
     this.addProp({
       type: "media",
-      key: "accordionIcon",
-      displayer: "Accordion Icon",
+      key: "activeIcon",
+      displayer: "Active Icon",
+      additionalParams: { availableTypes: ["icon", "image"] },
+      value: { type: "icon", name: "FiChevronUp" },
+    });
+
+    this.addProp({
+      type: "media",
+      key: "inactiveIcon",
+      displayer: "Inactive Icon",
       additionalParams: { availableTypes: ["icon", "image"] },
       value: { type: "icon", name: "FiChevronDown" },
+    });
+
+    this.addProp({
+      type: "boolean",
+      key: "mobileLine",
+      displayer: "Mobile Line",
+      value: true,
     });
 
     this.addProp({
@@ -216,8 +231,10 @@ class Steps4 extends BaseSteps {
       }))
       .filter((step: Step) => this.castToString(step.stepNumber) || this.castToString(step.step_title) || step.paragraphs.length > 0);
     const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
-    const accordionIcon = this.getPropValue("accordionIcon") as TypeMediaInputValue;
-    const accordionIconExist = accordionIcon && (accordionIcon.type === "icon" ? accordionIcon.name : accordionIcon.url);
+    const activeIcon = this.getPropValue("activeIcon") as TypeMediaInputValue;
+    const inactiveIcon = this.getPropValue("inactiveIcon") as TypeMediaInputValue;
+    const mediaExist = (media: TypeMediaInputValue) => media && (media.type === "icon" ? media.name : media.url);
+    const mobileLine = this.getPropValue("mobileLine");
 
     const activeStep = Math.min(this.getComponentState("activeStep") ?? 0, Math.max(steps.length - 1, 0));
     const openStep = this.getComponentState("openStep");
@@ -247,7 +264,7 @@ class Steps4 extends BaseSteps {
           )}
 
           {steps.length > 0 && (
-            <div className={this.decorateCSS("steps")}>
+            <div className={`${this.decorateCSS("steps")} ${!mobileLine ? this.decorateCSS("no-mobile-line") : ""}`}>
               <div className={this.decorateCSS("tab-list")}>
                 {steps.map((step: Step, index: number) => (
                   <div
@@ -268,7 +285,9 @@ class Steps4 extends BaseSteps {
                   >
                     <div className={this.decorateCSS("section-header")} onClick={() => this.toggleAccordion(index)}>
                       {renderStepLabel(step, "section-label")}
-                      {accordionIconExist && <Base.Media value={accordionIcon} className={this.decorateCSS("accordion-icon")} />}
+                      {mediaExist(index === openStep ? activeIcon : inactiveIcon) && (
+                        <Base.Media value={index === openStep ? activeIcon : inactiveIcon} className={this.decorateCSS("accordion-icon")} />
+                      )}
                     </div>
                     {step.paragraphs.length > 0 && (
                       <Base.VerticalContent className={this.decorateCSS("section-content")}>
