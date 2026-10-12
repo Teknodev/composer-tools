@@ -186,7 +186,7 @@
         .subtitle {
           margin-left: 0;
           font-size: 1rem;
-          color: var(--composer-primary-color);
+          color: var(--composer-font-color-primary);
           overflow: hidden;
         }
 
@@ -351,4 +351,9 @@
       }
     }
   }
+}
+
+// The Line subtitle type draws its line in the subtitle's own text color.
+.subtitle::before {
+  background-color: currentColor !important;
 }

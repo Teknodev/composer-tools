@@ -637,3 +637,12 @@
     }
   }
 }
+
+// This layout keeps its own alignment, so the Line subtitle type neither draws a line nor shifts the text.
+.subtitle {
+  transform: none !important;
+
+  &::before {
+    content: none !important;
+  }
+}

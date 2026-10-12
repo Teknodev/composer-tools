@@ -59,6 +59,7 @@
               width: 100%;
               height: 100%;
               object-fit: cover;
+              border-radius: var(--composer-border-radius-sm);
             }
 
             .slide-overlay {
@@ -69,6 +70,7 @@
               height: 100%;
               background-color: var(--composer-overlay-color);
               pointer-events: none;
+              border-radius: var(--composer-border-radius-sm);
             }
           }
 
@@ -179,6 +181,7 @@
             gap: var(--composer-gap-xs);
             background: black;
             color: white;
+            border-radius: var(--composer-border-radius-sm);
             width: 350px;
             padding: var(--composer-gap-md);
             position: absolute;
@@ -247,11 +250,17 @@
           }
         }
 
+        // Trims the text box to the cap height, so the icon is centered on the letters in every theme font.
+        .name {
+          text-box: trim-both cap alphabetic;
+        }
+
         .social-icon {
-          width: 16px;
-          height: 16px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
           font-size: 1.25rem;
-          object-fit: covers;
+          object-fit: cover;
         }
       }
 
@@ -414,4 +423,9 @@
       }
     }
   }
+}
+
+// The Line subtitle type draws its line in the subtitle's own text color.
+.subtitle::before {
+  background-color: currentColor !important;
 }

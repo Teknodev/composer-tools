@@ -543,3 +543,8 @@
     }
   }
 }
+
+// The Line subtitle type draws its line in the subtitle's own text color.
+.subtitleTop::before {
+  background-color: currentColor !important;
+}

@@ -228,6 +228,10 @@
                 white-space: nowrap;
                 overflow: hidden;
                 text-overflow: ellipsis;
+                // The Badge subtitle type is not used here; the vertical subtitle always stays plain text.
+                background: transparent !important;
+                padding: 0 !important;
+                border-radius: 0 !important;
 
                 &.dark {
                   color: var(--composer-font-color-primary);
@@ -575,4 +579,9 @@
     height: 6px;
     margin: 6px;
   }
+}
+
+// The Line subtitle type draws its line in the subtitle's own text color.
+.subtitle::before {
+  background-color: currentColor !important;
 }

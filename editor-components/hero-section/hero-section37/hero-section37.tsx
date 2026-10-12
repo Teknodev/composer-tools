@@ -83,7 +83,7 @@ class HeroSection37 extends BaseHeroSection {
               type: "array",
               key: "buttons",
               displayer: "Buttons",
-              value: [INPUTS.BUTTON("button", "Button", "Discover More", "", null, null, "White")],
+              value: [INPUTS.BUTTON("button", "Button", "", "", null, null, "White")],
             },
             {
               type: "media",
@@ -150,7 +150,7 @@ class HeroSection37 extends BaseHeroSection {
               type: "array",
               key: "buttons",
               displayer: "Buttons",
-              value: [INPUTS.BUTTON("button", "Button", "Discover More", "", null, null, "White")],
+              value: [INPUTS.BUTTON("button", "Button", "", "", null, null, "White")],
             },
             {
               type: "media",
@@ -217,7 +217,7 @@ class HeroSection37 extends BaseHeroSection {
               type: "array",
               key: "buttons",
               displayer: "Buttons",
-              value: [INPUTS.BUTTON("button", "Button", "Discover More", "", null, null, "White")],
+              value: [INPUTS.BUTTON("button", "Button", "", "", null, null, "White")],
             },
             {
               type: "media",
@@ -284,7 +284,7 @@ class HeroSection37 extends BaseHeroSection {
               type: "array",
               key: "buttons",
               displayer: "Buttons",
-              value: [INPUTS.BUTTON("button", "Button", "Discover More", "", null, null, "White")],
+              value: [INPUTS.BUTTON("button", "Button", "", "", null, null, "White")],
             },
             {
               type: "media",
@@ -352,7 +352,7 @@ class HeroSection37 extends BaseHeroSection {
               type: "array",
               key: "buttons",
               displayer: "Buttons",
-              value: [INPUTS.BUTTON("button", "Button", "Discover More", "", null, null, "White")],
+              value: [INPUTS.BUTTON("button", "Button", "", "", null, null, "White")],
             },
             {
               type: "media",

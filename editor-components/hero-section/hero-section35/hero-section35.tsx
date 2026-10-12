@@ -134,7 +134,7 @@ class HeroSection35 extends BaseHeroSection {
                     type: "boolean",
                     key: "overlay",
                     displayer: "Overlay",
-                    value: true,
+                    value: false,
                 },
                 {
                     type: "object",
