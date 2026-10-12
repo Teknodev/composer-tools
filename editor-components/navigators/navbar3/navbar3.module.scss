@@ -235,6 +235,7 @@
         top: 100%;
         left: 0;
         display: flex;
+        gap: var(--composer-gap-xl);
         width: max-content;
         min-width: 420px;
         background: var(--composer-html-background);
@@ -248,24 +249,31 @@
         overflow: hidden;
         z-index: 100;
 
-        .megaMenuMedia {
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          z-index: 0;
-        }
+        .megaMenuMediaWrapper {
+          position: relative;
+          width: 220px;
+          flex-shrink: 0;
+          align-self: stretch;
+          border-radius: var(--composer-border-radius-sm);
+          overflow: hidden;
 
-        .megaMenuOverlay {
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          background-color: var(--composer-overlay-color);
-          z-index: 1;
+          .megaMenuMedia {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+          }
+
+          .megaMenuOverlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--composer-overlay-color);
+          }
         }
 
         .megaMenuColumns {
@@ -278,7 +286,7 @@
         .megaMenuColumn {
           display: flex;
           flex-direction: column;
-          gap: var(--composer-gap-sm);
+          gap: var(--composer-gap-md);
           min-width: 180px;
         }
 
@@ -290,6 +298,10 @@
 
         .megaMenuColumnTitle {
           margin: 0;
+          width: auto;
+          white-space: nowrap;
+          font-size: calc(0.8125 * var(--composer-font-size-md));
+          font-weight: 600;
           color: var(--composer-font-color-primary);
           text-transform: uppercase;
         }
@@ -297,7 +309,7 @@
         .megaMenuLinks {
           display: flex;
           flex-direction: column;
-          gap: var(--composer-gap-xs);
+          gap: var(--composer-gap-sm);
         }
 
         .megaMenuLink {
@@ -308,6 +320,9 @@
 
         .megaMenuLinkTitle {
           margin: 0;
+          width: auto;
+          white-space: nowrap;
+          font-size: calc(0.75 * var(--composer-font-size-md));
           color: var(--composer-font-color-primary);
           opacity: 0.8;
           transition: opacity 0.3s ease;
@@ -322,19 +337,19 @@
         position: absolute;
         top: 100%;
         left: 0;
-        min-width: 200px;
+        min-width: 230px;
         background: var(--composer-html-background);
         border-radius: var(--composer-border-radius-sm);
         box-shadow: var(--box-shadow-active);
         opacity: 0;
         visibility: hidden;
         transform: translateY(10px);
-        padding: var(--composer-gap-xs);
+        padding: var(--composer-gap-sm) 0;
         transition: all 0.3s ease;
         z-index: 100;
 
         .dropdownItemContainer {
-          padding: var(--composer-gap-sm) var(--composer-gap-sm);
+          padding: var(--composer-gap-xs) var(--composer-gap-md);
           transition: all 0.3s ease;
           border-radius: var(--composer-border-radius-sm);
           position: relative;
@@ -351,6 +366,9 @@
 
               .dropdownItemTitle {
                 margin: 0;
+                width: auto;
+                white-space: nowrap;
+                font-size: calc(0.75 * var(--composer-font-size-md));
                 font-weight: 400;
                 color: var(--composer-font-color-primary);
                 transition: all 0.3s ease;
@@ -399,19 +417,19 @@
             position: absolute;
             top: 0;
             left: calc(100% + 8px);
-            min-width: 200px;
+            min-width: 230px;
             background: var(--composer-html-background);
             border-radius: var(--composer-border-radius-sm);
             box-shadow: var(--box-shadow-active);
             opacity: 0;
             visibility: hidden;
-            padding: var(--composer-gap-xs);
+            padding: var(--composer-gap-sm) 0;
             transform: translateX(10px);
             transition: all 0.3s ease;
             z-index: 101;
 
             .subdropdownItem {
-              padding: var(--composer-gap-sm) var(--composer-gap-sm);
+              padding: var(--composer-gap-xs) var(--composer-gap-md);
               transition: all 0.3s ease;
               border-radius: var(--composer-border-radius-sm);
               position: relative;
@@ -702,11 +720,12 @@
 
   .smallDeviceNavbarContainer {
     .maxContent {
+      // The menu glyph fills about 75% of its box, so its box is larger to look as big as the social icons.
       .hamburgerIcon,
       .closeIcon {
-        font-size: calc(1.25 * var(--composer-font-size-md));
-        width: 22px;
-        height: 22px;
+        font-size: calc(1.5 * var(--composer-font-size-md));
+        width: 24px;
+        height: 24px;
       }
     }
   }
@@ -742,9 +761,9 @@
     .maxContent {
       .hamburgerIcon,
       .closeIcon {
-        font-size: calc(1.125 * var(--composer-font-size-md));
-        width: 20px;
-        height: 20px;
+        font-size: calc(1.3125 * var(--composer-font-size-md));
+        width: 21px;
+        height: 21px;
       }
     }
   }
@@ -759,11 +778,45 @@
 
 .badge {
   margin: 0;
-  padding: 2px var(--composer-gap-xs);
+  width: fit-content;
+  flex: none;
+  padding: 1px var(--composer-gap-xs) !important;
   border-radius: var(--composer-border-radius-sm);
   background-color: var(--composer-primary-color);
   color: var(--composer-font-color-secondary);
-  font-size: calc(0.625 * var(--composer-font-size-md));
+  font-size: calc(0.6875 * var(--composer-font-size-md)) !important;
   text-transform: uppercase;
   white-space: nowrap;
+
+  &.badge-secondary {
+    background-color: var(--composer-secondary-color);
+  }
+}
+
+// Hamburger menu sizes follow the original on tablet and mobile: 13px uppercase menu titles, 12px items, 39px rows.
+.hamburgerNav {
+  .hamburgerMenuItemHeader {
+    padding: var(--composer-gap-sm) 0 !important;
+
+    .hamburgerMenuItemTitle {
+      font-size: calc(0.8125 * var(--composer-font-size-md)) !important;
+      text-transform: uppercase;
+    }
+  }
+
+  .hamburgerSubmenu {
+    padding-left: var(--composer-gap-sm) !important;
+  }
+
+  .hamburgerSubmenuItemHeader,
+  .hamburgerSubSubmenuItem {
+    padding: var(--composer-gap-sm) 0 !important;
+
+    .hamburgerMenuItemTitle,
+    .hamburgerDropdownItemTitle,
+    .hamburgerSubSubmenuItemTitle {
+      font-size: calc(0.75 * var(--composer-font-size-md)) !important;
+      text-transform: none;
+    }
+  }
 }

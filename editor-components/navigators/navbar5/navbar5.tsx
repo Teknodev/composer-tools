@@ -37,7 +37,7 @@ class Navbar5 extends BaseNavigator {
     this.addProp({
       type: "array",
       key: "social",
-      displayer: "Social",
+      displayer: "Social Media",
       value: [
         {
           type: "object",
@@ -271,7 +271,7 @@ class Navbar5 extends BaseNavigator {
     this.addProp({
       type: "array",
       key: "listItems",
-      displayer: "List Items",
+      displayer: "Menu",
       value: [
         {
           type: "object",

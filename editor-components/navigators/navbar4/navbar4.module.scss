@@ -23,11 +23,15 @@
 
     .informationContainer {
       display: flex;
+      align-items: stretch;
       gap: var(--composer-gap-sm);
 
+      // The image is a square as tall as the text next to it (at least 56px), so it is never shorter than the text.
       .informationImageContainer {
-        width: 56px;
-        height: 56px;
+        align-self: stretch;
+        min-height: 56px;
+        aspect-ratio: 1 / 1;
+        flex-shrink: 0;
         border-radius: var(--composer-border-radius-xs);
         overflow: hidden;
 
@@ -42,13 +46,13 @@
         .informationTitle {
           color: var(--composer-font-color-primary);
           text-align: left;
-          font-size: calc(0.875 * var(--composer-font-size-md));
+          font-size: calc(0.875 * var(--composer-font-size-md)) !important;
         }
         .informationDescription {
           max-width: 200px;
           color: var(--composer-font-color-primary);
           text-align: left;
-          font-size: calc(0.875 * var(--composer-font-size-md));
+          font-size: calc(0.875 * var(--composer-font-size-md)) !important;
         }
       }
     }
@@ -614,6 +618,7 @@
         .informationImageContainer {
           width: 40px;
           height: 40px;
+          min-height: 0;
           border-radius: 50%;
         }
         .informationTextContainer {

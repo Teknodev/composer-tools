@@ -586,7 +586,10 @@ class Navbar3 extends BaseNavigator {
               key: "mega_media",
               displayer: "Mega Menu Media",
               additionalParams: { availableTypes: ["image", "video"] },
-              value: { type: "image", url: "" },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617eb2bd2970002c624503?alt=media&timestamp=1719483639150",
+              },
             },
             {
               type: "boolean",
@@ -2101,7 +2104,7 @@ class Navbar3 extends BaseNavigator {
     this.addProp({
       type: "array",
       key: "icons",
-      displayer: "Icons",
+      displayer: "Social Media",
       value: [
         {
           type: "object",
@@ -2268,6 +2271,12 @@ class Navbar3 extends BaseNavigator {
     }
   }
 
+  // "Sale" labels use the secondary color, every other label the primary color (as in the original).
+  badgeClass(badge: React.JSX.Element) {
+    const isSale = String(this.castToString(badge)).trim().toLowerCase() === "sale";
+    return `${this.decorateCSS("badge")} ${isSale ? this.decorateCSS("badge-secondary") : ""}`;
+  }
+
   render() {
     const lane = this.castToObject<Lane>("lane");
     const position = this.getPropValue("position");
@@ -2421,7 +2430,7 @@ class Navbar3 extends BaseNavigator {
                                               {subItem.title}
                                             </Base.P>
                                             {this.castToString(subItem.sub_item_badge) && (
-                                              <Base.P className={this.decorateCSS("badge")}>
+                                              <Base.P className={this.badgeClass(subItem.sub_item_badge)}>
                                                 {subItem.sub_item_badge}
                                               </Base.P>
                                             )}
@@ -2469,7 +2478,7 @@ class Navbar3 extends BaseNavigator {
                                                           {subSubItem.title}
                                                         </Base.P>
                                                         {this.castToString(subSubItem.sub_sub_item_badge) && (
-                                                          <Base.P className={this.decorateCSS("badge")}>
+                                                          <Base.P className={this.badgeClass(subSubItem.sub_sub_item_badge)}>
                                                             {subSubItem.sub_sub_item_badge}
                                                           </Base.P>
                                                         )}
@@ -2488,15 +2497,6 @@ class Navbar3 extends BaseNavigator {
                         {item.menuType === "Mega" &&
                           item.sub_items?.length > 0 && (
                             <div className={this.decorateCSS("megaMenu")}>
-                              {item.mega_media && item.mega_media.type !== "icon" && item.mega_media.url && (
-                                <Base.Media
-                                  value={item.mega_media}
-                                  className={this.decorateCSS("megaMenuMedia")}
-                                />
-                              )}
-                              {item.mega_overlay && item.mega_media && item.mega_media.type !== "icon" && item.mega_media.url && (
-                                <div className={this.decorateCSS("megaMenuOverlay")} />
-                              )}
                               <div className={this.decorateCSS("megaMenuColumns")}>
                                 {item.sub_items.map(
                                   (column: Item, columnIndex: number) => {
@@ -2517,7 +2517,7 @@ class Navbar3 extends BaseNavigator {
                                                   {column.title}
                                                 </Base.P>
                                                 {this.castToString(column.sub_item_badge) && (
-                                                  <Base.P className={this.decorateCSS("badge")}>
+                                                  <Base.P className={this.badgeClass(column.sub_item_badge)}>
                                                     {column.sub_item_badge}
                                                   </Base.P>
                                                 )}
@@ -2535,7 +2535,7 @@ class Navbar3 extends BaseNavigator {
                                                           {link.title}
                                                         </Base.P>
                                                         {this.castToString(link.sub_sub_item_badge) && (
-                                                          <Base.P className={this.decorateCSS("badge")}>
+                                                          <Base.P className={this.badgeClass(link.sub_sub_item_badge)}>
                                                             {link.sub_sub_item_badge}
                                                           </Base.P>
                                                         )}
@@ -2551,6 +2551,15 @@ class Navbar3 extends BaseNavigator {
                                   }
                                 )}
                               </div>
+                              {item.mega_media && item.mega_media.type !== "icon" && item.mega_media.url && (
+                                <div className={this.decorateCSS("megaMenuMediaWrapper")}>
+                                  <Base.Media
+                                    value={item.mega_media}
+                                    className={this.decorateCSS("megaMenuMedia")}
+                                  />
+                                  {item.mega_overlay && <div className={this.decorateCSS("megaMenuOverlay")} />}
+                                </div>
+                              )}
                             </div>
                           )}
                       </div>
@@ -2741,7 +2750,7 @@ class Navbar3 extends BaseNavigator {
                                               </Base.P>
                                             </ComposerLink>
                                             {this.castToString(subItem.sub_item_badge) && (
-                                              <Base.P className={this.decorateCSS("badge")}>
+                                              <Base.P className={this.badgeClass(subItem.sub_item_badge)}>
                                                 {subItem.sub_item_badge}
                                               </Base.P>
                                             )}
@@ -2812,7 +2821,7 @@ class Navbar3 extends BaseNavigator {
                                                           </Base.P>
                                                         </ComposerLink>
                                                         {this.castToString(subSubItem.sub_sub_item_badge) && (
-                                                          <Base.P className={this.decorateCSS("badge")}>
+                                                          <Base.P className={this.badgeClass(subSubItem.sub_sub_item_badge)}>
                                                             {subSubItem.sub_sub_item_badge}
                                                           </Base.P>
                                                         )}

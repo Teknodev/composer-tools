@@ -2474,7 +2474,7 @@ class Navbar6 extends BaseNavigator {
     this.addProp({
       type: "array",
       key: "icons",
-      displayer: "Icons",
+      displayer: "Social Media",
       value: [
         {
           type: "object",
@@ -2615,7 +2615,7 @@ class Navbar6 extends BaseNavigator {
           type: "boolean",
           key: "showLanguage",
           displayer: "Language",
-          value: true,
+          value: false,
         },
         {
           type: "boolean",
@@ -3040,7 +3040,7 @@ class Navbar6 extends BaseNavigator {
                 </div>
               )}
 
-              {menuItems.length > 0 && language.showLanguage && (
+              {(icons?.length > 0 || language.showLanguage) && (
                 <div className={this.decorateCSS("iconsContainer")}>
                   {icons?.length > 0 && (
                     <div className={this.decorateCSS("icons")}>
@@ -3054,7 +3054,7 @@ class Navbar6 extends BaseNavigator {
                       ))}
                     </div>
                   )}
-                  {divider && icons.length > 0 && (
+                  {divider && icons.length > 0 && language.showLanguage && (
                     <div className={this.decorateCSS("divider")}></div>
                   )}
                   {language.showLanguage && (
@@ -3273,20 +3273,6 @@ class Navbar6 extends BaseNavigator {
                   }
                 </nav>
 
-                {icons.length > 0 && (
-                  <div className={this.decorateCSS("iconsContainer")}>
-                    {icons.map((icon: Icon, index: number) => (
-                      <ComposerLink path={icon.page}>
-                        <div className={this.decorateCSS("icons")} onClick={()=> this.handleCloseMenu()}>
-                        <Base.Media
-                          value={icon.icon}
-                          className={this.decorateCSS("icon")}
-                        />
-                        </div>
-                      </ComposerLink>
-                    ))}
-                  </div>
-                )}
               </div>
 
           </Base.MaxContent>

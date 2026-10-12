@@ -462,7 +462,7 @@ class Navbar9 extends BaseNavigator {
     this.addProp({
       type: "array",
       key: "icons",
-      displayer: "Icons",
+      displayer: "Social Media",
       value: [
         {
           type: "object",
@@ -731,7 +731,9 @@ class Navbar9 extends BaseNavigator {
           className={`${this.decorateCSS("container")}`}
           positionContainer={`${this.decorateCSS("navbarContainer")} ${
             overlay && ((isStickyTransparent || isAbsolute) && !isScrolled) ? this.decorateCSS("overlay") : ""
-          } ${changeBackground ? this.decorateCSS("filledBackground") : ""} ${hamburgerNavActive ? this.decorateCSS("hamburgerActive") : ""}`}
+          } ${changeBackground ? this.decorateCSS("filledBackground") : ""} ${hamburgerNavActive ? this.decorateCSS("hamburgerActive") : ""} ${
+            isScrolled && !isAbsolute ? this.decorateCSS("scrolledBackground") : ""
+          }`}
           hamburgerNavActive={hamburgerNavActive}
           setIsBigScreen={(value: boolean) => this.setComponentState("isBigScreen", value)}
           setIsScrolled={(value: boolean) => this.setComponentState("isScrolled", value)}

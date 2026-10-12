@@ -477,6 +477,11 @@
           max-height: 50px;
         }
       }
+
+      // The menu titles keep their desktop size on tablet, as in the original (Base.P would shrink them).
+      .pcNavbar .menuItemContainer .menuItemTitle {
+        font-size: var(--composer-font-size-md) !important;
+      }
     }
   }
 }

@@ -92,17 +92,19 @@
           }
         }
 
+        // The panel spans the whole navbar width (100cqw of the navbar container), centered on it.
         .dropdown {
           position: absolute;
           top: 100%;
-          width: 100%;
+          width: 100cqw;
           margin: auto;
-          right: 0px;
-          left: 0px;
+          right: auto;
+          left: 50%;
+          transform: translateX(-50%);
           display: flex;
           justify-content: space-evenly;
           background-color: var(--composer-html-background);
-          border-radius: var(--composer-border-radius-sm);
+          border-radius: 0;
           z-index: 100;
           overflow: hidden;
           max-height: 0;
@@ -121,11 +123,12 @@
           .dropdownGrid {
             margin: auto;
           }
+            // Content starts where the navbar content starts (navbar padding or centered content width).
             .dropdownContentContainer {
               display: flex;
               align-items: stretch;
               width: 100%;
-              padding: 0px;
+              padding: 0 0 0 max(var(--composer-gap-xl), calc((100cqw - var(--composer-content-width)) / 2));
               margin: auto;
               gap: 0px;
               opacity: 0;
@@ -807,6 +810,11 @@
           .button {
             white-space: nowrap;
           }
+
+          // As in the original, only the main call-to-action stays next to the menu button on tablet.
+          > *:not(:last-child) {
+            display: none;
+          }
         }
         .hamburgerIcon,
         .closeIcon {
@@ -988,4 +996,10 @@
   height: 100%;
   background-color: var(--composer-overlay-color);
   pointer-events: none;
+}
+
+@container (max-width: #{$composer-phone-width}) {
+  .navbarContainer .maxContent .rightSide .buttons {
+    display: none !important;
+  }
 }

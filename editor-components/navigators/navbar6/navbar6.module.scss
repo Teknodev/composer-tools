@@ -36,7 +36,8 @@
       align-items: center;
       .logoImage {
         width: auto;
-        height: 100%;
+        height: 56px;
+        max-width: 100%;
         object-fit: contain;
       }
     }
@@ -82,11 +83,11 @@
         }
 
         .dropdownIcon {
-          font-size: calc(1.5 * var(--composer-font-size-md));
+          font-size: var(--composer-font-size-md);
           color: var(--composer-font-color-primary);
           transition: all 0.3s ease;
-          height: 24px;
-          width: 24px;
+          height: 16px;
+          width: 16px;
           object-fit: cover;
         }
 
@@ -389,7 +390,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        font-size: calc(1.5 * var(--composer-font-size-md));
+        font-size: calc(1.25 * var(--composer-font-size-md));
         color: var(--composer-font-color-primary);
       }
     }
@@ -751,6 +752,13 @@
   background-color: var(--composer-primary-color);
   color: var(--composer-font-color-secondary);
   font-size: calc(0.625 * var(--composer-font-size-md)) !important;
+  font-weight: 700;
   text-transform: uppercase;
   white-space: nowrap;
+}
+
+@container (max-width: #{$composer-phone-width}) {
+  .maxContent .pcNavbarContainer .logo .logoImage {
+    height: 44px;
+  }
 }

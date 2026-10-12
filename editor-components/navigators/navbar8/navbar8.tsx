@@ -134,7 +134,7 @@ class Navbar8 extends BaseNavigator {
           type: "boolean",
           key: "showLanguage",
           displayer: "Language",
-          value: true,
+          value: false,
         },
         {
           type: "boolean",
@@ -173,7 +173,7 @@ class Navbar8 extends BaseNavigator {
     this.addProp({
       type: "array",
       key: "itemList",
-      displayer: "Item List",
+      displayer: "Menu",
       value: [
         {
           type: "object",
@@ -286,7 +286,7 @@ class Navbar8 extends BaseNavigator {
     this.addProp({
       type: "array",
       key: "socialMediaLinks",
-      displayer: "Social Media Items",
+      displayer: "Social Media",
       value: [
         {
           type: "object",

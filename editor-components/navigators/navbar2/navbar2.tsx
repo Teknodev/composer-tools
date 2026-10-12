@@ -546,7 +546,7 @@ class Navbar2 extends BaseNavigator {
       type: "boolean",
       key: "divider",
       displayer: "Line",
-      value: true,
+      value: false,
     });
 
     this.addProp({

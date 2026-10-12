@@ -461,7 +461,7 @@
     margin-top: var(--composer-gap-sm);
     .icon-container{
       .icon {
-        font-size: calc(1.5 * var(--composer-font-size-md));
+        font-size: calc(1.25 * var(--composer-font-size-md));
         color: var(--composer-font-color-primary);
       }
       &.animation3{
@@ -482,6 +482,13 @@
 .filledBackground {
   background: transparent !important;
   transition: all 0.3s ease !important;
+}
+
+// The class list depends on the scroll state, so the re-render drops the Base "scrolled" class; this keeps the filled look while scrolled.
+.scrolledBackground {
+  background: var(--composer-html-background) !important;
+  color: var(--composer-font-color-primary) !important;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
 }
 .hamburgerOverlay {
   content: "";

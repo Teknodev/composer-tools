@@ -154,6 +154,12 @@
                 height: auto;
                 aspect-ratio: 1;
               }
+
+              // Category names under the images are bold, as in the original.
+              .megaMenuLinkTitle {
+                font-weight: 600;
+                color: var(--composer-font-color-primary);
+              }
             }
 
             &.listCardsColumn {
@@ -194,6 +200,7 @@
           .megaMenuColumnTitle {
             margin: 0;
             font-size: 1.25rem;
+            font-weight: 600;
             color: var(--composer-font-color-primary);
           }
 
@@ -710,13 +717,20 @@
           }
         }
       }
+      // As in the original: the menu button on the left, the logo centered.
       .mobileRight{
         display: flex;
         gap: var(--composer-gap-sm);
         align-items: center;
+        order: -1;
       }
 
       .logo {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+
         .logoImage {
           max-height: 50px;
         }
@@ -760,4 +774,8 @@
   font-size: calc(0.625 * var(--composer-font-size-md));
   text-transform: uppercase;
   white-space: nowrap;
+
+  &.badge-secondary {
+    background-color: var(--composer-secondary-color);
+  }
 }

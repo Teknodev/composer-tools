@@ -131,7 +131,7 @@ class Navbar4 extends BaseNavigator {
     this.addProp({
       type: "array",
       key: "icons",
-      displayer: "Icons",
+      displayer: "Social Media",
       value: [
         {
           type: "object",
@@ -234,6 +234,13 @@ class Navbar4 extends BaseNavigator {
           ],
         },
       ],
+    });
+
+    this.addProp({
+      type: "boolean",
+      key: "line",
+      displayer: "Line",
+      value: false,
     });
 
     this.addProp({
@@ -823,13 +830,6 @@ class Navbar4 extends BaseNavigator {
       additionalParams:{
         selectItems:["animation1", "animation2", "animation3"]
       }
-    });
-
-    this.addProp({
-      type: "boolean",
-      key: "line",
-      displayer: "Line",
-      value: false,
     });
 
     this.setComponentState("isScrolled", false);

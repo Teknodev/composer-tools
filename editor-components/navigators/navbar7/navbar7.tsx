@@ -4214,7 +4214,7 @@ class Navbar7 extends BaseNavigator {
     this.addProp({
       type: "array",
       key: "icons",
-      displayer: "Icons",
+      displayer: "Social Media",
       value: [
         {
           type: "object",
@@ -4355,7 +4355,7 @@ class Navbar7 extends BaseNavigator {
           type: "boolean",
           key: "showLanguage",
           displayer: "Language",
-          value: true,
+          value: false,
         },
         {
           type: "boolean",
@@ -4488,6 +4488,12 @@ class Navbar7 extends BaseNavigator {
     }
   }
 
+  // "New" labels use the secondary color, every other label the primary color (as in the original).
+  badgeClass(badge: React.JSX.Element) {
+    const isNew = String(this.castToString(badge)).trim().toLowerCase() === "new";
+    return `${this.decorateCSS("badge")} ${isNew ? this.decorateCSS("badge-secondary") : ""}`;
+  }
+
   render() {
     const defaultLogo = this.castToObject<Logo>("defaultLogo");
     const absoluteLogo = this.castToObject<Logo>("absoluteLogo");
@@ -4603,7 +4609,7 @@ class Navbar7 extends BaseNavigator {
                                       {subItem.title}
                                     </Base.P>
                                     {this.castToString(subItem.sub_item_badge) && (
-                                      <Base.P className={this.decorateCSS("badge")}>
+                                      <Base.P className={this.badgeClass(subItem.sub_item_badge)}>
                                         {subItem.sub_item_badge}
                                       </Base.P>
                                     )}
@@ -4649,7 +4655,7 @@ class Navbar7 extends BaseNavigator {
                                                 {subSubItem.title}
                                               </Base.P>
                                               {this.castToString(subSubItem.sub_sub_item_badge) && (
-                                                <Base.P className={this.decorateCSS("badge")}>
+                                                <Base.P className={this.badgeClass(subSubItem.sub_sub_item_badge)}>
                                                   {subSubItem.sub_sub_item_badge}
                                                 </Base.P>
                                               )}
@@ -4689,7 +4695,7 @@ class Navbar7 extends BaseNavigator {
                                         {column.title}
                                       </Base.P>
                                       {this.castToString(column.sub_item_badge) && (
-                                        <Base.P className={this.decorateCSS("badge")}>
+                                        <Base.P className={this.badgeClass(column.sub_item_badge)}>
                                           {column.sub_item_badge}
                                         </Base.P>
                                       )}
@@ -4715,7 +4721,7 @@ class Navbar7 extends BaseNavigator {
                                                     {link.title}
                                                   </Base.P>
                                                   {this.castToString(link.sub_sub_item_badge) && (
-                                                    <Base.P className={this.decorateCSS("badge")}>
+                                                    <Base.P className={this.badgeClass(link.sub_sub_item_badge)}>
                                                       {link.sub_sub_item_badge}
                                                     </Base.P>
                                                   )}
@@ -4918,7 +4924,7 @@ class Navbar7 extends BaseNavigator {
                                     </Base.P>
                                   </ComposerLink>
                                   {this.castToString(subItem.sub_item_badge) && (
-                                    <Base.P className={this.decorateCSS("badge")}>
+                                    <Base.P className={this.badgeClass(subItem.sub_item_badge)}>
                                       {subItem.sub_item_badge}
                                     </Base.P>
                                   )}
@@ -4979,7 +4985,7 @@ class Navbar7 extends BaseNavigator {
                                               </Base.P>
                                             </ComposerLink>
                                             {this.castToString(subSubItem.sub_sub_item_badge) && (
-                                              <Base.P className={this.decorateCSS("badge")}>
+                                              <Base.P className={this.badgeClass(subSubItem.sub_sub_item_badge)}>
                                                 {subSubItem.sub_sub_item_badge}
                                               </Base.P>
                                             )}

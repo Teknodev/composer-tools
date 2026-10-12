@@ -109,7 +109,7 @@ class Navbar10 extends BaseNavigator {
     this.addProp({
       type: "array",
       key: "menuItems",
-      displayer: "Menu Items",
+      displayer: "Menu",
       value: [
         {
           type: "object",
@@ -2889,7 +2889,7 @@ class Navbar10 extends BaseNavigator {
             </div>
 
             <div className={this.decorateCSS("rightSide")}>
-              {buttons.length > 0 && !isMobile && (
+              {buttons.length > 0 && (
                 <div className={this.decorateCSS("buttons")}>
                   {buttons.map((btn, idx) => this.castToString(btn.text) && (
                     <ComposerLink key={idx} path={btn.url}>

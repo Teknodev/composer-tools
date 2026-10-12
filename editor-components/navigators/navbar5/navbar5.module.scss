@@ -170,9 +170,10 @@
       flex: 8 1 0;
       min-width: 0;
 
+      // Scales with the panel width and the screen height, so the title stays inside its own area above the line.
       .title {
         overflow-wrap: anywhere;
-        font-size: 12.5rem;
+        font-size: min(12.5rem, 11cqw, calc((100vh - 330px) / 3.6));
         color: var(--composer-tertiary-color);
         line-height: normal;
         text-align: left;
@@ -361,7 +362,7 @@
 
       .leftPage {
         .title {
-          font-size: 9.375rem !important;
+          font-size: min(9.375rem, 8cqw, calc((100vh - 330px) / 4.8)) !important;
         }
       }
 
