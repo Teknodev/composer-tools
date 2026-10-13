@@ -76,6 +76,11 @@
             flex-direction: column;
             gap: var(--composer-gap-xs);
 
+            // Without a description, the title takes the full width.
+            &:only-child {
+              grid-column: 1 / -1;
+            }
+
             .step-subtitle {
               color: var(--composer-tertiary-color);
               text-align: left !important;
@@ -94,6 +99,11 @@
             color: var(--composer-font-color-primary);
             text-align: left !important;
             margin: 0 !important;
+
+            // Without a title, the description shifts to the left and takes the full width.
+            &:only-child {
+              grid-column: 1 / -1;
+            }
           }
         }
       }
